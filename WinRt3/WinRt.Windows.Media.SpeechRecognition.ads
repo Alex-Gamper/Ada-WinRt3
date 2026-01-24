@@ -415,7 +415,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Status
       (
          this : access ISpeechContinuousRecognitionCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -427,7 +427,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Result
       (
          this : access ISpeechContinuousRecognitionResultGeneratedEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionResult
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -439,50 +439,50 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_AutoStopSilenceTimeout
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoStopSilenceTimeout
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function StartAsync
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartAsync
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         mode : Windows.Media.SpeechRecognition.SpeechContinuousRecognitionMode;
-         RetVal : access Windows.Foundation.IAsyncAction
+         mode : WinRt.Windows.Media.SpeechRecognition.SpeechContinuousRecognitionMode;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopAsync
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CancelAsync
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function PauseAsync
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -496,14 +496,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -511,14 +511,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResultGenerated
       (
          this : access ISpeechContinuousRecognitionSession_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -530,7 +530,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Status
       (
          this : access ISpeechRecognitionCompilationResult_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -570,21 +570,21 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Type
       (
          this : access ISpeechRecognitionConstraint_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintType
       )
       return WinRt.Hresult is abstract;
 
       function get_Probability
       (
          this : access ISpeechRecognitionConstraint_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
       )
       return WinRt.Hresult is abstract;
 
       function put_Probability
       (
          this : access ISpeechRecognitionConstraint_Interface;
-         value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+         value : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
       )
       return WinRt.Hresult is abstract;
 
@@ -596,7 +596,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_GrammarFile
       (
          this : access ISpeechRecognitionGrammarFileConstraint_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -608,17 +608,17 @@ package WinRt.Windows.Media.SpeechRecognition is
       function Create
       (
          this : access ISpeechRecognitionGrammarFileConstraintFactory_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithTag
       (
          this : access ISpeechRecognitionGrammarFileConstraintFactory_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          tag : WinRt.HString;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint
       )
       return WinRt.Hresult is abstract;
 
@@ -642,7 +642,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Hypothesis
       (
          this : access ISpeechRecognitionHypothesisGeneratedEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionHypothesis
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionHypothesis
       )
       return WinRt.Hresult is abstract;
 
@@ -667,7 +667,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechRecognitionListConstraintFactory_Interface;
          commands : GenericObject;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint
       )
       return WinRt.Hresult is abstract;
 
@@ -676,7 +676,7 @@ package WinRt.Windows.Media.SpeechRecognition is
          this : access ISpeechRecognitionListConstraintFactory_Interface;
          commands : GenericObject;
          tag : WinRt.HString;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint
       )
       return WinRt.Hresult is abstract;
 
@@ -688,7 +688,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Problem
       (
          this : access ISpeechRecognitionQualityDegradingEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionAudioProblem
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionAudioProblem
       )
       return WinRt.Hresult is abstract;
 
@@ -700,7 +700,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Status
       (
          this : access ISpeechRecognitionResult_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -714,14 +714,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Confidence
       (
          this : access ISpeechRecognitionResult_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionConfidence
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConfidence
       )
       return WinRt.Hresult is abstract;
 
       function get_SemanticInterpretation
       (
          this : access ISpeechRecognitionResult_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionSemanticInterpretation
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionSemanticInterpretation
       )
       return WinRt.Hresult is abstract;
 
@@ -736,7 +736,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Constraint
       (
          this : access ISpeechRecognitionResult_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionConstraint
       )
       return WinRt.Hresult is abstract;
 
@@ -762,14 +762,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_PhraseStartTime
       (
          this : access ISpeechRecognitionResult2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_PhraseDuration
       (
          this : access ISpeechRecognitionResult2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -793,7 +793,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Scenario
       (
          this : access ISpeechRecognitionTopicConstraint_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognitionScenario
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario
       )
       return WinRt.Hresult is abstract;
 
@@ -812,19 +812,19 @@ package WinRt.Windows.Media.SpeechRecognition is
       function Create
       (
          this : access ISpeechRecognitionTopicConstraintFactory_Interface;
-         scenario : Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
+         scenario : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
          topicHint : WinRt.HString;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithTag
       (
          this : access ISpeechRecognitionTopicConstraintFactory_Interface;
-         scenario : Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
+         scenario : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
          topicHint : WinRt.HString;
          tag : WinRt.HString;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint
       )
       return WinRt.Hresult is abstract;
 
@@ -841,7 +841,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_CurrentLanguage
       (
          this : access ISpeechRecognizer_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -855,14 +855,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_Timeouts
       (
          this : access ISpeechRecognizer_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognizerTimeouts
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerTimeouts
       )
       return WinRt.Hresult is abstract;
 
       function get_UIOptions
       (
          this : access ISpeechRecognizer_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognizerUIOptions
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizerUIOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -891,14 +891,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechRecognizer_Interface;
          speechRecognitionQualityDegradingHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecognitionQualityDegrading
       (
          this : access ISpeechRecognizer_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -906,14 +906,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechRecognizer_Interface;
          stateChangedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access ISpeechRecognizer_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -925,21 +925,21 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_ContinuousRecognitionSession
       (
          this : access ISpeechRecognizer2_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechContinuousRecognitionSession
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechContinuousRecognitionSession
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access ISpeechRecognizer2_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognizerState
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerState
       )
       return WinRt.Hresult is abstract;
 
       function StopRecognitionAsync
       (
          this : access ISpeechRecognizer2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -947,14 +947,14 @@ package WinRt.Windows.Media.SpeechRecognition is
       (
          this : access ISpeechRecognizer2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HypothesisGenerated
       (
          this : access ISpeechRecognizer2_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -966,8 +966,8 @@ package WinRt.Windows.Media.SpeechRecognition is
       function Create
       (
          this : access ISpeechRecognizerFactory_Interface;
-         language : Windows.Globalization.ILanguage;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognizer
+         language : WinRt.Windows.Globalization.ILanguage;
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognizer
       )
       return WinRt.Hresult is abstract;
 
@@ -979,7 +979,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_State
       (
          this : access ISpeechRecognizerStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.SpeechRecognizerState
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.SpeechRecognizerState
       )
       return WinRt.Hresult is abstract;
 
@@ -991,7 +991,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_SystemSpeechLanguage
       (
          this : access ISpeechRecognizerStatics_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -1017,7 +1017,7 @@ package WinRt.Windows.Media.SpeechRecognition is
       function TrySetSystemSpeechLanguageAsync
       (
          this : access ISpeechRecognizerStatics2_Interface;
-         speechLanguage : Windows.Globalization.ILanguage;
+         speechLanguage : WinRt.Windows.Globalization.ILanguage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1030,42 +1030,42 @@ package WinRt.Windows.Media.SpeechRecognition is
       function get_InitialSilenceTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_InitialSilenceTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_EndSilenceTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_EndSilenceTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_BabbleTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_BabbleTimeout
       (
          this : access ISpeechRecognizerTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1184,7 +1184,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_AutoStopSilenceTimeout
    (
       this : in out SpeechContinuousRecognitionSession;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure StartAsync
@@ -1195,7 +1195,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure StartAsync
    (
       this : in out SpeechContinuousRecognitionSession;
-      mode : Windows.Media.SpeechRecognition.SpeechContinuousRecognitionMode
+      mode : WinRt.Windows.Media.SpeechRecognition.SpeechContinuousRecognitionMode
    );
 
    procedure StopAsync
@@ -1228,7 +1228,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure remove_Completed
    (
       this : in out SpeechContinuousRecognitionSession;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResultGenerated
@@ -1241,7 +1241,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure remove_ResultGenerated
    (
       this : in out SpeechContinuousRecognitionSession;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1270,13 +1270,13 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    function Constructor
    (
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return SpeechRecognitionGrammarFileConstraint;
 
    function Constructor
    (
-      file : Windows.Storage.StorageFile'Class;
+      file : WinRt.Windows.Storage.StorageFile'Class;
       tag : WinRt.WString
    )
    return SpeechRecognitionGrammarFileConstraint;
@@ -1329,7 +1329,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_Probability
    (
       this : in out SpeechRecognitionGrammarFileConstraint;
-      value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+      value : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    );
 
    -----------------------------------------------------------------------------
@@ -1432,7 +1432,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_Probability
    (
       this : in out SpeechRecognitionListConstraint;
-      value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+      value : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    );
 
    -----------------------------------------------------------------------------
@@ -1546,14 +1546,14 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    function Constructor
    (
-      scenario : Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
+      scenario : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
       topicHint : WinRt.WString
    )
    return SpeechRecognitionTopicConstraint;
 
    function Constructor
    (
-      scenario : Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
+      scenario : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionScenario;
       topicHint : WinRt.WString;
       tag : WinRt.WString
    )
@@ -1613,7 +1613,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_Probability
    (
       this : in out SpeechRecognitionTopicConstraint;
-      value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+      value : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    );
 
    -----------------------------------------------------------------------------
@@ -1664,7 +1664,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_Probability
    (
       this : in out SpeechRecognitionVoiceCommandDefinitionConstraint;
-      value : Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
+      value : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionConstraintProbability
    );
 
    -----------------------------------------------------------------------------
@@ -1680,7 +1680,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    function Constructor
    (
-      language : Windows.Globalization.Language'Class
+      language : WinRt.Windows.Globalization.Language'Class
    )
    return SpeechRecognizer;
 
@@ -1689,7 +1689,7 @@ package WinRt.Windows.Media.SpeechRecognition is
 
    function TrySetSystemSpeechLanguageAsync
    (
-      speechLanguage : Windows.Globalization.Language'Class
+      speechLanguage : WinRt.Windows.Globalization.Language'Class
    )
    return WinRt.Boolean;
 
@@ -1757,7 +1757,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure remove_RecognitionQualityDegrading
    (
       this : in out SpeechRecognizer;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StateChanged
@@ -1770,7 +1770,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure remove_StateChanged
    (
       this : in out SpeechRecognizer;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -1805,7 +1805,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure remove_HypothesisGenerated
    (
       this : in out SpeechRecognizer;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1841,7 +1841,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_InitialSilenceTimeout
    (
       this : in out SpeechRecognizerTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_EndSilenceTimeout
@@ -1853,7 +1853,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_EndSilenceTimeout
    (
       this : in out SpeechRecognizerTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_BabbleTimeout
@@ -1865,7 +1865,7 @@ package WinRt.Windows.Media.SpeechRecognition is
    procedure put_BabbleTimeout
    (
       this : in out SpeechRecognizerTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------

@@ -65,7 +65,7 @@ package body WinRt.Windows.Devices.Display.Core is
 
    function FromId
    (
-      id : Windows.Graphics.DisplayAdapterId
+      id : WinRt.Windows.Graphics.DisplayAdapterId
    )
    return WinRt.Windows.Devices.Display.Core.DisplayAdapter is
       Hr               : WinRt.HResult := S_OK;
@@ -73,7 +73,7 @@ package body WinRt.Windows.Devices.Display.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayAdapter");
       m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayAdapterStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayAdapter do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayAdapterStatics'Access , m_Factory'Address);
@@ -83,7 +83,7 @@ package body WinRt.Windows.Devices.Display.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayAdapter := new Windows.Devices.Display.Core.IDisplayAdapter;
+            Retval.m_IDisplayAdapter := new WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
             Retval.m_IDisplayAdapter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -101,7 +101,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DisplayAdapterId;
    begin
       Hr := this.m_IDisplayAdapter.all.get_Id (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -223,7 +223,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayAdapter.all.get_Properties (m_ComRetVal'Access);
@@ -265,7 +265,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayAdapter2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayAdapter_Interface, WinRt.Windows.Devices.Display.Core.IDisplayAdapter2, WinRt.Windows.Devices.Display.Core.IID_IDisplayAdapter2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayAdapter do
@@ -275,7 +275,7 @@ package body WinRt.Windows.Devices.Display.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayAdapter := new Windows.Devices.Display.Core.IDisplayAdapter;
+         Retval.m_IDisplayAdapter := new WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
          Retval.m_IDisplayAdapter.all := m_ComRetVal;
       end return;
    end;
@@ -306,20 +306,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateScanoutSource
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplaySource'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplaySource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplaySource;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplaySource do
          Hr := this.m_IDisplayDevice.all.CreateScanoutSource (target.m_IDisplayTarget.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplaySource := new Windows.Devices.Display.Core.IDisplaySource;
+         Retval.m_IDisplaySource := new WinRt.Windows.Devices.Display.Core.IDisplaySource;
          Retval.m_IDisplaySource.all := m_ComRetVal;
       end return;
    end;
@@ -327,21 +327,21 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreatePrimary
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      desc : Windows.Devices.Display.Core.DisplayPrimaryDescription'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      desc : WinRt.Windows.Devices.Display.Core.DisplayPrimaryDescription'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplaySurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplaySurface;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplaySurface;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplaySurface do
          Hr := this.m_IDisplayDevice.all.CreatePrimary (target.m_IDisplayTarget.all, desc.m_IDisplayPrimaryDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplaySurface := new Windows.Devices.Display.Core.IDisplaySurface;
+         Retval.m_IDisplaySurface := new WinRt.Windows.Devices.Display.Core.IDisplaySurface;
          Retval.m_IDisplaySurface.all := m_ComRetVal;
       end return;
    end;
@@ -354,14 +354,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTaskPool;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTaskPool;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTaskPool do
          Hr := this.m_IDisplayDevice.all.CreateTaskPool (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTaskPool := new Windows.Devices.Display.Core.IDisplayTaskPool;
+         Retval.m_IDisplayTaskPool := new WinRt.Windows.Devices.Display.Core.IDisplayTaskPool;
          Retval.m_IDisplayTaskPool.all := m_ComRetVal;
       end return;
    end;
@@ -369,21 +369,21 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreatePeriodicFence
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      offsetFromVBlank : Windows.Foundation.TimeSpan
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      offsetFromVBlank : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Devices.Display.Core.DisplayFence'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayFence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayFence;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayFence do
          Hr := this.m_IDisplayDevice.all.CreatePeriodicFence (target.m_IDisplayTarget.all, offsetFromVBlank, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayFence := new Windows.Devices.Display.Core.IDisplayFence;
+         Retval.m_IDisplayFence := new WinRt.Windows.Devices.Display.Core.IDisplayFence;
          Retval.m_IDisplayFence.all := m_ComRetVal;
       end return;
    end;
@@ -391,7 +391,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure WaitForVBlank
    (
       this : in out DisplayDevice;
-      source : Windows.Devices.Display.Core.DisplaySource'Class
+      source : WinRt.Windows.Devices.Display.Core.DisplaySource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -406,8 +406,8 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateSimpleScanout
    (
       this : in out DisplayDevice;
-      pSource : Windows.Devices.Display.Core.DisplaySource'Class;
-      pSurface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      pSource : WinRt.Windows.Devices.Display.Core.DisplaySource'Class;
+      pSurface : WinRt.Windows.Devices.Display.Core.DisplaySurface'Class;
       SubResourceIndex : WinRt.UInt32;
       SyncInterval : WinRt.UInt32
    )
@@ -415,14 +415,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayScanout;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayScanout;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayScanout do
          Hr := this.m_IDisplayDevice.all.CreateSimpleScanout (pSource.m_IDisplaySource.all, pSurface.m_IDisplaySurface.all, SubResourceIndex, SyncInterval, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayScanout := new Windows.Devices.Display.Core.IDisplayScanout;
+         Retval.m_IDisplayScanout := new WinRt.Windows.Devices.Display.Core.IDisplayScanout;
          Retval.m_IDisplayScanout.all := m_ComRetVal;
       end return;
    end;
@@ -430,7 +430,7 @@ package body WinRt.Windows.Devices.Display.Core is
    function IsCapabilitySupported
    (
       this : in out DisplayDevice;
-      capability : Windows.Devices.Display.Core.DisplayDeviceCapability
+      capability : WinRt.Windows.Devices.Display.Core.DisplayDeviceCapability
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -448,19 +448,19 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateSimpleScanoutWithDirtyRectsAndOptions
    (
       this : in out DisplayDevice;
-      source : Windows.Devices.Display.Core.DisplaySource'Class;
-      surface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      source : WinRt.Windows.Devices.Display.Core.DisplaySource'Class;
+      surface : WinRt.Windows.Devices.Display.Core.DisplaySurface'Class;
       subresourceIndex : WinRt.UInt32;
       syncInterval : WinRt.UInt32;
       dirtyRects : GenericObject;
-      options : Windows.Devices.Display.Core.DisplayScanoutOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayScanoutOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayScanout'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayDevice2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayScanout;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayScanout;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayDevice_Interface, WinRt.Windows.Devices.Display.Core.IDisplayDevice2, WinRt.Windows.Devices.Display.Core.IID_IDisplayDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayScanout do
@@ -470,7 +470,7 @@ package body WinRt.Windows.Devices.Display.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayScanout := new Windows.Devices.Display.Core.IDisplayScanout;
+         Retval.m_IDisplayScanout := new WinRt.Windows.Devices.Display.Core.IDisplayScanout;
          Retval.m_IDisplayScanout.all := m_ComRetVal;
       end return;
    end;
@@ -484,7 +484,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayDeviceRenderAdapter := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DisplayAdapterId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayDevice_Interface, WinRt.Windows.Devices.Display.Core.IDisplayDeviceRenderAdapter, WinRt.Windows.Devices.Display.Core.IID_IDisplayDeviceRenderAdapter'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDisplayDevice.all);
@@ -544,7 +544,7 @@ package body WinRt.Windows.Devices.Display.Core is
 
    function Create
    (
-      options : Windows.Devices.Display.Core.DisplayManagerOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayManagerOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManager is
       Hr               : WinRt.HResult := S_OK;
@@ -552,7 +552,7 @@ package body WinRt.Windows.Devices.Display.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayManager");
       m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManager;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManager;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManager do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayManagerStatics'Access , m_Factory'Address);
@@ -562,7 +562,7 @@ package body WinRt.Windows.Devices.Display.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayManager := new Windows.Devices.Display.Core.IDisplayManager;
+            Retval.m_IDisplayManager := new WinRt.Windows.Devices.Display.Core.IDisplayManager;
             Retval.m_IDisplayManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -580,7 +580,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayTarget.Kind;
    begin
       Hr := this.m_IDisplayManager.all.GetCurrentTargets (m_ComRetVal'Access);
@@ -600,7 +600,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayAdapter.Kind;
    begin
       Hr := this.m_IDisplayManager.all.GetCurrentAdapters (m_ComRetVal'Access);
@@ -615,13 +615,13 @@ package body WinRt.Windows.Devices.Display.Core is
    function TryAcquireTarget
    (
       this : in out DisplayManager;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManagerResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayManagerResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayManagerResult;
    begin
       Hr := this.m_IDisplayManager.all.TryAcquireTarget (target.m_IDisplayTarget.all, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -633,7 +633,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure ReleaseTarget
    (
       this : in out DisplayManager;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -653,14 +653,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
          Hr := this.m_IDisplayManager.all.TryReadCurrentStateForAllTargets (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState := new WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
          Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
       end return;
    end;
@@ -674,14 +674,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
          Hr := this.m_IDisplayManager.all.TryAcquireTargetsAndReadCurrentState (targets, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState := new WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
          Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
       end return;
    end;
@@ -695,14 +695,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
          Hr := this.m_IDisplayManager.all.TryAcquireTargetsAndCreateEmptyState (targets, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState := new WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
          Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
       end return;
    end;
@@ -710,21 +710,21 @@ package body WinRt.Windows.Devices.Display.Core is
    function TryAcquireTargetsAndCreateSubstate
    (
       this : in out DisplayManager;
-      existingState : Windows.Devices.Display.Core.DisplayState'Class;
+      existingState : WinRt.Windows.Devices.Display.Core.DisplayState'Class;
       targets : GenericObject
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
          Hr := this.m_IDisplayManager.all.TryAcquireTargetsAndCreateSubstate (existingState.m_IDisplayState.all, targets, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState := new WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
          Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
       end return;
    end;
@@ -732,20 +732,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateDisplayDevice
    (
       this : in out DisplayManager;
-      adapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+      adapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayDevice do
          Hr := this.m_IDisplayManager.all.CreateDisplayDevice (adapter.m_IDisplayAdapter.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayDevice := new Windows.Devices.Display.Core.IDisplayDevice;
+         Retval.m_IDisplayDevice := new WinRt.Windows.Devices.Display.Core.IDisplayDevice;
          Retval.m_IDisplayDevice.all := m_ComRetVal;
       end return;
    end;
@@ -759,7 +759,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayManager.all.add_Enabled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -771,7 +771,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_Enabled
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -792,7 +792,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayManager.all.add_Disabled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -804,7 +804,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_Disabled
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -825,7 +825,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayManager.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -837,7 +837,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_Changed
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -858,7 +858,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayManager.all.add_PathsFailedOrInvalidated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -870,7 +870,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_PathsFailedOrInvalidated
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -919,7 +919,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayManager2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayManager_Interface, WinRt.Windows.Devices.Display.Core.IDisplayManager2, WinRt.Windows.Devices.Display.Core.IID_IDisplayManager2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState do
@@ -929,7 +929,7 @@ package body WinRt.Windows.Devices.Display.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayManagerResultWithState := new Windows.Devices.Display.Core.IDisplayManagerResultWithState;
+         Retval.m_IDisplayManagerResultWithState := new WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState;
          Retval.m_IDisplayManagerResultWithState.all := m_ComRetVal;
       end return;
    end;
@@ -937,15 +937,15 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateDisplayDeviceForIndirectAdapter
    (
       this : in out DisplayManager;
-      indirectAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class;
-      renderAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+      indirectAdapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class;
+      renderAdapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayManager3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayDevice;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayManager_Interface, WinRt.Windows.Devices.Display.Core.IDisplayManager3, WinRt.Windows.Devices.Display.Core.IID_IDisplayManager3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayDevice do
@@ -955,7 +955,7 @@ package body WinRt.Windows.Devices.Display.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayDevice := new Windows.Devices.Display.Core.IDisplayDevice;
+         Retval.m_IDisplayDevice := new WinRt.Windows.Devices.Display.Core.IDisplayDevice;
          Retval.m_IDisplayDevice.all := m_ComRetVal;
       end return;
    end;
@@ -1041,14 +1041,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDisplayManagerChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1116,14 +1116,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDisplayManagerDisabledEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1191,14 +1191,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDisplayManagerEnabledEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1266,14 +1266,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1309,7 +1309,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayManagerResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayManagerResult;
    begin
       Hr := this.m_IDisplayManagerResultWithState.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1326,7 +1326,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IDisplayManagerResultWithState.all.get_ExtendedErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1343,14 +1343,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayState do
          Hr := this.m_IDisplayManagerResultWithState.all.get_State (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayState := new Windows.Devices.Display.Core.IDisplayState;
+         Retval.m_IDisplayState := new WinRt.Windows.Devices.Display.Core.IDisplayState;
          Retval.m_IDisplayState.all := m_ComRetVal;
       end return;
    end;
@@ -1386,7 +1386,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IDisplayModeInfo.all.get_SourceResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_IDisplayModeInfo.all.get_SourcePixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1437,7 +1437,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IDisplayModeInfo.all.get_TargetResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1454,7 +1454,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPresentationRate;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayPresentationRate;
    begin
       Hr := this.m_IDisplayModeInfo.all.get_PresentationRate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1483,13 +1483,13 @@ package body WinRt.Windows.Devices.Display.Core is
    function GetWireFormatSupportedBitsPerChannel
    (
       this : in out DisplayModeInfo;
-      encoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
+      encoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
    )
    return WinRt.Windows.Devices.Display.Core.DisplayBitsPerChannel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayBitsPerChannel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayBitsPerChannel;
    begin
       Hr := this.m_IDisplayModeInfo.all.GetWireFormatSupportedBitsPerChannel (encoding, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1501,7 +1501,7 @@ package body WinRt.Windows.Devices.Display.Core is
    function IsWireFormatSupported
    (
       this : in out DisplayModeInfo;
-      wireFormat : Windows.Devices.Display.Core.DisplayWireFormat'Class
+      wireFormat : WinRt.Windows.Devices.Display.Core.DisplayWireFormat'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1524,7 +1524,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayModeInfo.all.get_Properties (m_ComRetVal'Access);
@@ -1545,7 +1545,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayModeInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPresentationRate;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayPresentationRate;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayModeInfo_Interface, WinRt.Windows.Devices.Display.Core.IDisplayModeInfo2, WinRt.Windows.Devices.Display.Core.IID_IDisplayModeInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDisplayModeInfo.all);
@@ -1663,7 +1663,7 @@ package body WinRt.Windows.Devices.Display.Core is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IDisplayMuxDevice := new Windows.Devices.Display.Core.IDisplayMuxDevice;
+                     Retval.m_IDisplayMuxDevice := new WinRt.Windows.Devices.Display.Core.IDisplayMuxDevice;
                      Retval.m_IDisplayMuxDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1727,7 +1727,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayTarget.Kind;
    begin
       Hr := this.m_IDisplayMuxDevice.all.GetAvailableMuxTargets (m_ComRetVal'Access);
@@ -1747,14 +1747,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTarget;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTarget do
          Hr := this.m_IDisplayMuxDevice.all.get_CurrentTarget (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTarget := new Windows.Devices.Display.Core.IDisplayTarget;
+         Retval.m_IDisplayTarget := new WinRt.Windows.Devices.Display.Core.IDisplayTarget;
          Retval.m_IDisplayTarget.all := m_ComRetVal;
       end return;
    end;
@@ -1767,14 +1767,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTarget;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTarget do
          Hr := this.m_IDisplayMuxDevice.all.get_PreferredTarget (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTarget := new Windows.Devices.Display.Core.IDisplayTarget;
+         Retval.m_IDisplayTarget := new WinRt.Windows.Devices.Display.Core.IDisplayTarget;
          Retval.m_IDisplayTarget.all := m_ComRetVal;
       end return;
    end;
@@ -1799,7 +1799,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure SetPreferredTarget
    (
       this : in out DisplayMuxDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1890,7 +1890,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayMuxDevice.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1902,7 +1902,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_Changed
    (
       this : in out DisplayMuxDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1963,14 +1963,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayView;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayView;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayView do
          Hr := this.m_IDisplayPath.all.get_View (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayView := new Windows.Devices.Display.Core.IDisplayView;
+         Retval.m_IDisplayView := new WinRt.Windows.Devices.Display.Core.IDisplayView;
          Retval.m_IDisplayView.all := m_ComRetVal;
       end return;
    end;
@@ -1983,14 +1983,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTarget;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTarget do
          Hr := this.m_IDisplayPath.all.get_Target (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTarget := new Windows.Devices.Display.Core.IDisplayTarget;
+         Retval.m_IDisplayTarget := new WinRt.Windows.Devices.Display.Core.IDisplayTarget;
          Retval.m_IDisplayTarget.all := m_ComRetVal;
       end return;
    end;
@@ -2003,7 +2003,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPathStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayPathStatus;
    begin
       Hr := this.m_IDisplayPath.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2020,7 +2020,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IDisplayPath.all.get_SourceResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2052,7 +2052,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_IDisplayPath.all.get_SourcePixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2064,7 +2064,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure put_SourcePixelFormat
    (
       this : in out DisplayPath;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2116,7 +2116,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IDisplayPath.all.get_TargetResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2148,7 +2148,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DisplayPresentationRate.Kind;
    begin
       Hr := this.m_IDisplayPath.all.get_PresentationRate (m_ComRetVal'Access);
@@ -2183,7 +2183,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IDisplayPath.all.get_IsInterlaced (m_ComRetVal'Access);
@@ -2218,14 +2218,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayWireFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayWireFormat do
          Hr := this.m_IDisplayPath.all.get_WireFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayWireFormat := new Windows.Devices.Display.Core.IDisplayWireFormat;
+         Retval.m_IDisplayWireFormat := new WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
          Retval.m_IDisplayWireFormat.all := m_ComRetVal;
       end return;
    end;
@@ -2233,7 +2233,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure put_WireFormat
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayWireFormat'Class
+      value : WinRt.Windows.Devices.Display.Core.DisplayWireFormat'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2253,7 +2253,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayRotation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayRotation;
    begin
       Hr := this.m_IDisplayPath.all.get_Rotation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2265,7 +2265,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure put_Rotation
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayRotation
+      value : WinRt.Windows.Devices.Display.Core.DisplayRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2285,7 +2285,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPathScaling;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayPathScaling;
    begin
       Hr := this.m_IDisplayPath.all.get_Scaling (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2297,7 +2297,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure put_Scaling
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayPathScaling
+      value : WinRt.Windows.Devices.Display.Core.DisplayPathScaling
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2312,13 +2312,13 @@ package body WinRt.Windows.Devices.Display.Core is
    function FindModes
    (
       this : in out DisplayPath;
-      flags : Windows.Devices.Display.Core.DisplayModeQueryOptions
+      flags : WinRt.Windows.Devices.Display.Core.DisplayModeQueryOptions
    )
    return IVectorView_IDisplayModeInfo.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayModeInfo.Kind;
    begin
       Hr := this.m_IDisplayPath.all.FindModes (flags, m_ComRetVal'Access);
@@ -2333,7 +2333,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure ApplyPropertiesFromMode
    (
       this : in out DisplayPath;
-      modeResult : Windows.Devices.Display.Core.DisplayModeInfo'Class
+      modeResult : WinRt.Windows.Devices.Display.Core.DisplayModeInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2353,7 +2353,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayPath.all.get_Properties (m_ComRetVal'Access);
@@ -2374,7 +2374,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayPath2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DisplayPresentationRate.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayPath_Interface, WinRt.Windows.Devices.Display.Core.IDisplayPath2, WinRt.Windows.Devices.Display.Core.IID_IDisplayPath2'Unchecked_Access);
    begin
@@ -2435,24 +2435,24 @@ package body WinRt.Windows.Devices.Display.Core is
    (
       width : WinRt.UInt32;
       height : WinRt.UInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
       isStereo : WinRt.Boolean;
-      multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
+      multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
    )
    return DisplayPrimaryDescription is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayPrimaryDescription");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.IDisplayPrimaryDescription");
       m_Factory    : access IDisplayPrimaryDescriptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Display.Core.IDisplayPrimaryDescription;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
    begin
       return RetVal : DisplayPrimaryDescription do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPrimaryDescriptionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (width, height, pixelFormat, colorSpace, isStereo, multisampleDescription, m_ComRetVal'Access);
-            Retval.m_IDisplayPrimaryDescription := new Windows.Devices.Display.Core.IDisplayPrimaryDescription;
+            Retval.m_IDisplayPrimaryDescription := new WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
             Retval.m_IDisplayPrimaryDescription.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2468,10 +2468,10 @@ package body WinRt.Windows.Devices.Display.Core is
       extraProperties : GenericObject;
       width : WinRt.UInt32;
       height : WinRt.UInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
       isStereo : WinRt.Boolean;
-      multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
+      multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPrimaryDescription is
       Hr               : WinRt.HResult := S_OK;
@@ -2479,7 +2479,7 @@ package body WinRt.Windows.Devices.Display.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayPrimaryDescription");
       m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescriptionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayPrimaryDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayPrimaryDescription do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPrimaryDescriptionStatics'Access , m_Factory'Address);
@@ -2489,7 +2489,7 @@ package body WinRt.Windows.Devices.Display.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayPrimaryDescription := new Windows.Devices.Display.Core.IDisplayPrimaryDescription;
+            Retval.m_IDisplayPrimaryDescription := new WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
             Retval.m_IDisplayPrimaryDescription.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2541,7 +2541,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_IDisplayPrimaryDescription.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2558,7 +2558,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
    begin
       Hr := this.m_IDisplayPrimaryDescription.all.get_ColorSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2592,7 +2592,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
    begin
       Hr := this.m_IDisplayPrimaryDescription.all.get_MultisampleDescription (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2609,7 +2609,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayPrimaryDescription.all.get_Properties (m_ComRetVal'Access);
@@ -2675,7 +2675,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DisplayAdapterId;
    begin
       Hr := this.m_IDisplaySource.all.get_AdapterId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2710,7 +2710,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IDisplaySource.all.GetMetadata (Key, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2728,7 +2728,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplaySource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplaySourceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplaySourceStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplaySource_Interface, WinRt.Windows.Devices.Display.Core.IDisplaySource2, WinRt.Windows.Devices.Display.Core.IID_IDisplaySource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDisplaySource.all);
@@ -2750,7 +2750,7 @@ package body WinRt.Windows.Devices.Display.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplaySource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplaySource_Interface, WinRt.Windows.Devices.Display.Core.IDisplaySource2, WinRt.Windows.Devices.Display.Core.IID_IDisplaySource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDisplaySource.all);
@@ -2765,7 +2765,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure remove_StatusChanged
    (
       this : in out DisplaySource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2846,7 +2846,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayTarget.Kind;
    begin
       Hr := this.m_IDisplayState.all.get_Targets (m_ComRetVal'Access);
@@ -2866,7 +2866,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayView.Kind;
    begin
       Hr := this.m_IDisplayState.all.get_Views (m_ComRetVal'Access);
@@ -2886,7 +2886,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayState.all.get_Properties (m_ComRetVal'Access);
@@ -2901,20 +2901,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function ConnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayPath;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayPath;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayPath do
          Hr := this.m_IDisplayState.all.ConnectTarget (target.m_IDisplayTarget.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayPath := new Windows.Devices.Display.Core.IDisplayPath;
+         Retval.m_IDisplayPath := new WinRt.Windows.Devices.Display.Core.IDisplayPath;
          Retval.m_IDisplayPath.all := m_ComRetVal;
       end return;
    end;
@@ -2922,21 +2922,21 @@ package body WinRt.Windows.Devices.Display.Core is
    function ConnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      view : Windows.Devices.Display.Core.DisplayView'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      view : WinRt.Windows.Devices.Display.Core.DisplayView'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayPath;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayPath;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayPath do
          Hr := this.m_IDisplayState.all.ConnectTarget (target.m_IDisplayTarget.all, view.m_IDisplayView.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayPath := new Windows.Devices.Display.Core.IDisplayPath;
+         Retval.m_IDisplayPath := new WinRt.Windows.Devices.Display.Core.IDisplayPath;
          Retval.m_IDisplayPath.all := m_ComRetVal;
       end return;
    end;
@@ -2944,8 +2944,8 @@ package body WinRt.Windows.Devices.Display.Core is
    function CanConnectTargetToView
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      view : Windows.Devices.Display.Core.DisplayView'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      view : WinRt.Windows.Devices.Display.Core.DisplayView'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2963,20 +2963,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function GetViewForTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayView'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayView;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayView;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayView do
          Hr := this.m_IDisplayState.all.GetViewForTarget (target.m_IDisplayTarget.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayView := new Windows.Devices.Display.Core.IDisplayView;
+         Retval.m_IDisplayView := new WinRt.Windows.Devices.Display.Core.IDisplayView;
          Retval.m_IDisplayView.all := m_ComRetVal;
       end return;
    end;
@@ -2984,20 +2984,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function GetPathForTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayPath;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayPath;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayPath do
          Hr := this.m_IDisplayState.all.GetPathForTarget (target.m_IDisplayTarget.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayPath := new Windows.Devices.Display.Core.IDisplayPath;
+         Retval.m_IDisplayPath := new WinRt.Windows.Devices.Display.Core.IDisplayPath;
          Retval.m_IDisplayPath.all := m_ComRetVal;
       end return;
    end;
@@ -3005,7 +3005,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure DisconnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3020,20 +3020,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function TryFunctionalize
    (
       this : in out DisplayState;
-      options : Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayStateOperationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult do
          Hr := this.m_IDisplayState.all.TryFunctionalize (options, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayStateOperationResult := new Windows.Devices.Display.Core.IDisplayStateOperationResult;
+         Retval.m_IDisplayStateOperationResult := new WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult;
          Retval.m_IDisplayStateOperationResult.all := m_ComRetVal;
       end return;
    end;
@@ -3041,20 +3041,20 @@ package body WinRt.Windows.Devices.Display.Core is
    function TryApply
    (
       this : in out DisplayState;
-      options : Windows.Devices.Display.Core.DisplayStateApplyOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayStateApplyOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayStateOperationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult do
          Hr := this.m_IDisplayState.all.TryApply (options, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayStateOperationResult := new Windows.Devices.Display.Core.IDisplayStateOperationResult;
+         Retval.m_IDisplayStateOperationResult := new WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult;
          Retval.m_IDisplayStateOperationResult.all := m_ComRetVal;
       end return;
    end;
@@ -3067,14 +3067,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayState;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayState do
          Hr := this.m_IDisplayState.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayState := new Windows.Devices.Display.Core.IDisplayState;
+         Retval.m_IDisplayState := new WinRt.Windows.Devices.Display.Core.IDisplayState;
          Retval.m_IDisplayState.all := m_ComRetVal;
       end return;
    end;
@@ -3110,7 +3110,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayStateOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayStateOperationStatus;
    begin
       Hr := this.m_IDisplayStateOperationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3127,7 +3127,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IDisplayStateOperationResult.all.get_ExtendedErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3190,14 +3190,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayAdapter do
          Hr := this.m_IDisplayTarget.all.get_Adapter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayAdapter := new Windows.Devices.Display.Core.IDisplayAdapter;
+         Retval.m_IDisplayAdapter := new WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
          Retval.m_IDisplayAdapter.all := m_ComRetVal;
       end return;
    end;
@@ -3298,7 +3298,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.DisplayMonitorUsageKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.DisplayMonitorUsageKind;
    begin
       Hr := this.m_IDisplayTarget.all.get_UsageKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3315,7 +3315,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayTargetPersistence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayTargetPersistence;
    begin
       Hr := this.m_IDisplayTarget.all.get_MonitorPersistence (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3352,14 +3352,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.IDisplayMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.IDisplayMonitor;
    begin
       return RetVal : WinRt.Windows.Devices.Display.DisplayMonitor do
          Hr := this.m_IDisplayTarget.all.TryGetMonitor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayMonitor := new Windows.Devices.Display.IDisplayMonitor;
+         Retval.m_IDisplayMonitor := new WinRt.Windows.Devices.Display.IDisplayMonitor;
          Retval.m_IDisplayMonitor.all := m_ComRetVal;
       end return;
    end;
@@ -3372,7 +3372,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayTarget.all.get_Properties (m_ComRetVal'Access);
@@ -3404,7 +3404,7 @@ package body WinRt.Windows.Devices.Display.Core is
    function IsSame
    (
       this : in out DisplayTarget;
-      otherTarget : Windows.Devices.Display.Core.DisplayTarget'Class
+      otherTarget : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3422,7 +3422,7 @@ package body WinRt.Windows.Devices.Display.Core is
    function IsEqual
    (
       this : in out DisplayTarget;
-      otherTarget : Windows.Devices.Display.Core.DisplayTarget'Class
+      otherTarget : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3463,7 +3463,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure SetScanout
    (
       this : in out DisplayTask;
-      scanout : Windows.Devices.Display.Core.DisplayScanout'Class
+      scanout : WinRt.Windows.Devices.Display.Core.DisplayScanout'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3478,7 +3478,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure SetWait
    (
       this : in out DisplayTask;
-      readyFence : Windows.Devices.Display.Core.DisplayFence'Class;
+      readyFence : WinRt.Windows.Devices.Display.Core.DisplayFence'Class;
       readyFenceValue : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3494,8 +3494,8 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure SetSignal
    (
       this : in out DisplayTask;
-      signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
-      fence : Windows.Devices.Display.Core.DisplayFence'Class
+      signalKind : WinRt.Windows.Devices.Display.Core.DisplayTaskSignalKind;
+      fence : WinRt.Windows.Devices.Display.Core.DisplayFence'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3542,14 +3542,14 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTask;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTask;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTask do
          Hr := this.m_IDisplayTaskPool.all.CreateTask (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTask := new Windows.Devices.Display.Core.IDisplayTask;
+         Retval.m_IDisplayTask := new WinRt.Windows.Devices.Display.Core.IDisplayTask;
          Retval.m_IDisplayTask.all := m_ComRetVal;
       end return;
    end;
@@ -3557,7 +3557,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure ExecuteTask
    (
       this : in out DisplayTaskPool;
-      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+      task_x : WinRt.Windows.Devices.Display.Core.DisplayTask'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3572,14 +3572,14 @@ package body WinRt.Windows.Devices.Display.Core is
    function TryExecuteTask
    (
       this : in out DisplayTaskPool;
-      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+      task_x : WinRt.Windows.Devices.Display.Core.DisplayTask'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayTaskResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Display.Core.IDisplayTaskPool2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayTaskResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayTaskResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Display.Core.IDisplayTaskPool_Interface, WinRt.Windows.Devices.Display.Core.IDisplayTaskPool2, WinRt.Windows.Devices.Display.Core.IID_IDisplayTaskPool2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayTaskResult do
@@ -3589,7 +3589,7 @@ package body WinRt.Windows.Devices.Display.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayTaskResult := new Windows.Devices.Display.Core.IDisplayTaskResult;
+         Retval.m_IDisplayTaskResult := new WinRt.Windows.Devices.Display.Core.IDisplayTaskResult;
          Retval.m_IDisplayTaskResult.all := m_ComRetVal;
       end return;
    end;
@@ -3625,7 +3625,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayPresentStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayPresentStatus;
    begin
       Hr := this.m_IDisplayTaskResult.all.get_PresentStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3659,7 +3659,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplaySourceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplaySourceStatus;
    begin
       Hr := this.m_IDisplayTaskResult.all.get_SourceStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3699,7 +3699,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayPath.Kind;
    begin
       Hr := this.m_IDisplayView.all.get_Paths (m_ComRetVal'Access);
@@ -3719,7 +3719,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IDisplayView.all.get_ContentResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3746,7 +3746,7 @@ package body WinRt.Windows.Devices.Display.Core is
    procedure SetPrimaryPath
    (
       this : in out DisplayView;
-      path : Windows.Devices.Display.Core.DisplayPath'Class
+      path : WinRt.Windows.Devices.Display.Core.DisplayPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3766,7 +3766,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayView.all.get_Properties (m_ComRetVal'Access);
@@ -3803,25 +3803,25 @@ package body WinRt.Windows.Devices.Display.Core is
 
    function Constructor
    (
-      pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+      pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
       bitsPerChannel : WinRt.Int32;
-      colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-      eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-      hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
+      colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+      eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+      hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
    )
    return DisplayWireFormat is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayWireFormat");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.IDisplayWireFormat");
       m_Factory    : access IDisplayWireFormatFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Display.Core.IDisplayWireFormat;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
    begin
       return RetVal : DisplayWireFormat do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayWireFormatFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (pixelEncoding, bitsPerChannel, colorSpace, eotf, hdrMetadata, m_ComRetVal'Access);
-            Retval.m_IDisplayWireFormat := new Windows.Devices.Display.Core.IDisplayWireFormat;
+            Retval.m_IDisplayWireFormat := new WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
             Retval.m_IDisplayWireFormat.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3835,11 +3835,11 @@ package body WinRt.Windows.Devices.Display.Core is
    function CreateWithProperties
    (
       extraProperties : GenericObject;
-      pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+      pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
       bitsPerChannel : WinRt.Int32;
-      colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-      eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-      hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
+      colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+      eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+      hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
    )
    return WinRt.Windows.Devices.Display.Core.DisplayWireFormat is
       Hr               : WinRt.HResult := S_OK;
@@ -3847,7 +3847,7 @@ package body WinRt.Windows.Devices.Display.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayWireFormat");
       m_Factory        : access WinRt.Windows.Devices.Display.Core.IDisplayWireFormatStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.IDisplayWireFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
    begin
       return RetVal : WinRt.Windows.Devices.Display.Core.DisplayWireFormat do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayWireFormatStatics'Access , m_Factory'Address);
@@ -3857,7 +3857,7 @@ package body WinRt.Windows.Devices.Display.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayWireFormat := new Windows.Devices.Display.Core.IDisplayWireFormat;
+            Retval.m_IDisplayWireFormat := new WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
             Retval.m_IDisplayWireFormat.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3875,7 +3875,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
    begin
       Hr := this.m_IDisplayWireFormat.all.get_PixelEncoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3909,7 +3909,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
    begin
       Hr := this.m_IDisplayWireFormat.all.get_ColorSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3926,7 +3926,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayWireFormatEotf;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
    begin
       Hr := this.m_IDisplayWireFormat.all.get_Eotf (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3943,7 +3943,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
    begin
       Hr := this.m_IDisplayWireFormat.all.get_HdrMetadata (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3960,7 +3960,7 @@ package body WinRt.Windows.Devices.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IDisplayWireFormat.all.get_Properties (m_ComRetVal'Access);

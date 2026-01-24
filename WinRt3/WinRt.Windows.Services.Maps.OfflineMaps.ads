@@ -142,7 +142,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function get_Status
       (
          this : access IOfflineMapPackage_Interface;
-         RetVal : access Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus
+         RetVal : access WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -170,7 +170,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function remove_StatusChanged
       (
          this : access IOfflineMapPackage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -178,7 +178,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       (
          this : access IOfflineMapPackage_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -197,7 +197,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function get_Status
       (
          this : access IOfflineMapPackageQueryResult_Interface;
-         RetVal : access Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus
+         RetVal : access WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -216,7 +216,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function get_Status
       (
          this : access IOfflineMapPackageStartDownloadResult_Interface;
-         RetVal : access Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus
+         RetVal : access WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -228,7 +228,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function FindPackagesAsync
       (
          this : access IOfflineMapPackageStatics_Interface;
-         queryPoint : Windows.Devices.Geolocation.IGeopoint;
+         queryPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -236,7 +236,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function FindPackagesInBoundingBoxAsync
       (
          this : access IOfflineMapPackageStatics_Interface;
-         queryBoundingBox : Windows.Devices.Geolocation.IGeoboundingBox;
+         queryBoundingBox : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -244,7 +244,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       function FindPackagesInGeocircleAsync
       (
          this : access IOfflineMapPackageStatics_Interface;
-         queryCircle : Windows.Devices.Geolocation.IGeocircle;
+         queryCircle : WinRt.Windows.Devices.Geolocation.IGeocircle;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -266,19 +266,19 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
 
    function FindPackagesAsync
    (
-      queryPoint : Windows.Devices.Geolocation.Geopoint'Class
+      queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
 
    function FindPackagesInBoundingBoxAsync
    (
-      queryBoundingBox : Windows.Devices.Geolocation.GeoboundingBox'Class
+      queryBoundingBox : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
 
    function FindPackagesInGeocircleAsync
    (
-      queryCircle : Windows.Devices.Geolocation.Geocircle'Class
+      queryCircle : WinRt.Windows.Devices.Geolocation.Geocircle'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
 
@@ -312,7 +312,7 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    procedure remove_StatusChanged
    (
       this : in out OfflineMapPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StatusChanged

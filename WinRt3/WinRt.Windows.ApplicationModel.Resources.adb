@@ -59,13 +59,13 @@ package body WinRt.Windows.ApplicationModel.Resources is
    function Constructor return ResourceLoader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.IResourceLoader");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : ResourceLoader do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -79,17 +79,17 @@ package body WinRt.Windows.ApplicationModel.Resources is
    return ResourceLoader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.IResourceLoader");
       m_Factory    : access IResourceLoaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : ResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceLoaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResourceLoaderByName (HStr_name, m_ComRetVal'Access);
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -108,7 +108,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.IResourceLoaderStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.ResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceLoaderStatics2'Access , m_Factory'Address);
@@ -118,7 +118,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -135,7 +135,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.IResourceLoaderStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.ResourceLoader do
@@ -146,7 +146,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -161,7 +161,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.IResourceLoaderStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.ResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceLoaderStatics2'Access , m_Factory'Address);
@@ -171,7 +171,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -188,7 +188,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.IResourceLoaderStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.ResourceLoader do
@@ -199,7 +199,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -238,7 +238,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
 
    function GetStringForReference
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -265,7 +265,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.ResourceLoader is
       Hr               : WinRt.HResult := S_OK;
@@ -273,7 +273,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory        : access WinRt.Windows.ApplicationModel.Resources.IResourceLoaderStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.IResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.ResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceLoaderStatics3'Access , m_Factory'Address);
@@ -283,7 +283,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IResourceLoader := new Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader := new WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
             Retval.m_IResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -319,7 +319,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
    function GetStringForUri
    (
       this : in out ResourceLoader;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;

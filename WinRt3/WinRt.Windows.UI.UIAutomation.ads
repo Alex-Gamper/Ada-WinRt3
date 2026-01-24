@@ -126,7 +126,7 @@ package WinRt.Windows.UI.UIAutomation is
       function get_Connection
       (
          this : access IAutomationConnectionBoundObject_Interface;
-         RetVal : access Windows.UI.UIAutomation.IAutomationConnection
+         RetVal : access WinRt.Windows.UI.UIAutomation.IAutomationConnection
       )
       return WinRt.Hresult is abstract;
 

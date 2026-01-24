@@ -110,7 +110,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IBasicProperties.all.get_DateModified (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -127,7 +127,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IBasicProperties.all.get_ItemDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -328,7 +328,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDocumentProperties.all.get_Author (m_ComRetVal'Access);
@@ -385,7 +385,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDocumentProperties.all.get_Keywords (m_ComRetVal'Access);
@@ -601,7 +601,7 @@ package body WinRt.Windows.Storage.FileProperties is
 
       function GetGeotagAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Devices.Geolocation.Geopoint is
          Hr               : WinRt.HResult := S_OK;
@@ -657,7 +657,7 @@ package body WinRt.Windows.Storage.FileProperties is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+                        Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
                         Retval.m_IGeopoint.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -674,8 +674,8 @@ package body WinRt.Windows.Storage.FileProperties is
 
       procedure SetGeotagFromGeolocatorAsync
       (
-         file : Windows.Storage.IStorageFile;
-         geolocator : Windows.Devices.Geolocation.Geolocator'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         geolocator : WinRt.Windows.Devices.Geolocation.Geolocator'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -724,8 +724,8 @@ package body WinRt.Windows.Storage.FileProperties is
 
       procedure SetGeotagAsync
       (
-         file : Windows.Storage.IStorageFile;
-         geopoint : Windows.Devices.Geolocation.Geopoint'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         geopoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -837,7 +837,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IImageProperties.all.get_Keywords (m_ComRetVal'Access);
@@ -857,7 +857,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IImageProperties.all.get_DateTaken (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -869,7 +869,7 @@ package body WinRt.Windows.Storage.FileProperties is
    procedure put_DateTaken
    (
       this : in out ImageProperties;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -960,7 +960,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IImageProperties.all.get_Latitude (m_ComRetVal'Access);
@@ -980,7 +980,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IImageProperties.all.get_Longitude (m_ComRetVal'Access);
@@ -1074,7 +1074,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.PhotoOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.PhotoOrientation;
    begin
       Hr := this.m_IImageProperties.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1091,7 +1091,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IImageProperties.all.get_PeopleNames (m_ComRetVal'Access);
@@ -1369,7 +1369,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IMusicProperties.all.get_Genre (m_ComRetVal'Access);
@@ -1490,7 +1490,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMusicProperties.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1561,7 +1561,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IMusicProperties.all.get_Composers (m_ComRetVal'Access);
@@ -1581,7 +1581,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IMusicProperties.all.get_Conductors (m_ComRetVal'Access);
@@ -1638,7 +1638,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IMusicProperties.all.get_Producers (m_ComRetVal'Access);
@@ -1695,7 +1695,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IMusicProperties.all.get_Writers (m_ComRetVal'Access);
@@ -1976,7 +1976,7 @@ package body WinRt.Windows.Storage.FileProperties is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
+                  Retval.m_IMusicProperties := new WinRt.Windows.Storage.FileProperties.IMusicProperties;
                   Retval.m_IMusicProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2042,7 +2042,7 @@ package body WinRt.Windows.Storage.FileProperties is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
+                  Retval.m_IVideoProperties := new WinRt.Windows.Storage.FileProperties.IVideoProperties;
                   Retval.m_IVideoProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2108,7 +2108,7 @@ package body WinRt.Windows.Storage.FileProperties is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IImageProperties := new Windows.Storage.FileProperties.IImageProperties;
+                  Retval.m_IImageProperties := new WinRt.Windows.Storage.FileProperties.IImageProperties;
                   Retval.m_IImageProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2174,7 +2174,7 @@ package body WinRt.Windows.Storage.FileProperties is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDocumentProperties := new Windows.Storage.FileProperties.IDocumentProperties;
+                  Retval.m_IDocumentProperties := new WinRt.Windows.Storage.FileProperties.IDocumentProperties;
                   Retval.m_IDocumentProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2446,7 +2446,7 @@ package body WinRt.Windows.Storage.FileProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
@@ -2468,7 +2468,7 @@ package body WinRt.Windows.Storage.FileProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
@@ -2529,7 +2529,7 @@ package body WinRt.Windows.Storage.FileProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
@@ -2586,7 +2586,7 @@ package body WinRt.Windows.Storage.FileProperties is
    function WriteAsync
    (
       this : in out StorageItemThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2739,9 +2739,9 @@ package body WinRt.Windows.Storage.FileProperties is
    function ReadAsync
    (
       this : in out StorageItemThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -2878,7 +2878,7 @@ package body WinRt.Windows.Storage.FileProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.FileProperties.IThumbnailProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.ThumbnailType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.ThumbnailType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Interface, WinRt.Windows.Storage.FileProperties.IThumbnailProperties, WinRt.Windows.Storage.FileProperties.IID_IThumbnailProperties'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRandomAccessStreamWithContentType.all);
@@ -2953,7 +2953,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Keywords (m_ComRetVal'Access);
@@ -3007,7 +3007,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IVideoProperties.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3024,7 +3024,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Latitude (m_ComRetVal'Access);
@@ -3044,7 +3044,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Longitude (m_ComRetVal'Access);
@@ -3138,7 +3138,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Producers (m_ComRetVal'Access);
@@ -3195,7 +3195,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Writers (m_ComRetVal'Access);
@@ -3264,7 +3264,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVideoProperties.all.get_Directors (m_ComRetVal'Access);
@@ -3284,7 +3284,7 @@ package body WinRt.Windows.Storage.FileProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.VideoOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.VideoOrientation;
    begin
       Hr := this.m_IVideoProperties.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then

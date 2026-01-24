@@ -499,14 +499,14 @@ package WinRt.Windows.AI.Actions is
       function get_Kind
       (
          this : access IActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityKind
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityKind
       )
       return WinRt.Hresult is abstract;
 
       function get_DisplayInfo
       (
          this : access IActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.IActionEntityDisplayInfo
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntityDisplayInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -548,7 +548,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory2_Interface;
          path : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IFileActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IFileActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -556,7 +556,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory2_Interface;
          path : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IDocumentActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IDocumentActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -564,7 +564,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory2_Interface;
          path : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IPhotoActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IPhotoActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -572,7 +572,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory2_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.AI.Actions.ITextActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.ITextActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -585,14 +585,14 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory3_Interface;
          sourceId : WinRt.HString;
-         fileKind : Windows.AI.Actions.RemoteFileKind;
-         sourceUri : Windows.Foundation.IUriRuntimeClass;
+         fileKind : WinRt.Windows.AI.Actions.RemoteFileKind;
+         sourceUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          fileId : WinRt.HString;
          contentType : WinRt.HString;
          driveId : WinRt.HString;
          accountId : WinRt.HString;
          extension : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IRemoteFileActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IRemoteFileActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -600,16 +600,16 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory3_Interface;
          text : WinRt.HString;
-         textFormat : Windows.AI.Actions.ActionEntityTextFormat;
-         RetVal : access Windows.AI.Actions.ITextActionEntity
+         textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat;
+         RetVal : access WinRt.Windows.AI.Actions.ITextActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function CreateStreamingTextActionEntityWriter
       (
          this : access IActionEntityFactory3_Interface;
-         textFormat : Windows.AI.Actions.ActionEntityTextFormat;
-         RetVal : access Windows.AI.Actions.IStreamingTextActionEntityWriter
+         textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat;
+         RetVal : access WinRt.Windows.AI.Actions.IStreamingTextActionEntityWriter
       )
       return WinRt.Hresult is abstract;
 
@@ -624,15 +624,15 @@ package WinRt.Windows.AI.Actions is
          dataSize : WinRt.UInt32;
          data : WinRt.HString_Ptr;
          columnCount : WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.ITableActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.ITableActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function CreateContactEntity
       (
          this : access IActionEntityFactory4_Interface;
-         contact : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.AI.Actions.IContactActionEntity
+         contact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.AI.Actions.IContactActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -644,18 +644,18 @@ package WinRt.Windows.AI.Actions is
       function CreateUriEntity
       (
          this : access IActionEntityFactory5_Interface;
-         Uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.AI.Actions.IUriActionEntity
+         Uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.AI.Actions.IUriActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function CreateArrayEntity
       (
          this : access IActionEntityFactory5_Interface;
-         kind : Windows.AI.Actions.ActionEntityKind;
+         kind : WinRt.Windows.AI.Actions.ActionEntityKind;
          entitiesSize : WinRt.UInt32;
-         entities : Windows.AI.Actions.IActionEntity_Ptr;
-         RetVal : access Windows.AI.Actions.IArrayActionEntity
+         entities : WinRt.Windows.AI.Actions.IActionEntity_Ptr;
+         RetVal : access WinRt.Windows.AI.Actions.IArrayActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -667,8 +667,8 @@ package WinRt.Windows.AI.Actions is
       function CreateDateTimeEntity
       (
          this : access IActionEntityFactory6_Interface;
-         dateTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.AI.Actions.IDateTimeActionEntity
+         dateTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.AI.Actions.IDateTimeActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -676,10 +676,10 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionEntityFactory6_Interface;
          sourceId : WinRt.HString;
-         appointment : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          attendeesSize : WinRt.UInt32;
-         attendees : Windows.AI.Actions.IContactActionEntity_Ptr;
-         RetVal : access Windows.AI.Actions.IAppointmentActionEntity
+         attendees : WinRt.Windows.AI.Actions.IContactActionEntity_Ptr;
+         RetVal : access WinRt.Windows.AI.Actions.IAppointmentActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -694,18 +694,18 @@ package WinRt.Windows.AI.Actions is
          kind : WinRt.HString;
          keyPhrase : WinRt.HString;
          props : GenericObject;
-         RetVal : access Windows.AI.Actions.ICustomTextActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.ICustomTextActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function CreateArrayEntityWithCustomKind
       (
          this : access IActionEntityFactory7_Interface;
-         elementKind : Windows.AI.Actions.ActionEntityKind;
+         elementKind : WinRt.Windows.AI.Actions.ActionEntityKind;
          customKind : WinRt.HString;
          entitiesSize : WinRt.UInt32;
-         entities : Windows.AI.Actions.IActionEntity_Ptr;
-         RetVal : access Windows.AI.Actions.IArrayActionEntity
+         entities : WinRt.Windows.AI.Actions.IActionEntity_Ptr;
+         RetVal : access WinRt.Windows.AI.Actions.IArrayActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -722,7 +722,7 @@ package WinRt.Windows.AI.Actions is
       function get_FeedbackKind
       (
          this : access IActionFeedback_Interface;
-         RetVal : access Windows.AI.Actions.ActionFeedbackKind
+         RetVal : access WinRt.Windows.AI.Actions.ActionFeedbackKind
       )
       return WinRt.Hresult is abstract;
 
@@ -734,7 +734,7 @@ package WinRt.Windows.AI.Actions is
       function get_EntityFactory
       (
          this : access IActionInvocationContext_Interface;
-         RetVal : access Windows.AI.Actions.IActionEntityFactory2
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntityFactory2
       )
       return WinRt.Hresult is abstract;
 
@@ -742,7 +742,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionInvocationContext_Interface;
          inputName : WinRt.HString;
-         inputValue : Windows.AI.Actions.IActionEntity
+         inputValue : WinRt.Windows.AI.Actions.IActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -750,7 +750,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionInvocationContext_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.INamedActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.INamedActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -758,7 +758,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionInvocationContext_Interface;
          outputName : WinRt.HString;
-         outputValue : Windows.AI.Actions.IActionEntity
+         outputValue : WinRt.Windows.AI.Actions.IActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -766,35 +766,35 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionInvocationContext_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.INamedActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.INamedActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access IActionInvocationContext_Interface;
-         RetVal : access Windows.AI.Actions.ActionInvocationResult
+         RetVal : access WinRt.Windows.AI.Actions.ActionInvocationResult
       )
       return WinRt.Hresult is abstract;
 
       function put_Result
       (
          this : access IActionInvocationContext_Interface;
-         value : Windows.AI.Actions.ActionInvocationResult
+         value : WinRt.Windows.AI.Actions.ActionInvocationResult
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IActionInvocationContext_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function put_ExtendedError
       (
          this : access IActionInvocationContext_Interface;
-         value : Windows.Foundation.HResult
+         value : WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -806,14 +806,14 @@ package WinRt.Windows.AI.Actions is
       function get_InvokerWindowId
       (
          this : access IActionInvocationContext2_Interface;
-         RetVal : access Windows.UI.WindowId
+         RetVal : access WinRt.Windows.UI.WindowId
       )
       return WinRt.Hresult is abstract;
 
       function get_HelpDetails
       (
          this : access IActionInvocationContext2_Interface;
-         RetVal : access Windows.AI.Actions.IActionInvocationHelpDetails
+         RetVal : access WinRt.Windows.AI.Actions.IActionInvocationHelpDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -839,14 +839,14 @@ package WinRt.Windows.AI.Actions is
       function get_Kind
       (
          this : access IActionInvocationHelpDetails_Interface;
-         RetVal : access Windows.AI.Actions.ActionInvocationHelpKind
+         RetVal : access WinRt.Windows.AI.Actions.ActionInvocationHelpKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IActionInvocationHelpDetails_Interface;
-         value : Windows.AI.Actions.ActionInvocationHelpKind
+         value : WinRt.Windows.AI.Actions.ActionInvocationHelpKind
       )
       return WinRt.Hresult is abstract;
 
@@ -881,14 +881,14 @@ package WinRt.Windows.AI.Actions is
       function get_HelpUri
       (
          this : access IActionInvocationHelpDetails_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_HelpUri
       (
          this : access IActionInvocationHelpDetails_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -915,14 +915,14 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionInvocationHelpDetails2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IActionInvocationHelpDetails2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -934,14 +934,14 @@ package WinRt.Windows.AI.Actions is
       function get_ActionCatalog
       (
          this : access IActionRuntime_Interface;
-         RetVal : access Windows.AI.Actions.Hosting.IActionCatalog
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionCatalog
       )
       return WinRt.Hresult is abstract;
 
       function get_EntityFactory
       (
          this : access IActionRuntime_Interface;
-         RetVal : access Windows.AI.Actions.IActionEntityFactory2
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntityFactory2
       )
       return WinRt.Hresult is abstract;
 
@@ -949,7 +949,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionRuntime_Interface;
          actionId : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IActionInvocationContext
+         RetVal : access WinRt.Windows.AI.Actions.IActionInvocationContext
       )
       return WinRt.Hresult is abstract;
 
@@ -961,8 +961,8 @@ package WinRt.Windows.AI.Actions is
       function CreateActionFeedback
       (
          this : access IActionRuntime2_Interface;
-         feedbackKind : Windows.AI.Actions.ActionFeedbackKind;
-         RetVal : access Windows.AI.Actions.IActionFeedback
+         feedbackKind : WinRt.Windows.AI.Actions.ActionFeedbackKind;
+         RetVal : access WinRt.Windows.AI.Actions.IActionFeedback
       )
       return WinRt.Hresult is abstract;
 
@@ -991,8 +991,8 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionRuntime3_Interface;
          actionId : WinRt.HString;
-         invokerWindowId : Windows.UI.WindowId;
-         RetVal : access Windows.AI.Actions.IActionInvocationContext
+         invokerWindowId : WinRt.Windows.UI.WindowId;
+         RetVal : access WinRt.Windows.AI.Actions.IActionInvocationContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1000,7 +1000,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionRuntime3_Interface;
          entityId : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -1020,7 +1020,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IActionRuntime4_Interface;
          token : WinRt.HString;
-         RetVal : access Windows.AI.Actions.IActionInvocationContext
+         RetVal : access WinRt.Windows.AI.Actions.IActionInvocationContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1032,7 +1032,7 @@ package WinRt.Windows.AI.Actions is
       function get_CustomEntityStore
       (
          this : access IActionRuntime5_Interface;
-         RetVal : access Windows.AI.Actions.ICustomActionEntityStore
+         RetVal : access WinRt.Windows.AI.Actions.ICustomActionEntityStore
       )
       return WinRt.Hresult is abstract;
 
@@ -1049,7 +1049,7 @@ package WinRt.Windows.AI.Actions is
       function GetDefault
       (
          this : access IActionRuntimeStatics_Interface;
-         RetVal : access Windows.AI.Actions.IActionRuntime
+         RetVal : access WinRt.Windows.AI.Actions.IActionRuntime
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.AI.Actions is
       function get_Appointment
       (
          this : access IAppointmentActionEntity_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 
@@ -1076,7 +1076,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IAppointmentActionEntity_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.IContactActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.IContactActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1084,7 +1084,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IAppointmentActionEntity_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.IRemoteFileActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1092,7 +1092,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IAppointmentActionEntity_Interface;
          filesSize : WinRt.UInt32;
-         files : Windows.AI.Actions.IRemoteFileActionEntity_Ptr
+         files : WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1100,7 +1100,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IAppointmentActionEntity_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.IRemoteFileActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1108,7 +1108,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IAppointmentActionEntity_Interface;
          filesSize : WinRt.UInt32;
-         files : Windows.AI.Actions.IRemoteFileActionEntity_Ptr
+         files : WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1120,7 +1120,7 @@ package WinRt.Windows.AI.Actions is
       function get_ElementKind
       (
          this : access IArrayActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityKind
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1128,7 +1128,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IArrayActionEntity_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.IActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1152,7 +1152,7 @@ package WinRt.Windows.AI.Actions is
       function get_Contact
       (
          this : access IContactActionEntity_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1165,14 +1165,14 @@ package WinRt.Windows.AI.Actions is
       (
          this : access ICustomActionEntityStore_Interface;
          kind : WinRt.HString;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function Insert
       (
          this : access ICustomActionEntityStore_Interface;
-         entity : Windows.AI.Actions.ICustomTextActionEntity
+         entity : WinRt.Windows.AI.Actions.ICustomTextActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -1180,7 +1180,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access ICustomActionEntityStore_Interface;
          entitiesSize : WinRt.UInt32;
-         entities : Windows.AI.Actions.ICustomTextActionEntity_Ptr
+         entities : WinRt.Windows.AI.Actions.ICustomTextActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1230,7 +1230,7 @@ package WinRt.Windows.AI.Actions is
       function get_DateTime
       (
          this : access IDateTimeActionEntity_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1280,14 +1280,14 @@ package WinRt.Windows.AI.Actions is
       function get_Entity
       (
          this : access INamedActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.IActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function put_Entity
       (
          this : access INamedActionEntity_Interface;
-         value : Windows.AI.Actions.IActionEntity
+         value : WinRt.Windows.AI.Actions.IActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -1318,14 +1318,14 @@ package WinRt.Windows.AI.Actions is
       function get_FileKind
       (
          this : access IRemoteFileActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.RemoteFileKind
+         RetVal : access WinRt.Windows.AI.Actions.RemoteFileKind
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceUri
       (
          this : access IRemoteFileActionEntity_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1386,14 +1386,14 @@ package WinRt.Windows.AI.Actions is
       function get_Creator
       (
          this : access IRemoteFileActionEntity2_Interface;
-         RetVal : access Windows.AI.Actions.IContactActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IContactActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function put_Creator
       (
          this : access IRemoteFileActionEntity2_Interface;
-         value : Windows.AI.Actions.IContactActionEntity
+         value : WinRt.Windows.AI.Actions.IContactActionEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -1415,7 +1415,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IRemoteFileActionEntity2_Interface;
          contributorsSize : WinRt.UInt32;
-         contributors : Windows.AI.Actions.IContactActionEntity_Ptr
+         contributors : WinRt.Windows.AI.Actions.IContactActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1423,7 +1423,7 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IRemoteFileActionEntity2_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.IContactActionEntity_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.IContactActionEntity_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1449,7 +1449,7 @@ package WinRt.Windows.AI.Actions is
       function get_TextFormat
       (
          this : access IStreamingTextActionEntity_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityTextFormat
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityTextFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1457,14 +1457,14 @@ package WinRt.Windows.AI.Actions is
       (
          this : access IStreamingTextActionEntity_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TextChanged
       (
          this : access IStreamingTextActionEntity_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1495,14 +1495,14 @@ package WinRt.Windows.AI.Actions is
       function get_ReaderEntity
       (
          this : access IStreamingTextActionEntityWriter_Interface;
-         RetVal : access Windows.AI.Actions.IStreamingTextActionEntity
+         RetVal : access WinRt.Windows.AI.Actions.IStreamingTextActionEntity
       )
       return WinRt.Hresult is abstract;
 
       function get_TextFormat
       (
          this : access IStreamingTextActionEntityWriter_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityTextFormat
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityTextFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1560,7 +1560,7 @@ package WinRt.Windows.AI.Actions is
       function get_TextFormat
       (
          this : access ITextActionEntity2_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityTextFormat
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityTextFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1572,7 +1572,7 @@ package WinRt.Windows.AI.Actions is
       function get_Uri
       (
          this : access IUriActionEntity_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1681,8 +1681,8 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       sourceId : WinRt.WString;
-      fileKind : Windows.AI.Actions.RemoteFileKind;
-      sourceUri : Windows.Foundation.Uri'Class;
+      fileKind : WinRt.Windows.AI.Actions.RemoteFileKind;
+      sourceUri : WinRt.Windows.Foundation.Uri'Class;
       fileId : WinRt.WString;
       contentType : WinRt.WString;
       driveId : WinRt.WString;
@@ -1695,14 +1695,14 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       text : WinRt.WString;
-      textFormat : Windows.AI.Actions.ActionEntityTextFormat
+      textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat
    )
    return WinRt.Windows.AI.Actions.TextActionEntity'Class;
 
    function CreateStreamingTextActionEntityWriter
    (
       this : in out ActionEntityFactory;
-      textFormat : Windows.AI.Actions.ActionEntityTextFormat
+      textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat
    )
    return WinRt.Windows.AI.Actions.StreamingTextActionEntityWriter'Class;
 
@@ -1717,29 +1717,29 @@ package WinRt.Windows.AI.Actions is
    function CreateContactEntity
    (
       this : in out ActionEntityFactory;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.AI.Actions.ContactActionEntity'Class;
 
    function CreateUriEntity
    (
       this : in out ActionEntityFactory;
-      Uri : Windows.Foundation.Uri'Class
+      Uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.AI.Actions.UriActionEntity'Class;
 
    function CreateArrayEntity
    (
       this : in out ActionEntityFactory;
-      kind : Windows.AI.Actions.ActionEntityKind;
-      entities : Windows.AI.Actions.ActionEntity_Array
+      kind : WinRt.Windows.AI.Actions.ActionEntityKind;
+      entities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.ArrayActionEntity'Class;
 
    function CreateDateTimeEntity
    (
       this : in out ActionEntityFactory;
-      dateTime : Windows.Foundation.DateTime
+      dateTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.AI.Actions.DateTimeActionEntity'Class;
 
@@ -1747,8 +1747,8 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       sourceId : WinRt.WString;
-      appointment : Windows.ApplicationModel.Appointments.Appointment'Class;
-      attendees : Windows.AI.Actions.ContactActionEntity_Array
+      appointment : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      attendees : WinRt.Windows.AI.Actions.ContactActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.AppointmentActionEntity'Class;
 
@@ -1764,9 +1764,9 @@ package WinRt.Windows.AI.Actions is
    function CreateArrayEntityWithCustomKind
    (
       this : in out ActionEntityFactory;
-      elementKind : Windows.AI.Actions.ActionEntityKind;
+      elementKind : WinRt.Windows.AI.Actions.ActionEntityKind;
       customKind : WinRt.WString;
-      entities : Windows.AI.Actions.ActionEntity_Array
+      entities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.ArrayActionEntity'Class;
 
@@ -1814,7 +1814,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext;
       inputName : WinRt.WString;
-      inputValue : Windows.AI.Actions.ActionEntity'Class
+      inputValue : WinRt.Windows.AI.Actions.ActionEntity'Class
    );
 
    function GetInputEntities
@@ -1827,7 +1827,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext;
       outputName : WinRt.WString;
-      outputValue : Windows.AI.Actions.ActionEntity'Class
+      outputValue : WinRt.Windows.AI.Actions.ActionEntity'Class
    );
 
    function GetOutputEntities
@@ -1845,7 +1845,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_Result
    (
       this : in out ActionInvocationContext;
-      value : Windows.AI.Actions.ActionInvocationResult
+      value : WinRt.Windows.AI.Actions.ActionInvocationResult
    );
 
    function get_ExtendedError
@@ -1857,7 +1857,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_ExtendedError
    (
       this : in out ActionInvocationContext;
-      value : Windows.Foundation.HResult
+      value : WinRt.Windows.Foundation.HResult
    );
 
    function get_InvokerWindowId
@@ -1907,7 +1907,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_Kind
    (
       this : in out ActionInvocationHelpDetails;
-      value : Windows.AI.Actions.ActionInvocationHelpKind
+      value : WinRt.Windows.AI.Actions.ActionInvocationHelpKind
    );
 
    function get_Title
@@ -1943,7 +1943,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_HelpUri
    (
       this : in out ActionInvocationHelpDetails;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_HelpUriDescription
@@ -1968,7 +1968,7 @@ package WinRt.Windows.AI.Actions is
    procedure remove_Changed
    (
       this : in out ActionInvocationHelpDetails;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -2016,7 +2016,7 @@ package WinRt.Windows.AI.Actions is
    function CreateActionFeedback
    (
       this : in out ActionRuntime;
-      feedbackKind : Windows.AI.Actions.ActionFeedbackKind
+      feedbackKind : WinRt.Windows.AI.Actions.ActionFeedbackKind
    )
    return WinRt.Windows.AI.Actions.ActionFeedback'Class;
 
@@ -2038,7 +2038,7 @@ package WinRt.Windows.AI.Actions is
    (
       this : in out ActionRuntime;
       actionId : WinRt.WString;
-      invokerWindowId : Windows.UI.WindowId
+      invokerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Actions.ActionInvocationContext'Class;
 
@@ -2109,7 +2109,7 @@ package WinRt.Windows.AI.Actions is
    procedure SetPresentedFiles
    (
       this : in out AppointmentActionEntity;
-      files : Windows.AI.Actions.RemoteFileActionEntity_Array
+      files : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array
    );
 
    function GetSharedFiles
@@ -2121,7 +2121,7 @@ package WinRt.Windows.AI.Actions is
    procedure SetSharedFiles
    (
       this : in out AppointmentActionEntity;
-      files : Windows.AI.Actions.RemoteFileActionEntity_Array
+      files : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array
    );
 
    -----------------------------------------------------------------------------
@@ -2188,13 +2188,13 @@ package WinRt.Windows.AI.Actions is
    procedure Insert
    (
       this : in out CustomActionEntityStore;
-      entity : Windows.AI.Actions.CustomTextActionEntity'Class
+      entity : WinRt.Windows.AI.Actions.CustomTextActionEntity'Class
    );
 
    procedure InsertMany
    (
       this : in out CustomActionEntityStore;
-      entities : Windows.AI.Actions.CustomTextActionEntity_Array
+      entities : WinRt.Windows.AI.Actions.CustomTextActionEntity_Array
    );
 
    procedure Delete
@@ -2310,7 +2310,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_Entity
    (
       this : in out NamedActionEntity;
-      value : Windows.AI.Actions.ActionEntity'Class
+      value : WinRt.Windows.AI.Actions.ActionEntity'Class
    );
 
    procedure Close
@@ -2411,7 +2411,7 @@ package WinRt.Windows.AI.Actions is
    procedure put_Creator
    (
       this : in out RemoteFileActionEntity;
-      value : Windows.AI.Actions.ContactActionEntity'Class
+      value : WinRt.Windows.AI.Actions.ContactActionEntity'Class
    );
 
    function get_LastUpdatedTime
@@ -2429,7 +2429,7 @@ package WinRt.Windows.AI.Actions is
    procedure SetContributors
    (
       this : in out RemoteFileActionEntity;
-      contributors : Windows.AI.Actions.ContactActionEntity_Array
+      contributors : WinRt.Windows.AI.Actions.ContactActionEntity_Array
    );
 
    function GetContributors
@@ -2475,7 +2475,7 @@ package WinRt.Windows.AI.Actions is
    procedure remove_TextChanged
    (
       this : in out StreamingTextActionEntity;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

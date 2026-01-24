@@ -156,7 +156,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       (
          this : access IPlatformDiagnosticActionsStatics_Interface;
          scenarioId : WinRt.Guid;
-         escalationType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEscalationType;
+         escalationType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEscalationType;
          outputDirectory : WinRt.HString;
          timestampOutputDirectory : WinRt.Boolean;
          forceEscalationUpload : WinRt.Boolean;
@@ -173,7 +173,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
          isScenarioNamespace : WinRt.Boolean;
          downloadOverCostedNetwork : WinRt.Boolean;
          downloadOverBattery : WinRt.Boolean;
-         RetVal : access Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState
+         RetVal : access WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState
       )
       return WinRt.Hresult is abstract;
 
@@ -187,35 +187,35 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       function ForceUpload
       (
          this : access IPlatformDiagnosticActionsStatics_Interface;
-         latency : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEventBufferLatencies;
+         latency : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEventBufferLatencies;
          uploadOverCostedNetwork : WinRt.Boolean;
          uploadOverBattery : WinRt.Boolean;
-         RetVal : access Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState
+         RetVal : access WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticActionState
       )
       return WinRt.Hresult is abstract;
 
       function IsTraceRunning
       (
          this : access IPlatformDiagnosticActionsStatics_Interface;
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
          scenarioId : WinRt.Guid;
          traceProfileHash : WinRt.UInt64;
-         RetVal : access Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotState
+         RetVal : access WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotState
       )
       return WinRt.Hresult is abstract;
 
       function GetActiveTraceRuntime
       (
          this : access IPlatformDiagnosticActionsStatics_Interface;
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
-         RetVal : access Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticTraceRuntimeInfo
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
+         RetVal : access WinRt.Windows.System.Diagnostics.TraceReporting.IPlatformDiagnosticTraceRuntimeInfo
       )
       return WinRt.Hresult is abstract;
 
       function GetKnownTraceList
       (
          this : access IPlatformDiagnosticActionsStatics_Interface;
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -263,7 +263,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       function get_Priority
       (
          this : access IPlatformDiagnosticTraceInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTracePriority
+         RetVal : access WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTracePriority
       )
       return WinRt.Hresult is abstract;
 
@@ -305,7 +305,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
       function TryEscalateScenario
       (
          scenarioId : WinRt.Guid;
-         escalationType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEscalationType;
+         escalationType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEscalationType;
          outputDirectory : WinRt.WString;
          timestampOutputDirectory : WinRt.Boolean;
          forceEscalationUpload : WinRt.Boolean;
@@ -328,7 +328,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
 
       function ForceUpload
       (
-         latency : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEventBufferLatencies;
+         latency : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticEventBufferLatencies;
          uploadOverCostedNetwork : WinRt.Boolean;
          uploadOverBattery : WinRt.Boolean
       )
@@ -336,7 +336,7 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
 
       function IsTraceRunning
       (
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType;
          scenarioId : WinRt.Guid;
          traceProfileHash : WinRt.UInt64
       )
@@ -344,13 +344,13 @@ package WinRt.Windows.System.Diagnostics.TraceReporting is
 
       function GetActiveTraceRuntime
       (
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType
       )
       return WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceRuntimeInfo;
 
       function GetKnownTraceList
       (
-         slotType : Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType
+         slotType : WinRt.Windows.System.Diagnostics.TraceReporting.PlatformDiagnosticTraceSlotType
       )
       return WinRt.GenericObject;
 

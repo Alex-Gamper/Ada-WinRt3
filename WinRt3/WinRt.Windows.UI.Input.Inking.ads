@@ -558,42 +558,42 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Color
       (
          this : access IInkDrawingAttributes_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IInkDrawingAttributes_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_PenTip
       (
          this : access IInkDrawingAttributes_Interface;
-         RetVal : access Windows.UI.Input.Inking.PenTipShape
+         RetVal : access WinRt.Windows.UI.Input.Inking.PenTipShape
       )
       return WinRt.Hresult is abstract;
 
       function put_PenTip
       (
          this : access IInkDrawingAttributes_Interface;
-         value : Windows.UI.Input.Inking.PenTipShape
+         value : WinRt.Windows.UI.Input.Inking.PenTipShape
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access IInkDrawingAttributes_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access IInkDrawingAttributes_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -633,14 +633,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_PenTipTransform
       (
          this : access IInkDrawingAttributes2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_PenTipTransform
       (
          this : access IInkDrawingAttributes2_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -666,14 +666,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Kind
       (
          this : access IInkDrawingAttributes3_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkDrawingAttributesKind
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkDrawingAttributesKind
       )
       return WinRt.Hresult is abstract;
 
       function get_PencilProperties
       (
          this : access IInkDrawingAttributes3_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkDrawingAttributesPencilProperties
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributesPencilProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -704,7 +704,7 @@ package WinRt.Windows.UI.Input.Inking is
       function get_ModelerAttributes
       (
          this : access IInkDrawingAttributes5_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkModelerAttributes
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkModelerAttributes
       )
       return WinRt.Hresult is abstract;
 
@@ -735,7 +735,7 @@ package WinRt.Windows.UI.Input.Inking is
       function CreateForPencil
       (
          this : access IInkDrawingAttributesStatics_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkDrawingAttributes
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
@@ -799,28 +799,28 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Mode
       (
          this : access IInkInputProcessingConfiguration_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkInputProcessingMode
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkInputProcessingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IInkInputProcessingConfiguration_Interface;
-         value : Windows.UI.Input.Inking.InkInputProcessingMode
+         value : WinRt.Windows.UI.Input.Inking.InkInputProcessingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_RightDragAction
       (
          this : access IInkInputProcessingConfiguration_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkInputRightDragAction
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkInputRightDragAction
       )
       return WinRt.Hresult is abstract;
 
       function put_RightDragAction
       (
          this : access IInkInputProcessingConfiguration_Interface;
-         value : Windows.UI.Input.Inking.InkInputRightDragAction
+         value : WinRt.Windows.UI.Input.Inking.InkInputRightDragAction
       )
       return WinRt.Hresult is abstract;
 
@@ -832,28 +832,28 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Mode
       (
          this : access IInkManager_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkManipulationMode
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkManipulationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IInkManager_Interface;
-         value : Windows.UI.Input.Inking.InkManipulationMode
+         value : WinRt.Windows.UI.Input.Inking.InkManipulationMode
       )
       return WinRt.Hresult is abstract;
 
       function ProcessPointerDown
       (
          this : access IInkManager_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function ProcessPointerUpdate
       (
          this : access IInkManager_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint;
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -861,22 +861,22 @@ package WinRt.Windows.UI.Input.Inking is
       function ProcessPointerUp
       (
          this : access IInkManager_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint;
-         RetVal : access Windows.Foundation.Rect
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function SetDefaultDrawingAttributes
       (
          this : access IInkManager_Interface;
-         drawingAttributes : Windows.UI.Input.Inking.IInkDrawingAttributes
+         drawingAttributes : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function RecognizeAsync
       (
          this : access IInkManager_Interface;
-         recognitionTarget : Windows.UI.Input.Inking.InkRecognitionTarget;
+         recognitionTarget : WinRt.Windows.UI.Input.Inking.InkRecognitionTarget;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -889,14 +889,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_PredictionTime
       (
          this : access IInkModelerAttributes_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_PredictionTime
       (
          this : access IInkModelerAttributes_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -941,7 +941,7 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Position
       (
          this : access IInkPoint_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -986,9 +986,9 @@ package WinRt.Windows.UI.Input.Inking is
       function CreateInkPoint
       (
          this : access IInkPointFactory_Interface;
-         position : Windows.Foundation.Point;
+         position : WinRt.Windows.Foundation.Point;
          pressure : WinRt.Single;
-         RetVal : access Windows.UI.Input.Inking.IInkPoint
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1000,12 +1000,12 @@ package WinRt.Windows.UI.Input.Inking is
       function CreateInkPointWithTiltAndTimestamp
       (
          this : access IInkPointFactory2_Interface;
-         position : Windows.Foundation.Point;
+         position : WinRt.Windows.Foundation.Point;
          pressure : WinRt.Single;
          tiltX : WinRt.Single;
          tiltY : WinRt.Single;
          timestamp : WinRt.UInt64;
-         RetVal : access Windows.UI.Input.Inking.IInkPoint
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1031,77 +1031,77 @@ package WinRt.Windows.UI.Input.Inking is
       function get_InputDeviceTypes
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Core.CoreInputDeviceTypes
+         RetVal : access WinRt.Windows.UI.Core.CoreInputDeviceTypes
       )
       return WinRt.Hresult is abstract;
 
       function put_InputDeviceTypes
       (
          this : access IInkPresenter_Interface;
-         value : Windows.UI.Core.CoreInputDeviceTypes
+         value : WinRt.Windows.UI.Core.CoreInputDeviceTypes
       )
       return WinRt.Hresult is abstract;
 
       function get_UnprocessedInput
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkUnprocessedInput
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkUnprocessedInput
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeInput
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkStrokeInput
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStrokeInput
       )
       return WinRt.Hresult is abstract;
 
       function get_InputProcessingConfiguration
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkInputProcessingConfiguration
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkInputProcessingConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeContainer
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkStrokeContainer
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStrokeContainer
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeContainer
       (
          this : access IInkPresenter_Interface;
-         value : Windows.UI.Input.Inking.IInkStrokeContainer
+         value : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer
       )
       return WinRt.Hresult is abstract;
 
       function CopyDefaultDrawingAttributes
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkDrawingAttributes
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function UpdateDefaultDrawingAttributes
       (
          this : access IInkPresenter_Interface;
-         value : Windows.UI.Input.Inking.IInkDrawingAttributes
+         value : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function ActivateCustomDrying
       (
          this : access IInkPresenter_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkSynchronizer
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkSynchronizer
       )
       return WinRt.Hresult is abstract;
 
       function SetPredefinedConfiguration
       (
          this : access IInkPresenter_Interface;
-         value : Windows.UI.Input.Inking.InkPresenterPredefinedConfiguration
+         value : WinRt.Windows.UI.Input.Inking.InkPresenterPredefinedConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1109,14 +1109,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkPresenter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokesCollected
       (
          this : access IInkPresenter_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1124,14 +1124,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkPresenter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokesErased
       (
          this : access IInkPresenter_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1143,14 +1143,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_HighContrastAdjustment
       (
          this : access IInkPresenter2_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkHighContrastAdjustment
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkHighContrastAdjustment
       )
       return WinRt.Hresult is abstract;
 
       function put_HighContrastAdjustment
       (
          this : access IInkPresenter2_Interface;
-         value : Windows.UI.Input.Inking.InkHighContrastAdjustment
+         value : WinRt.Windows.UI.Input.Inking.InkHighContrastAdjustment
       )
       return WinRt.Hresult is abstract;
 
@@ -1162,7 +1162,7 @@ package WinRt.Windows.UI.Input.Inking is
       function get_InputConfiguration
       (
          this : access IInkPresenter3_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkInputConfiguration
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkInputConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1258,14 +1258,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_AccentColor
       (
          this : access IInkPresenterProtractor_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_AccentColor
       (
          this : access IInkPresenterProtractor_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1277,8 +1277,8 @@ package WinRt.Windows.UI.Input.Inking is
       function Create
       (
          this : access IInkPresenterProtractorFactory_Interface;
-         inkPresenter_p : Windows.UI.Input.Inking.IInkPresenter;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenterProtractor
+         inkPresenter_p : WinRt.Windows.UI.Input.Inking.IInkPresenter;
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor
       )
       return WinRt.Hresult is abstract;
 
@@ -1356,8 +1356,8 @@ package WinRt.Windows.UI.Input.Inking is
       function Create
       (
          this : access IInkPresenterRulerFactory_Interface;
-         inkPresenter_p : Windows.UI.Input.Inking.IInkPresenter;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenterRuler
+         inkPresenter_p : WinRt.Windows.UI.Input.Inking.IInkPresenter;
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenterRuler
       )
       return WinRt.Hresult is abstract;
 
@@ -1369,7 +1369,7 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Kind
       (
          this : access IInkPresenterStencil_Interface;
-         RetVal : access Windows.UI.Input.Inking.InkPresenterStencilKind
+         RetVal : access WinRt.Windows.UI.Input.Inking.InkPresenterStencilKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1390,42 +1390,42 @@ package WinRt.Windows.UI.Input.Inking is
       function get_BackgroundColor
       (
          this : access IInkPresenterStencil_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access IInkPresenterStencil_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundColor
       (
          this : access IInkPresenterStencil_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_ForegroundColor
       (
          this : access IInkPresenterStencil_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Transform
       (
          this : access IInkPresenterStencil_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_Transform
       (
          this : access IInkPresenterStencil_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -1437,7 +1437,7 @@ package WinRt.Windows.UI.Input.Inking is
       function get_BoundingRect
       (
          this : access IInkRecognitionResult_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1475,15 +1475,15 @@ package WinRt.Windows.UI.Input.Inking is
       function SetDefaultRecognizer
       (
          this : access IInkRecognizerContainer_Interface;
-         recognizer : Windows.UI.Input.Inking.IInkRecognizer
+         recognizer : WinRt.Windows.UI.Input.Inking.IInkRecognizer
       )
       return WinRt.Hresult is abstract;
 
       function RecognizeAsync
       (
          this : access IInkRecognizerContainer_Interface;
-         strokeCollection : Windows.UI.Input.Inking.IInkStrokeContainer;
-         recognitionTarget : Windows.UI.Input.Inking.InkRecognitionTarget;
+         strokeCollection : WinRt.Windows.UI.Input.Inking.IInkStrokeContainer;
+         recognitionTarget : WinRt.Windows.UI.Input.Inking.InkRecognitionTarget;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1503,21 +1503,21 @@ package WinRt.Windows.UI.Input.Inking is
       function get_DrawingAttributes
       (
          this : access IInkStroke_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkDrawingAttributes
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function put_DrawingAttributes
       (
          this : access IInkStroke_Interface;
-         value : Windows.UI.Input.Inking.IInkDrawingAttributes
+         value : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingRect
       (
          this : access IInkStroke_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1552,7 +1552,7 @@ package WinRt.Windows.UI.Input.Inking is
       function Clone
       (
          this : access IInkStroke_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -1564,14 +1564,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_PointTransform
       (
          this : access IInkStroke2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_PointTransform
       (
          this : access IInkStroke2_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -1642,23 +1642,23 @@ package WinRt.Windows.UI.Input.Inking is
       function BeginStroke
       (
          this : access IInkStrokeBuilder_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function AppendToStroke
       (
          this : access IInkStrokeBuilder_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint;
-         RetVal : access Windows.UI.Input.IPointerPoint
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint;
+         RetVal : access WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function EndStroke
       (
          this : access IInkStrokeBuilder_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint;
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -1666,14 +1666,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeBuilder_Interface;
          points : GenericObject;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
       function SetDefaultDrawingAttributes
       (
          this : access IInkStrokeBuilder_Interface;
-         drawingAttributes : Windows.UI.Input.Inking.IInkDrawingAttributes
+         drawingAttributes : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
@@ -1686,8 +1686,8 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeBuilder2_Interface;
          inkPoints : GenericObject;
-         transform : Windows.Foundation.Numerics.Matrix3x2;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         transform : WinRt.Windows.Foundation.Numerics.Matrix3x2;
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -1700,10 +1700,10 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeBuilder3_Interface;
          inkPoints : GenericObject;
-         transform : Windows.Foundation.Numerics.Matrix3x2;
+         transform : WinRt.Windows.Foundation.Numerics.Matrix3x2;
          strokeStartedTime : GenericObject;
          strokeDuration : GenericObject;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -1715,29 +1715,29 @@ package WinRt.Windows.UI.Input.Inking is
       function get_BoundingRect
       (
          this : access IInkStrokeContainer_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function AddStroke
       (
          this : access IInkStrokeContainer_Interface;
-         stroke : Windows.UI.Input.Inking.IInkStroke
+         stroke : WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
       function DeleteSelected
       (
          this : access IInkStrokeContainer_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function MoveSelected
       (
          this : access IInkStrokeContainer_Interface;
-         translation : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Rect
+         translation : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1745,16 +1745,16 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeContainer_Interface;
          polyline : GenericObject;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function SelectWithLine
       (
          this : access IInkStrokeContainer_Interface;
-         from : Windows.Foundation.Point;
-         to : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Rect
+         from : WinRt.Windows.Foundation.Point;
+         to : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1767,8 +1767,8 @@ package WinRt.Windows.UI.Input.Inking is
       function PasteFromClipboard
       (
          this : access IInkStrokeContainer_Interface;
-         position : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Rect
+         position : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1782,15 +1782,15 @@ package WinRt.Windows.UI.Input.Inking is
       function LoadAsync
       (
          this : access IInkStrokeContainer_Interface;
-         inputStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IInkStrokeContainer_Interface;
-         outputStream : Windows.Storage.Streams.IOutputStream;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1842,8 +1842,8 @@ package WinRt.Windows.UI.Input.Inking is
       function SaveAsync
       (
          this : access IInkStrokeContainer3_Interface;
-         outputStream : Windows.Storage.Streams.IOutputStream;
-         inkPersistenceFormat : Windows.UI.Input.Inking.InkPersistenceFormat;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         inkPersistenceFormat : WinRt.Windows.UI.Input.Inking.InkPersistenceFormat;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1852,7 +1852,7 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeContainer3_Interface;
          id : WinRt.UInt32;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,14 +1865,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokeStarted
       (
          this : access IInkStrokeInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1880,14 +1880,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokeContinued
       (
          this : access IInkStrokeInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1895,14 +1895,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokeEnded
       (
          this : access IInkStrokeInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1910,21 +1910,21 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkStrokeInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StrokeCanceled
       (
          this : access IInkStrokeInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_InkPresenter
       (
          this : access IInkStrokeInput_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenter
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -1936,21 +1936,21 @@ package WinRt.Windows.UI.Input.Inking is
       function get_Position
       (
          this : access IInkStrokeRenderingSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_BezierControlPoint1
       (
          this : access IInkStrokeRenderingSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_BezierControlPoint2
       (
          this : access IInkStrokeRenderingSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2033,14 +2033,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerEntered
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2048,14 +2048,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerHovered
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2063,14 +2063,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerExited
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2078,14 +2078,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerPressed
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2093,14 +2093,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerMoved
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2108,14 +2108,14 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerReleased
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2123,21 +2123,21 @@ package WinRt.Windows.UI.Input.Inking is
       (
          this : access IInkUnprocessedInput_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerLost
       (
          this : access IInkUnprocessedInput_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_InkPresenter
       (
          this : access IInkUnprocessedInput_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenter
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -2156,14 +2156,14 @@ package WinRt.Windows.UI.Input.Inking is
       function get_PenHandedness
       (
          this : access IPenAndInkSettings_Interface;
-         RetVal : access Windows.UI.Input.Inking.PenHandedness
+         RetVal : access WinRt.Windows.UI.Input.Inking.PenHandedness
       )
       return WinRt.Hresult is abstract;
 
       function get_HandwritingLineHeight
       (
          this : access IPenAndInkSettings_Interface;
-         RetVal : access Windows.UI.Input.Inking.HandwritingLineHeight
+         RetVal : access WinRt.Windows.UI.Input.Inking.HandwritingLineHeight
       )
       return WinRt.Hresult is abstract;
 
@@ -2196,7 +2196,7 @@ package WinRt.Windows.UI.Input.Inking is
       function SetPenHandedness
       (
          this : access IPenAndInkSettings2_Interface;
-         value : Windows.UI.Input.Inking.PenHandedness
+         value : WinRt.Windows.UI.Input.Inking.PenHandedness
       )
       return WinRt.Hresult is abstract;
 
@@ -2208,7 +2208,7 @@ package WinRt.Windows.UI.Input.Inking is
       function GetDefault
       (
          this : access IPenAndInkSettingsStatics_Interface;
-         RetVal : access Windows.UI.Input.Inking.IPenAndInkSettings
+         RetVal : access WinRt.Windows.UI.Input.Inking.IPenAndInkSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2247,7 +2247,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Color
    (
       this : in out InkDrawingAttributes;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_PenTip
@@ -2259,7 +2259,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_PenTip
    (
       this : in out InkDrawingAttributes;
-      value : Windows.UI.Input.Inking.PenTipShape
+      value : WinRt.Windows.UI.Input.Inking.PenTipShape
    );
 
    function get_Size
@@ -2271,7 +2271,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Size
    (
       this : in out InkDrawingAttributes;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_IgnorePressure
@@ -2307,7 +2307,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_PenTipTransform
    (
       this : in out InkDrawingAttributes;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    function get_DrawAsHighlighter
@@ -2436,7 +2436,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Mode
    (
       this : in out InkInputProcessingConfiguration;
-      value : Windows.UI.Input.Inking.InkInputProcessingMode
+      value : WinRt.Windows.UI.Input.Inking.InkInputProcessingMode
    );
 
    function get_RightDragAction
@@ -2448,7 +2448,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_RightDragAction
    (
       this : in out InkInputProcessingConfiguration;
-      value : Windows.UI.Input.Inking.InkInputRightDragAction
+      value : WinRt.Windows.UI.Input.Inking.InkInputRightDragAction
    );
 
    -----------------------------------------------------------------------------
@@ -2474,53 +2474,53 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Mode
    (
       this : in out InkManager;
-      value : Windows.UI.Input.Inking.InkManipulationMode
+      value : WinRt.Windows.UI.Input.Inking.InkManipulationMode
    );
 
    procedure ProcessPointerDown
    (
       this : in out InkManager;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    function ProcessPointerUpdate
    (
       this : in out InkManager;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.IInspectable;
 
    function ProcessPointerUp
    (
       this : in out InkManager;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.Windows.Foundation.Rect;
 
    procedure SetDefaultDrawingAttributes
    (
       this : in out InkManager;
-      drawingAttributes : Windows.UI.Input.Inking.InkDrawingAttributes'Class
+      drawingAttributes : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class
    );
 
    function RecognizeAsync
    (
       this : in out InkManager;
-      recognitionTarget : Windows.UI.Input.Inking.InkRecognitionTarget
+      recognitionTarget : WinRt.Windows.UI.Input.Inking.InkRecognitionTarget
    )
    return WinRt.GenericObject;
 
    procedure SetDefaultRecognizer
    (
       this : in out InkManager;
-      recognizer : Windows.UI.Input.Inking.InkRecognizer'Class
+      recognizer : WinRt.Windows.UI.Input.Inking.InkRecognizer'Class
    );
 
    function RecognizeAsync
    (
       this : in out InkManager;
-      strokeCollection : Windows.UI.Input.Inking.InkStrokeContainer'Class;
-      recognitionTarget : Windows.UI.Input.Inking.InkRecognitionTarget
+      strokeCollection : WinRt.Windows.UI.Input.Inking.InkStrokeContainer'Class;
+      recognitionTarget : WinRt.Windows.UI.Input.Inking.InkRecognitionTarget
    )
    return WinRt.GenericObject;
 
@@ -2539,7 +2539,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure AddStroke
    (
       this : in out InkManager;
-      stroke : Windows.UI.Input.Inking.InkStroke'Class
+      stroke : WinRt.Windows.UI.Input.Inking.InkStroke'Class
    );
 
    function DeleteSelected
@@ -2551,7 +2551,7 @@ package WinRt.Windows.UI.Input.Inking is
    function MoveSelected
    (
       this : in out InkManager;
-      translation : Windows.Foundation.Point
+      translation : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -2565,8 +2565,8 @@ package WinRt.Windows.UI.Input.Inking is
    function SelectWithLine
    (
       this : in out InkManager;
-      from : Windows.Foundation.Point;
-      to : Windows.Foundation.Point
+      from : WinRt.Windows.Foundation.Point;
+      to : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -2578,7 +2578,7 @@ package WinRt.Windows.UI.Input.Inking is
    function PasteFromClipboard
    (
       this : in out InkManager;
-      position : Windows.Foundation.Point
+      position : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -2591,13 +2591,13 @@ package WinRt.Windows.UI.Input.Inking is
    procedure LoadAsync
    (
       this : in out InkManager;
-      inputStream : Windows.Storage.Streams.IInputStream
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function SaveAsync
    (
       this : in out InkManager;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt32;
 
@@ -2637,7 +2637,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_PredictionTime
    (
       this : in out InkModelerAttributes;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ScalingFactor
@@ -2675,14 +2675,14 @@ package WinRt.Windows.UI.Input.Inking is
 
    function Constructor
    (
-      position : Windows.Foundation.Point;
+      position : WinRt.Windows.Foundation.Point;
       pressure : WinRt.Single
    )
    return InkPoint;
 
    function Constructor
    (
-      position : Windows.Foundation.Point;
+      position : WinRt.Windows.Foundation.Point;
       pressure : WinRt.Single;
       tiltX : WinRt.Single;
       tiltY : WinRt.Single;
@@ -2753,7 +2753,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_InputDeviceTypes
    (
       this : in out InkPresenter;
-      value : Windows.UI.Core.CoreInputDeviceTypes
+      value : WinRt.Windows.UI.Core.CoreInputDeviceTypes
    );
 
    function get_UnprocessedInput
@@ -2783,7 +2783,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_StrokeContainer
    (
       this : in out InkPresenter;
-      value : Windows.UI.Input.Inking.InkStrokeContainer'Class
+      value : WinRt.Windows.UI.Input.Inking.InkStrokeContainer'Class
    );
 
    function CopyDefaultDrawingAttributes
@@ -2795,7 +2795,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure UpdateDefaultDrawingAttributes
    (
       this : in out InkPresenter;
-      value : Windows.UI.Input.Inking.InkDrawingAttributes'Class
+      value : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class
    );
 
    function ActivateCustomDrying
@@ -2807,7 +2807,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure SetPredefinedConfiguration
    (
       this : in out InkPresenter;
-      value : Windows.UI.Input.Inking.InkPresenterPredefinedConfiguration
+      value : WinRt.Windows.UI.Input.Inking.InkPresenterPredefinedConfiguration
    );
 
    function add_StrokesCollected
@@ -2820,7 +2820,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokesCollected
    (
       this : in out InkPresenter;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StrokesErased
@@ -2833,7 +2833,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokesErased
    (
       this : in out InkPresenter;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_HighContrastAdjustment
@@ -2845,7 +2845,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_HighContrastAdjustment
    (
       this : in out InkPresenter;
-      value : Windows.UI.Input.Inking.InkHighContrastAdjustment
+      value : WinRt.Windows.UI.Input.Inking.InkHighContrastAdjustment
    );
 
    function get_InputConfiguration
@@ -2865,7 +2865,7 @@ package WinRt.Windows.UI.Input.Inking is
 
    function Constructor
    (
-      inkPresenter_p : Windows.UI.Input.Inking.InkPresenter'Class
+      inkPresenter_p : WinRt.Windows.UI.Input.Inking.InkPresenter'Class
    )
    return InkPresenterProtractor;
 
@@ -2953,7 +2953,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_AccentColor
    (
       this : in out InkPresenterProtractor;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Kind
@@ -2983,7 +2983,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_BackgroundColor
    (
       this : in out InkPresenterProtractor;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_ForegroundColor
@@ -2995,7 +2995,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_ForegroundColor
    (
       this : in out InkPresenterProtractor;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Transform
@@ -3007,7 +3007,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Transform
    (
       this : in out InkPresenterProtractor;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    -----------------------------------------------------------------------------
@@ -3021,7 +3021,7 @@ package WinRt.Windows.UI.Input.Inking is
 
    function Constructor
    (
-      inkPresenter_p : Windows.UI.Input.Inking.InkPresenter'Class
+      inkPresenter_p : WinRt.Windows.UI.Input.Inking.InkPresenter'Class
    )
    return InkPresenterRuler;
 
@@ -3079,7 +3079,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_BackgroundColor
    (
       this : in out InkPresenterRuler;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_ForegroundColor
@@ -3091,7 +3091,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_ForegroundColor
    (
       this : in out InkPresenterRuler;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Transform
@@ -3103,7 +3103,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_Transform
    (
       this : in out InkPresenterRuler;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    function get_AreTickMarksVisible
@@ -3189,14 +3189,14 @@ package WinRt.Windows.UI.Input.Inking is
    procedure SetDefaultRecognizer
    (
       this : in out InkRecognizerContainer;
-      recognizer : Windows.UI.Input.Inking.InkRecognizer'Class
+      recognizer : WinRt.Windows.UI.Input.Inking.InkRecognizer'Class
    );
 
    function RecognizeAsync
    (
       this : in out InkRecognizerContainer;
-      strokeCollection : Windows.UI.Input.Inking.InkStrokeContainer'Class;
-      recognitionTarget : Windows.UI.Input.Inking.InkRecognitionTarget
+      strokeCollection : WinRt.Windows.UI.Input.Inking.InkStrokeContainer'Class;
+      recognitionTarget : WinRt.Windows.UI.Input.Inking.InkRecognitionTarget
    )
    return WinRt.GenericObject;
 
@@ -3224,7 +3224,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_DrawingAttributes
    (
       this : in out InkStroke;
-      value : Windows.UI.Input.Inking.InkDrawingAttributes'Class
+      value : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class
    );
 
    function get_BoundingRect
@@ -3272,7 +3272,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure put_PointTransform
    (
       this : in out InkStroke;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    function GetInkPoints
@@ -3334,20 +3334,20 @@ package WinRt.Windows.UI.Input.Inking is
    procedure BeginStroke
    (
       this : in out InkStrokeBuilder;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    function AppendToStroke
    (
       this : in out InkStrokeBuilder;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.Windows.UI.Input.PointerPoint'Class;
 
    function EndStroke
    (
       this : in out InkStrokeBuilder;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class;
 
@@ -3361,14 +3361,14 @@ package WinRt.Windows.UI.Input.Inking is
    procedure SetDefaultDrawingAttributes
    (
       this : in out InkStrokeBuilder;
-      drawingAttributes : Windows.UI.Input.Inking.InkDrawingAttributes'Class
+      drawingAttributes : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class
    );
 
    function CreateStrokeFromInkPoints
    (
       this : in out InkStrokeBuilder;
       inkPoints : GenericObject;
-      transform : Windows.Foundation.Numerics.Matrix3x2
+      transform : WinRt.Windows.Foundation.Numerics.Matrix3x2
    )
    return WinRt.Windows.UI.Input.Inking.InkStroke'Class;
 
@@ -3376,7 +3376,7 @@ package WinRt.Windows.UI.Input.Inking is
    (
       this : in out InkStrokeBuilder;
       inkPoints : GenericObject;
-      transform : Windows.Foundation.Numerics.Matrix3x2;
+      transform : WinRt.Windows.Foundation.Numerics.Matrix3x2;
       strokeStartedTime : GenericObject;
       strokeDuration : GenericObject
    )
@@ -3405,7 +3405,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure AddStroke
    (
       this : in out InkStrokeContainer;
-      stroke : Windows.UI.Input.Inking.InkStroke'Class
+      stroke : WinRt.Windows.UI.Input.Inking.InkStroke'Class
    );
 
    function DeleteSelected
@@ -3417,7 +3417,7 @@ package WinRt.Windows.UI.Input.Inking is
    function MoveSelected
    (
       this : in out InkStrokeContainer;
-      translation : Windows.Foundation.Point
+      translation : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -3431,8 +3431,8 @@ package WinRt.Windows.UI.Input.Inking is
    function SelectWithLine
    (
       this : in out InkStrokeContainer;
-      from : Windows.Foundation.Point;
-      to : Windows.Foundation.Point
+      from : WinRt.Windows.Foundation.Point;
+      to : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -3444,7 +3444,7 @@ package WinRt.Windows.UI.Input.Inking is
    function PasteFromClipboard
    (
       this : in out InkStrokeContainer;
-      position : Windows.Foundation.Point
+      position : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -3457,13 +3457,13 @@ package WinRt.Windows.UI.Input.Inking is
    procedure LoadAsync
    (
       this : in out InkStrokeContainer;
-      inputStream : Windows.Storage.Streams.IInputStream
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function SaveAsync
    (
       this : in out InkStrokeContainer;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt32;
 
@@ -3499,8 +3499,8 @@ package WinRt.Windows.UI.Input.Inking is
    function SaveAsync
    (
       this : in out InkStrokeContainer;
-      outputStream : Windows.Storage.Streams.IOutputStream;
-      inkPersistenceFormat : Windows.UI.Input.Inking.InkPersistenceFormat
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+      inkPersistenceFormat : WinRt.Windows.UI.Input.Inking.InkPersistenceFormat
    )
    return WinRt.UInt32;
 
@@ -3530,7 +3530,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokeStarted
    (
       this : in out InkStrokeInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StrokeContinued
@@ -3543,7 +3543,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokeContinued
    (
       this : in out InkStrokeInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StrokeEnded
@@ -3556,7 +3556,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokeEnded
    (
       this : in out InkStrokeInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StrokeCanceled
@@ -3569,7 +3569,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_StrokeCanceled
    (
       this : in out InkStrokeInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_InkPresenter
@@ -3698,7 +3698,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerEntered
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerHovered
@@ -3711,7 +3711,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerHovered
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerExited
@@ -3724,7 +3724,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerExited
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerPressed
@@ -3737,7 +3737,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerPressed
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoved
@@ -3750,7 +3750,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerMoved
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleased
@@ -3763,7 +3763,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerReleased
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerLost
@@ -3776,7 +3776,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure remove_PointerLost
    (
       this : in out InkUnprocessedInput;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_InkPresenter
@@ -3839,7 +3839,7 @@ package WinRt.Windows.UI.Input.Inking is
    procedure SetPenHandedness
    (
       this : in out PenAndInkSettings;
-      value : Windows.UI.Input.Inking.PenHandedness
+      value : WinRt.Windows.UI.Input.Inking.PenHandedness
    );
 
 end WinRt.Windows.UI.Input.Inking;

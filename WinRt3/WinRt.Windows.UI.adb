@@ -56,7 +56,7 @@ package body WinRt.Windows.UI is
 
    function ToDisplayName
    (
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -94,7 +94,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ColorHelper");
       m_Factory        : access WinRt.Windows.UI.IColorHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -141,7 +141,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -162,7 +162,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -183,7 +183,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -204,7 +204,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -225,7 +225,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -246,7 +246,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -267,7 +267,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -288,7 +288,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -309,7 +309,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -330,7 +330,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -351,7 +351,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -372,7 +372,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -393,7 +393,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -414,7 +414,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -435,7 +435,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -456,7 +456,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -477,7 +477,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -498,7 +498,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -519,7 +519,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -540,7 +540,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -561,7 +561,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -582,7 +582,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -603,7 +603,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -624,7 +624,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -645,7 +645,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -666,7 +666,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -687,7 +687,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -708,7 +708,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -729,7 +729,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -750,7 +750,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -771,7 +771,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -792,7 +792,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -813,7 +813,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -834,7 +834,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -855,7 +855,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -876,7 +876,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -897,7 +897,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -918,7 +918,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -939,7 +939,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -960,7 +960,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -981,7 +981,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1002,7 +1002,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1023,7 +1023,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1044,7 +1044,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1065,7 +1065,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1086,7 +1086,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1107,7 +1107,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1128,7 +1128,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1149,7 +1149,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1170,7 +1170,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1191,7 +1191,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1212,7 +1212,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1233,7 +1233,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1254,7 +1254,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1275,7 +1275,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1317,7 +1317,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1338,7 +1338,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1359,7 +1359,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1401,7 +1401,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1422,7 +1422,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1443,7 +1443,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1464,7 +1464,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1485,7 +1485,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1506,7 +1506,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1527,7 +1527,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1548,7 +1548,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1569,7 +1569,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1590,7 +1590,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1611,7 +1611,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1632,7 +1632,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1653,7 +1653,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1674,7 +1674,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1695,7 +1695,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1716,7 +1716,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1737,7 +1737,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1758,7 +1758,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1779,7 +1779,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1800,7 +1800,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1821,7 +1821,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1842,7 +1842,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1863,7 +1863,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1884,7 +1884,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1905,7 +1905,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1926,7 +1926,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1947,7 +1947,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1968,7 +1968,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1989,7 +1989,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2010,7 +2010,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2031,7 +2031,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2052,7 +2052,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2073,7 +2073,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2094,7 +2094,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2115,7 +2115,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2136,7 +2136,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2157,7 +2157,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2178,7 +2178,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2199,7 +2199,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2220,7 +2220,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2241,7 +2241,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2262,7 +2262,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2283,7 +2283,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2304,7 +2304,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2325,7 +2325,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2346,7 +2346,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2367,7 +2367,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2388,7 +2388,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2409,7 +2409,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2430,7 +2430,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2451,7 +2451,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2472,7 +2472,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2493,7 +2493,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2514,7 +2514,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2535,7 +2535,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2556,7 +2556,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2577,7 +2577,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2598,7 +2598,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2619,7 +2619,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2640,7 +2640,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2661,7 +2661,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2682,7 +2682,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2703,7 +2703,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2724,7 +2724,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2745,7 +2745,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2766,7 +2766,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2787,7 +2787,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2808,7 +2808,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2829,7 +2829,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2850,7 +2850,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2871,7 +2871,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2892,7 +2892,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2913,7 +2913,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2934,7 +2934,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2955,7 +2955,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2976,7 +2976,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2997,7 +2997,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3018,7 +3018,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3039,7 +3039,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3060,7 +3060,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3081,7 +3081,7 @@ package body WinRt.Windows.UI is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Colors");
       m_Factory        : access WinRt.Windows.UI.IColorsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IColorsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3129,14 +3129,14 @@ package body WinRt.Windows.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.IUIContext;
+      m_ComRetVal      : aliased WinRt.Windows.UI.IUIContext;
    begin
       return RetVal : WinRt.Windows.UI.UIContext do
          Hr := this.m_IUIContentRoot.all.get_UIContext (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIContext := new Windows.UI.IUIContext;
+         Retval.m_IUIContext := new WinRt.Windows.UI.IUIContext;
          Retval.m_IUIContext.all := m_ComRetVal;
       end return;
    end;

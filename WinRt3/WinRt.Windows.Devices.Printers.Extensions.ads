@@ -218,14 +218,14 @@ package WinRt.Windows.Devices.Printers.Extensions is
       (
          this : access IPrint3DWorkflow_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrintRequested
       (
          this : access IPrint3DWorkflow_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -238,14 +238,14 @@ package WinRt.Windows.Devices.Printers.Extensions is
       (
          this : access IPrint3DWorkflow2_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrinterChanged
       (
          this : access IPrint3DWorkflow2_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -257,14 +257,14 @@ package WinRt.Windows.Devices.Printers.Extensions is
       function get_Status
       (
          this : access IPrint3DWorkflowPrintRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.Extensions.Print3DWorkflowStatus
+         RetVal : access WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflowStatus
       )
       return WinRt.Hresult is abstract;
 
       function SetExtendedStatus
       (
          this : access IPrint3DWorkflowPrintRequestedEventArgs_Interface;
-         value : Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
+         value : WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
       )
       return WinRt.Hresult is abstract;
 
@@ -349,14 +349,14 @@ package WinRt.Windows.Devices.Printers.Extensions is
       (
          this : access IPrintTaskConfiguration_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SaveRequested
       (
          this : access IPrintTaskConfiguration_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -381,14 +381,14 @@ package WinRt.Windows.Devices.Printers.Extensions is
       function GetDeferral
       (
          this : access IPrintTaskConfigurationSaveRequest_Interface;
-         RetVal : access Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral
+         RetVal : access WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access IPrintTaskConfigurationSaveRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -411,7 +411,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
       function get_Request
       (
          this : access IPrintTaskConfigurationSaveRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest
+         RetVal : access WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -464,7 +464,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_PrintRequested
    (
       this : in out Print3DWorkflow;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PrinterChanged
@@ -477,7 +477,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_PrinterChanged
    (
       this : in out Print3DWorkflow;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -498,7 +498,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    procedure SetExtendedStatus
    (
       this : in out Print3DWorkflowPrintRequestedEventArgs;
-      value : Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
+      value : WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
    );
 
    procedure SetSource
@@ -592,7 +592,7 @@ package WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_SaveRequested
    (
       this : in out PrintTaskConfiguration;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

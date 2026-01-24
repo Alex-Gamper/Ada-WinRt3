@@ -270,7 +270,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Time
       (
          this : access ICurrentTimeChangeRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -294,7 +294,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_State
       (
          this : access IPlayToConnection_Interface;
-         RetVal : access Windows.Media.PlayTo.PlayToConnectionState
+         RetVal : access WinRt.Windows.Media.PlayTo.PlayToConnectionState
       )
       return WinRt.Hresult is abstract;
 
@@ -302,14 +302,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IPlayToConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -317,14 +317,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Transferred
       (
          this : access IPlayToConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -332,14 +332,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Error
       (
          this : access IPlayToConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -351,7 +351,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Code
       (
          this : access IPlayToConnectionErrorEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.PlayToConnectionError
+         RetVal : access WinRt.Windows.Media.PlayTo.PlayToConnectionError
       )
       return WinRt.Hresult is abstract;
 
@@ -370,14 +370,14 @@ package WinRt.Windows.Media.PlayTo is
       function get_PreviousState
       (
          this : access IPlayToConnectionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.PlayToConnectionState
+         RetVal : access WinRt.Windows.Media.PlayTo.PlayToConnectionState
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentState
       (
          this : access IPlayToConnectionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.PlayToConnectionState
+         RetVal : access WinRt.Windows.Media.PlayTo.PlayToConnectionState
       )
       return WinRt.Hresult is abstract;
 
@@ -389,14 +389,14 @@ package WinRt.Windows.Media.PlayTo is
       function get_PreviousSource
       (
          this : access IPlayToConnectionTransferredEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToSource
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToSource
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentSource
       (
          this : access IPlayToConnectionTransferredEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToSource
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToSource
       )
       return WinRt.Hresult is abstract;
 
@@ -409,14 +409,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceRequested
       (
          this : access IPlayToManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -424,14 +424,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceSelected
       (
          this : access IPlayToManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -457,7 +457,7 @@ package WinRt.Windows.Media.PlayTo is
       function GetForCurrentView
       (
          this : access IPlayToManagerStatics_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToManager
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToManager
       )
       return WinRt.Hresult is abstract;
 
@@ -476,14 +476,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlayRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -491,14 +491,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PauseRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -506,14 +506,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceChangeRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -521,14 +521,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackRateChangeRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -536,14 +536,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentTimeChangeRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -551,14 +551,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MuteChangeRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -566,14 +566,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VolumeChangeRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -581,14 +581,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TimeUpdateRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -596,14 +596,14 @@ package WinRt.Windows.Media.PlayTo is
       (
          this : access IPlayToReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StopRequested
       (
          this : access IPlayToReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -631,14 +631,14 @@ package WinRt.Windows.Media.PlayTo is
       function NotifyTimeUpdate
       (
          this : access IPlayToReceiver_Interface;
-         currentTime : Windows.Foundation.TimeSpan
+         currentTime : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function NotifyDurationChange
       (
          this : access IPlayToReceiver_Interface;
-         duration : Windows.Foundation.TimeSpan
+         duration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -743,21 +743,21 @@ package WinRt.Windows.Media.PlayTo is
       function get_Properties
       (
          this : access IPlayToReceiver_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function StartAsync
       (
          this : access IPlayToReceiver_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopAsync
       (
          this : access IPlayToReceiver_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -769,21 +769,21 @@ package WinRt.Windows.Media.PlayTo is
       function get_Connection
       (
          this : access IPlayToSource_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToConnection
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToConnection
       )
       return WinRt.Hresult is abstract;
 
       function get_Next
       (
          this : access IPlayToSource_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToSource
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToSource
       )
       return WinRt.Hresult is abstract;
 
       function put_Next
       (
          this : access IPlayToSource_Interface;
-         value : Windows.Media.PlayTo.IPlayToSource
+         value : WinRt.Windows.Media.PlayTo.IPlayToSource
       )
       return WinRt.Hresult is abstract;
 
@@ -812,7 +812,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Deadline
       (
          this : access IPlayToSourceRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -826,14 +826,14 @@ package WinRt.Windows.Media.PlayTo is
       function GetDeferral
       (
          this : access IPlayToSourceRequest_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToSourceDeferral
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToSourceDeferral
       )
       return WinRt.Hresult is abstract;
 
       function SetSource
       (
          this : access IPlayToSourceRequest_Interface;
-         value : Windows.Media.PlayTo.IPlayToSource
+         value : WinRt.Windows.Media.PlayTo.IPlayToSource
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_SourceRequest
       (
          this : access IPlayToSourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.PlayTo.IPlayToSourceRequest
+         RetVal : access WinRt.Windows.Media.PlayTo.IPlayToSourceRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -864,7 +864,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Icon
       (
          this : access IPlayToSourceSelectedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -897,14 +897,14 @@ package WinRt.Windows.Media.PlayTo is
       function get_PreferredSourceUri
       (
          this : access IPlayToSourceWithPreferredSourceUri_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredSourceUri
       (
          this : access IPlayToSourceWithPreferredSourceUri_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -928,7 +928,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Stream
       (
          this : access ISourceChangeRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -977,7 +977,7 @@ package WinRt.Windows.Media.PlayTo is
       function get_Thumbnail
       (
          this : access ISourceChangeRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_StateChanged
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Transferred
@@ -1081,7 +1081,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_Transferred
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Error
@@ -1094,7 +1094,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_Error
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1187,7 +1187,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_SourceRequested
    (
       this : in out PlayToManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceSelected
@@ -1200,7 +1200,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_SourceSelected
    (
       this : in out PlayToManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_DefaultSourceSelection
@@ -1239,7 +1239,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_PlayRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PauseRequested
@@ -1252,7 +1252,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_PauseRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceChangeRequested
@@ -1265,7 +1265,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_SourceChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlaybackRateChangeRequested
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_PlaybackRateChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CurrentTimeChangeRequested
@@ -1291,7 +1291,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_CurrentTimeChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MuteChangeRequested
@@ -1304,7 +1304,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_MuteChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VolumeChangeRequested
@@ -1317,7 +1317,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_VolumeChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TimeUpdateRequested
@@ -1330,7 +1330,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_TimeUpdateRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StopRequested
@@ -1343,7 +1343,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure remove_StopRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure NotifyVolumeChange
@@ -1367,13 +1367,13 @@ package WinRt.Windows.Media.PlayTo is
    procedure NotifyTimeUpdate
    (
       this : in out PlayToReceiver;
-      currentTime : Windows.Foundation.TimeSpan
+      currentTime : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure NotifyDurationChange
    (
       this : in out PlayToReceiver;
-      duration : Windows.Foundation.TimeSpan
+      duration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure NotifySeeking
@@ -1499,7 +1499,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure put_Next
    (
       this : in out PlayToSource;
-      value : Windows.Media.PlayTo.PlayToSource'Class
+      value : WinRt.Windows.Media.PlayTo.PlayToSource'Class
    );
 
    procedure PlayNext
@@ -1516,7 +1516,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure put_PreferredSourceUri
    (
       this : in out PlayToSource;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1563,7 +1563,7 @@ package WinRt.Windows.Media.PlayTo is
    procedure SetSource
    (
       this : in out PlayToSourceRequest;
-      value : Windows.Media.PlayTo.PlayToSource'Class
+      value : WinRt.Windows.Media.PlayTo.PlayToSource'Class
    );
 
    -----------------------------------------------------------------------------

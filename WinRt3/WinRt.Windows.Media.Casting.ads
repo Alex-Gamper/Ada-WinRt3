@@ -192,28 +192,28 @@ package WinRt.Windows.Media.Casting is
       function get_State
       (
          this : access ICastingConnection_Interface;
-         RetVal : access Windows.Media.Casting.CastingConnectionState
+         RetVal : access WinRt.Windows.Media.Casting.CastingConnectionState
       )
       return WinRt.Hresult is abstract;
 
       function get_Device
       (
          this : access ICastingConnection_Interface;
-         RetVal : access Windows.Media.Casting.ICastingDevice
+         RetVal : access WinRt.Windows.Media.Casting.ICastingDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access ICastingConnection_Interface;
-         RetVal : access Windows.Media.Casting.ICastingSource
+         RetVal : access WinRt.Windows.Media.Casting.ICastingSource
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access ICastingConnection_Interface;
-         value : Windows.Media.Casting.ICastingSource
+         value : WinRt.Windows.Media.Casting.ICastingSource
       )
       return WinRt.Hresult is abstract;
 
@@ -221,14 +221,14 @@ package WinRt.Windows.Media.Casting is
       (
          this : access ICastingConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access ICastingConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -236,21 +236,21 @@ package WinRt.Windows.Media.Casting is
       (
          this : access ICastingConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorOccurred
       (
          this : access ICastingConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function RequestStartCastingAsync
       (
          this : access ICastingConnection_Interface;
-         value : Windows.Media.Casting.ICastingSource;
+         value : WinRt.Windows.Media.Casting.ICastingSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -270,7 +270,7 @@ package WinRt.Windows.Media.Casting is
       function get_ErrorStatus
       (
          this : access ICastingConnectionErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Media.Casting.CastingConnectionErrorStatus
+         RetVal : access WinRt.Windows.Media.Casting.CastingConnectionErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -303,7 +303,7 @@ package WinRt.Windows.Media.Casting is
       function get_Icon
       (
          this : access ICastingDevice_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -317,7 +317,7 @@ package WinRt.Windows.Media.Casting is
       function CreateCastingConnection
       (
          this : access ICastingDevice_Interface;
-         RetVal : access Windows.Media.Casting.ICastingConnection
+         RetVal : access WinRt.Windows.Media.Casting.ICastingConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -329,14 +329,14 @@ package WinRt.Windows.Media.Casting is
       function get_Filter
       (
          this : access ICastingDevicePicker_Interface;
-         RetVal : access Windows.Media.Casting.ICastingDevicePickerFilter
+         RetVal : access WinRt.Windows.Media.Casting.ICastingDevicePickerFilter
       )
       return WinRt.Hresult is abstract;
 
       function get_Appearance
       (
          this : access ICastingDevicePicker_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDevicePickerAppearance
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDevicePickerAppearance
       )
       return WinRt.Hresult is abstract;
 
@@ -344,14 +344,14 @@ package WinRt.Windows.Media.Casting is
       (
          this : access ICastingDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CastingDeviceSelected
       (
          this : access ICastingDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -359,29 +359,29 @@ package WinRt.Windows.Media.Casting is
       (
          this : access ICastingDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CastingDevicePickerDismissed
       (
          this : access ICastingDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access ICastingDevicePicker_Interface;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access ICastingDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
@@ -453,7 +453,7 @@ package WinRt.Windows.Media.Casting is
       function get_SelectedCastingDevice
       (
          this : access ICastingDeviceSelectedEventArgs_Interface;
-         RetVal : access Windows.Media.Casting.ICastingDevice
+         RetVal : access WinRt.Windows.Media.Casting.ICastingDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -465,7 +465,7 @@ package WinRt.Windows.Media.Casting is
       function GetDeviceSelector
       (
          this : access ICastingDeviceStatics_Interface;
-         type_x : Windows.Media.Casting.CastingPlaybackTypes;
+         type_x : WinRt.Windows.Media.Casting.CastingPlaybackTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -473,7 +473,7 @@ package WinRt.Windows.Media.Casting is
       function GetDeviceSelectorFromCastingSourceAsync
       (
          this : access ICastingDeviceStatics_Interface;
-         castingSource_p : Windows.Media.Casting.ICastingSource;
+         castingSource_p : WinRt.Windows.Media.Casting.ICastingSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -489,7 +489,7 @@ package WinRt.Windows.Media.Casting is
       function DeviceInfoSupportsCastingAsync
       (
          this : access ICastingDeviceStatics_Interface;
-         device : Windows.Devices.Enumeration.IDeviceInformation;
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -502,14 +502,14 @@ package WinRt.Windows.Media.Casting is
       function get_PreferredSourceUri
       (
          this : access ICastingSource_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredSourceUri
       (
          this : access ICastingSource_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -549,7 +549,7 @@ package WinRt.Windows.Media.Casting is
    procedure put_Source
    (
       this : in out CastingConnection;
-      value : Windows.Media.Casting.CastingSource'Class
+      value : WinRt.Windows.Media.Casting.CastingSource'Class
    );
 
    function add_StateChanged
@@ -562,7 +562,7 @@ package WinRt.Windows.Media.Casting is
    procedure remove_StateChanged
    (
       this : in out CastingConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ErrorOccurred
@@ -575,13 +575,13 @@ package WinRt.Windows.Media.Casting is
    procedure remove_ErrorOccurred
    (
       this : in out CastingConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RequestStartCastingAsync
    (
       this : in out CastingConnection;
-      value : Windows.Media.Casting.CastingSource'Class
+      value : WinRt.Windows.Media.Casting.CastingSource'Class
    )
    return WinRt.Windows.Media.Casting.CastingConnectionErrorStatus;
 
@@ -628,13 +628,13 @@ package WinRt.Windows.Media.Casting is
 
    function GetDeviceSelector
    (
-      type_x : Windows.Media.Casting.CastingPlaybackTypes
+      type_x : WinRt.Windows.Media.Casting.CastingPlaybackTypes
    )
    return WinRt.WString;
 
    function GetDeviceSelectorFromCastingSourceAsync
    (
-      castingSource_p : Windows.Media.Casting.CastingSource'Class
+      castingSource_p : WinRt.Windows.Media.Casting.CastingSource'Class
    )
    return WinRt.WString;
 
@@ -646,7 +646,7 @@ package WinRt.Windows.Media.Casting is
 
    function DeviceInfoSupportsCastingAsync
    (
-      device : Windows.Devices.Enumeration.DeviceInformation'Class
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Boolean;
 
@@ -719,7 +719,7 @@ package WinRt.Windows.Media.Casting is
    procedure remove_CastingDeviceSelected
    (
       this : in out CastingDevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CastingDevicePickerDismissed
@@ -732,20 +732,20 @@ package WinRt.Windows.Media.Casting is
    procedure remove_CastingDevicePickerDismissed
    (
       this : in out CastingDevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Show
    (
       this : in out CastingDevicePicker;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    );
 
    procedure Show
    (
       this : in out CastingDevicePicker;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    );
 
    procedure Hide
@@ -837,7 +837,7 @@ package WinRt.Windows.Media.Casting is
    procedure put_PreferredSourceUri
    (
       this : in out CastingSource;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
 end WinRt.Windows.Media.Casting;

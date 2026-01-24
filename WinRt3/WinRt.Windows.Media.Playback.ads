@@ -830,7 +830,7 @@ package WinRt.Windows.Media.Playback is
       function get_Current
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlayer
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlayer
       )
       return WinRt.Hresult is abstract;
 
@@ -838,14 +838,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceivedFromBackground
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -853,28 +853,28 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceivedFromForeground
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageToBackground
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
-         value : Windows.Foundation.Collections.IPropertySet
+         value : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageToForeground
       (
          this : access IBackgroundMediaPlayerStatics_Interface;
-         value : Windows.Foundation.Collections.IPropertySet
+         value : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -899,14 +899,14 @@ package WinRt.Windows.Media.Playback is
       function get_NewItem
       (
          this : access ICurrentMediaPlaybackItemChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function get_OldItem
       (
          this : access ICurrentMediaPlaybackItemChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -918,7 +918,7 @@ package WinRt.Windows.Media.Playback is
       function get_Reason
       (
          this : access ICurrentMediaPlaybackItemChangedEventArgs2_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlaybackItemChangedReason
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlaybackItemChangedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -930,7 +930,7 @@ package WinRt.Windows.Media.Playback is
       function get_PlaybackList
       (
          this : access IMediaBreak_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackList
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackList
       )
       return WinRt.Hresult is abstract;
 
@@ -944,14 +944,14 @@ package WinRt.Windows.Media.Playback is
       function get_InsertionMethod
       (
          this : access IMediaBreak_Interface;
-         RetVal : access Windows.Media.Playback.MediaBreakInsertionMethod
+         RetVal : access WinRt.Windows.Media.Playback.MediaBreakInsertionMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_CustomProperties
       (
          this : access IMediaBreak_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -977,7 +977,7 @@ package WinRt.Windows.Media.Playback is
       function get_MediaBreak
       (
          this : access IMediaBreakEndedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -989,17 +989,17 @@ package WinRt.Windows.Media.Playback is
       function Create
       (
          this : access IMediaBreakFactory_Interface;
-         insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithPresentationPosition
       (
          this : access IMediaBreakFactory_Interface;
-         insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod;
-         presentationPosition : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod;
+         presentationPosition : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,14 +1012,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaBreakManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BreaksSeekedOver
       (
          this : access IMediaBreakManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,14 +1027,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaBreakManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BreakStarted
       (
          this : access IMediaBreakManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1042,14 +1042,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaBreakManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BreakEnded
       (
          this : access IMediaBreakManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1057,35 +1057,35 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaBreakManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BreakSkipped
       (
          this : access IMediaBreakManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentBreak
       (
          this : access IMediaBreakManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackSession
       (
          this : access IMediaBreakManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackSession
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackSession
       )
       return WinRt.Hresult is abstract;
 
       function PlayBreak
       (
          this : access IMediaBreakManager_Interface;
-         value : Windows.Media.Playback.IMediaBreak
+         value : WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -1104,28 +1104,28 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaBreakSchedule_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScheduleChanged
       (
          this : access IMediaBreakSchedule_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function InsertMidrollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         mediaBreak_p : Windows.Media.Playback.IMediaBreak
+         mediaBreak_p : WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function RemoveMidrollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         mediaBreak_p : Windows.Media.Playback.IMediaBreak
+         mediaBreak_p : WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,35 +1139,35 @@ package WinRt.Windows.Media.Playback is
       function put_PrerollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         value : Windows.Media.Playback.IMediaBreak
+         value : WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function get_PrerollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function put_PostrollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         value : Windows.Media.Playback.IMediaBreak
+         value : WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function get_PostrollBreak
       (
          this : access IMediaBreakSchedule_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackItem
       (
          this : access IMediaBreakSchedule_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -1186,14 +1186,14 @@ package WinRt.Windows.Media.Playback is
       function get_OldPosition
       (
          this : access IMediaBreakSeekedOverEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_NewPosition
       (
          this : access IMediaBreakSeekedOverEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1205,7 +1205,7 @@ package WinRt.Windows.Media.Playback is
       function get_MediaBreak
       (
          this : access IMediaBreakSkippedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -1217,7 +1217,7 @@ package WinRt.Windows.Media.Playback is
       function get_MediaBreak
       (
          this : access IMediaBreakStartedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreak
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreak
       )
       return WinRt.Hresult is abstract;
 
@@ -1229,14 +1229,14 @@ package WinRt.Windows.Media.Playback is
       function get_CurrentItem
       (
          this : access IMediaEnginePlaybackSource_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function SetPlaybackSource
       (
          this : access IMediaEnginePlaybackSource_Interface;
-         source : Windows.Media.Playback.IMediaPlaybackSource
+         source : WinRt.Windows.Media.Playback.IMediaPlaybackSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1248,42 +1248,42 @@ package WinRt.Windows.Media.Playback is
       function get_Type
       (
          this : access IMediaItemDisplayProperties_Interface;
-         RetVal : access Windows.Media.MediaPlaybackType
+         RetVal : access WinRt.Windows.Media.MediaPlaybackType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IMediaItemDisplayProperties_Interface;
-         value : Windows.Media.MediaPlaybackType
+         value : WinRt.Windows.Media.MediaPlaybackType
       )
       return WinRt.Hresult is abstract;
 
       function get_MusicProperties
       (
          this : access IMediaItemDisplayProperties_Interface;
-         RetVal : access Windows.Media.IMusicDisplayProperties
+         RetVal : access WinRt.Windows.Media.IMusicDisplayProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoProperties
       (
          this : access IMediaItemDisplayProperties_Interface;
-         RetVal : access Windows.Media.IVideoDisplayProperties
+         RetVal : access WinRt.Windows.Media.IVideoDisplayProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access IMediaItemDisplayProperties_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IMediaItemDisplayProperties_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1315,77 +1315,77 @@ package WinRt.Windows.Media.Playback is
       function get_MediaPlayer
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlayer
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlayer
       )
       return WinRt.Hresult is abstract;
 
       function get_PlayBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_PauseBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_NextBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviousBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_FastForwardBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_RewindBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_ShuffleBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoRepeatModeBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_RateBehavior
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -1393,14 +1393,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlayReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1408,14 +1408,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PauseReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1423,14 +1423,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NextReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1438,14 +1438,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PreviousReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1453,14 +1453,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FastForwardReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1468,14 +1468,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RewindReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1483,14 +1483,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShuffleReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1498,14 +1498,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AutoRepeatModeReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1513,14 +1513,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PositionReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1528,14 +1528,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RateReceived
       (
          this : access IMediaPlaybackCommandManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1561,14 +1561,14 @@ package WinRt.Windows.Media.Playback is
       function get_AutoRepeatMode
       (
          this : access IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Interface;
-         RetVal : access Windows.Media.MediaPlaybackAutoRepeatMode
+         RetVal : access WinRt.Windows.Media.MediaPlaybackAutoRepeatMode
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1580,7 +1580,7 @@ package WinRt.Windows.Media.Playback is
       function get_CommandManager
       (
          this : access IMediaPlaybackCommandManagerCommandBehavior_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManager
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1594,14 +1594,14 @@ package WinRt.Windows.Media.Playback is
       function get_EnablingRule
       (
          this : access IMediaPlaybackCommandManagerCommandBehavior_Interface;
-         RetVal : access Windows.Media.Playback.MediaCommandEnablingRule
+         RetVal : access WinRt.Windows.Media.Playback.MediaCommandEnablingRule
       )
       return WinRt.Hresult is abstract;
 
       function put_EnablingRule
       (
          this : access IMediaPlaybackCommandManagerCommandBehavior_Interface;
-         value : Windows.Media.Playback.MediaCommandEnablingRule
+         value : WinRt.Windows.Media.Playback.MediaCommandEnablingRule
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,14 +1609,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackCommandManagerCommandBehavior_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsEnabledChanged
       (
          this : access IMediaPlaybackCommandManagerCommandBehavior_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1642,7 +1642,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerFastForwardReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1668,7 +1668,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerNextReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1694,7 +1694,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerPauseReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1720,7 +1720,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerPlayReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1746,14 +1746,14 @@ package WinRt.Windows.Media.Playback is
       function get_Position
       (
          this : access IMediaPlaybackCommandManagerPositionReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerPositionReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1779,7 +1779,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerPreviousReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1812,7 +1812,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerRateReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1838,7 +1838,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerRewindReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1871,7 +1871,7 @@ package WinRt.Windows.Media.Playback is
       function GetDeferral
       (
          this : access IMediaPlaybackCommandManagerShuffleReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1884,14 +1884,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioTracksChanged
       (
          this : access IMediaPlaybackItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1899,14 +1899,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoTracksChanged
       (
          this : access IMediaPlaybackItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1914,21 +1914,21 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TimedMetadataTracksChanged
       (
          this : access IMediaPlaybackItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IMediaPlaybackItem_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -1961,14 +1961,14 @@ package WinRt.Windows.Media.Playback is
       function get_BreakSchedule
       (
          this : access IMediaPlaybackItem2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreakSchedule
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreakSchedule
       )
       return WinRt.Hresult is abstract;
 
       function get_StartTime
       (
          this : access IMediaPlaybackItem2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1996,14 +1996,14 @@ package WinRt.Windows.Media.Playback is
       function GetDisplayProperties
       (
          this : access IMediaPlaybackItem2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaItemDisplayProperties
+         RetVal : access WinRt.Windows.Media.Playback.IMediaItemDisplayProperties
       )
       return WinRt.Hresult is abstract;
 
       function ApplyDisplayProperties
       (
          this : access IMediaPlaybackItem2_Interface;
-         value : Windows.Media.Playback.IMediaItemDisplayProperties
+         value : WinRt.Windows.Media.Playback.IMediaItemDisplayProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -2036,14 +2036,14 @@ package WinRt.Windows.Media.Playback is
       function get_AutoLoadedDisplayProperties
       (
          this : access IMediaPlaybackItem3_Interface;
-         RetVal : access Windows.Media.Playback.AutoLoadedDisplayPropertyKind
+         RetVal : access WinRt.Windows.Media.Playback.AutoLoadedDisplayPropertyKind
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoLoadedDisplayProperties
       (
          this : access IMediaPlaybackItem3_Interface;
-         value : Windows.Media.Playback.AutoLoadedDisplayPropertyKind
+         value : WinRt.Windows.Media.Playback.AutoLoadedDisplayPropertyKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2055,14 +2055,14 @@ package WinRt.Windows.Media.Playback is
       function get_ErrorCode
       (
          this : access IMediaPlaybackItemError_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlaybackItemErrorCode
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlaybackItemErrorCode
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IMediaPlaybackItemError_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2074,8 +2074,8 @@ package WinRt.Windows.Media.Playback is
       function Create
       (
          this : access IMediaPlaybackItemFactory_Interface;
-         source : Windows.Media.Core.IMediaSource2;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         source : WinRt.Windows.Media.Core.IMediaSource2;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2087,19 +2087,19 @@ package WinRt.Windows.Media.Playback is
       function CreateWithStartTime
       (
          this : access IMediaPlaybackItemFactory2_Interface;
-         source : Windows.Media.Core.IMediaSource2;
-         startTime : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         source : WinRt.Windows.Media.Core.IMediaSource2;
+         startTime : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithStartTimeAndDurationLimit
       (
          this : access IMediaPlaybackItemFactory2_Interface;
-         source : Windows.Media.Core.IMediaSource2;
-         startTime : Windows.Foundation.TimeSpan;
-         durationLimit : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         source : WinRt.Windows.Media.Core.IMediaSource2;
+         startTime : WinRt.Windows.Foundation.TimeSpan;
+         durationLimit : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2111,14 +2111,14 @@ package WinRt.Windows.Media.Playback is
       function get_Item
       (
          this : access IMediaPlaybackItemFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IMediaPlaybackItemFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItemError
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItemError
       )
       return WinRt.Hresult is abstract;
 
@@ -2130,7 +2130,7 @@ package WinRt.Windows.Media.Playback is
       function get_Item
       (
          this : access IMediaPlaybackItemOpenedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2142,8 +2142,8 @@ package WinRt.Windows.Media.Playback is
       function FindFromMediaSource
       (
          this : access IMediaPlaybackItemStatics_Interface;
-         source : Windows.Media.Core.IMediaSource2;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         source : WinRt.Windows.Media.Core.IMediaSource2;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2156,14 +2156,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemFailed
       (
          this : access IMediaPlaybackList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2171,14 +2171,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentItemChanged
       (
          this : access IMediaPlaybackList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2186,14 +2186,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemOpened
       (
          this : access IMediaPlaybackList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2235,7 +2235,7 @@ package WinRt.Windows.Media.Playback is
       function get_CurrentItem
       (
          this : access IMediaPlaybackList_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2249,14 +2249,14 @@ package WinRt.Windows.Media.Playback is
       function MoveNext
       (
          this : access IMediaPlaybackList_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function MovePrevious
       (
          this : access IMediaPlaybackList_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2264,7 +2264,7 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackList_Interface;
          itemIndex : WinRt.UInt32;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2290,14 +2290,14 @@ package WinRt.Windows.Media.Playback is
       function get_StartingItem
       (
          this : access IMediaPlaybackList2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
       function put_StartingItem
       (
          this : access IMediaPlaybackList2_Interface;
-         value : Windows.Media.Playback.IMediaPlaybackItem
+         value : WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -2343,14 +2343,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackStateChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2358,14 +2358,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackRateChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2373,14 +2373,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SeekCompleted
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2388,14 +2388,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferingStarted
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2403,14 +2403,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferingEnded
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2418,14 +2418,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferingProgressChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2433,14 +2433,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadProgressChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2448,14 +2448,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NaturalDurationChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2463,14 +2463,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PositionChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2478,49 +2478,49 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NaturalVideoSizeChanged
       (
          this : access IMediaPlaybackSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaPlayer
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlayer
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlayer
       )
       return WinRt.Hresult is abstract;
 
       function get_NaturalDuration
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IMediaPlaybackSession_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackState
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlaybackState
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlaybackState
       )
       return WinRt.Hresult is abstract;
 
@@ -2590,28 +2590,28 @@ package WinRt.Windows.Media.Playback is
       function get_NormalizedSourceRect
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalizedSourceRect
       (
          this : access IMediaPlaybackSession_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_StereoscopicVideoPackingMode
       (
          this : access IMediaPlaybackSession_Interface;
-         RetVal : access Windows.Media.MediaProperties.StereoscopicVideoPackingMode
+         RetVal : access WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_StereoscopicVideoPackingMode
       (
          this : access IMediaPlaybackSession_Interface;
-         value : Windows.Media.MediaProperties.StereoscopicVideoPackingMode
+         value : WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2624,14 +2624,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferedRangesChanged
       (
          this : access IMediaPlaybackSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2639,14 +2639,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlayedRangesChanged
       (
          this : access IMediaPlaybackSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2654,14 +2654,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SeekableRangesChanged
       (
          this : access IMediaPlaybackSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2669,21 +2669,21 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackSession2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SupportedPlaybackRatesChanged
       (
          this : access IMediaPlaybackSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_SphericalVideoProjection
       (
          this : access IMediaPlaybackSession2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection
       )
       return WinRt.Hresult is abstract;
 
@@ -2739,21 +2739,21 @@ package WinRt.Windows.Media.Playback is
       function get_PlaybackRotation
       (
          this : access IMediaPlaybackSession3_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaRotation
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaRotation
       )
       return WinRt.Hresult is abstract;
 
       function put_PlaybackRotation
       (
          this : access IMediaPlaybackSession3_Interface;
-         value : Windows.Media.MediaProperties.MediaRotation
+         value : WinRt.Windows.Media.MediaProperties.MediaRotation
       )
       return WinRt.Hresult is abstract;
 
       function GetOutputDegradationPolicyState
       (
          this : access IMediaPlaybackSession3_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState
       )
       return WinRt.Hresult is abstract;
 
@@ -2777,7 +2777,7 @@ package WinRt.Windows.Media.Playback is
       function get_VideoConstrictionReason
       (
          this : access IMediaPlaybackSessionOutputDegradationPolicyState_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlaybackSessionVideoConstrictionReason
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlaybackSessionVideoConstrictionReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2808,14 +2808,14 @@ package WinRt.Windows.Media.Playback is
       function get_FrameFormat
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         RetVal : access Windows.Media.MediaProperties.SphericalVideoFrameFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_FrameFormat
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
+         value : WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2836,28 +2836,28 @@ package WinRt.Windows.Media.Playback is
       function get_ViewOrientation
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewOrientation
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function get_ProjectionMode
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         RetVal : access Windows.Media.Playback.SphericalVideoProjectionMode
+         RetVal : access WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ProjectionMode
       (
          this : access IMediaPlaybackSphericalVideoProjection_Interface;
-         value : Windows.Media.Playback.SphericalVideoProjectionMode
+         value : WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2870,14 +2870,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackTimedMetadataTrackList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PresentationModeChanged
       (
          this : access IMediaPlaybackTimedMetadataTrackList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2885,7 +2885,7 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackTimedMetadataTrackList_Interface;
          index : WinRt.UInt32;
-         RetVal : access Windows.Media.Playback.TimedMetadataTrackPresentationMode
+         RetVal : access WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2893,7 +2893,7 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlaybackTimedMetadataTrackList_Interface;
          index : WinRt.UInt32;
-         value : Windows.Media.Playback.TimedMetadataTrackPresentationMode
+         value : WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2919,21 +2919,21 @@ package WinRt.Windows.Media.Playback is
       function get_NaturalDuration
       (
          this : access IMediaPlayer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IMediaPlayer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IMediaPlayer_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2947,7 +2947,7 @@ package WinRt.Windows.Media.Playback is
       function get_CurrentState
       (
          this : access IMediaPlayer_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlayerState
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlayerState
       )
       return WinRt.Hresult is abstract;
 
@@ -3031,7 +3031,7 @@ package WinRt.Windows.Media.Playback is
       function get_PlaybackMediaMarkers
       (
          this : access IMediaPlayer_Interface;
-         RetVal : access Windows.Media.Playback.IPlaybackMediaMarkerSequence
+         RetVal : access WinRt.Windows.Media.Playback.IPlaybackMediaMarkerSequence
       )
       return WinRt.Hresult is abstract;
 
@@ -3039,14 +3039,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaOpened
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3054,14 +3054,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaEnded
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3069,14 +3069,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaFailed
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3084,14 +3084,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentStateChanged
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3099,14 +3099,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackMediaMarkerReached
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3114,14 +3114,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaPlayerRateChanged
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3129,14 +3129,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VolumeChanged
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3144,14 +3144,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SeekCompleted
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3159,14 +3159,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferingStarted
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3174,14 +3174,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BufferingEnded
       (
          this : access IMediaPlayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3200,7 +3200,7 @@ package WinRt.Windows.Media.Playback is
       function SetUriSource
       (
          this : access IMediaPlayer_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -3212,35 +3212,35 @@ package WinRt.Windows.Media.Playback is
       function get_SystemMediaTransportControls
       (
          this : access IMediaPlayer2_Interface;
-         RetVal : access Windows.Media.ISystemMediaTransportControls
+         RetVal : access WinRt.Windows.Media.ISystemMediaTransportControls
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioCategory
       (
          this : access IMediaPlayer2_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlayerAudioCategory
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlayerAudioCategory
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioCategory
       (
          this : access IMediaPlayer2_Interface;
-         value : Windows.Media.Playback.MediaPlayerAudioCategory
+         value : WinRt.Windows.Media.Playback.MediaPlayerAudioCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioDeviceType
       (
          this : access IMediaPlayer2_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlayerAudioDeviceType
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlayerAudioDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioDeviceType
       (
          this : access IMediaPlayer2_Interface;
-         value : Windows.Media.Playback.MediaPlayerAudioDeviceType
+         value : WinRt.Windows.Media.Playback.MediaPlayerAudioDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -3253,14 +3253,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer3_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsMutedChanged
       (
          this : access IMediaPlayer3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3268,14 +3268,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer3_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceChanged
       (
          this : access IMediaPlayer3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3310,77 +3310,77 @@ package WinRt.Windows.Media.Playback is
       function get_StereoscopicVideoRenderMode
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.Playback.StereoscopicVideoRenderMode
+         RetVal : access WinRt.Windows.Media.Playback.StereoscopicVideoRenderMode
       )
       return WinRt.Hresult is abstract;
 
       function put_StereoscopicVideoRenderMode
       (
          this : access IMediaPlayer3_Interface;
-         value : Windows.Media.Playback.StereoscopicVideoRenderMode
+         value : WinRt.Windows.Media.Playback.StereoscopicVideoRenderMode
       )
       return WinRt.Hresult is abstract;
 
       function get_BreakManager
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.Playback.IMediaBreakManager
+         RetVal : access WinRt.Windows.Media.Playback.IMediaBreakManager
       )
       return WinRt.Hresult is abstract;
 
       function get_CommandManager
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackCommandManager
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioDevice
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioDevice
       (
          this : access IMediaPlayer3_Interface;
-         value : Windows.Devices.Enumeration.IDeviceInformation
+         value : WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_TimelineController
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.IMediaTimelineController
+         RetVal : access WinRt.Windows.Media.IMediaTimelineController
       )
       return WinRt.Hresult is abstract;
 
       function put_TimelineController
       (
          this : access IMediaPlayer3_Interface;
-         value : Windows.Media.IMediaTimelineController
+         value : WinRt.Windows.Media.IMediaTimelineController
       )
       return WinRt.Hresult is abstract;
 
       function get_TimelineControllerPositionOffset
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TimelineControllerPositionOffset
       (
          this : access IMediaPlayer3_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackSession
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackSession
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackSession
       )
       return WinRt.Hresult is abstract;
 
@@ -3399,7 +3399,7 @@ package WinRt.Windows.Media.Playback is
       function GetAsCastingSource
       (
          this : access IMediaPlayer3_Interface;
-         RetVal : access Windows.Media.Casting.ICastingSource
+         RetVal : access WinRt.Windows.Media.Casting.ICastingSource
       )
       return WinRt.Hresult is abstract;
 
@@ -3411,15 +3411,15 @@ package WinRt.Windows.Media.Playback is
       function SetSurfaceSize
       (
          this : access IMediaPlayer4_Interface;
-         size : Windows.Foundation.Size
+         size : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function GetSurface
       (
          this : access IMediaPlayer4_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.Media.Playback.IMediaPlayerSurface
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlayerSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3432,14 +3432,14 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer5_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoFrameAvailable
       (
          this : access IMediaPlayer5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3460,23 +3460,23 @@ package WinRt.Windows.Media.Playback is
       function CopyFrameToVideoSurface
       (
          this : access IMediaPlayer5_Interface;
-         destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
       function CopyFrameToVideoSurface
       (
          this : access IMediaPlayer5_Interface;
-         destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         targetRectangle : Windows.Foundation.Rect
+         destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         targetRectangle : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function CopyFrameToStereoscopicVideoSurfaces
       (
          this : access IMediaPlayer5_Interface;
-         destinationLeftEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         destinationRightEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         destinationLeftEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         destinationRightEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3489,21 +3489,21 @@ package WinRt.Windows.Media.Playback is
       (
          this : access IMediaPlayer6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SubtitleFrameChanged
       (
          this : access IMediaPlayer6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function RenderSubtitlesToSurface
       (
          this : access IMediaPlayer6_Interface;
-         destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3511,8 +3511,8 @@ package WinRt.Windows.Media.Playback is
       function RenderSubtitlesToSurface
       (
          this : access IMediaPlayer6_Interface;
-         destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         targetRectangle : Windows.Foundation.Rect;
+         destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         targetRectangle : WinRt.Windows.Foundation.Rect;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3525,7 +3525,7 @@ package WinRt.Windows.Media.Playback is
       function get_AudioStateMonitor
       (
          this : access IMediaPlayer7_Interface;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -3537,7 +3537,7 @@ package WinRt.Windows.Media.Playback is
       function get_Data
       (
          this : access IMediaPlayerDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -3551,7 +3551,7 @@ package WinRt.Windows.Media.Playback is
          this : access IMediaPlayerEffects_Interface;
          activatableClassId : WinRt.HString;
          effectOptional : WinRt.Boolean;
-         configuration : Windows.Foundation.Collections.IPropertySet
+         configuration : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -3571,7 +3571,7 @@ package WinRt.Windows.Media.Playback is
          this : access IMediaPlayerEffects2_Interface;
          activatableClassId : WinRt.HString;
          effectOptional : WinRt.Boolean;
-         effectConfiguration : Windows.Foundation.Collections.IPropertySet
+         effectConfiguration : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -3583,14 +3583,14 @@ package WinRt.Windows.Media.Playback is
       function get_Error
       (
          this : access IMediaPlayerFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.MediaPlayerError
+         RetVal : access WinRt.Windows.Media.Playback.MediaPlayerError
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedErrorCode
       (
          this : access IMediaPlayerFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -3621,35 +3621,35 @@ package WinRt.Windows.Media.Playback is
       function get_ProtectionManager
       (
          this : access IMediaPlayerSource_Interface;
-         RetVal : access Windows.Media.Protection.IMediaProtectionManager
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectionManager
       (
          this : access IMediaPlayerSource_Interface;
-         value : Windows.Media.Protection.IMediaProtectionManager
+         value : WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult is abstract;
 
       function SetFileSource
       (
          this : access IMediaPlayerSource_Interface;
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function SetStreamSource
       (
          this : access IMediaPlayerSource_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function SetMediaSource
       (
          this : access IMediaPlayerSource_Interface;
-         source : Windows.Media.Core.IMediaSource
+         source : WinRt.Windows.Media.Core.IMediaSource
       )
       return WinRt.Hresult is abstract;
 
@@ -3661,14 +3661,14 @@ package WinRt.Windows.Media.Playback is
       function get_Source
       (
          this : access IMediaPlayerSource2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackSource
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackSource
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access IMediaPlayerSource2_Interface;
-         value : Windows.Media.Playback.IMediaPlaybackSource
+         value : WinRt.Windows.Media.Playback.IMediaPlaybackSource
       )
       return WinRt.Hresult is abstract;
 
@@ -3680,21 +3680,21 @@ package WinRt.Windows.Media.Playback is
       function get_CompositionSurface
       (
          this : access IMediaPlayerSurface_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
       function get_Compositor
       (
          this : access IMediaPlayerSurface_Interface;
-         RetVal : access Windows.UI.Composition.ICompositor
+         RetVal : access WinRt.Windows.UI.Composition.ICompositor
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaPlayer
       (
          this : access IMediaPlayerSurface_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlayer
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlayer
       )
       return WinRt.Hresult is abstract;
 
@@ -3706,7 +3706,7 @@ package WinRt.Windows.Media.Playback is
       function get_Time
       (
          this : access IPlaybackMediaMarker_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3732,18 +3732,18 @@ package WinRt.Windows.Media.Playback is
       function CreateFromTime
       (
          this : access IPlaybackMediaMarkerFactory_Interface;
-         value : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Playback.IPlaybackMediaMarker
+         value : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Playback.IPlaybackMediaMarker
       )
       return WinRt.Hresult is abstract;
 
       function Create
       (
          this : access IPlaybackMediaMarkerFactory_Interface;
-         value : Windows.Foundation.TimeSpan;
+         value : WinRt.Windows.Foundation.TimeSpan;
          mediaMarketType : WinRt.HString;
          text : WinRt.HString;
-         RetVal : access Windows.Media.Playback.IPlaybackMediaMarker
+         RetVal : access WinRt.Windows.Media.Playback.IPlaybackMediaMarker
       )
       return WinRt.Hresult is abstract;
 
@@ -3755,7 +3755,7 @@ package WinRt.Windows.Media.Playback is
       function get_PlaybackMediaMarker
       (
          this : access IPlaybackMediaMarkerReachedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.IPlaybackMediaMarker
+         RetVal : access WinRt.Windows.Media.Playback.IPlaybackMediaMarker
       )
       return WinRt.Hresult is abstract;
 
@@ -3774,7 +3774,7 @@ package WinRt.Windows.Media.Playback is
       function Insert
       (
          this : access IPlaybackMediaMarkerSequence_Interface;
-         value : Windows.Media.Playback.IPlaybackMediaMarker
+         value : WinRt.Windows.Media.Playback.IPlaybackMediaMarker
       )
       return WinRt.Hresult is abstract;
 
@@ -3792,21 +3792,21 @@ package WinRt.Windows.Media.Playback is
       function get_Track
       (
          this : access ITimedMetadataPresentationModeChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.ITimedMetadataTrack
+         RetVal : access WinRt.Windows.Media.Core.ITimedMetadataTrack
       )
       return WinRt.Hresult is abstract;
 
       function get_OldPresentationMode
       (
          this : access ITimedMetadataPresentationModeChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.TimedMetadataTrackPresentationMode
+         RetVal : access WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_NewPresentationMode
       (
          this : access ITimedMetadataPresentationModeChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.TimedMetadataTrackPresentationMode
+         RetVal : access WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3831,7 +3831,7 @@ package WinRt.Windows.Media.Playback is
 
       procedure remove_MessageReceivedFromBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_MessageReceivedFromForeground
@@ -3842,17 +3842,17 @@ package WinRt.Windows.Media.Playback is
 
       procedure remove_MessageReceivedFromForeground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       procedure SendMessageToBackground
       (
-         value : Windows.Foundation.Collections.ValueSet'Class
+         value : WinRt.Windows.Foundation.Collections.ValueSet'Class
       );
 
       procedure SendMessageToForeground
       (
-         value : Windows.Foundation.Collections.ValueSet'Class
+         value : WinRt.Windows.Foundation.Collections.ValueSet'Class
       );
 
       function IsMediaPlaying
@@ -3900,14 +3900,14 @@ package WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod
+      insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod
    )
    return MediaBreak;
 
    function Constructor
    (
-      insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod;
-      presentationPosition : Windows.Foundation.TimeSpan
+      insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod;
+      presentationPosition : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaBreak;
 
@@ -3984,7 +3984,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BreaksSeekedOver
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BreakStarted
@@ -3997,7 +3997,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BreakStarted
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BreakEnded
@@ -4010,7 +4010,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BreakEnded
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BreakSkipped
@@ -4023,7 +4023,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BreakSkipped
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CurrentBreak
@@ -4041,7 +4041,7 @@ package WinRt.Windows.Media.Playback is
    procedure PlayBreak
    (
       this : in out MediaBreakManager;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    );
 
    procedure SkipCurrentBreak
@@ -4068,19 +4068,19 @@ package WinRt.Windows.Media.Playback is
    procedure remove_ScheduleChanged
    (
       this : in out MediaBreakSchedule;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure InsertMidrollBreak
    (
       this : in out MediaBreakSchedule;
-      mediaBreak_p : Windows.Media.Playback.MediaBreak'Class
+      mediaBreak_p : WinRt.Windows.Media.Playback.MediaBreak'Class
    );
 
    procedure RemoveMidrollBreak
    (
       this : in out MediaBreakSchedule;
-      mediaBreak_p : Windows.Media.Playback.MediaBreak'Class
+      mediaBreak_p : WinRt.Windows.Media.Playback.MediaBreak'Class
    );
 
    function get_MidrollBreaks
@@ -4092,7 +4092,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_PrerollBreak
    (
       this : in out MediaBreakSchedule;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    );
 
    function get_PrerollBreak
@@ -4104,7 +4104,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_PostrollBreak
    (
       this : in out MediaBreakSchedule;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    );
 
    function get_PostrollBreak
@@ -4194,7 +4194,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_Type
    (
       this : in out MediaItemDisplayProperties;
-      value : Windows.Media.MediaPlaybackType
+      value : WinRt.Windows.Media.MediaPlaybackType
    );
 
    function get_MusicProperties
@@ -4218,7 +4218,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_Thumbnail
    (
       this : in out MediaItemDisplayProperties;
-      value : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    );
 
    procedure ClearAll
@@ -4252,7 +4252,7 @@ package WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackAudioTrackList;
-      value : Windows.Media.Core.AudioTrack'Class;
+      value : WinRt.Windows.Media.Core.AudioTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4261,7 +4261,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackAudioTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.IMediaTrack_Array
+      items : WinRt.Windows.Media.Core.IMediaTrack_Array
    )
    return WinRt.UInt32;
 
@@ -4282,7 +4282,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SelectedIndexChanged
    (
       this : in out MediaPlaybackAudioTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_SelectedIndex
@@ -4394,7 +4394,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PlayReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PauseReceived
@@ -4407,7 +4407,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PauseReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NextReceived
@@ -4420,7 +4420,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_NextReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PreviousReceived
@@ -4433,7 +4433,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PreviousReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FastForwardReceived
@@ -4446,7 +4446,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_FastForwardReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RewindReceived
@@ -4459,7 +4459,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_RewindReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ShuffleReceived
@@ -4472,7 +4472,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_ShuffleReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AutoRepeatModeReceived
@@ -4485,7 +4485,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_AutoRepeatModeReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PositionReceived
@@ -4498,7 +4498,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PositionReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RateReceived
@@ -4511,7 +4511,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_RateReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4577,7 +4577,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_EnablingRule
    (
       this : in out MediaPlaybackCommandManagerCommandBehavior;
-      value : Windows.Media.Playback.MediaCommandEnablingRule
+      value : WinRt.Windows.Media.Playback.MediaCommandEnablingRule
    );
 
    function add_IsEnabledChanged
@@ -4590,7 +4590,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_IsEnabledChanged
    (
       this : in out MediaPlaybackCommandManagerCommandBehavior;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4865,22 +4865,22 @@ package WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class
+      source : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return MediaPlaybackItem;
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class;
-      startTime : Windows.Foundation.TimeSpan
+      source : WinRt.Windows.Media.Core.MediaSource'Class;
+      startTime : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaPlaybackItem;
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class;
-      startTime : Windows.Foundation.TimeSpan;
-      durationLimit : Windows.Foundation.TimeSpan
+      source : WinRt.Windows.Media.Core.MediaSource'Class;
+      startTime : WinRt.Windows.Foundation.TimeSpan;
+      durationLimit : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaPlaybackItem;
 
@@ -4889,7 +4889,7 @@ package WinRt.Windows.Media.Playback is
 
    function FindFromMediaSource
    (
-      source : Windows.Media.Core.MediaSource'Class
+      source : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem;
 
@@ -4906,7 +4906,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_AudioTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoTracksChanged
@@ -4919,7 +4919,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_VideoTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TimedMetadataTracksChanged
@@ -4932,7 +4932,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_TimedMetadataTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Source
@@ -4998,7 +4998,7 @@ package WinRt.Windows.Media.Playback is
    procedure ApplyDisplayProperties
    (
       this : in out MediaPlaybackItem;
-      value : Windows.Media.Playback.MediaItemDisplayProperties'Class
+      value : WinRt.Windows.Media.Playback.MediaItemDisplayProperties'Class
    );
 
    function get_IsDisabledInPlaybackList
@@ -5028,7 +5028,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_AutoLoadedDisplayProperties
    (
       this : in out MediaPlaybackItem;
-      value : Windows.Media.Playback.AutoLoadedDisplayPropertyKind
+      value : WinRt.Windows.Media.Playback.AutoLoadedDisplayPropertyKind
    );
 
    -----------------------------------------------------------------------------
@@ -5112,7 +5112,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_ItemFailed
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CurrentItemChanged
@@ -5125,7 +5125,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_CurrentItemChanged
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ItemOpened
@@ -5138,7 +5138,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_ItemOpened
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Items
@@ -5223,7 +5223,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_StartingItem
    (
       this : in out MediaPlaybackList;
-      value : Windows.Media.Playback.MediaPlaybackItem'Class
+      value : WinRt.Windows.Media.Playback.MediaPlaybackItem'Class
    );
 
    function get_ShuffledItems
@@ -5269,7 +5269,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PlaybackStateChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlaybackRateChanged
@@ -5282,7 +5282,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PlaybackRateChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SeekCompleted
@@ -5295,7 +5295,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SeekCompleted
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BufferingStarted
@@ -5308,7 +5308,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferingStarted
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BufferingEnded
@@ -5321,7 +5321,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferingEnded
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BufferingProgressChanged
@@ -5334,7 +5334,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferingProgressChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadProgressChanged
@@ -5347,7 +5347,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_DownloadProgressChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NaturalDurationChanged
@@ -5360,7 +5360,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_NaturalDurationChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PositionChanged
@@ -5373,7 +5373,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PositionChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NaturalVideoSizeChanged
@@ -5386,7 +5386,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_NaturalVideoSizeChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MediaPlayer
@@ -5410,7 +5410,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_Position
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_PlaybackState
@@ -5482,7 +5482,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_NormalizedSourceRect
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_StereoscopicVideoPackingMode
@@ -5494,7 +5494,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_StereoscopicVideoPackingMode
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Media.MediaProperties.StereoscopicVideoPackingMode
+      value : WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode
    );
 
    function add_BufferedRangesChanged
@@ -5507,7 +5507,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferedRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlayedRangesChanged
@@ -5520,7 +5520,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PlayedRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SeekableRangesChanged
@@ -5533,7 +5533,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SeekableRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SupportedPlaybackRatesChanged
@@ -5546,7 +5546,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SupportedPlaybackRatesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SphericalVideoProjection
@@ -5602,7 +5602,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_PlaybackRotation
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Media.MediaProperties.MediaRotation
+      value : WinRt.Windows.Media.MediaProperties.MediaRotation
    );
 
    function GetOutputDegradationPolicyState
@@ -5671,7 +5671,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_FrameFormat
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
+      value : WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
    );
 
    function get_HorizontalFieldOfViewInDegrees
@@ -5695,7 +5695,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_ViewOrientation
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    function get_ProjectionMode
@@ -5707,7 +5707,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_ProjectionMode
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Media.Playback.SphericalVideoProjectionMode
+      value : WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
    );
 
    -----------------------------------------------------------------------------
@@ -5736,7 +5736,7 @@ package WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
-      value : Windows.Media.Core.TimedMetadataTrack'Class;
+      value : WinRt.Windows.Media.Core.TimedMetadataTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5745,7 +5745,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.ITimedMetadataTrack_Array
+      items : WinRt.Windows.Media.Core.ITimedMetadataTrack_Array
    )
    return WinRt.UInt32;
 
@@ -5766,7 +5766,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PresentationModeChanged
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetPresentationMode
@@ -5780,7 +5780,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
       index : WinRt.UInt32;
-      value : Windows.Media.Playback.TimedMetadataTrackPresentationMode
+      value : WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
    );
 
    -----------------------------------------------------------------------------
@@ -5809,7 +5809,7 @@ package WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackVideoTrackList;
-      value : Windows.Media.Core.VideoTrack'Class;
+      value : WinRt.Windows.Media.Core.VideoTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5818,7 +5818,7 @@ package WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackVideoTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.IMediaTrack_Array
+      items : WinRt.Windows.Media.Core.IMediaTrack_Array
    )
    return WinRt.UInt32;
 
@@ -5839,7 +5839,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SelectedIndexChanged
    (
       this : in out MediaPlaybackVideoTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_SelectedIndex
@@ -5895,7 +5895,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_Position
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_BufferingProgress
@@ -5992,7 +5992,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_MediaOpened
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MediaEnded
@@ -6005,7 +6005,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_MediaEnded
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MediaFailed
@@ -6018,7 +6018,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_MediaFailed
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CurrentStateChanged
@@ -6031,7 +6031,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_CurrentStateChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlaybackMediaMarkerReached
@@ -6044,7 +6044,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_PlaybackMediaMarkerReached
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MediaPlayerRateChanged
@@ -6057,7 +6057,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_MediaPlayerRateChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VolumeChanged
@@ -6070,7 +6070,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_VolumeChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SeekCompleted
@@ -6083,7 +6083,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SeekCompleted
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BufferingStarted
@@ -6096,7 +6096,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferingStarted
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BufferingEnded
@@ -6109,7 +6109,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_BufferingEnded
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Play
@@ -6125,7 +6125,7 @@ package WinRt.Windows.Media.Playback is
    procedure SetUriSource
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ProtectionManager
@@ -6137,25 +6137,25 @@ package WinRt.Windows.Media.Playback is
    procedure put_ProtectionManager
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Protection.MediaProtectionManager'Class
+      value : WinRt.Windows.Media.Protection.MediaProtectionManager'Class
    );
 
    procedure SetFileSource
    (
       this : in out MediaPlayer;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure SetStreamSource
    (
       this : in out MediaPlayer;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure SetMediaSource
    (
       this : in out MediaPlayer;
-      source : Windows.Media.Core.IMediaSource
+      source : WinRt.Windows.Media.Core.IMediaSource
    );
 
    function get_Source
@@ -6167,7 +6167,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_Source
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.IMediaPlaybackSource
+      value : WinRt.Windows.Media.Playback.IMediaPlaybackSource
    );
 
    function get_SystemMediaTransportControls
@@ -6185,7 +6185,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_AudioCategory
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.MediaPlayerAudioCategory
+      value : WinRt.Windows.Media.Playback.MediaPlayerAudioCategory
    );
 
    function get_AudioDeviceType
@@ -6197,7 +6197,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_AudioDeviceType
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.MediaPlayerAudioDeviceType
+      value : WinRt.Windows.Media.Playback.MediaPlayerAudioDeviceType
    );
 
    procedure AddAudioEffect
@@ -6205,7 +6205,7 @@ package WinRt.Windows.Media.Playback is
       this : in out MediaPlayer;
       activatableClassId : WinRt.WString;
       effectOptional : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure RemoveAllEffects
@@ -6228,7 +6228,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_IsMutedChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceChanged
@@ -6241,7 +6241,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SourceChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AudioBalance
@@ -6277,7 +6277,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_StereoscopicVideoRenderMode
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.StereoscopicVideoRenderMode
+      value : WinRt.Windows.Media.Playback.StereoscopicVideoRenderMode
    );
 
    function get_BreakManager
@@ -6301,7 +6301,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_AudioDevice
    (
       this : in out MediaPlayer;
-      value : Windows.Devices.Enumeration.DeviceInformation'Class
+      value : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    );
 
    function get_TimelineController
@@ -6313,7 +6313,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_TimelineController
    (
       this : in out MediaPlayer;
-      value : Windows.Media.MediaTimelineController'Class
+      value : WinRt.Windows.Media.MediaTimelineController'Class
    );
 
    function get_TimelineControllerPositionOffset
@@ -6325,7 +6325,7 @@ package WinRt.Windows.Media.Playback is
    procedure put_TimelineControllerPositionOffset
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_PlaybackSession
@@ -6353,13 +6353,13 @@ package WinRt.Windows.Media.Playback is
    procedure SetSurfaceSize
    (
       this : in out MediaPlayer;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    );
 
    function GetSurface
    (
       this : in out MediaPlayer;
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.Media.Playback.MediaPlayerSurface'Class;
 
@@ -6368,7 +6368,7 @@ package WinRt.Windows.Media.Playback is
       this : in out MediaPlayer;
       activatableClassId : WinRt.WString;
       effectOptional : WinRt.Boolean;
-      effectConfiguration : Windows.Foundation.Collections.IPropertySet
+      effectConfiguration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    function add_VideoFrameAvailable
@@ -6381,7 +6381,7 @@ package WinRt.Windows.Media.Playback is
    procedure remove_VideoFrameAvailable
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsVideoFrameServerEnabled
@@ -6399,21 +6399,21 @@ package WinRt.Windows.Media.Playback is
    procedure CopyFrameToVideoSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    );
 
    procedure CopyFrameToVideoSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      targetRectangle : Windows.Foundation.Rect
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      targetRectangle : WinRt.Windows.Foundation.Rect
    );
 
    procedure CopyFrameToStereoscopicVideoSurfaces
    (
       this : in out MediaPlayer;
-      destinationLeftEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      destinationRightEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destinationLeftEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      destinationRightEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    );
 
    function add_SubtitleFrameChanged
@@ -6426,21 +6426,21 @@ package WinRt.Windows.Media.Playback is
    procedure remove_SubtitleFrameChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RenderSubtitlesToSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    )
    return WinRt.Boolean;
 
    function RenderSubtitlesToSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      targetRectangle : Windows.Foundation.Rect
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      targetRectangle : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean;
 
@@ -6550,13 +6550,13 @@ package WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    )
    return PlaybackMediaMarker;
 
    function Constructor
    (
-      value : Windows.Foundation.TimeSpan;
+      value : WinRt.Windows.Foundation.TimeSpan;
       mediaMarketType : WinRt.WString;
       text : WinRt.WString
    )
@@ -6616,7 +6616,7 @@ package WinRt.Windows.Media.Playback is
    procedure Insert
    (
       this : in out PlaybackMediaMarkerSequence;
-      value : Windows.Media.Playback.PlaybackMediaMarker'Class
+      value : WinRt.Windows.Media.Playback.PlaybackMediaMarker'Class
    );
 
    procedure Clear

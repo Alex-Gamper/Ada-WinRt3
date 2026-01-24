@@ -377,14 +377,14 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Buffer
       (
          this : access IBufferProtectUnprotectResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionInfo
       (
          this : access IBufferProtectUnprotectResult_Interface;
-         RetVal : access Windows.Security.EnterpriseData.IDataProtectionInfo
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -396,7 +396,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Status
       (
          this : access IDataProtectionInfo_Interface;
-         RetVal : access Windows.Security.EnterpriseData.DataProtectionStatus
+         RetVal : access WinRt.Windows.Security.EnterpriseData.DataProtectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -415,7 +415,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function ProtectAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          identity : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -424,7 +424,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function UnprotectAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -432,9 +432,9 @@ package WinRt.Windows.Security.EnterpriseData is
       function ProtectStreamAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         unprotectedStream : Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IInputStream;
          identity : WinRt.HString;
-         protectedStream : Windows.Storage.Streams.IOutputStream;
+         protectedStream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -442,8 +442,8 @@ package WinRt.Windows.Security.EnterpriseData is
       function UnprotectStreamAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         protectedStream : Windows.Storage.Streams.IInputStream;
-         unprotectedStream : Windows.Storage.Streams.IOutputStream;
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -451,7 +451,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function GetProtectionInfoAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         protectedData : Windows.Storage.Streams.IBuffer;
+         protectedData : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -459,7 +459,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function GetStreamProtectionInfoAsync
       (
          this : access IDataProtectionManagerStatics_Interface;
-         protectedStream : Windows.Storage.Streams.IInputStream;
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -472,7 +472,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Status
       (
          this : access IFileProtectionInfo_Interface;
-         RetVal : access Windows.Security.EnterpriseData.FileProtectionStatus
+         RetVal : access WinRt.Windows.Security.EnterpriseData.FileProtectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -510,7 +510,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function ProtectAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         target : Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          identity : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -519,8 +519,8 @@ package WinRt.Windows.Security.EnterpriseData is
       function CopyProtectionAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         source : Windows.Storage.IStorageItem;
-         target : Windows.Storage.IStorageItem;
+         source : WinRt.Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -528,7 +528,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function GetProtectionInfoAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         source : Windows.Storage.IStorageItem;
+         source : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -536,7 +536,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function SaveFileAsContainerAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         protectedFile : Windows.Storage.IStorageFile;
+         protectedFile : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -544,7 +544,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function LoadFileFromContainerAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         containerFile : Windows.Storage.IStorageFile;
+         containerFile : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -552,8 +552,8 @@ package WinRt.Windows.Security.EnterpriseData is
       function LoadFileFromContainerAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem;
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -561,10 +561,10 @@ package WinRt.Windows.Security.EnterpriseData is
       function CreateProtectedAndOpenAsync
       (
          this : access IFileProtectionManagerStatics_Interface;
-         parentFolder : Windows.Storage.IStorageFolder;
+         parentFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredName : WinRt.HString;
          identity : WinRt.HString;
-         collisionOption : Windows.Storage.CreationCollisionOption;
+         collisionOption : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -577,7 +577,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function IsContainerAsync
       (
          this : access IFileProtectionManagerStatics2_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -585,9 +585,9 @@ package WinRt.Windows.Security.EnterpriseData is
       function LoadFileFromContainerAsync
       (
          this : access IFileProtectionManagerStatics2_Interface;
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem;
-         collisionOption : Windows.Storage.NameCollisionOption;
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem;
+         collisionOption : WinRt.Windows.Storage.NameCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -595,7 +595,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function SaveFileAsContainerAsync
       (
          this : access IFileProtectionManagerStatics2_Interface;
-         protectedFile : Windows.Storage.IStorageFile;
+         protectedFile : WinRt.Windows.Storage.IStorageFile;
          sharedWithIdentities : GenericObject;
          RetVal : access GenericObject
       )
@@ -609,7 +609,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function UnprotectAsync
       (
          this : access IFileProtectionManagerStatics3_Interface;
-         target : Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -617,8 +617,8 @@ package WinRt.Windows.Security.EnterpriseData is
       function UnprotectAsync
       (
          this : access IFileProtectionManagerStatics3_Interface;
-         target : Windows.Storage.IStorageItem;
-         options : Windows.Security.EnterpriseData.IFileUnprotectOptions;
+         target : WinRt.Windows.Storage.IStorageItem;
+         options : WinRt.Windows.Security.EnterpriseData.IFileUnprotectOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -631,7 +631,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function ProtectAsync
       (
          this : access IFileRevocationManagerStatics_Interface;
-         storageItem : Windows.Storage.IStorageItem;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
          enterpriseIdentity : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -640,8 +640,8 @@ package WinRt.Windows.Security.EnterpriseData is
       function CopyProtectionAsync
       (
          this : access IFileRevocationManagerStatics_Interface;
-         sourceStorageItem : Windows.Storage.IStorageItem;
-         targetStorageItem : Windows.Storage.IStorageItem;
+         sourceStorageItem : WinRt.Windows.Storage.IStorageItem;
+         targetStorageItem : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -656,7 +656,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function GetStatusAsync
       (
          this : access IFileRevocationManagerStatics_Interface;
-         storageItem : Windows.Storage.IStorageItem;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -689,7 +689,7 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IFileUnprotectOptionsFactory_Interface;
          audit : WinRt.Boolean;
-         RetVal : access Windows.Security.EnterpriseData.IFileUnprotectOptions
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IFileUnprotectOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -720,14 +720,14 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Deadline
       (
          this : access IProtectedAccessSuspendingEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IProtectedAccessSuspendingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -739,14 +739,14 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Status
       (
          this : access IProtectedContainerExportResult_Interface;
-         RetVal : access Windows.Security.EnterpriseData.ProtectedImportExportStatus
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectedImportExportStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_File
       (
          this : access IProtectedContainerExportResult_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -758,14 +758,14 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_Status
       (
          this : access IProtectedContainerImportResult_Interface;
-         RetVal : access Windows.Security.EnterpriseData.ProtectedImportExportStatus
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectedImportExportStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_File
       (
          this : access IProtectedContainerImportResult_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -789,21 +789,21 @@ package WinRt.Windows.Security.EnterpriseData is
       function get_File
       (
          this : access IProtectedFileCreateResult_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function get_Stream
       (
          this : access IProtectedFileCreateResult_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionInfo
       (
          this : access IProtectedFileCreateResult_Interface;
-         RetVal : access Windows.Security.EnterpriseData.IFileProtectionInfo
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -815,14 +815,14 @@ package WinRt.Windows.Security.EnterpriseData is
       function put_Action
       (
          this : access IProtectionPolicyAuditInfo_Interface;
-         value : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
+         value : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
       )
       return WinRt.Hresult is abstract;
 
       function get_Action
       (
          this : access IProtectionPolicyAuditInfo_Interface;
-         RetVal : access Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
       )
       return WinRt.Hresult is abstract;
 
@@ -876,20 +876,20 @@ package WinRt.Windows.Security.EnterpriseData is
       function Create
       (
          this : access IProtectionPolicyAuditInfoFactory_Interface;
-         action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+         action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
          dataDescription : WinRt.HString;
          sourceDescription : WinRt.HString;
          targetDescription : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithActionAndDataDescription
       (
          this : access IProtectionPolicyAuditInfoFactory_Interface;
-         action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+         action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
          dataDescription : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -962,14 +962,14 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.IThreadNetworkContext
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IThreadNetworkContext
       )
       return WinRt.Hresult is abstract;
 
       function GetPrimaryManagedIdentityForNetworkEndpointAsync
       (
          this : access IProtectionPolicyManagerStatics_Interface;
-         endpointHost : Windows.Networking.IHostName;
+         endpointHost : WinRt.Windows.Networking.IHostName;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -984,7 +984,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function GetForCurrentView
       (
          this : access IProtectionPolicyManagerStatics_Interface;
-         RetVal : access Windows.Security.EnterpriseData.IProtectionPolicyManager
+         RetVal : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManager
       )
       return WinRt.Hresult is abstract;
 
@@ -992,14 +992,14 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProtectedAccessSuspending
       (
          this : access IProtectionPolicyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1007,14 +1007,14 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProtectedAccessResumed
       (
          this : access IProtectionPolicyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1022,14 +1022,14 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProtectedContentRevoked
       (
          this : access IProtectionPolicyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1038,7 +1038,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics_Interface;
          sourceIdentity : WinRt.HString;
          targetIdentity : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1060,7 +1060,7 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics2_Interface;
          identity : WinRt.HString;
-         since : Windows.Foundation.DateTime;
+         since : WinRt.Windows.Foundation.DateTime;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1070,7 +1070,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics2_Interface;
          sourceIdentity : WinRt.HString;
          appPackageFamilyName : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1087,7 +1087,7 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics2_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.Security.EnterpriseData.EnforcementLevel
+         RetVal : access WinRt.Windows.Security.EnterpriseData.EnforcementLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1111,14 +1111,14 @@ package WinRt.Windows.Security.EnterpriseData is
       (
          this : access IProtectionPolicyManagerStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PolicyChanged
       (
          this : access IProtectionPolicyManagerStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,7 +1139,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics3_Interface;
          sourceIdentity : WinRt.HString;
          targetIdentity : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1149,7 +1149,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics3_Interface;
          sourceIdentity : WinRt.HString;
          targetIdentity : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1160,7 +1160,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics3_Interface;
          sourceIdentity : WinRt.HString;
          appPackageFamilyName : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1170,7 +1170,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics3_Interface;
          sourceIdentity : WinRt.HString;
          appPackageFamilyName : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1181,7 +1181,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics3_Interface;
          sourceIdentity : WinRt.HString;
          targetIdentity : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1203,9 +1203,9 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceIdentity : WinRt.HString;
          targetIdentity : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
-         behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
+         behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1215,9 +1215,9 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceIdentity : WinRt.HString;
          appPackageFamilyName : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
-         behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
+         behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1227,7 +1227,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceItemList : GenericObject;
          appPackageFamilyName : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1237,9 +1237,9 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceItemList : GenericObject;
          appPackageFamilyName : WinRt.HString;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
-         behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
+         behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1249,7 +1249,7 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceItemList : GenericObject;
          processId : WinRt.UInt32;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1259,9 +1259,9 @@ package WinRt.Windows.Security.EnterpriseData is
          this : access IProtectionPolicyManagerStatics4_Interface;
          sourceItemList : GenericObject;
          processId : WinRt.UInt32;
-         auditInfo : Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+         auditInfo : WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
          messageFromApp : WinRt.HString;
-         behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
+         behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1269,7 +1269,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function IsFileProtectionRequiredAsync
       (
          this : access IProtectionPolicyManagerStatics4_Interface;
-         target : Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          identity : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Security.EnterpriseData is
       function IsFileProtectionRequiredForNewFileAsync
       (
          this : access IProtectionPolicyManagerStatics4_Interface;
-         parentFolder : Windows.Storage.IStorageFolder;
+         parentFolder : WinRt.Windows.Storage.IStorageFolder;
          identity : WinRt.HString;
          desiredName : WinRt.HString;
          RetVal : access GenericObject
@@ -1359,41 +1359,41 @@ package WinRt.Windows.Security.EnterpriseData is
 
       function ProtectAsync
       (
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          identity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.BufferProtectUnprotectResult;
 
       function UnprotectAsync
       (
-         data : Windows.Storage.Streams.IBuffer
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.EnterpriseData.BufferProtectUnprotectResult;
 
       function ProtectStreamAsync
       (
-         unprotectedStream : Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IInputStream;
          identity : WinRt.WString;
-         protectedStream : Windows.Storage.Streams.IOutputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo;
 
       function UnprotectStreamAsync
       (
-         protectedStream : Windows.Storage.Streams.IInputStream;
-         unprotectedStream : Windows.Storage.Streams.IOutputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo;
 
       function GetProtectionInfoAsync
       (
-         protectedData : Windows.Storage.Streams.IBuffer
+         protectedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo;
 
       function GetStreamProtectionInfoAsync
       (
-         protectedStream : Windows.Storage.Streams.IInputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo;
 
@@ -1438,83 +1438,83 @@ package WinRt.Windows.Security.EnterpriseData is
 
       function IsContainerAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Boolean;
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem;
-         collisionOption : Windows.Storage.NameCollisionOption
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem;
+         collisionOption : WinRt.Windows.Storage.NameCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult;
 
       function SaveFileAsContainerAsync
       (
-         protectedFile : Windows.Storage.IStorageFile;
+         protectedFile : WinRt.Windows.Storage.IStorageFile;
          sharedWithIdentities : GenericObject
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult;
 
       function ProtectAsync
       (
-         target : Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          identity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
 
       function CopyProtectionAsync
       (
-         source : Windows.Storage.IStorageItem;
-         target : Windows.Storage.IStorageItem
+         source : WinRt.Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Boolean;
 
       function GetProtectionInfoAsync
       (
-         source : Windows.Storage.IStorageItem
+         source : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
 
       function SaveFileAsContainerAsync
       (
-         protectedFile : Windows.Storage.IStorageFile
+         protectedFile : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult;
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile
+         containerFile : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult;
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult;
 
       function CreateProtectedAndOpenAsync
       (
-         parentFolder : Windows.Storage.IStorageFolder;
+         parentFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredName : WinRt.WString;
          identity : WinRt.WString;
-         collisionOption : Windows.Storage.CreationCollisionOption
+         collisionOption : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedFileCreateResult;
 
       function UnprotectAsync
       (
-         target : Windows.Storage.IStorageItem
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
 
       function UnprotectAsync
       (
-         target : Windows.Storage.IStorageItem;
-         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
+         target : WinRt.Windows.Storage.IStorageItem;
+         options : WinRt.Windows.Security.EnterpriseData.FileUnprotectOptions'Class
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo;
 
@@ -1526,15 +1526,15 @@ package WinRt.Windows.Security.EnterpriseData is
 
       function ProtectAsync_FileRevocationManager
       (
-         storageItem : Windows.Storage.IStorageItem;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
          enterpriseIdentity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionStatus;
 
       function CopyProtectionAsync_FileRevocationManager
       (
-         sourceStorageItem : Windows.Storage.IStorageItem;
-         targetStorageItem : Windows.Storage.IStorageItem
+         sourceStorageItem : WinRt.Windows.Storage.IStorageItem;
+         targetStorageItem : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Boolean;
 
@@ -1545,7 +1545,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
       function GetStatusAsync
       (
-         storageItem : Windows.Storage.IStorageItem
+         storageItem : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionStatus;
 
@@ -1718,7 +1718,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    function Constructor
    (
-      action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+      action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
       dataDescription : WinRt.WString;
       sourceDescription : WinRt.WString;
       targetDescription : WinRt.WString
@@ -1727,7 +1727,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    function Constructor
    (
-      action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+      action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
       dataDescription : WinRt.WString
    )
    return ProtectionPolicyAuditInfo;
@@ -1738,7 +1738,7 @@ package WinRt.Windows.Security.EnterpriseData is
    procedure put_Action
    (
       this : in out ProtectionPolicyAuditInfo;
-      value : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
+      value : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
    );
 
    function get_Action
@@ -1802,9 +1802,9 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1812,9 +1812,9 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1822,7 +1822,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1830,9 +1830,9 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1840,7 +1840,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       processId : WinRt.UInt32;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1848,22 +1848,22 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       processId : WinRt.UInt32;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
    function IsFileProtectionRequiredAsync
    (
-      target : Windows.Storage.IStorageItem;
+      target : WinRt.Windows.Storage.IStorageItem;
       identity : WinRt.WString
    )
    return WinRt.Boolean;
 
    function IsFileProtectionRequiredForNewFileAsync
    (
-      parentFolder : Windows.Storage.IStorageFolder;
+      parentFolder : WinRt.Windows.Storage.IStorageFolder;
       identity : WinRt.WString;
       desiredName : WinRt.WString
    )
@@ -1881,7 +1881,7 @@ package WinRt.Windows.Security.EnterpriseData is
    function HasContentBeenRevokedSince
    (
       identity : WinRt.WString;
-      since : Windows.Foundation.DateTime
+      since : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean;
 
@@ -1925,7 +1925,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_PolicyChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsProtectionEnabled
@@ -1935,7 +1935,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1943,7 +1943,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
@@ -1952,7 +1952,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
 
@@ -1960,7 +1960,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
@@ -1969,7 +1969,7 @@ package WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    );
 
    function IsIdentityManaged
@@ -1994,7 +1994,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    function GetPrimaryManagedIdentityForNetworkEndpointAsync
    (
-      endpointHost : Windows.Networking.HostName'Class
+      endpointHost : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.WString;
 
@@ -2014,7 +2014,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedAccessSuspending
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProtectedAccessResumed
@@ -2025,7 +2025,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedAccessResumed
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProtectedContentRevoked
@@ -2036,7 +2036,7 @@ package WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedContentRevoked
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CheckAccess

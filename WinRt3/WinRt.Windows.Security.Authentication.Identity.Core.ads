@@ -257,8 +257,8 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function ApproveSessionAsync
       (
          this : access IMicrosoftAccountMultiFactorAuthenticationManager_Interface;
-         sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
-         authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorSessionInfo;
+         sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+         authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorSessionInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -266,10 +266,10 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function ApproveSessionAsync
       (
          this : access IMicrosoftAccountMultiFactorAuthenticationManager_Interface;
-         sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+         sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
          userAccountId : WinRt.HString;
          sessionId : WinRt.HString;
-         sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
+         sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -277,7 +277,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function DenySessionAsync
       (
          this : access IMicrosoftAccountMultiFactorAuthenticationManager_Interface;
-         authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorSessionInfo;
+         authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorSessionInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -287,7 +287,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
          this : access IMicrosoftAccountMultiFactorAuthenticationManager_Interface;
          userAccountId : WinRt.HString;
          sessionId : WinRt.HString;
-         sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
+         sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -300,7 +300,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function get_Current
       (
          this : access IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager
       )
       return WinRt.Hresult is abstract;
 
@@ -319,7 +319,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function get_ServiceResponse
       (
          this : access IMicrosoftAccountMultiFactorGetSessionsResult_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -338,21 +338,21 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function get_TimeInterval
       (
          this : access IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TimeToLive
       (
          this : access IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceResponse
       (
          this : access IMicrosoftAccountMultiFactorOneTimeCodedInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -385,28 +385,28 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function get_ApprovalStatus
       (
          this : access IMicrosoftAccountMultiFactorSessionInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationType
       (
          this : access IMicrosoftAccountMultiFactorSessionInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestTime
       (
          this : access IMicrosoftAccountMultiFactorSessionInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_ExpirationTime
       (
          this : access IMicrosoftAccountMultiFactorSessionInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -432,7 +432,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       function get_ServiceResponse
       (
          this : access IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -506,25 +506,25 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
    function ApproveSessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
-      authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
+      sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+      authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
 
    function ApproveSessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+      sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
       userAccountId : WinRt.WString;
       sessionId : WinRt.WString;
-      sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
+      sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
 
    function DenySessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
+      authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
 
@@ -533,7 +533,7 @@ package WinRt.Windows.Security.Authentication.Identity.Core is
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
       userAccountId : WinRt.WString;
       sessionId : WinRt.WString;
-      sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
+      sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
 

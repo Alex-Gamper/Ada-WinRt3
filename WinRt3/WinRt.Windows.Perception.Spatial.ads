@@ -427,14 +427,14 @@ package WinRt.Windows.Perception.Spatial is
       function get_CoordinateSystem
       (
          this : access ISpatialAnchor_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
       function get_RawCoordinateSystem
       (
          this : access ISpatialAnchor_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -442,14 +442,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialAnchor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RawCoordinateSystemAdjusted
       (
          this : access ISpatialAnchor_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -499,8 +499,8 @@ package WinRt.Windows.Perception.Spatial is
       function GetAnchorExportSufficiencyAsync
       (
          this : access ISpatialAnchorExporter_Interface;
-         anchor : Windows.Perception.Spatial.ISpatialAnchor;
-         purpose : Windows.Perception.Spatial.SpatialAnchorExportPurpose;
+         anchor : WinRt.Windows.Perception.Spatial.ISpatialAnchor;
+         purpose : WinRt.Windows.Perception.Spatial.SpatialAnchorExportPurpose;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -508,9 +508,9 @@ package WinRt.Windows.Perception.Spatial is
       function TryExportAnchorAsync
       (
          this : access ISpatialAnchorExporter_Interface;
-         anchor : Windows.Perception.Spatial.ISpatialAnchor;
-         purpose : Windows.Perception.Spatial.SpatialAnchorExportPurpose;
-         stream : Windows.Storage.Streams.IOutputStream;
+         anchor : WinRt.Windows.Perception.Spatial.ISpatialAnchor;
+         purpose : WinRt.Windows.Perception.Spatial.SpatialAnchorExportPurpose;
+         stream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -523,7 +523,7 @@ package WinRt.Windows.Perception.Spatial is
       function GetDefault
       (
          this : access ISpatialAnchorExporterStatics_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialAnchorExporter
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialAnchorExporter
       )
       return WinRt.Hresult is abstract;
 
@@ -554,7 +554,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_OldRawCoordinateSystemToNewRawCoordinateSystemTransform
       (
          this : access ISpatialAnchorRawCoordinateSystemAdjustedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix4x4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
@@ -566,27 +566,27 @@ package WinRt.Windows.Perception.Spatial is
       function TryCreateRelativeTo
       (
          this : access ISpatialAnchorStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.Perception.Spatial.ISpatialAnchor
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialAnchor
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateRelativeTo
       (
          this : access ISpatialAnchorStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3;
-         RetVal : access Windows.Perception.Spatial.ISpatialAnchor
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialAnchor
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateRelativeTo
       (
          this : access ISpatialAnchorStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion;
-         RetVal : access Windows.Perception.Spatial.ISpatialAnchor
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialAnchor
       )
       return WinRt.Hresult is abstract;
 
@@ -606,7 +606,7 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialAnchorStore_Interface;
          id : WinRt.HString;
-         anchor : Windows.Perception.Spatial.ISpatialAnchor;
+         anchor : WinRt.Windows.Perception.Spatial.ISpatialAnchor;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -632,7 +632,7 @@ package WinRt.Windows.Perception.Spatial is
       function TryImportAnchorsAsync
       (
          this : access ISpatialAnchorTransferManagerStatics_Interface;
-         stream : Windows.Storage.Streams.IInputStream;
+         stream : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -641,7 +641,7 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialAnchorTransferManagerStatics_Interface;
          anchors : GenericObject;
-         stream : Windows.Storage.Streams.IOutputStream;
+         stream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -666,36 +666,36 @@ package WinRt.Windows.Perception.Spatial is
       function FromBox
       (
          this : access ISpatialBoundingVolumeStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         box : Windows.Perception.Spatial.SpatialBoundingBox;
-         RetVal : access Windows.Perception.Spatial.ISpatialBoundingVolume
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         box : WinRt.Windows.Perception.Spatial.SpatialBoundingBox;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolume
       )
       return WinRt.Hresult is abstract;
 
       function FromOrientedBox
       (
          this : access ISpatialBoundingVolumeStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         box : Windows.Perception.Spatial.SpatialBoundingOrientedBox;
-         RetVal : access Windows.Perception.Spatial.ISpatialBoundingVolume
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         box : WinRt.Windows.Perception.Spatial.SpatialBoundingOrientedBox;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolume
       )
       return WinRt.Hresult is abstract;
 
       function FromSphere
       (
          this : access ISpatialBoundingVolumeStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         sphere : Windows.Perception.Spatial.SpatialBoundingSphere;
-         RetVal : access Windows.Perception.Spatial.ISpatialBoundingVolume
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         sphere : WinRt.Windows.Perception.Spatial.SpatialBoundingSphere;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolume
       )
       return WinRt.Hresult is abstract;
 
       function FromFrustum
       (
          this : access ISpatialBoundingVolumeStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         frustum : Windows.Perception.Spatial.SpatialBoundingFrustum;
-         RetVal : access Windows.Perception.Spatial.ISpatialBoundingVolume
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         frustum : WinRt.Windows.Perception.Spatial.SpatialBoundingFrustum;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialBoundingVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -707,7 +707,7 @@ package WinRt.Windows.Perception.Spatial is
       function TryGetTransformTo
       (
          this : access ISpatialCoordinateSystem_Interface;
-         target : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         target : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -727,14 +727,14 @@ package WinRt.Windows.Perception.Spatial is
       function get_Anchor
       (
          this : access ISpatialEntity_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialAnchor
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialAnchor
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access ISpatialEntity_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -746,7 +746,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Entity
       (
          this : access ISpatialEntityAddedEventArgs_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntity
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -758,17 +758,17 @@ package WinRt.Windows.Perception.Spatial is
       function CreateWithSpatialAnchor
       (
          this : access ISpatialEntityFactory_Interface;
-         spatialAnchor_p : Windows.Perception.Spatial.ISpatialAnchor;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntity
+         spatialAnchor_p : WinRt.Windows.Perception.Spatial.ISpatialAnchor;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntity
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithSpatialAnchorAndProperties
       (
          this : access ISpatialEntityFactory_Interface;
-         spatialAnchor_p : Windows.Perception.Spatial.ISpatialAnchor;
-         propertySet : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntity
+         spatialAnchor_p : WinRt.Windows.Perception.Spatial.ISpatialAnchor;
+         propertySet : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -780,7 +780,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Entity
       (
          this : access ISpatialEntityRemovedEventArgs_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntity
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -792,23 +792,23 @@ package WinRt.Windows.Perception.Spatial is
       function SaveAsync
       (
          this : access ISpatialEntityStore_Interface;
-         entity : Windows.Perception.Spatial.ISpatialEntity;
-         RetVal : access Windows.Foundation.IAsyncAction
+         entity : WinRt.Windows.Perception.Spatial.ISpatialEntity;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RemoveAsync
       (
          this : access ISpatialEntityStore_Interface;
-         entity : Windows.Perception.Spatial.ISpatialEntity;
-         RetVal : access Windows.Foundation.IAsyncAction
+         entity : WinRt.Windows.Perception.Spatial.ISpatialEntity;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CreateEntityWatcher
       (
          this : access ISpatialEntityStore_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntityWatcher
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntityWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -827,8 +827,8 @@ package WinRt.Windows.Perception.Spatial is
       function TryGet
       (
          this : access ISpatialEntityStoreStatics_Interface;
-         session : Windows.System.RemoteSystems.IRemoteSystemSession;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntityStore
+         session : WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntityStore
       )
       return WinRt.Hresult is abstract;
 
@@ -840,7 +840,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Entity
       (
          this : access ISpatialEntityUpdatedEventArgs_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialEntity
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialEntity
       )
       return WinRt.Hresult is abstract;
 
@@ -852,7 +852,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Status
       (
          this : access ISpatialEntityWatcher_Interface;
-         RetVal : access Windows.Perception.Spatial.SpatialEntityWatcherStatus
+         RetVal : access WinRt.Windows.Perception.Spatial.SpatialEntityWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -860,14 +860,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialEntityWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access ISpatialEntityWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -875,14 +875,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialEntityWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access ISpatialEntityWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -890,14 +890,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialEntityWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access ISpatialEntityWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -905,14 +905,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialEntityWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access ISpatialEntityWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -936,42 +936,42 @@ package WinRt.Windows.Perception.Spatial is
       function get_Position
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function get_AbsoluteLinearVelocity
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_AbsoluteLinearAcceleration
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_AbsoluteAngularVelocity
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function get_AbsoluteAngularAcceleration
       (
          this : access ISpatialLocation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -983,14 +983,14 @@ package WinRt.Windows.Perception.Spatial is
       function get_AbsoluteAngularVelocityAxisAngle
       (
          this : access ISpatialLocation2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_AbsoluteAngularAccelerationAxisAngle
       (
          this : access ISpatialLocation2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1002,7 +1002,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Locatability
       (
          this : access ISpatialLocator_Interface;
-         RetVal : access Windows.Perception.Spatial.SpatialLocatability
+         RetVal : access WinRt.Windows.Perception.Spatial.SpatialLocatability
       )
       return WinRt.Hresult is abstract;
 
@@ -1010,14 +1010,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialLocator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LocatabilityChanged
       (
          this : access ISpatialLocator_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1025,91 +1025,91 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialLocator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PositionalTrackingDeactivating
       (
          this : access ISpatialLocator_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryLocateAtTimestamp
       (
          this : access ISpatialLocator_Interface;
-         timestamp : Windows.Perception.IPerceptionTimestamp;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocation
+         timestamp : WinRt.Windows.Perception.IPerceptionTimestamp;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocation
       )
       return WinRt.Hresult is abstract;
 
       function CreateAttachedFrameOfReferenceAtCurrentHeading
       (
          this : access ISpatialLocator_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateAttachedFrameOfReferenceAtCurrentHeading
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateAttachedFrameOfReferenceAtCurrentHeading
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         relativeOrientation : Windows.Foundation.Numerics.Quaternion;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateAttachedFrameOfReferenceAtCurrentHeading
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         relativeOrientation : Windows.Foundation.Numerics.Quaternion;
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
          relativeHeadingInRadians : WinRt.Double;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocatorAttachedFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateStationaryFrameOfReferenceAtCurrentLocation
       (
          this : access ISpatialLocator_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateStationaryFrameOfReferenceAtCurrentLocation
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         RetVal : access Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateStationaryFrameOfReferenceAtCurrentLocation
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         relativeOrientation : Windows.Foundation.Numerics.Quaternion;
-         RetVal : access Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateStationaryFrameOfReferenceAtCurrentLocation
       (
          this : access ISpatialLocator_Interface;
-         relativePosition : Windows.Foundation.Numerics.Vector3;
-         relativeOrientation : Windows.Foundation.Numerics.Quaternion;
+         relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
          relativeHeadingInRadians : WinRt.Double;
-         RetVal : access Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialStationaryFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1121,28 +1121,28 @@ package WinRt.Windows.Perception.Spatial is
       function get_RelativePosition
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativePosition
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeOrientation
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeOrientation
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -1156,15 +1156,15 @@ package WinRt.Windows.Perception.Spatial is
       function GetStationaryCoordinateSystemAtTimestamp
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         timestamp : Windows.Perception.IPerceptionTimestamp;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         timestamp : WinRt.Windows.Perception.IPerceptionTimestamp;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
       function TryGetRelativeHeadingAtTimestamp
       (
          this : access ISpatialLocatorAttachedFrameOfReference_Interface;
-         timestamp : Windows.Perception.IPerceptionTimestamp;
+         timestamp : WinRt.Windows.Perception.IPerceptionTimestamp;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1196,7 +1196,7 @@ package WinRt.Windows.Perception.Spatial is
       function GetDefault
       (
          this : access ISpatialLocatorStatics_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocator
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocator
       )
       return WinRt.Hresult is abstract;
 
@@ -1208,38 +1208,38 @@ package WinRt.Windows.Perception.Spatial is
       function get_CoordinateSystem
       (
          this : access ISpatialStageFrameOfReference_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
       function get_MovementRange
       (
          this : access ISpatialStageFrameOfReference_Interface;
-         RetVal : access Windows.Perception.Spatial.SpatialMovementRange
+         RetVal : access WinRt.Windows.Perception.Spatial.SpatialMovementRange
       )
       return WinRt.Hresult is abstract;
 
       function get_LookDirectionRange
       (
          this : access ISpatialStageFrameOfReference_Interface;
-         RetVal : access Windows.Perception.Spatial.SpatialLookDirectionRange
+         RetVal : access WinRt.Windows.Perception.Spatial.SpatialLookDirectionRange
       )
       return WinRt.Hresult is abstract;
 
       function GetCoordinateSystemAtCurrentLocation
       (
          this : access ISpatialStageFrameOfReference_Interface;
-         locator : Windows.Perception.Spatial.ISpatialLocator;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         locator : WinRt.Windows.Perception.Spatial.ISpatialLocator;
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
       function TryGetMovementBounds
       (
          this : access ISpatialStageFrameOfReference_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Foundation.Numerics.Vector3_Ptr
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1251,7 +1251,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_Current
       (
          this : access ISpatialStageFrameOfReferenceStatics_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialStageFrameOfReference
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialStageFrameOfReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1259,14 +1259,14 @@ package WinRt.Windows.Perception.Spatial is
       (
          this : access ISpatialStageFrameOfReferenceStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentChanged
       (
          this : access ISpatialStageFrameOfReferenceStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1285,7 +1285,7 @@ package WinRt.Windows.Perception.Spatial is
       function get_CoordinateSystem
       (
          this : access ISpatialStationaryFrameOfReference_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -1306,22 +1306,22 @@ package WinRt.Windows.Perception.Spatial is
 
    function TryCreateRelativeTo
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor;
 
    function TryCreateRelativeTo
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor;
 
    function TryCreateRelativeTo
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchor;
 
@@ -1350,7 +1350,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_RawCoordinateSystemAdjusted
    (
       this : in out SpatialAnchor;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_RemovedByUser
@@ -1407,17 +1407,17 @@ package WinRt.Windows.Perception.Spatial is
    function GetAnchorExportSufficiencyAsync
    (
       this : in out SpatialAnchorExporter;
-      anchor : Windows.Perception.Spatial.SpatialAnchor'Class;
-      purpose : Windows.Perception.Spatial.SpatialAnchorExportPurpose
+      anchor : WinRt.Windows.Perception.Spatial.SpatialAnchor'Class;
+      purpose : WinRt.Windows.Perception.Spatial.SpatialAnchorExportPurpose
    )
    return WinRt.Windows.Perception.Spatial.SpatialAnchorExportSufficiency'Class;
 
    function TryExportAnchorAsync
    (
       this : in out SpatialAnchorExporter;
-      anchor : Windows.Perception.Spatial.SpatialAnchor'Class;
-      purpose : Windows.Perception.Spatial.SpatialAnchorExportPurpose;
-      stream : Windows.Storage.Streams.IOutputStream
+      anchor : WinRt.Windows.Perception.Spatial.SpatialAnchor'Class;
+      purpose : WinRt.Windows.Perception.Spatial.SpatialAnchorExportPurpose;
+      stream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.Boolean;
 
@@ -1464,7 +1464,7 @@ package WinRt.Windows.Perception.Spatial is
    (
       this : in out SpatialAnchorStore;
       id : WinRt.WString;
-      anchor : Windows.Perception.Spatial.SpatialAnchor'Class
+      anchor : WinRt.Windows.Perception.Spatial.SpatialAnchor'Class
    )
    return WinRt.Boolean;
 
@@ -1485,14 +1485,14 @@ package WinRt.Windows.Perception.Spatial is
 
       function TryImportAnchorsAsync
       (
-         stream : Windows.Storage.Streams.IInputStream
+         stream : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.GenericObject;
 
       function TryExportAnchorsAsync
       (
          anchors : GenericObject;
-         stream : Windows.Storage.Streams.IOutputStream
+         stream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Boolean;
 
@@ -1512,29 +1512,29 @@ package WinRt.Windows.Perception.Spatial is
 
    function FromBox
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      box : Windows.Perception.Spatial.SpatialBoundingBox
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      box : WinRt.Windows.Perception.Spatial.SpatialBoundingBox
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume;
 
    function FromOrientedBox
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      box : Windows.Perception.Spatial.SpatialBoundingOrientedBox
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      box : WinRt.Windows.Perception.Spatial.SpatialBoundingOrientedBox
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume;
 
    function FromSphere
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      sphere : Windows.Perception.Spatial.SpatialBoundingSphere
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      sphere : WinRt.Windows.Perception.Spatial.SpatialBoundingSphere
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume;
 
    function FromFrustum
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      frustum : Windows.Perception.Spatial.SpatialBoundingFrustum
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      frustum : WinRt.Windows.Perception.Spatial.SpatialBoundingFrustum
    )
    return WinRt.Windows.Perception.Spatial.SpatialBoundingVolume;
 
@@ -1553,7 +1553,7 @@ package WinRt.Windows.Perception.Spatial is
    function TryGetTransformTo
    (
       this : in out SpatialCoordinateSystem;
-      target : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      target : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_Matrix4x4.Kind;
 
@@ -1568,14 +1568,14 @@ package WinRt.Windows.Perception.Spatial is
 
    function Constructor
    (
-      spatialAnchor_p : Windows.Perception.Spatial.SpatialAnchor'Class
+      spatialAnchor_p : WinRt.Windows.Perception.Spatial.SpatialAnchor'Class
    )
    return SpatialEntity;
 
    function Constructor
    (
-      spatialAnchor_p : Windows.Perception.Spatial.SpatialAnchor'Class;
-      propertySet : Windows.Foundation.Collections.ValueSet'Class
+      spatialAnchor_p : WinRt.Windows.Perception.Spatial.SpatialAnchor'Class;
+      propertySet : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return SpatialEntity;
 
@@ -1644,7 +1644,7 @@ package WinRt.Windows.Perception.Spatial is
 
    function TryGet
    (
-      session : Windows.System.RemoteSystems.RemoteSystemSession'Class
+      session : WinRt.Windows.System.RemoteSystems.RemoteSystemSession'Class
    )
    return WinRt.Windows.Perception.Spatial.SpatialEntityStore;
 
@@ -1654,13 +1654,13 @@ package WinRt.Windows.Perception.Spatial is
    procedure SaveAsync
    (
       this : in out SpatialEntityStore;
-      entity : Windows.Perception.Spatial.SpatialEntity'Class
+      entity : WinRt.Windows.Perception.Spatial.SpatialEntity'Class
    );
 
    procedure RemoveAsync
    (
       this : in out SpatialEntityStore;
-      entity : Windows.Perception.Spatial.SpatialEntity'Class
+      entity : WinRt.Windows.Perception.Spatial.SpatialEntity'Class
    );
 
    function CreateEntityWatcher
@@ -1709,7 +1709,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_Added
    (
       this : in out SpatialEntityWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -1722,7 +1722,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_Updated
    (
       this : in out SpatialEntityWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -1735,7 +1735,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_Removed
    (
       this : in out SpatialEntityWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -1748,7 +1748,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_EnumerationCompleted
    (
       this : in out SpatialEntityWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -1849,7 +1849,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_LocatabilityChanged
    (
       this : in out SpatialLocator;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PositionalTrackingDeactivating
@@ -1862,14 +1862,14 @@ package WinRt.Windows.Perception.Spatial is
    procedure remove_PositionalTrackingDeactivating
    (
       this : in out SpatialLocator;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryLocateAtTimestamp
    (
       this : in out SpatialLocator;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class;
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocation'Class;
 
@@ -1882,23 +1882,23 @@ package WinRt.Windows.Perception.Spatial is
    function CreateAttachedFrameOfReferenceAtCurrentHeading
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class;
 
    function CreateAttachedFrameOfReferenceAtCurrentHeading
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3;
-      relativeOrientation : Windows.Foundation.Numerics.Quaternion
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class;
 
    function CreateAttachedFrameOfReferenceAtCurrentHeading
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3;
-      relativeOrientation : Windows.Foundation.Numerics.Quaternion;
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
       relativeHeadingInRadians : WinRt.Double
    )
    return WinRt.Windows.Perception.Spatial.SpatialLocatorAttachedFrameOfReference'Class;
@@ -1912,23 +1912,23 @@ package WinRt.Windows.Perception.Spatial is
    function CreateStationaryFrameOfReferenceAtCurrentLocation
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class;
 
    function CreateStationaryFrameOfReferenceAtCurrentLocation
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3;
-      relativeOrientation : Windows.Foundation.Numerics.Quaternion
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class;
 
    function CreateStationaryFrameOfReferenceAtCurrentLocation
    (
       this : in out SpatialLocator;
-      relativePosition : Windows.Foundation.Numerics.Vector3;
-      relativeOrientation : Windows.Foundation.Numerics.Quaternion;
+      relativePosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      relativeOrientation : WinRt.Windows.Foundation.Numerics.Quaternion;
       relativeHeadingInRadians : WinRt.Double
    )
    return WinRt.Windows.Perception.Spatial.SpatialStationaryFrameOfReference'Class;
@@ -1951,7 +1951,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure put_RelativePosition
    (
       this : in out SpatialLocatorAttachedFrameOfReference;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_RelativeOrientation
@@ -1963,7 +1963,7 @@ package WinRt.Windows.Perception.Spatial is
    procedure put_RelativeOrientation
    (
       this : in out SpatialLocatorAttachedFrameOfReference;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure AdjustHeading
@@ -1975,14 +1975,14 @@ package WinRt.Windows.Perception.Spatial is
    function GetStationaryCoordinateSystemAtTimestamp
    (
       this : in out SpatialLocatorAttachedFrameOfReference;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
 
    function TryGetRelativeHeadingAtTimestamp
    (
       this : in out SpatialLocatorAttachedFrameOfReference;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return IReference_Double.Kind;
 
@@ -2027,7 +2027,7 @@ package WinRt.Windows.Perception.Spatial is
 
    procedure remove_CurrentChanged
    (
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RequestNewStageAsync
@@ -2057,14 +2057,14 @@ package WinRt.Windows.Perception.Spatial is
    function GetCoordinateSystemAtCurrentLocation
    (
       this : in out SpatialStageFrameOfReference;
-      locator : Windows.Perception.Spatial.SpatialLocator'Class
+      locator : WinRt.Windows.Perception.Spatial.SpatialLocator'Class
    )
    return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
 
    function TryGetMovementBounds
    (
       this : in out SpatialStageFrameOfReference;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Foundation.Numerics.Vector3_Array;
 

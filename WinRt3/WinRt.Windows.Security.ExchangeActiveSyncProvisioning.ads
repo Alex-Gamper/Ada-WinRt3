@@ -427,14 +427,14 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       function get_PasswordExpiration
       (
          this : access IEasClientSecurityPolicy_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_PasswordExpiration
       (
          this : access IEasClientSecurityPolicy_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -469,21 +469,21 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       function get_MaxInactivityTimeLock
       (
          this : access IEasClientSecurityPolicy_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxInactivityTimeLock
       (
          this : access IEasClientSecurityPolicy_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function CheckCompliance
       (
          this : access IEasClientSecurityPolicy_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults
       )
       return WinRt.Hresult is abstract;
 
@@ -509,56 +509,56 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       function get_RequireEncryptionResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult
       )
       return WinRt.Hresult is abstract;
 
       function get_MinPasswordLengthResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult
       )
       return WinRt.Hresult is abstract;
 
       function get_DisallowConvenienceLogonResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult
       )
       return WinRt.Hresult is abstract;
 
       function get_MinPasswordComplexCharactersResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult
       )
       return WinRt.Hresult is abstract;
 
       function get_PasswordExpirationResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult
       )
       return WinRt.Hresult is abstract;
 
       function get_PasswordHistoryResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxPasswordFailedAttemptsResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxInactivityTimeLockResult
       (
          this : access IEasComplianceResults_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult
       )
       return WinRt.Hresult is abstract;
 
@@ -570,7 +570,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       function get_EncryptionProviderType
       (
          this : access IEasComplianceResults2_Interface;
-         RetVal : access Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType
+         RetVal : access WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType
       )
       return WinRt.Hresult is abstract;
 
@@ -713,7 +713,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    procedure put_PasswordExpiration
    (
       this : in out EasClientSecurityPolicy;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_PasswordHistory
@@ -749,7 +749,7 @@ package WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    procedure put_MaxInactivityTimeLock
    (
       this : in out EasClientSecurityPolicy;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function CheckCompliance

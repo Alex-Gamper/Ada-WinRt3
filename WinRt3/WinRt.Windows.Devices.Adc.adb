@@ -71,14 +71,14 @@ package body WinRt.Windows.Devices.Adc is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Adc.IAdcController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Adc.IAdcController;
    begin
       return RetVal : WinRt.Windows.Devices.Adc.AdcController do
          Hr := this.m_IAdcChannel.all.get_Controller (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdcController := new Windows.Devices.Adc.IAdcController;
+         Retval.m_IAdcController := new WinRt.Windows.Devices.Adc.IAdcController;
          Retval.m_IAdcController.all := m_ComRetVal;
       end return;
    end;
@@ -160,7 +160,7 @@ package body WinRt.Windows.Devices.Adc is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Adc.Provider.IAdcProvider
+      provider : WinRt.Windows.Devices.Adc.Provider.IAdcProvider
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -283,7 +283,7 @@ package body WinRt.Windows.Devices.Adc is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdcController := new Windows.Devices.Adc.IAdcController;
+                     Retval.m_IAdcController := new WinRt.Windows.Devices.Adc.IAdcController;
                      Retval.m_IAdcController.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -377,7 +377,7 @@ package body WinRt.Windows.Devices.Adc is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Adc.AdcChannelMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Adc.AdcChannelMode;
    begin
       Hr := this.m_IAdcController.all.get_ChannelMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -389,7 +389,7 @@ package body WinRt.Windows.Devices.Adc is
    procedure put_ChannelMode
    (
       this : in out AdcController;
-      value : Windows.Devices.Adc.AdcChannelMode
+      value : WinRt.Windows.Devices.Adc.AdcChannelMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -404,7 +404,7 @@ package body WinRt.Windows.Devices.Adc is
    function IsChannelModeSupported
    (
       this : in out AdcController;
-      channelMode : Windows.Devices.Adc.AdcChannelMode
+      channelMode : WinRt.Windows.Devices.Adc.AdcChannelMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -428,14 +428,14 @@ package body WinRt.Windows.Devices.Adc is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Adc.IAdcChannel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Adc.IAdcChannel;
    begin
       return RetVal : WinRt.Windows.Devices.Adc.AdcChannel do
          Hr := this.m_IAdcController.all.OpenChannel (channelNumber, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdcChannel := new Windows.Devices.Adc.IAdcChannel;
+         Retval.m_IAdcChannel := new WinRt.Windows.Devices.Adc.IAdcChannel;
          Retval.m_IAdcChannel.all := m_ComRetVal;
       end return;
    end;

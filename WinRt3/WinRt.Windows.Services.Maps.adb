@@ -66,22 +66,22 @@ package body WinRt.Windows.Services.Maps is
 
    function Constructor
    (
-      point : Windows.Devices.Geolocation.Geopoint'Class;
-      kind : Windows.Services.Maps.WaypointKind
+      point : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      kind : WinRt.Windows.Services.Maps.WaypointKind
    )
    return EnhancedWaypoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.EnhancedWaypoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IEnhancedWaypoint");
       m_Factory    : access IEnhancedWaypointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Services.Maps.IEnhancedWaypoint;
+      m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IEnhancedWaypoint;
    begin
       return RetVal : EnhancedWaypoint do
          Hr := RoGetActivationFactory (m_hString, IID_IEnhancedWaypointFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (point.m_IGeopoint.all, kind, m_ComRetVal'Access);
-            Retval.m_IEnhancedWaypoint := new Windows.Services.Maps.IEnhancedWaypoint;
+            Retval.m_IEnhancedWaypoint := new WinRt.Windows.Services.Maps.IEnhancedWaypoint;
             Retval.m_IEnhancedWaypoint.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -100,14 +100,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IEnhancedWaypoint.all.get_Point (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+         Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
    end;
@@ -120,7 +120,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.WaypointKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.WaypointKind;
    begin
       Hr := this.m_IEnhancedWaypoint.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -160,7 +160,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.ManeuverWarningKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.ManeuverWarningKind;
    begin
       Hr := this.m_IManeuverWarning.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -177,7 +177,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.ManeuverWarningSeverity;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.ManeuverWarningSeverity;
    begin
       Hr := this.m_IManeuverWarning.all.get_Severity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -564,14 +564,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapLocation.all.get_Point (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+         Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
    end;
@@ -624,14 +624,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IMapAddress;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IMapAddress;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapAddress do
          Hr := this.m_IMapLocation.all.get_Address (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMapAddress := new Windows.Services.Maps.IMapAddress;
+         Retval.m_IMapAddress := new WinRt.Windows.Services.Maps.IMapAddress;
          Retval.m_IMapAddress.all := m_ComRetVal;
       end return;
    end;
@@ -642,8 +642,8 @@ package body WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
+         queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         accuracy : WinRt.Windows.Services.Maps.MapLocationDesiredAccuracy
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -699,7 +699,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
+                        Retval.m_IMapLocationFinderResult := new WinRt.Windows.Services.Maps.IMapLocationFinderResult;
                         Retval.m_IMapLocationFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -716,7 +716,7 @@ package body WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class
+         queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -772,7 +772,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
+                        Retval.m_IMapLocationFinderResult := new WinRt.Windows.Services.Maps.IMapLocationFinderResult;
                         Retval.m_IMapLocationFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -790,7 +790,7 @@ package body WinRt.Windows.Services.Maps is
       function FindLocationsAsync
       (
          searchText : WinRt.WString;
-         referencePoint : Windows.Devices.Geolocation.Geopoint'Class
+         referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -847,7 +847,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
+                        Retval.m_IMapLocationFinderResult := new WinRt.Windows.Services.Maps.IMapLocationFinderResult;
                         Retval.m_IMapLocationFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -866,7 +866,7 @@ package body WinRt.Windows.Services.Maps is
       function FindLocationsAsync
       (
          searchText : WinRt.WString;
-         referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
+         referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
          maxCount : WinRt.UInt32
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult is
@@ -924,7 +924,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapLocationFinderResult := new Windows.Services.Maps.IMapLocationFinderResult;
+                        Retval.m_IMapLocationFinderResult := new WinRt.Windows.Services.Maps.IMapLocationFinderResult;
                         Retval.m_IMapLocationFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -973,7 +973,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapLocation.Kind;
    begin
       Hr := this.m_IMapLocationFinderResult.all.get_Locations (m_ComRetVal'Access);
@@ -993,7 +993,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapLocationFinderStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapLocationFinderStatus;
    begin
       Hr := this.m_IMapLocationFinderResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1075,14 +1075,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := this.m_IMapRoute.all.get_BoundingBox (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+         Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          Retval.m_IGeoboundingBox.all := m_ComRetVal;
       end return;
    end;
@@ -1112,7 +1112,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMapRoute.all.get_EstimatedDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1129,14 +1129,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IMapRoute.all.get_Path (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
+         Retval.m_IGeopath := new WinRt.Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
    end;
@@ -1149,7 +1149,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapRouteLeg.Kind;
    begin
       Hr := this.m_IMapRoute.all.get_Legs (m_ComRetVal'Access);
@@ -1187,7 +1187,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRoute2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapRouteRestrictions;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapRouteRestrictions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRoute_Interface, WinRt.Windows.Services.Maps.IMapRoute2, WinRt.Windows.Services.Maps.IID_IMapRoute2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapRoute.all);
@@ -1229,7 +1229,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRoute3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRoute_Interface, WinRt.Windows.Services.Maps.IMapRoute3, WinRt.Windows.Services.Maps.IID_IMapRoute3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapRoute.all);
@@ -1250,7 +1250,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRoute3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.TrafficCongestion;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.TrafficCongestion;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRoute_Interface, WinRt.Windows.Services.Maps.IMapRoute3, WinRt.Windows.Services.Maps.IID_IMapRoute3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapRoute.all);
@@ -1309,13 +1309,13 @@ package body WinRt.Windows.Services.Maps is
    function Constructor return MapRouteDrivingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteDrivingOptions");
-      m_ComRetVal  : aliased Windows.Services.Maps.IMapRouteDrivingOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IMapRouteDrivingOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IMapRouteDrivingOptions;
    begin
       return RetVal : MapRouteDrivingOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMapRouteDrivingOptions := new Windows.Services.Maps.IMapRouteDrivingOptions;
+            Retval.m_IMapRouteDrivingOptions := new WinRt.Windows.Services.Maps.IMapRouteDrivingOptions;
             Retval.m_IMapRouteDrivingOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1365,7 +1365,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMapRouteDrivingOptions.all.get_InitialHeading (m_ComRetVal'Access);
@@ -1400,7 +1400,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapRouteOptimization;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapRouteOptimization;
    begin
       Hr := this.m_IMapRouteDrivingOptions.all.get_RouteOptimization (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1412,7 +1412,7 @@ package body WinRt.Windows.Services.Maps is
    procedure put_RouteOptimization
    (
       this : in out MapRouteDrivingOptions;
-      value : Windows.Services.Maps.MapRouteOptimization
+      value : WinRt.Windows.Services.Maps.MapRouteOptimization
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1432,7 +1432,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapRouteRestrictions;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapRouteRestrictions;
    begin
       Hr := this.m_IMapRouteDrivingOptions.all.get_RouteRestrictions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1444,7 +1444,7 @@ package body WinRt.Windows.Services.Maps is
    procedure put_RouteRestrictions
    (
       this : in out MapRouteDrivingOptions;
-      value : Windows.Services.Maps.MapRouteRestrictions
+      value : WinRt.Windows.Services.Maps.MapRouteRestrictions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1465,7 +1465,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRouteDrivingOptions2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRouteDrivingOptions_Interface, WinRt.Windows.Services.Maps.IMapRouteDrivingOptions2, WinRt.Windows.Services.Maps.IID_IMapRouteDrivingOptions2'Unchecked_Access);
    begin
@@ -1505,9 +1505,9 @@ package body WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         options : WinRt.Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1563,7 +1563,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1580,8 +1580,8 @@ package body WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1637,7 +1637,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1654,9 +1654,9 @@ package body WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1712,7 +1712,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1729,10 +1729,10 @@ package body WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1788,7 +1788,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1805,10 +1805,10 @@ package body WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
@@ -1865,7 +1865,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1938,7 +1938,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1956,7 +1956,7 @@ package body WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -2012,7 +2012,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2030,8 +2030,8 @@ package body WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -2087,7 +2087,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2105,8 +2105,8 @@ package body WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
@@ -2163,7 +2163,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2180,8 +2180,8 @@ package body WinRt.Windows.Services.Maps is
 
       function GetWalkingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -2237,7 +2237,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2310,7 +2310,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2383,7 +2383,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2401,7 +2401,7 @@ package body WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromEnhancedWaypointsAsync
       (
          waypoints : GenericObject;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+         options : WinRt.Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult is
          Hr               : WinRt.HResult := S_OK;
@@ -2457,7 +2457,7 @@ package body WinRt.Windows.Services.Maps is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IMapRouteFinderResult := new Windows.Services.Maps.IMapRouteFinderResult;
+                        Retval.m_IMapRouteFinderResult := new WinRt.Windows.Services.Maps.IMapRouteFinderResult;
                         Retval.m_IMapRouteFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2505,14 +2505,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IMapRoute;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IMapRoute;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapRoute do
          Hr := this.m_IMapRouteFinderResult.all.get_Route (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMapRoute := new Windows.Services.Maps.IMapRoute;
+         Retval.m_IMapRoute := new WinRt.Windows.Services.Maps.IMapRoute;
          Retval.m_IMapRoute.all := m_ComRetVal;
       end return;
    end;
@@ -2525,7 +2525,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapRouteFinderStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapRouteFinderStatus;
    begin
       Hr := this.m_IMapRouteFinderResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2543,7 +2543,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRouteFinderResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapRoute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRouteFinderResult_Interface, WinRt.Windows.Services.Maps.IMapRouteFinderResult2, WinRt.Windows.Services.Maps.IID_IMapRouteFinderResult2'Unchecked_Access);
    begin
@@ -2589,14 +2589,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := this.m_IMapRouteLeg.all.get_BoundingBox (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+         Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          Retval.m_IGeoboundingBox.all := m_ComRetVal;
       end return;
    end;
@@ -2609,14 +2609,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopath;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopath do
          Hr := this.m_IMapRouteLeg.all.get_Path (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
+         Retval.m_IGeopath := new WinRt.Windows.Devices.Geolocation.IGeopath;
          Retval.m_IGeopath.all := m_ComRetVal;
       end return;
    end;
@@ -2646,7 +2646,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMapRouteLeg.all.get_EstimatedDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2663,7 +2663,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMapRouteManeuver.Kind;
    begin
       Hr := this.m_IMapRouteLeg.all.get_Maneuvers (m_ComRetVal'Access);
@@ -2684,7 +2684,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRouteLeg2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRouteLeg_Interface, WinRt.Windows.Services.Maps.IMapRouteLeg2, WinRt.Windows.Services.Maps.IID_IMapRouteLeg2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapRouteLeg.all);
@@ -2705,7 +2705,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRouteLeg2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.TrafficCongestion;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.TrafficCongestion;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRouteLeg_Interface, WinRt.Windows.Services.Maps.IMapRouteLeg2, WinRt.Windows.Services.Maps.IID_IMapRouteLeg2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMapRouteLeg.all);
@@ -2748,14 +2748,14 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_IMapRouteManeuver.all.get_StartingPoint (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+         Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
    end;
@@ -2805,7 +2805,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapRouteManeuverKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapRouteManeuverKind;
    begin
       Hr := this.m_IMapRouteManeuver.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2842,7 +2842,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.MapManeuverNotices;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapManeuverNotices;
    begin
       Hr := this.m_IMapRouteManeuver.all.get_ManeuverNotices (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2926,7 +2926,7 @@ package body WinRt.Windows.Services.Maps is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.IMapRouteManeuver3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IManeuverWarning.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.IMapRouteManeuver_Interface, WinRt.Windows.Services.Maps.IMapRouteManeuver3, WinRt.Windows.Services.Maps.IID_IMapRouteManeuver3'Unchecked_Access);
    begin
@@ -2995,7 +2995,7 @@ package body WinRt.Windows.Services.Maps is
 
       procedure put_DataUsagePreference
       (
-         value : Windows.Services.Maps.MapServiceDataUsagePreference
+         value : WinRt.Windows.Services.Maps.MapServiceDataUsagePreference
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3021,7 +3021,7 @@ package body WinRt.Windows.Services.Maps is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapService");
          m_Factory        : access WinRt.Windows.Services.Maps.IMapServiceStatics4_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Services.Maps.MapServiceDataUsagePreference;
+         m_ComRetVal      : aliased WinRt.Windows.Services.Maps.MapServiceDataUsagePreference;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMapServiceStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -3117,7 +3117,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
       HStr_displayAddress : constant WinRt.HString := To_HString (displayAddress);
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
@@ -3128,7 +3128,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3147,7 +3147,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
       HStr_displayAddress : constant WinRt.HString := To_HString (displayAddress);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
@@ -3159,7 +3159,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3170,7 +3170,7 @@ package body WinRt.Windows.Services.Maps is
 
    function Create
    (
-      referencePoint : Windows.Devices.Geolocation.Geopoint'Class
+      referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -3178,7 +3178,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaceInfoStatics'Access , m_Factory'Address);
@@ -3188,7 +3188,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3197,8 +3197,8 @@ package body WinRt.Windows.Services.Maps is
 
    function Create
    (
-      referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
-      options : Windows.Services.Maps.PlaceInfoCreateOptions'Class
+      referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      options : WinRt.Windows.Services.Maps.PlaceInfoCreateOptions'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -3206,7 +3206,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaceInfoStatics'Access , m_Factory'Address);
@@ -3216,7 +3216,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3233,7 +3233,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
       HStr_identifier : constant WinRt.HString := To_HString (identifier);
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
@@ -3244,7 +3244,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3255,8 +3255,8 @@ package body WinRt.Windows.Services.Maps is
    function CreateFromIdentifier
    (
       identifier : WinRt.WString;
-      defaultPoint : Windows.Devices.Geolocation.Geopoint'Class;
-      options : Windows.Services.Maps.PlaceInfoCreateOptions'Class
+      defaultPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      options : WinRt.Windows.Services.Maps.PlaceInfoCreateOptions'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -3264,7 +3264,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
       HStr_identifier : constant WinRt.HString := To_HString (identifier);
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
@@ -3275,7 +3275,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3285,7 +3285,7 @@ package body WinRt.Windows.Services.Maps is
 
    function CreateFromMapLocation
    (
-      location : Windows.Services.Maps.MapLocation'Class
+      location : WinRt.Windows.Services.Maps.MapLocation'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -3293,7 +3293,7 @@ package body WinRt.Windows.Services.Maps is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfo");
       m_Factory        : access WinRt.Windows.Services.Maps.IPlaceInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
    begin
       return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaceInfoStatics'Access , m_Factory'Address);
@@ -3303,7 +3303,7 @@ package body WinRt.Windows.Services.Maps is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+            Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
             Retval.m_IPlaceInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3337,7 +3337,7 @@ package body WinRt.Windows.Services.Maps is
    procedure Show
    (
       this : in out PlaceInfo;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3352,8 +3352,8 @@ package body WinRt.Windows.Services.Maps is
    procedure Show
    (
       this : in out PlaceInfo;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3433,7 +3433,7 @@ package body WinRt.Windows.Services.Maps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoshape;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoshape;
    begin
       Hr := this.m_IPlaceInfo.all.get_Geoshape (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3468,13 +3468,13 @@ package body WinRt.Windows.Services.Maps is
    function Constructor return PlaceInfoCreateOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfoCreateOptions");
-      m_ComRetVal  : aliased Windows.Services.Maps.IPlaceInfoCreateOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IPlaceInfoCreateOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IPlaceInfoCreateOptions;
    begin
       return RetVal : PlaceInfoCreateOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPlaceInfoCreateOptions := new Windows.Services.Maps.IPlaceInfoCreateOptions;
+            Retval.m_IPlaceInfoCreateOptions := new WinRt.Windows.Services.Maps.IPlaceInfoCreateOptions;
             Retval.m_IPlaceInfoCreateOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

@@ -118,7 +118,7 @@ package WinRt.Windows.Data.Pdf is
       (
          this : access IPdfDocument_Interface;
          pageIndex : WinRt.UInt32;
-         RetVal : access Windows.Data.Pdf.IPdfPage
+         RetVal : access WinRt.Windows.Data.Pdf.IPdfPage
       )
       return WinRt.Hresult is abstract;
 
@@ -144,7 +144,7 @@ package WinRt.Windows.Data.Pdf is
       function LoadFromFileAsync
       (
          this : access IPdfDocumentStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -152,7 +152,7 @@ package WinRt.Windows.Data.Pdf is
       function LoadFromFileAsync
       (
          this : access IPdfDocumentStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          password : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -161,7 +161,7 @@ package WinRt.Windows.Data.Pdf is
       function LoadFromStreamAsync
       (
          this : access IPdfDocumentStatics_Interface;
-         inputStream : Windows.Storage.Streams.IRandomAccessStream;
+         inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -169,7 +169,7 @@ package WinRt.Windows.Data.Pdf is
       function LoadFromStreamAsync
       (
          this : access IPdfDocumentStatics_Interface;
-         inputStream : Windows.Storage.Streams.IRandomAccessStream;
+         inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          password : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -183,24 +183,24 @@ package WinRt.Windows.Data.Pdf is
       function RenderToStreamAsync
       (
          this : access IPdfPage_Interface;
-         outputStream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RenderToStreamAsync
       (
          this : access IPdfPage_Interface;
-         outputStream : Windows.Storage.Streams.IRandomAccessStream;
-         options : Windows.Data.Pdf.IPdfPageRenderOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         options : WinRt.Windows.Data.Pdf.IPdfPageRenderOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function PreparePageAsync
       (
          this : access IPdfPage_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -214,21 +214,21 @@ package WinRt.Windows.Data.Pdf is
       function get_Size
       (
          this : access IPdfPage_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_Dimensions
       (
          this : access IPdfPage_Interface;
-         RetVal : access Windows.Data.Pdf.IPdfPageDimensions
+         RetVal : access WinRt.Windows.Data.Pdf.IPdfPageDimensions
       )
       return WinRt.Hresult is abstract;
 
       function get_Rotation
       (
          this : access IPdfPage_Interface;
-         RetVal : access Windows.Data.Pdf.PdfPageRotation
+         RetVal : access WinRt.Windows.Data.Pdf.PdfPageRotation
       )
       return WinRt.Hresult is abstract;
 
@@ -247,35 +247,35 @@ package WinRt.Windows.Data.Pdf is
       function get_MediaBox
       (
          this : access IPdfPageDimensions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_CropBox
       (
          this : access IPdfPageDimensions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_BleedBox
       (
          this : access IPdfPageDimensions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimBox
       (
          this : access IPdfPageDimensions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_ArtBox
       (
          this : access IPdfPageDimensions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -287,14 +287,14 @@ package WinRt.Windows.Data.Pdf is
       function get_SourceRect
       (
          this : access IPdfPageRenderOptions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceRect
       (
          this : access IPdfPageRenderOptions_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -329,14 +329,14 @@ package WinRt.Windows.Data.Pdf is
       function get_BackgroundColor
       (
          this : access IPdfPageRenderOptions_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access IPdfPageRenderOptions_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -385,26 +385,26 @@ package WinRt.Windows.Data.Pdf is
 
    function LoadFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Data.Pdf.PdfDocument;
 
    function LoadFromFileAsync
    (
-      file : Windows.Storage.IStorageFile;
+      file : WinRt.Windows.Storage.IStorageFile;
       password : WinRt.WString
    )
    return WinRt.Windows.Data.Pdf.PdfDocument;
 
    function LoadFromStreamAsync
    (
-      inputStream : Windows.Storage.Streams.IRandomAccessStream
+      inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Data.Pdf.PdfDocument;
 
    function LoadFromStreamAsync
    (
-      inputStream : Windows.Storage.Streams.IRandomAccessStream;
+      inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       password : WinRt.WString
    )
    return WinRt.Windows.Data.Pdf.PdfDocument;
@@ -443,14 +443,14 @@ package WinRt.Windows.Data.Pdf is
    procedure RenderToStreamAsync
    (
       this : in out PdfPage;
-      outputStream : Windows.Storage.Streams.IRandomAccessStream
+      outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure RenderToStreamAsync
    (
       this : in out PdfPage;
-      outputStream : Windows.Storage.Streams.IRandomAccessStream;
-      options : Windows.Data.Pdf.PdfPageRenderOptions'Class
+      outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      options : WinRt.Windows.Data.Pdf.PdfPageRenderOptions'Class
    );
 
    procedure PreparePageAsync
@@ -555,7 +555,7 @@ package WinRt.Windows.Data.Pdf is
    procedure put_SourceRect
    (
       this : in out PdfPageRenderOptions;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_DestinationWidth
@@ -591,7 +591,7 @@ package WinRt.Windows.Data.Pdf is
    procedure put_BackgroundColor
    (
       this : in out PdfPageRenderOptions;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_IsIgnoringHighContrast

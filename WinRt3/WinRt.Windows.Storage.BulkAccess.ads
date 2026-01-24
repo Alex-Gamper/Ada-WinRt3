@@ -159,42 +159,42 @@ package WinRt.Windows.Storage.BulkAccess is
       function CreateWithMode
       (
          this : access IFileInformationFactoryFactory_Interface;
-         queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
-         RetVal : access Windows.Storage.BulkAccess.IFileInformationFactory
+         queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
+         RetVal : access WinRt.Windows.Storage.BulkAccess.IFileInformationFactory
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithModeAndSize
       (
          this : access IFileInformationFactoryFactory_Interface;
-         queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedThumbnailSize : WinRt.UInt32;
-         RetVal : access Windows.Storage.BulkAccess.IFileInformationFactory
+         RetVal : access WinRt.Windows.Storage.BulkAccess.IFileInformationFactory
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithModeAndSizeAndOptions
       (
          this : access IFileInformationFactoryFactory_Interface;
-         queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedThumbnailSize : WinRt.UInt32;
-         thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions;
-         RetVal : access Windows.Storage.BulkAccess.IFileInformationFactory
+         thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
+         RetVal : access WinRt.Windows.Storage.BulkAccess.IFileInformationFactory
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithModeAndSizeAndOptionsAndFlags
       (
          this : access IFileInformationFactoryFactory_Interface;
-         queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedThumbnailSize : WinRt.UInt32;
-         thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions;
+         thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
          delayLoad : WinRt.Boolean;
-         RetVal : access Windows.Storage.BulkAccess.IFileInformationFactory
+         RetVal : access WinRt.Windows.Storage.BulkAccess.IFileInformationFactory
       )
       return WinRt.Hresult is abstract;
 
@@ -206,42 +206,42 @@ package WinRt.Windows.Storage.BulkAccess is
       function get_MusicProperties
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.FileProperties.IMusicProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IMusicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoProperties
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.FileProperties.IVideoProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IVideoProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_ImageProperties
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.FileProperties.IImageProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IImageProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentProperties
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.FileProperties.IDocumentProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IDocumentProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_BasicProperties
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.FileProperties.IBasicProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IBasicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access IStorageItemInformation_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -249,14 +249,14 @@ package WinRt.Windows.Storage.BulkAccess is
       (
          this : access IStorageItemInformation_Interface;
          changedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ThumbnailUpdated
       (
          this : access IStorageItemInformation_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -264,14 +264,14 @@ package WinRt.Windows.Storage.BulkAccess is
       (
          this : access IStorageItemInformation_Interface;
          changedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertiesUpdated
       (
          this : access IStorageItemInformation_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -336,7 +336,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure remove_ThumbnailUpdated
    (
       this : in out FileInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PropertiesUpdated
@@ -349,7 +349,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure remove_PropertiesUpdated
    (
       this : in out FileInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_FileType
@@ -367,7 +367,7 @@ package WinRt.Windows.Storage.BulkAccess is
    function OpenAsync
    (
       this : in out FileInformation;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
@@ -380,14 +380,14 @@ package WinRt.Windows.Storage.BulkAccess is
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class;
@@ -395,43 +395,43 @@ package WinRt.Windows.Storage.BulkAccess is
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
    procedure CopyAndReplaceAsync
    (
       this : in out FileInformation;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    );
 
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    );
 
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure MoveAndReplaceAsync
    (
       this : in out FileInformation;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    );
 
    function OpenSequentialReadAsync
@@ -456,7 +456,7 @@ package WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FileInformation;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure DeleteAsync
@@ -467,7 +467,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure DeleteAsync
    (
       this : in out FileInformation;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    );
 
    function GetBasicPropertiesAsync
@@ -503,21 +503,21 @@ package WinRt.Windows.Storage.BulkAccess is
    function IsOfType
    (
       this : in out FileInformation;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean;
 
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -525,9 +525,9 @@ package WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -564,7 +564,7 @@ package WinRt.Windows.Storage.BulkAccess is
    function IsEqual
    (
       this : in out FileInformation;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 
@@ -583,15 +583,15 @@ package WinRt.Windows.Storage.BulkAccess is
    function OpenAsync
    (
       this : in out FileInformation;
-      accessMode : Windows.Storage.FileAccessMode;
-      options : Windows.Storage.StorageOpenOptions
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
    function OpenTransactedWriteAsync
    (
       this : in out FileInformation;
-      options : Windows.Storage.StorageOpenOptions
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class;
 
@@ -606,34 +606,34 @@ package WinRt.Windows.Storage.BulkAccess is
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return FileInformationFactory;
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32
    )
    return FileInformationFactory;
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32;
-      thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions
+      thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return FileInformationFactory;
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32;
-      thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions;
+      thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
       delayLoad : WinRt.Boolean
    )
    return FileInformationFactory;
@@ -756,7 +756,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure remove_ThumbnailUpdated
    (
       this : in out FolderInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PropertiesUpdated
@@ -769,7 +769,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure remove_PropertiesUpdated
    (
       this : in out FolderInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateFileAsync
@@ -783,7 +783,7 @@ package WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
@@ -798,7 +798,7 @@ package WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
@@ -851,7 +851,7 @@ package WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure DeleteAsync
@@ -862,7 +862,7 @@ package WinRt.Windows.Storage.BulkAccess is
    procedure DeleteAsync
    (
       this : in out FolderInformation;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    );
 
    function GetBasicPropertiesAsync
@@ -898,21 +898,21 @@ package WinRt.Windows.Storage.BulkAccess is
    function IsOfType
    (
       this : in out FolderInformation;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean;
 
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -920,9 +920,9 @@ package WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -965,14 +965,14 @@ package WinRt.Windows.Storage.BulkAccess is
    function CreateFileQuery
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class;
 
    function CreateFileQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class;
 
@@ -985,14 +985,14 @@ package WinRt.Windows.Storage.BulkAccess is
    function CreateFolderQuery
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class;
 
    function CreateFolderQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class;
 
@@ -1005,14 +1005,14 @@ package WinRt.Windows.Storage.BulkAccess is
    function CreateItemQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class;
 
    function GetFilesAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -1021,14 +1021,14 @@ package WinRt.Windows.Storage.BulkAccess is
    function GetFilesAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.GenericObject;
 
    function GetFoldersAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery;
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -1037,7 +1037,7 @@ package WinRt.Windows.Storage.BulkAccess is
    function GetFoldersAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.GenericObject;
 
@@ -1052,21 +1052,21 @@ package WinRt.Windows.Storage.BulkAccess is
    function AreQueryOptionsSupported
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Boolean;
 
    function IsCommonFolderQuerySupported
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Boolean;
 
    function IsCommonFileQuerySupported
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Boolean;
 
@@ -1079,7 +1079,7 @@ package WinRt.Windows.Storage.BulkAccess is
    function IsEqual
    (
       this : in out FolderInformation;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 

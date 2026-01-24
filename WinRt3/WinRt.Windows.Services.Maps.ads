@@ -601,14 +601,14 @@ package WinRt.Windows.Services.Maps is
       function get_Point
       (
          this : access IEnhancedWaypoint_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IEnhancedWaypoint_Interface;
-         RetVal : access Windows.Services.Maps.WaypointKind
+         RetVal : access WinRt.Windows.Services.Maps.WaypointKind
       )
       return WinRt.Hresult is abstract;
 
@@ -620,9 +620,9 @@ package WinRt.Windows.Services.Maps is
       function Create
       (
          this : access IEnhancedWaypointFactory_Interface;
-         point : Windows.Devices.Geolocation.IGeopoint;
-         kind : Windows.Services.Maps.WaypointKind;
-         RetVal : access Windows.Services.Maps.IEnhancedWaypoint
+         point : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         kind : WinRt.Windows.Services.Maps.WaypointKind;
+         RetVal : access WinRt.Windows.Services.Maps.IEnhancedWaypoint
       )
       return WinRt.Hresult is abstract;
 
@@ -634,14 +634,14 @@ package WinRt.Windows.Services.Maps is
       function get_Kind
       (
          this : access IManeuverWarning_Interface;
-         RetVal : access Windows.Services.Maps.ManeuverWarningKind
+         RetVal : access WinRt.Windows.Services.Maps.ManeuverWarningKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Severity
       (
          this : access IManeuverWarning_Interface;
-         RetVal : access Windows.Services.Maps.ManeuverWarningSeverity
+         RetVal : access WinRt.Windows.Services.Maps.ManeuverWarningSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -775,7 +775,7 @@ package WinRt.Windows.Services.Maps is
       function get_Point
       (
          this : access IMapLocation_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.Services.Maps is
       function get_Address
       (
          this : access IMapLocation_Interface;
-         RetVal : access Windows.Services.Maps.IMapAddress
+         RetVal : access WinRt.Windows.Services.Maps.IMapAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -815,7 +815,7 @@ package WinRt.Windows.Services.Maps is
       function get_Status
       (
          this : access IMapLocationFinderResult_Interface;
-         RetVal : access Windows.Services.Maps.MapLocationFinderStatus
+         RetVal : access WinRt.Windows.Services.Maps.MapLocationFinderStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -827,7 +827,7 @@ package WinRt.Windows.Services.Maps is
       function FindLocationsAtAsync
       (
          this : access IMapLocationFinderStatics_Interface;
-         queryPoint : Windows.Devices.Geolocation.IGeopoint;
+         queryPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -836,7 +836,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapLocationFinderStatics_Interface;
          searchText : WinRt.HString;
-         referencePoint : Windows.Devices.Geolocation.IGeopoint;
+         referencePoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -845,7 +845,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapLocationFinderStatics_Interface;
          searchText : WinRt.HString;
-         referencePoint : Windows.Devices.Geolocation.IGeopoint;
+         referencePoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          maxCount : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -859,8 +859,8 @@ package WinRt.Windows.Services.Maps is
       function FindLocationsAtAsync
       (
          this : access IMapLocationFinderStatics2_Interface;
-         queryPoint : Windows.Devices.Geolocation.IGeopoint;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy;
+         queryPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         accuracy : WinRt.Windows.Services.Maps.MapLocationDesiredAccuracy;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -890,7 +890,7 @@ package WinRt.Windows.Services.Maps is
       function get_BoundingBox
       (
          this : access IMapRoute_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -904,14 +904,14 @@ package WinRt.Windows.Services.Maps is
       function get_EstimatedDuration
       (
          this : access IMapRoute_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Path
       (
          this : access IMapRoute_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -937,7 +937,7 @@ package WinRt.Windows.Services.Maps is
       function get_ViolatedRestrictions
       (
          this : access IMapRoute2_Interface;
-         RetVal : access Windows.Services.Maps.MapRouteRestrictions
+         RetVal : access WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Hresult is abstract;
 
@@ -956,14 +956,14 @@ package WinRt.Windows.Services.Maps is
       function get_DurationWithoutTraffic
       (
          this : access IMapRoute3_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrafficCongestion
       (
          this : access IMapRoute3_Interface;
-         RetVal : access Windows.Services.Maps.TrafficCongestion
+         RetVal : access WinRt.Windows.Services.Maps.TrafficCongestion
       )
       return WinRt.Hresult is abstract;
 
@@ -1015,28 +1015,28 @@ package WinRt.Windows.Services.Maps is
       function get_RouteOptimization
       (
          this : access IMapRouteDrivingOptions_Interface;
-         RetVal : access Windows.Services.Maps.MapRouteOptimization
+         RetVal : access WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Hresult is abstract;
 
       function put_RouteOptimization
       (
          this : access IMapRouteDrivingOptions_Interface;
-         value : Windows.Services.Maps.MapRouteOptimization
+         value : WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Hresult is abstract;
 
       function get_RouteRestrictions
       (
          this : access IMapRouteDrivingOptions_Interface;
-         RetVal : access Windows.Services.Maps.MapRouteRestrictions
+         RetVal : access WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Hresult is abstract;
 
       function put_RouteRestrictions
       (
          this : access IMapRouteDrivingOptions_Interface;
-         value : Windows.Services.Maps.MapRouteRestrictions
+         value : WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Hresult is abstract;
 
@@ -1067,14 +1067,14 @@ package WinRt.Windows.Services.Maps is
       function get_Route
       (
          this : access IMapRouteFinderResult_Interface;
-         RetVal : access Windows.Services.Maps.IMapRoute
+         RetVal : access WinRt.Windows.Services.Maps.IMapRoute
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IMapRouteFinderResult_Interface;
-         RetVal : access Windows.Services.Maps.MapRouteFinderStatus
+         RetVal : access WinRt.Windows.Services.Maps.MapRouteFinderStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,8 +1098,8 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteAsync
       (
          this : access IMapRouteFinderStatics_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1107,9 +1107,9 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteAsync
       (
          this : access IMapRouteFinderStatics_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1117,10 +1117,10 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteAsync
       (
          this : access IMapRouteFinderStatics_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1128,10 +1128,10 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteAsync
       (
          this : access IMapRouteFinderStatics_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double;
          RetVal : access GenericObject
       )
@@ -1149,7 +1149,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapRouteFinderStatics_Interface;
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1158,8 +1158,8 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapRouteFinderStatics_Interface;
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1168,8 +1168,8 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapRouteFinderStatics_Interface;
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double;
          RetVal : access GenericObject
       )
@@ -1178,8 +1178,8 @@ package WinRt.Windows.Services.Maps is
       function GetWalkingRouteAsync
       (
          this : access IMapRouteFinderStatics_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1200,9 +1200,9 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteAsync
       (
          this : access IMapRouteFinderStatics2_Interface;
-         startPoint : Windows.Devices.Geolocation.IGeopoint;
-         endPoint : Windows.Devices.Geolocation.IGeopoint;
-         options : Windows.Services.Maps.IMapRouteDrivingOptions;
+         startPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         endPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         options : WinRt.Windows.Services.Maps.IMapRouteDrivingOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1224,7 +1224,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IMapRouteFinderStatics3_Interface;
          waypoints : GenericObject;
-         options : Windows.Services.Maps.IMapRouteDrivingOptions;
+         options : WinRt.Windows.Services.Maps.IMapRouteDrivingOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1237,14 +1237,14 @@ package WinRt.Windows.Services.Maps is
       function get_BoundingBox
       (
          this : access IMapRouteLeg_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
       function get_Path
       (
          this : access IMapRouteLeg_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -1258,7 +1258,7 @@ package WinRt.Windows.Services.Maps is
       function get_EstimatedDuration
       (
          this : access IMapRouteLeg_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1277,14 +1277,14 @@ package WinRt.Windows.Services.Maps is
       function get_DurationWithoutTraffic
       (
          this : access IMapRouteLeg2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrafficCongestion
       (
          this : access IMapRouteLeg2_Interface;
-         RetVal : access Windows.Services.Maps.TrafficCongestion
+         RetVal : access WinRt.Windows.Services.Maps.TrafficCongestion
       )
       return WinRt.Hresult is abstract;
 
@@ -1296,7 +1296,7 @@ package WinRt.Windows.Services.Maps is
       function get_StartingPoint
       (
          this : access IMapRouteManeuver_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1317,7 +1317,7 @@ package WinRt.Windows.Services.Maps is
       function get_Kind
       (
          this : access IMapRouteManeuver_Interface;
-         RetVal : access Windows.Services.Maps.MapRouteManeuverKind
+         RetVal : access WinRt.Windows.Services.Maps.MapRouteManeuverKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1331,7 +1331,7 @@ package WinRt.Windows.Services.Maps is
       function get_ManeuverNotices
       (
          this : access IMapRouteManeuver_Interface;
-         RetVal : access Windows.Services.Maps.MapManeuverNotices
+         RetVal : access WinRt.Windows.Services.Maps.MapManeuverNotices
       )
       return WinRt.Hresult is abstract;
 
@@ -1424,14 +1424,14 @@ package WinRt.Windows.Services.Maps is
       function put_DataUsagePreference
       (
          this : access IMapServiceStatics4_Interface;
-         value : Windows.Services.Maps.MapServiceDataUsagePreference
+         value : WinRt.Windows.Services.Maps.MapServiceDataUsagePreference
       )
       return WinRt.Hresult is abstract;
 
       function get_DataUsagePreference
       (
          this : access IMapServiceStatics4_Interface;
-         RetVal : access Windows.Services.Maps.MapServiceDataUsagePreference
+         RetVal : access WinRt.Windows.Services.Maps.MapServiceDataUsagePreference
       )
       return WinRt.Hresult is abstract;
 
@@ -1443,15 +1443,15 @@ package WinRt.Windows.Services.Maps is
       function Show
       (
          this : access IPlaceInfo_Interface;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access IPlaceInfo_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
@@ -1479,7 +1479,7 @@ package WinRt.Windows.Services.Maps is
       function get_Geoshape
       (
          this : access IPlaceInfo_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoshape
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoshape
       )
       return WinRt.Hresult is abstract;
 
@@ -1524,17 +1524,17 @@ package WinRt.Windows.Services.Maps is
       function Create
       (
          this : access IPlaceInfoStatics_Interface;
-         referencePoint : Windows.Devices.Geolocation.IGeopoint;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         referencePoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
       function Create
       (
          this : access IPlaceInfoStatics_Interface;
-         referencePoint : Windows.Devices.Geolocation.IGeopoint;
-         options : Windows.Services.Maps.IPlaceInfoCreateOptions;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         referencePoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         options : WinRt.Windows.Services.Maps.IPlaceInfoCreateOptions;
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1542,7 +1542,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IPlaceInfoStatics_Interface;
          identifier : WinRt.HString;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1550,17 +1550,17 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IPlaceInfoStatics_Interface;
          identifier : WinRt.HString;
-         defaultPoint : Windows.Devices.Geolocation.IGeopoint;
-         options : Windows.Services.Maps.IPlaceInfoCreateOptions;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         defaultPoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         options : WinRt.Windows.Services.Maps.IPlaceInfoCreateOptions;
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromMapLocation
       (
          this : access IPlaceInfoStatics_Interface;
-         location : Windows.Services.Maps.IMapLocation;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         location : WinRt.Windows.Services.Maps.IMapLocation;
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1580,7 +1580,7 @@ package WinRt.Windows.Services.Maps is
       (
          this : access IPlaceInfoStatics2_Interface;
          displayAddress : WinRt.HString;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1589,7 +1589,7 @@ package WinRt.Windows.Services.Maps is
          this : access IPlaceInfoStatics2_Interface;
          displayAddress : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1610,8 +1610,8 @@ package WinRt.Windows.Services.Maps is
 
    function Constructor
    (
-      point : Windows.Devices.Geolocation.Geopoint'Class;
-      kind : Windows.Services.Maps.WaypointKind
+      point : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      kind : WinRt.Windows.Services.Maps.WaypointKind
    )
    return EnhancedWaypoint;
 
@@ -1795,28 +1795,28 @@ package WinRt.Windows.Services.Maps is
 
       function FindLocationsAtAsync
       (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         accuracy : Windows.Services.Maps.MapLocationDesiredAccuracy
+         queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         accuracy : WinRt.Windows.Services.Maps.MapLocationDesiredAccuracy
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
 
       function FindLocationsAtAsync
       (
-         queryPoint : Windows.Devices.Geolocation.Geopoint'Class
+         queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
 
       function FindLocationsAsync
       (
          searchText : WinRt.WString;
-         referencePoint : Windows.Devices.Geolocation.Geopoint'Class
+         referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
 
       function FindLocationsAsync
       (
          searchText : WinRt.WString;
-         referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
+         referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
          maxCount : WinRt.UInt32
       )
       return WinRt.Windows.Services.Maps.MapLocationFinderResult;
@@ -1976,7 +1976,7 @@ package WinRt.Windows.Services.Maps is
    procedure put_RouteOptimization
    (
       this : in out MapRouteDrivingOptions;
-      value : Windows.Services.Maps.MapRouteOptimization
+      value : WinRt.Windows.Services.Maps.MapRouteOptimization
    );
 
    function get_RouteRestrictions
@@ -1988,7 +1988,7 @@ package WinRt.Windows.Services.Maps is
    procedure put_RouteRestrictions
    (
       this : in out MapRouteDrivingOptions;
-      value : Windows.Services.Maps.MapRouteRestrictions
+      value : WinRt.Windows.Services.Maps.MapRouteRestrictions
    );
 
    function get_DepartureTime
@@ -2009,42 +2009,42 @@ package WinRt.Windows.Services.Maps is
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         options : WinRt.Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
@@ -2058,31 +2058,31 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetDrivingRouteFromWaypointsAsync
       (
          wayPoints : GenericObject;
-         optimization : Windows.Services.Maps.MapRouteOptimization;
-         restrictions : Windows.Services.Maps.MapRouteRestrictions;
+         optimization : WinRt.Windows.Services.Maps.MapRouteOptimization;
+         restrictions : WinRt.Windows.Services.Maps.MapRouteRestrictions;
          headingInDegrees : WinRt.Double
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
       function GetWalkingRouteAsync
       (
-         startPoint : Windows.Devices.Geolocation.Geopoint'Class;
-         endPoint : Windows.Devices.Geolocation.Geopoint'Class
+         startPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+         endPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
@@ -2101,7 +2101,7 @@ package WinRt.Windows.Services.Maps is
       function GetDrivingRouteFromEnhancedWaypointsAsync
       (
          waypoints : GenericObject;
-         options : Windows.Services.Maps.MapRouteDrivingOptions'Class
+         options : WinRt.Windows.Services.Maps.MapRouteDrivingOptions'Class
       )
       return WinRt.Windows.Services.Maps.MapRouteFinderResult;
 
@@ -2266,7 +2266,7 @@ package WinRt.Windows.Services.Maps is
 
       procedure put_DataUsagePreference
       (
-         value : Windows.Services.Maps.MapServiceDataUsagePreference
+         value : WinRt.Windows.Services.Maps.MapServiceDataUsagePreference
       );
 
       function get_DataUsagePreference
@@ -2306,14 +2306,14 @@ package WinRt.Windows.Services.Maps is
 
    function Create
    (
-      referencePoint : Windows.Devices.Geolocation.Geopoint'Class
+      referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo;
 
    function Create
    (
-      referencePoint : Windows.Devices.Geolocation.Geopoint'Class;
-      options : Windows.Services.Maps.PlaceInfoCreateOptions'Class
+      referencePoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      options : WinRt.Windows.Services.Maps.PlaceInfoCreateOptions'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo;
 
@@ -2326,14 +2326,14 @@ package WinRt.Windows.Services.Maps is
    function CreateFromIdentifier
    (
       identifier : WinRt.WString;
-      defaultPoint : Windows.Devices.Geolocation.Geopoint'Class;
-      options : Windows.Services.Maps.PlaceInfoCreateOptions'Class
+      defaultPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      options : WinRt.Windows.Services.Maps.PlaceInfoCreateOptions'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo;
 
    function CreateFromMapLocation
    (
-      location : Windows.Services.Maps.MapLocation'Class
+      location : WinRt.Windows.Services.Maps.MapLocation'Class
    )
    return WinRt.Windows.Services.Maps.PlaceInfo;
 
@@ -2346,14 +2346,14 @@ package WinRt.Windows.Services.Maps is
    procedure Show
    (
       this : in out PlaceInfo;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    );
 
    procedure Show
    (
       this : in out PlaceInfo;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    );
 
    function get_Identifier

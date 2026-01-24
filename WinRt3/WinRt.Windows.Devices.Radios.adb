@@ -215,7 +215,7 @@ package body WinRt.Windows.Devices.Radios is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IRadio := new Windows.Devices.Radios.IRadio;
+                     Retval.m_IRadio := new WinRt.Windows.Devices.Radios.IRadio;
                      Retval.m_IRadio.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -304,7 +304,7 @@ package body WinRt.Windows.Devices.Radios is
    function SetStateAsync
    (
       this : in out Radio;
-      value : Windows.Devices.Radios.RadioState
+      value : WinRt.Windows.Devices.Radios.RadioState
    )
    return WinRt.Windows.Devices.Radios.RadioAccessStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -374,7 +374,7 @@ package body WinRt.Windows.Devices.Radios is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadio.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -386,7 +386,7 @@ package body WinRt.Windows.Devices.Radios is
    procedure remove_StateChanged
    (
       this : in out Radio;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -406,7 +406,7 @@ package body WinRt.Windows.Devices.Radios is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Radios.RadioState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Radios.RadioState;
    begin
       Hr := this.m_IRadio.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -443,7 +443,7 @@ package body WinRt.Windows.Devices.Radios is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Radios.RadioKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Radios.RadioKind;
    begin
       Hr := this.m_IRadio.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then

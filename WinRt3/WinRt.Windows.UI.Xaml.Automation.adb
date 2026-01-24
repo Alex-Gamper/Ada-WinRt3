@@ -63,7 +63,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AnnotationPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAnnotationPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAnnotationPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -73,7 +73,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -87,7 +87,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AnnotationPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAnnotationPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAnnotationPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -97,7 +97,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -111,7 +111,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AnnotationPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAnnotationPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAnnotationPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -121,7 +121,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -135,7 +135,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AnnotationPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAnnotationPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAnnotationPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -145,7 +145,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -159,7 +159,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AnnotationPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAnnotationPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAnnotationPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -169,7 +169,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -204,21 +204,21 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    )
    return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
       m_Factory    : access IAutomationAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.IAutomationAnnotation;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
    begin
       return RetVal : AutomationAnnotation do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationAnnotationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (type_x, m_ComRetVal'Access);
-            Retval.m_IAutomationAnnotation := new Windows.UI.Xaml.Automation.IAutomationAnnotation;
+            Retval.m_IAutomationAnnotation := new WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
             Retval.m_IAutomationAnnotation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -228,22 +228,22 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType;
-      element : Windows.UI.Xaml.UIElement'Class
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
       m_Factory    : access IAutomationAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.IAutomationAnnotation;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
    begin
       return RetVal : AutomationAnnotation do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationAnnotationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithElementParameter (type_x, element.m_IUIElement.all, m_ComRetVal'Access);
-            Retval.m_IAutomationAnnotation := new Windows.UI.Xaml.Automation.IAutomationAnnotation;
+            Retval.m_IAutomationAnnotation := new WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
             Retval.m_IAutomationAnnotation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -254,13 +254,13 @@ package body WinRt.Windows.UI.Xaml.Automation is
    function Constructor return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.IAutomationAnnotation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
    begin
       return RetVal : AutomationAnnotation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAutomationAnnotation := new Windows.UI.Xaml.Automation.IAutomationAnnotation;
+            Retval.m_IAutomationAnnotation := new WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
             Retval.m_IAutomationAnnotation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -277,7 +277,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationAnnotationStatics'Access , m_Factory'Address);
@@ -287,7 +287,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -301,7 +301,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationAnnotationStatics'Access , m_Factory'Address);
@@ -311,7 +311,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -329,7 +329,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.AnnotationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.AnnotationType;
    begin
       Hr := this.m_IAutomationAnnotation.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -341,7 +341,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
    procedure put_Type
    (
       this : in out AutomationAnnotation;
-      value : Windows.UI.Xaml.Automation.AnnotationType
+      value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -361,14 +361,14 @@ package body WinRt.Windows.UI.Xaml.Automation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IAutomationAnnotation.all.get_Element (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+         Retval.m_IUIElement := new WinRt.Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
    end;
@@ -376,7 +376,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
    procedure put_Element
    (
       this : in out AutomationAnnotation;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -418,7 +418,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -428,7 +428,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -442,7 +442,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -452,7 +452,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -466,7 +466,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -476,7 +476,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -490,7 +490,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -500,7 +500,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -514,7 +514,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -524,7 +524,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -538,7 +538,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics5'Access , m_Factory'Address);
@@ -548,7 +548,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -562,7 +562,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics3'Access , m_Factory'Address);
@@ -572,7 +572,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -586,7 +586,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics3'Access , m_Factory'Address);
@@ -596,7 +596,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -610,7 +610,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics3'Access , m_Factory'Address);
@@ -620,7 +620,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -634,7 +634,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics3'Access , m_Factory'Address);
@@ -644,7 +644,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -658,7 +658,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics2'Access , m_Factory'Address);
@@ -668,7 +668,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -682,7 +682,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics4'Access , m_Factory'Address);
@@ -692,7 +692,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -706,7 +706,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics4'Access , m_Factory'Address);
@@ -716,7 +716,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -730,7 +730,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -740,7 +740,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -754,7 +754,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -764,7 +764,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -778,7 +778,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -788,7 +788,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -802,7 +802,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -812,7 +812,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -826,7 +826,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -836,7 +836,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -850,7 +850,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -860,7 +860,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -874,7 +874,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -884,7 +884,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -898,7 +898,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -908,7 +908,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -922,7 +922,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -932,7 +932,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -946,7 +946,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -956,7 +956,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -970,7 +970,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -980,7 +980,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -994,7 +994,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1004,7 +1004,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1018,7 +1018,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1028,7 +1028,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1042,7 +1042,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1052,7 +1052,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1066,7 +1066,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1076,7 +1076,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1090,7 +1090,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1100,7 +1100,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1114,7 +1114,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1124,7 +1124,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1138,7 +1138,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1148,7 +1148,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1162,7 +1162,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1172,7 +1172,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1186,7 +1186,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1196,7 +1196,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1210,7 +1210,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1220,7 +1220,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1234,7 +1234,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1244,7 +1244,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1258,7 +1258,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics'Access , m_Factory'Address);
@@ -1268,7 +1268,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1282,7 +1282,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics8_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics8'Access , m_Factory'Address);
@@ -1292,7 +1292,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1306,7 +1306,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics7_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics7'Access , m_Factory'Address);
@@ -1316,7 +1316,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1330,7 +1330,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationElementIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationElementIdentifiersStatics6_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationElementIdentifiersStatics6'Access , m_Factory'Address);
@@ -1340,7 +1340,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics6_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics6'Access , m_Factory'Address);
@@ -1390,7 +1390,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1399,7 +1399,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetCulture
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1423,7 +1423,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetCulture
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1450,7 +1450,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics4'Access , m_Factory'Address);
@@ -1460,7 +1460,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1469,7 +1469,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType is
       Hr               : WinRt.HResult := S_OK;
@@ -1477,7 +1477,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics4'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1493,8 +1493,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1520,7 +1520,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics4'Access , m_Factory'Address);
@@ -1530,7 +1530,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1539,7 +1539,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLocalizedLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -1566,7 +1566,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLocalizedLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1595,7 +1595,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics3'Access , m_Factory'Address);
@@ -1605,7 +1605,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1614,7 +1614,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetPositionInSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1638,7 +1638,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetPositionInSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1665,7 +1665,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics3'Access , m_Factory'Address);
@@ -1675,7 +1675,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1684,7 +1684,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetSizeOfSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1708,7 +1708,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetSizeOfSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1735,7 +1735,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics3'Access , m_Factory'Address);
@@ -1745,7 +1745,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1754,7 +1754,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1778,7 +1778,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1805,7 +1805,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics3'Access , m_Factory'Address);
@@ -1815,7 +1815,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1824,7 +1824,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAnnotations
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1832,7 +1832,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1853,7 +1853,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -1863,7 +1863,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1872,7 +1872,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAcceleratorKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -1899,7 +1899,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetAcceleratorKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1928,7 +1928,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -1938,7 +1938,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1947,7 +1947,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAccessKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -1974,7 +1974,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetAccessKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2003,7 +2003,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2013,7 +2013,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2022,7 +2022,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAutomationId
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2049,7 +2049,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetAutomationId
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2078,7 +2078,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2088,7 +2088,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2097,7 +2097,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetHelpText
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2124,7 +2124,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetHelpText
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2153,7 +2153,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2163,7 +2163,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2172,7 +2172,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsRequiredForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2196,7 +2196,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetIsRequiredForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2223,7 +2223,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2233,7 +2233,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2242,7 +2242,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetItemStatus
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2269,7 +2269,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetItemStatus
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2298,7 +2298,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2308,7 +2308,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2317,7 +2317,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetItemType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2344,7 +2344,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetItemType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2373,7 +2373,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2383,7 +2383,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2392,7 +2392,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLabeledBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.UIElement is
       Hr               : WinRt.HResult := S_OK;
@@ -2400,7 +2400,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2410,7 +2410,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+            Retval.m_IUIElement := new WinRt.Windows.UI.Xaml.IUIElement;
             Retval.m_IUIElement.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2419,8 +2419,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLabeledBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2446,7 +2446,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2456,7 +2456,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2465,7 +2465,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetName
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2492,7 +2492,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetName
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2521,7 +2521,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
@@ -2531,7 +2531,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2540,7 +2540,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLiveSetting
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting is
       Hr               : WinRt.HResult := S_OK;
@@ -2548,7 +2548,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2564,8 +2564,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLiveSetting
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2591,7 +2591,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics9_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics9'Access , m_Factory'Address);
@@ -2601,7 +2601,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2610,7 +2610,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAutomationControlType
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType is
       Hr               : WinRt.HResult := S_OK;
@@ -2618,7 +2618,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics9_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationControlType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics9'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2634,8 +2634,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetAutomationControlType
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationControlType
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2661,7 +2661,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -2671,7 +2671,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2680,7 +2680,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsPeripheral
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2704,7 +2704,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetIsPeripheral
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2731,7 +2731,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -2741,7 +2741,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2750,7 +2750,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsDataValidForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2774,7 +2774,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetIsDataValidForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2801,7 +2801,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -2811,7 +2811,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2820,7 +2820,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetFullDescription
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2847,7 +2847,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetFullDescription
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2876,7 +2876,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -2886,7 +2886,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2895,7 +2895,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetLocalizedControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -2922,7 +2922,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetLocalizedControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2951,7 +2951,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -2961,7 +2961,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2970,7 +2970,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetDescribedBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -2978,7 +2978,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2999,7 +2999,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -3009,7 +3009,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3018,7 +3018,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetFlowsTo
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -3026,7 +3026,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3047,7 +3047,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
@@ -3057,7 +3057,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3066,7 +3066,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetFlowsFrom
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -3074,7 +3074,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics5_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics5'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3095,7 +3095,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
@@ -3105,7 +3105,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3114,7 +3114,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetAccessibilityView
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView is
       Hr               : WinRt.HResult := S_OK;
@@ -3122,7 +3122,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AccessibilityView;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3138,8 +3138,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetAccessibilityView
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AccessibilityView
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3165,7 +3165,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
@@ -3175,7 +3175,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3184,7 +3184,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetControlledPeers
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -3192,7 +3192,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3213,7 +3213,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics8_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics8'Access , m_Factory'Address);
@@ -3223,7 +3223,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3232,7 +3232,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsDialog
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3256,7 +3256,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetIsDialog
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3283,7 +3283,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics7_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics7'Access , m_Factory'Address);
@@ -3293,7 +3293,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3302,7 +3302,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    function GetHeadingLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel is
       Hr               : WinRt.HResult := S_OK;
@@ -3310,7 +3310,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationProperties");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IAutomationPropertiesStatics7_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics7'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3326,8 +3326,8 @@ package body WinRt.Windows.UI.Xaml.Automation is
 
    procedure SetHeadingLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3402,7 +3402,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DockPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDockPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDockPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3412,7 +3412,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3452,7 +3452,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DragPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDragPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3462,7 +3462,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3476,7 +3476,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DragPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDragPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3486,7 +3486,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3500,7 +3500,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DragPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDragPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3510,7 +3510,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3524,7 +3524,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DragPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDragPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDragPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3534,7 +3534,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3574,7 +3574,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DropTargetPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDropTargetPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDropTargetPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3584,7 +3584,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3598,7 +3598,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.DropTargetPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IDropTargetPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IDropTargetPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3608,7 +3608,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3648,7 +3648,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ExpandCollapsePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IExpandCollapsePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IExpandCollapsePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3658,7 +3658,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3698,7 +3698,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3708,7 +3708,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3722,7 +3722,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3732,7 +3732,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3746,7 +3746,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3756,7 +3756,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3770,7 +3770,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3780,7 +3780,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3794,7 +3794,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3804,7 +3804,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3844,7 +3844,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3854,7 +3854,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3868,7 +3868,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.GridPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IGridPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGridPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3878,7 +3878,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3918,7 +3918,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.MultipleViewPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IMultipleViewPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMultipleViewPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3928,7 +3928,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3942,7 +3942,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.MultipleViewPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IMultipleViewPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMultipleViewPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -3952,7 +3952,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3992,7 +3992,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4002,7 +4002,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4016,7 +4016,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4026,7 +4026,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4040,7 +4040,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4050,7 +4050,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4064,7 +4064,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4074,7 +4074,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4088,7 +4088,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4098,7 +4098,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4112,7 +4112,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.RangeValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IRangeValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4122,7 +4122,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4162,7 +4162,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4172,7 +4172,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4186,7 +4186,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4196,7 +4196,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4210,7 +4210,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4220,7 +4220,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4255,7 +4255,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4265,7 +4265,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4279,7 +4279,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4289,7 +4289,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4303,7 +4303,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ScrollPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IScrollPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4313,7 +4313,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4353,7 +4353,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SelectionItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISelectionItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectionItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4363,7 +4363,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4377,7 +4377,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SelectionItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISelectionItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectionItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4387,7 +4387,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4427,7 +4427,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SelectionPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISelectionPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectionPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4437,7 +4437,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4451,7 +4451,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SelectionPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISelectionPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectionPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4461,7 +4461,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4475,7 +4475,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SelectionPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISelectionPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectionPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4485,7 +4485,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4525,7 +4525,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.SpreadsheetItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ISpreadsheetItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISpreadsheetItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4535,7 +4535,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4575,7 +4575,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4585,7 +4585,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4599,7 +4599,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4609,7 +4609,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4623,7 +4623,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4633,7 +4633,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4647,7 +4647,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4657,7 +4657,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4671,7 +4671,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4681,7 +4681,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4695,7 +4695,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4705,7 +4705,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4719,7 +4719,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.StylesPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IStylesPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IStylesPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4729,7 +4729,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4769,7 +4769,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TableItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITableItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITableItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4779,7 +4779,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4793,7 +4793,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TableItemPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITableItemPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITableItemPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4803,7 +4803,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4843,7 +4843,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TablePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITablePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITablePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4853,7 +4853,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4867,7 +4867,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TablePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITablePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITablePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4877,7 +4877,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4891,7 +4891,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TablePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITablePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITablePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4901,7 +4901,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4941,7 +4941,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TogglePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITogglePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITogglePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -4951,7 +4951,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4991,7 +4991,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPattern2Identifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPattern2IdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPattern2IdentifiersStatics'Access , m_Factory'Address);
@@ -5001,7 +5001,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5015,7 +5015,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPattern2Identifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPattern2IdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPattern2IdentifiersStatics'Access , m_Factory'Address);
@@ -5025,7 +5025,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5039,7 +5039,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPattern2Identifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPattern2IdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPattern2IdentifiersStatics'Access , m_Factory'Address);
@@ -5049,7 +5049,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5063,7 +5063,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPattern2Identifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPattern2IdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPattern2IdentifiersStatics'Access , m_Factory'Address);
@@ -5073,7 +5073,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5113,7 +5113,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5123,7 +5123,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5137,7 +5137,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5147,7 +5147,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5161,7 +5161,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.TransformPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.ITransformPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5171,7 +5171,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5211,7 +5211,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5221,7 +5221,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5235,7 +5235,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.ValuePatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IValuePatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IValuePatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5245,7 +5245,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5285,7 +5285,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5295,7 +5295,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5309,7 +5309,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5319,7 +5319,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5333,7 +5333,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5343,7 +5343,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5357,7 +5357,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5367,7 +5367,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5381,7 +5381,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5391,7 +5391,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5405,7 +5405,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.WindowPatternIdentifiers");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.IWindowPatternIdentifiersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.IAutomationProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.AutomationProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowPatternIdentifiersStatics'Access , m_Factory'Address);
@@ -5415,7 +5415,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationProperty := new Windows.UI.Xaml.Automation.IAutomationProperty;
+            Retval.m_IAutomationProperty := new WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
             Retval.m_IAutomationProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

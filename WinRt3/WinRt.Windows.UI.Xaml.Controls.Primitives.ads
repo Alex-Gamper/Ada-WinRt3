@@ -1198,62 +1198,62 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
 
    IID_DragCompletedEventHandler : aliased WinRt.IID := (917670024, 6572, 19278, (145, 55, 166, 207, 43, 2, 56, 131 ));
-   type DragCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragCompletedEventHandler'Access) with null record;
+   type DragCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragCompletedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DragCompletedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs
       )
       return WinRt.Hresult;
 
    IID_DragDeltaEventHandler : aliased WinRt.IID := (1254248351, 44072, 18921, (145, 137, 220, 207, 254, 182, 100, 114 ));
-   type DragDeltaEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragDeltaEventHandler'Access) with null record;
+   type DragDeltaEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragDeltaEventHandler'Access) with null record;
       function Invoke
       (
          this : access DragDeltaEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs
       )
       return WinRt.Hresult;
 
    IID_DragStartedEventHandler : aliased WinRt.IID := (3538855050, 50778, 18781, (162, 241, 114, 198, 105, 137, 20, 45 ));
-   type DragStartedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragStartedEventHandler'Access) with null record;
+   type DragStartedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DragStartedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DragStartedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ItemsChangedEventHandler : aliased WinRt.IID := (394418110, 41732, 18479, (139, 240, 185, 210, 227, 150, 18, 163 ));
-   type ItemsChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IItemsChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ItemsChangedEventHandler'Access) with null record;
+   type ItemsChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IItemsChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ItemsChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ItemsChangedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IItemsChangedEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IItemsChangedEventArgs
       )
       return WinRt.Hresult;
 
    IID_RangeBaseValueChangedEventHandler : aliased WinRt.IID := (3817893849, 19739, 19144, (164, 60, 195, 185, 8, 116, 39, 153 ));
-   type RangeBaseValueChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IRangeBaseValueChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RangeBaseValueChangedEventHandler'Access) with null record;
+   type RangeBaseValueChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseValueChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RangeBaseValueChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access RangeBaseValueChangedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IRangeBaseValueChangedEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBaseValueChangedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ScrollEventHandler : aliased WinRt.IID := (2288038052, 41859, 19587, (179, 6, 161, 195, 157, 125, 184, 127 ));
-   type ScrollEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ScrollEventHandler'Access) with null record;
+   type ScrollEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ScrollEventHandler'Access) with null record;
       function Invoke
       (
          this : access ScrollEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs
+         e : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs
       )
       return WinRt.Hresult;
 
@@ -1303,7 +1303,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ClipRect
       (
          this : access IAppBarTemplateSettings_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1317,7 +1317,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_CompactRootMargin
       (
          this : access IAppBarTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -1331,7 +1331,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_MinimalRootMargin
       (
          this : access IAppBarTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -1345,7 +1345,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_HiddenRootMargin
       (
          this : access IAppBarTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -1395,14 +1395,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ClickMode
       (
          this : access IButtonBase_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.ClickMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.ClickMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ClickMode
       (
          this : access IButtonBase_Interface;
-         value : Windows.UI.Xaml.Controls.ClickMode
+         value : WinRt.Windows.UI.Xaml.Controls.ClickMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1423,14 +1423,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Command
       (
          this : access IButtonBase_Interface;
-         RetVal : access Windows.UI.Xaml.Input.ICommand
+         RetVal : access WinRt.Windows.UI.Xaml.Input.ICommand
       )
       return WinRt.Hresult is abstract;
 
       function put_Command
       (
          this : access IButtonBase_Interface;
-         value : Windows.UI.Xaml.Input.ICommand
+         value : WinRt.Windows.UI.Xaml.Input.ICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -1451,15 +1451,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function add_Click
       (
          this : access IButtonBase_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Click
       (
          this : access IButtonBase_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1473,7 +1473,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IButtonBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IButtonBase
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBase
       )
       return WinRt.Hresult is abstract;
 
@@ -1485,35 +1485,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ClickModeProperty
       (
          this : access IButtonBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsPointerOverProperty
       (
          this : access IButtonBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsPressedProperty
       (
          this : access IButtonBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CommandProperty
       (
          this : access IButtonBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CommandParameterProperty
       (
          this : access IButtonBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1614,7 +1614,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ClipRect
       (
          this : access ICalendarViewTemplateSettings_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1810,9 +1810,9 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function MakeVisible
       (
          this : access ICarouselPanel_Interface;
-         visual : Windows.UI.Xaml.IUIElement;
-         rectangle : Windows.Foundation.Rect;
-         RetVal : access Windows.Foundation.Rect
+         visual : WinRt.Windows.UI.Xaml.IUIElement;
+         rectangle : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1826,7 +1826,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access ICarouselPanelFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ICarouselPanel
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel
       )
       return WinRt.Hresult is abstract;
 
@@ -1838,14 +1838,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ColorChannel
       (
          this : access IColorPickerSlider_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.ColorPickerHsvChannel
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.ColorPickerHsvChannel
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorChannel
       (
          this : access IColorPickerSlider_Interface;
-         value : Windows.UI.Xaml.Controls.ColorPickerHsvChannel
+         value : WinRt.Windows.UI.Xaml.Controls.ColorPickerHsvChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -1859,7 +1859,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IColorPickerSliderFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider
       )
       return WinRt.Hresult is abstract;
 
@@ -1871,7 +1871,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ColorChannelProperty
       (
          this : access IColorPickerSliderStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1883,28 +1883,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Color
       (
          this : access IColorSpectrum_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IColorSpectrum_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_HsvColor
       (
          this : access IColorSpectrum_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
       function put_HsvColor
       (
          this : access IColorSpectrum_Interface;
-         value : Windows.Foundation.Numerics.Vector4
+         value : WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
@@ -1995,28 +1995,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Shape
       (
          this : access IColorSpectrum_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.ColorSpectrumShape
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.ColorSpectrumShape
       )
       return WinRt.Hresult is abstract;
 
       function put_Shape
       (
          this : access IColorSpectrum_Interface;
-         value : Windows.UI.Xaml.Controls.ColorSpectrumShape
+         value : WinRt.Windows.UI.Xaml.Controls.ColorSpectrumShape
       )
       return WinRt.Hresult is abstract;
 
       function get_Components
       (
          this : access IColorSpectrum_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.ColorSpectrumComponents
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.ColorSpectrumComponents
       )
       return WinRt.Hresult is abstract;
 
       function put_Components
       (
          this : access IColorSpectrum_Interface;
-         value : Windows.UI.Xaml.Controls.ColorSpectrumComponents
+         value : WinRt.Windows.UI.Xaml.Controls.ColorSpectrumComponents
       )
       return WinRt.Hresult is abstract;
 
@@ -2024,14 +2024,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IColorSpectrum_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ColorChanged
       (
          this : access IColorSpectrum_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2045,7 +2045,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IColorSpectrumFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IColorSpectrum
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrum
       )
       return WinRt.Hresult is abstract;
 
@@ -2057,70 +2057,70 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ColorProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HsvColorProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MinHueProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxHueProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MinSaturationProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSaturationProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MinValueProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxValueProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ShapeProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ComponentsProperty
       (
          this : access IColorSpectrumStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2153,7 +2153,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedItemDirection
       (
          this : access IComboBoxTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2177,7 +2177,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_FlyoutTemplateSettings
       (
          this : access ICommandBarFlyoutCommandBar_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBarTemplateSettings
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBarTemplateSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2191,7 +2191,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access ICommandBarFlyoutCommandBarFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar
       )
       return WinRt.Hresult is abstract;
 
@@ -2329,14 +2329,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ContentClipRect
       (
          this : access ICommandBarFlyoutCommandBarTemplateSettings_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_OverflowContentClipRect
       (
          this : access ICommandBarFlyoutCommandBarTemplateSettings_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2355,7 +2355,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_OverflowContentClipRect
       (
          this : access ICommandBarTemplateSettings_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2414,7 +2414,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_EffectiveOverflowButtonVisibility
       (
          this : access ICommandBarTemplateSettings3_Interface;
-         RetVal : access Windows.UI.Xaml.Visibility
+         RetVal : access WinRt.Windows.UI.Xaml.Visibility
       )
       return WinRt.Hresult is abstract;
 
@@ -2483,7 +2483,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          canceled : WinRt.Boolean;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2518,7 +2518,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          verticalChange : WinRt.Double;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2553,7 +2553,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          verticalOffset : WinRt.Double;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2565,14 +2565,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Placement
       (
          this : access IFlyoutBase_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Placement
       (
          this : access IFlyoutBase_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2580,14 +2580,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IFlyoutBase_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Opened
       (
          this : access IFlyoutBase_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2595,14 +2595,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IFlyoutBase_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IFlyoutBase_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2610,21 +2610,21 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IFlyoutBase_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Opening
       (
          this : access IFlyoutBase_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function ShowAt
       (
          this : access IFlyoutBase_Interface;
-         placementTarget : Windows.UI.Xaml.IFrameworkElement
+         placementTarget : WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
@@ -2642,7 +2642,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Target
       (
          this : access IFlyoutBase2_Interface;
-         RetVal : access Windows.UI.Xaml.IFrameworkElement
+         RetVal : access WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
@@ -2663,14 +2663,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_LightDismissOverlayMode
       (
          this : access IFlyoutBase2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.LightDismissOverlayMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
       )
       return WinRt.Hresult is abstract;
 
       function put_LightDismissOverlayMode
       (
          this : access IFlyoutBase2_Interface;
-         value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
+         value : WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2691,14 +2691,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ElementSoundMode
       (
          this : access IFlyoutBase2_Interface;
-         RetVal : access Windows.UI.Xaml.ElementSoundMode
+         RetVal : access WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ElementSoundMode
       (
          this : access IFlyoutBase2_Interface;
-         value : Windows.UI.Xaml.ElementSoundMode
+         value : WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2706,14 +2706,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IFlyoutBase2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closing
       (
          this : access IFlyoutBase2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2725,14 +2725,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_OverlayInputPassThroughElement
       (
          this : access IFlyoutBase3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_OverlayInputPassThroughElement
       (
          this : access IFlyoutBase3_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2744,7 +2744,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function TryInvokeKeyboardAccelerator
       (
          this : access IFlyoutBase4_Interface;
-         args : Windows.UI.Xaml.Input.IProcessKeyboardAcceleratorEventArgs
+         args : WinRt.Windows.UI.Xaml.Input.IProcessKeyboardAcceleratorEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2756,14 +2756,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ShowMode
       (
          this : access IFlyoutBase5_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ShowMode
       (
          this : access IFlyoutBase5_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2798,8 +2798,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function ShowAt
       (
          this : access IFlyoutBase5_Interface;
-         placementTarget : Windows.UI.Xaml.IDependencyObject;
-         showOptions : Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions
+         placementTarget : WinRt.Windows.UI.Xaml.IDependencyObject;
+         showOptions : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2832,14 +2832,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_XamlRoot
       (
          this : access IFlyoutBase6_Interface;
-         RetVal : access Windows.UI.Xaml.IXamlRoot
+         RetVal : access WinRt.Windows.UI.Xaml.IXamlRoot
       )
       return WinRt.Hresult is abstract;
 
       function put_XamlRoot
       (
          this : access IFlyoutBase6_Interface;
-         value : Windows.UI.Xaml.IXamlRoot
+         value : WinRt.Windows.UI.Xaml.IXamlRoot
       )
       return WinRt.Hresult is abstract;
 
@@ -2872,7 +2872,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IFlyoutBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
       )
       return WinRt.Hresult is abstract;
 
@@ -2884,7 +2884,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function CreatePresenter
       (
          this : access IFlyoutBaseOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.IControl
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.IControl
       )
       return WinRt.Hresult is abstract;
 
@@ -2896,7 +2896,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function OnProcessKeyboardAccelerators
       (
          this : access IFlyoutBaseOverrides4_Interface;
-         args : Windows.UI.Xaml.Input.IProcessKeyboardAcceleratorEventArgs
+         args : WinRt.Windows.UI.Xaml.Input.IProcessKeyboardAcceleratorEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2908,37 +2908,37 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_PlacementProperty
       (
          this : access IFlyoutBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AttachedFlyoutProperty
       (
          this : access IFlyoutBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAttachedFlyout
       (
          this : access IFlyoutBaseStatics_Interface;
-         element : Windows.UI.Xaml.IFrameworkElement;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
+         element : WinRt.Windows.UI.Xaml.IFrameworkElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
       )
       return WinRt.Hresult is abstract;
 
       function SetAttachedFlyout
       (
          this : access IFlyoutBaseStatics_Interface;
-         element : Windows.UI.Xaml.IFrameworkElement;
-         value : Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
+         element : WinRt.Windows.UI.Xaml.IFrameworkElement;
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase
       )
       return WinRt.Hresult is abstract;
 
       function ShowAttachedFlyout
       (
          this : access IFlyoutBaseStatics_Interface;
-         flyoutOwner : Windows.UI.Xaml.IFrameworkElement
+         flyoutOwner : WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
@@ -2950,28 +2950,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_AllowFocusOnInteractionProperty
       (
          this : access IFlyoutBaseStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LightDismissOverlayModeProperty
       (
          this : access IFlyoutBaseStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AllowFocusWhenDisabledProperty
       (
          this : access IFlyoutBaseStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementSoundModeProperty
       (
          this : access IFlyoutBaseStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2983,7 +2983,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_OverlayInputPassThroughElementProperty
       (
          this : access IFlyoutBaseStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2995,35 +2995,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_TargetProperty
       (
          this : access IFlyoutBaseStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ShowModeProperty
       (
          this : access IFlyoutBaseStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_InputDevicePrefersPrimaryCommandsProperty
       (
          this : access IFlyoutBaseStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AreOpenCloseAnimationsEnabledProperty
       (
          this : access IFlyoutBaseStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsOpenProperty
       (
          this : access IFlyoutBaseStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3035,7 +3035,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ShouldConstrainToRootBoundsProperty
       (
          this : access IFlyoutBaseStatics6_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3075,28 +3075,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ShowMode
       (
          this : access IFlyoutShowOptions_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ShowMode
       (
          this : access IFlyoutShowOptions_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Placement
       (
          this : access IFlyoutShowOptions_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Placement
       (
          this : access IFlyoutShowOptions_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3110,7 +3110,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IFlyoutShowOptionsFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3129,7 +3129,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IGeneratorPositionHelperStatics_Interface;
          index : WinRt.Int32;
          offset : WinRt.Int32;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -3155,182 +3155,182 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_CheckHintBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckHintBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckSelectingBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckSelectingBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_DragBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_DragBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_DragForeground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_DragForeground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusBorderBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_FocusBorderBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaceholderBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PlaceholderBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedForeground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedForeground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPointerOverBackground
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBorderBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPointerOverBorderBrush
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderThickness
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBorderThickness
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -3379,70 +3379,70 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_GridViewItemPresenterHorizontalContentAlignment
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.HorizontalAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.HorizontalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_GridViewItemPresenterHorizontalContentAlignment
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.HorizontalAlignment
+         value : WinRt.Windows.UI.Xaml.HorizontalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_GridViewItemPresenterVerticalContentAlignment
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.VerticalAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.VerticalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_GridViewItemPresenterVerticalContentAlignment
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.VerticalAlignment
+         value : WinRt.Windows.UI.Xaml.VerticalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_GridViewItemPresenterPadding
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_GridViewItemPresenterPadding
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundMargin
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverBackgroundMargin
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentMargin
       (
          this : access IGridViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentMargin
       (
          this : access IGridViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -3456,7 +3456,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IGridViewItemPresenterFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -3468,154 +3468,154 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectionCheckMarkVisualEnabledProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckHintBrushProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckSelectingBrushProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBrushProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragBackgroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragForegroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusBorderBrushProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaceholderBackgroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBackgroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedForegroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBackgroundProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBorderBrushProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderThicknessProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DisabledOpacityProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragOpacityProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ReorderHintOffsetProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GridViewItemPresenterHorizontalContentAlignmentProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GridViewItemPresenterVerticalContentAlignmentProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GridViewItemPresenterPaddingProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundMarginProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentMarginProperty
       (
          this : access IGridViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3646,14 +3646,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Position
       (
          this : access IItemsChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
       )
       return WinRt.Hresult is abstract;
 
       function get_OldPosition
       (
          this : access IItemsChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.GeneratorPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -3679,28 +3679,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Enabled
       (
          this : access IJumpListItemBackgroundConverter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Enabled
       (
          this : access IJumpListItemBackgroundConverter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Disabled
       (
          this : access IJumpListItemBackgroundConverter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Disabled
       (
          this : access IJumpListItemBackgroundConverter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3712,14 +3712,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_EnabledProperty
       (
          this : access IJumpListItemBackgroundConverterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DisabledProperty
       (
          this : access IJumpListItemBackgroundConverterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3731,28 +3731,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Enabled
       (
          this : access IJumpListItemForegroundConverter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Enabled
       (
          this : access IJumpListItemForegroundConverter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Disabled
       (
          this : access IJumpListItemForegroundConverter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Disabled
       (
          this : access IJumpListItemForegroundConverter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3764,14 +3764,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_EnabledProperty
       (
          this : access IJumpListItemForegroundConverterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DisabledProperty
       (
          this : access IJumpListItemForegroundConverterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3789,15 +3789,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access ILayoutInformationStatics_Interface;
          dispatcher : WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function GetLayoutSlot
       (
          this : access ILayoutInformationStatics_Interface;
-         element : Windows.UI.Xaml.IFrameworkElement;
-         RetVal : access Windows.Foundation.Rect
+         element : WinRt.Windows.UI.Xaml.IFrameworkElement;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -3809,8 +3809,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function GetAvailableSize
       (
          this : access ILayoutInformationStatics2_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.Size
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -3836,182 +3836,182 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_CheckHintBrush
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckHintBrush
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckSelectingBrush
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckSelectingBrush
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBrush
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBrush
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_DragBackground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_DragBackground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_DragForeground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_DragForeground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusBorderBrush
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_FocusBorderBrush
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaceholderBackground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PlaceholderBackground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverBackground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBackground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBackground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedForeground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedForeground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBackground
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPointerOverBackground
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBorderBrush
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPointerOverBorderBrush
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderThickness
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBorderThickness
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -4060,70 +4060,70 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ListViewItemPresenterHorizontalContentAlignment
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.HorizontalAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.HorizontalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_ListViewItemPresenterHorizontalContentAlignment
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.HorizontalAlignment
+         value : WinRt.Windows.UI.Xaml.HorizontalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_ListViewItemPresenterVerticalContentAlignment
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.VerticalAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.VerticalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_ListViewItemPresenterVerticalContentAlignment
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.VerticalAlignment
+         value : WinRt.Windows.UI.Xaml.VerticalAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_ListViewItemPresenterPadding
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_ListViewItemPresenterPadding
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundMargin
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverBackgroundMargin
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentMargin
       (
          this : access IListViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentMargin
       (
          this : access IListViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -4135,84 +4135,84 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedPressedBackground
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPressedBackground
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PressedBackground
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PressedBackground
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxBrush
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxBrush
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusSecondaryBorderBrush
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_FocusSecondaryBorderBrush
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckMode
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckMode
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverForeground
       (
          this : access IListViewItemPresenter2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverForeground
       (
          this : access IListViewItemPresenter2_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4224,42 +4224,42 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_RevealBackground
       (
          this : access IListViewItemPresenter3_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_RevealBackground
       (
          this : access IListViewItemPresenter3_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_RevealBorderBrush
       (
          this : access IListViewItemPresenter3_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_RevealBorderBrush
       (
          this : access IListViewItemPresenter3_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_RevealBorderThickness
       (
          this : access IListViewItemPresenter3_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_RevealBorderThickness
       (
          this : access IListViewItemPresenter3_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -4285,224 +4285,224 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedDisabledBackground
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedDisabledBackground
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxSelectedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxSelectedPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxSelectedPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxSelectedDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPointerOverBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxPointerOverBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPressedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxPressedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxDisabledBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxDisabledBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxCornerRadius
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.CornerRadius
+         RetVal : access WinRt.Windows.UI.Xaml.CornerRadius
       )
       return WinRt.Hresult is abstract;
 
       function put_CheckBoxCornerRadius
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.CornerRadius
+         value : WinRt.Windows.UI.Xaml.CornerRadius
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorCornerRadius
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.CornerRadius
+         RetVal : access WinRt.Windows.UI.Xaml.CornerRadius
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorCornerRadius
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.CornerRadius
+         value : WinRt.Windows.UI.Xaml.CornerRadius
       )
       return WinRt.Hresult is abstract;
 
@@ -4523,140 +4523,140 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectionIndicatorMode
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorMode
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorPointerOverBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorPressedBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionIndicatorDisabledBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPressedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedPressedBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedDisabledBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedDisabledBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedInnerBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedInnerBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerOverBorderBrush
       (
          this : access IListViewItemPresenter4_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4670,7 +4670,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IListViewItemPresenterFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -4682,154 +4682,154 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectionCheckMarkVisualEnabledProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckHintBrushProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckSelectingBrushProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBrushProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragBackgroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragForegroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaceholderBackgroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBackgroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedForegroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBackgroundProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPointerOverBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderThicknessProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DisabledOpacityProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DragOpacityProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ReorderHintOffsetProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ListViewItemPresenterHorizontalContentAlignmentProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ListViewItemPresenterVerticalContentAlignmentProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ListViewItemPresenterPaddingProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBackgroundMarginProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentMarginProperty
       (
          this : access IListViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4841,42 +4841,42 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedPressedBackgroundProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PressedBackgroundProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxBrushProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusSecondaryBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckModeProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverForegroundProperty
       (
          this : access IListViewItemPresenterStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4888,28 +4888,28 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_RevealBackgroundProperty
       (
          this : access IListViewItemPresenterStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RevealBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RevealBorderThicknessProperty
       (
          this : access IListViewItemPresenterStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RevealBackgroundShowsAboveContentProperty
       (
          this : access IListViewItemPresenterStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4921,189 +4921,189 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedDisabledBackgroundProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckPressedBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckDisabledBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPointerOverBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPressedBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxDisabledBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedPointerOverBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedPressedBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxSelectedDisabledBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPointerOverBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxPressedBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxDisabledBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CheckBoxCornerRadiusProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorCornerRadiusProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorVisualEnabledProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorModeProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorPointerOverBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorPressedBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionIndicatorDisabledBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedPressedBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedDisabledBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedInnerBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerOverBorderBrushProperty
       (
          this : access IListViewItemPresenterStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5211,29 +5211,29 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ItemTemplate
       (
          this : access ILoopingSelector_Interface;
-         RetVal : access Windows.UI.Xaml.IDataTemplate
+         RetVal : access WinRt.Windows.UI.Xaml.IDataTemplate
       )
       return WinRt.Hresult is abstract;
 
       function put_ItemTemplate
       (
          this : access ILoopingSelector_Interface;
-         value : Windows.UI.Xaml.IDataTemplate
+         value : WinRt.Windows.UI.Xaml.IDataTemplate
       )
       return WinRt.Hresult is abstract;
 
       function add_SelectionChanged
       (
          this : access ILoopingSelector_Interface;
-         handler : Windows.UI.Xaml.Controls.SelectionChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.SelectionChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectionChanged
       (
          this : access ILoopingSelector_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5255,49 +5255,49 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ShouldLoopProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemsProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedIndexProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedItemProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemWidthProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemHeightProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemTemplateProperty
       (
          this : access ILoopingSelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5333,14 +5333,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Icon
       (
          this : access INavigationViewItemPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.IIconElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.IIconElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Icon
       (
          this : access INavigationViewItemPresenter_Interface;
-         value : Windows.UI.Xaml.Controls.IIconElement
+         value : WinRt.Windows.UI.Xaml.Controls.IIconElement
       )
       return WinRt.Hresult is abstract;
 
@@ -5354,7 +5354,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access INavigationViewItemPresenterFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -5366,7 +5366,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_IconProperty
       (
          this : access INavigationViewItemPresenterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5548,9 +5548,9 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function MakeVisible
       (
          this : access IOrientedVirtualizingPanel_Interface;
-         visual : Windows.UI.Xaml.IUIElement;
-         rectangle : Windows.Foundation.Rect;
-         RetVal : access Windows.Foundation.Rect
+         visual : WinRt.Windows.UI.Xaml.IUIElement;
+         rectangle : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -5574,7 +5574,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IPickerFlyoutBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase
       )
       return WinRt.Hresult is abstract;
 
@@ -5604,14 +5604,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_TitleProperty
       (
          this : access IPickerFlyoutBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetTitle
       (
          this : access IPickerFlyoutBaseStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -5619,7 +5619,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function SetTitle
       (
          this : access IPickerFlyoutBaseStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -5639,7 +5639,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IPivotHeaderItemFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem
       )
       return WinRt.Hresult is abstract;
 
@@ -5661,14 +5661,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Child
       (
          this : access IPopup_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Child
       (
          this : access IPopup_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -5746,14 +5746,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IPopup_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Opened
       (
          this : access IPopup_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5761,14 +5761,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IPopup_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IPopup_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5780,14 +5780,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_LightDismissOverlayMode
       (
          this : access IPopup2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.LightDismissOverlayMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
       )
       return WinRt.Hresult is abstract;
 
       function put_LightDismissOverlayMode
       (
          this : access IPopup2_Interface;
-         value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
+         value : WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
       )
       return WinRt.Hresult is abstract;
 
@@ -5825,35 +5825,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_PlacementTarget
       (
          this : access IPopup4_Interface;
-         RetVal : access Windows.UI.Xaml.IFrameworkElement
+         RetVal : access WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
       function put_PlacementTarget
       (
          this : access IPopup4_Interface;
-         value : Windows.UI.Xaml.IFrameworkElement
+         value : WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredPlacement
       (
          this : access IPopup4_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredPlacement
       (
          this : access IPopup4_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ActualPlacement
       (
          this : access IPopup4_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
       )
       return WinRt.Hresult is abstract;
 
@@ -5861,14 +5861,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IPopup4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActualPlacementChanged
       (
          this : access IPopup4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5880,42 +5880,42 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ChildProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsOpenProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HorizontalOffsetProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VerticalOffsetProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ChildTransitionsProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsLightDismissEnabledProperty
       (
          this : access IPopupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5927,7 +5927,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_LightDismissOverlayModeProperty
       (
          this : access IPopupStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5939,7 +5939,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ShouldConstrainToRootBoundsProperty
       (
          this : access IPopupStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5951,14 +5951,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_PlacementTargetProperty
       (
          this : access IPopupStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredPlacementProperty
       (
          this : access IPopupStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6031,7 +6031,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_EllipseOffset
       (
          this : access IProgressRingTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -6120,15 +6120,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function add_ValueChanged
       (
          this : access IRangeBase_Interface;
-         handler : Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValueChanged
       (
          this : access IRangeBase_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6142,7 +6142,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IRangeBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IRangeBase
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase
       )
       return WinRt.Hresult is abstract;
 
@@ -6183,35 +6183,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_MinimumProperty
       (
          this : access IRangeBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaximumProperty
       (
          this : access IRangeBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SmallChangeProperty
       (
          this : access IRangeBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LargeChangeProperty
       (
          this : access IRangeBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ValueProperty
       (
          this : access IRangeBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6275,14 +6275,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_DelayProperty
       (
          this : access IRepeatButtonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IntervalProperty
       (
          this : access IRepeatButtonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6294,14 +6294,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Orientation
       (
          this : access IScrollBar_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Orientation
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Orientation
       )
       return WinRt.Hresult is abstract;
 
       function put_Orientation
       (
          this : access IScrollBar_Interface;
-         value : Windows.UI.Xaml.Controls.Orientation
+         value : WinRt.Windows.UI.Xaml.Controls.Orientation
       )
       return WinRt.Hresult is abstract;
 
@@ -6322,29 +6322,29 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_IndicatorMode
       (
          this : access IScrollBar_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
       )
       return WinRt.Hresult is abstract;
 
       function put_IndicatorMode
       (
          this : access IScrollBar_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
       )
       return WinRt.Hresult is abstract;
 
       function add_Scroll
       (
          this : access IScrollBar_Interface;
-         handler : Windows.UI.Xaml.Controls.Primitives.ScrollEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Scroll
       (
          this : access IScrollBar_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6356,21 +6356,21 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_OrientationProperty
       (
          this : access IScrollBarStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewportSizeProperty
       (
          this : access IScrollBarStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IndicatorModeProperty
       (
          this : access IScrollBarStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6389,7 +6389,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_ScrollEventType
       (
          this : access IScrollEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ScrollEventType
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollEventType
       )
       return WinRt.Hresult is abstract;
 
@@ -6416,14 +6416,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IScrollSnapPointsInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HorizontalSnapPointsChanged
       (
          this : access IScrollSnapPointsInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6431,22 +6431,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       (
          this : access IScrollSnapPointsInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VerticalSnapPointsChanged
       (
          this : access IScrollSnapPointsInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetIrregularSnapPoints
       (
          this : access IScrollSnapPointsInfo_Interface;
-         orientation : Windows.UI.Xaml.Controls.Orientation;
-         alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+         orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+         alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -6454,8 +6454,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function GetRegularSnapPoints
       (
          this : access IScrollSnapPointsInfo_Interface;
-         orientation : Windows.UI.Xaml.Controls.Orientation;
-         alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+         orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+         alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
          offset : WinRt.Single_Ptr;
          RetVal : access WinRt.Single
       )
@@ -6539,15 +6539,15 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function add_SelectionChanged
       (
          this : access ISelector_Interface;
-         handler : Windows.UI.Xaml.Controls.SelectionChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.SelectionChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectionChanged
       (
          this : access ISelector_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6585,7 +6585,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access ISelectorItemFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.ISelectorItem
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorItem
       )
       return WinRt.Hresult is abstract;
 
@@ -6597,7 +6597,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_IsSelectedProperty
       (
          this : access ISelectorItemStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6609,42 +6609,42 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_SelectedIndexProperty
       (
          this : access ISelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedItemProperty
       (
          this : access ISelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedValueProperty
       (
          this : access ISelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedValuePathProperty
       (
          this : access ISelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsSynchronizedWithCurrentItemProperty
       (
          this : access ISelectorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsSelectionActive
       (
          this : access ISelectorStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -6657,35 +6657,35 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_HeaderBackground
       (
          this : access ISettingsFlyoutTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_HeaderForeground
       (
          this : access ISettingsFlyoutTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_BorderBrush
       (
          this : access ISettingsFlyoutTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_BorderThickness
       (
          this : access ISettingsFlyoutTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function get_IconSource
       (
          this : access ISettingsFlyoutTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -6732,14 +6732,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_OpenPaneGridLength
       (
          this : access ISplitViewTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.GridLength
+         RetVal : access WinRt.Windows.UI.Xaml.GridLength
       )
       return WinRt.Hresult is abstract;
 
       function get_CompactPaneGridLength
       (
          this : access ISplitViewTemplateSettings_Interface;
-         RetVal : access Windows.UI.Xaml.GridLength
+         RetVal : access WinRt.Windows.UI.Xaml.GridLength
       )
       return WinRt.Hresult is abstract;
 
@@ -6758,45 +6758,45 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function add_DragStarted
       (
          this : access IThumb_Interface;
-         handler : Windows.UI.Xaml.Controls.Primitives.DragStartedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragStartedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DragStarted
       (
          this : access IThumb_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_DragDelta
       (
          this : access IThumb_Interface;
-         handler : Windows.UI.Xaml.Controls.Primitives.DragDeltaEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragDeltaEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DragDelta
       (
          this : access IThumb_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_DragCompleted
       (
          this : access IThumb_Interface;
-         handler : Windows.UI.Xaml.Controls.Primitives.DragCompletedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragCompletedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DragCompleted
       (
          this : access IThumb_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6814,7 +6814,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_IsDraggingProperty
       (
          this : access IThumbStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6826,14 +6826,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_Fill
       (
          this : access ITickBar_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Fill
       (
          this : access ITickBar_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -6845,7 +6845,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_FillProperty
       (
          this : access ITickBarStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6885,45 +6885,45 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function add_Checked
       (
          this : access IToggleButton_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Checked
       (
          this : access IToggleButton_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Unchecked
       (
          this : access IToggleButton_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Unchecked
       (
          this : access IToggleButton_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Indeterminate
       (
          this : access IToggleButton_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Indeterminate
       (
          this : access IToggleButton_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6937,7 +6937,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
          this : access IToggleButtonFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.IToggleButton
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButton
       )
       return WinRt.Hresult is abstract;
 
@@ -6960,14 +6960,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
       function get_IsCheckedProperty
       (
          this : access IToggleButtonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsThreeStateProperty
       (
          this : access IToggleButtonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -7103,7 +7103,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ClickMode
    (
       this : in out ButtonBase;
-      value : Windows.UI.Xaml.Controls.ClickMode
+      value : WinRt.Windows.UI.Xaml.Controls.ClickMode
    );
 
    function get_IsPointerOver
@@ -7127,7 +7127,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Command
    (
       this : in out ButtonBase;
-      value : Windows.UI.Xaml.Input.ICommand
+      value : WinRt.Windows.UI.Xaml.Input.ICommand
    );
 
    function get_CommandParameter
@@ -7145,14 +7145,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function add_Click
    (
       this : in out ButtonBase;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Click
    (
       this : in out ButtonBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7210,40 +7210,40 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function add_Checked
    (
       this : in out ToggleButton;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Checked
    (
       this : in out ToggleButton;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Unchecked
    (
       this : in out ToggleButton;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Unchecked
    (
       this : in out ToggleButton;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Indeterminate
    (
       this : in out ToggleButton;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Indeterminate
    (
       this : in out ToggleButton;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure OnToggle
@@ -7280,7 +7280,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function GetIsSelectionActive
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
@@ -7350,14 +7350,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function add_SelectionChanged
    (
       this : in out Selector;
-      handler : Windows.UI.Xaml.Controls.SelectionChangedEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.SelectionChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_SelectionChanged
    (
       this : in out Selector;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7457,19 +7457,19 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function GetAttachedFlyout
    (
-      element : Windows.UI.Xaml.FrameworkElement'Class
+      element : WinRt.Windows.UI.Xaml.FrameworkElement'Class
    )
    return WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase;
 
    procedure SetAttachedFlyout
    (
-      element : Windows.UI.Xaml.FrameworkElement'Class;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutBase'Class
+      element : WinRt.Windows.UI.Xaml.FrameworkElement'Class;
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutBase'Class
    );
 
    procedure ShowAttachedFlyout
    (
-      flyoutOwner : Windows.UI.Xaml.FrameworkElement'Class
+      flyoutOwner : WinRt.Windows.UI.Xaml.FrameworkElement'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7484,7 +7484,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Placement
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
    );
 
    function add_Opened
@@ -7497,7 +7497,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Opened
    (
       this : in out FlyoutBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -7510,7 +7510,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Closed
    (
       this : in out FlyoutBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Opening
@@ -7523,13 +7523,13 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Opening
    (
       this : in out FlyoutBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ShowAt
    (
       this : in out FlyoutBase;
-      placementTarget : Windows.UI.Xaml.FrameworkElement'Class
+      placementTarget : WinRt.Windows.UI.Xaml.FrameworkElement'Class
    );
 
    procedure Hide
@@ -7564,7 +7564,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_LightDismissOverlayMode
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
+      value : WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
    );
 
    function get_AllowFocusWhenDisabled
@@ -7588,7 +7588,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ElementSoundMode
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.ElementSoundMode
+      value : WinRt.Windows.UI.Xaml.ElementSoundMode
    );
 
    function add_Closing
@@ -7601,7 +7601,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Closing
    (
       this : in out FlyoutBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_OverlayInputPassThroughElement
@@ -7613,13 +7613,13 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_OverlayInputPassThroughElement
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    procedure TryInvokeKeyboardAccelerator
    (
       this : in out FlyoutBase;
-      args : Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
+      args : WinRt.Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
    );
 
    function get_ShowMode
@@ -7631,7 +7631,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ShowMode
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
    );
 
    function get_InputDevicePrefersPrimaryCommands
@@ -7661,8 +7661,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure ShowAt
    (
       this : in out FlyoutBase;
-      placementTarget : Windows.UI.Xaml.DependencyObject'Class;
-      showOptions : Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions'Class
+      placementTarget : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      showOptions : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions'Class
    );
 
    function get_ShouldConstrainToRootBounds
@@ -7692,7 +7692,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_XamlRoot
    (
       this : in out FlyoutBase;
-      value : Windows.UI.Xaml.XamlRoot'Class
+      value : WinRt.Windows.UI.Xaml.XamlRoot'Class
    );
 
    function CreatePresenter
@@ -7704,7 +7704,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure OnProcessKeyboardAccelerators
    (
       this : in out FlyoutBase;
-      args : Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
+      args : WinRt.Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7731,13 +7731,13 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function GetTitle
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetTitle
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -8133,8 +8133,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function MakeVisible
    (
       this : in out CarouselPanel;
-      visual : Windows.UI.Xaml.UIElement'Class;
-      rectangle : Windows.Foundation.Rect
+      visual : WinRt.Windows.UI.Xaml.UIElement'Class;
+      rectangle : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -8160,7 +8160,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_HorizontalSnapPointsChanged
    (
       this : in out CarouselPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VerticalSnapPointsChanged
@@ -8173,22 +8173,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_VerticalSnapPointsChanged
    (
       this : in out CarouselPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetIrregularSnapPoints
    (
       this : in out CarouselPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
    )
    return IVectorView_Single.Kind;
 
    function GetRegularSnapPoints
    (
       this : in out CarouselPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
       offset : WinRt.Single_Ptr
    )
    return WinRt.Single;
@@ -8293,14 +8293,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function add_ValueChanged
    (
       this : in out RangeBase;
-      handler : Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ValueChanged
    (
       this : in out RangeBase;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure OnMinimumChanged
@@ -8358,7 +8358,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ColorChannel
    (
       this : in out ColorPickerSlider;
-      value : Windows.UI.Xaml.Controls.ColorPickerHsvChannel
+      value : WinRt.Windows.UI.Xaml.Controls.ColorPickerHsvChannel
    );
 
    -----------------------------------------------------------------------------
@@ -8422,7 +8422,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Color
    (
       this : in out ColorSpectrum;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_HsvColor
@@ -8434,7 +8434,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_HsvColor
    (
       this : in out ColorSpectrum;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    );
 
    function get_MinHue
@@ -8518,7 +8518,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Shape
    (
       this : in out ColorSpectrum;
-      value : Windows.UI.Xaml.Controls.ColorSpectrumShape
+      value : WinRt.Windows.UI.Xaml.Controls.ColorSpectrumShape
    );
 
    function get_Components
@@ -8530,7 +8530,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Components
    (
       this : in out ColorSpectrum;
-      value : Windows.UI.Xaml.Controls.ColorSpectrumComponents
+      value : WinRt.Windows.UI.Xaml.Controls.ColorSpectrumComponents
    );
 
    function add_ColorChanged
@@ -8543,7 +8543,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_ColorChanged
    (
       this : in out ColorSpectrum;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8999,7 +8999,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ShowMode
    (
       this : in out FlyoutShowOptions;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutShowMode
    );
 
    function get_Placement
@@ -9011,7 +9011,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Placement
    (
       this : in out FlyoutShowOptions;
-      value : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode
    );
 
    -----------------------------------------------------------------------------
@@ -9142,7 +9142,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckHintBrush
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckSelectingBrush
@@ -9154,7 +9154,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckSelectingBrush
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBrush
@@ -9166,7 +9166,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBrush
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_DragBackground
@@ -9178,7 +9178,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_DragBackground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_DragForeground
@@ -9190,7 +9190,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_DragForeground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_FocusBorderBrush
@@ -9202,7 +9202,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_FocusBorderBrush
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PlaceholderBackground
@@ -9214,7 +9214,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PlaceholderBackground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PointerOverBackground
@@ -9226,7 +9226,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverBackground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedBackground
@@ -9238,7 +9238,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedBackground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedForeground
@@ -9250,7 +9250,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedForeground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedPointerOverBackground
@@ -9262,7 +9262,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPointerOverBackground
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedPointerOverBorderBrush
@@ -9274,7 +9274,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPointerOverBorderBrush
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedBorderThickness
@@ -9286,7 +9286,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedBorderThickness
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_DisabledOpacity
@@ -9334,7 +9334,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_GridViewItemPresenterHorizontalContentAlignment
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.HorizontalAlignment
+      value : WinRt.Windows.UI.Xaml.HorizontalAlignment
    );
 
    function get_GridViewItemPresenterVerticalContentAlignment
@@ -9346,7 +9346,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_GridViewItemPresenterVerticalContentAlignment
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.VerticalAlignment
+      value : WinRt.Windows.UI.Xaml.VerticalAlignment
    );
 
    function get_GridViewItemPresenterPadding
@@ -9358,7 +9358,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_GridViewItemPresenterPadding
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_PointerOverBackgroundMargin
@@ -9370,7 +9370,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverBackgroundMargin
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_ContentMargin
@@ -9382,7 +9382,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ContentMargin
    (
       this : in out GridViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    -----------------------------------------------------------------------------
@@ -9471,7 +9471,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Enabled
    (
       this : in out JumpListItemBackgroundConverter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Disabled
@@ -9483,14 +9483,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Disabled
    (
       this : in out JumpListItemBackgroundConverter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function Convert
    (
       this : in out JumpListItemBackgroundConverter;
       value : WinRt.IInspectable;
-      targetType : Windows.UI.Xaml.Interop.TypeName;
+      targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
       language : WinRt.WString
    )
@@ -9500,7 +9500,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    (
       this : in out JumpListItemBackgroundConverter;
       value : WinRt.IInspectable;
-      targetType : Windows.UI.Xaml.Interop.TypeName;
+      targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
       language : WinRt.WString
    )
@@ -9538,7 +9538,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Enabled
    (
       this : in out JumpListItemForegroundConverter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Disabled
@@ -9550,14 +9550,14 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Disabled
    (
       this : in out JumpListItemForegroundConverter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function Convert
    (
       this : in out JumpListItemForegroundConverter;
       value : WinRt.IInspectable;
-      targetType : Windows.UI.Xaml.Interop.TypeName;
+      targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
       language : WinRt.WString
    )
@@ -9567,7 +9567,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    (
       this : in out JumpListItemForegroundConverter;
       value : WinRt.IInspectable;
-      targetType : Windows.UI.Xaml.Interop.TypeName;
+      targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
       language : WinRt.WString
    )
@@ -9584,7 +9584,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function GetAvailableSize
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.Foundation.Size;
 
@@ -9596,7 +9596,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
 
    function GetLayoutSlot
    (
-      element : Windows.UI.Xaml.FrameworkElement'Class
+      element : WinRt.Windows.UI.Xaml.FrameworkElement'Class
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -9823,7 +9823,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckHintBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckSelectingBrush
@@ -9835,7 +9835,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckSelectingBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBrush
@@ -9847,7 +9847,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_DragBackground
@@ -9859,7 +9859,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_DragBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_DragForeground
@@ -9871,7 +9871,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_DragForeground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_FocusBorderBrush
@@ -9883,7 +9883,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_FocusBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PlaceholderBackground
@@ -9895,7 +9895,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PlaceholderBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PointerOverBackground
@@ -9907,7 +9907,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedBackground
@@ -9919,7 +9919,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedForeground
@@ -9931,7 +9931,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedForeground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedPointerOverBackground
@@ -9943,7 +9943,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPointerOverBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedPointerOverBorderBrush
@@ -9955,7 +9955,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPointerOverBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedBorderThickness
@@ -9967,7 +9967,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedBorderThickness
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_DisabledOpacity
@@ -10015,7 +10015,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ListViewItemPresenterHorizontalContentAlignment
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.HorizontalAlignment
+      value : WinRt.Windows.UI.Xaml.HorizontalAlignment
    );
 
    function get_ListViewItemPresenterVerticalContentAlignment
@@ -10027,7 +10027,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ListViewItemPresenterVerticalContentAlignment
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.VerticalAlignment
+      value : WinRt.Windows.UI.Xaml.VerticalAlignment
    );
 
    function get_ListViewItemPresenterPadding
@@ -10039,7 +10039,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ListViewItemPresenterPadding
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_PointerOverBackgroundMargin
@@ -10051,7 +10051,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverBackgroundMargin
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_ContentMargin
@@ -10063,7 +10063,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ContentMargin
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_SelectedPressedBackground
@@ -10075,7 +10075,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPressedBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PressedBackground
@@ -10087,7 +10087,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PressedBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxBrush
@@ -10099,7 +10099,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_FocusSecondaryBorderBrush
@@ -10111,7 +10111,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_FocusSecondaryBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckMode
@@ -10123,7 +10123,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckMode
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterCheckMode
    );
 
    function get_PointerOverForeground
@@ -10135,7 +10135,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverForeground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_RevealBackground
@@ -10147,7 +10147,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_RevealBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_RevealBorderBrush
@@ -10159,7 +10159,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_RevealBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_RevealBorderThickness
@@ -10171,7 +10171,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_RevealBorderThickness
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_RevealBackgroundShowsAboveContent
@@ -10195,7 +10195,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedDisabledBackground
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckPressedBrush
@@ -10207,7 +10207,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckPressedBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckDisabledBrush
@@ -10219,7 +10219,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckDisabledBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxPointerOverBrush
@@ -10231,7 +10231,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxPointerOverBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxPressedBrush
@@ -10243,7 +10243,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxPressedBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxDisabledBrush
@@ -10255,7 +10255,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxDisabledBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxSelectedBrush
@@ -10267,7 +10267,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxSelectedBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxSelectedPointerOverBrush
@@ -10279,7 +10279,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxSelectedPointerOverBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxSelectedPressedBrush
@@ -10291,7 +10291,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxSelectedPressedBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxSelectedDisabledBrush
@@ -10303,7 +10303,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxSelectedDisabledBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxBorderBrush
@@ -10315,7 +10315,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxPointerOverBorderBrush
@@ -10327,7 +10327,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxPointerOverBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxPressedBorderBrush
@@ -10339,7 +10339,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxPressedBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxDisabledBorderBrush
@@ -10351,7 +10351,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxDisabledBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_CheckBoxCornerRadius
@@ -10363,7 +10363,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_CheckBoxCornerRadius
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.CornerRadius
+      value : WinRt.Windows.UI.Xaml.CornerRadius
    );
 
    function get_SelectionIndicatorCornerRadius
@@ -10375,7 +10375,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorCornerRadius
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.CornerRadius
+      value : WinRt.Windows.UI.Xaml.CornerRadius
    );
 
    function get_SelectionIndicatorVisualEnabled
@@ -10399,7 +10399,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorMode
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenterSelectionIndicatorMode
    );
 
    function get_SelectionIndicatorBrush
@@ -10411,7 +10411,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectionIndicatorPointerOverBrush
@@ -10423,7 +10423,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorPointerOverBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectionIndicatorPressedBrush
@@ -10435,7 +10435,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorPressedBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectionIndicatorDisabledBrush
@@ -10447,7 +10447,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectionIndicatorDisabledBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedBorderBrush
@@ -10459,7 +10459,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedPressedBorderBrush
@@ -10471,7 +10471,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedPressedBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedDisabledBorderBrush
@@ -10483,7 +10483,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedDisabledBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_SelectedInnerBorderBrush
@@ -10495,7 +10495,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_SelectedInnerBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_PointerOverBorderBrush
@@ -10507,7 +10507,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PointerOverBorderBrush
    (
       this : in out ListViewItemPresenter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10639,20 +10639,20 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ItemTemplate
    (
       this : in out LoopingSelector;
-      value : Windows.UI.Xaml.DataTemplate'Class
+      value : WinRt.Windows.UI.Xaml.DataTemplate'Class
    );
 
    function add_SelectionChanged
    (
       this : in out LoopingSelector;
-      handler : Windows.UI.Xaml.Controls.SelectionChangedEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.SelectionChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_SelectionChanged
    (
       this : in out LoopingSelector;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -10695,7 +10695,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_HorizontalSnapPointsChanged
    (
       this : in out LoopingSelectorPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VerticalSnapPointsChanged
@@ -10708,22 +10708,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_VerticalSnapPointsChanged
    (
       this : in out LoopingSelectorPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetIrregularSnapPoints
    (
       this : in out LoopingSelectorPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
    )
    return IVectorView_Single.Kind;
 
    function GetRegularSnapPoints
    (
       this : in out LoopingSelectorPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
       offset : WinRt.Single_Ptr
    )
    return WinRt.Single;
@@ -10792,7 +10792,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Icon
    (
       this : in out NavigationViewItemPresenter;
-      value : Windows.UI.Xaml.Controls.IconElement'Class
+      value : WinRt.Windows.UI.Xaml.Controls.IconElement'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10954,8 +10954,8 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function MakeVisible
    (
       this : in out OrientedVirtualizingPanel;
-      visual : Windows.UI.Xaml.UIElement'Class;
-      rectangle : Windows.Foundation.Rect
+      visual : WinRt.Windows.UI.Xaml.UIElement'Class;
+      rectangle : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -10981,7 +10981,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_HorizontalSnapPointsChanged
    (
       this : in out OrientedVirtualizingPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VerticalSnapPointsChanged
@@ -10994,22 +10994,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_VerticalSnapPointsChanged
    (
       this : in out OrientedVirtualizingPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetIrregularSnapPoints
    (
       this : in out OrientedVirtualizingPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
    )
    return IVectorView_Single.Kind;
 
    function GetRegularSnapPoints
    (
       this : in out OrientedVirtualizingPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
       offset : WinRt.Single_Ptr
    )
    return WinRt.Single;
@@ -11017,7 +11017,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure GetInsertionIndexes
    (
       this : in out OrientedVirtualizingPanel;
-      position : Windows.Foundation.Point;
+      position : WinRt.Windows.Foundation.Point;
       first : WinRt.Int32_Ptr;
       second : WinRt.Int32_Ptr
    );
@@ -11091,7 +11091,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_HorizontalSnapPointsChanged
    (
       this : in out PivotPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VerticalSnapPointsChanged
@@ -11104,22 +11104,22 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_VerticalSnapPointsChanged
    (
       this : in out PivotPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetIrregularSnapPoints
    (
       this : in out PivotPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment
    )
    return IVectorView_Single.Kind;
 
    function GetRegularSnapPoints
    (
       this : in out PivotPanel;
-      orientation : Windows.UI.Xaml.Controls.Orientation;
-      alignment : Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
+      orientation : WinRt.Windows.UI.Xaml.Controls.Orientation;
+      alignment : WinRt.Windows.UI.Xaml.Controls.Primitives.SnapPointsAlignment;
       offset : WinRt.Single_Ptr
    )
    return WinRt.Single;
@@ -11180,7 +11180,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Child
    (
       this : in out Popup;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function get_IsOpen
@@ -11228,7 +11228,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_ChildTransitions
    (
       this : in out Popup;
-      value : Windows.UI.Xaml.Media.Animation.TransitionCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.TransitionCollection'Class
    );
 
    function get_IsLightDismissEnabled
@@ -11253,7 +11253,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Opened
    (
       this : in out Popup;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -11266,7 +11266,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_Closed
    (
       this : in out Popup;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_LightDismissOverlayMode
@@ -11278,7 +11278,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_LightDismissOverlayMode
    (
       this : in out Popup;
-      value : Windows.UI.Xaml.Controls.LightDismissOverlayMode
+      value : WinRt.Windows.UI.Xaml.Controls.LightDismissOverlayMode
    );
 
    function get_ShouldConstrainToRootBounds
@@ -11308,7 +11308,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_PlacementTarget
    (
       this : in out Popup;
-      value : Windows.UI.Xaml.FrameworkElement'Class
+      value : WinRt.Windows.UI.Xaml.FrameworkElement'Class
    );
 
    function get_DesiredPlacement
@@ -11320,7 +11320,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_DesiredPlacement
    (
       this : in out Popup;
-      value : Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.PopupPlacementMode
    );
 
    function get_ActualPlacement
@@ -11339,7 +11339,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure remove_ActualPlacementChanged
    (
       this : in out Popup;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -11523,7 +11523,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Orientation
    (
       this : in out ScrollBar;
-      value : Windows.UI.Xaml.Controls.Orientation
+      value : WinRt.Windows.UI.Xaml.Controls.Orientation
    );
 
    function get_ViewportSize
@@ -11547,20 +11547,20 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_IndicatorMode
    (
       this : in out ScrollBar;
-      value : Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollingIndicatorMode
    );
 
    function add_Scroll
    (
       this : in out ScrollBar;
-      handler : Windows.UI.Xaml.Controls.Primitives.ScrollEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Scroll
    (
       this : in out ScrollBar;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -11708,40 +11708,40 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    function add_DragStarted
    (
       this : in out Thumb;
-      handler : Windows.UI.Xaml.Controls.Primitives.DragStartedEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragStartedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DragStarted
    (
       this : in out Thumb;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DragDelta
    (
       this : in out Thumb;
-      handler : Windows.UI.Xaml.Controls.Primitives.DragDeltaEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragDeltaEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DragDelta
    (
       this : in out Thumb;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DragCompleted
    (
       this : in out Thumb;
-      handler : Windows.UI.Xaml.Controls.Primitives.DragCompletedEventHandler
+      handler : WinRt.Windows.UI.Xaml.Controls.Primitives.DragCompletedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DragCompleted
    (
       this : in out Thumb;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure CancelDrag
@@ -11778,7 +11778,7 @@ package WinRt.Windows.UI.Xaml.Controls.Primitives is
    procedure put_Fill
    (
       this : in out TickBar;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    -----------------------------------------------------------------------------

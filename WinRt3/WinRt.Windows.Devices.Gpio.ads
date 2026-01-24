@@ -228,14 +228,14 @@ package WinRt.Windows.Devices.Gpio is
       function put_Polarity
       (
          this : access IGpioChangeCounter_Interface;
-         value : Windows.Devices.Gpio.GpioChangePolarity
+         value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
       )
       return WinRt.Hresult is abstract;
 
       function get_Polarity
       (
          this : access IGpioChangeCounter_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangePolarity
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangePolarity
       )
       return WinRt.Hresult is abstract;
 
@@ -261,14 +261,14 @@ package WinRt.Windows.Devices.Gpio is
       function Read
       (
          this : access IGpioChangeCounter_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangeCount
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangeCount
       )
       return WinRt.Hresult is abstract;
 
       function Reset
       (
          this : access IGpioChangeCounter_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangeCount
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangeCount
       )
       return WinRt.Hresult is abstract;
 
@@ -280,8 +280,8 @@ package WinRt.Windows.Devices.Gpio is
       function Create
       (
          this : access IGpioChangeCounterFactory_Interface;
-         pin : Windows.Devices.Gpio.IGpioPin;
-         RetVal : access Windows.Devices.Gpio.IGpioChangeCounter
+         pin : WinRt.Windows.Devices.Gpio.IGpioPin;
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioChangeCounter
       )
       return WinRt.Hresult is abstract;
 
@@ -321,14 +321,14 @@ package WinRt.Windows.Devices.Gpio is
       function put_Polarity
       (
          this : access IGpioChangeReader_Interface;
-         value : Windows.Devices.Gpio.GpioChangePolarity
+         value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
       )
       return WinRt.Hresult is abstract;
 
       function get_Polarity
       (
          this : access IGpioChangeReader_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangePolarity
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangePolarity
       )
       return WinRt.Hresult is abstract;
 
@@ -360,14 +360,14 @@ package WinRt.Windows.Devices.Gpio is
       function GetNextItem
       (
          this : access IGpioChangeReader_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangeRecord
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangeRecord
       )
       return WinRt.Hresult is abstract;
 
       function PeekNextItem
       (
          this : access IGpioChangeReader_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioChangeRecord
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioChangeRecord
       )
       return WinRt.Hresult is abstract;
 
@@ -382,7 +382,7 @@ package WinRt.Windows.Devices.Gpio is
       (
          this : access IGpioChangeReader_Interface;
          count : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -394,17 +394,17 @@ package WinRt.Windows.Devices.Gpio is
       function Create
       (
          this : access IGpioChangeReaderFactory_Interface;
-         pin : Windows.Devices.Gpio.IGpioPin;
-         RetVal : access Windows.Devices.Gpio.IGpioChangeReader
+         pin : WinRt.Windows.Devices.Gpio.IGpioPin;
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioChangeReader
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithCapacity
       (
          this : access IGpioChangeReaderFactory_Interface;
-         pin : Windows.Devices.Gpio.IGpioPin;
+         pin : WinRt.Windows.Devices.Gpio.IGpioPin;
          minCapacity : WinRt.Int32;
-         RetVal : access Windows.Devices.Gpio.IGpioChangeReader
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -424,7 +424,7 @@ package WinRt.Windows.Devices.Gpio is
       (
          this : access IGpioController_Interface;
          pinNumber : WinRt.Int32;
-         RetVal : access Windows.Devices.Gpio.IGpioPin
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioPin
       )
       return WinRt.Hresult is abstract;
 
@@ -432,8 +432,8 @@ package WinRt.Windows.Devices.Gpio is
       (
          this : access IGpioController_Interface;
          pinNumber : WinRt.Int32;
-         sharingMode : Windows.Devices.Gpio.GpioSharingMode;
-         RetVal : access Windows.Devices.Gpio.IGpioPin
+         sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode;
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioPin
       )
       return WinRt.Hresult is abstract;
 
@@ -441,9 +441,9 @@ package WinRt.Windows.Devices.Gpio is
       (
          this : access IGpioController_Interface;
          pinNumber : WinRt.Int32;
-         sharingMode : Windows.Devices.Gpio.GpioSharingMode;
-         pin : access Windows.Devices.Gpio.IGpioPin;
-         openStatus : Windows.Devices.Gpio.GpioOpenStatus_Ptr;
+         sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode;
+         pin : access WinRt.Windows.Devices.Gpio.IGpioPin;
+         openStatus : WinRt.Windows.Devices.Gpio.GpioOpenStatus_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -456,7 +456,7 @@ package WinRt.Windows.Devices.Gpio is
       function GetDefault
       (
          this : access IGpioControllerStatics_Interface;
-         RetVal : access Windows.Devices.Gpio.IGpioController
+         RetVal : access WinRt.Windows.Devices.Gpio.IGpioController
       )
       return WinRt.Hresult is abstract;
 
@@ -468,7 +468,7 @@ package WinRt.Windows.Devices.Gpio is
       function GetControllersAsync
       (
          this : access IGpioControllerStatics2_Interface;
-         provider : Windows.Devices.Gpio.Provider.IGpioProvider;
+         provider : WinRt.Windows.Devices.Gpio.Provider.IGpioProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -489,28 +489,28 @@ package WinRt.Windows.Devices.Gpio is
       (
          this : access IGpioPin_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValueChanged
       (
          this : access IGpioPin_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_DebounceTimeout
       (
          this : access IGpioPin_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DebounceTimeout
       (
          this : access IGpioPin_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -524,14 +524,14 @@ package WinRt.Windows.Devices.Gpio is
       function get_SharingMode
       (
          this : access IGpioPin_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioSharingMode
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function IsDriveModeSupported
       (
          this : access IGpioPin_Interface;
-         driveMode : Windows.Devices.Gpio.GpioPinDriveMode;
+         driveMode : WinRt.Windows.Devices.Gpio.GpioPinDriveMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -539,28 +539,28 @@ package WinRt.Windows.Devices.Gpio is
       function GetDriveMode
       (
          this : access IGpioPin_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioPinDriveMode
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioPinDriveMode
       )
       return WinRt.Hresult is abstract;
 
       function SetDriveMode
       (
          this : access IGpioPin_Interface;
-         value : Windows.Devices.Gpio.GpioPinDriveMode
+         value : WinRt.Windows.Devices.Gpio.GpioPinDriveMode
       )
       return WinRt.Hresult is abstract;
 
       function Write
       (
          this : access IGpioPin_Interface;
-         value : Windows.Devices.Gpio.GpioPinValue
+         value : WinRt.Windows.Devices.Gpio.GpioPinValue
       )
       return WinRt.Hresult is abstract;
 
       function Read
       (
          this : access IGpioPin_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioPinValue
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioPinValue
       )
       return WinRt.Hresult is abstract;
 
@@ -572,7 +572,7 @@ package WinRt.Windows.Devices.Gpio is
       function get_Edge
       (
          this : access IGpioPinValueChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Gpio.GpioPinEdge
+         RetVal : access WinRt.Windows.Devices.Gpio.GpioPinEdge
       )
       return WinRt.Hresult is abstract;
 
@@ -593,7 +593,7 @@ package WinRt.Windows.Devices.Gpio is
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class
    )
    return GpioChangeCounter;
 
@@ -603,7 +603,7 @@ package WinRt.Windows.Devices.Gpio is
    procedure put_Polarity
    (
       this : in out GpioChangeCounter;
-      value : Windows.Devices.Gpio.GpioChangePolarity
+      value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
    );
 
    function get_Polarity
@@ -656,13 +656,13 @@ package WinRt.Windows.Devices.Gpio is
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class
    )
    return GpioChangeReader;
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class;
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class;
       minCapacity : WinRt.Int32
    )
    return GpioChangeReader;
@@ -697,7 +697,7 @@ package WinRt.Windows.Devices.Gpio is
    procedure put_Polarity
    (
       this : in out GpioChangeReader;
-      value : Windows.Devices.Gpio.GpioChangePolarity
+      value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
    );
 
    function get_Polarity
@@ -770,7 +770,7 @@ package WinRt.Windows.Devices.Gpio is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Gpio.Provider.IGpioProvider
+      provider : WinRt.Windows.Devices.Gpio.Provider.IGpioProvider
    )
    return WinRt.GenericObject;
 
@@ -797,7 +797,7 @@ package WinRt.Windows.Devices.Gpio is
    (
       this : in out GpioController;
       pinNumber : WinRt.Int32;
-      sharingMode : Windows.Devices.Gpio.GpioSharingMode
+      sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode
    )
    return WinRt.Windows.Devices.Gpio.GpioPin'Class;
 
@@ -805,9 +805,9 @@ package WinRt.Windows.Devices.Gpio is
    (
       this : in out GpioController;
       pinNumber : WinRt.Int32;
-      sharingMode : Windows.Devices.Gpio.GpioSharingMode;
-      pin : access Windows.Devices.Gpio.IGpioPin;
-      openStatus : Windows.Devices.Gpio.GpioOpenStatus_Ptr
+      sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode;
+      pin : access WinRt.Windows.Devices.Gpio.IGpioPin;
+      openStatus : WinRt.Windows.Devices.Gpio.GpioOpenStatus_Ptr
    )
    return WinRt.Boolean;
 
@@ -830,7 +830,7 @@ package WinRt.Windows.Devices.Gpio is
    procedure remove_ValueChanged
    (
       this : in out GpioPin;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DebounceTimeout
@@ -842,7 +842,7 @@ package WinRt.Windows.Devices.Gpio is
    procedure put_DebounceTimeout
    (
       this : in out GpioPin;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_PinNumber
@@ -860,7 +860,7 @@ package WinRt.Windows.Devices.Gpio is
    function IsDriveModeSupported
    (
       this : in out GpioPin;
-      driveMode : Windows.Devices.Gpio.GpioPinDriveMode
+      driveMode : WinRt.Windows.Devices.Gpio.GpioPinDriveMode
    )
    return WinRt.Boolean;
 
@@ -873,13 +873,13 @@ package WinRt.Windows.Devices.Gpio is
    procedure SetDriveMode
    (
       this : in out GpioPin;
-      value : Windows.Devices.Gpio.GpioPinDriveMode
+      value : WinRt.Windows.Devices.Gpio.GpioPinDriveMode
    );
 
    procedure Write
    (
       this : in out GpioPin;
-      value : Windows.Devices.Gpio.GpioPinValue
+      value : WinRt.Windows.Devices.Gpio.GpioPinValue
    );
 
    function Read

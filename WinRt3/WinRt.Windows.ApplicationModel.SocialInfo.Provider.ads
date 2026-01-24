@@ -92,56 +92,56 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       function get_Content
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_Timestamp
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         value : Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
+         value : WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
       )
       return WinRt.Hresult is abstract;
 
       function CommitAsync
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetUri
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialDashboardItemUpdater_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -160,7 +160,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       function get_Kind
       (
          this : access ISocialFeedUpdater_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.SocialFeedKind
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind
       )
       return WinRt.Hresult is abstract;
 
@@ -174,7 +174,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       function CommitAsync
       (
          this : access ISocialFeedUpdater_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -186,8 +186,8 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       function CreateSocialFeedUpdaterAsync
       (
          this : access ISocialInfoProviderManagerStatics_Interface;
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind;
-         mode : Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind;
+         mode : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
          ownerRemoteId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -213,7 +213,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       (
          this : access ISocialInfoProviderManagerStatics_Interface;
          contactRemoteId : WinRt.HString;
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind
       )
       return WinRt.Hresult is abstract;
 
@@ -227,7 +227,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       function DeprovisionAsync
       (
          this : access ISocialInfoProviderManagerStatics_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -267,13 +267,13 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    procedure put_Timestamp
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure put_Thumbnail
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
    );
 
    function get_Thumbnail
@@ -296,7 +296,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    procedure put_TargetUri
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -337,8 +337,8 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
 
       function CreateSocialFeedUpdaterAsync
       (
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind;
-         mode : Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind;
+         mode : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
          ownerRemoteId : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater;
@@ -358,7 +358,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       procedure ReportNewContentAvailable
       (
          contactRemoteId : WinRt.WString;
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind
       );
 
       function ProvisionAsync

@@ -108,7 +108,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       function get_User
       (
          this : access IAppCapability_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -122,7 +122,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       function CheckAccess
       (
          this : access IAppCapability_Interface;
-         RetVal : access Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus
+         RetVal : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -130,14 +130,14 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       (
          this : access IAppCapability_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccessChanged
       (
          this : access IAppCapability_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -181,7 +181,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       function RequestAccessForCapabilitiesForUserAsync
       (
          this : access IAppCapabilityStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          capabilityNames : GenericObject;
          RetVal : access GenericObject
       )
@@ -191,17 +191,17 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       (
          this : access IAppCapabilityStatics_Interface;
          capabilityName : WinRt.HString;
-         RetVal : access Windows.Security.Authorization.AppCapabilityAccess.IAppCapability
+         RetVal : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithProcessIdForUser
       (
          this : access IAppCapabilityStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          capabilityName : WinRt.HString;
          pid : WinRt.UInt32;
-         RetVal : access Windows.Security.Authorization.AppCapabilityAccess.IAppCapability
+         RetVal : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability
       )
       return WinRt.Hresult is abstract;
 
@@ -228,7 +228,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
 
    function RequestAccessForCapabilitiesForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       capabilityNames : GenericObject
    )
    return WinRt.GenericObject;
@@ -241,7 +241,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
 
    function CreateWithProcessIdForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       capabilityName : WinRt.WString;
       pid : WinRt.UInt32
    )
@@ -284,7 +284,7 @@ package WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    procedure remove_AccessChanged
    (
       this : in out AppCapability;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DisplayMessage

@@ -258,7 +258,7 @@ package WinRt.Windows.Media.DialProtocol is
       function get_State
       (
          this : access IDialAppStateDetails_Interface;
-         RetVal : access Windows.Media.DialProtocol.DialAppState
+         RetVal : access WinRt.Windows.Media.DialProtocol.DialAppState
       )
       return WinRt.Hresult is abstract;
 
@@ -285,7 +285,7 @@ package WinRt.Windows.Media.DialProtocol is
       (
          this : access IDialDevice_Interface;
          appName : WinRt.HString;
-         RetVal : access Windows.Media.DialProtocol.IDialApp
+         RetVal : access WinRt.Windows.Media.DialProtocol.IDialApp
       )
       return WinRt.Hresult is abstract;
 
@@ -304,7 +304,7 @@ package WinRt.Windows.Media.DialProtocol is
       function get_Thumbnail
       (
          this : access IDialDevice2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -316,14 +316,14 @@ package WinRt.Windows.Media.DialProtocol is
       function get_Filter
       (
          this : access IDialDevicePicker_Interface;
-         RetVal : access Windows.Media.DialProtocol.IDialDevicePickerFilter
+         RetVal : access WinRt.Windows.Media.DialProtocol.IDialDevicePickerFilter
       )
       return WinRt.Hresult is abstract;
 
       function get_Appearance
       (
          this : access IDialDevicePicker_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDevicePickerAppearance
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDevicePickerAppearance
       )
       return WinRt.Hresult is abstract;
 
@@ -331,14 +331,14 @@ package WinRt.Windows.Media.DialProtocol is
       (
          this : access IDialDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DialDeviceSelected
       (
          this : access IDialDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -346,14 +346,14 @@ package WinRt.Windows.Media.DialProtocol is
       (
          this : access IDialDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisconnectButtonClicked
       (
          this : access IDialDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -361,36 +361,36 @@ package WinRt.Windows.Media.DialProtocol is
       (
          this : access IDialDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DialDevicePickerDismissed
       (
          this : access IDialDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access IDialDevicePicker_Interface;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access IDialDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
       function PickSingleDialDeviceAsync
       (
          this : access IDialDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -398,8 +398,8 @@ package WinRt.Windows.Media.DialProtocol is
       function PickSingleDialDeviceAsync
       (
          this : access IDialDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -413,8 +413,8 @@ package WinRt.Windows.Media.DialProtocol is
       function SetDisplayStatus
       (
          this : access IDialDevicePicker_Interface;
-         device : Windows.Media.DialProtocol.IDialDevice;
-         status : Windows.Media.DialProtocol.DialDeviceDisplayStatus
+         device : WinRt.Windows.Media.DialProtocol.IDialDevice;
+         status : WinRt.Windows.Media.DialProtocol.DialDeviceDisplayStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -438,7 +438,7 @@ package WinRt.Windows.Media.DialProtocol is
       function get_SelectedDialDevice
       (
          this : access IDialDeviceSelectedEventArgs_Interface;
-         RetVal : access Windows.Media.DialProtocol.IDialDevice
+         RetVal : access WinRt.Windows.Media.DialProtocol.IDialDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -466,7 +466,7 @@ package WinRt.Windows.Media.DialProtocol is
       function DeviceInfoSupportsDialAsync
       (
          this : access IDialDeviceStatics_Interface;
-         device : Windows.Devices.Enumeration.IDeviceInformation;
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -479,7 +479,7 @@ package WinRt.Windows.Media.DialProtocol is
       function get_Device
       (
          this : access IDialDisconnectButtonClickedEventArgs_Interface;
-         RetVal : access Windows.Media.DialProtocol.IDialDevice
+         RetVal : access WinRt.Windows.Media.DialProtocol.IDialDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -499,7 +499,7 @@ package WinRt.Windows.Media.DialProtocol is
       (
          this : access IDialReceiverApp_Interface;
          additionalData : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -523,7 +523,7 @@ package WinRt.Windows.Media.DialProtocol is
       function get_Current
       (
          this : access IDialReceiverAppStatics_Interface;
-         RetVal : access Windows.Media.DialProtocol.IDialReceiverApp
+         RetVal : access WinRt.Windows.Media.DialProtocol.IDialReceiverApp
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Media.DialProtocol is
 
    function DeviceInfoSupportsDialAsync
    (
-      device : Windows.Devices.Enumeration.DeviceInformation'Class
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Boolean;
 
@@ -679,7 +679,7 @@ package WinRt.Windows.Media.DialProtocol is
    procedure remove_DialDeviceSelected
    (
       this : in out DialDevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DisconnectButtonClicked
@@ -692,7 +692,7 @@ package WinRt.Windows.Media.DialProtocol is
    procedure remove_DisconnectButtonClicked
    (
       this : in out DialDevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DialDevicePickerDismissed
@@ -705,34 +705,34 @@ package WinRt.Windows.Media.DialProtocol is
    procedure remove_DialDevicePickerDismissed
    (
       this : in out DialDevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Show
    (
       this : in out DialDevicePicker;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    );
 
    procedure Show
    (
       this : in out DialDevicePicker;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    );
 
    function PickSingleDialDeviceAsync
    (
       this : in out DialDevicePicker;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class;
 
    function PickSingleDialDeviceAsync
    (
       this : in out DialDevicePicker;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Windows.Media.DialProtocol.DialDevice'Class;
 
@@ -744,8 +744,8 @@ package WinRt.Windows.Media.DialProtocol is
    procedure SetDisplayStatus
    (
       this : in out DialDevicePicker;
-      device : Windows.Media.DialProtocol.DialDevice'Class;
-      status : Windows.Media.DialProtocol.DialDeviceDisplayStatus
+      device : WinRt.Windows.Media.DialProtocol.DialDevice'Class;
+      status : WinRt.Windows.Media.DialProtocol.DialDeviceDisplayStatus
    );
 
    -----------------------------------------------------------------------------

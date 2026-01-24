@@ -1736,14 +1736,14 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access IAmbientLight_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IAmbientLight_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1802,14 +1802,14 @@ package WinRt.Windows.UI.Composition is
       function get_ProgressBehavior
       (
          this : access IAnimationController_Interface;
-         RetVal : access Windows.UI.Composition.AnimationControllerProgressBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_ProgressBehavior
       (
          this : access IAnimationController_Interface;
-         value : Windows.UI.Composition.AnimationControllerProgressBehavior
+         value : WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -1853,7 +1853,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IAnimationObject_Interface;
          propertyName : WinRt.HString;
-         propertyInfo : Windows.UI.Composition.IAnimationPropertyInfo
+         propertyInfo : WinRt.Windows.UI.Composition.IAnimationPropertyInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,14 +1865,14 @@ package WinRt.Windows.UI.Composition is
       function get_AccessMode
       (
          this : access IAnimationPropertyInfo_Interface;
-         RetVal : access Windows.UI.Composition.AnimationPropertyAccessMode
+         RetVal : access WinRt.Windows.UI.Composition.AnimationPropertyAccessMode
       )
       return WinRt.Hresult is abstract;
 
       function put_AccessMode
       (
          this : access IAnimationPropertyInfo_Interface;
-         value : Windows.UI.Composition.AnimationPropertyAccessMode
+         value : WinRt.Windows.UI.Composition.AnimationPropertyAccessMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1884,7 +1884,7 @@ package WinRt.Windows.UI.Composition is
       function GetResolvedCompositionObject
       (
          this : access IAnimationPropertyInfo2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionObject
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionObject
       )
       return WinRt.Hresult is abstract;
 
@@ -1903,7 +1903,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access IBackEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1935,7 +1935,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access IBounceEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2060,7 +2060,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access ICircleEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2072,14 +2072,14 @@ package WinRt.Windows.UI.Composition is
       function get_InterpolationColorSpace
       (
          this : access IColorKeyFrameAnimation_Interface;
-         RetVal : access Windows.UI.Composition.CompositionColorSpace
+         RetVal : access WinRt.Windows.UI.Composition.CompositionColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function put_InterpolationColorSpace
       (
          this : access IColorKeyFrameAnimation_Interface;
-         value : Windows.UI.Composition.CompositionColorSpace
+         value : WinRt.Windows.UI.Composition.CompositionColorSpace
       )
       return WinRt.Hresult is abstract;
 
@@ -2087,7 +2087,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IColorKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -2095,8 +2095,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IColorKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.UI.Color;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.UI.Color;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -2122,7 +2122,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -2130,7 +2130,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -2138,7 +2138,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix4x4
+         value : WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
@@ -2146,7 +2146,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -2154,7 +2154,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         compositionObject_p : Windows.UI.Composition.ICompositionObject
+         compositionObject_p : WinRt.Windows.UI.Composition.ICompositionObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2170,7 +2170,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -2178,7 +2178,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -2186,7 +2186,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation_Interface;
          key : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector4
+         value : WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
@@ -2238,7 +2238,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionAnimation4_Interface;
          parameterName : WinRt.HString;
-         source : Windows.UI.Composition.IAnimationObject
+         source : WinRt.Windows.UI.Composition.IAnimationObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2267,14 +2267,14 @@ package WinRt.Windows.UI.Composition is
       function Add
       (
          this : access ICompositionAnimationGroup_Interface;
-         value : Windows.UI.Composition.ICompositionAnimation
+         value : WinRt.Windows.UI.Composition.ICompositionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access ICompositionAnimationGroup_Interface;
-         value : Windows.UI.Composition.ICompositionAnimation
+         value : WinRt.Windows.UI.Composition.ICompositionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -2327,14 +2327,14 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionCapabilities_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access ICompositionCapabilities_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2346,7 +2346,7 @@ package WinRt.Windows.UI.Composition is
       function GetForCurrentView
       (
          this : access ICompositionCapabilitiesStatics_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionCapabilities
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -2363,42 +2363,42 @@ package WinRt.Windows.UI.Composition is
       function get_AnchorPoint
       (
          this : access ICompositionClip2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_AnchorPoint
       (
          this : access ICompositionClip2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterPoint
       (
          this : access ICompositionClip2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_CenterPoint
       (
          this : access ICompositionClip2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access ICompositionClip2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionClip2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -2433,28 +2433,28 @@ package WinRt.Windows.UI.Composition is
       function get_Scale
       (
          this : access ICompositionClip2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access ICompositionClip2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformMatrix
       (
          this : access ICompositionClip2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformMatrix
       (
          this : access ICompositionClip2_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -2471,14 +2471,14 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access ICompositionColorBrush_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ICompositionColorBrush_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -2490,14 +2490,14 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access ICompositionColorGradientStop_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ICompositionColorGradientStop_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -2543,14 +2543,14 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionCommitBatch_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access ICompositionCommitBatch_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2574,21 +2574,21 @@ package WinRt.Windows.UI.Composition is
       function get_AlphaMode
       (
          this : access ICompositionDrawingSurface_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXAlphaMode
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelFormat
       (
          this : access ICompositionDrawingSurface_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access ICompositionDrawingSurface_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2600,46 +2600,46 @@ package WinRt.Windows.UI.Composition is
       function get_SizeInt32
       (
          this : access ICompositionDrawingSurface2_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function Resize
       (
          this : access ICompositionDrawingSurface2_Interface;
-         sizePixels : Windows.Graphics.SizeInt32
+         sizePixels : WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function Scroll
       (
          this : access ICompositionDrawingSurface2_Interface;
-         offset : Windows.Graphics.PointInt32
+         offset : WinRt.Windows.Graphics.PointInt32
       )
       return WinRt.Hresult is abstract;
 
       function Scroll
       (
          this : access ICompositionDrawingSurface2_Interface;
-         offset : Windows.Graphics.PointInt32;
-         scrollRect : Windows.Graphics.RectInt32
+         offset : WinRt.Windows.Graphics.PointInt32;
+         scrollRect : WinRt.Windows.Graphics.RectInt32
       )
       return WinRt.Hresult is abstract;
 
       function ScrollWithClip
       (
          this : access ICompositionDrawingSurface2_Interface;
-         offset : Windows.Graphics.PointInt32;
-         clipRect : Windows.Graphics.RectInt32
+         offset : WinRt.Windows.Graphics.PointInt32;
+         clipRect : WinRt.Windows.Graphics.RectInt32
       )
       return WinRt.Hresult is abstract;
 
       function ScrollWithClip
       (
          this : access ICompositionDrawingSurface2_Interface;
-         offset : Windows.Graphics.PointInt32;
-         clipRect : Windows.Graphics.RectInt32;
-         scrollRect : Windows.Graphics.RectInt32
+         offset : WinRt.Windows.Graphics.PointInt32;
+         clipRect : WinRt.Windows.Graphics.RectInt32;
+         scrollRect : WinRt.Windows.Graphics.RectInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -2666,105 +2666,105 @@ package WinRt.Windows.UI.Composition is
       function CreateCubicBezierEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         controlPoint1 : Windows.Foundation.Numerics.Vector2;
-         controlPoint2 : Windows.Foundation.Numerics.Vector2;
-         RetVal : access Windows.UI.Composition.ICubicBezierEasingFunction
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+         controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2;
+         RetVal : access WinRt.Windows.UI.Composition.ICubicBezierEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateLinearEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.ILinearEasingFunction
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.ILinearEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateStepEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.IStepEasingFunction
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.IStepEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateStepEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
          stepCount : WinRt.Int32;
-         RetVal : access Windows.UI.Composition.IStepEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IStepEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateBackEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
          amplitude : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IBackEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IBackEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateBounceEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
          bounces : WinRt.Int32;
          bounciness : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IBounceEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IBounceEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateCircleEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
-         RetVal : access Windows.UI.Composition.ICircleEasingFunction
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+         RetVal : access WinRt.Windows.UI.Composition.ICircleEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateElasticEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
          oscillations : WinRt.Int32;
          springiness : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IElasticEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IElasticEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateExponentialEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
          exponent : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IExponentialEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IExponentialEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreatePowerEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
          power : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IPowerEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IPowerEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateSineEasingFunction
       (
          this : access ICompositionEasingFunctionStatics_Interface;
-         owner : Windows.UI.Composition.ICompositor;
-         mode : Windows.UI.Composition.CompositionEasingFunctionMode;
-         RetVal : access Windows.UI.Composition.ISineEasingFunction
+         owner : WinRt.Windows.UI.Composition.ICompositor;
+         mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
+         RetVal : access WinRt.Windows.UI.Composition.ISineEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -2777,7 +2777,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionEffectBrush_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -2785,7 +2785,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionEffectBrush_Interface;
          name : WinRt.HString;
-         source : Windows.UI.Composition.ICompositionBrush
+         source : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -2797,21 +2797,21 @@ package WinRt.Windows.UI.Composition is
       function CreateBrush
       (
          this : access ICompositionEffectFactory_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionEffectBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEffectBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access ICompositionEffectFactory_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_LoadStatus
       (
          this : access ICompositionEffectFactory_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEffectFactoryLoadStatus
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEffectFactoryLoadStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2836,7 +2836,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionEffectSourceParameterFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.Composition.ICompositionEffectSourceParameter
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEffectSourceParameter
       )
       return WinRt.Hresult is abstract;
 
@@ -2848,28 +2848,28 @@ package WinRt.Windows.UI.Composition is
       function get_Center
       (
          this : access ICompositionEllipseGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Center
       (
          this : access ICompositionEllipseGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Radius
       (
          this : access ICompositionEllipseGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Radius
       (
          this : access ICompositionEllipseGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -2881,28 +2881,28 @@ package WinRt.Windows.UI.Composition is
       function get_Geometry
       (
          this : access ICompositionGeometricClip_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionGeometry
       )
       return WinRt.Hresult is abstract;
 
       function put_Geometry
       (
          this : access ICompositionGeometricClip_Interface;
-         value : Windows.UI.Composition.ICompositionGeometry
+         value : WinRt.Windows.UI.Composition.ICompositionGeometry
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewBox
       (
          this : access ICompositionGeometricClip_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionViewBox
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionViewBox
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewBox
       (
          this : access ICompositionGeometricClip_Interface;
-         value : Windows.UI.Composition.ICompositionViewBox
+         value : WinRt.Windows.UI.Composition.ICompositionViewBox
       )
       return WinRt.Hresult is abstract;
 
@@ -2966,77 +2966,77 @@ package WinRt.Windows.UI.Composition is
       function get_AnchorPoint
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_AnchorPoint
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterPoint
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_CenterPoint
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorStops
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionColorGradientStopCollection
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendMode
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.UI.Composition.CompositionGradientExtendMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGradientExtendMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ExtendMode
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.UI.Composition.CompositionGradientExtendMode
+         value : WinRt.Windows.UI.Composition.CompositionGradientExtendMode
       )
       return WinRt.Hresult is abstract;
 
       function get_InterpolationSpace
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.UI.Composition.CompositionColorSpace
+         RetVal : access WinRt.Windows.UI.Composition.CompositionColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function put_InterpolationSpace
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.UI.Composition.CompositionColorSpace
+         value : WinRt.Windows.UI.Composition.CompositionColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -3071,28 +3071,28 @@ package WinRt.Windows.UI.Composition is
       function get_Scale
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformMatrix
       (
          this : access ICompositionGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformMatrix
       (
          this : access ICompositionGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -3104,14 +3104,14 @@ package WinRt.Windows.UI.Composition is
       function get_MappingMode
       (
          this : access ICompositionGradientBrush2_Interface;
-         RetVal : access Windows.UI.Composition.CompositionMappingMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionMappingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_MappingMode
       (
          this : access ICompositionGradientBrush2_Interface;
-         value : Windows.UI.Composition.CompositionMappingMode
+         value : WinRt.Windows.UI.Composition.CompositionMappingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3128,10 +3128,10 @@ package WinRt.Windows.UI.Composition is
       function CreateDrawingSurface
       (
          this : access ICompositionGraphicsDevice_Interface;
-         sizePixels : Windows.Foundation.Size;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
-         RetVal : access Windows.UI.Composition.ICompositionDrawingSurface
+         sizePixels : WinRt.Windows.Foundation.Size;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionDrawingSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3139,14 +3139,14 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionGraphicsDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RenderingDeviceReplaced
       (
          this : access ICompositionGraphicsDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3158,20 +3158,20 @@ package WinRt.Windows.UI.Composition is
       function CreateDrawingSurface2
       (
          this : access ICompositionGraphicsDevice2_Interface;
-         sizePixels : Windows.Graphics.SizeInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
-         RetVal : access Windows.UI.Composition.ICompositionDrawingSurface
+         sizePixels : WinRt.Windows.Graphics.SizeInt32;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionDrawingSurface
       )
       return WinRt.Hresult is abstract;
 
       function CreateVirtualDrawingSurface
       (
          this : access ICompositionGraphicsDevice2_Interface;
-         sizePixels : Windows.Graphics.SizeInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
-         RetVal : access Windows.UI.Composition.ICompositionVirtualDrawingSurface
+         sizePixels : WinRt.Windows.Graphics.SizeInt32;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionVirtualDrawingSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3183,10 +3183,10 @@ package WinRt.Windows.UI.Composition is
       function CreateMipmapSurface
       (
          this : access ICompositionGraphicsDevice3_Interface;
-         sizePixels : Windows.Graphics.SizeInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
-         RetVal : access Windows.UI.Composition.ICompositionMipmapSurface
+         sizePixels : WinRt.Windows.Graphics.SizeInt32;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionMipmapSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3204,10 +3204,10 @@ package WinRt.Windows.UI.Composition is
       function CaptureAsync
       (
          this : access ICompositionGraphicsDevice4_Interface;
-         captureVisual : Windows.UI.Composition.IVisual;
-         size : Windows.Graphics.SizeInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+         captureVisual : WinRt.Windows.UI.Composition.IVisual;
+         size : WinRt.Windows.Graphics.SizeInt32;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
          sdrBoost : WinRt.Single;
          RetVal : access GenericObject
       )
@@ -3221,7 +3221,7 @@ package WinRt.Windows.UI.Composition is
       function get_Targets
       (
          this : access ICompositionLight_Interface;
-         RetVal : access Windows.UI.Composition.IVisualUnorderedCollection
+         RetVal : access WinRt.Windows.UI.Composition.IVisualUnorderedCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -3233,7 +3233,7 @@ package WinRt.Windows.UI.Composition is
       function get_ExclusionsFromTargets
       (
          this : access ICompositionLight2_Interface;
-         RetVal : access Windows.UI.Composition.IVisualUnorderedCollection
+         RetVal : access WinRt.Windows.UI.Composition.IVisualUnorderedCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -3269,28 +3269,28 @@ package WinRt.Windows.UI.Composition is
       function get_Start
       (
          this : access ICompositionLineGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Start
       (
          this : access ICompositionLineGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_End
       (
          this : access ICompositionLineGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_End
       (
          this : access ICompositionLineGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -3302,28 +3302,28 @@ package WinRt.Windows.UI.Composition is
       function get_EndPoint
       (
          this : access ICompositionLinearGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_EndPoint
       (
          this : access ICompositionLinearGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_StartPoint
       (
          this : access ICompositionLinearGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_StartPoint
       (
          this : access ICompositionLinearGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -3335,28 +3335,28 @@ package WinRt.Windows.UI.Composition is
       function get_Mask
       (
          this : access ICompositionMaskBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Mask
       (
          this : access ICompositionMaskBrush_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access ICompositionMaskBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access ICompositionMaskBrush_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3375,21 +3375,21 @@ package WinRt.Windows.UI.Composition is
       function get_AlphaMode
       (
          this : access ICompositionMipmapSurface_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXAlphaMode
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelFormat
       (
          this : access ICompositionMipmapSurface_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_SizeInt32
       (
          this : access ICompositionMipmapSurface_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -3397,7 +3397,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionMipmapSurface_Interface;
          level : WinRt.UInt32;
-         RetVal : access Windows.UI.Composition.ICompositionDrawingSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionDrawingSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3507,14 +3507,14 @@ package WinRt.Windows.UI.Composition is
       function get_Source
       (
          this : access ICompositionNineGridBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access ICompositionNineGridBrush_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3588,21 +3588,21 @@ package WinRt.Windows.UI.Composition is
       function get_Compositor
       (
          this : access ICompositionObject_Interface;
-         RetVal : access Windows.UI.Composition.ICompositor
+         RetVal : access WinRt.Windows.UI.Composition.ICompositor
       )
       return WinRt.Hresult is abstract;
 
       function get_Dispatcher
       (
          this : access ICompositionObject_Interface;
-         RetVal : access Windows.UI.Core.ICoreDispatcher
+         RetVal : access WinRt.Windows.UI.Core.ICoreDispatcher
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access ICompositionObject_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionPropertySet
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -3610,7 +3610,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionObject_Interface;
          propertyName : WinRt.HString;
-         animation : Windows.UI.Composition.ICompositionAnimation
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -3643,28 +3643,28 @@ package WinRt.Windows.UI.Composition is
       function get_ImplicitAnimations
       (
          this : access ICompositionObject2_Interface;
-         RetVal : access Windows.UI.Composition.IImplicitAnimationCollection
+         RetVal : access WinRt.Windows.UI.Composition.IImplicitAnimationCollection
       )
       return WinRt.Hresult is abstract;
 
       function put_ImplicitAnimations
       (
          this : access ICompositionObject2_Interface;
-         value : Windows.UI.Composition.IImplicitAnimationCollection
+         value : WinRt.Windows.UI.Composition.IImplicitAnimationCollection
       )
       return WinRt.Hresult is abstract;
 
       function StartAnimationGroup
       (
          this : access ICompositionObject2_Interface;
-         value : Windows.UI.Composition.ICompositionAnimationBase
+         value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
       function StopAnimationGroup
       (
          this : access ICompositionObject2_Interface;
-         value : Windows.UI.Composition.ICompositionAnimationBase
+         value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
@@ -3676,7 +3676,7 @@ package WinRt.Windows.UI.Composition is
       function get_DispatcherQueue
       (
          this : access ICompositionObject3_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -3689,7 +3689,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionObject4_Interface;
          propertyName : WinRt.HString;
-         RetVal : access Windows.UI.Composition.IAnimationController
+         RetVal : access WinRt.Windows.UI.Composition.IAnimationController
       )
       return WinRt.Hresult is abstract;
 
@@ -3702,8 +3702,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionObject5_Interface;
          propertyName : WinRt.HString;
-         animation : Windows.UI.Composition.ICompositionAnimation;
-         animationController_p : Windows.UI.Composition.IAnimationController
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimation;
+         animationController_p : WinRt.Windows.UI.Composition.IAnimationController
       )
       return WinRt.Hresult is abstract;
 
@@ -3720,17 +3720,17 @@ package WinRt.Windows.UI.Composition is
       function StartAnimationWithIAnimationObject
       (
          this : access ICompositionObjectStatics_Interface;
-         target : Windows.UI.Composition.IAnimationObject;
+         target : WinRt.Windows.UI.Composition.IAnimationObject;
          propertyName : WinRt.HString;
-         animation : Windows.UI.Composition.ICompositionAnimation
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function StartAnimationGroupWithIAnimationObject
       (
          this : access ICompositionObjectStatics_Interface;
-         target : Windows.UI.Composition.IAnimationObject;
-         animation : Windows.UI.Composition.ICompositionAnimationBase
+         target : WinRt.Windows.UI.Composition.IAnimationObject;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
@@ -3747,8 +3747,8 @@ package WinRt.Windows.UI.Composition is
       function Create
       (
          this : access ICompositionPathFactory_Interface;
-         source : Windows.Graphics.IGeometrySource2D;
-         RetVal : access Windows.UI.Composition.ICompositionPath
+         source : WinRt.Windows.Graphics.IGeometrySource2D;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPath
       )
       return WinRt.Hresult is abstract;
 
@@ -3760,14 +3760,14 @@ package WinRt.Windows.UI.Composition is
       function get_Path
       (
          this : access ICompositionPathGeometry_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionPath
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPath
       )
       return WinRt.Hresult is abstract;
 
       function put_Path
       (
          this : access ICompositionPathGeometry_Interface;
-         value : Windows.UI.Composition.ICompositionPath
+         value : WinRt.Windows.UI.Composition.ICompositionPath
       )
       return WinRt.Hresult is abstract;
 
@@ -3793,21 +3793,21 @@ package WinRt.Windows.UI.Composition is
       function get_Casters
       (
          this : access ICompositionProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionProjectedShadowCasterCollection
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_LightSource
       (
          this : access ICompositionProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionLight
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionLight
       )
       return WinRt.Hresult is abstract;
 
       function put_LightSource
       (
          this : access ICompositionProjectedShadow_Interface;
-         value : Windows.UI.Composition.ICompositionLight
+         value : WinRt.Windows.UI.Composition.ICompositionLight
       )
       return WinRt.Hresult is abstract;
 
@@ -3842,7 +3842,7 @@ package WinRt.Windows.UI.Composition is
       function get_Receivers
       (
          this : access ICompositionProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -3854,28 +3854,28 @@ package WinRt.Windows.UI.Composition is
       function get_Brush
       (
          this : access ICompositionProjectedShadowCaster_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Brush
       (
          this : access ICompositionProjectedShadowCaster_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_CastingVisual
       (
          this : access ICompositionProjectedShadowCaster_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_CastingVisual
       (
          this : access ICompositionProjectedShadowCaster_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -3894,37 +3894,37 @@ package WinRt.Windows.UI.Composition is
       function InsertAbove
       (
          this : access ICompositionProjectedShadowCasterCollection_Interface;
-         newCaster : Windows.UI.Composition.ICompositionProjectedShadowCaster;
-         reference : Windows.UI.Composition.ICompositionProjectedShadowCaster
+         newCaster : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
+         reference : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
       function InsertAtBottom
       (
          this : access ICompositionProjectedShadowCasterCollection_Interface;
-         newCaster : Windows.UI.Composition.ICompositionProjectedShadowCaster
+         newCaster : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
       function InsertAtTop
       (
          this : access ICompositionProjectedShadowCasterCollection_Interface;
-         newCaster : Windows.UI.Composition.ICompositionProjectedShadowCaster
+         newCaster : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
       function InsertBelow
       (
          this : access ICompositionProjectedShadowCasterCollection_Interface;
-         newCaster : Windows.UI.Composition.ICompositionProjectedShadowCaster;
-         reference : Windows.UI.Composition.ICompositionProjectedShadowCaster
+         newCaster : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
+         reference : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access ICompositionProjectedShadowCasterCollection_Interface;
-         caster : Windows.UI.Composition.ICompositionProjectedShadowCaster
+         caster : WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
@@ -3954,14 +3954,14 @@ package WinRt.Windows.UI.Composition is
       function get_ReceivingVisual
       (
          this : access ICompositionProjectedShadowReceiver_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_ReceivingVisual
       (
          this : access ICompositionProjectedShadowReceiver_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -3973,7 +3973,7 @@ package WinRt.Windows.UI.Composition is
       function Add
       (
          this : access ICompositionProjectedShadowReceiverUnorderedCollection_Interface;
-         value : Windows.UI.Composition.ICompositionProjectedShadowReceiver
+         value : WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver
       )
       return WinRt.Hresult is abstract;
 
@@ -3987,7 +3987,7 @@ package WinRt.Windows.UI.Composition is
       function Remove
       (
          this : access ICompositionProjectedShadowReceiverUnorderedCollection_Interface;
-         value : Windows.UI.Composition.ICompositionProjectedShadowReceiver
+         value : WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver
       )
       return WinRt.Hresult is abstract;
 
@@ -4006,7 +4006,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4014,7 +4014,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -4022,7 +4022,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix4x4
+         value : WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
@@ -4030,7 +4030,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -4046,7 +4046,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4054,7 +4054,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -4062,7 +4062,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector4
+         value : WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
@@ -4070,8 +4070,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.UI.Color_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.UI.Color_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4079,8 +4079,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix3x2_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4088,8 +4088,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Matrix4x4_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4097,8 +4097,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Quaternion_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Quaternion_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4107,7 +4107,7 @@ package WinRt.Windows.UI.Composition is
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
          value : WinRt.Single_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4115,8 +4115,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector2_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Vector2_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4124,8 +4124,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector3_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Vector3_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4133,8 +4133,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionPropertySet_Interface;
          propertyName : WinRt.HString;
-         value : Windows.Foundation.Numerics.Vector4_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         value : WinRt.Windows.Foundation.Numerics.Vector4_Ptr;
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4156,7 +4156,7 @@ package WinRt.Windows.UI.Composition is
          this : access ICompositionPropertySet2_Interface;
          propertyName : WinRt.HString;
          value : WinRt.Boolean_Ptr;
-         RetVal : access Windows.UI.Composition.CompositionGetValueStatus
+         RetVal : access WinRt.Windows.UI.Composition.CompositionGetValueStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4168,42 +4168,42 @@ package WinRt.Windows.UI.Composition is
       function get_EllipseCenter
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_EllipseCenter
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_EllipseRadius
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_EllipseRadius
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_GradientOriginOffset
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_GradientOriginOffset
       (
          this : access ICompositionRadialGradientBrush_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4215,28 +4215,28 @@ package WinRt.Windows.UI.Composition is
       function get_Offset
       (
          this : access ICompositionRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionRectangleGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access ICompositionRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access ICompositionRectangleGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4248,42 +4248,42 @@ package WinRt.Windows.UI.Composition is
       function get_CornerRadius
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_CornerRadius
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access ICompositionRoundedRectangleGeometry_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4328,14 +4328,14 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionScopedBatch_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access ICompositionScopedBatch_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4357,28 +4357,28 @@ package WinRt.Windows.UI.Composition is
       function get_CenterPoint
       (
          this : access ICompositionShape_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_CenterPoint
       (
          this : access ICompositionShape_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access ICompositionShape_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionShape_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4413,28 +4413,28 @@ package WinRt.Windows.UI.Composition is
       function get_Scale
       (
          this : access ICompositionShape_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access ICompositionShape_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformMatrix
       (
          this : access ICompositionShape_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformMatrix
       (
          this : access ICompositionShape_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -4451,28 +4451,28 @@ package WinRt.Windows.UI.Composition is
       function get_FillBrush
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_FillBrush
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Geometry
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionGeometry
       )
       return WinRt.Hresult is abstract;
 
       function put_Geometry
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.ICompositionGeometry
+         value : WinRt.Windows.UI.Composition.ICompositionGeometry
       )
       return WinRt.Hresult is abstract;
 
@@ -4493,14 +4493,14 @@ package WinRt.Windows.UI.Composition is
       function get_StrokeBrush
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeBrush
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4514,14 +4514,14 @@ package WinRt.Windows.UI.Composition is
       function get_StrokeDashCap
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStrokeCap
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeDashCap
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.CompositionStrokeCap
+         value : WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
@@ -4542,28 +4542,28 @@ package WinRt.Windows.UI.Composition is
       function get_StrokeEndCap
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStrokeCap
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeEndCap
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.CompositionStrokeCap
+         value : WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeLineJoin
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStrokeLineJoin
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStrokeLineJoin
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeLineJoin
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.CompositionStrokeLineJoin
+         value : WinRt.Windows.UI.Composition.CompositionStrokeLineJoin
       )
       return WinRt.Hresult is abstract;
 
@@ -4584,14 +4584,14 @@ package WinRt.Windows.UI.Composition is
       function get_StrokeStartCap
       (
          this : access ICompositionSpriteShape_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStrokeCap
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeStartCap
       (
          this : access ICompositionSpriteShape_Interface;
-         value : Windows.UI.Composition.CompositionStrokeCap
+         value : WinRt.Windows.UI.Composition.CompositionStrokeCap
       )
       return WinRt.Hresult is abstract;
 
@@ -4617,14 +4617,14 @@ package WinRt.Windows.UI.Composition is
       function get_SystemBackdrop
       (
          this : access ICompositionSupportsSystemBackdrop_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemBackdrop
       (
          this : access ICompositionSupportsSystemBackdrop_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4641,14 +4641,14 @@ package WinRt.Windows.UI.Composition is
       function get_BitmapInterpolationMode
       (
          this : access ICompositionSurfaceBrush_Interface;
-         RetVal : access Windows.UI.Composition.CompositionBitmapInterpolationMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_BitmapInterpolationMode
       (
          this : access ICompositionSurfaceBrush_Interface;
-         value : Windows.UI.Composition.CompositionBitmapInterpolationMode
+         value : WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -4669,28 +4669,28 @@ package WinRt.Windows.UI.Composition is
       function get_Stretch
       (
          this : access ICompositionSurfaceBrush_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStretch
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStretch
       )
       return WinRt.Hresult is abstract;
 
       function put_Stretch
       (
          this : access ICompositionSurfaceBrush_Interface;
-         value : Windows.UI.Composition.CompositionStretch
+         value : WinRt.Windows.UI.Composition.CompositionStretch
       )
       return WinRt.Hresult is abstract;
 
       function get_Surface
       (
          this : access ICompositionSurfaceBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
       function put_Surface
       (
          this : access ICompositionSurfaceBrush_Interface;
-         value : Windows.UI.Composition.ICompositionSurface
+         value : WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -4716,42 +4716,42 @@ package WinRt.Windows.UI.Composition is
       function get_AnchorPoint
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_AnchorPoint
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterPoint
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_CenterPoint
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -4786,28 +4786,28 @@ package WinRt.Windows.UI.Composition is
       function get_Scale
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformMatrix
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformMatrix
       (
          this : access ICompositionSurfaceBrush2_Interface;
-         value : Windows.Foundation.Numerics.Matrix3x2
+         value : WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
@@ -4838,7 +4838,7 @@ package WinRt.Windows.UI.Composition is
       function GetRealSurface
       (
          this : access ICompositionSurfaceFacade_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -4850,14 +4850,14 @@ package WinRt.Windows.UI.Composition is
       function get_Root
       (
          this : access ICompositionTarget_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_Root
       (
          this : access ICompositionTarget_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -4874,42 +4874,42 @@ package WinRt.Windows.UI.Composition is
       function get_SourceRect
       (
          this : access ICompositionTexture_Interface;
-         RetVal : access Windows.Graphics.RectInt32
+         RetVal : access WinRt.Windows.Graphics.RectInt32
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceRect
       (
          this : access ICompositionTexture_Interface;
-         value : Windows.Graphics.RectInt32
+         value : WinRt.Windows.Graphics.RectInt32
       )
       return WinRt.Hresult is abstract;
 
       function get_AlphaMode
       (
          this : access ICompositionTexture_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXAlphaMode
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function put_AlphaMode
       (
          this : access ICompositionTexture_Interface;
-         value : Windows.Graphics.DirectX.DirectXAlphaMode
+         value : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorSpace
       (
          this : access ICompositionTexture_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXColorSpace
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorSpace
       (
          this : access ICompositionTexture_Interface;
-         value : Windows.Graphics.DirectX.DirectXColorSpace
+         value : WinRt.Windows.Graphics.DirectX.DirectXColorSpace
       )
       return WinRt.Hresult is abstract;
 
@@ -4950,42 +4950,42 @@ package WinRt.Windows.UI.Composition is
       function get_Offset
       (
          this : access ICompositionViewBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ICompositionViewBox_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access ICompositionViewBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access ICompositionViewBox_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_Stretch
       (
          this : access ICompositionViewBox_Interface;
-         RetVal : access Windows.UI.Composition.CompositionStretch
+         RetVal : access WinRt.Windows.UI.Composition.CompositionStretch
       )
       return WinRt.Hresult is abstract;
 
       function put_Stretch
       (
          this : access ICompositionViewBox_Interface;
-         value : Windows.UI.Composition.CompositionStretch
+         value : WinRt.Windows.UI.Composition.CompositionStretch
       )
       return WinRt.Hresult is abstract;
 
@@ -5012,7 +5012,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositionVirtualDrawingSurface_Interface;
          rectsSize : WinRt.UInt32;
-         rects : Windows.Graphics.RectInt32_Ptr
+         rects : WinRt.Windows.Graphics.RectInt32_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -5029,42 +5029,42 @@ package WinRt.Windows.UI.Composition is
       function get_SourceVisual
       (
          this : access ICompositionVisualSurface_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceVisual
       (
          this : access ICompositionVisualSurface_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceOffset
       (
          this : access ICompositionVisualSurface_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceOffset
       (
          this : access ICompositionVisualSurface_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceSize
       (
          this : access ICompositionVisualSurface_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceSize
       (
          this : access ICompositionVisualSurface_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -5076,62 +5076,62 @@ package WinRt.Windows.UI.Composition is
       function CreateColorKeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IColorKeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IColorKeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateColorBrush
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionColorBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionColorBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateColorBrush
       (
          this : access ICompositor_Interface;
-         color : Windows.UI.Color;
-         RetVal : access Windows.UI.Composition.ICompositionColorBrush
+         color : WinRt.Windows.UI.Color;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionColorBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateContainerVisual
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IContainerVisual
+         RetVal : access WinRt.Windows.UI.Composition.IContainerVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateCubicBezierEasingFunction
       (
          this : access ICompositor_Interface;
-         controlPoint1 : Windows.Foundation.Numerics.Vector2;
-         controlPoint2 : Windows.Foundation.Numerics.Vector2;
-         RetVal : access Windows.UI.Composition.ICubicBezierEasingFunction
+         controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+         controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2;
+         RetVal : access WinRt.Windows.UI.Composition.ICubicBezierEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreateEffectFactory
       (
          this : access ICompositor_Interface;
-         graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect;
-         RetVal : access Windows.UI.Composition.ICompositionEffectFactory
+         graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEffectFactory
       )
       return WinRt.Hresult is abstract;
 
       function CreateEffectFactory
       (
          this : access ICompositor_Interface;
-         graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect;
+         graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect;
          animatableProperties : GenericObject;
-         RetVal : access Windows.UI.Composition.ICompositionEffectFactory
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEffectFactory
       )
       return WinRt.Hresult is abstract;
 
       function CreateExpressionAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -5139,14 +5139,14 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositor_Interface;
          expression : WinRt.HString;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateInsetClip
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IInsetClip
+         RetVal : access WinRt.Windows.UI.Composition.IInsetClip
       )
       return WinRt.Hresult is abstract;
 
@@ -5157,101 +5157,101 @@ package WinRt.Windows.UI.Composition is
          topInset : WinRt.Single;
          rightInset : WinRt.Single;
          bottomInset : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IInsetClip
+         RetVal : access WinRt.Windows.UI.Composition.IInsetClip
       )
       return WinRt.Hresult is abstract;
 
       function CreateLinearEasingFunction
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ILinearEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.ILinearEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function CreatePropertySet
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionPropertySet
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function CreateQuaternionKeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IQuaternionKeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IQuaternionKeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateScalarKeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IScalarKeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IScalarKeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateScopedBatch
       (
          this : access ICompositor_Interface;
-         batchType : Windows.UI.Composition.CompositionBatchTypes;
-         RetVal : access Windows.UI.Composition.ICompositionScopedBatch
+         batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionScopedBatch
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpriteVisual
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ISpriteVisual
+         RetVal : access WinRt.Windows.UI.Composition.ISpriteVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateSurfaceBrush
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSurfaceBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurfaceBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateSurfaceBrush
       (
          this : access ICompositor_Interface;
-         surface : Windows.UI.Composition.ICompositionSurface;
-         RetVal : access Windows.UI.Composition.ICompositionSurfaceBrush
+         surface : WinRt.Windows.UI.Composition.ICompositionSurface;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurfaceBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateTargetForCurrentView
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionTarget
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionTarget
       )
       return WinRt.Hresult is abstract;
 
       function CreateVector2KeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IVector2KeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IVector2KeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateVector3KeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IVector3KeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IVector3KeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateVector4KeyFrameAnimation
       (
          this : access ICompositor_Interface;
-         RetVal : access Windows.UI.Composition.IVector4KeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IVector4KeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function GetCommitBatch
       (
          this : access ICompositor_Interface;
-         batchType : Windows.UI.Composition.CompositionBatchTypes;
-         RetVal : access Windows.UI.Composition.ICompositionCommitBatch
+         batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionCommitBatch
       )
       return WinRt.Hresult is abstract;
 
@@ -5263,84 +5263,84 @@ package WinRt.Windows.UI.Composition is
       function CreateAmbientLight
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IAmbientLight
+         RetVal : access WinRt.Windows.UI.Composition.IAmbientLight
       )
       return WinRt.Hresult is abstract;
 
       function CreateAnimationGroup
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionAnimationGroup
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionAnimationGroup
       )
       return WinRt.Hresult is abstract;
 
       function CreateBackdropBrush
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBackdropBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBackdropBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateDistantLight
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IDistantLight
+         RetVal : access WinRt.Windows.UI.Composition.IDistantLight
       )
       return WinRt.Hresult is abstract;
 
       function CreateDropShadow
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IDropShadow
+         RetVal : access WinRt.Windows.UI.Composition.IDropShadow
       )
       return WinRt.Hresult is abstract;
 
       function CreateImplicitAnimationCollection
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IImplicitAnimationCollection
+         RetVal : access WinRt.Windows.UI.Composition.IImplicitAnimationCollection
       )
       return WinRt.Hresult is abstract;
 
       function CreateLayerVisual
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ILayerVisual
+         RetVal : access WinRt.Windows.UI.Composition.ILayerVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateMaskBrush
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionMaskBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionMaskBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateNineGridBrush
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionNineGridBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionNineGridBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreatePointLight
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IPointLight
+         RetVal : access WinRt.Windows.UI.Composition.IPointLight
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpotLight
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.ISpotLight
+         RetVal : access WinRt.Windows.UI.Composition.ISpotLight
       )
       return WinRt.Hresult is abstract;
 
       function CreateStepEasingFunction
       (
          this : access ICompositor2_Interface;
-         RetVal : access Windows.UI.Composition.IStepEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IStepEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -5348,7 +5348,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositor2_Interface;
          stepCount : WinRt.Int32;
-         RetVal : access Windows.UI.Composition.IStepEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.IStepEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -5360,7 +5360,7 @@ package WinRt.Windows.UI.Composition is
       function CreateHostBackdropBrush
       (
          this : access ICompositor3_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBackdropBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBackdropBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -5372,7 +5372,7 @@ package WinRt.Windows.UI.Composition is
       function CreateColorGradientStop
       (
          this : access ICompositor4_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionColorGradientStop
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionColorGradientStop
       )
       return WinRt.Hresult is abstract;
 
@@ -5380,36 +5380,36 @@ package WinRt.Windows.UI.Composition is
       (
          this : access ICompositor4_Interface;
          offset : WinRt.Single;
-         color : Windows.UI.Color;
-         RetVal : access Windows.UI.Composition.ICompositionColorGradientStop
+         color : WinRt.Windows.UI.Color;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionColorGradientStop
       )
       return WinRt.Hresult is abstract;
 
       function CreateLinearGradientBrush
       (
          this : access ICompositor4_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionLinearGradientBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionLinearGradientBrush
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpringScalarAnimation
       (
          this : access ICompositor4_Interface;
-         RetVal : access Windows.UI.Composition.ISpringScalarNaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.ISpringScalarNaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpringVector2Animation
       (
          this : access ICompositor4_Interface;
-         RetVal : access Windows.UI.Composition.ISpringVector2NaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.ISpringVector2NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpringVector3Animation
       (
          this : access ICompositor4_Interface;
-         RetVal : access Windows.UI.Composition.ISpringVector3NaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.ISpringVector3NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -5449,114 +5449,114 @@ package WinRt.Windows.UI.Composition is
       function CreateBounceScalarAnimation
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.IBounceScalarNaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IBounceScalarNaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateBounceVector2Animation
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.IBounceVector2NaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IBounceVector2NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateBounceVector3Animation
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.IBounceVector3NaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IBounceVector3NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateContainerShape
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionContainerShape
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionContainerShape
       )
       return WinRt.Hresult is abstract;
 
       function CreateEllipseGeometry
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionEllipseGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEllipseGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreateLineGeometry
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionLineGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionLineGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreatePathGeometry
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionPathGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPathGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreatePathGeometry
       (
          this : access ICompositor5_Interface;
-         path : Windows.UI.Composition.ICompositionPath;
-         RetVal : access Windows.UI.Composition.ICompositionPathGeometry
+         path : WinRt.Windows.UI.Composition.ICompositionPath;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPathGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreatePathKeyFrameAnimation
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.IPathKeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IPathKeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
       function CreateRectangleGeometry
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionRectangleGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionRectangleGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreateRoundedRectangleGeometry
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionRoundedRectangleGeometry
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionRoundedRectangleGeometry
       )
       return WinRt.Hresult is abstract;
 
       function CreateShapeVisual
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.IShapeVisual
+         RetVal : access WinRt.Windows.UI.Composition.IShapeVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpriteShape
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSpriteShape
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSpriteShape
       )
       return WinRt.Hresult is abstract;
 
       function CreateSpriteShape
       (
          this : access ICompositor5_Interface;
-         geometry : Windows.UI.Composition.ICompositionGeometry;
-         RetVal : access Windows.UI.Composition.ICompositionSpriteShape
+         geometry : WinRt.Windows.UI.Composition.ICompositionGeometry;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSpriteShape
       )
       return WinRt.Hresult is abstract;
 
       function CreateViewBox
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionViewBox
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionViewBox
       )
       return WinRt.Hresult is abstract;
 
       function RequestCommitAsync
       (
          this : access ICompositor5_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5568,37 +5568,37 @@ package WinRt.Windows.UI.Composition is
       function CreateGeometricClip
       (
          this : access ICompositor6_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionGeometricClip
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionGeometricClip
       )
       return WinRt.Hresult is abstract;
 
       function CreateGeometricClip
       (
          this : access ICompositor6_Interface;
-         geometry : Windows.UI.Composition.ICompositionGeometry;
-         RetVal : access Windows.UI.Composition.ICompositionGeometricClip
+         geometry : WinRt.Windows.UI.Composition.ICompositionGeometry;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionGeometricClip
       )
       return WinRt.Hresult is abstract;
 
       function CreateRedirectVisual
       (
          this : access ICompositor6_Interface;
-         RetVal : access Windows.UI.Composition.IRedirectVisual
+         RetVal : access WinRt.Windows.UI.Composition.IRedirectVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateRedirectVisual
       (
          this : access ICompositor6_Interface;
-         source : Windows.UI.Composition.IVisual;
-         RetVal : access Windows.UI.Composition.IRedirectVisual
+         source : WinRt.Windows.UI.Composition.IVisual;
+         RetVal : access WinRt.Windows.UI.Composition.IRedirectVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateBooleanKeyFrameAnimation
       (
          this : access ICompositor6_Interface;
-         RetVal : access Windows.UI.Composition.IBooleanKeyFrameAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IBooleanKeyFrameAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -5610,32 +5610,21 @@ package WinRt.Windows.UI.Composition is
       function get_DispatcherQueue
       (
          this : access ICompositor7_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
       function CreateAnimationPropertyInfo
       (
          this : access ICompositor7_Interface;
-         RetVal : access Windows.UI.Composition.IAnimationPropertyInfo
+         RetVal : access WinRt.Windows.UI.Composition.IAnimationPropertyInfo
       )
       return WinRt.Hresult is abstract;
 
       function CreateRectangleClip
       (
          this : access ICompositor7_Interface;
-         RetVal : access Windows.UI.Composition.IRectangleClip
-      )
-      return WinRt.Hresult is abstract;
-
-      function CreateRectangleClip
-      (
-         this : access ICompositor7_Interface;
-         left : WinRt.Single;
-         top : WinRt.Single;
-         right : WinRt.Single;
-         bottom : WinRt.Single;
-         RetVal : access Windows.UI.Composition.IRectangleClip
+         RetVal : access WinRt.Windows.UI.Composition.IRectangleClip
       )
       return WinRt.Hresult is abstract;
 
@@ -5646,11 +5635,22 @@ package WinRt.Windows.UI.Composition is
          top : WinRt.Single;
          right : WinRt.Single;
          bottom : WinRt.Single;
-         topLeftRadius : Windows.Foundation.Numerics.Vector2;
-         topRightRadius : Windows.Foundation.Numerics.Vector2;
-         bottomRightRadius : Windows.Foundation.Numerics.Vector2;
-         bottomLeftRadius : Windows.Foundation.Numerics.Vector2;
-         RetVal : access Windows.UI.Composition.IRectangleClip
+         RetVal : access WinRt.Windows.UI.Composition.IRectangleClip
+      )
+      return WinRt.Hresult is abstract;
+
+      function CreateRectangleClip
+      (
+         this : access ICompositor7_Interface;
+         left : WinRt.Single;
+         top : WinRt.Single;
+         right : WinRt.Single;
+         bottom : WinRt.Single;
+         topLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+         topRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+         bottomRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+         bottomLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+         RetVal : access WinRt.Windows.UI.Composition.IRectangleClip
       )
       return WinRt.Hresult is abstract;
 
@@ -5662,7 +5662,7 @@ package WinRt.Windows.UI.Composition is
       function CreateAnimationController
       (
          this : access ICompositor8_Interface;
-         RetVal : access Windows.UI.Composition.IAnimationController
+         RetVal : access WinRt.Windows.UI.Composition.IAnimationController
       )
       return WinRt.Hresult is abstract;
 
@@ -5693,7 +5693,7 @@ package WinRt.Windows.UI.Composition is
       function TryCreateBlurredWallpaperBackdropBrush
       (
          this : access ICompositorWithBlurredWallpaperBackdropBrush_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBackdropBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBackdropBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -5705,21 +5705,21 @@ package WinRt.Windows.UI.Composition is
       function CreateProjectedShadowCaster
       (
          this : access ICompositorWithProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionProjectedShadowCaster
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster
       )
       return WinRt.Hresult is abstract;
 
       function CreateProjectedShadow
       (
          this : access ICompositorWithProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionProjectedShadow
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionProjectedShadow
       )
       return WinRt.Hresult is abstract;
 
       function CreateProjectedShadowReceiver
       (
          this : access ICompositorWithProjectedShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionProjectedShadowReceiver
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver
       )
       return WinRt.Hresult is abstract;
 
@@ -5731,7 +5731,7 @@ package WinRt.Windows.UI.Composition is
       function CreateRadialGradientBrush
       (
          this : access ICompositorWithRadialGradient_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionRadialGradientBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionRadialGradientBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -5743,7 +5743,7 @@ package WinRt.Windows.UI.Composition is
       function CreateVisualSurface
       (
          this : access ICompositorWithVisualSurface_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionVisualSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionVisualSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -5755,7 +5755,7 @@ package WinRt.Windows.UI.Composition is
       function get_Children
       (
          this : access IContainerVisual_Interface;
-         RetVal : access Windows.UI.Composition.IVisualCollection
+         RetVal : access WinRt.Windows.UI.Composition.IVisualCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -5772,14 +5772,14 @@ package WinRt.Windows.UI.Composition is
       function get_ControlPoint1
       (
          this : access ICubicBezierEasingFunction_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlPoint2
       (
          this : access ICubicBezierEasingFunction_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -5792,7 +5792,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IDelegatedInkTrailVisual_Interface;
          inkPointsSize : WinRt.UInt32;
-         inkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Ptr;
          RetVal : access WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -5801,9 +5801,9 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IDelegatedInkTrailVisual_Interface;
          inkPointsSize : WinRt.UInt32;
-         inkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Ptr;
          predictedInkPointsSize : WinRt.UInt32;
-         predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Ptr;
+         predictedInkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Ptr;
          RetVal : access WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -5818,7 +5818,7 @@ package WinRt.Windows.UI.Composition is
       function StartNewTrail
       (
          this : access IDelegatedInkTrailVisual_Interface;
-         color : Windows.UI.Color
+         color : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -5830,17 +5830,17 @@ package WinRt.Windows.UI.Composition is
       function Create
       (
          this : access IDelegatedInkTrailVisualStatics_Interface;
-         compositor_p : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.IDelegatedInkTrailVisual
+         compositor_p : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual
       )
       return WinRt.Hresult is abstract;
 
       function CreateForSwapChain
       (
          this : access IDelegatedInkTrailVisualStatics_Interface;
-         compositor_p : Windows.UI.Composition.ICompositor;
-         swapChain : Windows.UI.Composition.ICompositionSurface;
-         RetVal : access Windows.UI.Composition.IDelegatedInkTrailVisual
+         compositor_p : WinRt.Windows.UI.Composition.ICompositor;
+         swapChain : WinRt.Windows.UI.Composition.ICompositionSurface;
+         RetVal : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -5852,42 +5852,42 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access IDistantLight_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IDistantLight_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_CoordinateSpace
       (
          this : access IDistantLight_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_CoordinateSpace
       (
          this : access IDistantLight_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access IDistantLight_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access IDistantLight_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -5932,42 +5932,42 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access IDropShadow_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IDropShadow_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Mask
       (
          this : access IDropShadow_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Mask
       (
          this : access IDropShadow_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access IDropShadow_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access IDropShadow_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -5993,14 +5993,14 @@ package WinRt.Windows.UI.Composition is
       function get_SourcePolicy
       (
          this : access IDropShadow2_Interface;
-         RetVal : access Windows.UI.Composition.CompositionDropShadowSourcePolicy
+         RetVal : access WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_SourcePolicy
       (
          this : access IDropShadow2_Interface;
-         value : Windows.UI.Composition.CompositionDropShadowSourcePolicy
+         value : WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -6012,7 +6012,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access IElasticEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -6038,7 +6038,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access IExponentialEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -6142,42 +6142,42 @@ package WinRt.Windows.UI.Composition is
       function get_DelayTime
       (
          this : access IKeyFrameAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DelayTime
       (
          this : access IKeyFrameAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IKeyFrameAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IKeyFrameAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_IterationBehavior
       (
          this : access IKeyFrameAnimation_Interface;
-         RetVal : access Windows.UI.Composition.AnimationIterationBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationIterationBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_IterationBehavior
       (
          this : access IKeyFrameAnimation_Interface;
-         value : Windows.UI.Composition.AnimationIterationBehavior
+         value : WinRt.Windows.UI.Composition.AnimationIterationBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -6205,14 +6205,14 @@ package WinRt.Windows.UI.Composition is
       function get_StopBehavior
       (
          this : access IKeyFrameAnimation_Interface;
-         RetVal : access Windows.UI.Composition.AnimationStopBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationStopBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_StopBehavior
       (
          this : access IKeyFrameAnimation_Interface;
-         value : Windows.UI.Composition.AnimationStopBehavior
+         value : WinRt.Windows.UI.Composition.AnimationStopBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -6229,7 +6229,7 @@ package WinRt.Windows.UI.Composition is
          this : access IKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
          value : WinRt.HString;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -6241,14 +6241,14 @@ package WinRt.Windows.UI.Composition is
       function get_Direction
       (
          this : access IKeyFrameAnimation2_Interface;
-         RetVal : access Windows.UI.Composition.AnimationDirection
+         RetVal : access WinRt.Windows.UI.Composition.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access IKeyFrameAnimation2_Interface;
-         value : Windows.UI.Composition.AnimationDirection
+         value : WinRt.Windows.UI.Composition.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -6260,14 +6260,14 @@ package WinRt.Windows.UI.Composition is
       function get_DelayBehavior
       (
          this : access IKeyFrameAnimation3_Interface;
-         RetVal : access Windows.UI.Composition.AnimationDelayBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationDelayBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_DelayBehavior
       (
          this : access IKeyFrameAnimation3_Interface;
-         value : Windows.UI.Composition.AnimationDelayBehavior
+         value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -6284,14 +6284,14 @@ package WinRt.Windows.UI.Composition is
       function get_Effect
       (
          this : access ILayerVisual_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionEffectBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEffectBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Effect
       (
          this : access ILayerVisual_Interface;
-         value : Windows.UI.Composition.ICompositionEffectBrush
+         value : WinRt.Windows.UI.Composition.ICompositionEffectBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -6303,14 +6303,14 @@ package WinRt.Windows.UI.Composition is
       function get_Shadow
       (
          this : access ILayerVisual2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionShadow
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionShadow
       )
       return WinRt.Hresult is abstract;
 
       function put_Shadow
       (
          this : access ILayerVisual2_Interface;
-         value : Windows.UI.Composition.ICompositionShadow
+         value : WinRt.Windows.UI.Composition.ICompositionShadow
       )
       return WinRt.Hresult is abstract;
 
@@ -6327,42 +6327,42 @@ package WinRt.Windows.UI.Composition is
       function get_DelayBehavior
       (
          this : access INaturalMotionAnimation_Interface;
-         RetVal : access Windows.UI.Composition.AnimationDelayBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationDelayBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_DelayBehavior
       (
          this : access INaturalMotionAnimation_Interface;
-         value : Windows.UI.Composition.AnimationDelayBehavior
+         value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_DelayTime
       (
          this : access INaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DelayTime
       (
          this : access INaturalMotionAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StopBehavior
       (
          this : access INaturalMotionAnimation_Interface;
-         RetVal : access Windows.UI.Composition.AnimationStopBehavior
+         RetVal : access WinRt.Windows.UI.Composition.AnimationStopBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_StopBehavior
       (
          this : access INaturalMotionAnimation_Interface;
-         value : Windows.UI.Composition.AnimationStopBehavior
+         value : WinRt.Windows.UI.Composition.AnimationStopBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -6380,7 +6380,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IPathKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         path : Windows.UI.Composition.ICompositionPath
+         path : WinRt.Windows.UI.Composition.ICompositionPath
       )
       return WinRt.Hresult is abstract;
 
@@ -6388,8 +6388,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IPathKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         path : Windows.UI.Composition.ICompositionPath;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         path : WinRt.Windows.UI.Composition.ICompositionPath;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -6401,14 +6401,14 @@ package WinRt.Windows.UI.Composition is
       function get_Color
       (
          this : access IPointLight_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IPointLight_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -6429,14 +6429,14 @@ package WinRt.Windows.UI.Composition is
       function get_CoordinateSpace
       (
          this : access IPointLight_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_CoordinateSpace
       (
          this : access IPointLight_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -6457,14 +6457,14 @@ package WinRt.Windows.UI.Composition is
       function get_Offset
       (
          this : access IPointLight_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access IPointLight_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -6542,7 +6542,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access IPowerEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -6562,7 +6562,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IQuaternionKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -6570,8 +6570,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IQuaternionKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Quaternion;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.Foundation.Numerics.Quaternion;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -6597,28 +6597,28 @@ package WinRt.Windows.UI.Composition is
       function get_BottomLeftRadius
       (
          this : access IRectangleClip_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_BottomLeftRadius
       (
          this : access IRectangleClip_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_BottomRightRadius
       (
          this : access IRectangleClip_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_BottomRightRadius
       (
          this : access IRectangleClip_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -6667,28 +6667,28 @@ package WinRt.Windows.UI.Composition is
       function get_TopLeftRadius
       (
          this : access IRectangleClip_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_TopLeftRadius
       (
          this : access IRectangleClip_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TopRightRadius
       (
          this : access IRectangleClip_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_TopRightRadius
       (
          this : access IRectangleClip_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -6700,14 +6700,14 @@ package WinRt.Windows.UI.Composition is
       function get_Source
       (
          this : access IRedirectVisual_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access IRedirectVisual_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -6719,7 +6719,7 @@ package WinRt.Windows.UI.Composition is
       function get_GraphicsDevice
       (
          this : access IRenderingDeviceReplacedEventArgs_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionGraphicsDevice
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionGraphicsDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -6741,7 +6741,7 @@ package WinRt.Windows.UI.Composition is
          this : access IScalarKeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
          value : WinRt.Single;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -6812,14 +6812,14 @@ package WinRt.Windows.UI.Composition is
       function get_ViewBox
       (
          this : access IShapeVisual_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionViewBox
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionViewBox
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewBox
       (
          this : access IShapeVisual_Interface;
-         value : Windows.UI.Composition.ICompositionViewBox
+         value : WinRt.Windows.UI.Composition.ICompositionViewBox
       )
       return WinRt.Hresult is abstract;
 
@@ -6831,7 +6831,7 @@ package WinRt.Windows.UI.Composition is
       function get_Mode
       (
          this : access ISineEasingFunction_Interface;
-         RetVal : access Windows.UI.Composition.CompositionEasingFunctionMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -6857,28 +6857,28 @@ package WinRt.Windows.UI.Composition is
       function get_CoordinateSpace
       (
          this : access ISpotLight_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_CoordinateSpace
       (
          this : access ISpotLight_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access ISpotLight_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access ISpotLight_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -6913,14 +6913,14 @@ package WinRt.Windows.UI.Composition is
       function get_InnerConeColor
       (
          this : access ISpotLight_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_InnerConeColor
       (
          this : access ISpotLight_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -6941,14 +6941,14 @@ package WinRt.Windows.UI.Composition is
       function get_Offset
       (
          this : access ISpotLight_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access ISpotLight_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -6983,14 +6983,14 @@ package WinRt.Windows.UI.Composition is
       function get_OuterConeColor
       (
          this : access ISpotLight_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_OuterConeColor
       (
          this : access ISpotLight_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -7096,14 +7096,14 @@ package WinRt.Windows.UI.Composition is
       function get_Period
       (
          this : access ISpringScalarNaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Period
       (
          this : access ISpringScalarNaturalMotionAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -7129,14 +7129,14 @@ package WinRt.Windows.UI.Composition is
       function get_Period
       (
          this : access ISpringVector2NaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Period
       (
          this : access ISpringVector2NaturalMotionAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -7162,14 +7162,14 @@ package WinRt.Windows.UI.Composition is
       function get_Period
       (
          this : access ISpringVector3NaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Period
       (
          this : access ISpringVector3NaturalMotionAnimation_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -7181,14 +7181,14 @@ package WinRt.Windows.UI.Composition is
       function get_Brush
       (
          this : access ISpriteVisual_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Brush
       (
          this : access ISpriteVisual_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -7200,14 +7200,14 @@ package WinRt.Windows.UI.Composition is
       function get_Shadow
       (
          this : access ISpriteVisual2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionShadow
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionShadow
       )
       return WinRt.Hresult is abstract;
 
       function put_Shadow
       (
          this : access ISpriteVisual2_Interface;
-         value : Windows.UI.Composition.ICompositionShadow
+         value : WinRt.Windows.UI.Composition.ICompositionShadow
       )
       return WinRt.Hresult is abstract;
 
@@ -7295,7 +7295,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector2KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -7303,8 +7303,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector2KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector2;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.Foundation.Numerics.Vector2;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -7344,14 +7344,14 @@ package WinRt.Windows.UI.Composition is
       function get_InitialVelocity
       (
          this : access IVector2NaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_InitialVelocity
       (
          this : access IVector2NaturalMotionAnimation_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -7369,7 +7369,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector3KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -7377,8 +7377,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector3KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector3;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.Foundation.Numerics.Vector3;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -7418,14 +7418,14 @@ package WinRt.Windows.UI.Composition is
       function get_InitialVelocity
       (
          this : access IVector3NaturalMotionAnimation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_InitialVelocity
       (
          this : access IVector3NaturalMotionAnimation_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -7443,7 +7443,7 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector4KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector4
+         value : WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
@@ -7451,8 +7451,8 @@ package WinRt.Windows.UI.Composition is
       (
          this : access IVector4KeyFrameAnimation_Interface;
          normalizedProgressKey : WinRt.Single;
-         value : Windows.Foundation.Numerics.Vector4;
-         easingFunction : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.Foundation.Numerics.Vector4;
+         easingFunction : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -7464,84 +7464,84 @@ package WinRt.Windows.UI.Composition is
       function get_AnchorPoint
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_AnchorPoint
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_BackfaceVisibility
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.UI.Composition.CompositionBackfaceVisibility
+         RetVal : access WinRt.Windows.UI.Composition.CompositionBackfaceVisibility
       )
       return WinRt.Hresult is abstract;
 
       function put_BackfaceVisibility
       (
          this : access IVisual_Interface;
-         value : Windows.UI.Composition.CompositionBackfaceVisibility
+         value : WinRt.Windows.UI.Composition.CompositionBackfaceVisibility
       )
       return WinRt.Hresult is abstract;
 
       function get_BorderMode
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.UI.Composition.CompositionBorderMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionBorderMode
       )
       return WinRt.Hresult is abstract;
 
       function put_BorderMode
       (
          this : access IVisual_Interface;
-         value : Windows.UI.Composition.CompositionBorderMode
+         value : WinRt.Windows.UI.Composition.CompositionBorderMode
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterPoint
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_CenterPoint
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Clip
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionClip
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionClip
       )
       return WinRt.Hresult is abstract;
 
       function put_Clip
       (
          this : access IVisual_Interface;
-         value : Windows.UI.Composition.ICompositionClip
+         value : WinRt.Windows.UI.Composition.ICompositionClip
       )
       return WinRt.Hresult is abstract;
 
       function get_CompositeMode
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.UI.Composition.CompositionCompositeMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionCompositeMode
       )
       return WinRt.Hresult is abstract;
 
       function put_CompositeMode
       (
          this : access IVisual_Interface;
-         value : Windows.UI.Composition.CompositionCompositeMode
+         value : WinRt.Windows.UI.Composition.CompositionCompositeMode
       )
       return WinRt.Hresult is abstract;
 
@@ -7562,14 +7562,14 @@ package WinRt.Windows.UI.Composition is
       function get_Offset
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Offset
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -7590,21 +7590,21 @@ package WinRt.Windows.UI.Composition is
       function get_Orientation
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_Orientation
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function get_Parent
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.UI.Composition.IContainerVisual
+         RetVal : access WinRt.Windows.UI.Composition.IContainerVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -7639,56 +7639,56 @@ package WinRt.Windows.UI.Composition is
       function get_RotationAxis
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_RotationAxis
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Scale
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformMatrix
       (
          this : access IVisual_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix4x4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformMatrix
       (
          this : access IVisual_Interface;
-         value : Windows.Foundation.Numerics.Matrix4x4
+         value : WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
@@ -7700,42 +7700,42 @@ package WinRt.Windows.UI.Composition is
       function get_ParentForTransform
       (
          this : access IVisual2_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_ParentForTransform
       (
          this : access IVisual2_Interface;
-         value : Windows.UI.Composition.IVisual
+         value : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeOffsetAdjustment
       (
          this : access IVisual2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeOffsetAdjustment
       (
          this : access IVisual2_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeSizeAdjustment
       (
          this : access IVisual2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeSizeAdjustment
       (
          this : access IVisual2_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -7792,37 +7792,37 @@ package WinRt.Windows.UI.Composition is
       function InsertAbove
       (
          this : access IVisualCollection_Interface;
-         newChild : Windows.UI.Composition.IVisual;
-         sibling : Windows.UI.Composition.IVisual
+         newChild : WinRt.Windows.UI.Composition.IVisual;
+         sibling : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function InsertAtBottom
       (
          this : access IVisualCollection_Interface;
-         newChild : Windows.UI.Composition.IVisual
+         newChild : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function InsertAtTop
       (
          this : access IVisualCollection_Interface;
-         newChild : Windows.UI.Composition.IVisual
+         newChild : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function InsertBelow
       (
          this : access IVisualCollection_Interface;
-         newChild : Windows.UI.Composition.IVisual;
-         sibling : Windows.UI.Composition.IVisual
+         newChild : WinRt.Windows.UI.Composition.IVisual;
+         sibling : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access IVisualCollection_Interface;
-         child : Windows.UI.Composition.IVisual
+         child : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -7845,7 +7845,7 @@ package WinRt.Windows.UI.Composition is
       function GetVisualInternal
       (
          this : access IVisualElement2_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -7869,14 +7869,14 @@ package WinRt.Windows.UI.Composition is
       function Add
       (
          this : access IVisualUnorderedCollection_Interface;
-         newVisual : Windows.UI.Composition.IVisual
+         newVisual : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access IVisualUnorderedCollection_Interface;
-         visual_p : Windows.UI.Composition.IVisual
+         visual_p : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -7906,15 +7906,15 @@ package WinRt.Windows.UI.Composition is
 
    procedure StartAnimationWithIAnimationObject
    (
-      target : Windows.UI.Composition.IAnimationObject;
+      target : WinRt.Windows.UI.Composition.IAnimationObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    );
 
    procedure StartAnimationGroupWithIAnimationObject
    (
-      target : Windows.UI.Composition.IAnimationObject;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
+      target : WinRt.Windows.UI.Composition.IAnimationObject;
+      animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    -----------------------------------------------------------------------------
@@ -7942,7 +7942,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    );
 
    procedure StopAnimation
@@ -7972,19 +7972,19 @@ package WinRt.Windows.UI.Composition is
    procedure put_ImplicitAnimations
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ImplicitAnimationCollection'Class
+      value : WinRt.Windows.UI.Composition.ImplicitAnimationCollection'Class
    );
 
    procedure StartAnimationGroup
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    procedure StopAnimationGroup
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    function get_DispatcherQueue
@@ -8004,8 +8004,8 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class;
-      animationController_p : Windows.UI.Composition.AnimationController'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class;
+      animationController_p : WinRt.Windows.UI.Composition.AnimationController'Class
    );
 
    procedure Close
@@ -8017,7 +8017,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      propertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      propertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8074,7 +8074,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out AmbientLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Intensity
@@ -8140,7 +8140,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ProgressBehavior
    (
       this : in out AnimationController;
-      value : Windows.UI.Composition.AnimationControllerProgressBehavior
+      value : WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior
    );
 
    procedure Pause
@@ -8171,7 +8171,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AccessMode
    (
       this : in out AnimationPropertyInfo;
-      value : Windows.UI.Composition.AnimationPropertyAccessMode
+      value : WinRt.Windows.UI.Composition.AnimationPropertyAccessMode
    );
 
    function GetResolvedCompositionObject
@@ -8200,43 +8200,43 @@ package WinRt.Windows.UI.Composition is
 
    function CreateCubicBezierEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      controlPoint1 : Windows.Foundation.Numerics.Vector2;
-      controlPoint2 : Windows.Foundation.Numerics.Vector2
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.CubicBezierEasingFunction;
 
    function CreateLinearEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class
+      owner : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.LinearEasingFunction;
 
    function CreateStepEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class
+      owner : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction;
 
    function CreateStepEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
       stepCount : WinRt.Int32
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction;
 
    function CreateBackEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       amplitude : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.BackEasingFunction;
 
    function CreateBounceEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       bounces : WinRt.Int32;
       bounciness : WinRt.Single
    )
@@ -8244,15 +8244,15 @@ package WinRt.Windows.UI.Composition is
 
    function CreateCircleEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
    )
    return WinRt.Windows.UI.Composition.CircleEasingFunction;
 
    function CreateElasticEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       oscillations : WinRt.Int32;
       springiness : WinRt.Single
    )
@@ -8260,24 +8260,24 @@ package WinRt.Windows.UI.Composition is
 
    function CreateExponentialEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       exponent : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.ExponentialEasingFunction;
 
    function CreatePowerEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       power : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.PowerEasingFunction;
 
    function CreateSineEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
    )
    return WinRt.Windows.UI.Composition.SineEasingFunction;
 
@@ -8332,35 +8332,35 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    procedure SetMatrix3x2Parameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    procedure SetMatrix4x4Parameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    );
 
    procedure SetQuaternionParameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure SetReferenceParameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      compositionObject_p : Windows.UI.Composition.CompositionObject'Class
+      compositionObject_p : WinRt.Windows.UI.Composition.CompositionObject'Class
    );
 
    procedure SetScalarParameter
@@ -8374,21 +8374,21 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    procedure SetVector3Parameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    procedure SetVector4Parameter
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    );
 
    procedure SetBooleanParameter
@@ -8420,7 +8420,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       parameterName : WinRt.WString;
-      source : Windows.UI.Composition.IAnimationObject
+      source : WinRt.Windows.UI.Composition.IAnimationObject
    );
 
    -----------------------------------------------------------------------------
@@ -8444,7 +8444,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_DelayTime
    (
       this : in out KeyFrameAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -8456,7 +8456,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Duration
    (
       this : in out KeyFrameAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_IterationBehavior
@@ -8468,7 +8468,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_IterationBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationIterationBehavior
+      value : WinRt.Windows.UI.Composition.AnimationIterationBehavior
    );
 
    function get_IterationCount
@@ -8498,7 +8498,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StopBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationStopBehavior
+      value : WinRt.Windows.UI.Composition.AnimationStopBehavior
    );
 
    procedure InsertExpressionKeyFrame
@@ -8513,7 +8513,7 @@ package WinRt.Windows.UI.Composition is
       this : in out KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
       value : WinRt.WString;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    function get_Direction
@@ -8525,7 +8525,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationDirection
+      value : WinRt.Windows.UI.Composition.AnimationDirection
    );
 
    function get_DelayBehavior
@@ -8537,7 +8537,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_DelayBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationDelayBehavior
+      value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
    );
 
    -----------------------------------------------------------------------------
@@ -8604,7 +8604,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_DelayBehavior
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.UI.Composition.AnimationDelayBehavior
+      value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
    );
 
    function get_DelayTime
@@ -8616,7 +8616,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_DelayTime
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StopBehavior
@@ -8628,7 +8628,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StopBehavior
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.UI.Composition.AnimationStopBehavior
+      value : WinRt.Windows.UI.Composition.AnimationStopBehavior
    );
 
    -----------------------------------------------------------------------------
@@ -8757,7 +8757,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_InitialVelocity
    (
       this : in out Vector2NaturalMotionAnimation;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -8838,7 +8838,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_InitialVelocity
    (
       this : in out Vector3NaturalMotionAnimation;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    -----------------------------------------------------------------------------
@@ -8907,22 +8907,22 @@ package WinRt.Windows.UI.Composition is
    procedure put_InterpolationColorSpace
    (
       this : in out ColorKeyFrameAnimation;
-      value : Windows.UI.Composition.CompositionColorSpace
+      value : WinRt.Windows.UI.Composition.CompositionColorSpace
    );
 
    procedure InsertKeyFrame
    (
       this : in out ColorKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    procedure InsertKeyFrame
    (
       this : in out ColorKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.UI.Color;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.UI.Color;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8943,13 +8943,13 @@ package WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out CompositionAnimationGroup;
-      value : Windows.UI.Composition.CompositionAnimation'Class
+      value : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    );
 
    procedure Remove
    (
       this : in out CompositionAnimationGroup;
-      value : Windows.UI.Composition.CompositionAnimation'Class
+      value : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    );
 
    procedure RemoveAll
@@ -9031,7 +9031,7 @@ package WinRt.Windows.UI.Composition is
    procedure remove_Changed
    (
       this : in out CompositionCapabilities;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9055,7 +9055,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_CenterPoint
@@ -9067,7 +9067,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Offset
@@ -9079,7 +9079,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_RotationAngle
@@ -9115,7 +9115,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TransformMatrix
@@ -9127,7 +9127,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    -----------------------------------------------------------------------------
@@ -9148,7 +9148,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out CompositionColorBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    -----------------------------------------------------------------------------
@@ -9169,7 +9169,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out CompositionColorGradientStop;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Offset
@@ -9223,7 +9223,7 @@ package WinRt.Windows.UI.Composition is
    function IndexOf
    (
       this : in out CompositionColorGradientStopCollection;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class;
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -9232,14 +9232,14 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    );
 
    procedure InsertAt
    (
       this : in out CompositionColorGradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    );
 
    procedure RemoveAt
@@ -9251,7 +9251,7 @@ package WinRt.Windows.UI.Composition is
    procedure Append
    (
       this : in out CompositionColorGradientStopCollection;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    );
 
    procedure RemoveAtEnd
@@ -9268,14 +9268,14 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.ICompositionColorGradientStop_Array
+      items : WinRt.Windows.UI.Composition.ICompositionColorGradientStop_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out CompositionColorGradientStopCollection;
-      items : Windows.UI.Composition.ICompositionColorGradientStop_Array
+      items : WinRt.Windows.UI.Composition.ICompositionColorGradientStop_Array
    );
 
    -----------------------------------------------------------------------------
@@ -9309,7 +9309,7 @@ package WinRt.Windows.UI.Composition is
    procedure remove_Completed
    (
       this : in out CompositionCommitBatch;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9333,7 +9333,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Offset
@@ -9345,7 +9345,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_RotationAngle
@@ -9381,7 +9381,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TransformMatrix
@@ -9393,7 +9393,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    -----------------------------------------------------------------------------
@@ -9450,35 +9450,35 @@ package WinRt.Windows.UI.Composition is
    procedure Resize
    (
       this : in out CompositionDrawingSurface;
-      sizePixels : Windows.Graphics.SizeInt32
+      sizePixels : WinRt.Windows.Graphics.SizeInt32
    );
 
    procedure Scroll
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32
+      offset : WinRt.Windows.Graphics.PointInt32
    );
 
    procedure Scroll
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      scrollRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      scrollRect : WinRt.Windows.Graphics.RectInt32
    );
 
    procedure ScrollWithClip
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      clipRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      clipRect : WinRt.Windows.Graphics.RectInt32
    );
 
    procedure ScrollWithClip
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      clipRect : Windows.Graphics.RectInt32;
-      scrollRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      clipRect : WinRt.Windows.Graphics.RectInt32;
+      scrollRect : WinRt.Windows.Graphics.RectInt32
    );
 
    -----------------------------------------------------------------------------
@@ -9501,7 +9501,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionEffectBrush;
       name : WinRt.WString;
-      source : Windows.UI.Composition.CompositionBrush'Class
+      source : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -9621,7 +9621,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Center
    (
       this : in out CompositionEllipseGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Radius
@@ -9633,7 +9633,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Radius
    (
       this : in out CompositionEllipseGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -9654,7 +9654,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Geometry
    (
       this : in out CompositionGeometricClip;
-      value : Windows.UI.Composition.CompositionGeometry'Class
+      value : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    );
 
    function get_ViewBox
@@ -9666,7 +9666,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ViewBox
    (
       this : in out CompositionGeometricClip;
-      value : Windows.UI.Composition.CompositionViewBox'Class
+      value : WinRt.Windows.UI.Composition.CompositionViewBox'Class
    );
 
    -----------------------------------------------------------------------------
@@ -9690,7 +9690,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_CenterPoint
@@ -9702,7 +9702,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_ColorStops
@@ -9720,7 +9720,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ExtendMode
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionGradientExtendMode
+      value : WinRt.Windows.UI.Composition.CompositionGradientExtendMode
    );
 
    function get_InterpolationSpace
@@ -9732,7 +9732,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_InterpolationSpace
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionColorSpace
+      value : WinRt.Windows.UI.Composition.CompositionColorSpace
    );
 
    function get_Offset
@@ -9744,7 +9744,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_RotationAngle
@@ -9780,7 +9780,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TransformMatrix
@@ -9792,7 +9792,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    function get_MappingMode
@@ -9804,7 +9804,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_MappingMode
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionMappingMode
+      value : WinRt.Windows.UI.Composition.CompositionMappingMode
    );
 
    -----------------------------------------------------------------------------
@@ -9819,9 +9819,9 @@ package WinRt.Windows.UI.Composition is
    function CreateDrawingSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Foundation.Size;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Foundation.Size;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class;
 
@@ -9835,33 +9835,33 @@ package WinRt.Windows.UI.Composition is
    procedure remove_RenderingDeviceReplaced
    (
       this : in out CompositionGraphicsDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateDrawingSurface2
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class;
 
    function CreateVirtualDrawingSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionVirtualDrawingSurface'Class;
 
    function CreateMipmapSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionMipmapSurface'Class;
 
@@ -9873,10 +9873,10 @@ package WinRt.Windows.UI.Composition is
    function CaptureAsync
    (
       this : in out CompositionGraphicsDevice;
-      captureVisual : Windows.UI.Composition.Visual'Class;
-      size : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+      captureVisual : WinRt.Windows.UI.Composition.Visual'Class;
+      size : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
       sdrBoost : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.ICompositionSurface;
@@ -9899,7 +9899,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Start
    (
       this : in out CompositionLineGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_End
@@ -9911,7 +9911,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_End
    (
       this : in out CompositionLineGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -9932,7 +9932,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_EndPoint
    (
       this : in out CompositionLinearGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_StartPoint
@@ -9944,7 +9944,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StartPoint
    (
       this : in out CompositionLinearGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -9965,7 +9965,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Mask
    (
       this : in out CompositionMaskBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_Source
@@ -9977,7 +9977,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out CompositionMaskBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10122,7 +10122,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out CompositionNineGridBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_TopInset
@@ -10190,7 +10190,7 @@ package WinRt.Windows.UI.Composition is
 
    function Constructor
    (
-      source : Windows.Graphics.IGeometrySource2D
+      source : WinRt.Windows.Graphics.IGeometrySource2D
    )
    return CompositionPath;
 
@@ -10215,7 +10215,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Path
    (
       this : in out CompositionPathGeometry;
-      value : Windows.UI.Composition.CompositionPath'Class
+      value : WinRt.Windows.UI.Composition.CompositionPath'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10254,7 +10254,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_LightSource
    (
       this : in out CompositionProjectedShadow;
-      value : Windows.UI.Composition.CompositionLight'Class
+      value : WinRt.Windows.UI.Composition.CompositionLight'Class
    );
 
    function get_MaxBlurRadius
@@ -10305,7 +10305,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Brush
    (
       this : in out CompositionProjectedShadowCaster;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_CastingVisual
@@ -10317,7 +10317,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CastingVisual
    (
       this : in out CompositionProjectedShadowCaster;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10344,33 +10344,33 @@ package WinRt.Windows.UI.Composition is
    procedure InsertAbove
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
-      reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
+      reference : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    );
 
    procedure InsertAtBottom
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    );
 
    procedure InsertAtTop
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    );
 
    procedure InsertBelow
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
-      reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
+      reference : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    );
 
    procedure Remove
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      caster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      caster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    );
 
    procedure RemoveAll
@@ -10403,7 +10403,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ReceivingVisual
    (
       this : in out CompositionProjectedShadowReceiver;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10418,7 +10418,7 @@ package WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection;
-      value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
+      value : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    );
 
    function get_Count
@@ -10430,7 +10430,7 @@ package WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection;
-      value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
+      value : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    );
 
    procedure RemoveAll
@@ -10458,28 +10458,28 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    procedure InsertMatrix3x2
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    procedure InsertMatrix4x4
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    );
 
    procedure InsertQuaternion
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure InsertScalar
@@ -10493,28 +10493,28 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    procedure InsertVector3
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    procedure InsertVector4
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    );
 
    function TryGetColor
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.UI.Color_Ptr
+      value : WinRt.Windows.UI.Color_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10522,7 +10522,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10530,7 +10530,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10538,7 +10538,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Quaternion_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10554,7 +10554,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector2_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10562,7 +10562,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector3_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10570,7 +10570,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector4_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus;
 
@@ -10607,7 +10607,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_EllipseCenter
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_EllipseRadius
@@ -10619,7 +10619,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_EllipseRadius
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_GradientOriginOffset
@@ -10631,7 +10631,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_GradientOriginOffset
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -10652,7 +10652,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Size
@@ -10664,7 +10664,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -10685,7 +10685,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CornerRadius
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Offset
@@ -10697,7 +10697,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Size
@@ -10709,7 +10709,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -10758,7 +10758,7 @@ package WinRt.Windows.UI.Composition is
    procedure remove_Completed
    (
       this : in out CompositionScopedBatch;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -10805,7 +10805,7 @@ package WinRt.Windows.UI.Composition is
    function IndexOf
    (
       this : in out CompositionShapeCollection;
-      value : Windows.UI.Composition.CompositionShape'Class;
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -10814,14 +10814,14 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    );
 
    procedure InsertAt
    (
       this : in out CompositionShapeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    );
 
    procedure RemoveAt
@@ -10833,7 +10833,7 @@ package WinRt.Windows.UI.Composition is
    procedure Append
    (
       this : in out CompositionShapeCollection;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    );
 
    procedure RemoveAtEnd
@@ -10850,14 +10850,14 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.ICompositionShape_Array
+      items : WinRt.Windows.UI.Composition.ICompositionShape_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out CompositionShapeCollection;
-      items : Windows.UI.Composition.ICompositionShape_Array
+      items : WinRt.Windows.UI.Composition.ICompositionShape_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.CompositionShape>
@@ -10885,7 +10885,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_FillBrush
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_Geometry
@@ -10897,7 +10897,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Geometry
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionGeometry'Class
+      value : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    );
 
    function get_IsStrokeNonScaling
@@ -10921,7 +10921,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StrokeBrush
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_StrokeDashArray
@@ -10939,7 +10939,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StrokeDashCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    );
 
    function get_StrokeDashOffset
@@ -10963,7 +10963,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StrokeEndCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    );
 
    function get_StrokeLineJoin
@@ -10975,7 +10975,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StrokeLineJoin
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeLineJoin
+      value : WinRt.Windows.UI.Composition.CompositionStrokeLineJoin
    );
 
    function get_StrokeMiterLimit
@@ -10999,7 +10999,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_StrokeStartCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    );
 
    function get_StrokeThickness
@@ -11126,7 +11126,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_BitmapInterpolationMode
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.CompositionBitmapInterpolationMode
+      value : WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
    );
 
    function get_HorizontalAlignmentRatio
@@ -11150,7 +11150,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Stretch
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.CompositionStretch
+      value : WinRt.Windows.UI.Composition.CompositionStretch
    );
 
    function get_Surface
@@ -11162,7 +11162,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Surface
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.ICompositionSurface
+      value : WinRt.Windows.UI.Composition.ICompositionSurface
    );
 
    function get_VerticalAlignmentRatio
@@ -11186,7 +11186,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_CenterPoint
@@ -11198,7 +11198,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Offset
@@ -11210,7 +11210,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_RotationAngle
@@ -11246,7 +11246,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TransformMatrix
@@ -11258,7 +11258,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    );
 
    function get_SnapToPixels
@@ -11294,7 +11294,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Root
    (
       this : in out CompositionTarget;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -11318,7 +11318,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_SourceRect
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.RectInt32
+      value : WinRt.Windows.Graphics.RectInt32
    );
 
    function get_AlphaMode
@@ -11330,7 +11330,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AlphaMode
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.DirectX.DirectXAlphaMode
+      value : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    );
 
    function get_ColorSpace
@@ -11342,7 +11342,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ColorSpace
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.DirectX.DirectXColorSpace
+      value : WinRt.Windows.Graphics.DirectX.DirectXColorSpace
    );
 
    -----------------------------------------------------------------------------
@@ -11387,7 +11387,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionViewBox;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Size
@@ -11399,7 +11399,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionViewBox;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Stretch
@@ -11411,7 +11411,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Stretch
    (
       this : in out CompositionViewBox;
-      value : Windows.UI.Composition.CompositionStretch
+      value : WinRt.Windows.UI.Composition.CompositionStretch
    );
 
    function get_VerticalAlignmentRatio
@@ -11441,7 +11441,7 @@ package WinRt.Windows.UI.Composition is
    procedure Trim
    (
       this : in out CompositionVirtualDrawingSurface;
-      rects : Windows.Graphics.RectInt32_Array
+      rects : WinRt.Windows.Graphics.RectInt32_Array
    );
 
    -----------------------------------------------------------------------------
@@ -11462,7 +11462,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_SourceVisual
    (
       this : in out CompositionVisualSurface;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function get_SourceOffset
@@ -11474,7 +11474,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_SourceOffset
    (
       this : in out CompositionVisualSurface;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_SourceSize
@@ -11486,7 +11486,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_SourceSize
    (
       this : in out CompositionVisualSurface;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -11527,7 +11527,7 @@ package WinRt.Windows.UI.Composition is
    function CreateColorBrush
    (
       this : in out Compositor;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Composition.CompositionColorBrush'Class;
 
@@ -11540,22 +11540,22 @@ package WinRt.Windows.UI.Composition is
    function CreateCubicBezierEasingFunction
    (
       this : in out Compositor;
-      controlPoint1 : Windows.Foundation.Numerics.Vector2;
-      controlPoint2 : Windows.Foundation.Numerics.Vector2
+      controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.CubicBezierEasingFunction'Class;
 
    function CreateEffectFactory
    (
       this : in out Compositor;
-      graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect
+      graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class;
 
    function CreateEffectFactory
    (
       this : in out Compositor;
-      graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect;
+      graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect;
       animatableProperties : GenericObject
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class;
@@ -11616,7 +11616,7 @@ package WinRt.Windows.UI.Composition is
    function CreateScopedBatch
    (
       this : in out Compositor;
-      batchType : Windows.UI.Composition.CompositionBatchTypes
+      batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes
    )
    return WinRt.Windows.UI.Composition.CompositionScopedBatch'Class;
 
@@ -11635,7 +11635,7 @@ package WinRt.Windows.UI.Composition is
    function CreateSurfaceBrush
    (
       this : in out Compositor;
-      surface : Windows.UI.Composition.ICompositionSurface
+      surface : WinRt.Windows.UI.Composition.ICompositionSurface
    )
    return WinRt.Windows.UI.Composition.CompositionSurfaceBrush'Class;
 
@@ -11666,7 +11666,7 @@ package WinRt.Windows.UI.Composition is
    function GetCommitBatch
    (
       this : in out Compositor;
-      batchType : Windows.UI.Composition.CompositionBatchTypes
+      batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes
    )
    return WinRt.Windows.UI.Composition.CompositionCommitBatch'Class;
 
@@ -11765,7 +11765,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out Compositor;
       offset : WinRt.Single;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class;
 
@@ -11862,7 +11862,7 @@ package WinRt.Windows.UI.Composition is
    function CreatePathGeometry
    (
       this : in out Compositor;
-      path : Windows.UI.Composition.CompositionPath'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class
    )
    return WinRt.Windows.UI.Composition.CompositionPathGeometry'Class;
 
@@ -11899,7 +11899,7 @@ package WinRt.Windows.UI.Composition is
    function CreateSpriteShape
    (
       this : in out Compositor;
-      geometry : Windows.UI.Composition.CompositionGeometry'Class
+      geometry : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    )
    return WinRt.Windows.UI.Composition.CompositionSpriteShape'Class;
 
@@ -11923,7 +11923,7 @@ package WinRt.Windows.UI.Composition is
    function CreateGeometricClip
    (
       this : in out Compositor;
-      geometry : Windows.UI.Composition.CompositionGeometry'Class
+      geometry : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    )
    return WinRt.Windows.UI.Composition.CompositionGeometricClip'Class;
 
@@ -11936,7 +11936,7 @@ package WinRt.Windows.UI.Composition is
    function CreateRedirectVisual
    (
       this : in out Compositor;
-      source : Windows.UI.Composition.Visual'Class
+      source : WinRt.Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.UI.Composition.RedirectVisual'Class;
 
@@ -12011,10 +12011,10 @@ package WinRt.Windows.UI.Composition is
       top : WinRt.Single;
       right : WinRt.Single;
       bottom : WinRt.Single;
-      topLeftRadius : Windows.Foundation.Numerics.Vector2;
-      topRightRadius : Windows.Foundation.Numerics.Vector2;
-      bottomRightRadius : Windows.Foundation.Numerics.Vector2;
-      bottomLeftRadius : Windows.Foundation.Numerics.Vector2
+      topLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      topRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      bottomRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      bottomLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.RectangleClip'Class;
 
@@ -12056,7 +12056,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_BackfaceVisibility
@@ -12068,7 +12068,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_BackfaceVisibility
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionBackfaceVisibility
+      value : WinRt.Windows.UI.Composition.CompositionBackfaceVisibility
    );
 
    function get_BorderMode
@@ -12080,7 +12080,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_BorderMode
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionBorderMode
+      value : WinRt.Windows.UI.Composition.CompositionBorderMode
    );
 
    function get_CenterPoint
@@ -12092,7 +12092,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Clip
@@ -12104,7 +12104,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Clip
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionClip'Class
+      value : WinRt.Windows.UI.Composition.CompositionClip'Class
    );
 
    function get_CompositeMode
@@ -12116,7 +12116,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CompositeMode
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionCompositeMode
+      value : WinRt.Windows.UI.Composition.CompositionCompositeMode
    );
 
    function get_IsVisible
@@ -12140,7 +12140,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Opacity
@@ -12164,7 +12164,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Orientation
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    function get_Parent
@@ -12206,7 +12206,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_RotationAxis
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Scale
@@ -12218,7 +12218,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Size
@@ -12230,7 +12230,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TransformMatrix
@@ -12242,7 +12242,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    );
 
    function get_ParentForTransform
@@ -12254,7 +12254,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ParentForTransform
    (
       this : in out Visual;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function get_RelativeOffsetAdjustment
@@ -12266,7 +12266,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_RelativeOffsetAdjustment
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_RelativeSizeAdjustment
@@ -12278,7 +12278,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_RelativeSizeAdjustment
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_IsHitTestVisible
@@ -12355,14 +12355,14 @@ package WinRt.Windows.UI.Composition is
 
    function Create
    (
-      compositor_p : Windows.UI.Composition.Compositor'Class
+      compositor_p : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual;
 
    function CreateForSwapChain
    (
-      compositor_p : Windows.UI.Composition.Compositor'Class;
-      swapChain : Windows.UI.Composition.ICompositionSurface
+      compositor_p : WinRt.Windows.UI.Composition.Compositor'Class;
+      swapChain : WinRt.Windows.UI.Composition.ICompositionSurface
    )
    return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual;
 
@@ -12372,15 +12372,15 @@ package WinRt.Windows.UI.Composition is
    function AddTrailPoints
    (
       this : in out DelegatedInkTrailVisual;
-      inkPoints : Windows.UI.Composition.InkTrailPoint_Array
+      inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array
    )
    return WinRt.UInt32;
 
    function AddTrailPointsWithPrediction
    (
       this : in out DelegatedInkTrailVisual;
-      inkPoints : Windows.UI.Composition.InkTrailPoint_Array;
-      predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Array
+      inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array;
+      predictedInkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array
    )
    return WinRt.UInt32;
 
@@ -12393,7 +12393,7 @@ package WinRt.Windows.UI.Composition is
    procedure StartNewTrail
    (
       this : in out DelegatedInkTrailVisual;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    );
 
    -----------------------------------------------------------------------------
@@ -12414,7 +12414,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out DistantLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_CoordinateSpace
@@ -12426,7 +12426,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out DistantLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function get_Direction
@@ -12438,7 +12438,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out DistantLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Intensity
@@ -12483,7 +12483,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out DropShadow;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Mask
@@ -12495,7 +12495,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Mask
    (
       this : in out DropShadow;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_Offset
@@ -12507,7 +12507,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out DropShadow;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Opacity
@@ -12531,7 +12531,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_SourcePolicy
    (
       this : in out DropShadow;
-      value : Windows.UI.Composition.CompositionDropShadowSourcePolicy
+      value : WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy
    );
 
    -----------------------------------------------------------------------------
@@ -12643,7 +12643,7 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out ImplicitAnimationCollection;
       key : WinRt.WString;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    )
    return WinRt.Boolean;
 
@@ -12788,7 +12788,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Effect
    (
       this : in out LayerVisual;
-      value : Windows.UI.Composition.CompositionEffectBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionEffectBrush'Class
    );
 
    function get_Shadow
@@ -12800,7 +12800,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Shadow
    (
       this : in out LayerVisual;
-      value : Windows.UI.Composition.CompositionShadow'Class
+      value : WinRt.Windows.UI.Composition.CompositionShadow'Class
    );
 
    -----------------------------------------------------------------------------
@@ -12825,15 +12825,15 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out PathKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      path : Windows.UI.Composition.CompositionPath'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class
    );
 
    procedure InsertKeyFrame
    (
       this : in out PathKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      path : Windows.UI.Composition.CompositionPath'Class;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -12854,7 +12854,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out PointLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_ConstantAttenuation
@@ -12878,7 +12878,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out PointLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function get_LinearAttenuation
@@ -12902,7 +12902,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out PointLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_QuadraticAttenuation
@@ -12987,15 +12987,15 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out QuaternionKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure InsertKeyFrame
    (
       this : in out QuaternionKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Quaternion;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Quaternion;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13028,7 +13028,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_BottomLeftRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_BottomRightRadius
@@ -13040,7 +13040,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_BottomRightRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_Left
@@ -13088,7 +13088,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TopLeftRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    function get_TopRightRadius
@@ -13100,7 +13100,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_TopRightRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    -----------------------------------------------------------------------------
@@ -13121,7 +13121,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out RedirectVisual;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13160,7 +13160,7 @@ package WinRt.Windows.UI.Composition is
       this : in out ScalarKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
       value : WinRt.Single;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13187,7 +13187,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_ViewBox
    (
       this : in out ShapeVisual;
-      value : Windows.UI.Composition.CompositionViewBox'Class
+      value : WinRt.Windows.UI.Composition.CompositionViewBox'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13235,7 +13235,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out SpotLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function get_Direction
@@ -13247,7 +13247,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out SpotLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_InnerConeAngle
@@ -13283,7 +13283,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_InnerConeColor
    (
       this : in out SpotLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_LinearAttenuation
@@ -13307,7 +13307,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out SpotLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_OuterConeAngle
@@ -13343,7 +13343,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_OuterConeColor
    (
       this : in out SpotLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_QuadraticAttenuation
@@ -13436,7 +13436,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringScalarNaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -13469,7 +13469,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringVector2NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -13502,7 +13502,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringVector3NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -13523,7 +13523,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Brush
    (
       this : in out SpriteVisual;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    function get_Shadow
@@ -13535,7 +13535,7 @@ package WinRt.Windows.UI.Composition is
    procedure put_Shadow
    (
       this : in out SpriteVisual;
-      value : Windows.UI.Composition.CompositionShadow'Class
+      value : WinRt.Windows.UI.Composition.CompositionShadow'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13620,15 +13620,15 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out Vector2KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    procedure InsertKeyFrame
    (
       this : in out Vector2KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector2;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector2;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13644,15 +13644,15 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out Vector3KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    procedure InsertKeyFrame
    (
       this : in out Vector3KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector3;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector3;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13668,15 +13668,15 @@ package WinRt.Windows.UI.Composition is
    (
       this : in out Vector4KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    );
 
    procedure InsertKeyFrame
    (
       this : in out Vector4KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector4;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector4;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    -----------------------------------------------------------------------------
@@ -13697,33 +13697,33 @@ package WinRt.Windows.UI.Composition is
    procedure InsertAbove
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class;
-      sibling : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class;
+      sibling : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure InsertAtBottom
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure InsertAtTop
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure InsertBelow
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class;
-      sibling : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class;
+      sibling : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure Remove
    (
       this : in out VisualCollection;
-      child : Windows.UI.Composition.Visual'Class
+      child : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure RemoveAll
@@ -13756,13 +13756,13 @@ package WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out VisualUnorderedCollection;
-      newVisual : Windows.UI.Composition.Visual'Class
+      newVisual : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure Remove
    (
       this : in out VisualUnorderedCollection;
-      visual_p : Windows.UI.Composition.Visual'Class
+      visual_p : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure RemoveAll

@@ -73,14 +73,14 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Proximity.IPeerInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.IPeerInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Proximity.PeerInformation do
          Hr := this.m_IConnectionRequestedEventArgs.all.get_PeerInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPeerInformation := new Windows.Networking.Proximity.IPeerInformation;
+         Retval.m_IPeerInformation := new WinRt.Windows.Networking.Proximity.IPeerInformation;
          Retval.m_IPeerInformation.all := m_ComRetVal;
       end return;
    end;
@@ -91,7 +91,7 @@ package body WinRt.Windows.Networking.Proximity is
    function Invoke
    (
       this : access DeviceArrivedEventHandler_Delegate;
-      sender : Windows.Networking.Proximity.IProximityDevice
+      sender : WinRt.Windows.Networking.Proximity.IProximityDevice
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -106,7 +106,7 @@ package body WinRt.Windows.Networking.Proximity is
    function Invoke
    (
       this : access DeviceDepartedEventHandler_Delegate;
-      sender : Windows.Networking.Proximity.IProximityDevice
+      sender : WinRt.Windows.Networking.Proximity.IProximityDevice
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -121,8 +121,8 @@ package body WinRt.Windows.Networking.Proximity is
    function Invoke
    (
       this : access MessageReceivedHandler_Delegate;
-      sender : Windows.Networking.Proximity.IProximityDevice;
-      message : Windows.Networking.Proximity.IProximityMessage
+      sender : WinRt.Windows.Networking.Proximity.IProximityDevice;
+      message : WinRt.Windows.Networking.Proximity.IProximityMessage
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -137,7 +137,7 @@ package body WinRt.Windows.Networking.Proximity is
    function Invoke
    (
       this : access MessageTransmittedHandler_Delegate;
-      sender : Windows.Networking.Proximity.IProximityDevice;
+      sender : WinRt.Windows.Networking.Proximity.IProximityDevice;
       messageId : WinRt.Int64
    )
    return WinRt.Hresult is
@@ -331,7 +331,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.Proximity.PeerDiscoveryTypes;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.PeerDiscoveryTypes;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -352,7 +352,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -435,7 +435,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -451,7 +451,7 @@ package body WinRt.Windows.Networking.Proximity is
 
       procedure remove_TriggeredConnectionStateChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -480,7 +480,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -496,7 +496,7 @@ package body WinRt.Windows.Networking.Proximity is
 
       procedure remove_ConnectionRequested
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -584,7 +584,7 @@ package body WinRt.Windows.Networking.Proximity is
 
       function ConnectAsync
       (
-         peerInformation_p : Windows.Networking.Proximity.PeerInformation'Class
+         peerInformation_p : WinRt.Windows.Networking.Proximity.PeerInformation'Class
       )
       return WinRt.Windows.Networking.Sockets.StreamSocket is
          Hr               : WinRt.HResult := S_OK;
@@ -640,7 +640,7 @@ package body WinRt.Windows.Networking.Proximity is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
+                        Retval.m_IStreamSocket := new WinRt.Windows.Networking.Sockets.IStreamSocket;
                         Retval.m_IStreamSocket.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -662,7 +662,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.Proximity.PeerRole;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.PeerRole;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -678,7 +678,7 @@ package body WinRt.Windows.Networking.Proximity is
 
       procedure put_Role
       (
-         value : Windows.Networking.Proximity.PeerRole
+         value : WinRt.Windows.Networking.Proximity.PeerRole
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -704,7 +704,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -720,7 +720,7 @@ package body WinRt.Windows.Networking.Proximity is
 
       procedure put_DiscoveryData
       (
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -746,7 +746,7 @@ package body WinRt.Windows.Networking.Proximity is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.PeerFinder");
          m_Factory        : access WinRt.Windows.Networking.Proximity.IPeerFinderStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.Proximity.IPeerWatcher;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.IPeerWatcher;
       begin
          return RetVal : WinRt.Windows.Networking.Proximity.PeerWatcher do
             Hr := RoGetActivationFactory (m_hString, IID_IPeerFinderStatics2'Access , m_Factory'Address);
@@ -756,7 +756,7 @@ package body WinRt.Windows.Networking.Proximity is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPeerWatcher := new Windows.Networking.Proximity.IPeerWatcher;
+               Retval.m_IPeerWatcher := new WinRt.Windows.Networking.Proximity.IPeerWatcher;
                Retval.m_IPeerWatcher.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -841,7 +841,7 @@ package body WinRt.Windows.Networking.Proximity is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Proximity.IPeerInformation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Proximity.IPeerInformation_Interface, WinRt.Windows.Networking.Proximity.IPeerInformation3, WinRt.Windows.Networking.Proximity.IID_IPeerInformation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPeerInformation.all);
@@ -862,7 +862,7 @@ package body WinRt.Windows.Networking.Proximity is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Proximity.IPeerInformationWithHostAndService := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Proximity.IPeerInformation_Interface, WinRt.Windows.Networking.Proximity.IPeerInformationWithHostAndService, WinRt.Windows.Networking.Proximity.IID_IPeerInformationWithHostAndService'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
@@ -872,7 +872,7 @@ package body WinRt.Windows.Networking.Proximity is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -933,7 +933,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPeerWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -945,7 +945,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_Added
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -966,7 +966,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPeerWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -978,7 +978,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_Removed
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -999,7 +999,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPeerWatcher.all.add_Updated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1011,7 +1011,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_Updated
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1032,7 +1032,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPeerWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1044,7 +1044,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_EnumerationCompleted
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1065,7 +1065,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPeerWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1077,7 +1077,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_Stopped
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1097,7 +1097,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Proximity.PeerWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.PeerWatcherStatus;
    begin
       Hr := this.m_IPeerWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1188,7 +1188,7 @@ package body WinRt.Windows.Networking.Proximity is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.ProximityDevice");
       m_Factory        : access WinRt.Windows.Networking.Proximity.IProximityDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Proximity.IProximityDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.IProximityDevice;
    begin
       return RetVal : WinRt.Windows.Networking.Proximity.ProximityDevice do
          Hr := RoGetActivationFactory (m_hString, IID_IProximityDeviceStatics'Access , m_Factory'Address);
@@ -1198,7 +1198,7 @@ package body WinRt.Windows.Networking.Proximity is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProximityDevice := new Windows.Networking.Proximity.IProximityDevice;
+            Retval.m_IProximityDevice := new WinRt.Windows.Networking.Proximity.IProximityDevice;
             Retval.m_IProximityDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1215,7 +1215,7 @@ package body WinRt.Windows.Networking.Proximity is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.Proximity.ProximityDevice");
       m_Factory        : access WinRt.Windows.Networking.Proximity.IProximityDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Proximity.IProximityDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.IProximityDevice;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Networking.Proximity.ProximityDevice do
@@ -1226,7 +1226,7 @@ package body WinRt.Windows.Networking.Proximity is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProximityDevice := new Windows.Networking.Proximity.IProximityDevice;
+            Retval.m_IProximityDevice := new WinRt.Windows.Networking.Proximity.IProximityDevice;
             Retval.m_IProximityDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      messageReceivedHandler : Windows.Networking.Proximity.MessageReceivedHandler
+      messageReceivedHandler : WinRt.Windows.Networking.Proximity.MessageReceivedHandler
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1286,7 +1286,7 @@ package body WinRt.Windows.Networking.Proximity is
       this : in out ProximityDevice;
       messageType : WinRt.WString;
       message : WinRt.WString;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1309,7 +1309,7 @@ package body WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      message : Windows.Storage.Streams.IBuffer
+      message : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1330,8 +1330,8 @@ package body WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      message : Windows.Storage.Streams.IBuffer;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      message : WinRt.Windows.Storage.Streams.IBuffer;
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1351,7 +1351,7 @@ package body WinRt.Windows.Networking.Proximity is
    function PublishUriMessage
    (
       this : in out ProximityDevice;
-      message : Windows.Foundation.Uri'Class
+      message : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1369,8 +1369,8 @@ package body WinRt.Windows.Networking.Proximity is
    function PublishUriMessage
    (
       this : in out ProximityDevice;
-      message : Windows.Foundation.Uri'Class;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      message : WinRt.Windows.Foundation.Uri'Class;
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64 is
       Hr               : WinRt.HResult := S_OK;
@@ -1418,13 +1418,13 @@ package body WinRt.Windows.Networking.Proximity is
    function add_DeviceArrived
    (
       this : in out ProximityDevice;
-      arrivedHandler : Windows.Networking.Proximity.DeviceArrivedEventHandler
+      arrivedHandler : WinRt.Windows.Networking.Proximity.DeviceArrivedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IProximityDevice.all.add_DeviceArrived (arrivedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1436,7 +1436,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_DeviceArrived
    (
       this : in out ProximityDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1451,13 +1451,13 @@ package body WinRt.Windows.Networking.Proximity is
    function add_DeviceDeparted
    (
       this : in out ProximityDevice;
-      departedHandler : Windows.Networking.Proximity.DeviceDepartedEventHandler
+      departedHandler : WinRt.Windows.Networking.Proximity.DeviceDepartedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IProximityDevice.all.add_DeviceDeparted (departedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1469,7 +1469,7 @@ package body WinRt.Windows.Networking.Proximity is
    procedure remove_DeviceDeparted
    (
       this : in out ProximityDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1603,7 +1603,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IProximityMessage.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1663,7 +1663,7 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Proximity.TriggeredConnectState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Proximity.TriggeredConnectState;
    begin
       Hr := this.m_ITriggeredConnectionStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1697,14 +1697,14 @@ package body WinRt.Windows.Networking.Proximity is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocket;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocket do
          Hr := this.m_ITriggeredConnectionStateChangedEventArgs.all.get_Socket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
+         Retval.m_IStreamSocket := new WinRt.Windows.Networking.Sockets.IStreamSocket;
          Retval.m_IStreamSocket.all := m_ComRetVal;
       end return;
    end;

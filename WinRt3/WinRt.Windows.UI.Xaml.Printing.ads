@@ -123,32 +123,32 @@ package WinRt.Windows.UI.Xaml.Printing is
    -----------------------------------------------------------------------------
 
    IID_AddPagesEventHandler : aliased WinRt.IID := (3568662896, 22432, 16905, (132, 124, 192, 147, 181, 75, 199, 41 ));
-   type AddPagesEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Printing.IAddPagesEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_AddPagesEventHandler'Access) with null record;
+   type AddPagesEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Printing.IAddPagesEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_AddPagesEventHandler'Access) with null record;
       function Invoke
       (
          this : access AddPagesEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Printing.IAddPagesEventArgs
+         e : WinRt.Windows.UI.Xaml.Printing.IAddPagesEventArgs
       )
       return WinRt.Hresult;
 
    IID_GetPreviewPageEventHandler : aliased WinRt.IID := (3434342893, 39953, 20048, (171, 73, 233, 128, 134, 187, 253, 239 ));
-   type GetPreviewPageEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_GetPreviewPageEventHandler'Access) with null record;
+   type GetPreviewPageEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_GetPreviewPageEventHandler'Access) with null record;
       function Invoke
       (
          this : access GetPreviewPageEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs
+         e : WinRt.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs
       )
       return WinRt.Hresult;
 
    IID_PaginateEventHandler : aliased WinRt.IID := (213932897, 33051, 18994, (153, 101, 19, 235, 120, 219, 176, 27 ));
-   type PaginateEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Printing.IPaginateEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PaginateEventHandler'Access) with null record;
+   type PaginateEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Printing.IPaginateEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PaginateEventHandler'Access) with null record;
       function Invoke
       (
          this : access PaginateEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Printing.IPaginateEventArgs
+         e : WinRt.Windows.UI.Xaml.Printing.IPaginateEventArgs
       )
       return WinRt.Hresult;
 
@@ -162,7 +162,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       function get_PrintTaskOptions
       (
          this : access IAddPagesEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskOptionsCore
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore
       )
       return WinRt.Hresult is abstract;
 
@@ -186,7 +186,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       function get_PrintTaskOptions
       (
          this : access IPaginateEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskOptionsCore
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore
       )
       return WinRt.Hresult is abstract;
 
@@ -205,59 +205,59 @@ package WinRt.Windows.UI.Xaml.Printing is
       function get_DocumentSource
       (
          this : access IPrintDocument_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintDocumentSource
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintDocumentSource
       )
       return WinRt.Hresult is abstract;
 
       function add_Paginate
       (
          this : access IPrintDocument_Interface;
-         handler : Windows.UI.Xaml.Printing.PaginateEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Printing.PaginateEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Paginate
       (
          this : access IPrintDocument_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_GetPreviewPage
       (
          this : access IPrintDocument_Interface;
-         handler : Windows.UI.Xaml.Printing.GetPreviewPageEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Printing.GetPreviewPageEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GetPreviewPage
       (
          this : access IPrintDocument_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_AddPages
       (
          this : access IPrintDocument_Interface;
-         handler : Windows.UI.Xaml.Printing.AddPagesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Printing.AddPagesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AddPages
       (
          this : access IPrintDocument_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function AddPage
       (
          this : access IPrintDocument_Interface;
-         pageVisual : Windows.UI.Xaml.IUIElement
+         pageVisual : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -271,7 +271,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       (
          this : access IPrintDocument_Interface;
          count : WinRt.Int32;
-         type_x : Windows.UI.Xaml.Printing.PreviewPageCountType
+         type_x : WinRt.Windows.UI.Xaml.Printing.PreviewPageCountType
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       (
          this : access IPrintDocument_Interface;
          pageNumber : WinRt.Int32;
-         pageVisual : Windows.UI.Xaml.IUIElement
+         pageVisual : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -299,7 +299,7 @@ package WinRt.Windows.UI.Xaml.Printing is
          this : access IPrintDocumentFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Printing.IPrintDocument
+         RetVal : access WinRt.Windows.UI.Xaml.Printing.IPrintDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -311,7 +311,7 @@ package WinRt.Windows.UI.Xaml.Printing is
       function get_DocumentSourceProperty
       (
          this : access IPrintDocumentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -421,46 +421,46 @@ package WinRt.Windows.UI.Xaml.Printing is
    function add_Paginate
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.PaginateEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.PaginateEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Paginate
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GetPreviewPage
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.GetPreviewPageEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.GetPreviewPageEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_GetPreviewPage
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AddPages
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.AddPagesEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.AddPagesEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_AddPages
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddPage
    (
       this : in out PrintDocument;
-      pageVisual : Windows.UI.Xaml.UIElement'Class
+      pageVisual : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure AddPagesComplete
@@ -472,14 +472,14 @@ package WinRt.Windows.UI.Xaml.Printing is
    (
       this : in out PrintDocument;
       count : WinRt.Int32;
-      type_x : Windows.UI.Xaml.Printing.PreviewPageCountType
+      type_x : WinRt.Windows.UI.Xaml.Printing.PreviewPageCountType
    );
 
    procedure SetPreviewPage
    (
       this : in out PrintDocument;
       pageNumber : WinRt.Int32;
-      pageVisual : Windows.UI.Xaml.UIElement'Class
+      pageVisual : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure InvalidatePreview

@@ -588,14 +588,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IAccessibilitySettings_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HighContrastChanged
       (
          this : access IAccessibilitySettings_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -608,7 +608,7 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IActivationViewSwitcher_Interface;
          viewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -616,8 +616,8 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IActivationViewSwitcher_Interface;
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference;
-         RetVal : access Windows.Foundation.IAsyncAction
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -637,7 +637,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_Orientation
       (
          this : access IApplicationView_Interface;
-         RetVal : access Windows.UI.ViewManagement.ApplicationViewOrientation
+         RetVal : access WinRt.Windows.UI.ViewManagement.ApplicationViewOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -708,14 +708,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Consolidated
       (
          this : access IApplicationView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -741,7 +741,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_VisibleBounds
       (
          this : access IApplicationView2_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -749,21 +749,21 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationView2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisibleBoundsChanged
       (
          this : access IApplicationView2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SetDesiredBoundsMode
       (
          this : access IApplicationView2_Interface;
-         boundsMode : Windows.UI.ViewManagement.ApplicationViewBoundsMode;
+         boundsMode : WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -771,7 +771,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_DesiredBoundsMode
       (
          this : access IApplicationView2_Interface;
-         RetVal : access Windows.UI.ViewManagement.ApplicationViewBoundsMode
+         RetVal : access WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode
       )
       return WinRt.Hresult is abstract;
 
@@ -783,21 +783,21 @@ package WinRt.Windows.UI.ViewManagement is
       function get_TitleBar
       (
          this : access IApplicationView3_Interface;
-         RetVal : access Windows.UI.ViewManagement.IApplicationViewTitleBar
+         RetVal : access WinRt.Windows.UI.ViewManagement.IApplicationViewTitleBar
       )
       return WinRt.Hresult is abstract;
 
       function get_FullScreenSystemOverlayMode
       (
          this : access IApplicationView3_Interface;
-         RetVal : access Windows.UI.ViewManagement.FullScreenSystemOverlayMode
+         RetVal : access WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode
       )
       return WinRt.Hresult is abstract;
 
       function put_FullScreenSystemOverlayMode
       (
          this : access IApplicationView3_Interface;
-         value : Windows.UI.ViewManagement.FullScreenSystemOverlayMode
+         value : WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode
       )
       return WinRt.Hresult is abstract;
 
@@ -830,7 +830,7 @@ package WinRt.Windows.UI.ViewManagement is
       function TryResizeView
       (
          this : access IApplicationView3_Interface;
-         value : Windows.Foundation.Size;
+         value : WinRt.Windows.Foundation.Size;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -838,7 +838,7 @@ package WinRt.Windows.UI.ViewManagement is
       function SetPreferredMinSize
       (
          this : access IApplicationView3_Interface;
-         minSize : Windows.Foundation.Size
+         minSize : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -850,14 +850,14 @@ package WinRt.Windows.UI.ViewManagement is
       function get_ViewMode
       (
          this : access IApplicationView4_Interface;
-         RetVal : access Windows.UI.ViewManagement.ApplicationViewMode
+         RetVal : access WinRt.Windows.UI.ViewManagement.ApplicationViewMode
       )
       return WinRt.Hresult is abstract;
 
       function IsViewModeSupported
       (
          this : access IApplicationView4_Interface;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -865,7 +865,7 @@ package WinRt.Windows.UI.ViewManagement is
       function TryEnterViewModeAsync
       (
          this : access IApplicationView4_Interface;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -873,8 +873,8 @@ package WinRt.Windows.UI.ViewManagement is
       function TryEnterViewModeAsync
       (
          this : access IApplicationView4_Interface;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.IViewModePreferences;
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : WinRt.Windows.UI.ViewManagement.IViewModePreferences;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -913,7 +913,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_WindowingEnvironment
       (
          this : access IApplicationView9_Interface;
-         RetVal : access Windows.UI.WindowManagement.IWindowingEnvironment
+         RetVal : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -968,7 +968,7 @@ package WinRt.Windows.UI.ViewManagement is
       function GetApplicationViewIdForWindow
       (
          this : access IApplicationViewInteropStatics_Interface;
-         window : Windows.UI.Core.ICoreWindow;
+         window : WinRt.Windows.UI.Core.ICoreWindow;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1006,7 +1006,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_Value
       (
          this : access IApplicationViewStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.ApplicationViewState
+         RetVal : access WinRt.Windows.UI.ViewManagement.ApplicationViewState
       )
       return WinRt.Hresult is abstract;
 
@@ -1025,7 +1025,7 @@ package WinRt.Windows.UI.ViewManagement is
       function GetForCurrentView
       (
          this : access IApplicationViewStatics2_Interface;
-         RetVal : access Windows.UI.ViewManagement.IApplicationView
+         RetVal : access WinRt.Windows.UI.ViewManagement.IApplicationView
       )
       return WinRt.Hresult is abstract;
 
@@ -1051,28 +1051,28 @@ package WinRt.Windows.UI.ViewManagement is
       function get_PreferredLaunchWindowingMode
       (
          this : access IApplicationViewStatics3_Interface;
-         RetVal : access Windows.UI.ViewManagement.ApplicationViewWindowingMode
+         RetVal : access WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredLaunchWindowingMode
       (
          this : access IApplicationViewStatics3_Interface;
-         value : Windows.UI.ViewManagement.ApplicationViewWindowingMode
+         value : WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PreferredLaunchViewSize
       (
          this : access IApplicationViewStatics3_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredLaunchViewSize
       (
          this : access IApplicationViewStatics3_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1117,7 +1117,7 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationViewSwitcherStatics_Interface;
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference;
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1126,9 +1126,9 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationViewSwitcherStatics_Interface;
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference;
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
          anchorViewId : WinRt.Int32;
-         anchorSizePreference : Windows.UI.ViewManagement.ViewSizePreference;
+         anchorSizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1137,7 +1137,7 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationViewSwitcherStatics_Interface;
          viewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1146,7 +1146,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IApplicationViewSwitcherStatics_Interface;
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1155,8 +1155,8 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IApplicationViewSwitcherStatics_Interface;
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1165,7 +1165,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IApplicationViewSwitcherStatics_Interface;
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions;
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1190,7 +1190,7 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationViewSwitcherStatics3_Interface;
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1199,8 +1199,8 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IApplicationViewSwitcherStatics3_Interface;
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.IViewModePreferences;
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : WinRt.Windows.UI.ViewManagement.IViewModePreferences;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1417,7 +1417,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_UIContext
       (
          this : access IApplicationViewWithContext_Interface;
-         RetVal : access Windows.UI.IUIContext
+         RetVal : access WinRt.Windows.UI.IUIContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1430,14 +1430,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IInputPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Showing
       (
          this : access IInputPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1445,21 +1445,21 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IInputPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Hiding
       (
          this : access IInputPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_OccludedRect
       (
          this : access IInputPane_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1509,7 +1509,7 @@ package WinRt.Windows.UI.ViewManagement is
       function GetForCurrentView
       (
          this : access IInputPaneStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.IInputPane
+         RetVal : access WinRt.Windows.UI.ViewManagement.IInputPane
       )
       return WinRt.Hresult is abstract;
 
@@ -1521,8 +1521,8 @@ package WinRt.Windows.UI.ViewManagement is
       function GetForUIContext
       (
          this : access IInputPaneStatics2_Interface;
-         context : Windows.UI.IUIContext;
-         RetVal : access Windows.UI.ViewManagement.IInputPane
+         context : WinRt.Windows.UI.IUIContext;
+         RetVal : access WinRt.Windows.UI.ViewManagement.IInputPane
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,7 +1534,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_OccludedRect
       (
          this : access IInputPaneVisibilityEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1562,7 +1562,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1571,7 +1571,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1580,7 +1580,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1595,14 +1595,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IProjectionManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProjectionDisplayAvailableChanged
       (
          this : access IProjectionManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1616,8 +1616,8 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics2_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         displayDeviceInfo : Windows.Devices.Enumeration.IDeviceInformation;
-         RetVal : access Windows.Foundation.IAsyncAction
+         displayDeviceInfo : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1626,7 +1626,7 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics2_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1636,8 +1636,8 @@ package WinRt.Windows.UI.ViewManagement is
          this : access IProjectionManagerStatics2_Interface;
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect;
-         prefferedPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         prefferedPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1657,35 +1657,35 @@ package WinRt.Windows.UI.ViewManagement is
       function get_HandPreference
       (
          this : access IUISettings_Interface;
-         RetVal : access Windows.UI.ViewManagement.HandPreference
+         RetVal : access WinRt.Windows.UI.ViewManagement.HandPreference
       )
       return WinRt.Hresult is abstract;
 
       function get_CursorSize
       (
          this : access IUISettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_ScrollBarSize
       (
          this : access IUISettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_ScrollBarArrowSize
       (
          this : access IUISettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_ScrollBarThumbBoxSize
       (
          this : access IUISettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1741,8 +1741,8 @@ package WinRt.Windows.UI.ViewManagement is
       function UIElementColor
       (
          this : access IUISettings_Interface;
-         desiredElement : Windows.UI.ViewManagement.UIElementType;
-         RetVal : access Windows.UI.Color
+         desiredElement : WinRt.Windows.UI.ViewManagement.UIElementType;
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1762,14 +1762,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TextScaleFactorChanged
       (
          this : access IUISettings2_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1781,8 +1781,8 @@ package WinRt.Windows.UI.ViewManagement is
       function GetColorValue
       (
          this : access IUISettings3_Interface;
-         desiredColor : Windows.UI.ViewManagement.UIColorType;
-         RetVal : access Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.ViewManagement.UIColorType;
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1790,14 +1790,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ColorValuesChanged
       (
          this : access IUISettings3_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1817,14 +1817,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AdvancedEffectsEnabledChanged
       (
          this : access IUISettings4_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1844,14 +1844,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings5_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AutoHideScrollBarsChanged
       (
          this : access IUISettings5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1864,14 +1864,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AnimationsEnabledChanged
       (
          this : access IUISettings6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1879,14 +1879,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUISettings6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageDurationChanged
       (
          this : access IUISettings6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1913,7 +1913,7 @@ package WinRt.Windows.UI.ViewManagement is
       function get_UserInteractionMode
       (
          this : access IUIViewSettings_Interface;
-         RetVal : access Windows.UI.ViewManagement.UserInteractionMode
+         RetVal : access WinRt.Windows.UI.ViewManagement.UserInteractionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1926,8 +1926,8 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUIViewSettingsPreferredInteractionMode_Interface;
          supportedModesSize : WinRt.UInt32;
-         supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Ptr;
-         RetVal : access Windows.UI.ViewManagement.UserInteractionMode
+         supportedModes : WinRt.Windows.UI.ViewManagement.UserInteractionMode_Ptr;
+         RetVal : access WinRt.Windows.UI.ViewManagement.UserInteractionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1935,14 +1935,14 @@ package WinRt.Windows.UI.ViewManagement is
       (
          this : access IUIViewSettingsPreferredInteractionMode_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PreferredInteractionModeChanged
       (
          this : access IUIViewSettingsPreferredInteractionMode_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1954,7 +1954,7 @@ package WinRt.Windows.UI.ViewManagement is
       function GetForCurrentView
       (
          this : access IUIViewSettingsStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.IUIViewSettings
+         RetVal : access WinRt.Windows.UI.ViewManagement.IUIViewSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1966,28 +1966,28 @@ package WinRt.Windows.UI.ViewManagement is
       function get_ViewSizePreference
       (
          this : access IViewModePreferences_Interface;
-         RetVal : access Windows.UI.ViewManagement.ViewSizePreference
+         RetVal : access WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewSizePreference
       (
          this : access IViewModePreferences_Interface;
-         value : Windows.UI.ViewManagement.ViewSizePreference
+         value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
       function get_CustomSize
       (
          this : access IViewModePreferences_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_CustomSize
       (
          this : access IViewModePreferences_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1999,8 +1999,8 @@ package WinRt.Windows.UI.ViewManagement is
       function CreateDefault
       (
          this : access IViewModePreferencesStatics_Interface;
-         mode : Windows.UI.ViewManagement.ApplicationViewMode;
-         RetVal : access Windows.UI.ViewManagement.IViewModePreferences
+         mode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+         RetVal : access WinRt.Windows.UI.ViewManagement.IViewModePreferences
       )
       return WinRt.Hresult is abstract;
 
@@ -2046,7 +2046,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_HighContrastChanged
    (
       this : in out AccessibilitySettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2068,7 +2068,7 @@ package WinRt.Windows.UI.ViewManagement is
    (
       this : in out ActivationViewSwitcher;
       viewId : WinRt.Int32;
-      sizePreference : Windows.UI.ViewManagement.ViewSizePreference
+      sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    );
 
    function IsViewPresentedOnActivationVirtualDesktop
@@ -2110,7 +2110,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    function GetApplicationViewIdForWindow
    (
-      window : Windows.UI.Core.ICoreWindow
+      window : WinRt.Windows.UI.Core.ICoreWindow
    )
    return WinRt.Int32;
 
@@ -2119,7 +2119,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    procedure put_PreferredLaunchWindowingMode
    (
-      value : Windows.UI.ViewManagement.ApplicationViewWindowingMode
+      value : WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode
    );
 
    function get_PreferredLaunchViewSize
@@ -2127,7 +2127,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    procedure put_PreferredLaunchViewSize
    (
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_Value
@@ -2209,7 +2209,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_Consolidated
    (
       this : in out ApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SuppressSystemOverlays
@@ -2240,13 +2240,13 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_VisibleBoundsChanged
    (
       this : in out ApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function SetDesiredBoundsMode
    (
       this : in out ApplicationView;
-      boundsMode : Windows.UI.ViewManagement.ApplicationViewBoundsMode
+      boundsMode : WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode
    )
    return WinRt.Boolean;
 
@@ -2271,7 +2271,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure put_FullScreenSystemOverlayMode
    (
       this : in out ApplicationView;
-      value : Windows.UI.ViewManagement.FullScreenSystemOverlayMode
+      value : WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode
    );
 
    function get_IsFullScreenMode
@@ -2299,14 +2299,14 @@ package WinRt.Windows.UI.ViewManagement is
    function TryResizeView
    (
       this : in out ApplicationView;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    )
    return WinRt.Boolean;
 
    procedure SetPreferredMinSize
    (
       this : in out ApplicationView;
-      minSize : Windows.Foundation.Size
+      minSize : WinRt.Windows.Foundation.Size
    );
 
    function get_ViewMode
@@ -2318,22 +2318,22 @@ package WinRt.Windows.UI.ViewManagement is
    function IsViewModeSupported
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Boolean;
 
    function TryEnterViewModeAsync
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Boolean;
 
    function TryEnterViewModeAsync
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-      viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+      viewModePreferences_p : WinRt.Windows.UI.ViewManagement.ViewModePreferences'Class
    )
    return WinRt.Boolean;
 
@@ -2430,16 +2430,16 @@ package WinRt.Windows.UI.ViewManagement is
       function TryShowAsStandaloneAsync
       (
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Boolean;
 
       function TryShowAsStandaloneAsync
       (
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference;
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
          anchorViewId : WinRt.Int32;
-         anchorSizePreference : Windows.UI.ViewManagement.ViewSizePreference
+         anchorSizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Boolean;
 
@@ -2458,29 +2458,29 @@ package WinRt.Windows.UI.ViewManagement is
       (
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       );
 
       function PrepareForCustomAnimatedSwitchAsync
       (
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       )
       return WinRt.Boolean;
 
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
       )
       return WinRt.Boolean;
 
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : WinRt.Windows.UI.ViewManagement.ViewModePreferences'Class
       )
       return WinRt.Boolean;
 
@@ -2687,7 +2687,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.UI.ViewManagement.InputPane;
 
@@ -2704,7 +2704,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_Showing
    (
       this : in out InputPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Hiding
@@ -2717,7 +2717,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_Hiding
    (
       this : in out InputPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_OccludedRect
@@ -2810,21 +2810,21 @@ package WinRt.Windows.UI.ViewManagement is
 
       procedure remove_ProjectionDisplayAvailableChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       procedure StartProjectingAsync
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         displayDeviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class
+         displayDeviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
       );
 
       function RequestStartProjectingAsync
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Boolean;
 
@@ -2832,8 +2832,8 @@ package WinRt.Windows.UI.ViewManagement is
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect;
-         prefferedPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         prefferedPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Boolean;
 
@@ -2931,7 +2931,7 @@ package WinRt.Windows.UI.ViewManagement is
    function UIElementColor
    (
       this : in out UISettings;
-      desiredElement : Windows.UI.ViewManagement.UIElementType
+      desiredElement : WinRt.Windows.UI.ViewManagement.UIElementType
    )
    return WinRt.Windows.UI.Color;
 
@@ -2951,13 +2951,13 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_TextScaleFactorChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetColorValue
    (
       this : in out UISettings;
-      desiredColor : Windows.UI.ViewManagement.UIColorType
+      desiredColor : WinRt.Windows.UI.ViewManagement.UIColorType
    )
    return WinRt.Windows.UI.Color;
 
@@ -2971,7 +2971,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_ColorValuesChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AdvancedEffectsEnabled
@@ -2990,7 +2990,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_AdvancedEffectsEnabledChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AutoHideScrollBars
@@ -3009,7 +3009,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_AutoHideScrollBarsChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AnimationsEnabledChanged
@@ -3022,7 +3022,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_AnimationsEnabledChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MessageDurationChanged
@@ -3035,7 +3035,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_MessageDurationChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3089,7 +3089,7 @@ package WinRt.Windows.UI.ViewManagement is
    function GetPreferredInteractionMode
    (
       this : in out UIViewSettings;
-      supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Array
+      supportedModes : WinRt.Windows.UI.ViewManagement.UserInteractionMode_Array
    )
    return WinRt.Windows.UI.ViewManagement.UserInteractionMode;
 
@@ -3103,7 +3103,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure remove_PreferredInteractionModeChanged
    (
       this : in out UIViewSettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3117,7 +3117,7 @@ package WinRt.Windows.UI.ViewManagement is
 
    function CreateDefault
    (
-      mode : Windows.UI.ViewManagement.ApplicationViewMode
+      mode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Windows.UI.ViewManagement.ViewModePreferences;
 
@@ -3133,7 +3133,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure put_ViewSizePreference
    (
       this : in out ViewModePreferences;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    );
 
    function get_CustomSize
@@ -3145,7 +3145,7 @@ package WinRt.Windows.UI.ViewManagement is
    procedure put_CustomSize
    (
       this : in out ViewModePreferences;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
 end WinRt.Windows.UI.ViewManagement;

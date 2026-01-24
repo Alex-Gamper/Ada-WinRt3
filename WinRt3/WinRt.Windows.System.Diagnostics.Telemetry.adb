@@ -45,7 +45,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
          m_Factory        : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryClientStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
+         m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
          HStr_id : constant WinRt.HString := To_HString (id);
       begin
          return RetVal : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult do
@@ -56,7 +56,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPlatformTelemetryRegistrationResult := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
+               Retval.m_IPlatformTelemetryRegistrationResult := new WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
                Retval.m_IPlatformTelemetryRegistrationResult.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -67,7 +67,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       function Register
       (
          id : WinRt.WString;
-         settings : Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings'Class
+         settings : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings'Class
       )
       return WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -75,7 +75,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryClient");
          m_Factory        : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryClientStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
+         m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
          HStr_id : constant WinRt.HString := To_HString (id);
       begin
          return RetVal : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult do
@@ -86,7 +86,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPlatformTelemetryRegistrationResult := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
+               Retval.m_IPlatformTelemetryRegistrationResult := new WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult;
                Retval.m_IPlatformTelemetryRegistrationResult.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -127,7 +127,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus;
    begin
       Hr := this.m_IPlatformTelemetryRegistrationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -162,13 +162,13 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    function Constructor return PlatformTelemetryRegistrationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings");
-      m_ComRetVal  : aliased Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings");
+      m_ComRetVal  : aliased WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
    begin
       return RetVal : PlatformTelemetryRegistrationSettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPlatformTelemetryRegistrationSettings := new Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
+            Retval.m_IPlatformTelemetryRegistrationSettings := new WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
             Retval.m_IPlatformTelemetryRegistrationSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

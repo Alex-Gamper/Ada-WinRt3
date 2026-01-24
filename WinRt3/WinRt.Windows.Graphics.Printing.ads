@@ -901,11 +901,11 @@ package WinRt.Windows.Graphics.Printing is
    -----------------------------------------------------------------------------
 
    IID_PrintTaskSourceRequestedHandler : aliased WinRt.IID := (1813028776, 23734, 19258, (134, 99, 243, 156, 176, 45, 201, 180 ));
-   type PrintTaskSourceRequestedHandler_Delegate (Callback : access procedure  (args : Windows.Graphics.Printing.IPrintTaskSourceRequestedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PrintTaskSourceRequestedHandler'Access) with null record;
+   type PrintTaskSourceRequestedHandler_Delegate (Callback : access procedure  (args : WinRt.Windows.Graphics.Printing.IPrintTaskSourceRequestedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PrintTaskSourceRequestedHandler'Access) with null record;
       function Invoke
       (
          this : access PrintTaskSourceRequestedHandler_Delegate;
-         args : Windows.Graphics.Printing.IPrintTaskSourceRequestedArgs
+         args : WinRt.Windows.Graphics.Printing.IPrintTaskSourceRequestedArgs
       )
       return WinRt.Hresult;
 
@@ -937,14 +937,14 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintManager_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrintTaskRequested
       (
          this : access IPrintManager_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -956,7 +956,7 @@ package WinRt.Windows.Graphics.Printing is
       function GetForCurrentView
       (
          this : access IPrintManagerStatic_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintManager
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintManager
       )
       return WinRt.Hresult is abstract;
 
@@ -987,28 +987,28 @@ package WinRt.Windows.Graphics.Printing is
       function put_MediaSize
       (
          this : access IPrintPageInfo_Interface;
-         value : Windows.Graphics.Printing.PrintMediaSize
+         value : WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSize
       (
          this : access IPrintPageInfo_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintMediaSize
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function put_PageSize
       (
          this : access IPrintPageInfo_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_PageSize
       (
          this : access IPrintPageInfo_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1043,14 +1043,14 @@ package WinRt.Windows.Graphics.Printing is
       function put_Orientation
       (
          this : access IPrintPageInfo_Interface;
-         value : Windows.Graphics.Printing.PrintOrientation
+         value : WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access IPrintPageInfo_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintOrientation
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -1083,7 +1083,7 @@ package WinRt.Windows.Graphics.Printing is
          this : access IPrintPageRangeFactory_Interface;
          firstPage : WinRt.Int32;
          lastPage : WinRt.Int32;
-         RetVal : access Windows.Graphics.Printing.IPrintPageRange
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintPageRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,7 +1091,7 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintPageRangeFactory_Interface;
          page : WinRt.Int32;
-         RetVal : access Windows.Graphics.Printing.IPrintPageRange
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintPageRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1150,21 +1150,21 @@ package WinRt.Windows.Graphics.Printing is
       function get_Properties
       (
          this : access IPrintTask_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IPrintTask_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintDocumentSource
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintDocumentSource
       )
       return WinRt.Hresult is abstract;
 
       function get_Options
       (
          this : access IPrintTask_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskOptionsCore
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore
       )
       return WinRt.Hresult is abstract;
 
@@ -1172,14 +1172,14 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Previewing
       (
          this : access IPrintTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1187,14 +1187,14 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Submitting
       (
          this : access IPrintTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1202,14 +1202,14 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Progressing
       (
          this : access IPrintTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1217,14 +1217,14 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IPrintTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1255,7 +1255,7 @@ package WinRt.Windows.Graphics.Printing is
       function get_Completion
       (
          this : access IPrintTaskCompletedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTaskCompletion
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTaskCompletion
       )
       return WinRt.Hresult is abstract;
 
@@ -1267,22 +1267,22 @@ package WinRt.Windows.Graphics.Printing is
       function put_Bordering
       (
          this : access IPrintTaskOptions_Interface;
-         value : Windows.Graphics.Printing.PrintBordering
+         value : WinRt.Windows.Graphics.Printing.PrintBordering
       )
       return WinRt.Hresult is abstract;
 
       function get_Bordering
       (
          this : access IPrintTaskOptions_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintBordering
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintBordering
       )
       return WinRt.Hresult is abstract;
 
       function GetPagePrintTicket
       (
          this : access IPrintTaskOptions_Interface;
-         printPageInfo_p : Windows.Graphics.Printing.IPrintPageInfo;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         printPageInfo_p : WinRt.Windows.Graphics.Printing.IPrintPageInfo;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1294,7 +1294,7 @@ package WinRt.Windows.Graphics.Printing is
       function get_PageRangeOptions
       (
          this : access IPrintTaskOptions2_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintPageRangeOptions
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintPageRangeOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1314,7 +1314,7 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTaskOptionsCore_Interface;
          jobPageNumber : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing.PrintPageDescription
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintPageDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -1326,140 +1326,140 @@ package WinRt.Windows.Graphics.Printing is
       function put_MediaSize
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintMediaSize
+         value : WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSize
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintMediaSize
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function put_MediaType
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintMediaType
+         value : WinRt.Windows.Graphics.Printing.PrintMediaType
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaType
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintMediaType
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintMediaType
       )
       return WinRt.Hresult is abstract;
 
       function put_Orientation
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintOrientation
+         value : WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintOrientation
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
       function put_PrintQuality
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintQuality
+         value : WinRt.Windows.Graphics.Printing.PrintQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_PrintQuality
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorMode
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintColorMode
+         value : WinRt.Windows.Graphics.Printing.PrintColorMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorMode
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintColorMode
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintColorMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Duplex
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintDuplex
+         value : WinRt.Windows.Graphics.Printing.PrintDuplex
       )
       return WinRt.Hresult is abstract;
 
       function get_Duplex
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintDuplex
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintDuplex
       )
       return WinRt.Hresult is abstract;
 
       function put_Collation
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintCollation
+         value : WinRt.Windows.Graphics.Printing.PrintCollation
       )
       return WinRt.Hresult is abstract;
 
       function get_Collation
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintCollation
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintCollation
       )
       return WinRt.Hresult is abstract;
 
       function put_Staple
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintStaple
+         value : WinRt.Windows.Graphics.Printing.PrintStaple
       )
       return WinRt.Hresult is abstract;
 
       function get_Staple
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintStaple
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintStaple
       )
       return WinRt.Hresult is abstract;
 
       function put_HolePunch
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintHolePunch
+         value : WinRt.Windows.Graphics.Printing.PrintHolePunch
       )
       return WinRt.Hresult is abstract;
 
       function get_HolePunch
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintHolePunch
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintHolePunch
       )
       return WinRt.Hresult is abstract;
 
       function put_Binding
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         value : Windows.Graphics.Printing.PrintBinding
+         value : WinRt.Windows.Graphics.Printing.PrintBinding
       )
       return WinRt.Hresult is abstract;
 
       function get_Binding
       (
          this : access IPrintTaskOptionsCoreProperties_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintBinding
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintBinding
       )
       return WinRt.Hresult is abstract;
 
@@ -1523,7 +1523,7 @@ package WinRt.Windows.Graphics.Printing is
       function get_Deadline
       (
          this : access IPrintTaskRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1531,15 +1531,15 @@ package WinRt.Windows.Graphics.Printing is
       (
          this : access IPrintTaskRequest_Interface;
          title : WinRt.HString;
-         handler : Windows.Graphics.Printing.PrintTaskSourceRequestedHandler;
-         RetVal : access Windows.Graphics.Printing.IPrintTask
+         handler : WinRt.Windows.Graphics.Printing.PrintTaskSourceRequestedHandler;
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTask
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintTaskRequest_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskRequestedDeferral
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskRequestedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1562,7 +1562,7 @@ package WinRt.Windows.Graphics.Printing is
       function get_Request
       (
          this : access IPrintTaskRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskRequest
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1574,21 +1574,21 @@ package WinRt.Windows.Graphics.Printing is
       function get_Deadline
       (
          this : access IPrintTaskSourceRequestedArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function SetSource
       (
          this : access IPrintTaskSourceRequestedArgs_Interface;
-         source : Windows.Graphics.Printing.IPrintDocumentSource
+         source : WinRt.Windows.Graphics.Printing.IPrintDocumentSource
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintTaskSourceRequestedArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.IPrintTaskSourceRequestedDeferral
+         RetVal : access WinRt.Windows.Graphics.Printing.IPrintTaskSourceRequestedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1793,7 +1793,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure remove_PrintTaskRequested
    (
       this : in out PrintManager;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1813,7 +1813,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_MediaSize
    (
       this : in out PrintPageInfo;
-      value : Windows.Graphics.Printing.PrintMediaSize
+      value : WinRt.Windows.Graphics.Printing.PrintMediaSize
    );
 
    function get_MediaSize
@@ -1825,7 +1825,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_PageSize
    (
       this : in out PrintPageInfo;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_PageSize
@@ -1861,7 +1861,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Orientation
    (
       this : in out PrintPageInfo;
-      value : Windows.Graphics.Printing.PrintOrientation
+      value : WinRt.Windows.Graphics.Printing.PrintOrientation
    );
 
    function get_Orientation
@@ -1989,7 +1989,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure remove_Previewing
    (
       this : in out PrintTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Submitting
@@ -2002,7 +2002,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure remove_Submitting
    (
       this : in out PrintTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Progressing
@@ -2015,7 +2015,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure remove_Progressing
    (
       this : in out PrintTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Completed
@@ -2028,7 +2028,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure remove_Completed
    (
       this : in out PrintTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_IsPrinterTargetEnabled
@@ -2101,7 +2101,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_MediaSize
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintMediaSize
+      value : WinRt.Windows.Graphics.Printing.PrintMediaSize
    );
 
    function get_MediaSize
@@ -2113,7 +2113,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_MediaType
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintMediaType
+      value : WinRt.Windows.Graphics.Printing.PrintMediaType
    );
 
    function get_MediaType
@@ -2125,7 +2125,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Orientation
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintOrientation
+      value : WinRt.Windows.Graphics.Printing.PrintOrientation
    );
 
    function get_Orientation
@@ -2137,7 +2137,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_PrintQuality
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintQuality
+      value : WinRt.Windows.Graphics.Printing.PrintQuality
    );
 
    function get_PrintQuality
@@ -2149,7 +2149,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_ColorMode
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintColorMode
+      value : WinRt.Windows.Graphics.Printing.PrintColorMode
    );
 
    function get_ColorMode
@@ -2161,7 +2161,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Duplex
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintDuplex
+      value : WinRt.Windows.Graphics.Printing.PrintDuplex
    );
 
    function get_Duplex
@@ -2173,7 +2173,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Collation
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintCollation
+      value : WinRt.Windows.Graphics.Printing.PrintCollation
    );
 
    function get_Collation
@@ -2185,7 +2185,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Staple
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintStaple
+      value : WinRt.Windows.Graphics.Printing.PrintStaple
    );
 
    function get_Staple
@@ -2197,7 +2197,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_HolePunch
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintHolePunch
+      value : WinRt.Windows.Graphics.Printing.PrintHolePunch
    );
 
    function get_HolePunch
@@ -2209,7 +2209,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Binding
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintBinding
+      value : WinRt.Windows.Graphics.Printing.PrintBinding
    );
 
    function get_Binding
@@ -2251,7 +2251,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure put_Bordering
    (
       this : in out PrintTaskOptions;
-      value : Windows.Graphics.Printing.PrintBordering
+      value : WinRt.Windows.Graphics.Printing.PrintBordering
    );
 
    function get_Bordering
@@ -2263,7 +2263,7 @@ package WinRt.Windows.Graphics.Printing is
    function GetPagePrintTicket
    (
       this : in out PrintTaskOptions;
-      printPageInfo_p : Windows.Graphics.Printing.PrintPageInfo'Class
+      printPageInfo_p : WinRt.Windows.Graphics.Printing.PrintPageInfo'Class
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
@@ -2313,7 +2313,7 @@ package WinRt.Windows.Graphics.Printing is
    (
       this : in out PrintTaskRequest;
       title : WinRt.WString;
-      handler : Windows.Graphics.Printing.PrintTaskSourceRequestedHandler
+      handler : WinRt.Windows.Graphics.Printing.PrintTaskSourceRequestedHandler
    )
    return WinRt.Windows.Graphics.Printing.PrintTask'Class;
 
@@ -2370,7 +2370,7 @@ package WinRt.Windows.Graphics.Printing is
    procedure SetSource
    (
       this : in out PrintTaskSourceRequestedArgs;
-      source : Windows.Graphics.Printing.IPrintDocumentSource
+      source : WinRt.Windows.Graphics.Printing.IPrintDocumentSource
    );
 
    function GetDeferral

@@ -655,11 +655,11 @@ package WinRt.Windows.UI.Core is
       return WinRt.Hresult;
 
    IID_IdleDispatchedHandler : aliased WinRt.IID := (2754284580, 32545, 19132, (153, 193, 143, 1, 0, 127, 8, 128 ));
-   type IdleDispatchedHandler_Delegate (Callback : access procedure  (e : Windows.UI.Core.IIdleDispatchedHandlerArgs)) is new WinRt.IMulticastDelegate_Interface (IID_IdleDispatchedHandler'Access) with null record;
+   type IdleDispatchedHandler_Delegate (Callback : access procedure  (e : WinRt.Windows.UI.Core.IIdleDispatchedHandlerArgs)) is new WinRt.IMulticastDelegate_Interface (IID_IdleDispatchedHandler'Access) with null record;
       function Invoke
       (
          this : access IdleDispatchedHandler_Delegate;
-         e : Windows.UI.Core.IIdleDispatchedHandlerArgs
+         e : WinRt.Windows.UI.Core.IIdleDispatchedHandlerArgs
       )
       return WinRt.Hresult;
 
@@ -677,21 +677,21 @@ package WinRt.Windows.UI.Core is
       function get_EventType
       (
          this : access IAcceleratorKeyEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CoreAcceleratorKeyEventType
+         RetVal : access WinRt.Windows.UI.Core.CoreAcceleratorKeyEventType
       )
       return WinRt.Hresult is abstract;
 
       function get_VirtualKey
       (
          this : access IAcceleratorKeyEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyStatus
       (
          this : access IAcceleratorKeyEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -760,7 +760,7 @@ package WinRt.Windows.UI.Core is
       function get_KeyStatus
       (
          this : access ICharacterReceivedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -772,28 +772,28 @@ package WinRt.Windows.UI.Core is
       function get_PointerPosition
       (
          this : access IClosestInteractiveBoundsRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_SearchBounds
       (
          this : access IClosestInteractiveBoundsRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosestInteractiveBounds
       (
          this : access IClosestInteractiveBoundsRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_ClosestInteractiveBounds
       (
          this : access IClosestInteractiveBoundsRequestedEventArgs_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -806,14 +806,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreAcceleratorKeys_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AcceleratorKeyActivated
       (
          this : access ICoreAcceleratorKeys_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -826,14 +826,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreClosestInteractiveBoundsRequested_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ClosestInteractiveBoundsRequested
       (
          this : access ICoreClosestInteractiveBoundsRequested_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -853,14 +853,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreComponentFocusable_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access ICoreComponentFocusable_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -868,14 +868,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreComponentFocusable_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LostFocus
       (
          this : access ICoreComponentFocusable_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -894,7 +894,7 @@ package WinRt.Windows.UI.Core is
       function get_Type
       (
          this : access ICoreCursor_Interface;
-         RetVal : access Windows.UI.Core.CoreCursorType
+         RetVal : access WinRt.Windows.UI.Core.CoreCursorType
       )
       return WinRt.Hresult is abstract;
 
@@ -906,9 +906,9 @@ package WinRt.Windows.UI.Core is
       function CreateCursor
       (
          this : access ICoreCursorFactory_Interface;
-         type_x : Windows.UI.Core.CoreCursorType;
+         type_x : WinRt.Windows.UI.Core.CoreCursorType;
          id : WinRt.UInt32;
-         RetVal : access Windows.UI.Core.ICoreCursor
+         RetVal : access WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
@@ -927,24 +927,24 @@ package WinRt.Windows.UI.Core is
       function ProcessEvents
       (
          this : access ICoreDispatcher_Interface;
-         options : Windows.UI.Core.CoreProcessEventsOption
+         options : WinRt.Windows.UI.Core.CoreProcessEventsOption
       )
       return WinRt.Hresult is abstract;
 
       function RunAsync
       (
          this : access ICoreDispatcher_Interface;
-         priority : Windows.UI.Core.CoreDispatcherPriority;
-         agileCallback : Windows.UI.Core.DispatchedHandler;
-         RetVal : access Windows.Foundation.IAsyncAction
+         priority : WinRt.Windows.UI.Core.CoreDispatcherPriority;
+         agileCallback : WinRt.Windows.UI.Core.DispatchedHandler;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RunIdleAsync
       (
          this : access ICoreDispatcher_Interface;
-         agileCallback : Windows.UI.Core.IdleDispatchedHandler;
-         RetVal : access Windows.Foundation.IAsyncAction
+         agileCallback : WinRt.Windows.UI.Core.IdleDispatchedHandler;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -956,8 +956,8 @@ package WinRt.Windows.UI.Core is
       function TryRunAsync
       (
          this : access ICoreDispatcher2_Interface;
-         priority : Windows.UI.Core.CoreDispatcherPriority;
-         agileCallback : Windows.UI.Core.DispatchedHandler;
+         priority : WinRt.Windows.UI.Core.CoreDispatcherPriority;
+         agileCallback : WinRt.Windows.UI.Core.DispatchedHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -965,7 +965,7 @@ package WinRt.Windows.UI.Core is
       function TryRunIdleAsync
       (
          this : access ICoreDispatcher2_Interface;
-         agileCallback : Windows.UI.Core.IdleDispatchedHandler;
+         agileCallback : WinRt.Windows.UI.Core.IdleDispatchedHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -978,14 +978,14 @@ package WinRt.Windows.UI.Core is
       function get_CurrentPriority
       (
          this : access ICoreDispatcherWithTaskPriority_Interface;
-         RetVal : access Windows.UI.Core.CoreDispatcherPriority
+         RetVal : access WinRt.Windows.UI.Core.CoreDispatcherPriority
       )
       return WinRt.Hresult is abstract;
 
       function put_CurrentPriority
       (
          this : access ICoreDispatcherWithTaskPriority_Interface;
-         value : Windows.UI.Core.CoreDispatcherPriority
+         value : WinRt.Windows.UI.Core.CoreDispatcherPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -999,7 +999,7 @@ package WinRt.Windows.UI.Core is
       function ShouldYield
       (
          this : access ICoreDispatcherWithTaskPriority_Interface;
-         priority : Windows.UI.Core.CoreDispatcherPriority;
+         priority : WinRt.Windows.UI.Core.CoreDispatcherPriority;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1046,23 +1046,23 @@ package WinRt.Windows.UI.Core is
       function get_Source
       (
          this : access ICoreIndependentInputSourceController_Interface;
-         RetVal : access Windows.UI.Core.ICoreInputSourceBase
+         RetVal : access WinRt.Windows.UI.Core.ICoreInputSourceBase
       )
       return WinRt.Hresult is abstract;
 
       function SetControlledInput
       (
          this : access ICoreIndependentInputSourceController_Interface;
-         inputTypes : Windows.UI.Core.CoreInputDeviceTypes
+         inputTypes : WinRt.Windows.UI.Core.CoreInputDeviceTypes
       )
       return WinRt.Hresult is abstract;
 
       function SetControlledInput
       (
          this : access ICoreIndependentInputSourceController_Interface;
-         inputTypes : Windows.UI.Core.CoreInputDeviceTypes;
-         required : Windows.UI.Core.CoreIndependentInputFilters;
-         excluded : Windows.UI.Core.CoreIndependentInputFilters
+         inputTypes : WinRt.Windows.UI.Core.CoreInputDeviceTypes;
+         required : WinRt.Windows.UI.Core.CoreIndependentInputFilters;
+         excluded : WinRt.Windows.UI.Core.CoreIndependentInputFilters
       )
       return WinRt.Hresult is abstract;
 
@@ -1074,16 +1074,16 @@ package WinRt.Windows.UI.Core is
       function CreateForVisual
       (
          this : access ICoreIndependentInputSourceControllerStatics_Interface;
-         visual : Windows.UI.Composition.IVisual;
-         RetVal : access Windows.UI.Core.ICoreIndependentInputSourceController
+         visual : WinRt.Windows.UI.Composition.IVisual;
+         RetVal : access WinRt.Windows.UI.Core.ICoreIndependentInputSourceController
       )
       return WinRt.Hresult is abstract;
 
       function CreateForIVisualElement
       (
          this : access ICoreIndependentInputSourceControllerStatics_Interface;
-         visualElement : Windows.UI.Composition.IVisualElement;
-         RetVal : access Windows.UI.Core.ICoreIndependentInputSourceController
+         visualElement : WinRt.Windows.UI.Composition.IVisualElement;
+         RetVal : access WinRt.Windows.UI.Core.ICoreIndependentInputSourceController
       )
       return WinRt.Hresult is abstract;
 
@@ -1095,7 +1095,7 @@ package WinRt.Windows.UI.Core is
       function get_Dispatcher
       (
          this : access ICoreInputSourceBase_Interface;
-         RetVal : access Windows.UI.Core.ICoreDispatcher
+         RetVal : access WinRt.Windows.UI.Core.ICoreDispatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1117,14 +1117,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreInputSourceBase_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InputEnabled
       (
          this : access ICoreInputSourceBase_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1136,8 +1136,8 @@ package WinRt.Windows.UI.Core is
       function GetCurrentKeyState
       (
          this : access ICoreKeyboardInputSource_Interface;
-         virtualKey : Windows.System.VirtualKey;
-         RetVal : access Windows.UI.Core.CoreVirtualKeyStates
+         virtualKey : WinRt.Windows.System.VirtualKey;
+         RetVal : access WinRt.Windows.UI.Core.CoreVirtualKeyStates
       )
       return WinRt.Hresult is abstract;
 
@@ -1145,14 +1145,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreKeyboardInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CharacterReceived
       (
          this : access ICoreKeyboardInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1160,14 +1160,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreKeyboardInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyDown
       (
          this : access ICoreKeyboardInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,14 +1175,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreKeyboardInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyUp
       (
          this : access ICoreKeyboardInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1225,21 +1225,21 @@ package WinRt.Windows.UI.Core is
       function get_PointerPosition
       (
          this : access ICorePointerInputSource_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerCursor
       (
          this : access ICorePointerInputSource_Interface;
-         RetVal : access Windows.UI.Core.ICoreCursor
+         RetVal : access WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerCursor
       (
          this : access ICorePointerInputSource_Interface;
-         value : Windows.UI.Core.ICoreCursor
+         value : WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
@@ -1247,14 +1247,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerCaptureLost
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1262,14 +1262,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerEntered
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1277,14 +1277,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerExited
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1292,14 +1292,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerMoved
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1307,14 +1307,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerPressed
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1322,14 +1322,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerReleased
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1337,14 +1337,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerWheelChanged
       (
          this : access ICorePointerInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1356,7 +1356,7 @@ package WinRt.Windows.UI.Core is
       function get_DispatcherQueue
       (
          this : access ICorePointerInputSource2_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -1369,14 +1369,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerRedirector_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerRoutedAway
       (
          this : access ICorePointerRedirector_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1384,14 +1384,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerRedirector_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerRoutedTo
       (
          this : access ICorePointerRedirector_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1399,14 +1399,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICorePointerRedirector_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerRoutedReleased
       (
          this : access ICorePointerRedirector_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1419,14 +1419,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreTouchHitTesting_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TouchHitTesting
       (
          this : access ICoreTouchHitTesting_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1445,35 +1445,35 @@ package WinRt.Windows.UI.Core is
       function get_Bounds
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_CustomProperties
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_Dispatcher
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.UI.Core.ICoreDispatcher
+         RetVal : access WinRt.Windows.UI.Core.ICoreDispatcher
       )
       return WinRt.Hresult is abstract;
 
       function get_FlowDirection
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.UI.Core.CoreWindowFlowDirection
+         RetVal : access WinRt.Windows.UI.Core.CoreWindowFlowDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_FlowDirection
       (
          this : access ICoreWindow_Interface;
-         value : Windows.UI.Core.CoreWindowFlowDirection
+         value : WinRt.Windows.UI.Core.CoreWindowFlowDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -1494,21 +1494,21 @@ package WinRt.Windows.UI.Core is
       function get_PointerCursor
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.UI.Core.ICoreCursor
+         RetVal : access WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerCursor
       (
          this : access ICoreWindow_Interface;
-         value : Windows.UI.Core.ICoreCursor
+         value : WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerPosition
       (
          this : access ICoreWindow_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,16 +1534,16 @@ package WinRt.Windows.UI.Core is
       function GetAsyncKeyState
       (
          this : access ICoreWindow_Interface;
-         virtualKey : Windows.System.VirtualKey;
-         RetVal : access Windows.UI.Core.CoreVirtualKeyStates
+         virtualKey : WinRt.Windows.System.VirtualKey;
+         RetVal : access WinRt.Windows.UI.Core.CoreVirtualKeyStates
       )
       return WinRt.Hresult is abstract;
 
       function GetKeyState
       (
          this : access ICoreWindow_Interface;
-         virtualKey : Windows.System.VirtualKey;
-         RetVal : access Windows.UI.Core.CoreVirtualKeyStates
+         virtualKey : WinRt.Windows.System.VirtualKey;
+         RetVal : access WinRt.Windows.UI.Core.CoreVirtualKeyStates
       )
       return WinRt.Hresult is abstract;
 
@@ -1563,14 +1563,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Activated
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1578,14 +1578,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AutomationProviderRequested
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1593,14 +1593,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CharacterReceived
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1608,14 +1608,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1623,14 +1623,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InputEnabled
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1638,14 +1638,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyDown
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1653,14 +1653,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyUp
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1668,14 +1668,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerCaptureLost
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1683,14 +1683,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerEntered
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1698,14 +1698,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerExited
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1713,14 +1713,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerMoved
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1728,14 +1728,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerPressed
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1743,14 +1743,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerReleased
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1758,14 +1758,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TouchHitTesting
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1773,14 +1773,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerWheelChanged
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1788,14 +1788,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SizeChanged
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1803,14 +1803,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisibilityChanged
       (
          this : access ICoreWindow_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1822,7 +1822,7 @@ package WinRt.Windows.UI.Core is
       function put_PointerPosition
       (
          this : access ICoreWindow2_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1835,14 +1835,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ClosestInteractiveBoundsRequested
       (
          this : access ICoreWindow3_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1862,14 +1862,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResizeStarted
       (
          this : access ICoreWindow4_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1877,14 +1877,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindow4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResizeCompleted
       (
          this : access ICoreWindow4_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1896,14 +1896,14 @@ package WinRt.Windows.UI.Core is
       function get_DispatcherQueue
       (
          this : access ICoreWindow5_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
       function get_ActivationMode
       (
          this : access ICoreWindow5_Interface;
-         RetVal : access Windows.UI.Core.CoreWindowActivationMode
+         RetVal : access WinRt.Windows.UI.Core.CoreWindowActivationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1916,28 +1916,28 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindowDialog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Showing
       (
          this : access ICoreWindowDialog_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSize
       (
          this : access ICoreWindowDialog_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_MinSize
       (
          this : access ICoreWindowDialog_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2007,14 +2007,14 @@ package WinRt.Windows.UI.Core is
       function get_BackButtonCommand
       (
          this : access ICoreWindowDialog_Interface;
-         RetVal : access Windows.UI.Popups.UICommandInvokedHandler
+         RetVal : access WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
       function put_BackButtonCommand
       (
          this : access ICoreWindowDialog_Interface;
-         value : Windows.UI.Popups.UICommandInvokedHandler
+         value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -2034,7 +2034,7 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindowDialogFactory_Interface;
          title : WinRt.HString;
-         RetVal : access Windows.UI.Core.ICoreWindowDialog
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindowDialog
       )
       return WinRt.Hresult is abstract;
 
@@ -2066,28 +2066,28 @@ package WinRt.Windows.UI.Core is
       (
          this : access ICoreWindowFlyout_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Showing
       (
          this : access ICoreWindowFlyout_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSize
       (
          this : access ICoreWindowFlyout_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_MinSize
       (
          this : access ICoreWindowFlyout_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2143,14 +2143,14 @@ package WinRt.Windows.UI.Core is
       function get_BackButtonCommand
       (
          this : access ICoreWindowFlyout_Interface;
-         RetVal : access Windows.UI.Popups.UICommandInvokedHandler
+         RetVal : access WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
       function put_BackButtonCommand
       (
          this : access ICoreWindowFlyout_Interface;
-         value : Windows.UI.Popups.UICommandInvokedHandler
+         value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -2169,17 +2169,17 @@ package WinRt.Windows.UI.Core is
       function Create
       (
          this : access ICoreWindowFlyoutFactory_Interface;
-         position : Windows.Foundation.Point;
-         RetVal : access Windows.UI.Core.ICoreWindowFlyout
+         position : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindowFlyout
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithTitle
       (
          this : access ICoreWindowFlyoutFactory_Interface;
-         position : Windows.Foundation.Point;
+         position : WinRt.Windows.Foundation.Point;
          title : WinRt.HString;
-         RetVal : access Windows.UI.Core.ICoreWindowFlyout
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindowFlyout
       )
       return WinRt.Hresult is abstract;
 
@@ -2191,7 +2191,7 @@ package WinRt.Windows.UI.Core is
       function SetDesiredSize
       (
          this : access ICoreWindowPopupShowingEventArgs_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2233,7 +2233,7 @@ package WinRt.Windows.UI.Core is
       function GetForCurrentView
       (
          this : access ICoreWindowResizeManagerStatics_Interface;
-         RetVal : access Windows.UI.Core.ICoreWindowResizeManager
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindowResizeManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2245,7 +2245,7 @@ package WinRt.Windows.UI.Core is
       function GetForCurrentThread
       (
          this : access ICoreWindowStatic_Interface;
-         RetVal : access Windows.UI.Core.ICoreWindow
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -2257,7 +2257,7 @@ package WinRt.Windows.UI.Core is
       function get_UIContext
       (
          this : access ICoreWindowWithContext_Interface;
-         RetVal : access Windows.UI.IUIContext
+         RetVal : access WinRt.Windows.UI.IUIContext
       )
       return WinRt.Hresult is abstract;
 
@@ -2281,7 +2281,7 @@ package WinRt.Windows.UI.Core is
       function Initialize
       (
          this : access IInitializeWithCoreWindow_Interface;
-         window : Windows.UI.Core.ICoreWindow
+         window : WinRt.Windows.UI.Core.ICoreWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -2305,14 +2305,14 @@ package WinRt.Windows.UI.Core is
       function get_VirtualKey
       (
          this : access IKeyEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyStatus
       (
          this : access IKeyEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2336,14 +2336,14 @@ package WinRt.Windows.UI.Core is
       function get_CurrentPoint
       (
          this : access IPointerEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IPointerPoint
+         RetVal : access WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyModifiers
       (
          this : access IPointerEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -2363,14 +2363,14 @@ package WinRt.Windows.UI.Core is
       (
          this : access ISystemNavigationManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackRequested
       (
          this : access ISystemNavigationManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2382,14 +2382,14 @@ package WinRt.Windows.UI.Core is
       function get_AppViewBackButtonVisibility
       (
          this : access ISystemNavigationManager2_Interface;
-         RetVal : access Windows.UI.Core.AppViewBackButtonVisibility
+         RetVal : access WinRt.Windows.UI.Core.AppViewBackButtonVisibility
       )
       return WinRt.Hresult is abstract;
 
       function put_AppViewBackButtonVisibility
       (
          this : access ISystemNavigationManager2_Interface;
-         value : Windows.UI.Core.AppViewBackButtonVisibility
+         value : WinRt.Windows.UI.Core.AppViewBackButtonVisibility
       )
       return WinRt.Hresult is abstract;
 
@@ -2401,7 +2401,7 @@ package WinRt.Windows.UI.Core is
       function GetForCurrentView
       (
          this : access ISystemNavigationManagerStatics_Interface;
-         RetVal : access Windows.UI.Core.ISystemNavigationManager
+         RetVal : access WinRt.Windows.UI.Core.ISystemNavigationManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2413,36 +2413,36 @@ package WinRt.Windows.UI.Core is
       function get_ProximityEvaluation
       (
          this : access ITouchHitTestingEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CoreProximityEvaluation
+         RetVal : access WinRt.Windows.UI.Core.CoreProximityEvaluation
       )
       return WinRt.Hresult is abstract;
 
       function put_ProximityEvaluation
       (
          this : access ITouchHitTestingEventArgs_Interface;
-         value : Windows.UI.Core.CoreProximityEvaluation
+         value : WinRt.Windows.UI.Core.CoreProximityEvaluation
       )
       return WinRt.Hresult is abstract;
 
       function get_Point
       (
          this : access ITouchHitTestingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingBox
       (
          this : access ITouchHitTestingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function EvaluateProximity
       (
          this : access ITouchHitTestingEventArgs_Interface;
-         controlBoundingBox : Windows.Foundation.Rect;
-         RetVal : access Windows.UI.Core.CoreProximityEvaluation
+         controlBoundingBox : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.UI.Core.CoreProximityEvaluation
       )
       return WinRt.Hresult is abstract;
 
@@ -2450,8 +2450,8 @@ package WinRt.Windows.UI.Core is
       (
          this : access ITouchHitTestingEventArgs_Interface;
          controlVerticesSize : WinRt.UInt32;
-         controlVertices : Windows.Foundation.Point_Ptr;
-         RetVal : access Windows.UI.Core.CoreProximityEvaluation
+         controlVertices : WinRt.Windows.Foundation.Point_Ptr;
+         RetVal : access WinRt.Windows.UI.Core.CoreProximityEvaluation
       )
       return WinRt.Hresult is abstract;
 
@@ -2475,7 +2475,7 @@ package WinRt.Windows.UI.Core is
       function get_WindowActivationState
       (
          this : access IWindowActivatedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CoreWindowActivationState
+         RetVal : access WinRt.Windows.UI.Core.CoreWindowActivationState
       )
       return WinRt.Hresult is abstract;
 
@@ -2487,7 +2487,7 @@ package WinRt.Windows.UI.Core is
       function get_Size
       (
          this : access IWindowSizeChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2659,7 +2659,7 @@ package WinRt.Windows.UI.Core is
    procedure put_ClosestInteractiveBounds
    (
       this : in out ClosestInteractiveBoundsRequestedEventArgs;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    -----------------------------------------------------------------------------
@@ -2681,7 +2681,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_AcceleratorKeyActivated
    (
       this : in out CoreAcceleratorKeys;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2721,7 +2721,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_InputEnabled
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ReleasePointerCapture
@@ -2755,7 +2755,7 @@ package WinRt.Windows.UI.Core is
    procedure put_PointerCursor
    (
       this : in out CoreComponentInputSource;
-      value : Windows.UI.Core.CoreCursor'Class
+      value : WinRt.Windows.UI.Core.CoreCursor'Class
    );
 
    function add_PointerCaptureLost
@@ -2768,7 +2768,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerCaptureLost
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerEntered
@@ -2781,7 +2781,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerEntered
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerExited
@@ -2794,7 +2794,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerExited
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoved
@@ -2807,7 +2807,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerMoved
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerPressed
@@ -2820,7 +2820,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerPressed
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleased
@@ -2833,7 +2833,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerReleased
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerWheelChanged
@@ -2846,13 +2846,13 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerWheelChanged
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCurrentKeyState
    (
       this : in out CoreComponentInputSource;
-      virtualKey : Windows.System.VirtualKey
+      virtualKey : WinRt.Windows.System.VirtualKey
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates;
 
@@ -2866,7 +2866,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_CharacterReceived
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeyDown
@@ -2879,7 +2879,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_KeyDown
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeyUp
@@ -2892,7 +2892,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_KeyUp
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_HasFocus
@@ -2911,7 +2911,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_GotFocus
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LostFocus
@@ -2924,7 +2924,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_LostFocus
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TouchHitTesting
@@ -2937,7 +2937,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_TouchHitTesting
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ClosestInteractiveBoundsRequested
@@ -2950,7 +2950,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_ClosestInteractiveBoundsRequested
    (
       this : in out CoreComponentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCurrentKeyEventDeviceId
@@ -2976,7 +2976,7 @@ package WinRt.Windows.UI.Core is
 
    function Constructor
    (
-      type_x : Windows.UI.Core.CoreCursorType;
+      type_x : WinRt.Windows.UI.Core.CoreCursorType;
       id : WinRt.UInt32
    )
    return CoreCursor;
@@ -3014,20 +3014,20 @@ package WinRt.Windows.UI.Core is
    procedure ProcessEvents
    (
       this : in out CoreDispatcher;
-      options : Windows.UI.Core.CoreProcessEventsOption
+      options : WinRt.Windows.UI.Core.CoreProcessEventsOption
    );
 
    procedure RunAsync
    (
       this : in out CoreDispatcher;
-      priority : Windows.UI.Core.CoreDispatcherPriority;
-      agileCallback : Windows.UI.Core.DispatchedHandler
+      priority : WinRt.Windows.UI.Core.CoreDispatcherPriority;
+      agileCallback : WinRt.Windows.UI.Core.DispatchedHandler
    );
 
    procedure RunIdleAsync
    (
       this : in out CoreDispatcher;
-      agileCallback : Windows.UI.Core.IdleDispatchedHandler
+      agileCallback : WinRt.Windows.UI.Core.IdleDispatchedHandler
    );
 
    function add_AcceleratorKeyActivated
@@ -3040,7 +3040,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_AcceleratorKeyActivated
    (
       this : in out CoreDispatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CurrentPriority
@@ -3052,7 +3052,7 @@ package WinRt.Windows.UI.Core is
    procedure put_CurrentPriority
    (
       this : in out CoreDispatcher;
-      value : Windows.UI.Core.CoreDispatcherPriority
+      value : WinRt.Windows.UI.Core.CoreDispatcherPriority
    );
 
    function ShouldYield
@@ -3064,7 +3064,7 @@ package WinRt.Windows.UI.Core is
    function ShouldYield
    (
       this : in out CoreDispatcher;
-      priority : Windows.UI.Core.CoreDispatcherPriority
+      priority : WinRt.Windows.UI.Core.CoreDispatcherPriority
    )
    return WinRt.Boolean;
 
@@ -3076,15 +3076,15 @@ package WinRt.Windows.UI.Core is
    function TryRunAsync
    (
       this : in out CoreDispatcher;
-      priority : Windows.UI.Core.CoreDispatcherPriority;
-      agileCallback : Windows.UI.Core.DispatchedHandler
+      priority : WinRt.Windows.UI.Core.CoreDispatcherPriority;
+      agileCallback : WinRt.Windows.UI.Core.DispatchedHandler
    )
    return WinRt.Boolean;
 
    function TryRunIdleAsync
    (
       this : in out CoreDispatcher;
-      agileCallback : Windows.UI.Core.IdleDispatchedHandler
+      agileCallback : WinRt.Windows.UI.Core.IdleDispatchedHandler
    )
    return WinRt.Boolean;
 
@@ -3125,7 +3125,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_InputEnabled
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ReleasePointerCapture
@@ -3159,7 +3159,7 @@ package WinRt.Windows.UI.Core is
    procedure put_PointerCursor
    (
       this : in out CoreIndependentInputSource;
-      value : Windows.UI.Core.CoreCursor'Class
+      value : WinRt.Windows.UI.Core.CoreCursor'Class
    );
 
    function add_PointerCaptureLost
@@ -3172,7 +3172,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerCaptureLost
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerEntered
@@ -3185,7 +3185,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerEntered
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerExited
@@ -3198,7 +3198,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerExited
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoved
@@ -3211,7 +3211,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerMoved
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerPressed
@@ -3224,7 +3224,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerPressed
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleased
@@ -3237,7 +3237,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerReleased
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerWheelChanged
@@ -3250,7 +3250,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerWheelChanged
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DispatcherQueue
@@ -3269,7 +3269,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedAway
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerRoutedTo
@@ -3282,7 +3282,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedTo
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerRoutedReleased
@@ -3295,7 +3295,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedReleased
    (
       this : in out CoreIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3309,13 +3309,13 @@ package WinRt.Windows.UI.Core is
 
    function CreateForVisual
    (
-      visual : Windows.UI.Composition.Visual'Class
+      visual : WinRt.Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.UI.Core.CoreIndependentInputSourceController;
 
    function CreateForIVisualElement
    (
-      visualElement : Windows.UI.Composition.IVisualElement
+      visualElement : WinRt.Windows.UI.Composition.IVisualElement
    )
    return WinRt.Windows.UI.Core.CoreIndependentInputSourceController;
 
@@ -3355,15 +3355,15 @@ package WinRt.Windows.UI.Core is
    procedure SetControlledInput
    (
       this : in out CoreIndependentInputSourceController;
-      inputTypes : Windows.UI.Core.CoreInputDeviceTypes
+      inputTypes : WinRt.Windows.UI.Core.CoreInputDeviceTypes
    );
 
    procedure SetControlledInput
    (
       this : in out CoreIndependentInputSourceController;
-      inputTypes : Windows.UI.Core.CoreInputDeviceTypes;
-      required : Windows.UI.Core.CoreIndependentInputFilters;
-      excluded : Windows.UI.Core.CoreIndependentInputFilters
+      inputTypes : WinRt.Windows.UI.Core.CoreInputDeviceTypes;
+      required : WinRt.Windows.UI.Core.CoreIndependentInputFilters;
+      excluded : WinRt.Windows.UI.Core.CoreIndependentInputFilters
    );
 
    procedure Close
@@ -3419,7 +3419,7 @@ package WinRt.Windows.UI.Core is
    procedure put_FlowDirection
    (
       this : in out CoreWindow;
-      value : Windows.UI.Core.CoreWindowFlowDirection
+      value : WinRt.Windows.UI.Core.CoreWindowFlowDirection
    );
 
    function get_IsInputEnabled
@@ -3443,7 +3443,7 @@ package WinRt.Windows.UI.Core is
    procedure put_PointerCursor
    (
       this : in out CoreWindow;
-      value : Windows.UI.Core.CoreCursor'Class
+      value : WinRt.Windows.UI.Core.CoreCursor'Class
    );
 
    function get_PointerPosition
@@ -3471,14 +3471,14 @@ package WinRt.Windows.UI.Core is
    function GetAsyncKeyState
    (
       this : in out CoreWindow;
-      virtualKey : Windows.System.VirtualKey
+      virtualKey : WinRt.Windows.System.VirtualKey
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates;
 
    function GetKeyState
    (
       this : in out CoreWindow;
-      virtualKey : Windows.System.VirtualKey
+      virtualKey : WinRt.Windows.System.VirtualKey
    )
    return WinRt.Windows.UI.Core.CoreVirtualKeyStates;
 
@@ -3502,7 +3502,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_Activated
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AutomationProviderRequested
@@ -3515,7 +3515,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_AutomationProviderRequested
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CharacterReceived
@@ -3528,7 +3528,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_CharacterReceived
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -3541,7 +3541,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_Closed
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_InputEnabled
@@ -3554,7 +3554,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_InputEnabled
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeyDown
@@ -3567,7 +3567,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_KeyDown
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeyUp
@@ -3580,7 +3580,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_KeyUp
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerCaptureLost
@@ -3593,7 +3593,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerCaptureLost
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerEntered
@@ -3606,7 +3606,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerEntered
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerExited
@@ -3619,7 +3619,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerExited
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoved
@@ -3632,7 +3632,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerMoved
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerPressed
@@ -3645,7 +3645,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerPressed
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleased
@@ -3658,7 +3658,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerReleased
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TouchHitTesting
@@ -3671,7 +3671,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_TouchHitTesting
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerWheelChanged
@@ -3684,7 +3684,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerWheelChanged
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SizeChanged
@@ -3697,7 +3697,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_SizeChanged
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VisibilityChanged
@@ -3710,13 +3710,13 @@ package WinRt.Windows.UI.Core is
    procedure remove_VisibilityChanged
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_PointerPosition
    (
       this : in out CoreWindow;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function add_PointerRoutedAway
@@ -3729,7 +3729,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedAway
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerRoutedTo
@@ -3742,7 +3742,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedTo
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerRoutedReleased
@@ -3755,7 +3755,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_PointerRoutedReleased
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ClosestInteractiveBoundsRequested
@@ -3768,7 +3768,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_ClosestInteractiveBoundsRequested
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCurrentKeyEventDeviceId
@@ -3787,7 +3787,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_ResizeStarted
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResizeCompleted
@@ -3800,7 +3800,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_ResizeCompleted
    (
       this : in out CoreWindow;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DispatcherQueue
@@ -3851,7 +3851,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_Showing
    (
       this : in out CoreWindowDialog;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MaxSize
@@ -3929,7 +3929,7 @@ package WinRt.Windows.UI.Core is
    procedure put_BackButtonCommand
    (
       this : in out CoreWindowDialog;
-      value : Windows.UI.Popups.UICommandInvokedHandler
+      value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    );
 
    function ShowAsync
@@ -3970,13 +3970,13 @@ package WinRt.Windows.UI.Core is
 
    function Constructor
    (
-      position : Windows.Foundation.Point
+      position : WinRt.Windows.Foundation.Point
    )
    return CoreWindowFlyout;
 
    function Constructor
    (
-      position : Windows.Foundation.Point;
+      position : WinRt.Windows.Foundation.Point;
       title : WinRt.WString
    )
    return CoreWindowFlyout;
@@ -3994,7 +3994,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_Showing
    (
       this : in out CoreWindowFlyout;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MaxSize
@@ -4060,7 +4060,7 @@ package WinRt.Windows.UI.Core is
    procedure put_BackButtonCommand
    (
       this : in out CoreWindowFlyout;
-      value : Windows.UI.Popups.UICommandInvokedHandler
+      value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    );
 
    function ShowAsync
@@ -4081,7 +4081,7 @@ package WinRt.Windows.UI.Core is
    procedure SetDesiredSize
    (
       this : in out CoreWindowPopupShowingEventArgs;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    -----------------------------------------------------------------------------
@@ -4261,7 +4261,7 @@ package WinRt.Windows.UI.Core is
    procedure remove_BackRequested
    (
       this : in out SystemNavigationManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AppViewBackButtonVisibility
@@ -4273,7 +4273,7 @@ package WinRt.Windows.UI.Core is
    procedure put_AppViewBackButtonVisibility
    (
       this : in out SystemNavigationManager;
-      value : Windows.UI.Core.AppViewBackButtonVisibility
+      value : WinRt.Windows.UI.Core.AppViewBackButtonVisibility
    );
 
    -----------------------------------------------------------------------------
@@ -4294,7 +4294,7 @@ package WinRt.Windows.UI.Core is
    procedure put_ProximityEvaluation
    (
       this : in out TouchHitTestingEventArgs;
-      value : Windows.UI.Core.CoreProximityEvaluation
+      value : WinRt.Windows.UI.Core.CoreProximityEvaluation
    );
 
    function get_Point
@@ -4312,14 +4312,14 @@ package WinRt.Windows.UI.Core is
    function EvaluateProximity
    (
       this : in out TouchHitTestingEventArgs;
-      controlBoundingBox : Windows.Foundation.Rect
+      controlBoundingBox : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.UI.Core.CoreProximityEvaluation;
 
    function EvaluateProximity
    (
       this : in out TouchHitTestingEventArgs;
-      controlVertices : Windows.Foundation.Point_Array
+      controlVertices : WinRt.Windows.Foundation.Point_Array
    )
    return WinRt.Windows.UI.Core.CoreProximityEvaluation;
 

@@ -725,7 +725,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_AttributionThumbnail
       (
          this : access IAttributedNetworkUsage_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -807,14 +807,14 @@ package WinRt.Windows.Networking.Connectivity is
       function get_AuthenticationType
       (
          this : access ICellularApnContext_Interface;
-         RetVal : access Windows.Networking.Connectivity.CellularApnAuthenticationType
+         RetVal : access WinRt.Windows.Networking.Connectivity.CellularApnAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthenticationType
       (
          this : access ICellularApnContext_Interface;
-         value : Windows.Networking.Connectivity.CellularApnAuthenticationType
+         value : WinRt.Windows.Networking.Connectivity.CellularApnAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_NetworkCostType
       (
          this : access IConnectionCost_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkCostType
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkCostType
       )
       return WinRt.Hresult is abstract;
 
@@ -897,7 +897,7 @@ package WinRt.Windows.Networking.Connectivity is
       function GetNetworkConnectivityLevel
       (
          this : access IConnectionProfile_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkConnectivityLevel
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkConnectivityLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -911,47 +911,47 @@ package WinRt.Windows.Networking.Connectivity is
       function GetConnectionCost
       (
          this : access IConnectionProfile_Interface;
-         RetVal : access Windows.Networking.Connectivity.IConnectionCost
+         RetVal : access WinRt.Windows.Networking.Connectivity.IConnectionCost
       )
       return WinRt.Hresult is abstract;
 
       function GetDataPlanStatus
       (
          this : access IConnectionProfile_Interface;
-         RetVal : access Windows.Networking.Connectivity.IDataPlanStatus
+         RetVal : access WinRt.Windows.Networking.Connectivity.IDataPlanStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkAdapter
       (
          this : access IConnectionProfile_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkAdapter
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkAdapter
       )
       return WinRt.Hresult is abstract;
 
       function GetLocalUsage
       (
          this : access IConnectionProfile_Interface;
-         StartTime : Windows.Foundation.DateTime;
-         EndTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.Networking.Connectivity.IDataUsage
+         StartTime : WinRt.Windows.Foundation.DateTime;
+         EndTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Networking.Connectivity.IDataUsage
       )
       return WinRt.Hresult is abstract;
 
       function GetLocalUsage
       (
          this : access IConnectionProfile_Interface;
-         StartTime : Windows.Foundation.DateTime;
-         EndTime : Windows.Foundation.DateTime;
-         States : Windows.Networking.Connectivity.RoamingStates;
-         RetVal : access Windows.Networking.Connectivity.IDataUsage
+         StartTime : WinRt.Windows.Foundation.DateTime;
+         EndTime : WinRt.Windows.Foundation.DateTime;
+         States : WinRt.Windows.Networking.Connectivity.RoamingStates;
+         RetVal : access WinRt.Windows.Networking.Connectivity.IDataUsage
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkSecuritySettings
       (
          this : access IConnectionProfile_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkSecuritySettings
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkSecuritySettings
       )
       return WinRt.Hresult is abstract;
 
@@ -977,14 +977,14 @@ package WinRt.Windows.Networking.Connectivity is
       function get_WwanConnectionProfileDetails
       (
          this : access IConnectionProfile2_Interface;
-         RetVal : access Windows.Networking.Connectivity.IWwanConnectionProfileDetails
+         RetVal : access WinRt.Windows.Networking.Connectivity.IWwanConnectionProfileDetails
       )
       return WinRt.Hresult is abstract;
 
       function get_WlanConnectionProfileDetails
       (
          this : access IConnectionProfile2_Interface;
-         RetVal : access Windows.Networking.Connectivity.IWlanConnectionProfileDetails
+         RetVal : access WinRt.Windows.Networking.Connectivity.IWlanConnectionProfileDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1005,17 +1005,17 @@ package WinRt.Windows.Networking.Connectivity is
       function GetDomainConnectivityLevel
       (
          this : access IConnectionProfile2_Interface;
-         RetVal : access Windows.Networking.Connectivity.DomainConnectivityLevel
+         RetVal : access WinRt.Windows.Networking.Connectivity.DomainConnectivityLevel
       )
       return WinRt.Hresult is abstract;
 
       function GetNetworkUsageAsync
       (
          this : access IConnectionProfile2_Interface;
-         startTime : Windows.Foundation.DateTime;
-         endTime : Windows.Foundation.DateTime;
-         granularity : Windows.Networking.Connectivity.DataUsageGranularity;
-         states : Windows.Networking.Connectivity.NetworkUsageStates;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         endTime : WinRt.Windows.Foundation.DateTime;
+         granularity : WinRt.Windows.Networking.Connectivity.DataUsageGranularity;
+         states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1023,9 +1023,9 @@ package WinRt.Windows.Networking.Connectivity is
       function GetConnectivityIntervalsAsync
       (
          this : access IConnectionProfile2_Interface;
-         startTime : Windows.Foundation.DateTime;
-         endTime : Windows.Foundation.DateTime;
-         states : Windows.Networking.Connectivity.NetworkUsageStates;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         endTime : WinRt.Windows.Foundation.DateTime;
+         states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1038,9 +1038,9 @@ package WinRt.Windows.Networking.Connectivity is
       function GetAttributedNetworkUsageAsync
       (
          this : access IConnectionProfile3_Interface;
-         startTime : Windows.Foundation.DateTime;
-         endTime : Windows.Foundation.DateTime;
-         states : Windows.Networking.Connectivity.NetworkUsageStates;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         endTime : WinRt.Windows.Foundation.DateTime;
+         states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1053,9 +1053,9 @@ package WinRt.Windows.Networking.Connectivity is
       function GetProviderNetworkUsageAsync
       (
          this : access IConnectionProfile4_Interface;
-         startTime : Windows.Foundation.DateTime;
-         endTime : Windows.Foundation.DateTime;
-         states : Windows.Networking.Connectivity.NetworkUsageStates;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         endTime : WinRt.Windows.Foundation.DateTime;
+         states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1087,7 +1087,7 @@ package WinRt.Windows.Networking.Connectivity is
       function IsDomainAuthenticatedBy
       (
          this : access IConnectionProfile6_Interface;
-         kind : Windows.Networking.Connectivity.DomainAuthenticationKind;
+         kind : WinRt.Windows.Networking.Connectivity.DomainAuthenticationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1142,14 +1142,14 @@ package WinRt.Windows.Networking.Connectivity is
       function put_NetworkCostType
       (
          this : access IConnectionProfileFilter_Interface;
-         value : Windows.Networking.Connectivity.NetworkCostType
+         value : WinRt.Windows.Networking.Connectivity.NetworkCostType
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkCostType
       (
          this : access IConnectionProfileFilter_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkCostType
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkCostType
       )
       return WinRt.Hresult is abstract;
 
@@ -1217,7 +1217,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_RawData
       (
          this : access IConnectionProfileFilter2_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1248,7 +1248,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_ConnectionProfile
       (
          this : access IConnectionSession_Interface;
-         RetVal : access Windows.Networking.Connectivity.IConnectionProfile
+         RetVal : access WinRt.Windows.Networking.Connectivity.IConnectionProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -1260,14 +1260,14 @@ package WinRt.Windows.Networking.Connectivity is
       function get_StartTime
       (
          this : access IConnectivityInterval_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_ConnectionDuration
       (
          this : access IConnectivityInterval_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1279,7 +1279,7 @@ package WinRt.Windows.Networking.Connectivity is
       function AcquireConnectionAsync
       (
          this : access IConnectivityManagerStatics_Interface;
-         cellularApnContext_p : Windows.Networking.Connectivity.ICellularApnContext;
+         cellularApnContext_p : WinRt.Windows.Networking.Connectivity.ICellularApnContext;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1287,14 +1287,14 @@ package WinRt.Windows.Networking.Connectivity is
       function AddHttpRoutePolicy
       (
          this : access IConnectivityManagerStatics_Interface;
-         routePolicy_p : Windows.Networking.Connectivity.IRoutePolicy
+         routePolicy_p : WinRt.Windows.Networking.Connectivity.IRoutePolicy
       )
       return WinRt.Hresult is abstract;
 
       function RemoveHttpRoutePolicy
       (
          this : access IConnectivityManagerStatics_Interface;
-         routePolicy_p : Windows.Networking.Connectivity.IRoutePolicy
+         routePolicy_p : WinRt.Windows.Networking.Connectivity.IRoutePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -1306,7 +1306,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_DataPlanUsage
       (
          this : access IDataPlanStatus_Interface;
-         RetVal : access Windows.Networking.Connectivity.IDataPlanUsage
+         RetVal : access WinRt.Windows.Networking.Connectivity.IDataPlanUsage
       )
       return WinRt.Hresult is abstract;
 
@@ -1360,7 +1360,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_LastSyncTime
       (
          this : access IDataPlanUsage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1391,7 +1391,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_NetworkAdapter
       (
          this : access IIPInformation_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkAdapter
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkAdapter
       )
       return WinRt.Hresult is abstract;
 
@@ -1410,14 +1410,14 @@ package WinRt.Windows.Networking.Connectivity is
       function get_InfrastructureId
       (
          this : access ILanIdentifier_Interface;
-         RetVal : access Windows.Networking.Connectivity.ILanIdentifierData
+         RetVal : access WinRt.Windows.Networking.Connectivity.ILanIdentifierData
       )
       return WinRt.Hresult is abstract;
 
       function get_PortId
       (
          this : access ILanIdentifier_Interface;
-         RetVal : access Windows.Networking.Connectivity.ILanIdentifierData
+         RetVal : access WinRt.Windows.Networking.Connectivity.ILanIdentifierData
       )
       return WinRt.Hresult is abstract;
 
@@ -1476,7 +1476,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_NetworkItem
       (
          this : access INetworkAdapter_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkItem
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkItem
       )
       return WinRt.Hresult is abstract;
 
@@ -1509,7 +1509,7 @@ package WinRt.Windows.Networking.Connectivity is
       function GetInternetConnectionProfile
       (
          this : access INetworkInformationStatics_Interface;
-         RetVal : access Windows.Networking.Connectivity.IConnectionProfile
+         RetVal : access WinRt.Windows.Networking.Connectivity.IConnectionProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -1530,7 +1530,7 @@ package WinRt.Windows.Networking.Connectivity is
       function GetProxyConfigurationAsync
       (
          this : access INetworkInformationStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1539,7 +1539,7 @@ package WinRt.Windows.Networking.Connectivity is
       (
          this : access INetworkInformationStatics_Interface;
          destinationList : GenericObject;
-         sortOptions : Windows.Networking.HostNameSortOptions;
+         sortOptions : WinRt.Windows.Networking.HostNameSortOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1547,15 +1547,15 @@ package WinRt.Windows.Networking.Connectivity is
       function add_NetworkStatusChanged
       (
          this : access INetworkInformationStatics_Interface;
-         networkStatusHandler : Windows.Networking.Connectivity.NetworkStatusChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         networkStatusHandler : WinRt.Windows.Networking.Connectivity.NetworkStatusChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NetworkStatusChanged
       (
          this : access INetworkInformationStatics_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1567,7 +1567,7 @@ package WinRt.Windows.Networking.Connectivity is
       function FindConnectionProfilesAsync
       (
          this : access INetworkInformationStatics2_Interface;
-         pProfileFilter : Windows.Networking.Connectivity.IConnectionProfileFilter;
+         pProfileFilter : WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1587,7 +1587,7 @@ package WinRt.Windows.Networking.Connectivity is
       function GetNetworkTypes
       (
          this : access INetworkItem_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkTypes
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkTypes
       )
       return WinRt.Hresult is abstract;
 
@@ -1599,14 +1599,14 @@ package WinRt.Windows.Networking.Connectivity is
       function get_NetworkAuthenticationType
       (
          this : access INetworkSecuritySettings_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkAuthenticationType
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkEncryptionType
       (
          this : access INetworkSecuritySettings_Interface;
-         RetVal : access Windows.Networking.Connectivity.NetworkEncryptionType
+         RetVal : access WinRt.Windows.Networking.Connectivity.NetworkEncryptionType
       )
       return WinRt.Hresult is abstract;
 
@@ -1698,7 +1698,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_ConnectionDuration
       (
          this : access INetworkUsage_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1755,21 +1755,21 @@ package WinRt.Windows.Networking.Connectivity is
       function get_ConnectionProfile
       (
          this : access IRoutePolicy_Interface;
-         RetVal : access Windows.Networking.Connectivity.IConnectionProfile
+         RetVal : access WinRt.Windows.Networking.Connectivity.IConnectionProfile
       )
       return WinRt.Hresult is abstract;
 
       function get_HostName
       (
          this : access IRoutePolicy_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function get_HostNameType
       (
          this : access IRoutePolicy_Interface;
-         RetVal : access Windows.Networking.DomainNameType
+         RetVal : access WinRt.Windows.Networking.DomainNameType
       )
       return WinRt.Hresult is abstract;
 
@@ -1781,10 +1781,10 @@ package WinRt.Windows.Networking.Connectivity is
       function CreateRoutePolicy
       (
          this : access IRoutePolicyFactory_Interface;
-         connectionProfile_p : Windows.Networking.Connectivity.IConnectionProfile;
-         hostName : Windows.Networking.IHostName;
-         type_x : Windows.Networking.DomainNameType;
-         RetVal : access Windows.Networking.Connectivity.IRoutePolicy
+         connectionProfile_p : WinRt.Windows.Networking.Connectivity.IConnectionProfile;
+         hostName : WinRt.Windows.Networking.IHostName;
+         type_x : WinRt.Windows.Networking.DomainNameType;
+         RetVal : access WinRt.Windows.Networking.Connectivity.IRoutePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -1822,14 +1822,14 @@ package WinRt.Windows.Networking.Connectivity is
       function GetNetworkRegistrationState
       (
          this : access IWwanConnectionProfileDetails_Interface;
-         RetVal : access Windows.Networking.Connectivity.WwanNetworkRegistrationState
+         RetVal : access WinRt.Windows.Networking.Connectivity.WwanNetworkRegistrationState
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentDataClass
       (
          this : access IWwanConnectionProfileDetails_Interface;
-         RetVal : access Windows.Networking.Connectivity.WwanDataClass
+         RetVal : access WinRt.Windows.Networking.Connectivity.WwanDataClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1841,7 +1841,7 @@ package WinRt.Windows.Networking.Connectivity is
       function get_IPKind
       (
          this : access IWwanConnectionProfileDetails2_Interface;
-         RetVal : access Windows.Networking.Connectivity.WwanNetworkIPKind
+         RetVal : access WinRt.Windows.Networking.Connectivity.WwanNetworkIPKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1980,7 +1980,7 @@ package WinRt.Windows.Networking.Connectivity is
    procedure put_AuthenticationType
    (
       this : in out CellularApnContext;
-      value : Windows.Networking.Connectivity.CellularApnAuthenticationType
+      value : WinRt.Windows.Networking.Connectivity.CellularApnAuthenticationType
    );
 
    function get_ProfileName
@@ -2082,17 +2082,17 @@ package WinRt.Windows.Networking.Connectivity is
    function GetLocalUsage
    (
       this : in out ConnectionProfile;
-      StartTime : Windows.Foundation.DateTime;
-      EndTime : Windows.Foundation.DateTime
+      StartTime : WinRt.Windows.Foundation.DateTime;
+      EndTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.Networking.Connectivity.DataUsage'Class;
 
    function GetLocalUsage
    (
       this : in out ConnectionProfile;
-      StartTime : Windows.Foundation.DateTime;
-      EndTime : Windows.Foundation.DateTime;
-      States : Windows.Networking.Connectivity.RoamingStates
+      StartTime : WinRt.Windows.Foundation.DateTime;
+      EndTime : WinRt.Windows.Foundation.DateTime;
+      States : WinRt.Windows.Networking.Connectivity.RoamingStates
    )
    return WinRt.Windows.Networking.Connectivity.DataUsage'Class;
 
@@ -2147,37 +2147,37 @@ package WinRt.Windows.Networking.Connectivity is
    function GetNetworkUsageAsync
    (
       this : in out ConnectionProfile;
-      startTime : Windows.Foundation.DateTime;
-      endTime : Windows.Foundation.DateTime;
-      granularity : Windows.Networking.Connectivity.DataUsageGranularity;
-      states : Windows.Networking.Connectivity.NetworkUsageStates
+      startTime : WinRt.Windows.Foundation.DateTime;
+      endTime : WinRt.Windows.Foundation.DateTime;
+      granularity : WinRt.Windows.Networking.Connectivity.DataUsageGranularity;
+      states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates
    )
    return WinRt.GenericObject;
 
    function GetConnectivityIntervalsAsync
    (
       this : in out ConnectionProfile;
-      startTime : Windows.Foundation.DateTime;
-      endTime : Windows.Foundation.DateTime;
-      states : Windows.Networking.Connectivity.NetworkUsageStates
+      startTime : WinRt.Windows.Foundation.DateTime;
+      endTime : WinRt.Windows.Foundation.DateTime;
+      states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates
    )
    return WinRt.GenericObject;
 
    function GetAttributedNetworkUsageAsync
    (
       this : in out ConnectionProfile;
-      startTime : Windows.Foundation.DateTime;
-      endTime : Windows.Foundation.DateTime;
-      states : Windows.Networking.Connectivity.NetworkUsageStates
+      startTime : WinRt.Windows.Foundation.DateTime;
+      endTime : WinRt.Windows.Foundation.DateTime;
+      states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates
    )
    return WinRt.GenericObject;
 
    function GetProviderNetworkUsageAsync
    (
       this : in out ConnectionProfile;
-      startTime : Windows.Foundation.DateTime;
-      endTime : Windows.Foundation.DateTime;
-      states : Windows.Networking.Connectivity.NetworkUsageStates
+      startTime : WinRt.Windows.Foundation.DateTime;
+      endTime : WinRt.Windows.Foundation.DateTime;
+      states : WinRt.Windows.Networking.Connectivity.NetworkUsageStates
    )
    return WinRt.GenericObject;
 
@@ -2196,7 +2196,7 @@ package WinRt.Windows.Networking.Connectivity is
    function IsDomainAuthenticatedBy
    (
       this : in out ConnectionProfile;
-      kind : Windows.Networking.Connectivity.DomainAuthenticationKind
+      kind : WinRt.Windows.Networking.Connectivity.DomainAuthenticationKind
    )
    return WinRt.Boolean;
 
@@ -2253,7 +2253,7 @@ package WinRt.Windows.Networking.Connectivity is
    procedure put_NetworkCostType
    (
       this : in out ConnectionProfileFilter;
-      value : Windows.Networking.Connectivity.NetworkCostType
+      value : WinRt.Windows.Networking.Connectivity.NetworkCostType
    );
 
    function get_NetworkCostType
@@ -2375,18 +2375,18 @@ package WinRt.Windows.Networking.Connectivity is
 
       function AcquireConnectionAsync
       (
-         cellularApnContext_p : Windows.Networking.Connectivity.CellularApnContext'Class
+         cellularApnContext_p : WinRt.Windows.Networking.Connectivity.CellularApnContext'Class
       )
       return WinRt.Windows.Networking.Connectivity.ConnectionSession;
 
       procedure AddHttpRoutePolicy
       (
-         routePolicy_p : Windows.Networking.Connectivity.RoutePolicy'Class
+         routePolicy_p : WinRt.Windows.Networking.Connectivity.RoutePolicy'Class
       );
 
       procedure RemoveHttpRoutePolicy
       (
-         routePolicy_p : Windows.Networking.Connectivity.RoutePolicy'Class
+         routePolicy_p : WinRt.Windows.Networking.Connectivity.RoutePolicy'Class
       );
 
    end ConnectivityManager;
@@ -2598,7 +2598,7 @@ package WinRt.Windows.Networking.Connectivity is
 
       function FindConnectionProfilesAsync
       (
-         pProfileFilter : Windows.Networking.Connectivity.ConnectionProfileFilter'Class
+         pProfileFilter : WinRt.Windows.Networking.Connectivity.ConnectionProfileFilter'Class
       )
       return WinRt.GenericObject;
 
@@ -2616,26 +2616,26 @@ package WinRt.Windows.Networking.Connectivity is
 
       function GetProxyConfigurationAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Networking.Connectivity.ProxyConfiguration;
 
       function GetSortedEndpointPairs
       (
          destinationList : GenericObject;
-         sortOptions : Windows.Networking.HostNameSortOptions
+         sortOptions : WinRt.Windows.Networking.HostNameSortOptions
       )
       return WinRt.GenericObject;
 
       function add_NetworkStatusChanged
       (
-         networkStatusHandler : Windows.Networking.Connectivity.NetworkStatusChangedEventHandler
+         networkStatusHandler : WinRt.Windows.Networking.Connectivity.NetworkStatusChangedEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_NetworkStatusChanged
       (
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end NetworkInformation;
@@ -2825,9 +2825,9 @@ package WinRt.Windows.Networking.Connectivity is
 
    function Constructor
    (
-      connectionProfile_p : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      hostName : Windows.Networking.HostName'Class;
-      type_x : Windows.Networking.DomainNameType
+      connectionProfile_p : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class;
+      hostName : WinRt.Windows.Networking.HostName'Class;
+      type_x : WinRt.Windows.Networking.DomainNameType
    )
    return RoutePolicy;
 

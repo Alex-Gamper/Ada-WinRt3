@@ -882,112 +882,112 @@ package WinRt.Windows.UI.Xaml.Input is
    -----------------------------------------------------------------------------
 
    IID_DoubleTappedEventHandler : aliased WinRt.IID := (824496165, 1191, 19781, (130, 94, 130, 4, 166, 36, 219, 244 ));
-   type DoubleTappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DoubleTappedEventHandler'Access) with null record;
+   type DoubleTappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DoubleTappedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DoubleTappedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IDoubleTappedRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_HoldingEventHandler : aliased WinRt.IID := (3970862285, 36446, 20414, (152, 70, 48, 166, 55, 10, 252, 223 ));
-   type HoldingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IHoldingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_HoldingEventHandler'Access) with null record;
+   type HoldingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IHoldingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_HoldingEventHandler'Access) with null record;
       function Invoke
       (
          this : access HoldingEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IHoldingRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IHoldingRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_KeyEventHandler : aliased WinRt.IID := (2086916837, 31246, 19986, (185, 106, 119, 21, 170, 111, 241, 200 ));
-   type KeyEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IKeyRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_KeyEventHandler'Access) with null record;
+   type KeyEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_KeyEventHandler'Access) with null record;
       function Invoke
       (
          this : access KeyEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IKeyRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IKeyRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ManipulationCompletedEventHandler : aliased WinRt.IID := (955206415, 5368, 17119, (154, 30, 164, 188, 196, 175, 119, 244 ));
-   type ManipulationCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationCompletedEventHandler'Access) with null record;
+   type ManipulationCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationCompletedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ManipulationCompletedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IManipulationCompletedRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ManipulationDeltaEventHandler : aliased WinRt.IID := (2853265611, 57273, 19542, (171, 220, 113, 27, 99, 200, 235, 148 ));
-   type ManipulationDeltaEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationDeltaEventHandler'Access) with null record;
+   type ManipulationDeltaEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationDeltaEventHandler'Access) with null record;
       function Invoke
       (
          this : access ManipulationDeltaEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IManipulationDeltaRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ManipulationInertiaStartingEventHandler : aliased WinRt.IID := (3550307106, 31900, 18459, (130, 123, 200, 178, 217, 187, 111, 199 ));
-   type ManipulationInertiaStartingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationInertiaStartingEventHandler'Access) with null record;
+   type ManipulationInertiaStartingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationInertiaStartingEventHandler'Access) with null record;
       function Invoke
       (
          this : access ManipulationInertiaStartingEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IManipulationInertiaStartingRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ManipulationStartedEventHandler : aliased WinRt.IID := (4169352696, 57507, 19426, (185, 12, 220, 32, 230, 216, 190, 176 ));
-   type ManipulationStartedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationStartedEventHandler'Access) with null record;
+   type ManipulationStartedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationStartedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ManipulationStartedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_ManipulationStartingEventHandler : aliased WinRt.IID := (282112078, 49124, 17099, (130, 60, 63, 236, 216, 119, 14, 248 ));
-   type ManipulationStartingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationStartingEventHandler'Access) with null record;
+   type ManipulationStartingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ManipulationStartingEventHandler'Access) with null record;
       function Invoke
       (
          this : access ManipulationStartingEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IManipulationStartingRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_PointerEventHandler : aliased WinRt.IID := (3828898089, 49156, 19407, (137, 112, 53, 148, 134, 227, 159, 136 ));
-   type PointerEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IPointerRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PointerEventHandler'Access) with null record;
+   type PointerEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IPointerRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PointerEventHandler'Access) with null record;
       function Invoke
       (
          this : access PointerEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IPointerRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IPointerRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_RightTappedEventHandler : aliased WinRt.IID := (624074850, 62535, 18768, (156, 70, 241, 227, 74, 44, 34, 56 ));
-   type RightTappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RightTappedEventHandler'Access) with null record;
+   type RightTappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RightTappedEventHandler'Access) with null record;
       function Invoke
       (
          this : access RightTappedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.IRightTappedRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_TappedEventHandler : aliased WinRt.IID := (1759068364, 40944, 18894, (177, 65, 63, 7, 236, 71, 123, 151 ));
-   type TappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Input.ITappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_TappedEventHandler'Access) with null record;
+   type TappedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Input.ITappedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_TappedEventHandler'Access) with null record;
       function Invoke
       (
          this : access TappedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Input.ITappedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Input.ITappedRoutedEventArgs
       )
       return WinRt.Hresult;
 
@@ -1062,14 +1062,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IAccessKeyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsDisplayModeEnabledChanged
       (
          this : access IAccessKeyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,7 +1139,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_KeyStatus
       (
          this : access ICharacterReceivedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1166,14 +1166,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access ICommand_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CanExecuteChanged
       (
          this : access ICommand_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1214,8 +1214,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryGetPosition
       (
          this : access IContextRequestedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         point : Windows.Foundation.Point_Ptr;
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         point : WinRt.Windows.Foundation.Point_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1228,7 +1228,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IDoubleTappedRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -1249,8 +1249,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetPosition
       (
          this : access IDoubleTappedRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.Point
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1274,56 +1274,56 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_SearchRoot
       (
          this : access IFindNextElementOptions_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_SearchRoot
       (
          this : access IFindNextElementOptions_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_ExclusionRect
       (
          this : access IFindNextElementOptions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_ExclusionRect
       (
          this : access IFindNextElementOptions_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_HintRect
       (
          this : access IFindNextElementOptions_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_HintRect
       (
          this : access IFindNextElementOptions_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusNavigationStrategyOverride
       (
          this : access IFindNextElementOptions_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusNavigationStrategyOverride
       (
          this : access IFindNextElementOptions_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
       )
       return WinRt.Hresult is abstract;
 
@@ -1340,7 +1340,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_NewFocusedElement
       (
          this : access IFocusManagerGotFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -1359,7 +1359,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_OldFocusedElement
       (
          this : access IFocusManagerLostFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -1390,7 +1390,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryMoveFocus
       (
          this : access IFocusManagerStatics2_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1403,17 +1403,17 @@ package WinRt.Windows.UI.Xaml.Input is
       function FindNextFocusableElement
       (
          this : access IFocusManagerStatics3_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function FindNextFocusableElement
       (
          this : access IFocusManagerStatics3_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         hintRect : Windows.Foundation.Rect;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         hintRect : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -1425,8 +1425,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryMoveFocus
       (
          this : access IFocusManagerStatics4_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         focusNavigationOptions : Windows.UI.Xaml.Input.IFindNextElementOptions;
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.IFindNextElementOptions;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1434,33 +1434,33 @@ package WinRt.Windows.UI.Xaml.Input is
       function FindNextElement
       (
          this : access IFocusManagerStatics4_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function FindFirstFocusableElement
       (
          this : access IFocusManagerStatics4_Interface;
-         searchScope : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         searchScope : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function FindLastFocusableElement
       (
          this : access IFocusManagerStatics4_Interface;
-         searchScope : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         searchScope : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function FindNextElement
       (
          this : access IFocusManagerStatics4_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         focusNavigationOptions : Windows.UI.Xaml.Input.IFindNextElementOptions;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.IFindNextElementOptions;
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -1472,8 +1472,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryFocusAsync
       (
          this : access IFocusManagerStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FocusState;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FocusState;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1481,7 +1481,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryMoveFocusAsync
       (
          this : access IFocusManagerStatics5_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1489,8 +1489,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function TryMoveFocusAsync
       (
          this : access IFocusManagerStatics5_Interface;
-         focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-         focusNavigationOptions : Windows.UI.Xaml.Input.IFindNextElementOptions;
+         focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+         focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.IFindNextElementOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1504,14 +1504,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IFocusManagerStatics6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access IFocusManagerStatics6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1519,14 +1519,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IFocusManagerStatics6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LostFocus
       (
          this : access IFocusManagerStatics6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,14 +1534,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IFocusManagerStatics6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GettingFocus
       (
          this : access IFocusManagerStatics6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1549,14 +1549,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IFocusManagerStatics6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LosingFocus
       (
          this : access IFocusManagerStatics6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1568,7 +1568,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetFocusedElement
       (
          this : access IFocusManagerStatics7_Interface;
-         xamlRoot : Windows.UI.Xaml.IXamlRoot;
+         xamlRoot : WinRt.Windows.UI.Xaml.IXamlRoot;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1593,35 +1593,35 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_OldFocusedElement
       (
          this : access IGettingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_NewFocusedElement
       (
          this : access IGettingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_NewFocusedElement
       (
          this : access IGettingFocusEventArgs_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusState
       (
          this : access IGettingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.FocusState
+         RetVal : access WinRt.Windows.UI.Xaml.FocusState
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access IGettingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusNavigationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -1642,7 +1642,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_InputDevice
       (
          this : access IGettingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusInputDeviceKind
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1675,7 +1675,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function TrySetNewFocusedElement
       (
          this : access IGettingFocusEventArgs2_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1700,14 +1700,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IHoldingRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_HoldingState
       (
          this : access IHoldingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.HoldingState
+         RetVal : access WinRt.Windows.UI.Input.HoldingState
       )
       return WinRt.Hresult is abstract;
 
@@ -1728,8 +1728,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetPosition
       (
          this : access IHoldingRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.Point
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1852,14 +1852,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_NameValue
       (
          this : access IInputScopeName_Interface;
-         RetVal : access Windows.UI.Xaml.Input.InputScopeNameValue
+         RetVal : access WinRt.Windows.UI.Xaml.Input.InputScopeNameValue
       )
       return WinRt.Hresult is abstract;
 
       function put_NameValue
       (
          this : access IInputScopeName_Interface;
-         value : Windows.UI.Xaml.Input.InputScopeNameValue
+         value : WinRt.Windows.UI.Xaml.Input.InputScopeNameValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1871,8 +1871,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function CreateInstance
       (
          this : access IInputScopeNameFactory_Interface;
-         nameValue : Windows.UI.Xaml.Input.InputScopeNameValue;
-         RetVal : access Windows.UI.Xaml.Input.IInputScopeName
+         nameValue : WinRt.Windows.UI.Xaml.Input.InputScopeNameValue;
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IInputScopeName
       )
       return WinRt.Hresult is abstract;
 
@@ -1884,14 +1884,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Key
       (
          this : access IKeyRoutedEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyStatus
       (
          this : access IKeyRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1917,7 +1917,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_OriginalKey
       (
          this : access IKeyRoutedEventArgs2_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
@@ -1941,28 +1941,28 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Key
       (
          this : access IKeyboardAccelerator_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_Key
       (
          this : access IKeyboardAccelerator_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_Modifiers
       (
          this : access IKeyboardAccelerator_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_Modifiers
       (
          this : access IKeyboardAccelerator_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -1983,14 +1983,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_ScopeOwner
       (
          this : access IKeyboardAccelerator_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ScopeOwner
       (
          this : access IKeyboardAccelerator_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -1998,14 +1998,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IKeyboardAccelerator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Invoked
       (
          this : access IKeyboardAccelerator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2019,7 +2019,7 @@ package WinRt.Windows.UI.Xaml.Input is
          this : access IKeyboardAcceleratorFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Input.IKeyboardAccelerator
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IKeyboardAccelerator
       )
       return WinRt.Hresult is abstract;
 
@@ -2045,7 +2045,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Element
       (
          this : access IKeyboardAcceleratorInvokedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2057,7 +2057,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_KeyboardAccelerator
       (
          this : access IKeyboardAcceleratorInvokedEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IKeyboardAccelerator
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IKeyboardAccelerator
       )
       return WinRt.Hresult is abstract;
 
@@ -2069,28 +2069,28 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_KeyProperty
       (
          this : access IKeyboardAcceleratorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ModifiersProperty
       (
          this : access IKeyboardAcceleratorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsEnabledProperty
       (
          this : access IKeyboardAcceleratorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScopeOwnerProperty
       (
          this : access IKeyboardAcceleratorStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2102,35 +2102,35 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_OldFocusedElement
       (
          this : access ILosingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_NewFocusedElement
       (
          this : access ILosingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_NewFocusedElement
       (
          this : access ILosingFocusEventArgs_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusState
       (
          this : access ILosingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.FocusState
+         RetVal : access WinRt.Windows.UI.Xaml.FocusState
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access ILosingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusNavigationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2151,7 +2151,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_InputDevice
       (
          this : access ILosingFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusInputDeviceKind
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2184,7 +2184,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function TrySetNewFocusedElement
       (
          this : access ILosingFocusEventArgs2_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2209,14 +2209,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Container
       (
          this : access IManipulationCompletedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationCompletedRoutedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2230,14 +2230,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Cumulative
       (
          this : access IManipulationCompletedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationCompletedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -2258,7 +2258,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationCompletedRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2270,14 +2270,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Container
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2291,21 +2291,21 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Delta
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -2326,7 +2326,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationDeltaRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2344,49 +2344,49 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Container
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_ExpansionBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IInertiaExpansionBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IInertiaExpansionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_ExpansionBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Input.IInertiaExpansionBehavior
+         value : WinRt.Windows.UI.Xaml.Input.IInertiaExpansionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IInertiaRotationBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IInertiaRotationBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_RotationBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Input.IInertiaRotationBehavior
+         value : WinRt.Windows.UI.Xaml.Input.IInertiaRotationBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslationBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IInertiaTranslationBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IInertiaTranslationBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_TranslationBehavior
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Input.IInertiaTranslationBehavior
+         value : WinRt.Windows.UI.Xaml.Input.IInertiaTranslationBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -2407,28 +2407,28 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Delta
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationInertiaStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -2440,14 +2440,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Center
       (
          this : access IManipulationPivot_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Center
       (
          this : access IManipulationPivot_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2473,9 +2473,9 @@ package WinRt.Windows.UI.Xaml.Input is
       function CreateInstanceWithCenterAndRadius
       (
          this : access IManipulationPivotFactory_Interface;
-         center : Windows.Foundation.Point;
+         center : WinRt.Windows.Foundation.Point;
          radius : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Input.IManipulationPivot
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IManipulationPivot
       )
       return WinRt.Hresult is abstract;
 
@@ -2487,14 +2487,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Container
       (
          this : access IManipulationStartedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationStartedRoutedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2515,14 +2515,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationStartedRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationStartedRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
@@ -2542,7 +2542,7 @@ package WinRt.Windows.UI.Xaml.Input is
          this : access IManipulationStartedRoutedEventArgsFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IManipulationStartedRoutedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -2554,42 +2554,42 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Mode
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.ManipulationModes
+         RetVal : access WinRt.Windows.UI.Xaml.Input.ManipulationModes
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Input.ManipulationModes
+         value : WinRt.Windows.UI.Xaml.Input.ManipulationModes
       )
       return WinRt.Hresult is abstract;
 
       function get_Container
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Container
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_Pivot
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IManipulationPivot
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IManipulationPivot
       )
       return WinRt.Hresult is abstract;
 
       function put_Pivot
       (
          this : access IManipulationStartingRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Input.IManipulationPivot
+         value : WinRt.Windows.UI.Xaml.Input.IManipulationPivot
       )
       return WinRt.Hresult is abstract;
 
@@ -2615,7 +2615,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Direction
       (
          this : access INoFocusCandidateFoundEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusNavigationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2636,7 +2636,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_InputDevice
       (
          this : access INoFocusCandidateFoundEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.FocusInputDeviceKind
+         RetVal : access WinRt.Windows.UI.Xaml.Input.FocusInputDeviceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2655,7 +2655,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IPointer_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2681,14 +2681,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Pointer
       (
          this : access IPointerRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Input.IPointer
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IPointer
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyModifiers
       (
          this : access IPointerRoutedEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -2709,15 +2709,15 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetCurrentPoint
       (
          this : access IPointerRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Input.IPointerPoint
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function GetIntermediatePoints
       (
          this : access IPointerRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2742,14 +2742,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Key
       (
          this : access IProcessKeyboardAcceleratorEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_Modifiers
       (
          this : access IProcessKeyboardAcceleratorEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -2775,7 +2775,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access IRightTappedRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2796,8 +2796,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetPosition
       (
          this : access IRightTappedRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.Point
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2809,7 +2809,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Kind
       (
          this : access IStandardUICommand_Interface;
-         RetVal : access Windows.UI.Xaml.Input.StandardUICommandKind
+         RetVal : access WinRt.Windows.UI.Xaml.Input.StandardUICommandKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2821,7 +2821,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function put_Kind
       (
          this : access IStandardUICommand2_Interface;
-         value : Windows.UI.Xaml.Input.StandardUICommandKind
+         value : WinRt.Windows.UI.Xaml.Input.StandardUICommandKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2835,17 +2835,17 @@ package WinRt.Windows.UI.Xaml.Input is
          this : access IStandardUICommandFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Input.IStandardUICommand
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IStandardUICommand
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithKind
       (
          this : access IStandardUICommandFactory_Interface;
-         kind : Windows.UI.Xaml.Input.StandardUICommandKind;
+         kind : WinRt.Windows.UI.Xaml.Input.StandardUICommandKind;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Input.IStandardUICommand
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IStandardUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -2857,7 +2857,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_KindProperty
       (
          this : access IStandardUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2869,7 +2869,7 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_PointerDeviceType
       (
          this : access ITappedRoutedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2890,8 +2890,8 @@ package WinRt.Windows.UI.Xaml.Input is
       function GetPosition
       (
          this : access ITappedRoutedEventArgs_Interface;
-         relativeTo : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.Point
+         relativeTo : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2917,14 +2917,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_IconSource
       (
          this : access IXamlUICommand_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.IIconSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.IIconSource
       )
       return WinRt.Hresult is abstract;
 
       function put_IconSource
       (
          this : access IXamlUICommand_Interface;
-         value : Windows.UI.Xaml.Controls.IIconSource
+         value : WinRt.Windows.UI.Xaml.Controls.IIconSource
       )
       return WinRt.Hresult is abstract;
 
@@ -2966,14 +2966,14 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_Command
       (
          this : access IXamlUICommand_Interface;
-         RetVal : access Windows.UI.Xaml.Input.ICommand
+         RetVal : access WinRt.Windows.UI.Xaml.Input.ICommand
       )
       return WinRt.Hresult is abstract;
 
       function put_Command
       (
          this : access IXamlUICommand_Interface;
-         value : Windows.UI.Xaml.Input.ICommand
+         value : WinRt.Windows.UI.Xaml.Input.ICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -2981,14 +2981,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IXamlUICommand_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ExecuteRequested
       (
          this : access IXamlUICommand_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2996,14 +2996,14 @@ package WinRt.Windows.UI.Xaml.Input is
       (
          this : access IXamlUICommand_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CanExecuteRequested
       (
          this : access IXamlUICommand_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3023,7 +3023,7 @@ package WinRt.Windows.UI.Xaml.Input is
          this : access IXamlUICommandFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Input.IXamlUICommand
+         RetVal : access WinRt.Windows.UI.Xaml.Input.IXamlUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -3035,42 +3035,42 @@ package WinRt.Windows.UI.Xaml.Input is
       function get_LabelProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IconSourceProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyboardAcceleratorsProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AccessKeyProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DescriptionProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CommandProperty
       (
          this : access IXamlUICommandStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3168,7 +3168,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    procedure remove_IsDisplayModeEnabledChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ExitDisplayMode;
@@ -3265,8 +3265,8 @@ package WinRt.Windows.UI.Xaml.Input is
    function TryGetPosition
    (
       this : in out ContextRequestedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class;
-      point : Windows.Foundation.Point_Ptr
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class;
+      point : WinRt.Windows.Foundation.Point_Ptr
    )
    return WinRt.Boolean;
 
@@ -3305,7 +3305,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function GetPosition
    (
       this : in out DoubleTappedRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.Foundation.Point;
 
@@ -3347,7 +3347,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_SearchRoot
    (
       this : in out FindNextElementOptions;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ExclusionRect
@@ -3359,7 +3359,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_ExclusionRect
    (
       this : in out FindNextElementOptions;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_HintRect
@@ -3371,7 +3371,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_HintRect
    (
       this : in out FindNextElementOptions;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_XYFocusNavigationStrategyOverride
@@ -3383,7 +3383,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_XYFocusNavigationStrategyOverride
    (
       this : in out FindNextElementOptions;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategyOverride
    );
 
    -----------------------------------------------------------------------------
@@ -3397,39 +3397,39 @@ package WinRt.Windows.UI.Xaml.Input is
 
    function TryMoveFocus
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.FindNextElementOptions'Class
    )
    return WinRt.Boolean;
 
    function FindNextElement
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    function FindFirstFocusableElement
    (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
+      searchScope : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    function FindLastFocusableElement
    (
-      searchScope : Windows.UI.Xaml.DependencyObject'Class
+      searchScope : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    function FindNextElement
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.FindNextElementOptions'Class
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    function GetFocusedElement
    (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+      xamlRoot : WinRt.Windows.UI.Xaml.XamlRoot'Class
    )
    return WinRt.IInspectable;
 
@@ -3438,34 +3438,34 @@ package WinRt.Windows.UI.Xaml.Input is
 
    function FindNextFocusableElement
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
    )
    return WinRt.Windows.UI.Xaml.UIElement;
 
    function FindNextFocusableElement
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      hintRect : Windows.Foundation.Rect
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+      hintRect : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.UI.Xaml.UIElement;
 
    function TryFocusAsync
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FocusState
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FocusState
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult;
 
    function TryMoveFocusAsync
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult;
 
    function TryMoveFocusAsync
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection;
-      focusNavigationOptions : Windows.UI.Xaml.Input.FindNextElementOptions'Class
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection;
+      focusNavigationOptions : WinRt.Windows.UI.Xaml.Input.FindNextElementOptions'Class
    )
    return WinRt.Windows.UI.Xaml.Input.FocusMovementResult;
 
@@ -3477,7 +3477,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    procedure remove_GotFocus
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LostFocus
@@ -3488,7 +3488,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    procedure remove_LostFocus
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GettingFocus
@@ -3499,7 +3499,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    procedure remove_GettingFocus
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LosingFocus
@@ -3510,12 +3510,12 @@ package WinRt.Windows.UI.Xaml.Input is
 
    procedure remove_LosingFocus
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryMoveFocus
    (
-      focusNavigationDirection : Windows.UI.Xaml.Input.FocusNavigationDirection
+      focusNavigationDirection : WinRt.Windows.UI.Xaml.Input.FocusNavigationDirection
    )
    return WinRt.Boolean;
 
@@ -3603,7 +3603,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_NewFocusedElement
    (
       this : in out GettingFocusEventArgs;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_FocusState
@@ -3657,7 +3657,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function TrySetNewFocusedElement
    (
       this : in out GettingFocusEventArgs;
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
@@ -3708,7 +3708,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function GetPosition
    (
       this : in out HoldingRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.Foundation.Point;
 
@@ -3842,7 +3842,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    function Constructor
    (
-      nameValue : Windows.UI.Xaml.Input.InputScopeNameValue
+      nameValue : WinRt.Windows.UI.Xaml.Input.InputScopeNameValue
    )
    return InputScopeName;
 
@@ -3860,7 +3860,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_NameValue
    (
       this : in out InputScopeName;
-      value : Windows.UI.Xaml.Input.InputScopeNameValue
+      value : WinRt.Windows.UI.Xaml.Input.InputScopeNameValue
    );
 
    -----------------------------------------------------------------------------
@@ -3951,7 +3951,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Key
    (
       this : in out KeyboardAccelerator;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_Modifiers
@@ -3963,7 +3963,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Modifiers
    (
       this : in out KeyboardAccelerator;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_IsEnabled
@@ -3987,7 +3987,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_ScopeOwner
    (
       this : in out KeyboardAccelerator;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function add_Invoked
@@ -4000,7 +4000,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure remove_Invoked
    (
       this : in out KeyboardAccelerator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4060,7 +4060,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_NewFocusedElement
    (
       this : in out LosingFocusEventArgs;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_FocusState
@@ -4114,7 +4114,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function TrySetNewFocusedElement
    (
       this : in out LosingFocusEventArgs;
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
@@ -4288,7 +4288,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_ExpansionBehavior
    (
       this : in out ManipulationInertiaStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.Input.InertiaExpansionBehavior'Class
+      value : WinRt.Windows.UI.Xaml.Input.InertiaExpansionBehavior'Class
    );
 
    function get_RotationBehavior
@@ -4300,7 +4300,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_RotationBehavior
    (
       this : in out ManipulationInertiaStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.Input.InertiaRotationBehavior'Class
+      value : WinRt.Windows.UI.Xaml.Input.InertiaRotationBehavior'Class
    );
 
    function get_TranslationBehavior
@@ -4312,7 +4312,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_TranslationBehavior
    (
       this : in out ManipulationInertiaStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.Input.InertiaTranslationBehavior'Class
+      value : WinRt.Windows.UI.Xaml.Input.InertiaTranslationBehavior'Class
    );
 
    function get_Handled
@@ -4364,7 +4364,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    function Constructor
    (
-      center : Windows.Foundation.Point;
+      center : WinRt.Windows.Foundation.Point;
       radius : WinRt.Double
    )
    return ManipulationPivot;
@@ -4381,7 +4381,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Center
    (
       this : in out ManipulationPivot;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Radius
@@ -4479,7 +4479,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Mode
    (
       this : in out ManipulationStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.Input.ManipulationModes
+      value : WinRt.Windows.UI.Xaml.Input.ManipulationModes
    );
 
    function get_Container
@@ -4491,7 +4491,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Container
    (
       this : in out ManipulationStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function get_Pivot
@@ -4503,7 +4503,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Pivot
    (
       this : in out ManipulationStartingRoutedEventArgs;
-      value : Windows.UI.Xaml.Input.ManipulationPivot'Class
+      value : WinRt.Windows.UI.Xaml.Input.ManipulationPivot'Class
    );
 
    function get_Handled
@@ -4620,14 +4620,14 @@ package WinRt.Windows.UI.Xaml.Input is
    function GetCurrentPoint
    (
       this : in out PointerRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Input.PointerPoint'Class;
 
    function GetIntermediatePoints
    (
       this : in out PointerRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.GenericObject;
 
@@ -4705,7 +4705,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function GetPosition
    (
       this : in out RightTappedRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.Foundation.Point;
 
@@ -4770,7 +4770,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_IconSource
    (
       this : in out XamlUICommand;
-      value : Windows.UI.Xaml.Controls.IconSource'Class
+      value : WinRt.Windows.UI.Xaml.Controls.IconSource'Class
    );
 
    function get_KeyboardAccelerators
@@ -4812,7 +4812,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Command
    (
       this : in out XamlUICommand;
-      value : Windows.UI.Xaml.Input.ICommand
+      value : WinRt.Windows.UI.Xaml.Input.ICommand
    );
 
    function add_ExecuteRequested
@@ -4825,7 +4825,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure remove_ExecuteRequested
    (
       this : in out XamlUICommand;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CanExecuteRequested
@@ -4838,7 +4838,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure remove_CanExecuteRequested
    (
       this : in out XamlUICommand;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure NotifyCanExecuteChanged
@@ -4856,7 +4856,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure remove_CanExecuteChanged
    (
       this : in out XamlUICommand;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CanExecute
@@ -4890,7 +4890,7 @@ package WinRt.Windows.UI.Xaml.Input is
 
    function Constructor
    (
-      kind : Windows.UI.Xaml.Input.StandardUICommandKind;
+      kind : WinRt.Windows.UI.Xaml.Input.StandardUICommandKind;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -4914,7 +4914,7 @@ package WinRt.Windows.UI.Xaml.Input is
    procedure put_Kind
    (
       this : in out StandardUICommand;
-      value : Windows.UI.Xaml.Input.StandardUICommandKind
+      value : WinRt.Windows.UI.Xaml.Input.StandardUICommandKind
    );
 
    -----------------------------------------------------------------------------
@@ -4952,7 +4952,7 @@ package WinRt.Windows.UI.Xaml.Input is
    function GetPosition
    (
       this : in out TappedRoutedEventArgs;
-      relativeTo : Windows.UI.Xaml.UIElement'Class
+      relativeTo : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.Foundation.Point;
 

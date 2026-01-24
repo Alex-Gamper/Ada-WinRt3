@@ -88,7 +88,7 @@ package WinRt.Windows.Devices.Portable is
       function GetDeviceSelector
       (
          this : access IServiceDeviceStatics_Interface;
-         serviceType : Windows.Devices.Portable.ServiceDeviceType;
+         serviceType : WinRt.Windows.Devices.Portable.ServiceDeviceType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -110,7 +110,7 @@ package WinRt.Windows.Devices.Portable is
       (
          this : access IStorageDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 

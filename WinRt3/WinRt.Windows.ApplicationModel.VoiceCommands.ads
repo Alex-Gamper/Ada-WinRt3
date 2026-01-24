@@ -227,7 +227,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_SpeechRecognitionResult
       (
          this : access IVoiceCommand_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionResult
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -239,7 +239,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_Reason
       (
          this : access IVoiceCommandCompletedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason
       )
       return WinRt.Hresult is abstract;
 
@@ -319,14 +319,14 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_Image
       (
          this : access IVoiceCommandContentTile_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IVoiceCommandContentTile_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -361,14 +361,14 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_ContentTileType
       (
          this : access IVoiceCommandContentTile_Interface;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentTileType
       (
          this : access IVoiceCommandContentTile_Interface;
-         value : Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
+         value : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
       )
       return WinRt.Hresult is abstract;
 
@@ -396,7 +396,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
          this : access IVoiceCommandDefinition_Interface;
          phraseListName : WinRt.HString;
          phraseList : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -408,8 +408,8 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function InstallCommandDefinitionsFromStorageFileAsync
       (
          this : access IVoiceCommandDefinitionManagerStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -428,7 +428,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_SelectedItem
       (
          this : access IVoiceCommandDisambiguationResult_Interface;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile
       )
       return WinRt.Hresult is abstract;
 
@@ -440,28 +440,28 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function get_Message
       (
          this : access IVoiceCommandResponse_Interface;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
       )
       return WinRt.Hresult is abstract;
 
       function put_Message
       (
          this : access IVoiceCommandResponse_Interface;
-         value : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
+         value : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_RepeatMessage
       (
          this : access IVoiceCommandResponse_Interface;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
       )
       return WinRt.Hresult is abstract;
 
       function put_RepeatMessage
       (
          this : access IVoiceCommandResponse_Interface;
-         value : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
+         value : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -501,36 +501,36 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function CreateResponse
       (
          this : access IVoiceCommandResponseStatics_Interface;
-         userMessage : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
+         userMessage : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
       )
       return WinRt.Hresult is abstract;
 
       function CreateResponse
       (
          this : access IVoiceCommandResponseStatics_Interface;
-         message : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         message : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
          contentTiles : GenericObject;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
       )
       return WinRt.Hresult is abstract;
 
       function CreateResponseForPrompt
       (
          this : access IVoiceCommandResponseStatics_Interface;
-         message : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
-         repeatMessage : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
+         message : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         repeatMessage : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
       )
       return WinRt.Hresult is abstract;
 
       function CreateResponseForPrompt
       (
          this : access IVoiceCommandResponseStatics_Interface;
-         message : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
-         repeatMessage : Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         message : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
+         repeatMessage : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
          contentTiles : GenericObject;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -549,7 +549,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function RequestConfirmationAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -557,7 +557,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function RequestDisambiguationAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -565,39 +565,39 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function ReportProgressAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
-         RetVal : access Windows.Foundation.IAsyncAction
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportSuccessAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
-         RetVal : access Windows.Foundation.IAsyncAction
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailureAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
-         RetVal : access Windows.Foundation.IAsyncAction
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RequestAppLaunchAsync
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         response : Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
-         RetVal : access Windows.Foundation.IAsyncAction
+         response : WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandResponse;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_Language
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -605,14 +605,14 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       (
          this : access IVoiceCommandServiceConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VoiceCommandCompleted
       (
          this : access IVoiceCommandServiceConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -624,8 +624,8 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
       function FromAppServiceTriggerDetails
       (
          this : access IVoiceCommandServiceConnectionStatics_Interface;
-         triggerDetails : Windows.ApplicationModel.AppService.IAppServiceTriggerDetails;
-         RetVal : access Windows.ApplicationModel.VoiceCommands.IVoiceCommandServiceConnection
+         triggerDetails : WinRt.Windows.ApplicationModel.AppService.IAppServiceTriggerDetails;
+         RetVal : access WinRt.Windows.ApplicationModel.VoiceCommands.IVoiceCommandServiceConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    procedure put_Image
    (
       this : in out VoiceCommandContentTile;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    );
 
    function get_AppContext
@@ -832,7 +832,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    procedure put_ContentTileType
    (
       this : in out VoiceCommandContentTile;
-      value : Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
+      value : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType
    );
 
    -----------------------------------------------------------------------------
@@ -869,7 +869,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
       procedure InstallCommandDefinitionsFromStorageFileAsync
       (
-         file : Windows.Storage.StorageFile'Class
+         file : WinRt.Windows.Storage.StorageFile'Class
       );
 
       function get_InstalledCommandDefinitions
@@ -906,28 +906,28 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
    function CreateResponse
    (
-      userMessage : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
+      userMessage : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse;
 
    function CreateResponse
    (
-      message : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
+      message : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
       contentTiles : GenericObject
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse;
 
    function CreateResponseForPrompt
    (
-      message : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
-      repeatMessage : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
+      message : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
+      repeatMessage : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse;
 
    function CreateResponseForPrompt
    (
-      message : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
-      repeatMessage : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
+      message : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
+      repeatMessage : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class;
       contentTiles : GenericObject
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse;
@@ -944,7 +944,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    procedure put_Message
    (
       this : in out VoiceCommandResponse;
-      value : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
+      value : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    );
 
    function get_RepeatMessage
@@ -956,7 +956,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    procedure put_RepeatMessage
    (
       this : in out VoiceCommandResponse;
-      value : Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
+      value : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage'Class
    );
 
    function get_AppLaunchArgument
@@ -988,7 +988,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
 
    function FromAppServiceTriggerDetails
    (
-      triggerDetails : Windows.ApplicationModel.AppService.AppServiceTriggerDetails'Class
+      triggerDetails : WinRt.Windows.ApplicationModel.AppService.AppServiceTriggerDetails'Class
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection;
 
@@ -1004,39 +1004,39 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    function RequestConfirmationAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult'Class;
 
    function RequestDisambiguationAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    )
    return WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult'Class;
 
    procedure ReportProgressAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    );
 
    procedure ReportSuccessAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    );
 
    procedure ReportFailureAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    );
 
    procedure RequestAppLaunchAsync
    (
       this : in out VoiceCommandServiceConnection;
-      response : Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
+      response : WinRt.Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse'Class
    );
 
    function get_Language
@@ -1055,7 +1055,7 @@ package WinRt.Windows.ApplicationModel.VoiceCommands is
    procedure remove_VoiceCommandCompleted
    (
       this : in out VoiceCommandServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

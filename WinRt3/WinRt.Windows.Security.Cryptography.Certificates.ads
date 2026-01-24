@@ -496,7 +496,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          this : access ICertificate_Interface;
          certificates : GenericObject;
-         parameters : Windows.Security.Cryptography.Certificates.IChainBuildingParameters;
+         parameters : WinRt.Windows.Security.Cryptography.Certificates.IChainBuildingParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -529,7 +529,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function GetCertificateBlob
       (
          this : access ICertificate_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -564,14 +564,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_ValidFrom
       (
          this : access ICertificate_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_ValidTo
       (
          this : access ICertificate_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_KeyUsages
       (
          this : access ICertificate2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificateKeyUsages
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateKeyUsages
       )
       return WinRt.Hresult is abstract;
 
@@ -639,7 +639,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_SubjectAlternativeName
       (
          this : access ICertificate2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -677,15 +677,15 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function Validate
       (
          this : access ICertificateChain_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ChainValidationResult
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ChainValidationResult
       )
       return WinRt.Hresult is abstract;
 
       function Validate
       (
          this : access ICertificateChain_Interface;
-         parameter : Windows.Security.Cryptography.Certificates.IChainValidationParameters;
-         RetVal : access Windows.Security.Cryptography.Certificates.ChainValidationResult
+         parameter : WinRt.Windows.Security.Cryptography.Certificates.IChainValidationParameters;
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ChainValidationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -705,7 +705,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function CreateRequestAsync
       (
          this : access ICertificateEnrollmentManagerStatics_Interface;
-         request : Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
+         request : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -714,8 +714,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          this : access ICertificateEnrollmentManagerStatics_Interface;
          certificate_p : WinRt.HString;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -724,11 +724,11 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access ICertificateEnrollmentManagerStatics_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -740,7 +740,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_UserCertificateEnrollmentManager
       (
          this : access ICertificateEnrollmentManagerStatics2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.IUserCertificateEnrollmentManager
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.IUserCertificateEnrollmentManager
       )
       return WinRt.Hresult is abstract;
 
@@ -749,12 +749,12 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access ICertificateEnrollmentManagerStatics2_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.HString;
          keyStorageProvider : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -768,8 +768,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access ICertificateEnrollmentManagerStatics3_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.IPfxImportParameters;
-         RetVal : access Windows.Foundation.IAsyncAction
+         pfxImportParameters_p : WinRt.Windows.Security.Cryptography.Certificates.IPfxImportParameters;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -837,8 +837,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function CreateCertificate
       (
          this : access ICertificateFactory_Interface;
-         certBlob : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         certBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1154,42 +1154,42 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Exportable
       (
          this : access ICertificateRequestProperties_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ExportOption
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ExportOption
       )
       return WinRt.Hresult is abstract;
 
       function put_Exportable
       (
          this : access ICertificateRequestProperties_Interface;
-         value : Windows.Security.Cryptography.Certificates.ExportOption
+         value : WinRt.Windows.Security.Cryptography.Certificates.ExportOption
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyUsages
       (
          this : access ICertificateRequestProperties_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.EnrollKeyUsages
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.EnrollKeyUsages
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyUsages
       (
          this : access ICertificateRequestProperties_Interface;
-         value : Windows.Security.Cryptography.Certificates.EnrollKeyUsages
+         value : WinRt.Windows.Security.Cryptography.Certificates.EnrollKeyUsages
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyProtectionLevel
       (
          this : access ICertificateRequestProperties_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyProtectionLevel
       (
          this : access ICertificateRequestProperties_Interface;
-         value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+         value : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1229,28 +1229,28 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_SigningCertificate
       (
          this : access ICertificateRequestProperties2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_SigningCertificate
       (
          this : access ICertificateRequestProperties2_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function get_AttestationCredentialCertificate
       (
          this : access ICertificateRequestProperties2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_AttestationCredentialCertificate
       (
          this : access ICertificateRequestProperties2_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1346,7 +1346,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_SubjectAlternativeName
       (
          this : access ICertificateRequestProperties4_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1365,14 +1365,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function Add
       (
          this : access ICertificateStore_Interface;
-         certificate_p : Windows.Security.Cryptography.Certificates.ICertificate
+         certificate_p : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function Delete
       (
          this : access ICertificateStore_Interface;
-         certificate_p : Windows.Security.Cryptography.Certificates.ICertificate
+         certificate_p : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1403,7 +1403,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function FindAllAsync
       (
          this : access ICertificateStoresStatics_Interface;
-         query : Windows.Security.Cryptography.Certificates.ICertificateQuery;
+         query : WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1411,14 +1411,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_TrustedRootCertificationAuthorities
       (
          this : access ICertificateStoresStatics_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificateStore
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore
       )
       return WinRt.Hresult is abstract;
 
       function get_IntermediateCertificationAuthorities
       (
          this : access ICertificateStoresStatics_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificateStore
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore
       )
       return WinRt.Hresult is abstract;
 
@@ -1426,7 +1426,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          this : access ICertificateStoresStatics_Interface;
          storeName : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificateStore
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateStore
       )
       return WinRt.Hresult is abstract;
 
@@ -1439,7 +1439,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          this : access ICertificateStoresStatics2_Interface;
          storeName : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Certificates.IUserCertificateStore
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.IUserCertificateStore
       )
       return WinRt.Hresult is abstract;
 
@@ -1458,14 +1458,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_ValidationTimestamp
       (
          this : access IChainBuildingParameters_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_ValidationTimestamp
       (
          this : access IChainBuildingParameters_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1540,28 +1540,28 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_CertificateChainPolicy
       (
          this : access IChainValidationParameters_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.CertificateChainPolicy
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.CertificateChainPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_CertificateChainPolicy
       (
          this : access IChainValidationParameters_Interface;
-         value : Windows.Security.Cryptography.Certificates.CertificateChainPolicy
+         value : WinRt.Windows.Security.Cryptography.Certificates.CertificateChainPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerDnsName
       (
          this : access IChainValidationParameters_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerDnsName
       (
          this : access IChainValidationParameters_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1595,7 +1595,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function VerifySignature
       (
          this : access ICmsAttachedSignature_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.SignatureValidationResult
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.SignatureValidationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1607,8 +1607,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function CreateCmsAttachedSignature
       (
          this : access ICmsAttachedSignatureFactory_Interface;
-         inputBlob : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICmsAttachedSignature
+         inputBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICmsAttachedSignature
       )
       return WinRt.Hresult is abstract;
 
@@ -1620,7 +1620,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function GenerateSignatureAsync
       (
          this : access ICmsAttachedSignatureStatics_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          signers : GenericObject;
          certificates : GenericObject;
          RetVal : access GenericObject
@@ -1649,7 +1649,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function VerifySignatureAsync
       (
          this : access ICmsDetachedSignature_Interface;
-         data : Windows.Storage.Streams.IInputStream;
+         data : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1662,8 +1662,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function CreateCmsDetachedSignature
       (
          this : access ICmsDetachedSignatureFactory_Interface;
-         inputBlob : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICmsDetachedSignature
+         inputBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICmsDetachedSignature
       )
       return WinRt.Hresult is abstract;
 
@@ -1675,7 +1675,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function GenerateSignatureAsync
       (
          this : access ICmsDetachedSignatureStatics_Interface;
-         data : Windows.Storage.Streams.IInputStream;
+         data : WinRt.Windows.Storage.Streams.IInputStream;
          signers : GenericObject;
          certificates : GenericObject;
          RetVal : access GenericObject
@@ -1690,14 +1690,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Certificate
       (
          this : access ICmsSignerInfo_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_Certificate
       (
          this : access ICmsSignerInfo_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1718,7 +1718,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_TimestampInfo
       (
          this : access ICmsSignerInfo_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICmsTimestampInfo
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICmsTimestampInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1730,7 +1730,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_SigningCertificate
       (
          this : access ICmsTimestampInfo_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1744,7 +1744,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Timestamp
       (
          this : access ICmsTimestampInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1909,42 +1909,42 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Exportable
       (
          this : access IPfxImportParameters_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ExportOption
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ExportOption
       )
       return WinRt.Hresult is abstract;
 
       function put_Exportable
       (
          this : access IPfxImportParameters_Interface;
-         value : Windows.Security.Cryptography.Certificates.ExportOption
+         value : WinRt.Windows.Security.Cryptography.Certificates.ExportOption
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyProtectionLevel
       (
          this : access IPfxImportParameters_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyProtectionLevel
       (
          this : access IPfxImportParameters_Interface;
-         value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+         value : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_InstallOptions
       (
          this : access IPfxImportParameters_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.InstallOptions
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.InstallOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_InstallOptions
       (
          this : access IPfxImportParameters_Interface;
-         value : Windows.Security.Cryptography.Certificates.InstallOptions
+         value : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2127,7 +2127,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function get_Extension
       (
          this : access ISubjectAlternativeNameInfo2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificateExtension
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificateExtension
       )
       return WinRt.Hresult is abstract;
 
@@ -2139,7 +2139,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function CreateRequestAsync
       (
          this : access IUserCertificateEnrollmentManager_Interface;
-         request : Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
+         request : WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2148,8 +2148,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          this : access IUserCertificateEnrollmentManager_Interface;
          certificate_p : WinRt.HString;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2158,11 +2158,11 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access IUserCertificateEnrollmentManager_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2171,12 +2171,12 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access IUserCertificateEnrollmentManager_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.HString;
          keyStorageProvider : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2190,8 +2190,8 @@ package WinRt.Windows.Security.Cryptography.Certificates is
          this : access IUserCertificateEnrollmentManager2_Interface;
          pfxData : WinRt.HString;
          password : WinRt.HString;
-         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.IPfxImportParameters;
-         RetVal : access Windows.Foundation.IAsyncAction
+         pfxImportParameters_p : WinRt.Windows.Security.Cryptography.Certificates.IPfxImportParameters;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2203,7 +2203,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function RequestAddAsync
       (
          this : access IUserCertificateStore_Interface;
-         certificate_p : Windows.Security.Cryptography.Certificates.ICertificate;
+         certificate_p : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2211,7 +2211,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       function RequestDeleteAsync
       (
          this : access IUserCertificateStore_Interface;
-         certificate_p : Windows.Security.Cryptography.Certificates.ICertificate;
+         certificate_p : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2240,7 +2240,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor
    (
-      certBlob : Windows.Storage.Streams.IBuffer
+      certBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return Certificate;
 
@@ -2258,7 +2258,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    (
       this : in out Certificate;
       certificates : GenericObject;
-      parameters : Windows.Security.Cryptography.Certificates.ChainBuildingParameters'Class
+      parameters : WinRt.Windows.Security.Cryptography.Certificates.ChainBuildingParameters'Class
    )
    return WinRt.Windows.Security.Cryptography.Certificates.CertificateChain'Class;
 
@@ -2413,7 +2413,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    function Validate
    (
       this : in out CertificateChain;
-      parameter : Windows.Security.Cryptography.Certificates.ChainValidationParameters'Class
+      parameter : WinRt.Windows.Security.Cryptography.Certificates.ChainValidationParameters'Class
    )
    return WinRt.Windows.Security.Cryptography.Certificates.ChainValidationResult;
 
@@ -2432,28 +2432,28 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          pfxData : WinRt.WString;
          password : WinRt.WString;
-         pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
+         pfxImportParameters_p : WinRt.Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
       );
 
       function CreateRequestAsync
       (
-         request : Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
+         request : WinRt.Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
       )
       return WinRt.WString;
 
       procedure InstallCertificateAsync
       (
          certificate_p : WinRt.WString;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions
       );
 
       procedure ImportPfxDataAsync
       (
          pfxData : WinRt.WString;
          password : WinRt.WString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.WString
       );
 
@@ -2464,9 +2464,9 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       (
          pfxData : WinRt.WString;
          password : WinRt.WString;
-         exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-         keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-         installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+         exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+         keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+         installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
          friendlyName : WinRt.WString;
          keyStorageProvider : WinRt.WString
       );
@@ -2826,7 +2826,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_Exportable
    (
       this : in out CertificateRequestProperties;
-      value : Windows.Security.Cryptography.Certificates.ExportOption
+      value : WinRt.Windows.Security.Cryptography.Certificates.ExportOption
    );
 
    function get_KeyUsages
@@ -2838,7 +2838,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_KeyUsages
    (
       this : in out CertificateRequestProperties;
-      value : Windows.Security.Cryptography.Certificates.EnrollKeyUsages
+      value : WinRt.Windows.Security.Cryptography.Certificates.EnrollKeyUsages
    );
 
    function get_KeyProtectionLevel
@@ -2850,7 +2850,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_KeyProtectionLevel
    (
       this : in out CertificateRequestProperties;
-      value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+      value : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
    );
 
    function get_KeyStorageProviderName
@@ -2886,7 +2886,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_SigningCertificate
    (
       this : in out CertificateRequestProperties;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_AttestationCredentialCertificate
@@ -2898,7 +2898,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_AttestationCredentialCertificate
    (
       this : in out CertificateRequestProperties;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_CurveName
@@ -2991,13 +2991,13 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure Add
    (
       this : in out CertificateStore;
-      certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate_p : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    procedure Delete
    (
       this : in out CertificateStore;
-      certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate_p : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_Name
@@ -3021,7 +3021,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
       function FindAllAsync
       (
-         query : Windows.Security.Cryptography.Certificates.CertificateQuery'Class
+         query : WinRt.Windows.Security.Cryptography.Certificates.CertificateQuery'Class
       )
       return WinRt.GenericObject;
 
@@ -3068,7 +3068,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_ValidationTimestamp
    (
       this : in out ChainBuildingParameters;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_RevocationCheckEnabled
@@ -3148,7 +3148,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_CertificateChainPolicy
    (
       this : in out ChainValidationParameters;
-      value : Windows.Security.Cryptography.Certificates.CertificateChainPolicy
+      value : WinRt.Windows.Security.Cryptography.Certificates.CertificateChainPolicy
    );
 
    function get_ServerDnsName
@@ -3160,7 +3160,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_ServerDnsName
    (
       this : in out ChainValidationParameters;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3174,7 +3174,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor
    (
-      inputBlob : Windows.Storage.Streams.IBuffer
+      inputBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return CmsAttachedSignature;
 
@@ -3183,7 +3183,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
    function GenerateSignatureAsync
    (
-      data : Windows.Storage.Streams.IBuffer;
+      data : WinRt.Windows.Storage.Streams.IBuffer;
       signers : GenericObject;
       certificates : GenericObject
    )
@@ -3227,7 +3227,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
    function Constructor
    (
-      inputBlob : Windows.Storage.Streams.IBuffer
+      inputBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return CmsDetachedSignature;
 
@@ -3236,7 +3236,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
 
    function GenerateSignatureAsync
    (
-      data : Windows.Storage.Streams.IInputStream;
+      data : WinRt.Windows.Storage.Streams.IInputStream;
       signers : GenericObject;
       certificates : GenericObject
    )
@@ -3260,7 +3260,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    function VerifySignatureAsync
    (
       this : in out CmsDetachedSignature;
-      data : Windows.Storage.Streams.IInputStream
+      data : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Security.Cryptography.Certificates.SignatureValidationResult;
 
@@ -3287,7 +3287,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_Certificate
    (
       this : in out CmsSignerInfo;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_HashAlgorithmName
@@ -3437,7 +3437,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_Exportable
    (
       this : in out PfxImportParameters;
-      value : Windows.Security.Cryptography.Certificates.ExportOption
+      value : WinRt.Windows.Security.Cryptography.Certificates.ExportOption
    );
 
    function get_KeyProtectionLevel
@@ -3449,7 +3449,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_KeyProtectionLevel
    (
       this : in out PfxImportParameters;
-      value : Windows.Security.Cryptography.Certificates.KeyProtectionLevel
+      value : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel
    );
 
    function get_InstallOptions
@@ -3461,7 +3461,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    procedure put_InstallOptions
    (
       this : in out PfxImportParameters;
-      value : Windows.Security.Cryptography.Certificates.InstallOptions
+      value : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions
    );
 
    function get_FriendlyName
@@ -3631,7 +3631,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    function CreateRequestAsync
    (
       this : in out UserCertificateEnrollmentManager;
-      request : Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
+      request : WinRt.Windows.Security.Cryptography.Certificates.CertificateRequestProperties'Class
    )
    return WinRt.WString;
 
@@ -3639,7 +3639,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    (
       this : in out UserCertificateEnrollmentManager;
       certificate_p : WinRt.WString;
-      installOption : Windows.Security.Cryptography.Certificates.InstallOptions
+      installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions
    );
 
    procedure ImportPfxDataAsync
@@ -3647,9 +3647,9 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       this : in out UserCertificateEnrollmentManager;
       pfxData : WinRt.WString;
       password : WinRt.WString;
-      exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-      keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-      installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+      exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+      keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+      installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
       friendlyName : WinRt.WString
    );
 
@@ -3658,9 +3658,9 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       this : in out UserCertificateEnrollmentManager;
       pfxData : WinRt.WString;
       password : WinRt.WString;
-      exportable : Windows.Security.Cryptography.Certificates.ExportOption;
-      keyProtectionLevel : Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
-      installOption : Windows.Security.Cryptography.Certificates.InstallOptions;
+      exportable : WinRt.Windows.Security.Cryptography.Certificates.ExportOption;
+      keyProtectionLevel : WinRt.Windows.Security.Cryptography.Certificates.KeyProtectionLevel;
+      installOption : WinRt.Windows.Security.Cryptography.Certificates.InstallOptions;
       friendlyName : WinRt.WString;
       keyStorageProvider : WinRt.WString
    );
@@ -3670,7 +3670,7 @@ package WinRt.Windows.Security.Cryptography.Certificates is
       this : in out UserCertificateEnrollmentManager;
       pfxData : WinRt.WString;
       password : WinRt.WString;
-      pfxImportParameters_p : Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
+      pfxImportParameters_p : WinRt.Windows.Security.Cryptography.Certificates.PfxImportParameters'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3685,14 +3685,14 @@ package WinRt.Windows.Security.Cryptography.Certificates is
    function RequestAddAsync
    (
       this : in out UserCertificateStore;
-      certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate_p : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Boolean;
 
    function RequestDeleteAsync
    (
       this : in out UserCertificateStore;
-      certificate_p : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate_p : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Boolean;
 

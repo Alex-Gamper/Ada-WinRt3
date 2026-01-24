@@ -337,14 +337,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerDisableScannerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerDisableScannerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -357,7 +357,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerDisableScannerRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -366,7 +366,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerDisableScannerRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -378,14 +378,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerDisableScannerRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerDisableScannerRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerDisableScannerRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -397,14 +397,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerEnableScannerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerEnableScannerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -417,7 +417,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerEnableScannerRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -426,7 +426,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerEnableScannerRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -438,14 +438,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerEnableScannerRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerEnableScannerRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerEnableScannerRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -464,7 +464,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function StopAsync
       (
          this : access IBarcodeScannerFrameReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -478,7 +478,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Connection
       (
          this : access IBarcodeScannerFrameReader_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -486,14 +486,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IBarcodeScannerFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -505,7 +505,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function GetDeferral
       (
          this : access IBarcodeScannerFrameReaderFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -524,15 +524,15 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerGetSymbologyAttributesRequest_Interface;
-         attributes : Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
-         RetVal : access Windows.Foundation.IAsyncAction
+         attributes : WinRt.Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerGetSymbologyAttributesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -545,7 +545,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerGetSymbologyAttributesRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -554,7 +554,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerGetSymbologyAttributesRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -566,14 +566,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerGetSymbologyAttributesRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerGetSymbologyAttributesRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -585,14 +585,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerHideVideoPreviewRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerHideVideoPreviewRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -605,7 +605,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerHideVideoPreviewRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -614,7 +614,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerHideVideoPreviewRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -626,14 +626,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerHideVideoPreviewRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerHideVideoPreviewRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -714,34 +714,34 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportScannedDataAsync
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         report : Windows.Devices.PointOfService.IBarcodeScannerReport;
-         RetVal : access Windows.Foundation.IAsyncAction
+         report : WinRt.Windows.Devices.PointOfService.IBarcodeScannerReport;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportTriggerStateAsync
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         state : Windows.Devices.PointOfService.Provider.BarcodeScannerTriggerState;
-         RetVal : access Windows.Foundation.IAsyncAction
+         state : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerTriggerState;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportErrorAsync
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         errorData : Windows.Devices.PointOfService.IUnifiedPosErrorData;
-         RetVal : access Windows.Foundation.IAsyncAction
+         errorData : WinRt.Windows.Devices.PointOfService.IUnifiedPosErrorData;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportErrorAsync
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         errorData : Windows.Devices.PointOfService.IUnifiedPosErrorData;
+         errorData : WinRt.Windows.Devices.PointOfService.IUnifiedPosErrorData;
          isRetriable : WinRt.Boolean;
-         scanReport : Windows.Devices.PointOfService.IBarcodeScannerReport;
-         RetVal : access Windows.Foundation.IAsyncAction
+         scanReport : WinRt.Windows.Devices.PointOfService.IBarcodeScannerReport;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -749,14 +749,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnableScannerRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -764,14 +764,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisableScannerRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -779,14 +779,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SetActiveSymbologiesRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -794,14 +794,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StartSoftwareTriggerRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -809,14 +809,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StopSoftwareTriggerRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -824,14 +824,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GetBarcodeSymbologyAttributesRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -839,14 +839,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SetBarcodeSymbologyAttributesRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -854,14 +854,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HideVideoPreviewRequested
       (
          this : access IBarcodeScannerProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -880,7 +880,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function CreateFrameReaderAsync
       (
          this : access IBarcodeScannerProviderConnection2_Interface;
-         preferredFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
+         preferredFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -888,8 +888,8 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function CreateFrameReaderAsync
       (
          this : access IBarcodeScannerProviderConnection2_Interface;
-         preferredFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-         preferredSize : Windows.Graphics.Imaging.BitmapSize;
+         preferredFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         preferredSize : WinRt.Windows.Graphics.Imaging.BitmapSize;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -902,7 +902,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Connection
       (
          this : access IBarcodeScannerProviderTriggerDetails_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -921,14 +921,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerSetActiveSymbologiesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerSetActiveSymbologiesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -941,7 +941,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerSetActiveSymbologiesRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -950,7 +950,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerSetActiveSymbologiesRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -962,14 +962,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetActiveSymbologiesRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerSetActiveSymbologiesRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -988,21 +988,21 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Attributes
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequest_Interface;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeSymbologyAttributes
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologyAttributes
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1015,7 +1015,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1024,7 +1024,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerSetSymbologyAttributesRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,14 +1036,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerSetSymbologyAttributesRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerSetSymbologyAttributesRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1055,14 +1055,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerStartSoftwareTriggerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerStartSoftwareTriggerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1075,7 +1075,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerStartSoftwareTriggerRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1084,7 +1084,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerStartSoftwareTriggerRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1096,14 +1096,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStartSoftwareTriggerRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerStartSoftwareTriggerRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,14 +1115,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function ReportCompletedAsync
       (
          this : access IBarcodeScannerStopSoftwareTriggerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IBarcodeScannerStopSoftwareTriggerRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1135,7 +1135,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       (
          this : access IBarcodeScannerStopSoftwareTriggerRequest2_Interface;
          reason : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1144,7 +1144,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
          this : access IBarcodeScannerStopSoftwareTriggerRequest2_Interface;
          reason : WinRt.Int32;
          failedReasonDescription : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1156,14 +1156,14 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Request
       (
          this : access IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest
+         RetVal : access WinRt.Windows.Devices.PointOfService.Provider.IBarcodeScannerStopSoftwareTriggerRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IBarcodeScannerStopSoftwareTriggerRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,7 +1175,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_Format
       (
          this : access IBarcodeScannerVideoFrame_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1196,7 +1196,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function get_PixelData
       (
          this : access IBarcodeScannerVideoFrame_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1250,7 +1250,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
       function CreateAttributes
       (
          this : access IBarcodeSymbologyAttributesBuilder_Interface;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeSymbologyAttributes
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeSymbologyAttributes
       )
       return WinRt.Hresult is abstract;
 
@@ -1408,7 +1408,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_FrameArrived
    (
       this : in out BarcodeScannerFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -1449,7 +1449,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure ReportCompletedAsync
    (
       this : in out BarcodeScannerGetSymbologyAttributesRequest;
-      attributes : Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class
+      attributes : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class
    );
 
    procedure ReportFailedAsync
@@ -1615,27 +1615,27 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure ReportScannedDataAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      report : Windows.Devices.PointOfService.BarcodeScannerReport'Class
+      report : WinRt.Windows.Devices.PointOfService.BarcodeScannerReport'Class
    );
 
    procedure ReportTriggerStateAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      state : Windows.Devices.PointOfService.Provider.BarcodeScannerTriggerState
+      state : WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerTriggerState
    );
 
    procedure ReportErrorAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      errorData : Windows.Devices.PointOfService.UnifiedPosErrorData'Class
+      errorData : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData'Class
    );
 
    procedure ReportErrorAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      errorData : Windows.Devices.PointOfService.UnifiedPosErrorData'Class;
+      errorData : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorData'Class;
       isRetriable : WinRt.Boolean;
-      scanReport : Windows.Devices.PointOfService.BarcodeScannerReport'Class
+      scanReport : WinRt.Windows.Devices.PointOfService.BarcodeScannerReport'Class
    );
 
    function add_EnableScannerRequested
@@ -1648,7 +1648,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_EnableScannerRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DisableScannerRequested
@@ -1661,7 +1661,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_DisableScannerRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SetActiveSymbologiesRequested
@@ -1674,7 +1674,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_SetActiveSymbologiesRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StartSoftwareTriggerRequested
@@ -1687,7 +1687,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_StartSoftwareTriggerRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StopSoftwareTriggerRequested
@@ -1700,7 +1700,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_StopSoftwareTriggerRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GetBarcodeSymbologyAttributesRequested
@@ -1713,7 +1713,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_GetBarcodeSymbologyAttributesRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SetBarcodeSymbologyAttributesRequested
@@ -1726,7 +1726,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_SetBarcodeSymbologyAttributesRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HideVideoPreviewRequested
@@ -1739,7 +1739,7 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    procedure remove_HideVideoPreviewRequested
    (
       this : in out BarcodeScannerProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateFrameReaderAsync
@@ -1751,15 +1751,15 @@ package WinRt.Windows.Devices.PointOfService.Provider is
    function CreateFrameReaderAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      preferredFormat : Windows.Graphics.Imaging.BitmapPixelFormat
+      preferredFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader'Class;
 
    function CreateFrameReaderAsync
    (
       this : in out BarcodeScannerProviderConnection;
-      preferredFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      preferredSize : Windows.Graphics.Imaging.BitmapSize
+      preferredFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      preferredSize : WinRt.Windows.Graphics.Imaging.BitmapSize
    )
    return WinRt.Windows.Devices.PointOfService.Provider.BarcodeScannerFrameReader'Class;
 

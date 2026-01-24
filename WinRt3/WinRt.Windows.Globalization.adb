@@ -91,7 +91,7 @@ package body WinRt.Windows.Globalization is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.ApplicationLanguages");
          m_Factory        : access WinRt.Windows.Globalization.IApplicationLanguagesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationLanguagesStatics'Access , m_Factory'Address);
@@ -115,7 +115,7 @@ package body WinRt.Windows.Globalization is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.ApplicationLanguages");
          m_Factory        : access WinRt.Windows.Globalization.IApplicationLanguagesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationLanguagesStatics'Access , m_Factory'Address);
@@ -134,7 +134,7 @@ package body WinRt.Windows.Globalization is
 
       function GetLanguagesForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return IVectorView_HString.Kind is
          Hr               : WinRt.HResult := S_OK;
@@ -142,7 +142,7 @@ package body WinRt.Windows.Globalization is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.ApplicationLanguages");
          m_Factory        : access WinRt.Windows.Globalization.IApplicationLanguagesStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationLanguagesStatics2'Access , m_Factory'Address);
@@ -191,16 +191,16 @@ package body WinRt.Windows.Globalization is
    return Calendar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ICalendar");
       m_Factory    : access ICalendarFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ICalendar;
    begin
       return RetVal : Calendar do
          Hr := RoGetActivationFactory (m_hString, IID_ICalendarFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCalendarDefaultCalendarAndClock (languages, m_ComRetVal'Access);
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar := new WinRt.Windows.Globalization.ICalendar;
             Retval.m_ICalendar.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -217,10 +217,10 @@ package body WinRt.Windows.Globalization is
    return Calendar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ICalendar");
       m_Factory    : access ICalendarFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ICalendar;
       HStr_calendar_p : constant WinRt.HString := To_HString (calendar_p);
       HStr_clock : constant WinRt.HString := To_HString (clock);
    begin
@@ -228,7 +228,7 @@ package body WinRt.Windows.Globalization is
          Hr := RoGetActivationFactory (m_hString, IID_ICalendarFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCalendar (languages, HStr_calendar_p, HStr_clock, m_ComRetVal'Access);
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar := new WinRt.Windows.Globalization.ICalendar;
             Retval.m_ICalendar.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -248,10 +248,10 @@ package body WinRt.Windows.Globalization is
    return Calendar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ICalendar");
       m_Factory    : access ICalendarFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ICalendar;
       HStr_calendar_p : constant WinRt.HString := To_HString (calendar_p);
       HStr_clock : constant WinRt.HString := To_HString (clock);
       HStr_timeZoneId : constant WinRt.HString := To_HString (timeZoneId);
@@ -260,7 +260,7 @@ package body WinRt.Windows.Globalization is
          Hr := RoGetActivationFactory (m_hString, IID_ICalendarFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCalendarWithTimeZone (languages, HStr_calendar_p, HStr_clock, HStr_timeZoneId, m_ComRetVal'Access);
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar := new WinRt.Windows.Globalization.ICalendar;
             Retval.m_ICalendar.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -274,13 +274,13 @@ package body WinRt.Windows.Globalization is
    function Constructor return Calendar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Calendar");
-      m_ComRetVal  : aliased Windows.Globalization.ICalendar;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ICalendar");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ICalendar;
    begin
       return RetVal : Calendar do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+            Retval.m_ICalendar := new WinRt.Windows.Globalization.ICalendar;
             Retval.m_ICalendar.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -298,14 +298,14 @@ package body WinRt.Windows.Globalization is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ICalendar;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ICalendar;
    begin
       return RetVal : WinRt.Windows.Globalization.Calendar do
          Hr := this.m_ICalendar.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICalendar := new Windows.Globalization.ICalendar;
+         Retval.m_ICalendar := new WinRt.Windows.Globalization.ICalendar;
          Retval.m_ICalendar.all := m_ComRetVal;
       end return;
    end;
@@ -346,7 +346,7 @@ package body WinRt.Windows.Globalization is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ICalendar.all.get_Languages (m_ComRetVal'Access);
@@ -477,7 +477,7 @@ package body WinRt.Windows.Globalization is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICalendar.all.GetDateTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -489,7 +489,7 @@ package body WinRt.Windows.Globalization is
    procedure SetDateTime
    (
       this : in out Calendar;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1197,7 +1197,7 @@ package body WinRt.Windows.Globalization is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.DayOfWeek;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.DayOfWeek;
    begin
       Hr := this.m_ICalendar.all.get_DayOfWeek (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1833,7 +1833,7 @@ package body WinRt.Windows.Globalization is
    function Compare
    (
       this : in out Calendar;
-      other : Windows.Globalization.Calendar'Class
+      other : WinRt.Windows.Globalization.Calendar'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1851,7 +1851,7 @@ package body WinRt.Windows.Globalization is
    function CompareDateTime
    (
       this : in out Calendar;
-      other : Windows.Foundation.DateTime
+      other : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1869,7 +1869,7 @@ package body WinRt.Windows.Globalization is
    procedure CopyTo
    (
       this : in out Calendar;
-      other : Windows.Globalization.Calendar'Class
+      other : WinRt.Windows.Globalization.Calendar'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2565,10 +2565,10 @@ package body WinRt.Windows.Globalization is
    return CurrencyAmount is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.CurrencyAmount");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ICurrencyAmount");
       m_Factory    : access ICurrencyAmountFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ICurrencyAmount;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ICurrencyAmount;
       HStr_amount : constant WinRt.HString := To_HString (amount);
       HStr_currency : constant WinRt.HString := To_HString (currency);
    begin
@@ -2576,7 +2576,7 @@ package body WinRt.Windows.Globalization is
          Hr := RoGetActivationFactory (m_hString, IID_ICurrencyAmountFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_amount, HStr_currency, m_ComRetVal'Access);
-            Retval.m_ICurrencyAmount := new Windows.Globalization.ICurrencyAmount;
+            Retval.m_ICurrencyAmount := new WinRt.Windows.Globalization.ICurrencyAmount;
             Retval.m_ICurrencyAmount.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6549,13 +6549,13 @@ package body WinRt.Windows.Globalization is
    function Constructor return GeographicRegion is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.GeographicRegion");
-      m_ComRetVal  : aliased Windows.Globalization.IGeographicRegion;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.IGeographicRegion");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.IGeographicRegion;
    begin
       return RetVal : GeographicRegion do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGeographicRegion := new Windows.Globalization.IGeographicRegion;
+            Retval.m_IGeographicRegion := new WinRt.Windows.Globalization.IGeographicRegion;
             Retval.m_IGeographicRegion.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6569,17 +6569,17 @@ package body WinRt.Windows.Globalization is
    return GeographicRegion is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.GeographicRegion");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.IGeographicRegion");
       m_Factory    : access IGeographicRegionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.IGeographicRegion;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.IGeographicRegion;
       HStr_geographicRegionCode : constant WinRt.HString := To_HString (geographicRegionCode);
    begin
       return RetVal : GeographicRegion do
          Hr := RoGetActivationFactory (m_hString, IID_IGeographicRegionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateGeographicRegion (HStr_geographicRegionCode, m_ComRetVal'Access);
-            Retval.m_IGeographicRegion := new Windows.Globalization.IGeographicRegion;
+            Retval.m_IGeographicRegion := new WinRt.Windows.Globalization.IGeographicRegion;
             Retval.m_IGeographicRegion.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6748,7 +6748,7 @@ package body WinRt.Windows.Globalization is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGeographicRegion.all.get_CurrenciesInUse (m_ComRetVal'Access);
@@ -6854,7 +6854,7 @@ package body WinRt.Windows.Globalization is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.JapanesePhoneticAnalyzer");
          m_Factory        : access WinRt.Windows.Globalization.IJapanesePhoneticAnalyzerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          HStr_input : constant WinRt.HString := To_HString (input);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IJapanesePhoneticAnalyzerStatics'Access , m_Factory'Address);
@@ -6881,7 +6881,7 @@ package body WinRt.Windows.Globalization is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.JapanesePhoneticAnalyzer");
          m_Factory        : access WinRt.Windows.Globalization.IJapanesePhoneticAnalyzerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          HStr_input : constant WinRt.HString := To_HString (input);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IJapanesePhoneticAnalyzerStatics'Access , m_Factory'Address);
@@ -6929,17 +6929,17 @@ package body WinRt.Windows.Globalization is
    return Language is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Language");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.ILanguage");
       m_Factory    : access ILanguageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.ILanguage;
       HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : Language do
          Hr := RoGetActivationFactory (m_hString, IID_ILanguageFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateLanguage (HStr_languageTag, m_ComRetVal'Access);
-            Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+            Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
             Retval.m_ILanguage.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7011,7 +7011,7 @@ package body WinRt.Windows.Globalization is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.Language");
       m_Factory        : access WinRt.Windows.Globalization.ILanguageStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILanguageStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -7144,7 +7144,7 @@ package body WinRt.Windows.Globalization is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.ILanguageExtensionSubtags := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       HStr_singleton : constant WinRt.HString := To_HString (singleton);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.ILanguage_Interface, WinRt.Windows.Globalization.ILanguageExtensionSubtags, WinRt.Windows.Globalization.IID_ILanguageExtensionSubtags'Unchecked_Access);
@@ -7170,7 +7170,7 @@ package body WinRt.Windows.Globalization is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.ILanguage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.LanguageLayoutDirection;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.LanguageLayoutDirection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.ILanguage_Interface, WinRt.Windows.Globalization.ILanguage2, WinRt.Windows.Globalization.IID_ILanguage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILanguage.all);

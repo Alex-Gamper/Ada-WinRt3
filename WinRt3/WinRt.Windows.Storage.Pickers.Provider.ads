@@ -192,8 +192,8 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileOpenPickerUI_Interface;
          id : WinRt.HString;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Storage.Pickers.Provider.AddFileResult
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.AddFileResult
       )
       return WinRt.Hresult is abstract;
 
@@ -215,7 +215,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function CanAddFile
       (
          this : access IFileOpenPickerUI_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -230,7 +230,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function get_SelectionMode
       (
          this : access IFileOpenPickerUI_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.FileSelectionMode
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.FileSelectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -259,14 +259,14 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileOpenPickerUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FileRemoved
       (
          this : access IFileOpenPickerUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -274,14 +274,14 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileOpenPickerUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closing
       (
          this : access IFileOpenPickerUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -341,7 +341,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileSavePickerUI_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Storage.Pickers.Provider.SetFileNameResult
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.SetFileNameResult
       )
       return WinRt.Hresult is abstract;
 
@@ -349,14 +349,14 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileSavePickerUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FileNameChanged
       (
          this : access IFileSavePickerUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -364,14 +364,14 @@ package WinRt.Windows.Storage.Pickers.Provider is
       (
          this : access IFileSavePickerUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TargetFileRequested
       (
          this : access IFileSavePickerUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function get_ClosingOperation
       (
          this : access IPickerClosingEventArgs_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.IPickerClosingOperation
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.IPickerClosingOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -413,14 +413,14 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function GetDeferral
       (
          this : access IPickerClosingOperation_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.IPickerClosingDeferral
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.IPickerClosingDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access IPickerClosingOperation_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -432,21 +432,21 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function get_TargetFile
       (
          this : access ITargetFileRequest_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetFile
       (
          this : access ITargetFileRequest_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access ITargetFileRequest_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -469,7 +469,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
       function get_Request
       (
          this : access ITargetFileRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.ITargetFileRequest
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -492,7 +492,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    (
       this : in out FileOpenPickerUI;
       id : WinRt.WString;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Storage.Pickers.Provider.AddFileResult;
 
@@ -512,7 +512,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    function CanAddFile
    (
       this : in out FileOpenPickerUI;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Boolean;
 
@@ -556,7 +556,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_FileRemoved
    (
       this : in out FileOpenPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closing
@@ -569,7 +569,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_Closing
    (
       this : in out FileOpenPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -643,7 +643,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_FileNameChanged
    (
       this : in out FileSavePickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TargetFileRequested
@@ -656,7 +656,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_TargetFileRequested
    (
       this : in out FileSavePickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -733,7 +733,7 @@ package WinRt.Windows.Storage.Pickers.Provider is
    procedure put_TargetFile
    (
       this : in out TargetFileRequest;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    );
 
    function GetDeferral

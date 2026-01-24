@@ -62,17 +62,17 @@ package body WinRt.Windows.System.Implementation.FileExplorer is
    return SysStorageProviderEventReceivedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Implementation.FileExplorer.SysStorageProviderEventReceivedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs");
       m_Factory    : access ISysStorageProviderEventReceivedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs;
       HStr_json : constant WinRt.HString := To_HString (json);
    begin
       return RetVal : SysStorageProviderEventReceivedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_ISysStorageProviderEventReceivedEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_json, m_ComRetVal'Access);
-            Retval.m_ISysStorageProviderEventReceivedEventArgs := new Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs;
+            Retval.m_ISysStorageProviderEventReceivedEventArgs := new WinRt.Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs;
             Retval.m_ISysStorageProviderEventReceivedEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;

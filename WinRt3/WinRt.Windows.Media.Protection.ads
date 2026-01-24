@@ -289,31 +289,31 @@ package WinRt.Windows.Media.Protection is
    -----------------------------------------------------------------------------
 
    IID_ComponentLoadFailedEventHandler : aliased WinRt.IID := (2514117692, 28089, 16971, (134, 202, 9, 26, 244, 50, 8, 28 ));
-   type ComponentLoadFailedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Protection.IMediaProtectionManager;e : Windows.Media.Protection.IComponentLoadFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ComponentLoadFailedEventHandler'Access) with null record;
+   type ComponentLoadFailedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;e : WinRt.Windows.Media.Protection.IComponentLoadFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ComponentLoadFailedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ComponentLoadFailedEventHandler_Delegate;
-         sender : Windows.Media.Protection.IMediaProtectionManager;
-         e : Windows.Media.Protection.IComponentLoadFailedEventArgs
+         sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;
+         e : WinRt.Windows.Media.Protection.IComponentLoadFailedEventArgs
       )
       return WinRt.Hresult;
 
    IID_RebootNeededEventHandler : aliased WinRt.IID := (1692478021, 38715, 19002, (178, 96, 145, 137, 138, 73, 168, 44 ));
-   type RebootNeededEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Protection.IMediaProtectionManager)) is new WinRt.IMulticastDelegate_Interface (IID_RebootNeededEventHandler'Access) with null record;
+   type RebootNeededEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Protection.IMediaProtectionManager)) is new WinRt.IMulticastDelegate_Interface (IID_RebootNeededEventHandler'Access) with null record;
       function Invoke
       (
          this : access RebootNeededEventHandler_Delegate;
-         sender : Windows.Media.Protection.IMediaProtectionManager
+         sender : WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult;
 
    IID_ServiceRequestedEventHandler : aliased WinRt.IID := (3537277114, 51913, 18657, (149, 192, 211, 132, 149, 168, 64, 85 ));
-   type ServiceRequestedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Protection.IMediaProtectionManager;e : Windows.Media.Protection.IServiceRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ServiceRequestedEventHandler'Access) with null record;
+   type ServiceRequestedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;e : WinRt.Windows.Media.Protection.IServiceRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ServiceRequestedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ServiceRequestedEventHandler_Delegate;
-         sender : Windows.Media.Protection.IMediaProtectionManager;
-         e : Windows.Media.Protection.IServiceRequestedEventArgs
+         sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;
+         e : WinRt.Windows.Media.Protection.IServiceRequestedEventArgs
       )
       return WinRt.Hresult;
 
@@ -339,14 +339,14 @@ package WinRt.Windows.Media.Protection is
       function get_Information
       (
          this : access IComponentLoadFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.IRevocationAndRenewalInformation
+         RetVal : access WinRt.Windows.Media.Protection.IRevocationAndRenewalInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_Completion
       (
          this : access IComponentLoadFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.IMediaProtectionServiceCompletion
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion
       )
       return WinRt.Hresult is abstract;
 
@@ -358,7 +358,7 @@ package WinRt.Windows.Media.Protection is
       function RenewSystemComponentsAsync
       (
          this : access IComponentRenewalStatics_Interface;
-         information : Windows.Media.Protection.IRevocationAndRenewalInformation;
+         information : WinRt.Windows.Media.Protection.IRevocationAndRenewalInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -371,7 +371,7 @@ package WinRt.Windows.Media.Protection is
       function IsEffectiveProtectionAtLeast
       (
          this : access IHdcpSession_Interface;
-         protection : Windows.Media.Protection.HdcpProtection;
+         protection : WinRt.Windows.Media.Protection.HdcpProtection;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -386,7 +386,7 @@ package WinRt.Windows.Media.Protection is
       function SetDesiredMinProtectionAsync
       (
          this : access IHdcpSession_Interface;
-         protection : Windows.Media.Protection.HdcpProtection;
+         protection : WinRt.Windows.Media.Protection.HdcpProtection;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -395,14 +395,14 @@ package WinRt.Windows.Media.Protection is
       (
          this : access IHdcpSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProtectionChanged
       (
          this : access IHdcpSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -414,52 +414,52 @@ package WinRt.Windows.Media.Protection is
       function add_ServiceRequested
       (
          this : access IMediaProtectionManager_Interface;
-         handler : Windows.Media.Protection.ServiceRequestedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Protection.ServiceRequestedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServiceRequested
       (
          this : access IMediaProtectionManager_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_RebootNeeded
       (
          this : access IMediaProtectionManager_Interface;
-         handler : Windows.Media.Protection.RebootNeededEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Protection.RebootNeededEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RebootNeeded
       (
          this : access IMediaProtectionManager_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_ComponentLoadFailed
       (
          this : access IMediaProtectionManager_Interface;
-         handler : Windows.Media.Protection.ComponentLoadFailedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Protection.ComponentLoadFailedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ComponentLoadFailed
       (
          this : access IMediaProtectionManager_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access IMediaProtectionManager_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -471,7 +471,7 @@ package WinRt.Windows.Media.Protection is
       function get_Properties
       (
          this : access IMediaProtectionPMPServer_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -483,8 +483,8 @@ package WinRt.Windows.Media.Protection is
       function CreatePMPServer
       (
          this : access IMediaProtectionPMPServerFactory_Interface;
-         pProperties : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Media.Protection.IMediaProtectionPMPServer
+         pProperties : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionPMPServer
       )
       return WinRt.Hresult is abstract;
 
@@ -529,7 +529,7 @@ package WinRt.Windows.Media.Protection is
          this : access IProtectionCapabilities_Interface;
          type_x : WinRt.HString;
          keySystem : WinRt.HString;
-         RetVal : access Windows.Media.Protection.ProtectionCapabilityResult
+         RetVal : access WinRt.Windows.Media.Protection.ProtectionCapabilityResult
       )
       return WinRt.Hresult is abstract;
 
@@ -553,7 +553,7 @@ package WinRt.Windows.Media.Protection is
       function get_Reasons
       (
          this : access IRevocationAndRenewalItem_Interface;
-         RetVal : access Windows.Media.Protection.RevocationAndRenewalReasons
+         RetVal : access WinRt.Windows.Media.Protection.RevocationAndRenewalReasons
       )
       return WinRt.Hresult is abstract;
 
@@ -593,14 +593,14 @@ package WinRt.Windows.Media.Protection is
       function get_Request
       (
          this : access IServiceRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.IMediaProtectionServiceRequest
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest
       )
       return WinRt.Hresult is abstract;
 
       function get_Completion
       (
          this : access IServiceRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.IMediaProtectionServiceCompletion
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion
       )
       return WinRt.Hresult is abstract;
 
@@ -612,7 +612,7 @@ package WinRt.Windows.Media.Protection is
       function get_MediaPlaybackItem
       (
          this : access IServiceRequestedEventArgs2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -649,7 +649,7 @@ package WinRt.Windows.Media.Protection is
 
       function RenewSystemComponentsAsync
       (
-         information : Windows.Media.Protection.RevocationAndRenewalInformation'Class
+         information : WinRt.Windows.Media.Protection.RevocationAndRenewalInformation'Class
       )
       return WinRt.Windows.Media.Protection.RenewalStatus;
 
@@ -672,7 +672,7 @@ package WinRt.Windows.Media.Protection is
    function IsEffectiveProtectionAtLeast
    (
       this : in out HdcpSession;
-      protection : Windows.Media.Protection.HdcpProtection
+      protection : WinRt.Windows.Media.Protection.HdcpProtection
    )
    return WinRt.Boolean;
 
@@ -685,7 +685,7 @@ package WinRt.Windows.Media.Protection is
    function SetDesiredMinProtectionAsync
    (
       this : in out HdcpSession;
-      protection : Windows.Media.Protection.HdcpProtection
+      protection : WinRt.Windows.Media.Protection.HdcpProtection
    )
    return WinRt.Windows.Media.Protection.HdcpSetProtectionResult;
 
@@ -699,7 +699,7 @@ package WinRt.Windows.Media.Protection is
    procedure remove_ProtectionChanged
    (
       this : in out HdcpSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -724,40 +724,40 @@ package WinRt.Windows.Media.Protection is
    function add_ServiceRequested
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.ServiceRequestedEventHandler
+      handler : WinRt.Windows.Media.Protection.ServiceRequestedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ServiceRequested
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RebootNeeded
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.RebootNeededEventHandler
+      handler : WinRt.Windows.Media.Protection.RebootNeededEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_RebootNeeded
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ComponentLoadFailed
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.ComponentLoadFailedEventHandler
+      handler : WinRt.Windows.Media.Protection.ComponentLoadFailedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ComponentLoadFailed
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Properties
@@ -777,7 +777,7 @@ package WinRt.Windows.Media.Protection is
 
    function Constructor
    (
-      pProperties : Windows.Foundation.Collections.IPropertySet
+      pProperties : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return MediaProtectionPMPServer;
 

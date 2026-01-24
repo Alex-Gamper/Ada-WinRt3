@@ -129,14 +129,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ICardAddedEventArgs.all.get_SmartCard (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
+         Retval.m_ISmartCard := new WinRt.Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
    end;
@@ -172,14 +172,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ICardRemovedEventArgs.all.get_SmartCard (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
+         Retval.m_ISmartCard := new WinRt.Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
    end;
@@ -195,7 +195,7 @@ package body WinRt.Windows.Devices.SmartCards is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
          m_Factory        : access WinRt.Windows.Devices.SmartCards.IKnownSmartCardAppletIds_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSmartCardAppletIds'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -216,7 +216,7 @@ package body WinRt.Windows.Devices.SmartCards is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.KnownSmartCardAppletIds");
          m_Factory        : access WinRt.Windows.Devices.SmartCards.IKnownSmartCardAppletIds_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSmartCardAppletIds'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -263,14 +263,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardReader;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardReader;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardReader do
          Hr := this.m_ISmartCard.all.get_Reader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardReader := new Windows.Devices.SmartCards.ISmartCardReader;
+         Retval.m_ISmartCardReader := new WinRt.Windows.Devices.SmartCards.ISmartCardReader;
          Retval.m_ISmartCardReader.all := m_ComRetVal;
       end return;
    end;
@@ -458,7 +458,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardConnection := new Windows.Devices.SmartCards.ISmartCardConnection;
+                  Retval.m_ISmartCardConnection := new WinRt.Windows.Devices.SmartCards.ISmartCardConnection;
                   Retval.m_ISmartCardConnection.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -497,13 +497,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardAppletIdGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAppletIdGroup");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
    begin
       return RetVal : SmartCardAppletIdGroup do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+            Retval.m_ISmartCardAppletIdGroup := new WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
             Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -514,23 +514,23 @@ package body WinRt.Windows.Devices.SmartCards is
    (
       displayName : WinRt.WString;
       appletIds : GenericObject;
-      emulationCategory : Windows.Devices.SmartCards.SmartCardEmulationCategory;
-      emulationType : Windows.Devices.SmartCards.SmartCardEmulationType
+      emulationCategory : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory;
+      emulationType : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
    )
    return SmartCardAppletIdGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAppletIdGroup");
       m_Factory    : access ISmartCardAppletIdGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : SmartCardAppletIdGroup do
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardAppletIdGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_displayName, appletIds, emulationCategory, emulationType, m_ComRetVal'Access);
-            Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+            Retval.m_ISmartCardAppletIdGroup := new WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
             Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -611,7 +611,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_AppletIds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -628,7 +628,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulationCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_SmartCardEmulationCategory (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -640,7 +640,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_SmartCardEmulationCategory
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Devices.SmartCards.SmartCardEmulationCategory
+      value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -660,7 +660,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulationType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardEmulationType;
    begin
       Hr := this.m_ISmartCardAppletIdGroup.all.get_SmartCardEmulationType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -672,7 +672,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_SmartCardEmulationType
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Devices.SmartCards.SmartCardEmulationType
+      value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -725,7 +725,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardAppletIdGroup.all);
@@ -740,7 +740,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_Logo
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -810,7 +810,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAppletIdGroup2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -820,7 +820,7 @@ package body WinRt.Windows.Devices.SmartCards is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -896,7 +896,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy;
    begin
       Hr := this.m_ISmartCardAppletIdGroupRegistration.all.get_ActivationPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -913,14 +913,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroup do
          Hr := this.m_ISmartCardAppletIdGroupRegistration.all.get_AppletIdGroup (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardAppletIdGroup := new Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+         Retval.m_ISmartCardAppletIdGroup := new WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
          Retval.m_ISmartCardAppletIdGroup.all := m_ComRetVal;
       end return;
    end;
@@ -928,7 +928,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestActivationPolicyChangeAsync
    (
       this : in out SmartCardAppletIdGroupRegistration;
-      policy : Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
+      policy : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult is
       Hr               : WinRt.HResult := S_OK;
@@ -1076,7 +1076,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure SetPropertiesAsync
    (
       this : in out SmartCardAppletIdGroupRegistration;
-      props : Windows.Foundation.Collections.ValueSet'Class
+      props : WinRt.Windows.Foundation.Collections.ValueSet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1145,22 +1145,22 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function Constructor
    (
-      commandApdu : Windows.Storage.Streams.IBuffer;
-      responseApdu : Windows.Storage.Streams.IBuffer
+      commandApdu : WinRt.Windows.Storage.Streams.IBuffer;
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer
    )
    return SmartCardAutomaticResponseApdu is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu");
       m_Factory    : access ISmartCardAutomaticResponseApduFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
    begin
       return RetVal : SmartCardAutomaticResponseApdu do
          Hr := RoGetActivationFactory (m_hString, IID_ISmartCardAutomaticResponseApduFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (commandApdu, responseApdu, m_ComRetVal'Access);
-            Retval.m_ISmartCardAutomaticResponseApdu := new Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
+            Retval.m_ISmartCardAutomaticResponseApdu := new WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
             Retval.m_ISmartCardAutomaticResponseApdu.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1179,7 +1179,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_CommandApdu (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1191,7 +1191,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_CommandApdu
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1211,7 +1211,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_CommandApduBitMask (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1223,7 +1223,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_CommandApduBitMask
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1275,7 +1275,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_AppletId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1287,7 +1287,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_AppletId
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1307,7 +1307,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardAutomaticResponseApdu.all.get_ResponseApdu (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1319,7 +1319,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_ResponseApdu
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1340,7 +1340,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
@@ -1383,7 +1383,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardAutomaticResponseApdu2'Unchecked_Access);
    begin
@@ -1488,7 +1488,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardChallengeContext.all.get_Challenge (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1500,7 +1500,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function VerifyResponseAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1564,7 +1564,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure ProvisionAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
+      response : WinRt.Windows.Storage.Streams.IBuffer;
       formatCard : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1608,7 +1608,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure ProvisionAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
+      response : WinRt.Windows.Storage.Streams.IBuffer;
       formatCard : WinRt.Boolean;
       newCardId : WinRt.Guid
    ) is
@@ -1653,8 +1653,8 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure ChangeAdministrativeKeyAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
-      newAdministrativeKey : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer;
+      newAdministrativeKey : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1738,7 +1738,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function TransmitAsync
    (
       this : in out SmartCardConnection;
-      command : Windows.Storage.Streams.IBuffer
+      command : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -1895,7 +1895,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardCryptogramGenerator := new Windows.Devices.SmartCards.ISmartCardCryptogramGenerator;
+                     Retval.m_ISmartCardCryptogramGenerator := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGenerator;
                      Retval.m_ISmartCardCryptogramGenerator.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1942,7 +1942,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialType.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialTypes (m_ComRetVal'Access);
@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramAlgorithms (m_ComRetVal'Access);
@@ -1982,7 +1982,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialPackageFormats (m_ComRetVal'Access);
@@ -2002,7 +2002,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedCryptogramMaterialPackageConfirmationResponseFormats (m_ComRetVal'Access);
@@ -2022,7 +2022,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramStorageKeyCapabilities.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGenerator.all.get_SupportedSmartCardCryptogramStorageKeyCapabilities (m_ComRetVal'Access);
@@ -2103,10 +2103,10 @@ package body WinRt.Windows.Devices.SmartCards is
    function CreateCryptogramMaterialStorageKeyAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       storageKeyName : WinRt.WString;
-      algorithm : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
-      capabilities : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
+      algorithm : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
+      capabilities : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -2172,9 +2172,9 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestCryptogramMaterialStorageKeyInfoAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       storageKeyName : WinRt.WString;
-      format : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      format : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2226,7 +2226,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramStorageKeyInfo := new Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo;
+                  Retval.m_ISmartCardCryptogramStorageKeyInfo := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyInfo;
                   Retval.m_ISmartCardCryptogramStorageKeyInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2243,10 +2243,10 @@ package body WinRt.Windows.Devices.SmartCards is
    function ImportCryptogramMaterialPackageAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      format : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
+      format : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
       storageKeyName : WinRt.WString;
       materialPackageName : WinRt.WString;
-      cryptogramMaterialPackage : Windows.Storage.Streams.IBuffer
+      cryptogramMaterialPackage : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -2314,11 +2314,11 @@ package body WinRt.Windows.Devices.SmartCards is
    function TryProvePossessionOfCryptogramMaterialPackageAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-      responseFormat : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      responseFormat : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
       materialPackageName : WinRt.WString;
       materialName : WinRt.WString;
-      challenge : Windows.Storage.Streams.IBuffer
+      challenge : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2371,7 +2371,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramMaterialPossessionProof := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPossessionProof;
+                  Retval.m_ISmartCardCryptogramMaterialPossessionProof := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPossessionProof;
                   Retval.m_ISmartCardCryptogramMaterialPossessionProof.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2389,7 +2389,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestUnlockCryptogramMaterialForUseAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -2519,8 +2519,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function ValidateRequestApduAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-      apduToValidate : Windows.Storage.Streams.IBuffer;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      apduToValidate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
@@ -2643,7 +2643,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
+                  Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2713,7 +2713,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
+                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2785,7 +2785,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
+                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2802,7 +2802,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function GetAllCryptogramMaterialCharacteristicsAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       materialPackageName : WinRt.WString
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult'Class is
@@ -2859,7 +2859,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
+                  Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
                   Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2899,13 +2899,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
+            Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2923,7 +2923,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2940,7 +2940,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramMaterialCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
@@ -2978,13 +2978,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
+            Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3002,7 +3002,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3019,7 +3019,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramMaterialPackageCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
@@ -3057,13 +3057,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
+            Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
             Retval.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3081,7 +3081,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.get_OperationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3098,7 +3098,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmartCardCryptogramStorageKeyCharacteristics.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
@@ -3136,13 +3136,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramMaterialCharacteristics is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialCharacteristics do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramMaterialCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
+            Retval.m_ISmartCardCryptogramMaterialCharacteristics := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
             Retval.m_ISmartCardCryptogramMaterialCharacteristics.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3180,7 +3180,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedAlgorithms (m_ComRetVal'Access);
@@ -3200,7 +3200,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramMaterialPackageConfirmationResponseFormat.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedProofOfPossessionAlgorithms (m_ComRetVal'Access);
@@ -3220,7 +3220,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_SmartCardCryptogramAlgorithm.Kind;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_AllowedValidations (m_ComRetVal'Access);
@@ -3240,7 +3240,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialType;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_MaterialType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3257,7 +3257,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialCharacteristics.all.get_ProtectionMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3326,13 +3326,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramMaterialPackageCharacteristics is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialPackageCharacteristics do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramMaterialPackageCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
+            Retval.m_ISmartCardCryptogramMaterialPackageCharacteristics := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
             Retval.m_ISmartCardCryptogramMaterialPackageCharacteristics.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3390,7 +3390,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_DateImported (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3407,7 +3407,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.get_PackageFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3447,7 +3447,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPossessionProof.all.get_OperationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3464,7 +3464,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramMaterialPossessionProof.all.get_Proof (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3499,13 +3499,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramPlacementStep is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
    begin
       return RetVal : SmartCardCryptogramPlacementStep do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramPlacementStep := new Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
+            Retval.m_ISmartCardCryptogramPlacementStep := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
             Retval.m_ISmartCardCryptogramPlacementStep.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3523,7 +3523,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_Algorithm (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3535,7 +3535,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_Algorithm
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3555,7 +3555,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_SourceData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3567,7 +3567,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_SourceData
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3757,7 +3757,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions;
    begin
       Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_CryptogramPlacementOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3769,7 +3769,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_CryptogramPlacementOptions
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3789,14 +3789,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep do
          Hr := this.m_ISmartCardCryptogramPlacementStep.all.get_ChainedOutputStep (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardCryptogramPlacementStep := new Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
+         Retval.m_ISmartCardCryptogramPlacementStep := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
          Retval.m_ISmartCardCryptogramPlacementStep.all := m_ComRetVal;
       end return;
    end;
@@ -3804,7 +3804,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_ChainedOutputStep
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3842,13 +3842,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramStorageKeyCharacteristics is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
    begin
       return RetVal : SmartCardCryptogramStorageKeyCharacteristics do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardCryptogramStorageKeyCharacteristics := new Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
+            Retval.m_ISmartCardCryptogramStorageKeyCharacteristics := new WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
             Retval.m_ISmartCardCryptogramStorageKeyCharacteristics.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3886,7 +3886,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_DateCreated (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3903,7 +3903,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_Algorithm (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3920,7 +3920,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.get_Capabilities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3960,7 +3960,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_OperationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3977,7 +3977,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_PublicKeyBlobType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3994,7 +3994,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_PublicKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4011,7 +4011,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_AttestationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4028,7 +4028,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_Attestation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4045,7 +4045,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_AttestationCertificateChain (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4062,7 +4062,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
    begin
       Hr := this.m_ISmartCardCryptogramStorageKeyInfo.all.get_Capabilities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4187,7 +4187,7 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function RegisterAppletIdGroupAsync
    (
-      appletIdGroup : Windows.Devices.SmartCards.SmartCardAppletIdGroup'Class
+      appletIdGroup : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroup'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration is
       Hr               : WinRt.HResult := S_OK;
@@ -4243,7 +4243,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardAppletIdGroupRegistration := new Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration;
+                     Retval.m_ISmartCardAppletIdGroupRegistration := new WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration;
                      Retval.m_ISmartCardAppletIdGroupRegistration.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4260,7 +4260,7 @@ package body WinRt.Windows.Devices.SmartCards is
 
    procedure UnregisterAppletIdGroupAsync
    (
-      registration : Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration'Class
+      registration : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4383,7 +4383,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
+                     Retval.m_ISmartCardEmulator := new WinRt.Windows.Devices.SmartCards.ISmartCardEmulator;
                      Retval.m_ISmartCardEmulator.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4430,7 +4430,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy;
    begin
       Hr := this.m_ISmartCardEmulator.all.get_EnablementPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4449,7 +4449,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
@@ -4464,7 +4464,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure remove_ApduReceived
    (
       this : in out SmartCardEmulator;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4490,7 +4490,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardEmulator_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardEmulator2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardEmulator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmartCardEmulator.all);
@@ -4505,7 +4505,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure remove_ConnectionDeactivated
    (
       this : in out SmartCardEmulator;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4591,7 +4591,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_CommandApdu (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4608,14 +4608,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties do
          Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_ConnectionProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardEmulatorConnectionProperties := new Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
+         Retval.m_ISmartCardEmulatorConnectionProperties := new WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
          Retval.m_ISmartCardEmulatorConnectionProperties.all := m_ComRetVal;
       end return;
    end;
@@ -4623,7 +4623,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function TryRespondAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseApdu : Windows.Storage.Streams.IBuffer
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4692,7 +4692,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus;
    begin
       Hr := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.get_AutomaticResponseStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4704,7 +4704,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function TryRespondWithCryptogramsAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseTemplate : Windows.Storage.Streams.IBuffer;
+      responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus is
@@ -4773,7 +4773,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function TryRespondWithCryptogramsAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseTemplate : Windows.Storage.Streams.IBuffer;
+      responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject;
       nextState : GenericObject
    )
@@ -4864,7 +4864,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function TryRespondAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseApdu : Windows.Storage.Streams.IBuffer;
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer;
       nextState : GenericObject
    )
    return WinRt.Boolean is
@@ -4961,14 +4961,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionProperties do
          Hr := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.get_ConnectionProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardEmulatorConnectionProperties := new Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
+         Retval.m_ISmartCardEmulatorConnectionProperties := new WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties;
          Retval.m_ISmartCardEmulatorConnectionProperties.all := m_ComRetVal;
       end return;
    end;
@@ -4981,7 +4981,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason;
    begin
       Hr := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5038,7 +5038,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource;
    begin
       Hr := this.m_ISmartCardEmulatorConnectionProperties.all.get_Source (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5073,13 +5073,13 @@ package body WinRt.Windows.Devices.SmartCards is
    function Constructor return SmartCardPinPolicy is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.SmartCardPinPolicy");
-      m_ComRetVal  : aliased Windows.Devices.SmartCards.ISmartCardPinPolicy;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardPinPolicy");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
    begin
       return RetVal : SmartCardPinPolicy do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmartCardPinPolicy := new Windows.Devices.SmartCards.ISmartCardPinPolicy;
+            Retval.m_ISmartCardPinPolicy := new WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
             Retval.m_ISmartCardPinPolicy.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5161,7 +5161,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_UppercaseLetters (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5173,7 +5173,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_UppercaseLetters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5193,7 +5193,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_LowercaseLetters (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5205,7 +5205,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_LowercaseLetters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5225,7 +5225,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_Digits (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5237,7 +5237,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_Digits
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5257,7 +5257,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption;
    begin
       Hr := this.m_ISmartCardPinPolicy.all.get_SpecialCharacters (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5269,7 +5269,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure put_SpecialCharacters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5324,8 +5324,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function Invoke
    (
       this : access SmartCardPinResetHandler_Delegate;
-      sender : Windows.Devices.SmartCards.ISmartCardProvisioning;
-      request : Windows.Devices.SmartCards.ISmartCardPinResetRequest
+      sender : WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
+      request : WinRt.Windows.Devices.SmartCards.ISmartCardPinResetRequest
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -5365,7 +5365,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardPinResetRequest.all.get_Challenge (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5382,7 +5382,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmartCardPinResetRequest.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5399,14 +5399,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardPinResetDeferral do
          Hr := this.m_ISmartCardPinResetRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardPinResetDeferral := new Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
+         Retval.m_ISmartCardPinResetDeferral := new WinRt.Windows.Devices.SmartCards.ISmartCardPinResetDeferral;
          Retval.m_ISmartCardPinResetDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -5414,7 +5414,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure SetResponse
    (
       this : in out SmartCardPinResetRequest;
-      response : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5451,7 +5451,7 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function FromSmartCardAsync
    (
-      card : Windows.Devices.SmartCards.SmartCard'Class
+      card : WinRt.Windows.Devices.SmartCards.SmartCard'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
@@ -5507,7 +5507,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning := new WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5525,8 +5525,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
@@ -5583,7 +5583,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning := new WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5602,8 +5602,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
       cardId : WinRt.Guid
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
@@ -5661,7 +5661,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning := new WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5679,7 +5679,7 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function RequestVirtualSmartCardDeletionAsync
    (
-      card : Windows.Devices.SmartCards.SmartCard'Class
+      card : WinRt.Windows.Devices.SmartCards.SmartCard'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5750,8 +5750,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestAttestedVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
       Hr               : WinRt.HResult := S_OK;
@@ -5808,7 +5808,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning := new WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5827,8 +5827,8 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestAttestedVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
       cardId : WinRt.Guid
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning is
@@ -5886,7 +5886,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardProvisioning := new Windows.Devices.SmartCards.ISmartCardProvisioning;
+                     Retval.m_ISmartCardProvisioning := new WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
                      Retval.m_ISmartCardProvisioning.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5913,14 +5913,14 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCard;
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
          Hr := this.m_ISmartCardProvisioning.all.get_SmartCard (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
+         Retval.m_ISmartCard := new WinRt.Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
    end;
@@ -6107,7 +6107,7 @@ package body WinRt.Windows.Devices.SmartCards is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmartCardChallengeContext := new Windows.Devices.SmartCards.ISmartCardChallengeContext;
+                  Retval.m_ISmartCardChallengeContext := new WinRt.Windows.Devices.SmartCards.ISmartCardChallengeContext;
                   Retval.m_ISmartCardChallengeContext.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6186,7 +6186,7 @@ package body WinRt.Windows.Devices.SmartCards is
    function RequestPinResetAsync
    (
       this : in out SmartCardProvisioning;
-      handler : Windows.Devices.SmartCards.SmartCardPinResetHandler
+      handler : WinRt.Windows.Devices.SmartCards.SmartCardPinResetHandler
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6366,7 +6366,7 @@ package body WinRt.Windows.Devices.SmartCards is
 
    function GetDeviceSelector
    (
-      kind : Windows.Devices.SmartCards.SmartCardReaderKind
+      kind : WinRt.Windows.Devices.SmartCards.SmartCardReaderKind
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -6450,7 +6450,7 @@ package body WinRt.Windows.Devices.SmartCards is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmartCardReader := new Windows.Devices.SmartCards.ISmartCardReader;
+                     Retval.m_ISmartCardReader := new WinRt.Windows.Devices.SmartCards.ISmartCardReader;
                      Retval.m_ISmartCardReader.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -6517,7 +6517,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardReaderKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardReaderKind;
    begin
       Hr := this.m_ISmartCardReader.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6661,7 +6661,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmartCardReader.all.add_CardAdded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6673,7 +6673,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure remove_CardAdded
    (
       this : in out SmartCardReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6694,7 +6694,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmartCardReader.all.add_CardRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6706,7 +6706,7 @@ package body WinRt.Windows.Devices.SmartCards is
    procedure remove_CardRemoved
    (
       this : in out SmartCardReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6749,7 +6749,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.SmartCardTriggerType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.SmartCardTriggerType;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_TriggerType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6766,7 +6766,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_SourceAppletId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6783,7 +6783,7 @@ package body WinRt.Windows.Devices.SmartCards is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmartCardTriggerDetails.all.get_TriggerData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6801,7 +6801,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCardEmulator;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCardEmulator;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails2, WinRt.Windows.Devices.SmartCards.IID_ISmartCardTriggerDetails2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCardEmulator do
@@ -6811,7 +6811,7 @@ package body WinRt.Windows.Devices.SmartCards is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCardEmulator := new Windows.Devices.SmartCards.ISmartCardEmulator;
+         Retval.m_ISmartCardEmulator := new WinRt.Windows.Devices.SmartCards.ISmartCardEmulator;
          Retval.m_ISmartCardEmulator.all := m_ComRetVal;
       end return;
    end;
@@ -6890,7 +6890,7 @@ package body WinRt.Windows.Devices.SmartCards is
    (
       this : in out SmartCardTriggerDetails;
       arguments : WinRt.WString;
-      behavior : Windows.Devices.SmartCards.SmartCardLaunchBehavior
+      behavior : WinRt.Windows.Devices.SmartCards.SmartCardLaunchBehavior
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6966,7 +6966,7 @@ package body WinRt.Windows.Devices.SmartCards is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SmartCards.ISmartCard;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SmartCards.ISmartCard;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails_Interface, WinRt.Windows.Devices.SmartCards.ISmartCardTriggerDetails3, WinRt.Windows.Devices.SmartCards.IID_ISmartCardTriggerDetails3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.SmartCards.SmartCard do
@@ -6976,7 +6976,7 @@ package body WinRt.Windows.Devices.SmartCards is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmartCard := new Windows.Devices.SmartCards.ISmartCard;
+         Retval.m_ISmartCard := new WinRt.Windows.Devices.SmartCards.ISmartCard;
          Retval.m_ISmartCard.all := m_ComRetVal;
       end return;
    end;

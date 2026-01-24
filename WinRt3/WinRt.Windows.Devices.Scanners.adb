@@ -127,7 +127,7 @@ package body WinRt.Windows.Devices.Scanners is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IImageScanner := new Windows.Devices.Scanners.IImageScanner;
+                     Retval.m_IImageScanner := new WinRt.Windows.Devices.Scanners.IImageScanner;
                      Retval.m_IImageScanner.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -198,7 +198,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerScanSource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
    begin
       Hr := this.m_IImageScanner.all.get_DefaultScanSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -210,7 +210,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsScanSourceSupported
    (
       this : in out ImageScanner;
-      value : Windows.Devices.Scanners.ImageScannerScanSource
+      value : WinRt.Windows.Devices.Scanners.ImageScannerScanSource
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -233,14 +233,14 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Scanners.ImageScannerFlatbedConfiguration do
          Hr := this.m_IImageScanner.all.get_FlatbedConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageScannerFormatConfiguration := new Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+         Retval.m_IImageScannerFormatConfiguration := new WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
          Retval.m_IImageScannerFormatConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -253,14 +253,14 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Scanners.ImageScannerFeederConfiguration do
          Hr := this.m_IImageScanner.all.get_FeederConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageScannerFormatConfiguration := new Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+         Retval.m_IImageScannerFormatConfiguration := new WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
          Retval.m_IImageScannerFormatConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -273,14 +273,14 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Scanners.ImageScannerAutoConfiguration do
          Hr := this.m_IImageScanner.all.get_AutoConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageScannerFormatConfiguration := new Windows.Devices.Scanners.IImageScannerFormatConfiguration;
+         Retval.m_IImageScannerFormatConfiguration := new WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration;
          Retval.m_IImageScannerFormatConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -288,7 +288,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsPreviewSupported
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -306,8 +306,8 @@ package body WinRt.Windows.Devices.Scanners is
    function ScanPreviewToStreamAsync
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-      targetStream : Windows.Storage.Streams.IRandomAccessStream
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+      targetStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Devices.Scanners.ImageScannerPreviewResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -358,7 +358,7 @@ package body WinRt.Windows.Devices.Scanners is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IImageScannerPreviewResult := new Windows.Devices.Scanners.IImageScannerPreviewResult;
+                  Retval.m_IImageScannerPreviewResult := new WinRt.Windows.Devices.Scanners.IImageScannerPreviewResult;
                   Retval.m_IImageScannerPreviewResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -374,8 +374,8 @@ package body WinRt.Windows.Devices.Scanners is
    function ScanFilesToFolderAsync
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-      storageFolder : Windows.Storage.StorageFolder'Class
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+      storageFolder : WinRt.Windows.Storage.StorageFolder'Class
    )
    return WinRt.Windows.Devices.Scanners.ImageScannerScanResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -426,7 +426,7 @@ package body WinRt.Windows.Devices.Scanners is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IImageScannerScanResult := new Windows.Devices.Scanners.IImageScannerScanResult;
+                  Retval.m_IImageScannerScanResult := new WinRt.Windows.Devices.Scanners.IImageScannerScanResult;
                   Retval.m_IImageScannerScanResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -470,7 +470,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_DefaultFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -487,7 +487,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -499,7 +499,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerAutoConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -514,7 +514,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsFormatSupported
    (
       this : in out ImageScannerAutoConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -560,7 +560,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_DefaultFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -577,7 +577,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -589,7 +589,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -604,7 +604,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsFormatSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -628,7 +628,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -649,7 +649,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -670,7 +670,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -685,7 +685,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_SelectedScanRegion
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -710,7 +710,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -725,7 +725,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_AutoCroppingMode
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -744,7 +744,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsAutoCroppingModeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -772,7 +772,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -793,7 +793,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -814,7 +814,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -835,7 +835,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -850,7 +850,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_DesiredResolution
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerResolution
+      value : WinRt.Windows.Devices.Scanners.ImageScannerResolution
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -875,7 +875,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -896,7 +896,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerColorMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerColorMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -917,7 +917,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerColorMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerColorMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -932,7 +932,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_ColorMode
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -951,7 +951,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsColorModeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1288,7 +1288,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintMediaSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintMediaSize;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerFeederConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1303,7 +1303,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_PageSize
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Graphics.Printing.PrintMediaSize
+      value : WinRt.Windows.Graphics.Printing.PrintMediaSize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1328,7 +1328,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintOrientation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerFeederConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1343,7 +1343,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_PageOrientation
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Graphics.Printing.PrintOrientation
+      value : WinRt.Windows.Graphics.Printing.PrintOrientation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1368,7 +1368,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerFeederConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerFeederConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1383,8 +1383,8 @@ package body WinRt.Windows.Devices.Scanners is
    function IsPageSizeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      pageSize : Windows.Graphics.Printing.PrintMediaSize;
-      pageOrientation : Windows.Graphics.Printing.PrintOrientation
+      pageSize : WinRt.Windows.Graphics.Printing.PrintMediaSize;
+      pageOrientation : WinRt.Windows.Graphics.Printing.PrintOrientation
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1596,7 +1596,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_DefaultFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1613,7 +1613,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerFormatConfiguration.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1625,7 +1625,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1640,7 +1640,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsFormatSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1664,7 +1664,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1685,7 +1685,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1706,7 +1706,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1721,7 +1721,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_SelectedScanRegion
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1746,7 +1746,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1761,7 +1761,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_AutoCroppingMode
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1780,7 +1780,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsAutoCroppingModeSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1808,7 +1808,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1829,7 +1829,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1850,7 +1850,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1871,7 +1871,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1886,7 +1886,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_DesiredResolution
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerResolution
+      value : WinRt.Windows.Devices.Scanners.ImageScannerResolution
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1911,7 +1911,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerResolution;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1932,7 +1932,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerColorMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerColorMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1953,7 +1953,7 @@ package body WinRt.Windows.Devices.Scanners is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerColorMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerColorMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration_Interface, WinRt.Windows.Devices.Scanners.IImageScannerSourceConfiguration, WinRt.Windows.Devices.Scanners.IID_IImageScannerSourceConfiguration'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IImageScannerFormatConfiguration.all);
@@ -1968,7 +1968,7 @@ package body WinRt.Windows.Devices.Scanners is
    procedure put_ColorMode
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1987,7 +1987,7 @@ package body WinRt.Windows.Devices.Scanners is
    function IsColorModeSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2302,7 +2302,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Scanners.ImageScannerFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Scanners.ImageScannerFormat;
    begin
       Hr := this.m_IImageScannerPreviewResult.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2342,7 +2342,7 @@ package body WinRt.Windows.Devices.Scanners is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IImageScannerScanResult.all.get_ScannedFiles (m_ComRetVal'Access);
       if Hr /= S_OK then

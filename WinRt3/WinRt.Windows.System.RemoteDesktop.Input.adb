@@ -59,21 +59,21 @@ package body WinRt.Windows.System.RemoteDesktop.Input is
    function Constructor
    (
       connectionId : WinRt.Guid;
-      pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler
+      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler
    )
    return RemoteTextConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
    begin
       return RetVal : RemoteTextConnection do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteTextConnectionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (connectionId, pduForwarder, m_ComRetVal'Access);
-            Retval.m_IRemoteTextConnection := new Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
+            Retval.m_IRemoteTextConnection := new WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
             Retval.m_IRemoteTextConnection.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -84,22 +84,22 @@ package body WinRt.Windows.System.RemoteDesktop.Input is
    function Constructor
    (
       connectionId : WinRt.Guid;
-      pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
-      options : Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions
+      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
+      options : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions
    )
    return RemoteTextConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
    begin
       return RetVal : RemoteTextConnection do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteTextConnectionFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (connectionId, pduForwarder, options, m_ComRetVal'Access);
-            Retval.m_IRemoteTextConnection := new Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
+            Retval.m_IRemoteTextConnection := new WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
             Retval.m_IRemoteTextConnection.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -192,7 +192,7 @@ package body WinRt.Windows.System.RemoteDesktop.Input is
    (
       this : in out RemoteTextConnection;
       scanCode : WinRt.UInt16;
-      attributes : Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
+      attributes : WinRt.Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

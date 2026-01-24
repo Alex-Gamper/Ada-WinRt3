@@ -226,7 +226,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_State
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.UserActivityState
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.UserActivityState
       )
       return WinRt.Hresult is abstract;
 
@@ -240,21 +240,21 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_VisualElements
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityVisualElements
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityVisualElements
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentUri
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentUri
       (
          this : access IUserActivity_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -275,56 +275,56 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_FallbackUri
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_FallbackUri
       (
          this : access IUserActivity_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ActivationUri
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ActivationUri
       (
          this : access IUserActivity_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentInfo
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentInfo
       (
          this : access IUserActivity_Interface;
-         value : Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
+         value : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CreateSession
       (
          this : access IUserActivity_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivitySession
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivitySession
       )
       return WinRt.Hresult is abstract;
 
@@ -367,14 +367,14 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_IconUri
       (
          this : access IUserActivityAttribution_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_IconUri
       (
          this : access IUserActivityAttribution_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -414,8 +414,8 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function CreateWithUri
       (
          this : access IUserActivityAttributionFactory_Interface;
-         iconUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityAttribution
+         iconUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityAttribution
       )
       return WinRt.Hresult is abstract;
 
@@ -436,14 +436,14 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityChannel_Interface;
          activityId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAllActivitiesAsync
       (
          this : access IUserActivityChannel_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -464,7 +464,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityChannel2_Interface;
          activityId : WinRt.HString;
-         startTime : Windows.Foundation.DateTime;
+         startTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -477,7 +477,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function GetDefault
       (
          this : access IUserActivityChannelStatics_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityChannel
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -495,8 +495,8 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function TryGetForWebAccount
       (
          this : access IUserActivityChannelStatics2_Interface;
-         account : Windows.Security.Credentials.IWebAccount;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityChannel
+         account : WinRt.Windows.Security.Credentials.IWebAccount;
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -508,8 +508,8 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function GetForUser
       (
          this : access IUserActivityChannelStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityChannel
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -534,7 +534,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityContentInfoStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -547,7 +547,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityFactory_Interface;
          activityId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivity
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -559,7 +559,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function SetUserActivity
       (
          this : access IUserActivityRequest_Interface;
-         activity : Windows.ApplicationModel.UserActivities.IUserActivity
+         activity : WinRt.Windows.ApplicationModel.UserActivities.IUserActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -572,14 +572,14 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityRequestManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserActivityRequested
       (
          this : access IUserActivityRequestManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -591,7 +591,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function GetForCurrentView
       (
          this : access IUserActivityRequestManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityRequestManager
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityRequestManager
       )
       return WinRt.Hresult is abstract;
 
@@ -603,14 +603,14 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_Request
       (
          this : access IUserActivityRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserActivityRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -634,14 +634,14 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_UserActivity
       (
          this : access IUserActivitySessionHistoryItem_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivity
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivity
       )
       return WinRt.Hresult is abstract;
 
       function get_StartTime
       (
          this : access IUserActivitySessionHistoryItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -661,7 +661,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       (
          this : access IUserActivityStatics_Interface;
          json : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivity
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -717,42 +717,42 @@ package WinRt.Windows.ApplicationModel.UserActivities is
       function get_BackgroundColor
       (
          this : access IUserActivityVisualElements_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access IUserActivityVisualElements_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Attribution
       (
          this : access IUserActivityVisualElements_Interface;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivityAttribution
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivityAttribution
       )
       return WinRt.Hresult is abstract;
 
       function put_Attribution
       (
          this : access IUserActivityVisualElements_Interface;
-         value : Windows.ApplicationModel.UserActivities.IUserActivityAttribution
+         value : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityAttribution
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access IUserActivityVisualElements_Interface;
-         value : Windows.UI.Shell.IAdaptiveCard
+         value : WinRt.Windows.UI.Shell.IAdaptiveCard
       )
       return WinRt.Hresult is abstract;
 
       function get_Content
       (
          this : access IUserActivityVisualElements_Interface;
-         RetVal : access Windows.UI.Shell.IAdaptiveCard
+         RetVal : access WinRt.Windows.UI.Shell.IAdaptiveCard
       )
       return WinRt.Hresult is abstract;
 
@@ -847,7 +847,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_ContentUri
    (
       this : in out UserActivity;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ContentType
@@ -871,7 +871,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_FallbackUri
    (
       this : in out UserActivity;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ActivationUri
@@ -883,7 +883,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_ActivationUri
    (
       this : in out UserActivity;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ContentInfo
@@ -895,7 +895,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_ContentInfo
    (
       this : in out UserActivity;
-      value : Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
+      value : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityContentInfo
    );
 
    procedure SaveAsync
@@ -940,7 +940,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    function Constructor
    (
-      iconUri : Windows.Foundation.Uri'Class
+      iconUri : WinRt.Windows.Foundation.Uri'Class
    )
    return UserActivityAttribution;
 
@@ -956,7 +956,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_IconUri
    (
       this : in out UserActivityAttribution;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AlternateText
@@ -994,7 +994,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 
@@ -1002,7 +1002,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
 
    function TryGetForWebAccount
    (
-      account : Windows.Security.Credentials.WebAccount'Class
+      account : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return WinRt.Windows.ApplicationModel.UserActivities.UserActivityChannel;
 
@@ -1041,7 +1041,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    (
       this : in out UserActivityChannel;
       activityId : WinRt.WString;
-      startTime : Windows.Foundation.DateTime
+      startTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject;
 
@@ -1081,7 +1081,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure SetUserActivity
    (
       this : in out UserActivityRequest;
-      activity : Windows.ApplicationModel.UserActivities.UserActivity'Class
+      activity : WinRt.Windows.ApplicationModel.UserActivities.UserActivity'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1109,7 +1109,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure remove_UserActivityRequested
    (
       this : in out UserActivityRequestManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1222,7 +1222,7 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_BackgroundColor
    (
       this : in out UserActivityVisualElements;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Attribution
@@ -1234,13 +1234,13 @@ package WinRt.Windows.ApplicationModel.UserActivities is
    procedure put_Attribution
    (
       this : in out UserActivityVisualElements;
-      value : Windows.ApplicationModel.UserActivities.UserActivityAttribution'Class
+      value : WinRt.Windows.ApplicationModel.UserActivities.UserActivityAttribution'Class
    );
 
    procedure put_Content
    (
       this : in out UserActivityVisualElements;
-      value : Windows.UI.Shell.IAdaptiveCard
+      value : WinRt.Windows.UI.Shell.IAdaptiveCard
    );
 
    function get_Content

@@ -79,14 +79,14 @@ package body WinRt.Windows.Security.DataProtection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataAvailabilityStateChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -122,7 +122,7 @@ package body WinRt.Windows.Security.DataProtection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.DataProtection.UserDataBufferUnprotectStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.DataProtection.UserDataBufferUnprotectStatus;
    begin
       Hr := this.m_IUserDataBufferUnprotectResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -139,7 +139,7 @@ package body WinRt.Windows.Security.DataProtection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IUserDataBufferUnprotectResult.all.get_UnprotectedBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -178,7 +178,7 @@ package body WinRt.Windows.Security.DataProtection is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.DataProtection.UserDataProtectionManager");
       m_Factory        : access WinRt.Windows.Security.DataProtection.IUserDataProtectionManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.DataProtection.IUserDataProtectionManager;
+      m_ComRetVal      : aliased WinRt.Windows.Security.DataProtection.IUserDataProtectionManager;
    begin
       return RetVal : WinRt.Windows.Security.DataProtection.UserDataProtectionManager do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataProtectionManagerStatics'Access , m_Factory'Address);
@@ -188,7 +188,7 @@ package body WinRt.Windows.Security.DataProtection is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataProtectionManager := new Windows.Security.DataProtection.IUserDataProtectionManager;
+            Retval.m_IUserDataProtectionManager := new WinRt.Windows.Security.DataProtection.IUserDataProtectionManager;
             Retval.m_IUserDataProtectionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -197,7 +197,7 @@ package body WinRt.Windows.Security.DataProtection is
 
    function TryGetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Security.DataProtection.UserDataProtectionManager is
       Hr               : WinRt.HResult := S_OK;
@@ -205,7 +205,7 @@ package body WinRt.Windows.Security.DataProtection is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.DataProtection.UserDataProtectionManager");
       m_Factory        : access WinRt.Windows.Security.DataProtection.IUserDataProtectionManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.DataProtection.IUserDataProtectionManager;
+      m_ComRetVal      : aliased WinRt.Windows.Security.DataProtection.IUserDataProtectionManager;
    begin
       return RetVal : WinRt.Windows.Security.DataProtection.UserDataProtectionManager do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataProtectionManagerStatics'Access , m_Factory'Address);
@@ -215,7 +215,7 @@ package body WinRt.Windows.Security.DataProtection is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataProtectionManager := new Windows.Security.DataProtection.IUserDataProtectionManager;
+            Retval.m_IUserDataProtectionManager := new WinRt.Windows.Security.DataProtection.IUserDataProtectionManager;
             Retval.m_IUserDataProtectionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -228,8 +228,8 @@ package body WinRt.Windows.Security.DataProtection is
    function ProtectStorageItemAsync
    (
       this : in out UserDataProtectionManager;
-      storageItem : Windows.Storage.IStorageItem;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      storageItem : WinRt.Windows.Storage.IStorageItem;
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Windows.Security.DataProtection.UserDataStorageItemProtectionStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -293,7 +293,7 @@ package body WinRt.Windows.Security.DataProtection is
    function GetStorageItemProtectionInfoAsync
    (
       this : in out UserDataProtectionManager;
-      storageItem : Windows.Storage.IStorageItem
+      storageItem : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Windows.Security.DataProtection.UserDataStorageItemProtectionInfo'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -344,7 +344,7 @@ package body WinRt.Windows.Security.DataProtection is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataStorageItemProtectionInfo := new Windows.Security.DataProtection.IUserDataStorageItemProtectionInfo;
+                  Retval.m_IUserDataStorageItemProtectionInfo := new WinRt.Windows.Security.DataProtection.IUserDataStorageItemProtectionInfo;
                   Retval.m_IUserDataStorageItemProtectionInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -360,8 +360,8 @@ package body WinRt.Windows.Security.DataProtection is
    function ProtectBufferAsync
    (
       this : in out UserDataProtectionManager;
-      unprotectedBuffer : Windows.Storage.Streams.IBuffer;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      unprotectedBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -425,7 +425,7 @@ package body WinRt.Windows.Security.DataProtection is
    function UnprotectBufferAsync
    (
       this : in out UserDataProtectionManager;
-      protectedBuffer : Windows.Storage.Streams.IBuffer
+      protectedBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.DataProtection.UserDataBufferUnprotectResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -476,7 +476,7 @@ package body WinRt.Windows.Security.DataProtection is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataBufferUnprotectResult := new Windows.Security.DataProtection.IUserDataBufferUnprotectResult;
+                  Retval.m_IUserDataBufferUnprotectResult := new WinRt.Windows.Security.DataProtection.IUserDataBufferUnprotectResult;
                   Retval.m_IUserDataBufferUnprotectResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -492,7 +492,7 @@ package body WinRt.Windows.Security.DataProtection is
    function IsContinuedDataAvailabilityExpected
    (
       this : in out UserDataProtectionManager;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -516,7 +516,7 @@ package body WinRt.Windows.Security.DataProtection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataProtectionManager.all.add_DataAvailabilityStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -528,7 +528,7 @@ package body WinRt.Windows.Security.DataProtection is
    procedure remove_DataAvailabilityStateChanged
    (
       this : in out UserDataProtectionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -571,7 +571,7 @@ package body WinRt.Windows.Security.DataProtection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.DataProtection.UserDataAvailability;
+      m_ComRetVal      : aliased WinRt.Windows.Security.DataProtection.UserDataAvailability;
    begin
       Hr := this.m_IUserDataStorageItemProtectionInfo.all.get_Availability (m_ComRetVal'Access);
       if Hr /= S_OK then

@@ -173,14 +173,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CreateOrUpdateTaskRequested
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -188,14 +188,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncRequested
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -203,14 +203,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SkipOccurrenceRequested
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -218,14 +218,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CompleteTaskRequested
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -233,14 +233,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeleteTaskRequested
       (
          this : access IUserDataTaskDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -258,7 +258,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Connection
       (
          this : access IUserDataTaskDataProviderTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -285,14 +285,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       (
          this : access IUserDataTaskListCompleteTaskRequest_Interface;
          completedTaskId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IUserDataTaskListCompleteTaskRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -304,14 +304,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Request
       (
          this : access IUserDataTaskListCompleteTaskRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserDataTaskListCompleteTaskRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -330,22 +330,22 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Task
       (
          this : access IUserDataTaskListCreateOrUpdateTaskRequest_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTask
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IUserDataTaskListCreateOrUpdateTaskRequest_Interface;
-         createdOrUpdatedUserDataTask : Windows.ApplicationModel.UserDataTasks.IUserDataTask;
-         RetVal : access Windows.Foundation.IAsyncAction
+         createdOrUpdatedUserDataTask : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IUserDataTaskListCreateOrUpdateTaskRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -357,14 +357,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Request
       (
          this : access IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserDataTaskListCreateOrUpdateTaskRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -390,14 +390,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function ReportCompletedAsync
       (
          this : access IUserDataTaskListDeleteTaskRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IUserDataTaskListDeleteTaskRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -409,14 +409,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Request
       (
          this : access IUserDataTaskListDeleteTaskRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserDataTaskListDeleteTaskRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -442,14 +442,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function ReportCompletedAsync
       (
          this : access IUserDataTaskListSkipOccurrenceRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IUserDataTaskListSkipOccurrenceRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -461,14 +461,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Request
       (
          this : access IUserDataTaskListSkipOccurrenceRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserDataTaskListSkipOccurrenceRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -487,14 +487,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function ReportCompletedAsync
       (
          this : access IUserDataTaskListSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IUserDataTaskListSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -506,14 +506,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       function get_Request
       (
          this : access IUserDataTaskListSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IUserDataTaskListSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -542,7 +542,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_CreateOrUpdateTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SyncRequested
@@ -555,7 +555,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_SyncRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SkipOccurrenceRequested
@@ -568,7 +568,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_SkipOccurrenceRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CompleteTaskRequested
@@ -581,7 +581,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_CompleteTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DeleteTaskRequested
@@ -594,7 +594,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_DeleteTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -694,7 +694,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out UserDataTaskListCreateOrUpdateTaskRequest;
-      createdOrUpdatedUserDataTask : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      createdOrUpdatedUserDataTask : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    );
 
    procedure ReportFailedAsync

@@ -169,14 +169,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtension_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
       function get_AppInfo
       (
          this : access IAppExtension_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -214,7 +214,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function GetExtensionProperties
       (
          this : access IAppExtension3_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -228,7 +228,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function GetPublicFolder
       (
          this : access IAppExtension3_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -256,14 +256,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageInstalled
       (
          this : access IAppExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -271,14 +271,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUpdating
       (
          this : access IAppExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -286,14 +286,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUpdated
       (
          this : access IAppExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -301,14 +301,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUninstalling
       (
          this : access IAppExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -316,14 +316,14 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageStatusChanged
       (
          this : access IAppExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -348,7 +348,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       (
          this : access IAppExtensionCatalogStatics_Interface;
          appExtensionName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog
+         RetVal : access WinRt.Windows.ApplicationModel.AppExtensions.IAppExtensionCatalog
       )
       return WinRt.Hresult is abstract;
 
@@ -367,7 +367,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtensionPackageInstalledEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -393,7 +393,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtensionPackageStatusChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -412,7 +412,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtensionPackageUninstallingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -431,7 +431,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtensionPackageUpdatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -457,7 +457,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
       function get_Package
       (
          this : access IAppExtensionPackageUpdatingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -583,7 +583,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    procedure remove_PackageInstalled
    (
       this : in out AppExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUpdating
@@ -596,7 +596,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    procedure remove_PackageUpdating
    (
       this : in out AppExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUpdated
@@ -609,7 +609,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    procedure remove_PackageUpdated
    (
       this : in out AppExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUninstalling
@@ -622,7 +622,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    procedure remove_PackageUninstalling
    (
       this : in out AppExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageStatusChanged
@@ -635,7 +635,7 @@ package WinRt.Windows.ApplicationModel.AppExtensions is
    procedure remove_PackageStatusChanged
    (
       this : in out AppExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindAll

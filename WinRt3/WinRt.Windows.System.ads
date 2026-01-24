@@ -1365,14 +1365,14 @@ package WinRt.Windows.System is
       function get_ExtendedError
       (
          this : access IAppActivationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_AppResourceGroupInfo
       (
          this : access IAppActivationResult_Interface;
-         RetVal : access Windows.System.IAppResourceGroupInfo
+         RetVal : access WinRt.Windows.System.IAppResourceGroupInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1384,7 +1384,7 @@ package WinRt.Windows.System is
       function get_AppInfo
       (
          this : access IAppDiagnosticInfo_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1403,7 +1403,7 @@ package WinRt.Windows.System is
       function CreateResourceGroupWatcher
       (
          this : access IAppDiagnosticInfo2_Interface;
-         RetVal : access Windows.System.IAppResourceGroupInfoWatcher
+         RetVal : access WinRt.Windows.System.IAppResourceGroupInfoWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1439,7 +1439,7 @@ package WinRt.Windows.System is
       function CreateWatcher
       (
          this : access IAppDiagnosticInfoStatics2_Interface;
-         RetVal : access Windows.System.IAppDiagnosticInfoWatcher
+         RetVal : access WinRt.Windows.System.IAppDiagnosticInfoWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1482,14 +1482,14 @@ package WinRt.Windows.System is
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1497,14 +1497,14 @@ package WinRt.Windows.System is
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1512,14 +1512,14 @@ package WinRt.Windows.System is
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1527,21 +1527,21 @@ package WinRt.Windows.System is
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IAppDiagnosticInfoWatcher_Interface;
-         RetVal : access Windows.System.AppDiagnosticInfoWatcherStatus
+         RetVal : access WinRt.Windows.System.AppDiagnosticInfoWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1565,7 +1565,7 @@ package WinRt.Windows.System is
       function get_AppDiagnosticInfo
       (
          this : access IAppDiagnosticInfoWatcherEventArgs_Interface;
-         RetVal : access Windows.System.IAppDiagnosticInfo
+         RetVal : access WinRt.Windows.System.IAppDiagnosticInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1577,7 +1577,7 @@ package WinRt.Windows.System is
       function get_ExtendedError
       (
          this : access IAppExecutionStateChangeResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1707,7 +1707,7 @@ package WinRt.Windows.System is
       function GetMemoryReport
       (
          this : access IAppResourceGroupInfo_Interface;
-         RetVal : access Windows.System.IAppResourceGroupMemoryReport
+         RetVal : access WinRt.Windows.System.IAppResourceGroupMemoryReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1721,7 +1721,7 @@ package WinRt.Windows.System is
       function GetStateReport
       (
          this : access IAppResourceGroupInfo_Interface;
-         RetVal : access Windows.System.IAppResourceGroupStateReport
+         RetVal : access WinRt.Windows.System.IAppResourceGroupStateReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1760,14 +1760,14 @@ package WinRt.Windows.System is
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1775,14 +1775,14 @@ package WinRt.Windows.System is
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1790,14 +1790,14 @@ package WinRt.Windows.System is
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1805,14 +1805,14 @@ package WinRt.Windows.System is
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1820,21 +1820,21 @@ package WinRt.Windows.System is
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ExecutionStateChanged
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IAppResourceGroupInfoWatcher_Interface;
-         RetVal : access Windows.System.AppResourceGroupInfoWatcherStatus
+         RetVal : access WinRt.Windows.System.AppResourceGroupInfoWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,7 +1865,7 @@ package WinRt.Windows.System is
       function get_AppResourceGroupInfo
       (
          this : access IAppResourceGroupInfoWatcherEventArgs_Interface;
-         RetVal : access Windows.System.IAppResourceGroupInfo
+         RetVal : access WinRt.Windows.System.IAppResourceGroupInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1884,7 +1884,7 @@ package WinRt.Windows.System is
       function get_AppResourceGroupInfo
       (
          this : access IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs_Interface;
-         RetVal : access Windows.System.IAppResourceGroupInfo
+         RetVal : access WinRt.Windows.System.IAppResourceGroupInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1903,7 +1903,7 @@ package WinRt.Windows.System is
       function get_CommitUsageLevel
       (
          this : access IAppResourceGroupMemoryReport_Interface;
-         RetVal : access Windows.System.AppMemoryUsageLevel
+         RetVal : access WinRt.Windows.System.AppMemoryUsageLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1929,14 +1929,14 @@ package WinRt.Windows.System is
       function get_ExecutionState
       (
          this : access IAppResourceGroupStateReport_Interface;
-         RetVal : access Windows.System.AppResourceGroupExecutionState
+         RetVal : access WinRt.Windows.System.AppResourceGroupExecutionState
       )
       return WinRt.Hresult is abstract;
 
       function get_EnergyQuotaState
       (
          this : access IAppResourceGroupStateReport_Interface;
-         RetVal : access Windows.System.AppResourceGroupEnergyQuotaState
+         RetVal : access WinRt.Windows.System.AppResourceGroupEnergyQuotaState
       )
       return WinRt.Hresult is abstract;
 
@@ -1987,7 +1987,7 @@ package WinRt.Windows.System is
       (
          this : access IAppUriHandlerHostFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.System.IAppUriHandlerHost
+         RetVal : access WinRt.Windows.System.IAppUriHandlerHost
       )
       return WinRt.Hresult is abstract;
 
@@ -2006,7 +2006,7 @@ package WinRt.Windows.System is
       function get_User
       (
          this : access IAppUriHandlerRegistration_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2021,7 +2021,7 @@ package WinRt.Windows.System is
       (
          this : access IAppUriHandlerRegistration_Interface;
          hosts : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2059,7 +2059,7 @@ package WinRt.Windows.System is
       function get_User
       (
          this : access IAppUriHandlerRegistrationManager_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2067,7 +2067,7 @@ package WinRt.Windows.System is
       (
          this : access IAppUriHandlerRegistrationManager_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.System.IAppUriHandlerRegistration
+         RetVal : access WinRt.Windows.System.IAppUriHandlerRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -2091,15 +2091,15 @@ package WinRt.Windows.System is
       function GetDefault
       (
          this : access IAppUriHandlerRegistrationManagerStatics_Interface;
-         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+         RetVal : access WinRt.Windows.System.IAppUriHandlerRegistrationManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IAppUriHandlerRegistrationManagerStatics_Interface;
-         user_p : Windows.System.IUser;
-         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+         user_p : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.IAppUriHandlerRegistrationManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2112,7 +2112,7 @@ package WinRt.Windows.System is
       (
          this : access IAppUriHandlerRegistrationManagerStatics2_Interface;
          packageFamilyName : WinRt.HString;
-         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+         RetVal : access WinRt.Windows.System.IAppUriHandlerRegistrationManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2120,8 +2120,8 @@ package WinRt.Windows.System is
       (
          this : access IAppUriHandlerRegistrationManagerStatics2_Interface;
          packageFamilyName : WinRt.HString;
-         user_p : Windows.System.IUser;
-         RetVal : access Windows.System.IAppUriHandlerRegistrationManager
+         user_p : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.IAppUriHandlerRegistrationManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2133,7 +2133,7 @@ package WinRt.Windows.System is
       function SetSystemDateTime
       (
          this : access IDateTimeSettingsStatics_Interface;
-         utcDateTime : Windows.Foundation.DateTime
+         utcDateTime : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2145,14 +2145,14 @@ package WinRt.Windows.System is
       function CreateTimer
       (
          this : access IDispatcherQueue_Interface;
-         RetVal : access Windows.System.IDispatcherQueueTimer
+         RetVal : access WinRt.Windows.System.IDispatcherQueueTimer
       )
       return WinRt.Hresult is abstract;
 
       function TryEnqueue
       (
          this : access IDispatcherQueue_Interface;
-         callback : Windows.System.DispatcherQueueHandler;
+         callback : WinRt.Windows.System.DispatcherQueueHandler;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2160,8 +2160,8 @@ package WinRt.Windows.System is
       function TryEnqueue
       (
          this : access IDispatcherQueue_Interface;
-         priority : Windows.System.DispatcherQueuePriority;
-         callback : Windows.System.DispatcherQueueHandler;
+         priority : WinRt.Windows.System.DispatcherQueuePriority;
+         callback : WinRt.Windows.System.DispatcherQueueHandler;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2170,14 +2170,14 @@ package WinRt.Windows.System is
       (
          this : access IDispatcherQueue_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShutdownStarting
       (
          this : access IDispatcherQueue_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2185,14 +2185,14 @@ package WinRt.Windows.System is
       (
          this : access IDispatcherQueue_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShutdownCompleted
       (
          this : access IDispatcherQueue_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2216,14 +2216,14 @@ package WinRt.Windows.System is
       function get_DispatcherQueue
       (
          this : access IDispatcherQueueController_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
       function ShutdownQueueAsync
       (
          this : access IDispatcherQueueController_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2235,7 +2235,7 @@ package WinRt.Windows.System is
       function CreateOnDedicatedThread
       (
          this : access IDispatcherQueueControllerStatics_Interface;
-         RetVal : access Windows.System.IDispatcherQueueController
+         RetVal : access WinRt.Windows.System.IDispatcherQueueController
       )
       return WinRt.Hresult is abstract;
 
@@ -2247,7 +2247,7 @@ package WinRt.Windows.System is
       function GetDeferral
       (
          this : access IDispatcherQueueShutdownStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2259,7 +2259,7 @@ package WinRt.Windows.System is
       function GetForCurrentThread
       (
          this : access IDispatcherQueueStatics_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -2271,14 +2271,14 @@ package WinRt.Windows.System is
       function get_Interval
       (
          this : access IDispatcherQueueTimer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Interval
       (
          this : access IDispatcherQueueTimer_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2319,14 +2319,14 @@ package WinRt.Windows.System is
       (
          this : access IDispatcherQueueTimer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Tick
       (
          this : access IDispatcherQueueTimer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2430,14 +2430,14 @@ package WinRt.Windows.System is
       function get_Status
       (
          this : access ILaunchUriResult_Interface;
-         RetVal : access Windows.System.LaunchUriStatus
+         RetVal : access WinRt.Windows.System.LaunchUriStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access ILaunchUriResult_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -2477,7 +2477,7 @@ package WinRt.Windows.System is
       function get_UI
       (
          this : access ILauncherOptions_Interface;
-         RetVal : access Windows.System.ILauncherUIOptions
+         RetVal : access WinRt.Windows.System.ILauncherUIOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2512,14 +2512,14 @@ package WinRt.Windows.System is
       function get_FallbackUri
       (
          this : access ILauncherOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_FallbackUri
       (
          this : access ILauncherOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2559,14 +2559,14 @@ package WinRt.Windows.System is
       function get_NeighboringFilesQuery
       (
          this : access ILauncherOptions2_Interface;
-         RetVal : access Windows.Storage.Search.IStorageFileQueryResult
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function put_NeighboringFilesQuery
       (
          this : access ILauncherOptions2_Interface;
-         value : Windows.Storage.Search.IStorageFileQueryResult
+         value : WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2616,7 +2616,7 @@ package WinRt.Windows.System is
       function LaunchFileAsync
       (
          this : access ILauncherStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2624,8 +2624,8 @@ package WinRt.Windows.System is
       function LaunchFileAsync
       (
          this : access ILauncherStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         options : Windows.System.ILauncherOptions;
+         file : WinRt.Windows.Storage.IStorageFile;
+         options : WinRt.Windows.System.ILauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2633,7 +2633,7 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access ILauncherStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2641,8 +2641,8 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access ILauncherStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2655,8 +2655,8 @@ package WinRt.Windows.System is
       function LaunchUriForResultsAsync
       (
          this : access ILauncherStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2664,9 +2664,9 @@ package WinRt.Windows.System is
       function LaunchUriForResultsAsync
       (
          this : access ILauncherStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
-         inputData : Windows.Foundation.Collections.IPropertySet;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
+         inputData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2674,9 +2674,9 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access ILauncherStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
-         inputData : Windows.Foundation.Collections.IPropertySet;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
+         inputData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2684,8 +2684,8 @@ package WinRt.Windows.System is
       function QueryUriSupportAsync
       (
          this : access ILauncherStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2693,8 +2693,8 @@ package WinRt.Windows.System is
       function QueryUriSupportAsync
       (
          this : access ILauncherStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType;
          packageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2703,7 +2703,7 @@ package WinRt.Windows.System is
       function QueryFileSupportAsync
       (
          this : access ILauncherStatics2_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2711,7 +2711,7 @@ package WinRt.Windows.System is
       function QueryFileSupportAsync
       (
          this : access ILauncherStatics2_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          packageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2729,7 +2729,7 @@ package WinRt.Windows.System is
       (
          this : access ILauncherStatics2_Interface;
          scheme : WinRt.HString;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2750,7 +2750,7 @@ package WinRt.Windows.System is
       function LaunchFolderAsync
       (
          this : access ILauncherStatics3_Interface;
-         folder : Windows.Storage.IStorageFolder;
+         folder : WinRt.Windows.Storage.IStorageFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2758,8 +2758,8 @@ package WinRt.Windows.System is
       function LaunchFolderAsync
       (
          this : access ILauncherStatics3_Interface;
-         folder : Windows.Storage.IStorageFolder;
-         options : Windows.System.IFolderLauncherOptions;
+         folder : WinRt.Windows.Storage.IStorageFolder;
+         options : WinRt.Windows.System.IFolderLauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2772,7 +2772,7 @@ package WinRt.Windows.System is
       function QueryAppUriSupportAsync
       (
          this : access ILauncherStatics4_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2780,7 +2780,7 @@ package WinRt.Windows.System is
       function QueryAppUriSupportAsync
       (
          this : access ILauncherStatics4_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          packageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2789,7 +2789,7 @@ package WinRt.Windows.System is
       function FindAppUriHandlersAsync
       (
          this : access ILauncherStatics4_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2797,8 +2797,8 @@ package WinRt.Windows.System is
       function LaunchUriForUserAsync
       (
          this : access ILauncherStatics4_Interface;
-         user_p : Windows.System.IUser;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         user_p : WinRt.Windows.System.IUser;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2806,9 +2806,9 @@ package WinRt.Windows.System is
       function LaunchUriForUserAsync
       (
          this : access ILauncherStatics4_Interface;
-         user_p : Windows.System.IUser;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
+         user_p : WinRt.Windows.System.IUser;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2816,10 +2816,10 @@ package WinRt.Windows.System is
       function LaunchUriForUserAsync
       (
          this : access ILauncherStatics4_Interface;
-         user_p : Windows.System.IUser;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
-         inputData : Windows.Foundation.Collections.IPropertySet;
+         user_p : WinRt.Windows.System.IUser;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
+         inputData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2827,9 +2827,9 @@ package WinRt.Windows.System is
       function LaunchUriForResultsForUserAsync
       (
          this : access ILauncherStatics4_Interface;
-         user_p : Windows.System.IUser;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
+         user_p : WinRt.Windows.System.IUser;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2837,10 +2837,10 @@ package WinRt.Windows.System is
       function LaunchUriForResultsForUserAsync
       (
          this : access ILauncherStatics4_Interface;
-         user_p : Windows.System.IUser;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.ILauncherOptions;
-         inputData : Windows.Foundation.Collections.IPropertySet;
+         user_p : WinRt.Windows.System.IUser;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.ILauncherOptions;
+         inputData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2862,7 +2862,7 @@ package WinRt.Windows.System is
       (
          this : access ILauncherStatics5_Interface;
          path : WinRt.HString;
-         options : Windows.System.IFolderLauncherOptions;
+         options : WinRt.Windows.System.IFolderLauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2870,7 +2870,7 @@ package WinRt.Windows.System is
       function LaunchFolderPathForUserAsync
       (
          this : access ILauncherStatics5_Interface;
-         user_p : Windows.System.IUser;
+         user_p : WinRt.Windows.System.IUser;
          path : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2879,9 +2879,9 @@ package WinRt.Windows.System is
       function LaunchFolderPathForUserAsync
       (
          this : access ILauncherStatics5_Interface;
-         user_p : Windows.System.IUser;
+         user_p : WinRt.Windows.System.IUser;
          path : WinRt.HString;
-         options : Windows.System.IFolderLauncherOptions;
+         options : WinRt.Windows.System.IFolderLauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2922,14 +2922,14 @@ package WinRt.Windows.System is
       function get_PreferredPlacement
       (
          this : access ILauncherUIOptions_Interface;
-         RetVal : access Windows.UI.Popups.Placement
+         RetVal : access WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredPlacement
       (
          this : access ILauncherUIOptions_Interface;
-         value : Windows.UI.Popups.Placement
+         value : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
@@ -2941,14 +2941,14 @@ package WinRt.Windows.System is
       function get_DesiredRemainingView
       (
          this : access ILauncherViewOptions_Interface;
-         RetVal : access Windows.UI.ViewManagement.ViewSizePreference
+         RetVal : access WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredRemainingView
       (
          this : access ILauncherViewOptions_Interface;
-         value : Windows.UI.ViewManagement.ViewSizePreference
+         value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
@@ -2974,7 +2974,7 @@ package WinRt.Windows.System is
       function get_AppMemoryUsageLevel
       (
          this : access IMemoryManagerStatics_Interface;
-         RetVal : access Windows.System.AppMemoryUsageLevel
+         RetVal : access WinRt.Windows.System.AppMemoryUsageLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2982,14 +2982,14 @@ package WinRt.Windows.System is
       (
          this : access IMemoryManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AppMemoryUsageIncreased
       (
          this : access IMemoryManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2997,14 +2997,14 @@ package WinRt.Windows.System is
       (
          this : access IMemoryManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AppMemoryUsageDecreased
       (
          this : access IMemoryManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3012,14 +3012,14 @@ package WinRt.Windows.System is
       (
          this : access IMemoryManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AppMemoryUsageLimitChanging
       (
          this : access IMemoryManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3031,14 +3031,14 @@ package WinRt.Windows.System is
       function GetAppMemoryReport
       (
          this : access IMemoryManagerStatics2_Interface;
-         RetVal : access Windows.System.IAppMemoryReport
+         RetVal : access WinRt.Windows.System.IAppMemoryReport
       )
       return WinRt.Hresult is abstract;
 
       function GetProcessMemoryReport
       (
          this : access IMemoryManagerStatics2_Interface;
-         RetVal : access Windows.System.IProcessMemoryReport
+         RetVal : access WinRt.Windows.System.IProcessMemoryReport
       )
       return WinRt.Hresult is abstract;
 
@@ -3075,42 +3075,42 @@ package WinRt.Windows.System is
       function get_StandardInput
       (
          this : access IProcessLauncherOptions_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function put_StandardInput
       (
          this : access IProcessLauncherOptions_Interface;
-         value : Windows.Storage.Streams.IInputStream
+         value : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_StandardOutput
       (
          this : access IProcessLauncherOptions_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function put_StandardOutput
       (
          this : access IProcessLauncherOptions_Interface;
-         value : Windows.Storage.Streams.IOutputStream
+         value : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_StandardError
       (
          this : access IProcessLauncherOptions_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function put_StandardError
       (
          this : access IProcessLauncherOptions_Interface;
-         value : Windows.Storage.Streams.IOutputStream
+         value : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -3159,7 +3159,7 @@ package WinRt.Windows.System is
          this : access IProcessLauncherStatics_Interface;
          fileName : WinRt.HString;
          args : WinRt.HString;
-         options : Windows.System.IProcessLauncherOptions;
+         options : WinRt.Windows.System.IProcessLauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3191,7 +3191,7 @@ package WinRt.Windows.System is
       function ReportCompleted
       (
          this : access IProtocolForResultsOperation_Interface;
-         data : Windows.Foundation.Collections.IPropertySet
+         data : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -3203,14 +3203,14 @@ package WinRt.Windows.System is
       function get_FallbackUri
       (
          this : access IRemoteLauncherOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_FallbackUri
       (
          this : access IRemoteLauncherOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -3229,8 +3229,8 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access IRemoteLauncherStatics_Interface;
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3238,9 +3238,9 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access IRemoteLauncherStatics_Interface;
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.IRemoteLauncherOptions;
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.IRemoteLauncherOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3248,10 +3248,10 @@ package WinRt.Windows.System is
       function LaunchUriAsync
       (
          this : access IRemoteLauncherStatics_Interface;
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.System.IRemoteLauncherOptions;
-         inputData : Windows.Foundation.Collections.IPropertySet;
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.System.IRemoteLauncherOptions;
+         inputData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3264,8 +3264,8 @@ package WinRt.Windows.System is
       function BeginShutdown
       (
          this : access IShutdownManagerStatics_Interface;
-         shutdownKind : Windows.System.ShutdownKind;
-         timeout : Windows.Foundation.TimeSpan
+         shutdownKind : WinRt.Windows.System.ShutdownKind;
+         timeout : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3283,7 +3283,7 @@ package WinRt.Windows.System is
       function IsPowerStateSupported
       (
          this : access IShutdownManagerStatics2_Interface;
-         powerState : Windows.System.PowerState;
+         powerState : WinRt.Windows.System.PowerState;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3291,15 +3291,15 @@ package WinRt.Windows.System is
       function EnterPowerState
       (
          this : access IShutdownManagerStatics2_Interface;
-         powerState : Windows.System.PowerState
+         powerState : WinRt.Windows.System.PowerState
       )
       return WinRt.Hresult is abstract;
 
       function EnterPowerState
       (
          this : access IShutdownManagerStatics2_Interface;
-         powerState : Windows.System.PowerState;
-         wakeUpAfter : Windows.Foundation.TimeSpan
+         powerState : WinRt.Windows.System.PowerState;
+         wakeUpAfter : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3344,7 +3344,7 @@ package WinRt.Windows.System is
       function AutoUpdateTimeZoneAsync
       (
          this : access ITimeZoneSettingsStatics2_Interface;
-         timeout : Windows.Foundation.TimeSpan;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3364,14 +3364,14 @@ package WinRt.Windows.System is
       function get_AuthenticationStatus
       (
          this : access IUser_Interface;
-         RetVal : access Windows.System.UserAuthenticationStatus
+         RetVal : access WinRt.Windows.System.UserAuthenticationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access IUser_Interface;
-         RetVal : access Windows.System.UserType
+         RetVal : access WinRt.Windows.System.UserType
       )
       return WinRt.Hresult is abstract;
 
@@ -3394,7 +3394,7 @@ package WinRt.Windows.System is
       function GetPictureAsync
       (
          this : access IUser_Interface;
-         desiredSize : Windows.System.UserPictureSize;
+         desiredSize : WinRt.Windows.System.UserPictureSize;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3407,7 +3407,7 @@ package WinRt.Windows.System is
       function CheckUserAgeConsentGroupAsync
       (
          this : access IUser2_Interface;
-         consentGroup : Windows.System.UserAgeConsentGroup;
+         consentGroup : WinRt.Windows.System.UserAgeConsentGroup;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3431,28 +3431,28 @@ package WinRt.Windows.System is
       function GetDeferral
       (
          this : access IUserAuthenticationStatusChangingEventArgs_Interface;
-         RetVal : access Windows.System.IUserAuthenticationStatusChangeDeferral
+         RetVal : access WinRt.Windows.System.IUserAuthenticationStatusChangeDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access IUserAuthenticationStatusChangingEventArgs_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function get_NewStatus
       (
          this : access IUserAuthenticationStatusChangingEventArgs_Interface;
-         RetVal : access Windows.System.UserAuthenticationStatus
+         RetVal : access WinRt.Windows.System.UserAuthenticationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentStatus
       (
          this : access IUserAuthenticationStatusChangingEventArgs_Interface;
-         RetVal : access Windows.System.UserAuthenticationStatus
+         RetVal : access WinRt.Windows.System.UserAuthenticationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3464,7 +3464,7 @@ package WinRt.Windows.System is
       function get_User
       (
          this : access IUserChangedEventArgs_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3495,14 +3495,14 @@ package WinRt.Windows.System is
       function get_NewUser
       (
          this : access IUserDeviceAssociationChangedEventArgs_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function get_OldUser
       (
          this : access IUserDeviceAssociationChangedEventArgs_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3515,7 +3515,7 @@ package WinRt.Windows.System is
       (
          this : access IUserDeviceAssociationStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3523,14 +3523,14 @@ package WinRt.Windows.System is
       (
          this : access IUserDeviceAssociationStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserDeviceAssociationChanged
       (
          this : access IUserDeviceAssociationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3556,14 +3556,14 @@ package WinRt.Windows.System is
       function get_SuggestedSelectedUser
       (
          this : access IUserPicker_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function put_SuggestedSelectedUser
       (
          this : access IUserPicker_Interface;
-         value : Windows.System.IUser
+         value : WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3594,7 +3594,7 @@ package WinRt.Windows.System is
       function CreateWatcher
       (
          this : access IUserStatics_Interface;
-         RetVal : access Windows.System.IUserWatcher
+         RetVal : access WinRt.Windows.System.IUserWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -3608,7 +3608,7 @@ package WinRt.Windows.System is
       function FindAllAsync
       (
          this : access IUserStatics_Interface;
-         type_x : Windows.System.UserType;
+         type_x : WinRt.Windows.System.UserType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3616,8 +3616,8 @@ package WinRt.Windows.System is
       function FindAllAsync
       (
          this : access IUserStatics_Interface;
-         type_x : Windows.System.UserType;
-         status : Windows.System.UserAuthenticationStatus;
+         type_x : WinRt.Windows.System.UserType;
+         status : WinRt.Windows.System.UserAuthenticationStatus;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3626,7 +3626,7 @@ package WinRt.Windows.System is
       (
          this : access IUserStatics_Interface;
          nonRoamableId : WinRt.HString;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3638,7 +3638,7 @@ package WinRt.Windows.System is
       function GetDefault
       (
          this : access IUserStatics2_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3650,7 +3650,7 @@ package WinRt.Windows.System is
       function get_Status
       (
          this : access IUserWatcher_Interface;
-         RetVal : access Windows.System.UserWatcherStatus
+         RetVal : access WinRt.Windows.System.UserWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3670,14 +3670,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3685,14 +3685,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3700,14 +3700,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3715,14 +3715,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AuthenticationStatusChanged
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3730,14 +3730,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AuthenticationStatusChanging
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3745,14 +3745,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3760,14 +3760,14 @@ package WinRt.Windows.System is
       (
          this : access IUserWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IUserWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3877,7 +3877,7 @@ package WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -3890,7 +3890,7 @@ package WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3903,7 +3903,7 @@ package WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -3916,7 +3916,7 @@ package WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -4140,7 +4140,7 @@ package WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -4153,7 +4153,7 @@ package WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -4166,7 +4166,7 @@ package WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -4179,7 +4179,7 @@ package WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ExecutionStateChanged
@@ -4192,7 +4192,7 @@ package WinRt.Windows.System is
    procedure remove_ExecutionStateChanged
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -4416,7 +4416,7 @@ package WinRt.Windows.System is
 
    function GetForUser
    (
-      user_p : Windows.System.User'Class
+      user_p : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.AppUriHandlerRegistrationManager;
 
@@ -4429,7 +4429,7 @@ package WinRt.Windows.System is
    function GetForPackageForUser
    (
       packageFamilyName : WinRt.WString;
-      user_p : Windows.System.User'Class
+      user_p : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.AppUriHandlerRegistrationManager;
 
@@ -4461,7 +4461,7 @@ package WinRt.Windows.System is
 
       procedure SetSystemDateTime
       (
-         utcDateTime : Windows.Foundation.DateTime
+         utcDateTime : WinRt.Windows.Foundation.DateTime
       );
 
    end DateTimeSettings;
@@ -4490,15 +4490,15 @@ package WinRt.Windows.System is
    function TryEnqueue
    (
       this : in out DispatcherQueue;
-      callback : Windows.System.DispatcherQueueHandler
+      callback : WinRt.Windows.System.DispatcherQueueHandler
    )
    return WinRt.Boolean;
 
    function TryEnqueue
    (
       this : in out DispatcherQueue;
-      priority : Windows.System.DispatcherQueuePriority;
-      callback : Windows.System.DispatcherQueueHandler
+      priority : WinRt.Windows.System.DispatcherQueuePriority;
+      callback : WinRt.Windows.System.DispatcherQueueHandler
    )
    return WinRt.Boolean;
 
@@ -4512,7 +4512,7 @@ package WinRt.Windows.System is
    procedure remove_ShutdownStarting
    (
       this : in out DispatcherQueue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ShutdownCompleted
@@ -4525,7 +4525,7 @@ package WinRt.Windows.System is
    procedure remove_ShutdownCompleted
    (
       this : in out DispatcherQueue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_HasThreadAccess
@@ -4593,7 +4593,7 @@ package WinRt.Windows.System is
    procedure put_Interval
    (
       this : in out DispatcherQueueTimer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_IsRunning
@@ -4634,7 +4634,7 @@ package WinRt.Windows.System is
    procedure remove_Tick
    (
       this : in out DispatcherQueueTimer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4666,7 +4666,7 @@ package WinRt.Windows.System is
    procedure put_DesiredRemainingView
    (
       this : in out FolderLauncherOptions;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    );
 
    -----------------------------------------------------------------------------
@@ -4732,51 +4732,51 @@ package WinRt.Windows.System is
 
       function LaunchUriForResultsAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriResult;
 
       function LaunchUriForResultsAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriResult;
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Boolean;
 
       function QueryUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
 
       function QueryUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
 
       function QueryFileSupportAsync
       (
-         file : Windows.Storage.StorageFile'Class
+         file : WinRt.Windows.Storage.StorageFile'Class
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
 
       function QueryFileSupportAsync
       (
-         file : Windows.Storage.StorageFile'Class;
+         file : WinRt.Windows.Storage.StorageFile'Class;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
@@ -4790,7 +4790,7 @@ package WinRt.Windows.System is
       function FindUriSchemeHandlersAsync
       (
          scheme : WinRt.WString;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType
       )
       return WinRt.GenericObject;
 
@@ -4802,27 +4802,27 @@ package WinRt.Windows.System is
 
       function LaunchFileAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Boolean;
 
       function LaunchFileAsync
       (
-         file : Windows.Storage.IStorageFile;
-         options : Windows.System.LauncherOptions'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Boolean;
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Boolean;
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Boolean;
 
@@ -4835,95 +4835,95 @@ package WinRt.Windows.System is
       function LaunchFolderPathAsync
       (
          path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean;
 
       function LaunchFolderPathForUserAsync
       (
-         user_p : Windows.System.User'Class;
+         user_p : WinRt.Windows.System.User'Class;
          path : WinRt.WString
       )
       return WinRt.Boolean;
 
       function LaunchFolderPathForUserAsync
       (
-         user_p : Windows.System.User'Class;
+         user_p : WinRt.Windows.System.User'Class;
          path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean;
 
       function QueryAppUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
 
       function QueryAppUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus;
 
       function FindAppUriHandlersAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.GenericObject;
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.LaunchUriStatus;
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriStatus;
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriStatus;
 
       function LaunchUriForResultsForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriResult;
 
       function LaunchUriForResultsForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriResult;
 
       function LaunchFolderAsync
       (
-         folder : Windows.Storage.IStorageFolder
+         folder : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Boolean;
 
       function LaunchFolderAsync
       (
-         folder : Windows.Storage.IStorageFolder;
-         options : Windows.System.FolderLauncherOptions'Class
+         folder : WinRt.Windows.Storage.IStorageFolder;
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean;
 
@@ -4964,7 +4964,7 @@ package WinRt.Windows.System is
    procedure put_NeighboringFilesQuery
    (
       this : in out LauncherOptions;
-      value : Windows.Storage.Search.StorageFileQueryResult'Class
+      value : WinRt.Windows.Storage.Search.StorageFileQueryResult'Class
    );
 
    function get_TreatAsUntrusted
@@ -5030,7 +5030,7 @@ package WinRt.Windows.System is
    procedure put_FallbackUri
    (
       this : in out LauncherOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ContentType
@@ -5078,7 +5078,7 @@ package WinRt.Windows.System is
    procedure put_DesiredRemainingView
    (
       this : in out LauncherOptions;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    );
 
    -----------------------------------------------------------------------------
@@ -5123,7 +5123,7 @@ package WinRt.Windows.System is
    procedure put_PreferredPlacement
    (
       this : in out LauncherUIOptions;
-      value : Windows.UI.Popups.Placement
+      value : WinRt.Windows.UI.Popups.Placement
    );
 
    -----------------------------------------------------------------------------
@@ -5159,7 +5159,7 @@ package WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageIncreased
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_AppMemoryUsageDecreased
@@ -5170,7 +5170,7 @@ package WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageDecreased
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_AppMemoryUsageLimitChanging
@@ -5181,7 +5181,7 @@ package WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageLimitChanging
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_ExpectedAppMemoryUsageLimit
@@ -5204,7 +5204,7 @@ package WinRt.Windows.System is
       (
          fileName : WinRt.WString;
          args : WinRt.WString;
-         options : Windows.System.ProcessLauncherOptions'Class
+         options : WinRt.Windows.System.ProcessLauncherOptions'Class
       )
       return WinRt.Windows.System.ProcessLauncherResult;
 
@@ -5233,7 +5233,7 @@ package WinRt.Windows.System is
    procedure put_StandardInput
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IInputStream
+      value : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function get_StandardOutput
@@ -5245,7 +5245,7 @@ package WinRt.Windows.System is
    procedure put_StandardOutput
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IOutputStream
+      value : WinRt.Windows.Storage.Streams.IOutputStream
    );
 
    function get_StandardError
@@ -5257,7 +5257,7 @@ package WinRt.Windows.System is
    procedure put_StandardError
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IOutputStream
+      value : WinRt.Windows.Storage.Streams.IOutputStream
    );
 
    function get_WorkingDirectory
@@ -5320,7 +5320,7 @@ package WinRt.Windows.System is
    procedure ReportCompleted
    (
       this : in out ProtocolForResultsOperation;
-      data : Windows.Foundation.Collections.ValueSet'Class
+      data : WinRt.Windows.Foundation.Collections.ValueSet'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5329,25 +5329,25 @@ package WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus;
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.RemoteLauncherOptions'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.RemoteLauncherOptions'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus;
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.RemoteLauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.RemoteLauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus;
 
@@ -5376,7 +5376,7 @@ package WinRt.Windows.System is
    procedure put_FallbackUri
    (
       this : in out RemoteLauncherOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_PreferredAppIds
@@ -5391,27 +5391,27 @@ package WinRt.Windows.System is
 
       procedure BeginShutdown
       (
-         shutdownKind : Windows.System.ShutdownKind;
-         timeout : Windows.Foundation.TimeSpan
+         shutdownKind : WinRt.Windows.System.ShutdownKind;
+         timeout : WinRt.Windows.Foundation.TimeSpan
       );
 
       procedure CancelShutdown;
 
       function IsPowerStateSupported
       (
-         powerState : Windows.System.PowerState
+         powerState : WinRt.Windows.System.PowerState
       )
       return WinRt.Boolean;
 
       procedure EnterPowerState
       (
-         powerState : Windows.System.PowerState
+         powerState : WinRt.Windows.System.PowerState
       );
 
       procedure EnterPowerState
       (
-         powerState : Windows.System.PowerState;
-         wakeUpAfter : Windows.Foundation.TimeSpan
+         powerState : WinRt.Windows.System.PowerState;
+         wakeUpAfter : WinRt.Windows.Foundation.TimeSpan
       );
 
    end ShutdownManager;
@@ -5436,7 +5436,7 @@ package WinRt.Windows.System is
 
       function AutoUpdateTimeZoneAsync
       (
-         timeout : Windows.Foundation.TimeSpan
+         timeout : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Windows.System.AutoUpdateTimeZoneStatus;
 
@@ -5459,14 +5459,14 @@ package WinRt.Windows.System is
 
    function FindAllAsync
    (
-      type_x : Windows.System.UserType
+      type_x : WinRt.Windows.System.UserType
    )
    return WinRt.GenericObject;
 
    function FindAllAsync
    (
-      type_x : Windows.System.UserType;
-      status : Windows.System.UserAuthenticationStatus
+      type_x : WinRt.Windows.System.UserType;
+      status : WinRt.Windows.System.UserAuthenticationStatus
    )
    return WinRt.GenericObject;
 
@@ -5517,14 +5517,14 @@ package WinRt.Windows.System is
    function GetPictureAsync
    (
       this : in out User;
-      desiredSize : Windows.System.UserPictureSize
+      desiredSize : WinRt.Windows.System.UserPictureSize
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
 
    function CheckUserAgeConsentGroupAsync
    (
       this : in out User;
-      consentGroup : Windows.System.UserAgeConsentGroup
+      consentGroup : WinRt.Windows.System.UserAgeConsentGroup
    )
    return WinRt.Windows.System.UserAgeConsentResult;
 
@@ -5614,7 +5614,7 @@ package WinRt.Windows.System is
 
       procedure remove_UserDeviceAssociationChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end UserDeviceAssociation;
@@ -5687,7 +5687,7 @@ package WinRt.Windows.System is
    procedure put_SuggestedSelectedUser
    (
       this : in out UserPicker;
-      value : Windows.System.User'Class
+      value : WinRt.Windows.System.User'Class
    );
 
    function PickSingleUserAsync
@@ -5731,7 +5731,7 @@ package WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -5744,7 +5744,7 @@ package WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -5757,7 +5757,7 @@ package WinRt.Windows.System is
    procedure remove_Updated
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AuthenticationStatusChanged
@@ -5770,7 +5770,7 @@ package WinRt.Windows.System is
    procedure remove_AuthenticationStatusChanged
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AuthenticationStatusChanging
@@ -5783,7 +5783,7 @@ package WinRt.Windows.System is
    procedure remove_AuthenticationStatusChanging
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -5796,7 +5796,7 @@ package WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -5809,7 +5809,7 @@ package WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.System;

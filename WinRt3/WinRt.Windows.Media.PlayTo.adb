@@ -64,7 +64,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ICurrentTimeChangeRequestedEventArgs.all.get_Time (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -144,7 +144,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.PlayToConnectionState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.PlayToConnectionState;
    begin
       Hr := this.m_IPlayToConnection.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -162,7 +162,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToConnection.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -174,7 +174,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_StateChanged
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -195,7 +195,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToConnection.all.add_Transferred (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -207,7 +207,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_Transferred
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -228,7 +228,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToConnection.all.add_Error (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -240,7 +240,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_Error
    (
       this : in out PlayToConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -283,7 +283,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.PlayToConnectionError;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.PlayToConnectionError;
    begin
       Hr := this.m_IPlayToConnectionErrorEventArgs.all.get_Code (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -343,7 +343,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.PlayToConnectionState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.PlayToConnectionState;
    begin
       Hr := this.m_IPlayToConnectionStateChangedEventArgs.all.get_PreviousState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -360,7 +360,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.PlayToConnectionState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.PlayToConnectionState;
    begin
       Hr := this.m_IPlayToConnectionStateChangedEventArgs.all.get_CurrentState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -400,14 +400,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToSource;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToSource do
          Hr := this.m_IPlayToConnectionTransferredEventArgs.all.get_PreviousSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToSource := new Windows.Media.PlayTo.IPlayToSource;
+         Retval.m_IPlayToSource := new WinRt.Windows.Media.PlayTo.IPlayToSource;
          Retval.m_IPlayToSource.all := m_ComRetVal;
       end return;
    end;
@@ -420,14 +420,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToSource;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToSource do
          Hr := this.m_IPlayToConnectionTransferredEventArgs.all.get_CurrentSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToSource := new Windows.Media.PlayTo.IPlayToSource;
+         Retval.m_IPlayToSource := new WinRt.Windows.Media.PlayTo.IPlayToSource;
          Retval.m_IPlayToSource.all := m_ComRetVal;
       end return;
    end;
@@ -462,7 +462,7 @@ package body WinRt.Windows.Media.PlayTo is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.PlayTo.PlayToManager");
       m_Factory        : access WinRt.Windows.Media.PlayTo.IPlayToManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToManager;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToManager do
          Hr := RoGetActivationFactory (m_hString, IID_IPlayToManagerStatics'Access , m_Factory'Address);
@@ -472,7 +472,7 @@ package body WinRt.Windows.Media.PlayTo is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPlayToManager := new Windows.Media.PlayTo.IPlayToManager;
+            Retval.m_IPlayToManager := new WinRt.Windows.Media.PlayTo.IPlayToManager;
             Retval.m_IPlayToManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -509,7 +509,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToManager.all.add_SourceRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -521,7 +521,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_SourceRequested
    (
       this : in out PlayToManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -542,7 +542,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToManager.all.add_SourceSelected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -554,7 +554,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_SourceSelected
    (
       this : in out PlayToManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -624,13 +624,13 @@ package body WinRt.Windows.Media.PlayTo is
    function Constructor return PlayToReceiver is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.PlayTo.PlayToReceiver");
-      m_ComRetVal  : aliased Windows.Media.PlayTo.IPlayToReceiver;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.PlayTo.IPlayToReceiver");
+      m_ComRetVal  : aliased WinRt.Windows.Media.PlayTo.IPlayToReceiver;
    begin
       return RetVal : PlayToReceiver do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPlayToReceiver := new Windows.Media.PlayTo.IPlayToReceiver;
+            Retval.m_IPlayToReceiver := new WinRt.Windows.Media.PlayTo.IPlayToReceiver;
             Retval.m_IPlayToReceiver.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -649,7 +649,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_PlayRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -661,7 +661,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_PlayRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -682,7 +682,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_PauseRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -694,7 +694,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_PauseRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -715,7 +715,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_SourceChangeRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -727,7 +727,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_SourceChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -748,7 +748,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_PlaybackRateChangeRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -760,7 +760,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_PlaybackRateChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -781,7 +781,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_CurrentTimeChangeRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -793,7 +793,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_CurrentTimeChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -814,7 +814,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_MuteChangeRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -826,7 +826,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_MuteChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -847,7 +847,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_VolumeChangeRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -859,7 +859,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_VolumeChangeRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -880,7 +880,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_TimeUpdateRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -892,7 +892,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_TimeUpdateRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -913,7 +913,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPlayToReceiver.all.add_StopRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -925,7 +925,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure remove_StopRequested
    (
       this : in out PlayToReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -985,7 +985,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure NotifyTimeUpdate
    (
       this : in out PlayToReceiver;
-      currentTime : Windows.Foundation.TimeSpan
+      currentTime : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1000,7 +1000,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure NotifyDurationChange
    (
       this : in out PlayToReceiver;
-      duration : Windows.Foundation.TimeSpan
+      duration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1251,7 +1251,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPlayToReceiver.all.get_Properties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1375,14 +1375,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToConnection;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToConnection;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToConnection do
          Hr := this.m_IPlayToSource.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToConnection := new Windows.Media.PlayTo.IPlayToConnection;
+         Retval.m_IPlayToConnection := new WinRt.Windows.Media.PlayTo.IPlayToConnection;
          Retval.m_IPlayToConnection.all := m_ComRetVal;
       end return;
    end;
@@ -1395,14 +1395,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToSource;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToSource do
          Hr := this.m_IPlayToSource.all.get_Next (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToSource := new Windows.Media.PlayTo.IPlayToSource;
+         Retval.m_IPlayToSource := new WinRt.Windows.Media.PlayTo.IPlayToSource;
          Retval.m_IPlayToSource.all := m_ComRetVal;
       end return;
    end;
@@ -1410,7 +1410,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure put_Next
    (
       this : in out PlayToSource;
-      value : Windows.Media.PlayTo.PlayToSource'Class
+      value : WinRt.Windows.Media.PlayTo.PlayToSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1445,7 +1445,7 @@ package body WinRt.Windows.Media.PlayTo is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.PlayTo.IPlayToSourceWithPreferredSourceUri := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.PlayTo.IPlayToSource_Interface, WinRt.Windows.Media.PlayTo.IPlayToSourceWithPreferredSourceUri, WinRt.Windows.Media.PlayTo.IID_IPlayToSourceWithPreferredSourceUri'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1455,7 +1455,7 @@ package body WinRt.Windows.Media.PlayTo is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1463,7 +1463,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure put_PreferredSourceUri
    (
       this : in out PlayToSource;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1547,7 +1547,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPlayToSourceRequest.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1581,14 +1581,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToSourceDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToSourceDeferral;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToSourceDeferral do
          Hr := this.m_IPlayToSourceRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToSourceDeferral := new Windows.Media.PlayTo.IPlayToSourceDeferral;
+         Retval.m_IPlayToSourceDeferral := new WinRt.Windows.Media.PlayTo.IPlayToSourceDeferral;
          Retval.m_IPlayToSourceDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1596,7 +1596,7 @@ package body WinRt.Windows.Media.PlayTo is
    procedure SetSource
    (
       this : in out PlayToSourceRequest;
-      value : Windows.Media.PlayTo.PlayToSource'Class
+      value : WinRt.Windows.Media.PlayTo.PlayToSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1639,14 +1639,14 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.PlayTo.IPlayToSourceRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Media.PlayTo.IPlayToSourceRequest;
    begin
       return RetVal : WinRt.Windows.Media.PlayTo.PlayToSourceRequest do
          Hr := this.m_IPlayToSourceRequestedEventArgs.all.get_SourceRequest (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlayToSourceRequest := new Windows.Media.PlayTo.IPlayToSourceRequest;
+         Retval.m_IPlayToSourceRequest := new WinRt.Windows.Media.PlayTo.IPlayToSourceRequest;
          Retval.m_IPlayToSourceRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1702,7 +1702,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_IPlayToSourceSelectedEventArgs.all.get_Icon (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1833,7 +1833,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_ISourceChangeRequestedEventArgs.all.get_Stream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1950,7 +1950,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_ISourceChangeRequestedEventArgs.all.get_Date (m_ComRetVal'Access);
@@ -1970,7 +1970,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_ISourceChangeRequestedEventArgs.all.get_Thumbnail (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1987,7 +1987,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_ISourceChangeRequestedEventArgs.all.get_Rating (m_ComRetVal'Access);
@@ -2007,7 +2007,7 @@ package body WinRt.Windows.Media.PlayTo is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_ISourceChangeRequestedEventArgs.all.get_Properties (m_ComRetVal'Access);

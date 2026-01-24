@@ -151,7 +151,7 @@ package WinRt.Windows.Services.Cortana is
       function get_User
       (
          this : access ICortanaActionableInsights_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -165,17 +165,17 @@ package WinRt.Windows.Services.Cortana is
       function ShowInsightsForImageAsync
       (
          this : access ICortanaActionableInsights_Interface;
-         imageStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.Foundation.IAsyncAction
+         imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowInsightsForImageAsync
       (
          this : access ICortanaActionableInsights_Interface;
-         imageStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-         options : Windows.Services.Cortana.ICortanaActionableInsightsOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         options : WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -183,7 +183,7 @@ package WinRt.Windows.Services.Cortana is
       (
          this : access ICortanaActionableInsights_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -191,25 +191,25 @@ package WinRt.Windows.Services.Cortana is
       (
          this : access ICortanaActionableInsights_Interface;
          text : WinRt.HString;
-         options : Windows.Services.Cortana.ICortanaActionableInsightsOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         options : WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowInsightsAsync
       (
          this : access ICortanaActionableInsights_Interface;
-         datapackage : Windows.ApplicationModel.DataTransfer.IDataPackage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         datapackage : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowInsightsAsync
       (
          this : access ICortanaActionableInsights_Interface;
-         datapackage : Windows.ApplicationModel.DataTransfer.IDataPackage;
-         options : Windows.Services.Cortana.ICortanaActionableInsightsOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         datapackage : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
+         options : WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -221,14 +221,14 @@ package WinRt.Windows.Services.Cortana is
       function get_ContentSourceWebLink
       (
          this : access ICortanaActionableInsightsOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentSourceWebLink
       (
          this : access ICortanaActionableInsightsOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -254,15 +254,15 @@ package WinRt.Windows.Services.Cortana is
       function GetDefault
       (
          this : access ICortanaActionableInsightsStatics_Interface;
-         RetVal : access Windows.Services.Cortana.ICortanaActionableInsights
+         RetVal : access WinRt.Windows.Services.Cortana.ICortanaActionableInsights
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access ICortanaActionableInsightsStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Services.Cortana.ICortanaActionableInsights
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Services.Cortana.ICortanaActionableInsights
       )
       return WinRt.Hresult is abstract;
 
@@ -310,7 +310,7 @@ package WinRt.Windows.Services.Cortana is
       function GetDefault
       (
          this : access ICortanaPermissionsManagerStatics_Interface;
-         RetVal : access Windows.Services.Cortana.ICortanaPermissionsManager
+         RetVal : access WinRt.Windows.Services.Cortana.ICortanaPermissionsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -355,7 +355,7 @@ package WinRt.Windows.Services.Cortana is
       function GetDefault
       (
          this : access ICortanaSettingsStatics_Interface;
-         RetVal : access Windows.Services.Cortana.ICortanaSettings
+         RetVal : access WinRt.Windows.Services.Cortana.ICortanaSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -379,7 +379,7 @@ package WinRt.Windows.Services.Cortana is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Services.Cortana.CortanaActionableInsights;
 
@@ -401,14 +401,14 @@ package WinRt.Windows.Services.Cortana is
    procedure ShowInsightsForImageAsync
    (
       this : in out CortanaActionableInsights;
-      imageStream : Windows.Storage.Streams.IRandomAccessStreamReference
+      imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    procedure ShowInsightsForImageAsync
    (
       this : in out CortanaActionableInsights;
-      imageStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    );
 
    procedure ShowInsightsForTextAsync
@@ -421,20 +421,20 @@ package WinRt.Windows.Services.Cortana is
    (
       this : in out CortanaActionableInsights;
       text : WinRt.WString;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    );
 
    procedure ShowInsightsAsync
    (
       this : in out CortanaActionableInsights;
-      datapackage : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      datapackage : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
    );
 
    procedure ShowInsightsAsync
    (
       this : in out CortanaActionableInsights;
-      datapackage : Windows.ApplicationModel.DataTransfer.DataPackage'Class;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      datapackage : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class;
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    );
 
    -----------------------------------------------------------------------------
@@ -460,7 +460,7 @@ package WinRt.Windows.Services.Cortana is
    procedure put_ContentSourceWebLink
    (
       this : in out CortanaActionableInsightsOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_SurroundingText

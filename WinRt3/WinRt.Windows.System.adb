@@ -119,7 +119,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAppActivationResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -136,14 +136,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupInfo;
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupInfo do
          Hr := this.m_IAppActivationResult.all.get_AppResourceGroupInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupInfo := new Windows.System.IAppResourceGroupInfo;
+         Retval.m_IAppResourceGroupInfo := new WinRt.Windows.System.IAppResourceGroupInfo;
          Retval.m_IAppResourceGroupInfo.all := m_ComRetVal;
       end return;
    end;
@@ -178,7 +178,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.AppDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.IAppDiagnosticInfoStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppDiagnosticInfoWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppDiagnosticInfoWatcher;
    begin
       return RetVal : WinRt.Windows.System.AppDiagnosticInfoWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IAppDiagnosticInfoStatics2'Access , m_Factory'Address);
@@ -188,7 +188,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppDiagnosticInfoWatcher := new Windows.System.IAppDiagnosticInfoWatcher;
+            Retval.m_IAppDiagnosticInfoWatcher := new WinRt.Windows.System.IAppDiagnosticInfoWatcher;
             Retval.m_IAppDiagnosticInfoWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -551,14 +551,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IAppDiagnosticInfo.all.get_AppInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+         Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
    end;
@@ -572,7 +572,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.IAppDiagnosticInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAppResourceGroupInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.IAppDiagnosticInfo_Interface, WinRt.Windows.System.IAppDiagnosticInfo2, WinRt.Windows.System.IID_IAppDiagnosticInfo2'Unchecked_Access);
    begin
@@ -596,7 +596,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.IAppDiagnosticInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupInfoWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupInfoWatcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.IAppDiagnosticInfo_Interface, WinRt.Windows.System.IAppDiagnosticInfo2, WinRt.Windows.System.IID_IAppDiagnosticInfo2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupInfoWatcher do
@@ -606,7 +606,7 @@ package body WinRt.Windows.System is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupInfoWatcher := new Windows.System.IAppResourceGroupInfoWatcher;
+         Retval.m_IAppResourceGroupInfoWatcher := new WinRt.Windows.System.IAppResourceGroupInfoWatcher;
          Retval.m_IAppResourceGroupInfoWatcher.all := m_ComRetVal;
       end return;
    end;
@@ -668,7 +668,7 @@ package body WinRt.Windows.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppActivationResult := new Windows.System.IAppActivationResult;
+                  Retval.m_IAppActivationResult := new WinRt.Windows.System.IAppActivationResult;
                   Retval.m_IAppActivationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -713,7 +713,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppDiagnosticInfoWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -725,7 +725,7 @@ package body WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -746,7 +746,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppDiagnosticInfoWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -758,7 +758,7 @@ package body WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -779,7 +779,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppDiagnosticInfoWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -791,7 +791,7 @@ package body WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -812,7 +812,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppDiagnosticInfoWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -824,7 +824,7 @@ package body WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out AppDiagnosticInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -844,7 +844,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.AppDiagnosticInfoWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.AppDiagnosticInfoWatcherStatus;
    begin
       Hr := this.m_IAppDiagnosticInfoWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -912,14 +912,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppDiagnosticInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.AppDiagnosticInfo do
          Hr := this.m_IAppDiagnosticInfoWatcherEventArgs.all.get_AppDiagnosticInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppDiagnosticInfo := new Windows.System.IAppDiagnosticInfo;
+         Retval.m_IAppDiagnosticInfo := new WinRt.Windows.System.IAppDiagnosticInfo;
          Retval.m_IAppDiagnosticInfo.all := m_ComRetVal;
       end return;
    end;
@@ -955,7 +955,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAppExecutionStateChangeResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1298,7 +1298,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAppResourceGroupBackgroundTaskReport.Kind;
    begin
       Hr := this.m_IAppResourceGroupInfo.all.GetBackgroundTaskReports (m_ComRetVal'Access);
@@ -1318,14 +1318,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupMemoryReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupMemoryReport;
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupMemoryReport do
          Hr := this.m_IAppResourceGroupInfo.all.GetMemoryReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupMemoryReport := new Windows.System.IAppResourceGroupMemoryReport;
+         Retval.m_IAppResourceGroupMemoryReport := new WinRt.Windows.System.IAppResourceGroupMemoryReport;
          Retval.m_IAppResourceGroupMemoryReport.all := m_ComRetVal;
       end return;
    end;
@@ -1338,7 +1338,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IAppResourceGroupInfo.all.GetProcessDiagnosticInfos (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1355,14 +1355,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupStateReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupStateReport;
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupStateReport do
          Hr := this.m_IAppResourceGroupInfo.all.GetStateReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupStateReport := new Windows.System.IAppResourceGroupStateReport;
+         Retval.m_IAppResourceGroupStateReport := new WinRt.Windows.System.IAppResourceGroupStateReport;
          Retval.m_IAppResourceGroupStateReport.all := m_ComRetVal;
       end return;
    end;
@@ -1424,7 +1424,7 @@ package body WinRt.Windows.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppExecutionStateChangeResult := new Windows.System.IAppExecutionStateChangeResult;
+                  Retval.m_IAppExecutionStateChangeResult := new WinRt.Windows.System.IAppExecutionStateChangeResult;
                   Retval.m_IAppExecutionStateChangeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1494,7 +1494,7 @@ package body WinRt.Windows.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppExecutionStateChangeResult := new Windows.System.IAppExecutionStateChangeResult;
+                  Retval.m_IAppExecutionStateChangeResult := new WinRt.Windows.System.IAppExecutionStateChangeResult;
                   Retval.m_IAppExecutionStateChangeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1564,7 +1564,7 @@ package body WinRt.Windows.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppExecutionStateChangeResult := new Windows.System.IAppExecutionStateChangeResult;
+                  Retval.m_IAppExecutionStateChangeResult := new WinRt.Windows.System.IAppExecutionStateChangeResult;
                   Retval.m_IAppExecutionStateChangeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1609,7 +1609,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1621,7 +1621,7 @@ package body WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1642,7 +1642,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1654,7 +1654,7 @@ package body WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1675,7 +1675,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1687,7 +1687,7 @@ package body WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1708,7 +1708,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1720,7 +1720,7 @@ package body WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1741,7 +1741,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.add_ExecutionStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1753,7 +1753,7 @@ package body WinRt.Windows.System is
    procedure remove_ExecutionStateChanged
    (
       this : in out AppResourceGroupInfoWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1773,7 +1773,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.AppResourceGroupInfoWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.AppResourceGroupInfoWatcherStatus;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1841,7 +1841,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppDiagnosticInfo.Kind;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcherEventArgs.all.get_AppDiagnosticInfos (m_ComRetVal'Access);
@@ -1861,14 +1861,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupInfo;
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupInfo do
          Hr := this.m_IAppResourceGroupInfoWatcherEventArgs.all.get_AppResourceGroupInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupInfo := new Windows.System.IAppResourceGroupInfo;
+         Retval.m_IAppResourceGroupInfo := new WinRt.Windows.System.IAppResourceGroupInfo;
          Retval.m_IAppResourceGroupInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1904,7 +1904,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppDiagnosticInfo.Kind;
    begin
       Hr := this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs.all.get_AppDiagnosticInfos (m_ComRetVal'Access);
@@ -1924,14 +1924,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppResourceGroupInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppResourceGroupInfo;
    begin
       return RetVal : WinRt.Windows.System.AppResourceGroupInfo do
          Hr := this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs.all.get_AppResourceGroupInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppResourceGroupInfo := new Windows.System.IAppResourceGroupInfo;
+         Retval.m_IAppResourceGroupInfo := new WinRt.Windows.System.IAppResourceGroupInfo;
          Retval.m_IAppResourceGroupInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1984,7 +1984,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.AppMemoryUsageLevel;
+      m_ComRetVal      : aliased WinRt.Windows.System.AppMemoryUsageLevel;
    begin
       Hr := this.m_IAppResourceGroupMemoryReport.all.get_CommitUsageLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2058,7 +2058,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.AppResourceGroupExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.System.AppResourceGroupExecutionState;
    begin
       Hr := this.m_IAppResourceGroupStateReport.all.get_ExecutionState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2075,7 +2075,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.AppResourceGroupEnergyQuotaState;
+      m_ComRetVal      : aliased WinRt.Windows.System.AppResourceGroupEnergyQuotaState;
    begin
       Hr := this.m_IAppResourceGroupStateReport.all.get_EnergyQuotaState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2110,13 +2110,13 @@ package body WinRt.Windows.System is
    function Constructor return AppUriHandlerHost is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerHost");
-      m_ComRetVal  : aliased Windows.System.IAppUriHandlerHost;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IAppUriHandlerHost");
+      m_ComRetVal  : aliased WinRt.Windows.System.IAppUriHandlerHost;
    begin
       return RetVal : AppUriHandlerHost do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppUriHandlerHost := new Windows.System.IAppUriHandlerHost;
+            Retval.m_IAppUriHandlerHost := new WinRt.Windows.System.IAppUriHandlerHost;
             Retval.m_IAppUriHandlerHost.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2130,17 +2130,17 @@ package body WinRt.Windows.System is
    return AppUriHandlerHost is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerHost");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IAppUriHandlerHost");
       m_Factory    : access IAppUriHandlerHostFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.IAppUriHandlerHost;
+      m_ComRetVal  : aliased WinRt.Windows.System.IAppUriHandlerHost;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : AppUriHandlerHost do
          Hr := RoGetActivationFactory (m_hString, IID_IAppUriHandlerHostFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_name, m_ComRetVal'Access);
-            Retval.m_IAppUriHandlerHost := new Windows.System.IAppUriHandlerHost;
+            Retval.m_IAppUriHandlerHost := new WinRt.Windows.System.IAppUriHandlerHost;
             Retval.m_IAppUriHandlerHost.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2280,14 +2280,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppUriHandlerRegistration.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -2407,7 +2407,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.IAppUriHandlerRegistration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAppUriHandlerHost.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.IAppUriHandlerRegistration_Interface, WinRt.Windows.System.IAppUriHandlerRegistration2, WinRt.Windows.System.IID_IAppUriHandlerRegistration2'Unchecked_Access);
    begin
@@ -2495,7 +2495,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerRegistrationManager");
       m_Factory        : access WinRt.Windows.System.IAppUriHandlerRegistrationManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppUriHandlerRegistrationManager;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppUriHandlerRegistrationManager;
    begin
       return RetVal : WinRt.Windows.System.AppUriHandlerRegistrationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAppUriHandlerRegistrationManagerStatics'Access , m_Factory'Address);
@@ -2505,7 +2505,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppUriHandlerRegistrationManager := new Windows.System.IAppUriHandlerRegistrationManager;
+            Retval.m_IAppUriHandlerRegistrationManager := new WinRt.Windows.System.IAppUriHandlerRegistrationManager;
             Retval.m_IAppUriHandlerRegistrationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2514,7 +2514,7 @@ package body WinRt.Windows.System is
 
    function GetForUser
    (
-      user_p : Windows.System.User'Class
+      user_p : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.AppUriHandlerRegistrationManager is
       Hr               : WinRt.HResult := S_OK;
@@ -2522,7 +2522,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerRegistrationManager");
       m_Factory        : access WinRt.Windows.System.IAppUriHandlerRegistrationManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppUriHandlerRegistrationManager;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppUriHandlerRegistrationManager;
    begin
       return RetVal : WinRt.Windows.System.AppUriHandlerRegistrationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAppUriHandlerRegistrationManagerStatics'Access , m_Factory'Address);
@@ -2532,7 +2532,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppUriHandlerRegistrationManager := new Windows.System.IAppUriHandlerRegistrationManager;
+            Retval.m_IAppUriHandlerRegistrationManager := new WinRt.Windows.System.IAppUriHandlerRegistrationManager;
             Retval.m_IAppUriHandlerRegistrationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2549,7 +2549,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerRegistrationManager");
       m_Factory        : access WinRt.Windows.System.IAppUriHandlerRegistrationManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppUriHandlerRegistrationManager;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppUriHandlerRegistrationManager;
       HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
    begin
       return RetVal : WinRt.Windows.System.AppUriHandlerRegistrationManager do
@@ -2560,7 +2560,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppUriHandlerRegistrationManager := new Windows.System.IAppUriHandlerRegistrationManager;
+            Retval.m_IAppUriHandlerRegistrationManager := new WinRt.Windows.System.IAppUriHandlerRegistrationManager;
             Retval.m_IAppUriHandlerRegistrationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2571,7 +2571,7 @@ package body WinRt.Windows.System is
    function GetForPackageForUser
    (
       packageFamilyName : WinRt.WString;
-      user_p : Windows.System.User'Class
+      user_p : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.AppUriHandlerRegistrationManager is
       Hr               : WinRt.HResult := S_OK;
@@ -2579,7 +2579,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerRegistrationManager");
       m_Factory        : access WinRt.Windows.System.IAppUriHandlerRegistrationManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppUriHandlerRegistrationManager;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppUriHandlerRegistrationManager;
       HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
    begin
       return RetVal : WinRt.Windows.System.AppUriHandlerRegistrationManager do
@@ -2590,7 +2590,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppUriHandlerRegistrationManager := new Windows.System.IAppUriHandlerRegistrationManager;
+            Retval.m_IAppUriHandlerRegistrationManager := new WinRt.Windows.System.IAppUriHandlerRegistrationManager;
             Retval.m_IAppUriHandlerRegistrationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2609,14 +2609,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppUriHandlerRegistrationManager.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -2630,7 +2630,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IAppUriHandlerRegistration;
+      m_ComRetVal      : aliased WinRt.Windows.System.IAppUriHandlerRegistration;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.System.AppUriHandlerRegistration do
@@ -2638,7 +2638,7 @@ package body WinRt.Windows.System is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppUriHandlerRegistration := new Windows.System.IAppUriHandlerRegistration;
+         Retval.m_IAppUriHandlerRegistration := new WinRt.Windows.System.IAppUriHandlerRegistration;
          Retval.m_IAppUriHandlerRegistration.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
       end return;
@@ -2674,7 +2674,7 @@ package body WinRt.Windows.System is
 
       procedure SetSystemDateTime
       (
-         utcDateTime : Windows.Foundation.DateTime
+         utcDateTime : WinRt.Windows.Foundation.DateTime
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2725,7 +2725,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.DispatcherQueue");
       m_Factory        : access WinRt.Windows.System.IDispatcherQueueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          Hr := RoGetActivationFactory (m_hString, IID_IDispatcherQueueStatics'Access , m_Factory'Address);
@@ -2735,7 +2735,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+            Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
             Retval.m_IDispatcherQueue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2753,14 +2753,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueueTimer;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueueTimer;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueueTimer do
          Hr := this.m_IDispatcherQueue.all.CreateTimer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueueTimer := new Windows.System.IDispatcherQueueTimer;
+         Retval.m_IDispatcherQueueTimer := new WinRt.Windows.System.IDispatcherQueueTimer;
          Retval.m_IDispatcherQueueTimer.all := m_ComRetVal;
       end return;
    end;
@@ -2768,7 +2768,7 @@ package body WinRt.Windows.System is
    function TryEnqueue
    (
       this : in out DispatcherQueue;
-      callback : Windows.System.DispatcherQueueHandler
+      callback : WinRt.Windows.System.DispatcherQueueHandler
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2786,8 +2786,8 @@ package body WinRt.Windows.System is
    function TryEnqueue
    (
       this : in out DispatcherQueue;
-      priority : Windows.System.DispatcherQueuePriority;
-      callback : Windows.System.DispatcherQueueHandler
+      priority : WinRt.Windows.System.DispatcherQueuePriority;
+      callback : WinRt.Windows.System.DispatcherQueueHandler
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2811,7 +2811,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDispatcherQueue.all.add_ShutdownStarting (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2823,7 +2823,7 @@ package body WinRt.Windows.System is
    procedure remove_ShutdownStarting
    (
       this : in out DispatcherQueue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2844,7 +2844,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDispatcherQueue.all.add_ShutdownCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2856,7 +2856,7 @@ package body WinRt.Windows.System is
    procedure remove_ShutdownCompleted
    (
       this : in out DispatcherQueue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2919,7 +2919,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.DispatcherQueueController");
       m_Factory        : access WinRt.Windows.System.IDispatcherQueueControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueueController;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueueController;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueueController do
          Hr := RoGetActivationFactory (m_hString, IID_IDispatcherQueueControllerStatics'Access , m_Factory'Address);
@@ -2929,7 +2929,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDispatcherQueueController := new Windows.System.IDispatcherQueueController;
+            Retval.m_IDispatcherQueueController := new WinRt.Windows.System.IDispatcherQueueController;
             Retval.m_IDispatcherQueueController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2947,14 +2947,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          Hr := this.m_IDispatcherQueueController.all.get_DispatcherQueue (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
    end;
@@ -3046,14 +3046,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IDispatcherQueueShutdownStartingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3089,7 +3089,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IDispatcherQueueTimer.all.get_Interval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3101,7 +3101,7 @@ package body WinRt.Windows.System is
    procedure put_Interval
    (
       this : in out DispatcherQueueTimer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3199,7 +3199,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDispatcherQueueTimer.all.add_Tick (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3211,7 +3211,7 @@ package body WinRt.Windows.System is
    procedure remove_Tick
    (
       this : in out DispatcherQueueTimer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3249,13 +3249,13 @@ package body WinRt.Windows.System is
    function Constructor return FolderLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.FolderLauncherOptions");
-      m_ComRetVal  : aliased Windows.System.IFolderLauncherOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IFolderLauncherOptions");
+      m_ComRetVal  : aliased WinRt.Windows.System.IFolderLauncherOptions;
    begin
       return RetVal : FolderLauncherOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFolderLauncherOptions := new Windows.System.IFolderLauncherOptions;
+            Retval.m_IFolderLauncherOptions := new WinRt.Windows.System.IFolderLauncherOptions;
             Retval.m_IFolderLauncherOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3273,7 +3273,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IFolderLauncherOptions.all.get_ItemsToSelect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3291,7 +3291,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.ILauncherViewOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ViewSizePreference;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ViewSizePreference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.IFolderLauncherOptions_Interface, WinRt.Windows.System.ILauncherViewOptions, WinRt.Windows.System.IID_ILauncherViewOptions'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFolderLauncherOptions.all);
@@ -3306,7 +3306,7 @@ package body WinRt.Windows.System is
    procedure put_DesiredRemainingView
    (
       this : in out FolderLauncherOptions;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3599,7 +3599,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.LaunchUriStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.LaunchUriStatus;
    begin
       Hr := this.m_ILaunchUriResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3616,14 +3616,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_ILaunchUriResult.all.get_Result (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3634,8 +3634,8 @@ package body WinRt.Windows.System is
 
       function LaunchUriForResultsAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriResult is
          Hr               : WinRt.HResult := S_OK;
@@ -3691,7 +3691,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILaunchUriResult := new Windows.System.ILaunchUriResult;
+                        Retval.m_ILaunchUriResult := new WinRt.Windows.System.ILaunchUriResult;
                         Retval.m_ILaunchUriResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3708,9 +3708,9 @@ package body WinRt.Windows.System is
 
       function LaunchUriForResultsAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriResult is
          Hr               : WinRt.HResult := S_OK;
@@ -3766,7 +3766,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILaunchUriResult := new Windows.System.ILaunchUriResult;
+                        Retval.m_ILaunchUriResult := new WinRt.Windows.System.ILaunchUriResult;
                         Retval.m_ILaunchUriResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3783,9 +3783,9 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -3855,8 +3855,8 @@ package body WinRt.Windows.System is
 
       function QueryUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -3926,8 +3926,8 @@ package body WinRt.Windows.System is
 
       function QueryUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
@@ -4000,7 +4000,7 @@ package body WinRt.Windows.System is
 
       function QueryFileSupportAsync
       (
-         file : Windows.Storage.StorageFile'Class
+         file : WinRt.Windows.Storage.StorageFile'Class
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -4070,7 +4070,7 @@ package body WinRt.Windows.System is
 
       function QueryFileSupportAsync
       (
-         file : Windows.Storage.StorageFile'Class;
+         file : WinRt.Windows.Storage.StorageFile'Class;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
@@ -4216,7 +4216,7 @@ package body WinRt.Windows.System is
       function FindUriSchemeHandlersAsync
       (
          scheme : WinRt.WString;
-         launchQuerySupportType : Windows.System.LaunchQuerySupportType
+         launchQuerySupportType : WinRt.Windows.System.LaunchQuerySupportType
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -4360,7 +4360,7 @@ package body WinRt.Windows.System is
 
       function LaunchFileAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4430,8 +4430,8 @@ package body WinRt.Windows.System is
 
       function LaunchFileAsync
       (
-         file : Windows.Storage.IStorageFile;
-         options : Windows.System.LauncherOptions'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4501,7 +4501,7 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4571,8 +4571,8 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4715,7 +4715,7 @@ package body WinRt.Windows.System is
       function LaunchFolderPathAsync
       (
          path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4787,7 +4787,7 @@ package body WinRt.Windows.System is
 
       function LaunchFolderPathForUserAsync
       (
-         user_p : Windows.System.User'Class;
+         user_p : WinRt.Windows.System.User'Class;
          path : WinRt.WString
       )
       return WinRt.Boolean is
@@ -4860,9 +4860,9 @@ package body WinRt.Windows.System is
 
       function LaunchFolderPathForUserAsync
       (
-         user_p : Windows.System.User'Class;
+         user_p : WinRt.Windows.System.User'Class;
          path : WinRt.WString;
-         options : Windows.System.FolderLauncherOptions'Class
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4934,7 +4934,7 @@ package body WinRt.Windows.System is
 
       function QueryAppUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -5004,7 +5004,7 @@ package body WinRt.Windows.System is
 
       function QueryAppUriSupportAsync
       (
-         uri : Windows.Foundation.Uri'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
          packageFamilyName : WinRt.WString
       )
       return WinRt.Windows.System.LaunchQuerySupportStatus is
@@ -5077,7 +5077,7 @@ package body WinRt.Windows.System is
 
       function FindAppUriHandlersAsync
       (
-         uri : Windows.Foundation.Uri'Class
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -5147,8 +5147,8 @@ package body WinRt.Windows.System is
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.LaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -5218,9 +5218,9 @@ package body WinRt.Windows.System is
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -5290,10 +5290,10 @@ package body WinRt.Windows.System is
 
       function LaunchUriForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -5363,9 +5363,9 @@ package body WinRt.Windows.System is
 
       function LaunchUriForResultsForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class
       )
       return WinRt.Windows.System.LaunchUriResult is
          Hr               : WinRt.HResult := S_OK;
@@ -5421,7 +5421,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILaunchUriResult := new Windows.System.ILaunchUriResult;
+                        Retval.m_ILaunchUriResult := new WinRt.Windows.System.ILaunchUriResult;
                         Retval.m_ILaunchUriResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -5438,10 +5438,10 @@ package body WinRt.Windows.System is
 
       function LaunchUriForResultsForUserAsync
       (
-         user_p : Windows.System.User'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.LauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         user_p : WinRt.Windows.System.User'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.LauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.LaunchUriResult is
          Hr               : WinRt.HResult := S_OK;
@@ -5497,7 +5497,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILaunchUriResult := new Windows.System.ILaunchUriResult;
+                        Retval.m_ILaunchUriResult := new WinRt.Windows.System.ILaunchUriResult;
                         Retval.m_ILaunchUriResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -5514,7 +5514,7 @@ package body WinRt.Windows.System is
 
       function LaunchFolderAsync
       (
-         folder : Windows.Storage.IStorageFolder
+         folder : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -5584,8 +5584,8 @@ package body WinRt.Windows.System is
 
       function LaunchFolderAsync
       (
-         folder : Windows.Storage.IStorageFolder;
-         options : Windows.System.FolderLauncherOptions'Class
+         folder : WinRt.Windows.Storage.IStorageFolder;
+         options : WinRt.Windows.System.FolderLauncherOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -5681,13 +5681,13 @@ package body WinRt.Windows.System is
    function Constructor return LauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.LauncherOptions");
-      m_ComRetVal  : aliased Windows.System.ILauncherOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.ILauncherOptions");
+      m_ComRetVal  : aliased WinRt.Windows.System.ILauncherOptions;
    begin
       return RetVal : LauncherOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILauncherOptions := new Windows.System.ILauncherOptions;
+            Retval.m_ILauncherOptions := new WinRt.Windows.System.ILauncherOptions;
             Retval.m_ILauncherOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5751,7 +5751,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.ILauncherOptions2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.ILauncherOptions_Interface, WinRt.Windows.System.ILauncherOptions2, WinRt.Windows.System.IID_ILauncherOptions2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -5761,7 +5761,7 @@ package body WinRt.Windows.System is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -5769,7 +5769,7 @@ package body WinRt.Windows.System is
    procedure put_NeighboringFilesQuery
    (
       this : in out LauncherOptions;
-      value : Windows.Storage.Search.StorageFileQueryResult'Class
+      value : WinRt.Windows.Storage.Search.StorageFileQueryResult'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5857,14 +5857,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.ILauncherUIOptions;
+      m_ComRetVal      : aliased WinRt.Windows.System.ILauncherUIOptions;
    begin
       return RetVal : WinRt.Windows.System.LauncherUIOptions do
          Hr := this.m_ILauncherOptions.all.get_UI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILauncherUIOptions := new Windows.System.ILauncherUIOptions;
+         Retval.m_ILauncherUIOptions := new WinRt.Windows.System.ILauncherUIOptions;
          Retval.m_ILauncherUIOptions.all := m_ComRetVal;
       end return;
    end;
@@ -5951,14 +5951,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ILauncherOptions.all.get_FallbackUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -5966,7 +5966,7 @@ package body WinRt.Windows.System is
    procedure put_FallbackUri
    (
       this : in out LauncherOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6104,7 +6104,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.ILauncherViewOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ViewSizePreference;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ViewSizePreference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.ILauncherOptions_Interface, WinRt.Windows.System.ILauncherViewOptions, WinRt.Windows.System.IID_ILauncherViewOptions'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILauncherOptions.all);
@@ -6119,7 +6119,7 @@ package body WinRt.Windows.System is
    procedure put_DesiredRemainingView
    (
       this : in out LauncherOptions;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6166,7 +6166,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Point.Kind;
    begin
       Hr := this.m_ILauncherUIOptions.all.get_InvocationPoint (m_ComRetVal'Access);
@@ -6201,7 +6201,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Rect.Kind;
    begin
       Hr := this.m_ILauncherUIOptions.all.get_SelectionRect (m_ComRetVal'Access);
@@ -6236,7 +6236,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Popups.Placement;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Popups.Placement;
    begin
       Hr := this.m_ILauncherUIOptions.all.get_PreferredPlacement (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6248,7 +6248,7 @@ package body WinRt.Windows.System is
    procedure put_PreferredPlacement
    (
       this : in out LauncherUIOptions;
-      value : Windows.UI.Popups.Placement
+      value : WinRt.Windows.UI.Popups.Placement
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6295,7 +6295,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.IAppMemoryReport;
+         m_ComRetVal      : aliased WinRt.Windows.System.IAppMemoryReport;
       begin
          return RetVal : WinRt.Windows.System.AppMemoryReport do
             Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics2'Access , m_Factory'Address);
@@ -6305,7 +6305,7 @@ package body WinRt.Windows.System is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAppMemoryReport := new Windows.System.IAppMemoryReport;
+               Retval.m_IAppMemoryReport := new WinRt.Windows.System.IAppMemoryReport;
                Retval.m_IAppMemoryReport.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -6319,7 +6319,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.IProcessMemoryReport;
+         m_ComRetVal      : aliased WinRt.Windows.System.IProcessMemoryReport;
       begin
          return RetVal : WinRt.Windows.System.ProcessMemoryReport do
             Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics2'Access , m_Factory'Address);
@@ -6329,7 +6329,7 @@ package body WinRt.Windows.System is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IProcessMemoryReport := new Windows.System.IProcessMemoryReport;
+               Retval.m_IProcessMemoryReport := new WinRt.Windows.System.IProcessMemoryReport;
                Retval.m_IProcessMemoryReport.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -6385,7 +6385,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.AppMemoryUsageLevel;
+         m_ComRetVal      : aliased WinRt.Windows.System.AppMemoryUsageLevel;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -6409,7 +6409,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -6425,7 +6425,7 @@ package body WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageIncreased
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -6454,7 +6454,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -6470,7 +6470,7 @@ package body WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageDecreased
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -6499,7 +6499,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.MemoryManager");
          m_Factory        : access WinRt.Windows.System.IMemoryManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMemoryManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -6515,7 +6515,7 @@ package body WinRt.Windows.System is
 
       procedure remove_AppMemoryUsageLimitChanging
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -6622,7 +6622,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProcessLauncherResult := new Windows.System.IProcessLauncherResult;
+                        Retval.m_IProcessLauncherResult := new WinRt.Windows.System.IProcessLauncherResult;
                         Retval.m_IProcessLauncherResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -6643,7 +6643,7 @@ package body WinRt.Windows.System is
       (
          fileName : WinRt.WString;
          args : WinRt.WString;
-         options : Windows.System.ProcessLauncherOptions'Class
+         options : WinRt.Windows.System.ProcessLauncherOptions'Class
       )
       return WinRt.Windows.System.ProcessLauncherResult is
          Hr               : WinRt.HResult := S_OK;
@@ -6701,7 +6701,7 @@ package body WinRt.Windows.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProcessLauncherResult := new Windows.System.IProcessLauncherResult;
+                        Retval.m_IProcessLauncherResult := new WinRt.Windows.System.IProcessLauncherResult;
                         Retval.m_IProcessLauncherResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -6746,13 +6746,13 @@ package body WinRt.Windows.System is
    function Constructor return ProcessLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.ProcessLauncherOptions");
-      m_ComRetVal  : aliased Windows.System.IProcessLauncherOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IProcessLauncherOptions");
+      m_ComRetVal  : aliased WinRt.Windows.System.IProcessLauncherOptions;
    begin
       return RetVal : ProcessLauncherOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IProcessLauncherOptions := new Windows.System.IProcessLauncherOptions;
+            Retval.m_IProcessLauncherOptions := new WinRt.Windows.System.IProcessLauncherOptions;
             Retval.m_IProcessLauncherOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6770,7 +6770,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IProcessLauncherOptions.all.get_StandardInput (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6782,7 +6782,7 @@ package body WinRt.Windows.System is
    procedure put_StandardInput
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IInputStream
+      value : WinRt.Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6802,7 +6802,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IProcessLauncherOptions.all.get_StandardOutput (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6814,7 +6814,7 @@ package body WinRt.Windows.System is
    procedure put_StandardOutput
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IOutputStream
+      value : WinRt.Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6834,7 +6834,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IProcessLauncherOptions.all.get_StandardError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6846,7 +6846,7 @@ package body WinRt.Windows.System is
    procedure put_StandardError
    (
       this : in out ProcessLauncherOptions;
-      value : Windows.Storage.Streams.IOutputStream
+      value : WinRt.Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7018,7 +7018,7 @@ package body WinRt.Windows.System is
    procedure ReportCompleted
    (
       this : in out ProtocolForResultsOperation;
-      data : Windows.Foundation.Collections.ValueSet'Class
+      data : WinRt.Windows.Foundation.Collections.ValueSet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7036,8 +7036,8 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -7107,9 +7107,9 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.RemoteLauncherOptions'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.RemoteLauncherOptions'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -7179,10 +7179,10 @@ package body WinRt.Windows.System is
 
       function LaunchUriAsync
       (
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-         uri : Windows.Foundation.Uri'Class;
-         options : Windows.System.RemoteLauncherOptions'Class;
-         inputData : Windows.Foundation.Collections.ValueSet'Class
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+         uri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.System.RemoteLauncherOptions'Class;
+         inputData : WinRt.Windows.Foundation.Collections.ValueSet'Class
       )
       return WinRt.Windows.System.RemoteLaunchUriStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -7278,13 +7278,13 @@ package body WinRt.Windows.System is
    function Constructor return RemoteLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteLauncherOptions");
-      m_ComRetVal  : aliased Windows.System.IRemoteLauncherOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IRemoteLauncherOptions");
+      m_ComRetVal  : aliased WinRt.Windows.System.IRemoteLauncherOptions;
    begin
       return RetVal : RemoteLauncherOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRemoteLauncherOptions := new Windows.System.IRemoteLauncherOptions;
+            Retval.m_IRemoteLauncherOptions := new WinRt.Windows.System.IRemoteLauncherOptions;
             Retval.m_IRemoteLauncherOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7302,14 +7302,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IRemoteLauncherOptions.all.get_FallbackUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -7317,7 +7317,7 @@ package body WinRt.Windows.System is
    procedure put_FallbackUri
    (
       this : in out RemoteLauncherOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7337,7 +7337,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IRemoteLauncherOptions.all.get_PreferredAppIds (m_ComRetVal'Access);
@@ -7355,8 +7355,8 @@ package body WinRt.Windows.System is
 
       procedure BeginShutdown
       (
-         shutdownKind : Windows.System.ShutdownKind;
-         timeout : Windows.Foundation.TimeSpan
+         shutdownKind : WinRt.Windows.System.ShutdownKind;
+         timeout : WinRt.Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -7395,7 +7395,7 @@ package body WinRt.Windows.System is
 
       function IsPowerStateSupported
       (
-         powerState : Windows.System.PowerState
+         powerState : WinRt.Windows.System.PowerState
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -7419,7 +7419,7 @@ package body WinRt.Windows.System is
 
       procedure EnterPowerState
       (
-         powerState : Windows.System.PowerState
+         powerState : WinRt.Windows.System.PowerState
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -7440,8 +7440,8 @@ package body WinRt.Windows.System is
 
       procedure EnterPowerState
       (
-         powerState : Windows.System.PowerState;
-         wakeUpAfter : Windows.Foundation.TimeSpan
+         powerState : WinRt.Windows.System.PowerState;
+         wakeUpAfter : WinRt.Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -7497,7 +7497,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.TimeZoneSettings");
          m_Factory        : access WinRt.Windows.System.ITimeZoneSettingsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ITimeZoneSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -7557,7 +7557,7 @@ package body WinRt.Windows.System is
 
       function AutoUpdateTimeZoneAsync
       (
-         timeout : Windows.Foundation.TimeSpan
+         timeout : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Windows.System.AutoUpdateTimeZoneStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -7657,7 +7657,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.User");
       m_Factory        : access WinRt.Windows.System.IUserStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUserWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUserWatcher;
    begin
       return RetVal : WinRt.Windows.System.UserWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IUserStatics'Access , m_Factory'Address);
@@ -7667,7 +7667,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserWatcher := new Windows.System.IUserWatcher;
+            Retval.m_IUserWatcher := new WinRt.Windows.System.IUserWatcher;
             Retval.m_IUserWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7743,7 +7743,7 @@ package body WinRt.Windows.System is
 
    function FindAllAsync
    (
-      type_x : Windows.System.UserType
+      type_x : WinRt.Windows.System.UserType
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -7813,8 +7813,8 @@ package body WinRt.Windows.System is
 
    function FindAllAsync
    (
-      type_x : Windows.System.UserType;
-      status : Windows.System.UserAuthenticationStatus
+      type_x : WinRt.Windows.System.UserType;
+      status : WinRt.Windows.System.UserAuthenticationStatus
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -7892,7 +7892,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.User");
       m_Factory        : access WinRt.Windows.System.IUserStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       HStr_nonRoamableId : constant WinRt.HString := To_HString (nonRoamableId);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -7903,7 +7903,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUser := new Windows.System.IUser;
+            Retval.m_IUser := new WinRt.Windows.System.IUser;
             Retval.m_IUser.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7918,7 +7918,7 @@ package body WinRt.Windows.System is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.User");
       m_Factory        : access WinRt.Windows.System.IUserStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := RoGetActivationFactory (m_hString, IID_IUserStatics2'Access , m_Factory'Address);
@@ -7928,7 +7928,7 @@ package body WinRt.Windows.System is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUser := new Windows.System.IUser;
+            Retval.m_IUser := new WinRt.Windows.System.IUser;
             Retval.m_IUser.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7966,7 +7966,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.UserAuthenticationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.UserAuthenticationStatus;
    begin
       Hr := this.m_IUser.all.get_AuthenticationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7983,7 +7983,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.UserType;
+      m_ComRetVal      : aliased WinRt.Windows.System.UserType;
    begin
       Hr := this.m_IUser.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8125,7 +8125,7 @@ package body WinRt.Windows.System is
    function GetPictureAsync
    (
       this : in out User;
-      desiredSize : Windows.System.UserPictureSize
+      desiredSize : WinRt.Windows.System.UserPictureSize
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
@@ -8189,7 +8189,7 @@ package body WinRt.Windows.System is
    function CheckUserAgeConsentGroupAsync
    (
       this : in out User;
-      consentGroup : Windows.System.UserAgeConsentGroup
+      consentGroup : WinRt.Windows.System.UserAgeConsentGroup
    )
    return WinRt.Windows.System.UserAgeConsentResult is
       Hr               : WinRt.HResult := S_OK;
@@ -8322,14 +8322,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUserAuthenticationStatusChangeDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUserAuthenticationStatusChangeDeferral;
    begin
       return RetVal : WinRt.Windows.System.UserAuthenticationStatusChangeDeferral do
          Hr := this.m_IUserAuthenticationStatusChangingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserAuthenticationStatusChangeDeferral := new Windows.System.IUserAuthenticationStatusChangeDeferral;
+         Retval.m_IUserAuthenticationStatusChangeDeferral := new WinRt.Windows.System.IUserAuthenticationStatusChangeDeferral;
          Retval.m_IUserAuthenticationStatusChangeDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -8342,14 +8342,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserAuthenticationStatusChangingEventArgs.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -8362,7 +8362,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.UserAuthenticationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.UserAuthenticationStatus;
    begin
       Hr := this.m_IUserAuthenticationStatusChangingEventArgs.all.get_NewStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8379,7 +8379,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.UserAuthenticationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.UserAuthenticationStatus;
    begin
       Hr := this.m_IUserAuthenticationStatusChangingEventArgs.all.get_CurrentStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8419,14 +8419,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserChangedEventArgs.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -8440,7 +8440,7 @@ package body WinRt.Windows.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.IUserChangedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UserWatcherUpdateKind.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.IUserChangedEventArgs_Interface, WinRt.Windows.System.IUserChangedEventArgs2, WinRt.Windows.System.IID_IUserChangedEventArgs2'Unchecked_Access);
    begin
@@ -8469,7 +8469,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserDeviceAssociation");
          m_Factory        : access WinRt.Windows.System.IUserDeviceAssociationStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.IUser;
+         m_ComRetVal      : aliased WinRt.Windows.System.IUser;
          HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
       begin
          return RetVal : WinRt.Windows.System.User do
@@ -8480,7 +8480,7 @@ package body WinRt.Windows.System is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IUser := new Windows.System.IUser;
+               Retval.m_IUser := new WinRt.Windows.System.IUser;
                Retval.m_IUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -8498,7 +8498,7 @@ package body WinRt.Windows.System is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.UserDeviceAssociation");
          m_Factory        : access WinRt.Windows.System.IUserDeviceAssociationStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUserDeviceAssociationStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -8514,7 +8514,7 @@ package body WinRt.Windows.System is
 
       procedure remove_UserDeviceAssociationChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -8586,14 +8586,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserDeviceAssociationChangedEventArgs.all.get_NewUser (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -8606,14 +8606,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserDeviceAssociationChangedEventArgs.all.get_OldUser (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -8644,13 +8644,13 @@ package body WinRt.Windows.System is
    function Constructor return UserPicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.UserPicker");
-      m_ComRetVal  : aliased Windows.System.IUserPicker;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IUserPicker");
+      m_ComRetVal  : aliased WinRt.Windows.System.IUserPicker;
    begin
       return RetVal : UserPicker do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUserPicker := new Windows.System.IUserPicker;
+            Retval.m_IUserPicker := new WinRt.Windows.System.IUserPicker;
             Retval.m_IUserPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8724,14 +8724,14 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserPicker.all.get_SuggestedSelectedUser (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -8739,7 +8739,7 @@ package body WinRt.Windows.System is
    procedure put_SuggestedSelectedUser
    (
       this : in out UserPicker;
-      value : Windows.System.User'Class
+      value : WinRt.Windows.System.User'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8804,7 +8804,7 @@ package body WinRt.Windows.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUser := new Windows.System.IUser;
+                  Retval.m_IUser := new WinRt.Windows.System.IUser;
                   Retval.m_IUser.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8848,7 +8848,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.UserWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.UserWatcherStatus;
    begin
       Hr := this.m_IUserWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8894,7 +8894,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8906,7 +8906,7 @@ package body WinRt.Windows.System is
    procedure remove_Added
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8927,7 +8927,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8939,7 +8939,7 @@ package body WinRt.Windows.System is
    procedure remove_Removed
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8960,7 +8960,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_Updated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8972,7 +8972,7 @@ package body WinRt.Windows.System is
    procedure remove_Updated
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8993,7 +8993,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_AuthenticationStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9005,7 +9005,7 @@ package body WinRt.Windows.System is
    procedure remove_AuthenticationStatusChanged
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9026,7 +9026,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_AuthenticationStatusChanging (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9038,7 +9038,7 @@ package body WinRt.Windows.System is
    procedure remove_AuthenticationStatusChanging
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9059,7 +9059,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9071,7 +9071,7 @@ package body WinRt.Windows.System is
    procedure remove_EnumerationCompleted
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9092,7 +9092,7 @@ package body WinRt.Windows.System is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9104,7 +9104,7 @@ package body WinRt.Windows.System is
    procedure remove_Stopped
    (
       this : in out UserWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

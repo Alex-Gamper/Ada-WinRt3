@@ -870,43 +870,43 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ThreadingInfo
       (
          this : access IChatConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IChatConversation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IChatConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageReader
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function MarkMessagesAsReadAsync
       (
          this : access IChatConversation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MarkMessagesAsReadAsync
       (
          this : access IChatConversation_Interface;
-         value : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IChatConversation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -932,14 +932,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatConversation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemoteParticipantComposingChanged
       (
          this : access IChatConversation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1039,14 +1039,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Kind
       (
          this : access IChatConversationThreadingInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatConversationThreadingKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IChatConversationThreadingInfo_Interface;
-         value : Windows.ApplicationModel.Chat.ChatConversationThreadingKind
+         value : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1058,7 +1058,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ItemKind
       (
          this : access IChatItem_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatItemKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatItemKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1126,14 +1126,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_LocalTimestamp
       (
          this : access IChatMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkTimestamp
       (
          this : access IChatMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1154,7 +1154,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Status
       (
          this : access IChatMessage_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,42 +1278,42 @@ package WinRt.Windows.ApplicationModel.Chat is
       function put_LocalTimestamp
       (
          this : access IChatMessage2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_MessageKind
       (
          this : access IChatMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageKind
       )
       return WinRt.Hresult is abstract;
 
       function put_MessageKind
       (
          this : access IChatMessage2_Interface;
-         value : Windows.ApplicationModel.Chat.ChatMessageKind
+         value : WinRt.Windows.ApplicationModel.Chat.ChatMessageKind
       )
       return WinRt.Hresult is abstract;
 
       function get_MessageOperatorKind
       (
          this : access IChatMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageOperatorKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageOperatorKind
       )
       return WinRt.Hresult is abstract;
 
       function put_MessageOperatorKind
       (
          this : access IChatMessage2_Interface;
-         value : Windows.ApplicationModel.Chat.ChatMessageOperatorKind
+         value : WinRt.Windows.ApplicationModel.Chat.ChatMessageOperatorKind
       )
       return WinRt.Hresult is abstract;
 
       function put_NetworkTimestamp
       (
          this : access IChatMessage2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1341,7 +1341,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function put_Status
       (
          this : access IChatMessage2_Interface;
-         value : Windows.ApplicationModel.Chat.ChatMessageStatus
+         value : WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1369,14 +1369,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ThreadingInfo
       (
          this : access IChatMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_ThreadingInfo
       (
          this : access IChatMessage2_Interface;
-         value : Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
+         value : WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1426,14 +1426,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_DataStreamReference
       (
          this : access IChatMessageAttachment_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_DataStreamReference
       (
          this : access IChatMessageAttachment_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1487,14 +1487,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Thumbnail
       (
          this : access IChatMessageAttachment2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IChatMessageAttachment2_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1535,8 +1535,8 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageAttachmentFactory_Interface;
          mimeType : WinRt.HString;
-         dataStreamReference : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageAttachment
+         dataStreamReference : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment
       )
       return WinRt.Hresult is abstract;
 
@@ -1550,7 +1550,7 @@ package WinRt.Windows.ApplicationModel.Chat is
          this : access IChatMessageBlockingStatic_Interface;
          localChatMessageId : WinRt.HString;
          blocked : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1562,14 +1562,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ChangeType
       (
          this : access IChatMessageChange_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageChangeType
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageChangeType
       )
       return WinRt.Hresult is abstract;
 
       function get_Message
       (
          this : access IChatMessageChange_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessage
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1587,7 +1587,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function AcceptChangesThrough
       (
          this : access IChatMessageChangeReader_Interface;
-         lastChangeToAcknowledge : Windows.ApplicationModel.Chat.IChatMessageChange
+         lastChangeToAcknowledge : WinRt.Windows.ApplicationModel.Chat.IChatMessageChange
       )
       return WinRt.Hresult is abstract;
 
@@ -1612,7 +1612,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetChangeReader
       (
          this : access IChatMessageChangeTracker_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageChangeReader
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1641,7 +1641,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetDeferral
       (
          this : access IChatMessageChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageChangedDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageChangedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1687,8 +1687,8 @@ package WinRt.Windows.ApplicationModel.Chat is
       function ShowComposeSmsMessageAsync
       (
          this : access IChatMessageManagerStatic_Interface;
-         message : Windows.ApplicationModel.Chat.IChatMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Chat.IChatMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1718,7 +1718,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ChatMessage
       (
          this : access IChatMessageNotificationTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessage
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1788,7 +1788,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ChangeTracker
       (
          this : access IChatMessageStore_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -1796,7 +1796,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore_Interface;
          localMessageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1804,7 +1804,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore_Interface;
          localChatMessageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1819,15 +1819,15 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetMessageReader
       (
          this : access IChatMessageStore_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageReader
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IChatMessageStore_Interface;
-         recentTimeLimit : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageReader
+         recentTimeLimit : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1835,7 +1835,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore_Interface;
          localChatMessageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1843,23 +1843,23 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore_Interface;
          localChatMessageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageAsync
       (
          this : access IChatMessageStore_Interface;
-         chatMessage_p : Windows.ApplicationModel.Chat.IChatMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         chatMessage_p : WinRt.Windows.ApplicationModel.Chat.IChatMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ValidateMessage
       (
          this : access IChatMessageStore_Interface;
-         chatMessage_p : Windows.ApplicationModel.Chat.IChatMessage;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageValidationResult
+         chatMessage_p : WinRt.Windows.ApplicationModel.Chat.IChatMessage;
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageValidationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1867,14 +1867,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageChanged
       (
          this : access IChatMessageStore_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1912,7 +1912,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetConversationFromThreadingInfoAsync
       (
          this : access IChatMessageStore2_Interface;
-         threadingInfo : Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+         threadingInfo : WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1920,7 +1920,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetConversationReader
       (
          this : access IChatMessageStore2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatConversationReader
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatConversationReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1928,7 +1928,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore2_Interface;
          transportIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Chat.IChatConversationReader
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatConversationReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1959,7 +1959,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function MarkAsSeenAsync
       (
          this : access IChatMessageStore2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1967,23 +1967,23 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore2_Interface;
          transportIds : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetSearchReader
       (
          this : access IChatMessageStore2_Interface;
-         value : Windows.ApplicationModel.Chat.IChatQueryOptions;
-         RetVal : access Windows.ApplicationModel.Chat.IChatSearchReader
+         value : WinRt.Windows.ApplicationModel.Chat.IChatQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatSearchReader
       )
       return WinRt.Hresult is abstract;
 
       function SaveMessageAsync
       (
          this : access IChatMessageStore2_Interface;
-         chatMessage_p : Windows.ApplicationModel.Chat.IChatMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         chatMessage_p : WinRt.Windows.ApplicationModel.Chat.IChatMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2007,14 +2007,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IChatMessageStore2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StoreChanged
       (
          this : access IChatMessageStore2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2046,7 +2046,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Kind
       (
          this : access IChatMessageStoreChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatStoreChangedEventKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatStoreChangedEventKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2086,7 +2086,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function RequestSetAsNotificationProviderAsync
       (
          this : access IChatMessageTransport_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2098,14 +2098,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Configuration
       (
          this : access IChatMessageTransport2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_TransportKind
       (
          this : access IChatMessageTransport2_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageTransportKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageTransportKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2138,7 +2138,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_SupportedVideoFormat
       (
          this : access IChatMessageTransportConfiguration_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -2178,7 +2178,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Status
       (
          this : access IChatMessageValidationResult_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageValidationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageValidationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2251,14 +2251,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_TransportErrorCodeCategory
       (
          this : access IChatRecipientDeliveryInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatTransportErrorCodeCategory
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatTransportErrorCodeCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_TransportInterpretedErrorCode
       (
          this : access IChatRecipientDeliveryInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatTransportInterpretedErrorCode
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatTransportInterpretedErrorCode
       )
       return WinRt.Hresult is abstract;
 
@@ -2279,7 +2279,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Status
       (
          this : access IChatRecipientDeliveryInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatMessageStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2325,14 +2325,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_RestoreHistorySpan
       (
          this : access IChatSyncConfiguration_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RestoreHistorySpan
       (
          this : access IChatSyncConfiguration_Interface;
-         value : Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
+         value : WinRt.Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2344,29 +2344,29 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Configuration
       (
          this : access IChatSyncManager_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IChatSyncConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IChatSyncConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function AssociateAccountAsync
       (
          this : access IChatSyncManager_Interface;
-         webAccount : Windows.Security.Credentials.IWebAccount;
-         RetVal : access Windows.Foundation.IAsyncAction
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UnassociateAccountAsync
       (
          this : access IChatSyncManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function IsAccountAssociated
       (
          this : access IChatSyncManager_Interface;
-         webAccount : Windows.Security.Credentials.IWebAccount;
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2380,8 +2380,8 @@ package WinRt.Windows.ApplicationModel.Chat is
       function SetConfigurationAsync
       (
          this : access IChatSyncManager_Interface;
-         configuration : Windows.ApplicationModel.Chat.IChatSyncConfiguration;
-         RetVal : access Windows.Foundation.IAsyncAction
+         configuration : WinRt.Windows.ApplicationModel.Chat.IChatSyncConfiguration;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2428,17 +2428,17 @@ package WinRt.Windows.ApplicationModel.Chat is
       function SendResponseAsync
       (
          this : access IRcsEndUserMessage_Interface;
-         action : Windows.ApplicationModel.Chat.IRcsEndUserMessageAction;
-         RetVal : access Windows.Foundation.IAsyncAction
+         action : WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageAction;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SendResponseWithPinAsync
       (
          this : access IRcsEndUserMessage_Interface;
-         action : Windows.ApplicationModel.Chat.IRcsEndUserMessageAction;
+         action : WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageAction;
          pin : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2469,7 +2469,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Message
       (
          this : access IRcsEndUserMessageAvailableEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IRcsEndUserMessage
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -2501,14 +2501,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IRcsEndUserMessageManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageAvailableChanged
       (
          this : access IRcsEndUserMessageManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2520,7 +2520,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function GetEndUserMessageManager
       (
          this : access IRcsManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IRcsEndUserMessageManager
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2542,8 +2542,8 @@ package WinRt.Windows.ApplicationModel.Chat is
       function LeaveConversationAsync
       (
          this : access IRcsManagerStatics_Interface;
-         conversation : Windows.ApplicationModel.Chat.IChatConversation;
-         RetVal : access Windows.Foundation.IAsyncAction
+         conversation : WinRt.Windows.ApplicationModel.Chat.IChatConversation;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2556,14 +2556,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IRcsManagerStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransportListChanged
       (
          this : access IRcsManagerStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2575,7 +2575,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_ServiceKind
       (
          this : access IRcsServiceKindSupportedChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.RcsServiceKind
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.RcsServiceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2615,14 +2615,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       function get_Configuration
       (
          this : access IRcsTransport_Interface;
-         RetVal : access Windows.ApplicationModel.Chat.IRcsTransportConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.Chat.IRcsTransportConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function IsStoreAndForwardEnabled
       (
          this : access IRcsTransport_Interface;
-         serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind;
+         serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2630,7 +2630,7 @@ package WinRt.Windows.ApplicationModel.Chat is
       function IsServiceKindSupported
       (
          this : access IRcsTransport_Interface;
-         serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind;
+         serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2639,14 +2639,14 @@ package WinRt.Windows.ApplicationModel.Chat is
       (
          this : access IRcsTransport_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServiceKindSupportedChanged
       (
          this : access IRcsTransport_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2882,7 +2882,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure MarkMessagesAsReadAsync
    (
       this : in out ChatConversation;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure SaveAsync
@@ -2916,7 +2916,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure remove_RemoteParticipantComposingChanged
    (
       this : in out ChatConversation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CanModifyParticipants
@@ -3024,7 +3024,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_Kind
    (
       this : in out ChatConversationThreadingInfo;
-      value : Windows.ApplicationModel.Chat.ChatConversationThreadingKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingKind
    );
 
    -----------------------------------------------------------------------------
@@ -3218,7 +3218,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_LocalTimestamp
    (
       this : in out ChatMessage;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_MessageKind
@@ -3230,7 +3230,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_MessageKind
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageKind
    );
 
    function get_MessageOperatorKind
@@ -3242,13 +3242,13 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_MessageOperatorKind
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageOperatorKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageOperatorKind
    );
 
    procedure put_NetworkTimestamp
    (
       this : in out ChatMessage;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_IsReceivedDuringQuietHours
@@ -3272,7 +3272,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_Status
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageStatus
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus
    );
 
    procedure put_Subject
@@ -3302,7 +3302,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_ThreadingInfo
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
+      value : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
    );
 
    function get_RecipientsDeliveryInfos
@@ -3347,7 +3347,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    function Constructor
    (
       mimeType : WinRt.WString;
-      dataStreamReference : Windows.Storage.Streams.IRandomAccessStreamReference
+      dataStreamReference : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return ChatMessageAttachment;
 
@@ -3363,7 +3363,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_DataStreamReference
    (
       this : in out ChatMessageAttachment;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_GroupId
@@ -3411,7 +3411,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_Thumbnail
    (
       this : in out ChatMessageAttachment;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_TransferProgress
@@ -3488,7 +3488,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure AcceptChangesThrough
    (
       this : in out ChatMessageChangeReader;
-      lastChangeToAcknowledge : Windows.ApplicationModel.Chat.ChatMessageChange'Class
+      lastChangeToAcknowledge : WinRt.Windows.ApplicationModel.Chat.ChatMessageChange'Class
    );
 
    function ReadBatchAsync
@@ -3563,7 +3563,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
       procedure ShowComposeSmsMessageAsync
       (
-         message : Windows.ApplicationModel.Chat.ChatMessage'Class
+         message : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
       );
 
       procedure ShowSmsSettings;
@@ -3686,7 +3686,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    function GetMessageReader
    (
       this : in out ChatMessageStore;
-      recentTimeLimit : Windows.Foundation.TimeSpan
+      recentTimeLimit : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatMessageReader'Class;
 
@@ -3705,13 +3705,13 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure SendMessageAsync
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    );
 
    function ValidateMessage
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatMessageValidationResult'Class;
 
@@ -3725,7 +3725,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure remove_MessageChanged
    (
       this : in out ChatMessageStore;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function ForwardMessageAsync
@@ -3754,7 +3754,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    function GetConversationFromThreadingInfoAsync
    (
       this : in out ChatMessageStore;
-      threadingInfo : Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
+      threadingInfo : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatConversation'Class;
 
@@ -3806,14 +3806,14 @@ package WinRt.Windows.ApplicationModel.Chat is
    function GetSearchReader
    (
       this : in out ChatMessageStore;
-      value : Windows.ApplicationModel.Chat.ChatQueryOptions'Class
+      value : WinRt.Windows.ApplicationModel.Chat.ChatQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatSearchReader'Class;
 
    procedure SaveMessageAsync
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    );
 
    function TryCancelDownloadMessageAsync
@@ -3840,7 +3840,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure remove_StoreChanged
    (
       this : in out ChatMessageStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetMessageBySyncIdAsync
@@ -4151,7 +4151,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure put_RestoreHistorySpan
    (
       this : in out ChatSyncConfiguration;
-      value : Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
+      value : WinRt.Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
    );
 
    -----------------------------------------------------------------------------
@@ -4172,7 +4172,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure AssociateAccountAsync
    (
       this : in out ChatSyncManager;
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    );
 
    procedure UnassociateAccountAsync
@@ -4183,7 +4183,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    function IsAccountAssociated
    (
       this : in out ChatSyncManager;
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return WinRt.Boolean;
 
@@ -4195,7 +4195,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure SetConfigurationAsync
    (
       this : in out ChatSyncManager;
-      configuration : Windows.ApplicationModel.Chat.ChatSyncConfiguration'Class
+      configuration : WinRt.Windows.ApplicationModel.Chat.ChatSyncConfiguration'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4240,13 +4240,13 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure SendResponseAsync
    (
       this : in out RcsEndUserMessage;
-      action : Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class
+      action : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class
    );
 
    procedure SendResponseWithPinAsync
    (
       this : in out RcsEndUserMessage;
-      action : Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class;
+      action : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class;
       pin : WinRt.WString
    );
 
@@ -4326,7 +4326,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure remove_MessageAvailableChanged
    (
       this : in out RcsEndUserMessageManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4341,7 +4341,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
       procedure remove_TransportListChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function GetEndUserMessageManager
@@ -4358,7 +4358,7 @@ package WinRt.Windows.ApplicationModel.Chat is
 
       procedure LeaveConversationAsync
       (
-         conversation : Windows.ApplicationModel.Chat.ChatConversation'Class
+         conversation : WinRt.Windows.ApplicationModel.Chat.ChatConversation'Class
       );
 
    end RcsManager;
@@ -4420,14 +4420,14 @@ package WinRt.Windows.ApplicationModel.Chat is
    function IsStoreAndForwardEnabled
    (
       this : in out RcsTransport;
-      serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind
+      serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind
    )
    return WinRt.Boolean;
 
    function IsServiceKindSupported
    (
       this : in out RcsTransport;
-      serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind
+      serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind
    )
    return WinRt.Boolean;
 
@@ -4441,7 +4441,7 @@ package WinRt.Windows.ApplicationModel.Chat is
    procedure remove_ServiceKindSupportedChanged
    (
       this : in out RcsTransport;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

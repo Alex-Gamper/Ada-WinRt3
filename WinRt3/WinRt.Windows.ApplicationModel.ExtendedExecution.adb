@@ -67,7 +67,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason;
    begin
       Hr := this.m_IExtendedExecutionRevokedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -102,13 +102,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    function Constructor return ExtendedExecutionSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionSession");
-      m_ComRetVal  : aliased Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
    begin
       return RetVal : ExtendedExecutionSession do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IExtendedExecutionSession := new Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
+            Retval.m_IExtendedExecutionSession := new WinRt.Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
             Retval.m_IExtendedExecutionSession.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -126,7 +126,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason;
    begin
       Hr := this.m_IExtendedExecutionSession.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -138,7 +138,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    procedure put_Reason
    (
       this : in out ExtendedExecutionSession;
-      value : Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
+      value : WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -228,7 +228,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IExtendedExecutionSession.all.add_Revoked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -240,7 +240,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    procedure remove_Revoked
    (
       this : in out ExtendedExecutionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

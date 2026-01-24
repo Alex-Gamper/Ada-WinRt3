@@ -1067,7 +1067,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function FindRawContactsAsync
       (
          this : access IAggregateContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1075,8 +1075,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function TryLinkContactsAsync
       (
          this : access IAggregateContactManager_Interface;
-         primaryContact : Windows.ApplicationModel.Contacts.IContact;
-         secondaryContact : Windows.ApplicationModel.Contacts.IContact;
+         primaryContact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         secondaryContact : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1084,16 +1084,16 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function UnlinkRawContactAsync
       (
          this : access IAggregateContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.Foundation.IAsyncAction
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function TrySetPreferredSourceForPictureAsync
       (
          this : access IAggregateContactManager_Interface;
-         aggregateContact : Windows.ApplicationModel.Contacts.IContact;
-         rawContact : Windows.ApplicationModel.Contacts.IContact;
+         aggregateContact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         rawContact : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1109,7 +1109,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
          contactListId : WinRt.HString;
          remoteSourceId : WinRt.HString;
          accountId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1135,14 +1135,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Thumbnail
       (
          this : access IContact_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IContact_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1252,7 +1252,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_ProviderProperties
       (
          this : access IContact2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1271,14 +1271,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_DisplayPictureUserUpdateTime
       (
          this : access IContact3_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_DisplayPictureUserUpdateTime
       (
          this : access IContact3_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1334,28 +1334,28 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_LargeDisplayPicture
       (
          this : access IContact3_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_SmallDisplayPicture
       (
          this : access IContact3_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceDisplayPicture
       (
          this : access IContact3_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceDisplayPicture
       (
          this : access IContact3_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1500,14 +1500,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Kind
       (
          this : access IContactAddress_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactAddressKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactAddressKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IContactAddress_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactAddressKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactAddressKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1575,14 +1575,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_SupportedOperations
       (
          this : access IContactAnnotation_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
       )
       return WinRt.Hresult is abstract;
 
       function put_SupportedOperations
       (
          this : access IContactAnnotation_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
       )
       return WinRt.Hresult is abstract;
 
@@ -1596,7 +1596,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_ProviderProperties
       (
          this : access IContactAnnotation_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1648,14 +1648,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function DeleteAsync
       (
          this : access IContactAnnotationList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function TrySaveAnnotationAsync
       (
          this : access IContactAnnotationList_Interface;
-         annotation : Windows.ApplicationModel.Contacts.IContactAnnotation;
+         annotation : WinRt.Windows.ApplicationModel.Contacts.IContactAnnotation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1686,8 +1686,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function DeleteAnnotationAsync
       (
          this : access IContactAnnotationList_Interface;
-         annotation : Windows.ApplicationModel.Contacts.IContactAnnotation;
-         RetVal : access Windows.Foundation.IAsyncAction
+         annotation : WinRt.Windows.ApplicationModel.Contacts.IContactAnnotation;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1715,7 +1715,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function FindAnnotationsForContactAsync
       (
          this : access IContactAnnotationStore_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1723,8 +1723,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function DisableAnnotationAsync
       (
          this : access IContactAnnotationStore_Interface;
-         annotation : Windows.ApplicationModel.Contacts.IContactAnnotation;
-         RetVal : access Windows.Foundation.IAsyncAction
+         annotation : WinRt.Windows.ApplicationModel.Contacts.IContactAnnotation;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1786,7 +1786,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Status
       (
          this : access IContactBatch_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactBatchStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactBatchStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1798,7 +1798,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function SetData
       (
          this : access IContactCardDelayedDataLoader_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1810,28 +1810,28 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_HeaderKind
       (
          this : access IContactCardOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactCardHeaderKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactCardHeaderKind
       )
       return WinRt.Hresult is abstract;
 
       function put_HeaderKind
       (
          this : access IContactCardOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactCardHeaderKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactCardHeaderKind
       )
       return WinRt.Hresult is abstract;
 
       function get_InitialTabKind
       (
          this : access IContactCardOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactCardTabKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactCardTabKind
       )
       return WinRt.Hresult is abstract;
 
       function put_InitialTabKind
       (
          this : access IContactCardOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactCardTabKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactCardTabKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1855,14 +1855,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_ChangeType
       (
          this : access IContactChange_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactChangeType
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactChangeType
       )
       return WinRt.Hresult is abstract;
 
       function get_Contact
       (
          this : access IContactChange_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1880,7 +1880,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function AcceptChangesThrough
       (
          this : access IContactChangeReader_Interface;
-         lastChangeToAccept : Windows.ApplicationModel.Contacts.IContactChange
+         lastChangeToAccept : WinRt.Windows.ApplicationModel.Contacts.IContactChange
       )
       return WinRt.Hresult is abstract;
 
@@ -1905,7 +1905,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetChangeReader
       (
          this : access IContactChangeTracker_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangeReader
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1946,7 +1946,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetDeferral
       (
          this : access IContactChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangedDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2033,14 +2033,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Kind
       (
          this : access IContactDate_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactDateKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactDateKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IContactDate_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactDateKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactDateKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2080,14 +2080,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Kind
       (
          this : access IContactEmail_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactEmailKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactEmailKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IContactEmail_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactEmailKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactEmailKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2113,14 +2113,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Type
       (
          this : access IContactField_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactFieldType
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactFieldType
       )
       return WinRt.Hresult is abstract;
 
       function get_Category
       (
          this : access IContactField_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactFieldCategory
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -2147,8 +2147,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactFieldFactory_Interface;
          value : WinRt.HString;
-         type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactField
+         type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactField
       )
       return WinRt.Hresult is abstract;
 
@@ -2156,9 +2156,9 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactFieldFactory_Interface;
          value : WinRt.HString;
-         type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactField
+         type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactField
       )
       return WinRt.Hresult is abstract;
 
@@ -2167,9 +2167,9 @@ package WinRt.Windows.ApplicationModel.Contacts is
          this : access IContactFieldFactory_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactField
+         type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactField
       )
       return WinRt.Hresult is abstract;
 
@@ -2269,7 +2269,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_LaunchUri
       (
          this : access IContactInstantMessageField_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2282,7 +2282,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactInstantMessageFieldFactory_Interface;
          userName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactInstantMessageField
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField
       )
       return WinRt.Hresult is abstract;
 
@@ -2290,8 +2290,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactInstantMessageFieldFactory_Interface;
          userName : WinRt.HString;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactInstantMessageField
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField
       )
       return WinRt.Hresult is abstract;
 
@@ -2299,11 +2299,11 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactInstantMessageFieldFactory_Interface;
          userName : WinRt.HString;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
          service : WinRt.HString;
          displayText : WinRt.HString;
-         verb : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactInstantMessageField
+         verb : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField
       )
       return WinRt.Hresult is abstract;
 
@@ -2514,42 +2514,42 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_OtherAppReadAccess
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IContactList_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_OtherAppWriteAccess
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppWriteAccess
       (
          this : access IContactList_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_ChangeTracker
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangeTracker
       )
       return WinRt.Hresult is abstract;
 
       function get_SyncManager
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactListSyncManager
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactListSyncManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2571,28 +2571,28 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactList_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContactChanged
       (
          this : access IContactList_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2614,31 +2614,31 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetContactReader
       (
          this : access IContactList_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactReader
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactReader
       )
       return WinRt.Hresult is abstract;
 
       function GetContactReader
       (
          this : access IContactList_Interface;
-         options : Windows.ApplicationModel.Contacts.IContactQueryOptions;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactReader
+         options : WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactReader
       )
       return WinRt.Hresult is abstract;
 
       function SaveContactAsync
       (
          this : access IContactList_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.Foundation.IAsyncAction
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteContactAsync
       (
          this : access IContactList_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.Foundation.IAsyncAction
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2658,7 +2658,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RegisterSyncManagerAsync
       (
          this : access IContactList2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2672,7 +2672,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_SyncConstraints
       (
          this : access IContactList2_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactListSyncConstraints
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactListSyncConstraints
       )
       return WinRt.Hresult is abstract;
 
@@ -2684,7 +2684,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_LimitedWriteOperations
       (
          this : access IContactList3_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactListLimitedWriteOperations
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactListLimitedWriteOperations
       )
       return WinRt.Hresult is abstract;
 
@@ -2692,7 +2692,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactList3_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -2704,7 +2704,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function TryCreateOrUpdateContactAsync
       (
          this : access IContactListLimitedWriteOperations_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3122,21 +3122,21 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Status
       (
          this : access IContactListSyncManager_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactListSyncStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactListSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_LastSuccessfulSyncTime
       (
          this : access IContactListSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastAttemptedSyncTime
       (
          this : access IContactListSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3151,14 +3151,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactListSyncManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncStatusChanged
       (
          this : access IContactListSyncManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3170,21 +3170,21 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function put_Status
       (
          this : access IContactListSyncManager2_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactListSyncStatus
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactListSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_LastSuccessfulSyncTime
       (
          this : access IContactListSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastAttemptedSyncTime
       (
          this : access IContactListSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3244,7 +3244,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactLocationFieldFactory_Interface;
          unstructuredAddress : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactLocationField
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactLocationField
       )
       return WinRt.Hresult is abstract;
 
@@ -3252,8 +3252,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactLocationFieldFactory_Interface;
          unstructuredAddress : WinRt.HString;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactLocationField
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactLocationField
       )
       return WinRt.Hresult is abstract;
 
@@ -3261,13 +3261,13 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactLocationFieldFactory_Interface;
          unstructuredAddress : WinRt.HString;
-         category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+         category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
          street : WinRt.HString;
          city : WinRt.HString;
          region : WinRt.HString;
          country : WinRt.HString;
          postalCode : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactLocationField
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactLocationField
       )
       return WinRt.Hresult is abstract;
 
@@ -3279,7 +3279,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertContactToVCardAsync
       (
          this : access IContactManagerForUser_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3287,7 +3287,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertContactToVCardAsync
       (
          this : access IContactManagerForUser_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          maxBytes : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -3296,7 +3296,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertVCardToContactAsync
       (
          this : access IContactManagerForUser_Interface;
-         vCard : Windows.Storage.Streams.IRandomAccessStreamReference;
+         vCard : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3304,7 +3304,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestStoreAsync
       (
          this : access IContactManagerForUser_Interface;
-         accessType : Windows.ApplicationModel.Contacts.ContactStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3312,7 +3312,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestAnnotationStoreAsync
       (
          this : access IContactManagerForUser_Interface;
-         accessType : Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3320,35 +3320,35 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_SystemDisplayNameOrder
       (
          this : access IContactManagerForUser_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactNameOrder
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemDisplayNameOrder
       (
          this : access IContactManagerForUser_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemSortOrder
       (
          this : access IContactManagerForUser_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactNameOrder
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemSortOrder
       (
          this : access IContactManagerForUser_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access IContactManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3360,8 +3360,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ShowFullContactCard
       (
          this : access IContactManagerForUser2_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         fullContactCardOptions_p : Windows.ApplicationModel.Contacts.IFullContactCardOptions
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         fullContactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.IFullContactCardOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3373,27 +3373,27 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ShowContactCard
       (
          this : access IContactManagerStatics_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         selection : Windows.Foundation.Rect
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function ShowContactCard
       (
          this : access IContactManagerStatics_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
       function ShowDelayLoadedContactCard
       (
          this : access IContactManagerStatics_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -3417,7 +3417,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertContactToVCardAsync
       (
          this : access IContactManagerStatics3_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3425,7 +3425,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertContactToVCardAsync
       (
          this : access IContactManagerStatics3_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          maxBytes : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -3434,7 +3434,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ConvertVCardToContactAsync
       (
          this : access IContactManagerStatics3_Interface;
-         vCard : Windows.Storage.Streams.IRandomAccessStreamReference;
+         vCard : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3442,7 +3442,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestStoreAsync
       (
          this : access IContactManagerStatics3_Interface;
-         accessType : Windows.ApplicationModel.Contacts.ContactStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3450,7 +3450,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestAnnotationStoreAsync
       (
          this : access IContactManagerStatics3_Interface;
-         accessType : Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3465,10 +3465,10 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ShowContactCard
       (
          this : access IContactManagerStatics3_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         contactCardOptions_p : Windows.ApplicationModel.Contacts.IContactCardOptions
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         contactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.IContactCardOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3482,47 +3482,47 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function ShowDelayLoadedContactCard
       (
          this : access IContactManagerStatics3_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         contactCardOptions_p : Windows.ApplicationModel.Contacts.IContactCardOptions;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         contactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.IContactCardOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactCardDelayedDataLoader
       )
       return WinRt.Hresult is abstract;
 
       function ShowFullContactCard
       (
          this : access IContactManagerStatics3_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         fullContactCardOptions_p : Windows.ApplicationModel.Contacts.IFullContactCardOptions
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         fullContactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.IFullContactCardOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemDisplayNameOrder
       (
          this : access IContactManagerStatics3_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactNameOrder
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemDisplayNameOrder
       (
          this : access IContactManagerStatics3_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemSortOrder
       (
          this : access IContactManagerStatics3_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactNameOrder
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemSortOrder
       (
          this : access IContactManagerStatics3_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       )
       return WinRt.Hresult is abstract;
 
@@ -3534,8 +3534,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetForUser
       (
          this : access IContactManagerStatics4_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3573,7 +3573,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Field
       (
          this : access IContactMatchReason_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactMatchReasonKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactMatchReasonKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3737,14 +3737,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactPanel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LaunchFullAppRequested
       (
          this : access IContactPanel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3752,14 +3752,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactPanel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closing
       (
          this : access IContactPanel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3771,7 +3771,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetDeferral
       (
          this : access IContactPanelClosingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -3816,14 +3816,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Kind
       (
          this : access IContactPhone_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactPhoneKind
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactPhoneKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IContactPhone_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactPhoneKind
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactPhoneKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3863,14 +3863,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_SelectionMode
       (
          this : access IContactPicker_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactSelectionMode
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectionMode
       (
          this : access IContactPicker_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactSelectionMode
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3929,7 +3929,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_User
       (
          this : access IContactPicker3_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3941,8 +3941,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function CreateForUser
       (
          this : access IContactPickerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactPicker
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactPicker
       )
       return WinRt.Hresult is abstract;
 
@@ -3961,7 +3961,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_TextSearch
       (
          this : access IContactQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactQueryTextSearch
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactQueryTextSearch
       )
       return WinRt.Hresult is abstract;
 
@@ -3989,28 +3989,28 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_DesiredFields
       (
          this : access IContactQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredFields
       (
          this : access IContactQueryOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredOperations
       (
          this : access IContactQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredOperations
       (
          this : access IContactQueryOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
       )
       return WinRt.Hresult is abstract;
 
@@ -4030,7 +4030,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactQueryOptionsFactory_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactQueryOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -4038,8 +4038,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactQueryOptionsFactory_Interface;
          text : WinRt.HString;
-         fields : Windows.ApplicationModel.Contacts.ContactQuerySearchFields;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactQueryOptions
+         fields : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchFields;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -4051,14 +4051,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Fields
       (
          this : access IContactQueryTextSearch_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactQuerySearchFields
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchFields
       )
       return WinRt.Hresult is abstract;
 
       function put_Fields
       (
          this : access IContactQueryTextSearch_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactQuerySearchFields
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchFields
       )
       return WinRt.Hresult is abstract;
 
@@ -4079,14 +4079,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_SearchScope
       (
          this : access IContactQueryTextSearch_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactQuerySearchScope
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchScope
       )
       return WinRt.Hresult is abstract;
 
       function put_SearchScope
       (
          this : access IContactQueryTextSearch_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactQuerySearchScope
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchScope
       )
       return WinRt.Hresult is abstract;
 
@@ -4105,7 +4105,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetMatchingPropertiesWithMatchReason
       (
          this : access IContactReader_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4151,14 +4151,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Relationship
       (
          this : access IContactSignificantOther2_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactRelationship
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactRelationship
       )
       return WinRt.Hresult is abstract;
 
       function put_Relationship
       (
          this : access IContactSignificantOther2_Interface;
-         value : Windows.ApplicationModel.Contacts.ContactRelationship
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactRelationship
       )
       return WinRt.Hresult is abstract;
 
@@ -4198,7 +4198,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_ChangeTracker
       (
          this : access IContactStore2_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -4206,21 +4206,21 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactStore2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContactChanged
       (
          this : access IContactStore2_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_AggregateContactManager
       (
          this : access IContactStore2_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IAggregateContactManager
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IAggregateContactManager
       )
       return WinRt.Hresult is abstract;
 
@@ -4257,15 +4257,15 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetContactReader
       (
          this : access IContactStore2_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactReader
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactReader
       )
       return WinRt.Hresult is abstract;
 
       function GetContactReader
       (
          this : access IContactStore2_Interface;
-         options : Windows.ApplicationModel.Contacts.IContactQueryOptions;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactReader
+         options : WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactReader
       )
       return WinRt.Hresult is abstract;
 
@@ -4287,7 +4287,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IContactStore3_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -4304,14 +4304,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_Uri
       (
          this : access IContactWebsite_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IContactWebsite_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -4356,14 +4356,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_DesiredRemainingView
       (
          this : access IFullContactCardOptions_Interface;
-         RetVal : access Windows.UI.ViewManagement.ViewSizePreference
+         RetVal : access WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredRemainingView
       (
          this : access IFullContactCardOptions_Interface;
-         value : Windows.UI.ViewManagement.ViewSizePreference
+         value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Hresult is abstract;
 
@@ -4404,14 +4404,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IKnownContactFieldStatics_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactFieldType
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactFieldType
       )
       return WinRt.Hresult is abstract;
 
       function ConvertTypeToName
       (
          this : access IKnownContactFieldStatics_Interface;
-         type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
+         type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4436,14 +4436,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function get_User
       (
          this : access IPinnedContactManager_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function IsPinSurfaceSupported
       (
          this : access IPinnedContactManager_Interface;
-         surface : Windows.ApplicationModel.Contacts.PinnedContactSurface;
+         surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -4451,8 +4451,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function IsContactPinned
       (
          this : access IPinnedContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         surface : Windows.ApplicationModel.Contacts.PinnedContactSurface;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -4460,8 +4460,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestPinContactAsync
       (
          this : access IPinnedContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         surface : Windows.ApplicationModel.Contacts.PinnedContactSurface;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4470,7 +4470,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       (
          this : access IPinnedContactManager_Interface;
          contacts : GenericObject;
-         surface : Windows.ApplicationModel.Contacts.PinnedContactSurface;
+         surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4478,8 +4478,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function RequestUnpinContactAsync
       (
          this : access IPinnedContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact;
-         surface : Windows.ApplicationModel.Contacts.PinnedContactSurface;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4487,7 +4487,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function SignalContactActivity
       (
          this : access IPinnedContactManager_Interface;
-         contact_p : Windows.ApplicationModel.Contacts.IContact
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -4506,15 +4506,15 @@ package WinRt.Windows.ApplicationModel.Contacts is
       function GetDefault
       (
          this : access IPinnedContactManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IPinnedContactManager
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IPinnedContactManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IPinnedContactManagerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Contacts.IPinnedContactManager
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IPinnedContactManager
       )
       return WinRt.Hresult is abstract;
 
@@ -4543,29 +4543,29 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function FindRawContactsAsync
    (
       this : in out AggregateContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.GenericObject;
 
    function TryLinkContactsAsync
    (
       this : in out AggregateContactManager;
-      primaryContact : Windows.ApplicationModel.Contacts.Contact'Class;
-      secondaryContact : Windows.ApplicationModel.Contacts.Contact'Class
+      primaryContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      secondaryContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
 
    procedure UnlinkRawContactAsync
    (
       this : in out AggregateContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    function TrySetPreferredSourceForPictureAsync
    (
       this : in out AggregateContactManager;
-      aggregateContact : Windows.ApplicationModel.Contacts.Contact'Class;
-      rawContact : Windows.ApplicationModel.Contacts.Contact'Class
+      aggregateContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      rawContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Boolean;
 
@@ -4612,7 +4612,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Thumbnail
    (
       this : in out Contact;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Fields
@@ -4816,7 +4816,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_DisplayPictureUserUpdateTime
    (
       this : in out Contact;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_IsMe
@@ -4882,7 +4882,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SourceDisplayPicture
    (
       this : in out Contact;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_TextToneToken
@@ -5022,7 +5022,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Kind
    (
       this : in out ContactAddress;
-      value : Windows.ApplicationModel.Contacts.ContactAddressKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactAddressKind
    );
 
    function get_Description
@@ -5096,7 +5096,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SupportedOperations
    (
       this : in out ContactAnnotation;
-      value : Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
    );
 
    function get_IsDisabled
@@ -5158,7 +5158,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function TrySaveAnnotationAsync
    (
       this : in out ContactAnnotationList;
-      annotation : Windows.ApplicationModel.Contacts.ContactAnnotation'Class
+      annotation : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotation'Class
    )
    return WinRt.Boolean;
 
@@ -5185,7 +5185,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure DeleteAnnotationAsync
    (
       this : in out ContactAnnotationList;
-      annotation : Windows.ApplicationModel.Contacts.ContactAnnotation'Class
+      annotation : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5214,14 +5214,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function FindAnnotationsForContactAsync
    (
       this : in out ContactAnnotationStore;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.GenericObject;
 
    procedure DisableAnnotationAsync
    (
       this : in out ContactAnnotationStore;
-      annotation : Windows.ApplicationModel.Contacts.ContactAnnotation'Class
+      annotation : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotation'Class
    );
 
    function CreateAnnotationListAsync
@@ -5290,7 +5290,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure SetData
    (
       this : in out ContactCardDelayedDataLoader;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    procedure Close
@@ -5321,7 +5321,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_HeaderKind
    (
       this : in out ContactCardOptions;
-      value : Windows.ApplicationModel.Contacts.ContactCardHeaderKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactCardHeaderKind
    );
 
    function get_InitialTabKind
@@ -5333,7 +5333,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_InitialTabKind
    (
       this : in out ContactCardOptions;
-      value : Windows.ApplicationModel.Contacts.ContactCardTabKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactCardTabKind
    );
 
    function get_ServerSearchContactListIds
@@ -5380,7 +5380,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure AcceptChangesThrough
    (
       this : in out ContactChangeReader;
-      lastChangeToAccept : Windows.ApplicationModel.Contacts.ContactChange'Class
+      lastChangeToAccept : WinRt.Windows.ApplicationModel.Contacts.ContactChange'Class
    );
 
    function ReadBatchAsync
@@ -5546,7 +5546,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Kind
    (
       this : in out ContactDate;
-      value : Windows.ApplicationModel.Contacts.ContactDateKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactDateKind
    );
 
    function get_Description
@@ -5596,7 +5596,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Kind
    (
       this : in out ContactEmail;
-      value : Windows.ApplicationModel.Contacts.ContactEmailKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactEmailKind
    );
 
    function get_Description
@@ -5623,15 +5623,15 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function Constructor
    (
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType
    )
    return ContactField;
 
    function Constructor
    (
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return ContactField;
 
@@ -5639,8 +5639,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       name : WinRt.WString;
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return ContactField;
 
@@ -5689,7 +5689,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactField'Class;
 
@@ -5697,8 +5697,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactField'Class;
 
@@ -5707,8 +5707,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
       this : in out ContactFieldFactory;
       name : WinRt.WString;
       value : WinRt.WString;
-      type_x : Windows.ApplicationModel.Contacts.ContactFieldType;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactField'Class;
 
@@ -5723,7 +5723,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       unstructuredAddress : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactLocationField'Class;
 
@@ -5731,7 +5731,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       unstructuredAddress : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
       street : WinRt.WString;
       city : WinRt.WString;
       region : WinRt.WString;
@@ -5751,7 +5751,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       userName : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactInstantMessageField'Class;
 
@@ -5759,10 +5759,10 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out ContactFieldFactory;
       userName : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
       service : WinRt.WString;
       displayText : WinRt.WString;
-      verb : Windows.Foundation.Uri'Class
+      verb : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactInstantMessageField'Class;
 
@@ -5851,17 +5851,17 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function Constructor
    (
       userName : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return ContactInstantMessageField;
 
    function Constructor
    (
       userName : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
       service : WinRt.WString;
       displayText : WinRt.WString;
-      verb : Windows.Foundation.Uri'Class
+      verb : WinRt.Windows.Foundation.Uri'Class
    )
    return ContactInstantMessageField;
 
@@ -6101,7 +6101,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_OtherAppReadAccess
    (
       this : in out ContactList;
-      value : Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppReadAccess
    );
 
    function get_OtherAppWriteAccess
@@ -6113,7 +6113,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_OtherAppWriteAccess
    (
       this : in out ContactList;
-      value : Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactListOtherAppWriteAccess
    );
 
    function get_ChangeTracker
@@ -6150,7 +6150,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure remove_ContactChanged
    (
       this : in out ContactList;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SaveAsync
@@ -6185,20 +6185,20 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function GetContactReader
    (
       this : in out ContactList;
-      options : Windows.ApplicationModel.Contacts.ContactQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Contacts.ContactQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactReader'Class;
 
    procedure SaveContactAsync
    (
       this : in out ContactList;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    procedure DeleteContactAsync
    (
       this : in out ContactList;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    function GetContactAsync
@@ -6250,7 +6250,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function TryCreateOrUpdateContactAsync
    (
       this : in out ContactListLimitedWriteOperations;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Boolean;
 
@@ -6649,25 +6649,25 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure remove_SyncStatusChanged
    (
       this : in out ContactListSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_Status
    (
       this : in out ContactListSyncManager;
-      value : Windows.ApplicationModel.Contacts.ContactListSyncStatus
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactListSyncStatus
    );
 
    procedure put_LastSuccessfulSyncTime
    (
       this : in out ContactListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure put_LastAttemptedSyncTime
    (
       this : in out ContactListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    -----------------------------------------------------------------------------
@@ -6688,14 +6688,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function Constructor
    (
       unstructuredAddress : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory
    )
    return ContactLocationField;
 
    function Constructor
    (
       unstructuredAddress : WinRt.WString;
-      category : Windows.ApplicationModel.Contacts.ContactFieldCategory;
+      category : WinRt.Windows.ApplicationModel.Contacts.ContactFieldCategory;
       street : WinRt.WString;
       city : WinRt.WString;
       region : WinRt.WString;
@@ -6784,7 +6784,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactManagerForUser;
 
@@ -6793,53 +6793,53 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       procedure ShowContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : WinRt.Windows.Foundation.Rect
       );
 
       procedure ShowContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       );
 
       function ShowDelayLoadedContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader;
 
       function ConvertContactToVCardAsync
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
       )
       return WinRt.Windows.Storage.Streams.RandomAccessStreamReference;
 
       function ConvertContactToVCardAsync
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
          maxBytes : WinRt.UInt32
       )
       return WinRt.Windows.Storage.Streams.RandomAccessStreamReference;
 
       function ConvertVCardToContactAsync
       (
-         vCard : Windows.Storage.Streams.IRandomAccessStreamReference
+         vCard : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Windows.ApplicationModel.Contacts.Contact;
 
       function RequestStoreAsync
       (
-         accessType : Windows.ApplicationModel.Contacts.ContactStoreAccessType
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactStore;
 
       function RequestAnnotationStoreAsync
       (
-         accessType : Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType
+         accessType : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStore;
 
@@ -6848,10 +6848,10 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       procedure ShowContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         contactCardOptions_p : Windows.ApplicationModel.Contacts.ContactCardOptions'Class
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         contactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.ContactCardOptions'Class
       );
 
       function IsShowDelayLoadedContactCardSupported
@@ -6859,17 +6859,17 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       function ShowDelayLoadedContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         contactCardOptions_p : Windows.ApplicationModel.Contacts.ContactCardOptions'Class
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         contactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.ContactCardOptions'Class
       )
       return WinRt.Windows.ApplicationModel.Contacts.ContactCardDelayedDataLoader;
 
       procedure ShowFullContactCard
       (
-         contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-         fullContactCardOptions_p : Windows.ApplicationModel.Contacts.FullContactCardOptions'Class
+         contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+         fullContactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.FullContactCardOptions'Class
       );
 
       function get_SystemDisplayNameOrder
@@ -6877,7 +6877,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       procedure put_SystemDisplayNameOrder
       (
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       );
 
       function get_SystemSortOrder
@@ -6885,7 +6885,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       procedure put_SystemSortOrder
       (
-         value : Windows.ApplicationModel.Contacts.ContactNameOrder
+         value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
       );
 
    end ContactManager;
@@ -6902,14 +6902,14 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function ConvertContactToVCardAsync
    (
       this : in out ContactManagerForUser;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
 
    function ConvertContactToVCardAsync
    (
       this : in out ContactManagerForUser;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
       maxBytes : WinRt.UInt32
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
@@ -6917,21 +6917,21 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function ConvertVCardToContactAsync
    (
       this : in out ContactManagerForUser;
-      vCard : Windows.Storage.Streams.IRandomAccessStreamReference
+      vCard : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
 
    function RequestStoreAsync
    (
       this : in out ContactManagerForUser;
-      accessType : Windows.ApplicationModel.Contacts.ContactStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.Contacts.ContactStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactStore'Class;
 
    function RequestAnnotationStoreAsync
    (
       this : in out ContactManagerForUser;
-      accessType : Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationStore'Class;
 
@@ -6944,7 +6944,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SystemDisplayNameOrder
    (
       this : in out ContactManagerForUser;
-      value : Windows.ApplicationModel.Contacts.ContactNameOrder
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
    );
 
    function get_SystemSortOrder
@@ -6956,7 +6956,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SystemSortOrder
    (
       this : in out ContactManagerForUser;
-      value : Windows.ApplicationModel.Contacts.ContactNameOrder
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactNameOrder
    );
 
    function get_User
@@ -6968,8 +6968,8 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure ShowFullContactCard
    (
       this : in out ContactManagerForUser;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-      fullContactCardOptions_p : Windows.ApplicationModel.Contacts.FullContactCardOptions'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      fullContactCardOptions_p : WinRt.Windows.ApplicationModel.Contacts.FullContactCardOptions'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7035,7 +7035,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure remove_LaunchFullAppRequested
    (
       this : in out ContactPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closing
@@ -7048,7 +7048,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure remove_Closing
    (
       this : in out ContactPanel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7122,7 +7122,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Kind
    (
       this : in out ContactPhone;
-      value : Windows.ApplicationModel.Contacts.ContactPhoneKind
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactPhoneKind
    );
 
    function get_Description
@@ -7153,7 +7153,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactPicker;
 
@@ -7184,7 +7184,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SelectionMode
    (
       this : in out ContactPicker;
-      value : Windows.ApplicationModel.Contacts.ContactSelectionMode
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode
    );
 
    function get_DesiredFields
@@ -7247,7 +7247,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function Constructor
    (
       text : WinRt.WString;
-      fields : Windows.ApplicationModel.Contacts.ContactQuerySearchFields
+      fields : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchFields
    )
    return ContactQueryOptions;
 
@@ -7289,7 +7289,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_DesiredFields
    (
       this : in out ContactQueryOptions;
-      value : Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactQueryDesiredFields
    );
 
    function get_DesiredOperations
@@ -7301,7 +7301,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_DesiredOperations
    (
       this : in out ContactQueryOptions;
-      value : Windows.ApplicationModel.Contacts.ContactAnnotationOperations
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactAnnotationOperations
    );
 
    function get_AnnotationListIds
@@ -7328,7 +7328,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Fields
    (
       this : in out ContactQueryTextSearch;
-      value : Windows.ApplicationModel.Contacts.ContactQuerySearchFields
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchFields
    );
 
    function get_Text
@@ -7352,7 +7352,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_SearchScope
    (
       this : in out ContactQueryTextSearch;
-      value : Windows.ApplicationModel.Contacts.ContactQuerySearchScope
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactQuerySearchScope
    );
 
    -----------------------------------------------------------------------------
@@ -7373,7 +7373,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function GetMatchingPropertiesWithMatchReason
    (
       this : in out ContactReader;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return IVectorView_IContactMatchReason.Kind;
 
@@ -7424,7 +7424,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Relationship
    (
       this : in out ContactSignificantOther;
-      value : Windows.ApplicationModel.Contacts.ContactRelationship
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactRelationship
    );
 
    -----------------------------------------------------------------------------
@@ -7472,7 +7472,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure remove_ContactChanged
    (
       this : in out ContactStore;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AggregateContactManager
@@ -7516,7 +7516,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function GetContactReader
    (
       this : in out ContactStore;
-      options : Windows.ApplicationModel.Contacts.ContactQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Contacts.ContactQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.ContactReader'Class;
 
@@ -7567,7 +7567,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_Uri
    (
       this : in out ContactWebsite;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Description
@@ -7617,7 +7617,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
    procedure put_DesiredRemainingView
    (
       this : in out FullContactCardOptions;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    );
 
    -----------------------------------------------------------------------------
@@ -7644,7 +7644,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
       function ConvertTypeToName
       (
-         type_x : Windows.ApplicationModel.Contacts.ContactFieldType
+         type_x : WinRt.Windows.ApplicationModel.Contacts.ContactFieldType
       )
       return WinRt.WString;
 
@@ -7679,7 +7679,7 @@ package WinRt.Windows.ApplicationModel.Contacts is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.PinnedContactManager;
 
@@ -7698,23 +7698,23 @@ package WinRt.Windows.ApplicationModel.Contacts is
    function IsPinSurfaceSupported
    (
       this : in out PinnedContactManager;
-      surface : Windows.ApplicationModel.Contacts.PinnedContactSurface
+      surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface
    )
    return WinRt.Boolean;
 
    function IsContactPinned
    (
       this : in out PinnedContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-      surface : Windows.ApplicationModel.Contacts.PinnedContactSurface
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface
    )
    return WinRt.Boolean;
 
    function RequestPinContactAsync
    (
       this : in out PinnedContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-      surface : Windows.ApplicationModel.Contacts.PinnedContactSurface
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface
    )
    return WinRt.Boolean;
 
@@ -7722,22 +7722,22 @@ package WinRt.Windows.ApplicationModel.Contacts is
    (
       this : in out PinnedContactManager;
       contacts : GenericObject;
-      surface : Windows.ApplicationModel.Contacts.PinnedContactSurface
+      surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface
    )
    return WinRt.Boolean;
 
    function RequestUnpinContactAsync
    (
       this : in out PinnedContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class;
-      surface : Windows.ApplicationModel.Contacts.PinnedContactSurface
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class;
+      surface : WinRt.Windows.ApplicationModel.Contacts.PinnedContactSurface
    )
    return WinRt.Boolean;
 
    procedure SignalContactActivity
    (
       this : in out PinnedContactManager;
-      contact_p : Windows.ApplicationModel.Contacts.Contact'Class
+      contact_p : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    function GetPinnedContactIdsAsync

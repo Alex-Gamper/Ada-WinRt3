@@ -137,7 +137,7 @@ package WinRt.Windows.Security.DataProtection is
       function GetDeferral
       (
          this : access IUserDataAvailabilityStateChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -149,14 +149,14 @@ package WinRt.Windows.Security.DataProtection is
       function get_Status
       (
          this : access IUserDataBufferUnprotectResult_Interface;
-         RetVal : access Windows.Security.DataProtection.UserDataBufferUnprotectStatus
+         RetVal : access WinRt.Windows.Security.DataProtection.UserDataBufferUnprotectStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_UnprotectedBuffer
       (
          this : access IUserDataBufferUnprotectResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -168,8 +168,8 @@ package WinRt.Windows.Security.DataProtection is
       function ProtectStorageItemAsync
       (
          this : access IUserDataProtectionManager_Interface;
-         storageItem : Windows.Storage.IStorageItem;
-         availability : Windows.Security.DataProtection.UserDataAvailability;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
+         availability : WinRt.Windows.Security.DataProtection.UserDataAvailability;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -177,7 +177,7 @@ package WinRt.Windows.Security.DataProtection is
       function GetStorageItemProtectionInfoAsync
       (
          this : access IUserDataProtectionManager_Interface;
-         storageItem : Windows.Storage.IStorageItem;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -185,8 +185,8 @@ package WinRt.Windows.Security.DataProtection is
       function ProtectBufferAsync
       (
          this : access IUserDataProtectionManager_Interface;
-         unprotectedBuffer : Windows.Storage.Streams.IBuffer;
-         availability : Windows.Security.DataProtection.UserDataAvailability;
+         unprotectedBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         availability : WinRt.Windows.Security.DataProtection.UserDataAvailability;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -194,7 +194,7 @@ package WinRt.Windows.Security.DataProtection is
       function UnprotectBufferAsync
       (
          this : access IUserDataProtectionManager_Interface;
-         protectedBuffer : Windows.Storage.Streams.IBuffer;
+         protectedBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -202,7 +202,7 @@ package WinRt.Windows.Security.DataProtection is
       function IsContinuedDataAvailabilityExpected
       (
          this : access IUserDataProtectionManager_Interface;
-         availability : Windows.Security.DataProtection.UserDataAvailability;
+         availability : WinRt.Windows.Security.DataProtection.UserDataAvailability;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -211,14 +211,14 @@ package WinRt.Windows.Security.DataProtection is
       (
          this : access IUserDataProtectionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataAvailabilityStateChanged
       (
          this : access IUserDataProtectionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -230,15 +230,15 @@ package WinRt.Windows.Security.DataProtection is
       function TryGetDefault
       (
          this : access IUserDataProtectionManagerStatics_Interface;
-         RetVal : access Windows.Security.DataProtection.IUserDataProtectionManager
+         RetVal : access WinRt.Windows.Security.DataProtection.IUserDataProtectionManager
       )
       return WinRt.Hresult is abstract;
 
       function TryGetForUser
       (
          this : access IUserDataProtectionManagerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Security.DataProtection.IUserDataProtectionManager
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Security.DataProtection.IUserDataProtectionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -250,7 +250,7 @@ package WinRt.Windows.Security.DataProtection is
       function get_Availability
       (
          this : access IUserDataStorageItemProtectionInfo_Interface;
-         RetVal : access Windows.Security.DataProtection.UserDataAvailability
+         RetVal : access WinRt.Windows.Security.DataProtection.UserDataAvailability
       )
       return WinRt.Hresult is abstract;
 
@@ -310,7 +310,7 @@ package WinRt.Windows.Security.DataProtection is
 
    function TryGetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Security.DataProtection.UserDataProtectionManager;
 
@@ -320,37 +320,37 @@ package WinRt.Windows.Security.DataProtection is
    function ProtectStorageItemAsync
    (
       this : in out UserDataProtectionManager;
-      storageItem : Windows.Storage.IStorageItem;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      storageItem : WinRt.Windows.Storage.IStorageItem;
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Windows.Security.DataProtection.UserDataStorageItemProtectionStatus;
 
    function GetStorageItemProtectionInfoAsync
    (
       this : in out UserDataProtectionManager;
-      storageItem : Windows.Storage.IStorageItem
+      storageItem : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Windows.Security.DataProtection.UserDataStorageItemProtectionInfo'Class;
 
    function ProtectBufferAsync
    (
       this : in out UserDataProtectionManager;
-      unprotectedBuffer : Windows.Storage.Streams.IBuffer;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      unprotectedBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    function UnprotectBufferAsync
    (
       this : in out UserDataProtectionManager;
-      protectedBuffer : Windows.Storage.Streams.IBuffer
+      protectedBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.DataProtection.UserDataBufferUnprotectResult'Class;
 
    function IsContinuedDataAvailabilityExpected
    (
       this : in out UserDataProtectionManager;
-      availability : Windows.Security.DataProtection.UserDataAvailability
+      availability : WinRt.Windows.Security.DataProtection.UserDataAvailability
    )
    return WinRt.Boolean;
 
@@ -364,7 +364,7 @@ package WinRt.Windows.Security.DataProtection is
    procedure remove_DataAvailabilityStateChanged
    (
       this : in out UserDataProtectionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

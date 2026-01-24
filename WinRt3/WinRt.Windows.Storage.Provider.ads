@@ -668,11 +668,11 @@ package WinRt.Windows.Storage.Provider is
    -----------------------------------------------------------------------------
 
    IID_StorageProviderKnownFolderSyncRequestedHandler : aliased WinRt.IID := (3301684469, 5085, 23694, (139, 150, 51, 111, 195, 12, 98, 155 ));
-   type StorageProviderKnownFolderSyncRequestedHandler_Delegate (Callback : access procedure  (args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs)) is new WinRt.IMulticastDelegate_Interface (IID_StorageProviderKnownFolderSyncRequestedHandler'Access) with null record;
+   type StorageProviderKnownFolderSyncRequestedHandler_Delegate (Callback : access procedure  (args : WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs)) is new WinRt.IMulticastDelegate_Interface (IID_StorageProviderKnownFolderSyncRequestedHandler'Access) with null record;
       function Invoke
       (
          this : access StorageProviderKnownFolderSyncRequestedHandler_Delegate;
-         args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
+         args : WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
       )
       return WinRt.Hresult;
 
@@ -714,11 +714,11 @@ package WinRt.Windows.Storage.Provider is
       function SetUpdateInformation
       (
          this : access ICachedFileUpdaterStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contentId : WinRt.HString;
-         readMode : Windows.Storage.Provider.ReadActivationMode;
-         writeMode : Windows.Storage.Provider.WriteActivationMode;
-         options : Windows.Storage.Provider.CachedFileOptions
+         readMode : WinRt.Windows.Storage.Provider.ReadActivationMode;
+         writeMode : WinRt.Windows.Storage.Provider.WriteActivationMode;
+         options : WinRt.Windows.Storage.Provider.CachedFileOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -744,7 +744,7 @@ package WinRt.Windows.Storage.Provider is
       function get_UpdateTarget
       (
          this : access ICachedFileUpdaterUI_Interface;
-         RetVal : access Windows.Storage.Provider.CachedFileTarget
+         RetVal : access WinRt.Windows.Storage.Provider.CachedFileTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -752,14 +752,14 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access ICachedFileUpdaterUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FileUpdateRequested
       (
          this : access ICachedFileUpdaterUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -767,21 +767,21 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access ICachedFileUpdaterUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UIRequested
       (
          this : access ICachedFileUpdaterUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_UIStatus
       (
          this : access ICachedFileUpdaterUI_Interface;
-         RetVal : access Windows.Storage.Provider.UIStatus
+         RetVal : access WinRt.Windows.Storage.Provider.UIStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -793,14 +793,14 @@ package WinRt.Windows.Storage.Provider is
       function get_UpdateRequest
       (
          this : access ICachedFileUpdaterUI2_Interface;
-         RetVal : access Windows.Storage.Provider.IFileUpdateRequest
+         RetVal : access WinRt.Windows.Storage.Provider.IFileUpdateRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access ICachedFileUpdaterUI2_Interface;
-         RetVal : access Windows.Storage.Provider.IFileUpdateRequestDeferral
+         RetVal : access WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -819,35 +819,35 @@ package WinRt.Windows.Storage.Provider is
       function get_File
       (
          this : access IFileUpdateRequest_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IFileUpdateRequest_Interface;
-         RetVal : access Windows.Storage.Provider.FileUpdateStatus
+         RetVal : access WinRt.Windows.Storage.Provider.FileUpdateStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IFileUpdateRequest_Interface;
-         value : Windows.Storage.Provider.FileUpdateStatus
+         value : WinRt.Windows.Storage.Provider.FileUpdateStatus
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IFileUpdateRequest_Interface;
-         RetVal : access Windows.Storage.Provider.IFileUpdateRequestDeferral
+         RetVal : access WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
       function UpdateLocalFile
       (
          this : access IFileUpdateRequest_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -889,7 +889,7 @@ package WinRt.Windows.Storage.Provider is
       function get_Request
       (
          this : access IFileUpdateRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Provider.IFileUpdateRequest
+         RetVal : access WinRt.Windows.Storage.Provider.IFileUpdateRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -922,7 +922,7 @@ package WinRt.Windows.Storage.Provider is
          this : access IStorageProviderFileTypeInfoFactory_Interface;
          fileExtension : WinRt.HString;
          iconResource : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderFileTypeInfo
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderFileTypeInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -934,14 +934,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Status
       (
          this : access IStorageProviderGetContentInfoForPathResult_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderUriSourceStatus
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IStorageProviderGetContentInfoForPathResult_Interface;
-         value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+         value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -981,14 +981,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Status
       (
          this : access IStorageProviderGetPathForContentUriResult_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderUriSourceStatus
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IStorageProviderGetPathForContentUriResult_Interface;
-         value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+         value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1014,9 +1014,9 @@ package WinRt.Windows.Storage.Provider is
       function SetAsync
       (
          this : access IStorageProviderItemPropertiesStatics_Interface;
-         item : Windows.Storage.IStorageItem;
+         item : WinRt.Windows.Storage.IStorageItem;
          itemProperties : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1135,14 +1135,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Status
       (
          this : access IStorageProviderKnownFolderEntry_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IStorageProviderKnownFolderEntry_Interface;
-         value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+         value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,14 +1175,14 @@ package WinRt.Windows.Storage.Provider is
       function get_SyncRequested
       (
          this : access IStorageProviderKnownFolderSyncInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
       )
       return WinRt.Hresult is abstract;
 
       function put_SyncRequested
       (
          this : access IStorageProviderKnownFolderSyncInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+         value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -1194,7 +1194,7 @@ package WinRt.Windows.Storage.Provider is
       function GetKnownFolderSyncInfo
       (
          this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1202,14 +1202,14 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KnownFolderSyncInfoChanged
       (
          this : access IStorageProviderKnownFolderSyncInfoSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1221,7 +1221,7 @@ package WinRt.Windows.Storage.Provider is
       function GetKnownFolderSyncInfoSource
       (
          this : access IStorageProviderKnownFolderSyncInfoSourceFactory_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfoSource
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfoSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1240,7 +1240,7 @@ package WinRt.Windows.Storage.Provider is
       function get_Source
       (
          this : access IStorageProviderKnownFolderSyncRequestArgs_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1266,14 +1266,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Command
       (
          this : access IStorageProviderMoreInfoUI_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
       function put_Command
       (
          this : access IStorageProviderMoreInfoUI_Interface;
-         value : Windows.Storage.Provider.IStorageProviderUICommand
+         value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -1298,14 +1298,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Kind
       (
          this : access IStorageProviderQueryResult_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderResultKind
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderResultKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IStorageProviderQueryResult_Interface;
-         value : Windows.Storage.Provider.StorageProviderResultKind
+         value : WinRt.Windows.Storage.Provider.StorageProviderResultKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1354,7 +1354,7 @@ package WinRt.Windows.Storage.Provider is
       function get_RequestedProperties
       (
          this : access IStorageProviderQueryResult_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1367,7 +1367,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderQueryResultSet_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResult_Ptr
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1388,14 +1388,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Status
       (
          this : access IStorageProviderQueryResultSet_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderSearchQueryStatus
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IStorageProviderQueryResultSet_Interface;
-         value : Windows.Storage.Provider.StorageProviderSearchQueryStatus
+         value : WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1408,8 +1408,8 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderQueryResultSetFactory_Interface;
          resultsSize : WinRt.UInt32;
-         results : Windows.Storage.Provider.IStorageProviderQueryResult_Ptr;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+         results : WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Ptr;
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet
       )
       return WinRt.Hresult is abstract;
 
@@ -1482,18 +1482,18 @@ package WinRt.Windows.Storage.Provider is
       function Find
       (
          this : access IStorageProviderSearchHandler_Interface;
-         options : Windows.Storage.Provider.IStorageProviderSearchQueryOptions;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+         options : WinRt.Windows.Storage.Provider.IStorageProviderSearchQueryOptions;
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet
       )
       return WinRt.Hresult is abstract;
 
       function ReportUsage
       (
          this : access IStorageProviderSearchHandler_Interface;
-         resultUsageKind : Windows.Storage.Provider.StorageProviderResultUsageKind;
+         resultUsageKind : WinRt.Windows.Storage.Provider.StorageProviderResultUsageKind;
          remoteFileId : WinRt.HString;
          resultId : WinRt.HString;
-         latency : Windows.Foundation.TimeSpan
+         latency : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1506,7 +1506,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderSearchHandlerFactory_Interface;
          cloudProviderId : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderSearchHandler
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderSearchHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -1593,14 +1593,14 @@ package WinRt.Windows.Storage.Provider is
       function get_MatchKind
       (
          this : access IStorageProviderSearchResult_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderSearchMatchKind
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind
       )
       return WinRt.Hresult is abstract;
 
       function put_MatchKind
       (
          this : access IStorageProviderSearchResult_Interface;
-         value : Windows.Storage.Provider.StorageProviderSearchMatchKind
+         value : WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1655,14 +1655,14 @@ package WinRt.Windows.Storage.Provider is
       function get_ProviderState
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderState
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderState
       )
       return WinRt.Hresult is abstract;
 
       function put_ProviderState
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Storage.Provider.StorageProviderState
+         value : WinRt.Windows.Storage.Provider.StorageProviderState
       )
       return WinRt.Hresult is abstract;
 
@@ -1683,70 +1683,70 @@ package WinRt.Windows.Storage.Provider is
       function get_ProviderStateIcon
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ProviderStateIcon
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_SyncStatusCommand
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
       function put_SyncStatusCommand
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Storage.Provider.IStorageProviderUICommand
+         value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
       function get_QuotaUI
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQuotaUI
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI
       )
       return WinRt.Hresult is abstract;
 
       function put_QuotaUI
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Storage.Provider.IStorageProviderQuotaUI
+         value : WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI
       )
       return WinRt.Hresult is abstract;
 
       function get_MoreInfoUI
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderMoreInfoUI
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI
       )
       return WinRt.Hresult is abstract;
 
       function put_MoreInfoUI
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Storage.Provider.IStorageProviderMoreInfoUI
+         value : WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI
       )
       return WinRt.Hresult is abstract;
 
       function get_ProviderPrimaryCommand
       (
          this : access IStorageProviderStatusUI_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderUICommand
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
       function put_ProviderPrimaryCommand
       (
          this : access IStorageProviderStatusUI_Interface;
-         value : Windows.Storage.Provider.IStorageProviderUICommand
+         value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -1772,7 +1772,7 @@ package WinRt.Windows.Storage.Provider is
       function GetStatusUI
       (
          this : access IStorageProviderStatusUISource_Interface;
-         RetVal : access Windows.Storage.Provider.IStorageProviderStatusUI
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderStatusUI
       )
       return WinRt.Hresult is abstract;
 
@@ -1780,14 +1780,14 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderStatusUISource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUIChanged
       (
          this : access IStorageProviderStatusUISource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1800,7 +1800,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderStatusUISourceFactory_Interface;
          syncRootId : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderStatusUISource
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderStatusUISource
       )
       return WinRt.Hresult is abstract;
 
@@ -1812,15 +1812,15 @@ package WinRt.Windows.Storage.Provider is
       function GetSuggestions
       (
          this : access IStorageProviderSuggestionsHandler_Interface;
-         options : Windows.Storage.Provider.IStorageProviderSuggestionsQueryOptions;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResultSet
+         options : WinRt.Windows.Storage.Provider.IStorageProviderSuggestionsQueryOptions;
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet
       )
       return WinRt.Hresult is abstract;
 
       function Add
       (
          this : access IStorageProviderSuggestionsHandler_Interface;
-         kind : Windows.Storage.Provider.StorageProviderResultKind;
+         kind : WinRt.Windows.Storage.Provider.StorageProviderResultKind;
          remoteFileId : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1828,7 +1828,7 @@ package WinRt.Windows.Storage.Provider is
       function Remove
       (
          this : access IStorageProviderSuggestionsHandler_Interface;
-         kind : Windows.Storage.Provider.StorageProviderResultKind;
+         kind : WinRt.Windows.Storage.Provider.StorageProviderResultKind;
          remoteFileId : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1840,17 +1840,17 @@ package WinRt.Windows.Storage.Provider is
          propertiesToFetchSize : WinRt.UInt32;
          propertiesToFetch : WinRt.HString_Ptr;
          queryId : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderQueryResult
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function ReportUsage
       (
          this : access IStorageProviderSuggestionsHandler_Interface;
-         resultUsageKind : Windows.Storage.Provider.StorageProviderResultUsageKind;
+         resultUsageKind : WinRt.Windows.Storage.Provider.StorageProviderResultUsageKind;
          remoteFileId : WinRt.HString;
          resultId : WinRt.HString;
-         latency : Windows.Foundation.TimeSpan
+         latency : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1863,7 +1863,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderSuggestionsHandlerFactory_Interface;
          cloudProviderId : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderSuggestionsHandler
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderSuggestionsHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -1875,7 +1875,7 @@ package WinRt.Windows.Storage.Provider is
       function get_SuggestionsKind
       (
          this : access IStorageProviderSuggestionsQueryOptions_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderResultKind
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderResultKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1929,28 +1929,28 @@ package WinRt.Windows.Storage.Provider is
       function get_Context
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Context
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Path
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function put_Path
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.IStorageFolder
+         value : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1985,70 +1985,70 @@ package WinRt.Windows.Storage.Provider is
       function get_HydrationPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderHydrationPolicy
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_HydrationPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderHydrationPolicy
+         value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_HydrationPolicyModifier
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
       )
       return WinRt.Hresult is abstract;
 
       function put_HydrationPolicyModifier
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
+         value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
       )
       return WinRt.Hresult is abstract;
 
       function get_PopulationPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderPopulationPolicy
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderPopulationPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_PopulationPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderPopulationPolicy
+         value : WinRt.Windows.Storage.Provider.StorageProviderPopulationPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_InSyncPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderInSyncPolicy
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderInSyncPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_InSyncPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderInSyncPolicy
+         value : WinRt.Windows.Storage.Provider.StorageProviderInSyncPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_HardlinkPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderHardlinkPolicy
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderHardlinkPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_HardlinkPolicy
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderHardlinkPolicy
+         value : WinRt.Windows.Storage.Provider.StorageProviderHardlinkPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -2083,14 +2083,14 @@ package WinRt.Windows.Storage.Provider is
       function get_ProtectionMode
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderProtectionMode
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderProtectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectionMode
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Storage.Provider.StorageProviderProtectionMode
+         value : WinRt.Windows.Storage.Provider.StorageProviderProtectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2118,14 +2118,14 @@ package WinRt.Windows.Storage.Provider is
       function get_RecycleBinUri
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_RecycleBinUri
       (
          this : access IStorageProviderSyncRootInfo_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2168,7 +2168,7 @@ package WinRt.Windows.Storage.Provider is
       function Register
       (
          this : access IStorageProviderSyncRootManagerStatics_Interface;
-         syncRootInformation : Windows.Storage.Provider.IStorageProviderSyncRootInfo
+         syncRootInformation : WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -2182,8 +2182,8 @@ package WinRt.Windows.Storage.Provider is
       function GetSyncRootInformationForFolder
       (
          this : access IStorageProviderSyncRootManagerStatics_Interface;
-         folder : Windows.Storage.IStorageFolder;
-         RetVal : access Windows.Storage.Provider.IStorageProviderSyncRootInfo
+         folder : WinRt.Windows.Storage.IStorageFolder;
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -2191,7 +2191,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderSyncRootManagerStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Storage.Provider.IStorageProviderSyncRootInfo
+         RetVal : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -2236,14 +2236,14 @@ package WinRt.Windows.Storage.Provider is
       function get_Icon
       (
          this : access IStorageProviderUICommand_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IStorageProviderUICommand_Interface;
-         RetVal : access Windows.Storage.Provider.StorageProviderUICommandState
+         RetVal : access WinRt.Windows.Storage.Provider.StorageProviderUICommandState
       )
       return WinRt.Hresult is abstract;
 
@@ -2262,7 +2262,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderUriSource_Interface;
          contentUri : WinRt.HString;
-         result : Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult
+         result : WinRt.Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2270,7 +2270,7 @@ package WinRt.Windows.Storage.Provider is
       (
          this : access IStorageProviderUriSource_Interface;
          path : WinRt.HString;
-         result : Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult
+         result : WinRt.Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2286,11 +2286,11 @@ package WinRt.Windows.Storage.Provider is
 
       procedure SetUpdateInformation
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contentId : WinRt.WString;
-         readMode : Windows.Storage.Provider.ReadActivationMode;
-         writeMode : Windows.Storage.Provider.WriteActivationMode;
-         options : Windows.Storage.Provider.CachedFileOptions
+         readMode : WinRt.Windows.Storage.Provider.ReadActivationMode;
+         writeMode : WinRt.Windows.Storage.Provider.WriteActivationMode;
+         options : WinRt.Windows.Storage.Provider.CachedFileOptions
       );
 
    end CachedFileUpdater;
@@ -2332,7 +2332,7 @@ package WinRt.Windows.Storage.Provider is
    procedure remove_FileUpdateRequested
    (
       this : in out CachedFileUpdaterUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UIRequested
@@ -2345,7 +2345,7 @@ package WinRt.Windows.Storage.Provider is
    procedure remove_UIRequested
    (
       this : in out CachedFileUpdaterUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_UIStatus
@@ -2396,7 +2396,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out FileUpdateRequest;
-      value : Windows.Storage.Provider.FileUpdateStatus
+      value : WinRt.Windows.Storage.Provider.FileUpdateStatus
    );
 
    function GetDeferral
@@ -2408,7 +2408,7 @@ package WinRt.Windows.Storage.Provider is
    procedure UpdateLocalFile
    (
       this : in out FileUpdateRequest;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    );
 
    function get_UserInputNeededMessage
@@ -2506,7 +2506,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderGetContentInfoForPathResult;
-      value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
    );
 
    function get_ContentUri
@@ -2556,7 +2556,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderGetPathForContentUriResult;
-      value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
    );
 
    function get_Path
@@ -2577,7 +2577,7 @@ package WinRt.Windows.Storage.Provider is
 
       procedure SetAsync
       (
-         item : Windows.Storage.IStorageItem;
+         item : WinRt.Windows.Storage.IStorageItem;
          itemProperties : GenericObject
       );
 
@@ -2706,7 +2706,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderKnownFolderEntry;
-      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2750,7 +2750,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_SyncRequested
    (
       this : in out StorageProviderKnownFolderSyncInfo;
-      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+      value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
    );
 
    -----------------------------------------------------------------------------
@@ -2809,7 +2809,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Command
    (
       this : in out StorageProviderMoreInfoUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    );
 
    -----------------------------------------------------------------------------
@@ -2823,7 +2823,7 @@ package WinRt.Windows.Storage.Provider is
 
    function Constructor
    (
-      results : Windows.Storage.Provider.IStorageProviderQueryResult_Array
+      results : WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Array
    )
    return StorageProviderQueryResultSet;
 
@@ -2857,7 +2857,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderQueryResultSet;
-      value : Windows.Storage.Provider.StorageProviderSearchQueryStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus
    );
 
    -----------------------------------------------------------------------------
@@ -3014,7 +3014,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_MatchKind
    (
       this : in out StorageProviderSearchResult;
-      value : Windows.Storage.Provider.StorageProviderSearchMatchKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind
    );
 
    function get_MatchedPropertyName
@@ -3038,7 +3038,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Kind
    (
       this : in out StorageProviderSearchResult;
-      value : Windows.Storage.Provider.StorageProviderResultKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderResultKind
    );
 
    function get_ResultId
@@ -3106,7 +3106,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_ProviderState
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderState
+      value : WinRt.Windows.Storage.Provider.StorageProviderState
    );
 
    function get_ProviderStateLabel
@@ -3130,7 +3130,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_ProviderStateIcon
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_SyncStatusCommand
@@ -3142,7 +3142,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_SyncStatusCommand
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    );
 
    function get_QuotaUI
@@ -3154,7 +3154,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_QuotaUI
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderQuotaUI'Class
+      value : WinRt.Windows.Storage.Provider.StorageProviderQuotaUI'Class
    );
 
    function get_MoreInfoUI
@@ -3166,7 +3166,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_MoreInfoUI
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
+      value : WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
    );
 
    function get_ProviderPrimaryCommand
@@ -3178,7 +3178,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_ProviderPrimaryCommand
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    );
 
    function get_ProviderSecondaryCommands
@@ -3216,7 +3216,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Kind
    (
       this : in out StorageProviderSuggestionResult;
-      value : Windows.Storage.Provider.StorageProviderResultKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderResultKind
    );
 
    function get_ResultId
@@ -3335,7 +3335,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Context
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_Path
@@ -3347,7 +3347,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_Path
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.IStorageFolder
+      value : WinRt.Windows.Storage.IStorageFolder
    );
 
    function get_DisplayNameResource
@@ -3383,7 +3383,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_HydrationPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHydrationPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicy
    );
 
    function get_HydrationPolicyModifier
@@ -3395,7 +3395,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_HydrationPolicyModifier
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
+      value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
    );
 
    function get_PopulationPolicy
@@ -3407,7 +3407,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_PopulationPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderPopulationPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderPopulationPolicy
    );
 
    function get_InSyncPolicy
@@ -3419,7 +3419,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_InSyncPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderInSyncPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderInSyncPolicy
    );
 
    function get_HardlinkPolicy
@@ -3431,7 +3431,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_HardlinkPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHardlinkPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderHardlinkPolicy
    );
 
    function get_ShowSiblingsAsGroup
@@ -3467,7 +3467,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_ProtectionMode
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderProtectionMode
+      value : WinRt.Windows.Storage.Provider.StorageProviderProtectionMode
    );
 
    function get_AllowPinning
@@ -3497,7 +3497,7 @@ package WinRt.Windows.Storage.Provider is
    procedure put_RecycleBinUri
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ProviderId
@@ -3524,7 +3524,7 @@ package WinRt.Windows.Storage.Provider is
 
       procedure Register
       (
-         syncRootInformation : Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
+         syncRootInformation : WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
       );
 
       procedure Unregister
@@ -3534,7 +3534,7 @@ package WinRt.Windows.Storage.Provider is
 
       function GetSyncRootInformationForFolder
       (
-         folder : Windows.Storage.IStorageFolder
+         folder : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo;
 

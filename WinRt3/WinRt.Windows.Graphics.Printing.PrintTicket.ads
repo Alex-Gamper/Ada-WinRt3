@@ -199,112 +199,112 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentBindingFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentCollateFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentDuplexFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentHolePunchFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentInputBinFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentNUpFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentStapleFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_JobPasscodeFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageBorderlessFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageMediaSizeFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageMediaTypeFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOrientationFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOutputColorFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOutputQualityFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageResolutionFeature
       (
          this : access IPrintTicketCapabilities_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
@@ -313,7 +313,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketCapabilities_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
@@ -322,7 +322,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketCapabilities_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -348,7 +348,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IPrintTicketFeature_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
@@ -364,7 +364,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketFeature_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
       )
       return WinRt.Hresult is abstract;
 
@@ -378,21 +378,21 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function GetSelectedOption
       (
          this : access IPrintTicketFeature_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
       )
       return WinRt.Hresult is abstract;
 
       function SetSelectedOption
       (
          this : access IPrintTicketFeature_Interface;
-         value : Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
+         value : WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionType
       (
          this : access IPrintTicketFeature_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.PrintTicketFeatureSelectionType
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeatureSelectionType
       )
       return WinRt.Hresult is abstract;
 
@@ -418,7 +418,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IPrintTicketOption_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
@@ -434,7 +434,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketOption_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
@@ -443,7 +443,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketOption_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
@@ -452,7 +452,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketOption_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
       )
       return WinRt.Hresult is abstract;
 
@@ -461,7 +461,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IPrintTicketOption_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
       )
       return WinRt.Hresult is abstract;
 
@@ -487,14 +487,14 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IPrintTicketParameterDefinition_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
       function get_DataType
       (
          this : access IPrintTicketParameterDefinition_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.PrintTicketParameterDataType
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketParameterDataType
       )
       return WinRt.Hresult is abstract;
 
@@ -541,21 +541,21 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IPrintTicketParameterInitializer_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
       function put_Value
       (
          this : access IPrintTicketParameterInitializer_Interface;
-         value : Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
+         value : WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IPrintTicketParameterInitializer_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue
       )
       return WinRt.Hresult is abstract;
 
@@ -567,7 +567,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_Type
       (
          this : access IPrintTicketValue_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.PrintTicketValueType
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketValueType
       )
       return WinRt.Hresult is abstract;
 
@@ -607,119 +607,119 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_XmlNode
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlNode
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlNode
       )
       return WinRt.Hresult is abstract;
 
       function GetCapabilities
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentBindingFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentCollateFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentDuplexFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentHolePunchFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentInputBinFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentNUpFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentStapleFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_JobPasscodeFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageBorderlessFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageMediaSizeFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageMediaTypeFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOrientationFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOutputColorFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOutputQualityFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function get_PageResolutionFeature
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
@@ -728,14 +728,14 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IWorkflowPrintTicket_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature
       )
       return WinRt.Hresult is abstract;
 
       function NotifyXmlChangedAsync
       (
          this : access IWorkflowPrintTicket_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -751,7 +751,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          this : access IWorkflowPrintTicket_Interface;
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
       )
       return WinRt.Hresult is abstract;
 
@@ -761,7 +761,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
          integerValue : WinRt.Int32;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
       )
       return WinRt.Hresult is abstract;
 
@@ -771,15 +771,15 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
          name : WinRt.HString;
          xmlNamespace : WinRt.HString;
          stringValue : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer
       )
       return WinRt.Hresult is abstract;
 
       function MergeAndValidateTicket
       (
          this : access IWorkflowPrintTicket_Interface;
-         deltaShemaTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         deltaShemaTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -792,8 +792,8 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       (
          this : access IWorkflowPrintTicketFactory_Interface;
          printerName : WinRt.HString;
-         printTicketStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         printTicketStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -812,7 +812,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
       function get_ExtendedError
       (
          this : access IWorkflowPrintTicketValidationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    procedure SetSelectedOption
    (
       this : in out PrintTicketFeature;
-      value : Windows.Graphics.Printing.PrintTicket.PrintTicketOption'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketOption'Class
    );
 
    function get_SelectionType
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    procedure put_Value
    (
       this : in out PrintTicketParameterInitializer;
-      value : Windows.Graphics.Printing.PrintTicket.PrintTicketValue'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketValue'Class
    );
 
    function get_Value
@@ -1214,7 +1214,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    function Constructor
    (
       printerName : WinRt.WString;
-      printTicketStream : Windows.Storage.Streams.IInputStream
+      printTicketStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WorkflowPrintTicket;
 
@@ -1383,7 +1383,7 @@ package WinRt.Windows.Graphics.Printing.PrintTicket is
    function MergeAndValidateTicket
    (
       this : in out WorkflowPrintTicket;
-      deltaShemaTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      deltaShemaTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    )
    return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
 

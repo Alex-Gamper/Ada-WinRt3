@@ -59,7 +59,7 @@ package body WinRt.Windows.UI.Input.Core is
 
    function CreateForView
    (
-      view : Windows.ApplicationModel.Core.CoreApplicationView'Class
+      view : WinRt.Windows.ApplicationModel.Core.CoreApplicationView'Class
    )
    return WinRt.Windows.UI.Input.Core.RadialControllerIndependentInputSource is
       Hr               : WinRt.HResult := S_OK;
@@ -67,7 +67,7 @@ package body WinRt.Windows.UI.Input.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Core.RadialControllerIndependentInputSource");
       m_Factory        : access WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Core.IRadialControllerIndependentInputSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Core.RadialControllerIndependentInputSource do
          Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerIndependentInputSourceStatics'Access , m_Factory'Address);
@@ -77,7 +77,7 @@ package body WinRt.Windows.UI.Input.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerIndependentInputSource := new Windows.UI.Input.Core.IRadialControllerIndependentInputSource;
+            Retval.m_IRadialControllerIndependentInputSource := new WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource;
             Retval.m_IRadialControllerIndependentInputSource.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -95,14 +95,14 @@ package body WinRt.Windows.UI.Input.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialController;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialController do
          Hr := this.m_IRadialControllerIndependentInputSource.all.get_Controller (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialController := new Windows.UI.Input.IRadialController;
+         Retval.m_IRadialController := new WinRt.Windows.UI.Input.IRadialController;
          Retval.m_IRadialController.all := m_ComRetVal;
       end return;
    end;
@@ -115,14 +115,14 @@ package body WinRt.Windows.UI.Input.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_IRadialControllerIndependentInputSource.all.get_Dispatcher (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
+         Retval.m_ICoreDispatcher := new WinRt.Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
    end;
@@ -136,7 +136,7 @@ package body WinRt.Windows.UI.Input.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource_Interface, WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource2, WinRt.Windows.UI.Input.Core.IID_IRadialControllerIndependentInputSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
@@ -146,7 +146,7 @@ package body WinRt.Windows.UI.Input.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
    end;

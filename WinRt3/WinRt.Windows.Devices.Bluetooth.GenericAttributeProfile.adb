@@ -148,7 +148,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDescriptor.Kind;
    begin
       Hr := this.m_IGattCharacteristic.all.GetDescriptors (descriptorUuid, m_ComRetVal'Access);
@@ -168,7 +168,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
    begin
       Hr := this.m_IGattCharacteristic.all.get_CharacteristicProperties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -185,7 +185,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattCharacteristic.all.get_ProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -197,7 +197,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ProtectionLevel
    (
       this : in out GattCharacteristic;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -271,7 +271,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattPresentationFormat.Kind;
    begin
       Hr := this.m_IGattCharacteristic.all.get_PresentationFormats (m_ComRetVal'Access);
@@ -336,7 +336,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
+                  Retval.m_IGattReadResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
                   Retval.m_IGattReadResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -352,7 +352,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function ReadValueAsync
    (
       this : in out GattCharacteristic;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattReadResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -403,7 +403,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
+                  Retval.m_IGattReadResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
                   Retval.m_IGattReadResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -419,7 +419,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -483,8 +483,8 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -598,7 +598,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadClientCharacteristicConfigurationDescriptorResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadClientCharacteristicConfigurationDescriptorResult;
+                  Retval.m_IGattReadClientCharacteristicConfigurationDescriptorResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadClientCharacteristicConfigurationDescriptorResult;
                   Retval.m_IGattReadClientCharacteristicConfigurationDescriptorResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -614,7 +614,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteClientCharacteristicConfigurationDescriptorAsync
    (
       this : in out GattCharacteristic;
-      clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
+      clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -684,7 +684,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattCharacteristic.all.add_ValueChanged (valueChangedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -696,7 +696,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ValueChanged
    (
       this : in out GattCharacteristic;
-      valueChangedEventCookie : Windows.Foundation.EventRegistrationToken
+      valueChangedEventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -717,7 +717,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattCharacteristic2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService do
@@ -727,7 +727,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattDeviceService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+         Retval.m_IGattDeviceService := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
          Retval.m_IGattDeviceService.all := m_ComRetVal;
       end return;
    end;
@@ -741,7 +741,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDescriptor.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattCharacteristic2'Unchecked_Access);
    begin
@@ -813,7 +813,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDescriptorsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
+                  Retval.m_IGattDescriptorsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
                   Retval.m_IGattDescriptorsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -829,7 +829,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetDescriptorsAsync
    (
       this : in out GattCharacteristic;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDescriptorsResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -884,7 +884,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDescriptorsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
+                  Retval.m_IGattDescriptorsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
                   Retval.m_IGattDescriptorsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -955,7 +955,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDescriptorsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
+                  Retval.m_IGattDescriptorsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
                   Retval.m_IGattDescriptorsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -972,7 +972,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattCharacteristic;
       descriptorUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDescriptorsResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1027,7 +1027,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDescriptorsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
+                  Retval.m_IGattDescriptorsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDescriptorsResult;
                   Retval.m_IGattDescriptorsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1043,7 +1043,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueWithResultAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1098,7 +1098,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
+                  Retval.m_IGattWriteResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
                   Retval.m_IGattWriteResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1114,8 +1114,8 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueWithResultAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1170,7 +1170,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
+                  Retval.m_IGattWriteResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
                   Retval.m_IGattWriteResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1186,7 +1186,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteClientCharacteristicConfigurationDescriptorWithResultAsync
    (
       this : in out GattCharacteristic;
-      clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
+      clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
+                  Retval.m_IGattWriteResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
                   Retval.m_IGattWriteResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2992,7 +2992,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattCharacteristicsResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3009,7 +3009,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IGattCharacteristicsResult.all.get_ProtocolError (m_ComRetVal'Access);
@@ -3029,7 +3029,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattCharacteristic.Kind;
    begin
       Hr := this.m_IGattCharacteristicsResult.all.get_Characteristics (m_ComRetVal'Access);
@@ -3072,14 +3072,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSubscribedClient do
          Hr := this.m_IGattClientNotificationResult.all.get_SubscribedClient (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattSubscribedClient := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
+         Retval.m_IGattSubscribedClient := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
          Retval.m_IGattSubscribedClient.all := m_ComRetVal;
       end return;
    end;
@@ -3092,7 +3092,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattClientNotificationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3109,7 +3109,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IGattClientNotificationResult.all.get_ProtocolError (m_ComRetVal'Access);
@@ -3200,7 +3200,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattDescriptor.all.get_ProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3212,7 +3212,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ProtectionLevel
    (
       this : in out GattDescriptor;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3311,7 +3311,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
+                  Retval.m_IGattReadResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
                   Retval.m_IGattReadResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3327,7 +3327,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function ReadValueAsync
    (
       this : in out GattDescriptor;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattReadResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3378,7 +3378,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
+                  Retval.m_IGattReadResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult;
                   Retval.m_IGattReadResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3394,7 +3394,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueAsync
    (
       this : in out GattDescriptor;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -3458,7 +3458,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteValueWithResultAsync
    (
       this : in out GattDescriptor;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3513,7 +3513,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
+                  Retval.m_IGattWriteResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
                   Retval.m_IGattWriteResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3689,7 +3689,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattDescriptorsResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3706,7 +3706,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IGattDescriptorsResult.all.get_ProtocolError (m_ComRetVal'Access);
@@ -3726,7 +3726,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDescriptor.Kind;
    begin
       Hr := this.m_IGattDescriptorsResult.all.get_Descriptors (m_ComRetVal'Access);
@@ -3764,7 +3764,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
+      sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService is
       Hr               : WinRt.HResult := S_OK;
@@ -3821,7 +3821,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGattDeviceService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+                     Retval.m_IGattDeviceService := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
                      Retval.m_IGattDeviceService.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -3839,7 +3839,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function GetDeviceSelectorForBluetoothDeviceId
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -3866,8 +3866,8 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function GetDeviceSelectorForBluetoothDeviceId
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -3894,7 +3894,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function GetDeviceSelectorForBluetoothDeviceIdAndUuid
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
       serviceUuid : WinRt.Guid
    )
    return WinRt.WString is
@@ -3922,9 +3922,9 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function GetDeviceSelectorForBluetoothDeviceIdAndUuid
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
       serviceUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4008,7 +4008,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGattDeviceService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
+                     Retval.m_IGattDeviceService := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService;
                      Retval.m_IGattDeviceService.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4114,7 +4114,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattCharacteristic.Kind;
    begin
       Hr := this.m_IGattDeviceService.all.GetCharacteristics (characteristicUuid, m_ComRetVal'Access);
@@ -4135,7 +4135,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDeviceService.Kind;
    begin
       Hr := this.m_IGattDeviceService.all.GetIncludedServices (serviceUuid, m_ComRetVal'Access);
@@ -4228,7 +4228,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothLEDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice do
@@ -4238,7 +4238,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBluetoothLEDevice := new Windows.Devices.Bluetooth.IBluetoothLEDevice;
+         Retval.m_IBluetoothLEDevice := new WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice;
          Retval.m_IBluetoothLEDevice.all := m_ComRetVal;
       end return;
    end;
@@ -4252,7 +4252,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDeviceService.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService2'Unchecked_Access);
    begin
@@ -4276,7 +4276,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattCharacteristic.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService2'Unchecked_Access);
    begin
@@ -4300,7 +4300,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDeviceService.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService2'Unchecked_Access);
    begin
@@ -4324,7 +4324,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceAccessInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceAccessInformation do
@@ -4334,7 +4334,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceAccessInformation := new Windows.Devices.Enumeration.IDeviceAccessInformation;
+         Retval.m_IDeviceAccessInformation := new WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation;
          Retval.m_IDeviceAccessInformation.all := m_ComRetVal;
       end return;
    end;
@@ -4348,7 +4348,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession do
@@ -4358,7 +4358,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattSession := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+         Retval.m_IGattSession := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
          Retval.m_IGattSession.all := m_ComRetVal;
       end return;
    end;
@@ -4372,7 +4372,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService3, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattDeviceService3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattDeviceService.all);
@@ -4454,7 +4454,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function OpenAsync
    (
       this : in out GattDeviceService;
-      sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
+      sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattOpenStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4576,7 +4576,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattCharacteristicsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
+                  Retval.m_IGattCharacteristicsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
                   Retval.m_IGattCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4592,7 +4592,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetCharacteristicsAsync
    (
       this : in out GattDeviceService;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4647,7 +4647,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattCharacteristicsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
+                  Retval.m_IGattCharacteristicsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
                   Retval.m_IGattCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4718,7 +4718,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattCharacteristicsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
+                  Retval.m_IGattCharacteristicsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
                   Retval.m_IGattCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4735,7 +4735,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattDeviceService;
       characteristicUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicsResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4790,7 +4790,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattCharacteristicsResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
+                  Retval.m_IGattCharacteristicsResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristicsResult;
                   Retval.m_IGattCharacteristicsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4860,7 +4860,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDeviceServicesResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
+                  Retval.m_IGattDeviceServicesResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
                   Retval.m_IGattDeviceServicesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4876,7 +4876,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetIncludedServicesAsync
    (
       this : in out GattDeviceService;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4931,7 +4931,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDeviceServicesResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
+                  Retval.m_IGattDeviceServicesResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
                   Retval.m_IGattDeviceServicesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5002,7 +5002,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDeviceServicesResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
+                  Retval.m_IGattDeviceServicesResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
                   Retval.m_IGattDeviceServicesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5019,7 +5019,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattDeviceService;
       serviceUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5074,7 +5074,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattDeviceServicesResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
+                  Retval.m_IGattDeviceServicesResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceServicesResult;
                   Retval.m_IGattDeviceServicesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5118,7 +5118,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattDeviceServicesResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5135,7 +5135,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IGattDeviceServicesResult.all.get_ProtocolError (m_ComRetVal'Access);
@@ -5155,7 +5155,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattDeviceService.Kind;
    begin
       Hr := this.m_IGattDeviceServicesResult.all.get_Services (m_ComRetVal'Access);
@@ -5215,7 +5215,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_StaticValue (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5232,7 +5232,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_CharacteristicProperties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5249,7 +5249,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_ReadProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5266,7 +5266,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_WriteProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5279,7 +5279,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattLocalCharacteristic;
       descriptorUuid : WinRt.Guid;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5330,7 +5330,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattLocalDescriptorResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorResult;
+                  Retval.m_IGattLocalDescriptorResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorResult;
                   Retval.m_IGattLocalDescriptorResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5351,7 +5351,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattLocalDescriptor.Kind;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_Descriptors (m_ComRetVal'Access);
@@ -5391,7 +5391,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattPresentationFormat.Kind;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_PresentationFormats (m_ComRetVal'Access);
@@ -5411,7 +5411,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattSubscribedClient.Kind;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.get_SubscribedClients (m_ComRetVal'Access);
@@ -5432,7 +5432,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.add_SubscribedClientsChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5444,7 +5444,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_SubscribedClientsChanged
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5465,7 +5465,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.add_ReadRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5477,7 +5477,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ReadRequested
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5498,7 +5498,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattLocalCharacteristic.all.add_WriteRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5510,7 +5510,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_WriteRequested
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5525,7 +5525,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function NotifyValueAsync
    (
       this : in out GattLocalCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -5589,8 +5589,8 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function NotifyValueAsync
    (
       this : in out GattLocalCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      subscribedClient : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSubscribedClient'Class
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      subscribedClient : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSubscribedClient'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientNotificationResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5641,7 +5641,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattClientNotificationResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattClientNotificationResult;
+                  Retval.m_IGattClientNotificationResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattClientNotificationResult;
                   Retval.m_IGattClientNotificationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5680,13 +5680,13 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattLocalCharacteristicParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
    begin
       return RetVal : GattLocalCharacteristicParameters do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGattLocalCharacteristicParameters := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
+            Retval.m_IGattLocalCharacteristicParameters := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
             Retval.m_IGattLocalCharacteristicParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5699,7 +5699,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_StaticValue
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5719,7 +5719,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattLocalCharacteristicParameters.all.get_StaticValue (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5731,7 +5731,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_CharacteristicProperties
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5751,7 +5751,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties;
    begin
       Hr := this.m_IGattLocalCharacteristicParameters.all.get_CharacteristicProperties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5763,7 +5763,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ReadProtectionLevel
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5783,7 +5783,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalCharacteristicParameters.all.get_ReadProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5795,7 +5795,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_WriteProtectionLevel
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5815,7 +5815,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalCharacteristicParameters.all.get_WriteProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5869,7 +5869,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IGattPresentationFormat.Kind;
    begin
       Hr := this.m_IGattLocalCharacteristicParameters.all.get_PresentationFormats (m_ComRetVal'Access);
@@ -5912,14 +5912,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristic do
          Hr := this.m_IGattLocalCharacteristicResult.all.get_Characteristic (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattLocalCharacteristic := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic;
+         Retval.m_IGattLocalCharacteristic := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic;
          Retval.m_IGattLocalCharacteristic.all := m_ComRetVal;
       end return;
    end;
@@ -5932,7 +5932,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattLocalCharacteristicResult.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5989,7 +5989,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattLocalDescriptor.all.get_StaticValue (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6006,7 +6006,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalDescriptor.all.get_ReadProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6023,7 +6023,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalDescriptor.all.get_WriteProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6041,7 +6041,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattLocalDescriptor.all.add_ReadRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6053,7 +6053,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ReadRequested
    (
       this : in out GattLocalDescriptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6074,7 +6074,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattLocalDescriptor.all.add_WriteRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6086,7 +6086,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_WriteRequested
    (
       this : in out GattLocalDescriptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6124,13 +6124,13 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattLocalDescriptorParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
    begin
       return RetVal : GattLocalDescriptorParameters do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGattLocalDescriptorParameters := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
+            Retval.m_IGattLocalDescriptorParameters := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
             Retval.m_IGattLocalDescriptorParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6143,7 +6143,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_StaticValue
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6163,7 +6163,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattLocalDescriptorParameters.all.get_StaticValue (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6175,7 +6175,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ReadProtectionLevel
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6195,7 +6195,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalDescriptorParameters.all.get_ReadProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6207,7 +6207,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_WriteProtectionLevel
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6227,7 +6227,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel;
    begin
       Hr := this.m_IGattLocalDescriptorParameters.all.get_WriteProtectionLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6267,14 +6267,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptor do
          Hr := this.m_IGattLocalDescriptorResult.all.get_Descriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattLocalDescriptor := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor;
+         Retval.m_IGattLocalDescriptor := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor;
          Retval.m_IGattLocalDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -6287,7 +6287,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattLocalDescriptorResult.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6340,7 +6340,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattLocalService;
       characteristicUuid : WinRt.Guid;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6391,7 +6391,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattLocalCharacteristicResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicResult;
+                  Retval.m_IGattLocalCharacteristicResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicResult;
                   Retval.m_IGattLocalCharacteristicResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6412,7 +6412,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGattLocalCharacteristic.Kind;
    begin
       Hr := this.m_IGattLocalService.all.get_Characteristics (m_ComRetVal'Access);
@@ -6482,7 +6482,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattPresentationFormat");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormatStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattPresentationFormat do
          Hr := RoGetActivationFactory (m_hString, IID_IGattPresentationFormatStatics2'Access , m_Factory'Address);
@@ -6492,7 +6492,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGattPresentationFormat := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat;
+            Retval.m_IGattPresentationFormat := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat;
             Retval.m_IGattPresentationFormat.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7554,7 +7554,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattReadClientCharacteristicConfigurationDescriptorResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7571,7 +7571,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
    begin
       Hr := this.m_IGattReadClientCharacteristicConfigurationDescriptorResult.all.get_ClientCharacteristicConfigurationDescriptor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7589,7 +7589,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadClientCharacteristicConfigurationDescriptorResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadClientCharacteristicConfigurationDescriptorResult_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadClientCharacteristicConfigurationDescriptorResult2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattReadClientCharacteristicConfigurationDescriptorResult2'Unchecked_Access);
    begin
@@ -7669,7 +7669,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
    begin
       Hr := this.m_IGattReadRequest.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7687,7 +7687,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattReadRequest.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7699,7 +7699,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_StateChanged
    (
       this : in out GattReadRequest;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7714,7 +7714,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure RespondWithValue
    (
       this : in out GattReadRequest;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7772,14 +7772,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession do
          Hr := this.m_IGattReadRequestedEventArgs.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattSession := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+         Retval.m_IGattSession := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
          Retval.m_IGattSession.all := m_ComRetVal;
       end return;
    end;
@@ -7792,14 +7792,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IGattReadRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -7857,7 +7857,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattReadRequest := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadRequest;
+                  Retval.m_IGattReadRequest := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadRequest;
                   Retval.m_IGattReadRequest.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7901,7 +7901,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattReadResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7918,7 +7918,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattReadResult.all.get_Value (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7936,7 +7936,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReadResult2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattReadResult2'Unchecked_Access);
    begin
@@ -7977,13 +7977,13 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattReliableWriteTransaction is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattReliableWriteTransaction");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction;
    begin
       return RetVal : GattReliableWriteTransaction do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGattReliableWriteTransaction := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction;
+            Retval.m_IGattReliableWriteTransaction := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction;
             Retval.m_IGattReliableWriteTransaction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7996,8 +7996,8 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure WriteValue
    (
       this : in out GattReliableWriteTransaction;
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
-      value : Windows.Storage.Streams.IBuffer
+      characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8129,7 +8129,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
+                  Retval.m_IGattWriteResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteResult;
                   Retval.m_IGattWriteResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8173,7 +8173,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
    begin
       Hr := this.m_IGattRequestStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8190,7 +8190,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattRequestStateChangedEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8280,7 +8280,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGattServiceProviderResult := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderResult;
+                     Retval.m_IGattServiceProviderResult := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderResult;
                      Retval.m_IGattServiceProviderResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -8306,14 +8306,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalService do
          Hr := this.m_IGattServiceProvider.all.get_Service (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattLocalService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
+         Retval.m_IGattLocalService := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
          Retval.m_IGattLocalService.all := m_ComRetVal;
       end return;
    end;
@@ -8326,7 +8326,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus;
    begin
       Hr := this.m_IGattServiceProvider.all.get_AdvertisementStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8344,7 +8344,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattServiceProvider.all.add_AdvertisementStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8356,7 +8356,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_AdvertisementStatusChanged
    (
       this : in out GattServiceProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8385,7 +8385,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure StartAdvertising
    (
       this : in out GattServiceProvider;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8414,7 +8414,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure UpdateAdvertisingParameters
    (
       this : in out GattServiceProvider;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8461,7 +8461,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8478,7 +8478,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus;
    begin
       Hr := this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8513,13 +8513,13 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattServiceProviderAdvertisingParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters");
-      m_ComRetVal  : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
    begin
       return RetVal : GattServiceProviderAdvertisingParameters do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGattServiceProviderAdvertisingParameters := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
+            Retval.m_IGattServiceProviderAdvertisingParameters := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
             Retval.m_IGattServiceProviderAdvertisingParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8596,7 +8596,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ServiceData
    (
       this : in out GattServiceProviderAdvertisingParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8621,7 +8621,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters_Interface, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters2, WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IID_IGattServiceProviderAdvertisingParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattServiceProviderAdvertisingParameters.all);
@@ -8744,7 +8744,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattServiceProviderResult.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8761,14 +8761,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProvider do
          Hr := this.m_IGattServiceProviderResult.all.get_ServiceProvider (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattServiceProvider := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider;
+         Retval.m_IGattServiceProvider := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider;
          Retval.m_IGattServiceProvider.all := m_ComRetVal;
       end return;
    end;
@@ -9266,7 +9266,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function FromDeviceIdAsync
    (
-      deviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class
+      deviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession is
       Hr               : WinRt.HResult := S_OK;
@@ -9322,7 +9322,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGattSession := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+                     Retval.m_IGattSession := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
                      Retval.m_IGattSession.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -9348,14 +9348,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothDeviceId;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId do
          Hr := this.m_IGattSession.all.get_DeviceId (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBluetoothDeviceId := new Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         Retval.m_IBluetoothDeviceId := new WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
          Retval.m_IBluetoothDeviceId.all := m_ComRetVal;
       end return;
    end;
@@ -9434,7 +9434,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus;
    begin
       Hr := this.m_IGattSession.all.get_SessionStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9452,7 +9452,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattSession.all.add_MaxPduSizeChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9464,7 +9464,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_MaxPduSizeChanged
    (
       this : in out GattSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9485,7 +9485,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattSession.all.add_SessionStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9497,7 +9497,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_SessionStatusChanged
    (
       this : in out GattSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9558,7 +9558,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IGattSessionStatusChangedEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9575,7 +9575,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus;
    begin
       Hr := this.m_IGattSessionStatusChangedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9615,14 +9615,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession do
          Hr := this.m_IGattSubscribedClient.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattSession := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+         Retval.m_IGattSession := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
          Retval.m_IGattSession.all := m_ComRetVal;
       end return;
    end;
@@ -9653,7 +9653,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattSubscribedClient.all.add_MaxNotificationSizeChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9665,7 +9665,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_MaxNotificationSizeChanged
    (
       this : in out GattSubscribedClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9708,7 +9708,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattValueChangedEventArgs.all.get_CharacteristicValue (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9725,7 +9725,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGattValueChangedEventArgs.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9765,7 +9765,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattWriteRequest.all.get_Value (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9799,7 +9799,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
    begin
       Hr := this.m_IGattWriteRequest.all.get_Option (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9816,7 +9816,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState;
    begin
       Hr := this.m_IGattWriteRequest.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9834,7 +9834,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGattWriteRequest.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9846,7 +9846,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_StateChanged
    (
       this : in out GattWriteRequest;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9918,14 +9918,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession do
          Hr := this.m_IGattWriteRequestedEventArgs.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattSession := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
+         Retval.m_IGattSession := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession;
          Retval.m_IGattSession.all := m_ComRetVal;
       end return;
    end;
@@ -9938,14 +9938,14 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IGattWriteRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -10003,7 +10003,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGattWriteRequest := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteRequest;
+                  Retval.m_IGattWriteRequest := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattWriteRequest;
                   Retval.m_IGattWriteRequest.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10047,7 +10047,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
    begin
       Hr := this.m_IGattWriteResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10064,7 +10064,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IGattWriteResult.all.get_ProtocolError (m_ComRetVal'Access);

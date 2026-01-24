@@ -87,7 +87,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Search.Core.SearchSuggestionKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Search.Core.SearchSuggestionKind;
    begin
       Hr := this.m_ISearchSuggestion.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -164,7 +164,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_ISearchSuggestion.all.get_Image (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -219,13 +219,13 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
    function Constructor return SearchSuggestionManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.Core.SearchSuggestionManager");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.Core.ISearchSuggestionManager");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
    begin
       return RetVal : SearchSuggestionManager do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISearchSuggestionManager := new Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
+            Retval.m_ISearchSuggestionManager := new WinRt.Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
             Retval.m_ISearchSuggestionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -307,7 +307,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
    procedure SetLocalContentSuggestionSettings
    (
       this : in out SearchSuggestionManager;
-      settings : Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
+      settings : WinRt.Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -361,7 +361,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       this : in out SearchSuggestionManager;
       queryText : WinRt.WString;
       language : WinRt.WString;
-      linguisticDetails : Windows.ApplicationModel.Search.SearchQueryLinguisticDetails'Class
+      linguisticDetails : WinRt.Windows.ApplicationModel.Search.SearchQueryLinguisticDetails'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -385,7 +385,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IObservableVector_ISearchSuggestion.Kind;
    begin
       Hr := this.m_ISearchSuggestionManager.all.get_Suggestions (m_ComRetVal'Access);
@@ -457,7 +457,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISearchSuggestionManager.all.add_SuggestionsRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -469,7 +469,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
    procedure remove_SuggestionsRequested
    (
       this : in out SearchSuggestionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -490,7 +490,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISearchSuggestionManager.all.add_RequestingFocusOnKeyboardInput (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -502,7 +502,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
    procedure remove_RequestingFocusOnKeyboardInput
    (
       this : in out SearchSuggestionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -585,14 +585,14 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Search.SearchQueryLinguisticDetails do
          Hr := this.m_ISearchSuggestionsRequestedEventArgs.all.get_LinguisticDetails (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISearchQueryLinguisticDetails := new Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;
+         Retval.m_ISearchQueryLinguisticDetails := new WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;
          Retval.m_ISearchQueryLinguisticDetails.all := m_ComRetVal;
       end return;
    end;
@@ -605,14 +605,14 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Search.ISearchSuggestionsRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Search.ISearchSuggestionsRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Search.SearchSuggestionsRequest do
          Hr := this.m_ISearchSuggestionsRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISearchSuggestionsRequest := new Windows.ApplicationModel.Search.ISearchSuggestionsRequest;
+         Retval.m_ISearchSuggestionsRequest := new WinRt.Windows.ApplicationModel.Search.ISearchSuggestionsRequest;
          Retval.m_ISearchSuggestionsRequest.all := m_ComRetVal;
       end return;
    end;

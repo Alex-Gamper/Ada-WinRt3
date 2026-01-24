@@ -330,14 +330,14 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioCaptureEffectsManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioCaptureEffectsChanged
       (
          this : access IAudioCaptureEffectsManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -356,7 +356,7 @@ package WinRt.Windows.Media.Effects is
       function get_AudioEffectType
       (
          this : access IAudioEffect_Interface;
-         RetVal : access Windows.Media.Effects.AudioEffectType
+         RetVal : access WinRt.Windows.Media.Effects.AudioEffectType
       )
       return WinRt.Hresult is abstract;
 
@@ -368,7 +368,7 @@ package WinRt.Windows.Media.Effects is
       function get_AcousticEchoCancellationConfiguration
       (
          this : access IAudioEffect2_Interface;
-         RetVal : access Windows.Media.Effects.IAcousticEchoCancellationConfiguration
+         RetVal : access WinRt.Windows.Media.Effects.IAcousticEchoCancellationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -382,14 +382,14 @@ package WinRt.Windows.Media.Effects is
       function get_State
       (
          this : access IAudioEffect2_Interface;
-         RetVal : access Windows.Media.Effects.AudioEffectState
+         RetVal : access WinRt.Windows.Media.Effects.AudioEffectState
       )
       return WinRt.Hresult is abstract;
 
       function SetState
       (
          this : access IAudioEffect2_Interface;
-         newState : Windows.Media.Effects.AudioEffectState
+         newState : WinRt.Windows.Media.Effects.AudioEffectState
       )
       return WinRt.Hresult is abstract;
 
@@ -408,7 +408,7 @@ package WinRt.Windows.Media.Effects is
       function get_Properties
       (
          this : access IAudioEffectDefinition_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -421,7 +421,7 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         RetVal : access Windows.Media.Effects.IAudioEffectDefinition
+         RetVal : access WinRt.Windows.Media.Effects.IAudioEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -429,8 +429,8 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         props : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Media.Effects.IAudioEffectDefinition
+         props : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Media.Effects.IAudioEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -443,8 +443,8 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectsManagerStatics_Interface;
          deviceId : WinRt.HString;
-         category : Windows.Media.Render.AudioRenderCategory;
-         RetVal : access Windows.Media.Effects.IAudioRenderEffectsManager
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
+         RetVal : access WinRt.Windows.Media.Effects.IAudioRenderEffectsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -452,9 +452,9 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectsManagerStatics_Interface;
          deviceId : WinRt.HString;
-         category : Windows.Media.Render.AudioRenderCategory;
-         mode : Windows.Media.AudioProcessing;
-         RetVal : access Windows.Media.Effects.IAudioRenderEffectsManager
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
+         mode : WinRt.Windows.Media.AudioProcessing;
+         RetVal : access WinRt.Windows.Media.Effects.IAudioRenderEffectsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -462,8 +462,8 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectsManagerStatics_Interface;
          deviceId : WinRt.HString;
-         category : Windows.Media.Capture.MediaCategory;
-         RetVal : access Windows.Media.Effects.IAudioCaptureEffectsManager
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         RetVal : access WinRt.Windows.Media.Effects.IAudioCaptureEffectsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -471,9 +471,9 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioEffectsManagerStatics_Interface;
          deviceId : WinRt.HString;
-         category : Windows.Media.Capture.MediaCategory;
-         mode : Windows.Media.AudioProcessing;
-         RetVal : access Windows.Media.Effects.IAudioCaptureEffectsManager
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         mode : WinRt.Windows.Media.AudioProcessing;
+         RetVal : access WinRt.Windows.Media.Effects.IAudioCaptureEffectsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -486,14 +486,14 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IAudioRenderEffectsManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioRenderEffectsChanged
       (
          this : access IAudioRenderEffectsManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -512,7 +512,7 @@ package WinRt.Windows.Media.Effects is
       function get_EffectsProviderThumbnail
       (
          this : access IAudioRenderEffectsManager2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -551,21 +551,21 @@ package WinRt.Windows.Media.Effects is
       function SetEncodingProperties
       (
          this : access IBasicAudioEffect_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function ProcessFrame
       (
          this : access IBasicAudioEffect_Interface;
-         context : Windows.Media.Effects.IProcessAudioFrameContext
+         context : WinRt.Windows.Media.Effects.IProcessAudioFrameContext
       )
       return WinRt.Hresult is abstract;
 
       function Close
       (
          this : access IBasicAudioEffect_Interface;
-         reason : Windows.Media.Effects.MediaEffectClosedReason
+         reason : WinRt.Windows.Media.Effects.MediaEffectClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -590,7 +590,7 @@ package WinRt.Windows.Media.Effects is
       function get_SupportedMemoryTypes
       (
          this : access IBasicVideoEffect_Interface;
-         RetVal : access Windows.Media.Effects.MediaMemoryTypes
+         RetVal : access WinRt.Windows.Media.Effects.MediaMemoryTypes
       )
       return WinRt.Hresult is abstract;
 
@@ -611,22 +611,22 @@ package WinRt.Windows.Media.Effects is
       function SetEncodingProperties
       (
          this : access IBasicVideoEffect_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IVideoEncodingProperties;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
       function ProcessFrame
       (
          this : access IBasicVideoEffect_Interface;
-         context : Windows.Media.Effects.IProcessVideoFrameContext
+         context : WinRt.Windows.Media.Effects.IProcessVideoFrameContext
       )
       return WinRt.Hresult is abstract;
 
       function Close
       (
          this : access IBasicVideoEffect_Interface;
-         reason : Windows.Media.Effects.MediaEffectClosedReason
+         reason : WinRt.Windows.Media.Effects.MediaEffectClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -651,22 +651,22 @@ package WinRt.Windows.Media.Effects is
       function get_BackgroundFrame
       (
          this : access ICompositeVideoFrameContext_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputFrame
       (
          this : access ICompositeVideoFrameContext_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
       function GetOverlayForSurface
       (
          this : access ICompositeVideoFrameContext_Interface;
-         surfaceToOverlay : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         RetVal : access Windows.Media.Editing.IMediaOverlay
+         surfaceToOverlay : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlay
       )
       return WinRt.Hresult is abstract;
 
@@ -678,14 +678,14 @@ package WinRt.Windows.Media.Effects is
       function get_InputFrame
       (
          this : access IProcessAudioFrameContext_Interface;
-         RetVal : access Windows.Media.IAudioFrame
+         RetVal : access WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputFrame
       (
          this : access IProcessAudioFrameContext_Interface;
-         RetVal : access Windows.Media.IAudioFrame
+         RetVal : access WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -697,14 +697,14 @@ package WinRt.Windows.Media.Effects is
       function get_InputFrame
       (
          this : access IProcessVideoFrameContext_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputFrame
       (
          this : access IProcessVideoFrameContext_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -723,22 +723,22 @@ package WinRt.Windows.Media.Effects is
       function SetEncodingProperties
       (
          this : access IVideoCompositor_Interface;
-         backgroundProperties : Windows.Media.MediaProperties.IVideoEncodingProperties;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         backgroundProperties : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
       function CompositeFrame
       (
          this : access IVideoCompositor_Interface;
-         context : Windows.Media.Effects.ICompositeVideoFrameContext
+         context : WinRt.Windows.Media.Effects.ICompositeVideoFrameContext
       )
       return WinRt.Hresult is abstract;
 
       function Close
       (
          this : access IVideoCompositor_Interface;
-         reason : Windows.Media.Effects.MediaEffectClosedReason
+         reason : WinRt.Windows.Media.Effects.MediaEffectClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -763,7 +763,7 @@ package WinRt.Windows.Media.Effects is
       function get_Properties
       (
          this : access IVideoCompositorDefinition_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -776,7 +776,7 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IVideoCompositorDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         RetVal : access Windows.Media.Effects.IVideoCompositorDefinition
+         RetVal : access WinRt.Windows.Media.Effects.IVideoCompositorDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -784,8 +784,8 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IVideoCompositorDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         props : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Media.Effects.IVideoCompositorDefinition
+         props : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Media.Effects.IVideoCompositorDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -804,7 +804,7 @@ package WinRt.Windows.Media.Effects is
       function get_Properties
       (
          this : access IVideoEffectDefinition_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IVideoEffectDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         RetVal : access Windows.Media.Effects.IVideoEffectDefinition
+         RetVal : access WinRt.Windows.Media.Effects.IVideoEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -825,8 +825,8 @@ package WinRt.Windows.Media.Effects is
       (
          this : access IVideoEffectDefinitionFactory_Interface;
          activatableClassId : WinRt.HString;
-         props : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Media.Effects.IVideoEffectDefinition
+         props : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Media.Effects.IVideoEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -838,84 +838,84 @@ package WinRt.Windows.Media.Effects is
       function get_PaddingColor
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_PaddingColor
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputSize
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_OutputSize
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_CropRectangle
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_CropRectangle
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_Rotation
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaRotation
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaRotation
       )
       return WinRt.Hresult is abstract;
 
       function put_Rotation
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.Media.MediaProperties.MediaRotation
+         value : WinRt.Windows.Media.MediaProperties.MediaRotation
       )
       return WinRt.Hresult is abstract;
 
       function get_Mirror
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaMirroringOptions
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaMirroringOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_Mirror
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.Media.MediaProperties.MediaMirroringOptions
+         value : WinRt.Windows.Media.MediaProperties.MediaMirroringOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_ProcessingAlgorithm
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+         value : WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function get_ProcessingAlgorithm
       (
          this : access IVideoTransformEffectDefinition_Interface;
-         RetVal : access Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+         RetVal : access WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -927,7 +927,7 @@ package WinRt.Windows.Media.Effects is
       function get_SphericalProjection
       (
          this : access IVideoTransformEffectDefinition2_Interface;
-         RetVal : access Windows.Media.Effects.IVideoTransformSphericalProjection
+         RetVal : access WinRt.Windows.Media.Effects.IVideoTransformSphericalProjection
       )
       return WinRt.Hresult is abstract;
 
@@ -953,28 +953,28 @@ package WinRt.Windows.Media.Effects is
       function get_FrameFormat
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         RetVal : access Windows.Media.MediaProperties.SphericalVideoFrameFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_FrameFormat
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
+         value : WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_ProjectionMode
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         RetVal : access Windows.Media.Playback.SphericalVideoProjectionMode
+         RetVal : access WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ProjectionMode
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         value : Windows.Media.Playback.SphericalVideoProjectionMode
+         value : WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -995,14 +995,14 @@ package WinRt.Windows.Media.Effects is
       function get_ViewOrientation
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewOrientation
       (
          this : access IVideoTransformSphericalProjection_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -1046,7 +1046,7 @@ package WinRt.Windows.Media.Effects is
    procedure remove_AudioCaptureEffectsChanged
    (
       this : in out AudioCaptureEffectsManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetAudioCaptureEffects
@@ -1091,7 +1091,7 @@ package WinRt.Windows.Media.Effects is
    procedure SetState
    (
       this : in out AudioEffect;
-      newState : Windows.Media.Effects.AudioEffectState
+      newState : WinRt.Windows.Media.Effects.AudioEffectState
    );
 
    -----------------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ package WinRt.Windows.Media.Effects is
    function Constructor
    (
       activatableClassId : WinRt.WString;
-      props : Windows.Foundation.Collections.IPropertySet
+      props : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return AudioEffectDefinition;
 
@@ -1138,30 +1138,30 @@ package WinRt.Windows.Media.Effects is
       function CreateAudioRenderEffectsManager
       (
          deviceId : WinRt.WString;
-         category : Windows.Media.Render.AudioRenderCategory
+         category : WinRt.Windows.Media.Render.AudioRenderCategory
       )
       return WinRt.Windows.Media.Effects.AudioRenderEffectsManager;
 
       function CreateAudioRenderEffectsManager
       (
          deviceId : WinRt.WString;
-         category : Windows.Media.Render.AudioRenderCategory;
-         mode : Windows.Media.AudioProcessing
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
+         mode : WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Windows.Media.Effects.AudioRenderEffectsManager;
 
       function CreateAudioCaptureEffectsManager
       (
          deviceId : WinRt.WString;
-         category : Windows.Media.Capture.MediaCategory
+         category : WinRt.Windows.Media.Capture.MediaCategory
       )
       return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager;
 
       function CreateAudioCaptureEffectsManager
       (
          deviceId : WinRt.WString;
-         category : Windows.Media.Capture.MediaCategory;
-         mode : Windows.Media.AudioProcessing
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         mode : WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Windows.Media.Effects.AudioCaptureEffectsManager;
 
@@ -1186,7 +1186,7 @@ package WinRt.Windows.Media.Effects is
    procedure remove_AudioRenderEffectsChanged
    (
       this : in out AudioRenderEffectsManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetAudioRenderEffects
@@ -1242,7 +1242,7 @@ package WinRt.Windows.Media.Effects is
    function GetOverlayForSurface
    (
       this : in out CompositeVideoFrameContext;
-      surfaceToOverlay : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      surfaceToOverlay : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    )
    return WinRt.Windows.Media.Editing.MediaOverlay'Class;
 
@@ -1306,7 +1306,7 @@ package WinRt.Windows.Media.Effects is
    function Constructor
    (
       activatableClassId : WinRt.WString;
-      props : Windows.Foundation.Collections.IPropertySet
+      props : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return VideoCompositorDefinition;
 
@@ -1343,7 +1343,7 @@ package WinRt.Windows.Media.Effects is
    function Constructor
    (
       activatableClassId : WinRt.WString;
-      props : Windows.Foundation.Collections.IPropertySet
+      props : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return VideoEffectDefinition;
 
@@ -1397,7 +1397,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_PaddingColor
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_OutputSize
@@ -1409,7 +1409,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_OutputSize
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_CropRectangle
@@ -1421,7 +1421,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_CropRectangle
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_Rotation
@@ -1433,7 +1433,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_Rotation
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.Media.MediaProperties.MediaRotation
+      value : WinRt.Windows.Media.MediaProperties.MediaRotation
    );
 
    function get_Mirror
@@ -1445,13 +1445,13 @@ package WinRt.Windows.Media.Effects is
    procedure put_Mirror
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.Media.MediaProperties.MediaMirroringOptions
+      value : WinRt.Windows.Media.MediaProperties.MediaMirroringOptions
    );
 
    procedure put_ProcessingAlgorithm
    (
       this : in out VideoTransformEffectDefinition;
-      value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+      value : WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
    );
 
    function get_ProcessingAlgorithm
@@ -1496,7 +1496,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_FrameFormat
    (
       this : in out VideoTransformSphericalProjection;
-      value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
+      value : WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
    );
 
    function get_ProjectionMode
@@ -1508,7 +1508,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_ProjectionMode
    (
       this : in out VideoTransformSphericalProjection;
-      value : Windows.Media.Playback.SphericalVideoProjectionMode
+      value : WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
    );
 
    function get_HorizontalFieldOfViewInDegrees
@@ -1532,7 +1532,7 @@ package WinRt.Windows.Media.Effects is
    procedure put_ViewOrientation
    (
       this : in out VideoTransformSphericalProjection;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
 end WinRt.Windows.Media.Effects;

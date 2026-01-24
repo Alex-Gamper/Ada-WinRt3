@@ -59,7 +59,7 @@ package body WinRt.Windows.Media.Playback is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Playback.BackgroundMediaPlayer");
          m_Factory        : access WinRt.Windows.Media.Playback.IBackgroundMediaPlayerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlayer;
+         m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlayer;
       begin
          return RetVal : WinRt.Windows.Media.Playback.MediaPlayer do
             Hr := RoGetActivationFactory (m_hString, IID_IBackgroundMediaPlayerStatics'Access , m_Factory'Address);
@@ -69,7 +69,7 @@ package body WinRt.Windows.Media.Playback is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IMediaPlayer := new Windows.Media.Playback.IMediaPlayer;
+               Retval.m_IMediaPlayer := new WinRt.Windows.Media.Playback.IMediaPlayer;
                Retval.m_IMediaPlayer.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -86,7 +86,7 @@ package body WinRt.Windows.Media.Playback is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Playback.BackgroundMediaPlayer");
          m_Factory        : access WinRt.Windows.Media.Playback.IBackgroundMediaPlayerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundMediaPlayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -102,7 +102,7 @@ package body WinRt.Windows.Media.Playback is
 
       procedure remove_MessageReceivedFromBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -131,7 +131,7 @@ package body WinRt.Windows.Media.Playback is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Playback.BackgroundMediaPlayer");
          m_Factory        : access WinRt.Windows.Media.Playback.IBackgroundMediaPlayerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundMediaPlayerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -147,7 +147,7 @@ package body WinRt.Windows.Media.Playback is
 
       procedure remove_MessageReceivedFromForeground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -168,7 +168,7 @@ package body WinRt.Windows.Media.Playback is
 
       procedure SendMessageToBackground
       (
-         value : Windows.Foundation.Collections.ValueSet'Class
+         value : WinRt.Windows.Foundation.Collections.ValueSet'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -189,7 +189,7 @@ package body WinRt.Windows.Media.Playback is
 
       procedure SendMessageToForeground
       (
-         value : Windows.Foundation.Collections.ValueSet'Class
+         value : WinRt.Windows.Foundation.Collections.ValueSet'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -280,14 +280,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_ICurrentMediaPlaybackItemChangedEventArgs.all.get_NewItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -300,14 +300,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_ICurrentMediaPlaybackItemChangedEventArgs.all.get_OldItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -321,7 +321,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.ICurrentMediaPlaybackItemChangedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlaybackItemChangedReason;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlaybackItemChangedReason;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.ICurrentMediaPlaybackItemChangedEventArgs_Interface, WinRt.Windows.Media.Playback.ICurrentMediaPlaybackItemChangedEventArgs2, WinRt.Windows.Media.Playback.IID_ICurrentMediaPlaybackItemChangedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICurrentMediaPlaybackItemChangedEventArgs.all);
@@ -358,21 +358,21 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod
+      insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod
    )
    return MediaBreak is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaBreak");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaBreak");
       m_Factory    : access IMediaBreakFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : MediaBreak do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaBreakFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (insertionMethod, m_ComRetVal'Access);
-            Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+            Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
             Retval.m_IMediaBreak.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -382,22 +382,22 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      insertionMethod : Windows.Media.Playback.MediaBreakInsertionMethod;
-      presentationPosition : Windows.Foundation.TimeSpan
+      insertionMethod : WinRt.Windows.Media.Playback.MediaBreakInsertionMethod;
+      presentationPosition : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaBreak is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaBreak");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaBreak");
       m_Factory    : access IMediaBreakFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : MediaBreak do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaBreakFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithPresentationPosition (insertionMethod, presentationPosition, m_ComRetVal'Access);
-            Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+            Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
             Retval.m_IMediaBreak.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -416,14 +416,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackList;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackList;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackList do
          Hr := this.m_IMediaBreak.all.get_PlaybackList (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackList := new Windows.Media.Playback.IMediaPlaybackList;
+         Retval.m_IMediaPlaybackList := new WinRt.Windows.Media.Playback.IMediaPlaybackList;
          Retval.m_IMediaPlaybackList.all := m_ComRetVal;
       end return;
    end;
@@ -436,7 +436,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaBreak.all.get_PresentationPosition (m_ComRetVal'Access);
@@ -456,7 +456,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaBreakInsertionMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaBreakInsertionMethod;
    begin
       Hr := this.m_IMediaBreak.all.get_InsertionMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -473,14 +473,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IMediaBreak.all.get_CustomProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -548,14 +548,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakEndedEventArgs.all.get_MediaBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -592,7 +592,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBreakManager.all.add_BreaksSeekedOver (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -604,7 +604,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BreaksSeekedOver
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -625,7 +625,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBreakManager.all.add_BreakStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -637,7 +637,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BreakStarted
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -658,7 +658,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBreakManager.all.add_BreakEnded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -670,7 +670,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BreakEnded
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -691,7 +691,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBreakManager.all.add_BreakSkipped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -703,7 +703,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BreakSkipped
    (
       this : in out MediaBreakManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -723,14 +723,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakManager.all.get_CurrentBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -743,14 +743,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackSession;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackSession do
          Hr := this.m_IMediaBreakManager.all.get_PlaybackSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackSession := new Windows.Media.Playback.IMediaPlaybackSession;
+         Retval.m_IMediaPlaybackSession := new WinRt.Windows.Media.Playback.IMediaPlaybackSession;
          Retval.m_IMediaPlaybackSession.all := m_ComRetVal;
       end return;
    end;
@@ -758,7 +758,7 @@ package body WinRt.Windows.Media.Playback is
    procedure PlayBreak
    (
       this : in out MediaBreakManager;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -816,7 +816,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaBreakSchedule.all.add_ScheduleChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -828,7 +828,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_ScheduleChanged
    (
       this : in out MediaBreakSchedule;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -843,7 +843,7 @@ package body WinRt.Windows.Media.Playback is
    procedure InsertMidrollBreak
    (
       this : in out MediaBreakSchedule;
-      mediaBreak_p : Windows.Media.Playback.MediaBreak'Class
+      mediaBreak_p : WinRt.Windows.Media.Playback.MediaBreak'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -858,7 +858,7 @@ package body WinRt.Windows.Media.Playback is
    procedure RemoveMidrollBreak
    (
       this : in out MediaBreakSchedule;
-      mediaBreak_p : Windows.Media.Playback.MediaBreak'Class
+      mediaBreak_p : WinRt.Windows.Media.Playback.MediaBreak'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -878,7 +878,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaBreak.Kind;
    begin
       Hr := this.m_IMediaBreakSchedule.all.get_MidrollBreaks (m_ComRetVal'Access);
@@ -893,7 +893,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_PrerollBreak
    (
       this : in out MediaBreakSchedule;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -913,14 +913,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakSchedule.all.get_PrerollBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -928,7 +928,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_PostrollBreak
    (
       this : in out MediaBreakSchedule;
-      value : Windows.Media.Playback.MediaBreak'Class
+      value : WinRt.Windows.Media.Playback.MediaBreak'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -948,14 +948,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakSchedule.all.get_PostrollBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -968,14 +968,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaBreakSchedule.all.get_PlaybackItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -1011,7 +1011,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaBreak.Kind;
    begin
       Hr := this.m_IMediaBreakSeekedOverEventArgs.all.get_SeekedOverBreaks (m_ComRetVal'Access);
@@ -1031,7 +1031,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaBreakSeekedOverEventArgs.all.get_OldPosition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1048,7 +1048,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaBreakSeekedOverEventArgs.all.get_NewPosition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1088,14 +1088,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakSkippedEventArgs.all.get_MediaBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -1131,14 +1131,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreak;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreak;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreak do
          Hr := this.m_IMediaBreakStartedEventArgs.all.get_MediaBreak (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreak := new Windows.Media.Playback.IMediaBreak;
+         Retval.m_IMediaBreak := new WinRt.Windows.Media.Playback.IMediaBreak;
          Retval.m_IMediaBreak.all := m_ComRetVal;
       end return;
    end;
@@ -1174,7 +1174,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaPlaybackType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaPlaybackType;
    begin
       Hr := this.m_IMediaItemDisplayProperties.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1186,7 +1186,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_Type
    (
       this : in out MediaItemDisplayProperties;
-      value : Windows.Media.MediaPlaybackType
+      value : WinRt.Windows.Media.MediaPlaybackType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1206,14 +1206,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IMusicDisplayProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IMusicDisplayProperties;
    begin
       return RetVal : WinRt.Windows.Media.MusicDisplayProperties do
          Hr := this.m_IMediaItemDisplayProperties.all.get_MusicProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMusicDisplayProperties := new Windows.Media.IMusicDisplayProperties;
+         Retval.m_IMusicDisplayProperties := new WinRt.Windows.Media.IMusicDisplayProperties;
          Retval.m_IMusicDisplayProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1226,14 +1226,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IVideoDisplayProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IVideoDisplayProperties;
    begin
       return RetVal : WinRt.Windows.Media.VideoDisplayProperties do
          Hr := this.m_IMediaItemDisplayProperties.all.get_VideoProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoDisplayProperties := new Windows.Media.IVideoDisplayProperties;
+         Retval.m_IVideoDisplayProperties := new WinRt.Windows.Media.IVideoDisplayProperties;
          Retval.m_IVideoDisplayProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1246,14 +1246,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := this.m_IMediaItemDisplayProperties.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;
@@ -1261,7 +1261,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_Thumbnail
    (
       this : in out MediaItemDisplayProperties;
-      value : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1314,7 +1314,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (3877632586, 5287, 20584, (137, 28, 110, 113, 122, 248, 191, 141 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1325,7 +1325,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack := new WinRt.Windows.Media.Core.IMediaTrack;
          Retval.m_IMediaTrack.all := m_ComRetVal;
       end return;
    end;
@@ -1355,7 +1355,7 @@ package body WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackAudioTrackList;
-      value : Windows.Media.Core.AudioTrack'Class;
+      value : WinRt.Windows.Media.Core.AudioTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackAudioTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.IMediaTrack_Array
+      items : WinRt.Windows.Media.Core.IMediaTrack_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1411,7 +1411,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (3015594152, 38998, 22102, (171, 109, 205, 88, 249, 222, 10, 79 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1422,7 +1422,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack := new WinRt.Windows.Media.Core.IMediaTrack;
          Retval.m_IMediaTrack.all := m_ComRetVal;
       end return;
    end;
@@ -1437,7 +1437,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ISingleSelectMediaTrackList := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Media.Core.ISingleSelectMediaTrackList, WinRt.Windows.Media.Core.IID_ISingleSelectMediaTrackList'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -1452,7 +1452,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SelectedIndexChanged
    (
       this : in out MediaPlaybackAudioTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1571,14 +1571,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlayer;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlayer;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlayer do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_MediaPlayer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlayer := new Windows.Media.Playback.IMediaPlayer;
+         Retval.m_IMediaPlayer := new WinRt.Windows.Media.Playback.IMediaPlayer;
          Retval.m_IMediaPlayer.all := m_ComRetVal;
       end return;
    end;
@@ -1591,14 +1591,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_PlayBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1611,14 +1611,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_PauseBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1631,14 +1631,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_NextBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1651,14 +1651,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_PreviousBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1671,14 +1671,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_FastForwardBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1691,14 +1691,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_RewindBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1711,14 +1711,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_ShuffleBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1731,14 +1731,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_AutoRepeatModeBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1751,14 +1751,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_PositionBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1771,14 +1771,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManagerCommandBehavior do
          Hr := this.m_IMediaPlaybackCommandManager.all.get_RateBehavior (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
+         Retval.m_IMediaPlaybackCommandManagerCommandBehavior := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManagerCommandBehavior;
          Retval.m_IMediaPlaybackCommandManagerCommandBehavior.all := m_ComRetVal;
       end return;
    end;
@@ -1792,7 +1792,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_PlayReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1804,7 +1804,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PlayReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1825,7 +1825,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_PauseReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1837,7 +1837,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PauseReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1858,7 +1858,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_NextReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1870,7 +1870,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_NextReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1891,7 +1891,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_PreviousReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1903,7 +1903,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PreviousReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1924,7 +1924,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_FastForwardReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1936,7 +1936,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_FastForwardReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1957,7 +1957,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_RewindReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1969,7 +1969,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_RewindReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1990,7 +1990,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_ShuffleReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2002,7 +2002,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_ShuffleReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2023,7 +2023,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_AutoRepeatModeReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2035,7 +2035,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_AutoRepeatModeReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2056,7 +2056,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_PositionReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2068,7 +2068,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PositionReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2089,7 +2089,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManager.all.add_RateReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2101,7 +2101,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_RateReceived
    (
       this : in out MediaPlaybackCommandManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2176,7 +2176,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaPlaybackAutoRepeatMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaPlaybackAutoRepeatMode;
    begin
       Hr := this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs.all.get_AutoRepeatMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2193,14 +2193,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2236,14 +2236,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManager do
          Hr := this.m_IMediaPlaybackCommandManagerCommandBehavior.all.get_CommandManager (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManager := new Windows.Media.Playback.IMediaPlaybackCommandManager;
+         Retval.m_IMediaPlaybackCommandManager := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager;
          Retval.m_IMediaPlaybackCommandManager.all := m_ComRetVal;
       end return;
    end;
@@ -2273,7 +2273,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaCommandEnablingRule;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaCommandEnablingRule;
    begin
       Hr := this.m_IMediaPlaybackCommandManagerCommandBehavior.all.get_EnablingRule (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2285,7 +2285,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_EnablingRule
    (
       this : in out MediaPlaybackCommandManagerCommandBehavior;
-      value : Windows.Media.Playback.MediaCommandEnablingRule
+      value : WinRt.Windows.Media.Playback.MediaCommandEnablingRule
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2306,7 +2306,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackCommandManagerCommandBehavior.all.add_IsEnabledChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2318,7 +2318,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_IsEnabledChanged
    (
       this : in out MediaPlaybackCommandManagerCommandBehavior;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2393,14 +2393,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2468,14 +2468,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2543,14 +2543,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2618,14 +2618,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2693,7 +2693,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2710,14 +2710,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2785,14 +2785,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2877,14 +2877,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2952,14 +2952,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3044,14 +3044,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3081,21 +3081,21 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class
+      source : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return MediaPlaybackItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : MediaPlaybackItem do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (source.m_IMediaSource2.all, m_ComRetVal'Access);
-            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+            Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
             Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3105,22 +3105,22 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class;
-      startTime : Windows.Foundation.TimeSpan
+      source : WinRt.Windows.Media.Core.MediaSource'Class;
+      startTime : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaPlaybackItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : MediaPlaybackItem do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithStartTime (source.m_IMediaSource2.all, startTime, m_ComRetVal'Access);
-            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+            Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
             Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3130,23 +3130,23 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      source : Windows.Media.Core.MediaSource'Class;
-      startTime : Windows.Foundation.TimeSpan;
-      durationLimit : Windows.Foundation.TimeSpan
+      source : WinRt.Windows.Media.Core.MediaSource'Class;
+      startTime : WinRt.Windows.Foundation.TimeSpan;
+      durationLimit : WinRt.Windows.Foundation.TimeSpan
    )
    return MediaPlaybackItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : MediaPlaybackItem do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithStartTimeAndDurationLimit (source.m_IMediaSource2.all, startTime, durationLimit, m_ComRetVal'Access);
-            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+            Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
             Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3159,7 +3159,7 @@ package body WinRt.Windows.Media.Playback is
 
    function FindFromMediaSource
    (
-      source : Windows.Media.Core.MediaSource'Class
+      source : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return WinRt.Windows.Media.Playback.MediaPlaybackItem is
       Hr               : WinRt.HResult := S_OK;
@@ -3167,7 +3167,7 @@ package body WinRt.Windows.Media.Playback is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
       m_Factory        : access WinRt.Windows.Media.Playback.IMediaPlaybackItemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlaybackItemStatics'Access , m_Factory'Address);
@@ -3177,7 +3177,7 @@ package body WinRt.Windows.Media.Playback is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+            Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
             Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3196,7 +3196,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackItem.all.add_AudioTracksChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3208,7 +3208,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_AudioTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3229,7 +3229,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackItem.all.add_VideoTracksChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3241,7 +3241,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_VideoTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3262,7 +3262,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackItem.all.add_TimedMetadataTracksChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3274,7 +3274,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_TimedMetadataTracksChanged
    (
       this : in out MediaPlaybackItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3294,14 +3294,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := this.m_IMediaPlaybackItem.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
+         Retval.m_IMediaSource2 := new WinRt.Windows.Media.Core.IMediaSource2;
          Retval.m_IMediaSource2.all := m_ComRetVal;
       end return;
    end;
@@ -3314,14 +3314,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackAudioTrackList do
          Hr := this.m_IMediaPlaybackItem.all.get_AudioTracks (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -3334,14 +3334,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackVideoTrackList do
          Hr := this.m_IMediaPlaybackItem.all.get_VideoTracks (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -3354,14 +3354,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackTimedMetadataTrackList do
          Hr := this.m_IMediaPlaybackItem.all.get_TimedMetadataTracks (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -3375,7 +3375,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackItem2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreakSchedule;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreakSchedule;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackItem_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackItem2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackItem2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreakSchedule do
@@ -3385,7 +3385,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreakSchedule := new Windows.Media.Playback.IMediaBreakSchedule;
+         Retval.m_IMediaBreakSchedule := new WinRt.Windows.Media.Playback.IMediaBreakSchedule;
          Retval.m_IMediaBreakSchedule.all := m_ComRetVal;
       end return;
    end;
@@ -3399,7 +3399,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackItem2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackItem_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackItem2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackItem2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackItem.all);
@@ -3420,7 +3420,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackItem2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackItem_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackItem2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackItem2'Unchecked_Access);
    begin
@@ -3484,7 +3484,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackItem2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaItemDisplayProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaItemDisplayProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackItem_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackItem2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackItem2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaItemDisplayProperties do
@@ -3494,7 +3494,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaItemDisplayProperties := new Windows.Media.Playback.IMediaItemDisplayProperties;
+         Retval.m_IMediaItemDisplayProperties := new WinRt.Windows.Media.Playback.IMediaItemDisplayProperties;
          Retval.m_IMediaItemDisplayProperties.all := m_ComRetVal;
       end return;
    end;
@@ -3502,7 +3502,7 @@ package body WinRt.Windows.Media.Playback is
    procedure ApplyDisplayProperties
    (
       this : in out MediaPlaybackItem;
-      value : Windows.Media.Playback.MediaItemDisplayProperties'Class
+      value : WinRt.Windows.Media.Playback.MediaItemDisplayProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3588,7 +3588,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackItem3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.AutoLoadedDisplayPropertyKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.AutoLoadedDisplayPropertyKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackItem_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackItem3, WinRt.Windows.Media.Playback.IID_IMediaPlaybackItem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackItem.all);
@@ -3603,7 +3603,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_AutoLoadedDisplayProperties
    (
       this : in out MediaPlaybackItem;
-      value : Windows.Media.Playback.AutoLoadedDisplayPropertyKind
+      value : WinRt.Windows.Media.Playback.AutoLoadedDisplayPropertyKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3650,7 +3650,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlaybackItemErrorCode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlaybackItemErrorCode;
    begin
       Hr := this.m_IMediaPlaybackItemError.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3667,7 +3667,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IMediaPlaybackItemError.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3707,14 +3707,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackItemFailedEventArgs.all.get_Item (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -3727,14 +3727,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItemError;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItemError;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItemError do
          Hr := this.m_IMediaPlaybackItemFailedEventArgs.all.get_Error (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItemError := new Windows.Media.Playback.IMediaPlaybackItemError;
+         Retval.m_IMediaPlaybackItemError := new WinRt.Windows.Media.Playback.IMediaPlaybackItemError;
          Retval.m_IMediaPlaybackItemError.all := m_ComRetVal;
       end return;
    end;
@@ -3770,14 +3770,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackItemOpenedEventArgs.all.get_Item (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -3808,13 +3808,13 @@ package body WinRt.Windows.Media.Playback is
    function Constructor return MediaPlaybackList is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlaybackList");
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlaybackList;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackList");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaPlaybackList;
    begin
       return RetVal : MediaPlaybackList do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaPlaybackList := new Windows.Media.Playback.IMediaPlaybackList;
+            Retval.m_IMediaPlaybackList := new WinRt.Windows.Media.Playback.IMediaPlaybackList;
             Retval.m_IMediaPlaybackList.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3833,7 +3833,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackList.all.add_ItemFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3845,7 +3845,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_ItemFailed
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3866,7 +3866,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackList.all.add_CurrentItemChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3878,7 +3878,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_CurrentItemChanged
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3899,7 +3899,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackList.all.add_ItemOpened (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3911,7 +3911,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_ItemOpened
    (
       this : in out MediaPlaybackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3931,7 +3931,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IObservableVector_IMediaPlaybackItem.Kind;
    begin
       Hr := this.m_IMediaPlaybackList.all.get_Items (m_ComRetVal'Access);
@@ -4015,14 +4015,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackList.all.get_CurrentItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -4052,14 +4052,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackList.all.MoveNext (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -4072,14 +4072,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackList.all.MovePrevious (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -4093,14 +4093,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
          Hr := this.m_IMediaPlaybackList.all.MoveTo (itemIndex, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -4114,7 +4114,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackList2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackList_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackList2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackList2'Unchecked_Access);
    begin
@@ -4157,7 +4157,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackList2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackList_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackList2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackList2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
@@ -4167,7 +4167,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -4175,7 +4175,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_StartingItem
    (
       this : in out MediaPlaybackList;
-      value : Windows.Media.Playback.MediaPlaybackItem'Class
+      value : WinRt.Windows.Media.Playback.MediaPlaybackItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4200,7 +4200,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackList2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaPlaybackItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackList_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackList2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackList2'Unchecked_Access);
    begin
@@ -4243,7 +4243,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackList3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackList_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackList3, WinRt.Windows.Media.Playback.IID_IMediaPlaybackList3'Unchecked_Access);
    begin
@@ -4309,7 +4309,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_PlaybackStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4321,7 +4321,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PlaybackStateChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4342,7 +4342,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_PlaybackRateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4354,7 +4354,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PlaybackRateChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4375,7 +4375,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_SeekCompleted (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4387,7 +4387,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SeekCompleted
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4408,7 +4408,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_BufferingStarted (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4420,7 +4420,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferingStarted
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4441,7 +4441,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_BufferingEnded (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4453,7 +4453,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferingEnded
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4474,7 +4474,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_BufferingProgressChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4486,7 +4486,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferingProgressChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4507,7 +4507,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_DownloadProgressChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4519,7 +4519,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_DownloadProgressChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4540,7 +4540,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_NaturalDurationChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4552,7 +4552,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_NaturalDurationChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4573,7 +4573,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_PositionChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4585,7 +4585,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PositionChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4606,7 +4606,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlaybackSession.all.add_NaturalVideoSizeChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4618,7 +4618,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_NaturalVideoSizeChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4638,14 +4638,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlayer;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlayer;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlayer do
          Hr := this.m_IMediaPlaybackSession.all.get_MediaPlayer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlayer := new Windows.Media.Playback.IMediaPlayer;
+         Retval.m_IMediaPlayer := new WinRt.Windows.Media.Playback.IMediaPlayer;
          Retval.m_IMediaPlayer.all := m_ComRetVal;
       end return;
    end;
@@ -4658,7 +4658,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaPlaybackSession.all.get_NaturalDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4675,7 +4675,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaPlaybackSession.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4687,7 +4687,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_Position
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4707,7 +4707,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlaybackState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlaybackState;
    begin
       Hr := this.m_IMediaPlaybackSession.all.get_PlaybackState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4875,7 +4875,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IMediaPlaybackSession.all.get_NormalizedSourceRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4887,7 +4887,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_NormalizedSourceRect
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4907,7 +4907,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.StereoscopicVideoPackingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode;
    begin
       Hr := this.m_IMediaPlaybackSession.all.get_StereoscopicVideoPackingMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4919,7 +4919,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_StereoscopicVideoPackingMode
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Media.MediaProperties.StereoscopicVideoPackingMode
+      value : WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4941,7 +4941,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackSession.all);
@@ -4956,7 +4956,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferedRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4982,7 +4982,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackSession.all);
@@ -4997,7 +4997,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PlayedRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5023,7 +5023,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackSession.all);
@@ -5038,7 +5038,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SeekableRangesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5064,7 +5064,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackSession.all);
@@ -5079,7 +5079,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SupportedPlaybackRatesChanged
    (
       this : in out MediaPlaybackSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5104,7 +5104,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackSphericalVideoProjection do
@@ -5114,7 +5114,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackSphericalVideoProjection := new Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection;
+         Retval.m_IMediaPlaybackSphericalVideoProjection := new WinRt.Windows.Media.Playback.IMediaPlaybackSphericalVideoProjection;
          Retval.m_IMediaPlaybackSphericalVideoProjection.all := m_ComRetVal;
       end return;
    end;
@@ -5168,7 +5168,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_MediaTimeRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
@@ -5192,7 +5192,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_MediaTimeRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
@@ -5216,7 +5216,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_MediaTimeRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession2, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession2'Unchecked_Access);
    begin
@@ -5263,7 +5263,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.MediaRotation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.MediaRotation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession3, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlaybackSession.all);
@@ -5278,7 +5278,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_PlaybackRotation
    (
       this : in out MediaPlaybackSession;
-      value : Windows.Media.MediaProperties.MediaRotation
+      value : WinRt.Windows.Media.MediaProperties.MediaRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5303,7 +5303,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackSession3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlaybackSession_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackSession3, WinRt.Windows.Media.Playback.IID_IMediaPlaybackSession3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackSessionOutputDegradationPolicyState do
@@ -5313,7 +5313,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackSessionOutputDegradationPolicyState := new Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState;
+         Retval.m_IMediaPlaybackSessionOutputDegradationPolicyState := new WinRt.Windows.Media.Playback.IMediaPlaybackSessionOutputDegradationPolicyState;
          Retval.m_IMediaPlaybackSessionOutputDegradationPolicyState.all := m_ComRetVal;
       end return;
    end;
@@ -5389,7 +5389,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlaybackSessionVideoConstrictionReason;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlaybackSessionVideoConstrictionReason;
    begin
       Hr := this.m_IMediaPlaybackSessionOutputDegradationPolicyState.all.get_VideoConstrictionReason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5461,7 +5461,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.SphericalVideoFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat;
    begin
       Hr := this.m_IMediaPlaybackSphericalVideoProjection.all.get_FrameFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5473,7 +5473,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_FrameFormat
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Media.MediaProperties.SphericalVideoFrameFormat
+      value : WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5525,7 +5525,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IMediaPlaybackSphericalVideoProjection.all.get_ViewOrientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5537,7 +5537,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_ViewOrientation
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5557,7 +5557,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.SphericalVideoProjectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.SphericalVideoProjectionMode;
    begin
       Hr := this.m_IMediaPlaybackSphericalVideoProjection.all.get_ProjectionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5569,7 +5569,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_ProjectionMode
    (
       this : in out MediaPlaybackSphericalVideoProjection;
-      value : Windows.Media.Playback.SphericalVideoProjectionMode
+      value : WinRt.Windows.Media.Playback.SphericalVideoProjectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5608,7 +5608,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_ITimedMetadataTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.ITimedMetadataTrack;
       m_GenericIID     : aliased WinRt.IID := (51621498, 10243, 23877, (181, 161, 160, 252, 92, 213, 94, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_ITimedMetadataTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5619,7 +5619,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimedMetadataTrack := new Windows.Media.Core.ITimedMetadataTrack;
+         Retval.m_ITimedMetadataTrack := new WinRt.Windows.Media.Core.ITimedMetadataTrack;
          Retval.m_ITimedMetadataTrack.all := m_ComRetVal;
       end return;
    end;
@@ -5649,7 +5649,7 @@ package body WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
-      value : Windows.Media.Core.TimedMetadataTrack'Class;
+      value : WinRt.Windows.Media.Core.TimedMetadataTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -5674,7 +5674,7 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.ITimedMetadataTrack_Array
+      items : WinRt.Windows.Media.Core.ITimedMetadataTrack_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -5705,7 +5705,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimedMetadataTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.ITimedMetadataTrack;
       m_GenericIID     : aliased WinRt.IID := (352994388, 955, 24017, (129, 83, 106, 96, 14, 133, 31, 113 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimedMetadataTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5716,7 +5716,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimedMetadataTrack := new Windows.Media.Core.ITimedMetadataTrack;
+         Retval.m_ITimedMetadataTrack := new WinRt.Windows.Media.Core.ITimedMetadataTrack;
          Retval.m_ITimedMetadataTrack.all := m_ComRetVal;
       end return;
    end;
@@ -5731,7 +5731,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackTimedMetadataTrackList := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackTimedMetadataTrackList, WinRt.Windows.Media.Playback.IID_IMediaPlaybackTimedMetadataTrackList'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -5746,7 +5746,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PresentationModeChanged
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5772,7 +5772,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlaybackTimedMetadataTrackList := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.TimedMetadataTrackPresentationMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Media.Playback.IMediaPlaybackTimedMetadataTrackList, WinRt.Windows.Media.Playback.IID_IMediaPlaybackTimedMetadataTrackList'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -5788,7 +5788,7 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackTimedMetadataTrackList;
       index : WinRt.UInt32;
-      value : Windows.Media.Playback.TimedMetadataTrackPresentationMode
+      value : WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5831,7 +5831,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (537682468, 2883, 21755, (153, 95, 253, 134, 136, 191, 36, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5842,7 +5842,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack := new WinRt.Windows.Media.Core.IMediaTrack;
          Retval.m_IMediaTrack.all := m_ComRetVal;
       end return;
    end;
@@ -5872,7 +5872,7 @@ package body WinRt.Windows.Media.Playback is
    function IndexOf
    (
       this : in out MediaPlaybackVideoTrackList;
-      value : Windows.Media.Core.VideoTrack'Class;
+      value : WinRt.Windows.Media.Core.VideoTrack'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -5897,7 +5897,7 @@ package body WinRt.Windows.Media.Playback is
    (
       this : in out MediaPlaybackVideoTrackList;
       startIndex : WinRt.UInt32;
-      items : Windows.Media.Core.IMediaTrack_Array
+      items : WinRt.Windows.Media.Core.IMediaTrack_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -5928,7 +5928,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IMediaTrack.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaTrack;
       m_GenericIID     : aliased WinRt.IID := (2218865730, 41699, 24079, (147, 109, 188, 64, 176, 251, 45, 205 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IMediaTrack.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5939,7 +5939,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaTrack := new Windows.Media.Core.IMediaTrack;
+         Retval.m_IMediaTrack := new WinRt.Windows.Media.Core.IMediaTrack;
          Retval.m_IMediaTrack.all := m_ComRetVal;
       end return;
    end;
@@ -5954,7 +5954,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Core.ISingleSelectMediaTrackList := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Media.Core.ISingleSelectMediaTrackList, WinRt.Windows.Media.Core.IID_ISingleSelectMediaTrackList'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -5969,7 +5969,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SelectedIndexChanged
    (
       this : in out MediaPlaybackVideoTrackList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6051,13 +6051,13 @@ package body WinRt.Windows.Media.Playback is
    function Constructor return MediaPlayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.MediaPlayer");
-      m_ComRetVal  : aliased Windows.Media.Playback.IMediaPlayer;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IMediaPlayer");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IMediaPlayer;
    begin
       return RetVal : MediaPlayer do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaPlayer := new Windows.Media.Playback.IMediaPlayer;
+            Retval.m_IMediaPlayer := new WinRt.Windows.Media.Playback.IMediaPlayer;
             Retval.m_IMediaPlayer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6107,7 +6107,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaPlayer.all.get_NaturalDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6124,7 +6124,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaPlayer.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6136,7 +6136,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_Position
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6173,7 +6173,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlayerState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlayerState;
    begin
       Hr := this.m_IMediaPlayer.all.get_CurrentState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6369,14 +6369,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IPlaybackMediaMarkerSequence;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IPlaybackMediaMarkerSequence;
    begin
       return RetVal : WinRt.Windows.Media.Playback.PlaybackMediaMarkerSequence do
          Hr := this.m_IMediaPlayer.all.get_PlaybackMediaMarkers (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlaybackMediaMarkerSequence := new Windows.Media.Playback.IPlaybackMediaMarkerSequence;
+         Retval.m_IPlaybackMediaMarkerSequence := new WinRt.Windows.Media.Playback.IPlaybackMediaMarkerSequence;
          Retval.m_IPlaybackMediaMarkerSequence.all := m_ComRetVal;
       end return;
    end;
@@ -6390,7 +6390,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_MediaOpened (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6402,7 +6402,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_MediaOpened
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6423,7 +6423,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_MediaEnded (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6435,7 +6435,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_MediaEnded
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6456,7 +6456,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_MediaFailed (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6468,7 +6468,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_MediaFailed
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6489,7 +6489,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_CurrentStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6501,7 +6501,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_CurrentStateChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6522,7 +6522,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_PlaybackMediaMarkerReached (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6534,7 +6534,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_PlaybackMediaMarkerReached
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6555,7 +6555,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_MediaPlayerRateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6567,7 +6567,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_MediaPlayerRateChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6588,7 +6588,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_VolumeChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6600,7 +6600,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_VolumeChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6621,7 +6621,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_SeekCompleted (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6633,7 +6633,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SeekCompleted
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6654,7 +6654,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_BufferingStarted (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6666,7 +6666,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferingStarted
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6687,7 +6687,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaPlayer.all.add_BufferingEnded (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6699,7 +6699,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_BufferingEnded
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6742,7 +6742,7 @@ package body WinRt.Windows.Media.Playback is
    procedure SetUriSource
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6763,7 +6763,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayerSource := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.IMediaProtectionManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.IMediaProtectionManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayerSource, WinRt.Windows.Media.Playback.IID_IMediaPlayerSource'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Protection.MediaProtectionManager do
@@ -6773,7 +6773,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaProtectionManager := new Windows.Media.Protection.IMediaProtectionManager;
+         Retval.m_IMediaProtectionManager := new WinRt.Windows.Media.Protection.IMediaProtectionManager;
          Retval.m_IMediaProtectionManager.all := m_ComRetVal;
       end return;
    end;
@@ -6781,7 +6781,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_ProtectionManager
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Protection.MediaProtectionManager'Class
+      value : WinRt.Windows.Media.Protection.MediaProtectionManager'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6800,7 +6800,7 @@ package body WinRt.Windows.Media.Playback is
    procedure SetFileSource
    (
       this : in out MediaPlayer;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6819,7 +6819,7 @@ package body WinRt.Windows.Media.Playback is
    procedure SetStreamSource
    (
       this : in out MediaPlayer;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6838,7 +6838,7 @@ package body WinRt.Windows.Media.Playback is
    procedure SetMediaSource
    (
       this : in out MediaPlayer;
-      source : Windows.Media.Core.IMediaSource
+      source : WinRt.Windows.Media.Core.IMediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6863,7 +6863,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayerSource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayerSource2, WinRt.Windows.Media.Playback.IID_IMediaPlayerSource2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -6878,7 +6878,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_Source
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.IMediaPlaybackSource
+      value : WinRt.Windows.Media.Playback.IMediaPlaybackSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6903,7 +6903,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.ISystemMediaTransportControls;
+      m_ComRetVal      : aliased WinRt.Windows.Media.ISystemMediaTransportControls;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer2, WinRt.Windows.Media.Playback.IID_IMediaPlayer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.SystemMediaTransportControls do
@@ -6913,7 +6913,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISystemMediaTransportControls := new Windows.Media.ISystemMediaTransportControls;
+         Retval.m_ISystemMediaTransportControls := new WinRt.Windows.Media.ISystemMediaTransportControls;
          Retval.m_ISystemMediaTransportControls.all := m_ComRetVal;
       end return;
    end;
@@ -6927,7 +6927,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlayerAudioCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlayerAudioCategory;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer2, WinRt.Windows.Media.Playback.IID_IMediaPlayer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -6942,7 +6942,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_AudioCategory
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.MediaPlayerAudioCategory
+      value : WinRt.Windows.Media.Playback.MediaPlayerAudioCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6967,7 +6967,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlayerAudioDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlayerAudioDeviceType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer2, WinRt.Windows.Media.Playback.IID_IMediaPlayer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -6982,7 +6982,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_AudioDeviceType
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.MediaPlayerAudioDeviceType
+      value : WinRt.Windows.Media.Playback.MediaPlayerAudioDeviceType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7003,7 +7003,7 @@ package body WinRt.Windows.Media.Playback is
       this : in out MediaPlayer;
       activatableClassId : WinRt.WString;
       effectOptional : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7067,7 +7067,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7082,7 +7082,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_IsMutedChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7108,7 +7108,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7123,7 +7123,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SourceChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7228,7 +7228,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.StereoscopicVideoRenderMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.StereoscopicVideoRenderMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7243,7 +7243,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_StereoscopicVideoRenderMode
    (
       this : in out MediaPlayer;
-      value : Windows.Media.Playback.StereoscopicVideoRenderMode
+      value : WinRt.Windows.Media.Playback.StereoscopicVideoRenderMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7268,7 +7268,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaBreakManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaBreakManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaBreakManager do
@@ -7278,7 +7278,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaBreakManager := new Windows.Media.Playback.IMediaBreakManager;
+         Retval.m_IMediaBreakManager := new WinRt.Windows.Media.Playback.IMediaBreakManager;
          Retval.m_IMediaBreakManager.all := m_ComRetVal;
       end return;
    end;
@@ -7292,7 +7292,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackCommandManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackCommandManager do
@@ -7302,7 +7302,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackCommandManager := new Windows.Media.Playback.IMediaPlaybackCommandManager;
+         Retval.m_IMediaPlaybackCommandManager := new WinRt.Windows.Media.Playback.IMediaPlaybackCommandManager;
          Retval.m_IMediaPlaybackCommandManager.all := m_ComRetVal;
       end return;
    end;
@@ -7316,7 +7316,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
@@ -7326,7 +7326,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -7334,7 +7334,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_AudioDevice
    (
       this : in out MediaPlayer;
-      value : Windows.Devices.Enumeration.DeviceInformation'Class
+      value : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7359,7 +7359,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IMediaTimelineController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IMediaTimelineController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaTimelineController do
@@ -7369,7 +7369,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaTimelineController := new Windows.Media.IMediaTimelineController;
+         Retval.m_IMediaTimelineController := new WinRt.Windows.Media.IMediaTimelineController;
          Retval.m_IMediaTimelineController.all := m_ComRetVal;
       end return;
    end;
@@ -7377,7 +7377,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_TimelineController
    (
       this : in out MediaPlayer;
-      value : Windows.Media.MediaTimelineController'Class
+      value : WinRt.Windows.Media.MediaTimelineController'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7402,7 +7402,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7417,7 +7417,7 @@ package body WinRt.Windows.Media.Playback is
    procedure put_TimelineControllerPositionOffset
    (
       this : in out MediaPlayer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7442,7 +7442,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackSession;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackSession do
@@ -7452,7 +7452,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackSession := new Windows.Media.Playback.IMediaPlaybackSession;
+         Retval.m_IMediaPlaybackSession := new WinRt.Windows.Media.Playback.IMediaPlaybackSession;
          Retval.m_IMediaPlaybackSession.all := m_ComRetVal;
       end return;
    end;
@@ -7502,7 +7502,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Casting.ICastingSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Casting.ICastingSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer3, WinRt.Windows.Media.Playback.IID_IMediaPlayer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Casting.CastingSource do
@@ -7512,7 +7512,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICastingSource := new Windows.Media.Casting.ICastingSource;
+         Retval.m_ICastingSource := new WinRt.Windows.Media.Casting.ICastingSource;
          Retval.m_ICastingSource.all := m_ComRetVal;
       end return;
    end;
@@ -7520,7 +7520,7 @@ package body WinRt.Windows.Media.Playback is
    procedure SetSurfaceSize
    (
       this : in out MediaPlayer;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7539,14 +7539,14 @@ package body WinRt.Windows.Media.Playback is
    function GetSurface
    (
       this : in out MediaPlayer;
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.Media.Playback.MediaPlayerSurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlayerSurface;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlayerSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer4, WinRt.Windows.Media.Playback.IID_IMediaPlayer4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlayerSurface do
@@ -7556,7 +7556,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlayerSurface := new Windows.Media.Playback.IMediaPlayerSurface;
+         Retval.m_IMediaPlayerSurface := new WinRt.Windows.Media.Playback.IMediaPlayerSurface;
          Retval.m_IMediaPlayerSurface.all := m_ComRetVal;
       end return;
    end;
@@ -7566,7 +7566,7 @@ package body WinRt.Windows.Media.Playback is
       this : in out MediaPlayer;
       activatableClassId : WinRt.WString;
       effectOptional : WinRt.Boolean;
-      effectConfiguration : Windows.Foundation.Collections.IPropertySet
+      effectConfiguration : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7594,7 +7594,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer5, WinRt.Windows.Media.Playback.IID_IMediaPlayer5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7609,7 +7609,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_VideoFrameAvailable
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7668,7 +7668,7 @@ package body WinRt.Windows.Media.Playback is
    procedure CopyFrameToVideoSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7687,8 +7687,8 @@ package body WinRt.Windows.Media.Playback is
    procedure CopyFrameToVideoSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      targetRectangle : Windows.Foundation.Rect
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      targetRectangle : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7707,8 +7707,8 @@ package body WinRt.Windows.Media.Playback is
    procedure CopyFrameToStereoscopicVideoSurfaces
    (
       this : in out MediaPlayer;
-      destinationLeftEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      destinationRightEye : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destinationLeftEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      destinationRightEye : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7734,7 +7734,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer6, WinRt.Windows.Media.Playback.IID_IMediaPlayer6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaPlayer.all);
@@ -7749,7 +7749,7 @@ package body WinRt.Windows.Media.Playback is
    procedure remove_SubtitleFrameChanged
    (
       this : in out MediaPlayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7768,7 +7768,7 @@ package body WinRt.Windows.Media.Playback is
    function RenderSubtitlesToSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7790,8 +7790,8 @@ package body WinRt.Windows.Media.Playback is
    function RenderSubtitlesToSurface
    (
       this : in out MediaPlayer;
-      destination : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      targetRectangle : Windows.Foundation.Rect
+      destination : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      targetRectangle : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7819,7 +7819,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Playback.IMediaPlayer7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IMediaPlayer_Interface, WinRt.Windows.Media.Playback.IMediaPlayer7, WinRt.Windows.Media.Playback.IID_IMediaPlayer7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
@@ -7829,7 +7829,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+         Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
          Retval.m_IAudioStateMonitor.all := m_ComRetVal;
       end return;
    end;
@@ -7865,14 +7865,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IMediaPlayerDataReceivedEventArgs.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -7908,7 +7908,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.MediaPlayerError;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.MediaPlayerError;
    begin
       Hr := this.m_IMediaPlayerFailedEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7925,7 +7925,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IMediaPlayerFailedEventArgs.all.get_ExtendedErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8025,7 +8025,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSurface;
    begin
       Hr := this.m_IMediaPlayerSurface.all.get_CompositionSurface (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8042,14 +8042,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositor;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositor;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Compositor do
          Hr := this.m_IMediaPlayerSurface.all.get_Compositor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
+         Retval.m_ICompositor := new WinRt.Windows.UI.Composition.ICompositor;
          Retval.m_ICompositor.all := m_ComRetVal;
       end return;
    end;
@@ -8062,14 +8062,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlayer;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlayer;
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlayer do
          Hr := this.m_IMediaPlayerSurface.all.get_MediaPlayer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlayer := new Windows.Media.Playback.IMediaPlayer;
+         Retval.m_IMediaPlayer := new WinRt.Windows.Media.Playback.IMediaPlayer;
          Retval.m_IMediaPlayer.all := m_ComRetVal;
       end return;
    end;
@@ -8117,21 +8117,21 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    )
    return PlaybackMediaMarker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.PlaybackMediaMarker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IPlaybackMediaMarker");
       m_Factory    : access IPlaybackMediaMarkerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IPlaybackMediaMarker;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
    begin
       return RetVal : PlaybackMediaMarker do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaybackMediaMarkerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromTime (value, m_ComRetVal'Access);
-            Retval.m_IPlaybackMediaMarker := new Windows.Media.Playback.IPlaybackMediaMarker;
+            Retval.m_IPlaybackMediaMarker := new WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
             Retval.m_IPlaybackMediaMarker.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8141,17 +8141,17 @@ package body WinRt.Windows.Media.Playback is
 
    function Constructor
    (
-      value : Windows.Foundation.TimeSpan;
+      value : WinRt.Windows.Foundation.TimeSpan;
       mediaMarketType : WinRt.WString;
       text : WinRt.WString
    )
    return PlaybackMediaMarker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.PlaybackMediaMarker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playback.IPlaybackMediaMarker");
       m_Factory    : access IPlaybackMediaMarkerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Playback.IPlaybackMediaMarker;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
       HStr_mediaMarketType : constant WinRt.HString := To_HString (mediaMarketType);
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
@@ -8159,7 +8159,7 @@ package body WinRt.Windows.Media.Playback is
          Hr := RoGetActivationFactory (m_hString, IID_IPlaybackMediaMarkerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (value, HStr_mediaMarketType, HStr_text, m_ComRetVal'Access);
-            Retval.m_IPlaybackMediaMarker := new Windows.Media.Playback.IPlaybackMediaMarker;
+            Retval.m_IPlaybackMediaMarker := new WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
             Retval.m_IPlaybackMediaMarker.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8180,7 +8180,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPlaybackMediaMarker.all.get_Time (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8260,14 +8260,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IPlaybackMediaMarker;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
    begin
       return RetVal : WinRt.Windows.Media.Playback.PlaybackMediaMarker do
          Hr := this.m_IPlaybackMediaMarkerReachedEventArgs.all.get_PlaybackMediaMarker (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlaybackMediaMarker := new Windows.Media.Playback.IPlaybackMediaMarker;
+         Retval.m_IPlaybackMediaMarker := new WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
          Retval.m_IPlaybackMediaMarker.all := m_ComRetVal;
       end return;
    end;
@@ -8315,7 +8315,7 @@ package body WinRt.Windows.Media.Playback is
    procedure Insert
    (
       this : in out PlaybackMediaMarkerSequence;
-      value : Windows.Media.Playback.PlaybackMediaMarker'Class
+      value : WinRt.Windows.Media.Playback.PlaybackMediaMarker'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8351,7 +8351,7 @@ package body WinRt.Windows.Media.Playback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPlaybackMediaMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IPlaybackMediaMarker;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
       m_GenericIID     : aliased WinRt.IID := (3740061673, 27649, 22383, (149, 242, 147, 81, 90, 228, 14, 191 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Playback.IPlaybackMediaMarkerSequence_Interface, IIterable_IPlaybackMediaMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8362,7 +8362,7 @@ package body WinRt.Windows.Media.Playback is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPlaybackMediaMarker := new Windows.Media.Playback.IPlaybackMediaMarker;
+         Retval.m_IPlaybackMediaMarker := new WinRt.Windows.Media.Playback.IPlaybackMediaMarker;
          Retval.m_IPlaybackMediaMarker.all := m_ComRetVal;
       end return;
    end;
@@ -8398,14 +8398,14 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.ITimedMetadataTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.ITimedMetadataTrack;
    begin
       return RetVal : WinRt.Windows.Media.Core.TimedMetadataTrack do
          Hr := this.m_ITimedMetadataPresentationModeChangedEventArgs.all.get_Track (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimedMetadataTrack := new Windows.Media.Core.ITimedMetadataTrack;
+         Retval.m_ITimedMetadataTrack := new WinRt.Windows.Media.Core.ITimedMetadataTrack;
          Retval.m_ITimedMetadataTrack.all := m_ComRetVal;
       end return;
    end;
@@ -8418,7 +8418,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.TimedMetadataTrackPresentationMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode;
    begin
       Hr := this.m_ITimedMetadataPresentationModeChangedEventArgs.all.get_OldPresentationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8435,7 +8435,7 @@ package body WinRt.Windows.Media.Playback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.TimedMetadataTrackPresentationMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.TimedMetadataTrackPresentationMode;
    begin
       Hr := this.m_ITimedMetadataPresentationModeChangedEventArgs.all.get_NewPresentationMode (m_ComRetVal'Access);
       if Hr /= S_OK then

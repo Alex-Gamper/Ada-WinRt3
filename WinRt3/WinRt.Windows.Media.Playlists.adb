@@ -66,13 +66,13 @@ package body WinRt.Windows.Media.Playlists is
    function Constructor return Playlist is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
-      m_ComRetVal  : aliased Windows.Media.Playlists.IPlaylist;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playlists.IPlaylist");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Playlists.IPlaylist;
    begin
       return RetVal : Playlist do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPlaylist := new Windows.Media.Playlists.IPlaylist;
+            Retval.m_IPlaylist := new WinRt.Windows.Media.Playlists.IPlaylist;
             Retval.m_IPlaylist.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -84,7 +84,7 @@ package body WinRt.Windows.Media.Playlists is
 
    function LoadAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Playlists.Playlist is
       Hr               : WinRt.HResult := S_OK;
@@ -140,7 +140,7 @@ package body WinRt.Windows.Media.Playlists is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPlaylist := new Windows.Media.Playlists.IPlaylist;
+                     Retval.m_IPlaylist := new WinRt.Windows.Media.Playlists.IPlaylist;
                      Retval.m_IPlaylist.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -166,7 +166,7 @@ package body WinRt.Windows.Media.Playlists is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IPlaylist.all.get_Files (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -220,9 +220,9 @@ package body WinRt.Windows.Media.Playlists is
    function SaveAsAsync
    (
       this : in out Playlist;
-      saveLocation : Windows.Storage.IStorageFolder;
+      saveLocation : WinRt.Windows.Storage.IStorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -274,7 +274,7 @@ package body WinRt.Windows.Media.Playlists is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -291,10 +291,10 @@ package body WinRt.Windows.Media.Playlists is
    function SaveAsAsync
    (
       this : in out Playlist;
-      saveLocation : Windows.Storage.IStorageFolder;
+      saveLocation : WinRt.Windows.Storage.IStorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption;
-      playlistFormat : Windows.Media.Playlists.PlaylistFormat
+      option : WinRt.Windows.Storage.NameCollisionOption;
+      playlistFormat : WinRt.Windows.Media.Playlists.PlaylistFormat
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -346,7 +346,7 @@ package body WinRt.Windows.Media.Playlists is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

@@ -169,7 +169,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function get_ExpirationTime
       (
          this : access IPushNotificationChannel_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -183,14 +183,14 @@ package WinRt.Windows.Networking.PushNotifications is
       (
          this : access IPushNotificationChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PushNotificationReceived
       (
          this : access IPushNotificationChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -225,7 +225,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function get_User
       (
          this : access IPushNotificationChannelManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -237,7 +237,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
       (
          this : access IPushNotificationChannelManagerForUser2_Interface;
-         appServerKey : Windows.Storage.Streams.IBuffer;
+         appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
          channelId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -246,7 +246,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
       (
          this : access IPushNotificationChannelManagerForUser2_Interface;
-         appServerKey : Windows.Storage.Streams.IBuffer;
+         appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
          channelId : WinRt.HString;
          appId : WinRt.HString;
          RetVal : access GenericObject
@@ -289,8 +289,8 @@ package WinRt.Windows.Networking.PushNotifications is
       function GetForUser
       (
          this : access IPushNotificationChannelManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -302,7 +302,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function GetDefault
       (
          this : access IPushNotificationChannelManagerStatics3_Interface;
-         RetVal : access Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser
+         RetVal : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -315,14 +315,14 @@ package WinRt.Windows.Networking.PushNotifications is
       (
          this : access IPushNotificationChannelManagerStatics4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ChannelsRevoked
       (
          this : access IPushNotificationChannelManagerStatics4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -353,35 +353,35 @@ package WinRt.Windows.Networking.PushNotifications is
       function get_NotificationType
       (
          this : access IPushNotificationReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.PushNotifications.PushNotificationType
+         RetVal : access WinRt.Windows.Networking.PushNotifications.PushNotificationType
       )
       return WinRt.Hresult is abstract;
 
       function get_ToastNotification
       (
          this : access IPushNotificationReceivedEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_TileNotification
       (
          this : access IPushNotificationReceivedEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_BadgeNotification
       (
          this : access IPushNotificationReceivedEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.IBadgeNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_RawNotification
       (
          this : access IPushNotificationReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.PushNotifications.IRawNotification
+         RetVal : access WinRt.Windows.Networking.PushNotifications.IRawNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -424,7 +424,7 @@ package WinRt.Windows.Networking.PushNotifications is
       function get_ContentBytes
       (
          this : access IRawNotification3_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -470,7 +470,7 @@ package WinRt.Windows.Networking.PushNotifications is
    procedure remove_PushNotificationReceived
    (
       this : in out PushNotificationChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -494,7 +494,7 @@ package WinRt.Windows.Networking.PushNotifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser;
 
@@ -506,7 +506,7 @@ package WinRt.Windows.Networking.PushNotifications is
 
       procedure remove_ChannelsRevoked
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function GetDefault
@@ -552,7 +552,7 @@ package WinRt.Windows.Networking.PushNotifications is
    function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
    (
       this : in out PushNotificationChannelManagerForUser;
-      appServerKey : Windows.Storage.Streams.IBuffer;
+      appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
       channelId : WinRt.WString
    )
    return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel'Class;
@@ -560,7 +560,7 @@ package WinRt.Windows.Networking.PushNotifications is
    function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
    (
       this : in out PushNotificationChannelManagerForUser;
-      appServerKey : Windows.Storage.Streams.IBuffer;
+      appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
       channelId : WinRt.WString;
       appId : WinRt.WString
    )

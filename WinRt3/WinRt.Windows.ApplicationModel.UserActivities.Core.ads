@@ -51,18 +51,18 @@ package WinRt.Windows.ApplicationModel.UserActivities.Core is
       function CreateUserActivitySessionInBackground
       (
          this : access ICoreUserActivityManagerStatics_Interface;
-         activity : Windows.ApplicationModel.UserActivities.IUserActivity;
-         RetVal : access Windows.ApplicationModel.UserActivities.IUserActivitySession
+         activity : WinRt.Windows.ApplicationModel.UserActivities.IUserActivity;
+         RetVal : access WinRt.Windows.ApplicationModel.UserActivities.IUserActivitySession
       )
       return WinRt.Hresult is abstract;
 
       function DeleteUserActivitySessionsInTimeRangeAsync
       (
          this : access ICoreUserActivityManagerStatics_Interface;
-         channel : Windows.ApplicationModel.UserActivities.IUserActivityChannel;
-         startTime : Windows.Foundation.DateTime;
-         endTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         channel : WinRt.Windows.ApplicationModel.UserActivities.IUserActivityChannel;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         endTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 

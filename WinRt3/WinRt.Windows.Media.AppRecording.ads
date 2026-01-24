@@ -153,14 +153,14 @@ package WinRt.Windows.Media.AppRecording is
       function GetStatus
       (
          this : access IAppRecordingManager_Interface;
-         RetVal : access Windows.Media.AppRecording.IAppRecordingStatus
+         RetVal : access WinRt.Windows.Media.AppRecording.IAppRecordingStatus
       )
       return WinRt.Hresult is abstract;
 
       function StartRecordingToFileAsync
       (
          this : access IAppRecordingManager_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -168,9 +168,9 @@ package WinRt.Windows.Media.AppRecording is
       function RecordTimeSpanToFileAsync
       (
          this : access IAppRecordingManager_Interface;
-         startTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
-         file : Windows.Storage.IStorageFile;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -185,9 +185,9 @@ package WinRt.Windows.Media.AppRecording is
       function SaveScreenshotToFilesAsync
       (
          this : access IAppRecordingManager_Interface;
-         folder : Windows.Storage.IStorageFolder;
+         folder : WinRt.Windows.Storage.IStorageFolder;
          filenamePrefix : WinRt.HString;
-         option : Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
+         option : WinRt.Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
          requestedFormats : GenericObject;
          RetVal : access GenericObject
       )
@@ -201,7 +201,7 @@ package WinRt.Windows.Media.AppRecording is
       function GetDefault
       (
          this : access IAppRecordingManagerStatics_Interface;
-         RetVal : access Windows.Media.AppRecording.IAppRecordingManager
+         RetVal : access WinRt.Windows.Media.AppRecording.IAppRecordingManager
       )
       return WinRt.Hresult is abstract;
 
@@ -220,14 +220,14 @@ package WinRt.Windows.Media.AppRecording is
       function get_ExtendedError
       (
          this : access IAppRecordingResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppRecordingResult_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -253,7 +253,7 @@ package WinRt.Windows.Media.AppRecording is
       function get_ExtendedError
       (
          this : access IAppRecordingSaveScreenshotResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -272,7 +272,7 @@ package WinRt.Windows.Media.AppRecording is
       function get_File
       (
          this : access IAppRecordingSavedScreenshotInfo_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -305,14 +305,14 @@ package WinRt.Windows.Media.AppRecording is
       function get_HistoricalBufferDuration
       (
          this : access IAppRecordingStatus_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Details
       (
          this : access IAppRecordingStatus_Interface;
-         RetVal : access Windows.Media.AppRecording.IAppRecordingStatusDetails
+         RetVal : access WinRt.Windows.Media.AppRecording.IAppRecordingStatusDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -414,16 +414,16 @@ package WinRt.Windows.Media.AppRecording is
    function StartRecordingToFileAsync
    (
       this : in out AppRecordingManager;
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingResult'Class;
 
    function RecordTimeSpanToFileAsync
    (
       this : in out AppRecordingManager;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan;
-      file : Windows.Storage.StorageFile'Class
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan;
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingResult'Class;
 
@@ -436,9 +436,9 @@ package WinRt.Windows.Media.AppRecording is
    function SaveScreenshotToFilesAsync
    (
       this : in out AppRecordingManager;
-      folder : Windows.Storage.StorageFolder'Class;
+      folder : WinRt.Windows.Storage.StorageFolder'Class;
       filenamePrefix : WinRt.WString;
-      option : Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
+      option : WinRt.Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
       requestedFormats : GenericObject
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingSaveScreenshotResult'Class;

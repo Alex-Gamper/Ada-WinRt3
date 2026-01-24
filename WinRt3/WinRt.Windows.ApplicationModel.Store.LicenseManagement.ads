@@ -104,8 +104,8 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       function AddLicenseAsync
       (
          this : access ILicenseManagerStatics_Interface;
-         license : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         license : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -126,8 +126,8 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       function RefreshLicensesAsync
       (
          this : access ILicenseManagerStatics2_Interface;
-         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption;
-         RetVal : access Windows.Foundation.IAsyncAction
+         refreshOption : WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -200,7 +200,7 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       function get_ExtendedError
       (
          this : access ILicenseSatisfactionResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -216,12 +216,12 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
 
       procedure RefreshLicensesAsync
       (
-         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
+         refreshOption : WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
       );
 
       procedure AddLicenseAsync
       (
-         license : Windows.Storage.Streams.IBuffer
+         license : WinRt.Windows.Storage.Streams.IBuffer
       );
 
       function GetSatisfactionInfosAsync

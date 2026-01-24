@@ -89,7 +89,7 @@ package body WinRt.Windows.Media.Ocr is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -105,7 +105,7 @@ package body WinRt.Windows.Media.Ocr is
 
    function IsLanguageSupported
    (
-      language : Windows.Globalization.Language'Class
+      language : WinRt.Windows.Globalization.Language'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -129,7 +129,7 @@ package body WinRt.Windows.Media.Ocr is
 
    function TryCreateFromLanguage
    (
-      language : Windows.Globalization.Language'Class
+      language : WinRt.Windows.Globalization.Language'Class
    )
    return WinRt.Windows.Media.Ocr.OcrEngine is
       Hr               : WinRt.HResult := S_OK;
@@ -137,7 +137,7 @@ package body WinRt.Windows.Media.Ocr is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Ocr.IOcrEngine;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Ocr.IOcrEngine;
    begin
       return RetVal : WinRt.Windows.Media.Ocr.OcrEngine do
          Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
@@ -147,7 +147,7 @@ package body WinRt.Windows.Media.Ocr is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOcrEngine := new Windows.Media.Ocr.IOcrEngine;
+            Retval.m_IOcrEngine := new WinRt.Windows.Media.Ocr.IOcrEngine;
             Retval.m_IOcrEngine.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -161,7 +161,7 @@ package body WinRt.Windows.Media.Ocr is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Ocr.OcrEngine");
       m_Factory        : access WinRt.Windows.Media.Ocr.IOcrEngineStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Ocr.IOcrEngine;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Ocr.IOcrEngine;
    begin
       return RetVal : WinRt.Windows.Media.Ocr.OcrEngine do
          Hr := RoGetActivationFactory (m_hString, IID_IOcrEngineStatics'Access , m_Factory'Address);
@@ -171,7 +171,7 @@ package body WinRt.Windows.Media.Ocr is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOcrEngine := new Windows.Media.Ocr.IOcrEngine;
+            Retval.m_IOcrEngine := new WinRt.Windows.Media.Ocr.IOcrEngine;
             Retval.m_IOcrEngine.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -184,7 +184,7 @@ package body WinRt.Windows.Media.Ocr is
    function RecognizeAsync
    (
       this : in out OcrEngine;
-      bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      bitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    )
    return WinRt.Windows.Media.Ocr.OcrResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -235,7 +235,7 @@ package body WinRt.Windows.Media.Ocr is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IOcrResult := new Windows.Media.Ocr.IOcrResult;
+                  Retval.m_IOcrResult := new WinRt.Windows.Media.Ocr.IOcrResult;
                   Retval.m_IOcrResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -256,14 +256,14 @@ package body WinRt.Windows.Media.Ocr is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_IOcrEngine.all.get_RecognizerLanguage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -299,7 +299,7 @@ package body WinRt.Windows.Media.Ocr is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IOcrWord.Kind;
    begin
       Hr := this.m_IOcrLine.all.get_Words (m_ComRetVal'Access);
@@ -362,7 +362,7 @@ package body WinRt.Windows.Media.Ocr is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IOcrLine.Kind;
    begin
       Hr := this.m_IOcrResult.all.get_Lines (m_ComRetVal'Access);
@@ -382,7 +382,7 @@ package body WinRt.Windows.Media.Ocr is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IOcrResult.all.get_TextAngle (m_ComRetVal'Access);
@@ -445,7 +445,7 @@ package body WinRt.Windows.Media.Ocr is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IOcrWord.all.get_BoundingRect (m_ComRetVal'Access);
       if Hr /= S_OK then

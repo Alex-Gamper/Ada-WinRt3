@@ -90,7 +90,7 @@ package WinRt.Windows.Media.FaceAnalysis is
       function get_FaceBox
       (
          this : access IDetectedFace_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapBounds
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapBounds
       )
       return WinRt.Hresult is abstract;
 
@@ -102,7 +102,7 @@ package WinRt.Windows.Media.FaceAnalysis is
       function DetectFacesAsync
       (
          this : access IFaceDetector_Interface;
-         image : Windows.Graphics.Imaging.ISoftwareBitmap;
+         image : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -110,8 +110,8 @@ package WinRt.Windows.Media.FaceAnalysis is
       function DetectFacesAsync
       (
          this : access IFaceDetector_Interface;
-         image : Windows.Graphics.Imaging.ISoftwareBitmap;
-         searchArea : Windows.Graphics.Imaging.BitmapBounds;
+         image : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         searchArea : WinRt.Windows.Graphics.Imaging.BitmapBounds;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -119,28 +119,28 @@ package WinRt.Windows.Media.FaceAnalysis is
       function get_MinDetectableFaceSize
       (
          this : access IFaceDetector_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function put_MinDetectableFaceSize
       (
          this : access IFaceDetector_Interface;
-         value : Windows.Graphics.Imaging.BitmapSize
+         value : WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxDetectableFaceSize
       (
          this : access IFaceDetector_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxDetectableFaceSize
       (
          this : access IFaceDetector_Interface;
-         value : Windows.Graphics.Imaging.BitmapSize
+         value : WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
@@ -166,7 +166,7 @@ package WinRt.Windows.Media.FaceAnalysis is
       function IsBitmapPixelFormatSupported
       (
          this : access IFaceDetectorStatics_Interface;
-         bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
+         bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -186,7 +186,7 @@ package WinRt.Windows.Media.FaceAnalysis is
       function ProcessNextFrameAsync
       (
          this : access IFaceTracker_Interface;
-         videoFrame : Windows.Media.IVideoFrame;
+         videoFrame : WinRt.Windows.Media.IVideoFrame;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -194,28 +194,28 @@ package WinRt.Windows.Media.FaceAnalysis is
       function get_MinDetectableFaceSize
       (
          this : access IFaceTracker_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function put_MinDetectableFaceSize
       (
          this : access IFaceTracker_Interface;
-         value : Windows.Graphics.Imaging.BitmapSize
+         value : WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxDetectableFaceSize
       (
          this : access IFaceTracker_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxDetectableFaceSize
       (
          this : access IFaceTracker_Interface;
-         value : Windows.Graphics.Imaging.BitmapSize
+         value : WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
@@ -241,7 +241,7 @@ package WinRt.Windows.Media.FaceAnalysis is
       function IsBitmapPixelFormatSupported
       (
          this : access IFaceTrackerStatics_Interface;
-         bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
+         bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -291,7 +291,7 @@ package WinRt.Windows.Media.FaceAnalysis is
 
    function IsBitmapPixelFormatSupported
    (
-      bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat
+      bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Boolean;
 
@@ -304,15 +304,15 @@ package WinRt.Windows.Media.FaceAnalysis is
    function DetectFacesAsync
    (
       this : in out FaceDetector;
-      image : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      image : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    )
    return WinRt.GenericObject;
 
    function DetectFacesAsync
    (
       this : in out FaceDetector;
-      image : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      searchArea : Windows.Graphics.Imaging.BitmapBounds
+      image : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      searchArea : WinRt.Windows.Graphics.Imaging.BitmapBounds
    )
    return WinRt.GenericObject;
 
@@ -325,7 +325,7 @@ package WinRt.Windows.Media.FaceAnalysis is
    procedure put_MinDetectableFaceSize
    (
       this : in out FaceDetector;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    );
 
    function get_MaxDetectableFaceSize
@@ -337,7 +337,7 @@ package WinRt.Windows.Media.FaceAnalysis is
    procedure put_MaxDetectableFaceSize
    (
       this : in out FaceDetector;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    );
 
    -----------------------------------------------------------------------------
@@ -357,7 +357,7 @@ package WinRt.Windows.Media.FaceAnalysis is
 
    function IsBitmapPixelFormatSupported_FaceTracker
    (
-      bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat
+      bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Boolean;
 
@@ -370,7 +370,7 @@ package WinRt.Windows.Media.FaceAnalysis is
    function ProcessNextFrameAsync
    (
       this : in out FaceTracker;
-      videoFrame : Windows.Media.VideoFrame'Class
+      videoFrame : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.GenericObject;
 
@@ -383,7 +383,7 @@ package WinRt.Windows.Media.FaceAnalysis is
    procedure put_MinDetectableFaceSize
    (
       this : in out FaceTracker;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    );
 
    function get_MaxDetectableFaceSize
@@ -395,7 +395,7 @@ package WinRt.Windows.Media.FaceAnalysis is
    procedure put_MaxDetectableFaceSize
    (
       this : in out FaceTracker;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    );
 
 end WinRt.Windows.Media.FaceAnalysis;

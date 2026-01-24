@@ -128,14 +128,14 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       function get_Type
       (
          this : access IIndexedResourceCandidate_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Management.IndexedResourceType
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access IIndexedResourceCandidate_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -195,15 +195,15 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       function IndexFilePath
       (
          this : access IResourceIndexer_Interface;
-         filePath : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate
+         filePath : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate
       )
       return WinRt.Hresult is abstract;
 
       function IndexFileContentsAsync
       (
          this : access IResourceIndexer_Interface;
-         file : Windows.Foundation.IUriRuntimeClass;
+         file : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -216,8 +216,8 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       function CreateResourceIndexer
       (
          this : access IResourceIndexerFactory_Interface;
-         projectRoot : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.Resources.Management.IResourceIndexer
+         projectRoot : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer
       )
       return WinRt.Hresult is abstract;
 
@@ -229,9 +229,9 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       function CreateResourceIndexerWithExtension
       (
          this : access IResourceIndexerFactory2_Interface;
-         projectRoot : Windows.Foundation.IUriRuntimeClass;
-         extensionDllPath : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.Resources.Management.IResourceIndexer
+         projectRoot : WinRt.Windows.Foundation.IUriRuntimeClass;
+         extensionDllPath : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer
       )
       return WinRt.Hresult is abstract;
 
@@ -319,14 +319,14 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class;
-      extensionDllPath : Windows.Foundation.Uri'Class
+      projectRoot : WinRt.Windows.Foundation.Uri'Class;
+      extensionDllPath : WinRt.Windows.Foundation.Uri'Class
    )
    return ResourceIndexer;
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class
+      projectRoot : WinRt.Windows.Foundation.Uri'Class
    )
    return ResourceIndexer;
 
@@ -336,14 +336,14 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    function IndexFilePath
    (
       this : in out ResourceIndexer;
-      filePath : Windows.Foundation.Uri'Class
+      filePath : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate'Class;
 
    function IndexFileContentsAsync
    (
       this : in out ResourceIndexer;
-      file : Windows.Foundation.Uri'Class
+      file : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.GenericObject;
 

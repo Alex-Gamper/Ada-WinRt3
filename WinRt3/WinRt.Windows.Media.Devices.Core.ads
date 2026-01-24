@@ -262,28 +262,28 @@ package WinRt.Windows.Media.Devices.Core is
       function get_FocalLength
       (
          this : access ICameraIntrinsics_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_PrincipalPoint
       (
          this : access ICameraIntrinsics_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function get_RadialDistortion
       (
          this : access ICameraIntrinsics_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_TangentialDistortion
       (
          this : access ICameraIntrinsics_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -304,16 +304,16 @@ package WinRt.Windows.Media.Devices.Core is
       function ProjectOntoFrame
       (
          this : access ICameraIntrinsics_Interface;
-         coordinate : Windows.Foundation.Numerics.Vector3;
-         RetVal : access Windows.Foundation.Point
+         coordinate : WinRt.Windows.Foundation.Numerics.Vector3;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function UnprojectAtUnitDepth
       (
          this : access ICameraIntrinsics_Interface;
-         pixelCoordinate : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Numerics.Vector2
+         pixelCoordinate : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -321,9 +321,9 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access ICameraIntrinsics_Interface;
          coordinatesSize : WinRt.UInt32;
-         coordinates : Windows.Foundation.Numerics.Vector3_Ptr;
+         coordinates : WinRt.Windows.Foundation.Numerics.Vector3_Ptr;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Point_Ptr
+         results : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -331,9 +331,9 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access ICameraIntrinsics_Interface;
          pixelCoordinatesSize : WinRt.UInt32;
-         pixelCoordinates : Windows.Foundation.Point_Ptr;
+         pixelCoordinates : WinRt.Windows.Foundation.Point_Ptr;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Numerics.Vector2_Ptr
+         results : WinRt.Windows.Foundation.Numerics.Vector2_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -345,15 +345,15 @@ package WinRt.Windows.Media.Devices.Core is
       function get_UndistortedProjectionTransform
       (
          this : access ICameraIntrinsics2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix4x4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
       function DistortPoint
       (
          this : access ICameraIntrinsics2_Interface;
-         input : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Point
+         input : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -361,17 +361,17 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access ICameraIntrinsics2_Interface;
          inputsSize : WinRt.UInt32;
-         inputs : Windows.Foundation.Point_Ptr;
+         inputs : WinRt.Windows.Foundation.Point_Ptr;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Point_Ptr
+         results : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function UndistortPoint
       (
          this : access ICameraIntrinsics2_Interface;
-         input : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Point
+         input : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -379,9 +379,9 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access ICameraIntrinsics2_Interface;
          inputsSize : WinRt.UInt32;
-         inputs : Windows.Foundation.Point_Ptr;
+         inputs : WinRt.Windows.Foundation.Point_Ptr;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Point_Ptr
+         results : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -393,13 +393,13 @@ package WinRt.Windows.Media.Devices.Core is
       function Create
       (
          this : access ICameraIntrinsicsFactory_Interface;
-         focalLength : Windows.Foundation.Numerics.Vector2;
-         principalPoint : Windows.Foundation.Numerics.Vector2;
-         radialDistortion : Windows.Foundation.Numerics.Vector3;
-         tangentialDistortion : Windows.Foundation.Numerics.Vector2;
+         focalLength : WinRt.Windows.Foundation.Numerics.Vector2;
+         principalPoint : WinRt.Windows.Foundation.Numerics.Vector2;
+         radialDistortion : WinRt.Windows.Foundation.Numerics.Vector3;
+         tangentialDistortion : WinRt.Windows.Foundation.Numerics.Vector2;
          imageWidth : WinRt.UInt32;
          imageHeight : WinRt.UInt32;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
@@ -411,9 +411,9 @@ package WinRt.Windows.Media.Devices.Core is
       function UnprojectPoint
       (
          this : access IDepthCorrelatedCoordinateMapper_Interface;
-         sourcePoint : Windows.Foundation.Point;
-         targetCoordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         sourcePoint : WinRt.Windows.Foundation.Point;
+         targetCoordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -421,20 +421,20 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access IDepthCorrelatedCoordinateMapper_Interface;
          sourcePointsSize : WinRt.UInt32;
-         sourcePoints : Windows.Foundation.Point_Ptr;
-         targetCoordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         sourcePoints : WinRt.Windows.Foundation.Point_Ptr;
+         targetCoordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Numerics.Vector3_Ptr
+         results : WinRt.Windows.Foundation.Numerics.Vector3_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function MapPoint
       (
          this : access IDepthCorrelatedCoordinateMapper_Interface;
-         sourcePoint : Windows.Foundation.Point;
-         targetCoordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         targetCameraIntrinsics : Windows.Media.Devices.Core.ICameraIntrinsics;
-         RetVal : access Windows.Foundation.Point
+         sourcePoint : WinRt.Windows.Foundation.Point;
+         targetCoordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         targetCameraIntrinsics : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -442,11 +442,11 @@ package WinRt.Windows.Media.Devices.Core is
       (
          this : access IDepthCorrelatedCoordinateMapper_Interface;
          sourcePointsSize : WinRt.UInt32;
-         sourcePoints : Windows.Foundation.Point_Ptr;
-         targetCoordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         targetCameraIntrinsics : Windows.Media.Devices.Core.ICameraIntrinsics;
+         sourcePoints : WinRt.Windows.Foundation.Point_Ptr;
+         targetCoordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         targetCameraIntrinsics : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Point_Ptr
+         results : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -458,28 +458,28 @@ package WinRt.Windows.Media.Devices.Core is
       function get_Exposure
       (
          this : access IFrameControlCapabilities_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameExposureCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameExposureCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_ExposureCompensation
       (
          this : access IFrameControlCapabilities_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameExposureCompensationCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameExposureCompensationCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_IsoSpeed
       (
          this : access IFrameControlCapabilities_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameIsoSpeedCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameIsoSpeedCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_Focus
       (
          this : access IFrameControlCapabilities_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameFocusCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameFocusCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -498,7 +498,7 @@ package WinRt.Windows.Media.Devices.Core is
       function get_Flash
       (
          this : access IFrameControlCapabilities2_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameFlashCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameFlashCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -510,28 +510,28 @@ package WinRt.Windows.Media.Devices.Core is
       function get_ExposureControl
       (
          this : access IFrameController_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameExposureControl
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameExposureControl
       )
       return WinRt.Hresult is abstract;
 
       function get_ExposureCompensationControl
       (
          this : access IFrameController_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameExposureCompensationControl
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameExposureCompensationControl
       )
       return WinRt.Hresult is abstract;
 
       function get_IsoSpeedControl
       (
          this : access IFrameController_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameIsoSpeedControl
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameIsoSpeedControl
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusControl
       (
          this : access IFrameController_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameFocusControl
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameFocusControl
       )
       return WinRt.Hresult is abstract;
 
@@ -557,7 +557,7 @@ package WinRt.Windows.Media.Devices.Core is
       function get_FlashControl
       (
          this : access IFrameController2_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameFlashControl
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameFlashControl
       )
       return WinRt.Hresult is abstract;
 
@@ -576,21 +576,21 @@ package WinRt.Windows.Media.Devices.Core is
       function get_Min
       (
          this : access IFrameExposureCapabilities_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Max
       (
          this : access IFrameExposureCapabilities_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Step
       (
          this : access IFrameExposureCapabilities_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -713,14 +713,14 @@ package WinRt.Windows.Media.Devices.Core is
       function get_Mode
       (
          this : access IFrameFlashControl_Interface;
-         RetVal : access Windows.Media.Devices.Core.FrameFlashMode
+         RetVal : access WinRt.Windows.Media.Devices.Core.FrameFlashMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IFrameFlashControl_Interface;
-         value : Windows.Media.Devices.Core.FrameFlashMode
+         value : WinRt.Windows.Media.Devices.Core.FrameFlashMode
       )
       return WinRt.Hresult is abstract;
 
@@ -920,22 +920,22 @@ package WinRt.Windows.Media.Devices.Core is
       function GetHighestConcurrentFrameRate
       (
          this : access IVariablePhotoSequenceController_Interface;
-         captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentFrameRate
       (
          this : access IVariablePhotoSequenceController_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
       function get_FrameCapabilities
       (
          this : access IVariablePhotoSequenceController_Interface;
-         RetVal : access Windows.Media.Devices.Core.IFrameControlCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.Core.IFrameControlCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -963,10 +963,10 @@ package WinRt.Windows.Media.Devices.Core is
 
    function Constructor
    (
-      focalLength : Windows.Foundation.Numerics.Vector2;
-      principalPoint : Windows.Foundation.Numerics.Vector2;
-      radialDistortion : Windows.Foundation.Numerics.Vector3;
-      tangentialDistortion : Windows.Foundation.Numerics.Vector2;
+      focalLength : WinRt.Windows.Foundation.Numerics.Vector2;
+      principalPoint : WinRt.Windows.Foundation.Numerics.Vector2;
+      radialDistortion : WinRt.Windows.Foundation.Numerics.Vector3;
+      tangentialDistortion : WinRt.Windows.Foundation.Numerics.Vector2;
       imageWidth : WinRt.UInt32;
       imageHeight : WinRt.UInt32
    )
@@ -1014,29 +1014,29 @@ package WinRt.Windows.Media.Devices.Core is
    function ProjectOntoFrame
    (
       this : in out CameraIntrinsics;
-      coordinate : Windows.Foundation.Numerics.Vector3
+      coordinate : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Windows.Foundation.Point;
 
    function UnprojectAtUnitDepth
    (
       this : in out CameraIntrinsics;
-      pixelCoordinate : Windows.Foundation.Point
+      pixelCoordinate : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Numerics.Vector2;
 
    procedure ProjectManyOntoFrame
    (
       this : in out CameraIntrinsics;
-      coordinates : Windows.Foundation.Numerics.Vector3_Array;
-      results : Windows.Foundation.Point_Array
+      coordinates : WinRt.Windows.Foundation.Numerics.Vector3_Array;
+      results : WinRt.Windows.Foundation.Point_Array
    );
 
    procedure UnprojectPixelsAtUnitDepth
    (
       this : in out CameraIntrinsics;
-      pixelCoordinates : Windows.Foundation.Point_Array;
-      results : Windows.Foundation.Numerics.Vector2_Array
+      pixelCoordinates : WinRt.Windows.Foundation.Point_Array;
+      results : WinRt.Windows.Foundation.Numerics.Vector2_Array
    );
 
    function get_UndistortedProjectionTransform
@@ -1048,29 +1048,29 @@ package WinRt.Windows.Media.Devices.Core is
    function DistortPoint
    (
       this : in out CameraIntrinsics;
-      input : Windows.Foundation.Point
+      input : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point;
 
    procedure DistortPoints
    (
       this : in out CameraIntrinsics;
-      inputs : Windows.Foundation.Point_Array;
-      results : Windows.Foundation.Point_Array
+      inputs : WinRt.Windows.Foundation.Point_Array;
+      results : WinRt.Windows.Foundation.Point_Array
    );
 
    function UndistortPoint
    (
       this : in out CameraIntrinsics;
-      input : Windows.Foundation.Point
+      input : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point;
 
    procedure UndistortPoints
    (
       this : in out CameraIntrinsics;
-      inputs : Windows.Foundation.Point_Array;
-      results : Windows.Foundation.Point_Array
+      inputs : WinRt.Windows.Foundation.Point_Array;
+      results : WinRt.Windows.Foundation.Point_Array
    );
 
    -----------------------------------------------------------------------------
@@ -1085,35 +1085,35 @@ package WinRt.Windows.Media.Devices.Core is
    function UnprojectPoint
    (
       this : in out DepthCorrelatedCoordinateMapper;
-      sourcePoint : Windows.Foundation.Point;
-      targetCoordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      sourcePoint : WinRt.Windows.Foundation.Point;
+      targetCoordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Foundation.Numerics.Vector3;
 
    procedure UnprojectPoints
    (
       this : in out DepthCorrelatedCoordinateMapper;
-      sourcePoints : Windows.Foundation.Point_Array;
-      targetCoordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      results : Windows.Foundation.Numerics.Vector3_Array
+      sourcePoints : WinRt.Windows.Foundation.Point_Array;
+      targetCoordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      results : WinRt.Windows.Foundation.Numerics.Vector3_Array
    );
 
    function MapPoint
    (
       this : in out DepthCorrelatedCoordinateMapper;
-      sourcePoint : Windows.Foundation.Point;
-      targetCoordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      targetCameraIntrinsics : Windows.Media.Devices.Core.CameraIntrinsics'Class
+      sourcePoint : WinRt.Windows.Foundation.Point;
+      targetCoordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      targetCameraIntrinsics : WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class
    )
    return WinRt.Windows.Foundation.Point;
 
    procedure MapPoints
    (
       this : in out DepthCorrelatedCoordinateMapper;
-      sourcePoints : Windows.Foundation.Point_Array;
-      targetCoordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      targetCameraIntrinsics : Windows.Media.Devices.Core.CameraIntrinsics'Class;
-      results : Windows.Foundation.Point_Array
+      sourcePoints : WinRt.Windows.Foundation.Point_Array;
+      targetCoordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      targetCameraIntrinsics : WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class;
+      results : WinRt.Windows.Foundation.Point_Array
    );
 
    procedure Close
@@ -1387,7 +1387,7 @@ package WinRt.Windows.Media.Devices.Core is
    procedure put_Mode
    (
       this : in out FrameFlashControl;
-      value : Windows.Media.Devices.Core.FrameFlashMode
+      value : WinRt.Windows.Media.Devices.Core.FrameFlashMode
    );
 
    function get_Auto
@@ -1582,7 +1582,7 @@ package WinRt.Windows.Media.Devices.Core is
    function GetHighestConcurrentFrameRate
    (
       this : in out VariablePhotoSequenceController;
-      captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
+      captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
    )
    return WinRt.Windows.Media.MediaProperties.MediaRatio'Class;
 

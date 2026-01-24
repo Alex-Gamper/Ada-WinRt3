@@ -189,7 +189,7 @@ package body WinRt.Windows.Security.Authentication.Identity is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager");
       m_Factory        : access WinRt.Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IEnterpriseKeyCredentialRegistrationManagerStatics'Access , m_Factory'Address);
@@ -199,7 +199,7 @@ package body WinRt.Windows.Security.Authentication.Identity is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IEnterpriseKeyCredentialRegistrationManager := new Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
+            Retval.m_IEnterpriseKeyCredentialRegistrationManager := new WinRt.Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
             Retval.m_IEnterpriseKeyCredentialRegistrationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

@@ -118,7 +118,7 @@ package body WinRt.Windows.Devices.Pwm is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPwmController := new Windows.Devices.Pwm.IPwmController;
+                     Retval.m_IPwmController := new WinRt.Windows.Devices.Pwm.IPwmController;
                      Retval.m_IPwmController.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -245,7 +245,7 @@ package body WinRt.Windows.Devices.Pwm is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPwmController := new Windows.Devices.Pwm.IPwmController;
+                     Retval.m_IPwmController := new WinRt.Windows.Devices.Pwm.IPwmController;
                      Retval.m_IPwmController.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -263,7 +263,7 @@ package body WinRt.Windows.Devices.Pwm is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Pwm.Provider.IPwmProvider
+      provider : WinRt.Windows.Devices.Pwm.Provider.IPwmProvider
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -429,14 +429,14 @@ package body WinRt.Windows.Devices.Pwm is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Pwm.IPwmPin;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Pwm.IPwmPin;
    begin
       return RetVal : WinRt.Windows.Devices.Pwm.PwmPin do
          Hr := this.m_IPwmController.all.OpenPin (pinNumber, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPwmPin := new Windows.Devices.Pwm.IPwmPin;
+         Retval.m_IPwmPin := new WinRt.Windows.Devices.Pwm.IPwmPin;
          Retval.m_IPwmPin.all := m_ComRetVal;
       end return;
    end;
@@ -472,14 +472,14 @@ package body WinRt.Windows.Devices.Pwm is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Pwm.IPwmController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Pwm.IPwmController;
    begin
       return RetVal : WinRt.Windows.Devices.Pwm.PwmController do
          Hr := this.m_IPwmPin.all.get_Controller (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPwmController := new Windows.Devices.Pwm.IPwmController;
+         Retval.m_IPwmController := new WinRt.Windows.Devices.Pwm.IPwmController;
          Retval.m_IPwmController.all := m_ComRetVal;
       end return;
    end;
@@ -524,7 +524,7 @@ package body WinRt.Windows.Devices.Pwm is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Pwm.PwmPulsePolarity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Pwm.PwmPulsePolarity;
    begin
       Hr := this.m_IPwmPin.all.get_Polarity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -536,7 +536,7 @@ package body WinRt.Windows.Devices.Pwm is
    procedure put_Polarity
    (
       this : in out PwmPin;
-      value : Windows.Devices.Pwm.PwmPulsePolarity
+      value : WinRt.Windows.Devices.Pwm.PwmPulsePolarity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

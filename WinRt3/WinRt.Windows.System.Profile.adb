@@ -49,7 +49,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AnalyticsInfo");
          m_Factory        : access WinRt.Windows.System.Profile.IAnalyticsInfoStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.IAnalyticsVersionInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.IAnalyticsVersionInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.AnalyticsVersionInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IAnalyticsInfoStatics'Access , m_Factory'Address);
@@ -59,7 +59,7 @@ package body WinRt.Windows.System.Profile is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAnalyticsVersionInfo := new Windows.System.Profile.IAnalyticsVersionInfo;
+               Retval.m_IAnalyticsVersionInfo := new WinRt.Windows.System.Profile.IAnalyticsVersionInfo;
                Retval.m_IAnalyticsVersionInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -263,7 +263,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.AppApplicability");
          m_Factory        : access WinRt.Windows.System.Profile.IAppApplicabilityStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppApplicabilityStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -312,7 +312,7 @@ package body WinRt.Windows.System.Profile is
 
       function GetPackageSpecificToken
       (
-         nonce : Windows.Storage.Streams.IBuffer
+         nonce : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.System.Profile.HardwareToken is
          Hr               : WinRt.HResult := S_OK;
@@ -320,7 +320,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.HardwareIdentification");
          m_Factory        : access WinRt.Windows.System.Profile.IHardwareIdentificationStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.IHardwareToken;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.IHardwareToken;
       begin
          return RetVal : WinRt.Windows.System.Profile.HardwareToken do
             Hr := RoGetActivationFactory (m_hString, IID_IHardwareIdentificationStatics'Access , m_Factory'Address);
@@ -330,7 +330,7 @@ package body WinRt.Windows.System.Profile is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IHardwareToken := new Windows.System.Profile.IHardwareToken;
+               Retval.m_IHardwareToken := new WinRt.Windows.System.Profile.IHardwareToken;
                Retval.m_IHardwareToken.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -370,7 +370,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHardwareToken.all.get_Id (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -387,7 +387,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHardwareToken.all.get_Signature (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -404,7 +404,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHardwareToken.all.get_Certificate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -958,7 +958,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.PlatformAutomaticAppSignInManager");
          m_Factory        : access WinRt.Windows.System.Profile.IPlatformAutomaticAppSignInManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.PlatformAutomaticAppSignInPolicy;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.PlatformAutomaticAppSignInPolicy;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformAutomaticAppSignInManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -985,7 +985,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.PlatformDiagnosticsAndUsageDataSettings");
          m_Factory        : access WinRt.Windows.System.Profile.IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.PlatformDataCollectionLevel;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.PlatformDataCollectionLevel;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticsAndUsageDataSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1009,7 +1009,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.PlatformDiagnosticsAndUsageDataSettings");
          m_Factory        : access WinRt.Windows.System.Profile.IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPlatformDiagnosticsAndUsageDataSettingsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1025,7 +1025,7 @@ package body WinRt.Windows.System.Profile is
 
       procedure remove_CollectionLevelChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1046,7 +1046,7 @@ package body WinRt.Windows.System.Profile is
 
       function CanCollectDiagnostics
       (
-         level : Windows.System.Profile.PlatformDataCollectionLevel
+         level : WinRt.Windows.System.Profile.PlatformDataCollectionLevel
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1102,7 +1102,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.RetailInfo");
          m_Factory        : access WinRt.Windows.System.Profile.IRetailInfoStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IRetailInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SmartAppControlPolicy");
          m_Factory        : access WinRt.Windows.System.Profile.ISmartAppControlPolicyStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISmartAppControlPolicyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1217,7 +1217,7 @@ package body WinRt.Windows.System.Profile is
 
       procedure remove_Changed
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1249,7 +1249,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemIdentification");
          m_Factory        : access WinRt.Windows.System.Profile.ISystemIdentificationStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.ISystemIdentificationInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.ISystemIdentificationInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemIdentificationInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemIdentificationStatics'Access , m_Factory'Address);
@@ -1259,7 +1259,7 @@ package body WinRt.Windows.System.Profile is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemIdentificationInfo := new Windows.System.Profile.ISystemIdentificationInfo;
+               Retval.m_ISystemIdentificationInfo := new WinRt.Windows.System.Profile.ISystemIdentificationInfo;
                Retval.m_ISystemIdentificationInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1268,7 +1268,7 @@ package body WinRt.Windows.System.Profile is
 
       function GetSystemIdForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.System.Profile.SystemIdentificationInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -1276,7 +1276,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemIdentification");
          m_Factory        : access WinRt.Windows.System.Profile.ISystemIdentificationStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.ISystemIdentificationInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.ISystemIdentificationInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemIdentificationInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemIdentificationStatics'Access , m_Factory'Address);
@@ -1286,7 +1286,7 @@ package body WinRt.Windows.System.Profile is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemIdentificationInfo := new Windows.System.Profile.ISystemIdentificationInfo;
+               Retval.m_ISystemIdentificationInfo := new WinRt.Windows.System.Profile.ISystemIdentificationInfo;
                Retval.m_ISystemIdentificationInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1326,7 +1326,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISystemIdentificationInfo.all.get_Id (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1343,7 +1343,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Profile.SystemIdentificationSource;
+      m_ComRetVal      : aliased WinRt.Windows.System.Profile.SystemIdentificationSource;
    begin
       Hr := this.m_ISystemIdentificationInfo.all.get_Source (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1363,7 +1363,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemSetupInfo");
          m_Factory        : access WinRt.Windows.System.Profile.ISystemSetupInfoStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.SystemOutOfBoxExperienceState;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.SystemOutOfBoxExperienceState;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemSetupInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1387,7 +1387,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemSetupInfo");
          m_Factory        : access WinRt.Windows.System.Profile.ISystemSetupInfoStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemSetupInfoStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1403,7 +1403,7 @@ package body WinRt.Windows.System.Profile is
 
       procedure remove_OutOfBoxExperienceStateChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1475,7 +1475,7 @@ package body WinRt.Windows.System.Profile is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Profile.UnsupportedAppRequirementReasons;
+      m_ComRetVal      : aliased WinRt.Windows.System.Profile.UnsupportedAppRequirementReasons;
    begin
       Hr := this.m_IUnsupportedAppRequirement.all.get_Reasons (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1582,7 +1582,7 @@ package body WinRt.Windows.System.Profile is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.WindowsIntegrityPolicy");
          m_Factory        : access WinRt.Windows.System.Profile.IWindowsIntegrityPolicyStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWindowsIntegrityPolicyStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1598,7 +1598,7 @@ package body WinRt.Windows.System.Profile is
 
       procedure remove_PolicyChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;

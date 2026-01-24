@@ -135,7 +135,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
 
    function RequestAccessForCapabilitiesForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       capabilityNames : GenericObject
    )
    return WinRt.GenericObject is
@@ -214,7 +214,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
       HStr_capabilityName : constant WinRt.HString := To_HString (capabilityName);
    begin
       return RetVal : WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability do
@@ -225,7 +225,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppCapability := new Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
+            Retval.m_IAppCapability := new WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
             Retval.m_IAppCapability.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -235,7 +235,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
 
    function CreateWithProcessIdForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       capabilityName : WinRt.WString;
       pid : WinRt.UInt32
    )
@@ -245,7 +245,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authorization.AppCapabilityAccess.AppCapability");
       m_Factory        : access WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapabilityStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
       HStr_capabilityName : constant WinRt.HString := To_HString (capabilityName);
    begin
       return RetVal : WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapability do
@@ -256,7 +256,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppCapability := new Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
+            Retval.m_IAppCapability := new WinRt.Windows.Security.Authorization.AppCapabilityAccess.IAppCapability;
             Retval.m_IAppCapability.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -295,14 +295,14 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppCapability.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -378,7 +378,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
    begin
       Hr := this.m_IAppCapability.all.CheckAccess (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -396,7 +396,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCapability.all.add_AccessChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -408,7 +408,7 @@ package body WinRt.Windows.Security.Authorization.AppCapabilityAccess is
    procedure remove_AccessChanged
    (
       this : in out AppCapability;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

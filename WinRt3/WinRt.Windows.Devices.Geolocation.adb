@@ -156,7 +156,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICivicAddress.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -190,22 +190,22 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    )
    return GeoboundingBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (northwestCorner, southeastCorner, m_ComRetVal'Access);
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -215,23 +215,23 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return GeoboundingBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReference (northwestCorner, southeastCorner, altitudeReferenceSystem, m_ComRetVal'Access);
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -241,24 +241,24 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return GeoboundingBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceAndSpatialReference (northwestCorner, southeastCorner, altitudeReferenceSystem, spatialReferenceId, m_ComRetVal'Access);
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -279,7 +279,7 @@ package body WinRt.Windows.Devices.Geolocation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeoboundingBoxStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxStatics'Access , m_Factory'Address);
@@ -289,7 +289,7 @@ package body WinRt.Windows.Devices.Geolocation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -299,7 +299,7 @@ package body WinRt.Windows.Devices.Geolocation is
    function TryCompute
    (
       positions : GenericObject;
-      altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox is
       Hr               : WinRt.HResult := S_OK;
@@ -307,7 +307,7 @@ package body WinRt.Windows.Devices.Geolocation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeoboundingBoxStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxStatics'Access , m_Factory'Address);
@@ -317,7 +317,7 @@ package body WinRt.Windows.Devices.Geolocation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -327,7 +327,7 @@ package body WinRt.Windows.Devices.Geolocation is
    function TryCompute
    (
       positions : GenericObject;
-      altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox is
@@ -336,7 +336,7 @@ package body WinRt.Windows.Devices.Geolocation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeoboundingBoxStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoboundingBox;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeoboundingBox do
          Hr := RoGetActivationFactory (m_hString, IID_IGeoboundingBoxStatics'Access , m_Factory'Address);
@@ -346,7 +346,7 @@ package body WinRt.Windows.Devices.Geolocation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGeoboundingBox := new Windows.Devices.Geolocation.IGeoboundingBox;
+            Retval.m_IGeoboundingBox := new WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
             Retval.m_IGeoboundingBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -364,7 +364,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IGeoboundingBox.all.get_NorthwestCorner (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -381,7 +381,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IGeoboundingBox.all.get_SoutheastCorner (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -398,7 +398,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IGeoboundingBox.all.get_Center (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -450,7 +450,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.GeoshapeType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.GeoshapeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeoboundingBox_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeoboundingBox.all);
@@ -492,7 +492,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeoboundingBox_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeoboundingBox.all);
@@ -529,22 +529,22 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double
    )
    return Geocircle is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeocircle;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeocircle;
    begin
       return RetVal : Geocircle do
          Hr := RoGetActivationFactory (m_hString, IID_IGeocircleFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (position, radius, m_ComRetVal'Access);
-            Retval.m_IGeocircle := new Windows.Devices.Geolocation.IGeocircle;
+            Retval.m_IGeocircle := new WinRt.Windows.Devices.Geolocation.IGeocircle;
             Retval.m_IGeocircle.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -554,23 +554,23 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geocircle is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeocircle;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeocircle;
    begin
       return RetVal : Geocircle do
          Hr := RoGetActivationFactory (m_hString, IID_IGeocircleFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceSystem (position, radius, altitudeReferenceSystem, m_ComRetVal'Access);
-            Retval.m_IGeocircle := new Windows.Devices.Geolocation.IGeocircle;
+            Retval.m_IGeocircle := new WinRt.Windows.Devices.Geolocation.IGeocircle;
             Retval.m_IGeocircle.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -580,24 +580,24 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geocircle is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeocircle;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeocircle;
    begin
       return RetVal : Geocircle do
          Hr := RoGetActivationFactory (m_hString, IID_IGeocircleFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceSystemAndSpatialReferenceId (position, radius, altitudeReferenceSystem, spatialReferenceId, m_ComRetVal'Access);
-            Retval.m_IGeocircle := new Windows.Devices.Geolocation.IGeocircle;
+            Retval.m_IGeocircle := new WinRt.Windows.Devices.Geolocation.IGeocircle;
             Retval.m_IGeocircle.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -616,7 +616,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IGeocircle.all.get_Center (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -651,7 +651,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.GeoshapeType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.GeoshapeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocircle_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeocircle.all);
@@ -693,7 +693,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocircle_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeocircle.all);
@@ -770,7 +770,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinate.all.get_Altitude (m_ComRetVal'Access);
@@ -807,7 +807,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinate.all.get_AltitudeAccuracy (m_ComRetVal'Access);
@@ -827,7 +827,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinate.all.get_Heading (m_ComRetVal'Access);
@@ -847,7 +847,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinate.all.get_Speed (m_ComRetVal'Access);
@@ -867,7 +867,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGeocoordinate.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -885,7 +885,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionData := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.PositionSource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.PositionSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinate_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionData, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateWithPositionData'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeocoordinate.all);
@@ -906,7 +906,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionData := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeocoordinateSatelliteData;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinate_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionData, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateWithPositionData'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.GeocoordinateSatelliteData do
@@ -916,7 +916,7 @@ package body WinRt.Windows.Devices.Geolocation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeocoordinateSatelliteData := new Windows.Devices.Geolocation.IGeocoordinateSatelliteData;
+         Retval.m_IGeocoordinateSatelliteData := new WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData;
          Retval.m_IGeocoordinateSatelliteData.all := m_ComRetVal;
       end return;
    end;
@@ -930,7 +930,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPoint := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinate_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPoint, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateWithPoint'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
@@ -940,7 +940,7 @@ package body WinRt.Windows.Devices.Geolocation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+         Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
    end;
@@ -954,7 +954,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionSourceTimestamp := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinate_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateWithPositionSourceTimestamp, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateWithPositionSourceTimestamp'Unchecked_Access);
    begin
@@ -1021,7 +1021,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinateSatelliteData.all.get_PositionDilutionOfPrecision (m_ComRetVal'Access);
@@ -1041,7 +1041,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinateSatelliteData.all.get_HorizontalDilutionOfPrecision (m_ComRetVal'Access);
@@ -1061,7 +1061,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGeocoordinateSatelliteData.all.get_VerticalDilutionOfPrecision (m_ComRetVal'Access);
@@ -1082,7 +1082,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData2, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateSatelliteData2'Unchecked_Access);
    begin
@@ -1106,7 +1106,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData_Interface, WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData2, WinRt.Windows.Devices.Geolocation.IID_IGeocoordinateSatelliteData2'Unchecked_Access);
    begin
@@ -1147,13 +1147,13 @@ package body WinRt.Windows.Devices.Geolocation is
    function Constructor return Geolocator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeolocator;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeolocator");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeolocator;
    begin
       return RetVal : Geolocator do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGeolocator := new Windows.Devices.Geolocation.IGeolocator;
+            Retval.m_IGeolocator := new WinRt.Windows.Devices.Geolocation.IGeolocator;
             Retval.m_IGeolocator.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1232,7 +1232,7 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function GetGeopositionHistoryAsync
    (
-      startTime : Windows.Foundation.DateTime
+      startTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1302,8 +1302,8 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function GetGeopositionHistoryAsync
    (
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.Devices.Geolocation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
       m_Factory        : access WinRt.Windows.Devices.Geolocation.IGeolocatorStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGeolocatorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1445,7 +1445,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.PositionAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.PositionAccuracy;
    begin
       Hr := this.m_IGeolocator.all.get_DesiredAccuracy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1457,7 +1457,7 @@ package body WinRt.Windows.Devices.Geolocation is
    procedure put_DesiredAccuracy
    (
       this : in out Geolocator;
-      value : Windows.Devices.Geolocation.PositionAccuracy
+      value : WinRt.Windows.Devices.Geolocation.PositionAccuracy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1541,7 +1541,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.PositionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.PositionStatus;
    begin
       Hr := this.m_IGeolocator.all.get_LocationStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1603,7 +1603,7 @@ package body WinRt.Windows.Devices.Geolocation is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+                  Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
                   Retval.m_IGeoposition.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1619,8 +1619,8 @@ package body WinRt.Windows.Devices.Geolocation is
    function GetGeopositionAsync
    (
       this : in out Geolocator;
-      maximumAge : Windows.Foundation.TimeSpan;
-      timeout : Windows.Foundation.TimeSpan
+      maximumAge : WinRt.Windows.Foundation.TimeSpan;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Devices.Geolocation.Geoposition'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1671,7 +1671,7 @@ package body WinRt.Windows.Devices.Geolocation is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+                  Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
                   Retval.m_IGeoposition.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1693,7 +1693,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeolocator.all.add_PositionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.Devices.Geolocation is
    procedure remove_PositionChanged
    (
       this : in out Geolocator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1726,7 +1726,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeolocator.all.add_StatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1738,7 +1738,7 @@ package body WinRt.Windows.Devices.Geolocation is
    procedure remove_StatusChanged
    (
       this : in out Geolocator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1759,7 +1759,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeolocator_Interface, WinRt.Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy, WinRt.Windows.Devices.Geolocation.IID_IGeolocatorWithScalarAccuracy'Unchecked_Access);
    begin
@@ -1841,16 +1841,16 @@ package body WinRt.Windows.Devices.Geolocation is
    return Geopath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopath;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : Geopath do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopathFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (positions, m_ComRetVal'Access);
-            Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
+            Retval.m_IGeopath := new WinRt.Windows.Devices.Geolocation.IGeopath;
             Retval.m_IGeopath.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1861,21 +1861,21 @@ package body WinRt.Windows.Devices.Geolocation is
    function Constructor
    (
       positions : GenericObject;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geopath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopath;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : Geopath do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopathFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReference (positions, altitudeReferenceSystem, m_ComRetVal'Access);
-            Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
+            Retval.m_IGeopath := new WinRt.Windows.Devices.Geolocation.IGeopath;
             Retval.m_IGeopath.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1886,22 +1886,22 @@ package body WinRt.Windows.Devices.Geolocation is
    function Constructor
    (
       positions : GenericObject;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geopath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopath;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopath;
    begin
       return RetVal : Geopath do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopathFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceAndSpatialReference (positions, altitudeReferenceSystem, spatialReferenceId, m_ComRetVal'Access);
-            Retval.m_IGeopath := new Windows.Devices.Geolocation.IGeopath;
+            Retval.m_IGeopath := new WinRt.Windows.Devices.Geolocation.IGeopath;
             Retval.m_IGeopath.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1920,7 +1920,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_BasicGeoposition.Kind;
    begin
       Hr := this.m_IGeopath.all.get_Positions (m_ComRetVal'Access);
@@ -1941,7 +1941,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.GeoshapeType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.GeoshapeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeopath_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeopath.all);
@@ -1983,7 +1983,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeopath_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeopath.all);
@@ -2020,21 +2020,21 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    )
    return Geopoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : Geopoint do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopointFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (position, m_ComRetVal'Access);
-            Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+            Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
             Retval.m_IGeopoint.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2044,22 +2044,22 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geopoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : Geopoint do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopointFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceSystem (position, altitudeReferenceSystem, m_ComRetVal'Access);
-            Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+            Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
             Retval.m_IGeopoint.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2069,23 +2069,23 @@ package body WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geopoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : Geopoint do
          Hr := RoGetActivationFactory (m_hString, IID_IGeopointFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithAltitudeReferenceSystemAndSpatialReferenceId (position, altitudeReferenceSystem, spatialReferenceId, m_ComRetVal'Access);
-            Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+            Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
             Retval.m_IGeopoint.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2104,7 +2104,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IGeopoint.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2122,7 +2122,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.GeoshapeType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.GeoshapeType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeopoint_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeopoint.all);
@@ -2164,7 +2164,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoshape := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeopoint_Interface, WinRt.Windows.Devices.Geolocation.IGeoshape, WinRt.Windows.Devices.Geolocation.IID_IGeoshape'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeopoint.all);
@@ -2207,14 +2207,14 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeocoordinate;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeocoordinate;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geocoordinate do
          Hr := this.m_IGeoposition.all.get_Coordinate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeocoordinate := new Windows.Devices.Geolocation.IGeocoordinate;
+         Retval.m_IGeocoordinate := new WinRt.Windows.Devices.Geolocation.IGeocoordinate;
          Retval.m_IGeocoordinate.all := m_ComRetVal;
       end return;
    end;
@@ -2227,14 +2227,14 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.ICivicAddress;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.ICivicAddress;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.CivicAddress do
          Hr := this.m_IGeoposition.all.get_CivicAddress (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICivicAddress := new Windows.Devices.Geolocation.ICivicAddress;
+         Retval.m_ICivicAddress := new WinRt.Windows.Devices.Geolocation.ICivicAddress;
          Retval.m_ICivicAddress.all := m_ComRetVal;
       end return;
    end;
@@ -2248,7 +2248,7 @@ package body WinRt.Windows.Devices.Geolocation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Geolocation.IGeoposition2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IVenueData;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IVenueData;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Geolocation.IGeoposition_Interface, WinRt.Windows.Devices.Geolocation.IGeoposition2, WinRt.Windows.Devices.Geolocation.IID_IGeoposition2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.VenueData do
@@ -2258,7 +2258,7 @@ package body WinRt.Windows.Devices.Geolocation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVenueData := new Windows.Devices.Geolocation.IVenueData;
+         Retval.m_IVenueData := new WinRt.Windows.Devices.Geolocation.IVenueData;
          Retval.m_IVenueData.all := m_ComRetVal;
       end return;
    end;
@@ -2294,14 +2294,14 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoposition;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geoposition do
          Hr := this.m_IGeovisit.all.get_Position (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+         Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
          Retval.m_IGeoposition.all := m_ComRetVal;
       end return;
    end;
@@ -2314,7 +2314,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.VisitStateChange;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.VisitStateChange;
    begin
       Hr := this.m_IGeovisit.all.get_StateChange (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2331,7 +2331,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGeovisit.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2366,13 +2366,13 @@ package body WinRt.Windows.Devices.Geolocation is
    function Constructor return GeovisitMonitor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.GeovisitMonitor");
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.IGeovisitMonitor;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.IGeovisitMonitor");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.IGeovisitMonitor;
    begin
       return RetVal : GeovisitMonitor do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGeovisitMonitor := new Windows.Devices.Geolocation.IGeovisitMonitor;
+            Retval.m_IGeovisitMonitor := new WinRt.Windows.Devices.Geolocation.IGeovisitMonitor;
             Retval.m_IGeovisitMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2437,7 +2437,7 @@ package body WinRt.Windows.Devices.Geolocation is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGeovisit := new Windows.Devices.Geolocation.IGeovisit;
+                     Retval.m_IGeovisit := new WinRt.Windows.Devices.Geolocation.IGeovisit;
                      Retval.m_IGeovisit.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.VisitMonitoringScope;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.VisitMonitoringScope;
    begin
       Hr := this.m_IGeovisitMonitor.all.get_MonitoringScope (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2475,7 +2475,7 @@ package body WinRt.Windows.Devices.Geolocation is
    procedure Start
    (
       this : in out GeovisitMonitor;
-      value : Windows.Devices.Geolocation.VisitMonitoringScope
+      value : WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2510,7 +2510,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeovisitMonitor.all.add_VisitStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2522,7 +2522,7 @@ package body WinRt.Windows.Devices.Geolocation is
    procedure remove_VisitStateChanged
    (
       this : in out GeovisitMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2565,14 +2565,14 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeovisit;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeovisit;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geovisit do
          Hr := this.m_IGeovisitStateChangedEventArgs.all.get_Visit (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeovisit := new Windows.Devices.Geolocation.IGeovisit;
+         Retval.m_IGeovisit := new WinRt.Windows.Devices.Geolocation.IGeovisit;
          Retval.m_IGeovisit.all := m_ComRetVal;
       end return;
    end;
@@ -2608,7 +2608,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGeovisit.Kind;
    begin
       Hr := this.m_IGeovisitTriggerDetails.all.ReadReports (m_ComRetVal'Access);
@@ -2651,14 +2651,14 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoposition;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geoposition do
          Hr := this.m_IPositionChangedEventArgs.all.get_Position (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+         Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
          Retval.m_IGeoposition.all := m_ComRetVal;
       end return;
    end;
@@ -2694,7 +2694,7 @@ package body WinRt.Windows.Devices.Geolocation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.PositionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.PositionStatus;
    begin
       Hr := this.m_IStatusChangedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then

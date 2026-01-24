@@ -65,16 +65,16 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    return FrameNavigationOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.FrameNavigationOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.IFrameNavigationOptions");
       m_Factory    : access IFrameNavigationOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Navigation.IFrameNavigationOptions;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Navigation.IFrameNavigationOptions;
    begin
       return RetVal : FrameNavigationOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameNavigationOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFrameNavigationOptions := new Windows.UI.Xaml.Navigation.IFrameNavigationOptions;
+            Retval.m_IFrameNavigationOptions := new WinRt.Windows.UI.Xaml.Navigation.IFrameNavigationOptions;
             Retval.m_IFrameNavigationOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -125,14 +125,14 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo do
          Hr := this.m_IFrameNavigationOptions.all.get_TransitionInfoOverride (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+         Retval.m_INavigationTransitionInfo := new WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
          Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -140,7 +140,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    procedure put_TransitionInfoOverride
    (
       this : in out FrameNavigationOptions;
-      value : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -159,7 +159,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    (
       this : access LoadCompletedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+      e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -175,7 +175,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    (
       this : access NavigatedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+      e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -247,7 +247,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Navigation.NavigationMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Navigation.NavigationMode;
    begin
       Hr := this.m_INavigatingCancelEventArgs.all.get_NavigationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -264,7 +264,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.TypeName;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.TypeName;
    begin
       Hr := this.m_INavigatingCancelEventArgs.all.get_SourcePageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -303,7 +303,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs_Interface, WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs2, WinRt.Windows.UI.Xaml.Navigation.IID_INavigatingCancelEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo do
@@ -313,7 +313,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+         Retval.m_INavigationTransitionInfo := new WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
          Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -325,7 +325,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    (
       this : access NavigatingCancelEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs
+      e : WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -399,7 +399,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.TypeName;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.TypeName;
    begin
       Hr := this.m_INavigationEventArgs.all.get_SourcePageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -416,7 +416,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Navigation.NavigationMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Navigation.NavigationMode;
    begin
       Hr := this.m_INavigationEventArgs.all.get_NavigationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -433,14 +433,14 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_INavigationEventArgs.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -448,7 +448,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    procedure put_Uri
    (
       this : in out NavigationEventArgs;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -469,7 +469,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs_Interface, WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs2, WinRt.Windows.UI.Xaml.Navigation.IID_INavigationEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo do
@@ -479,7 +479,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+         Retval.m_INavigationTransitionInfo := new WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
          Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -515,7 +515,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_INavigationFailedEventArgs.all.get_Exception (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -564,7 +564,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.TypeName;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.TypeName;
    begin
       Hr := this.m_INavigationFailedEventArgs.all.get_SourcePageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -580,7 +580,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    (
       this : access NavigationFailedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Navigation.INavigationFailedEventArgs
+      e : WinRt.Windows.UI.Xaml.Navigation.INavigationFailedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -596,7 +596,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    (
       this : access NavigationStoppedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+      e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -630,23 +630,23 @@ package body WinRt.Windows.UI.Xaml.Navigation is
 
    function Constructor
    (
-      sourcePageType : Windows.UI.Xaml.Interop.TypeName;
+      sourcePageType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
-      navigationTransitionInfo : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
+      navigationTransitionInfo : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    )
    return PageStackEntry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.PageStackEntry");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.IPageStackEntry");
       m_Factory    : access IPageStackEntryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Navigation.IPageStackEntry;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Navigation.IPageStackEntry;
    begin
       return RetVal : PageStackEntry do
          Hr := RoGetActivationFactory (m_hString, IID_IPageStackEntryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (sourcePageType, parameter, navigationTransitionInfo.m_INavigationTransitionInfo.all, m_ComRetVal'Access);
-            Retval.m_IPageStackEntry := new Windows.UI.Xaml.Navigation.IPageStackEntry;
+            Retval.m_IPageStackEntry := new WinRt.Windows.UI.Xaml.Navigation.IPageStackEntry;
             Retval.m_IPageStackEntry.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -664,7 +664,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.PageStackEntry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Navigation.IPageStackEntryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPageStackEntryStatics'Access , m_Factory'Address);
@@ -674,7 +674,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -692,7 +692,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.TypeName;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.TypeName;
    begin
       Hr := this.m_IPageStackEntry.all.get_SourcePageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -726,14 +726,14 @@ package body WinRt.Windows.UI.Xaml.Navigation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo do
          Hr := this.m_IPageStackEntry.all.get_NavigationTransitionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INavigationTransitionInfo := new Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+         Retval.m_INavigationTransitionInfo := new WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
          Retval.m_INavigationTransitionInfo.all := m_ComRetVal;
       end return;
    end;

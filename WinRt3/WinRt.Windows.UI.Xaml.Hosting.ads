@@ -283,22 +283,22 @@ package WinRt.Windows.UI.Xaml.Hosting is
       (
          this : access IDesignerAppManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DesignerAppExited
       (
          this : access IDesignerAppManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateNewViewAsync
       (
          this : access IDesignerAppManager_Interface;
-         initialViewState : Windows.UI.Xaml.Hosting.DesignerAppViewState;
-         initialViewSize : Windows.Foundation.Size;
+         initialViewState : WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState;
+         initialViewSize : WinRt.Windows.Foundation.Size;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -309,7 +309,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
          dllName : WinRt.HString;
          classId : WinRt.Guid;
          initializationData : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -322,7 +322,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       (
          this : access IDesignerAppManagerFactory_Interface;
          appUserModelId : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Hosting.IDesignerAppManager
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IDesignerAppManager
       )
       return WinRt.Hresult is abstract;
 
@@ -348,23 +348,23 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_ViewState
       (
          this : access IDesignerAppView_Interface;
-         RetVal : access Windows.UI.Xaml.Hosting.DesignerAppViewState
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewSize
       (
          this : access IDesignerAppView_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function UpdateViewAsync
       (
          this : access IDesignerAppView_Interface;
-         viewState : Windows.UI.Xaml.Hosting.DesignerAppViewState;
-         viewSize : Windows.Foundation.Size;
-         RetVal : access Windows.Foundation.IAsyncAction
+         viewState : WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState;
+         viewSize : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -376,14 +376,14 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_Content
       (
          this : access IDesktopWindowXamlSource_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access IDesktopWindowXamlSource_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -398,14 +398,14 @@ package WinRt.Windows.UI.Xaml.Hosting is
       (
          this : access IDesktopWindowXamlSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TakeFocusRequested
       (
          this : access IDesktopWindowXamlSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -413,22 +413,22 @@ package WinRt.Windows.UI.Xaml.Hosting is
       (
          this : access IDesktopWindowXamlSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access IDesktopWindowXamlSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function NavigateFocus
       (
          this : access IDesktopWindowXamlSource_Interface;
-         request : Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult
+         request : WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -442,7 +442,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
          this : access IDesktopWindowXamlSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource
       )
       return WinRt.Hresult is abstract;
 
@@ -454,7 +454,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_Request
       (
          this : access IDesktopWindowXamlSourceGotFocusEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -466,7 +466,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_Request
       (
          this : access IDesktopWindowXamlSourceTakeFocusRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -483,32 +483,32 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function GetElementVisual
       (
          this : access IElementCompositionPreviewStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Composition.IVisual
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function GetElementChildVisual
       (
          this : access IElementCompositionPreviewStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Composition.IVisual
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function SetElementChildVisual
       (
          this : access IElementCompositionPreviewStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         visual : Windows.UI.Composition.IVisual
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         visual : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function GetScrollViewerManipulationPropertySet
       (
          this : access IElementCompositionPreviewStatics_Interface;
-         scrollViewer : Windows.UI.Xaml.Controls.IScrollViewer;
-         RetVal : access Windows.UI.Composition.ICompositionPropertySet
+         scrollViewer : WinRt.Windows.UI.Xaml.Controls.IScrollViewer;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -520,23 +520,23 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function SetImplicitShowAnimation
       (
          this : access IElementCompositionPreviewStatics2_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         animation : Windows.UI.Composition.ICompositionAnimationBase
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
       function SetImplicitHideAnimation
       (
          this : access IElementCompositionPreviewStatics2_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         animation : Windows.UI.Composition.ICompositionAnimationBase
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
       function SetIsTranslationEnabled
       (
          this : access IElementCompositionPreviewStatics2_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -544,8 +544,8 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function GetPointerPositionPropertySet
       (
          this : access IElementCompositionPreviewStatics2_Interface;
-         targetElement : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Composition.ICompositionPropertySet
+         targetElement : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -557,16 +557,16 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function SetAppWindowContent
       (
          this : access IElementCompositionPreviewStatics3_Interface;
-         appWindow : Windows.UI.WindowManagement.IAppWindow;
-         xamlContent : Windows.UI.Xaml.IUIElement
+         appWindow : WinRt.Windows.UI.WindowManagement.IAppWindow;
+         xamlContent : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function GetAppWindowContent
       (
          this : access IElementCompositionPreviewStatics3_Interface;
-         appWindow : Windows.UI.WindowManagement.IAppWindow;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         appWindow : WinRt.Windows.UI.WindowManagement.IAppWindow;
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -583,7 +583,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function InitializeForCurrentThread
       (
          this : access IWindowsXamlManagerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Hosting.IWindowsXamlManager
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IWindowsXamlManager
       )
       return WinRt.Hresult is abstract;
 
@@ -595,14 +595,14 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_Reason
       (
          this : access IXamlSourceFocusNavigationRequest_Interface;
-         RetVal : access Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason
       )
       return WinRt.Hresult is abstract;
 
       function get_HintRect
       (
          this : access IXamlSourceFocusNavigationRequest_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -621,27 +621,27 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function CreateInstance
       (
          this : access IXamlSourceFocusNavigationRequestFactory_Interface;
-         reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
+         reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithHintRect
       (
          this : access IXamlSourceFocusNavigationRequestFactory_Interface;
-         reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
-         hintRect : Windows.Foundation.Rect;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
+         reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
+         hintRect : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithHintRectAndCorrelationId
       (
          this : access IXamlSourceFocusNavigationRequestFactory_Interface;
-         reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
-         hintRect : Windows.Foundation.Rect;
+         reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
+         hintRect : WinRt.Windows.Foundation.Rect;
          correlationId : WinRt.Guid;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -666,7 +666,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       (
          this : access IXamlSourceFocusNavigationResultFactory_Interface;
          focusMoved : WinRt.Boolean;
-         RetVal : access Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult
+         RetVal : access WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -678,14 +678,14 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function get_RootElement
       (
          this : access IXamlUIPresenter_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_RootElement
       (
          this : access IXamlUIPresenter_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -770,7 +770,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function ResolveDictionaryResource
       (
          this : access IXamlUIPresenterHost3_Interface;
-         dictionary : Windows.UI.Xaml.IResourceDictionary;
+         dictionary : WinRt.Windows.UI.Xaml.IResourceDictionary;
          dictionaryKey : WinRt.IInspectable;
          suggestedValue : WinRt.IInspectable;
          RetVal : access WinRt.IInspectable
@@ -799,7 +799,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function SetHost
       (
          this : access IXamlUIPresenterStatics_Interface;
-         host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
+         host : WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
       )
       return WinRt.Hresult is abstract;
 
@@ -817,25 +817,25 @@ package WinRt.Windows.UI.Xaml.Hosting is
       function GetFlyoutPlacementTargetInfo
       (
          this : access IXamlUIPresenterStatics2_Interface;
-         placementTarget : Windows.UI.Xaml.IFrameworkElement;
-         preferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
-         targetPreferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
+         placementTarget : WinRt.Windows.UI.Xaml.IFrameworkElement;
+         preferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
+         targetPreferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
          allowFallbacks : WinRt.Boolean_Ptr;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function GetFlyoutPlacement
       (
          this : access IXamlUIPresenterStatics2_Interface;
-         placementTargetBounds : Windows.Foundation.Rect;
-         controlSize : Windows.Foundation.Size;
-         minControlSize : Windows.Foundation.Size;
-         containerRect : Windows.Foundation.Rect;
-         targetPreferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
+         placementTargetBounds : WinRt.Windows.Foundation.Rect;
+         controlSize : WinRt.Windows.Foundation.Size;
+         minControlSize : WinRt.Windows.Foundation.Size;
+         containerRect : WinRt.Windows.Foundation.Rect;
+         targetPreferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
          allowFallbacks : WinRt.Boolean;
-         chosenPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
-         RetVal : access Windows.Foundation.Rect
+         chosenPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -894,14 +894,14 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure remove_DesignerAppExited
    (
       this : in out DesignerAppManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateNewViewAsync
    (
       this : in out DesignerAppManager;
-      initialViewState : Windows.UI.Xaml.Hosting.DesignerAppViewState;
-      initialViewSize : Windows.Foundation.Size
+      initialViewState : WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState;
+      initialViewSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.UI.Xaml.Hosting.DesignerAppView'Class;
 
@@ -954,8 +954,8 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure UpdateViewAsync
    (
       this : in out DesignerAppView;
-      viewState : Windows.UI.Xaml.Hosting.DesignerAppViewState;
-      viewSize : Windows.Foundation.Size
+      viewState : WinRt.Windows.UI.Xaml.Hosting.DesignerAppViewState;
+      viewSize : WinRt.Windows.Foundation.Size
    );
 
    procedure Close
@@ -991,7 +991,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure put_Content
    (
       this : in out DesktopWindowXamlSource;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function get_HasFocus
@@ -1010,7 +1010,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure remove_TakeFocusRequested
    (
       this : in out DesktopWindowXamlSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GotFocus
@@ -1023,13 +1023,13 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure remove_GotFocus
    (
       this : in out DesktopWindowXamlSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function NavigateFocus
    (
       this : in out DesktopWindowXamlSource;
-      request : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest'Class
+      request : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest'Class
    )
    return WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult'Class;
 
@@ -1079,61 +1079,61 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    procedure SetImplicitShowAnimation
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    procedure SetImplicitHideAnimation
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    procedure SetIsTranslationEnabled
    (
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       value : WinRt.Boolean
    );
 
    function GetPointerPositionPropertySet
    (
-      targetElement : Windows.UI.Xaml.UIElement'Class
+      targetElement : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet;
 
    function GetElementVisual
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Composition.Visual;
 
    function GetElementChildVisual
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Composition.Visual;
 
    procedure SetElementChildVisual
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      visual : Windows.UI.Composition.Visual'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      visual : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    function GetScrollViewerManipulationPropertySet
    (
-      scrollViewer : Windows.UI.Xaml.Controls.ScrollViewer'Class
+      scrollViewer : WinRt.Windows.UI.Xaml.Controls.ScrollViewer'Class
    )
    return WinRt.Windows.UI.Composition.CompositionPropertySet;
 
    procedure SetAppWindowContent
    (
-      appWindow : Windows.UI.WindowManagement.AppWindow'Class;
-      xamlContent : Windows.UI.Xaml.UIElement'Class
+      appWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class;
+      xamlContent : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function GetAppWindowContent
    (
-      appWindow : Windows.UI.WindowManagement.AppWindow'Class
+      appWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class
    )
    return WinRt.Windows.UI.Xaml.UIElement;
 
@@ -1171,21 +1171,21 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    function Constructor
    (
-      reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason
+      reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason
    )
    return XamlSourceFocusNavigationRequest;
 
    function Constructor
    (
-      reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
-      hintRect : Windows.Foundation.Rect
+      reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
+      hintRect : WinRt.Windows.Foundation.Rect
    )
    return XamlSourceFocusNavigationRequest;
 
    function Constructor
    (
-      reason : Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
-      hintRect : Windows.Foundation.Rect;
+      reason : WinRt.Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationReason;
+      hintRect : WinRt.Windows.Foundation.Rect;
       correlationId : WinRt.Guid
    )
    return XamlSourceFocusNavigationRequest;
@@ -1254,29 +1254,29 @@ package WinRt.Windows.UI.Xaml.Hosting is
 
    procedure SetHost
    (
-      host : Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
+      host : WinRt.Windows.UI.Xaml.Hosting.IXamlUIPresenterHost
    );
 
    procedure NotifyWindowSizeChanged;
 
    function GetFlyoutPlacementTargetInfo
    (
-      placementTarget : Windows.UI.Xaml.FrameworkElement'Class;
-      preferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
-      targetPreferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
+      placementTarget : WinRt.Windows.UI.Xaml.FrameworkElement'Class;
+      preferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
+      targetPreferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr;
       allowFallbacks : WinRt.Boolean_Ptr
    )
    return WinRt.Windows.Foundation.Rect;
 
    function GetFlyoutPlacement
    (
-      placementTargetBounds : Windows.Foundation.Rect;
-      controlSize : Windows.Foundation.Size;
-      minControlSize : Windows.Foundation.Size;
-      containerRect : Windows.Foundation.Rect;
-      targetPreferredPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
+      placementTargetBounds : WinRt.Windows.Foundation.Rect;
+      controlSize : WinRt.Windows.Foundation.Size;
+      minControlSize : WinRt.Windows.Foundation.Size;
+      containerRect : WinRt.Windows.Foundation.Rect;
+      targetPreferredPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode;
       allowFallbacks : WinRt.Boolean;
-      chosenPlacement : Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr
+      chosenPlacement : WinRt.Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode_Ptr
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -1292,7 +1292,7 @@ package WinRt.Windows.UI.Xaml.Hosting is
    procedure put_RootElement
    (
       this : in out XamlUIPresenter;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function get_ThemeKey

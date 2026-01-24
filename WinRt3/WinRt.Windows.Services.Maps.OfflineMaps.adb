@@ -65,7 +65,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
 
    function FindPackagesAsync
    (
-      queryPoint : Windows.Devices.Geolocation.Geopoint'Class
+      queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
@@ -121,7 +121,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
+                     Retval.m_IOfflineMapPackageQueryResult := new WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -138,7 +138,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
 
    function FindPackagesInBoundingBoxAsync
    (
-      queryBoundingBox : Windows.Devices.Geolocation.GeoboundingBox'Class
+      queryBoundingBox : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
@@ -194,7 +194,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
+                     Retval.m_IOfflineMapPackageQueryResult := new WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -211,7 +211,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
 
    function FindPackagesInGeocircleAsync
    (
-      queryCircle : Windows.Devices.Geolocation.Geocircle'Class
+      queryCircle : WinRt.Windows.Devices.Geolocation.Geocircle'Class
    )
    return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult is
       Hr               : WinRt.HResult := S_OK;
@@ -267,7 +267,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IOfflineMapPackageQueryResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
+                     Retval.m_IOfflineMapPackageQueryResult := new WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
                      Retval.m_IOfflineMapPackageQueryResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -293,7 +293,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus;
    begin
       Hr := this.m_IOfflineMapPackage.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -362,7 +362,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
    procedure remove_StatusChanged
    (
       this : in out OfflineMapPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -383,7 +383,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IOfflineMapPackage.all.add_StatusChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -445,7 +445,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IOfflineMapPackageStartDownloadResult := new Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStartDownloadResult;
+                  Retval.m_IOfflineMapPackageStartDownloadResult := new WinRt.Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStartDownloadResult;
                   Retval.m_IOfflineMapPackageStartDownloadResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -489,7 +489,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus;
    begin
       Hr := this.m_IOfflineMapPackageQueryResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -506,7 +506,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IOfflineMapPackage.Kind;
    begin
       Hr := this.m_IOfflineMapPackageQueryResult.all.get_Packages (m_ComRetVal'Access);
@@ -549,7 +549,7 @@ package body WinRt.Windows.Services.Maps.OfflineMaps is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus;
    begin
       Hr := this.m_IOfflineMapPackageStartDownloadResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then

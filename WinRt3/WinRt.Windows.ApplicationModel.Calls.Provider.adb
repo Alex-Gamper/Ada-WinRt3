@@ -63,13 +63,13 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
    function Constructor return PhoneCallOrigin is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin;
    begin
       return RetVal : PhoneCallOrigin do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPhoneCallOrigin := new Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin;
+            Retval.m_IPhoneCallOrigin := new WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin;
             Retval.m_IPhoneCallOrigin.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -244,7 +244,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin_Interface, WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin3, WinRt.Windows.ApplicationModel.Calls.Provider.IID_IPhoneCallOrigin3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
@@ -254,7 +254,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -262,7 +262,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
    procedure put_DisplayPicture
    (
       this : in out PhoneCallOrigin;
-      value : Windows.Storage.StorageFile'Class
+      value : WinRt.Windows.Storage.StorageFile'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -412,7 +412,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Provider is
       procedure SetCallOrigin
       (
          requestId : WinRt.Guid;
-         callOrigin : Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
+         callOrigin : WinRt.Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;

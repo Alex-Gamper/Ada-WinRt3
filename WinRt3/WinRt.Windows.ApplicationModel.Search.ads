@@ -342,14 +342,14 @@ package WinRt.Windows.ApplicationModel.Search is
       (
          this : access ISearchPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisibilityChanged
       (
          this : access ISearchPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -357,14 +357,14 @@ package WinRt.Windows.ApplicationModel.Search is
       (
          this : access ISearchPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_QueryChanged
       (
          this : access ISearchPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -372,14 +372,14 @@ package WinRt.Windows.ApplicationModel.Search is
       (
          this : access ISearchPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SuggestionsRequested
       (
          this : access ISearchPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -387,14 +387,14 @@ package WinRt.Windows.ApplicationModel.Search is
       (
          this : access ISearchPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_QuerySubmitted
       (
          this : access ISearchPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -402,21 +402,21 @@ package WinRt.Windows.ApplicationModel.Search is
       (
          this : access ISearchPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResultSuggestionChosen
       (
          this : access ISearchPane_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SetLocalContentSuggestionSettings
       (
          this : access ISearchPane_Interface;
-         settings : Windows.ApplicationModel.Search.ILocalContentSuggestionSettings
+         settings : WinRt.Windows.ApplicationModel.Search.ILocalContentSuggestionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -477,7 +477,7 @@ package WinRt.Windows.ApplicationModel.Search is
       function get_LinguisticDetails
       (
          this : access ISearchPaneQueryChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -534,7 +534,7 @@ package WinRt.Windows.ApplicationModel.Search is
       function get_LinguisticDetails
       (
          this : access ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -558,7 +558,7 @@ package WinRt.Windows.ApplicationModel.Search is
       function GetForCurrentView
       (
          this : access ISearchPaneStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPane
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPane
       )
       return WinRt.Hresult is abstract;
 
@@ -588,14 +588,14 @@ package WinRt.Windows.ApplicationModel.Search is
       function get_SearchSuggestionCollection
       (
          this : access ISearchPaneSuggestionsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchSuggestionCollection
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchSuggestionCollection
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access ISearchPaneSuggestionsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPaneSuggestionsRequestDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPaneSuggestionsRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -618,7 +618,7 @@ package WinRt.Windows.ApplicationModel.Search is
       function get_Request
       (
          this : access ISearchPaneSuggestionsRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPaneSuggestionsRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPaneSuggestionsRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -671,7 +671,7 @@ package WinRt.Windows.ApplicationModel.Search is
          queryTextAlternatives : GenericObject;
          queryTextCompositionStart : WinRt.UInt32;
          queryTextCompositionLength : WinRt.UInt32;
-         RetVal : access Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -707,7 +707,7 @@ package WinRt.Windows.ApplicationModel.Search is
          text : WinRt.HString;
          detailText : WinRt.HString;
          tag : WinRt.HString;
-         image : Windows.Storage.Streams.IRandomAccessStreamReference;
+         image : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          imageAlternateText : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -734,14 +734,14 @@ package WinRt.Windows.ApplicationModel.Search is
       function get_SearchSuggestionCollection
       (
          this : access ISearchSuggestionsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchSuggestionCollection
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchSuggestionCollection
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access ISearchSuggestionsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchSuggestionsRequestDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchSuggestionsRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -893,7 +893,7 @@ package WinRt.Windows.ApplicationModel.Search is
    procedure remove_VisibilityChanged
    (
       this : in out SearchPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_QueryChanged
@@ -906,7 +906,7 @@ package WinRt.Windows.ApplicationModel.Search is
    procedure remove_QueryChanged
    (
       this : in out SearchPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SuggestionsRequested
@@ -919,7 +919,7 @@ package WinRt.Windows.ApplicationModel.Search is
    procedure remove_SuggestionsRequested
    (
       this : in out SearchPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_QuerySubmitted
@@ -932,7 +932,7 @@ package WinRt.Windows.ApplicationModel.Search is
    procedure remove_QuerySubmitted
    (
       this : in out SearchPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResultSuggestionChosen
@@ -945,13 +945,13 @@ package WinRt.Windows.ApplicationModel.Search is
    procedure remove_ResultSuggestionChosen
    (
       this : in out SearchPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetLocalContentSuggestionSettings
    (
       this : in out SearchPane;
-      settings : Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
+      settings : WinRt.Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
    );
 
    procedure Show
@@ -1240,7 +1240,7 @@ package WinRt.Windows.ApplicationModel.Search is
       text : WinRt.WString;
       detailText : WinRt.WString;
       tag : WinRt.WString;
-      image : Windows.Storage.Streams.IRandomAccessStreamReference;
+      image : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       imageAlternateText : WinRt.WString
    );
 

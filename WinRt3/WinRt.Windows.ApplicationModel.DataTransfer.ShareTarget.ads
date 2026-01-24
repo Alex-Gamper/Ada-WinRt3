@@ -103,14 +103,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       function get_Thumbnail
       (
          this : access IQuickLink_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IQuickLink_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -150,7 +150,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       function get_Data
       (
          this : access IShareOperation_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
@@ -188,7 +188,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       function ReportCompleted
       (
          this : access IShareOperation_Interface;
-         quicklink_p : Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink
+         quicklink_p : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink
       )
       return WinRt.Hresult is abstract;
 
@@ -269,7 +269,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    procedure put_Thumbnail
    (
       this : in out QuickLink;
-      value : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    );
 
    function get_Id
@@ -340,7 +340,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    procedure ReportCompleted
    (
       this : in out ShareOperation;
-      quicklink_p : Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink'Class
+      quicklink_p : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink'Class
    );
 
    procedure ReportCompleted

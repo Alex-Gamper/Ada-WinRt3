@@ -98,7 +98,7 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       function get_AppointmentInformation
       (
          this : access IAddAppointmentOperation_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 
@@ -246,7 +246,7 @@ package WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       function get_AppointmentInformation
       (
          this : access IReplaceAppointmentOperation_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 

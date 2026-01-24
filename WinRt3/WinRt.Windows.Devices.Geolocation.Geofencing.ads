@@ -163,21 +163,21 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_StartTime
       (
          this : access IGeofence_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IGeofence_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DwellTime
       (
          this : access IGeofence_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -191,14 +191,14 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_MonitoredStates
       (
          this : access IGeofence_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates
       )
       return WinRt.Hresult is abstract;
 
       function get_Geoshape
       (
          this : access IGeofence_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoshape
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoshape
       )
       return WinRt.Hresult is abstract;
 
@@ -218,8 +218,8 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceFactory_Interface;
          id : WinRt.HString;
-         geoshape : Windows.Devices.Geolocation.IGeoshape;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofence
+         geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence
       )
       return WinRt.Hresult is abstract;
 
@@ -227,10 +227,10 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceFactory_Interface;
          id : WinRt.HString;
-         geoshape : Windows.Devices.Geolocation.IGeoshape;
-         monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+         geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+         monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
          singleUse : WinRt.Boolean;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofence
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence
       )
       return WinRt.Hresult is abstract;
 
@@ -238,11 +238,11 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceFactory_Interface;
          id : WinRt.HString;
-         geoshape : Windows.Devices.Geolocation.IGeoshape;
-         monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+         geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+         monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
          singleUse : WinRt.Boolean;
-         dwellTime : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofence
+         dwellTime : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence
       )
       return WinRt.Hresult is abstract;
 
@@ -250,13 +250,13 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceFactory_Interface;
          id : WinRt.HString;
-         geoshape : Windows.Devices.Geolocation.IGeoshape;
-         monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+         geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+         monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
          singleUse : WinRt.Boolean;
-         dwellTime : Windows.Foundation.TimeSpan;
-         startTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofence
+         dwellTime : WinRt.Windows.Foundation.TimeSpan;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence
       )
       return WinRt.Hresult is abstract;
 
@@ -268,7 +268,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_Status
       (
          this : access IGeofenceMonitor_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -282,7 +282,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_LastKnownGeoposition
       (
          this : access IGeofenceMonitor_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -290,14 +290,14 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceMonitor_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GeofenceStateChanged
       (
          this : access IGeofenceMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -312,14 +312,14 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       (
          this : access IGeofenceMonitor_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IGeofenceMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -331,7 +331,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_Current
       (
          this : access IGeofenceMonitorStatics_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -343,28 +343,28 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
       function get_NewState
       (
          this : access IGeofenceStateChangeReport_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.GeofenceState
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceState
       )
       return WinRt.Hresult is abstract;
 
       function get_Geofence
       (
          this : access IGeofenceStateChangeReport_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.IGeofence
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence
       )
       return WinRt.Hresult is abstract;
 
       function get_Geoposition
       (
          this : access IGeofenceStateChangeReport_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoposition
       )
       return WinRt.Hresult is abstract;
 
       function get_RemovalReason
       (
          this : access IGeofenceStateChangeReport_Interface;
-         RetVal : access Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason
+         RetVal : access WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason
       )
       return WinRt.Hresult is abstract;
 
@@ -386,15 +386,15 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape
    )
    return Geofence;
 
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean
    )
    return Geofence;
@@ -402,22 +402,22 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean;
-      dwellTime : Windows.Foundation.TimeSpan
+      dwellTime : WinRt.Windows.Foundation.TimeSpan
    )
    return Geofence;
 
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean;
-      dwellTime : Windows.Foundation.TimeSpan;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      dwellTime : WinRt.Windows.Foundation.TimeSpan;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return Geofence;
 
@@ -509,7 +509,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    procedure remove_GeofenceStateChanged
    (
       this : in out GeofenceMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function ReadReports
@@ -528,7 +528,7 @@ package WinRt.Windows.Devices.Geolocation.Geofencing is
    procedure remove_StatusChanged
    (
       this : in out GeofenceMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

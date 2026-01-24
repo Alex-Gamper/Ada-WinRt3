@@ -1028,41 +1028,41 @@ package WinRt.Windows.Media.Devices is
    -----------------------------------------------------------------------------
 
    IID_CallControlEventHandler : aliased WinRt.IID := (1500476831, 20703, 17492, (188, 99, 77, 61, 1, 182, 25, 88 ));
-   type CallControlEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Devices.ICallControl)) is new WinRt.IMulticastDelegate_Interface (IID_CallControlEventHandler'Access) with null record;
+   type CallControlEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Devices.ICallControl)) is new WinRt.IMulticastDelegate_Interface (IID_CallControlEventHandler'Access) with null record;
       function Invoke
       (
          this : access CallControlEventHandler_Delegate;
-         sender : Windows.Media.Devices.ICallControl
+         sender : WinRt.Windows.Media.Devices.ICallControl
       )
       return WinRt.Hresult;
 
    IID_DialRequestedEventHandler : aliased WinRt.IID := (1522270171, 49695, 19396, (137, 27, 37, 126, 40, 193, 177, 164 ));
-   type DialRequestedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Devices.ICallControl;e : Windows.Media.Devices.IDialRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DialRequestedEventHandler'Access) with null record;
+   type DialRequestedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Devices.ICallControl;e : WinRt.Windows.Media.Devices.IDialRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DialRequestedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DialRequestedEventHandler_Delegate;
-         sender : Windows.Media.Devices.ICallControl;
-         e : Windows.Media.Devices.IDialRequestedEventArgs
+         sender : WinRt.Windows.Media.Devices.ICallControl;
+         e : WinRt.Windows.Media.Devices.IDialRequestedEventArgs
       )
       return WinRt.Hresult;
 
    IID_KeypadPressedEventHandler : aliased WinRt.IID := (3862406228, 50471, 16940, (137, 38, 201, 175, 131, 181, 89, 160 ));
-   type KeypadPressedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Devices.ICallControl;e : Windows.Media.Devices.IKeypadPressedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_KeypadPressedEventHandler'Access) with null record;
+   type KeypadPressedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Devices.ICallControl;e : WinRt.Windows.Media.Devices.IKeypadPressedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_KeypadPressedEventHandler'Access) with null record;
       function Invoke
       (
          this : access KeypadPressedEventHandler_Delegate;
-         sender : Windows.Media.Devices.ICallControl;
-         e : Windows.Media.Devices.IKeypadPressedEventArgs
+         sender : WinRt.Windows.Media.Devices.ICallControl;
+         e : WinRt.Windows.Media.Devices.IKeypadPressedEventArgs
       )
       return WinRt.Hresult;
 
    IID_RedialRequestedEventHandler : aliased WinRt.IID := (3136444369, 20157, 19332, (159, 71, 110, 196, 61, 117, 216, 177 ));
-   type RedialRequestedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Devices.ICallControl;e : Windows.Media.Devices.IRedialRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RedialRequestedEventHandler'Access) with null record;
+   type RedialRequestedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Devices.ICallControl;e : WinRt.Windows.Media.Devices.IRedialRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RedialRequestedEventHandler'Access) with null record;
       function Invoke
       (
          this : access RedialRequestedEventHandler_Delegate;
-         sender : Windows.Media.Devices.ICallControl;
-         e : Windows.Media.Devices.IRedialRequestedEventArgs
+         sender : WinRt.Windows.Media.Devices.ICallControl;
+         e : WinRt.Windows.Media.Devices.IRedialRequestedEventArgs
       )
       return WinRt.Hresult;
 
@@ -1144,14 +1144,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IAdvancedPhotoCaptureSettings_Interface;
-         RetVal : access Windows.Media.Devices.AdvancedPhotoMode
+         RetVal : access WinRt.Windows.Media.Devices.AdvancedPhotoMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IAdvancedPhotoCaptureSettings_Interface;
-         value : Windows.Media.Devices.AdvancedPhotoMode
+         value : WinRt.Windows.Media.Devices.AdvancedPhotoMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1177,14 +1177,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IAdvancedPhotoControl_Interface;
-         RetVal : access Windows.Media.Devices.AdvancedPhotoMode
+         RetVal : access WinRt.Windows.Media.Devices.AdvancedPhotoMode
       )
       return WinRt.Hresult is abstract;
 
       function Configure
       (
          this : access IAdvancedPhotoControl_Interface;
-         settings : Windows.Media.Devices.IAdvancedPhotoCaptureSettings
+         settings : WinRt.Windows.Media.Devices.IAdvancedPhotoCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1217,7 +1217,7 @@ package WinRt.Windows.Media.Devices is
       function get_CameraOcclusionInfo
       (
          this : access IAdvancedVideoCaptureDeviceController10_Interface;
-         RetVal : access Windows.Media.Devices.ICameraOcclusionInfo
+         RetVal : access WinRt.Windows.Media.Devices.ICameraOcclusionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1230,7 +1230,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IAdvancedVideoCaptureDeviceController11_Interface;
          deviceId : WinRt.HString;
-         mode : Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode;
+         mode : WinRt.Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1243,91 +1243,91 @@ package WinRt.Windows.Media.Devices is
       function get_LowLagPhotoSequence
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.ILowLagPhotoSequenceControl
+         RetVal : access WinRt.Windows.Media.Devices.ILowLagPhotoSequenceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_LowLagPhoto
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.ILowLagPhotoControl
+         RetVal : access WinRt.Windows.Media.Devices.ILowLagPhotoControl
       )
       return WinRt.Hresult is abstract;
 
       function get_SceneModeControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.ISceneModeControl
+         RetVal : access WinRt.Windows.Media.Devices.ISceneModeControl
       )
       return WinRt.Hresult is abstract;
 
       function get_TorchControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.ITorchControl
+         RetVal : access WinRt.Windows.Media.Devices.ITorchControl
       )
       return WinRt.Hresult is abstract;
 
       function get_FlashControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IFlashControl
+         RetVal : access WinRt.Windows.Media.Devices.IFlashControl
       )
       return WinRt.Hresult is abstract;
 
       function get_WhiteBalanceControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IWhiteBalanceControl
+         RetVal : access WinRt.Windows.Media.Devices.IWhiteBalanceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_ExposureControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IExposureControl
+         RetVal : access WinRt.Windows.Media.Devices.IExposureControl
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IFocusControl
+         RetVal : access WinRt.Windows.Media.Devices.IFocusControl
       )
       return WinRt.Hresult is abstract;
 
       function get_ExposureCompensationControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IExposureCompensationControl
+         RetVal : access WinRt.Windows.Media.Devices.IExposureCompensationControl
       )
       return WinRt.Hresult is abstract;
 
       function get_IsoSpeedControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IIsoSpeedControl
+         RetVal : access WinRt.Windows.Media.Devices.IIsoSpeedControl
       )
       return WinRt.Hresult is abstract;
 
       function get_RegionsOfInterestControl
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.IRegionsOfInterestControl
+         RetVal : access WinRt.Windows.Media.Devices.IRegionsOfInterestControl
       )
       return WinRt.Hresult is abstract;
 
       function get_PrimaryUse
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         RetVal : access Windows.Media.Devices.CaptureUse
+         RetVal : access WinRt.Windows.Media.Devices.CaptureUse
       )
       return WinRt.Hresult is abstract;
 
       function put_PrimaryUse
       (
          this : access IAdvancedVideoCaptureDeviceController2_Interface;
-         value : Windows.Media.Devices.CaptureUse
+         value : WinRt.Windows.Media.Devices.CaptureUse
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,21 +1339,21 @@ package WinRt.Windows.Media.Devices is
       function get_VariablePhotoSequenceController
       (
          this : access IAdvancedVideoCaptureDeviceController3_Interface;
-         RetVal : access Windows.Media.Devices.Core.IVariablePhotoSequenceController
+         RetVal : access WinRt.Windows.Media.Devices.Core.IVariablePhotoSequenceController
       )
       return WinRt.Hresult is abstract;
 
       function get_PhotoConfirmationControl
       (
          this : access IAdvancedVideoCaptureDeviceController3_Interface;
-         RetVal : access Windows.Media.Devices.IPhotoConfirmationControl
+         RetVal : access WinRt.Windows.Media.Devices.IPhotoConfirmationControl
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomControl
       (
          this : access IAdvancedVideoCaptureDeviceController3_Interface;
-         RetVal : access Windows.Media.Devices.IZoomControl
+         RetVal : access WinRt.Windows.Media.Devices.IZoomControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1365,42 +1365,42 @@ package WinRt.Windows.Media.Devices is
       function get_ExposurePriorityVideoControl
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         RetVal : access Windows.Media.Devices.IExposurePriorityVideoControl
+         RetVal : access WinRt.Windows.Media.Devices.IExposurePriorityVideoControl
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredOptimization
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         RetVal : access Windows.Media.Devices.MediaCaptureOptimization
+         RetVal : access WinRt.Windows.Media.Devices.MediaCaptureOptimization
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredOptimization
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         value : Windows.Media.Devices.MediaCaptureOptimization
+         value : WinRt.Windows.Media.Devices.MediaCaptureOptimization
       )
       return WinRt.Hresult is abstract;
 
       function get_HdrVideoControl
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         RetVal : access Windows.Media.Devices.IHdrVideoControl
+         RetVal : access WinRt.Windows.Media.Devices.IHdrVideoControl
       )
       return WinRt.Hresult is abstract;
 
       function get_OpticalImageStabilizationControl
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         RetVal : access Windows.Media.Devices.IOpticalImageStabilizationControl
+         RetVal : access WinRt.Windows.Media.Devices.IOpticalImageStabilizationControl
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvancedPhotoControl
       (
          this : access IAdvancedVideoCaptureDeviceController4_Interface;
-         RetVal : access Windows.Media.Devices.IAdvancedPhotoControl
+         RetVal : access WinRt.Windows.Media.Devices.IAdvancedPhotoControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1421,7 +1421,7 @@ package WinRt.Windows.Media.Devices is
          this : access IAdvancedVideoCaptureDeviceController5_Interface;
          propertyId : WinRt.HString;
          maxPropertyValueSize : GenericObject;
-         RetVal : access Windows.Media.Devices.IVideoDeviceControllerGetDevicePropertyResult
+         RetVal : access WinRt.Windows.Media.Devices.IVideoDeviceControllerGetDevicePropertyResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1430,7 +1430,7 @@ package WinRt.Windows.Media.Devices is
          this : access IAdvancedVideoCaptureDeviceController5_Interface;
          propertyId : WinRt.HString;
          propertyValue : WinRt.IInspectable;
-         RetVal : access Windows.Media.Devices.VideoDeviceControllerSetDevicePropertyStatus
+         RetVal : access WinRt.Windows.Media.Devices.VideoDeviceControllerSetDevicePropertyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1440,7 +1440,7 @@ package WinRt.Windows.Media.Devices is
          extendedPropertyIdSize : WinRt.UInt32;
          extendedPropertyId : WinRt.Byte_Ptr;
          maxPropertyValueSize : GenericObject;
-         RetVal : access Windows.Media.Devices.IVideoDeviceControllerGetDevicePropertyResult
+         RetVal : access WinRt.Windows.Media.Devices.IVideoDeviceControllerGetDevicePropertyResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1451,7 +1451,7 @@ package WinRt.Windows.Media.Devices is
          extendedPropertyId : WinRt.Byte_Ptr;
          propertyValueSize : WinRt.UInt32;
          propertyValue : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.Devices.VideoDeviceControllerSetDevicePropertyStatus
+         RetVal : access WinRt.Windows.Media.Devices.VideoDeviceControllerSetDevicePropertyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1463,7 +1463,7 @@ package WinRt.Windows.Media.Devices is
       function get_VideoTemporalDenoisingControl
       (
          this : access IAdvancedVideoCaptureDeviceController6_Interface;
-         RetVal : access Windows.Media.Devices.IVideoTemporalDenoisingControl
+         RetVal : access WinRt.Windows.Media.Devices.IVideoTemporalDenoisingControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1475,7 +1475,7 @@ package WinRt.Windows.Media.Devices is
       function get_InfraredTorchControl
       (
          this : access IAdvancedVideoCaptureDeviceController7_Interface;
-         RetVal : access Windows.Media.Devices.IInfraredTorchControl
+         RetVal : access WinRt.Windows.Media.Devices.IInfraredTorchControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1487,7 +1487,7 @@ package WinRt.Windows.Media.Devices is
       function get_PanelBasedOptimizationControl
       (
          this : access IAdvancedVideoCaptureDeviceController8_Interface;
-         RetVal : access Windows.Media.Devices.IPanelBasedOptimizationControl
+         RetVal : access WinRt.Windows.Media.Devices.IPanelBasedOptimizationControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1499,7 +1499,7 @@ package WinRt.Windows.Media.Devices is
       function get_DigitalWindowControl
       (
          this : access IAdvancedVideoCaptureDeviceController9_Interface;
-         RetVal : access Windows.Media.Devices.IDigitalWindowControl
+         RetVal : access WinRt.Windows.Media.Devices.IDigitalWindowControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1544,7 +1544,7 @@ package WinRt.Windows.Media.Devices is
       function get_AudioCaptureEffectsManager
       (
          this : access IAudioDeviceController2_Interface;
-         RetVal : access Windows.Media.Effects.IAudioCaptureEffectsManager
+         RetVal : access WinRt.Windows.Media.Effects.IAudioCaptureEffectsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1591,7 +1591,7 @@ package WinRt.Windows.Media.Devices is
       function SendCommandAsync
       (
          this : access IAudioDeviceModule_Interface;
-         Command : Windows.Storage.Streams.IBuffer;
+         Command : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1604,14 +1604,14 @@ package WinRt.Windows.Media.Devices is
       function get_Module
       (
          this : access IAudioDeviceModuleNotificationEventArgs_Interface;
-         RetVal : access Windows.Media.Devices.IAudioDeviceModule
+         RetVal : access WinRt.Windows.Media.Devices.IAudioDeviceModule
       )
       return WinRt.Hresult is abstract;
 
       function get_NotificationData
       (
          this : access IAudioDeviceModuleNotificationEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1624,14 +1624,14 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IAudioDeviceModulesManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ModuleNotificationReceived
       (
          this : access IAudioDeviceModulesManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,7 +1659,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IAudioDeviceModulesManagerFactory_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Devices.IAudioDeviceModulesManager
+         RetVal : access WinRt.Windows.Media.Devices.IAudioDeviceModulesManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1708,90 +1708,90 @@ package WinRt.Windows.Media.Devices is
       function add_AnswerRequested
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.CallControlEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.CallControlEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AnswerRequested
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_HangUpRequested
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.CallControlEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.CallControlEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HangUpRequested
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_DialRequested
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.DialRequestedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.DialRequestedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DialRequested
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_RedialRequested
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.RedialRequestedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.RedialRequestedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RedialRequested
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_KeypadPressed
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.KeypadPressedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.KeypadPressedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeypadPressed
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_AudioTransferRequested
       (
          this : access ICallControl_Interface;
-         handler : Windows.Media.Devices.CallControlEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Media.Devices.CallControlEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioTransferRequested
       (
          this : access ICallControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1803,7 +1803,7 @@ package WinRt.Windows.Media.Devices is
       function GetDefault
       (
          this : access ICallControlStatics_Interface;
-         RetVal : access Windows.Media.Devices.ICallControl
+         RetVal : access WinRt.Windows.Media.Devices.ICallControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1811,7 +1811,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access ICallControlStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Devices.ICallControl
+         RetVal : access WinRt.Windows.Media.Devices.ICallControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1823,14 +1823,14 @@ package WinRt.Windows.Media.Devices is
       function GetState
       (
          this : access ICameraOcclusionInfo_Interface;
-         RetVal : access Windows.Media.Devices.ICameraOcclusionState
+         RetVal : access WinRt.Windows.Media.Devices.ICameraOcclusionState
       )
       return WinRt.Hresult is abstract;
 
       function IsOcclusionKindSupported
       (
          this : access ICameraOcclusionInfo_Interface;
-         occlusionKind : Windows.Media.Devices.CameraOcclusionKind;
+         occlusionKind : WinRt.Windows.Media.Devices.CameraOcclusionKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1839,14 +1839,14 @@ package WinRt.Windows.Media.Devices is
       (
          this : access ICameraOcclusionInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access ICameraOcclusionInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,7 +1865,7 @@ package WinRt.Windows.Media.Devices is
       function IsOcclusionKind
       (
          this : access ICameraOcclusionState_Interface;
-         occlusionKind : Windows.Media.Devices.CameraOcclusionKind;
+         occlusionKind : WinRt.Windows.Media.Devices.CameraOcclusionKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1878,7 +1878,7 @@ package WinRt.Windows.Media.Devices is
       function get_State
       (
          this : access ICameraOcclusionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Devices.ICameraOcclusionState
+         RetVal : access WinRt.Windows.Media.Devices.ICameraOcclusionState
       )
       return WinRt.Hresult is abstract;
 
@@ -1897,7 +1897,7 @@ package WinRt.Windows.Media.Devices is
       function get_Role
       (
          this : access IDefaultAudioDeviceChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Devices.AudioDeviceRole
+         RetVal : access WinRt.Windows.Media.Devices.AudioDeviceRole
       )
       return WinRt.Hresult is abstract;
 
@@ -2009,7 +2009,7 @@ package WinRt.Windows.Media.Devices is
       function get_NormalizedFieldOfViewLimit
       (
          this : access IDigitalWindowCapability_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2029,36 +2029,36 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IDigitalWindowControl_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Media.Devices.DigitalWindowMode_Ptr
+         RetVal : access WinRt.Windows.Media.Devices.DigitalWindowMode_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentMode
       (
          this : access IDigitalWindowControl_Interface;
-         RetVal : access Windows.Media.Devices.DigitalWindowMode
+         RetVal : access WinRt.Windows.Media.Devices.DigitalWindowMode
       )
       return WinRt.Hresult is abstract;
 
       function GetBounds
       (
          this : access IDigitalWindowControl_Interface;
-         RetVal : access Windows.Media.Devices.IDigitalWindowBounds
+         RetVal : access WinRt.Windows.Media.Devices.IDigitalWindowBounds
       )
       return WinRt.Hresult is abstract;
 
       function Configure
       (
          this : access IDigitalWindowControl_Interface;
-         digitalWindowMode : Windows.Media.Devices.DigitalWindowMode
+         digitalWindowMode : WinRt.Windows.Media.Devices.DigitalWindowMode
       )
       return WinRt.Hresult is abstract;
 
       function Configure
       (
          this : access IDigitalWindowControl_Interface;
-         digitalWindowMode : Windows.Media.Devices.DigitalWindowMode;
-         digitalWindowBounds_p : Windows.Media.Devices.IDigitalWindowBounds
+         digitalWindowMode : WinRt.Windows.Media.Devices.DigitalWindowMode;
+         digitalWindowBounds_p : WinRt.Windows.Media.Devices.IDigitalWindowBounds
       )
       return WinRt.Hresult is abstract;
 
@@ -2074,7 +2074,7 @@ package WinRt.Windows.Media.Devices is
          this : access IDigitalWindowControl_Interface;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         RetVal : access Windows.Media.Devices.IDigitalWindowCapability
+         RetVal : access WinRt.Windows.Media.Devices.IDigitalWindowCapability
       )
       return WinRt.Hresult is abstract;
 
@@ -2122,7 +2122,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IExposureCompensationControl_Interface;
          value : WinRt.Single;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2149,43 +2149,43 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IExposureControl_Interface;
          value : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_Min
       (
          this : access IExposureControl_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Max
       (
          this : access IExposureControl_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Step
       (
          this : access IExposureControl_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IExposureControl_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetValueAsync
       (
          this : access IExposureControl_Interface;
-         shutterDuration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Foundation.IAsyncAction
+         shutterDuration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2345,24 +2345,24 @@ package WinRt.Windows.Media.Devices is
       function get_Preset
       (
          this : access IFocusControl_Interface;
-         RetVal : access Windows.Media.Devices.FocusPreset
+         RetVal : access WinRt.Windows.Media.Devices.FocusPreset
       )
       return WinRt.Hresult is abstract;
 
       function SetPresetAsync
       (
          this : access IFocusControl_Interface;
-         preset : Windows.Media.Devices.FocusPreset;
-         RetVal : access Windows.Foundation.IAsyncAction
+         preset : WinRt.Windows.Media.Devices.FocusPreset;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetPresetAsync
       (
          this : access IFocusControl_Interface;
-         preset : Windows.Media.Devices.FocusPreset;
+         preset : WinRt.Windows.Media.Devices.FocusPreset;
          completeBeforeFocus : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2398,14 +2398,14 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IFocusControl_Interface;
          focus : WinRt.UInt32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function FocusAsync
       (
          this : access IFocusControl_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2452,35 +2452,35 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IFocusControl2_Interface;
-         RetVal : access Windows.Media.Devices.FocusMode
+         RetVal : access WinRt.Windows.Media.Devices.FocusMode
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusState
       (
          this : access IFocusControl2_Interface;
-         RetVal : access Windows.Media.Devices.MediaCaptureFocusState
+         RetVal : access WinRt.Windows.Media.Devices.MediaCaptureFocusState
       )
       return WinRt.Hresult is abstract;
 
       function UnlockAsync
       (
          this : access IFocusControl2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function LockAsync
       (
          this : access IFocusControl2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function Configure
       (
          this : access IFocusControl2_Interface;
-         settings : Windows.Media.Devices.IFocusSettings
+         settings : WinRt.Windows.Media.Devices.IFocusSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2492,28 +2492,28 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IFocusSettings_Interface;
-         RetVal : access Windows.Media.Devices.FocusMode
+         RetVal : access WinRt.Windows.Media.Devices.FocusMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IFocusSettings_Interface;
-         value : Windows.Media.Devices.FocusMode
+         value : WinRt.Windows.Media.Devices.FocusMode
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoFocusRange
       (
          this : access IFocusSettings_Interface;
-         RetVal : access Windows.Media.Devices.AutoFocusRange
+         RetVal : access WinRt.Windows.Media.Devices.AutoFocusRange
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoFocusRange
       (
          this : access IFocusSettings_Interface;
-         value : Windows.Media.Devices.AutoFocusRange
+         value : WinRt.Windows.Media.Devices.AutoFocusRange
       )
       return WinRt.Hresult is abstract;
 
@@ -2595,14 +2595,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IHdrVideoControl_Interface;
-         RetVal : access Windows.Media.Devices.HdrVideoMode
+         RetVal : access WinRt.Windows.Media.Devices.HdrVideoMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IHdrVideoControl_Interface;
-         value : Windows.Media.Devices.HdrVideoMode
+         value : WinRt.Windows.Media.Devices.HdrVideoMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2628,14 +2628,14 @@ package WinRt.Windows.Media.Devices is
       function get_CurrentMode
       (
          this : access IInfraredTorchControl_Interface;
-         RetVal : access Windows.Media.Devices.InfraredTorchMode
+         RetVal : access WinRt.Windows.Media.Devices.InfraredTorchMode
       )
       return WinRt.Hresult is abstract;
 
       function put_CurrentMode
       (
          this : access IInfraredTorchControl_Interface;
-         value : Windows.Media.Devices.InfraredTorchMode
+         value : WinRt.Windows.Media.Devices.InfraredTorchMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2696,15 +2696,15 @@ package WinRt.Windows.Media.Devices is
       function get_Preset
       (
          this : access IIsoSpeedControl_Interface;
-         RetVal : access Windows.Media.Devices.IsoSpeedPreset
+         RetVal : access WinRt.Windows.Media.Devices.IsoSpeedPreset
       )
       return WinRt.Hresult is abstract;
 
       function SetPresetAsync
       (
          this : access IIsoSpeedControl_Interface;
-         preset : Windows.Media.Devices.IsoSpeedPreset;
-         RetVal : access Windows.Foundation.IAsyncAction
+         preset : WinRt.Windows.Media.Devices.IsoSpeedPreset;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2745,7 +2745,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IIsoSpeedControl2_Interface;
          isoSpeed : WinRt.UInt32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2759,7 +2759,7 @@ package WinRt.Windows.Media.Devices is
       function SetAutoAsync
       (
          this : access IIsoSpeedControl2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2771,7 +2771,7 @@ package WinRt.Windows.Media.Devices is
       function get_TelephonyKey
       (
          this : access IKeypadPressedEventArgs_Interface;
-         RetVal : access Windows.Media.Devices.TelephonyKey
+         RetVal : access WinRt.Windows.Media.Devices.TelephonyKey
       )
       return WinRt.Hresult is abstract;
 
@@ -2783,15 +2783,15 @@ package WinRt.Windows.Media.Devices is
       function GetHighestConcurrentFrameRate
       (
          this : access ILowLagPhotoControl_Interface;
-         captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentFrameRate
       (
          this : access ILowLagPhotoControl_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
@@ -2812,14 +2812,14 @@ package WinRt.Windows.Media.Devices is
       function get_ThumbnailFormat
       (
          this : access ILowLagPhotoControl_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaThumbnailFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_ThumbnailFormat
       (
          this : access ILowLagPhotoControl_Interface;
-         value : Windows.Media.MediaProperties.MediaThumbnailFormat
+         value : WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2901,15 +2901,15 @@ package WinRt.Windows.Media.Devices is
       function GetHighestConcurrentFrameRate
       (
          this : access ILowLagPhotoSequenceControl_Interface;
-         captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentFrameRate
       (
          this : access ILowLagPhotoSequenceControl_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
@@ -2930,14 +2930,14 @@ package WinRt.Windows.Media.Devices is
       function get_ThumbnailFormat
       (
          this : access ILowLagPhotoSequenceControl_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaThumbnailFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_ThumbnailFormat
       (
          this : access ILowLagPhotoSequenceControl_Interface;
-         value : Windows.Media.MediaProperties.MediaThumbnailFormat
+         value : WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2970,7 +2970,7 @@ package WinRt.Windows.Media.Devices is
       function get_Capabilities
       (
          this : access IMediaDeviceControl_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControlCapabilities
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControlCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -3061,7 +3061,7 @@ package WinRt.Windows.Media.Devices is
       function GetAvailableMediaStreamProperties
       (
          this : access IMediaDeviceController_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3069,17 +3069,17 @@ package WinRt.Windows.Media.Devices is
       function GetMediaStreamProperties
       (
          this : access IMediaDeviceController_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function SetMediaStreamPropertiesAsync
       (
          this : access IMediaDeviceController_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
-         mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-         RetVal : access Windows.Foundation.IAsyncAction
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+         mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3112,7 +3112,7 @@ package WinRt.Windows.Media.Devices is
       function GetDefaultAudioCaptureId
       (
          this : access IMediaDeviceStatics_Interface;
-         role : Windows.Media.Devices.AudioDeviceRole;
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -3120,7 +3120,7 @@ package WinRt.Windows.Media.Devices is
       function GetDefaultAudioRenderId
       (
          this : access IMediaDeviceStatics_Interface;
-         role : Windows.Media.Devices.AudioDeviceRole;
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -3129,14 +3129,14 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IMediaDeviceStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DefaultAudioCaptureDeviceChanged
       (
          this : access IMediaDeviceStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3144,14 +3144,14 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IMediaDeviceStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DefaultAudioRenderDeviceChanged
       (
          this : access IMediaDeviceStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3163,14 +3163,14 @@ package WinRt.Windows.Media.Devices is
       function get_Status
       (
          this : access IModuleCommandResult_Interface;
-         RetVal : access Windows.Media.Devices.SendCommandStatus
+         RetVal : access WinRt.Windows.Media.Devices.SendCommandStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access IModuleCommandResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3196,14 +3196,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IOpticalImageStabilizationControl_Interface;
-         RetVal : access Windows.Media.Devices.OpticalImageStabilizationMode
+         RetVal : access WinRt.Windows.Media.Devices.OpticalImageStabilizationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IOpticalImageStabilizationControl_Interface;
-         value : Windows.Media.Devices.OpticalImageStabilizationMode
+         value : WinRt.Windows.Media.Devices.OpticalImageStabilizationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3222,14 +3222,14 @@ package WinRt.Windows.Media.Devices is
       function get_Panel
       (
          this : access IPanelBasedOptimizationControl_Interface;
-         RetVal : access Windows.Devices.Enumeration.Panel
+         RetVal : access WinRt.Windows.Devices.Enumeration.Panel
       )
       return WinRt.Hresult is abstract;
 
       function put_Panel
       (
          this : access IPanelBasedOptimizationControl_Interface;
-         value : Windows.Devices.Enumeration.Panel
+         value : WinRt.Windows.Devices.Enumeration.Panel
       )
       return WinRt.Hresult is abstract;
 
@@ -3262,14 +3262,14 @@ package WinRt.Windows.Media.Devices is
       function get_PixelFormat
       (
          this : access IPhotoConfirmationControl_Interface;
-         RetVal : access Windows.Media.MediaProperties.MediaPixelFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.MediaPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_PixelFormat
       (
          this : access IPhotoConfirmationControl_Interface;
-         format : Windows.Media.MediaProperties.MediaPixelFormat
+         format : WinRt.Windows.Media.MediaProperties.MediaPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -3334,14 +3334,14 @@ package WinRt.Windows.Media.Devices is
       function get_Bounds
       (
          this : access IRegionOfInterest_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_Bounds
       (
          this : access IRegionOfInterest_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -3353,14 +3353,14 @@ package WinRt.Windows.Media.Devices is
       function get_Type
       (
          this : access IRegionOfInterest2_Interface;
-         RetVal : access Windows.Media.Devices.RegionOfInterestType
+         RetVal : access WinRt.Windows.Media.Devices.RegionOfInterestType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IRegionOfInterest2_Interface;
-         value : Windows.Media.Devices.RegionOfInterestType
+         value : WinRt.Windows.Media.Devices.RegionOfInterestType
       )
       return WinRt.Hresult is abstract;
 
@@ -3408,7 +3408,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IRegionsOfInterestControl_Interface;
          regions : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3417,14 +3417,14 @@ package WinRt.Windows.Media.Devices is
          this : access IRegionsOfInterestControl_Interface;
          regions : GenericObject;
          lockValues : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearRegionsAsync
       (
          this : access IRegionsOfInterestControl_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3464,15 +3464,15 @@ package WinRt.Windows.Media.Devices is
       function get_Value
       (
          this : access ISceneModeControl_Interface;
-         RetVal : access Windows.Media.Devices.CaptureSceneMode
+         RetVal : access WinRt.Windows.Media.Devices.CaptureSceneMode
       )
       return WinRt.Hresult is abstract;
 
       function SetValueAsync
       (
          this : access ISceneModeControl_Interface;
-         sceneMode : Windows.Media.Devices.CaptureSceneMode;
-         RetVal : access Windows.Foundation.IAsyncAction
+         sceneMode : WinRt.Windows.Media.Devices.CaptureSceneMode;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3531,84 +3531,84 @@ package WinRt.Windows.Media.Devices is
       function get_Brightness
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Contrast
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Hue
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_WhiteBalance
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_BacklightCompensation
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Pan
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Tilt
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Zoom
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Roll
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Exposure
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Focus
       (
          this : access IVideoDeviceController_Interface;
-         RetVal : access Windows.Media.Devices.IMediaDeviceControl
+         RetVal : access WinRt.Windows.Media.Devices.IMediaDeviceControl
       )
       return WinRt.Hresult is abstract;
 
       function TrySetPowerlineFrequency
       (
          this : access IVideoDeviceController_Interface;
-         value : Windows.Media.Capture.PowerlineFrequency;
+         value : WinRt.Windows.Media.Capture.PowerlineFrequency;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3616,7 +3616,7 @@ package WinRt.Windows.Media.Devices is
       function TryGetPowerlineFrequency
       (
          this : access IVideoDeviceController_Interface;
-         value : Windows.Media.Capture.PowerlineFrequency_Ptr;
+         value : WinRt.Windows.Media.Capture.PowerlineFrequency_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3629,7 +3629,7 @@ package WinRt.Windows.Media.Devices is
       function get_Status
       (
          this : access IVideoDeviceControllerGetDevicePropertyResult_Interface;
-         RetVal : access Windows.Media.Devices.VideoDeviceControllerGetDevicePropertyStatus
+         RetVal : access WinRt.Windows.Media.Devices.VideoDeviceControllerGetDevicePropertyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3662,14 +3662,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IVideoTemporalDenoisingControl_Interface;
-         RetVal : access Windows.Media.Devices.VideoTemporalDenoisingMode
+         RetVal : access WinRt.Windows.Media.Devices.VideoTemporalDenoisingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IVideoTemporalDenoisingControl_Interface;
-         value : Windows.Media.Devices.VideoTemporalDenoisingMode
+         value : WinRt.Windows.Media.Devices.VideoTemporalDenoisingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3688,15 +3688,15 @@ package WinRt.Windows.Media.Devices is
       function get_Preset
       (
          this : access IWhiteBalanceControl_Interface;
-         RetVal : access Windows.Media.Devices.ColorTemperaturePreset
+         RetVal : access WinRt.Windows.Media.Devices.ColorTemperaturePreset
       )
       return WinRt.Hresult is abstract;
 
       function SetPresetAsync
       (
          this : access IWhiteBalanceControl_Interface;
-         preset : Windows.Media.Devices.ColorTemperaturePreset;
-         RetVal : access Windows.Foundation.IAsyncAction
+         preset : WinRt.Windows.Media.Devices.ColorTemperaturePreset;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3732,7 +3732,7 @@ package WinRt.Windows.Media.Devices is
       (
          this : access IWhiteBalanceControl_Interface;
          temperature : WinRt.UInt32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3798,14 +3798,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IZoomControl2_Interface;
-         RetVal : access Windows.Media.Devices.ZoomTransitionMode
+         RetVal : access WinRt.Windows.Media.Devices.ZoomTransitionMode
       )
       return WinRt.Hresult is abstract;
 
       function Configure
       (
          this : access IZoomControl2_Interface;
-         settings : Windows.Media.Devices.IZoomSettings
+         settings : WinRt.Windows.Media.Devices.IZoomSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -3817,14 +3817,14 @@ package WinRt.Windows.Media.Devices is
       function get_Mode
       (
          this : access IZoomSettings_Interface;
-         RetVal : access Windows.Media.Devices.ZoomTransitionMode
+         RetVal : access WinRt.Windows.Media.Devices.ZoomTransitionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IZoomSettings_Interface;
-         value : Windows.Media.Devices.ZoomTransitionMode
+         value : WinRt.Windows.Media.Devices.ZoomTransitionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3871,7 +3871,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out AdvancedPhotoCaptureSettings;
-      value : Windows.Media.Devices.AdvancedPhotoMode
+      value : WinRt.Windows.Media.Devices.AdvancedPhotoMode
    );
 
    -----------------------------------------------------------------------------
@@ -3904,7 +3904,7 @@ package WinRt.Windows.Media.Devices is
    procedure Configure
    (
       this : in out AdvancedPhotoControl;
-      settings : Windows.Media.Devices.AdvancedPhotoCaptureSettings'Class
+      settings : WinRt.Windows.Media.Devices.AdvancedPhotoCaptureSettings'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3943,22 +3943,22 @@ package WinRt.Windows.Media.Devices is
    function GetAvailableMediaStreamProperties
    (
       this : in out AudioDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.GenericObject;
 
    function GetMediaStreamProperties
    (
       this : in out AudioDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
 
    procedure SetMediaStreamPropertiesAsync
    (
       this : in out AudioDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
-      mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+      mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
    );
 
    function get_AudioCaptureEffectsManager
@@ -4009,7 +4009,7 @@ package WinRt.Windows.Media.Devices is
    function SendCommandAsync
    (
       this : in out AudioDeviceModule;
-      Command : Windows.Storage.Streams.IBuffer
+      Command : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Media.Devices.ModuleCommandResult'Class;
 
@@ -4062,7 +4062,7 @@ package WinRt.Windows.Media.Devices is
    procedure remove_ModuleNotificationReceived
    (
       this : in out AudioDeviceModulesManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindAllById
@@ -4134,79 +4134,79 @@ package WinRt.Windows.Media.Devices is
    function add_AnswerRequested
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.CallControlEventHandler
+      handler : WinRt.Windows.Media.Devices.CallControlEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_AnswerRequested
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HangUpRequested
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.CallControlEventHandler
+      handler : WinRt.Windows.Media.Devices.CallControlEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_HangUpRequested
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DialRequested
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.DialRequestedEventHandler
+      handler : WinRt.Windows.Media.Devices.DialRequestedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DialRequested
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RedialRequested
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.RedialRequestedEventHandler
+      handler : WinRt.Windows.Media.Devices.RedialRequestedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_RedialRequested
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeypadPressed
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.KeypadPressedEventHandler
+      handler : WinRt.Windows.Media.Devices.KeypadPressedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_KeypadPressed
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AudioTransferRequested
    (
       this : in out CallControl;
-      handler : Windows.Media.Devices.CallControlEventHandler
+      handler : WinRt.Windows.Media.Devices.CallControlEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_AudioTransferRequested
    (
       this : in out CallControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4227,7 +4227,7 @@ package WinRt.Windows.Media.Devices is
    function IsOcclusionKindSupported
    (
       this : in out CameraOcclusionInfo;
-      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+      occlusionKind : WinRt.Windows.Media.Devices.CameraOcclusionKind
    )
    return WinRt.Boolean;
 
@@ -4241,7 +4241,7 @@ package WinRt.Windows.Media.Devices is
    procedure remove_StateChanged
    (
       this : in out CameraOcclusionInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4262,7 +4262,7 @@ package WinRt.Windows.Media.Devices is
    function IsOcclusionKind
    (
       this : in out CameraOcclusionState;
-      occlusionKind : Windows.Media.Devices.CameraOcclusionKind
+      occlusionKind : WinRt.Windows.Media.Devices.CameraOcclusionKind
    )
    return WinRt.Boolean;
 
@@ -4474,14 +4474,14 @@ package WinRt.Windows.Media.Devices is
    procedure Configure
    (
       this : in out DigitalWindowControl;
-      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode
+      digitalWindowMode : WinRt.Windows.Media.Devices.DigitalWindowMode
    );
 
    procedure Configure
    (
       this : in out DigitalWindowControl;
-      digitalWindowMode : Windows.Media.Devices.DigitalWindowMode;
-      digitalWindowBounds_p : Windows.Media.Devices.DigitalWindowBounds'Class
+      digitalWindowMode : WinRt.Windows.Media.Devices.DigitalWindowMode;
+      digitalWindowBounds_p : WinRt.Windows.Media.Devices.DigitalWindowBounds'Class
    );
 
    function get_SupportedCapabilities
@@ -4597,7 +4597,7 @@ package WinRt.Windows.Media.Devices is
    procedure SetValueAsync
    (
       this : in out ExposureControl;
-      shutterDuration : Windows.Foundation.TimeSpan
+      shutterDuration : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -4750,13 +4750,13 @@ package WinRt.Windows.Media.Devices is
    procedure SetPresetAsync
    (
       this : in out FocusControl;
-      preset : Windows.Media.Devices.FocusPreset
+      preset : WinRt.Windows.Media.Devices.FocusPreset
    );
 
    procedure SetPresetAsync
    (
       this : in out FocusControl;
-      preset : Windows.Media.Devices.FocusPreset;
+      preset : WinRt.Windows.Media.Devices.FocusPreset;
       completeBeforeFocus : WinRt.Boolean
    );
 
@@ -4850,7 +4850,7 @@ package WinRt.Windows.Media.Devices is
    procedure Configure
    (
       this : in out FocusControl;
-      settings : Windows.Media.Devices.FocusSettings'Class
+      settings : WinRt.Windows.Media.Devices.FocusSettings'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4876,7 +4876,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out FocusSettings;
-      value : Windows.Media.Devices.FocusMode
+      value : WinRt.Windows.Media.Devices.FocusMode
    );
 
    function get_AutoFocusRange
@@ -4888,7 +4888,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_AutoFocusRange
    (
       this : in out FocusSettings;
-      value : Windows.Media.Devices.AutoFocusRange
+      value : WinRt.Windows.Media.Devices.AutoFocusRange
    );
 
    function get_Value
@@ -4969,7 +4969,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out HdrVideoControl;
-      value : Windows.Media.Devices.HdrVideoMode
+      value : WinRt.Windows.Media.Devices.HdrVideoMode
    );
 
    -----------------------------------------------------------------------------
@@ -5002,7 +5002,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_CurrentMode
    (
       this : in out InfraredTorchControl;
-      value : Windows.Media.Devices.InfraredTorchMode
+      value : WinRt.Windows.Media.Devices.InfraredTorchMode
    );
 
    function get_MinPower
@@ -5065,7 +5065,7 @@ package WinRt.Windows.Media.Devices is
    procedure SetPresetAsync
    (
       this : in out IsoSpeedControl;
-      preset : Windows.Media.Devices.IsoSpeedPreset
+      preset : WinRt.Windows.Media.Devices.IsoSpeedPreset
    );
 
    function get_Min
@@ -5136,7 +5136,7 @@ package WinRt.Windows.Media.Devices is
    function GetHighestConcurrentFrameRate
    (
       this : in out LowLagPhotoControl;
-      captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
+      captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
    )
    return WinRt.Windows.Media.MediaProperties.MediaRatio'Class;
 
@@ -5167,7 +5167,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_ThumbnailFormat
    (
       this : in out LowLagPhotoControl;
-      value : Windows.Media.MediaProperties.MediaThumbnailFormat
+      value : WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
    );
 
    function get_DesiredThumbnailSize
@@ -5242,7 +5242,7 @@ package WinRt.Windows.Media.Devices is
    function GetHighestConcurrentFrameRate
    (
       this : in out LowLagPhotoSequenceControl;
-      captureProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
+      captureProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
    )
    return WinRt.Windows.Media.MediaProperties.MediaRatio'Class;
 
@@ -5273,7 +5273,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_ThumbnailFormat
    (
       this : in out LowLagPhotoSequenceControl;
-      value : Windows.Media.MediaProperties.MediaThumbnailFormat
+      value : WinRt.Windows.Media.MediaProperties.MediaThumbnailFormat
    );
 
    function get_DesiredThumbnailSize
@@ -5309,13 +5309,13 @@ package WinRt.Windows.Media.Devices is
 
       function GetDefaultAudioCaptureId
       (
-         role : Windows.Media.Devices.AudioDeviceRole
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole
       )
       return WinRt.WString;
 
       function GetDefaultAudioRenderId
       (
-         role : Windows.Media.Devices.AudioDeviceRole
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole
       )
       return WinRt.WString;
 
@@ -5327,7 +5327,7 @@ package WinRt.Windows.Media.Devices is
 
       procedure remove_DefaultAudioCaptureDeviceChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_DefaultAudioRenderDeviceChanged
@@ -5338,7 +5338,7 @@ package WinRt.Windows.Media.Devices is
 
       procedure remove_DefaultAudioRenderDeviceChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end MediaDevice;
@@ -5482,7 +5482,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out OpticalImageStabilizationControl;
-      value : Windows.Media.Devices.OpticalImageStabilizationMode
+      value : WinRt.Windows.Media.Devices.OpticalImageStabilizationMode
    );
 
    -----------------------------------------------------------------------------
@@ -5509,7 +5509,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Panel
    (
       this : in out PanelBasedOptimizationControl;
-      value : Windows.Devices.Enumeration.Panel
+      value : WinRt.Windows.Devices.Enumeration.Panel
    );
 
    -----------------------------------------------------------------------------
@@ -5548,7 +5548,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_PixelFormat
    (
       this : in out PhotoConfirmationControl;
-      format : Windows.Media.MediaProperties.MediaPixelFormat
+      format : WinRt.Windows.Media.MediaProperties.MediaPixelFormat
    );
 
    -----------------------------------------------------------------------------
@@ -5624,7 +5624,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Bounds
    (
       this : in out RegionOfInterest;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_Type
@@ -5636,7 +5636,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Type
    (
       this : in out RegionOfInterest;
-      value : Windows.Media.Devices.RegionOfInterestType
+      value : WinRt.Windows.Media.Devices.RegionOfInterestType
    );
 
    function get_BoundsNormalized
@@ -5738,7 +5738,7 @@ package WinRt.Windows.Media.Devices is
    procedure SetValueAsync
    (
       this : in out SceneModeControl;
-      sceneMode : Windows.Media.Devices.CaptureSceneMode
+      sceneMode : WinRt.Windows.Media.Devices.CaptureSceneMode
    );
 
    -----------------------------------------------------------------------------
@@ -5864,36 +5864,36 @@ package WinRt.Windows.Media.Devices is
    function TrySetPowerlineFrequency
    (
       this : in out VideoDeviceController;
-      value : Windows.Media.Capture.PowerlineFrequency
+      value : WinRt.Windows.Media.Capture.PowerlineFrequency
    )
    return WinRt.Boolean;
 
    function TryGetPowerlineFrequency
    (
       this : in out VideoDeviceController;
-      value : Windows.Media.Capture.PowerlineFrequency_Ptr
+      value : WinRt.Windows.Media.Capture.PowerlineFrequency_Ptr
    )
    return WinRt.Boolean;
 
    function GetAvailableMediaStreamProperties
    (
       this : in out VideoDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.GenericObject;
 
    function GetMediaStreamProperties
    (
       this : in out VideoDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
 
    procedure SetMediaStreamPropertiesAsync
    (
       this : in out VideoDeviceController;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
-      mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+      mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
    );
 
    procedure SetDeviceProperty
@@ -5985,7 +5985,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_PrimaryUse
    (
       this : in out VideoDeviceController;
-      value : Windows.Media.Devices.CaptureUse
+      value : WinRt.Windows.Media.Devices.CaptureUse
    );
 
    function get_VariablePhotoSequenceController
@@ -6021,7 +6021,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_DesiredOptimization
    (
       this : in out VideoDeviceController;
-      value : Windows.Media.Devices.MediaCaptureOptimization
+      value : WinRt.Windows.Media.Devices.MediaCaptureOptimization
    );
 
    function get_HdrVideoControl
@@ -6114,7 +6114,7 @@ package WinRt.Windows.Media.Devices is
    (
       this : in out VideoDeviceController;
       deviceId : WinRt.WString;
-      mode : Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode
+      mode : WinRt.Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode
    )
    return WinRt.Boolean;
 
@@ -6169,7 +6169,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out VideoTemporalDenoisingControl;
-      value : Windows.Media.Devices.VideoTemporalDenoisingMode
+      value : WinRt.Windows.Media.Devices.VideoTemporalDenoisingMode
    );
 
    -----------------------------------------------------------------------------
@@ -6196,7 +6196,7 @@ package WinRt.Windows.Media.Devices is
    procedure SetPresetAsync
    (
       this : in out WhiteBalanceControl;
-      preset : Windows.Media.Devices.ColorTemperaturePreset
+      preset : WinRt.Windows.Media.Devices.ColorTemperaturePreset
    );
 
    function get_Min
@@ -6289,7 +6289,7 @@ package WinRt.Windows.Media.Devices is
    procedure Configure
    (
       this : in out ZoomControl;
-      settings : Windows.Media.Devices.ZoomSettings'Class
+      settings : WinRt.Windows.Media.Devices.ZoomSettings'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6315,7 +6315,7 @@ package WinRt.Windows.Media.Devices is
    procedure put_Mode
    (
       this : in out ZoomSettings;
-      value : Windows.Media.Devices.ZoomTransitionMode
+      value : WinRt.Windows.Media.Devices.ZoomTransitionMode
    );
 
    function get_Value

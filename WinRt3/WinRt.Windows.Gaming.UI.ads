@@ -153,14 +153,14 @@ package WinRt.Windows.Gaming.UI is
       (
          this : access IGameBarStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisibilityChanged
       (
          this : access IGameBarStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -168,14 +168,14 @@ package WinRt.Windows.Gaming.UI is
       (
          this : access IGameBarStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsInputRedirectedChanged
       (
          this : access IGameBarStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -229,7 +229,7 @@ package WinRt.Windows.Gaming.UI is
       function get_Origin
       (
          this : access IGameChatMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Gaming.UI.GameChatMessageOrigin
+         RetVal : access WinRt.Windows.Gaming.UI.GameChatMessageOrigin
       )
       return WinRt.Hresult is abstract;
 
@@ -241,14 +241,14 @@ package WinRt.Windows.Gaming.UI is
       function get_DesiredPosition
       (
          this : access IGameChatOverlay_Interface;
-         RetVal : access Windows.Gaming.UI.GameChatOverlayPosition
+         RetVal : access WinRt.Windows.Gaming.UI.GameChatOverlayPosition
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredPosition
       (
          this : access IGameChatOverlay_Interface;
-         value : Windows.Gaming.UI.GameChatOverlayPosition
+         value : WinRt.Windows.Gaming.UI.GameChatOverlayPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -257,7 +257,7 @@ package WinRt.Windows.Gaming.UI is
          this : access IGameChatOverlay_Interface;
          sender : WinRt.HString;
          message : WinRt.HString;
-         origin : Windows.Gaming.UI.GameChatMessageOrigin
+         origin : WinRt.Windows.Gaming.UI.GameChatMessageOrigin
       )
       return WinRt.Hresult is abstract;
 
@@ -270,21 +270,21 @@ package WinRt.Windows.Gaming.UI is
       (
          this : access IGameChatOverlayMessageSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access IGameChatOverlayMessageSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SetDelayBeforeClosingAfterMessageReceived
       (
          this : access IGameChatOverlayMessageSource_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -296,7 +296,7 @@ package WinRt.Windows.Gaming.UI is
       function GetDefault
       (
          this : access IGameChatOverlayStatics_Interface;
-         RetVal : access Windows.Gaming.UI.IGameChatOverlay
+         RetVal : access WinRt.Windows.Gaming.UI.IGameChatOverlay
       )
       return WinRt.Hresult is abstract;
 
@@ -308,14 +308,14 @@ package WinRt.Windows.Gaming.UI is
       function get_GameUIArgs
       (
          this : access IGameUIProviderActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompleted
       (
          this : access IGameUIProviderActivatedEventArgs_Interface;
-         results : Windows.Foundation.Collections.IPropertySet
+         results : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -337,7 +337,7 @@ package WinRt.Windows.Gaming.UI is
 
       procedure remove_VisibilityChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_IsInputRedirectedChanged
@@ -348,7 +348,7 @@ package WinRt.Windows.Gaming.UI is
 
       procedure remove_IsInputRedirectedChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_Visible
@@ -422,7 +422,7 @@ package WinRt.Windows.Gaming.UI is
    procedure put_DesiredPosition
    (
       this : in out GameChatOverlay;
-      value : Windows.Gaming.UI.GameChatOverlayPosition
+      value : WinRt.Windows.Gaming.UI.GameChatOverlayPosition
    );
 
    procedure AddMessage
@@ -430,7 +430,7 @@ package WinRt.Windows.Gaming.UI is
       this : in out GameChatOverlay;
       sender : WinRt.WString;
       message : WinRt.WString;
-      origin : Windows.Gaming.UI.GameChatMessageOrigin
+      origin : WinRt.Windows.Gaming.UI.GameChatMessageOrigin
    );
 
    -----------------------------------------------------------------------------
@@ -457,13 +457,13 @@ package WinRt.Windows.Gaming.UI is
    procedure remove_MessageReceived
    (
       this : in out GameChatOverlayMessageSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetDelayBeforeClosingAfterMessageReceived
    (
       this : in out GameChatOverlayMessageSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -484,7 +484,7 @@ package WinRt.Windows.Gaming.UI is
    procedure ReportCompleted
    (
       this : in out GameUIProviderActivatedEventArgs;
-      results : Windows.Foundation.Collections.ValueSet'Class
+      results : WinRt.Windows.Foundation.Collections.ValueSet'Class
    );
 
    function get_Kind

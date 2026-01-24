@@ -90,7 +90,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
 
    function CreateFromUriAsync
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -146,7 +146,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdaptiveMediaSourceCreationResult := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
+                     Retval.m_IAdaptiveMediaSourceCreationResult := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
                      Retval.m_IAdaptiveMediaSourceCreationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -163,8 +163,8 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
 
    function CreateFromUriAsync
    (
-      uri : Windows.Foundation.Uri'Class;
-      httpClient : Windows.Web.Http.HttpClient'Class
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      httpClient : WinRt.Windows.Web.Http.HttpClient'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -220,7 +220,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdaptiveMediaSourceCreationResult := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
+                     Retval.m_IAdaptiveMediaSourceCreationResult := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
                      Retval.m_IAdaptiveMediaSourceCreationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -237,8 +237,8 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IInputStream;
-      uri : Windows.Foundation.Uri'Class;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       contentType : WinRt.WString
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult is
@@ -296,7 +296,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdaptiveMediaSourceCreationResult := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
+                     Retval.m_IAdaptiveMediaSourceCreationResult := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
                      Retval.m_IAdaptiveMediaSourceCreationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -314,10 +314,10 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IInputStream;
-      uri : Windows.Foundation.Uri'Class;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       contentType : WinRt.WString;
-      httpClient : Windows.Web.Http.HttpClient'Class
+      httpClient : WinRt.Windows.Web.Http.HttpClient'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -374,7 +374,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAdaptiveMediaSourceCreationResult := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
+                     Retval.m_IAdaptiveMediaSourceCreationResult := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult;
                      Retval.m_IAdaptiveMediaSourceCreationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -418,7 +418,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.get_DesiredLiveOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -430,7 +430,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_DesiredLiveOffset
    (
       this : in out AdaptiveMediaSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -516,7 +516,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.get_AvailableBitrates (m_ComRetVal'Access);
@@ -536,7 +536,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.get_DesiredMinBitrate (m_ComRetVal'Access);
@@ -571,7 +571,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.get_DesiredMaxBitrate (m_ComRetVal'Access);
@@ -640,7 +640,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.get_InboundBitsPerSecondWindow (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -652,7 +652,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_InboundBitsPerSecondWindow
    (
       this : in out AdaptiveMediaSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -673,7 +673,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.add_DownloadBitrateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -685,7 +685,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadBitrateChanged
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -706,7 +706,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.add_PlaybackBitrateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -718,7 +718,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_PlaybackBitrateChanged
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -739,7 +739,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.add_DownloadRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -751,7 +751,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadRequested
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -772,7 +772,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.add_DownloadCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -784,7 +784,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadCompleted
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -805,7 +805,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSource.all.add_DownloadFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -817,7 +817,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadFailed
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -838,7 +838,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceAdvancedSettings do
@@ -848,7 +848,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceAdvancedSettings := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings;
+         Retval.m_IAdaptiveMediaSourceAdvancedSettings := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings;
          Retval.m_IAdaptiveMediaSourceAdvancedSettings.all := m_ComRetVal;
       end return;
    end;
@@ -862,7 +862,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource3'Unchecked_Access);
    begin
@@ -886,7 +886,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource3'Unchecked_Access);
    begin
@@ -910,7 +910,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource3'Unchecked_Access);
    begin
@@ -953,7 +953,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDiagnostics do
@@ -963,7 +963,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceDiagnostics := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics;
+         Retval.m_IAdaptiveMediaSourceDiagnostics := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics;
          Retval.m_IAdaptiveMediaSourceDiagnostics.all := m_ComRetVal;
       end return;
    end;
@@ -977,7 +977,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSource3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCorrelatedTimes do
@@ -987,7 +987,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceCorrelatedTimes := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes;
+         Retval.m_IAdaptiveMediaSourceCorrelatedTimes := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes;
          Retval.m_IAdaptiveMediaSourceCorrelatedTimes.all := m_ComRetVal;
       end return;
    end;
@@ -1073,7 +1073,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceAdvancedSettings.all.get_DesiredBitrateHeadroomRatio (m_ComRetVal'Access);
@@ -1108,7 +1108,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceAdvancedSettings.all.get_BitrateDowngradeTriggerRatio (m_ComRetVal'Access);
@@ -1166,7 +1166,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceCorrelatedTimes.all.get_Position (m_ComRetVal'Access);
@@ -1186,7 +1186,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceCorrelatedTimes.all.get_PresentationTimeStamp (m_ComRetVal'Access);
@@ -1206,7 +1206,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceCorrelatedTimes.all.get_ProgramDateTime (m_ComRetVal'Access);
@@ -1249,7 +1249,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus;
    begin
       Hr := this.m_IAdaptiveMediaSourceCreationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1266,14 +1266,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSource do
          Hr := this.m_IAdaptiveMediaSourceCreationResult.all.get_MediaSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSource := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
+         Retval.m_IAdaptiveMediaSource := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
          Retval.m_IAdaptiveMediaSource.all := m_ComRetVal;
       end return;
    end;
@@ -1286,14 +1286,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IAdaptiveMediaSourceCreationResult.all.get_HttpResponseMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+         Retval.m_IHttpResponseMessage := new WinRt.Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
    end;
@@ -1307,7 +1307,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCreationResult2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceCreationResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAdaptiveMediaSourceCreationResult.all);
@@ -1350,7 +1350,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDiagnosticType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDiagnosticType;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_DiagnosticType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1367,7 +1367,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_RequestId (m_ComRetVal'Access);
@@ -1387,7 +1387,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_Position (m_ComRetVal'Access);
@@ -1407,7 +1407,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_SegmentId (m_ComRetVal'Access);
@@ -1427,7 +1427,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_AdaptiveMediaSourceResourceType.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_ResourceType (m_ComRetVal'Access);
@@ -1447,14 +1447,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_ResourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1467,7 +1467,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_ResourceByteRangeOffset (m_ComRetVal'Access);
@@ -1487,7 +1487,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_ResourceByteRangeLength (m_ComRetVal'Access);
@@ -1507,7 +1507,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.get_Bitrate (m_ComRetVal'Access);
@@ -1528,7 +1528,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDiagnosticAvailableEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all);
@@ -1549,7 +1549,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnosticAvailableEventArgs3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDiagnosticAvailableEventArgs3'Unchecked_Access);
    begin
@@ -1620,7 +1620,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdaptiveMediaSourceDiagnostics.all.add_DiagnosticAvailable (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1632,7 +1632,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DiagnosticAvailable
    (
       this : in out AdaptiveMediaSourceDiagnostics;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1710,7 +1710,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedReason;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedReason;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadBitrateChangedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs.all);
@@ -1753,7 +1753,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.get_ResourceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1770,14 +1770,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.get_ResourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1790,7 +1790,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.get_ResourceByteRangeOffset (m_ComRetVal'Access);
@@ -1810,7 +1810,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.get_ResourceByteRangeLength (m_ComRetVal'Access);
@@ -1830,14 +1830,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.get_HttpResponseMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+         Retval.m_IHttpResponseMessage := new WinRt.Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
    end;
@@ -1872,7 +1872,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadCompletedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadStatistics do
@@ -1882,7 +1882,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceDownloadStatistics := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
+         Retval.m_IAdaptiveMediaSourceDownloadStatistics := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
          Retval.m_IAdaptiveMediaSourceDownloadStatistics.all := m_ComRetVal;
       end return;
    end;
@@ -1896,7 +1896,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadCompletedEventArgs2'Unchecked_Access);
    begin
@@ -1920,7 +1920,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadCompletedEventArgs3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadCompletedEventArgs3'Unchecked_Access);
    begin
@@ -1990,7 +1990,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.get_ResourceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2007,14 +2007,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.get_ResourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2027,7 +2027,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.get_ResourceByteRangeOffset (m_ComRetVal'Access);
@@ -2047,7 +2047,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.get_ResourceByteRangeLength (m_ComRetVal'Access);
@@ -2067,14 +2067,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.get_HttpResponseMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+         Retval.m_IHttpResponseMessage := new WinRt.Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
    end;
@@ -2109,7 +2109,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadFailedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all);
@@ -2130,7 +2130,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadFailedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadStatistics do
@@ -2140,7 +2140,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceDownloadStatistics := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
+         Retval.m_IAdaptiveMediaSourceDownloadStatistics := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics;
          Retval.m_IAdaptiveMediaSourceDownloadStatistics.all := m_ComRetVal;
       end return;
    end;
@@ -2154,7 +2154,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadFailedEventArgs2'Unchecked_Access);
    begin
@@ -2178,7 +2178,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadFailedEventArgs3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadFailedEventArgs3'Unchecked_Access);
    begin
@@ -2285,7 +2285,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.get_ResourceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2302,14 +2302,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.get_ResourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2322,7 +2322,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.get_ResourceByteRangeOffset (m_ComRetVal'Access);
@@ -2342,7 +2342,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.get_ResourceByteRangeLength (m_ComRetVal'Access);
@@ -2362,14 +2362,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult;
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadResult do
          Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.get_Result (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceDownloadResult := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult;
+         Retval.m_IAdaptiveMediaSourceDownloadResult := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult;
          Retval.m_IAdaptiveMediaSourceDownloadResult.all := m_ComRetVal;
       end return;
    end;
@@ -2382,14 +2382,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral;
    begin
       return RetVal : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadRequestedDeferral do
          Hr := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveMediaSourceDownloadRequestedDeferral := new Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral;
+         Retval.m_IAdaptiveMediaSourceDownloadRequestedDeferral := new WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral;
          Retval.m_IAdaptiveMediaSourceDownloadRequestedDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2424,7 +2424,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadRequestedEventArgs2'Unchecked_Access);
    begin
@@ -2448,7 +2448,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedEventArgs3, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadRequestedEventArgs3'Unchecked_Access);
    begin
@@ -2518,14 +2518,14 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAdaptiveMediaSourceDownloadResult.all.get_ResourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2533,7 +2533,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_ResourceUri
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2553,7 +2553,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadResult.all.get_InputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2565,7 +2565,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_InputStream
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Storage.Streams.IInputStream
+      value : WinRt.Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2585,7 +2585,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadResult.all.get_Buffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2597,7 +2597,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_Buffer
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2687,7 +2687,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadResult2'Unchecked_Access);
    begin
@@ -2730,7 +2730,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult_Interface, WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult2, WinRt.Windows.Media.Streaming.Adaptive.IID_IAdaptiveMediaSourceDownloadResult2'Unchecked_Access);
    begin
@@ -2812,7 +2812,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadStatistics.all.get_TimeToHeadersReceived (m_ComRetVal'Access);
@@ -2832,7 +2832,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadStatistics.all.get_TimeToFirstByteReceived (m_ComRetVal'Access);
@@ -2852,7 +2852,7 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAdaptiveMediaSourceDownloadStatistics.all.get_TimeToLastByteReceived (m_ComRetVal'Access);

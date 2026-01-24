@@ -117,7 +117,7 @@ package WinRt.Windows.Web.AtomPub is
       function RetrieveServiceDocumentAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -125,7 +125,7 @@ package WinRt.Windows.Web.AtomPub is
       function RetrieveMediaResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -133,7 +133,7 @@ package WinRt.Windows.Web.AtomPub is
       function RetrieveResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -141,9 +141,9 @@ package WinRt.Windows.Web.AtomPub is
       function CreateResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          description : WinRt.HString;
-         item : Windows.Web.Syndication.ISyndicationItem;
+         item : WinRt.Windows.Web.Syndication.ISyndicationItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -151,10 +151,10 @@ package WinRt.Windows.Web.AtomPub is
       function CreateMediaResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          mediaType : WinRt.HString;
          description : WinRt.HString;
-         mediaStream : Windows.Storage.Streams.IInputStream;
+         mediaStream : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -162,43 +162,43 @@ package WinRt.Windows.Web.AtomPub is
       function UpdateMediaResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          mediaType : WinRt.HString;
-         mediaStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         mediaStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpdateResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         item : Windows.Web.Syndication.ISyndicationItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         item : WinRt.Windows.Web.Syndication.ISyndicationItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpdateResourceItemAsync
       (
          this : access IAtomPubClient_Interface;
-         item : Windows.Web.Syndication.ISyndicationItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         item : WinRt.Windows.Web.Syndication.ISyndicationItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteResourceAsync
       (
          this : access IAtomPubClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Foundation.IAsyncAction
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteResourceItemAsync
       (
          this : access IAtomPubClient_Interface;
-         item : Windows.Web.Syndication.ISyndicationItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         item : WinRt.Windows.Web.Syndication.ISyndicationItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -216,8 +216,8 @@ package WinRt.Windows.Web.AtomPub is
       function CreateAtomPubClientWithCredentials
       (
          this : access IAtomPubClientFactory_Interface;
-         serverCredential : Windows.Security.Credentials.IPasswordCredential;
-         RetVal : access Windows.Web.AtomPub.IAtomPubClient
+         serverCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
+         RetVal : access WinRt.Windows.Web.AtomPub.IAtomPubClient
       )
       return WinRt.Hresult is abstract;
 
@@ -229,14 +229,14 @@ package WinRt.Windows.Web.AtomPub is
       function get_Title
       (
          this : access IResourceCollection_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access IResourceCollection_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -274,7 +274,7 @@ package WinRt.Windows.Web.AtomPub is
       function get_Title
       (
          this : access IWorkspace_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
@@ -304,7 +304,7 @@ package WinRt.Windows.Web.AtomPub is
 
    function Constructor
    (
-      serverCredential : Windows.Security.Credentials.PasswordCredential'Class
+      serverCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return AtomPubClient;
 
@@ -314,74 +314,74 @@ package WinRt.Windows.Web.AtomPub is
    function RetrieveServiceDocumentAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.AtomPub.ServiceDocument'Class;
 
    function RetrieveMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.IInputStream;
 
    function RetrieveResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class;
 
    function CreateResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       description : WinRt.WString;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class;
 
    function CreateMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       mediaType : WinRt.WString;
       description : WinRt.WString;
-      mediaStream : Windows.Storage.Streams.IInputStream
+      mediaStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class;
 
    procedure UpdateMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       mediaType : WinRt.WString;
-      mediaStream : Windows.Storage.Streams.IInputStream
+      mediaStream : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    procedure UpdateResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    );
 
    procedure UpdateResourceItemAsync
    (
       this : in out AtomPubClient;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    );
 
    procedure DeleteResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure DeleteResourceItemAsync
    (
       this : in out AtomPubClient;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    );
 
    procedure CancelAsyncOperations
@@ -398,7 +398,7 @@ package WinRt.Windows.Web.AtomPub is
    procedure put_ServerCredential
    (
       this : in out AtomPubClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -410,7 +410,7 @@ package WinRt.Windows.Web.AtomPub is
    procedure put_ProxyCredential
    (
       this : in out AtomPubClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_MaxResponseBufferSize
@@ -459,7 +459,7 @@ package WinRt.Windows.Web.AtomPub is
    function RetrieveFeedAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationFeed'Class;
 
@@ -553,7 +553,7 @@ package WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out ResourceCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -571,7 +571,7 @@ package WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out ResourceCollection;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -647,7 +647,7 @@ package WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out ServiceDocument;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -665,7 +665,7 @@ package WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out ServiceDocument;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -747,7 +747,7 @@ package WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out Workspace;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -765,7 +765,7 @@ package WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out Workspace;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 

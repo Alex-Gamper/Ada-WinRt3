@@ -178,14 +178,14 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Status
       (
          this : access IBluetoothLEAdvertisementPublisherTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IBluetoothLEAdvertisementPublisherTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -209,7 +209,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Error
       (
          this : access IBluetoothLEAdvertisementWatcherTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -223,7 +223,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_SignalStrengthFilter
       (
          this : access IBluetoothLEAdvertisementWatcherTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -235,14 +235,14 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Characteristic
       (
          this : access IGattCharacteristicNotificationTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IGattCharacteristicNotificationTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -254,14 +254,14 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Error
       (
          this : access IGattCharacteristicNotificationTriggerDetails2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
       function get_EventTriggeringMode
       (
          this : access IGattCharacteristicNotificationTriggerDetails2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
       )
       return WinRt.Hresult is abstract;
 
@@ -287,7 +287,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Service
       (
          this : access IGattServiceProviderConnection_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
       )
       return WinRt.Hresult is abstract;
 
@@ -305,7 +305,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function UpdateAdvertisingParameters
       (
          this : access IGattServiceProviderConnection2_Interface;
-         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+         parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -329,7 +329,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Connection
       (
          this : access IGattServiceProviderTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -341,7 +341,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_Socket
       (
          this : access IRfcommConnectionTriggerDetails_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocket
       )
       return WinRt.Hresult is abstract;
 
@@ -355,7 +355,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_RemoteDevice
       (
          this : access IRfcommConnectionTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDevice
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -367,42 +367,42 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_SdpRecord
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_SdpRecord
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalServiceId
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function put_LocalServiceId
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         value : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         value : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceCapabilities
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function put_ServiceCapabilities
       (
          this : access IRfcommInboundConnectionInformation_Interface;
-         value : Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+         value : WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -414,14 +414,14 @@ package WinRt.Windows.Devices.Bluetooth.Background is
       function get_RemoteServiceId
       (
          this : access IRfcommOutboundConnectionInformation_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function put_RemoteServiceId
       (
          this : access IRfcommOutboundConnectionInformation_Interface;
-         value : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         value : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
@@ -559,7 +559,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure UpdateAdvertisingParameters
    (
       this : in out GattServiceProviderConnection;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    );
 
    -----------------------------------------------------------------------------
@@ -622,7 +622,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_SdpRecord
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_LocalServiceId
@@ -634,7 +634,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_LocalServiceId
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      value : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    );
 
    function get_ServiceCapabilities
@@ -646,7 +646,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_ServiceCapabilities
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+      value : WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
    );
 
    -----------------------------------------------------------------------------
@@ -667,7 +667,7 @@ package WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_RemoteServiceId
    (
       this : in out RfcommOutboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      value : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    );
 
 end WinRt.Windows.Devices.Bluetooth.Background;

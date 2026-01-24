@@ -81,13 +81,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTask is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTask");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTask");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
    begin
       return RetVal : UserDataTask do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUserDataTask := new Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+            Retval.m_IUserDataTask := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
             Retval.m_IUserDataTask.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -182,7 +182,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTask.all.get_CompletedDate (m_ComRetVal'Access);
@@ -254,7 +254,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind;
    begin
       Hr := this.m_IUserDataTask.all.get_DetailsKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -266,7 +266,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_DetailsKind
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -286,7 +286,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTask.all.get_DueDate (m_ComRetVal'Access);
@@ -321,7 +321,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskKind;
    begin
       Hr := this.m_IUserDataTask.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -338,7 +338,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority;
    begin
       Hr := this.m_IUserDataTask.all.get_Priority (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -350,7 +350,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Priority
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -370,14 +370,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties do
          Hr := this.m_IUserDataTask.all.get_RecurrenceProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskRecurrenceProperties := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
+         Retval.m_IUserDataTaskRecurrenceProperties := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
          Retval.m_IUserDataTaskRecurrenceProperties.all := m_ComRetVal;
       end return;
    end;
@@ -385,7 +385,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_RecurrenceProperties
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties'Class
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -405,14 +405,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties do
          Hr := this.m_IUserDataTask.all.get_RegenerationProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskRegenerationProperties := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
+         Retval.m_IUserDataTaskRegenerationProperties := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
          Retval.m_IUserDataTaskRegenerationProperties.all := m_ComRetVal;
       end return;
    end;
@@ -420,7 +420,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_RegenerationProperties
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties'Class
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -440,7 +440,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTask.all.get_Reminder (m_ComRetVal'Access);
@@ -475,7 +475,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity;
    begin
       Hr := this.m_IUserDataTask.all.get_Sensitivity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -487,7 +487,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Sensitivity
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -544,7 +544,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTask.all.get_StartDate (m_ComRetVal'Access);
@@ -602,7 +602,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUserDataTask.Kind;
    begin
       Hr := this.m_IUserDataTaskBatch.all.get_Tasks (m_ComRetVal'Access);
@@ -742,7 +742,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess;
    begin
       Hr := this.m_IUserDataTaskList.all.get_OtherAppReadAccess (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -754,7 +754,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_OtherAppReadAccess
    (
       this : in out UserDataTaskList;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -774,7 +774,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess;
    begin
       Hr := this.m_IUserDataTaskList.all.get_OtherAppWriteAccess (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -786,7 +786,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_OtherAppWriteAccess
    (
       this : in out UserDataTaskList;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -806,14 +806,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListLimitedWriteOperations do
          Hr := this.m_IUserDataTaskList.all.get_LimitedWriteOperations (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListLimitedWriteOperations := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations;
+         Retval.m_IUserDataTaskListLimitedWriteOperations := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations;
          Retval.m_IUserDataTaskListLimitedWriteOperations.all := m_ComRetVal;
       end return;
    end;
@@ -826,14 +826,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncManager do
          Hr := this.m_IUserDataTaskList.all.get_SyncManager (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListSyncManager := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager;
+         Retval.m_IUserDataTaskListSyncManager := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager;
          Retval.m_IUserDataTaskListSyncManager.all := m_ComRetVal;
       end return;
    end;
@@ -888,14 +888,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskReader do
          Hr := this.m_IUserDataTaskList.all.GetTaskReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskReader := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
+         Retval.m_IUserDataTaskReader := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
          Retval.m_IUserDataTaskReader.all := m_ComRetVal;
       end return;
    end;
@@ -903,20 +903,20 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function GetTaskReader
    (
       this : in out UserDataTaskList;
-      options : Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskReader'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskReader do
          Hr := this.m_IUserDataTaskList.all.GetTaskReader (options.m_IUserDataTaskQueryOptions.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskReader := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
+         Retval.m_IUserDataTaskReader := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader;
          Retval.m_IUserDataTaskReader.all := m_ComRetVal;
       end return;
    end;
@@ -976,7 +976,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTask := new Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+                  Retval.m_IUserDataTask := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
                   Retval.m_IUserDataTask.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -993,7 +993,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure SaveTaskAsync
    (
       this : in out UserDataTaskList;
-      userDataTask_p : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1257,7 +1257,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function TryCreateOrUpdateTaskAsync
    (
       this : in out UserDataTaskListLimitedWriteOperations;
-      userDataTask_p : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1481,7 +1481,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IUserDataTaskListSyncManager.all.get_LastAttemptedSyncTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1493,7 +1493,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_LastAttemptedSyncTime
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1513,7 +1513,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IUserDataTaskListSyncManager.all.get_LastSuccessfulSyncTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1525,7 +1525,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_LastSuccessfulSyncTime
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1545,7 +1545,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus;
    begin
       Hr := this.m_IUserDataTaskListSyncManager.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1557,7 +1557,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Status
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1641,7 +1641,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskListSyncManager.all.add_SyncStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1653,7 +1653,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure remove_SyncStatusChanged
    (
       this : in out UserDataTaskListSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1695,7 +1695,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskManager do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataTaskManagerStatics'Access , m_Factory'Address);
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataTaskManager := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
+            Retval.m_IUserDataTaskManager := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
             Retval.m_IUserDataTaskManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1714,7 +1714,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskManager is
       Hr               : WinRt.HResult := S_OK;
@@ -1722,7 +1722,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskManager do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataTaskManagerStatics'Access , m_Factory'Address);
@@ -1732,7 +1732,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataTaskManager := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
+            Retval.m_IUserDataTaskManager := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager;
             Retval.m_IUserDataTaskManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1745,7 +1745,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function RequestStoreAsync
    (
       this : in out UserDataTaskManager;
-      accessType : Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskStore'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1796,7 +1796,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTaskStore := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskStore;
+                  Retval.m_IUserDataTaskStore := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskStore;
                   Retval.m_IUserDataTaskStore.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1817,14 +1817,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IUserDataTaskManager.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1855,13 +1855,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
    begin
       return RetVal : UserDataTaskQueryOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUserDataTaskQueryOptions := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
+            Retval.m_IUserDataTaskQueryOptions := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
             Retval.m_IUserDataTaskQueryOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1879,7 +1879,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty;
    begin
       Hr := this.m_IUserDataTaskQueryOptions.all.get_SortProperty (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1891,7 +1891,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_SortProperty
    (
       this : in out UserDataTaskQueryOptions;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1911,7 +1911,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind;
    begin
       Hr := this.m_IUserDataTaskQueryOptions.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1923,7 +1923,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Kind
    (
       this : in out UserDataTaskQueryOptions;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2011,7 +2011,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTaskBatch := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskBatch;
+                  Retval.m_IUserDataTaskBatch := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskBatch;
                   Retval.m_IUserDataTaskBatch.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2050,13 +2050,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskRecurrenceProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
    begin
       return RetVal : UserDataTaskRecurrenceProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUserDataTaskRecurrenceProperties := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
+            Retval.m_IUserDataTaskRecurrenceProperties := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
             Retval.m_IUserDataTaskRecurrenceProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2074,7 +2074,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_Unit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2086,7 +2086,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Unit
    (
       this : in out UserDataTaskRecurrenceProperties;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2106,7 +2106,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_Occurrences (m_ComRetVal'Access);
@@ -2141,7 +2141,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_Until (m_ComRetVal'Access);
@@ -2208,7 +2208,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UserDataTaskDaysOfWeek.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_DaysOfWeek (m_ComRetVal'Access);
@@ -2243,7 +2243,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UserDataTaskWeekOfMonth.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_WeekOfMonth (m_ComRetVal'Access);
@@ -2278,7 +2278,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_Month (m_ComRetVal'Access);
@@ -2313,7 +2313,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IUserDataTaskRecurrenceProperties.all.get_Day (m_ComRetVal'Access);
@@ -2366,13 +2366,13 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskRegenerationProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
    begin
       return RetVal : UserDataTaskRegenerationProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUserDataTaskRegenerationProperties := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
+            Retval.m_IUserDataTaskRegenerationProperties := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
             Retval.m_IUserDataTaskRegenerationProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2390,7 +2390,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit;
    begin
       Hr := this.m_IUserDataTaskRegenerationProperties.all.get_Unit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2402,7 +2402,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Unit
    (
       this : in out UserDataTaskRegenerationProperties;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2422,7 +2422,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IUserDataTaskRegenerationProperties.all.get_Occurrences (m_ComRetVal'Access);
@@ -2457,7 +2457,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IUserDataTaskRegenerationProperties.all.get_Until (m_ComRetVal'Access);
@@ -2594,7 +2594,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTaskList := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
+                  Retval.m_IUserDataTaskList := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
                   Retval.m_IUserDataTaskList.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2665,7 +2665,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTaskList := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
+                  Retval.m_IUserDataTaskList := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
                   Retval.m_IUserDataTaskList.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2798,7 +2798,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUserDataTaskList := new Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
+                  Retval.m_IUserDataTaskList := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskList;
                   Retval.m_IUserDataTaskList.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

@@ -58,13 +58,13 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    function Constructor return PhoneNumberFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
    begin
       return RetVal : PhoneNumberFormatter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPhoneNumberFormatter := new Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
+            Retval.m_IPhoneNumberFormatter := new WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter;
             Retval.m_IPhoneNumberFormatter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -77,7 +77,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    procedure TryCreate
    (
       regionCode : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -189,7 +189,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    function Format
    (
       this : in out PhoneNumberFormatter;
-      number : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
+      number : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -210,8 +210,8 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    function Format
    (
       this : in out PhoneNumberFormatter;
-      number : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class;
-      numberFormat : Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat
+      number : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class;
+      numberFormat : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -328,17 +328,17 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    return PhoneNumberInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo");
       m_Factory    : access IPhoneNumberInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
       HStr_number : constant WinRt.HString := To_HString (number);
    begin
       return RetVal : PhoneNumberInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_number, m_ComRetVal'Access);
-            Retval.m_IPhoneNumberInfo := new Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+            Retval.m_IPhoneNumberInfo := new WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
             Retval.m_IPhoneNumberInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -353,7 +353,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    function TryParse
    (
       input : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult is
       Hr               : WinRt.HResult := S_OK;
@@ -361,7 +361,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPhoneNumberInfoStatics'Access , m_Factory'Address);
@@ -381,7 +381,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    (
       input : WinRt.WString;
       regionCode : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult is
       Hr               : WinRt.HResult := S_OK;
@@ -389,7 +389,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo");
       m_Factory        : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
       HStr_input : constant WinRt.HString := To_HString (input);
       HStr_regionCode : constant WinRt.HString := To_HString (regionCode);
    begin
@@ -509,7 +509,7 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind;
    begin
       Hr := this.m_IPhoneNumberInfo.all.PredictNumberKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -541,13 +541,13 @@ package body WinRt.Windows.Globalization.PhoneNumberFormatting is
    function CheckNumberMatch
    (
       this : in out PhoneNumberInfo;
-      otherNumber : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
+      otherNumber : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult;
    begin
       Hr := this.m_IPhoneNumberInfo.all.CheckNumberMatch (otherNumber.m_IPhoneNumberInfo.all, m_ComRetVal'Access);
       if Hr /= S_OK then

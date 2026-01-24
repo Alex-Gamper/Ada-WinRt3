@@ -212,14 +212,14 @@ package WinRt.Windows.Devices.Lights is
       function get_Color
       (
          this : access ILamp_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ILamp_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -227,14 +227,14 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILamp_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailabilityChanged
       (
          this : access ILamp_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -274,7 +274,7 @@ package WinRt.Windows.Devices.Lights is
       function get_LampArrayKind
       (
          this : access ILampArray_Interface;
-         RetVal : access Windows.Devices.Lights.LampArrayKind
+         RetVal : access WinRt.Windows.Devices.Lights.LampArrayKind
       )
       return WinRt.Hresult is abstract;
 
@@ -288,14 +288,14 @@ package WinRt.Windows.Devices.Lights is
       function get_MinUpdateInterval
       (
          this : access ILampArray_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingBox
       (
          this : access ILampArray_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -345,14 +345,14 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray_Interface;
          lampIndex : WinRt.Int32;
-         RetVal : access Windows.Devices.Lights.ILampInfo
+         RetVal : access WinRt.Windows.Devices.Lights.ILampInfo
       )
       return WinRt.Hresult is abstract;
 
       function GetIndicesForKey
       (
          this : access ILampArray_Interface;
-         key : Windows.System.VirtualKey;
+         key : WinRt.Windows.System.VirtualKey;
          RetValSize : access WinRt.UInt32;
          RetVal : access WinRt.Int32_Ptr
       )
@@ -361,7 +361,7 @@ package WinRt.Windows.Devices.Lights is
       function GetIndicesForPurposes
       (
          this : access ILampArray_Interface;
-         purposes : Windows.Devices.Lights.LampPurposes;
+         purposes : WinRt.Windows.Devices.Lights.LampPurposes;
          RetValSize : access WinRt.UInt32;
          RetVal : access WinRt.Int32_Ptr
       )
@@ -370,7 +370,7 @@ package WinRt.Windows.Devices.Lights is
       function SetColor
       (
          this : access ILampArray_Interface;
-         desiredColor : Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -378,14 +378,14 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray_Interface;
          lampIndex : WinRt.Int32;
-         desiredColor : Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function SetSingleColorForIndices
       (
          this : access ILampArray_Interface;
-         desiredColor : Windows.UI.Color;
+         desiredColor : WinRt.Windows.UI.Color;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr
       )
@@ -395,7 +395,7 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray_Interface;
          desiredColorsSize : WinRt.UInt32;
-         desiredColors : Windows.UI.Color_Ptr;
+         desiredColors : WinRt.Windows.UI.Color_Ptr;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr
       )
@@ -404,8 +404,8 @@ package WinRt.Windows.Devices.Lights is
       function SetColorsForKey
       (
          this : access ILampArray_Interface;
-         desiredColor : Windows.UI.Color;
-         key : Windows.System.VirtualKey
+         desiredColor : WinRt.Windows.UI.Color;
+         key : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
@@ -413,17 +413,17 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray_Interface;
          desiredColorsSize : WinRt.UInt32;
-         desiredColors : Windows.UI.Color_Ptr;
+         desiredColors : WinRt.Windows.UI.Color_Ptr;
          keysSize : WinRt.UInt32;
-         keys : Windows.System.VirtualKey_Ptr
+         keys : WinRt.Windows.System.VirtualKey_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function SetColorsForPurposes
       (
          this : access ILampArray_Interface;
-         desiredColor : Windows.UI.Color;
-         purposes : Windows.Devices.Lights.LampPurposes
+         desiredColor : WinRt.Windows.UI.Color;
+         purposes : WinRt.Windows.Devices.Lights.LampPurposes
       )
       return WinRt.Hresult is abstract;
 
@@ -431,8 +431,8 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray_Interface;
          messageId : WinRt.Int32;
-         message : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -460,14 +460,14 @@ package WinRt.Windows.Devices.Lights is
       (
          this : access ILampArray2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailabilityChanged
       (
          this : access ILampArray2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -518,14 +518,14 @@ package WinRt.Windows.Devices.Lights is
       function get_Purposes
       (
          this : access ILampInfo_Interface;
-         RetVal : access Windows.Devices.Lights.LampPurposes
+         RetVal : access WinRt.Windows.Devices.Lights.LampPurposes
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access ILampInfo_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -567,15 +567,15 @@ package WinRt.Windows.Devices.Lights is
       function GetNearestSupportedColor
       (
          this : access ILampInfo_Interface;
-         desiredColor : Windows.UI.Color;
-         RetVal : access Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.Color;
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateLatency
       (
          this : access ILampInfo_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -681,7 +681,7 @@ package WinRt.Windows.Devices.Lights is
    procedure put_Color
    (
       this : in out Lamp;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function add_AvailabilityChanged
@@ -694,7 +694,7 @@ package WinRt.Windows.Devices.Lights is
    procedure remove_AvailabilityChanged
    (
       this : in out Lamp;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -817,70 +817,70 @@ package WinRt.Windows.Devices.Lights is
    function GetIndicesForKey
    (
       this : in out LampArray;
-      key : Windows.System.VirtualKey
+      key : WinRt.Windows.System.VirtualKey
    )
    return WinRt.Int32_Array;
 
    function GetIndicesForPurposes
    (
       this : in out LampArray;
-      purposes : Windows.Devices.Lights.LampPurposes
+      purposes : WinRt.Windows.Devices.Lights.LampPurposes
    )
    return WinRt.Int32_Array;
 
    procedure SetColor
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    );
 
    procedure SetColorForIndex
    (
       this : in out LampArray;
       lampIndex : WinRt.Int32;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    );
 
    procedure SetSingleColorForIndices
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
+      desiredColor : WinRt.Windows.UI.Color;
       lampIndexes : WinRt.Int32_Array
    );
 
    procedure SetColorsForIndices
    (
       this : in out LampArray;
-      desiredColors : Windows.UI.Color_Array;
+      desiredColors : WinRt.Windows.UI.Color_Array;
       lampIndexes : WinRt.Int32_Array
    );
 
    procedure SetColorsForKey
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
-      key : Windows.System.VirtualKey
+      desiredColor : WinRt.Windows.UI.Color;
+      key : WinRt.Windows.System.VirtualKey
    );
 
    procedure SetColorsForKeys
    (
       this : in out LampArray;
-      desiredColors : Windows.UI.Color_Array;
-      keys : Windows.System.VirtualKey_Array
+      desiredColors : WinRt.Windows.UI.Color_Array;
+      keys : WinRt.Windows.System.VirtualKey_Array
    );
 
    procedure SetColorsForPurposes
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
-      purposes : Windows.Devices.Lights.LampPurposes
+      desiredColor : WinRt.Windows.UI.Color;
+      purposes : WinRt.Windows.Devices.Lights.LampPurposes
    );
 
    procedure SendMessageAsync
    (
       this : in out LampArray;
       messageId : WinRt.Int32;
-      message : Windows.Storage.Streams.IBuffer
+      message : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function RequestMessageAsync
@@ -906,7 +906,7 @@ package WinRt.Windows.Devices.Lights is
    procedure remove_AvailabilityChanged
    (
       this : in out LampArray;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -984,7 +984,7 @@ package WinRt.Windows.Devices.Lights is
    function GetNearestSupportedColor
    (
       this : in out LampInfo;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Color;
 

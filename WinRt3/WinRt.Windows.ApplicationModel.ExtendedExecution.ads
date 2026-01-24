@@ -108,7 +108,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       function get_Reason
       (
          this : access IExtendedExecutionRevokedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason
+         RetVal : access WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionRevokedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -120,14 +120,14 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       function get_Reason
       (
          this : access IExtendedExecutionSession_Interface;
-         RetVal : access Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
+         RetVal : access WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
       )
       return WinRt.Hresult is abstract;
 
       function put_Reason
       (
          this : access IExtendedExecutionSession_Interface;
-         value : Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
+         value : WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
       )
       return WinRt.Hresult is abstract;
 
@@ -163,14 +163,14 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
       (
          this : access IExtendedExecutionSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Revoked
       (
          this : access IExtendedExecutionSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -225,7 +225,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
    procedure put_Reason
    (
       this : in out ExtendedExecutionSession;
-      value : Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
+      value : WinRt.Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionReason
    );
 
    function get_Description
@@ -262,7 +262,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution is
    procedure remove_Revoked
    (
       this : in out ExtendedExecutionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RequestExtensionAsync

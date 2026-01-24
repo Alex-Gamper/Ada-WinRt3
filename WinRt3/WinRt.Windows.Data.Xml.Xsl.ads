@@ -70,7 +70,7 @@ package WinRt.Windows.Data.Xml.Xsl is
       function TransformToString
       (
          this : access IXsltProcessor_Interface;
-         inputNode : Windows.Data.Xml.Dom.IXmlNode;
+         inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -83,8 +83,8 @@ package WinRt.Windows.Data.Xml.Xsl is
       function TransformToDocument
       (
          this : access IXsltProcessor2_Interface;
-         inputNode : Windows.Data.Xml.Dom.IXmlNode;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -96,8 +96,8 @@ package WinRt.Windows.Data.Xml.Xsl is
       function CreateInstance
       (
          this : access IXsltProcessorFactory_Interface;
-         document : Windows.Data.Xml.Dom.IXmlDocument;
-         RetVal : access Windows.Data.Xml.Xsl.IXsltProcessor
+         document : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         RetVal : access WinRt.Windows.Data.Xml.Xsl.IXsltProcessor
       )
       return WinRt.Hresult is abstract;
 
@@ -118,7 +118,7 @@ package WinRt.Windows.Data.Xml.Xsl is
 
    function Constructor
    (
-      document : Windows.Data.Xml.Dom.XmlDocument'Class
+      document : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return XsltProcessor;
 
@@ -128,14 +128,14 @@ package WinRt.Windows.Data.Xml.Xsl is
    function TransformToString
    (
       this : in out XsltProcessor;
-      inputNode : Windows.Data.Xml.Dom.IXmlNode
+      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
    )
    return WinRt.WString;
 
    function TransformToDocument
    (
       this : in out XsltProcessor;
-      inputNode : Windows.Data.Xml.Dom.IXmlNode
+      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 

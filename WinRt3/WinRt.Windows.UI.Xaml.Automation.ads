@@ -870,35 +870,35 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AnnotationTypeIdProperty
       (
          this : access IAnnotationPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AnnotationTypeNameProperty
       (
          this : access IAnnotationPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthorProperty
       (
          this : access IAnnotationPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DateTimeProperty
       (
          this : access IAnnotationPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetProperty
       (
          this : access IAnnotationPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -910,28 +910,28 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_Type
       (
          this : access IAutomationAnnotation_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.AnnotationType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.AnnotationType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IAutomationAnnotation_Interface;
-         value : Windows.UI.Xaml.Automation.AnnotationType
+         value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
       )
       return WinRt.Hresult is abstract;
 
       function get_Element
       (
          this : access IAutomationAnnotation_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Element
       (
          this : access IAutomationAnnotation_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -943,17 +943,17 @@ package WinRt.Windows.UI.Xaml.Automation is
       function CreateInstance
       (
          this : access IAutomationAnnotationFactory_Interface;
-         type_x : Windows.UI.Xaml.Automation.AnnotationType;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationAnnotation
+         type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithElementParameter
       (
          this : access IAutomationAnnotationFactory_Interface;
-         type_x : Windows.UI.Xaml.Automation.AnnotationType;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationAnnotation
+         type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation
       )
       return WinRt.Hresult is abstract;
 
@@ -965,14 +965,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_TypeProperty
       (
          this : access IAutomationAnnotationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementProperty
       (
          this : access IAutomationAnnotationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -989,161 +989,161 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AcceleratorKeyProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AccessKeyProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AutomationIdProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingRectangleProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClassNameProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClickablePointProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlTypeProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HasKeyboardFocusProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HelpTextProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsContentElementProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsControlElementProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsEnabledProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsKeyboardFocusableProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsOffscreenProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsPasswordProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsRequiredForFormProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemStatusProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemTypeProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LabeledByProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalizedControlTypeProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_NameProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OrientationProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LiveSettingProperty
       (
          this : access IAutomationElementIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1155,7 +1155,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ControlledPeersProperty
       (
          this : access IAutomationElementIdentifiersStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1167,28 +1167,28 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_PositionInSetProperty
       (
          this : access IAutomationElementIdentifiersStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SizeOfSetProperty
       (
          this : access IAutomationElementIdentifiersStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LevelProperty
       (
          this : access IAutomationElementIdentifiersStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AnnotationsProperty
       (
          this : access IAutomationElementIdentifiersStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1200,14 +1200,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LandmarkTypeProperty
       (
          this : access IAutomationElementIdentifiersStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalizedLandmarkTypeProperty
       (
          this : access IAutomationElementIdentifiersStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1219,42 +1219,42 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsPeripheralProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsDataValidForFormProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FullDescriptionProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DescribedByProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FlowsToProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FlowsFromProperty
       (
          this : access IAutomationElementIdentifiersStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1266,7 +1266,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CultureProperty
       (
          this : access IAutomationElementIdentifiersStatics6_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,7 +1278,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_HeadingLevelProperty
       (
          this : access IAutomationElementIdentifiersStatics7_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1290,7 +1290,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsDialogProperty
       (
          this : access IAutomationElementIdentifiersStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1307,14 +1307,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AcceleratorKeyProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAcceleratorKey
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1322,7 +1322,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetAcceleratorKey
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1330,14 +1330,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AccessKeyProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAccessKey
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1345,7 +1345,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetAccessKey
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1353,14 +1353,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AutomationIdProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAutomationId
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1368,7 +1368,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetAutomationId
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1376,14 +1376,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_HelpTextProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetHelpText
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1391,7 +1391,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetHelpText
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1399,14 +1399,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsRequiredForFormProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsRequiredForForm
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1414,7 +1414,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetIsRequiredForForm
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1422,14 +1422,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ItemStatusProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetItemStatus
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1437,7 +1437,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetItemStatus
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1445,14 +1445,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ItemTypeProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetItemType
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1460,7 +1460,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetItemType
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1468,37 +1468,37 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LabeledByProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLabeledBy
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function SetLabeledBy
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.IUIElement
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function get_NameProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetName
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1506,7 +1506,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetName
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1514,23 +1514,23 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LiveSettingProperty
       (
          this : access IAutomationPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLiveSetting
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
       )
       return WinRt.Hresult is abstract;
 
       function SetLiveSetting
       (
          this : access IAutomationPropertiesStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
       )
       return WinRt.Hresult is abstract;
 
@@ -1542,37 +1542,37 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AccessibilityViewProperty
       (
          this : access IAutomationPropertiesStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAccessibilityView
       (
          this : access IAutomationPropertiesStatics2_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AccessibilityView
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView
       )
       return WinRt.Hresult is abstract;
 
       function SetAccessibilityView
       (
          this : access IAutomationPropertiesStatics2_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.Automation.Peers.AccessibilityView
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlledPeersProperty
       (
          this : access IAutomationPropertiesStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetControlledPeers
       (
          this : access IAutomationPropertiesStatics2_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1585,14 +1585,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_PositionInSetProperty
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetPositionInSet
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1600,7 +1600,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetPositionInSet
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1608,14 +1608,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_SizeOfSetProperty
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetSizeOfSet
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1623,7 +1623,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetSizeOfSet
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1631,14 +1631,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LevelProperty
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLevel
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1646,7 +1646,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetLevel
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1654,14 +1654,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AnnotationsProperty
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAnnotations
       (
          this : access IAutomationPropertiesStatics3_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1674,37 +1674,37 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LandmarkTypeProperty
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLandmarkType
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
       )
       return WinRt.Hresult is abstract;
 
       function SetLandmarkType
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalizedLandmarkTypeProperty
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLocalizedLandmarkType
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1712,7 +1712,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetLocalizedLandmarkType
       (
          this : access IAutomationPropertiesStatics4_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1725,14 +1725,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsPeripheralProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsPeripheral
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1740,7 +1740,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetIsPeripheral
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1748,14 +1748,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsDataValidForFormProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsDataValidForForm
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1763,7 +1763,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetIsDataValidForForm
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1771,14 +1771,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_FullDescriptionProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetFullDescription
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1786,7 +1786,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetFullDescription
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1794,14 +1794,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_LocalizedControlTypeProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLocalizedControlType
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1809,7 +1809,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetLocalizedControlType
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1817,14 +1817,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_DescribedByProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetDescribedBy
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1832,14 +1832,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_FlowsToProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetFlowsTo
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1847,14 +1847,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_FlowsFromProperty
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetFlowsFrom
       (
          this : access IAutomationPropertiesStatics5_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1867,14 +1867,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CultureProperty
       (
          this : access IAutomationPropertiesStatics6_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetCulture
       (
          this : access IAutomationPropertiesStatics6_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1882,7 +1882,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetCulture
       (
          this : access IAutomationPropertiesStatics6_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1895,23 +1895,23 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_HeadingLevelProperty
       (
          this : access IAutomationPropertiesStatics7_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetHeadingLevel
       (
          this : access IAutomationPropertiesStatics7_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
       )
       return WinRt.Hresult is abstract;
 
       function SetHeadingLevel
       (
          this : access IAutomationPropertiesStatics7_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1923,14 +1923,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsDialogProperty
       (
          this : access IAutomationPropertiesStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsDialog
       (
          this : access IAutomationPropertiesStatics8_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1938,7 +1938,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function SetIsDialog
       (
          this : access IAutomationPropertiesStatics8_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1951,23 +1951,23 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_AutomationControlTypeProperty
       (
          this : access IAutomationPropertiesStatics9_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAutomationControlType
       (
          this : access IAutomationPropertiesStatics9_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationControlType
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
       )
       return WinRt.Hresult is abstract;
 
       function SetAutomationControlType
       (
          this : access IAutomationPropertiesStatics9_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         value : Windows.UI.Xaml.Automation.Peers.AutomationControlType
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
       )
       return WinRt.Hresult is abstract;
 
@@ -1989,7 +1989,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_DockPositionProperty
       (
          this : access IDockPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2006,28 +2006,28 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_DropEffectProperty
       (
          this : access IDragPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DropEffectsProperty
       (
          this : access IDragPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GrabbedItemsProperty
       (
          this : access IDragPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsGrabbedProperty
       (
          this : access IDragPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2044,14 +2044,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_DropTargetEffectProperty
       (
          this : access IDropTargetPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DropTargetEffectsProperty
       (
          this : access IDropTargetPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2068,7 +2068,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ExpandCollapseStateProperty
       (
          this : access IExpandCollapsePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2085,35 +2085,35 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ColumnProperty
       (
          this : access IGridItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ColumnSpanProperty
       (
          this : access IGridItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContainingGridProperty
       (
          this : access IGridItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowProperty
       (
          this : access IGridItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowSpanProperty
       (
          this : access IGridItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2130,14 +2130,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ColumnCountProperty
       (
          this : access IGridPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowCountProperty
       (
          this : access IGridPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2154,14 +2154,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CurrentViewProperty
       (
          this : access IMultipleViewPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportedViewsProperty
       (
          this : access IMultipleViewPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2178,42 +2178,42 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsReadOnlyProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LargeChangeProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaximumProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MinimumProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SmallChangeProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ValueProperty
       (
          this : access IRangeValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2230,21 +2230,21 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_HorizontallyScrollableProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HorizontalScrollPercentProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HorizontalViewSizeProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2258,21 +2258,21 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_VerticallyScrollableProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VerticalScrollPercentProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VerticalViewSizeProperty
       (
          this : access IScrollPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2289,14 +2289,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsSelectedProperty
       (
          this : access ISelectionItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionContainerProperty
       (
          this : access ISelectionItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2313,21 +2313,21 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CanSelectMultipleProperty
       (
          this : access ISelectionPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsSelectionRequiredProperty
       (
          this : access ISelectionPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectionProperty
       (
          this : access ISelectionPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2344,7 +2344,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_FormulaProperty
       (
          this : access ISpreadsheetItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2361,49 +2361,49 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ExtendedPropertiesProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FillColorProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FillPatternColorProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FillPatternStyleProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ShapeProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleIdProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleNameProperty
       (
          this : access IStylesPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2420,14 +2420,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ColumnHeaderItemsProperty
       (
          this : access ITableItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowHeaderItemsProperty
       (
          this : access ITableItemPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2444,21 +2444,21 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ColumnHeadersProperty
       (
          this : access ITablePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowHeadersProperty
       (
          this : access ITablePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RowOrColumnMajorProperty
       (
          this : access ITablePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2475,7 +2475,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_ToggleStateProperty
       (
          this : access ITogglePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2492,28 +2492,28 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CanZoomProperty
       (
          this : access ITransformPattern2IdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomLevelProperty
       (
          this : access ITransformPattern2IdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxZoomProperty
       (
          this : access ITransformPattern2IdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MinZoomProperty
       (
          this : access ITransformPattern2IdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2530,21 +2530,21 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CanMoveProperty
       (
          this : access ITransformPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanResizeProperty
       (
          this : access ITransformPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanRotateProperty
       (
          this : access ITransformPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2561,14 +2561,14 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_IsReadOnlyProperty
       (
          this : access IValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ValueProperty
       (
          this : access IValuePatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2585,42 +2585,42 @@ package WinRt.Windows.UI.Xaml.Automation is
       function get_CanMaximizeProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanMinimizeProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsModalProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsTopmostProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_WindowInteractionStateProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_WindowVisualStateProperty
       (
          this : access IWindowPatternIdentifiersStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.IAutomationProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.IAutomationProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2668,14 +2668,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    )
    return AutomationAnnotation;
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType;
-      element : Windows.UI.Xaml.UIElement'Class
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return AutomationAnnotation;
 
@@ -2702,7 +2702,7 @@ package WinRt.Windows.UI.Xaml.Automation is
    procedure put_Type
    (
       this : in out AutomationAnnotation;
-      value : Windows.UI.Xaml.Automation.AnnotationType
+      value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    );
 
    function get_Element
@@ -2714,7 +2714,7 @@ package WinRt.Windows.UI.Xaml.Automation is
    procedure put_Element
    (
       this : in out AutomationAnnotation;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2860,13 +2860,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetCulture
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetCulture
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -2875,14 +2875,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
 
    procedure SetLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
    );
 
    function get_LocalizedLandmarkTypeProperty
@@ -2890,13 +2890,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLocalizedLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetLocalizedLandmarkType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -2905,13 +2905,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetPositionInSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetPositionInSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -2920,13 +2920,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetSizeOfSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetSizeOfSet
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -2935,13 +2935,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -2950,7 +2950,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAnnotations
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
 
@@ -2959,13 +2959,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAcceleratorKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetAcceleratorKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -2974,13 +2974,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAccessKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetAccessKey
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -2989,13 +2989,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAutomationId
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetAutomationId
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3004,13 +3004,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetHelpText
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetHelpText
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3019,13 +3019,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsRequiredForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsRequiredForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -3034,13 +3034,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetItemStatus
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetItemStatus
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3049,13 +3049,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetItemType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetItemType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3064,14 +3064,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLabeledBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.UIElement;
 
    procedure SetLabeledBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function get_NameProperty
@@ -3079,13 +3079,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetName
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetName
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3094,14 +3094,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLiveSetting
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
 
    procedure SetLiveSetting
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
    );
 
    function get_AutomationControlTypeProperty
@@ -3109,14 +3109,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAutomationControlType
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType;
 
    procedure SetAutomationControlType
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationControlType
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
    );
 
    function get_IsPeripheralProperty
@@ -3124,13 +3124,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsPeripheral
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsPeripheral
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -3139,13 +3139,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsDataValidForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsDataValidForForm
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -3154,13 +3154,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetFullDescription
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetFullDescription
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3169,13 +3169,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetLocalizedControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.WString;
 
    procedure SetLocalizedControlType
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.WString
    );
 
@@ -3184,7 +3184,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetDescribedBy
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
 
@@ -3193,7 +3193,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetFlowsTo
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
 
@@ -3202,7 +3202,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetFlowsFrom
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
 
@@ -3211,14 +3211,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetAccessibilityView
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView;
 
    procedure SetAccessibilityView
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AccessibilityView
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AccessibilityView
    );
 
    function get_ControlledPeersProperty
@@ -3226,7 +3226,7 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetControlledPeers
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.GenericObject;
 
@@ -3235,13 +3235,13 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetIsDialog
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsDialog
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -3250,14 +3250,14 @@ package WinRt.Windows.UI.Xaml.Automation is
 
    function GetHeadingLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
 
    procedure SetHeadingLevel
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
    );
 
    -----------------------------------------------------------------------------

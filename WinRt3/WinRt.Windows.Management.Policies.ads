@@ -104,7 +104,7 @@ package WinRt.Windows.Management.Policies is
       function get_Kind
       (
          this : access INamedPolicyData_Interface;
-         RetVal : access Windows.Management.Policies.NamedPolicyKind
+         RetVal : access WinRt.Windows.Management.Policies.NamedPolicyKind
       )
       return WinRt.Hresult is abstract;
 
@@ -125,7 +125,7 @@ package WinRt.Windows.Management.Policies is
       function get_User
       (
          this : access INamedPolicyData_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -139,7 +139,7 @@ package WinRt.Windows.Management.Policies is
       function GetBinary
       (
          this : access INamedPolicyData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -168,14 +168,14 @@ package WinRt.Windows.Management.Policies is
       (
          this : access INamedPolicyData_Interface;
          changedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access INamedPolicyData_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -189,17 +189,17 @@ package WinRt.Windows.Management.Policies is
          this : access INamedPolicyStatics_Interface;
          area : WinRt.HString;
          name : WinRt.HString;
-         RetVal : access Windows.Management.Policies.INamedPolicyData
+         RetVal : access WinRt.Windows.Management.Policies.INamedPolicyData
       )
       return WinRt.Hresult is abstract;
 
       function GetPolicyFromPathForUser
       (
          this : access INamedPolicyStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          area : WinRt.HString;
          name : WinRt.HString;
-         RetVal : access Windows.Management.Policies.INamedPolicyData
+         RetVal : access WinRt.Windows.Management.Policies.INamedPolicyData
       )
       return WinRt.Hresult is abstract;
 
@@ -222,7 +222,7 @@ package WinRt.Windows.Management.Policies is
 
       function GetPolicyFromPathForUser
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          area : WinRt.WString;
          name : WinRt.WString
       )
@@ -315,7 +315,7 @@ package WinRt.Windows.Management.Policies is
    procedure remove_Changed
    (
       this : in out NamedPolicyData;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.Management.Policies;

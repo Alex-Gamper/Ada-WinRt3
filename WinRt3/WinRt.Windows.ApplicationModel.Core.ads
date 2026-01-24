@@ -205,7 +205,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_DisplayInfo
       (
          this : access IAppListEntry_Interface;
-         RetVal : access Windows.ApplicationModel.IAppDisplayInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppDisplayInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -236,7 +236,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function LaunchForUserAsync
       (
          this : access IAppListEntry3_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -249,7 +249,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_AppInfo
       (
          this : access IAppListEntry4_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -269,14 +269,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplication_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Suspending
       (
          this : access ICoreApplication_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -284,42 +284,42 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplication_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Resuming
       (
          this : access ICoreApplication_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access ICoreApplication_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentView
       (
          this : access ICoreApplication_Interface;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationView
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
       function Run
       (
          this : access ICoreApplication_Interface;
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
+         viewSource : WinRt.Windows.ApplicationModel.Core.IFrameworkViewSource
       )
       return WinRt.Hresult is abstract;
 
       function RunWithActivationFactories
       (
          this : access ICoreApplication_Interface;
-         activationFactoryCallback : Windows.Foundation.IGetActivationFactory
+         activationFactoryCallback : WinRt.Windows.Foundation.IGetActivationFactory
       )
       return WinRt.Hresult is abstract;
 
@@ -332,14 +332,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplication2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackgroundActivated
       (
          this : access ICoreApplication2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -347,14 +347,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplication2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LeavingBackground
       (
          this : access ICoreApplication2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -362,14 +362,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplication2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnteredBackground
       (
          this : access ICoreApplication2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -396,7 +396,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function RequestRestartForUserAsync
       (
          this : access ICoreApplication3_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          launchArguments : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -417,14 +417,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationExit_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Exiting
       (
          this : access ICoreApplicationExit_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -437,14 +437,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationUnhandledError_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UnhandledErrorDetected
       (
          this : access ICoreApplicationUnhandledError_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -473,7 +473,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_CoreWindow
       (
          this : access ICoreApplicationView_Interface;
-         RetVal : access Windows.UI.Core.ICoreWindow
+         RetVal : access WinRt.Windows.UI.Core.ICoreWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -481,14 +481,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Activated
       (
          this : access ICoreApplicationView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -514,7 +514,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_Dispatcher
       (
          this : access ICoreApplicationView2_Interface;
-         RetVal : access Windows.UI.Core.ICoreDispatcher
+         RetVal : access WinRt.Windows.UI.Core.ICoreDispatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -533,7 +533,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_TitleBar
       (
          this : access ICoreApplicationView3_Interface;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationViewTitleBar
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationViewTitleBar
       )
       return WinRt.Hresult is abstract;
 
@@ -541,14 +541,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationView3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HostedViewClosing
       (
          this : access ICoreApplicationView3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -560,7 +560,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_Properties
       (
          this : access ICoreApplicationView5_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -572,7 +572,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_DispatcherQueue
       (
          this : access ICoreApplicationView6_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -620,14 +620,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationViewTitleBar_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LayoutMetricsChanged
       (
          this : access ICoreApplicationViewTitleBar_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -642,14 +642,14 @@ package WinRt.Windows.ApplicationModel.Core is
       (
          this : access ICoreApplicationViewTitleBar_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsVisibleChanged
       (
          this : access ICoreApplicationViewTitleBar_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -670,14 +670,14 @@ package WinRt.Windows.ApplicationModel.Core is
          this : access ICoreImmersiveApplication_Interface;
          runtimeType : WinRt.HString;
          entryPoint : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationView
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
       function get_MainView
       (
          this : access ICoreImmersiveApplication_Interface;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationView
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
@@ -689,7 +689,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function CreateNewView
       (
          this : access ICoreImmersiveApplication2_Interface;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationView
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
@@ -701,8 +701,8 @@ package WinRt.Windows.ApplicationModel.Core is
       function CreateNewView
       (
          this : access ICoreImmersiveApplication3_Interface;
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource;
-         RetVal : access Windows.ApplicationModel.Core.ICoreApplicationView
+         viewSource : WinRt.Windows.ApplicationModel.Core.IFrameworkViewSource;
+         RetVal : access WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
@@ -714,14 +714,14 @@ package WinRt.Windows.ApplicationModel.Core is
       function Initialize
       (
          this : access IFrameworkView_Interface;
-         applicationView : Windows.ApplicationModel.Core.ICoreApplicationView
+         applicationView : WinRt.Windows.ApplicationModel.Core.ICoreApplicationView
       )
       return WinRt.Hresult is abstract;
 
       function SetWindow
       (
          this : access IFrameworkView_Interface;
-         window : Windows.UI.Core.ICoreWindow
+         window : WinRt.Windows.UI.Core.ICoreWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -752,7 +752,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function CreateView
       (
          this : access IFrameworkViewSource_Interface;
-         RetVal : access Windows.ApplicationModel.Core.IFrameworkView
+         RetVal : access WinRt.Windows.ApplicationModel.Core.IFrameworkView
       )
       return WinRt.Hresult is abstract;
 
@@ -764,7 +764,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function GetDeferral
       (
          this : access IHostedViewClosingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -794,7 +794,7 @@ package WinRt.Windows.ApplicationModel.Core is
       function get_UnhandledError
       (
          this : access IUnhandledErrorDetectedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Core.IUnhandledError
+         RetVal : access WinRt.Windows.ApplicationModel.Core.IUnhandledError
       )
       return WinRt.Hresult is abstract;
 
@@ -834,7 +834,7 @@ package WinRt.Windows.ApplicationModel.Core is
    function LaunchForUserAsync
    (
       this : in out AppListEntry;
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Boolean;
 
@@ -856,7 +856,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       function RequestRestartForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          launchArguments : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
@@ -873,7 +873,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_BackgroundActivated
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_LeavingBackground
@@ -884,7 +884,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_LeavingBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_EnteredBackground
@@ -895,7 +895,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_EnteredBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       procedure EnablePrelaunch
@@ -930,7 +930,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_Suspending
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_Resuming
@@ -941,7 +941,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_Resuming
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_Properties
@@ -952,17 +952,17 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure Run
       (
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
+         viewSource : WinRt.Windows.ApplicationModel.Core.IFrameworkViewSource
       );
 
       procedure RunWithActivationFactories
       (
-         activationFactoryCallback : Windows.Foundation.IGetActivationFactory
+         activationFactoryCallback : WinRt.Windows.Foundation.IGetActivationFactory
       );
 
       function CreateNewView
       (
-         viewSource : Windows.ApplicationModel.Core.IFrameworkViewSource
+         viewSource : WinRt.Windows.ApplicationModel.Core.IFrameworkViewSource
       )
       return WinRt.Windows.ApplicationModel.Core.CoreApplicationView;
 
@@ -976,7 +976,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_Exiting
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_UnhandledErrorDetected
@@ -987,7 +987,7 @@ package WinRt.Windows.ApplicationModel.Core is
 
       procedure remove_UnhandledErrorDetected
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end CoreApplication;
@@ -1017,7 +1017,7 @@ package WinRt.Windows.ApplicationModel.Core is
    procedure remove_Activated
    (
       this : in out CoreApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsMain
@@ -1060,7 +1060,7 @@ package WinRt.Windows.ApplicationModel.Core is
    procedure remove_HostedViewClosing
    (
       this : in out CoreApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Properties
@@ -1124,7 +1124,7 @@ package WinRt.Windows.ApplicationModel.Core is
    procedure remove_LayoutMetricsChanged
    (
       this : in out CoreApplicationViewTitleBar;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsVisible
@@ -1143,7 +1143,7 @@ package WinRt.Windows.ApplicationModel.Core is
    procedure remove_IsVisibleChanged
    (
       this : in out CoreApplicationViewTitleBar;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

@@ -73,16 +73,16 @@ package body WinRt.Windows.Devices.I2c is
    return I2cConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.I2c.I2cConnectionSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.I2c.II2cConnectionSettings");
       m_Factory    : access II2cConnectionSettingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.I2c.II2cConnectionSettings;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.I2c.II2cConnectionSettings;
    begin
       return RetVal : I2cConnectionSettings do
          Hr := RoGetActivationFactory (m_hString, IID_II2cConnectionSettingsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (slaveAddress, m_ComRetVal'Access);
-            Retval.m_II2cConnectionSettings := new Windows.Devices.I2c.II2cConnectionSettings;
+            Retval.m_II2cConnectionSettings := new WinRt.Windows.Devices.I2c.II2cConnectionSettings;
             Retval.m_II2cConnectionSettings.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -133,7 +133,7 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.I2cBusSpeed;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.I2cBusSpeed;
    begin
       Hr := this.m_II2cConnectionSettings.all.get_BusSpeed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -145,7 +145,7 @@ package body WinRt.Windows.Devices.I2c is
    procedure put_BusSpeed
    (
       this : in out I2cConnectionSettings;
-      value : Windows.Devices.I2c.I2cBusSpeed
+      value : WinRt.Windows.Devices.I2c.I2cBusSpeed
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -165,7 +165,7 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.I2cSharingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.I2cSharingMode;
    begin
       Hr := this.m_II2cConnectionSettings.all.get_SharingMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -177,7 +177,7 @@ package body WinRt.Windows.Devices.I2c is
    procedure put_SharingMode
    (
       this : in out I2cConnectionSettings;
-      value : Windows.Devices.I2c.I2cSharingMode
+      value : WinRt.Windows.Devices.I2c.I2cSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -214,7 +214,7 @@ package body WinRt.Windows.Devices.I2c is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.I2c.Provider.II2cProvider
+      provider : WinRt.Windows.Devices.I2c.Provider.II2cProvider
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -337,7 +337,7 @@ package body WinRt.Windows.Devices.I2c is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_II2cController := new Windows.Devices.I2c.II2cController;
+                     Retval.m_II2cController := new WinRt.Windows.Devices.I2c.II2cController;
                      Retval.m_II2cController.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -358,20 +358,20 @@ package body WinRt.Windows.Devices.I2c is
    function GetDevice
    (
       this : in out I2cController;
-      settings : Windows.Devices.I2c.I2cConnectionSettings'Class
+      settings : WinRt.Windows.Devices.I2c.I2cConnectionSettings'Class
    )
    return WinRt.Windows.Devices.I2c.I2cDevice'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.II2cDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.II2cDevice;
    begin
       return RetVal : WinRt.Windows.Devices.I2c.I2cDevice do
          Hr := this.m_II2cController.all.GetDevice (settings.m_II2cConnectionSettings.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_II2cDevice := new Windows.Devices.I2c.II2cDevice;
+         Retval.m_II2cDevice := new WinRt.Windows.Devices.I2c.II2cDevice;
          Retval.m_II2cDevice.all := m_ComRetVal;
       end return;
    end;
@@ -455,7 +455,7 @@ package body WinRt.Windows.Devices.I2c is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      settings : Windows.Devices.I2c.I2cConnectionSettings'Class
+      settings : WinRt.Windows.Devices.I2c.I2cConnectionSettings'Class
    )
    return WinRt.Windows.Devices.I2c.I2cDevice is
       Hr               : WinRt.HResult := S_OK;
@@ -512,7 +512,7 @@ package body WinRt.Windows.Devices.I2c is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_II2cDevice := new Windows.Devices.I2c.II2cDevice;
+                     Retval.m_II2cDevice := new WinRt.Windows.Devices.I2c.II2cDevice;
                      Retval.m_II2cDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -559,14 +559,14 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.II2cConnectionSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.II2cConnectionSettings;
    begin
       return RetVal : WinRt.Windows.Devices.I2c.I2cConnectionSettings do
          Hr := this.m_II2cDevice.all.get_ConnectionSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_II2cConnectionSettings := new Windows.Devices.I2c.II2cConnectionSettings;
+         Retval.m_II2cConnectionSettings := new WinRt.Windows.Devices.I2c.II2cConnectionSettings;
          Retval.m_II2cConnectionSettings.all := m_ComRetVal;
       end return;
    end;
@@ -596,7 +596,7 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.I2cTransferResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.I2cTransferResult;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_II2cDevice.all.WritePartial (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address), m_ComRetVal'Access);
@@ -631,7 +631,7 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.I2cTransferResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.I2cTransferResult;
       function Convert_buffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       Hr := this.m_II2cDevice.all.ReadPartial (WinRt.UInt32(buffer'Length), Convert_buffer (buffer (buffer'First)'Address), m_ComRetVal'Access);
@@ -669,7 +669,7 @@ package body WinRt.Windows.Devices.I2c is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.I2cTransferResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.I2cTransferResult;
       function Convert_writeBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
       function Convert_readBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin

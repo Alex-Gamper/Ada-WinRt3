@@ -66,13 +66,13 @@ package body WinRt.Windows.Media.Transcoding is
    function Constructor return MediaTranscoder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Transcoding.MediaTranscoder");
-      m_ComRetVal  : aliased Windows.Media.Transcoding.IMediaTranscoder;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Transcoding.IMediaTranscoder");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Transcoding.IMediaTranscoder;
    begin
       return RetVal : MediaTranscoder do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaTranscoder := new Windows.Media.Transcoding.IMediaTranscoder;
+            Retval.m_IMediaTranscoder := new WinRt.Windows.Media.Transcoding.IMediaTranscoder;
             Retval.m_IMediaTranscoder.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -85,7 +85,7 @@ package body WinRt.Windows.Media.Transcoding is
    procedure put_TrimStartTime
    (
       this : in out MediaTranscoder;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -105,7 +105,7 @@ package body WinRt.Windows.Media.Transcoding is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaTranscoder.all.get_TrimStartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -117,7 +117,7 @@ package body WinRt.Windows.Media.Transcoding is
    procedure put_TrimStopTime
    (
       this : in out MediaTranscoder;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -137,7 +137,7 @@ package body WinRt.Windows.Media.Transcoding is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaTranscoder.all.get_TrimStopTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -232,7 +232,7 @@ package body WinRt.Windows.Media.Transcoding is
       this : in out MediaTranscoder;
       activatableClassId : WinRt.WString;
       effectRequired : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -268,7 +268,7 @@ package body WinRt.Windows.Media.Transcoding is
       this : in out MediaTranscoder;
       activatableClassId : WinRt.WString;
       effectRequired : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -299,9 +299,9 @@ package body WinRt.Windows.Media.Transcoding is
    function PrepareFileTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Storage.IStorageFile;
-      destination : Windows.Storage.IStorageFile;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Storage.IStorageFile;
+      destination : WinRt.Windows.Storage.IStorageFile;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -352,7 +352,7 @@ package body WinRt.Windows.Media.Transcoding is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPrepareTranscodeResult := new Windows.Media.Transcoding.IPrepareTranscodeResult;
+                  Retval.m_IPrepareTranscodeResult := new WinRt.Windows.Media.Transcoding.IPrepareTranscodeResult;
                   Retval.m_IPrepareTranscodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -368,9 +368,9 @@ package body WinRt.Windows.Media.Transcoding is
    function PrepareStreamTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Storage.Streams.IRandomAccessStream;
-      destination : Windows.Storage.Streams.IRandomAccessStream;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -421,7 +421,7 @@ package body WinRt.Windows.Media.Transcoding is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPrepareTranscodeResult := new Windows.Media.Transcoding.IPrepareTranscodeResult;
+                  Retval.m_IPrepareTranscodeResult := new WinRt.Windows.Media.Transcoding.IPrepareTranscodeResult;
                   Retval.m_IPrepareTranscodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -437,9 +437,9 @@ package body WinRt.Windows.Media.Transcoding is
    function PrepareMediaStreamSourceTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Media.Core.IMediaSource;
-      destination : Windows.Storage.Streams.IRandomAccessStream;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Media.Core.IMediaSource;
+      destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -494,7 +494,7 @@ package body WinRt.Windows.Media.Transcoding is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPrepareTranscodeResult := new Windows.Media.Transcoding.IPrepareTranscodeResult;
+                  Retval.m_IPrepareTranscodeResult := new WinRt.Windows.Media.Transcoding.IPrepareTranscodeResult;
                   Retval.m_IPrepareTranscodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -510,7 +510,7 @@ package body WinRt.Windows.Media.Transcoding is
    procedure put_VideoProcessingAlgorithm
    (
       this : in out MediaTranscoder;
-      value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+      value : WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -535,7 +535,7 @@ package body WinRt.Windows.Media.Transcoding is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Transcoding.IMediaTranscoder2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Transcoding.MediaVideoProcessingAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Transcoding.IMediaTranscoder_Interface, WinRt.Windows.Media.Transcoding.IMediaTranscoder2, WinRt.Windows.Media.Transcoding.IID_IMediaTranscoder2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaTranscoder.all);
@@ -595,7 +595,7 @@ package body WinRt.Windows.Media.Transcoding is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Transcoding.TranscodeFailureReason;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Transcoding.TranscodeFailureReason;
    begin
       Hr := this.m_IPrepareTranscodeResult.all.get_FailureReason (m_ComRetVal'Access);
       if Hr /= S_OK then

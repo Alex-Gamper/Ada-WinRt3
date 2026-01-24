@@ -59,13 +59,13 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    (
       this : in out ContactPickerUI;
       id : WinRt.WString;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.AddContactResult;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_IContactPickerUI.all.AddContact (HStr_id, contact.m_IContact.all, m_ComRetVal'Access);
@@ -121,7 +121,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IContactPickerUI.all.get_DesiredFields (m_ComRetVal'Access);
@@ -141,7 +141,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.ContactSelectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode;
    begin
       Hr := this.m_IContactPickerUI.all.get_SelectionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -159,7 +159,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactPickerUI.all.add_ContactRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -171,7 +171,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    procedure remove_ContactRemoved
    (
       this : in out ContactPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -186,14 +186,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
    function AddContact
    (
       this : in out ContactPickerUI;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.AddContactResult;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI_Interface, WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2, WinRt.Windows.ApplicationModel.Contacts.Provider.IID_IContactPickerUI2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerUI.all);
@@ -214,7 +214,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ContactFieldType.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI_Interface, WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI2, WinRt.Windows.ApplicationModel.Contacts.Provider.IID_IContactPickerUI2'Unchecked_Access);
    begin

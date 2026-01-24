@@ -803,12 +803,12 @@ package WinRt.Windows.Devices.SmartCards is
    -----------------------------------------------------------------------------
 
    IID_SmartCardPinResetHandler : aliased WinRt.IID := (328031808, 62396, 19036, (180, 29, 75, 78, 246, 132, 226, 55 ));
-   type SmartCardPinResetHandler_Delegate (Callback : access procedure  (sender : Windows.Devices.SmartCards.ISmartCardProvisioning;request : Windows.Devices.SmartCards.ISmartCardPinResetRequest)) is new WinRt.IMulticastDelegate_Interface (IID_SmartCardPinResetHandler'Access) with null record;
+   type SmartCardPinResetHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;request : WinRt.Windows.Devices.SmartCards.ISmartCardPinResetRequest)) is new WinRt.IMulticastDelegate_Interface (IID_SmartCardPinResetHandler'Access) with null record;
       function Invoke
       (
          this : access SmartCardPinResetHandler_Delegate;
-         sender : Windows.Devices.SmartCards.ISmartCardProvisioning;
-         request : Windows.Devices.SmartCards.ISmartCardPinResetRequest
+         sender : WinRt.Windows.Devices.SmartCards.ISmartCardProvisioning;
+         request : WinRt.Windows.Devices.SmartCards.ISmartCardPinResetRequest
       )
       return WinRt.Hresult;
 
@@ -862,7 +862,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_SmartCard
       (
          this : access ICardAddedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCard
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCard
       )
       return WinRt.Hresult is abstract;
 
@@ -874,7 +874,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_SmartCard
       (
          this : access ICardRemovedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCard
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCard
       )
       return WinRt.Hresult is abstract;
 
@@ -886,14 +886,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_PaymentSystemEnvironment
       (
          this : access IKnownSmartCardAppletIds_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ProximityPaymentSystemEnvironment
       (
          this : access IKnownSmartCardAppletIds_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -905,7 +905,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Reader
       (
          this : access ISmartCard_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardReader
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardReader
       )
       return WinRt.Hresult is abstract;
 
@@ -952,28 +952,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_SmartCardEmulationCategory
       (
          this : access ISmartCardAppletIdGroup_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardEmulationCategory
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory
       )
       return WinRt.Hresult is abstract;
 
       function put_SmartCardEmulationCategory
       (
          this : access ISmartCardAppletIdGroup_Interface;
-         value : Windows.Devices.SmartCards.SmartCardEmulationCategory
+         value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_SmartCardEmulationType
       (
          this : access ISmartCardAppletIdGroup_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardEmulationType
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
       )
       return WinRt.Hresult is abstract;
 
       function put_SmartCardEmulationType
       (
          this : access ISmartCardAppletIdGroup_Interface;
-         value : Windows.Devices.SmartCards.SmartCardEmulationType
+         value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
       )
       return WinRt.Hresult is abstract;
 
@@ -999,14 +999,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Logo
       (
          this : access ISmartCardAppletIdGroup2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Logo
       (
          this : access ISmartCardAppletIdGroup2_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,7 +1027,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Properties
       (
          this : access ISmartCardAppletIdGroup2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1055,9 +1055,9 @@ package WinRt.Windows.Devices.SmartCards is
          this : access ISmartCardAppletIdGroupFactory_Interface;
          displayName : WinRt.HString;
          appletIds : GenericObject;
-         emulationCategory : Windows.Devices.SmartCards.SmartCardEmulationCategory;
-         emulationType : Windows.Devices.SmartCards.SmartCardEmulationType;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardAppletIdGroup
+         emulationCategory : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory;
+         emulationType : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType;
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1069,21 +1069,21 @@ package WinRt.Windows.Devices.SmartCards is
       function get_ActivationPolicy
       (
          this : access ISmartCardAppletIdGroupRegistration_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_AppletIdGroup
       (
          this : access ISmartCardAppletIdGroupRegistration_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardAppletIdGroup
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup
       )
       return WinRt.Hresult is abstract;
 
       function RequestActivationPolicyChangeAsync
       (
          this : access ISmartCardAppletIdGroupRegistration_Interface;
-         policy : Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy;
+         policy : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1099,7 +1099,7 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardAppletIdGroupRegistration_Interface;
          apdus : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1118,8 +1118,8 @@ package WinRt.Windows.Devices.SmartCards is
       function SetPropertiesAsync
       (
          this : access ISmartCardAppletIdGroupRegistration2_Interface;
-         props : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Foundation.IAsyncAction
+         props : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1143,28 +1143,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_CommandApdu
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_CommandApdu
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_CommandApduBitMask
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_CommandApduBitMask
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1185,28 +1185,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_AppletId
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_AppletId
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseApdu
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_ResponseApdu
       (
          this : access ISmartCardAutomaticResponseApdu_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1270,9 +1270,9 @@ package WinRt.Windows.Devices.SmartCards is
       function Create
       (
          this : access ISmartCardAutomaticResponseApduFactory_Interface;
-         commandApdu : Windows.Storage.Streams.IBuffer;
-         responseApdu : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu
+         commandApdu : WinRt.Windows.Storage.Streams.IBuffer;
+         responseApdu : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu
       )
       return WinRt.Hresult is abstract;
 
@@ -1284,14 +1284,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Challenge
       (
          this : access ISmartCardChallengeContext_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function VerifyResponseAsync
       (
          this : access ISmartCardChallengeContext_Interface;
-         response : Windows.Storage.Streams.IBuffer;
+         response : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1299,28 +1299,28 @@ package WinRt.Windows.Devices.SmartCards is
       function ProvisionAsync
       (
          this : access ISmartCardChallengeContext_Interface;
-         response : Windows.Storage.Streams.IBuffer;
+         response : WinRt.Windows.Storage.Streams.IBuffer;
          formatCard : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ProvisionAsync
       (
          this : access ISmartCardChallengeContext_Interface;
-         response : Windows.Storage.Streams.IBuffer;
+         response : WinRt.Windows.Storage.Streams.IBuffer;
          formatCard : WinRt.Boolean;
          newCardId : WinRt.Guid;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ChangeAdministrativeKeyAsync
       (
          this : access ISmartCardChallengeContext_Interface;
-         response : Windows.Storage.Streams.IBuffer;
-         newAdministrativeKey : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         response : WinRt.Windows.Storage.Streams.IBuffer;
+         newAdministrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1344,7 +1344,7 @@ package WinRt.Windows.Devices.SmartCards is
       function TransmitAsync
       (
          this : access ISmartCardConnection_Interface;
-         command : Windows.Storage.Streams.IBuffer;
+         command : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1400,10 +1400,10 @@ package WinRt.Windows.Devices.SmartCards is
       function CreateCryptogramMaterialStorageKeyAsync
       (
          this : access ISmartCardCryptogramGenerator_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
          storageKeyName : WinRt.HString;
-         algorithm : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
-         capabilities : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
+         algorithm : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
+         capabilities : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1411,9 +1411,9 @@ package WinRt.Windows.Devices.SmartCards is
       function RequestCryptogramMaterialStorageKeyInfoAsync
       (
          this : access ISmartCardCryptogramGenerator_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
          storageKeyName : WinRt.HString;
-         format : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
+         format : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1421,10 +1421,10 @@ package WinRt.Windows.Devices.SmartCards is
       function ImportCryptogramMaterialPackageAsync
       (
          this : access ISmartCardCryptogramGenerator_Interface;
-         format : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
+         format : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
          storageKeyName : WinRt.HString;
          materialPackageName : WinRt.HString;
-         cryptogramMaterialPackage : Windows.Storage.Streams.IBuffer;
+         cryptogramMaterialPackage : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1432,11 +1432,11 @@ package WinRt.Windows.Devices.SmartCards is
       function TryProvePossessionOfCryptogramMaterialPackageAsync
       (
          this : access ISmartCardCryptogramGenerator_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-         responseFormat : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         responseFormat : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
          materialPackageName : WinRt.HString;
          materialName : WinRt.HString;
-         challenge : Windows.Storage.Streams.IBuffer;
+         challenge : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1444,7 +1444,7 @@ package WinRt.Windows.Devices.SmartCards is
       function RequestUnlockCryptogramMaterialForUseAsync
       (
          this : access ISmartCardCryptogramGenerator_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1465,8 +1465,8 @@ package WinRt.Windows.Devices.SmartCards is
       function ValidateRequestApduAsync
       (
          this : access ISmartCardCryptogramGenerator2_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-         apduToValidate : Windows.Storage.Streams.IBuffer;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         apduToValidate : WinRt.Windows.Storage.Streams.IBuffer;
          cryptogramPlacementSteps : GenericObject;
          RetVal : access GenericObject
       )
@@ -1497,7 +1497,7 @@ package WinRt.Windows.Devices.SmartCards is
       function GetAllCryptogramMaterialCharacteristicsAsync
       (
          this : access ISmartCardCryptogramGenerator2_Interface;
-         promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+         promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
          materialPackageName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1535,7 +1535,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_OperationStatus
       (
          this : access ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1554,7 +1554,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_OperationStatus
       (
          this : access ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1573,7 +1573,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_OperationStatus
       (
          this : access ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1620,14 +1620,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_MaterialType
       (
          this : access ISmartCardCryptogramMaterialCharacteristics_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramMaterialType
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialType
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionMethod
       (
          this : access ISmartCardCryptogramMaterialCharacteristics_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialProtectionMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -1667,14 +1667,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_DateImported
       (
          this : access ISmartCardCryptogramMaterialPackageCharacteristics_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_PackageFormat
       (
          this : access ISmartCardCryptogramMaterialPackageCharacteristics_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1686,14 +1686,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_OperationStatus
       (
          this : access ISmartCardCryptogramMaterialPossessionProof_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Proof
       (
          this : access ISmartCardCryptogramMaterialPossessionProof_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1705,28 +1705,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Algorithm
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function put_Algorithm
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         value : Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
+         value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceData
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceData
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1803,28 +1803,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_CryptogramPlacementOptions
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_CryptogramPlacementOptions
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
+         value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_ChainedOutputStep
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep
       )
       return WinRt.Hresult is abstract;
 
       function put_ChainedOutputStep
       (
          this : access ISmartCardCryptogramPlacementStep_Interface;
-         value : Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep
+         value : WinRt.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep
       )
       return WinRt.Hresult is abstract;
 
@@ -1843,21 +1843,21 @@ package WinRt.Windows.Devices.SmartCards is
       function get_DateCreated
       (
          this : access ISmartCardCryptogramStorageKeyCharacteristics_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Algorithm
       (
          this : access ISmartCardCryptogramStorageKeyCharacteristics_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function get_Capabilities
       (
          this : access ISmartCardCryptogramStorageKeyCharacteristics_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -1869,49 +1869,49 @@ package WinRt.Windows.Devices.SmartCards is
       function get_OperationStatus
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_PublicKeyBlobType
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
       )
       return WinRt.Hresult is abstract;
 
       function get_PublicKey
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_AttestationStatus
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptographicKeyAttestationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Attestation
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_AttestationCertificateChain
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Capabilities
       (
          this : access ISmartCardCryptogramStorageKeyInfo_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -1935,7 +1935,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_EnablementPolicy
       (
          this : access ISmartCardEmulator_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardEmulatorEnablementPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -1948,14 +1948,14 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardEmulator2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ApduReceived
       (
          this : access ISmartCardEmulator2_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1963,14 +1963,14 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardEmulator2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionDeactivated
       (
          this : access ISmartCardEmulator2_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1995,21 +1995,21 @@ package WinRt.Windows.Devices.SmartCards is
       function get_CommandApdu
       (
          this : access ISmartCardEmulatorApduReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ConnectionProperties
       (
          this : access ISmartCardEmulatorApduReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties
       )
       return WinRt.Hresult is abstract;
 
       function TryRespondAsync
       (
          this : access ISmartCardEmulatorApduReceivedEventArgs_Interface;
-         responseApdu : Windows.Storage.Streams.IBuffer;
+         responseApdu : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2017,7 +2017,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_AutomaticResponseStatus
       (
          this : access ISmartCardEmulatorApduReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardAutomaticResponseStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2036,7 +2036,7 @@ package WinRt.Windows.Devices.SmartCards is
       function TryRespondAsync
       (
          this : access ISmartCardEmulatorApduReceivedEventArgs2_Interface;
-         responseApdu : Windows.Storage.Streams.IBuffer;
+         responseApdu : WinRt.Windows.Storage.Streams.IBuffer;
          nextState : GenericObject;
          RetVal : access GenericObject
       )
@@ -2050,7 +2050,7 @@ package WinRt.Windows.Devices.SmartCards is
       function TryRespondWithCryptogramsAsync
       (
          this : access ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface;
-         responseTemplate : Windows.Storage.Streams.IBuffer;
+         responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
          cryptogramPlacementSteps : GenericObject;
          RetVal : access GenericObject
       )
@@ -2059,7 +2059,7 @@ package WinRt.Windows.Devices.SmartCards is
       function TryRespondWithCryptogramsAsync
       (
          this : access ISmartCardEmulatorApduReceivedEventArgsWithCryptograms_Interface;
-         responseTemplate : Windows.Storage.Streams.IBuffer;
+         responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
          cryptogramPlacementSteps : GenericObject;
          nextState : GenericObject;
          RetVal : access GenericObject
@@ -2074,14 +2074,14 @@ package WinRt.Windows.Devices.SmartCards is
       function get_ConnectionProperties
       (
          this : access ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulatorConnectionProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Reason
       (
          this : access ISmartCardEmulatorConnectionDeactivatedEventArgs_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionDeactivatedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2100,7 +2100,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Source
       (
          this : access ISmartCardEmulatorConnectionProperties_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardEmulatorConnectionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -2131,7 +2131,7 @@ package WinRt.Windows.Devices.SmartCards is
       function RegisterAppletIdGroupAsync
       (
          this : access ISmartCardEmulatorStatics2_Interface;
-         appletIdGroup : Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
+         appletIdGroup : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2139,8 +2139,8 @@ package WinRt.Windows.Devices.SmartCards is
       function UnregisterAppletIdGroupAsync
       (
          this : access ISmartCardEmulatorStatics2_Interface;
-         registration : Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration;
-         RetVal : access Windows.Foundation.IAsyncAction
+         registration : WinRt.Windows.Devices.SmartCards.ISmartCardAppletIdGroupRegistration;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2199,56 +2199,56 @@ package WinRt.Windows.Devices.SmartCards is
       function get_UppercaseLetters
       (
          this : access ISmartCardPinPolicy_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function put_UppercaseLetters
       (
          this : access ISmartCardPinPolicy_Interface;
-         value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function get_LowercaseLetters
       (
          this : access ISmartCardPinPolicy_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function put_LowercaseLetters
       (
          this : access ISmartCardPinPolicy_Interface;
-         value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function get_Digits
       (
          this : access ISmartCardPinPolicy_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function put_Digits
       (
          this : access ISmartCardPinPolicy_Interface;
-         value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function get_SpecialCharacters
       (
          this : access ISmartCardPinPolicy_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
       function put_SpecialCharacters
       (
          this : access ISmartCardPinPolicy_Interface;
-         value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+         value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
       )
       return WinRt.Hresult is abstract;
 
@@ -2271,28 +2271,28 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Challenge
       (
          this : access ISmartCardPinResetRequest_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access ISmartCardPinResetRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access ISmartCardPinResetRequest_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardPinResetDeferral
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardPinResetDeferral
       )
       return WinRt.Hresult is abstract;
 
       function SetResponse
       (
          this : access ISmartCardPinResetRequest_Interface;
-         response : Windows.Storage.Streams.IBuffer
+         response : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2304,7 +2304,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_SmartCard
       (
          this : access ISmartCardProvisioning_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCard
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCard
       )
       return WinRt.Hresult is abstract;
 
@@ -2339,7 +2339,7 @@ package WinRt.Windows.Devices.SmartCards is
       function RequestPinResetAsync
       (
          this : access ISmartCardProvisioning_Interface;
-         handler : Windows.Devices.SmartCards.SmartCardPinResetHandler;
+         handler : WinRt.Windows.Devices.SmartCards.SmartCardPinResetHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2364,7 +2364,7 @@ package WinRt.Windows.Devices.SmartCards is
       function FromSmartCardAsync
       (
          this : access ISmartCardProvisioningStatics_Interface;
-         card : Windows.Devices.SmartCards.ISmartCard;
+         card : WinRt.Windows.Devices.SmartCards.ISmartCard;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2373,8 +2373,8 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardProvisioningStatics_Interface;
          friendlyName : WinRt.HString;
-         administrativeKey : Windows.Storage.Streams.IBuffer;
-         pinPolicy : Windows.Devices.SmartCards.ISmartCardPinPolicy;
+         administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+         pinPolicy : WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2383,8 +2383,8 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardProvisioningStatics_Interface;
          friendlyName : WinRt.HString;
-         administrativeKey : Windows.Storage.Streams.IBuffer;
-         pinPolicy : Windows.Devices.SmartCards.ISmartCardPinPolicy;
+         administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+         pinPolicy : WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
          cardId : WinRt.Guid;
          RetVal : access GenericObject
       )
@@ -2393,7 +2393,7 @@ package WinRt.Windows.Devices.SmartCards is
       function RequestVirtualSmartCardDeletionAsync
       (
          this : access ISmartCardProvisioningStatics_Interface;
-         card : Windows.Devices.SmartCards.ISmartCard;
+         card : WinRt.Windows.Devices.SmartCards.ISmartCard;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2407,8 +2407,8 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardProvisioningStatics2_Interface;
          friendlyName : WinRt.HString;
-         administrativeKey : Windows.Storage.Streams.IBuffer;
-         pinPolicy : Windows.Devices.SmartCards.ISmartCardPinPolicy;
+         administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+         pinPolicy : WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2417,8 +2417,8 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardProvisioningStatics2_Interface;
          friendlyName : WinRt.HString;
-         administrativeKey : Windows.Storage.Streams.IBuffer;
-         pinPolicy : Windows.Devices.SmartCards.ISmartCardPinPolicy;
+         administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+         pinPolicy : WinRt.Windows.Devices.SmartCards.ISmartCardPinPolicy;
          cardId : WinRt.Guid;
          RetVal : access GenericObject
       )
@@ -2446,7 +2446,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Kind
       (
          this : access ISmartCardReader_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardReaderKind
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardReaderKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2468,14 +2468,14 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CardAdded
       (
          this : access ISmartCardReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2483,14 +2483,14 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CardRemoved
       (
          this : access ISmartCardReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2509,7 +2509,7 @@ package WinRt.Windows.Devices.SmartCards is
       function GetDeviceSelector
       (
          this : access ISmartCardReaderStatics_Interface;
-         kind : Windows.Devices.SmartCards.SmartCardReaderKind;
+         kind : WinRt.Windows.Devices.SmartCards.SmartCardReaderKind;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2530,21 +2530,21 @@ package WinRt.Windows.Devices.SmartCards is
       function get_TriggerType
       (
          this : access ISmartCardTriggerDetails_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardTriggerType
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardTriggerType
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceAppletId
       (
          this : access ISmartCardTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_TriggerData
       (
          this : access ISmartCardTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2556,7 +2556,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_Emulator
       (
          this : access ISmartCardTriggerDetails2_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCardEmulator
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCardEmulator
       )
       return WinRt.Hresult is abstract;
 
@@ -2572,7 +2572,7 @@ package WinRt.Windows.Devices.SmartCards is
       (
          this : access ISmartCardTriggerDetails2_Interface;
          arguments : WinRt.HString;
-         behavior : Windows.Devices.SmartCards.SmartCardLaunchBehavior;
+         behavior : WinRt.Windows.Devices.SmartCards.SmartCardLaunchBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2585,7 +2585,7 @@ package WinRt.Windows.Devices.SmartCards is
       function get_SmartCard
       (
          this : access ISmartCardTriggerDetails3_Interface;
-         RetVal : access Windows.Devices.SmartCards.ISmartCard
+         RetVal : access WinRt.Windows.Devices.SmartCards.ISmartCard
       )
       return WinRt.Hresult is abstract;
 
@@ -2685,8 +2685,8 @@ package WinRt.Windows.Devices.SmartCards is
    (
       displayName : WinRt.WString;
       appletIds : GenericObject;
-      emulationCategory : Windows.Devices.SmartCards.SmartCardEmulationCategory;
-      emulationType : Windows.Devices.SmartCards.SmartCardEmulationType
+      emulationCategory : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory;
+      emulationType : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
    )
    return SmartCardAppletIdGroup;
 
@@ -2726,7 +2726,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_SmartCardEmulationCategory
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Devices.SmartCards.SmartCardEmulationCategory
+      value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationCategory
    );
 
    function get_SmartCardEmulationType
@@ -2738,7 +2738,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_SmartCardEmulationType
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Devices.SmartCards.SmartCardEmulationType
+      value : WinRt.Windows.Devices.SmartCards.SmartCardEmulationType
    );
 
    function get_AutomaticEnablement
@@ -2762,7 +2762,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_Logo
    (
       this : in out SmartCardAppletIdGroup;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Description
@@ -2819,7 +2819,7 @@ package WinRt.Windows.Devices.SmartCards is
    function RequestActivationPolicyChangeAsync
    (
       this : in out SmartCardAppletIdGroupRegistration;
-      policy : Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
+      policy : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupActivationPolicy
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardActivationPolicyChangeResult;
 
@@ -2844,7 +2844,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure SetPropertiesAsync
    (
       this : in out SmartCardAppletIdGroupRegistration;
-      props : Windows.Foundation.Collections.ValueSet'Class
+      props : WinRt.Windows.Foundation.Collections.ValueSet'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2858,8 +2858,8 @@ package WinRt.Windows.Devices.SmartCards is
 
    function Constructor
    (
-      commandApdu : Windows.Storage.Streams.IBuffer;
-      responseApdu : Windows.Storage.Streams.IBuffer
+      commandApdu : WinRt.Windows.Storage.Streams.IBuffer;
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer
    )
    return SmartCardAutomaticResponseApdu;
 
@@ -2875,7 +2875,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_CommandApdu
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_CommandApduBitMask
@@ -2887,7 +2887,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_CommandApduBitMask
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ShouldMatchLength
@@ -2911,7 +2911,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_AppletId
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ResponseApdu
@@ -2923,7 +2923,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_ResponseApdu
    (
       this : in out SmartCardAutomaticResponseApdu;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_InputState
@@ -2980,21 +2980,21 @@ package WinRt.Windows.Devices.SmartCards is
    function VerifyResponseAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean;
 
    procedure ProvisionAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
+      response : WinRt.Windows.Storage.Streams.IBuffer;
       formatCard : WinRt.Boolean
    );
 
    procedure ProvisionAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
+      response : WinRt.Windows.Storage.Streams.IBuffer;
       formatCard : WinRt.Boolean;
       newCardId : WinRt.Guid
    );
@@ -3002,8 +3002,8 @@ package WinRt.Windows.Devices.SmartCards is
    procedure ChangeAdministrativeKeyAsync
    (
       this : in out SmartCardChallengeContext;
-      response : Windows.Storage.Streams.IBuffer;
-      newAdministrativeKey : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer;
+      newAdministrativeKey : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure Close
@@ -3023,7 +3023,7 @@ package WinRt.Windows.Devices.SmartCards is
    function TransmitAsync
    (
       this : in out SmartCardConnection;
-      command : Windows.Storage.Streams.IBuffer
+      command : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -3090,47 +3090,47 @@ package WinRt.Windows.Devices.SmartCards is
    function CreateCryptogramMaterialStorageKeyAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       storageKeyName : WinRt.WString;
-      algorithm : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
-      capabilities : Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
+      algorithm : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyAlgorithm;
+      capabilities : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCapabilities
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
 
    function RequestCryptogramMaterialStorageKeyInfoAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       storageKeyName : WinRt.WString;
-      format : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      format : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyInfo'Class;
 
    function ImportCryptogramMaterialPackageAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      format : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
+      format : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageFormat;
       storageKeyName : WinRt.WString;
       materialPackageName : WinRt.WString;
-      cryptogramMaterialPackage : Windows.Storage.Streams.IBuffer
+      cryptogramMaterialPackage : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
 
    function TryProvePossessionOfCryptogramMaterialPackageAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-      responseFormat : Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      responseFormat : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageConfirmationResponseFormat;
       materialPackageName : WinRt.WString;
       materialName : WinRt.WString;
-      challenge : Windows.Storage.Streams.IBuffer
+      challenge : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramMaterialPossessionProof'Class;
 
    function RequestUnlockCryptogramMaterialForUseAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
 
@@ -3144,8 +3144,8 @@ package WinRt.Windows.Devices.SmartCards is
    function ValidateRequestApduAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
-      apduToValidate : Windows.Storage.Streams.IBuffer;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      apduToValidate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
@@ -3172,7 +3172,7 @@ package WinRt.Windows.Devices.SmartCards is
    function GetAllCryptogramMaterialCharacteristicsAsync
    (
       this : in out SmartCardCryptogramGenerator;
-      promptingBehavior : Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
+      promptingBehavior : WinRt.Windows.Devices.SmartCards.SmartCardUnlockPromptingBehavior;
       materialPackageName : WinRt.WString
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult'Class;
@@ -3399,7 +3399,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_Algorithm
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramAlgorithm
    );
 
    function get_SourceData
@@ -3411,7 +3411,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_SourceData
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_CryptogramMaterialPackageName
@@ -3483,7 +3483,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_CryptogramPlacementOptions
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementOptions
    );
 
    function get_ChainedOutputStep
@@ -3495,7 +3495,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_ChainedOutputStep
    (
       this : in out SmartCardCryptogramPlacementStep;
-      value : Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class
+      value : WinRt.Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3607,13 +3607,13 @@ package WinRt.Windows.Devices.SmartCards is
 
    function RegisterAppletIdGroupAsync
    (
-      appletIdGroup : Windows.Devices.SmartCards.SmartCardAppletIdGroup'Class
+      appletIdGroup : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroup'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration;
 
    procedure UnregisterAppletIdGroupAsync
    (
-      registration : Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration'Class
+      registration : WinRt.Windows.Devices.SmartCards.SmartCardAppletIdGroupRegistration'Class
    );
 
    function get_MaxAppletIdGroupRegistrations
@@ -3644,7 +3644,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure remove_ApduReceived
    (
       this : in out SmartCardEmulator;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ConnectionDeactivated
@@ -3657,7 +3657,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure remove_ConnectionDeactivated
    (
       this : in out SmartCardEmulator;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -3695,7 +3695,7 @@ package WinRt.Windows.Devices.SmartCards is
    function TryRespondAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseApdu : Windows.Storage.Streams.IBuffer
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean;
 
@@ -3708,7 +3708,7 @@ package WinRt.Windows.Devices.SmartCards is
    function TryRespondWithCryptogramsAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseTemplate : Windows.Storage.Streams.IBuffer;
+      responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardCryptogramGeneratorOperationStatus;
@@ -3716,7 +3716,7 @@ package WinRt.Windows.Devices.SmartCards is
    function TryRespondWithCryptogramsAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseTemplate : Windows.Storage.Streams.IBuffer;
+      responseTemplate : WinRt.Windows.Storage.Streams.IBuffer;
       cryptogramPlacementSteps : GenericObject;
       nextState : GenericObject
    )
@@ -3731,7 +3731,7 @@ package WinRt.Windows.Devices.SmartCards is
    function TryRespondAsync
    (
       this : in out SmartCardEmulatorApduReceivedEventArgs;
-      responseApdu : Windows.Storage.Streams.IBuffer;
+      responseApdu : WinRt.Windows.Storage.Streams.IBuffer;
       nextState : GenericObject
    )
    return WinRt.Boolean;
@@ -3825,7 +3825,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_UppercaseLetters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    );
 
    function get_LowercaseLetters
@@ -3837,7 +3837,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_LowercaseLetters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    );
 
    function get_Digits
@@ -3849,7 +3849,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_Digits
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    );
 
    function get_SpecialCharacters
@@ -3861,7 +3861,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure put_SpecialCharacters
    (
       this : in out SmartCardPinPolicy;
-      value : Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
+      value : WinRt.Windows.Devices.SmartCards.SmartCardPinCharacterPolicyOption
    );
 
    -----------------------------------------------------------------------------
@@ -3908,7 +3908,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure SetResponse
    (
       this : in out SmartCardPinResetRequest;
-      response : Windows.Storage.Streams.IBuffer
+      response : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    -----------------------------------------------------------------------------
@@ -3922,46 +3922,46 @@ package WinRt.Windows.Devices.SmartCards is
 
    function FromSmartCardAsync
    (
-      card : Windows.Devices.SmartCards.SmartCard'Class
+      card : WinRt.Windows.Devices.SmartCards.SmartCard'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
 
    function RequestVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
 
    function RequestVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
       cardId : WinRt.Guid
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
 
    function RequestVirtualSmartCardDeletionAsync
    (
-      card : Windows.Devices.SmartCards.SmartCard'Class
+      card : WinRt.Windows.Devices.SmartCards.SmartCard'Class
    )
    return WinRt.Boolean;
 
    function RequestAttestedVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
 
    function RequestAttestedVirtualSmartCardCreationAsync
    (
       friendlyName : WinRt.WString;
-      administrativeKey : Windows.Storage.Streams.IBuffer;
-      pinPolicy : Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
+      administrativeKey : WinRt.Windows.Storage.Streams.IBuffer;
+      pinPolicy : WinRt.Windows.Devices.SmartCards.SmartCardPinPolicy'Class;
       cardId : WinRt.Guid
    )
    return WinRt.Windows.Devices.SmartCards.SmartCardProvisioning;
@@ -4002,7 +4002,7 @@ package WinRt.Windows.Devices.SmartCards is
    function RequestPinResetAsync
    (
       this : in out SmartCardProvisioning;
-      handler : Windows.Devices.SmartCards.SmartCardPinResetHandler
+      handler : WinRt.Windows.Devices.SmartCards.SmartCardPinResetHandler
    )
    return WinRt.Boolean;
 
@@ -4026,7 +4026,7 @@ package WinRt.Windows.Devices.SmartCards is
 
    function GetDeviceSelector
    (
-      kind : Windows.Devices.SmartCards.SmartCardReaderKind
+      kind : WinRt.Windows.Devices.SmartCards.SmartCardReaderKind
    )
    return WinRt.WString;
 
@@ -4079,7 +4079,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure remove_CardAdded
    (
       this : in out SmartCardReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CardRemoved
@@ -4092,7 +4092,7 @@ package WinRt.Windows.Devices.SmartCards is
    procedure remove_CardRemoved
    (
       this : in out SmartCardReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4139,7 +4139,7 @@ package WinRt.Windows.Devices.SmartCards is
    (
       this : in out SmartCardTriggerDetails;
       arguments : WinRt.WString;
-      behavior : Windows.Devices.SmartCards.SmartCardLaunchBehavior
+      behavior : WinRt.Windows.Devices.SmartCards.SmartCardLaunchBehavior
    )
    return WinRt.Boolean;
 

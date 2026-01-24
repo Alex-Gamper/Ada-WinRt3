@@ -194,28 +194,28 @@ package WinRt.Windows.Media.ContentRestrictions is
       function get_Image
       (
          this : access IRatedContentDescription_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IRatedContentDescription_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_Category
       (
          this : access IRatedContentDescription_Interface;
-         RetVal : access Windows.Media.ContentRestrictions.RatedContentCategory
+         RetVal : access WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
       )
       return WinRt.Hresult is abstract;
 
       function put_Category
       (
          this : access IRatedContentDescription_Interface;
-         value : Windows.Media.ContentRestrictions.RatedContentCategory
+         value : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -243,8 +243,8 @@ package WinRt.Windows.Media.ContentRestrictions is
          this : access IRatedContentDescriptionFactory_Interface;
          id : WinRt.HString;
          title : WinRt.HString;
-         category : Windows.Media.ContentRestrictions.RatedContentCategory;
-         RetVal : access Windows.Media.ContentRestrictions.IRatedContentDescription
+         category : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory;
+         RetVal : access WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -263,7 +263,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       function GetRestrictionLevelAsync
       (
          this : access IRatedContentRestrictions_Interface;
-         RatedContentDescription_p : Windows.Media.ContentRestrictions.IRatedContentDescription;
+         RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -271,7 +271,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       function RequestContentAccessAsync
       (
          this : access IRatedContentRestrictions_Interface;
-         RatedContentDescription_p : Windows.Media.ContentRestrictions.IRatedContentDescription;
+         RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -280,14 +280,14 @@ package WinRt.Windows.Media.ContentRestrictions is
       (
          this : access IRatedContentRestrictions_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RestrictionsChanged
       (
          this : access IRatedContentRestrictions_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -300,7 +300,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       (
          this : access IRatedContentRestrictionsFactory_Interface;
          maxAgeRating : WinRt.UInt32;
-         RetVal : access Windows.Media.ContentRestrictions.IRatedContentRestrictions
+         RetVal : access WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions
       )
       return WinRt.Hresult is abstract;
 
@@ -350,7 +350,7 @@ package WinRt.Windows.Media.ContentRestrictions is
    (
       id : WinRt.WString;
       title : WinRt.WString;
-      category : Windows.Media.ContentRestrictions.RatedContentCategory
+      category : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
    )
    return RatedContentDescription;
 
@@ -390,7 +390,7 @@ package WinRt.Windows.Media.ContentRestrictions is
    procedure put_Image
    (
       this : in out RatedContentDescription;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Category
@@ -402,7 +402,7 @@ package WinRt.Windows.Media.ContentRestrictions is
    procedure put_Category
    (
       this : in out RatedContentDescription;
-      value : Windows.Media.ContentRestrictions.RatedContentCategory
+      value : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
    );
 
    function get_Ratings
@@ -446,14 +446,14 @@ package WinRt.Windows.Media.ContentRestrictions is
    function GetRestrictionLevelAsync
    (
       this : in out RatedContentRestrictions;
-      RatedContentDescription_p : Windows.Media.ContentRestrictions.RatedContentDescription'Class
+      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
    )
    return WinRt.Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel;
 
    function RequestContentAccessAsync
    (
       this : in out RatedContentRestrictions;
-      RatedContentDescription_p : Windows.Media.ContentRestrictions.RatedContentDescription'Class
+      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
    )
    return WinRt.Boolean;
 
@@ -467,7 +467,7 @@ package WinRt.Windows.Media.ContentRestrictions is
    procedure remove_RestrictionsChanged
    (
       this : in out RatedContentRestrictions;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.Media.ContentRestrictions;

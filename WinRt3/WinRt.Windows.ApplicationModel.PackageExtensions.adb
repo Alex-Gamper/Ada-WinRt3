@@ -137,14 +137,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtension.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -157,7 +157,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPackageExtension.all.GetExtensionProperties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -257,14 +257,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IPackageExtension.all.GetPublicFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -322,7 +322,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -368,7 +368,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.PackageExtensions.PackageExtensionCatalog");
       m_Factory        : access WinRt.Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalogStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog;
       HStr_packageExtensionName : constant WinRt.HString := To_HString (packageExtensionName);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageExtensions.PackageExtensionCatalog do
@@ -379,7 +379,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPackageExtensionCatalog := new Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog;
+            Retval.m_IPackageExtensionCatalog := new WinRt.Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog;
             Retval.m_IPackageExtensionCatalog.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -398,7 +398,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackageExtension.Kind;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.FindAll (m_ComRetVal'Access);
@@ -548,7 +548,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.add_PackageInstalled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -560,7 +560,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageInstalled
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -581,7 +581,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.add_PackageUpdating (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -593,7 +593,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUpdating
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -614,7 +614,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.add_PackageUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -626,7 +626,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUpdated
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -647,7 +647,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.add_PackageUninstalling (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -659,7 +659,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUninstalling
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -680,7 +680,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageExtensionCatalog.all.add_PackageStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -692,7 +692,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageStatusChanged
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -755,14 +755,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtensionPackageInstalledEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -775,7 +775,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackageExtension.Kind;
    begin
       Hr := this.m_IPackageExtensionPackageInstalledEventArgs.all.get_Extensions (m_ComRetVal'Access);
@@ -838,14 +838,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtensionPackageStatusChangedEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -901,14 +901,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtensionPackageUninstallingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -964,14 +964,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtensionPackageUpdatedEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -984,7 +984,7 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackageExtension.Kind;
    begin
       Hr := this.m_IPackageExtensionPackageUpdatedEventArgs.all.get_Extensions (m_ComRetVal'Access);
@@ -1047,14 +1047,14 @@ package body WinRt.Windows.ApplicationModel.PackageExtensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageExtensionPackageUpdatingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;

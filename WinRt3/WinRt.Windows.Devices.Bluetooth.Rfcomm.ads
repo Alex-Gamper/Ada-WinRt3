@@ -132,7 +132,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_ConnectionHostName
       (
          this : access IRfcommDeviceService_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -146,21 +146,21 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_ServiceId
       (
          this : access IRfcommDeviceService_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionLevel
       (
          this : access IRfcommDeviceService_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketProtectionLevel
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxProtectionLevel
       (
          this : access IRfcommDeviceService_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketProtectionLevel
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -174,7 +174,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetSdpRawAttributesAsync
       (
          this : access IRfcommDeviceService_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -187,7 +187,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_Device
       (
          this : access IRfcommDeviceService2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDevice
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -199,7 +199,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_DeviceAccessInformation
       (
          this : access IRfcommDeviceService3_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -226,7 +226,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetDeviceSelector
       (
          this : access IRfcommDeviceServiceStatics_Interface;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -239,7 +239,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetDeviceSelectorForBluetoothDevice
       (
          this : access IRfcommDeviceServiceStatics2_Interface;
-         bluetoothDevice : Windows.Devices.Bluetooth.IBluetoothDevice;
+         bluetoothDevice : WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -247,8 +247,8 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetDeviceSelectorForBluetoothDevice
       (
          this : access IRfcommDeviceServiceStatics2_Interface;
-         bluetoothDevice : Windows.Devices.Bluetooth.IBluetoothDevice;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         bluetoothDevice : WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -256,8 +256,8 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetDeviceSelectorForBluetoothDeviceAndServiceId
       (
          this : access IRfcommDeviceServiceStatics2_Interface;
-         bluetoothDevice : Windows.Devices.Bluetooth.IBluetoothDevice;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         bluetoothDevice : WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -265,9 +265,9 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function GetDeviceSelectorForBluetoothDeviceAndServiceId
       (
          this : access IRfcommDeviceServiceStatics2_Interface;
-         bluetoothDevice : Windows.Devices.Bluetooth.IBluetoothDevice;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         bluetoothDevice : WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -280,7 +280,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_Error
       (
          this : access IRfcommDeviceServicesResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -326,7 +326,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       (
          this : access IRfcommServiceIdStatics_Interface;
          uuid : WinRt.Guid;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
@@ -334,49 +334,49 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       (
          this : access IRfcommServiceIdStatics_Interface;
          shortId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_SerialPort
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_ObexObjectPush
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_ObexFileTransfer
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_PhoneBookAccessPce
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_PhoneBookAccessPse
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
       function get_GenericFileTransfer
       (
          this : access IRfcommServiceIdStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
@@ -388,7 +388,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function get_ServiceId
       (
          this : access IRfcommServiceProvider_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId
       )
       return WinRt.Hresult is abstract;
 
@@ -402,7 +402,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function StartAdvertising
       (
          this : access IRfcommServiceProvider_Interface;
-         listener : Windows.Networking.Sockets.IStreamSocketListener
+         listener : WinRt.Windows.Networking.Sockets.IStreamSocketListener
       )
       return WinRt.Hresult is abstract;
 
@@ -420,7 +420,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function StartAdvertising
       (
          this : access IRfcommServiceProvider2_Interface;
-         listener : Windows.Networking.Sockets.IStreamSocketListener;
+         listener : WinRt.Windows.Networking.Sockets.IStreamSocketListener;
          radioDiscoverable : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -433,7 +433,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
       function CreateAsync
       (
          this : access IRfcommServiceProviderStatics_Interface;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -455,29 +455,29 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    function GetDeviceSelectorForBluetoothDevice
    (
-      bluetoothDevice : Windows.Devices.Bluetooth.BluetoothDevice'Class
+      bluetoothDevice : WinRt.Windows.Devices.Bluetooth.BluetoothDevice'Class
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDevice
    (
-      bluetoothDevice : Windows.Devices.Bluetooth.BluetoothDevice'Class;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      bluetoothDevice : WinRt.Windows.Devices.Bluetooth.BluetoothDevice'Class;
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDeviceAndServiceId
    (
-      bluetoothDevice : Windows.Devices.Bluetooth.BluetoothDevice'Class;
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      bluetoothDevice : WinRt.Windows.Devices.Bluetooth.BluetoothDevice'Class;
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDeviceAndServiceId
    (
-      bluetoothDevice : Windows.Devices.Bluetooth.BluetoothDevice'Class;
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      bluetoothDevice : WinRt.Windows.Devices.Bluetooth.BluetoothDevice'Class;
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class;
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
 
@@ -489,7 +489,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    function GetDeviceSelector
    (
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    )
    return WinRt.WString;
 
@@ -535,7 +535,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
    function GetSdpRawAttributesAsync
    (
       this : in out RfcommDeviceService;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.GenericObject;
 
@@ -654,7 +654,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
 
    function CreateAsync
    (
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider;
 
@@ -676,7 +676,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
    procedure StartAdvertising
    (
       this : in out RfcommServiceProvider;
-      listener : Windows.Networking.Sockets.StreamSocketListener'Class
+      listener : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class
    );
 
    procedure StopAdvertising
@@ -687,7 +687,7 @@ package WinRt.Windows.Devices.Bluetooth.Rfcomm is
    procedure StartAdvertising
    (
       this : in out RfcommServiceProvider;
-      listener : Windows.Networking.Sockets.StreamSocketListener'Class;
+      listener : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class;
       radioDiscoverable : WinRt.Boolean
    );
 

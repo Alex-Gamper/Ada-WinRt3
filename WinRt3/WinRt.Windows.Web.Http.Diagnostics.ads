@@ -188,14 +188,14 @@ package WinRt.Windows.Web.Http.Diagnostics is
       (
          this : access IHttpDiagnosticProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RequestSent
       (
          this : access IHttpDiagnosticProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -203,14 +203,14 @@ package WinRt.Windows.Web.Http.Diagnostics is
       (
          this : access IHttpDiagnosticProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResponseReceived
       (
          this : access IHttpDiagnosticProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -218,14 +218,14 @@ package WinRt.Windows.Web.Http.Diagnostics is
       (
          this : access IHttpDiagnosticProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RequestResponseCompleted
       (
          this : access IHttpDiagnosticProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -244,14 +244,14 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Timestamps
       (
          this : access IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps
+         RetVal : access WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestedUri
       (
          this : access IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -272,7 +272,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Initiator
       (
          this : access IHttpDiagnosticProviderRequestResponseCompletedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator
+         RetVal : access WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator
       )
       return WinRt.Hresult is abstract;
 
@@ -359,7 +359,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Timestamp
       (
          this : access IHttpDiagnosticProviderRequestSentEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -373,7 +373,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Message
       (
          this : access IHttpDiagnosticProviderRequestSentEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Initiator
       (
          this : access IHttpDiagnosticProviderRequestSentEventArgs_Interface;
-         RetVal : access Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator
+         RetVal : access WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator
       )
       return WinRt.Hresult is abstract;
 
@@ -413,7 +413,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Timestamp
       (
          this : access IHttpDiagnosticProviderResponseReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -427,7 +427,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_Message
       (
          this : access IHttpDiagnosticProviderResponseReceivedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -439,8 +439,8 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function CreateFromProcessDiagnosticInfo
       (
          this : access IHttpDiagnosticProviderStatics_Interface;
-         processDiagnosticInfo : Windows.System.Diagnostics.IProcessDiagnosticInfo;
-         RetVal : access Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider
+         processDiagnosticInfo : WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
+         RetVal : access WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -452,7 +452,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
       function get_SourceUri
       (
          this : access IHttpDiagnosticSourceLocation_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -487,7 +487,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
 
    function CreateFromProcessDiagnosticInfo
    (
-      processDiagnosticInfo : Windows.System.Diagnostics.ProcessDiagnosticInfo'Class
+      processDiagnosticInfo : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo'Class
    )
    return WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticProvider;
 
@@ -514,7 +514,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_RequestSent
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResponseReceived
@@ -527,7 +527,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_ResponseReceived
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RequestResponseCompleted
@@ -540,7 +540,7 @@ package WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_RequestResponseCompleted
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

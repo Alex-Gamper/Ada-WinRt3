@@ -181,14 +181,14 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function get_Status
       (
          this : access IAutomationRemoteOperationResult_Interface;
-         RetVal : access Windows.UI.UIAutomation.Core.AutomationRemoteOperationStatus
+         RetVal : access WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IAutomationRemoteOperationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -202,7 +202,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function HasOperand
       (
          this : access IAutomationRemoteOperationResult_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -210,7 +210,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function GetOperand
       (
          this : access IAutomationRemoteOperationResult_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -236,14 +236,14 @@ package WinRt.Windows.UI.UIAutomation.Core is
       (
          this : access ICoreAutomationRegistrarStatics_Interface;
          guid : WinRt.Guid;
-         RetVal : access Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
+         RetVal : access WinRt.Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterAnnotationType
       (
          this : access ICoreAutomationRegistrarStatics_Interface;
-         registration : Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
+         registration : WinRt.Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -263,23 +263,23 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function ImportElement
       (
          this : access ICoreAutomationRemoteOperation_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-         element : Windows.UI.UIAutomation.IAutomationElement
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         element : WinRt.Windows.UI.UIAutomation.IAutomationElement
       )
       return WinRt.Hresult is abstract;
 
       function ImportTextRange
       (
          this : access ICoreAutomationRemoteOperation_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-         textRange : Windows.UI.UIAutomation.IAutomationTextRange
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         textRange : WinRt.Windows.UI.UIAutomation.IAutomationTextRange
       )
       return WinRt.Hresult is abstract;
 
       function AddToResults
       (
          this : access ICoreAutomationRemoteOperation_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
       )
       return WinRt.Hresult is abstract;
 
@@ -288,7 +288,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
          this : access ICoreAutomationRemoteOperation_Interface;
          bytecodeBufferSize : WinRt.UInt32;
          bytecodeBuffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult
+         RetVal : access WinRt.Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -300,8 +300,8 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function ImportConnectionBoundObject
       (
          this : access ICoreAutomationRemoteOperation2_Interface;
-         operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-         connectionBoundObject : Windows.UI.UIAutomation.IAutomationConnectionBoundObject
+         operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         connectionBoundObject : WinRt.Windows.UI.UIAutomation.IAutomationConnectionBoundObject
       )
       return WinRt.Hresult is abstract;
 
@@ -313,7 +313,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function GetOperand
       (
          this : access ICoreAutomationRemoteOperationContext_Interface;
-         id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -321,7 +321,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function SetOperand
       (
          this : access ICoreAutomationRemoteOperationContext_Interface;
-         id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
          operand : WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -329,7 +329,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function SetOperand
       (
          this : access ICoreAutomationRemoteOperationContext_Interface;
-         id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+         id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
          operand : WinRt.IInspectable;
          operandInterfaceId : WinRt.Guid
       )
@@ -344,9 +344,9 @@ package WinRt.Windows.UI.UIAutomation.Core is
       (
          this : access ICoreAutomationRemoteOperationExtensionProvider_Interface;
          extensionId : WinRt.Guid;
-         context : Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperationContext;
+         context : WinRt.Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperationContext;
          operandIdsSize : WinRt.UInt32;
-         operandIds : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId_Ptr
+         operandIds : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -396,14 +396,14 @@ package WinRt.Windows.UI.UIAutomation.Core is
       (
          this : access IRemoteAutomationClientSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionRequested
       (
          this : access IRemoteAutomationClientSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -411,14 +411,14 @@ package WinRt.Windows.UI.UIAutomation.Core is
       (
          this : access IRemoteAutomationClientSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Disconnected
       (
          this : access IRemoteAutomationClientSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -431,7 +431,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       (
          this : access IRemoteAutomationClientSessionFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession
+         RetVal : access WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession
       )
       return WinRt.Hresult is abstract;
 
@@ -440,7 +440,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
          this : access IRemoteAutomationClientSessionFactory_Interface;
          name : WinRt.HString;
          sessionId : WinRt.Guid;
-         RetVal : access Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession
+         RetVal : access WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession
       )
       return WinRt.Hresult is abstract;
 
@@ -502,7 +502,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
       function UnregisterAsync
       (
          this : access IRemoteAutomationWindow_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -542,14 +542,14 @@ package WinRt.Windows.UI.UIAutomation.Core is
    function HasOperand
    (
       this : in out AutomationRemoteOperationResult;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.Boolean;
 
    function GetOperand
    (
       this : in out AutomationRemoteOperationResult;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.IInspectable;
 
@@ -565,7 +565,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
 
       procedure UnregisterAnnotationType
       (
-         registration : Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
+         registration : WinRt.Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
       );
 
    end CoreAutomationRegistrar;
@@ -594,21 +594,21 @@ package WinRt.Windows.UI.UIAutomation.Core is
    procedure ImportElement
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      element : Windows.UI.UIAutomation.AutomationElement'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      element : WinRt.Windows.UI.UIAutomation.AutomationElement'Class
    );
 
    procedure ImportTextRange
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      textRange : Windows.UI.UIAutomation.AutomationTextRange'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      textRange : WinRt.Windows.UI.UIAutomation.AutomationTextRange'Class
    );
 
    procedure AddToResults
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    );
 
    function Execute
@@ -621,8 +621,8 @@ package WinRt.Windows.UI.UIAutomation.Core is
    procedure ImportConnectionBoundObject
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      connectionBoundObject : Windows.UI.UIAutomation.AutomationConnectionBoundObject'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      connectionBoundObject : WinRt.Windows.UI.UIAutomation.AutomationConnectionBoundObject'Class
    );
 
    -----------------------------------------------------------------------------
@@ -637,21 +637,21 @@ package WinRt.Windows.UI.UIAutomation.Core is
    function GetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.IInspectable;
 
    procedure SetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
       operand : WinRt.IInspectable
    );
 
    procedure SetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
       operand : WinRt.IInspectable;
       operandInterfaceId : WinRt.Guid
    );
@@ -716,7 +716,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
    procedure remove_ConnectionRequested
    (
       this : in out RemoteAutomationClientSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Disconnected
@@ -729,7 +729,7 @@ package WinRt.Windows.UI.UIAutomation.Core is
    procedure remove_Disconnected
    (
       this : in out RemoteAutomationClientSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

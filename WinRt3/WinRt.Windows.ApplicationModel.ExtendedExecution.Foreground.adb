@@ -67,7 +67,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason;
    begin
       Hr := this.m_IExtendedExecutionForegroundRevokedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -102,13 +102,13 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    function Constructor return ExtendedExecutionForegroundSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession");
-      m_ComRetVal  : aliased Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
    begin
       return RetVal : ExtendedExecutionForegroundSession do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IExtendedExecutionForegroundSession := new Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
+            Retval.m_IExtendedExecutionForegroundSession := new WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
             Retval.m_IExtendedExecutionForegroundSession.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -164,7 +164,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IExtendedExecutionForegroundSession.all.add_Revoked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -176,7 +176,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    procedure remove_Revoked
    (
       this : in out ExtendedExecutionForegroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -259,7 +259,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason;
    begin
       Hr := this.m_IExtendedExecutionForegroundSession.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -271,7 +271,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    procedure put_Reason
    (
       this : in out ExtendedExecutionForegroundSession;
-      value : Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
+      value : WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

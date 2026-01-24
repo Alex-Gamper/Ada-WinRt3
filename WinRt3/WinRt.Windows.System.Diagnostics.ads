@@ -254,14 +254,14 @@ package WinRt.Windows.System.Diagnostics is
       function get_ExtendedError
       (
          this : access IDiagnosticActionResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Results
       (
          this : access IDiagnosticActionResult_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -273,7 +273,7 @@ package WinRt.Windows.System.Diagnostics is
       function RunDiagnosticActionAsync
       (
          this : access IDiagnosticInvoker_Interface;
-         context : Windows.Data.Json.IJsonObject;
+         context : WinRt.Windows.Data.Json.IJsonObject;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -299,15 +299,15 @@ package WinRt.Windows.System.Diagnostics is
       function GetDefault
       (
          this : access IDiagnosticInvokerStatics_Interface;
-         RetVal : access Windows.System.Diagnostics.IDiagnosticInvoker
+         RetVal : access WinRt.Windows.System.Diagnostics.IDiagnosticInvoker
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IDiagnosticInvokerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.Diagnostics.IDiagnosticInvoker
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.Diagnostics.IDiagnosticInvoker
       )
       return WinRt.Hresult is abstract;
 
@@ -326,7 +326,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetReport
       (
          this : access IProcessCpuUsage_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessCpuUsageReport
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessCpuUsageReport
       )
       return WinRt.Hresult is abstract;
 
@@ -338,14 +338,14 @@ package WinRt.Windows.System.Diagnostics is
       function get_KernelTime
       (
          this : access IProcessCpuUsageReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_UserTime
       (
          this : access IProcessCpuUsageReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -371,35 +371,35 @@ package WinRt.Windows.System.Diagnostics is
       function get_Parent
       (
          this : access IProcessDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessDiagnosticInfo
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ProcessStartTime
       (
          this : access IProcessDiagnosticInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_DiskUsage
       (
          this : access IProcessDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessDiskUsage
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessDiskUsage
       )
       return WinRt.Hresult is abstract;
 
       function get_MemoryUsage
       (
          this : access IProcessDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessMemoryUsage
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessMemoryUsage
       )
       return WinRt.Hresult is abstract;
 
       function get_CpuUsage
       (
          this : access IProcessDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessCpuUsage
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessCpuUsage
       )
       return WinRt.Hresult is abstract;
 
@@ -437,7 +437,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetForCurrentProcess
       (
          this : access IProcessDiagnosticInfoStatics_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessDiagnosticInfo
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -450,7 +450,7 @@ package WinRt.Windows.System.Diagnostics is
       (
          this : access IProcessDiagnosticInfoStatics2_Interface;
          processId : WinRt.UInt32;
-         RetVal : access Windows.System.Diagnostics.IProcessDiagnosticInfo
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -462,7 +462,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetReport
       (
          this : access IProcessDiskUsage_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessDiskUsageReport
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessDiskUsageReport
       )
       return WinRt.Hresult is abstract;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetReport
       (
          this : access IProcessMemoryUsage_Interface;
-         RetVal : access Windows.System.Diagnostics.IProcessMemoryUsageReport
+         RetVal : access WinRt.Windows.System.Diagnostics.IProcessMemoryUsageReport
       )
       return WinRt.Hresult is abstract;
 
@@ -622,7 +622,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetReport
       (
          this : access ISystemCpuUsage_Interface;
-         RetVal : access Windows.System.Diagnostics.ISystemCpuUsageReport
+         RetVal : access WinRt.Windows.System.Diagnostics.ISystemCpuUsageReport
       )
       return WinRt.Hresult is abstract;
 
@@ -634,21 +634,21 @@ package WinRt.Windows.System.Diagnostics is
       function get_KernelTime
       (
          this : access ISystemCpuUsageReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_UserTime
       (
          this : access ISystemCpuUsageReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_IdleTime
       (
          this : access ISystemCpuUsageReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -660,14 +660,14 @@ package WinRt.Windows.System.Diagnostics is
       function get_MemoryUsage
       (
          this : access ISystemDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.ISystemMemoryUsage
+         RetVal : access WinRt.Windows.System.Diagnostics.ISystemMemoryUsage
       )
       return WinRt.Hresult is abstract;
 
       function get_CpuUsage
       (
          this : access ISystemDiagnosticInfo_Interface;
-         RetVal : access Windows.System.Diagnostics.ISystemCpuUsage
+         RetVal : access WinRt.Windows.System.Diagnostics.ISystemCpuUsage
       )
       return WinRt.Hresult is abstract;
 
@@ -679,7 +679,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetForCurrentSystem
       (
          this : access ISystemDiagnosticInfoStatics_Interface;
-         RetVal : access Windows.System.Diagnostics.ISystemDiagnosticInfo
+         RetVal : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -691,7 +691,7 @@ package WinRt.Windows.System.Diagnostics is
       function IsArchitectureSupported
       (
          this : access ISystemDiagnosticInfoStatics2_Interface;
-         type_x : Windows.System.ProcessorArchitecture;
+         type_x : WinRt.Windows.System.ProcessorArchitecture;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -699,7 +699,7 @@ package WinRt.Windows.System.Diagnostics is
       function get_PreferredArchitecture
       (
          this : access ISystemDiagnosticInfoStatics2_Interface;
-         RetVal : access Windows.System.ProcessorArchitecture
+         RetVal : access WinRt.Windows.System.ProcessorArchitecture
       )
       return WinRt.Hresult is abstract;
 
@@ -711,7 +711,7 @@ package WinRt.Windows.System.Diagnostics is
       function GetReport
       (
          this : access ISystemMemoryUsage_Interface;
-         RetVal : access Windows.System.Diagnostics.ISystemMemoryUsageReport
+         RetVal : access WinRt.Windows.System.Diagnostics.ISystemMemoryUsageReport
       )
       return WinRt.Hresult is abstract;
 
@@ -782,7 +782,7 @@ package WinRt.Windows.System.Diagnostics is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticInvoker;
 
@@ -795,7 +795,7 @@ package WinRt.Windows.System.Diagnostics is
    function RunDiagnosticActionAsync
    (
       this : in out DiagnosticInvoker;
-      context : Windows.Data.Json.JsonObject'Class
+      context : WinRt.Windows.Data.Json.JsonObject'Class
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticActionResult'Class;
 
@@ -1129,7 +1129,7 @@ package WinRt.Windows.System.Diagnostics is
 
    function IsArchitectureSupported
    (
-      type_x : Windows.System.ProcessorArchitecture
+      type_x : WinRt.Windows.System.ProcessorArchitecture
    )
    return WinRt.Boolean;
 

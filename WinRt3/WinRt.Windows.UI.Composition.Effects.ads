@@ -108,14 +108,14 @@ package WinRt.Windows.UI.Composition.Effects is
       function get_NormalMapSource
       (
          this : access ISceneLightingEffect_Interface;
-         RetVal : access Windows.Graphics.Effects.IGraphicsEffectSource
+         RetVal : access WinRt.Windows.Graphics.Effects.IGraphicsEffectSource
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalMapSource
       (
          this : access ISceneLightingEffect_Interface;
-         value : Windows.Graphics.Effects.IGraphicsEffectSource
+         value : WinRt.Windows.Graphics.Effects.IGraphicsEffectSource
       )
       return WinRt.Hresult is abstract;
 
@@ -155,14 +155,14 @@ package WinRt.Windows.UI.Composition.Effects is
       function get_ReflectanceModel
       (
          this : access ISceneLightingEffect2_Interface;
-         RetVal : access Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
+         RetVal : access WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
       )
       return WinRt.Hresult is abstract;
 
       function put_ReflectanceModel
       (
          this : access ISceneLightingEffect2_Interface;
-         value : Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
+         value : WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
       )
       return WinRt.Hresult is abstract;
 
@@ -219,7 +219,7 @@ package WinRt.Windows.UI.Composition.Effects is
    procedure put_NormalMapSource
    (
       this : in out SceneLightingEffect;
-      value : Windows.Graphics.Effects.IGraphicsEffectSource
+      value : WinRt.Windows.Graphics.Effects.IGraphicsEffectSource
    );
 
    function get_SpecularAmount
@@ -255,7 +255,7 @@ package WinRt.Windows.UI.Composition.Effects is
    procedure put_ReflectanceModel
    (
       this : in out SceneLightingEffect;
-      value : Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
+      value : WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
    );
 
    function get_Name

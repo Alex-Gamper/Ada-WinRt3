@@ -83,13 +83,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return Appointment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.Appointment");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointment");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : Appointment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+            Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
             Retval.m_IAppointment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -107,7 +107,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointment.all.get_StartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -119,7 +119,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_StartTime
    (
       this : in out Appointment;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -139,7 +139,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppointment.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -151,7 +151,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Duration
    (
       this : in out Appointment;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -282,7 +282,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAppointment.all.get_Reminder (m_ComRetVal'Access);
@@ -317,14 +317,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentParticipant;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentOrganizer do
          Hr := this.m_IAppointment.all.get_Organizer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentParticipant := new Windows.ApplicationModel.Appointments.IAppointmentParticipant;
+         Retval.m_IAppointmentParticipant := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant;
          Retval.m_IAppointmentParticipant.all := m_ComRetVal;
       end return;
    end;
@@ -332,7 +332,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Organizer
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -352,7 +352,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAppointmentInvitee.Kind;
    begin
       Hr := this.m_IAppointment.all.get_Invitees (m_ComRetVal'Access);
@@ -372,14 +372,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence do
          Hr := this.m_IAppointment.all.get_Recurrence (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentRecurrence := new Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
+         Retval.m_IAppointmentRecurrence := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
          Retval.m_IAppointmentRecurrence.all := m_ComRetVal;
       end return;
    end;
@@ -387,7 +387,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Recurrence
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -407,7 +407,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentBusyStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus;
    begin
       Hr := this.m_IAppointment.all.get_BusyStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -419,7 +419,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_BusyStatus
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentBusyStatus
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -471,7 +471,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentSensitivity;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity;
    begin
       Hr := this.m_IAppointment.all.get_Sensitivity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -483,7 +483,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Sensitivity
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentSensitivity
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -503,14 +503,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppointment.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -518,7 +518,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Uri
    (
       this : in out Appointment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -632,7 +632,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
@@ -781,7 +781,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
@@ -824,7 +824,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
@@ -839,7 +839,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_UserResponse
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1026,7 +1026,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointment3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentDetailsKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointment_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointment3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointment3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointment.all);
@@ -1041,7 +1041,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DetailsKind
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentDetailsKind
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1088,7 +1088,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_DisplayColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1179,7 +1179,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_OtherAppReadAccess (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1191,7 +1191,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_OtherAppReadAccess
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1211,7 +1211,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_OtherAppWriteAccess (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1223,7 +1223,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_OtherAppWriteAccess
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1263,7 +1263,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentSummaryCardView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView;
    begin
       Hr := this.m_IAppointmentCalendar.all.get_SummaryCardView (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1275,7 +1275,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_SummaryCardView
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1290,8 +1290,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1355,9 +1355,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1488,8 +1488,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       masterLocalId : WinRt.WString;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1556,9 +1556,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       masterLocalId : WinRt.WString;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      pOptions : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      pOptions : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1676,7 +1676,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+                  Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1694,7 +1694,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1746,7 +1746,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+                  Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1826,7 +1826,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindUnexpandedAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -2020,7 +2020,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2065,7 +2065,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure SaveAppointmentAsync
    (
       this : in out AppointmentCalendar;
-      pAppointment : Windows.ApplicationModel.Appointments.Appointment'Class
+      pAppointment : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2114,7 +2114,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentCalendar2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncManager do
@@ -2124,7 +2124,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentCalendarSyncManager := new Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
+         Retval.m_IAppointmentCalendarSyncManager := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager;
          Retval.m_IAppointmentCalendarSyncManager.all := m_ComRetVal;
       end return;
    end;
@@ -2177,7 +2177,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DisplayColor
    (
       this : in out AppointmentCalendar;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2519,7 +2519,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function TryCreateOrUpdateAppointmentAsync
    (
       this : in out AppointmentCalendar;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       notifyInvitees : WinRt.Boolean
    )
    return WinRt.Boolean is
@@ -2588,7 +2588,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function TryCancelMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       subject : WinRt.WString;
       comment : WinRt.WString;
       notifyInvitees : WinRt.Boolean
@@ -2663,7 +2663,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function TryForwardMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       invitees : GenericObject;
       subject : WinRt.WString;
       forwardHeader : WinRt.WString;
@@ -2741,9 +2741,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function TryProposeNewTimeForMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
-      newStartTime : Windows.Foundation.DateTime;
-      newDuration : Windows.Foundation.TimeSpan;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      newStartTime : WinRt.Windows.Foundation.DateTime;
+      newDuration : WinRt.Windows.Foundation.TimeSpan;
       subject : WinRt.WString;
       comment : WinRt.WString
    )
@@ -2817,8 +2817,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function TryUpdateMeetingResponseAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
-      response : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      response : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
       subject : WinRt.WString;
       comment : WinRt.WString;
       sendUpdate : WinRt.Boolean
@@ -2967,7 +2967,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2984,7 +2984,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_LastSuccessfulSyncTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3001,7 +3001,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.get_LastAttemptedSyncTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3082,7 +3082,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppointmentCalendarSyncManager.all.add_SyncStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3094,7 +3094,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure remove_SyncStatusChanged
    (
       this : in out AppointmentCalendarSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3109,7 +3109,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Status
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3128,7 +3128,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_LastSuccessfulSyncTime
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3147,7 +3147,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_LastAttemptedSyncTime
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3194,7 +3194,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentConflictType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictType;
    begin
       Hr := this.m_IAppointmentConflictResult.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3211,7 +3211,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentConflictResult.all.get_Date (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3251,14 +3251,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAppointmentException.all.get_Appointment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+         Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
    end;
@@ -3271,7 +3271,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IAppointmentException.all.get_ExceptionProperties (m_ComRetVal'Access);
@@ -3326,13 +3326,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentInvitee is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentInvitee");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentInvitee;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentInvitee");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee;
    begin
       return RetVal : AppointmentInvitee do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppointmentInvitee := new Windows.ApplicationModel.Appointments.IAppointmentInvitee;
+            Retval.m_IAppointmentInvitee := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee;
             Retval.m_IAppointmentInvitee.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3350,7 +3350,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantRole;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole;
    begin
       Hr := this.m_IAppointmentInvitee.all.get_Role (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3362,7 +3362,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Role
    (
       this : in out AppointmentInvitee;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantRole
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3382,7 +3382,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
    begin
       Hr := this.m_IAppointmentInvitee.all.get_Response (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3394,7 +3394,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Response
    (
       this : in out AppointmentInvitee;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3502,7 +3502,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -3510,7 +3510,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IAppointmentManagerStatics3'Access , m_Factory'Address);
@@ -3520,7 +3520,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAppointmentManagerForUser := new Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
+               Retval.m_IAppointmentManagerForUser := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerForUser;
                Retval.m_IAppointmentManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3529,8 +3529,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       function ShowAddAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3603,9 +3603,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       function ShowAddAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3679,8 +3679,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3756,9 +3756,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3834,10 +3834,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3913,7 +3913,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -3986,8 +3986,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4060,9 +4060,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -4134,8 +4134,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       procedure ShowTimeFrameAsync
       (
-         timeToShow : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan
+         timeToShow : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4236,7 +4236,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       procedure ShowAppointmentDetailsAsync
       (
          appointmentId : WinRt.WString;
-         instanceStartDate : Windows.Foundation.DateTime
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4287,7 +4287,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       function ShowEditNewAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -4360,7 +4360,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
 
       function RequestStoreAsync
       (
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+         options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore is
          Hr               : WinRt.HResult := S_OK;
@@ -4416,7 +4416,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IAppointmentStore := new Windows.ApplicationModel.Appointments.IAppointmentStore;
+                        Retval.m_IAppointmentStore := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore;
                         Retval.m_IAppointmentStore.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -4459,8 +4459,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4527,9 +4527,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4597,8 +4597,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4668,9 +4668,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4740,10 +4740,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4813,7 +4813,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4880,8 +4880,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4948,9 +4948,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5016,8 +5016,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure ShowTimeFrameAsync
    (
       this : in out AppointmentManagerForUser;
-      timeToShow : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      timeToShow : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5106,7 +5106,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      instanceStartDate : Windows.Foundation.DateTime
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5151,7 +5151,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function ShowEditNewAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -5218,7 +5218,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function RequestStoreAsync
    (
       this : in out AppointmentManagerForUser;
-      options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+      options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5269,7 +5269,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentStore := new Windows.ApplicationModel.Appointments.IAppointmentStore;
+                  Retval.m_IAppointmentStore := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore;
                   Retval.m_IAppointmentStore.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5290,14 +5290,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IAppointmentManagerForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -5328,13 +5328,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentOrganizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentOrganizer");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentParticipant;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentParticipant");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant;
    begin
       return RetVal : AppointmentOrganizer do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppointmentParticipant := new Windows.ApplicationModel.Appointments.IAppointmentParticipant;
+            Retval.m_IAppointmentParticipant := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant;
             Retval.m_IAppointmentParticipant.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6029,7 +6029,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentProperties");
          m_Factory        : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVector_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAppointmentPropertiesStatics'Access , m_Factory'Address);
@@ -6074,13 +6074,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentRecurrence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentRecurrence");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentRecurrence");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : AppointmentRecurrence do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppointmentRecurrence := new Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
+            Retval.m_IAppointmentRecurrence := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
             Retval.m_IAppointmentRecurrence.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6098,7 +6098,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Unit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6110,7 +6110,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Unit
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6130,7 +6130,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Occurrences (m_ComRetVal'Access);
@@ -6165,7 +6165,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_Until (m_ComRetVal'Access);
@@ -6232,7 +6232,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_DaysOfWeek (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6244,7 +6244,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DaysOfWeek
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6264,7 +6264,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth;
    begin
       Hr := this.m_IAppointmentRecurrence.all.get_WeekOfMonth (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6276,7 +6276,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure put_WeekOfMonth
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6361,7 +6361,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.RecurrenceType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.RecurrenceType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentRecurrence2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentRecurrence.all);
@@ -6473,14 +6473,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeTracker do
          Hr := this.m_IAppointmentStore.all.get_ChangeTracker (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentStoreChangeTracker := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
+         Retval.m_IAppointmentStoreChangeTracker := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
          Retval.m_IAppointmentStoreChangeTracker.all := m_ComRetVal;
       end return;
    end;
@@ -6540,7 +6540,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+                  Retval.m_IAppointmentCalendar := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6609,7 +6609,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+                  Retval.m_IAppointmentCalendar := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6678,7 +6678,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+                  Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6696,7 +6696,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6748,7 +6748,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+                  Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
                   Retval.m_IAppointment.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6828,7 +6828,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentCalendarsAsync
    (
       this : in out AppointmentStore;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -6892,8 +6892,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentsAsync
    (
       this : in out AppointmentStore;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -6957,9 +6957,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentsAsync
    (
       this : in out AppointmentStore;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -7023,7 +7023,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindConflictAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7074,7 +7074,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentConflictResult := new Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
+                  Retval.m_IAppointmentConflictResult := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
                   Retval.m_IAppointmentConflictResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7090,8 +7090,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function FindConflictAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      instanceStartTime : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7142,7 +7142,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentConflictResult := new Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
+                  Retval.m_IAppointmentConflictResult := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentConflictResult;
                   Retval.m_IAppointmentConflictResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7158,8 +7158,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure MoveAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      destinationCalendar : Windows.ApplicationModel.Appointments.AppointmentCalendar'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      destinationCalendar : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7202,8 +7202,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -7271,8 +7271,8 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -7342,10 +7342,10 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -7415,7 +7415,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7482,9 +7482,9 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7596,7 +7596,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      instanceStartDate : Windows.Foundation.DateTime
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7641,7 +7641,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function ShowEditNewAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -7781,7 +7781,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentStore.all);
@@ -7796,7 +7796,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure remove_StoreChanged
    (
       this : in out AppointmentStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7873,7 +7873,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+                  Retval.m_IAppointmentCalendar := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
                   Retval.m_IAppointmentCalendar.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7898,7 +7898,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
       HStr_identity : constant WinRt.HString := To_HString (identity);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStore3, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStore3'Unchecked_Access);
    begin
@@ -7909,7 +7909,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentStoreChangeTracker := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
+         Retval.m_IAppointmentStoreChangeTracker := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker;
          Retval.m_IAppointmentStoreChangeTracker.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_identity);
       end return;
@@ -7946,14 +7946,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAppointmentStoreChange.all.get_Appointment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+         Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
    end;
@@ -7966,7 +7966,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentStoreChangeType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeType;
    begin
       Hr := this.m_IAppointmentStoreChange.all.get_ChangeType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7984,7 +7984,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange_Interface, WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange2, WinRt.Windows.ApplicationModel.Appointments.IID_IAppointmentStoreChange2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar do
@@ -7994,7 +7994,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentCalendar := new Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+         Retval.m_IAppointmentCalendar := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
          Retval.m_IAppointmentCalendar.all := m_ComRetVal;
       end return;
    end;
@@ -8102,7 +8102,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    procedure AcceptChangesThrough
    (
       this : in out AppointmentStoreChangeReader;
-      lastChangeToAccept : Windows.ApplicationModel.Appointments.AppointmentStoreChange'Class
+      lastChangeToAccept : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChange'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8145,14 +8145,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeReader do
          Hr := this.m_IAppointmentStoreChangeTracker.all.GetChangeReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentStoreChangeReader := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
+         Retval.m_IAppointmentStoreChangeReader := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader;
          Retval.m_IAppointmentStoreChangeReader.all := m_ComRetVal;
       end return;
    end;
@@ -8274,14 +8274,14 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangedDeferral do
          Hr := this.m_IAppointmentStoreChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentStoreChangedDeferral := new Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
+         Retval.m_IAppointmentStoreChangedDeferral := new WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral;
          Retval.m_IAppointmentStoreChangedDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -8335,13 +8335,13 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return FindAppointmentsOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.FindAppointmentsOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IFindAppointmentsOptions");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
    begin
       return RetVal : FindAppointmentsOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFindAppointmentsOptions := new Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+            Retval.m_IFindAppointmentsOptions := new WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
             Retval.m_IFindAppointmentsOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8359,7 +8359,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_CalendarIds (m_ComRetVal'Access);
@@ -8379,7 +8379,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFindAppointmentsOptions.all.get_FetchProperties (m_ComRetVal'Access);

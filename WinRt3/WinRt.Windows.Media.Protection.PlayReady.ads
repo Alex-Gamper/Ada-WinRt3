@@ -636,14 +636,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RegistrationCompleted
       (
          this : access INDClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -651,14 +651,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProximityDetectionCompleted
       (
          this : access INDClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -666,14 +666,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LicenseFetchCompleted
       (
          this : access INDClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -681,14 +681,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReRegistrationNeeded
       (
          this : access INDClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -696,24 +696,24 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ClosedCaptionDataReceived
       (
          this : access INDClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function StartAsync
       (
          this : access INDClient_Interface;
-         contentUrl : Windows.Foundation.IUriRuntimeClass;
+         contentUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          startAsyncOptions : WinRt.UInt32;
-         registrationCustomData : Windows.Media.Protection.PlayReady.INDCustomData;
-         licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
+         registrationCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData;
+         licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -721,7 +721,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function LicenseFetchAsync
       (
          this : access INDClient_Interface;
-         licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
+         licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -729,8 +729,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function ReRegistrationAsync
       (
          this : access INDClient_Interface;
-         registrationCustomData : Windows.Media.Protection.PlayReady.INDCustomData;
-         RetVal : access Windows.Foundation.IAsyncAction
+         registrationCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -748,10 +748,10 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateInstance
       (
          this : access INDClientFactory_Interface;
-         downloadEngine : Windows.Media.Protection.PlayReady.INDDownloadEngine;
-         streamParser : Windows.Media.Protection.PlayReady.INDStreamParser;
-         pMessenger : Windows.Media.Protection.PlayReady.INDMessenger;
-         RetVal : access Windows.Media.Protection.PlayReady.INDClient
+         downloadEngine : WinRt.Windows.Media.Protection.PlayReady.INDDownloadEngine;
+         streamParser : WinRt.Windows.Media.Protection.PlayReady.INDStreamParser;
+         pMessenger : WinRt.Windows.Media.Protection.PlayReady.INDMessenger;
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDClient
       )
       return WinRt.Hresult is abstract;
 
@@ -763,7 +763,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ClosedCaptionDataFormat
       (
          this : access INDClosedCaptionDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.NDClosedCaptionFormat
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.NDClosedCaptionFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -815,7 +815,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          customDataTypeIDBytes : WinRt.Byte_Ptr;
          customDataBytesSize : WinRt.UInt32;
          customDataBytes : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.Protection.PlayReady.INDCustomData
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
@@ -827,7 +827,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function Open
       (
          this : access INDDownloadEngine_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          sessionIDBytesSize : WinRt.UInt32;
          sessionIDBytes : WinRt.Byte_Ptr
       )
@@ -854,7 +854,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function Seek
       (
          this : access INDDownloadEngine_Interface;
-         startPosition : Windows.Foundation.TimeSpan
+         startPosition : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -882,7 +882,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_Notifier
       (
          this : access INDDownloadEngine_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -908,7 +908,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function OnContentIDReceived
       (
          this : access INDDownloadEngineNotifier_Interface;
-         licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+         licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -941,7 +941,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ResponseCustomData
       (
          this : access INDLicenseFetchCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDCustomData
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
@@ -953,7 +953,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ContentIDType
       (
          this : access INDLicenseFetchDescriptor_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.NDContentIDType
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.NDContentIDType
       )
       return WinRt.Hresult is abstract;
 
@@ -968,14 +968,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_LicenseFetchChallengeCustomData
       (
          this : access INDLicenseFetchDescriptor_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDCustomData
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
       function put_LicenseFetchChallengeCustomData
       (
          this : access INDLicenseFetchDescriptor_Interface;
-         licenseFetchChallengeCustomData : Windows.Media.Protection.PlayReady.INDCustomData
+         licenseFetchChallengeCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
@@ -987,11 +987,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateInstance
       (
          this : access INDLicenseFetchDescriptorFactory_Interface;
-         contentIDType : Windows.Media.Protection.PlayReady.NDContentIDType;
+         contentIDType : WinRt.Windows.Media.Protection.PlayReady.NDContentIDType;
          contentIDBytesSize : WinRt.UInt32;
          contentIDBytes : WinRt.Byte_Ptr;
-         licenseFetchChallengeCustomData : Windows.Media.Protection.PlayReady.INDCustomData;
-         RetVal : access Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+         licenseFetchChallengeCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData;
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1003,7 +1003,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ResponseCustomData
       (
          this : access INDLicenseFetchResult_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDCustomData
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
@@ -1026,7 +1026,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function SendProximityDetectionStartAsync
       (
          this : access INDMessenger_Interface;
-         pdType : Windows.Media.Protection.PlayReady.NDProximityDetectionType;
+         pdType : WinRt.Windows.Media.Protection.PlayReady.NDProximityDetectionType;
          transmitterChannelBytesSize : WinRt.UInt32;
          transmitterChannelBytes : WinRt.Byte_Ptr;
          sessionIDBytesSize : WinRt.UInt32;
@@ -1040,7 +1040,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function SendProximityDetectionResponseAsync
       (
          this : access INDMessenger_Interface;
-         pdType : Windows.Media.Protection.PlayReady.NDProximityDetectionType;
+         pdType : WinRt.Windows.Media.Protection.PlayReady.NDProximityDetectionType;
          transmitterChannelBytesSize : WinRt.UInt32;
          transmitterChannelBytes : WinRt.Byte_Ptr;
          sessionIDBytesSize : WinRt.UInt32;
@@ -1082,14 +1082,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ResponseCustomData
       (
          this : access INDRegistrationCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDCustomData
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDCustomData
       )
       return WinRt.Hresult is abstract;
 
       function get_TransmitterProperties
       (
          this : access INDRegistrationCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDTransmitterProperties
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDTransmitterProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1128,7 +1128,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_MediaStreamSource
       (
          this : access INDStartResult_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1140,7 +1140,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function GetFileURLs
       (
          this : access INDStorageFileHelper_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1161,8 +1161,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function GetStreamInformation
       (
          this : access INDStreamParser_Interface;
-         descriptor : Windows.Media.Core.IMediaStreamDescriptor;
-         streamType : Windows.Media.Protection.PlayReady.NDMediaStreamType_Ptr;
+         descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
+         streamType : WinRt.Windows.Media.Protection.PlayReady.NDMediaStreamType_Ptr;
          RetVal : access WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -1182,7 +1182,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_Notifier
       (
          this : access INDStreamParser_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.INDStreamParserNotifier
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDStreamParserNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -1194,7 +1194,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function OnContentIDReceived
       (
          this : access INDStreamParserNotifier_Interface;
-         licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+         licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1210,10 +1210,10 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDStreamParserNotifier_Interface;
          streamID : WinRt.UInt32;
-         streamType : Windows.Media.Protection.PlayReady.NDMediaStreamType;
-         streamSample : Windows.Media.Core.IMediaStreamSample;
+         streamType : WinRt.Windows.Media.Protection.PlayReady.NDMediaStreamType;
+         streamSample : WinRt.Windows.Media.Core.IMediaStreamSample;
          pts : WinRt.Int64;
-         ccFormat : Windows.Media.Protection.PlayReady.NDClosedCaptionFormat;
+         ccFormat : WinRt.Windows.Media.Protection.PlayReady.NDClosedCaptionFormat;
          ccDataBytesSize : WinRt.UInt32;
          ccDataBytes : WinRt.Byte_Ptr
       )
@@ -1222,7 +1222,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function OnBeginSetupDecryptor
       (
          this : access INDStreamParserNotifier_Interface;
-         descriptor : Windows.Media.Core.IMediaStreamDescriptor;
+         descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
          keyID : WinRt.Guid;
          proBytesSize : WinRt.UInt32;
          proBytes : WinRt.Byte_Ptr
@@ -1239,7 +1239,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access INDTCPMessengerFactory_Interface;
          remoteHostName : WinRt.HString;
          remoteHostPort : WinRt.UInt32;
-         RetVal : access Windows.Media.Protection.PlayReady.INDMessenger
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.INDMessenger
       )
       return WinRt.Hresult is abstract;
 
@@ -1251,14 +1251,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_CertificateType
       (
          this : access INDTransmitterProperties_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.NDCertificateType
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.NDCertificateType
       )
       return WinRt.Hresult is abstract;
 
       function get_PlatformIdentifier
       (
          this : access INDTransmitterProperties_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.NDCertificatePlatformID
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.NDCertificatePlatformID
       )
       return WinRt.Hresult is abstract;
 
@@ -1266,7 +1266,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       (
          this : access INDTransmitterProperties_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Media.Protection.PlayReady.NDCertificateFeature_Ptr
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.NDCertificateFeature_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1287,7 +1287,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ExpirationDate
       (
          this : access INDTransmitterProperties_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1350,14 +1350,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_LicenseAcquisitionUrl
       (
          this : access IPlayReadyContentHeader_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_LicenseAcquisitionUserInterfaceUrl
       (
          this : access IPlayReadyContentHeader_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1371,7 +1371,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_EncryptionType
       (
          this : access IPlayReadyContentHeader_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -1385,7 +1385,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_DecryptorSetup
       (
          this : access IPlayReadyContentHeader_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.PlayReadyDecryptorSetup
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.PlayReadyDecryptorSetup
       )
       return WinRt.Hresult is abstract;
 
@@ -1400,7 +1400,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_HeaderWithEmbeddedUpdates
       (
          this : access IPlayReadyContentHeader_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1435,11 +1435,11 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadyContentHeaderFactory_Interface;
          headerBytesSize : WinRt.UInt32;
          headerBytes : WinRt.Byte_Ptr;
-         licenseAcquisitionUrl : Windows.Foundation.IUriRuntimeClass;
-         licenseAcquisitionUserInterfaceUrl : Windows.Foundation.IUriRuntimeClass;
+         licenseAcquisitionUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
+         licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          customAttributes : WinRt.HString;
          domainServiceId : WinRt.Guid;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1448,12 +1448,12 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadyContentHeaderFactory_Interface;
          contentKeyId : WinRt.Guid;
          contentKeyIdString : WinRt.HString;
-         contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-         licenseAcquisitionUrl : Windows.Foundation.IUriRuntimeClass;
-         licenseAcquisitionUserInterfaceUrl : Windows.Foundation.IUriRuntimeClass;
+         contentEncryptionAlgorithm : WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+         licenseAcquisitionUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
+         licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          customAttributes : WinRt.HString;
          domainServiceId : WinRt.Guid;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1462,7 +1462,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadyContentHeaderFactory_Interface;
          headerBytesSize : WinRt.UInt32;
          headerBytes : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1479,12 +1479,12 @@ package WinRt.Windows.Media.Protection.PlayReady is
          contentKeyIds : WinRt.Guid_Ptr;
          contentKeyIdStringsSize : WinRt.UInt32;
          contentKeyIdStrings : WinRt.HString_Ptr;
-         contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-         licenseAcquisitionUrl : Windows.Foundation.IUriRuntimeClass;
-         licenseAcquisitionUserInterfaceUrl : Windows.Foundation.IUriRuntimeClass;
+         contentEncryptionAlgorithm : WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+         licenseAcquisitionUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
+         licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          customAttributes : WinRt.HString;
          domainServiceId : WinRt.Guid;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1496,8 +1496,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function ServiceRequest
       (
          this : access IPlayReadyContentResolver_Interface;
-         contentHeader : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1537,7 +1537,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_DomainJoinUrl
       (
          this : access IPlayReadyDomain_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1644,8 +1644,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadyITADataGenerator_Interface;
          guidCPSystemId : WinRt.Guid;
          countOfStreams : WinRt.UInt32;
-         configuration : Windows.Foundation.Collections.IPropertySet;
-         format : Windows.Media.Protection.PlayReady.PlayReadyITADataFormat;
+         configuration : WinRt.Windows.Foundation.Collections.IPropertySet;
+         format : WinRt.Windows.Media.Protection.PlayReady.PlayReadyITADataFormat;
          RetValSize : access WinRt.UInt32;
          RetVal : access WinRt.Byte_Ptr
       )
@@ -1752,14 +1752,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_ContentHeader
       (
          this : access IPlayReadyLicenseAcquisitionServiceRequest_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentHeader
       (
          this : access IPlayReadyLicenseAcquisitionServiceRequest_Interface;
-         value : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
+         value : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader
       )
       return WinRt.Hresult is abstract;
 
@@ -1797,7 +1797,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateLicenseIterable
       (
          this : access IPlayReadyLicenseAcquisitionServiceRequest3_Interface;
-         contentHeader : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
          fullyEvaluated : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -1811,7 +1811,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateInstance
       (
          this : access IPlayReadyLicenseIterableFactory_Interface;
-         contentHeader : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
          fullyEvaluated : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -1825,8 +1825,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function DeleteLicenses
       (
          this : access IPlayReadyLicenseManagement_Interface;
-         contentHeader : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
-         RetVal : access Windows.Foundation.IAsyncAction
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1838,14 +1838,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateLAServiceRequest
       (
          this : access IPlayReadyLicenseSession_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest
       )
       return WinRt.Hresult is abstract;
 
       function ConfigureMediaProtectionManager
       (
          this : access IPlayReadyLicenseSession_Interface;
-         mpm : Windows.Media.Protection.IMediaProtectionManager
+         mpm : WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1857,7 +1857,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateLicenseIterable
       (
          this : access IPlayReadyLicenseSession2_Interface;
-         contentHeader : Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
          fullyEvaluated : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -1871,8 +1871,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CreateInstance
       (
          this : access IPlayReadyLicenseSessionFactory_Interface;
-         configuration : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession
+         configuration : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1931,14 +1931,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_StartTime
       (
          this : access IPlayReadySecureStopServiceRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateTime
       (
          this : access IPlayReadySecureStopServiceRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1967,7 +1967,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadySecureStopServiceRequestFactory_Interface;
          publisherCertBytesSize : WinRt.UInt32;
          publisherCertBytes : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1977,7 +1977,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          sessionID : WinRt.Guid;
          publisherCertBytesSize : WinRt.UInt32;
          publisherCertBytes : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1989,14 +1989,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_Uri
       (
          this : access IPlayReadyServiceRequest_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IPlayReadyServiceRequest_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2024,21 +2024,21 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function BeginServiceRequest
       (
          this : access IPlayReadyServiceRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function NextServiceRequest
       (
          this : access IPlayReadyServiceRequest_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest
       )
       return WinRt.Hresult is abstract;
 
       function GenerateManualEnablingChallenge
       (
          this : access IPlayReadyServiceRequest_Interface;
-         RetVal : access Windows.Media.Protection.PlayReady.IPlayReadySoapMessage
+         RetVal : access WinRt.Windows.Media.Protection.PlayReady.IPlayReadySoapMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -2047,7 +2047,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
          this : access IPlayReadyServiceRequest_Interface;
          responseBytesSize : WinRt.UInt32;
          responseBytes : WinRt.Byte_Ptr;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2067,14 +2067,14 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function get_MessageHeaders
       (
          this : access IPlayReadySoapMessage_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access IPlayReadySoapMessage_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2166,7 +2166,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
       function CheckSupportedHardware
       (
          this : access IPlayReadyStatics3_Interface;
-         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures;
+         hwdrmFeature : WinRt.Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2232,9 +2232,9 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      downloadEngine : Windows.Media.Protection.PlayReady.INDDownloadEngine;
-      streamParser : Windows.Media.Protection.PlayReady.INDStreamParser;
-      pMessenger : Windows.Media.Protection.PlayReady.INDMessenger
+      downloadEngine : WinRt.Windows.Media.Protection.PlayReady.INDDownloadEngine;
+      streamParser : WinRt.Windows.Media.Protection.PlayReady.INDStreamParser;
+      pMessenger : WinRt.Windows.Media.Protection.PlayReady.INDMessenger
    )
    return NDClient;
 
@@ -2251,7 +2251,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure remove_RegistrationCompleted
    (
       this : in out NDClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProximityDetectionCompleted
@@ -2264,7 +2264,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure remove_ProximityDetectionCompleted
    (
       this : in out NDClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LicenseFetchCompleted
@@ -2277,7 +2277,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure remove_LicenseFetchCompleted
    (
       this : in out NDClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ReRegistrationNeeded
@@ -2290,7 +2290,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure remove_ReRegistrationNeeded
    (
       this : in out NDClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ClosedCaptionDataReceived
@@ -2303,30 +2303,30 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure remove_ClosedCaptionDataReceived
    (
       this : in out NDClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function StartAsync
    (
       this : in out NDClient;
-      contentUrl : Windows.Foundation.Uri'Class;
+      contentUrl : WinRt.Windows.Foundation.Uri'Class;
       startAsyncOptions : WinRt.UInt32;
-      registrationCustomData : Windows.Media.Protection.PlayReady.INDCustomData;
-      licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+      registrationCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData;
+      licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDStartResult;
 
    function LicenseFetchAsync
    (
       this : in out NDClient;
-      licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+      licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    )
    return WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchResult;
 
    procedure ReRegistrationAsync
    (
       this : in out NDClient;
-      registrationCustomData : Windows.Media.Protection.PlayReady.INDCustomData
+      registrationCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData
    );
 
    procedure Close
@@ -2393,7 +2393,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure OnContentIDReceived
    (
       this : in out NDDownloadEngineNotifier;
-      licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+      licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    );
 
    procedure OnDataReceived
@@ -2424,9 +2424,9 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      contentIDType : Windows.Media.Protection.PlayReady.NDContentIDType;
+      contentIDType : WinRt.Windows.Media.Protection.PlayReady.NDContentIDType;
       contentIDBytes : WinRt.Byte_Array;
-      licenseFetchChallengeCustomData : Windows.Media.Protection.PlayReady.INDCustomData
+      licenseFetchChallengeCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData
    )
    return NDLicenseFetchDescriptor;
 
@@ -2454,7 +2454,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_LicenseFetchChallengeCustomData
    (
       this : in out NDLicenseFetchDescriptor;
-      licenseFetchChallengeCustomData : Windows.Media.Protection.PlayReady.INDCustomData
+      licenseFetchChallengeCustomData : WinRt.Windows.Media.Protection.PlayReady.INDCustomData
    );
 
    -----------------------------------------------------------------------------
@@ -2474,7 +2474,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function GetFileURLs
    (
       this : in out NDStorageFileHelper;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return IVector_HString.Kind;
 
@@ -2495,7 +2495,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure OnContentIDReceived
    (
       this : in out NDStreamParserNotifier;
-      licenseFetchDescriptor : Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
+      licenseFetchDescriptor : WinRt.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor
    );
 
    procedure OnMediaStreamDescriptorCreated
@@ -2509,17 +2509,17 @@ package WinRt.Windows.Media.Protection.PlayReady is
    (
       this : in out NDStreamParserNotifier;
       streamID : WinRt.UInt32;
-      streamType : Windows.Media.Protection.PlayReady.NDMediaStreamType;
-      streamSample : Windows.Media.Core.MediaStreamSample'Class;
+      streamType : WinRt.Windows.Media.Protection.PlayReady.NDMediaStreamType;
+      streamSample : WinRt.Windows.Media.Core.MediaStreamSample'Class;
       pts : WinRt.Int64;
-      ccFormat : Windows.Media.Protection.PlayReady.NDClosedCaptionFormat;
+      ccFormat : WinRt.Windows.Media.Protection.PlayReady.NDClosedCaptionFormat;
       ccDataBytes : WinRt.Byte_Array
    );
 
    procedure OnBeginSetupDecryptor
    (
       this : in out NDStreamParserNotifier;
-      descriptor : Windows.Media.Core.IMediaStreamDescriptor;
+      descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
       keyID : WinRt.Guid;
       proBytes : WinRt.Byte_Array
    );
@@ -2554,7 +2554,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function SendProximityDetectionStartAsync
    (
       this : in out NDTCPMessenger;
-      pdType : Windows.Media.Protection.PlayReady.NDProximityDetectionType;
+      pdType : WinRt.Windows.Media.Protection.PlayReady.NDProximityDetectionType;
       transmitterChannelBytes : WinRt.Byte_Array;
       sessionIDBytes : WinRt.Byte_Array;
       challengeDataBytes : WinRt.Byte_Array
@@ -2564,7 +2564,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function SendProximityDetectionResponseAsync
    (
       this : in out NDTCPMessenger;
-      pdType : Windows.Media.Protection.PlayReady.NDProximityDetectionType;
+      pdType : WinRt.Windows.Media.Protection.PlayReady.NDProximityDetectionType;
       transmitterChannelBytes : WinRt.Byte_Array;
       sessionIDBytes : WinRt.Byte_Array;
       responseDataBytes : WinRt.Byte_Array
@@ -2591,8 +2591,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function Constructor
    (
       headerBytes : WinRt.Byte_Array;
-      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
-      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
+      licenseAcquisitionUrl : WinRt.Windows.Foundation.Uri'Class;
+      licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.Uri'Class;
       customAttributes : WinRt.WString;
       domainServiceId : WinRt.Guid
    )
@@ -2602,9 +2602,9 @@ package WinRt.Windows.Media.Protection.PlayReady is
    (
       contentKeyId : WinRt.Guid;
       contentKeyIdString : WinRt.WString;
-      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
-      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
+      contentEncryptionAlgorithm : WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+      licenseAcquisitionUrl : WinRt.Windows.Foundation.Uri'Class;
+      licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.Uri'Class;
       customAttributes : WinRt.WString;
       domainServiceId : WinRt.Guid
    )
@@ -2621,9 +2621,9 @@ package WinRt.Windows.Media.Protection.PlayReady is
       dwFlags : WinRt.UInt32;
       contentKeyIds : WinRt.Guid_Array;
       contentKeyIdStrings : WinRt.HString_Array;
-      contentEncryptionAlgorithm : Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
-      licenseAcquisitionUrl : Windows.Foundation.Uri'Class;
-      licenseAcquisitionUserInterfaceUrl : Windows.Foundation.Uri'Class;
+      contentEncryptionAlgorithm : WinRt.Windows.Media.Protection.PlayReady.PlayReadyEncryptionAlgorithm;
+      licenseAcquisitionUrl : WinRt.Windows.Foundation.Uri'Class;
+      licenseAcquisitionUserInterfaceUrl : WinRt.Windows.Foundation.Uri'Class;
       customAttributes : WinRt.WString;
       domainServiceId : WinRt.Guid
    )
@@ -2710,7 +2710,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
       function ServiceRequest
       (
-         contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
       )
       return WinRt.Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest;
 
@@ -2811,7 +2811,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function GetMany
    (
       this : in out PlayReadyDomainIterator;
-      items : Windows.Media.Protection.PlayReady.IPlayReadyDomain_Array
+      items : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyDomain_Array
    )
    return WinRt.UInt32;
 
@@ -2874,7 +2874,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyDomainJoinServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -2978,7 +2978,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyDomainLeaveServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3054,8 +3054,8 @@ package WinRt.Windows.Media.Protection.PlayReady is
       this : in out PlayReadyITADataGenerator;
       guidCPSystemId : WinRt.Guid;
       countOfStreams : WinRt.UInt32;
-      configuration : Windows.Foundation.Collections.IPropertySet;
-      format : Windows.Media.Protection.PlayReady.PlayReadyITADataFormat
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet;
+      format : WinRt.Windows.Media.Protection.PlayReady.PlayReadyITADataFormat
    )
    return WinRt.Byte_Array;
 
@@ -3082,7 +3082,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyIndividualizationServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3238,7 +3238,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_ContentHeader
    (
       this : in out PlayReadyLicenseAcquisitionServiceRequest;
-      value : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
+      value : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
    );
 
    function get_DomainServiceId
@@ -3262,7 +3262,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyLicenseAcquisitionServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3328,7 +3328,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function CreateLicenseIterable
    (
       this : in out PlayReadyLicenseAcquisitionServiceRequest;
-      contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
+      contentHeader : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
       fullyEvaluated : WinRt.Boolean
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable'Class;
@@ -3344,7 +3344,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
+      contentHeader : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
       fullyEvaluated : WinRt.Boolean
    )
    return PlayReadyLicenseIterable;
@@ -3392,7 +3392,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function GetMany
    (
       this : in out PlayReadyLicenseIterator;
-      items : Windows.Media.Protection.PlayReady.IPlayReadyLicense_Array
+      items : WinRt.Windows.Media.Protection.PlayReady.IPlayReadyLicense_Array
    )
    return WinRt.UInt32;
 
@@ -3402,7 +3402,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
       procedure DeleteLicenses
       (
-         contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
+         contentHeader : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class
       );
 
    end PlayReadyLicenseManagement;
@@ -3418,7 +3418,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
    function Constructor
    (
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return PlayReadyLicenseSession;
 
@@ -3434,13 +3434,13 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure ConfigureMediaProtectionManager
    (
       this : in out PlayReadyLicenseSession;
-      mpm : Windows.Media.Protection.MediaProtectionManager'Class
+      mpm : WinRt.Windows.Media.Protection.MediaProtectionManager'Class
    );
 
    function CreateLicenseIterable
    (
       this : in out PlayReadyLicenseSession;
-      contentHeader : Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
+      contentHeader : WinRt.Windows.Media.Protection.PlayReady.PlayReadyContentHeader'Class;
       fullyEvaluated : WinRt.Boolean
    )
    return WinRt.Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable'Class;
@@ -3480,7 +3480,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyMeteringReportServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3560,7 +3560,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadyRevocationServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3673,7 +3673,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    function GetMany
    (
       this : in out PlayReadySecureStopIterator;
-      items : Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Array
+      items : WinRt.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest_Array
    )
    return WinRt.UInt32;
 
@@ -3741,7 +3741,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
    procedure put_Uri
    (
       this : in out PlayReadySecureStopServiceRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResponseCustomData
@@ -3875,7 +3875,7 @@ package WinRt.Windows.Media.Protection.PlayReady is
 
       function CheckSupportedHardware
       (
-         hwdrmFeature : Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
+         hwdrmFeature : WinRt.Windows.Media.Protection.PlayReady.PlayReadyHardwareDRMFeatures
       )
       return WinRt.Boolean;
 

@@ -157,14 +157,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtension_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
       function GetExtensionProperties
       (
          this : access IPackageExtension_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -185,7 +185,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function GetPublicFolder
       (
          this : access IPackageExtension_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -227,14 +227,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageInstalled
       (
          this : access IPackageExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -242,14 +242,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUpdating
       (
          this : access IPackageExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -257,14 +257,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUpdated
       (
          this : access IPackageExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -272,14 +272,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUninstalling
       (
          this : access IPackageExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -287,14 +287,14 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageStatusChanged
       (
          this : access IPackageExtensionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -307,7 +307,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       (
          this : access IPackageExtensionCatalogStatics_Interface;
          packageExtensionName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog
+         RetVal : access WinRt.Windows.ApplicationModel.PackageExtensions.IPackageExtensionCatalog
       )
       return WinRt.Hresult is abstract;
 
@@ -326,7 +326,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtensionPackageInstalledEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -352,7 +352,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtensionPackageStatusChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -371,7 +371,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtensionPackageUninstallingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -390,7 +390,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtensionPackageUpdatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -416,7 +416,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
       function get_Package
       (
          this : access IPackageExtensionPackageUpdatingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -536,7 +536,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageInstalled
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUpdating
@@ -549,7 +549,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUpdating
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUpdated
@@ -562,7 +562,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUpdated
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUninstalling
@@ -575,7 +575,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageUninstalling
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageStatusChanged
@@ -588,7 +588,7 @@ package WinRt.Windows.ApplicationModel.PackageExtensions is
    procedure remove_PackageStatusChanged
    (
       this : in out PackageExtensionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

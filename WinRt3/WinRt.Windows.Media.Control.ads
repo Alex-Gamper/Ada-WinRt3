@@ -237,14 +237,14 @@ package WinRt.Windows.Media.Control is
       function GetTimelineProperties
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         RetVal : access Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties
+         RetVal : access WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties
       )
       return WinRt.Hresult is abstract;
 
       function GetPlaybackInfo
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         RetVal : access Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo
+         RetVal : access WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -328,7 +328,7 @@ package WinRt.Windows.Media.Control is
       function TryChangeAutoRepeatModeAsync
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         requestedAutoRepeatMode : Windows.Media.MediaPlaybackAutoRepeatMode;
+         requestedAutoRepeatMode : WinRt.Windows.Media.MediaPlaybackAutoRepeatMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -361,14 +361,14 @@ package WinRt.Windows.Media.Control is
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TimelinePropertiesChanged
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -376,14 +376,14 @@ package WinRt.Windows.Media.Control is
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackInfoChanged
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -391,14 +391,14 @@ package WinRt.Windows.Media.Control is
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaPropertiesChanged
       (
          this : access IGlobalSystemMediaTransportControlsSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -410,7 +410,7 @@ package WinRt.Windows.Media.Control is
       function GetCurrentSession
       (
          this : access IGlobalSystemMediaTransportControlsSessionManager_Interface;
-         RetVal : access Windows.Media.Control.IGlobalSystemMediaTransportControlsSession
+         RetVal : access WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSession
       )
       return WinRt.Hresult is abstract;
 
@@ -425,14 +425,14 @@ package WinRt.Windows.Media.Control is
       (
          this : access IGlobalSystemMediaTransportControlsSessionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentSessionChanged
       (
          this : access IGlobalSystemMediaTransportControlsSessionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -440,14 +440,14 @@ package WinRt.Windows.Media.Control is
       (
          this : access IGlobalSystemMediaTransportControlsSessionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionsChanged
       (
          this : access IGlobalSystemMediaTransportControlsSessionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -534,7 +534,7 @@ package WinRt.Windows.Media.Control is
       function get_Thumbnail
       (
          this : access IGlobalSystemMediaTransportControlsSessionMediaProperties_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -656,14 +656,14 @@ package WinRt.Windows.Media.Control is
       function get_Controls
       (
          this : access IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Interface;
-         RetVal : access Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls
+         RetVal : access WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackStatus
       (
          this : access IGlobalSystemMediaTransportControlsSessionPlaybackInfo_Interface;
-         RetVal : access Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackStatus
+         RetVal : access WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -703,42 +703,42 @@ package WinRt.Windows.Media.Control is
       function get_StartTime
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_EndTime
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MinSeekTime
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSeekTime
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_LastUpdatedTime
       (
          this : access IGlobalSystemMediaTransportControlsSessionTimelineProperties_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -879,7 +879,7 @@ package WinRt.Windows.Media.Control is
    function TryChangeAutoRepeatModeAsync
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      requestedAutoRepeatMode : Windows.Media.MediaPlaybackAutoRepeatMode
+      requestedAutoRepeatMode : WinRt.Windows.Media.MediaPlaybackAutoRepeatMode
    )
    return WinRt.Boolean;
 
@@ -914,7 +914,7 @@ package WinRt.Windows.Media.Control is
    procedure remove_TimelinePropertiesChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlaybackInfoChanged
@@ -927,7 +927,7 @@ package WinRt.Windows.Media.Control is
    procedure remove_PlaybackInfoChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MediaPropertiesChanged
@@ -940,7 +940,7 @@ package WinRt.Windows.Media.Control is
    procedure remove_MediaPropertiesChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -980,7 +980,7 @@ package WinRt.Windows.Media.Control is
    procedure remove_CurrentSessionChanged
    (
       this : in out GlobalSystemMediaTransportControlsSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SessionsChanged
@@ -993,7 +993,7 @@ package WinRt.Windows.Media.Control is
    procedure remove_SessionsChanged
    (
       this : in out GlobalSystemMediaTransportControlsSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

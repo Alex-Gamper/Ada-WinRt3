@@ -269,7 +269,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_Uri
       (
          this : access INamedResource_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -283,15 +283,15 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function Resolve
       (
          this : access INamedResource_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceCandidate
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate
       )
       return WinRt.Hresult is abstract;
 
       function Resolve
       (
          this : access INamedResource_Interface;
-         resourceContext_p : Windows.ApplicationModel.Resources.Core.IResourceContext;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceCandidate
+         resourceContext_p : WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate
       )
       return WinRt.Hresult is abstract;
 
@@ -305,7 +305,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function ResolveAll
       (
          this : access INamedResource_Interface;
-         resourceContext_p : Windows.ApplicationModel.Resources.Core.IResourceContext;
+         resourceContext_p : WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -385,7 +385,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_Kind
       (
          this : access IResourceCandidate3_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.ResourceCandidateKind
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidateKind
       )
       return WinRt.Hresult is abstract;
 
@@ -424,7 +424,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function Clone
       (
          this : access IResourceContext_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -451,7 +451,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceContextStatics_Interface;
          result : GenericObject;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -463,7 +463,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function GetForCurrentView
       (
          this : access IResourceContextStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -491,7 +491,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function GetForViewIndependentUse
       (
          this : access IResourceContextStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -505,7 +505,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
          this : access IResourceContextStatics3_Interface;
          key : WinRt.HString;
          value : WinRt.HString;
-         persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
+         persistence : WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
       )
       return WinRt.Hresult is abstract;
 
@@ -517,8 +517,8 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function GetForUIContext
       (
          this : access IResourceContextStatics4_Interface;
-         context : Windows.UI.IUIContext;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         context : WinRt.Windows.UI.IUIContext;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -530,7 +530,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_MainResourceMap
       (
          this : access IResourceManager_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceMap
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap
       )
       return WinRt.Hresult is abstract;
 
@@ -544,7 +544,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_DefaultContext
       (
          this : access IResourceManager_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceContext
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext
       )
       return WinRt.Hresult is abstract;
 
@@ -571,7 +571,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceManager2_Interface;
          packageName : WinRt.HString;
-         resourceLayoutInfo : Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo;
+         resourceLayoutInfo : WinRt.Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -580,7 +580,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceManager2_Interface;
          packageName : WinRt.HString;
-         resourceLayoutInfo : Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo;
+         resourceLayoutInfo : WinRt.Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -593,7 +593,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_Current
       (
          this : access IResourceManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceManager
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceManager
       )
       return WinRt.Hresult is abstract;
 
@@ -613,7 +613,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       function get_Uri
       (
          this : access IResourceMap_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -621,7 +621,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceMap_Interface;
          resource : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceCandidate
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate
       )
       return WinRt.Hresult is abstract;
 
@@ -629,8 +629,8 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceMap_Interface;
          resource : WinRt.HString;
-         context : Windows.ApplicationModel.Resources.Core.IResourceContext;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceCandidate
+         context : WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate
       )
       return WinRt.Hresult is abstract;
 
@@ -638,7 +638,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
       (
          this : access IResourceMap_Interface;
          reference : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Resources.Core.IResourceMap
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.Core.IResourceMap
       )
       return WinRt.Hresult is abstract;
 
@@ -718,7 +718,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    function Resolve
    (
       this : in out NamedResource;
-      resourceContext_p : Windows.ApplicationModel.Resources.Core.ResourceContext'Class
+      resourceContext_p : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class;
 
@@ -731,7 +731,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    function ResolveAll
    (
       this : in out NamedResource;
-      resourceContext_p : Windows.ApplicationModel.Resources.Core.ResourceContext'Class
+      resourceContext_p : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext'Class
    )
    return IVectorView_IResourceCandidate.Kind;
 
@@ -825,7 +825,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    function IndexOf
    (
       this : in out ResourceCandidateVectorView;
-      value : Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class;
+      value : WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -834,7 +834,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceCandidateVectorView;
       startIndex : WinRt.UInt32;
-      items : Windows.ApplicationModel.Resources.Core.IResourceCandidate_Array
+      items : WinRt.Windows.ApplicationModel.Resources.Core.IResourceCandidate_Array
    )
    return WinRt.UInt32;
 
@@ -888,12 +888,12 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       key : WinRt.WString;
       value : WinRt.WString;
-      persistence : Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
+      persistence : WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifierPersistence
    );
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext;
 
@@ -1042,7 +1042,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceManager;
       packageName : WinRt.WString;
-      resourceLayoutInfo : Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo
+      resourceLayoutInfo : WinRt.Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo
    )
    return IVectorView_INamedResource.Kind;
 
@@ -1050,7 +1050,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceManager;
       packageName : WinRt.WString;
-      resourceLayoutInfo : Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo
+      resourceLayoutInfo : WinRt.Windows.ApplicationModel.Resources.Core.ResourceLayoutInfo
    )
    return IVectorView_IResourceMap.Kind;
 
@@ -1080,7 +1080,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceMap;
       resource : WinRt.WString;
-      context : Windows.ApplicationModel.Resources.Core.ResourceContext'Class
+      context : WinRt.Windows.ApplicationModel.Resources.Core.ResourceContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Core.ResourceCandidate'Class;
 
@@ -1270,7 +1270,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    procedure remove_MapChanged
    (
       this : in out ResourceQualifierObservableMap;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.String>
@@ -1345,7 +1345,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    function IndexOf
    (
       this : in out ResourceQualifierVectorView;
-      value : Windows.ApplicationModel.Resources.Core.ResourceQualifier'Class;
+      value : WinRt.Windows.ApplicationModel.Resources.Core.ResourceQualifier'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1354,7 +1354,7 @@ package WinRt.Windows.ApplicationModel.Resources.Core is
    (
       this : in out ResourceQualifierVectorView;
       startIndex : WinRt.UInt32;
-      items : Windows.ApplicationModel.Resources.Core.IResourceQualifier_Array
+      items : WinRt.Windows.ApplicationModel.Resources.Core.IResourceQualifier_Array
    )
    return WinRt.UInt32;
 

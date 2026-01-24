@@ -195,28 +195,28 @@ package WinRt.Windows.Web.Http.Filters is
       function get_CacheControl
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         RetVal : access Windows.Web.Http.Filters.IHttpCacheControl
+         RetVal : access WinRt.Windows.Web.Http.Filters.IHttpCacheControl
       )
       return WinRt.Hresult is abstract;
 
       function get_CookieManager
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         RetVal : access Windows.Web.Http.IHttpCookieManager
+         RetVal : access WinRt.Windows.Web.Http.IHttpCookieManager
       )
       return WinRt.Hresult is abstract;
 
       function get_ClientCertificate
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_ClientCertificate
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -244,28 +244,28 @@ package WinRt.Windows.Web.Http.Filters is
       function get_ProxyCredential
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ProxyCredential
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCredential
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerCredential
       (
          this : access IHttpBaseProtocolFilter_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -291,14 +291,14 @@ package WinRt.Windows.Web.Http.Filters is
       function get_MaxVersion
       (
          this : access IHttpBaseProtocolFilter2_Interface;
-         RetVal : access Windows.Web.Http.HttpVersion
+         RetVal : access WinRt.Windows.Web.Http.HttpVersion
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxVersion
       (
          this : access IHttpBaseProtocolFilter2_Interface;
-         value : Windows.Web.Http.HttpVersion
+         value : WinRt.Windows.Web.Http.HttpVersion
       )
       return WinRt.Hresult is abstract;
 
@@ -310,14 +310,14 @@ package WinRt.Windows.Web.Http.Filters is
       function get_CookieUsageBehavior
       (
          this : access IHttpBaseProtocolFilter3_Interface;
-         RetVal : access Windows.Web.Http.Filters.HttpCookieUsageBehavior
+         RetVal : access WinRt.Windows.Web.Http.Filters.HttpCookieUsageBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_CookieUsageBehavior
       (
          this : access IHttpBaseProtocolFilter3_Interface;
-         value : Windows.Web.Http.Filters.HttpCookieUsageBehavior
+         value : WinRt.Windows.Web.Http.Filters.HttpCookieUsageBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -330,14 +330,14 @@ package WinRt.Windows.Web.Http.Filters is
       (
          this : access IHttpBaseProtocolFilter4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServerCustomValidationRequested
       (
          this : access IHttpBaseProtocolFilter4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -355,7 +355,7 @@ package WinRt.Windows.Web.Http.Filters is
       function get_User
       (
          this : access IHttpBaseProtocolFilter5_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -367,8 +367,8 @@ package WinRt.Windows.Web.Http.Filters is
       function CreateForUser
       (
          this : access IHttpBaseProtocolFilterStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Web.Http.Filters.IHttpBaseProtocolFilter
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -380,28 +380,28 @@ package WinRt.Windows.Web.Http.Filters is
       function get_ReadBehavior
       (
          this : access IHttpCacheControl_Interface;
-         RetVal : access Windows.Web.Http.Filters.HttpCacheReadBehavior
+         RetVal : access WinRt.Windows.Web.Http.Filters.HttpCacheReadBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_ReadBehavior
       (
          this : access IHttpCacheControl_Interface;
-         value : Windows.Web.Http.Filters.HttpCacheReadBehavior
+         value : WinRt.Windows.Web.Http.Filters.HttpCacheReadBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteBehavior
       (
          this : access IHttpCacheControl_Interface;
-         RetVal : access Windows.Web.Http.Filters.HttpCacheWriteBehavior
+         RetVal : access WinRt.Windows.Web.Http.Filters.HttpCacheWriteBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteBehavior
       (
          this : access IHttpCacheControl_Interface;
-         value : Windows.Web.Http.Filters.HttpCacheWriteBehavior
+         value : WinRt.Windows.Web.Http.Filters.HttpCacheWriteBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -413,7 +413,7 @@ package WinRt.Windows.Web.Http.Filters is
       function SendRequestAsync
       (
          this : access IHttpFilter_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -426,21 +426,21 @@ package WinRt.Windows.Web.Http.Filters is
       function get_RequestMessage
       (
          this : access IHttpServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCertificate
       (
          this : access IHttpServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCertificateErrorSeverity
       (
          this : access IHttpServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketSslErrorSeverity
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -467,7 +467,7 @@ package WinRt.Windows.Web.Http.Filters is
       function GetDeferral
       (
          this : access IHttpServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -493,7 +493,7 @@ package WinRt.Windows.Web.Http.Filters is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Web.Http.Filters.HttpBaseProtocolFilter;
 
@@ -557,7 +557,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_ClientCertificate
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_IgnorableServerCertificateErrors
@@ -587,7 +587,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_ProxyCredential
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ServerCredential
@@ -599,7 +599,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_ServerCredential
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_UseProxy
@@ -623,7 +623,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_MaxVersion
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Web.Http.HttpVersion
+      value : WinRt.Windows.Web.Http.HttpVersion
    );
 
    function get_CookieUsageBehavior
@@ -635,7 +635,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_CookieUsageBehavior
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Web.Http.Filters.HttpCookieUsageBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCookieUsageBehavior
    );
 
    function add_ServerCustomValidationRequested
@@ -648,7 +648,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure remove_ServerCustomValidationRequested
    (
       this : in out HttpBaseProtocolFilter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ClearAuthenticationCache
@@ -665,7 +665,7 @@ package WinRt.Windows.Web.Http.Filters is
    function SendRequestAsync
    (
       this : in out HttpBaseProtocolFilter;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
@@ -692,7 +692,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_ReadBehavior
    (
       this : in out HttpCacheControl;
-      value : Windows.Web.Http.Filters.HttpCacheReadBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCacheReadBehavior
    );
 
    function get_WriteBehavior
@@ -704,7 +704,7 @@ package WinRt.Windows.Web.Http.Filters is
    procedure put_WriteBehavior
    (
       this : in out HttpCacheControl;
-      value : Windows.Web.Http.Filters.HttpCacheWriteBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCacheWriteBehavior
    );
 
    -----------------------------------------------------------------------------

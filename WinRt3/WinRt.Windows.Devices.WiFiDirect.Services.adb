@@ -100,7 +100,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    function GetSelector
    (
       serviceName : WinRt.WString;
-      serviceInfoFilter : Windows.Storage.Streams.IBuffer
+      serviceInfoFilter : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -186,7 +186,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IWiFiDirectService := new Windows.Devices.WiFiDirect.Services.IWiFiDirectService;
+                     Retval.m_IWiFiDirectService := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectService;
                      Retval.m_IWiFiDirectService.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -213,7 +213,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectService.all.get_RemoteServiceInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -230,7 +230,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_WiFiDirectServiceConfigurationMethod.Kind;
    begin
       Hr := this.m_IWiFiDirectService.all.get_SupportedConfigurationMethods (m_ComRetVal'Access);
@@ -282,7 +282,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectService.all.get_SessionInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -294,7 +294,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_SessionInfo
    (
       this : in out WiFiDirectService;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -314,7 +314,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError;
    begin
       Hr := this.m_IWiFiDirectService.all.get_ServiceError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -332,7 +332,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectService.all.add_SessionDeferred (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -344,7 +344,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionDeferred
    (
       this : in out WiFiDirectService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -359,7 +359,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    function GetProvisioningInfoAsync
    (
       this : in out WiFiDirectService;
-      selectedConfigurationMethod : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
+      selectedConfigurationMethod : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceProvisioningInfo'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -410,7 +410,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiDirectServiceProvisioningInfo := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
+                  Retval.m_IWiFiDirectServiceProvisioningInfo := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
                   Retval.m_IWiFiDirectServiceProvisioningInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -476,7 +476,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiDirectServiceSession := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+                  Retval.m_IWiFiDirectServiceSession := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
                   Retval.m_IWiFiDirectServiceSession.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -544,7 +544,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiDirectServiceSession := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+                  Retval.m_IWiFiDirectServiceSession := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
                   Retval.m_IWiFiDirectServiceSession.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -588,17 +588,17 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    return WiFiDirectServiceAdvertiser is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertiser");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser");
       m_Factory    : access IWiFiDirectServiceAdvertiserFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser;
       HStr_serviceName : constant WinRt.HString := To_HString (serviceName);
    begin
       return RetVal : WiFiDirectServiceAdvertiser do
          Hr := RoGetActivationFactory (m_hString, IID_IWiFiDirectServiceAdvertiserFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWiFiDirectServiceAdvertiser (HStr_serviceName, m_ComRetVal'Access);
-            Retval.m_IWiFiDirectServiceAdvertiser := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser;
+            Retval.m_IWiFiDirectServiceAdvertiser := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser;
             Retval.m_IWiFiDirectServiceAdvertiser.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -638,7 +638,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_ServiceNamePrefixes (m_ComRetVal'Access);
@@ -658,7 +658,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_ServiceInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -670,7 +670,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_ServiceInfo
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -754,7 +754,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_WiFiDirectServiceConfigurationMethod.Kind;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_PreferredConfigurationMethods (m_ComRetVal'Access);
@@ -774,7 +774,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_ServiceStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -786,7 +786,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_ServiceStatus
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
+      value : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -838,7 +838,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_DeferredSessionInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -850,7 +850,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_DeferredSessionInfo
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -870,7 +870,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertisementStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertisementStatus;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_AdvertisementStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -887,7 +887,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.get_ServiceError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -905,7 +905,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.add_SessionRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -917,7 +917,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionRequested
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -938,7 +938,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.add_AutoAcceptSessionConnected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -950,7 +950,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_AutoAcceptSessionConnected
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -971,7 +971,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectServiceAdvertiser.all.add_AdvertisementStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -983,7 +983,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_AdvertisementStatusChanged
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -998,7 +998,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    function ConnectAsync
    (
       this : in out WiFiDirectServiceAdvertiser;
-      deviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class
+      deviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSession'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1049,7 +1049,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiDirectServiceSession := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+                  Retval.m_IWiFiDirectServiceSession := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
                   Retval.m_IWiFiDirectServiceSession.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1065,7 +1065,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    function ConnectAsync
    (
       this : in out WiFiDirectServiceAdvertiser;
-      deviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class;
+      deviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
       pin : WinRt.WString
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSession'Class is
@@ -1118,7 +1118,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiDirectServiceSession := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+                  Retval.m_IWiFiDirectServiceSession := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
                   Retval.m_IWiFiDirectServiceSession.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1191,14 +1191,14 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
    begin
       return RetVal : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSession do
          Hr := this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiDirectServiceSession := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
+         Retval.m_IWiFiDirectServiceSession := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession;
          Retval.m_IWiFiDirectServiceSession.all := m_ComRetVal;
       end return;
    end;
@@ -1211,7 +1211,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs.all.get_SessionInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1251,7 +1251,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod;
    begin
       Hr := this.m_IWiFiDirectServiceProvisioningInfo.all.get_SelectedConfigurationMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1308,7 +1308,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IWiFiDirectServiceRemotePortAddedEventArgs.all.get_EndpointPairs (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1325,7 +1325,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceIPProtocol;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceIPProtocol;
    begin
       Hr := this.m_IWiFiDirectServiceRemotePortAddedEventArgs.all.get_Protocol (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1385,7 +1385,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionStatus;
    begin
       Hr := this.m_IWiFiDirectServiceSession.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1402,7 +1402,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionErrorStatus;
    begin
       Hr := this.m_IWiFiDirectServiceSession.all.get_ErrorStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1493,7 +1493,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IWiFiDirectServiceSession.all.GetConnectionEndpointPairs (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1511,7 +1511,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectServiceSession.all.add_SessionStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1523,7 +1523,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionStatusChanged
    (
       this : in out WiFiDirectServiceSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1538,7 +1538,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure AddStreamSocketListenerAsync
    (
       this : in out WiFiDirectServiceSession;
-      value : Windows.Networking.Sockets.StreamSocketListener'Class
+      value : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1581,7 +1581,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure AddDatagramSocketAsync
    (
       this : in out WiFiDirectServiceSession;
-      value : Windows.Networking.Sockets.DatagramSocket'Class
+      value : WinRt.Windows.Networking.Sockets.DatagramSocket'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1630,7 +1630,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiDirectServiceSession.all.add_RemotePortAdded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1642,7 +1642,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_RemotePortAdded
    (
       this : in out WiFiDirectServiceSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1703,7 +1703,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectServiceSessionDeferredEventArgs.all.get_DeferredSessionInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1743,14 +1743,14 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IWiFiDirectServiceSessionRequest.all.get_DeviceInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -1763,14 +1763,14 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
    begin
       return RetVal : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceProvisioningInfo do
          Hr := this.m_IWiFiDirectServiceSessionRequest.all.get_ProvisioningInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiDirectServiceProvisioningInfo := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
+         Retval.m_IWiFiDirectServiceProvisioningInfo := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo;
          Retval.m_IWiFiDirectServiceProvisioningInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1783,7 +1783,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWiFiDirectServiceSessionRequest.all.get_SessionInfo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1841,14 +1841,14 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest;
    begin
       return RetVal : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionRequest do
          Hr := this.m_IWiFiDirectServiceSessionRequestedEventArgs.all.GetSessionRequest (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiDirectServiceSessionRequest := new Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest;
+         Retval.m_IWiFiDirectServiceSessionRequest := new WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest;
          Retval.m_IWiFiDirectServiceSessionRequest.all := m_ComRetVal;
       end return;
    end;

@@ -143,7 +143,7 @@ package WinRt.Windows.Storage.AccessCache is
       function get_RemovedEntry
       (
          this : access IItemRemovedEventArgs_Interface;
-         RetVal : access Windows.Storage.AccessCache.AccessListEntry
+         RetVal : access WinRt.Windows.Storage.AccessCache.AccessListEntry
       )
       return WinRt.Hresult is abstract;
 
@@ -155,14 +155,14 @@ package WinRt.Windows.Storage.AccessCache is
       function get_FutureAccessList
       (
          this : access IStorageApplicationPermissionsStatics_Interface;
-         RetVal : access Windows.Storage.AccessCache.IStorageItemAccessList
+         RetVal : access WinRt.Windows.Storage.AccessCache.IStorageItemAccessList
       )
       return WinRt.Hresult is abstract;
 
       function get_MostRecentlyUsedList
       (
          this : access IStorageApplicationPermissionsStatics_Interface;
-         RetVal : access Windows.Storage.AccessCache.IStorageItemMostRecentlyUsedList
+         RetVal : access WinRt.Windows.Storage.AccessCache.IStorageItemMostRecentlyUsedList
       )
       return WinRt.Hresult is abstract;
 
@@ -174,16 +174,16 @@ package WinRt.Windows.Storage.AccessCache is
       function GetFutureAccessListForUser
       (
          this : access IStorageApplicationPermissionsStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.AccessCache.IStorageItemAccessList
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.AccessCache.IStorageItemAccessList
       )
       return WinRt.Hresult is abstract;
 
       function GetMostRecentlyUsedListForUser
       (
          this : access IStorageApplicationPermissionsStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.AccessCache.IStorageItemMostRecentlyUsedList
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.AccessCache.IStorageItemMostRecentlyUsedList
       )
       return WinRt.Hresult is abstract;
 
@@ -195,7 +195,7 @@ package WinRt.Windows.Storage.AccessCache is
       function Add
       (
          this : access IStorageItemAccessList_Interface;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -203,7 +203,7 @@ package WinRt.Windows.Storage.AccessCache is
       function Add
       (
          this : access IStorageItemAccessList_Interface;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          metadata : WinRt.HString;
          RetVal : access WinRt.HString
       )
@@ -213,7 +213,7 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemAccessList_Interface;
          token : WinRt.HString;
-         file : Windows.Storage.IStorageItem
+         file : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Hresult is abstract;
 
@@ -221,7 +221,7 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemAccessList_Interface;
          token : WinRt.HString;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          metadata : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -254,7 +254,7 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemAccessList_Interface;
          token : WinRt.HString;
-         options : Windows.Storage.AccessCache.AccessCacheOptions;
+         options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -263,7 +263,7 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemAccessList_Interface;
          token : WinRt.HString;
-         options : Windows.Storage.AccessCache.AccessCacheOptions;
+         options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -272,7 +272,7 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemAccessList_Interface;
          token : WinRt.HString;
-         options : Windows.Storage.AccessCache.AccessCacheOptions;
+         options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -301,7 +301,7 @@ package WinRt.Windows.Storage.AccessCache is
       function CheckAccess
       (
          this : access IStorageItemAccessList_Interface;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -329,14 +329,14 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemMostRecentlyUsedList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemRemoved
       (
          this : access IStorageItemMostRecentlyUsedList_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -348,9 +348,9 @@ package WinRt.Windows.Storage.AccessCache is
       function Add
       (
          this : access IStorageItemMostRecentlyUsedList2_Interface;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          metadata : WinRt.HString;
-         visibility : Windows.Storage.AccessCache.RecentStorageItemVisibility;
+         visibility : WinRt.Windows.Storage.AccessCache.RecentStorageItemVisibility;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -359,9 +359,9 @@ package WinRt.Windows.Storage.AccessCache is
       (
          this : access IStorageItemMostRecentlyUsedList2_Interface;
          token : WinRt.HString;
-         file : Windows.Storage.IStorageItem;
+         file : WinRt.Windows.Storage.IStorageItem;
          metadata : WinRt.HString;
-         visibility : Windows.Storage.AccessCache.RecentStorageItemVisibility
+         visibility : WinRt.Windows.Storage.AccessCache.RecentStorageItemVisibility
       )
       return WinRt.Hresult is abstract;
 
@@ -397,7 +397,7 @@ package WinRt.Windows.Storage.AccessCache is
    function IndexOf
    (
       this : in out AccessListEntryView;
-      value : Windows.Storage.AccessCache.AccessListEntry;
+      value : WinRt.Windows.Storage.AccessCache.AccessListEntry;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -406,7 +406,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out AccessListEntryView;
       startIndex : WinRt.UInt32;
-      items : Windows.Storage.AccessCache.AccessListEntry_Array
+      items : WinRt.Windows.Storage.AccessCache.AccessListEntry_Array
    )
    return WinRt.UInt32;
 
@@ -438,13 +438,13 @@ package WinRt.Windows.Storage.AccessCache is
 
       function GetFutureAccessListForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Storage.AccessCache.StorageItemAccessList;
 
       function GetMostRecentlyUsedListForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Storage.AccessCache.StorageItemMostRecentlyUsedList;
 
@@ -468,14 +468,14 @@ package WinRt.Windows.Storage.AccessCache is
    function Add
    (
       this : in out StorageItemAccessList;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.WString;
 
    function Add
    (
       this : in out StorageItemAccessList;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString
    )
    return WinRt.WString;
@@ -484,14 +484,14 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemAccessList;
       token : WinRt.WString;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    );
 
    procedure AddOrReplace
    (
       this : in out StorageItemAccessList;
       token : WinRt.WString;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString
    );
 
@@ -520,7 +520,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemAccessList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.IStorageItem;
 
@@ -528,7 +528,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemAccessList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
@@ -536,7 +536,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemAccessList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
@@ -561,7 +561,7 @@ package WinRt.Windows.Storage.AccessCache is
    function CheckAccess
    (
       this : in out StorageItemAccessList;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 
@@ -596,20 +596,20 @@ package WinRt.Windows.Storage.AccessCache is
    procedure remove_ItemRemoved
    (
       this : in out StorageItemMostRecentlyUsedList;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function Add
    (
       this : in out StorageItemMostRecentlyUsedList;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.WString;
 
    function Add
    (
       this : in out StorageItemMostRecentlyUsedList;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString
    )
    return WinRt.WString;
@@ -618,14 +618,14 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    );
 
    procedure AddOrReplace
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString
    );
 
@@ -654,7 +654,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.IStorageItem;
 
@@ -662,7 +662,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
@@ -670,7 +670,7 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      options : Windows.Storage.AccessCache.AccessCacheOptions
+      options : WinRt.Windows.Storage.AccessCache.AccessCacheOptions
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
@@ -695,7 +695,7 @@ package WinRt.Windows.Storage.AccessCache is
    function CheckAccess
    (
       this : in out StorageItemMostRecentlyUsedList;
-      file : Windows.Storage.IStorageItem
+      file : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 
@@ -714,9 +714,9 @@ package WinRt.Windows.Storage.AccessCache is
    function Add
    (
       this : in out StorageItemMostRecentlyUsedList;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString;
-      visibility : Windows.Storage.AccessCache.RecentStorageItemVisibility
+      visibility : WinRt.Windows.Storage.AccessCache.RecentStorageItemVisibility
    )
    return WinRt.WString;
 
@@ -724,9 +724,9 @@ package WinRt.Windows.Storage.AccessCache is
    (
       this : in out StorageItemMostRecentlyUsedList;
       token : WinRt.WString;
-      file : Windows.Storage.IStorageItem;
+      file : WinRt.Windows.Storage.IStorageItem;
       metadata : WinRt.WString;
-      visibility : Windows.Storage.AccessCache.RecentStorageItemVisibility
+      visibility : WinRt.Windows.Storage.AccessCache.RecentStorageItemVisibility
    );
 
 end WinRt.Windows.Storage.AccessCache;

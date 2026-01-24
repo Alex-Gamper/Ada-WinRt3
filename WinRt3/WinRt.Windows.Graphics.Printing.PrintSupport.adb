@@ -66,7 +66,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    function GetPrintJobShowsUI
    (
       printerName : WinRt.WString;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -74,7 +74,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportAppInfo");
       m_Factory        : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       HStr_printerName : constant WinRt.HString := To_HString (printerName);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPrintSupportAppInfoStatics'Access , m_Factory'Address);
@@ -100,7 +100,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportAppInfo");
       m_Factory        : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo;
       HStr_printerName : constant WinRt.HString := To_HString (printerName);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportAppInfo do
@@ -111,7 +111,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPrintSupportAppInfo := new Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo;
+            Retval.m_IPrintSupportAppInfo := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo;
             Retval.m_IPrintSupportAppInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -130,14 +130,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IPrintSupportAppInfo.all.get_AppInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+         Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
    end;
@@ -150,7 +150,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts;
    begin
       Hr := this.m_IPrintSupportAppInfo.all.get_SupportedContracts (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -190,7 +190,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind;
    begin
       Hr := this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all.get_ErrorKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -207,7 +207,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -224,14 +224,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationConfiguration do
          Hr := this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all.get_CommunicationConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportIppCommunicationConfiguration := new Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
+         Retval.m_IPrintSupportIppCommunicationConfiguration := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
          Retval.m_IPrintSupportIppCommunicationConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -244,14 +244,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -287,14 +287,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppPrintDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
          Hr := this.m_IPrintSupportEnterpriseManagementUIEventArgs.all.get_Printer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+         Retval.m_IIppPrintDevice := new WinRt.Windows.Devices.Printers.IIppPrintDevice;
          Retval.m_IIppPrintDevice.all := m_ComRetVal;
       end return;
    end;
@@ -330,14 +330,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppPrintDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
          Hr := this.m_IPrintSupportExtensionSession.all.get_Printer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+         Retval.m_IIppPrintDevice := new WinRt.Windows.Devices.Printers.IIppPrintDevice;
          Retval.m_IIppPrintDevice.all := m_ComRetVal;
       end return;
    end;
@@ -351,7 +351,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintSupportExtensionSession.all.add_PrintTicketValidationRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -363,7 +363,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrintTicketValidationRequested
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -384,7 +384,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintSupportExtensionSession.all.add_PrintDeviceCapabilitiesChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -396,7 +396,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrintDeviceCapabilitiesChanged
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -432,7 +432,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession2, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportExtensionSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintSupportExtensionSession.all);
@@ -447,7 +447,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrinterSelected
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -473,7 +473,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession3, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportExtensionSession3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintSupportExtensionSession.all);
@@ -488,7 +488,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_CommunicationErrorDetected
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -535,14 +535,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportExtensionSession do
          Hr := this.m_IPrintSupportExtensionTriggerDetails.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportExtensionSession := new Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession;
+         Retval.m_IPrintSupportExtensionSession := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession;
          Retval.m_IPrintSupportExtensionSession.all := m_ComRetVal;
       end return;
    end;
@@ -578,7 +578,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind;
    begin
       Hr := this.m_IPrintSupportIppCommunicationConfiguration.all.get_CommunicationKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -612,14 +612,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationTimeouts do
          Hr := this.m_IPrintSupportIppCommunicationConfiguration.all.get_IppAttributeTimeouts (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportIppCommunicationTimeouts := new Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
+         Retval.m_IPrintSupportIppCommunicationTimeouts := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
          Retval.m_IPrintSupportIppCommunicationTimeouts.all := m_ComRetVal;
       end return;
    end;
@@ -632,14 +632,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationTimeouts do
          Hr := this.m_IPrintSupportIppCommunicationConfiguration.all.get_IppJobTimeouts (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportIppCommunicationTimeouts := new Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
+         Retval.m_IPrintSupportIppCommunicationTimeouts := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts;
          Retval.m_IPrintSupportIppCommunicationTimeouts.all := m_ComRetVal;
       end return;
    end;
@@ -675,7 +675,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPrintSupportIppCommunicationTimeouts.all.get_ConnectTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -687,7 +687,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_ConnectTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -707,7 +707,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPrintSupportIppCommunicationTimeouts.all.get_SendTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -719,7 +719,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_SendTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -739,7 +739,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPrintSupportIppCommunicationTimeouts.all.get_ReceiveTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -751,7 +751,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_ReceiveTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -794,7 +794,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_NormalOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -806,7 +806,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_NormalOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -826,7 +826,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_DraftOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -838,7 +838,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_DraftOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -858,7 +858,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_HighOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -870,7 +870,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_HighOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -890,7 +890,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_PhotographicOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -902,7 +902,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_PhotographicOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -922,7 +922,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_TextOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -934,7 +934,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_TextOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -954,7 +954,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_AutomaticOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -966,7 +966,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_AutomaticOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -986,7 +986,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality;
    begin
       Hr := this.m_IPrintSupportMxdcImageQualityConfiguration.all.get_FaxOutputQuality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -998,7 +998,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_FaxOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1041,14 +1041,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs.all.GetCurrentPrintDeviceCapabilities (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintDeviceCapabilities
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatedPdc : Windows.Data.Xml.Dom.XmlDocument'Class
+      updatedPdc : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1076,14 +1076,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1140,7 +1140,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -1150,7 +1150,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1158,7 +1158,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintDeviceResources
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatedPdr : Windows.Data.Xml.Dom.XmlDocument'Class
+      updatedPdr : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1177,7 +1177,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure SetPrintDeviceCapabilitiesUpdatePolicy
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatePolicy : Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy'Class
+      updatePolicy : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1202,7 +1202,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportIppCommunicationConfiguration do
@@ -1212,7 +1212,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportIppCommunicationConfiguration := new Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
+         Retval.m_IPrintSupportIppCommunicationConfiguration := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration;
          Retval.m_IPrintSupportIppCommunicationConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -1226,7 +1226,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportMxdcImageQualityConfiguration do
@@ -1236,7 +1236,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportMxdcImageQualityConfiguration := new Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration;
+         Retval.m_IPrintSupportMxdcImageQualityConfiguration := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration;
          Retval.m_IPrintSupportMxdcImageQualityConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -1266,7 +1266,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
 
    function CreatePeriodicRefresh
    (
-      updatePeriod : Windows.Foundation.TimeSpan
+      updatePeriod : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy is
       Hr               : WinRt.HResult := S_OK;
@@ -1274,7 +1274,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy");
       m_Factory        : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics'Access , m_Factory'Address);
@@ -1284,7 +1284,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy := new Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+            Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
             Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1301,7 +1301,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy");
       m_Factory        : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics'Access , m_Factory'Address);
@@ -1311,7 +1311,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy := new Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+            Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy;
             Retval.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1347,13 +1347,13 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    function Constructor return PrintSupportPrintTicketElement is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportPrintTicketElement");
-      m_ComRetVal  : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
    begin
       return RetVal : PrintSupportPrintTicketElement do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrintSupportPrintTicketElement := new Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
+            Retval.m_IPrintSupportPrintTicketElement := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
             Retval.m_IPrintSupportPrintTicketElement.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1468,14 +1468,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
          Hr := this.m_IPrintSupportPrintTicketValidationRequestedEventArgs.all.get_PrintTicket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
       end return;
    end;
@@ -1483,7 +1483,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure SetPrintTicketValidationStatus
    (
       this : in out PrintSupportPrintTicketValidationRequestedEventArgs;
-      status : Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
+      status : WinRt.Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1503,14 +1503,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintSupportPrintTicketValidationRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1565,14 +1565,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IPrintSupportPrinterSelectedEventArgs.all.get_SourceAppInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+         Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1585,14 +1585,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
          Hr := this.m_IPrintSupportPrinterSelectedEventArgs.all.get_PrintTicket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
       end return;
    end;
@@ -1600,7 +1600,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_PrintTicket
    (
       this : in out PrintSupportPrinterSelectedEventArgs;
-      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1662,7 +1662,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure SetAdaptiveCard
    (
       this : in out PrintSupportPrinterSelectedEventArgs;
-      adaptiveCard : Windows.UI.Shell.IAdaptiveCard
+      adaptiveCard : WinRt.Windows.UI.Shell.IAdaptiveCard
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1682,14 +1682,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintSupportPrinterSelectedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1725,14 +1725,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IPrintSupportSessionInfo.all.get_SourceAppInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+         Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1745,14 +1745,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppPrintDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
          Hr := this.m_IPrintSupportSessionInfo.all.get_Printer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+         Retval.m_IIppPrintDevice := new WinRt.Windows.Devices.Printers.IIppPrintDevice;
          Retval.m_IIppPrintDevice.all := m_ComRetVal;
       end return;
    end;
@@ -1788,14 +1788,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportSettingsUISession do
          Hr := this.m_IPrintSupportSettingsActivatedEventArgs.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportSettingsUISession := new Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession;
+         Retval.m_IPrintSupportSettingsUISession := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession;
          Retval.m_IPrintSupportSettingsUISession.all := m_ComRetVal;
       end return;
    end;
@@ -1808,14 +1808,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPrintSupportSettingsActivatedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1829,7 +1829,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowId;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs_Interface, WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs2, WinRt.Windows.Graphics.Printing.PrintSupport.IID_IPrintSupportSettingsActivatedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintSupportSettingsActivatedEventArgs.all);
@@ -1850,7 +1850,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintSupportSettingsActivatedEventArgs.all);
@@ -1871,7 +1871,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintSupportSettingsActivatedEventArgs.all);
@@ -1892,7 +1892,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1902,7 +1902,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1916,7 +1916,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1926,7 +1926,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1962,14 +1962,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
          Hr := this.m_IPrintSupportSettingsUISession.all.get_SessionPrintTicket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
       end return;
    end;
@@ -2002,7 +2002,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.SettingsLaunchKind;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.SettingsLaunchKind;
    begin
       Hr := this.m_IPrintSupportSettingsUISession.all.get_LaunchKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2014,7 +2014,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintTicket
    (
       this : in out PrintSupportSettingsUISession;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2034,14 +2034,14 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportSessionInfo do
          Hr := this.m_IPrintSupportSettingsUISession.all.get_SessionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSupportSessionInfo := new Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo;
+         Retval.m_IPrintSupportSessionInfo := new WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo;
          Retval.m_IPrintSupportSessionInfo.all := m_ComRetVal;
       end return;
    end;

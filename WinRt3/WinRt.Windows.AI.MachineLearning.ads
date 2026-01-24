@@ -612,14 +612,14 @@ package WinRt.Windows.AI.MachineLearning is
       function get_BitmapPixelFormat
       (
          this : access IImageFeatureDescriptor_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapAlphaMode
       (
          this : access IImageFeatureDescriptor_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapAlphaMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
       )
       return WinRt.Hresult is abstract;
 
@@ -645,7 +645,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_PixelRange
       (
          this : access IImageFeatureDescriptor2_Interface;
-         RetVal : access Windows.AI.MachineLearning.LearningModelPixelRange
+         RetVal : access WinRt.Windows.AI.MachineLearning.LearningModelPixelRange
       )
       return WinRt.Hresult is abstract;
 
@@ -657,7 +657,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_VideoFrame
       (
          this : access IImageFeatureValue_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -669,8 +669,8 @@ package WinRt.Windows.AI.MachineLearning is
       function CreateFromVideoFrame
       (
          this : access IImageFeatureValueStatics_Interface;
-         image : Windows.Media.IVideoFrame;
-         RetVal : access Windows.AI.MachineLearning.IImageFeatureValue
+         image : WinRt.Windows.Media.IVideoFrame;
+         RetVal : access WinRt.Windows.AI.MachineLearning.IImageFeatureValue
       )
       return WinRt.Hresult is abstract;
 
@@ -753,7 +753,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ILearningModelBinding_Interface;
          name : WinRt.HString;
          value : WinRt.IInspectable;
-         props : Windows.Foundation.Collections.IPropertySet
+         props : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -771,8 +771,8 @@ package WinRt.Windows.AI.MachineLearning is
       function CreateFromSession
       (
          this : access ILearningModelBindingFactory_Interface;
-         session : Windows.AI.MachineLearning.ILearningModelSession;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelBinding
+         session : WinRt.Windows.AI.MachineLearning.ILearningModelSession;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelBinding
       )
       return WinRt.Hresult is abstract;
 
@@ -784,14 +784,14 @@ package WinRt.Windows.AI.MachineLearning is
       function get_AdapterId
       (
          this : access ILearningModelDevice_Interface;
-         RetVal : access Windows.Graphics.DisplayAdapterId
+         RetVal : access WinRt.Windows.Graphics.DisplayAdapterId
       )
       return WinRt.Hresult is abstract;
 
       function get_Direct3D11Device
       (
          this : access ILearningModelDevice_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -803,8 +803,8 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ILearningModelDeviceFactory_Interface;
-         deviceKind : Windows.AI.MachineLearning.LearningModelDeviceKind;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelDevice
+         deviceKind : WinRt.Windows.AI.MachineLearning.LearningModelDeviceKind;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -816,8 +816,8 @@ package WinRt.Windows.AI.MachineLearning is
       function CreateFromDirect3D11Device
       (
          this : access ILearningModelDeviceStatics_Interface;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelDevice
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -876,7 +876,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_Kind
       (
          this : access ILearningModelFeatureDescriptor_Interface;
-         RetVal : access Windows.AI.MachineLearning.LearningModelFeatureKind
+         RetVal : access WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind
       )
       return WinRt.Hresult is abstract;
 
@@ -895,7 +895,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_Kind
       (
          this : access ILearningModelFeatureValue_Interface;
-         RetVal : access Windows.AI.MachineLearning.LearningModelFeatureKind
+         RetVal : access WinRt.Windows.AI.MachineLearning.LearningModelFeatureKind
       )
       return WinRt.Hresult is abstract;
 
@@ -912,28 +912,28 @@ package WinRt.Windows.AI.MachineLearning is
       function get_Model
       (
          this : access ILearningModelSession_Interface;
-         RetVal : access Windows.AI.MachineLearning.ILearningModel
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModel
       )
       return WinRt.Hresult is abstract;
 
       function get_Device
       (
          this : access ILearningModelSession_Interface;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelDevice
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_EvaluationProperties
       (
          this : access ILearningModelSession_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function EvaluateAsync
       (
          this : access ILearningModelSession_Interface;
-         bindings : Windows.AI.MachineLearning.ILearningModelBinding;
+         bindings : WinRt.Windows.AI.MachineLearning.ILearningModelBinding;
          correlationId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -951,9 +951,9 @@ package WinRt.Windows.AI.MachineLearning is
       function Evaluate
       (
          this : access ILearningModelSession_Interface;
-         bindings : Windows.AI.MachineLearning.ILearningModelBinding;
+         bindings : WinRt.Windows.AI.MachineLearning.ILearningModelBinding;
          correlationId : WinRt.HString;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelEvaluationResult
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelEvaluationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -962,7 +962,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ILearningModelSession_Interface;
          features : GenericObject;
          correlationId : WinRt.HString;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelEvaluationResult
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelEvaluationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -974,17 +974,17 @@ package WinRt.Windows.AI.MachineLearning is
       function CreateFromModel
       (
          this : access ILearningModelSessionFactory_Interface;
-         model : Windows.AI.MachineLearning.ILearningModel;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelSession
+         model : WinRt.Windows.AI.MachineLearning.ILearningModel;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelSession
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromModelOnDevice
       (
          this : access ILearningModelSessionFactory_Interface;
-         model : Windows.AI.MachineLearning.ILearningModel;
-         deviceToRunOn : Windows.AI.MachineLearning.ILearningModelDevice;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelSession
+         model : WinRt.Windows.AI.MachineLearning.ILearningModel;
+         deviceToRunOn : WinRt.Windows.AI.MachineLearning.ILearningModelDevice;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelSession
       )
       return WinRt.Hresult is abstract;
 
@@ -996,10 +996,10 @@ package WinRt.Windows.AI.MachineLearning is
       function CreateFromModelOnDeviceWithSessionOptions
       (
          this : access ILearningModelSessionFactory2_Interface;
-         model : Windows.AI.MachineLearning.ILearningModel;
-         deviceToRunOn : Windows.AI.MachineLearning.ILearningModelDevice;
-         learningModelSessionOptions_p : Windows.AI.MachineLearning.ILearningModelSessionOptions;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelSession
+         model : WinRt.Windows.AI.MachineLearning.ILearningModel;
+         deviceToRunOn : WinRt.Windows.AI.MachineLearning.ILearningModelDevice;
+         learningModelSessionOptions_p : WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1062,7 +1062,7 @@ package WinRt.Windows.AI.MachineLearning is
       function LoadFromStorageFileAsync
       (
          this : access ILearningModelStatics_Interface;
-         modelFile : Windows.Storage.IStorageFile;
+         modelFile : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1070,7 +1070,7 @@ package WinRt.Windows.AI.MachineLearning is
       function LoadFromStreamAsync
       (
          this : access ILearningModelStatics_Interface;
-         modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
+         modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1079,23 +1079,23 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ILearningModelStatics_Interface;
          filePath : WinRt.HString;
-         RetVal : access Windows.AI.MachineLearning.ILearningModel
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModel
       )
       return WinRt.Hresult is abstract;
 
       function LoadFromStream
       (
          this : access ILearningModelStatics_Interface;
-         modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.AI.MachineLearning.ILearningModel
+         modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModel
       )
       return WinRt.Hresult is abstract;
 
       function LoadFromStorageFileAsync
       (
          this : access ILearningModelStatics_Interface;
-         modelFile : Windows.Storage.IStorageFile;
-         operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider;
+         modelFile : WinRt.Windows.Storage.IStorageFile;
+         operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1103,8 +1103,8 @@ package WinRt.Windows.AI.MachineLearning is
       function LoadFromStreamAsync
       (
          this : access ILearningModelStatics_Interface;
-         modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-         operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider;
+         modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1113,17 +1113,17 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ILearningModelStatics_Interface;
          filePath : WinRt.HString;
-         operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider;
-         RetVal : access Windows.AI.MachineLearning.ILearningModel
+         operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModel
       )
       return WinRt.Hresult is abstract;
 
       function LoadFromStream
       (
          this : access ILearningModelStatics_Interface;
-         modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-         operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider;
-         RetVal : access Windows.AI.MachineLearning.ILearningModel
+         modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1135,14 +1135,14 @@ package WinRt.Windows.AI.MachineLearning is
       function get_KeyKind
       (
          this : access IMapFeatureDescriptor_Interface;
-         RetVal : access Windows.AI.MachineLearning.TensorKind
+         RetVal : access WinRt.Windows.AI.MachineLearning.TensorKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ValueDescriptor
       (
          this : access IMapFeatureDescriptor_Interface;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelFeatureDescriptor
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1154,7 +1154,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_ElementDescriptor
       (
          this : access ISequenceFeatureDescriptor_Interface;
-         RetVal : access Windows.AI.MachineLearning.ILearningModelFeatureDescriptor
+         RetVal : access WinRt.Windows.AI.MachineLearning.ILearningModelFeatureDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1166,7 +1166,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_TensorKind
       (
          this : access ITensor_Interface;
-         RetVal : access Windows.AI.MachineLearning.TensorKind
+         RetVal : access WinRt.Windows.AI.MachineLearning.TensorKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1197,7 +1197,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorBooleanStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1205,7 +1205,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorBooleanStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1215,7 +1215,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Boolean_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1224,7 +1224,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorBooleanStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1240,7 +1240,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Boolean_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1249,8 +1249,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorBooleanStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorBoolean
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorBoolean
       )
       return WinRt.Hresult is abstract;
 
@@ -1274,7 +1274,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorDoubleStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1282,7 +1282,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorDoubleStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1292,7 +1292,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Double_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1301,7 +1301,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorDoubleStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1317,7 +1317,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Double_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1326,8 +1326,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorDoubleStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorDouble
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,7 +1339,7 @@ package WinRt.Windows.AI.MachineLearning is
       function get_TensorKind
       (
          this : access ITensorFeatureDescriptor_Interface;
-         RetVal : access Windows.AI.MachineLearning.TensorKind
+         RetVal : access WinRt.Windows.AI.MachineLearning.TensorKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1382,7 +1382,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorFloat16BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1390,7 +1390,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorFloat16BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1400,7 +1400,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Single_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1409,7 +1409,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorFloat16BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1425,7 +1425,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Single_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1434,8 +1434,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorFloat16BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat16Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1447,7 +1447,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorFloatStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1455,7 +1455,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorFloatStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1465,7 +1465,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Single_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1474,7 +1474,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorFloatStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1490,7 +1490,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Single_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1499,8 +1499,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorFloatStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorFloat
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorFloat
       )
       return WinRt.Hresult is abstract;
 
@@ -1524,7 +1524,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorInt16BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1532,7 +1532,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorInt16BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1542,7 +1542,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Int16_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1551,7 +1551,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt16BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1567,7 +1567,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Int16_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1576,8 +1576,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt16BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt16Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1601,7 +1601,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorInt32BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,7 +1609,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorInt32BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1619,7 +1619,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Int32_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1628,7 +1628,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt32BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1644,7 +1644,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Int32_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1653,8 +1653,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt32BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt32Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1678,7 +1678,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorInt64BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1686,7 +1686,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorInt64BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1696,7 +1696,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Int64_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1705,7 +1705,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt64BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1721,7 +1721,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Int64_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1730,8 +1730,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt64BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt64Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1755,7 +1755,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorInt8BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1763,7 +1763,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorInt8BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1773,7 +1773,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Byte_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1782,7 +1782,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt8BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1798,7 +1798,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Byte_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1807,8 +1807,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorInt8BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorInt8Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1832,7 +1832,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorStringStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorString
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorString
       )
       return WinRt.Hresult is abstract;
 
@@ -1840,7 +1840,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorStringStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorString
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorString
       )
       return WinRt.Hresult is abstract;
 
@@ -1850,7 +1850,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.HString_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorString
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorString
       )
       return WinRt.Hresult is abstract;
 
@@ -1859,7 +1859,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorStringStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorString
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorString
       )
       return WinRt.Hresult is abstract;
 
@@ -1875,7 +1875,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.HString_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorString
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorString
       )
       return WinRt.Hresult is abstract;
 
@@ -1899,7 +1899,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorUInt16BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1907,7 +1907,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorUInt16BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1917,7 +1917,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt16_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1926,7 +1926,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt16BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1942,7 +1942,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt16_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1951,8 +1951,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt16BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt16Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt16Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1976,7 +1976,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorUInt32BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1984,7 +1984,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorUInt32BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -1994,7 +1994,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt32_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2003,7 +2003,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt32BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2019,7 +2019,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt32_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2028,8 +2028,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt32BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt32Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt32Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2053,7 +2053,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorUInt64BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2061,7 +2061,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorUInt64BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2071,7 +2071,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt64_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2080,7 +2080,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt64BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2096,7 +2096,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.UInt64_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2105,8 +2105,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt64BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt64Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt64Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2130,7 +2130,7 @@ package WinRt.Windows.AI.MachineLearning is
       function Create
       (
          this : access ITensorUInt8BitStatics_Interface;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2138,7 +2138,7 @@ package WinRt.Windows.AI.MachineLearning is
       (
          this : access ITensorUInt8BitStatics_Interface;
          shape : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2148,7 +2148,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : GenericObject;
          dataSize : WinRt.UInt32;
          data : WinRt.Byte_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2157,7 +2157,7 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt8BitStatics_Interface;
          shape : GenericObject;
          data : GenericObject;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2173,7 +2173,7 @@ package WinRt.Windows.AI.MachineLearning is
          shape : WinRt.Int64_Ptr;
          dataSize : WinRt.UInt32;
          data : WinRt.Byte_Ptr;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2182,8 +2182,8 @@ package WinRt.Windows.AI.MachineLearning is
          this : access ITensorUInt8BitStatics2_Interface;
          shapeSize : WinRt.UInt32;
          shape : WinRt.Int64_Ptr;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.AI.MachineLearning.ITensorUInt8Bit
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.AI.MachineLearning.ITensorUInt8Bit
       )
       return WinRt.Hresult is abstract;
 
@@ -2267,7 +2267,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    function CreateFromVideoFrame
    (
-      image : Windows.Media.VideoFrame'Class
+      image : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.Windows.AI.MachineLearning.ImageFeatureValue;
 
@@ -2297,13 +2297,13 @@ package WinRt.Windows.AI.MachineLearning is
 
    function LoadFromStorageFileAsync
    (
-      modelFile : Windows.Storage.IStorageFile
+      modelFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
    function LoadFromStreamAsync
    (
-      modelStream : Windows.Storage.Streams.IRandomAccessStreamReference
+      modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
@@ -2315,35 +2315,35 @@ package WinRt.Windows.AI.MachineLearning is
 
    function LoadFromStream
    (
-      modelStream : Windows.Storage.Streams.IRandomAccessStreamReference
+      modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
    function LoadFromStorageFileAsync
    (
-      modelFile : Windows.Storage.IStorageFile;
-      operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider
+      modelFile : WinRt.Windows.Storage.IStorageFile;
+      operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
    function LoadFromStreamAsync
    (
-      modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-      operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider
+      modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
    function LoadFromFilePath
    (
       filePath : WinRt.WString;
-      operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider
+      operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
    function LoadFromStream
    (
-      modelStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-      operatorProvider : Windows.AI.MachineLearning.ILearningModelOperatorProvider
+      modelStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      operatorProvider : WinRt.Windows.AI.MachineLearning.ILearningModelOperatorProvider
    )
    return WinRt.Windows.AI.MachineLearning.LearningModel;
 
@@ -2414,7 +2414,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    function Constructor
    (
-      session : Windows.AI.MachineLearning.LearningModelSession'Class
+      session : WinRt.Windows.AI.MachineLearning.LearningModelSession'Class
    )
    return LearningModelBinding;
 
@@ -2433,7 +2433,7 @@ package WinRt.Windows.AI.MachineLearning is
       this : in out LearningModelBinding;
       name : WinRt.WString;
       value : WinRt.IInspectable;
-      props : Windows.Foundation.Collections.IPropertySet
+      props : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure Clear
@@ -2480,7 +2480,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    function Constructor
    (
-      deviceKind : Windows.AI.MachineLearning.LearningModelDeviceKind
+      deviceKind : WinRt.Windows.AI.MachineLearning.LearningModelDeviceKind
    )
    return LearningModelDevice;
 
@@ -2489,7 +2489,7 @@ package WinRt.Windows.AI.MachineLearning is
 
    function CreateFromDirect3D11Device
    (
-      device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+      device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelDevice;
 
@@ -2552,22 +2552,22 @@ package WinRt.Windows.AI.MachineLearning is
 
    function Constructor
    (
-      model : Windows.AI.MachineLearning.LearningModel'Class
+      model : WinRt.Windows.AI.MachineLearning.LearningModel'Class
    )
    return LearningModelSession;
 
    function Constructor
    (
-      model : Windows.AI.MachineLearning.LearningModel'Class;
-      deviceToRunOn : Windows.AI.MachineLearning.LearningModelDevice'Class
+      model : WinRt.Windows.AI.MachineLearning.LearningModel'Class;
+      deviceToRunOn : WinRt.Windows.AI.MachineLearning.LearningModelDevice'Class
    )
    return LearningModelSession;
 
    function Constructor
    (
-      model : Windows.AI.MachineLearning.LearningModel'Class;
-      deviceToRunOn : Windows.AI.MachineLearning.LearningModelDevice'Class;
-      learningModelSessionOptions_p : Windows.AI.MachineLearning.LearningModelSessionOptions'Class
+      model : WinRt.Windows.AI.MachineLearning.LearningModel'Class;
+      deviceToRunOn : WinRt.Windows.AI.MachineLearning.LearningModelDevice'Class;
+      learningModelSessionOptions_p : WinRt.Windows.AI.MachineLearning.LearningModelSessionOptions'Class
    )
    return LearningModelSession;
 
@@ -2595,7 +2595,7 @@ package WinRt.Windows.AI.MachineLearning is
    function EvaluateAsync
    (
       this : in out LearningModelSession;
-      bindings : Windows.AI.MachineLearning.LearningModelBinding'Class;
+      bindings : WinRt.Windows.AI.MachineLearning.LearningModelBinding'Class;
       correlationId : WinRt.WString
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class;
@@ -2611,7 +2611,7 @@ package WinRt.Windows.AI.MachineLearning is
    function Evaluate
    (
       this : in out LearningModelSession;
-      bindings : Windows.AI.MachineLearning.LearningModelBinding'Class;
+      bindings : WinRt.Windows.AI.MachineLearning.LearningModelBinding'Class;
       correlationId : WinRt.WString
    )
    return WinRt.Windows.AI.MachineLearning.LearningModelEvaluationResult'Class;
@@ -2800,7 +2800,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorBoolean;
 
@@ -2884,7 +2884,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorDouble;
 
@@ -3013,7 +3013,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat;
 
@@ -3097,7 +3097,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorFloat16Bit;
 
@@ -3158,7 +3158,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt16Bit;
 
@@ -3242,7 +3242,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt32Bit;
 
@@ -3349,7 +3349,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt64Bit;
 
@@ -3410,7 +3410,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorInt8Bit;
 
@@ -3594,7 +3594,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt16Bit;
 
@@ -3655,7 +3655,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt32Bit;
 
@@ -3762,7 +3762,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt64Bit;
 
@@ -3823,7 +3823,7 @@ package WinRt.Windows.AI.MachineLearning is
    function CreateFromBuffer
    (
       shape : WinRt.Int64_Array;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.AI.MachineLearning.TensorUInt8Bit;
 

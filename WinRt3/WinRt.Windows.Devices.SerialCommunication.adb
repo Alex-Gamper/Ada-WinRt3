@@ -68,7 +68,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SerialCommunication.SerialError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SerialCommunication.SerialError;
    begin
       Hr := this.m_IErrorReceivedEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -108,7 +108,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SerialCommunication.SerialPinChange;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SerialCommunication.SerialPinChange;
    begin
       Hr := this.m_IPinChangedEventArgs.all.get_PinChange (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -280,7 +280,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISerialDevice := new Windows.Devices.SerialCommunication.ISerialDevice;
+                     Retval.m_ISerialDevice := new WinRt.Windows.Devices.SerialCommunication.ISerialDevice;
                      Retval.m_ISerialDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -471,7 +471,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SerialCommunication.SerialHandshake;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SerialCommunication.SerialHandshake;
    begin
       Hr := this.m_ISerialDevice.all.get_Handshake (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -483,7 +483,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure put_Handshake
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialHandshake
+      value : WinRt.Windows.Devices.SerialCommunication.SerialHandshake
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -567,7 +567,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SerialCommunication.SerialParity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SerialCommunication.SerialParity;
    begin
       Hr := this.m_ISerialDevice.all.get_Parity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -579,7 +579,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure put_Parity
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialParity
+      value : WinRt.Windows.Devices.SerialCommunication.SerialParity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -619,7 +619,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISerialDevice.all.get_ReadTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -631,7 +631,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure put_ReadTimeout
    (
       this : in out SerialDevice;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -651,7 +651,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.SerialCommunication.SerialStopBitCount;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.SerialCommunication.SerialStopBitCount;
    begin
       Hr := this.m_ISerialDevice.all.get_StopBits (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -663,7 +663,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure put_StopBits
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialStopBitCount
+      value : WinRt.Windows.Devices.SerialCommunication.SerialStopBitCount
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -717,7 +717,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISerialDevice.all.get_WriteTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -729,7 +729,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure put_WriteTimeout
    (
       this : in out SerialDevice;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -749,7 +749,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_ISerialDevice.all.get_InputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -766,7 +766,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_ISerialDevice.all.get_OutputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -784,7 +784,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISerialDevice.all.add_ErrorReceived (reportHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -796,7 +796,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure remove_ErrorReceived
    (
       this : in out SerialDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -817,7 +817,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISerialDevice.all.add_PinChanged (reportHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -829,7 +829,7 @@ package body WinRt.Windows.Devices.SerialCommunication is
    procedure remove_PinChanged
    (
       this : in out SerialDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

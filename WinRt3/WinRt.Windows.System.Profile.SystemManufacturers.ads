@@ -93,14 +93,14 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
       function get_SupportLink
       (
          this : access IOemSupportInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportAppLink
       (
          this : access IOemSupportInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -192,7 +192,7 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
       function get_OemSupportInfo
       (
          this : access ISystemSupportInfoStatics_Interface;
-         RetVal : access Windows.System.Profile.SystemManufacturers.IOemSupportInfo
+         RetVal : access WinRt.Windows.System.Profile.SystemManufacturers.IOemSupportInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -204,7 +204,7 @@ package WinRt.Windows.System.Profile.SystemManufacturers is
       function get_LocalDeviceInfo
       (
          this : access ISystemSupportInfoStatics2_Interface;
-         RetVal : access Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo
+         RetVal : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo
       )
       return WinRt.Hresult is abstract;
 

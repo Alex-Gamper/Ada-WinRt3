@@ -180,7 +180,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function AuthenticateUserAsync
       (
          this : access IOnlineIdAuthenticator_Interface;
-         request : Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+         request : WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -189,7 +189,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       (
          this : access IOnlineIdAuthenticator_Interface;
          requests : GenericObject;
-         credentialPromptType : Windows.Security.Authentication.OnlineId.CredentialPromptType;
+         credentialPromptType : WinRt.Windows.Security.Authentication.OnlineId.CredentialPromptType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -197,7 +197,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function SignOutUserAsync
       (
          this : access IOnlineIdAuthenticator_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -244,7 +244,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function get_Request
       (
          this : access IOnlineIdServiceTicket_Interface;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -284,7 +284,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
          this : access IOnlineIdServiceTicketRequestFactory_Interface;
          service : WinRt.HString;
          policy : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -292,7 +292,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       (
          this : access IOnlineIdServiceTicketRequestFactory_Interface;
          service : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -304,7 +304,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function GetTicketAsync
       (
          this : access IOnlineIdSystemAuthenticatorForUser_Interface;
-         request : Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+         request : WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -326,7 +326,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function get_User
       (
          this : access IOnlineIdSystemAuthenticatorForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -338,15 +338,15 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function get_Default
       (
          this : access IOnlineIdSystemAuthenticatorStatics_Interface;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IOnlineIdSystemAuthenticatorStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -358,7 +358,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function get_Ticket
       (
          this : access IOnlineIdSystemIdentity_Interface;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -377,21 +377,21 @@ package WinRt.Windows.Security.Authentication.OnlineId is
       function get_Identity
       (
          this : access IOnlineIdSystemTicketResult_Interface;
-         RetVal : access Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IOnlineIdSystemTicketResult_Interface;
-         RetVal : access Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketStatus
+         RetVal : access WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IOnlineIdSystemTicketResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -479,7 +479,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    function AuthenticateUserAsync
    (
       this : in out OnlineIdAuthenticator;
-      request : Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
+      request : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
    )
    return WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation'Class;
 
@@ -487,7 +487,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    (
       this : in out OnlineIdAuthenticator;
       requests : GenericObject;
-      credentialPromptType : Windows.Security.Authentication.OnlineId.CredentialPromptType
+      credentialPromptType : WinRt.Windows.Security.Authentication.OnlineId.CredentialPromptType
    )
    return WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation'Class;
 
@@ -594,7 +594,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticatorForUser;
 
@@ -612,7 +612,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    function GetTicketAsync
    (
       this : in out OnlineIdSystemAuthenticatorForUser;
-      request : Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
+      request : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
    )
    return WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketResult'Class;
 
@@ -694,7 +694,7 @@ package WinRt.Windows.Security.Authentication.OnlineId is
    procedure put_Completed
    (
       this : in out SignOutUserOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    );
 
    function get_Completed

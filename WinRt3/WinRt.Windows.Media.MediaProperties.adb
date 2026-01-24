@@ -65,13 +65,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return AudioEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IAudioEncodingProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : AudioEncodingProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -93,7 +93,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics2'Access , m_Factory'Address);
@@ -103,7 +103,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -122,7 +122,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics2'Access , m_Factory'Address);
@@ -132,7 +132,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -151,7 +151,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -161,7 +161,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -180,7 +180,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -190,7 +190,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -209,7 +209,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -219,7 +219,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -238,7 +238,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -248,7 +248,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -267,7 +267,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IAudioEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -277,7 +277,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+            Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
             Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -424,7 +424,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaPropertySet do
@@ -434,7 +434,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -578,7 +578,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties3, WinRt.Windows.Media.MediaProperties.IID_IAudioEncodingProperties3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -588,7 +588,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -877,13 +877,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return ContainerEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ContainerEncodingProperties");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IContainerEncodingProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IContainerEncodingProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
    begin
       return RetVal : ContainerEncodingProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IContainerEncodingProperties := new Windows.Media.MediaProperties.IContainerEncodingProperties;
+            Retval.m_IContainerEncodingProperties := new WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
             Retval.m_IContainerEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -902,7 +902,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaPropertySet do
@@ -912,7 +912,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -995,7 +995,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IContainerEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties2, WinRt.Windows.Media.MediaProperties.IID_IContainerEncodingProperties2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ContainerEncodingProperties do
@@ -1005,7 +1005,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContainerEncodingProperties := new Windows.Media.MediaProperties.IContainerEncodingProperties;
+         Retval.m_IContainerEncodingProperties := new WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
          Retval.m_IContainerEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1720,13 +1720,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return ImageEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IImageEncodingProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : ImageEncodingProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1743,7 +1743,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics3'Access , m_Factory'Address);
@@ -1753,7 +1753,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1767,7 +1767,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -1777,7 +1777,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1791,7 +1791,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -1801,7 +1801,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1815,7 +1815,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -1825,7 +1825,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1834,7 +1834,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateUncompressed
    (
-      format : Windows.Media.MediaProperties.MediaPixelFormat
+      format : WinRt.Windows.Media.MediaProperties.MediaPixelFormat
    )
    return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties is
       Hr               : WinRt.HResult := S_OK;
@@ -1842,7 +1842,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics2'Access , m_Factory'Address);
@@ -1852,7 +1852,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1866,7 +1866,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IImageEncodingPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IImageEncodingPropertiesStatics2'Access , m_Factory'Address);
@@ -1876,7 +1876,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+            Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
             Retval.m_IImageEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1959,7 +1959,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IImageEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaPropertySet do
@@ -1969,7 +1969,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -2052,7 +2052,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IImageEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IImageEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IImageEncodingProperties2, WinRt.Windows.Media.MediaProperties.IID_IImageEncodingProperties2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties do
@@ -2062,7 +2062,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageEncodingProperties := new Windows.Media.MediaProperties.IImageEncodingProperties;
+         Retval.m_IImageEncodingProperties := new WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
          Retval.m_IImageEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2093,13 +2093,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return MediaEncodingProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IMediaEncodingProfile");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : MediaEncodingProfile do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2111,7 +2111,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateAlac
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2119,7 +2119,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics3'Access , m_Factory'Address);
@@ -2129,7 +2129,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2138,7 +2138,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateFlac
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2146,7 +2146,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics3'Access , m_Factory'Address);
@@ -2156,7 +2156,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2165,7 +2165,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateHevc
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2173,7 +2173,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics3'Access , m_Factory'Address);
@@ -2183,7 +2183,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2192,7 +2192,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateWav
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2200,7 +2200,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics2'Access , m_Factory'Address);
@@ -2210,7 +2210,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2219,7 +2219,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateAvi
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2227,7 +2227,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics2'Access , m_Factory'Address);
@@ -2237,7 +2237,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2246,7 +2246,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateVp9
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2254,7 +2254,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics4'Access , m_Factory'Address);
@@ -2264,7 +2264,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2273,7 +2273,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateAv1
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2281,7 +2281,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics4_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics4'Access , m_Factory'Address);
@@ -2291,7 +2291,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2300,7 +2300,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateM4a
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2308,7 +2308,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics'Access , m_Factory'Address);
@@ -2318,7 +2318,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2327,7 +2327,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateMp3
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2335,7 +2335,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics'Access , m_Factory'Address);
@@ -2345,7 +2345,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2354,7 +2354,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateWma
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2362,7 +2362,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics'Access , m_Factory'Address);
@@ -2372,7 +2372,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2381,7 +2381,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateMp4
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2389,7 +2389,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics'Access , m_Factory'Address);
@@ -2399,7 +2399,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2408,7 +2408,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateWmv
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2416,7 +2416,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfileStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaEncodingProfileStatics'Access , m_Factory'Address);
@@ -2426,7 +2426,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+            Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
             Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2435,7 +2435,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2491,7 +2491,7 @@ package body WinRt.Windows.Media.MediaProperties is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+                     Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
                      Retval.m_IMediaEncodingProfile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2508,7 +2508,7 @@ package body WinRt.Windows.Media.MediaProperties is
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile is
       Hr               : WinRt.HResult := S_OK;
@@ -2564,7 +2564,7 @@ package body WinRt.Windows.Media.MediaProperties is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+                     Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
                      Retval.m_IMediaEncodingProfile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2585,7 +2585,7 @@ package body WinRt.Windows.Media.MediaProperties is
    procedure put_Audio
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2605,14 +2605,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IMediaEncodingProfile.all.get_Audio (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2620,7 +2620,7 @@ package body WinRt.Windows.Media.MediaProperties is
    procedure put_Video
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.VideoEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2640,14 +2640,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := this.m_IMediaEncodingProfile.all.get_Video (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+         Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2655,7 +2655,7 @@ package body WinRt.Windows.Media.MediaProperties is
    procedure put_Container
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.ContainerEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.ContainerEncodingProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2675,14 +2675,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IContainerEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.ContainerEncodingProperties do
          Hr := this.m_IMediaEncodingProfile.all.get_Container (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContainerEncodingProperties := new Windows.Media.MediaProperties.IContainerEncodingProperties;
+         Retval.m_IContainerEncodingProperties := new WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
          Retval.m_IContainerEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2715,7 +2715,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile2, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaEncodingProfile.all);
@@ -2755,7 +2755,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile2, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaEncodingProfile.all);
@@ -2795,7 +2795,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile3, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProfile3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaEncodingProfile.all);
@@ -4104,13 +4104,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return MediaPropertySet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaPropertySet");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : MediaPropertySet do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4131,7 +4131,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased IInspectable;
+      m_ComRetVal      : aliased WinRt.IInspectable;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4198,7 +4198,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_Guid_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1591941276, 32191, 22936, (173, 7, 84, 20, 251, 130, 86, 124 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_Guid_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4498,13 +4498,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return TimedMetadataEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IMediaEncodingProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
    begin
       return RetVal : TimedMetadataEncodingProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+            Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
             Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4521,7 +4521,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedMetadataEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -4531,7 +4531,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+            Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
             Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4545,7 +4545,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_ITimedMetadataEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -4555,7 +4555,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+            Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
             Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4572,7 +4572,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
       function Convert_formatUserData is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
@@ -4583,7 +4583,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+            Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
             Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4600,7 +4600,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
       function Convert_formatUserData is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
@@ -4611,7 +4611,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+            Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
             Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4670,7 +4670,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.ITimedMetadataEncodingProperties, WinRt.Windows.Media.MediaProperties.IID_ITimedMetadataEncodingProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties do
@@ -4680,7 +4680,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaEncodingProperties := new Windows.Media.MediaProperties.IMediaEncodingProperties;
+         Retval.m_IMediaEncodingProperties := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
          Retval.m_IMediaEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -4693,14 +4693,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaPropertySet do
          Hr := this.m_IMediaEncodingProperties.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -4788,13 +4788,13 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return VideoEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
-      m_ComRetVal  : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IVideoEncodingProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : VideoEncodingProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4811,7 +4811,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEncodingPropertiesStatics3'Access , m_Factory'Address);
@@ -4821,7 +4821,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4835,7 +4835,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEncodingPropertiesStatics3'Access , m_Factory'Address);
@@ -4845,7 +4845,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4859,7 +4859,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEncodingPropertiesStatics2'Access , m_Factory'Address);
@@ -4869,7 +4869,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4883,7 +4883,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -4893,7 +4893,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4907,7 +4907,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IVideoEncodingPropertiesStatics'Access , m_Factory'Address);
@@ -4917,7 +4917,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4936,7 +4936,7 @@ package body WinRt.Windows.Media.MediaProperties is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_Factory        : access WinRt.Windows.Media.MediaProperties.IVideoEncodingPropertiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
       HStr_subtype_x : constant WinRt.HString := To_HString (subtype_x);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
@@ -4947,7 +4947,7 @@ package body WinRt.Windows.Media.MediaProperties is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+            Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
             Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5062,14 +5062,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaRatio;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
          Hr := this.m_IVideoEncodingProperties.all.get_FrameRate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
+         Retval.m_IMediaRatio := new WinRt.Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
    end;
@@ -5082,14 +5082,14 @@ package body WinRt.Windows.Media.MediaProperties is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaRatio;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
          Hr := this.m_IVideoEncodingProperties.all.get_PixelAspectRatio (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
+         Retval.m_IMediaRatio := new WinRt.Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
    end;
@@ -5103,7 +5103,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties, WinRt.Windows.Media.MediaProperties.IID_IMediaEncodingProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaPropertySet do
@@ -5113,7 +5113,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -5276,7 +5276,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.StereoscopicVideoPackingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties3, WinRt.Windows.Media.MediaProperties.IID_IVideoEncodingProperties3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEncodingProperties.all);
@@ -5297,7 +5297,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.SphericalVideoFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties4, WinRt.Windows.Media.MediaProperties.IID_IVideoEncodingProperties4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVideoEncodingProperties.all);
@@ -5318,7 +5318,7 @@ package body WinRt.Windows.Media.MediaProperties is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties_Interface, WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties5, WinRt.Windows.Media.MediaProperties.IID_IVideoEncodingProperties5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
@@ -5328,7 +5328,7 @@ package body WinRt.Windows.Media.MediaProperties is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+         Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
    end;

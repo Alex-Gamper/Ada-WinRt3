@@ -63,16 +63,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return BindingBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.BindingBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.IBindingBase");
       m_Factory    : access IBindingBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.IBindingBase;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.IBindingBase;
    begin
       return RetVal : BindingBase do
          Hr := RoGetActivationFactory (m_hString, IID_IBindingBaseFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IBindingBase := new Windows.UI.Xaml.Data.IBindingBase;
+            Retval.m_IBindingBase := new WinRt.Windows.UI.Xaml.Data.IBindingBase;
             Retval.m_IBindingBase.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -114,16 +114,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return Binding is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.Binding");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.IBinding");
       m_Factory    : access IBindingFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.IBinding;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.IBinding;
    begin
       return RetVal : Binding do
          Hr := RoGetActivationFactory (m_hString, IID_IBindingFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IBinding := new Windows.UI.Xaml.Data.IBinding;
+            Retval.m_IBinding := new WinRt.Windows.UI.Xaml.Data.IBinding;
             Retval.m_IBinding.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -142,14 +142,14 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IPropertyPath;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IPropertyPath;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.PropertyPath do
          Hr := this.m_IBinding.all.get_Path (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertyPath := new Windows.UI.Xaml.IPropertyPath;
+         Retval.m_IPropertyPath := new WinRt.Windows.UI.Xaml.IPropertyPath;
          Retval.m_IPropertyPath.all := m_ComRetVal;
       end return;
    end;
@@ -157,7 +157,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_Path
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.PropertyPath'Class
+      value : WinRt.Windows.UI.Xaml.PropertyPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -177,7 +177,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.BindingMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.BindingMode;
    begin
       Hr := this.m_IBinding.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -189,7 +189,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_Mode
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.BindingMode
+      value : WinRt.Windows.UI.Xaml.Data.BindingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -241,14 +241,14 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.IRelativeSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.IRelativeSource;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Data.RelativeSource do
          Hr := this.m_IBinding.all.get_RelativeSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRelativeSource := new Windows.UI.Xaml.Data.IRelativeSource;
+         Retval.m_IRelativeSource := new WinRt.Windows.UI.Xaml.Data.IRelativeSource;
          Retval.m_IRelativeSource.all := m_ComRetVal;
       end return;
    end;
@@ -256,7 +256,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_RelativeSource
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.RelativeSource'Class
+      value : WinRt.Windows.UI.Xaml.Data.RelativeSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -313,7 +313,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.IValueConverter;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.IValueConverter;
    begin
       Hr := this.m_IBinding.all.get_Converter (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -325,7 +325,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_Converter
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.IValueConverter
+      value : WinRt.Windows.UI.Xaml.Data.IValueConverter
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -495,7 +495,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Data.IBinding2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.UpdateSourceTrigger;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.UpdateSourceTrigger;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Data.IBinding_Interface, WinRt.Windows.UI.Xaml.Data.IBinding2, WinRt.Windows.UI.Xaml.Data.IID_IBinding2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBinding.all);
@@ -510,7 +510,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_UpdateSourceTrigger
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.UpdateSourceTrigger
+      value : WinRt.Windows.UI.Xaml.Data.UpdateSourceTrigger
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -603,14 +603,14 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.IBinding;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.IBinding;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Data.Binding do
          Hr := this.m_IBindingExpression.all.get_ParentBinding (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBinding := new Windows.UI.Xaml.Data.IBinding;
+         Retval.m_IBinding := new WinRt.Windows.UI.Xaml.Data.IBinding;
          Retval.m_IBinding.all := m_ComRetVal;
       end return;
    end;
@@ -654,9 +654,9 @@ package body WinRt.Windows.UI.Xaml.Data is
 
    procedure SetBinding
    (
-      target : Windows.UI.Xaml.DependencyObject'Class;
-      dp : Windows.UI.Xaml.DependencyProperty'Class;
-      binding_p : Windows.UI.Xaml.Data.BindingBase'Class
+      target : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      dp : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      binding_p : WinRt.Windows.UI.Xaml.Data.BindingBase'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -704,13 +704,13 @@ package body WinRt.Windows.UI.Xaml.Data is
    function Constructor return CollectionViewSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CollectionViewSource");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.ICollectionViewSource;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.ICollectionViewSource");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.ICollectionViewSource;
    begin
       return RetVal : CollectionViewSource do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICollectionViewSource := new Windows.UI.Xaml.Data.ICollectionViewSource;
+            Retval.m_ICollectionViewSource := new WinRt.Windows.UI.Xaml.Data.ICollectionViewSource;
             Retval.m_ICollectionViewSource.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -727,7 +727,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CollectionViewSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Data.ICollectionViewSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICollectionViewSourceStatics'Access , m_Factory'Address);
@@ -737,7 +737,7 @@ package body WinRt.Windows.UI.Xaml.Data is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -751,7 +751,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CollectionViewSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Data.ICollectionViewSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICollectionViewSourceStatics'Access , m_Factory'Address);
@@ -761,7 +761,7 @@ package body WinRt.Windows.UI.Xaml.Data is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -775,7 +775,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CollectionViewSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Data.ICollectionViewSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICollectionViewSourceStatics'Access , m_Factory'Address);
@@ -785,7 +785,7 @@ package body WinRt.Windows.UI.Xaml.Data is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -799,7 +799,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CollectionViewSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Data.ICollectionViewSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICollectionViewSourceStatics'Access , m_Factory'Address);
@@ -809,7 +809,7 @@ package body WinRt.Windows.UI.Xaml.Data is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -859,7 +859,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.ICollectionView;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.ICollectionView;
    begin
       Hr := this.m_ICollectionViewSource.all.get_View (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -908,14 +908,14 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IPropertyPath;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IPropertyPath;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.PropertyPath do
          Hr := this.m_ICollectionViewSource.all.get_ItemsPath (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertyPath := new Windows.UI.Xaml.IPropertyPath;
+         Retval.m_IPropertyPath := new WinRt.Windows.UI.Xaml.IPropertyPath;
          Retval.m_IPropertyPath.all := m_ComRetVal;
       end return;
    end;
@@ -923,7 +923,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_ItemsPath
    (
       this : in out CollectionViewSource;
-      value : Windows.UI.Xaml.PropertyPath'Class
+      value : WinRt.Windows.UI.Xaml.PropertyPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -966,16 +966,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return CurrentChangingEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CurrentChangingEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.ICurrentChangingEventArgs");
       m_Factory    : access ICurrentChangingEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
    begin
       return RetVal : CurrentChangingEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_ICurrentChangingEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICurrentChangingEventArgs := new Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
+            Retval.m_ICurrentChangingEventArgs := new WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
             Retval.m_ICurrentChangingEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -992,16 +992,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return CurrentChangingEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.CurrentChangingEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.ICurrentChangingEventArgs");
       m_Factory    : access ICurrentChangingEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
    begin
       return RetVal : CurrentChangingEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_ICurrentChangingEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithCancelableParameter (isCancelable, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICurrentChangingEventArgs := new Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
+            Retval.m_ICurrentChangingEventArgs := new WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs;
             Retval.m_ICurrentChangingEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1068,7 +1068,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    (
       this : access CurrentChangingEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Data.ICurrentChangingEventArgs
+      e : WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1110,16 +1110,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return ItemIndexRange is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.ItemIndexRange");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.IItemIndexRange");
       m_Factory    : access IItemIndexRangeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.IItemIndexRange;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.IItemIndexRange;
    begin
       return RetVal : ItemIndexRange do
          Hr := RoGetActivationFactory (m_hString, IID_IItemIndexRangeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (firstIndex, length, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IItemIndexRange := new Windows.UI.Xaml.Data.IItemIndexRange;
+            Retval.m_IItemIndexRange := new WinRt.Windows.UI.Xaml.Data.IItemIndexRange;
             Retval.m_IItemIndexRange.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1213,17 +1213,17 @@ package body WinRt.Windows.UI.Xaml.Data is
    return PropertyChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.PropertyChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.IPropertyChangedEventArgs");
       m_Factory    : access IPropertyChangedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.IPropertyChangedEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : PropertyChangedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IPropertyChangedEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_name, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IPropertyChangedEventArgs := new Windows.UI.Xaml.Data.IPropertyChangedEventArgs;
+            Retval.m_IPropertyChangedEventArgs := new WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs;
             Retval.m_IPropertyChangedEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1262,7 +1262,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    (
       this : access PropertyChangedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Data.IPropertyChangedEventArgs
+      e : WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1302,16 +1302,16 @@ package body WinRt.Windows.UI.Xaml.Data is
    return RelativeSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.RelativeSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Data.IRelativeSource");
       m_Factory    : access IRelativeSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Data.IRelativeSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Data.IRelativeSource;
    begin
       return RetVal : RelativeSource do
          Hr := RoGetActivationFactory (m_hString, IID_IRelativeSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRelativeSource := new Windows.UI.Xaml.Data.IRelativeSource;
+            Retval.m_IRelativeSource := new WinRt.Windows.UI.Xaml.Data.IRelativeSource;
             Retval.m_IRelativeSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1330,7 +1330,7 @@ package body WinRt.Windows.UI.Xaml.Data is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Data.RelativeSourceMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Data.RelativeSourceMode;
    begin
       Hr := this.m_IRelativeSource.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1342,7 +1342,7 @@ package body WinRt.Windows.UI.Xaml.Data is
    procedure put_Mode
    (
       this : in out RelativeSource;
-      value : Windows.UI.Xaml.Data.RelativeSourceMode
+      value : WinRt.Windows.UI.Xaml.Data.RelativeSourceMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

@@ -99,7 +99,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind;
    begin
       Hr := this.m_IUserDataAccountPartnerAccountInfo.all.get_AccountKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -139,7 +139,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
    begin
       Hr := this.m_IUserDataAccountProviderAddAccountOperation.all.get_ContentKinds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -156,7 +156,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUserDataAccountPartnerAccountInfo.Kind;
    begin
       Hr := this.m_IUserDataAccountProviderAddAccountOperation.all.get_PartnerAccountInfos (m_ComRetVal'Access);
@@ -194,7 +194,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderAddAccountOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderAddAccountOperation.all);
@@ -272,7 +272,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderResolveErrorsOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderResolveErrorsOperation.all);
@@ -350,7 +350,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderSettingsOperation_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation, WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IID_IUserDataAccountProviderOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderSettingsOperation.all);

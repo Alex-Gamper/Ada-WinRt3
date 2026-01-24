@@ -192,7 +192,7 @@ package WinRt.Windows.UI.Xaml.Markup is
          this : access IComponentConnector2_Interface;
          connectionId : WinRt.Int32;
          target : WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Markup.IComponentConnector
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IComponentConnector
       )
       return WinRt.Hresult is abstract;
 
@@ -232,7 +232,7 @@ package WinRt.Windows.UI.Xaml.Markup is
          this : access IMarkupExtensionFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Markup.IMarkupExtension
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IMarkupExtension
       )
       return WinRt.Hresult is abstract;
 
@@ -263,8 +263,8 @@ package WinRt.Windows.UI.Xaml.Markup is
          this : access IXamlBinaryWriterStatics_Interface;
          inputStreams : GenericObject;
          outputStreams : GenericObject;
-         xamlMetadataProvider : Windows.UI.Xaml.Markup.IXamlMetadataProvider;
-         RetVal : access Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation
+         xamlMetadataProvider : WinRt.Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -294,44 +294,44 @@ package WinRt.Windows.UI.Xaml.Markup is
       function get_DataTemplateComponentProperty
       (
          this : access IXamlBindingHelperStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetDataTemplateComponent
       (
          this : access IXamlBindingHelperStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.Markup.IDataTemplateComponent
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent
       )
       return WinRt.Hresult is abstract;
 
       function SetDataTemplateComponent
       (
          this : access IXamlBindingHelperStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.Markup.IDataTemplateComponent
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent
       )
       return WinRt.Hresult is abstract;
 
       function SuspendRendering
       (
          this : access IXamlBindingHelperStatics_Interface;
-         target : Windows.UI.Xaml.IUIElement
+         target : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function ResumeRendering
       (
          this : access IXamlBindingHelperStatics_Interface;
-         target : Windows.UI.Xaml.IUIElement
+         target : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function ConvertValue
       (
          this : access IXamlBindingHelperStatics_Interface;
-         type_x : Windows.UI.Xaml.Interop.TypeName;
+         type_x : WinRt.Windows.UI.Xaml.Interop.TypeName;
          value : WinRt.IInspectable;
          RetVal : access WinRt.IInspectable
       )
@@ -341,7 +341,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -350,7 +350,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -359,7 +359,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Wide_Char
       )
       return WinRt.Hresult is abstract;
@@ -368,8 +368,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.DateTime
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -377,7 +377,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Double
       )
       return WinRt.Hresult is abstract;
@@ -386,7 +386,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -395,7 +395,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -404,7 +404,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -413,7 +413,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.UInt64
       )
       return WinRt.Hresult is abstract;
@@ -422,7 +422,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Single
       )
       return WinRt.Hresult is abstract;
@@ -431,8 +431,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.Point
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -440,8 +440,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.Rect
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -449,8 +449,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.Size
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -458,8 +458,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.TimeSpan
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -467,7 +467,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.Byte
       )
       return WinRt.Hresult is abstract;
@@ -476,8 +476,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
-         value : Windows.Foundation.IUriRuntimeClass
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -485,7 +485,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlBindingHelperStatics_Interface;
          dependencyObject : WinRt.IInspectable;
-         propertyToSet : Windows.UI.Xaml.IDependencyProperty;
+         propertyToSet : WinRt.Windows.UI.Xaml.IDependencyProperty;
          value : WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -503,7 +503,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       function UnloadObject
       (
          this : access IXamlMarkupHelperStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject
+         element : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -543,14 +543,14 @@ package WinRt.Windows.UI.Xaml.Markup is
       function get_TargetType
       (
          this : access IXamlMember_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access IXamlMember_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
@@ -578,8 +578,8 @@ package WinRt.Windows.UI.Xaml.Markup is
       function GetXamlType
       (
          this : access IXamlMetadataProvider_Interface;
-         type_x : Windows.UI.Xaml.Interop.TypeName;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         type_x : WinRt.Windows.UI.Xaml.Interop.TypeName;
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
@@ -587,7 +587,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlMetadataProvider_Interface;
          fullName : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
@@ -595,7 +595,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlMetadataProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Markup.XmlnsDefinition_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.XmlnsDefinition_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -633,14 +633,14 @@ package WinRt.Windows.UI.Xaml.Markup is
       function get_BaseType
       (
          this : access IXamlType_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentProperty
       (
          this : access IXamlType_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlMember
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlMember
       )
       return WinRt.Hresult is abstract;
 
@@ -696,21 +696,21 @@ package WinRt.Windows.UI.Xaml.Markup is
       function get_ItemType
       (
          this : access IXamlType_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyType
       (
          this : access IXamlType_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
       function get_UnderlyingType
       (
          this : access IXamlType_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -733,7 +733,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       (
          this : access IXamlType_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlMember
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlMember
       )
       return WinRt.Hresult is abstract;
 
@@ -768,7 +768,7 @@ package WinRt.Windows.UI.Xaml.Markup is
       function get_BoxedType
       (
          this : access IXamlType2_Interface;
-         RetVal : access Windows.UI.Xaml.Markup.IXamlType
+         RetVal : access WinRt.Windows.UI.Xaml.Markup.IXamlType
       )
       return WinRt.Hresult is abstract;
 
@@ -816,7 +816,7 @@ package WinRt.Windows.UI.Xaml.Markup is
    (
       inputStreams : GenericObject;
       outputStreams : GenericObject;
-      xamlMetadataProvider : Windows.UI.Xaml.Markup.IXamlMetadataProvider
+      xamlMetadataProvider : WinRt.Windows.UI.Xaml.Markup.IXamlMetadataProvider
    )
    return WinRt.Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation;
 
@@ -837,29 +837,29 @@ package WinRt.Windows.UI.Xaml.Markup is
 
    function GetDataTemplateComponent
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent;
 
    procedure SetDataTemplateComponent
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Markup.IDataTemplateComponent
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent
    );
 
    procedure SuspendRendering
    (
-      target : Windows.UI.Xaml.UIElement'Class
+      target : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure ResumeRendering
    (
-      target : Windows.UI.Xaml.UIElement'Class
+      target : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function ConvertValue
    (
-      type_x : Windows.UI.Xaml.Interop.TypeName;
+      type_x : WinRt.Windows.UI.Xaml.Interop.TypeName;
       value : WinRt.IInspectable
    )
    return WinRt.IInspectable;
@@ -867,119 +867,119 @@ package WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromString
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.WString
    );
 
    procedure SetPropertyFromBoolean
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Boolean
    );
 
    procedure SetPropertyFromChar16
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Wide_Char
    );
 
    procedure SetPropertyFromDateTime
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.DateTime
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure SetPropertyFromDouble
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Double
    );
 
    procedure SetPropertyFromInt32
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Int32
    );
 
    procedure SetPropertyFromUInt32
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.UInt32
    );
 
    procedure SetPropertyFromInt64
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Int64
    );
 
    procedure SetPropertyFromUInt64
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.UInt64
    );
 
    procedure SetPropertyFromSingle
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Single
    );
 
    procedure SetPropertyFromPoint
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Point
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Point
    );
 
    procedure SetPropertyFromRect
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Rect
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure SetPropertyFromSize
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Size
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Size
    );
 
    procedure SetPropertyFromTimeSpan
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.TimeSpan
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SetPropertyFromByte
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Byte
    );
 
    procedure SetPropertyFromUri
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Uri'Class
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetPropertyFromObject
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.IInspectable
    );
 
@@ -997,7 +997,7 @@ package WinRt.Windows.UI.Xaml.Markup is
 
    procedure UnloadObject
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    -----------------------------------------------------------------------------

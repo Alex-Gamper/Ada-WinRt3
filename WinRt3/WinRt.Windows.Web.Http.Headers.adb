@@ -93,7 +93,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpCacheDirectiveHeaderValueCollection.all.get_MaxAge (m_ComRetVal'Access);
@@ -128,7 +128,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpCacheDirectiveHeaderValueCollection.all.get_MaxStale (m_ComRetVal'Access);
@@ -163,7 +163,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpCacheDirectiveHeaderValueCollection.all.get_MinFresh (m_ComRetVal'Access);
@@ -198,7 +198,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpCacheDirectiveHeaderValueCollection.all.get_SharedMaxAge (m_ComRetVal'Access);
@@ -273,7 +273,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpNameValueHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (754450644, 13776, 21596, (171, 130, 246, 121, 59, 231, 76, 186 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection_Interface, IVector_IHttpNameValueHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -284,7 +284,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
          Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -320,7 +320,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpNameValueHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (754450644, 13776, 21596, (171, 130, 246, 121, 59, 231, 76, 186 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection_Interface, IVector_IHttpNameValueHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -331,7 +331,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
          Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -339,7 +339,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -364,7 +364,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -385,7 +385,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -425,7 +425,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -484,7 +484,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -508,7 +508,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -536,7 +536,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpNameValueHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1480106278, 46615, 21527, (179, 46, 222, 210, 210, 125, 64, 163 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection_Interface, IIterable_IHttpNameValueHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -547,7 +547,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
          Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -606,17 +606,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpChallengeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpChallengeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpChallengeHeaderValue");
       m_Factory    : access IHttpChallengeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       HStr_scheme : constant WinRt.HString := To_HString (scheme);
    begin
       return RetVal : HttpChallengeHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpChallengeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromScheme (HStr_scheme, m_ComRetVal'Access);
-            Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+            Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
             Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -633,10 +633,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpChallengeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpChallengeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpChallengeHeaderValue");
       m_Factory    : access IHttpChallengeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       HStr_scheme : constant WinRt.HString := To_HString (scheme);
       HStr_token : constant WinRt.HString := To_HString (token);
    begin
@@ -644,7 +644,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpChallengeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromSchemeWithToken (HStr_scheme, HStr_token, m_ComRetVal'Access);
-            Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+            Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
             Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -667,7 +667,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpChallengeHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue do
@@ -678,7 +678,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+            Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
             Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -689,7 +689,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      challengeHeaderValue : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue
+      challengeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -724,7 +724,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpChallengeHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -871,7 +871,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpChallengeHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (926415966, 2855, 21155, (158, 64, 203, 185, 132, 78, 106, 183 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection_Interface, IVector_IHttpChallengeHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -882,7 +882,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
          Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -918,7 +918,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpChallengeHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (926415966, 2855, 21155, (158, 64, 203, 185, 132, 78, 106, 183 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection_Interface, IVector_IHttpChallengeHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -929,7 +929,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
          Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -937,7 +937,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpChallengeHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -962,7 +962,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -983,7 +983,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1023,7 +1023,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpChallengeHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1082,7 +1082,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1106,7 +1106,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpChallengeHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1134,7 +1134,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpChallengeHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (394559064, 61647, 21223, (129, 192, 157, 6, 160, 129, 86, 159 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection_Interface, IIterable_IHttpChallengeHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1145,7 +1145,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpChallengeHeaderValue := new Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         Retval.m_IHttpChallengeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
          Retval.m_IHttpChallengeHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1204,17 +1204,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpConnectionOptionHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue");
       m_Factory    : access IHttpConnectionOptionHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       HStr_token : constant WinRt.HString := To_HString (token);
    begin
       return RetVal : HttpConnectionOptionHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpConnectionOptionHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_token, m_ComRetVal'Access);
-            Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+            Retval.m_IHttpConnectionOptionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
             Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1236,7 +1236,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue do
@@ -1247,7 +1247,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+            Retval.m_IHttpConnectionOptionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
             Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1258,7 +1258,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      connectionOptionHeaderValue : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
+      connectionOptionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1400,7 +1400,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpConnectionOptionHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3272792717, 51247, 20937, (183, 5, 90, 38, 213, 47, 190, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection_Interface, IVector_IHttpConnectionOptionHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1411,7 +1411,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         Retval.m_IHttpConnectionOptionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
          Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1447,7 +1447,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpConnectionOptionHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3272792717, 51247, 20937, (183, 5, 90, 38, 213, 47, 190, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection_Interface, IVector_IHttpConnectionOptionHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1458,7 +1458,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         Retval.m_IHttpConnectionOptionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
          Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1466,7 +1466,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1491,7 +1491,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1512,7 +1512,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1552,7 +1552,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1611,7 +1611,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1635,7 +1635,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1663,7 +1663,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpConnectionOptionHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (452743471, 57250, 21800, (138, 239, 110, 106, 55, 120, 155, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection_Interface, IIterable_IHttpConnectionOptionHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1674,7 +1674,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpConnectionOptionHeaderValue := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         Retval.m_IHttpConnectionOptionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
          Retval.m_IHttpConnectionOptionHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1733,17 +1733,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentCodingHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingHeaderValue");
       m_Factory    : access IHttpContentCodingHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       HStr_contentCoding : constant WinRt.HString := To_HString (contentCoding);
    begin
       return RetVal : HttpContentCodingHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentCodingHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_contentCoding, m_ComRetVal'Access);
-            Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+            Retval.m_IHttpContentCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
             Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1765,7 +1765,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue do
@@ -1776,7 +1776,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+            Retval.m_IHttpContentCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
             Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1787,7 +1787,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentCodingHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
+      contentCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1929,7 +1929,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3108918175, 17590, 21702, (154, 212, 226, 132, 75, 62, 11, 225 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection_Interface, IVector_IHttpContentCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1940,7 +1940,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         Retval.m_IHttpContentCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
          Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1976,7 +1976,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3108918175, 17590, 21702, (154, 212, 226, 132, 75, 62, 11, 225 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection_Interface, IVector_IHttpContentCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1987,7 +1987,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         Retval.m_IHttpContentCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
          Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -1995,7 +1995,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -2020,7 +2020,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2041,7 +2041,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2081,7 +2081,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2140,7 +2140,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2164,7 +2164,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2192,7 +2192,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContentCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (243884226, 30437, 22209, (159, 230, 140, 217, 1, 138, 103, 134 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection_Interface, IIterable_IHttpContentCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2203,7 +2203,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         Retval.m_IHttpContentCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
          Retval.m_IHttpContentCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -2262,17 +2262,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentCodingWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue");
       m_Factory    : access IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       HStr_contentCoding : constant WinRt.HString := To_HString (contentCoding);
    begin
       return RetVal : HttpContentCodingWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentCodingWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromValue (HStr_contentCoding, m_ComRetVal'Access);
-            Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+            Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
             Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2289,17 +2289,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentCodingWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue");
       m_Factory    : access IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       HStr_contentCoding : constant WinRt.HString := To_HString (contentCoding);
    begin
       return RetVal : HttpContentCodingWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentCodingWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromValueWithQuality (HStr_contentCoding, quality, m_ComRetVal'Access);
-            Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+            Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
             Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2321,7 +2321,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue do
@@ -2332,7 +2332,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+            Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
             Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2343,7 +2343,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentCodingWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
+      contentCodingWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2398,7 +2398,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHttpContentCodingWithQualityHeaderValue.all.get_Quality (m_ComRetVal'Access);
@@ -2505,7 +2505,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (871982397, 3821, 21352, (165, 30, 152, 56, 81, 145, 248, 111 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection_Interface, IVector_IHttpContentCodingWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2516,7 +2516,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
          Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -2552,7 +2552,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpContentCodingWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (871982397, 3821, 21352, (165, 30, 152, 56, 81, 145, 248, 111 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection_Interface, IVector_IHttpContentCodingWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2563,7 +2563,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
          Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -2571,7 +2571,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -2596,7 +2596,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2617,7 +2617,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2657,7 +2657,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2716,7 +2716,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2740,7 +2740,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2768,7 +2768,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpContentCodingWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (2439930481, 52982, 21432, (185, 63, 220, 141, 202, 85, 158, 80 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection_Interface, IIterable_IHttpContentCodingWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2779,7 +2779,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         Retval.m_IHttpContentCodingWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
          Retval.m_IHttpContentCodingWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -2838,17 +2838,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentDispositionHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentDispositionHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue");
       m_Factory    : access IHttpContentDispositionHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
       HStr_dispositionType : constant WinRt.HString := To_HString (dispositionType);
    begin
       return RetVal : HttpContentDispositionHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentDispositionHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_dispositionType, m_ComRetVal'Access);
-            Retval.m_IHttpContentDispositionHeaderValue := new Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+            Retval.m_IHttpContentDispositionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
             Retval.m_IHttpContentDispositionHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2870,7 +2870,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentDispositionHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentDispositionHeaderValue do
@@ -2881,7 +2881,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpContentDispositionHeaderValue := new Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+            Retval.m_IHttpContentDispositionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
             Retval.m_IHttpContentDispositionHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2892,7 +2892,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentDispositionHeaderValue : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+      contentDispositionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3075,7 +3075,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpContentDispositionHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -3095,7 +3095,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IHttpContentDispositionHeaderValue.all.get_Size (m_ComRetVal'Access);
@@ -3172,13 +3172,13 @@ package body WinRt.Windows.Web.Http.Headers is
    function Constructor return HttpContentHeaderCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentHeaderCollection");
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentHeaderCollection;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentHeaderCollection");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : HttpContentHeaderCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IHttpContentHeaderCollection := new Windows.Web.Http.Headers.IHttpContentHeaderCollection;
+            Retval.m_IHttpContentHeaderCollection := new WinRt.Windows.Web.Http.Headers.IHttpContentHeaderCollection;
             Retval.m_IHttpContentHeaderCollection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3196,14 +3196,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentDispositionHeaderValue do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentDisposition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentDispositionHeaderValue := new Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+         Retval.m_IHttpContentDispositionHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
          Retval.m_IHttpContentDispositionHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -3211,7 +3211,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ContentDisposition
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpContentDispositionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentDispositionHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3231,14 +3231,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValueCollection do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentEncoding (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingHeaderValueCollection := new Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection;
+         Retval.m_IHttpContentCodingHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection;
          Retval.m_IHttpContentCodingHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -3251,14 +3251,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpLanguageHeaderValueCollection do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentLanguage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpLanguageHeaderValueCollection := new Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection;
+         Retval.m_IHttpLanguageHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection;
          Retval.m_IHttpLanguageHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -3271,7 +3271,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IHttpContentHeaderCollection.all.get_ContentLength (m_ComRetVal'Access);
@@ -3306,14 +3306,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentLocation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3321,7 +3321,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ContentLocation
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3341,7 +3341,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHttpContentHeaderCollection.all.get_ContentMD5 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3353,7 +3353,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ContentMD5
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3373,14 +3373,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentRangeHeaderValue do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentRange (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentRangeHeaderValue := new Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+         Retval.m_IHttpContentRangeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
          Retval.m_IHttpContentRangeHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -3388,7 +3388,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ContentRange
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpContentRangeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentRangeHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3408,14 +3408,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeHeaderValue do
          Hr := this.m_IHttpContentHeaderCollection.all.get_ContentType (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMediaTypeHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+         Retval.m_IHttpMediaTypeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
          Retval.m_IHttpMediaTypeHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -3423,7 +3423,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ContentType
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3443,7 +3443,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpContentHeaderCollection.all.get_Expires (m_ComRetVal'Access);
@@ -3478,7 +3478,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpContentHeaderCollection.all.get_LastModified (m_ComRetVal'Access);
@@ -3559,7 +3559,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
@@ -3633,7 +3633,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpContentHeaderCollection_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3769,16 +3769,16 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
    begin
       return RetVal : HttpContentRangeHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentRangeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLength (length, m_ComRetVal'Access);
-            Retval.m_IHttpContentRangeHeaderValue := new Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+            Retval.m_IHttpContentRangeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
             Retval.m_IHttpContentRangeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3794,16 +3794,16 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
    begin
       return RetVal : HttpContentRangeHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentRangeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromRange (from, to, m_ComRetVal'Access);
-            Retval.m_IHttpContentRangeHeaderValue := new Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+            Retval.m_IHttpContentRangeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
             Retval.m_IHttpContentRangeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3820,16 +3820,16 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
    begin
       return RetVal : HttpContentRangeHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpContentRangeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromRangeWithLength (from, to, length, m_ComRetVal'Access);
-            Retval.m_IHttpContentRangeHeaderValue := new Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+            Retval.m_IHttpContentRangeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
             Retval.m_IHttpContentRangeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3850,7 +3850,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentRangeHeaderValue do
@@ -3861,7 +3861,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpContentRangeHeaderValue := new Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+            Retval.m_IHttpContentRangeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
             Retval.m_IHttpContentRangeHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3872,7 +3872,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentRangeHeaderValue : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+      contentRangeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3907,7 +3907,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IHttpContentRangeHeaderValue.all.get_FirstBytePosition (m_ComRetVal'Access);
@@ -3927,7 +3927,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IHttpContentRangeHeaderValue.all.get_LastBytePosition (m_ComRetVal'Access);
@@ -3947,7 +3947,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
    begin
       Hr := this.m_IHttpContentRangeHeaderValue.all.get_Length (m_ComRetVal'Access);
@@ -4050,17 +4050,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpCookiePairHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCookiePairHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpCookiePairHeaderValue");
       m_Factory    : access IHttpCookiePairHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : HttpCookiePairHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpCookiePairHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromName (HStr_name, m_ComRetVal'Access);
-            Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+            Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
             Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4077,10 +4077,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpCookiePairHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCookiePairHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpCookiePairHeaderValue");
       m_Factory    : access IHttpCookiePairHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
@@ -4088,7 +4088,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpCookiePairHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNameWithValue (HStr_name, HStr_value, m_ComRetVal'Access);
-            Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+            Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
             Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4111,7 +4111,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCookiePairHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue do
@@ -4122,7 +4122,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+            Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
             Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4133,7 +4133,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      cookiePairHeaderValue : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
+      cookiePairHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4312,7 +4312,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpCookiePairHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3155782350, 35414, 24528, (152, 120, 200, 7, 237, 216, 100, 90 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection_Interface, IVector_IHttpCookiePairHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4323,7 +4323,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
          Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -4359,7 +4359,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpCookiePairHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3155782350, 35414, 24528, (152, 120, 200, 7, 237, 216, 100, 90 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection_Interface, IVector_IHttpCookiePairHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4370,7 +4370,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
          Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -4378,7 +4378,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -4403,7 +4403,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4424,7 +4424,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4464,7 +4464,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4523,7 +4523,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -4547,7 +4547,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4575,7 +4575,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpCookiePairHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (376910404, 20497, 21060, (187, 0, 20, 219, 76, 247, 16, 5 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection_Interface, IIterable_IHttpCookiePairHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4586,7 +4586,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCookiePairHeaderValue := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         Retval.m_IHttpCookiePairHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
          Retval.m_IHttpCookiePairHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -4645,17 +4645,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpCredentialsHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCredentialsHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpCredentialsHeaderValue");
       m_Factory    : access IHttpCredentialsHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
       HStr_scheme : constant WinRt.HString := To_HString (scheme);
    begin
       return RetVal : HttpCredentialsHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpCredentialsHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromScheme (HStr_scheme, m_ComRetVal'Access);
-            Retval.m_IHttpCredentialsHeaderValue := new Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+            Retval.m_IHttpCredentialsHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
             Retval.m_IHttpCredentialsHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4672,10 +4672,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpCredentialsHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCredentialsHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpCredentialsHeaderValue");
       m_Factory    : access IHttpCredentialsHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
       HStr_scheme : constant WinRt.HString := To_HString (scheme);
       HStr_token : constant WinRt.HString := To_HString (token);
    begin
@@ -4683,7 +4683,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpCredentialsHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromSchemeWithToken (HStr_scheme, HStr_token, m_ComRetVal'Access);
-            Retval.m_IHttpCredentialsHeaderValue := new Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+            Retval.m_IHttpCredentialsHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
             Retval.m_IHttpCredentialsHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4706,7 +4706,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpCredentialsHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue do
@@ -4717,7 +4717,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpCredentialsHeaderValue := new Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+            Retval.m_IHttpCredentialsHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
             Retval.m_IHttpCredentialsHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4728,7 +4728,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      credentialsHeaderValue : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+      credentialsHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4763,7 +4763,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpCredentialsHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -4872,7 +4872,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue do
@@ -4883,7 +4883,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpDateOrDeltaHeaderValue := new Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
+            Retval.m_IHttpDateOrDeltaHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
             Retval.m_IHttpDateOrDeltaHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4894,7 +4894,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      dateOrDeltaHeaderValue : access Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
+      dateOrDeltaHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4929,7 +4929,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDateOrDeltaHeaderValue.all.get_Date (m_ComRetVal'Access);
@@ -4949,7 +4949,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpDateOrDeltaHeaderValue.all.get_Delta (m_ComRetVal'Access);
@@ -5015,17 +5015,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpExpectationHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpExpectationHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpExpectationHeaderValue");
       m_Factory    : access IHttpExpectationHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : HttpExpectationHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpExpectationHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromName (HStr_name, m_ComRetVal'Access);
-            Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+            Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
             Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5042,10 +5042,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpExpectationHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpExpectationHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpExpectationHeaderValue");
       m_Factory    : access IHttpExpectationHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
@@ -5053,7 +5053,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpExpectationHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNameWithValue (HStr_name, HStr_value, m_ComRetVal'Access);
-            Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+            Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
             Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5076,7 +5076,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpExpectationHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue do
@@ -5087,7 +5087,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+            Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
             Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5098,7 +5098,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      expectationHeaderValue : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue
+      expectationHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5190,7 +5190,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpExpectationHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -5297,7 +5297,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpExpectationHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (417413358, 65223, 21117, (134, 147, 222, 235, 202, 79, 61, 205 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection_Interface, IVector_IHttpExpectationHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5308,7 +5308,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
          Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -5344,7 +5344,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpExpectationHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (417413358, 65223, 21117, (134, 147, 222, 235, 202, 79, 61, 205 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection_Interface, IVector_IHttpExpectationHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5355,7 +5355,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
          Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -5363,7 +5363,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpExpectationHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -5388,7 +5388,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5409,7 +5409,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5449,7 +5449,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpExpectationHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5508,7 +5508,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -5532,7 +5532,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpExpectationHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5560,7 +5560,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpExpectationHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (171514923, 5059, 22968, (134, 98, 19, 175, 251, 157, 23, 84 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection_Interface, IIterable_IHttpExpectationHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5571,7 +5571,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpExpectationHeaderValue := new Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         Retval.m_IHttpExpectationHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
          Retval.m_IHttpExpectationHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -5671,7 +5671,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ILanguage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
       m_GenericIID     : aliased WinRt.IID := (3706868314, 17088, 20509, (159, 203, 71, 31, 174, 6, 3, 150 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection_Interface, IVector_ILanguage.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5682,7 +5682,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -5718,7 +5718,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ILanguage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
       m_GenericIID     : aliased WinRt.IID := (3706868314, 17088, 20509, (159, 203, 71, 31, 174, 6, 3, 150 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection_Interface, IVector_ILanguage.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5729,7 +5729,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -5737,7 +5737,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpLanguageHeaderValueCollection;
-      value : Windows.Globalization.Language'Class;
+      value : WinRt.Windows.Globalization.Language'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -5762,7 +5762,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5783,7 +5783,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5823,7 +5823,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpLanguageHeaderValueCollection;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5882,7 +5882,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Globalization.ILanguage_Array
+      items : WinRt.Windows.Globalization.ILanguage_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -5906,7 +5906,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpLanguageHeaderValueCollection;
-      items : Windows.Globalization.ILanguage_Array
+      items : WinRt.Windows.Globalization.ILanguage_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5934,7 +5934,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ILanguage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
       m_GenericIID     : aliased WinRt.IID := (1212193296, 25014, 23985, (166, 157, 138, 188, 70, 172, 96, 138 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection_Interface, IIterable_ILanguage.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5945,7 +5945,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -6004,17 +6004,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpLanguageRangeWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue");
       m_Factory    : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       HStr_languageRange : constant WinRt.HString := To_HString (languageRange);
    begin
       return RetVal : HttpLanguageRangeWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpLanguageRangeWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLanguageRange (HStr_languageRange, m_ComRetVal'Access);
-            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
             Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6031,17 +6031,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpLanguageRangeWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue");
       m_Factory    : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       HStr_languageRange : constant WinRt.HString := To_HString (languageRange);
    begin
       return RetVal : HttpLanguageRangeWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpLanguageRangeWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromLanguageRangeWithQuality (HStr_languageRange, quality, m_ComRetVal'Access);
-            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
             Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6063,7 +6063,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue do
@@ -6074,7 +6074,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+            Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
             Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6085,7 +6085,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      languageRangeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
+      languageRangeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6140,7 +6140,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHttpLanguageRangeWithQualityHeaderValue.all.get_Quality (m_ComRetVal'Access);
@@ -6247,7 +6247,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3068095906, 36242, 21104, (149, 132, 214, 169, 169, 49, 88, 109 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection_Interface, IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -6258,7 +6258,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
          Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -6294,7 +6294,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3068095906, 36242, 21104, (149, 132, 214, 169, 169, 49, 88, 109 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection_Interface, IVector_IHttpLanguageRangeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -6305,7 +6305,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
          Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -6313,7 +6313,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -6338,7 +6338,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6359,7 +6359,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6399,7 +6399,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6458,7 +6458,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -6482,7 +6482,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6510,7 +6510,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpLanguageRangeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (207243789, 56247, 23231, (165, 253, 195, 185, 141, 156, 20, 135 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection_Interface, IIterable_IHttpLanguageRangeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -6521,7 +6521,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
          Retval.m_IHttpLanguageRangeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -6580,17 +6580,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpMediaTypeHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue");
       m_Factory    : access IHttpMediaTypeHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
       HStr_mediaType : constant WinRt.HString := To_HString (mediaType);
    begin
       return RetVal : HttpMediaTypeHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMediaTypeHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_mediaType, m_ComRetVal'Access);
-            Retval.m_IHttpMediaTypeHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+            Retval.m_IHttpMediaTypeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
             Retval.m_IHttpMediaTypeHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6612,7 +6612,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeHeaderValue do
@@ -6623,7 +6623,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpMediaTypeHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+            Retval.m_IHttpMediaTypeHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
             Retval.m_IHttpMediaTypeHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6634,7 +6634,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      mediaTypeHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+      mediaTypeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6743,7 +6743,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpMediaTypeHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -6809,17 +6809,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpMediaTypeWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue");
       m_Factory    : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       HStr_mediaType : constant WinRt.HString := To_HString (mediaType);
    begin
       return RetVal : HttpMediaTypeWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMediaTypeWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaType (HStr_mediaType, m_ComRetVal'Access);
-            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
             Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6836,17 +6836,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpMediaTypeWithQualityHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue");
       m_Factory    : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       HStr_mediaType : constant WinRt.HString := To_HString (mediaType);
    begin
       return RetVal : HttpMediaTypeWithQualityHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpMediaTypeWithQualityHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromMediaTypeWithQuality (HStr_mediaType, quality, m_ComRetVal'Access);
-            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
             Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6868,7 +6868,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue do
@@ -6879,7 +6879,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+            Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
             Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6890,7 +6890,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      mediaTypeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
+      mediaTypeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6999,7 +6999,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpMediaTypeWithQualityHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -7019,7 +7019,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHttpMediaTypeWithQualityHeaderValue.all.get_Quality (m_ComRetVal'Access);
@@ -7141,7 +7141,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMediaTypeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3246733559, 49750, 22118, (136, 104, 34, 37, 175, 53, 116, 182 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection_Interface, IVector_IHttpMediaTypeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7152,7 +7152,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
          Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -7188,7 +7188,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMediaTypeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3246733559, 49750, 22118, (136, 104, 34, 37, 175, 53, 116, 182 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection_Interface, IVector_IHttpMediaTypeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7199,7 +7199,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
          Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -7207,7 +7207,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -7232,7 +7232,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7253,7 +7253,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7293,7 +7293,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7352,7 +7352,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -7376,7 +7376,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7404,7 +7404,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpMediaTypeWithQualityHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (4291289054, 22712, 20969, (179, 59, 101, 165, 214, 164, 226, 76 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection_Interface, IIterable_IHttpMediaTypeWithQualityHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7415,7 +7415,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
          Retval.m_IHttpMediaTypeWithQualityHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -7515,7 +7515,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMethod.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpMethod;
       m_GenericIID     : aliased WinRt.IID := (579498914, 42249, 23160, (189, 127, 219, 148, 186, 11, 239, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection_Interface, IVector_IHttpMethod.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7526,7 +7526,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
+         Retval.m_IHttpMethod := new WinRt.Windows.Web.Http.IHttpMethod;
          Retval.m_IHttpMethod.all := m_ComRetVal;
       end return;
    end;
@@ -7562,7 +7562,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpMethod.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpMethod;
       m_GenericIID     : aliased WinRt.IID := (579498914, 42249, 23160, (189, 127, 219, 148, 186, 11, 239, 33 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection_Interface, IVector_IHttpMethod.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7573,7 +7573,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
+         Retval.m_IHttpMethod := new WinRt.Windows.Web.Http.IHttpMethod;
          Retval.m_IHttpMethod.all := m_ComRetVal;
       end return;
    end;
@@ -7581,7 +7581,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpMethodHeaderValueCollection;
-      value : Windows.Web.Http.HttpMethod'Class;
+      value : WinRt.Windows.Web.Http.HttpMethod'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -7606,7 +7606,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7627,7 +7627,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7667,7 +7667,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpMethodHeaderValueCollection;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7726,7 +7726,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.IHttpMethod_Array
+      items : WinRt.Windows.Web.Http.IHttpMethod_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -7750,7 +7750,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpMethodHeaderValueCollection;
-      items : Windows.Web.Http.IHttpMethod_Array
+      items : WinRt.Windows.Web.Http.IHttpMethod_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7778,7 +7778,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpMethod.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpMethod;
       m_GenericIID     : aliased WinRt.IID := (3230186266, 56417, 22497, (185, 103, 120, 218, 179, 84, 29, 165 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection_Interface, IIterable_IHttpMethod.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7789,7 +7789,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMethod := new Windows.Web.Http.IHttpMethod;
+         Retval.m_IHttpMethod := new WinRt.Windows.Web.Http.IHttpMethod;
          Retval.m_IHttpMethod.all := m_ComRetVal;
       end return;
    end;
@@ -7848,17 +7848,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpNameValueHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpNameValueHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpNameValueHeaderValue");
       m_Factory    : access IHttpNameValueHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : HttpNameValueHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpNameValueHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromName (HStr_name, m_ComRetVal'Access);
-            Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+            Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
             Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7875,10 +7875,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpNameValueHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpNameValueHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpNameValueHeaderValue");
       m_Factory    : access IHttpNameValueHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
@@ -7886,7 +7886,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpNameValueHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNameWithValue (HStr_name, HStr_value, m_ComRetVal'Access);
-            Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+            Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
             Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7909,7 +7909,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpNameValueHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue do
@@ -7920,7 +7920,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpNameValueHeaderValue := new Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+            Retval.m_IHttpNameValueHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
             Retval.m_IHttpNameValueHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7931,7 +7931,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      nameValueHeaderValue : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue
+      nameValueHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -8069,17 +8069,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpProductHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductHeaderValue");
       m_Factory    : access IHttpProductHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpProductHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
       HStr_productName : constant WinRt.HString := To_HString (productName);
    begin
       return RetVal : HttpProductHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpProductHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromName (HStr_productName, m_ComRetVal'Access);
-            Retval.m_IHttpProductHeaderValue := new Windows.Web.Http.Headers.IHttpProductHeaderValue;
+            Retval.m_IHttpProductHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
             Retval.m_IHttpProductHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8096,10 +8096,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpProductHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductHeaderValue");
       m_Factory    : access IHttpProductHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpProductHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
       HStr_productName : constant WinRt.HString := To_HString (productName);
       HStr_productVersion : constant WinRt.HString := To_HString (productVersion);
    begin
@@ -8107,7 +8107,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpProductHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNameWithVersion (HStr_productName, HStr_productVersion, m_ComRetVal'Access);
-            Retval.m_IHttpProductHeaderValue := new Windows.Web.Http.Headers.IHttpProductHeaderValue;
+            Retval.m_IHttpProductHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
             Retval.m_IHttpProductHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8130,7 +8130,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductHeaderValue do
@@ -8141,7 +8141,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpProductHeaderValue := new Windows.Web.Http.Headers.IHttpProductHeaderValue;
+            Retval.m_IHttpProductHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
             Retval.m_IHttpProductHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8152,7 +8152,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      productHeaderValue : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+      productHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -8273,17 +8273,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpProductInfoHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductInfoHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductInfoHeaderValue");
       m_Factory    : access IHttpProductInfoHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       HStr_productComment : constant WinRt.HString := To_HString (productComment);
    begin
       return RetVal : HttpProductInfoHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpProductInfoHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromComment (HStr_productComment, m_ComRetVal'Access);
-            Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+            Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
             Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8300,10 +8300,10 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpProductInfoHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductInfoHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductInfoHeaderValue");
       m_Factory    : access IHttpProductInfoHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       HStr_productName : constant WinRt.HString := To_HString (productName);
       HStr_productVersion : constant WinRt.HString := To_HString (productVersion);
    begin
@@ -8311,7 +8311,7 @@ package body WinRt.Windows.Web.Http.Headers is
          Hr := RoGetActivationFactory (m_hString, IID_IHttpProductInfoHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFromNameWithVersion (HStr_productName, HStr_productVersion, m_ComRetVal'Access);
-            Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+            Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
             Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8334,7 +8334,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpProductInfoHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue do
@@ -8345,7 +8345,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+            Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
             Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8356,7 +8356,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      productInfoHeaderValue : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
+      productInfoHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -8391,14 +8391,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductHeaderValue do
          Hr := this.m_IHttpProductInfoHeaderValue.all.get_Product (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpProductHeaderValue := new Windows.Web.Http.Headers.IHttpProductHeaderValue;
+         Retval.m_IHttpProductHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
          Retval.m_IHttpProductHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -8518,7 +8518,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpProductInfoHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1765351520, 27663, 24038, (140, 237, 241, 79, 193, 184, 51, 118 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection_Interface, IVector_IHttpProductInfoHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8529,7 +8529,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
          Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -8565,7 +8565,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpProductInfoHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1765351520, 27663, 24038, (140, 237, 241, 79, 193, 184, 51, 118 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection_Interface, IVector_IHttpProductInfoHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8576,7 +8576,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
          Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -8584,7 +8584,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -8609,7 +8609,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8630,7 +8630,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8670,7 +8670,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8729,7 +8729,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -8753,7 +8753,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8781,7 +8781,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpProductInfoHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (3214397337, 58900, 22373, (186, 215, 22, 26, 227, 169, 58, 233 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection_Interface, IIterable_IHttpProductInfoHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8792,7 +8792,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpProductInfoHeaderValue := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         Retval.m_IHttpProductInfoHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
          Retval.m_IHttpProductInfoHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -8852,14 +8852,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Accept (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMediaTypeWithQualityHeaderValueCollection := new Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection;
+         Retval.m_IHttpMediaTypeWithQualityHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection;
          Retval.m_IHttpMediaTypeWithQualityHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -8872,14 +8872,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_AcceptEncoding (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpContentCodingWithQualityHeaderValueCollection := new Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection;
+         Retval.m_IHttpContentCodingWithQualityHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection;
          Retval.m_IHttpContentCodingWithQualityHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -8892,14 +8892,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_AcceptLanguage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpLanguageRangeWithQualityHeaderValueCollection := new Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection;
+         Retval.m_IHttpLanguageRangeWithQualityHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection;
          Retval.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -8912,14 +8912,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Authorization (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCredentialsHeaderValue := new Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+         Retval.m_IHttpCredentialsHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
          Retval.m_IHttpCredentialsHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -8927,7 +8927,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_Authorization
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8947,14 +8947,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCacheDirectiveHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_CacheControl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCacheDirectiveHeaderValueCollection := new Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
+         Retval.m_IHttpCacheDirectiveHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
          Retval.m_IHttpCacheDirectiveHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -8967,14 +8967,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpConnectionOptionHeaderValueCollection := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
+         Retval.m_IHttpConnectionOptionHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
          Retval.m_IHttpConnectionOptionHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -8987,14 +8987,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Cookie (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCookiePairHeaderValueCollection := new Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection;
+         Retval.m_IHttpCookiePairHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection;
          Retval.m_IHttpCookiePairHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9007,7 +9007,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpRequestHeaderCollection.all.get_Date (m_ComRetVal'Access);
@@ -9042,14 +9042,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Expect (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpExpectationHeaderValueCollection := new Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection;
+         Retval.m_IHttpExpectationHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection;
          Retval.m_IHttpExpectationHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9099,14 +9099,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Host (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -9114,7 +9114,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_Host
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9134,7 +9134,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpRequestHeaderCollection.all.get_IfModifiedSince (m_ComRetVal'Access);
@@ -9169,7 +9169,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpRequestHeaderCollection.all.get_IfUnmodifiedSince (m_ComRetVal'Access);
@@ -9204,7 +9204,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHttpRequestHeaderCollection.all.get_MaxForwards (m_ComRetVal'Access);
@@ -9239,14 +9239,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_ProxyAuthorization (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCredentialsHeaderValue := new Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+         Retval.m_IHttpCredentialsHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
          Retval.m_IHttpCredentialsHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -9254,7 +9254,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_ProxyAuthorization
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9274,14 +9274,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_Referer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -9289,7 +9289,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_Referer
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9309,14 +9309,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_TransferEncoding (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpTransferCodingHeaderValueCollection := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
+         Retval.m_IHttpTransferCodingHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
          Retval.m_IHttpTransferCodingHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9329,14 +9329,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValueCollection do
          Hr := this.m_IHttpRequestHeaderCollection.all.get_UserAgent (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpProductInfoHeaderValueCollection := new Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection;
+         Retval.m_IHttpProductInfoHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection;
          Retval.m_IHttpProductInfoHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9395,7 +9395,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
@@ -9469,7 +9469,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpRequestHeaderCollection_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -9606,7 +9606,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IHttpResponseHeaderCollection.all.get_Age (m_ComRetVal'Access);
@@ -9641,14 +9641,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpMethodHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_Allow (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpMethodHeaderValueCollection := new Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection;
+         Retval.m_IHttpMethodHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection;
          Retval.m_IHttpMethodHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9661,14 +9661,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpCacheDirectiveHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_CacheControl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCacheDirectiveHeaderValueCollection := new Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
+         Retval.m_IHttpCacheDirectiveHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection;
          Retval.m_IHttpCacheDirectiveHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9681,14 +9681,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpConnectionOptionHeaderValueCollection := new Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
+         Retval.m_IHttpConnectionOptionHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection;
          Retval.m_IHttpConnectionOptionHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9701,7 +9701,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpResponseHeaderCollection.all.get_Date (m_ComRetVal'Access);
@@ -9736,14 +9736,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_Location (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -9751,7 +9751,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_Location
    (
       this : in out HttpResponseHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9771,14 +9771,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_ProxyAuthenticate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpChallengeHeaderValueCollection := new Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
+         Retval.m_IHttpChallengeHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
          Retval.m_IHttpChallengeHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9791,14 +9791,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_RetryAfter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpDateOrDeltaHeaderValue := new Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
+         Retval.m_IHttpDateOrDeltaHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
          Retval.m_IHttpDateOrDeltaHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -9806,7 +9806,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure put_RetryAfter
    (
       this : in out HttpResponseHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9826,14 +9826,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_TransferEncoding (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpTransferCodingHeaderValueCollection := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
+         Retval.m_IHttpTransferCodingHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection;
          Retval.m_IHttpTransferCodingHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9846,14 +9846,14 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValueCollection do
          Hr := this.m_IHttpResponseHeaderCollection.all.get_WwwAuthenticate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpChallengeHeaderValueCollection := new Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
+         Retval.m_IHttpChallengeHeaderValueCollection := new WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection;
          Retval.m_IHttpChallengeHeaderValueCollection.all := m_ComRetVal;
       end return;
    end;
@@ -9912,7 +9912,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
@@ -9986,7 +9986,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpResponseHeaderCollection_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -10122,17 +10122,17 @@ package body WinRt.Windows.Web.Http.Headers is
    return HttpTransferCodingHeaderValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpTransferCodingHeaderValue");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue");
       m_Factory    : access IHttpTransferCodingHeaderValueFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : HttpTransferCodingHeaderValue do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpTransferCodingHeaderValueFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_input, m_ComRetVal'Access);
-            Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+            Retval.m_IHttpTransferCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
             Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -10154,7 +10154,7 @@ package body WinRt.Windows.Web.Http.Headers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Headers.HttpTransferCodingHeaderValue");
       m_Factory        : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       HStr_input : constant WinRt.HString := To_HString (input);
    begin
       return RetVal : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue do
@@ -10165,7 +10165,7 @@ package body WinRt.Windows.Web.Http.Headers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+            Retval.m_IHttpTransferCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
             Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10176,7 +10176,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      transferCodingHeaderValue : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
+      transferCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10211,7 +10211,7 @@ package body WinRt.Windows.Web.Http.Headers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHttpNameValueHeaderValue.Kind;
    begin
       Hr := this.m_IHttpTransferCodingHeaderValue.all.get_Parameters (m_ComRetVal'Access);
@@ -10338,7 +10338,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpTransferCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (954672482, 57724, 23912, (170, 209, 142, 138, 134, 11, 137, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection_Interface, IVector_IHttpTransferCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -10349,7 +10349,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         Retval.m_IHttpTransferCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
          Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -10385,7 +10385,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IHttpTransferCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (954672482, 57724, 23912, (170, 209, 142, 138, 134, 11, 137, 105 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection_Interface, IVector_IHttpTransferCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -10396,7 +10396,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         Retval.m_IHttpTransferCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
          Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;
@@ -10404,7 +10404,7 @@ package body WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -10429,7 +10429,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10450,7 +10450,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10490,7 +10490,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10549,7 +10549,7 @@ package body WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -10573,7 +10573,7 @@ package body WinRt.Windows.Web.Http.Headers is
    procedure ReplaceAll
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10601,7 +10601,7 @@ package body WinRt.Windows.Web.Http.Headers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IHttpTransferCodingHeaderValue.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
       m_GenericIID     : aliased WinRt.IID := (1463820360, 14527, 20565, (172, 182, 92, 77, 167, 101, 227, 136 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection_Interface, IIterable_IHttpTransferCodingHeaderValue.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -10612,7 +10612,7 @@ package body WinRt.Windows.Web.Http.Headers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpTransferCodingHeaderValue := new Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         Retval.m_IHttpTransferCodingHeaderValue := new WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
          Retval.m_IHttpTransferCodingHeaderValue.all := m_ComRetVal;
       end return;
    end;

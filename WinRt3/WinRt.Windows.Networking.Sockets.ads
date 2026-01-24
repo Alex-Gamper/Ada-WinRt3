@@ -779,14 +779,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_KeepAliveTrigger
       (
          this : access IControlChannelTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
       function get_PushNotificationTrigger
       (
          this : access IControlChannelTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -800,7 +800,7 @@ package WinRt.Windows.Networking.Sockets is
       function WaitForPushEnabled
       (
          this : access IControlChannelTrigger_Interface;
-         RetVal : access Windows.Networking.Sockets.ControlChannelTriggerStatus
+         RetVal : access WinRt.Windows.Networking.Sockets.ControlChannelTriggerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -836,7 +836,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_ControlChannelTrigger
       (
          this : access IControlChannelTriggerEventDetails_Interface;
-         RetVal : access Windows.Networking.Sockets.IControlChannelTrigger
+         RetVal : access WinRt.Windows.Networking.Sockets.IControlChannelTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -850,7 +850,7 @@ package WinRt.Windows.Networking.Sockets is
          this : access IControlChannelTriggerFactory_Interface;
          channelId : WinRt.HString;
          serverKeepAliveIntervalInMinutes : WinRt.UInt32;
-         RetVal : access Windows.Networking.Sockets.IControlChannelTrigger
+         RetVal : access WinRt.Windows.Networking.Sockets.IControlChannelTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -859,8 +859,8 @@ package WinRt.Windows.Networking.Sockets is
          this : access IControlChannelTriggerFactory_Interface;
          channelId : WinRt.HString;
          serverKeepAliveIntervalInMinutes : WinRt.UInt32;
-         resourceRequestType : Windows.Networking.Sockets.ControlChannelTriggerResourceType;
-         RetVal : access Windows.Networking.Sockets.IControlChannelTrigger
+         resourceRequestType : WinRt.Windows.Networking.Sockets.ControlChannelTriggerResourceType;
+         RetVal : access WinRt.Windows.Networking.Sockets.IControlChannelTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -872,7 +872,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_ResetReason
       (
          this : access IControlChannelTriggerResetEventDetails_Interface;
-         RetVal : access Windows.Networking.Sockets.ControlChannelTriggerResetReason
+         RetVal : access WinRt.Windows.Networking.Sockets.ControlChannelTriggerResetReason
       )
       return WinRt.Hresult is abstract;
 
@@ -898,38 +898,38 @@ package WinRt.Windows.Networking.Sockets is
       function get_Control
       (
          this : access IDatagramSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IDatagramSocketControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IDatagramSocketControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IDatagramSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IDatagramSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IDatagramSocketInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IDatagramSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IDatagramSocket_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IDatagramSocket_Interface;
-         endpointPair : Windows.Networking.IEndpointPair;
-         RetVal : access Windows.Foundation.IAsyncAction
+         endpointPair : WinRt.Windows.Networking.IEndpointPair;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -937,30 +937,30 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket_Interface;
          localServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function BindEndpointAsync
       (
          this : access IDatagramSocket_Interface;
-         localHostName : Windows.Networking.IHostName;
+         localHostName : WinRt.Windows.Networking.IHostName;
          localServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function JoinMulticastGroup
       (
          this : access IDatagramSocket_Interface;
-         host : Windows.Networking.IHostName
+         host : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function GetOutputStreamAsync
       (
          this : access IDatagramSocket_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -969,7 +969,7 @@ package WinRt.Windows.Networking.Sockets is
       function GetOutputStreamAsync
       (
          this : access IDatagramSocket_Interface;
-         endpointPair : Windows.Networking.IEndpointPair;
+         endpointPair : WinRt.Windows.Networking.IEndpointPair;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -978,14 +978,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access IDatagramSocket_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -998,8 +998,8 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket2_Interface;
          localServiceName : WinRt.HString;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
-         RetVal : access Windows.Foundation.IAsyncAction
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Networking.Sockets is
       function CancelIOAsync
       (
          this : access IDatagramSocket3_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1026,7 +1026,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket3_Interface;
          taskId : WinRt.Guid;
-         connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+         connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1041,7 +1041,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket3_Interface;
          socketId : WinRt.HString;
-         data : Windows.Networking.Sockets.ISocketActivityContext
+         data : WinRt.Windows.Networking.Sockets.ISocketActivityContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1049,8 +1049,8 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IDatagramSocket3_Interface;
          socketId : WinRt.HString;
-         data : Windows.Networking.Sockets.ISocketActivityContext;
-         keepAliveTime : Windows.Foundation.TimeSpan
+         data : WinRt.Windows.Networking.Sockets.ISocketActivityContext;
+         keepAliveTime : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1062,14 +1062,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_QualityOfService
       (
          this : access IDatagramSocketControl_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketQualityOfService
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
       function put_QualityOfService
       (
          this : access IDatagramSocketControl_Interface;
-         value : Windows.Networking.Sockets.SocketQualityOfService
+         value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
@@ -1147,7 +1147,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IDatagramSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1161,7 +1161,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_RemoteAddress
       (
          this : access IDatagramSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1180,7 +1180,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_RemoteAddress
       (
          this : access IDatagramSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1194,21 +1194,21 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IDatagramSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function GetDataReader
       (
          this : access IDatagramSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IDataReader
+         RetVal : access WinRt.Windows.Storage.Streams.IDataReader
       )
       return WinRt.Hresult is abstract;
 
       function GetDataStream
       (
          this : access IDatagramSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1220,7 +1220,7 @@ package WinRt.Windows.Networking.Sockets is
       function GetEndpointPairsAsync
       (
          this : access IDatagramSocketStatics_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1229,9 +1229,9 @@ package WinRt.Windows.Networking.Sockets is
       function GetEndpointPairsAsync
       (
          this : access IDatagramSocketStatics_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         sortOptions : Windows.Networking.HostNameSortOptions;
+         sortOptions : WinRt.Windows.Networking.HostNameSortOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1244,14 +1244,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_Control
       (
          this : access IMessageWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IMessageWebSocketControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IMessageWebSocketControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IMessageWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IWebSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IWebSocketInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1259,14 +1259,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IMessageWebSocket_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access IMessageWebSocket_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1279,14 +1279,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IMessageWebSocket2_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServerCustomValidationRequested
       (
          this : access IMessageWebSocket2_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1298,7 +1298,7 @@ package WinRt.Windows.Networking.Sockets is
       function SendNonfinalFrameAsync
       (
          this : access IMessageWebSocket3_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1306,7 +1306,7 @@ package WinRt.Windows.Networking.Sockets is
       function SendFinalFrameAsync
       (
          this : access IMessageWebSocket3_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1333,14 +1333,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_MessageType
       (
          this : access IMessageWebSocketControl_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketMessageType
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketMessageType
       )
       return WinRt.Hresult is abstract;
 
       function put_MessageType
       (
          this : access IMessageWebSocketControl_Interface;
-         value : Windows.Networking.Sockets.SocketMessageType
+         value : WinRt.Windows.Networking.Sockets.SocketMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -1352,49 +1352,49 @@ package WinRt.Windows.Networking.Sockets is
       function get_DesiredUnsolicitedPongInterval
       (
          this : access IMessageWebSocketControl2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredUnsolicitedPongInterval
       (
          this : access IMessageWebSocketControl2_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ActualUnsolicitedPongInterval
       (
          this : access IMessageWebSocketControl2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ReceiveMode
       (
          this : access IMessageWebSocketControl2_Interface;
-         RetVal : access Windows.Networking.Sockets.MessageWebSocketReceiveMode
+         RetVal : access WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ReceiveMode
       (
          this : access IMessageWebSocketControl2_Interface;
-         value : Windows.Networking.Sockets.MessageWebSocketReceiveMode
+         value : WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ClientCertificate
       (
          this : access IMessageWebSocketControl2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_ClientCertificate
       (
          this : access IMessageWebSocketControl2_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1406,21 +1406,21 @@ package WinRt.Windows.Networking.Sockets is
       function get_MessageType
       (
          this : access IMessageWebSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketMessageType
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketMessageType
       )
       return WinRt.Hresult is abstract;
 
       function GetDataReader
       (
          this : access IMessageWebSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IDataReader
+         RetVal : access WinRt.Windows.Storage.Streams.IDataReader
       )
       return WinRt.Hresult is abstract;
 
       function GetDataStream
       (
          this : access IMessageWebSocketMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1445,35 +1445,35 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IServerMessageWebSocket_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access IServerMessageWebSocket_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Control
       (
          this : access IServerMessageWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IServerMessageWebSocketControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerMessageWebSocketControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IServerMessageWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IServerMessageWebSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerMessageWebSocketInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IServerMessageWebSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1481,14 +1481,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IServerMessageWebSocket_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IServerMessageWebSocket_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1508,14 +1508,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_MessageType
       (
          this : access IServerMessageWebSocketControl_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketMessageType
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketMessageType
       )
       return WinRt.Hresult is abstract;
 
       function put_MessageType
       (
          this : access IServerMessageWebSocketControl_Interface;
-         value : Windows.Networking.Sockets.SocketMessageType
+         value : WinRt.Windows.Networking.Sockets.SocketMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -1527,7 +1527,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_BandwidthStatistics
       (
          this : access IServerMessageWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.BandwidthStatistics
+         RetVal : access WinRt.Windows.Networking.Sockets.BandwidthStatistics
       )
       return WinRt.Hresult is abstract;
 
@@ -1541,7 +1541,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IServerMessageWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1553,21 +1553,21 @@ package WinRt.Windows.Networking.Sockets is
       function get_Information
       (
          this : access IServerStreamWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IServerStreamWebSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerStreamWebSocketInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStream
       (
          this : access IServerStreamWebSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IServerStreamWebSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1575,14 +1575,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IServerStreamWebSocket_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IServerStreamWebSocket_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1602,7 +1602,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_BandwidthStatistics
       (
          this : access IServerStreamWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.BandwidthStatistics
+         RetVal : access WinRt.Windows.Networking.Sockets.BandwidthStatistics
       )
       return WinRt.Hresult is abstract;
 
@@ -1616,7 +1616,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IServerStreamWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -1628,7 +1628,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_Data
       (
          this : access ISocketActivityContext_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1640,8 +1640,8 @@ package WinRt.Windows.Networking.Sockets is
       function Create
       (
          this : access ISocketActivityContextFactory_Interface;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Networking.Sockets.ISocketActivityContext
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Networking.Sockets.ISocketActivityContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1667,35 +1667,35 @@ package WinRt.Windows.Networking.Sockets is
       function get_SocketKind
       (
          this : access ISocketActivityInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketActivityKind
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketActivityKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Context
       (
          this : access ISocketActivityInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.ISocketActivityContext
+         RetVal : access WinRt.Windows.Networking.Sockets.ISocketActivityContext
       )
       return WinRt.Hresult is abstract;
 
       function get_DatagramSocket
       (
          this : access ISocketActivityInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.IDatagramSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IDatagramSocket
       )
       return WinRt.Hresult is abstract;
 
       function get_StreamSocket
       (
          this : access ISocketActivityInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocket
       )
       return WinRt.Hresult is abstract;
 
       function get_StreamSocketListener
       (
          this : access ISocketActivityInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocketListener
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocketListener
       )
       return WinRt.Hresult is abstract;
 
@@ -1719,14 +1719,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_Reason
       (
          this : access ISocketActivityTriggerDetails_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketActivityTriggerReason
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketActivityTriggerReason
       )
       return WinRt.Hresult is abstract;
 
       function get_SocketInformation
       (
          this : access ISocketActivityTriggerDetails_Interface;
-         RetVal : access Windows.Networking.Sockets.ISocketActivityInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.ISocketActivityInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1739,7 +1739,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access ISocketErrorStatics_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Networking.Sockets.SocketErrorStatus
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1751,73 +1751,73 @@ package WinRt.Windows.Networking.Sockets is
       function get_Control
       (
          this : access IStreamSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocketControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocketControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IStreamSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocketInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStream
       (
          this : access IStreamSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IStreamSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IStreamSocket_Interface;
-         endpointPair : Windows.Networking.IEndpointPair;
-         RetVal : access Windows.Foundation.IAsyncAction
+         endpointPair : WinRt.Windows.Networking.IEndpointPair;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IStreamSocket_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IStreamSocket_Interface;
-         endpointPair : Windows.Networking.IEndpointPair;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         RetVal : access Windows.Foundation.IAsyncAction
+         endpointPair : WinRt.Windows.Networking.IEndpointPair;
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IStreamSocket_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         RetVal : access Windows.Foundation.IAsyncAction
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpgradeToSslAsync
       (
          this : access IStreamSocket_Interface;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         validationHostName : Windows.Networking.IHostName;
-         RetVal : access Windows.Foundation.IAsyncAction
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         validationHostName : WinRt.Windows.Networking.IHostName;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1829,11 +1829,11 @@ package WinRt.Windows.Networking.Sockets is
       function ConnectAsync
       (
          this : access IStreamSocket2_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
-         RetVal : access Windows.Foundation.IAsyncAction
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1845,7 +1845,7 @@ package WinRt.Windows.Networking.Sockets is
       function CancelIOAsync
       (
          this : access IStreamSocket3_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1860,7 +1860,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocket3_Interface;
          taskId : WinRt.Guid;
-         connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+         connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1875,7 +1875,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocket3_Interface;
          socketId : WinRt.HString;
-         data : Windows.Networking.Sockets.ISocketActivityContext
+         data : WinRt.Windows.Networking.Sockets.ISocketActivityContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1883,8 +1883,8 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocket3_Interface;
          socketId : WinRt.HString;
-         data : Windows.Networking.Sockets.ISocketActivityContext;
-         keepAliveTime : Windows.Foundation.TimeSpan
+         data : WinRt.Windows.Networking.Sockets.ISocketActivityContext;
+         keepAliveTime : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1938,14 +1938,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_QualityOfService
       (
          this : access IStreamSocketControl_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketQualityOfService
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
       function put_QualityOfService
       (
          this : access IStreamSocketControl_Interface;
-         value : Windows.Networking.Sockets.SocketQualityOfService
+         value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
@@ -1997,14 +1997,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_ClientCertificate
       (
          this : access IStreamSocketControl3_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_ClientCertificate
       (
          this : access IStreamSocketControl3_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -2016,14 +2016,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_MinProtectionLevel
       (
          this : access IStreamSocketControl4_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketProtectionLevel
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_MinProtectionLevel
       (
          this : access IStreamSocketControl4_Interface;
-         value : Windows.Networking.Sockets.SocketProtectionLevel
+         value : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2035,7 +2035,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -2049,14 +2049,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_RemoteHostName
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function get_RemoteAddress
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -2077,28 +2077,28 @@ package WinRt.Windows.Networking.Sockets is
       function get_RoundTripTimeStatistics
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.RoundTripTimeStatistics
+         RetVal : access WinRt.Windows.Networking.Sockets.RoundTripTimeStatistics
       )
       return WinRt.Hresult is abstract;
 
       function get_BandwidthStatistics
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.BandwidthStatistics
+         RetVal : access WinRt.Windows.Networking.Sockets.BandwidthStatistics
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionLevel
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketProtectionLevel
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionKey
       (
          this : access IStreamSocketInformation_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2110,7 +2110,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_ServerCertificateErrorSeverity
       (
          this : access IStreamSocketInformation2_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketSslErrorSeverity
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -2124,7 +2124,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_ServerCertificate
       (
          this : access IStreamSocketInformation2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -2143,14 +2143,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_Control
       (
          this : access IStreamSocketListener_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocketListenerControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocketListenerControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IStreamSocketListener_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocketListenerInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocketListenerInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -2158,16 +2158,16 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener_Interface;
          localServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function BindEndpointAsync
       (
          this : access IStreamSocketListener_Interface;
-         localHostName : Windows.Networking.IHostName;
+         localHostName : WinRt.Windows.Networking.IHostName;
          localServiceName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2175,14 +2175,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionReceived
       (
          this : access IStreamSocketListener_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2195,8 +2195,8 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener2_Interface;
          localServiceName : WinRt.HString;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         RetVal : access Windows.Foundation.IAsyncAction
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2204,9 +2204,9 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener2_Interface;
          localServiceName : WinRt.HString;
-         protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
-         RetVal : access Windows.Foundation.IAsyncAction
+         protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2218,7 +2218,7 @@ package WinRt.Windows.Networking.Sockets is
       function CancelIOAsync
       (
          this : access IStreamSocketListener3_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2233,7 +2233,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener3_Interface;
          taskId : WinRt.Guid;
-         connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+         connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2248,7 +2248,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamSocketListener3_Interface;
          socketId : WinRt.HString;
-         data : Windows.Networking.Sockets.ISocketActivityContext
+         data : WinRt.Windows.Networking.Sockets.ISocketActivityContext
       )
       return WinRt.Hresult is abstract;
 
@@ -2260,7 +2260,7 @@ package WinRt.Windows.Networking.Sockets is
       function get_Socket
       (
          this : access IStreamSocketListenerConnectionReceivedEventArgs_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocket
       )
       return WinRt.Hresult is abstract;
 
@@ -2272,14 +2272,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_QualityOfService
       (
          this : access IStreamSocketListenerControl_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketQualityOfService
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
       function put_QualityOfService
       (
          this : access IStreamSocketListenerControl_Interface;
-         value : Windows.Networking.Sockets.SocketQualityOfService
+         value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
       )
       return WinRt.Hresult is abstract;
 
@@ -2364,7 +2364,7 @@ package WinRt.Windows.Networking.Sockets is
       function GetEndpointPairsAsync
       (
          this : access IStreamSocketStatics_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2373,9 +2373,9 @@ package WinRt.Windows.Networking.Sockets is
       function GetEndpointPairsAsync
       (
          this : access IStreamSocketStatics_Interface;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         sortOptions : Windows.Networking.HostNameSortOptions;
+         sortOptions : WinRt.Windows.Networking.HostNameSortOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2388,21 +2388,21 @@ package WinRt.Windows.Networking.Sockets is
       function get_Control
       (
          this : access IStreamWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamWebSocketControl
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamWebSocketControl
       )
       return WinRt.Hresult is abstract;
 
       function get_Information
       (
          this : access IStreamWebSocket_Interface;
-         RetVal : access Windows.Networking.Sockets.IWebSocketInformation
+         RetVal : access WinRt.Windows.Networking.Sockets.IWebSocketInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStream
       (
          this : access IStreamWebSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -2415,14 +2415,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IStreamWebSocket2_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServerCustomValidationRequested
       (
          this : access IStreamWebSocket2_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2453,35 +2453,35 @@ package WinRt.Windows.Networking.Sockets is
       function get_DesiredUnsolicitedPongInterval
       (
          this : access IStreamWebSocketControl2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredUnsolicitedPongInterval
       (
          this : access IStreamWebSocketControl2_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ActualUnsolicitedPongInterval
       (
          this : access IStreamWebSocketControl2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ClientCertificate
       (
          this : access IStreamWebSocketControl2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function put_ClientCertificate
       (
          this : access IStreamWebSocketControl2_Interface;
-         value : Windows.Security.Cryptography.Certificates.ICertificate
+         value : WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -2493,15 +2493,15 @@ package WinRt.Windows.Networking.Sockets is
       function get_OutputStream
       (
          this : access IWebSocket_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IWebSocket_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Foundation.IAsyncAction
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2517,14 +2517,14 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IWebSocket_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IWebSocket_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2577,28 +2577,28 @@ package WinRt.Windows.Networking.Sockets is
       function get_ServerCredential
       (
          this : access IWebSocketControl_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerCredential
       (
          this : access IWebSocketControl_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyCredential
       (
          this : access IWebSocketControl_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ProxyCredential
       (
          this : access IWebSocketControl_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -2630,7 +2630,7 @@ package WinRt.Windows.Networking.Sockets is
       (
          this : access IWebSocketErrorStatics_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Web.WebErrorStatus
+         RetVal : access WinRt.Windows.Web.WebErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2642,14 +2642,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_LocalAddress
       (
          this : access IWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function get_BandwidthStatistics
       (
          this : access IWebSocketInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.BandwidthStatistics
+         RetVal : access WinRt.Windows.Networking.Sockets.BandwidthStatistics
       )
       return WinRt.Hresult is abstract;
 
@@ -2668,14 +2668,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_ServerCertificate
       (
          this : access IWebSocketInformation2_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCertificateErrorSeverity
       (
          this : access IWebSocketInformation2_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketSslErrorSeverity
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -2701,14 +2701,14 @@ package WinRt.Windows.Networking.Sockets is
       function get_ServerCertificate
       (
          this : access IWebSocketServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCertificateErrorSeverity
       (
          this : access IWebSocketServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketSslErrorSeverity
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -2735,7 +2735,7 @@ package WinRt.Windows.Networking.Sockets is
       function GetDeferral
       (
          this : access IWebSocketServerCustomValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2765,7 +2765,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       channelId : WinRt.WString;
       serverKeepAliveIntervalInMinutes : WinRt.UInt32;
-      resourceRequestType : Windows.Networking.Sockets.ControlChannelTriggerResourceType
+      resourceRequestType : WinRt.Windows.Networking.Sockets.ControlChannelTriggerResourceType
    )
    return ControlChannelTrigger;
 
@@ -2863,16 +2863,16 @@ package WinRt.Windows.Networking.Sockets is
 
    function GetEndpointPairsAsync
    (
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    )
    return WinRt.GenericObject;
 
    function GetEndpointPairsAsync
    (
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString;
-      sortOptions : Windows.Networking.HostNameSortOptions
+      sortOptions : WinRt.Windows.Networking.HostNameSortOptions
    )
    return WinRt.GenericObject;
 
@@ -2900,14 +2900,14 @@ package WinRt.Windows.Networking.Sockets is
    procedure ConnectAsync
    (
       this : in out DatagramSocket;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    );
 
    procedure ConnectAsync
    (
       this : in out DatagramSocket;
-      endpointPair : Windows.Networking.EndpointPair'Class
+      endpointPair : WinRt.Windows.Networking.EndpointPair'Class
    );
 
    procedure BindServiceNameAsync
@@ -2919,20 +2919,20 @@ package WinRt.Windows.Networking.Sockets is
    procedure BindEndpointAsync
    (
       this : in out DatagramSocket;
-      localHostName : Windows.Networking.HostName'Class;
+      localHostName : WinRt.Windows.Networking.HostName'Class;
       localServiceName : WinRt.WString
    );
 
    procedure JoinMulticastGroup
    (
       this : in out DatagramSocket;
-      host : Windows.Networking.HostName'Class
+      host : WinRt.Windows.Networking.HostName'Class
    );
 
    function GetOutputStreamAsync
    (
       this : in out DatagramSocket;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    )
    return WinRt.Windows.Storage.Streams.IOutputStream;
@@ -2940,7 +2940,7 @@ package WinRt.Windows.Networking.Sockets is
    function GetOutputStreamAsync
    (
       this : in out DatagramSocket;
-      endpointPair : Windows.Networking.EndpointPair'Class
+      endpointPair : WinRt.Windows.Networking.EndpointPair'Class
    )
    return WinRt.Windows.Storage.Streams.IOutputStream;
 
@@ -2954,7 +2954,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_MessageReceived
    (
       this : in out DatagramSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -2966,7 +2966,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out DatagramSocket;
       localServiceName : WinRt.WString;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    );
 
    procedure CancelIOAsync
@@ -2984,7 +2984,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out DatagramSocket;
       taskId : WinRt.Guid;
-      connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+      connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    );
 
    procedure TransferOwnership
@@ -2997,15 +2997,15 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out DatagramSocket;
       socketId : WinRt.WString;
-      data : Windows.Networking.Sockets.SocketActivityContext'Class
+      data : WinRt.Windows.Networking.Sockets.SocketActivityContext'Class
    );
 
    procedure TransferOwnership
    (
       this : in out DatagramSocket;
       socketId : WinRt.WString;
-      data : Windows.Networking.Sockets.SocketActivityContext'Class;
-      keepAliveTime : Windows.Foundation.TimeSpan
+      data : WinRt.Windows.Networking.Sockets.SocketActivityContext'Class;
+      keepAliveTime : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -3026,7 +3026,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_QualityOfService
    (
       this : in out DatagramSocketControl;
-      value : Windows.Networking.Sockets.SocketQualityOfService
+      value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
    );
 
    function get_OutboundUnicastHopLimit
@@ -3185,7 +3185,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_MessageReceived
    (
       this : in out MessageWebSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_OutputStream
@@ -3197,7 +3197,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure ConnectAsync
    (
       this : in out MessageWebSocket;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetRequestHeader
@@ -3217,7 +3217,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_Closed
    (
       this : in out MessageWebSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -3242,20 +3242,20 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_ServerCustomValidationRequested
    (
       this : in out MessageWebSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function SendNonfinalFrameAsync
    (
       this : in out MessageWebSocket;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
    function SendFinalFrameAsync
    (
       this : in out MessageWebSocket;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -3289,7 +3289,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_MessageType
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Networking.Sockets.SocketMessageType
+      value : WinRt.Windows.Networking.Sockets.SocketMessageType
    );
 
    function get_OutboundBufferSizeInBytes
@@ -3313,7 +3313,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ServerCredential
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -3325,7 +3325,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ProxyCredential
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_SupportedProtocols
@@ -3349,7 +3349,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_DesiredUnsolicitedPongInterval
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ActualUnsolicitedPongInterval
@@ -3367,7 +3367,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ReceiveMode
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Networking.Sockets.MessageWebSocketReceiveMode
+      value : WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode
    );
 
    function get_ClientCertificate
@@ -3379,7 +3379,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ClientCertificate
    (
       this : in out MessageWebSocketControl;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3485,7 +3485,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_MessageReceived
    (
       this : in out ServerMessageWebSocket;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Control
@@ -3516,7 +3516,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_Closed
    (
       this : in out ServerMessageWebSocket;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -3549,7 +3549,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_MessageType
    (
       this : in out ServerMessageWebSocketControl;
-      value : Windows.Networking.Sockets.SocketMessageType
+      value : WinRt.Windows.Networking.Sockets.SocketMessageType
    );
 
    -----------------------------------------------------------------------------
@@ -3616,7 +3616,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_Closed
    (
       this : in out ServerStreamWebSocket;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -3669,7 +3669,7 @@ package WinRt.Windows.Networking.Sockets is
 
    function Constructor
    (
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return SocketActivityContext;
 
@@ -3788,16 +3788,16 @@ package WinRt.Windows.Networking.Sockets is
 
    function GetEndpointPairsAsync_StreamSocket
    (
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    )
    return WinRt.GenericObject;
 
    function GetEndpointPairsAsync_StreamSocket
    (
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString;
-      sortOptions : Windows.Networking.HostNameSortOptions
+      sortOptions : WinRt.Windows.Networking.HostNameSortOptions
    )
    return WinRt.GenericObject;
 
@@ -3831,36 +3831,36 @@ package WinRt.Windows.Networking.Sockets is
    procedure ConnectAsync
    (
       this : in out StreamSocket;
-      endpointPair : Windows.Networking.EndpointPair'Class
+      endpointPair : WinRt.Windows.Networking.EndpointPair'Class
    );
 
    procedure ConnectAsync
    (
       this : in out StreamSocket;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    );
 
    procedure ConnectAsync
    (
       this : in out StreamSocket;
-      endpointPair : Windows.Networking.EndpointPair'Class;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
+      endpointPair : WinRt.Windows.Networking.EndpointPair'Class;
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
    );
 
    procedure ConnectAsync
    (
       this : in out StreamSocket;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
    );
 
    procedure UpgradeToSslAsync
    (
       this : in out StreamSocket;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-      validationHostName : Windows.Networking.HostName'Class
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+      validationHostName : WinRt.Windows.Networking.HostName'Class
    );
 
    procedure Close
@@ -3871,10 +3871,10 @@ package WinRt.Windows.Networking.Sockets is
    procedure ConnectAsync
    (
       this : in out StreamSocket;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    );
 
    procedure CancelIOAsync
@@ -3892,7 +3892,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out StreamSocket;
       taskId : WinRt.Guid;
-      connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+      connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    );
 
    procedure TransferOwnership
@@ -3905,15 +3905,15 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out StreamSocket;
       socketId : WinRt.WString;
-      data : Windows.Networking.Sockets.SocketActivityContext'Class
+      data : WinRt.Windows.Networking.Sockets.SocketActivityContext'Class
    );
 
    procedure TransferOwnership
    (
       this : in out StreamSocket;
       socketId : WinRt.WString;
-      data : Windows.Networking.Sockets.SocketActivityContext'Class;
-      keepAliveTime : Windows.Foundation.TimeSpan
+      data : WinRt.Windows.Networking.Sockets.SocketActivityContext'Class;
+      keepAliveTime : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -3970,7 +3970,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_QualityOfService
    (
       this : in out StreamSocketControl;
-      value : Windows.Networking.Sockets.SocketQualityOfService
+      value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
    );
 
    function get_OutboundUnicastHopLimit
@@ -4012,7 +4012,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ClientCertificate
    (
       this : in out StreamSocketControl;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    function get_MinProtectionLevel
@@ -4024,7 +4024,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_MinProtectionLevel
    (
       this : in out StreamSocketControl;
-      value : Windows.Networking.Sockets.SocketProtectionLevel
+      value : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
    );
 
    -----------------------------------------------------------------------------
@@ -4155,7 +4155,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure BindEndpointAsync
    (
       this : in out StreamSocketListener;
-      localHostName : Windows.Networking.HostName'Class;
+      localHostName : WinRt.Windows.Networking.HostName'Class;
       localServiceName : WinRt.WString
    );
 
@@ -4169,7 +4169,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_ConnectionReceived
    (
       this : in out StreamSocketListener;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -4181,15 +4181,15 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out StreamSocketListener;
       localServiceName : WinRt.WString;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
    );
 
    procedure BindServiceNameAsync
    (
       this : in out StreamSocketListener;
       localServiceName : WinRt.WString;
-      protectionLevel : Windows.Networking.Sockets.SocketProtectionLevel;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      protectionLevel : WinRt.Windows.Networking.Sockets.SocketProtectionLevel;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    );
 
    procedure CancelIOAsync
@@ -4207,7 +4207,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out StreamSocketListener;
       taskId : WinRt.Guid;
-      connectedStandbyAction : Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
+      connectedStandbyAction : WinRt.Windows.Networking.Sockets.SocketActivityConnectedStandbyAction
    );
 
    procedure TransferOwnership
@@ -4220,7 +4220,7 @@ package WinRt.Windows.Networking.Sockets is
    (
       this : in out StreamSocketListener;
       socketId : WinRt.WString;
-      data : Windows.Networking.Sockets.SocketActivityContext'Class
+      data : WinRt.Windows.Networking.Sockets.SocketActivityContext'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4256,7 +4256,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_QualityOfService
    (
       this : in out StreamSocketListenerControl;
-      value : Windows.Networking.Sockets.SocketQualityOfService
+      value : WinRt.Windows.Networking.Sockets.SocketQualityOfService
    );
 
    function get_NoDelay
@@ -4363,7 +4363,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure ConnectAsync
    (
       this : in out StreamWebSocket;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetRequestHeader
@@ -4383,7 +4383,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_Closed
    (
       this : in out StreamWebSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -4408,7 +4408,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure remove_ServerCustomValidationRequested
    (
       this : in out StreamWebSocket;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4453,7 +4453,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ServerCredential
    (
       this : in out StreamWebSocketControl;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -4465,7 +4465,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ProxyCredential
    (
       this : in out StreamWebSocketControl;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_SupportedProtocols
@@ -4489,7 +4489,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_DesiredUnsolicitedPongInterval
    (
       this : in out StreamWebSocketControl;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ActualUnsolicitedPongInterval
@@ -4507,7 +4507,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure put_ClientCertificate
    (
       this : in out StreamWebSocketControl;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4611,7 +4611,7 @@ package WinRt.Windows.Networking.Sockets is
    procedure Run
    (
       this : in out WebSocketKeepAlive;
-      taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
+      taskInstance : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
    );
 
    -----------------------------------------------------------------------------

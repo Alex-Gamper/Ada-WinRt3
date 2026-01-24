@@ -284,14 +284,14 @@ package WinRt.Windows.Devices.Haptics is
       function SendHapticFeedback
       (
          this : access ISimpleHapticsController_Interface;
-         feedback : Windows.Devices.Haptics.ISimpleHapticsControllerFeedback
+         feedback : WinRt.Windows.Devices.Haptics.ISimpleHapticsControllerFeedback
       )
       return WinRt.Hresult is abstract;
 
       function SendHapticFeedback
       (
          this : access ISimpleHapticsController_Interface;
-         feedback : Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
+         feedback : WinRt.Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
          intensity : WinRt.Double
       )
       return WinRt.Hresult is abstract;
@@ -299,19 +299,19 @@ package WinRt.Windows.Devices.Haptics is
       function SendHapticFeedbackForDuration
       (
          this : access ISimpleHapticsController_Interface;
-         feedback : Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
+         feedback : WinRt.Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
          intensity : WinRt.Double;
-         playDuration : Windows.Foundation.TimeSpan
+         playDuration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SendHapticFeedbackForPlayCount
       (
          this : access ISimpleHapticsController_Interface;
-         feedback : Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
+         feedback : WinRt.Windows.Devices.Haptics.ISimpleHapticsControllerFeedback;
          intensity : WinRt.Double;
          playCount : WinRt.Int32;
-         replayPauseInterval : Windows.Foundation.TimeSpan
+         replayPauseInterval : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -330,7 +330,7 @@ package WinRt.Windows.Devices.Haptics is
       function get_Duration
       (
          this : access ISimpleHapticsControllerFeedback_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -349,7 +349,7 @@ package WinRt.Windows.Devices.Haptics is
       function get_SimpleHapticsController
       (
          this : access IVibrationDevice_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -504,31 +504,31 @@ package WinRt.Windows.Devices.Haptics is
    procedure SendHapticFeedback
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class
    );
 
    procedure SendHapticFeedback
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double
    );
 
    procedure SendHapticFeedbackForDuration
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double;
-      playDuration : Windows.Foundation.TimeSpan
+      playDuration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SendHapticFeedbackForPlayCount
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double;
       playCount : WinRt.Int32;
-      replayPauseInterval : Windows.Foundation.TimeSpan
+      replayPauseInterval : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------

@@ -63,13 +63,13 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    function Constructor return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
-      m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
+      m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
    begin
       return RetVal : DataProtectionProvider do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+            Retval.m_IDataProtectionProvider := new WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
             Retval.m_IDataProtectionProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -83,17 +83,17 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
       m_Factory    : access IDataProtectionProviderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+      m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
       HStr_protectionDescriptor : constant WinRt.HString := To_HString (protectionDescriptor);
    begin
       return RetVal : DataProtectionProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IDataProtectionProviderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateOverloadExplicit (HStr_protectionDescriptor, m_ComRetVal'Access);
-            Retval.m_IDataProtectionProvider := new Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
+            Retval.m_IDataProtectionProvider := new WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
             Retval.m_IDataProtectionProvider.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -108,7 +108,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    function ProtectAsync
    (
       this : in out DataProtectionProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -172,7 +172,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    function UnprotectAsync
    (
       this : in out DataProtectionProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -236,8 +236,8 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    procedure ProtectStreamAsync
    (
       this : in out DataProtectionProvider;
-      src : Windows.Storage.Streams.IInputStream;
-      dest : Windows.Storage.Streams.IOutputStream
+      src : WinRt.Windows.Storage.Streams.IInputStream;
+      dest : WinRt.Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -280,8 +280,8 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    procedure UnprotectStreamAsync
    (
       this : in out DataProtectionProvider;
-      src : Windows.Storage.Streams.IInputStream;
-      dest : Windows.Storage.Streams.IOutputStream
+      src : WinRt.Windows.Storage.Streams.IInputStream;
+      dest : WinRt.Windows.Storage.Streams.IOutputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

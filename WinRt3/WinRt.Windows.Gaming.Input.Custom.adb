@@ -43,8 +43,8 @@ package body WinRt.Windows.Gaming.Input.Custom is
 
       function TryGetFactoryControllerFromGameController
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : WinRt.Windows.Gaming.Input.IGameController
       )
       return WinRt.Windows.Gaming.Input.IGameController is
          Hr               : WinRt.HResult := S_OK;
@@ -52,7 +52,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Gaming.Input.Custom.GameControllerFactoryManager");
          m_Factory        : access WinRt.Windows.Gaming.Input.Custom.IGameControllerFactoryManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Gaming.Input.IGameController;
+         m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.IGameController;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IGameControllerFactoryManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -68,7 +68,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
 
       procedure RegisterCustomFactoryForGipInterface
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          interfaceId : WinRt.Guid
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -90,7 +90,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
 
       procedure RegisterCustomFactoryForHardwareId
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          hardwareVendorId : WinRt.UInt16;
          hardwareProductId : WinRt.UInt16
       ) is
@@ -113,9 +113,9 @@ package body WinRt.Windows.Gaming.Input.Custom is
 
       procedure RegisterCustomFactoryForXusbType
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         xusbType : Windows.Gaming.Input.Custom.XusbDeviceType;
-         xusbSubtype : Windows.Gaming.Input.Custom.XusbDeviceSubtype
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         xusbType : WinRt.Windows.Gaming.Input.Custom.XusbDeviceType;
+         xusbSubtype : WinRt.Windows.Gaming.Input.Custom.XusbDeviceSubtype
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -201,7 +201,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GipFirmwareUpdateStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GipFirmwareUpdateStatus;
    begin
       Hr := this.m_IGipFirmwareUpdateResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -236,7 +236,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
    procedure SendMessage
    (
       this : in out GipGameControllerProvider;
-      messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+      messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
       messageId : WinRt.Byte;
       messageBuffer : WinRt.Byte_Array
    ) is
@@ -254,7 +254,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
    procedure SendReceiveMessage
    (
       this : in out GipGameControllerProvider;
-      messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+      messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
       messageId : WinRt.Byte;
       requestMessageBuffer : WinRt.Byte_Array;
       responseMessageBuffer : WinRt.Byte_Array
@@ -274,7 +274,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
    function UpdateFirmwareAsync
    (
       this : in out GipGameControllerProvider;
-      firmwareImage : Windows.Storage.Streams.IInputStream
+      firmwareImage : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Gaming.Input.Custom.GipFirmwareUpdateResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -325,7 +325,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGipFirmwareUpdateResult := new Windows.Gaming.Input.Custom.IGipFirmwareUpdateResult;
+                  Retval.m_IGipFirmwareUpdateResult := new WinRt.Windows.Gaming.Input.Custom.IGipFirmwareUpdateResult;
                   Retval.m_IGipFirmwareUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -347,7 +347,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IGipGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGipGameControllerProvider.all);
@@ -410,7 +410,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IGipGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGipGameControllerProvider.all);
@@ -560,7 +560,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IHidGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHidGameControllerProvider.all);
@@ -623,7 +623,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IHidGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHidGameControllerProvider.all);
@@ -704,7 +704,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IXusbGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXusbGameControllerProvider.all);
@@ -767,7 +767,7 @@ package body WinRt.Windows.Gaming.Input.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.Custom.GameControllerVersionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.Custom.IXusbGameControllerProvider_Interface, WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider, WinRt.Windows.Gaming.Input.Custom.IID_IGameControllerProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IXusbGameControllerProvider.all);

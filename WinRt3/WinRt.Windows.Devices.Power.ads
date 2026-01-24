@@ -130,7 +130,7 @@ package WinRt.Windows.Devices.Power is
       function GetReport
       (
          this : access IBattery_Interface;
-         RetVal : access Windows.Devices.Power.IBatteryReport
+         RetVal : access WinRt.Windows.Devices.Power.IBatteryReport
       )
       return WinRt.Hresult is abstract;
 
@@ -138,14 +138,14 @@ package WinRt.Windows.Devices.Power is
       (
          this : access IBattery_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReportUpdated
       (
          this : access IBattery_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -185,7 +185,7 @@ package WinRt.Windows.Devices.Power is
       function get_Status
       (
          this : access IBatteryReport_Interface;
-         RetVal : access Windows.System.Power.BatteryStatus
+         RetVal : access WinRt.Windows.System.Power.BatteryStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -197,7 +197,7 @@ package WinRt.Windows.Devices.Power is
       function get_AggregateBattery
       (
          this : access IBatteryStatics_Interface;
-         RetVal : access Windows.Devices.Power.IBattery
+         RetVal : access WinRt.Windows.Devices.Power.IBattery
       )
       return WinRt.Hresult is abstract;
 
@@ -243,14 +243,14 @@ package WinRt.Windows.Devices.Power is
       function get_StartTime
       (
          this : access IPowerGridForecast_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_BlockDuration
       (
          this : access IPowerGridForecast_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -269,7 +269,7 @@ package WinRt.Windows.Devices.Power is
       function GetForecast
       (
          this : access IPowerGridForecastStatics_Interface;
-         RetVal : access Windows.Devices.Power.IPowerGridForecast
+         RetVal : access WinRt.Windows.Devices.Power.IPowerGridForecast
       )
       return WinRt.Hresult is abstract;
 
@@ -277,14 +277,14 @@ package WinRt.Windows.Devices.Power is
       (
          this : access IPowerGridForecastStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ForecastUpdated
       (
          this : access IPowerGridForecastStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -340,7 +340,7 @@ package WinRt.Windows.Devices.Power is
    procedure remove_ReportUpdated
    (
       this : in out Battery;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -423,7 +423,7 @@ package WinRt.Windows.Devices.Power is
 
    procedure remove_ForecastUpdated
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

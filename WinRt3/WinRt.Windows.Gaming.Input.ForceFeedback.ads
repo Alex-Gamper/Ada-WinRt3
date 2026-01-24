@@ -189,14 +189,14 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function get_Kind
       (
          this : access IConditionForceEffect_Interface;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
       )
       return WinRt.Hresult is abstract;
 
       function SetParameters
       (
          this : access IConditionForceEffect_Interface;
-         direction : Windows.Foundation.Numerics.Vector3;
+         direction : WinRt.Windows.Foundation.Numerics.Vector3;
          positiveCoefficient : WinRt.Single;
          negativeCoefficient : WinRt.Single;
          maxPositiveMagnitude : WinRt.Single;
@@ -214,8 +214,8 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function CreateInstance
       (
          this : access IConditionForceEffectFactory_Interface;
-         effectKind : Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+         effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind;
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -227,22 +227,22 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function SetParameters
       (
          this : access IConstantForceEffect_Interface;
-         vector : Windows.Foundation.Numerics.Vector3;
-         duration : Windows.Foundation.TimeSpan
+         vector : WinRt.Windows.Foundation.Numerics.Vector3;
+         duration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetParametersWithEnvelope
       (
          this : access IConstantForceEffect_Interface;
-         vector : Windows.Foundation.Numerics.Vector3;
+         vector : WinRt.Windows.Foundation.Numerics.Vector3;
          attackGain : WinRt.Single;
          sustainGain : WinRt.Single;
          releaseGain : WinRt.Single;
-         startDelay : Windows.Foundation.TimeSpan;
-         attackDuration : Windows.Foundation.TimeSpan;
-         sustainDuration : Windows.Foundation.TimeSpan;
-         releaseDuration : Windows.Foundation.TimeSpan;
+         startDelay : WinRt.Windows.Foundation.TimeSpan;
+         attackDuration : WinRt.Windows.Foundation.TimeSpan;
+         sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+         releaseDuration : WinRt.Windows.Foundation.TimeSpan;
          repeatCount : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -269,7 +269,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function get_State
       (
          this : access IForceFeedbackEffect_Interface;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState
       )
       return WinRt.Hresult is abstract;
 
@@ -321,14 +321,14 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function get_SupportedAxes
       (
          this : access IForceFeedbackMotor_Interface;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes
       )
       return WinRt.Hresult is abstract;
 
       function LoadEffectAsync
       (
          this : access IForceFeedbackMotor_Interface;
-         effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+         effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -375,7 +375,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function TryUnloadEffectAsync
       (
          this : access IForceFeedbackMotor_Interface;
-         effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+         effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -388,35 +388,35 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function get_Kind
       (
          this : access IPeriodicForceEffect_Interface;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
       )
       return WinRt.Hresult is abstract;
 
       function SetParameters
       (
          this : access IPeriodicForceEffect_Interface;
-         vector : Windows.Foundation.Numerics.Vector3;
+         vector : WinRt.Windows.Foundation.Numerics.Vector3;
          frequency : WinRt.Single;
          phase : WinRt.Single;
          bias : WinRt.Single;
-         duration : Windows.Foundation.TimeSpan
+         duration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetParametersWithEnvelope
       (
          this : access IPeriodicForceEffect_Interface;
-         vector : Windows.Foundation.Numerics.Vector3;
+         vector : WinRt.Windows.Foundation.Numerics.Vector3;
          frequency : WinRt.Single;
          phase : WinRt.Single;
          bias : WinRt.Single;
          attackGain : WinRt.Single;
          sustainGain : WinRt.Single;
          releaseGain : WinRt.Single;
-         startDelay : Windows.Foundation.TimeSpan;
-         attackDuration : Windows.Foundation.TimeSpan;
-         sustainDuration : Windows.Foundation.TimeSpan;
-         releaseDuration : Windows.Foundation.TimeSpan;
+         startDelay : WinRt.Windows.Foundation.TimeSpan;
+         attackDuration : WinRt.Windows.Foundation.TimeSpan;
+         sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+         releaseDuration : WinRt.Windows.Foundation.TimeSpan;
          repeatCount : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -429,8 +429,8 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function CreateInstance
       (
          this : access IPeriodicForceEffectFactory_Interface;
-         effectKind : Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+         effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind;
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -442,24 +442,24 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
       function SetParameters
       (
          this : access IRampForceEffect_Interface;
-         startVector : Windows.Foundation.Numerics.Vector3;
-         endVector : Windows.Foundation.Numerics.Vector3;
-         duration : Windows.Foundation.TimeSpan
+         startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+         endVector : WinRt.Windows.Foundation.Numerics.Vector3;
+         duration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetParametersWithEnvelope
       (
          this : access IRampForceEffect_Interface;
-         startVector : Windows.Foundation.Numerics.Vector3;
-         endVector : Windows.Foundation.Numerics.Vector3;
+         startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+         endVector : WinRt.Windows.Foundation.Numerics.Vector3;
          attackGain : WinRt.Single;
          sustainGain : WinRt.Single;
          releaseGain : WinRt.Single;
-         startDelay : Windows.Foundation.TimeSpan;
-         attackDuration : Windows.Foundation.TimeSpan;
-         sustainDuration : Windows.Foundation.TimeSpan;
-         releaseDuration : Windows.Foundation.TimeSpan;
+         startDelay : WinRt.Windows.Foundation.TimeSpan;
+         attackDuration : WinRt.Windows.Foundation.TimeSpan;
+         sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+         releaseDuration : WinRt.Windows.Foundation.TimeSpan;
          repeatCount : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -481,7 +481,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor
    (
-      effectKind : Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
+      effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
    )
    return ConditionForceEffect;
 
@@ -525,7 +525,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out ConditionForceEffect;
-      direction : Windows.Foundation.Numerics.Vector3;
+      direction : WinRt.Windows.Foundation.Numerics.Vector3;
       positiveCoefficient : WinRt.Single;
       negativeCoefficient : WinRt.Single;
       maxPositiveMagnitude : WinRt.Single;
@@ -579,21 +579,21 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out ConstantForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
-      duration : Windows.Foundation.TimeSpan
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
+      duration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SetParametersWithEnvelope
    (
       this : in out ConstantForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    );
 
@@ -639,7 +639,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    function LoadEffectAsync
    (
       this : in out ForceFeedbackMotor;
-      effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+      effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackLoadEffectResult;
 
@@ -679,7 +679,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    function TryUnloadEffectAsync
    (
       this : in out ForceFeedbackMotor;
-      effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+      effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
    )
    return WinRt.Boolean;
 
@@ -694,7 +694,7 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor
    (
-      effectKind : Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
+      effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
    )
    return PeriodicForceEffect;
 
@@ -738,27 +738,27 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out PeriodicForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       frequency : WinRt.Single;
       phase : WinRt.Single;
       bias : WinRt.Single;
-      duration : Windows.Foundation.TimeSpan
+      duration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SetParametersWithEnvelope
    (
       this : in out PeriodicForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       frequency : WinRt.Single;
       phase : WinRt.Single;
       bias : WinRt.Single;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    );
 
@@ -807,23 +807,23 @@ package WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out RampForceEffect;
-      startVector : Windows.Foundation.Numerics.Vector3;
-      endVector : Windows.Foundation.Numerics.Vector3;
-      duration : Windows.Foundation.TimeSpan
+      startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      endVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      duration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SetParametersWithEnvelope
    (
       this : in out RampForceEffect;
-      startVector : Windows.Foundation.Numerics.Vector3;
-      endVector : Windows.Foundation.Numerics.Vector3;
+      startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      endVector : WinRt.Windows.Foundation.Numerics.Vector3;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    );
 

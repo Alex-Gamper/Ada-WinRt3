@@ -60,7 +60,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Store.ILicenseInformation;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Store.ILicenseInformation;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Store.LicenseInformation do
             Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
@@ -70,7 +70,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ILicenseInformation := new Windows.ApplicationModel.Store.ILicenseInformation;
+               Retval.m_ILicenseInformation := new WinRt.Windows.ApplicationModel.Store.ILicenseInformation;
                Retval.m_ILicenseInformation.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -84,7 +84,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentApp");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentApp_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_ICurrentApp'Access , m_Factory'Address);
@@ -94,7 +94,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+               Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -326,7 +326,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -544,7 +544,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -617,7 +617,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1013,7 +1013,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPurchaseResults := new Windows.ApplicationModel.Store.IPurchaseResults;
+                        Retval.m_IPurchaseResults := new WinRt.Windows.ApplicationModel.Store.IPurchaseResults;
                         Retval.m_IPurchaseResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1033,7 +1033,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       (
          productId : WinRt.WString;
          offerId : WinRt.WString;
-         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
+         displayProperties : WinRt.Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
       )
       return WinRt.Windows.ApplicationModel.Store.PurchaseResults is
          Hr               : WinRt.HResult := S_OK;
@@ -1091,7 +1091,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPurchaseResults := new Windows.ApplicationModel.Store.IPurchaseResults;
+                        Retval.m_IPurchaseResults := new WinRt.Windows.ApplicationModel.Store.IPurchaseResults;
                         Retval.m_IPurchaseResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1309,7 +1309,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1382,7 +1382,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1404,7 +1404,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulator_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Store.ILicenseInformation;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Store.ILicenseInformation;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Store.LicenseInformation do
             Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulator'Access , m_Factory'Address);
@@ -1414,7 +1414,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ILicenseInformation := new Windows.ApplicationModel.Store.ILicenseInformation;
+               Retval.m_ILicenseInformation := new WinRt.Windows.ApplicationModel.Store.ILicenseInformation;
                Retval.m_ILicenseInformation.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1428,7 +1428,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.CurrentAppSimulator");
          m_Factory        : access WinRt.Windows.ApplicationModel.Store.ICurrentAppSimulator_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_ICurrentAppSimulator'Access , m_Factory'Address);
@@ -1438,7 +1438,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+               Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1670,7 +1670,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IListingInformation := new Windows.ApplicationModel.Store.IListingInformation;
+                        Retval.m_IListingInformation := new WinRt.Windows.ApplicationModel.Store.IListingInformation;
                         Retval.m_IListingInformation.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1832,7 +1832,7 @@ package body WinRt.Windows.ApplicationModel.Store is
 
       procedure ReloadSimulatorAsync
       (
-         simulatorSettingsFile : Windows.Storage.StorageFile'Class
+         simulatorSettingsFile : WinRt.Windows.Storage.StorageFile'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2011,7 +2011,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPurchaseResults := new Windows.ApplicationModel.Store.IPurchaseResults;
+                        Retval.m_IPurchaseResults := new WinRt.Windows.ApplicationModel.Store.IPurchaseResults;
                         Retval.m_IPurchaseResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2031,7 +2031,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       (
          productId : WinRt.WString;
          offerId : WinRt.WString;
-         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
+         displayProperties : WinRt.Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
       )
       return WinRt.Windows.ApplicationModel.Store.PurchaseResults is
          Hr               : WinRt.HResult := S_OK;
@@ -2089,7 +2089,7 @@ package body WinRt.Windows.ApplicationModel.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPurchaseResults := new Windows.ApplicationModel.Store.IPurchaseResults;
+                        Retval.m_IPurchaseResults := new WinRt.Windows.ApplicationModel.Store.IPurchaseResults;
                         Retval.m_IPurchaseResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2220,7 +2220,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IProductLicense.Kind;
    begin
       Hr := this.m_ILicenseInformation.all.get_ProductLicenses (m_ComRetVal'Access);
@@ -2274,7 +2274,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ILicenseInformation.all.get_ExpirationDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2286,13 +2286,13 @@ package body WinRt.Windows.ApplicationModel.Store is
    function add_LicenseChanged
    (
       this : in out LicenseInformation;
-      handler : Windows.ApplicationModel.Store.LicenseChangedEventHandler
+      handler : WinRt.Windows.ApplicationModel.Store.LicenseChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILicenseInformation.all.add_LicenseChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2304,7 +2304,7 @@ package body WinRt.Windows.ApplicationModel.Store is
    procedure remove_LicenseChanged
    (
       this : in out LicenseInformation;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2387,7 +2387,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IProductListing.Kind;
    begin
       Hr := this.m_IListingInformation.all.get_ProductListings (m_ComRetVal'Access);
@@ -2489,7 +2489,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.IListingInformation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.IListingInformation_Interface, WinRt.Windows.ApplicationModel.Store.IListingInformation2, WinRt.Windows.ApplicationModel.Store.IID_IListingInformation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IListingInformation.all);
@@ -2614,7 +2614,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IProductLicense.all.get_ExpirationDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2760,7 +2760,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IIterable_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.IProductListing_Interface, WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata, WinRt.Windows.ApplicationModel.Store.IID_IProductListingWithMetadata'Unchecked_Access);
    begin
@@ -2784,7 +2784,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Store.ProductType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Store.ProductType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.IProductListing_Interface, WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata, WinRt.Windows.ApplicationModel.Store.IID_IProductListingWithMetadata'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProductListing.all);
@@ -2829,7 +2829,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.IProductListing_Interface, WinRt.Windows.ApplicationModel.Store.IProductListingWithMetadata, WinRt.Windows.ApplicationModel.Store.IID_IProductListingWithMetadata'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2839,7 +2839,7 @@ package body WinRt.Windows.ApplicationModel.Store is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2877,7 +2877,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Store.IProductListing2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Store.IProductListing_Interface, WinRt.Windows.ApplicationModel.Store.IProductListing2, WinRt.Windows.ApplicationModel.Store.IID_IProductListing2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProductListing.all);
@@ -2960,13 +2960,13 @@ package body WinRt.Windows.ApplicationModel.Store is
    function Constructor return ProductPurchaseDisplayProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
    begin
       return RetVal : ProductPurchaseDisplayProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IProductPurchaseDisplayProperties := new Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+            Retval.m_IProductPurchaseDisplayProperties := new WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
             Retval.m_IProductPurchaseDisplayProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2980,17 +2980,17 @@ package body WinRt.Windows.ApplicationModel.Store is
    return ProductPurchaseDisplayProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
       m_Factory    : access IProductPurchaseDisplayPropertiesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : ProductPurchaseDisplayProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IProductPurchaseDisplayPropertiesFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateProductPurchaseDisplayProperties (HStr_name, m_ComRetVal'Access);
-            Retval.m_IProductPurchaseDisplayProperties := new Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+            Retval.m_IProductPurchaseDisplayProperties := new WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
             Retval.m_IProductPurchaseDisplayProperties.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3084,14 +3084,14 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IProductPurchaseDisplayProperties.all.get_Image (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3099,7 +3099,7 @@ package body WinRt.Windows.ApplicationModel.Store is
    procedure put_Image
    (
       this : in out ProductPurchaseDisplayProperties;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3142,7 +3142,7 @@ package body WinRt.Windows.ApplicationModel.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Store.ProductPurchaseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Store.ProductPurchaseStatus;
    begin
       Hr := this.m_IPurchaseResults.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then

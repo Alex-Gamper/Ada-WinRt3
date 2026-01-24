@@ -82,11 +82,11 @@ package WinRt.Windows.System.Threading.Core is
    -----------------------------------------------------------------------------
 
    IID_SignalHandler : aliased WinRt.IID := (2453422126, 18209, 17422, (157, 218, 85, 182, 242, 224, 119, 16 ));
-   type SignalHandler_Delegate (Callback : access procedure  (signalNotifier_p : Windows.System.Threading.Core.ISignalNotifier;timedOut : WinRt.Boolean)) is new WinRt.IMulticastDelegate_Interface (IID_SignalHandler'Access) with null record;
+   type SignalHandler_Delegate (Callback : access procedure  (signalNotifier_p : WinRt.Windows.System.Threading.Core.ISignalNotifier;timedOut : WinRt.Boolean)) is new WinRt.IMulticastDelegate_Interface (IID_SignalHandler'Access) with null record;
       function Invoke
       (
          this : access SignalHandler_Delegate;
-         signalNotifier_p : Windows.System.Threading.Core.ISignalNotifier;
+         signalNotifier_p : WinRt.Windows.System.Threading.Core.ISignalNotifier;
          timedOut : WinRt.Boolean
       )
       return WinRt.Hresult;
@@ -101,7 +101,7 @@ package WinRt.Windows.System.Threading.Core is
       function RunAsync
       (
          this : access IPreallocatedWorkItem_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -113,27 +113,27 @@ package WinRt.Windows.System.Threading.Core is
       function CreateWorkItem
       (
          this : access IPreallocatedWorkItemFactory_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         RetVal : access Windows.System.Threading.Core.IPreallocatedWorkItem
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         RetVal : access WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem
       )
       return WinRt.Hresult is abstract;
 
       function CreateWorkItemWithPriority
       (
          this : access IPreallocatedWorkItemFactory_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         RetVal : access Windows.System.Threading.Core.IPreallocatedWorkItem
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         RetVal : access WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem
       )
       return WinRt.Hresult is abstract;
 
       function CreateWorkItemWithPriorityAndOptions
       (
          this : access IPreallocatedWorkItemFactory_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         options : Windows.System.Threading.WorkItemOptions;
-         RetVal : access Windows.System.Threading.Core.IPreallocatedWorkItem
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         options : WinRt.Windows.System.Threading.WorkItemOptions;
+         RetVal : access WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem
       )
       return WinRt.Hresult is abstract;
 
@@ -163,8 +163,8 @@ package WinRt.Windows.System.Threading.Core is
       (
          this : access ISignalNotifierStatics_Interface;
          name : WinRt.HString;
-         handler : Windows.System.Threading.Core.SignalHandler;
-         RetVal : access Windows.System.Threading.Core.ISignalNotifier
+         handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+         RetVal : access WinRt.Windows.System.Threading.Core.ISignalNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -172,9 +172,9 @@ package WinRt.Windows.System.Threading.Core is
       (
          this : access ISignalNotifierStatics_Interface;
          name : WinRt.HString;
-         handler : Windows.System.Threading.Core.SignalHandler;
-         timeout : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.System.Threading.Core.ISignalNotifier
+         handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.System.Threading.Core.ISignalNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -182,8 +182,8 @@ package WinRt.Windows.System.Threading.Core is
       (
          this : access ISignalNotifierStatics_Interface;
          name : WinRt.HString;
-         handler : Windows.System.Threading.Core.SignalHandler;
-         RetVal : access Windows.System.Threading.Core.ISignalNotifier
+         handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+         RetVal : access WinRt.Windows.System.Threading.Core.ISignalNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -191,9 +191,9 @@ package WinRt.Windows.System.Threading.Core is
       (
          this : access ISignalNotifierStatics_Interface;
          name : WinRt.HString;
-         handler : Windows.System.Threading.Core.SignalHandler;
-         timeout : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.System.Threading.Core.ISignalNotifier
+         handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.System.Threading.Core.ISignalNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -214,22 +214,22 @@ package WinRt.Windows.System.Threading.Core is
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler
+      handler : WinRt.Windows.System.Threading.WorkItemHandler
    )
    return PreallocatedWorkItem;
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler;
-      priority : Windows.System.Threading.WorkItemPriority
+      handler : WinRt.Windows.System.Threading.WorkItemHandler;
+      priority : WinRt.Windows.System.Threading.WorkItemPriority
    )
    return PreallocatedWorkItem;
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler;
-      priority : Windows.System.Threading.WorkItemPriority;
-      options : Windows.System.Threading.WorkItemOptions
+      handler : WinRt.Windows.System.Threading.WorkItemHandler;
+      priority : WinRt.Windows.System.Threading.WorkItemPriority;
+      options : WinRt.Windows.System.Threading.WorkItemOptions
    )
    return PreallocatedWorkItem;
 
@@ -253,30 +253,30 @@ package WinRt.Windows.System.Threading.Core is
    function AttachToEvent
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier;
 
    function AttachToEvent
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler;
-      timeout : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier;
 
    function AttachToSemaphore
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier;
 
    function AttachToSemaphore
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler;
-      timeout : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier;
 

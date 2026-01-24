@@ -210,14 +210,14 @@ package WinRt.Windows.Devices.Scanners is
       function get_DefaultScanSource
       (
          this : access IImageScanner_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerScanSource
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerScanSource
       )
       return WinRt.Hresult is abstract;
 
       function IsScanSourceSupported
       (
          this : access IImageScanner_Interface;
-         value : Windows.Devices.Scanners.ImageScannerScanSource;
+         value : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -225,28 +225,28 @@ package WinRt.Windows.Devices.Scanners is
       function get_FlatbedConfiguration
       (
          this : access IImageScanner_Interface;
-         RetVal : access Windows.Devices.Scanners.IImageScannerFormatConfiguration
+         RetVal : access WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_FeederConfiguration
       (
          this : access IImageScanner_Interface;
-         RetVal : access Windows.Devices.Scanners.IImageScannerFormatConfiguration
+         RetVal : access WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoConfiguration
       (
          this : access IImageScanner_Interface;
-         RetVal : access Windows.Devices.Scanners.IImageScannerFormatConfiguration
+         RetVal : access WinRt.Windows.Devices.Scanners.IImageScannerFormatConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function IsPreviewSupported
       (
          this : access IImageScanner_Interface;
-         scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
+         scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -254,8 +254,8 @@ package WinRt.Windows.Devices.Scanners is
       function ScanPreviewToStreamAsync
       (
          this : access IImageScanner_Interface;
-         scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-         targetStream : Windows.Storage.Streams.IRandomAccessStream;
+         scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+         targetStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -263,8 +263,8 @@ package WinRt.Windows.Devices.Scanners is
       function ScanFilesToFolderAsync
       (
          this : access IImageScanner_Interface;
-         scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-         storageFolder : Windows.Storage.IStorageFolder;
+         scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+         storageFolder : WinRt.Windows.Storage.IStorageFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -298,43 +298,43 @@ package WinRt.Windows.Devices.Scanners is
       function get_PageSize
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintMediaSize
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function put_PageSize
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintMediaSize
+         value : WinRt.Windows.Graphics.Printing.PrintMediaSize
       )
       return WinRt.Hresult is abstract;
 
       function get_PageOrientation
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintOrientation
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
       function put_PageOrientation
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintOrientation
+         value : WinRt.Windows.Graphics.Printing.PrintOrientation
       )
       return WinRt.Hresult is abstract;
 
       function get_PageSizeDimensions
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function IsPageSizeSupported
       (
          this : access IImageScannerFeederConfiguration_Interface;
-         pageSize : Windows.Graphics.Printing.PrintMediaSize;
-         pageOrientation : Windows.Graphics.Printing.PrintOrientation;
+         pageSize : WinRt.Windows.Graphics.Printing.PrintMediaSize;
+         pageOrientation : WinRt.Windows.Graphics.Printing.PrintOrientation;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -403,28 +403,28 @@ package WinRt.Windows.Devices.Scanners is
       function get_DefaultFormat
       (
          this : access IImageScannerFormatConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerFormat
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_Format
       (
          this : access IImageScannerFormatConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerFormat
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access IImageScannerFormatConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerFormat
+         value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
       )
       return WinRt.Hresult is abstract;
 
       function IsFormatSupported
       (
          this : access IImageScannerFormatConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerFormat;
+         value : WinRt.Windows.Devices.Scanners.ImageScannerFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -444,7 +444,7 @@ package WinRt.Windows.Devices.Scanners is
       function get_Format
       (
          this : access IImageScannerPreviewResult_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerFormat
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -468,49 +468,49 @@ package WinRt.Windows.Devices.Scanners is
       function get_MinScanArea
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxScanArea
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedScanRegion
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedScanRegion
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoCroppingMode
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoCroppingMode
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+         value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
       )
       return WinRt.Hresult is abstract;
 
       function IsAutoCroppingModeSupported
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
+         value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -518,70 +518,70 @@ package WinRt.Windows.Devices.Scanners is
       function get_MinResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerResolution
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerResolution
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_OpticalResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerResolution
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerResolution
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerResolution
+         value : WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_ActualResolution
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerResolution
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_DefaultColorMode
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerColorMode
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerColorMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorMode
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         RetVal : access Windows.Devices.Scanners.ImageScannerColorMode
+         RetVal : access WinRt.Windows.Devices.Scanners.ImageScannerColorMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorMode
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerColorMode
+         value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
       )
       return WinRt.Hresult is abstract;
 
       function IsColorModeSupported
       (
          this : access IImageScannerSourceConfiguration_Interface;
-         value : Windows.Devices.Scanners.ImageScannerColorMode;
+         value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -732,7 +732,7 @@ package WinRt.Windows.Devices.Scanners is
    function IsScanSourceSupported
    (
       this : in out ImageScanner;
-      value : Windows.Devices.Scanners.ImageScannerScanSource
+      value : WinRt.Windows.Devices.Scanners.ImageScannerScanSource
    )
    return WinRt.Boolean;
 
@@ -757,23 +757,23 @@ package WinRt.Windows.Devices.Scanners is
    function IsPreviewSupported
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource
    )
    return WinRt.Boolean;
 
    function ScanPreviewToStreamAsync
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-      targetStream : Windows.Storage.Streams.IRandomAccessStream
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+      targetStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Devices.Scanners.ImageScannerPreviewResult'Class;
 
    function ScanFilesToFolderAsync
    (
       this : in out ImageScanner;
-      scanSource : Windows.Devices.Scanners.ImageScannerScanSource;
-      storageFolder : Windows.Storage.StorageFolder'Class
+      scanSource : WinRt.Windows.Devices.Scanners.ImageScannerScanSource;
+      storageFolder : WinRt.Windows.Storage.StorageFolder'Class
    )
    return WinRt.Windows.Devices.Scanners.ImageScannerScanResult'Class;
 
@@ -801,13 +801,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerAutoConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    );
 
    function IsFormatSupported
    (
       this : in out ImageScannerAutoConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean;
 
@@ -835,13 +835,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    );
 
    function IsFormatSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean;
 
@@ -866,7 +866,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_SelectedScanRegion
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_AutoCroppingMode
@@ -878,13 +878,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_AutoCroppingMode
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    );
 
    function IsAutoCroppingModeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    )
    return WinRt.Boolean;
 
@@ -915,7 +915,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_DesiredResolution
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerResolution
+      value : WinRt.Windows.Devices.Scanners.ImageScannerResolution
    );
 
    function get_ActualResolution
@@ -939,13 +939,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_ColorMode
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    );
 
    function IsColorModeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    )
    return WinRt.Boolean;
 
@@ -1048,7 +1048,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_PageSize
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Graphics.Printing.PrintMediaSize
+      value : WinRt.Windows.Graphics.Printing.PrintMediaSize
    );
 
    function get_PageOrientation
@@ -1060,7 +1060,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_PageOrientation
    (
       this : in out ImageScannerFeederConfiguration;
-      value : Windows.Graphics.Printing.PrintOrientation
+      value : WinRt.Windows.Graphics.Printing.PrintOrientation
    );
 
    function get_PageSizeDimensions
@@ -1072,8 +1072,8 @@ package WinRt.Windows.Devices.Scanners is
    function IsPageSizeSupported
    (
       this : in out ImageScannerFeederConfiguration;
-      pageSize : Windows.Graphics.Printing.PrintMediaSize;
-      pageOrientation : Windows.Graphics.Printing.PrintOrientation
+      pageSize : WinRt.Windows.Graphics.Printing.PrintMediaSize;
+      pageOrientation : WinRt.Windows.Graphics.Printing.PrintOrientation
    )
    return WinRt.Boolean;
 
@@ -1149,13 +1149,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_Format
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    );
 
    function IsFormatSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerFormat
+      value : WinRt.Windows.Devices.Scanners.ImageScannerFormat
    )
    return WinRt.Boolean;
 
@@ -1180,7 +1180,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_SelectedScanRegion
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_AutoCroppingMode
@@ -1192,13 +1192,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_AutoCroppingMode
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    );
 
    function IsAutoCroppingModeSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerAutoCroppingMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerAutoCroppingMode
    )
    return WinRt.Boolean;
 
@@ -1229,7 +1229,7 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_DesiredResolution
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerResolution
+      value : WinRt.Windows.Devices.Scanners.ImageScannerResolution
    );
 
    function get_ActualResolution
@@ -1253,13 +1253,13 @@ package WinRt.Windows.Devices.Scanners is
    procedure put_ColorMode
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    );
 
    function IsColorModeSupported
    (
       this : in out ImageScannerFlatbedConfiguration;
-      value : Windows.Devices.Scanners.ImageScannerColorMode
+      value : WinRt.Windows.Devices.Scanners.ImageScannerColorMode
    )
    return WinRt.Boolean;
 

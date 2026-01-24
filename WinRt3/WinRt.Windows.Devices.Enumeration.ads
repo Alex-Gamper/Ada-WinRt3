@@ -613,7 +613,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Status
       (
          this : access IDeviceAccessChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceAccessStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -650,21 +650,21 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceAccessInformation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccessChanged
       (
          this : access IDeviceAccessInformation_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentStatus
       (
          this : access IDeviceAccessInformation_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceAccessStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -689,7 +689,7 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceAccessInformationStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -697,15 +697,15 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceAccessInformationStatics_Interface;
          deviceClassId : WinRt.Guid;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromDeviceClass
       (
          this : access IDeviceAccessInformationStatics_Interface;
-         deviceClass : Windows.Devices.Enumeration.DeviceClass;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass;
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -729,7 +729,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Device
       (
          this : access IDeviceDisconnectButtonClickedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -774,7 +774,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_EnclosureLocation
       (
          this : access IDeviceInformation_Interface;
-         RetVal : access Windows.Devices.Enumeration.IEnclosureLocation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IEnclosureLocation
       )
       return WinRt.Hresult is abstract;
 
@@ -788,7 +788,7 @@ package WinRt.Windows.Devices.Enumeration is
       function Update
       (
          this : access IDeviceInformation_Interface;
-         updateInfo : Windows.Devices.Enumeration.IDeviceInformationUpdate
+         updateInfo : WinRt.Windows.Devices.Enumeration.IDeviceInformationUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -814,14 +814,14 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Kind
       (
          this : access IDeviceInformation2_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceInformationKind
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceInformationKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Pairing
       (
          this : access IDeviceInformation2_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformationPairing
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformationPairing
       )
       return WinRt.Hresult is abstract;
 
@@ -833,7 +833,7 @@ package WinRt.Windows.Devices.Enumeration is
       function PairAsync
       (
          this : access IDeviceInformationCustomPairing_Interface;
-         pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
+         pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -841,8 +841,8 @@ package WinRt.Windows.Devices.Enumeration is
       function PairAsync
       (
          this : access IDeviceInformationCustomPairing_Interface;
-         pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-         minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+         pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+         minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -850,9 +850,9 @@ package WinRt.Windows.Devices.Enumeration is
       function PairAsync
       (
          this : access IDeviceInformationCustomPairing_Interface;
-         pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-         minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
-         devicePairingSettings : Windows.Devices.Enumeration.IDevicePairingSettings;
+         pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+         minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+         devicePairingSettings : WinRt.Windows.Devices.Enumeration.IDevicePairingSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -861,14 +861,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceInformationCustomPairing_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PairingRequested
       (
          this : access IDeviceInformationCustomPairing_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -880,7 +880,7 @@ package WinRt.Windows.Devices.Enumeration is
       function AddPairingSetMember
       (
          this : access IDeviceInformationCustomPairing2_Interface;
-         device : Windows.Devices.Enumeration.IDeviceInformation
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -888,14 +888,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceInformationCustomPairing2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PairingSetMembersRequested
       (
          this : access IDeviceInformationCustomPairing2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -928,7 +928,7 @@ package WinRt.Windows.Devices.Enumeration is
       function PairAsync
       (
          this : access IDeviceInformationPairing_Interface;
-         minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+         minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -941,22 +941,22 @@ package WinRt.Windows.Devices.Enumeration is
       function get_ProtectionLevel
       (
          this : access IDeviceInformationPairing2_Interface;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_Custom
       (
          this : access IDeviceInformationPairing2_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformationCustomPairing
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformationCustomPairing
       )
       return WinRt.Hresult is abstract;
 
       function PairAsync
       (
          this : access IDeviceInformationPairing2_Interface;
-         minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
-         devicePairingSettings : Windows.Devices.Enumeration.IDevicePairingSettings;
+         minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+         devicePairingSettings : WinRt.Windows.Devices.Enumeration.IDevicePairingSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -976,7 +976,7 @@ package WinRt.Windows.Devices.Enumeration is
       function TryRegisterForAllInboundPairingRequests
       (
          this : access IDeviceInformationPairingStatics_Interface;
-         pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
+         pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -989,8 +989,8 @@ package WinRt.Windows.Devices.Enumeration is
       function TryRegisterForAllInboundPairingRequestsWithProtectionLevel
       (
          this : access IDeviceInformationPairingStatics2_Interface;
-         pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-         minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+         pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+         minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1027,7 +1027,7 @@ package WinRt.Windows.Devices.Enumeration is
       function FindAllAsync
       (
          this : access IDeviceInformationStatics_Interface;
-         deviceClass : Windows.Devices.Enumeration.DeviceClass;
+         deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1052,15 +1052,15 @@ package WinRt.Windows.Devices.Enumeration is
       function CreateWatcher
       (
          this : access IDeviceInformationStatics_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
       function CreateWatcher
       (
          this : access IDeviceInformationStatics_Interface;
-         deviceClass : Windows.Devices.Enumeration.DeviceClass;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass;
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceInformationStatics_Interface;
          aqsFilter : WinRt.HString;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1077,7 +1077,7 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics_Interface;
          aqsFilter : WinRt.HString;
          additionalProperties : GenericObject;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1089,7 +1089,7 @@ package WinRt.Windows.Devices.Enumeration is
       function GetAqsFilterFromDeviceClass
       (
          this : access IDeviceInformationStatics2_Interface;
-         deviceClass : Windows.Devices.Enumeration.DeviceClass;
+         deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1099,7 +1099,7 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics2_Interface;
          deviceId : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1109,7 +1109,7 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics2_Interface;
          aqsFilter : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1119,8 +1119,8 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics2_Interface;
          aqsFilter : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1134,8 +1134,8 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics3_Interface;
          deviceId : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
-         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1145,8 +1145,8 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics3_Interface;
          aqsFilter : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
-         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1156,9 +1156,9 @@ package WinRt.Windows.Devices.Enumeration is
          this : access IDeviceInformationStatics3_Interface;
          aqsFilter : WinRt.HString;
          additionalProperties : GenericObject;
-         kind : Windows.Devices.Enumeration.DeviceInformationKind;
-         settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings;
-         RetVal : access Windows.Devices.Enumeration.IDeviceWatcher
+         kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+         settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings;
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1189,7 +1189,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Kind
       (
          this : access IDeviceInformationUpdate2_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceInformationKind
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceInformationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1201,14 +1201,14 @@ package WinRt.Windows.Devices.Enumeration is
       function get_DeviceInformation
       (
          this : access IDevicePairingRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_PairingKind
       (
          this : access IDevicePairingRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingKinds
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingKinds
       )
       return WinRt.Hresult is abstract;
 
@@ -1235,7 +1235,7 @@ package WinRt.Windows.Devices.Enumeration is
       function GetDeferral
       (
          this : access IDevicePairingRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1247,7 +1247,7 @@ package WinRt.Windows.Devices.Enumeration is
       function AcceptWithPasswordCredential
       (
          this : access IDevicePairingRequestedEventArgs2_Interface;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -1271,14 +1271,14 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Status
       (
          this : access IDevicePairingResult_Interface;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingResultStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingResultStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionLevelUsed
       (
          this : access IDevicePairingResult_Interface;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1290,14 +1290,14 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Status
       (
          this : access IDevicePairingSetMembersRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingAddPairingSetMemberStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingAddPairingSetMemberStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ParentDeviceInformation
       (
          this : access IDevicePairingSetMembersRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1321,14 +1321,14 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Filter
       (
          this : access IDevicePicker_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDevicePickerFilter
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDevicePickerFilter
       )
       return WinRt.Hresult is abstract;
 
       function get_Appearance
       (
          this : access IDevicePicker_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDevicePickerAppearance
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDevicePickerAppearance
       )
       return WinRt.Hresult is abstract;
 
@@ -1343,14 +1343,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeviceSelected
       (
          this : access IDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1358,14 +1358,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisconnectButtonClicked
       (
          this : access IDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1373,36 +1373,36 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDevicePicker_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DevicePickerDismissed
       (
          this : access IDevicePicker_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access IDevicePicker_Interface;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function Show
       (
          this : access IDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
-         placement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         placement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Hresult is abstract;
 
       function PickSingleDeviceAsync
       (
          this : access IDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1410,8 +1410,8 @@ package WinRt.Windows.Devices.Enumeration is
       function PickSingleDeviceAsync
       (
          this : access IDevicePicker_Interface;
-         selection : Windows.Foundation.Rect;
-         placement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         placement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1425,9 +1425,9 @@ package WinRt.Windows.Devices.Enumeration is
       function SetDisplayStatus
       (
          this : access IDevicePicker_Interface;
-         device : Windows.Devices.Enumeration.IDeviceInformation;
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          status : WinRt.HString;
-         options : Windows.Devices.Enumeration.DevicePickerDisplayStatusOptions
+         options : WinRt.Windows.Devices.Enumeration.DevicePickerDisplayStatusOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1453,84 +1453,84 @@ package WinRt.Windows.Devices.Enumeration is
       function get_ForegroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_ForegroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_AccentColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_AccentColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedForegroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedForegroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedBackgroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedBackgroundColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedAccentColor
       (
          this : access IDevicePickerAppearance_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_SelectedAccentColor
       (
          this : access IDevicePickerAppearance_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1561,7 +1561,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_SelectedDevice
       (
          this : access IDeviceSelectedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1573,7 +1573,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Status
       (
          this : access IDeviceUnpairingResult_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceUnpairingResultStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceUnpairingResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1586,14 +1586,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IDeviceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1601,14 +1601,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IDeviceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1616,14 +1616,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IDeviceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1631,14 +1631,14 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IDeviceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1646,21 +1646,21 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IDeviceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IDeviceWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1685,7 +1685,7 @@ package WinRt.Windows.Devices.Enumeration is
       (
          this : access IDeviceWatcher2_Interface;
          requestedEventKinds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Background.IDeviceWatcherTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IDeviceWatcherTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -1697,21 +1697,21 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Kind
       (
          this : access IDeviceWatcherEvent_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherEventKind
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherEventKind
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceInformation
       (
          this : access IDeviceWatcherEvent_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceInformationUpdate
       (
          this : access IDeviceWatcherEvent_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformationUpdate
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformationUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -1749,7 +1749,7 @@ package WinRt.Windows.Devices.Enumeration is
       function get_Panel
       (
          this : access IEnclosureLocation_Interface;
-         RetVal : access Windows.Devices.Enumeration.Panel
+         RetVal : access WinRt.Windows.Devices.Enumeration.Panel
       )
       return WinRt.Hresult is abstract;
 
@@ -1821,7 +1821,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    function CreateFromDeviceClass
    (
-      deviceClass : Windows.Devices.Enumeration.DeviceClass
+      deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass
    )
    return WinRt.Windows.Devices.Enumeration.DeviceAccessInformation;
 
@@ -1838,7 +1838,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_AccessChanged
    (
       this : in out DeviceAccessInformation;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CurrentStatus
@@ -1896,8 +1896,8 @@ package WinRt.Windows.Devices.Enumeration is
    (
       deviceId : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind;
-      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation;
 
@@ -1905,8 +1905,8 @@ package WinRt.Windows.Devices.Enumeration is
    (
       aqsFilter : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind;
-      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
 
@@ -1914,14 +1914,14 @@ package WinRt.Windows.Devices.Enumeration is
    (
       aqsFilter : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind;
-      settings : Windows.Devices.Enumeration.IDeviceEnumerationSettings
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind;
+      settings : WinRt.Windows.Devices.Enumeration.IDeviceEnumerationSettings
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
 
    function GetAqsFilterFromDeviceClass
    (
-      deviceClass : Windows.Devices.Enumeration.DeviceClass
+      deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass
    )
    return WinRt.WString;
 
@@ -1929,7 +1929,7 @@ package WinRt.Windows.Devices.Enumeration is
    (
       deviceId : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation;
 
@@ -1937,7 +1937,7 @@ package WinRt.Windows.Devices.Enumeration is
    (
       aqsFilter : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
 
@@ -1945,7 +1945,7 @@ package WinRt.Windows.Devices.Enumeration is
    (
       aqsFilter : WinRt.WString;
       additionalProperties : GenericObject;
-      kind : Windows.Devices.Enumeration.DeviceInformationKind
+      kind : WinRt.Windows.Devices.Enumeration.DeviceInformationKind
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
 
@@ -1967,7 +1967,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    function FindAllAsync
    (
-      deviceClass : Windows.Devices.Enumeration.DeviceClass
+      deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformationCollection;
 
@@ -1989,7 +1989,7 @@ package WinRt.Windows.Devices.Enumeration is
 
    function CreateWatcher
    (
-      deviceClass : Windows.Devices.Enumeration.DeviceClass
+      deviceClass : WinRt.Windows.Devices.Enumeration.DeviceClass
    )
    return WinRt.Windows.Devices.Enumeration.DeviceWatcher;
 
@@ -2048,7 +2048,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure Update
    (
       this : in out DeviceInformation;
-      updateInfo : Windows.Devices.Enumeration.DeviceInformationUpdate'Class
+      updateInfo : WinRt.Windows.Devices.Enumeration.DeviceInformationUpdate'Class
    );
 
    function GetThumbnailAsync
@@ -2101,7 +2101,7 @@ package WinRt.Windows.Devices.Enumeration is
    function IndexOf
    (
       this : in out DeviceInformationCollection;
-      value : Windows.Devices.Enumeration.DeviceInformation'Class;
+      value : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -2110,7 +2110,7 @@ package WinRt.Windows.Devices.Enumeration is
    (
       this : in out DeviceInformationCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Devices.Enumeration.IDeviceInformation_Array
+      items : WinRt.Windows.Devices.Enumeration.IDeviceInformation_Array
    )
    return WinRt.UInt32;
 
@@ -2133,24 +2133,24 @@ package WinRt.Windows.Devices.Enumeration is
    function PairAsync
    (
       this : in out DeviceInformationCustomPairing;
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
+      pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class;
 
    function PairAsync
    (
       this : in out DeviceInformationCustomPairing;
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-      minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel
+      pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+      minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class;
 
    function PairAsync
    (
       this : in out DeviceInformationCustomPairing;
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-      minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
-      devicePairingSettings : Windows.Devices.Enumeration.IDevicePairingSettings
+      pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+      minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+      devicePairingSettings : WinRt.Windows.Devices.Enumeration.IDevicePairingSettings
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class;
 
@@ -2164,13 +2164,13 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_PairingRequested
    (
       this : in out DeviceInformationCustomPairing;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddPairingSetMember
    (
       this : in out DeviceInformationCustomPairing;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    );
 
    function add_PairingSetMembersRequested
@@ -2183,7 +2183,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_PairingSetMembersRequested
    (
       this : in out DeviceInformationCustomPairing;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2197,14 +2197,14 @@ package WinRt.Windows.Devices.Enumeration is
 
    function TryRegisterForAllInboundPairingRequests
    (
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds
+      pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds
    )
    return WinRt.Boolean;
 
    function TryRegisterForAllInboundPairingRequestsWithProtectionLevel
    (
-      pairingKindsSupported : Windows.Devices.Enumeration.DevicePairingKinds;
-      minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel
+      pairingKindsSupported : WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
+      minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel
    )
    return WinRt.Boolean;
 
@@ -2232,7 +2232,7 @@ package WinRt.Windows.Devices.Enumeration is
    function PairAsync
    (
       this : in out DeviceInformationPairing;
-      minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel
+      minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class;
 
@@ -2251,8 +2251,8 @@ package WinRt.Windows.Devices.Enumeration is
    function PairAsync
    (
       this : in out DeviceInformationPairing;
-      minProtectionLevel : Windows.Devices.Enumeration.DevicePairingProtectionLevel;
-      devicePairingSettings : Windows.Devices.Enumeration.IDevicePairingSettings
+      minProtectionLevel : WinRt.Windows.Devices.Enumeration.DevicePairingProtectionLevel;
+      devicePairingSettings : WinRt.Windows.Devices.Enumeration.IDevicePairingSettings
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingResult'Class;
 
@@ -2336,7 +2336,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure AcceptWithPasswordCredential
    (
       this : in out DevicePairingRequestedEventArgs;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    procedure AcceptWithAddress
@@ -2435,7 +2435,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_DeviceSelected
    (
       this : in out DevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DisconnectButtonClicked
@@ -2448,7 +2448,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_DisconnectButtonClicked
    (
       this : in out DevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DevicePickerDismissed
@@ -2461,34 +2461,34 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_DevicePickerDismissed
    (
       this : in out DevicePicker;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Show
    (
       this : in out DevicePicker;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    );
 
    procedure Show
    (
       this : in out DevicePicker;
-      selection : Windows.Foundation.Rect;
-      placement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      placement : WinRt.Windows.UI.Popups.Placement
    );
 
    function PickSingleDeviceAsync
    (
       this : in out DevicePicker;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
 
    function PickSingleDeviceAsync
    (
       this : in out DevicePicker;
-      selection : Windows.Foundation.Rect;
-      placement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      placement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
 
@@ -2500,9 +2500,9 @@ package WinRt.Windows.Devices.Enumeration is
    procedure SetDisplayStatus
    (
       this : in out DevicePicker;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class;
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
       status : WinRt.WString;
-      options : Windows.Devices.Enumeration.DevicePickerDisplayStatusOptions
+      options : WinRt.Windows.Devices.Enumeration.DevicePickerDisplayStatusOptions
    );
 
    -----------------------------------------------------------------------------
@@ -2535,7 +2535,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_ForegroundColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_BackgroundColor
@@ -2547,7 +2547,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_BackgroundColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_AccentColor
@@ -2559,7 +2559,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_AccentColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_SelectedForegroundColor
@@ -2571,7 +2571,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_SelectedForegroundColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_SelectedBackgroundColor
@@ -2583,7 +2583,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_SelectedBackgroundColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_SelectedAccentColor
@@ -2595,7 +2595,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure put_SelectedAccentColor
    (
       this : in out DevicePickerAppearance;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    -----------------------------------------------------------------------------
@@ -2708,7 +2708,7 @@ package WinRt.Windows.Devices.Enumeration is
    function WriteAsync
    (
       this : in out DeviceThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -2726,9 +2726,9 @@ package WinRt.Windows.Devices.Enumeration is
    function ReadAsync
    (
       this : in out DeviceThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2766,7 +2766,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_Added
    (
       this : in out DeviceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -2779,7 +2779,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_Updated
    (
       this : in out DeviceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -2792,7 +2792,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_Removed
    (
       this : in out DeviceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -2805,7 +2805,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_EnumerationCompleted
    (
       this : in out DeviceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -2818,7 +2818,7 @@ package WinRt.Windows.Devices.Enumeration is
    procedure remove_Stopped
    (
       this : in out DeviceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status

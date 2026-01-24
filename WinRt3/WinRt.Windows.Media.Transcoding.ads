@@ -109,28 +109,28 @@ package WinRt.Windows.Media.Transcoding is
       function put_TrimStartTime
       (
          this : access IMediaTranscoder_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimStartTime
       (
          this : access IMediaTranscoder_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TrimStopTime
       (
          this : access IMediaTranscoder_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimStopTime
       (
          this : access IMediaTranscoder_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -174,7 +174,7 @@ package WinRt.Windows.Media.Transcoding is
          this : access IMediaTranscoder_Interface;
          activatableClassId : WinRt.HString;
          effectRequired : WinRt.Boolean;
-         configuration : Windows.Foundation.Collections.IPropertySet
+         configuration : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -190,7 +190,7 @@ package WinRt.Windows.Media.Transcoding is
          this : access IMediaTranscoder_Interface;
          activatableClassId : WinRt.HString;
          effectRequired : WinRt.Boolean;
-         configuration : Windows.Foundation.Collections.IPropertySet
+         configuration : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -203,9 +203,9 @@ package WinRt.Windows.Media.Transcoding is
       function PrepareFileTranscodeAsync
       (
          this : access IMediaTranscoder_Interface;
-         source : Windows.Storage.IStorageFile;
-         destination : Windows.Storage.IStorageFile;
-         profile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         source : WinRt.Windows.Storage.IStorageFile;
+         destination : WinRt.Windows.Storage.IStorageFile;
+         profile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -213,9 +213,9 @@ package WinRt.Windows.Media.Transcoding is
       function PrepareStreamTranscodeAsync
       (
          this : access IMediaTranscoder_Interface;
-         source : Windows.Storage.Streams.IRandomAccessStream;
-         destination : Windows.Storage.Streams.IRandomAccessStream;
-         profile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         source : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         profile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -228,9 +228,9 @@ package WinRt.Windows.Media.Transcoding is
       function PrepareMediaStreamSourceTranscodeAsync
       (
          this : access IMediaTranscoder2_Interface;
-         source : Windows.Media.Core.IMediaSource;
-         destination : Windows.Storage.Streams.IRandomAccessStream;
-         profile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         source : WinRt.Windows.Media.Core.IMediaSource;
+         destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         profile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -238,14 +238,14 @@ package WinRt.Windows.Media.Transcoding is
       function put_VideoProcessingAlgorithm
       (
          this : access IMediaTranscoder2_Interface;
-         value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+         value : WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoProcessingAlgorithm
       (
          this : access IMediaTranscoder2_Interface;
-         RetVal : access Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+         RetVal : access WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -264,14 +264,14 @@ package WinRt.Windows.Media.Transcoding is
       function get_FailureReason
       (
          this : access IPrepareTranscodeResult_Interface;
-         RetVal : access Windows.Media.Transcoding.TranscodeFailureReason
+         RetVal : access WinRt.Windows.Media.Transcoding.TranscodeFailureReason
       )
       return WinRt.Hresult is abstract;
 
       function TranscodeAsync
       (
          this : access IPrepareTranscodeResult_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -298,7 +298,7 @@ package WinRt.Windows.Media.Transcoding is
    procedure put_TrimStartTime
    (
       this : in out MediaTranscoder;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TrimStartTime
@@ -310,7 +310,7 @@ package WinRt.Windows.Media.Transcoding is
    procedure put_TrimStopTime
    (
       this : in out MediaTranscoder;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TrimStopTime
@@ -354,7 +354,7 @@ package WinRt.Windows.Media.Transcoding is
       this : in out MediaTranscoder;
       activatableClassId : WinRt.WString;
       effectRequired : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure AddVideoEffect
@@ -368,7 +368,7 @@ package WinRt.Windows.Media.Transcoding is
       this : in out MediaTranscoder;
       activatableClassId : WinRt.WString;
       effectRequired : WinRt.Boolean;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure ClearEffects
@@ -379,34 +379,34 @@ package WinRt.Windows.Media.Transcoding is
    function PrepareFileTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Storage.IStorageFile;
-      destination : Windows.Storage.IStorageFile;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Storage.IStorageFile;
+      destination : WinRt.Windows.Storage.IStorageFile;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class;
 
    function PrepareStreamTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Storage.Streams.IRandomAccessStream;
-      destination : Windows.Storage.Streams.IRandomAccessStream;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class;
 
    function PrepareMediaStreamSourceTranscodeAsync
    (
       this : in out MediaTranscoder;
-      source : Windows.Media.Core.IMediaSource;
-      destination : Windows.Storage.Streams.IRandomAccessStream;
-      profile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      source : WinRt.Windows.Media.Core.IMediaSource;
+      destination : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      profile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.PrepareTranscodeResult'Class;
 
    procedure put_VideoProcessingAlgorithm
    (
       this : in out MediaTranscoder;
-      value : Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
+      value : WinRt.Windows.Media.Transcoding.MediaVideoProcessingAlgorithm
    );
 
    function get_VideoProcessingAlgorithm

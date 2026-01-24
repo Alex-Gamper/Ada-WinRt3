@@ -886,21 +886,21 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access ICrossSlidingEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access ICrossSlidingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_CrossSlidingState
       (
          this : access ICrossSlidingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.CrossSlidingState
+         RetVal : access WinRt.Windows.UI.Input.CrossSlidingState
       )
       return WinRt.Hresult is abstract;
 
@@ -924,21 +924,21 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IDraggingEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IDraggingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_DraggingState
       (
          this : access IDraggingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.DraggingState
+         RetVal : access WinRt.Windows.UI.Input.DraggingState
       )
       return WinRt.Hresult is abstract;
 
@@ -963,14 +963,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IEdgeGesture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Starting
       (
          this : access IEdgeGesture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -978,14 +978,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IEdgeGesture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IEdgeGesture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -993,14 +993,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IEdgeGesture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Canceled
       (
          this : access IEdgeGesture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,7 +1012,7 @@ package WinRt.Windows.UI.Input is
       function get_Kind
       (
          this : access IEdgeGestureEventArgs_Interface;
-         RetVal : access Windows.UI.Input.EdgeGestureKind
+         RetVal : access WinRt.Windows.UI.Input.EdgeGestureKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1024,7 +1024,7 @@ package WinRt.Windows.UI.Input is
       function GetForCurrentView
       (
          this : access IEdgeGestureStatics_Interface;
-         RetVal : access Windows.UI.Input.IEdgeGesture
+         RetVal : access WinRt.Windows.UI.Input.IEdgeGesture
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,14 +1036,14 @@ package WinRt.Windows.UI.Input is
       function get_GestureSettings
       (
          this : access IGestureRecognizer_Interface;
-         RetVal : access Windows.UI.Input.GestureSettings
+         RetVal : access WinRt.Windows.UI.Input.GestureSettings
       )
       return WinRt.Hresult is abstract;
 
       function put_GestureSettings
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.GestureSettings
+         value : WinRt.Windows.UI.Input.GestureSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1078,14 +1078,14 @@ package WinRt.Windows.UI.Input is
       function get_PivotCenter
       (
          this : access IGestureRecognizer_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_PivotCenter
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1204,14 +1204,14 @@ package WinRt.Windows.UI.Input is
       function get_CrossSlideThresholds
       (
          this : access IGestureRecognizer_Interface;
-         RetVal : access Windows.UI.Input.CrossSlideThresholds
+         RetVal : access WinRt.Windows.UI.Input.CrossSlideThresholds
       )
       return WinRt.Hresult is abstract;
 
       function put_CrossSlideThresholds
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.CrossSlideThresholds
+         value : WinRt.Windows.UI.Input.CrossSlideThresholds
       )
       return WinRt.Hresult is abstract;
 
@@ -1260,14 +1260,14 @@ package WinRt.Windows.UI.Input is
       function get_MouseWheelParameters
       (
          this : access IGestureRecognizer_Interface;
-         RetVal : access Windows.UI.Input.IMouseWheelParameters
+         RetVal : access WinRt.Windows.UI.Input.IMouseWheelParameters
       )
       return WinRt.Hresult is abstract;
 
       function CanBeDoubleTap
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint;
+         value : WinRt.Windows.UI.Input.IPointerPoint;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1275,7 +1275,7 @@ package WinRt.Windows.UI.Input is
       function ProcessDownEvent
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint
+         value : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1289,14 +1289,14 @@ package WinRt.Windows.UI.Input is
       function ProcessUpEvent
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint
+         value : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
       function ProcessMouseWheelEvent
       (
          this : access IGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint;
+         value : WinRt.Windows.UI.Input.IPointerPoint;
          isShiftKeyDown : WinRt.Boolean;
          isControlKeyDown : WinRt.Boolean
       )
@@ -1318,14 +1318,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Tapped
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1333,14 +1333,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RightTapped
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1348,14 +1348,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Holding
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1363,14 +1363,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Dragging
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1378,14 +1378,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationStarted
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1393,14 +1393,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationUpdated
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1408,14 +1408,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationInertiaStarting
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1423,14 +1423,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationCompleted
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1438,14 +1438,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CrossSliding
       (
          this : access IGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1527,14 +1527,14 @@ package WinRt.Windows.UI.Input is
       function get_HoldStartDelay
       (
          this : access IGestureRecognizer2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_HoldStartDelay
       (
          this : access IGestureRecognizer2_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1574,21 +1574,21 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IHoldingEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IHoldingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_HoldingState
       (
          this : access IHoldingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.HoldingState
+         RetVal : access WinRt.Windows.UI.Input.HoldingState
       )
       return WinRt.Hresult is abstract;
 
@@ -1619,7 +1619,7 @@ package WinRt.Windows.UI.Input is
       function get_State
       (
          this : access IInputActivationListener_Interface;
-         RetVal : access Windows.UI.Input.InputActivationState
+         RetVal : access WinRt.Windows.UI.Input.InputActivationState
       )
       return WinRt.Hresult is abstract;
 
@@ -1627,14 +1627,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IInputActivationListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InputActivationChanged
       (
          this : access IInputActivationListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1646,7 +1646,7 @@ package WinRt.Windows.UI.Input is
       function get_State
       (
          this : access IInputActivationListenerActivationChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.InputActivationState
+         RetVal : access WinRt.Windows.UI.Input.InputActivationState
       )
       return WinRt.Hresult is abstract;
 
@@ -1673,14 +1673,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IKeyboardDeliveryInterceptor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyDown
       (
          this : access IKeyboardDeliveryInterceptor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1688,14 +1688,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IKeyboardDeliveryInterceptor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_KeyUp
       (
          this : access IKeyboardDeliveryInterceptor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1707,7 +1707,7 @@ package WinRt.Windows.UI.Input is
       function GetForCurrentView
       (
          this : access IKeyboardDeliveryInterceptorStatics_Interface;
-         RetVal : access Windows.UI.Input.IKeyboardDeliveryInterceptor
+         RetVal : access WinRt.Windows.UI.Input.IKeyboardDeliveryInterceptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1719,28 +1719,28 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationCompletedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -1771,35 +1771,35 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationInertiaStartingEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationInertiaStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Delta
       (
          this : access IManipulationInertiaStartingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationInertiaStartingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationInertiaStartingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -1823,21 +1823,21 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationStartedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationStartedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
@@ -1861,35 +1861,35 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Delta
       (
          this : access IManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Cumulative
       (
          this : access IManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationDelta
+         RetVal : access WinRt.Windows.UI.Input.ManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
       function get_Velocities
       (
          this : access IManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.ManipulationVelocities
+         RetVal : access WinRt.Windows.UI.Input.ManipulationVelocities
       )
       return WinRt.Hresult is abstract;
 
@@ -1920,14 +1920,14 @@ package WinRt.Windows.UI.Input is
       function get_CharTranslation
       (
          this : access IMouseWheelParameters_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_CharTranslation
       (
          this : access IMouseWheelParameters_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1962,14 +1962,14 @@ package WinRt.Windows.UI.Input is
       function get_PageTranslation
       (
          this : access IMouseWheelParameters_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_PageTranslation
       (
          this : access IMouseWheelParameters_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1988,14 +1988,14 @@ package WinRt.Windows.UI.Input is
       function get_GestureSettings
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         RetVal : access Windows.UI.Input.GestureSettings
+         RetVal : access WinRt.Windows.UI.Input.GestureSettings
       )
       return WinRt.Hresult is abstract;
 
       function put_GestureSettings
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         value : Windows.UI.Input.GestureSettings
+         value : WinRt.Windows.UI.Input.GestureSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2072,14 +2072,14 @@ package WinRt.Windows.UI.Input is
       function get_HoldStartDelay
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_HoldStartDelay
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2114,7 +2114,7 @@ package WinRt.Windows.UI.Input is
       function ProcessDownEvent
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint
+         value : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2128,7 +2128,7 @@ package WinRt.Windows.UI.Input is
       function ProcessUpEvent
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         value : Windows.UI.Input.IPointerPoint
+         value : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2142,14 +2142,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPhysicalGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationStarted
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2157,14 +2157,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPhysicalGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationUpdated
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2172,14 +2172,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPhysicalGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationCompleted
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2187,14 +2187,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPhysicalGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Tapped
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2202,14 +2202,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPhysicalGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Holding
       (
          this : access IPhysicalGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2221,21 +2221,21 @@ package WinRt.Windows.UI.Input is
       function get_PointerDevice
       (
          this : access IPointerPoint_Interface;
-         RetVal : access Windows.Devices.Input.IPointerDevice
+         RetVal : access WinRt.Windows.Devices.Input.IPointerDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IPointerPoint_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_RawPosition
       (
          this : access IPointerPoint_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2270,7 +2270,7 @@ package WinRt.Windows.UI.Input is
       function get_Properties
       (
          this : access IPointerPoint_Interface;
-         RetVal : access Windows.UI.Input.IPointerPointProperties
+         RetVal : access WinRt.Windows.UI.Input.IPointerPointProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -2289,7 +2289,7 @@ package WinRt.Windows.UI.Input is
       function get_PhysicalPosition
       (
          this : access IPointerPointPhysicalPosition_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2350,14 +2350,14 @@ package WinRt.Windows.UI.Input is
       function get_ContactRect
       (
          this : access IPointerPointProperties_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_ContactRectRaw
       (
          this : access IPointerPointProperties_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2448,7 +2448,7 @@ package WinRt.Windows.UI.Input is
       function get_PointerUpdateKind
       (
          this : access IPointerPointProperties_Interface;
-         RetVal : access Windows.UI.Input.PointerUpdateKind
+         RetVal : access WinRt.Windows.UI.Input.PointerUpdateKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2491,7 +2491,7 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPointerPointStatics_Interface;
          pointerId : WinRt.UInt32;
-         RetVal : access Windows.UI.Input.IPointerPoint
+         RetVal : access WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2507,8 +2507,8 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPointerPointStatics_Interface;
          pointerId : WinRt.UInt32;
-         transform : Windows.UI.Input.IPointerPointTransform;
-         RetVal : access Windows.UI.Input.IPointerPoint
+         transform : WinRt.Windows.UI.Input.IPointerPointTransform;
+         RetVal : access WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2516,7 +2516,7 @@ package WinRt.Windows.UI.Input is
       (
          this : access IPointerPointStatics_Interface;
          pointerId : WinRt.UInt32;
-         transform : Windows.UI.Input.IPointerPointTransform;
+         transform : WinRt.Windows.UI.Input.IPointerPointTransform;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2529,15 +2529,15 @@ package WinRt.Windows.UI.Input is
       function get_Inverse
       (
          this : access IPointerPointTransform_Interface;
-         RetVal : access Windows.UI.Input.IPointerPointTransform
+         RetVal : access WinRt.Windows.UI.Input.IPointerPointTransform
       )
       return WinRt.Hresult is abstract;
 
       function TryTransform
       (
          this : access IPointerPointTransform_Interface;
-         inPoint : Windows.Foundation.Point;
-         outPoint : Windows.Foundation.Point_Ptr;
+         inPoint : WinRt.Windows.Foundation.Point;
+         outPoint : WinRt.Windows.Foundation.Point_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2545,8 +2545,8 @@ package WinRt.Windows.UI.Input is
       function TransformBounds
       (
          this : access IPointerPointTransform_Interface;
-         rect : Windows.Foundation.Rect;
-         RetVal : access Windows.Foundation.Rect
+         rect : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2591,7 +2591,7 @@ package WinRt.Windows.UI.Input is
       function GetForCurrentView
       (
          this : access IPointerVisualizationSettingsStatics_Interface;
-         RetVal : access Windows.UI.Input.IPointerVisualizationSettings
+         RetVal : access WinRt.Windows.UI.Input.IPointerVisualizationSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2603,7 +2603,7 @@ package WinRt.Windows.UI.Input is
       function get_Menu
       (
          this : access IRadialController_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerMenu
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenu
       )
       return WinRt.Hresult is abstract;
 
@@ -2639,14 +2639,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScreenContactStarted
       (
          this : access IRadialController_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2654,14 +2654,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScreenContactEnded
       (
          this : access IRadialController_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2669,14 +2669,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScreenContactContinued
       (
          this : access IRadialController_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2684,14 +2684,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ControlLost
       (
          this : access IRadialController_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2699,14 +2699,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RotationChanged
       (
          this : access IRadialController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2714,14 +2714,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ButtonClicked
       (
          this : access IRadialController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2729,14 +2729,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ControlAcquired
       (
          this : access IRadialController_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2749,14 +2749,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ButtonPressed
       (
          this : access IRadialController2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2764,14 +2764,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ButtonHolding
       (
          this : access IRadialController2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2779,14 +2779,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialController2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ButtonReleased
       (
          this : access IRadialController2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2798,7 +2798,7 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerButtonClickedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
@@ -2810,7 +2810,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerButtonClickedEventArgs2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -2822,14 +2822,14 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerButtonHoldingEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
       function get_SimpleHapticsController
       (
          this : access IRadialControllerButtonHoldingEventArgs_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -2841,14 +2841,14 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerButtonPressedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
       function get_SimpleHapticsController
       (
          this : access IRadialControllerButtonPressedEventArgs_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -2860,14 +2860,14 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerButtonReleasedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
       function get_SimpleHapticsController
       (
          this : access IRadialControllerButtonReleasedEventArgs_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -2892,7 +2892,7 @@ package WinRt.Windows.UI.Input is
       function TrySelectDefaultMenuItem
       (
          this : access IRadialControllerConfiguration_Interface;
-         type_x : Windows.UI.Input.RadialControllerSystemMenuItemKind;
+         type_x : WinRt.Windows.UI.Input.RadialControllerSystemMenuItemKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2905,14 +2905,14 @@ package WinRt.Windows.UI.Input is
       function put_ActiveControllerWhenMenuIsSuppressed
       (
          this : access IRadialControllerConfiguration2_Interface;
-         value : Windows.UI.Input.IRadialController
+         value : WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
       function get_ActiveControllerWhenMenuIsSuppressed
       (
          this : access IRadialControllerConfiguration2_Interface;
-         RetVal : access Windows.UI.Input.IRadialController
+         RetVal : access WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
@@ -2938,7 +2938,7 @@ package WinRt.Windows.UI.Input is
       function GetForCurrentView
       (
          this : access IRadialControllerConfigurationStatics_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerConfiguration
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -2950,14 +2950,14 @@ package WinRt.Windows.UI.Input is
       function put_AppController
       (
          this : access IRadialControllerConfigurationStatics2_Interface;
-         value : Windows.UI.Input.IRadialController
+         value : WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
       function get_AppController
       (
          this : access IRadialControllerConfigurationStatics2_Interface;
-         RetVal : access Windows.UI.Input.IRadialController
+         RetVal : access WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
@@ -2983,7 +2983,7 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerControlAcquiredEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
@@ -3002,7 +3002,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerControlAcquiredEventArgs2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -3035,14 +3035,14 @@ package WinRt.Windows.UI.Input is
       function GetSelectedMenuItem
       (
          this : access IRadialControllerMenu_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerMenuItem
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
       function SelectMenuItem
       (
          this : access IRadialControllerMenu_Interface;
-         menuItem : Windows.UI.Input.IRadialControllerMenuItem
+         menuItem : WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
@@ -3083,14 +3083,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialControllerMenuItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Invoked
       (
          this : access IRadialControllerMenuItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3103,8 +3103,8 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialControllerMenuItemStatics_Interface;
          displayText : WinRt.HString;
-         icon : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.UI.Input.IRadialControllerMenuItem
+         icon : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
@@ -3112,8 +3112,8 @@ package WinRt.Windows.UI.Input is
       (
          this : access IRadialControllerMenuItemStatics_Interface;
          displayText : WinRt.HString;
-         value : Windows.UI.Input.RadialControllerMenuKnownIcon;
-         RetVal : access Windows.UI.Input.IRadialControllerMenuItem
+         value : WinRt.Windows.UI.Input.RadialControllerMenuKnownIcon;
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
@@ -3128,7 +3128,7 @@ package WinRt.Windows.UI.Input is
          displayText : WinRt.HString;
          glyph : WinRt.HString;
          fontFamily : WinRt.HString;
-         RetVal : access Windows.UI.Input.IRadialControllerMenuItem
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
@@ -3138,8 +3138,8 @@ package WinRt.Windows.UI.Input is
          displayText : WinRt.HString;
          glyph : WinRt.HString;
          fontFamily : WinRt.HString;
-         fontUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.Input.IRadialControllerMenuItem
+         fontUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerMenuItem
       )
       return WinRt.Hresult is abstract;
 
@@ -3158,7 +3158,7 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerRotationChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
@@ -3177,7 +3177,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerRotationChangedEventArgs2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -3189,14 +3189,14 @@ package WinRt.Windows.UI.Input is
       function get_Bounds
       (
          this : access IRadialControllerScreenContact_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IRadialControllerScreenContact_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3208,7 +3208,7 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerScreenContactContinuedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
@@ -3227,7 +3227,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerScreenContactContinuedEventArgs2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -3246,7 +3246,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerScreenContactEndedEventArgs_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -3258,7 +3258,7 @@ package WinRt.Windows.UI.Input is
       function get_Contact
       (
          this : access IRadialControllerScreenContactStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.IRadialControllerScreenContact
+         RetVal : access WinRt.Windows.UI.Input.IRadialControllerScreenContact
       )
       return WinRt.Hresult is abstract;
 
@@ -3277,7 +3277,7 @@ package WinRt.Windows.UI.Input is
       function get_SimpleHapticsController
       (
          this : access IRadialControllerScreenContactStartedEventArgs2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -3296,7 +3296,7 @@ package WinRt.Windows.UI.Input is
       function CreateForCurrentView
       (
          this : access IRadialControllerStatics_Interface;
-         RetVal : access Windows.UI.Input.IRadialController
+         RetVal : access WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
@@ -3308,14 +3308,14 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access IRightTappedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IRightTappedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3340,14 +3340,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ISystemButtonEventController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SystemFunctionButtonPressed
       (
          this : access ISystemButtonEventController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3355,14 +3355,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ISystemButtonEventController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SystemFunctionButtonReleased
       (
          this : access ISystemButtonEventController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3370,14 +3370,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ISystemButtonEventController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SystemFunctionLockChanged
       (
          this : access ISystemButtonEventController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3385,14 +3385,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ISystemButtonEventController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SystemFunctionLockIndicatorChanged
       (
          this : access ISystemButtonEventController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3404,8 +3404,8 @@ package WinRt.Windows.UI.Input is
       function CreateForDispatcherQueue
       (
          this : access ISystemButtonEventControllerStatics_Interface;
-         queue : Windows.System.IDispatcherQueue;
-         RetVal : access Windows.UI.Input.ISystemButtonEventController
+         queue : WinRt.Windows.System.IDispatcherQueue;
+         RetVal : access WinRt.Windows.UI.Input.ISystemButtonEventController
       )
       return WinRt.Hresult is abstract;
 
@@ -3509,14 +3509,14 @@ package WinRt.Windows.UI.Input is
       function get_PointerDeviceType
       (
          this : access ITappedEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access ITappedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3561,14 +3561,14 @@ package WinRt.Windows.UI.Input is
       function get_SupportedGestures
       (
          this : access ITouchpadGesturesController_Interface;
-         RetVal : access Windows.UI.Input.TouchpadGlobalGestureKinds
+         RetVal : access WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds
       )
       return WinRt.Hresult is abstract;
 
       function put_SupportedGestures
       (
          this : access ITouchpadGesturesController_Interface;
-         value : Windows.UI.Input.TouchpadGlobalGestureKinds
+         value : WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds
       )
       return WinRt.Hresult is abstract;
 
@@ -3576,14 +3576,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ITouchpadGesturesController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerPressed
       (
          this : access ITouchpadGesturesController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3591,14 +3591,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ITouchpadGesturesController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerMoved
       (
          this : access ITouchpadGesturesController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3606,14 +3606,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ITouchpadGesturesController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerReleased
       (
          this : access ITouchpadGesturesController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3621,14 +3621,14 @@ package WinRt.Windows.UI.Input is
       (
          this : access ITouchpadGesturesController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GlobalActionPerformed
       (
          this : access ITouchpadGesturesController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3647,7 +3647,7 @@ package WinRt.Windows.UI.Input is
       function CreateForProcess
       (
          this : access ITouchpadGesturesControllerStatics_Interface;
-         RetVal : access Windows.UI.Input.ITouchpadGesturesController
+         RetVal : access WinRt.Windows.UI.Input.ITouchpadGesturesController
       )
       return WinRt.Hresult is abstract;
 
@@ -3659,14 +3659,14 @@ package WinRt.Windows.UI.Input is
       function get_Action
       (
          this : access ITouchpadGlobalActionEventArgs_Interface;
-         RetVal : access Windows.UI.Input.TouchpadGlobalAction
+         RetVal : access WinRt.Windows.UI.Input.TouchpadGlobalAction
       )
       return WinRt.Hresult is abstract;
 
       function get_PointerDevice
       (
          this : access ITouchpadGlobalActionEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.IPointerDevice
+         RetVal : access WinRt.Windows.Devices.Input.IPointerDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -3784,7 +3784,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Starting
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Completed
@@ -3797,7 +3797,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Completed
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Canceled
@@ -3810,7 +3810,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Canceled
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3851,7 +3851,7 @@ package WinRt.Windows.UI.Input is
    procedure put_GestureSettings
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.GestureSettings
+      value : WinRt.Windows.UI.Input.GestureSettings
    );
 
    function get_IsInertial
@@ -3887,7 +3887,7 @@ package WinRt.Windows.UI.Input is
    procedure put_PivotCenter
    (
       this : in out GestureRecognizer;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_PivotRadius
@@ -3995,7 +3995,7 @@ package WinRt.Windows.UI.Input is
    procedure put_CrossSlideThresholds
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.CrossSlideThresholds
+      value : WinRt.Windows.UI.Input.CrossSlideThresholds
    );
 
    function get_CrossSlideHorizontally
@@ -4043,14 +4043,14 @@ package WinRt.Windows.UI.Input is
    function CanBeDoubleTap
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.Boolean;
 
    procedure ProcessDownEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    procedure ProcessMoveEvents
@@ -4062,13 +4062,13 @@ package WinRt.Windows.UI.Input is
    procedure ProcessUpEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    procedure ProcessMouseWheelEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class;
+      value : WinRt.Windows.UI.Input.PointerPoint'Class;
       isShiftKeyDown : WinRt.Boolean;
       isControlKeyDown : WinRt.Boolean
    );
@@ -4093,7 +4093,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Tapped
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RightTapped
@@ -4106,7 +4106,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_RightTapped
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Holding
@@ -4119,7 +4119,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Holding
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Dragging
@@ -4132,7 +4132,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Dragging
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationStarted
@@ -4145,7 +4145,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationStarted
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationUpdated
@@ -4158,7 +4158,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationUpdated
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationInertiaStarting
@@ -4171,7 +4171,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationInertiaStarting
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationCompleted
@@ -4184,7 +4184,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationCompleted
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CrossSliding
@@ -4197,7 +4197,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_CrossSliding
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_TapMinContactCount
@@ -4269,7 +4269,7 @@ package WinRt.Windows.UI.Input is
    procedure put_HoldStartDelay
    (
       this : in out GestureRecognizer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TranslationMinContactCount
@@ -4360,7 +4360,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_InputActivationChanged
    (
       this : in out InputActivationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4415,7 +4415,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_KeyDown
    (
       this : in out KeyboardDeliveryInterceptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_KeyUp
@@ -4428,7 +4428,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_KeyUp
    (
       this : in out KeyboardDeliveryInterceptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4623,7 +4623,7 @@ package WinRt.Windows.UI.Input is
    procedure put_CharTranslation
    (
       this : in out MouseWheelParameters;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_DeltaScale
@@ -4659,7 +4659,7 @@ package WinRt.Windows.UI.Input is
    procedure put_PageTranslation
    (
       this : in out MouseWheelParameters;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -4691,7 +4691,7 @@ package WinRt.Windows.UI.Input is
    procedure put_GestureSettings
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.GestureSettings
+      value : WinRt.Windows.UI.Input.GestureSettings
    );
 
    function get_TapMinContactCount
@@ -4763,7 +4763,7 @@ package WinRt.Windows.UI.Input is
    procedure put_HoldStartDelay
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TranslationMinContactCount
@@ -4793,7 +4793,7 @@ package WinRt.Windows.UI.Input is
    procedure ProcessDownEvent
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    procedure ProcessMoveEvents
@@ -4805,7 +4805,7 @@ package WinRt.Windows.UI.Input is
    procedure ProcessUpEvent
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    procedure CompleteGesture
@@ -4823,7 +4823,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationStarted
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationUpdated
@@ -4836,7 +4836,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationUpdated
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationCompleted
@@ -4849,7 +4849,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ManipulationCompleted
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Tapped
@@ -4862,7 +4862,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Tapped
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Holding
@@ -4875,7 +4875,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Holding
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4902,14 +4902,14 @@ package WinRt.Windows.UI.Input is
    function GetCurrentPoint
    (
       pointerId : WinRt.UInt32;
-      transform : Windows.UI.Input.IPointerPointTransform
+      transform : WinRt.Windows.UI.Input.IPointerPointTransform
    )
    return WinRt.Windows.UI.Input.PointerPoint;
 
    function GetIntermediatePoints
    (
       pointerId : WinRt.UInt32;
-      transform : Windows.UI.Input.IPointerPointTransform
+      transform : WinRt.Windows.UI.Input.IPointerPointTransform
    )
    return WinRt.GenericObject;
 
@@ -5236,7 +5236,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ScreenContactStarted
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ScreenContactEnded
@@ -5249,7 +5249,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ScreenContactEnded
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ScreenContactContinued
@@ -5262,7 +5262,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ScreenContactContinued
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ControlLost
@@ -5275,7 +5275,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ControlLost
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RotationChanged
@@ -5288,7 +5288,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_RotationChanged
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ButtonClicked
@@ -5301,7 +5301,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ButtonClicked
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ControlAcquired
@@ -5314,7 +5314,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ControlAcquired
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ButtonPressed
@@ -5327,7 +5327,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ButtonPressed
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ButtonHolding
@@ -5340,7 +5340,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ButtonHolding
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ButtonReleased
@@ -5353,7 +5353,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_ButtonReleased
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5454,7 +5454,7 @@ package WinRt.Windows.UI.Input is
 
    procedure put_AppController
    (
-      value : Windows.UI.Input.RadialController'Class
+      value : WinRt.Windows.UI.Input.RadialController'Class
    );
 
    function get_AppController
@@ -5485,14 +5485,14 @@ package WinRt.Windows.UI.Input is
    function TrySelectDefaultMenuItem
    (
       this : in out RadialControllerConfiguration;
-      type_x : Windows.UI.Input.RadialControllerSystemMenuItemKind
+      type_x : WinRt.Windows.UI.Input.RadialControllerSystemMenuItemKind
    )
    return WinRt.Boolean;
 
    procedure put_ActiveControllerWhenMenuIsSuppressed
    (
       this : in out RadialControllerConfiguration;
-      value : Windows.UI.Input.RadialController'Class
+      value : WinRt.Windows.UI.Input.RadialController'Class
    );
 
    function get_ActiveControllerWhenMenuIsSuppressed
@@ -5576,7 +5576,7 @@ package WinRt.Windows.UI.Input is
    procedure SelectMenuItem
    (
       this : in out RadialControllerMenu;
-      menuItem : Windows.UI.Input.RadialControllerMenuItem'Class
+      menuItem : WinRt.Windows.UI.Input.RadialControllerMenuItem'Class
    );
 
    function TrySelectPreviouslySelectedMenuItem
@@ -5607,21 +5607,21 @@ package WinRt.Windows.UI.Input is
       displayText : WinRt.WString;
       glyph : WinRt.WString;
       fontFamily : WinRt.WString;
-      fontUri : Windows.Foundation.Uri'Class
+      fontUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem;
 
    function CreateFromIcon
    (
       displayText : WinRt.WString;
-      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      icon : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem;
 
    function CreateFromKnownIcon
    (
       displayText : WinRt.WString;
-      value : Windows.UI.Input.RadialControllerMenuKnownIcon
+      value : WinRt.Windows.UI.Input.RadialControllerMenuKnownIcon
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem;
 
@@ -5656,7 +5656,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_Invoked
    (
       this : in out RadialControllerMenuItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5826,7 +5826,7 @@ package WinRt.Windows.UI.Input is
 
    function CreateForDispatcherQueue
    (
-      queue : Windows.System.DispatcherQueue'Class
+      queue : WinRt.Windows.System.DispatcherQueue'Class
    )
    return WinRt.Windows.UI.Input.SystemButtonEventController;
 
@@ -5843,7 +5843,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionButtonPressed
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SystemFunctionButtonReleased
@@ -5856,7 +5856,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionButtonReleased
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SystemFunctionLockChanged
@@ -5869,7 +5869,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionLockChanged
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SystemFunctionLockIndicatorChanged
@@ -5882,7 +5882,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionLockIndicatorChanged
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6050,7 +6050,7 @@ package WinRt.Windows.UI.Input is
    procedure put_SupportedGestures
    (
       this : in out TouchpadGesturesController;
-      value : Windows.UI.Input.TouchpadGlobalGestureKinds
+      value : WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds
    );
 
    function add_PointerPressed
@@ -6063,7 +6063,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_PointerPressed
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoved
@@ -6076,7 +6076,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_PointerMoved
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleased
@@ -6089,7 +6089,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_PointerReleased
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GlobalActionPerformed
@@ -6102,7 +6102,7 @@ package WinRt.Windows.UI.Input is
    procedure remove_GlobalActionPerformed
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

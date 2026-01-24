@@ -178,7 +178,7 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IEyesPose.all.get_Gaze (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -195,14 +195,14 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_IEyesPose.all.get_UpdateTimestamp (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+         Retval.m_IPerceptionTimestamp := new WinRt.Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
    end;
@@ -238,14 +238,14 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource do
          Hr := this.m_IHandMeshObserver.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSource := new Windows.UI.Input.Spatial.ISpatialInteractionSource;
+         Retval.m_ISpatialInteractionSource := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
          Retval.m_ISpatialInteractionSource.all := m_ComRetVal;
       end return;
    end;
@@ -303,20 +303,20 @@ package body WinRt.Windows.Perception.People is
    function GetVertexStateForPose
    (
       this : in out HandMeshObserver;
-      handPose_p : Windows.Perception.People.HandPose'Class
+      handPose_p : WinRt.Windows.Perception.People.HandPose'Class
    )
    return WinRt.Windows.Perception.People.HandMeshVertexState'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IHandMeshVertexState;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IHandMeshVertexState;
    begin
       return RetVal : WinRt.Windows.Perception.People.HandMeshVertexState do
          Hr := this.m_IHandMeshObserver.all.GetVertexStateForPose (handPose_p.m_IHandPose.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHandMeshVertexState := new Windows.Perception.People.IHandMeshVertexState;
+         Retval.m_IHandMeshVertexState := new WinRt.Windows.Perception.People.IHandMeshVertexState;
          Retval.m_IHandMeshVertexState.all := m_ComRetVal;
       end return;
    end;
@@ -329,14 +329,14 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IHandPose;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IHandPose;
    begin
       return RetVal : WinRt.Windows.Perception.People.HandPose do
          Hr := this.m_IHandMeshObserver.all.get_NeutralPose (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHandPose := new Windows.Perception.People.IHandPose;
+         Retval.m_IHandPose := new WinRt.Windows.Perception.People.IHandPose;
          Retval.m_IHandPose.all := m_ComRetVal;
       end return;
    end;
@@ -406,14 +406,14 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_IHandMeshVertexState.all.get_CoordinateSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         Retval.m_ISpatialCoordinateSystem := new WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
    end;
@@ -421,7 +421,7 @@ package body WinRt.Windows.Perception.People is
    procedure GetVertices
    (
       this : in out HandMeshVertexState;
-      vertices : Windows.Perception.People.HandMeshVertex_Array
+      vertices : WinRt.Windows.Perception.People.HandMeshVertex_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -442,14 +442,14 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_IHandMeshVertexState.all.get_UpdateTimestamp (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+         Retval.m_IPerceptionTimestamp := new WinRt.Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
    end;
@@ -480,9 +480,9 @@ package body WinRt.Windows.Perception.People is
    function TryGetJoint
    (
       this : in out HandPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joint : Windows.Perception.People.HandJointKind;
-      jointPose : Windows.Perception.People.JointPose_Ptr
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      joint : WinRt.Windows.Perception.People.HandJointKind;
+      jointPose : WinRt.Windows.Perception.People.JointPose_Ptr
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -500,9 +500,9 @@ package body WinRt.Windows.Perception.People is
    function TryGetJoints
    (
       this : in out HandPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joints : Windows.Perception.People.HandJointKind_Array;
-      jointPoses : Windows.Perception.People.JointPose_Array
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -522,14 +522,14 @@ package body WinRt.Windows.Perception.People is
    function GetRelativeJoint
    (
       this : in out HandPose;
-      joint : Windows.Perception.People.HandJointKind;
-      referenceJoint : Windows.Perception.People.HandJointKind
+      joint : WinRt.Windows.Perception.People.HandJointKind;
+      referenceJoint : WinRt.Windows.Perception.People.HandJointKind
    )
    return WinRt.Windows.Perception.People.JointPose is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.JointPose;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.JointPose;
    begin
       Hr := this.m_IHandPose.all.GetRelativeJoint (joint, referenceJoint, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -541,9 +541,9 @@ package body WinRt.Windows.Perception.People is
    procedure GetRelativeJoints
    (
       this : in out HandPose;
-      joints : Windows.Perception.People.HandJointKind_Array;
-      referenceJoints : Windows.Perception.People.HandJointKind_Array;
-      jointPoses : Windows.Perception.People.JointPose_Array
+      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      referenceJoints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -589,7 +589,7 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -606,7 +606,7 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_ForwardDirection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -623,7 +623,7 @@ package body WinRt.Windows.Perception.People is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IHeadPose.all.get_UpDirection (m_ComRetVal'Access);
       if Hr /= S_OK then

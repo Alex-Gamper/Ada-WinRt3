@@ -58,13 +58,13 @@ package body WinRt.Windows.UI.Composition.Core is
    function Constructor return CompositorController is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Core.CompositorController");
-      m_ComRetVal  : aliased Windows.UI.Composition.Core.ICompositorController;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Core.ICompositorController");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Composition.Core.ICompositorController;
    begin
       return RetVal : CompositorController do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICompositorController := new Windows.UI.Composition.Core.ICompositorController;
+            Retval.m_ICompositorController := new WinRt.Windows.UI.Composition.Core.ICompositorController;
             Retval.m_ICompositorController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -82,14 +82,14 @@ package body WinRt.Windows.UI.Composition.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositor;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositor;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Compositor do
          Hr := this.m_ICompositorController.all.get_Compositor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
+         Retval.m_ICompositor := new WinRt.Windows.UI.Composition.ICompositor;
          Retval.m_ICompositor.all := m_ComRetVal;
       end return;
    end;
@@ -159,7 +159,7 @@ package body WinRt.Windows.UI.Composition.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositorController.all.add_CommitNeeded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -171,7 +171,7 @@ package body WinRt.Windows.UI.Composition.Core is
    procedure remove_CommitNeeded
    (
       this : in out CompositorController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

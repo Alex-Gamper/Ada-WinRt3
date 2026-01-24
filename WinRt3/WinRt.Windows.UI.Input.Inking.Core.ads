@@ -147,35 +147,35 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreIncrementalInkStroke_Interface;
          inkPoints : GenericObject;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function CreateInkStroke
       (
          this : access ICoreIncrementalInkStroke_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkStroke
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
       function get_DrawingAttributes
       (
          this : access ICoreIncrementalInkStroke_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkDrawingAttributes
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes
       )
       return WinRt.Hresult is abstract;
 
       function get_PointTransform
       (
          this : access ICoreIncrementalInkStroke_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix3x2
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix3x2
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingRect
       (
          this : access ICoreIncrementalInkStroke_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -187,9 +187,9 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function Create
       (
          this : access ICoreIncrementalInkStrokeFactory_Interface;
-         drawingAttributes : Windows.UI.Input.Inking.IInkDrawingAttributes;
-         pointTransform : Windows.Foundation.Numerics.Matrix3x2;
-         RetVal : access Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke
+         drawingAttributes : WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes;
+         pointTransform : WinRt.Windows.Foundation.Numerics.Matrix3x2;
+         RetVal : access WinRt.Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -202,14 +202,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerEntering
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -217,14 +217,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerHovering
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -232,14 +232,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerExiting
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -247,14 +247,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerPressing
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -262,14 +262,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerMoving
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -277,14 +277,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerReleasing
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -292,21 +292,21 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreInkIndependentInputSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PointerLost
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_InkPresenter
       (
          this : access ICoreInkIndependentInputSource_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenter
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -318,14 +318,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function get_PointerCursor
       (
          this : access ICoreInkIndependentInputSource2_Interface;
-         RetVal : access Windows.UI.Core.ICoreCursor
+         RetVal : access WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
       function put_PointerCursor
       (
          this : access ICoreInkIndependentInputSource2_Interface;
-         value : Windows.UI.Core.ICoreCursor
+         value : WinRt.Windows.UI.Core.ICoreCursor
       )
       return WinRt.Hresult is abstract;
 
@@ -337,8 +337,8 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function Create
       (
          this : access ICoreInkIndependentInputSourceStatics_Interface;
-         inkPresenter : Windows.UI.Input.Inking.IInkPresenter;
-         RetVal : access Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource
+         inkPresenter : WinRt.Windows.UI.Input.Inking.IInkPresenter;
+         RetVal : access WinRt.Windows.UI.Input.Inking.Core.ICoreInkIndependentInputSource
       )
       return WinRt.Hresult is abstract;
 
@@ -350,21 +350,21 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function get_InkPresenter
       (
          this : access ICoreInkPresenterHost_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenter
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenter
       )
       return WinRt.Hresult is abstract;
 
       function get_RootVisual
       (
          this : access ICoreInkPresenterHost_Interface;
-         RetVal : access Windows.UI.Composition.IContainerVisual
+         RetVal : access WinRt.Windows.UI.Composition.IContainerVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_RootVisual
       (
          this : access ICoreInkPresenterHost_Interface;
-         value : Windows.UI.Composition.IContainerVisual
+         value : WinRt.Windows.UI.Composition.IContainerVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -390,14 +390,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function get_Disposition
       (
          this : access ICoreWetStrokeUpdateEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
+         RetVal : access WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
       )
       return WinRt.Hresult is abstract;
 
       function put_Disposition
       (
          this : access ICoreWetStrokeUpdateEventArgs_Interface;
-         value : Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
+         value : WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
       )
       return WinRt.Hresult is abstract;
 
@@ -410,14 +410,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WetStrokeStarting
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -425,14 +425,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WetStrokeContinuing
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -440,14 +440,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WetStrokeStopping
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -455,14 +455,14 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WetStrokeCompleted
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -470,21 +470,21 @@ package WinRt.Windows.UI.Input.Inking.Core is
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WetStrokeCanceled
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_InkPresenter
       (
          this : access ICoreWetStrokeUpdateSource_Interface;
-         RetVal : access Windows.UI.Input.Inking.IInkPresenter
+         RetVal : access WinRt.Windows.UI.Input.Inking.IInkPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -496,8 +496,8 @@ package WinRt.Windows.UI.Input.Inking.Core is
       function Create
       (
          this : access ICoreWetStrokeUpdateSourceStatics_Interface;
-         inkPresenter : Windows.UI.Input.Inking.IInkPresenter;
-         RetVal : access Windows.UI.Input.Inking.Core.ICoreWetStrokeUpdateSource
+         inkPresenter : WinRt.Windows.UI.Input.Inking.IInkPresenter;
+         RetVal : access WinRt.Windows.UI.Input.Inking.Core.ICoreWetStrokeUpdateSource
       )
       return WinRt.Hresult is abstract;
 
@@ -518,8 +518,8 @@ package WinRt.Windows.UI.Input.Inking.Core is
 
    function Constructor
    (
-      drawingAttributes : Windows.UI.Input.Inking.InkDrawingAttributes'Class;
-      pointTransform : Windows.Foundation.Numerics.Matrix3x2
+      drawingAttributes : WinRt.Windows.UI.Input.Inking.InkDrawingAttributes'Class;
+      pointTransform : WinRt.Windows.Foundation.Numerics.Matrix3x2
    )
    return CoreIncrementalInkStroke;
 
@@ -568,7 +568,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
 
    function Create
    (
-      inkPresenter : Windows.UI.Input.Inking.InkPresenter'Class
+      inkPresenter : WinRt.Windows.UI.Input.Inking.InkPresenter'Class
    )
    return WinRt.Windows.UI.Input.Inking.Core.CoreInkIndependentInputSource;
 
@@ -585,7 +585,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerEntering
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerHovering
@@ -598,7 +598,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerHovering
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerExiting
@@ -611,7 +611,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerExiting
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerPressing
@@ -624,7 +624,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerPressing
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerMoving
@@ -637,7 +637,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerMoving
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerReleasing
@@ -650,7 +650,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerReleasing
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PointerLost
@@ -663,7 +663,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_PointerLost
    (
       this : in out CoreInkIndependentInputSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_InkPresenter
@@ -681,7 +681,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure put_PointerCursor
    (
       this : in out CoreInkIndependentInputSource;
-      value : Windows.UI.Core.CoreCursor'Class
+      value : WinRt.Windows.UI.Core.CoreCursor'Class
    );
 
    -----------------------------------------------------------------------------
@@ -713,7 +713,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure put_RootVisual
    (
       this : in out CoreInkPresenterHost;
-      value : Windows.UI.Composition.ContainerVisual'Class
+      value : WinRt.Windows.UI.Composition.ContainerVisual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -746,7 +746,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure put_Disposition
    (
       this : in out CoreWetStrokeUpdateEventArgs;
-      value : Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
+      value : WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeDisposition
    );
 
    -----------------------------------------------------------------------------
@@ -760,7 +760,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
 
    function Create
    (
-      inkPresenter : Windows.UI.Input.Inking.InkPresenter'Class
+      inkPresenter : WinRt.Windows.UI.Input.Inking.InkPresenter'Class
    )
    return WinRt.Windows.UI.Input.Inking.Core.CoreWetStrokeUpdateSource;
 
@@ -777,7 +777,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_WetStrokeStarting
    (
       this : in out CoreWetStrokeUpdateSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WetStrokeContinuing
@@ -790,7 +790,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_WetStrokeContinuing
    (
       this : in out CoreWetStrokeUpdateSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WetStrokeStopping
@@ -803,7 +803,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_WetStrokeStopping
    (
       this : in out CoreWetStrokeUpdateSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WetStrokeCompleted
@@ -816,7 +816,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_WetStrokeCompleted
    (
       this : in out CoreWetStrokeUpdateSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WetStrokeCanceled
@@ -829,7 +829,7 @@ package WinRt.Windows.UI.Input.Inking.Core is
    procedure remove_WetStrokeCanceled
    (
       this : in out CoreWetStrokeUpdateSource;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_InkPresenter

@@ -320,16 +320,16 @@ package WinRt.Windows.Storage.Search is
       function AddAsync
       (
          this : access IContentIndexer_Interface;
-         indexableContent_p : Windows.Storage.Search.IIndexableContent;
-         RetVal : access Windows.Foundation.IAsyncAction
+         indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpdateAsync
       (
          this : access IContentIndexer_Interface;
-         indexableContent_p : Windows.Storage.Search.IIndexableContent;
-         RetVal : access Windows.Foundation.IAsyncAction
+         indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -337,7 +337,7 @@ package WinRt.Windows.Storage.Search is
       (
          this : access IContentIndexer_Interface;
          contentId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -345,14 +345,14 @@ package WinRt.Windows.Storage.Search is
       (
          this : access IContentIndexer_Interface;
          contentIds : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAllAsync
       (
          this : access IContentIndexer_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -419,7 +419,7 @@ package WinRt.Windows.Storage.Search is
       function get_QueryFolder
       (
          this : access IContentIndexerQuery_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -435,7 +435,7 @@ package WinRt.Windows.Storage.Search is
          propertiesToRetrieve : GenericObject;
          sortOrder : GenericObject;
          searchFilterLanguage : WinRt.HString;
-         RetVal : access Windows.Storage.Search.IContentIndexerQuery
+         RetVal : access WinRt.Windows.Storage.Search.IContentIndexerQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -445,7 +445,7 @@ package WinRt.Windows.Storage.Search is
          searchFilter : WinRt.HString;
          propertiesToRetrieve : GenericObject;
          sortOrder : GenericObject;
-         RetVal : access Windows.Storage.Search.IContentIndexerQuery
+         RetVal : access WinRt.Windows.Storage.Search.IContentIndexerQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -454,7 +454,7 @@ package WinRt.Windows.Storage.Search is
          this : access IContentIndexerQueryOperations_Interface;
          searchFilter : WinRt.HString;
          propertiesToRetrieve : GenericObject;
-         RetVal : access Windows.Storage.Search.IContentIndexerQuery
+         RetVal : access WinRt.Windows.Storage.Search.IContentIndexerQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -467,14 +467,14 @@ package WinRt.Windows.Storage.Search is
       (
          this : access IContentIndexerStatics_Interface;
          indexName : WinRt.HString;
-         RetVal : access Windows.Storage.Search.IContentIndexer
+         RetVal : access WinRt.Windows.Storage.Search.IContentIndexer
       )
       return WinRt.Hresult is abstract;
 
       function GetIndexer
       (
          this : access IContentIndexerStatics_Interface;
-         RetVal : access Windows.Storage.Search.IContentIndexer
+         RetVal : access WinRt.Windows.Storage.Search.IContentIndexer
       )
       return WinRt.Hresult is abstract;
 
@@ -507,14 +507,14 @@ package WinRt.Windows.Storage.Search is
       function get_Stream
       (
          this : access IIndexableContent_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function put_Stream
       (
          this : access IIndexableContent_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -547,14 +547,14 @@ package WinRt.Windows.Storage.Search is
       function get_FolderDepth
       (
          this : access IQueryOptions_Interface;
-         RetVal : access Windows.Storage.Search.FolderDepth
+         RetVal : access WinRt.Windows.Storage.Search.FolderDepth
       )
       return WinRt.Hresult is abstract;
 
       function put_FolderDepth
       (
          this : access IQueryOptions_Interface;
-         value : Windows.Storage.Search.FolderDepth
+         value : WinRt.Windows.Storage.Search.FolderDepth
       )
       return WinRt.Hresult is abstract;
 
@@ -603,14 +603,14 @@ package WinRt.Windows.Storage.Search is
       function get_IndexerOption
       (
          this : access IQueryOptions_Interface;
-         RetVal : access Windows.Storage.Search.IndexerOption
+         RetVal : access WinRt.Windows.Storage.Search.IndexerOption
       )
       return WinRt.Hresult is abstract;
 
       function put_IndexerOption
       (
          this : access IQueryOptions_Interface;
-         value : Windows.Storage.Search.IndexerOption
+         value : WinRt.Windows.Storage.Search.IndexerOption
       )
       return WinRt.Hresult is abstract;
 
@@ -631,7 +631,7 @@ package WinRt.Windows.Storage.Search is
       function get_DateStackOption
       (
          this : access IQueryOptions_Interface;
-         RetVal : access Windows.Storage.Search.DateStackOption
+         RetVal : access WinRt.Windows.Storage.Search.DateStackOption
       )
       return WinRt.Hresult is abstract;
 
@@ -652,16 +652,16 @@ package WinRt.Windows.Storage.Search is
       function SetThumbnailPrefetch
       (
          this : access IQueryOptions_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedSize : WinRt.UInt32;
-         options : Windows.Storage.FileProperties.ThumbnailOptions
+         options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
       )
       return WinRt.Hresult is abstract;
 
       function SetPropertyPrefetch
       (
          this : access IQueryOptions_Interface;
-         options : Windows.Storage.FileProperties.PropertyPrefetchOptions;
+         options : WinRt.Windows.Storage.FileProperties.PropertyPrefetchOptions;
          propertiesToRetrieve : GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -674,17 +674,17 @@ package WinRt.Windows.Storage.Search is
       function CreateCommonFileQuery
       (
          this : access IQueryOptionsFactory_Interface;
-         query : Windows.Storage.Search.CommonFileQuery;
+         query : WinRt.Windows.Storage.Search.CommonFileQuery;
          fileTypeFilter : GenericObject;
-         RetVal : access Windows.Storage.Search.IQueryOptions
+         RetVal : access WinRt.Windows.Storage.Search.IQueryOptions
       )
       return WinRt.Hresult is abstract;
 
       function CreateCommonFolderQuery
       (
          this : access IQueryOptionsFactory_Interface;
-         query : Windows.Storage.Search.CommonFolderQuery;
-         RetVal : access Windows.Storage.Search.IQueryOptions
+         query : WinRt.Windows.Storage.Search.CommonFolderQuery;
+         RetVal : access WinRt.Windows.Storage.Search.IQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -729,7 +729,7 @@ package WinRt.Windows.Storage.Search is
       function GetMatchingPropertiesWithRanges
       (
          this : access IStorageFileQueryResult2_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -749,68 +749,68 @@ package WinRt.Windows.Storage.Search is
       function CreateFileQuery
       (
          this : access IStorageFolderQueryOperations_Interface;
-         RetVal : access Windows.Storage.Search.IStorageFileQueryResult
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateFileQuery
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFileQuery;
-         RetVal : access Windows.Storage.Search.IStorageFileQueryResult
+         query : WinRt.Windows.Storage.Search.CommonFileQuery;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateFileQueryWithOptions
       (
          this : access IStorageFolderQueryOperations_Interface;
-         queryOptions_p : Windows.Storage.Search.IQueryOptions;
-         RetVal : access Windows.Storage.Search.IStorageFileQueryResult
+         queryOptions_p : WinRt.Windows.Storage.Search.IQueryOptions;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateFolderQuery
       (
          this : access IStorageFolderQueryOperations_Interface;
-         RetVal : access Windows.Storage.Search.IStorageFolderQueryResult
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFolderQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateFolderQuery
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFolderQuery;
-         RetVal : access Windows.Storage.Search.IStorageFolderQueryResult
+         query : WinRt.Windows.Storage.Search.CommonFolderQuery;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFolderQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateFolderQueryWithOptions
       (
          this : access IStorageFolderQueryOperations_Interface;
-         queryOptions_p : Windows.Storage.Search.IQueryOptions;
-         RetVal : access Windows.Storage.Search.IStorageFolderQueryResult
+         queryOptions_p : WinRt.Windows.Storage.Search.IQueryOptions;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFolderQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateItemQuery
       (
          this : access IStorageFolderQueryOperations_Interface;
-         RetVal : access Windows.Storage.Search.IStorageItemQueryResult
+         RetVal : access WinRt.Windows.Storage.Search.IStorageItemQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function CreateItemQueryWithOptions
       (
          this : access IStorageFolderQueryOperations_Interface;
-         queryOptions_p : Windows.Storage.Search.IQueryOptions;
-         RetVal : access Windows.Storage.Search.IStorageItemQueryResult
+         queryOptions_p : WinRt.Windows.Storage.Search.IQueryOptions;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageItemQueryResult
       )
       return WinRt.Hresult is abstract;
 
       function GetFilesAsync
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFileQuery;
+         query : WinRt.Windows.Storage.Search.CommonFileQuery;
          startIndex : WinRt.UInt32;
          maxItemsToRetrieve : WinRt.UInt32;
          RetVal : access GenericObject
@@ -820,7 +820,7 @@ package WinRt.Windows.Storage.Search is
       function GetFilesAsync
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFileQuery;
+         query : WinRt.Windows.Storage.Search.CommonFileQuery;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -828,7 +828,7 @@ package WinRt.Windows.Storage.Search is
       function GetFoldersAsync
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFolderQuery;
+         query : WinRt.Windows.Storage.Search.CommonFolderQuery;
          startIndex : WinRt.UInt32;
          maxItemsToRetrieve : WinRt.UInt32;
          RetVal : access GenericObject
@@ -838,7 +838,7 @@ package WinRt.Windows.Storage.Search is
       function GetFoldersAsync
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFolderQuery;
+         query : WinRt.Windows.Storage.Search.CommonFolderQuery;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -855,7 +855,7 @@ package WinRt.Windows.Storage.Search is
       function AreQueryOptionsSupported
       (
          this : access IStorageFolderQueryOperations_Interface;
-         queryOptions_p : Windows.Storage.Search.IQueryOptions;
+         queryOptions_p : WinRt.Windows.Storage.Search.IQueryOptions;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -863,7 +863,7 @@ package WinRt.Windows.Storage.Search is
       function IsCommonFolderQuerySupported
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFolderQuery;
+         query : WinRt.Windows.Storage.Search.CommonFolderQuery;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -871,7 +871,7 @@ package WinRt.Windows.Storage.Search is
       function IsCommonFileQuerySupported
       (
          this : access IStorageFolderQueryOperations_Interface;
-         query : Windows.Storage.Search.CommonFileQuery;
+         query : WinRt.Windows.Storage.Search.CommonFileQuery;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -926,14 +926,14 @@ package WinRt.Windows.Storage.Search is
       function get_Folder
       (
          this : access IStorageLibraryChangeTrackerTriggerDetails_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_ChangeTracker
       (
          this : access IStorageLibraryChangeTrackerTriggerDetails_Interface;
-         RetVal : access Windows.Storage.IStorageLibraryChangeTracker
+         RetVal : access WinRt.Windows.Storage.IStorageLibraryChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -945,15 +945,15 @@ package WinRt.Windows.Storage.Search is
       function get_Folder
       (
          this : access IStorageLibraryContentChangedTriggerDetails_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function CreateModifiedSinceQuery
       (
          this : access IStorageLibraryContentChangedTriggerDetails_Interface;
-         lastQueryTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.Storage.Search.IStorageItemQueryResult
+         lastQueryTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Storage.Search.IStorageItemQueryResult
       )
       return WinRt.Hresult is abstract;
 
@@ -972,7 +972,7 @@ package WinRt.Windows.Storage.Search is
       function get_Folder
       (
          this : access IStorageQueryResultBase_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -980,14 +980,14 @@ package WinRt.Windows.Storage.Search is
       (
          this : access IStorageQueryResultBase_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContentsChanged
       (
          this : access IStorageQueryResultBase_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -995,14 +995,14 @@ package WinRt.Windows.Storage.Search is
       (
          this : access IStorageQueryResultBase_Interface;
          changedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OptionsChanged
       (
          this : access IStorageQueryResultBase_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1017,14 +1017,14 @@ package WinRt.Windows.Storage.Search is
       function GetCurrentQueryOptions
       (
          this : access IStorageQueryResultBase_Interface;
-         RetVal : access Windows.Storage.Search.IQueryOptions
+         RetVal : access WinRt.Windows.Storage.Search.IQueryOptions
       )
       return WinRt.Hresult is abstract;
 
       function ApplyNewQueryOptions
       (
          this : access IStorageQueryResultBase_Interface;
-         newQueryOptions : Windows.Storage.Search.IQueryOptions
+         newQueryOptions : WinRt.Windows.Storage.Search.IQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,13 +1091,13 @@ package WinRt.Windows.Storage.Search is
    procedure AddAsync
    (
       this : in out ContentIndexer;
-      indexableContent_p : Windows.Storage.Search.IIndexableContent
+      indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent
    );
 
    procedure UpdateAsync
    (
       this : in out ContentIndexer;
-      indexableContent_p : Windows.Storage.Search.IIndexableContent
+      indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent
    );
 
    procedure DeleteAsync
@@ -1248,7 +1248,7 @@ package WinRt.Windows.Storage.Search is
    procedure put_Stream
    (
       this : in out IndexableContent;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function get_StreamContentType
@@ -1274,14 +1274,14 @@ package WinRt.Windows.Storage.Search is
 
    function Constructor
    (
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       fileTypeFilter : GenericObject
    )
    return QueryOptions;
 
    function Constructor
    (
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return QueryOptions;
 
@@ -1305,7 +1305,7 @@ package WinRt.Windows.Storage.Search is
    procedure put_FolderDepth
    (
       this : in out QueryOptions;
-      value : Windows.Storage.Search.FolderDepth
+      value : WinRt.Windows.Storage.Search.FolderDepth
    );
 
    function get_ApplicationSearchFilter
@@ -1353,7 +1353,7 @@ package WinRt.Windows.Storage.Search is
    procedure put_IndexerOption
    (
       this : in out QueryOptions;
-      value : Windows.Storage.Search.IndexerOption
+      value : WinRt.Windows.Storage.Search.IndexerOption
    );
 
    function get_SortOrder
@@ -1389,15 +1389,15 @@ package WinRt.Windows.Storage.Search is
    procedure SetThumbnailPrefetch
    (
       this : in out QueryOptions;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    );
 
    procedure SetPropertyPrefetch
    (
       this : in out QueryOptions;
-      options : Windows.Storage.FileProperties.PropertyPrefetchOptions;
+      options : WinRt.Windows.Storage.FileProperties.PropertyPrefetchOptions;
       propertiesToRetrieve : GenericObject
    );
 
@@ -1439,7 +1439,7 @@ package WinRt.Windows.Storage.Search is
    function IndexOf
    (
       this : in out SortEntryVector;
-      value : Windows.Storage.Search.SortEntry;
+      value : WinRt.Windows.Storage.Search.SortEntry;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1448,14 +1448,14 @@ package WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector;
       index : WinRt.UInt32;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    );
 
    procedure InsertAt
    (
       this : in out SortEntryVector;
       index : WinRt.UInt32;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    );
 
    procedure RemoveAt
@@ -1467,7 +1467,7 @@ package WinRt.Windows.Storage.Search is
    procedure Append
    (
       this : in out SortEntryVector;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    );
 
    procedure RemoveAtEnd
@@ -1484,14 +1484,14 @@ package WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector;
       startIndex : WinRt.UInt32;
-      items : Windows.Storage.Search.SortEntry_Array
+      items : WinRt.Windows.Storage.Search.SortEntry_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out SortEntryVector;
-      items : Windows.Storage.Search.SortEntry_Array
+      items : WinRt.Windows.Storage.Search.SortEntry_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Storage.Search.SortEntry>
@@ -1546,7 +1546,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageFileQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_OptionsChanged
@@ -1559,7 +1559,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageFileQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindStartIndexAsync
@@ -1578,13 +1578,13 @@ package WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageFileQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    );
 
    function GetMatchingPropertiesWithRanges
    (
       this : in out StorageFileQueryResult;
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.GenericObject;
 
@@ -1633,7 +1633,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageFolderQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_OptionsChanged
@@ -1646,7 +1646,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageFolderQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindStartIndexAsync
@@ -1665,7 +1665,7 @@ package WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageFolderQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1713,7 +1713,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageItemQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_OptionsChanged
@@ -1726,7 +1726,7 @@ package WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageItemQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindStartIndexAsync
@@ -1745,7 +1745,7 @@ package WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageItemQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1787,7 +1787,7 @@ package WinRt.Windows.Storage.Search is
    function CreateModifiedSinceQuery
    (
       this : in out StorageLibraryContentChangedTriggerDetails;
-      lastQueryTime : Windows.Foundation.DateTime
+      lastQueryTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class;
 

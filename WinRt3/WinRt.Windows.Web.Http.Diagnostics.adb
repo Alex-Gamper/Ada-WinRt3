@@ -58,7 +58,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
 
    function CreateFromProcessDiagnosticInfo
    (
-      processDiagnosticInfo : Windows.System.Diagnostics.ProcessDiagnosticInfo'Class
+      processDiagnosticInfo : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo'Class
    )
    return WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticProvider is
       Hr               : WinRt.HResult := S_OK;
@@ -66,7 +66,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Diagnostics.HttpDiagnosticProvider");
       m_Factory        : access WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider;
    begin
       return RetVal : WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpDiagnosticProviderStatics'Access , m_Factory'Address);
@@ -76,7 +76,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpDiagnosticProvider := new Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider;
+            Retval.m_IHttpDiagnosticProvider := new WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProvider;
             Retval.m_IHttpDiagnosticProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -123,7 +123,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHttpDiagnosticProvider.all.add_RequestSent (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -135,7 +135,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_RequestSent
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -156,7 +156,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHttpDiagnosticProvider.all.add_ResponseReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -168,7 +168,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_ResponseReceived
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -189,7 +189,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHttpDiagnosticProvider.all.add_RequestResponseCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -201,7 +201,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
    procedure remove_RequestResponseCompleted
    (
       this : in out HttpDiagnosticProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -261,14 +261,14 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps;
    begin
       return RetVal : WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticProviderRequestResponseTimestamps do
          Hr := this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all.get_Timestamps (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpDiagnosticProviderRequestResponseTimestamps := new Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps;
+         Retval.m_IHttpDiagnosticProviderRequestResponseTimestamps := new WinRt.Windows.Web.Http.Diagnostics.IHttpDiagnosticProviderRequestResponseTimestamps;
          Retval.m_IHttpDiagnosticProviderRequestResponseTimestamps.all := m_ComRetVal;
       end return;
    end;
@@ -281,14 +281,14 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all.get_RequestedUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -335,7 +335,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all.get_Initiator (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -352,7 +352,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHttpDiagnosticSourceLocation.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all.get_SourceLocations (m_ComRetVal'Access);
@@ -395,7 +395,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_CacheCheckedTimestamp (m_ComRetVal'Access);
@@ -415,7 +415,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_ConnectionInitiatedTimestamp (m_ComRetVal'Access);
@@ -435,7 +435,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_NameResolvedTimestamp (m_ComRetVal'Access);
@@ -455,7 +455,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_SslNegotiatedTimestamp (m_ComRetVal'Access);
@@ -475,7 +475,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_ConnectionCompletedTimestamp (m_ComRetVal'Access);
@@ -495,7 +495,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_RequestSentTimestamp (m_ComRetVal'Access);
@@ -515,7 +515,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_RequestCompletedTimestamp (m_ComRetVal'Access);
@@ -535,7 +535,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_ResponseReceivedTimestamp (m_ComRetVal'Access);
@@ -555,7 +555,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.get_ResponseCompletedTimestamp (m_ComRetVal'Access);
@@ -598,7 +598,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestSentEventArgs.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -632,14 +632,14 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpDiagnosticProviderRequestSentEventArgs.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
+         Retval.m_IHttpRequestMessage := new WinRt.Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
    end;
@@ -686,7 +686,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Diagnostics.HttpDiagnosticRequestInitiator;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestSentEventArgs.all.get_Initiator (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -703,7 +703,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHttpDiagnosticSourceLocation.Kind;
    begin
       Hr := this.m_IHttpDiagnosticProviderRequestSentEventArgs.all.get_SourceLocations (m_ComRetVal'Access);
@@ -746,7 +746,7 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IHttpDiagnosticProviderResponseReceivedEventArgs.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -780,14 +780,14 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpResponseMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpResponseMessage do
          Hr := this.m_IHttpDiagnosticProviderResponseReceivedEventArgs.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+         Retval.m_IHttpResponseMessage := new WinRt.Windows.Web.Http.IHttpResponseMessage;
          Retval.m_IHttpResponseMessage.all := m_ComRetVal;
       end return;
    end;
@@ -823,14 +823,14 @@ package body WinRt.Windows.Web.Http.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHttpDiagnosticSourceLocation.all.get_SourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;

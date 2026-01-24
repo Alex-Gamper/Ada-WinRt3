@@ -72,7 +72,7 @@ package body WinRt.Windows.Services.Cortana is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaActionableInsightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaActionableInsights;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Cortana.ICortanaActionableInsights;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaActionableInsights do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaActionableInsightsStatics'Access , m_Factory'Address);
@@ -82,7 +82,7 @@ package body WinRt.Windows.Services.Cortana is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICortanaActionableInsights := new Windows.Services.Cortana.ICortanaActionableInsights;
+            Retval.m_ICortanaActionableInsights := new WinRt.Windows.Services.Cortana.ICortanaActionableInsights;
             Retval.m_ICortanaActionableInsights.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -91,7 +91,7 @@ package body WinRt.Windows.Services.Cortana is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Services.Cortana.CortanaActionableInsights is
       Hr               : WinRt.HResult := S_OK;
@@ -99,7 +99,7 @@ package body WinRt.Windows.Services.Cortana is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsights");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaActionableInsightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaActionableInsights;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Cortana.ICortanaActionableInsights;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaActionableInsights do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaActionableInsightsStatics'Access , m_Factory'Address);
@@ -109,7 +109,7 @@ package body WinRt.Windows.Services.Cortana is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICortanaActionableInsights := new Windows.Services.Cortana.ICortanaActionableInsights;
+            Retval.m_ICortanaActionableInsights := new WinRt.Windows.Services.Cortana.ICortanaActionableInsights;
             Retval.m_ICortanaActionableInsights.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -127,14 +127,14 @@ package body WinRt.Windows.Services.Cortana is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_ICortanaActionableInsights.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -205,7 +205,7 @@ package body WinRt.Windows.Services.Cortana is
    procedure ShowInsightsForImageAsync
    (
       this : in out CortanaActionableInsights;
-      imageStream : Windows.Storage.Streams.IRandomAccessStreamReference
+      imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -248,8 +248,8 @@ package body WinRt.Windows.Services.Cortana is
    procedure ShowInsightsForImageAsync
    (
       this : in out CortanaActionableInsights;
-      imageStream : Windows.Storage.Streams.IRandomAccessStreamReference;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      imageStream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -338,7 +338,7 @@ package body WinRt.Windows.Services.Cortana is
    (
       this : in out CortanaActionableInsights;
       text : WinRt.WString;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -383,7 +383,7 @@ package body WinRt.Windows.Services.Cortana is
    procedure ShowInsightsAsync
    (
       this : in out CortanaActionableInsights;
-      datapackage : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      datapackage : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -426,8 +426,8 @@ package body WinRt.Windows.Services.Cortana is
    procedure ShowInsightsAsync
    (
       this : in out CortanaActionableInsights;
-      datapackage : Windows.ApplicationModel.DataTransfer.DataPackage'Class;
-      options : Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
+      datapackage : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class;
+      options : WinRt.Windows.Services.Cortana.CortanaActionableInsightsOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -493,13 +493,13 @@ package body WinRt.Windows.Services.Cortana is
    function Constructor return CortanaActionableInsightsOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsightsOptions");
-      m_ComRetVal  : aliased Windows.Services.Cortana.ICortanaActionableInsightsOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Cortana.ICortanaActionableInsightsOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
    begin
       return RetVal : CortanaActionableInsightsOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICortanaActionableInsightsOptions := new Windows.Services.Cortana.ICortanaActionableInsightsOptions;
+            Retval.m_ICortanaActionableInsightsOptions := new WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
             Retval.m_ICortanaActionableInsightsOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -517,14 +517,14 @@ package body WinRt.Windows.Services.Cortana is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ICortanaActionableInsightsOptions.all.get_ContentSourceWebLink (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -532,7 +532,7 @@ package body WinRt.Windows.Services.Cortana is
    procedure put_ContentSourceWebLink
    (
       this : in out CortanaActionableInsightsOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -611,7 +611,7 @@ package body WinRt.Windows.Services.Cortana is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaPermissionsManager");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaPermissionsManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaPermissionsManager;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Cortana.ICortanaPermissionsManager;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaPermissionsManager do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaPermissionsManagerStatics'Access , m_Factory'Address);
@@ -621,7 +621,7 @@ package body WinRt.Windows.Services.Cortana is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICortanaPermissionsManager := new Windows.Services.Cortana.ICortanaPermissionsManager;
+            Retval.m_ICortanaPermissionsManager := new WinRt.Windows.Services.Cortana.ICortanaPermissionsManager;
             Retval.m_ICortanaPermissionsManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -891,7 +891,7 @@ package body WinRt.Windows.Services.Cortana is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaSettings");
       m_Factory        : access WinRt.Windows.Services.Cortana.ICortanaSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Cortana.ICortanaSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Cortana.ICortanaSettings;
    begin
       return RetVal : WinRt.Windows.Services.Cortana.CortanaSettings do
          Hr := RoGetActivationFactory (m_hString, IID_ICortanaSettingsStatics'Access , m_Factory'Address);
@@ -901,7 +901,7 @@ package body WinRt.Windows.Services.Cortana is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICortanaSettings := new Windows.Services.Cortana.ICortanaSettings;
+            Retval.m_ICortanaSettings := new WinRt.Windows.Services.Cortana.ICortanaSettings;
             Retval.m_ICortanaSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

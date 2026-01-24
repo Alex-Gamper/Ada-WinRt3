@@ -125,7 +125,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IClipboardHistoryItemsResult := new Windows.ApplicationModel.DataTransfer.IClipboardHistoryItemsResult;
+                        Retval.m_IClipboardHistoryItemsResult := new WinRt.Windows.ApplicationModel.DataTransfer.IClipboardHistoryItemsResult;
                         Retval.m_IClipboardHistoryItemsResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -163,7 +163,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       function DeleteItemFromHistory
       (
-         item : Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
+         item : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -187,7 +187,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       function SetHistoryItemAsContent
       (
-         item : Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
+         item : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
       )
       return WinRt.Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -195,7 +195,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -253,8 +253,8 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       function SetContentWithOptions
       (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class;
-         options : Windows.ApplicationModel.DataTransfer.ClipboardContentOptions'Class
+         content : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class;
+         options : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardContentOptions'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -286,7 +286,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -302,7 +302,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_HistoryChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -331,7 +331,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -347,7 +347,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_RoamingEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -376,7 +376,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -392,7 +392,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_HistoryEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -418,7 +418,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
             Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
@@ -428,7 +428,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+               Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
                Retval.m_IDataPackageView.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -437,7 +437,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure SetContent
       (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+         content : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -502,7 +502,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.Clipboard");
          m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IClipboardStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IClipboardStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -518,7 +518,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_ContentChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -565,13 +565,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Constructor return ClipboardContentOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ClipboardContentOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IClipboardContentOptions");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
    begin
       return RetVal : ClipboardContentOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IClipboardContentOptions := new Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
+            Retval.m_IClipboardContentOptions := new WinRt.Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
             Retval.m_IClipboardContentOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -653,7 +653,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IClipboardContentOptions.all.get_RoamingFormats (m_ComRetVal'Access);
@@ -673,7 +673,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IClipboardContentOptions.all.get_HistoryFormats (m_ComRetVal'Access);
@@ -759,7 +759,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IClipboardHistoryItem.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -776,14 +776,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_IClipboardHistoryItem.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -819,7 +819,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus;
    begin
       Hr := this.m_IClipboardHistoryItemsResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -836,7 +836,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IClipboardHistoryItem.Kind;
    begin
       Hr := this.m_IClipboardHistoryItemsResult.all.get_Items (m_ComRetVal'Access);
@@ -874,13 +874,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Constructor return DataPackage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DataPackage");
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.IDataPackage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IDataPackage");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
    begin
       return RetVal : DataPackage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDataPackage := new Windows.ApplicationModel.DataTransfer.IDataPackage;
+            Retval.m_IDataPackage := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
             Retval.m_IDataPackage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -898,14 +898,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_IDataPackage.all.GetView (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -918,14 +918,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackagePropertySet do
          Hr := this.m_IDataPackage.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackagePropertySet := new Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
+         Retval.m_IDataPackagePropertySet := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet;
          Retval.m_IDataPackagePropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -938,7 +938,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DataPackageOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation;
    begin
       Hr := this.m_IDataPackage.all.get_RequestedOperation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -950,7 +950,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_RequestedOperation
    (
       this : in out DataPackage;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -971,7 +971,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDataPackage.all.add_OperationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -983,7 +983,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_OperationCompleted
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1004,7 +1004,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDataPackage.all.add_Destroyed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1016,7 +1016,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Destroyed
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1050,7 +1050,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    (
       this : in out DataPackage;
       formatId : WinRt.WString;
-      delayRenderer : Windows.ApplicationModel.DataTransfer.DataProviderHandler
+      delayRenderer : WinRt.Windows.ApplicationModel.DataTransfer.DataProviderHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1084,7 +1084,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetUri
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1121,7 +1121,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IDataPackage.all.get_ResourceMap (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1150,7 +1150,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetBitmap
    (
       this : in out DataPackage;
-      value : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1196,7 +1196,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetApplicationLink
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1215,7 +1215,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetWebLink
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage3, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackage.all);
@@ -1256,7 +1256,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareCompleted
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1282,7 +1282,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage4, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackage4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackage.all);
@@ -1297,7 +1297,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareCanceled
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1418,7 +1418,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IDataPackagePropertySet.all.get_Thumbnail (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1430,7 +1430,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Thumbnail
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1450,7 +1450,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IDataPackagePropertySet.all.get_FileTypes (m_ComRetVal'Access);
@@ -1507,14 +1507,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IDataPackagePropertySet.all.get_ApplicationListingUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1522,7 +1522,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ApplicationListingUri
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1545,7 +1545,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased IInspectable;
+      m_ComRetVal      : aliased WinRt.IInspectable;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
@@ -1616,7 +1616,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySet2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1715,7 +1715,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1723,7 +1723,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ContentSourceWebLink
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1748,7 +1748,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySet2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1758,7 +1758,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1766,7 +1766,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ContentSourceApplicationLink
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1836,7 +1836,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySet2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackagePropertySet.all);
@@ -1851,7 +1851,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Square30x30Logo
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1876,7 +1876,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySet2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackagePropertySet.all);
@@ -1891,7 +1891,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_LogoBackgroundColor
    (
       this : in out DataPackagePropertySet;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2068,14 +2068,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := this.m_IDataPackagePropertySetView.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;
@@ -2088,7 +2088,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IDataPackagePropertySetView.all.get_FileTypes (m_ComRetVal'Access);
@@ -2128,14 +2128,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IDataPackagePropertySetView.all.get_ApplicationListingUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2173,7 +2173,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySetView2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2183,7 +2183,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2197,7 +2197,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySetView2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2207,7 +2207,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2221,7 +2221,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySetView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackagePropertySetView.all);
@@ -2242,7 +2242,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackagePropertySetView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackagePropertySetView.all);
@@ -2334,7 +2334,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMapView_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased IInspectable;
+      m_ComRetVal      : aliased WinRt.IInspectable;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (3145224234, 63389, 21754, (146, 201, 144, 197, 3, 159, 223, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView_Interface, IMapView_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
@@ -2448,14 +2448,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView do
          Hr := this.m_IDataPackageView.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackagePropertySetView := new Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView;
+         Retval.m_IDataPackagePropertySetView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView;
          Retval.m_IDataPackagePropertySetView.all := m_ComRetVal;
       end return;
    end;
@@ -2468,7 +2468,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DataPackageOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation;
    begin
       Hr := this.m_IDataPackageView.all.get_RequestedOperation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2480,7 +2480,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure ReportOperationCompleted
    (
       this : in out DataPackageView;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2500,7 +2500,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IDataPackageView.all.get_AvailableFormats (m_ComRetVal'Access);
@@ -2786,7 +2786,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+                  Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                   Retval.m_IUriRuntimeClass.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3047,7 +3047,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+                  Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
                   Retval.m_IRandomAccessStreamReference.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3180,7 +3180,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+                  Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                   Retval.m_IUriRuntimeClass.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3250,7 +3250,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+                  Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                   Retval.m_IUriRuntimeClass.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3409,7 +3409,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView3, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataPackageView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataPackageView.all);
@@ -3485,7 +3485,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Invoke
    (
       this : access DataProviderHandler_Delegate;
-      request : Windows.ApplicationModel.DataTransfer.IDataProviderRequest
+      request : WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderRequest
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -3545,7 +3545,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IDataProviderRequest.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3562,14 +3562,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataProviderDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataProviderDeferral do
          Hr := this.m_IDataProviderRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataProviderDeferral := new Windows.ApplicationModel.DataTransfer.IDataProviderDeferral;
+         Retval.m_IDataProviderDeferral := new WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderDeferral;
          Retval.m_IDataProviderDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3620,14 +3620,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage do
          Hr := this.m_IDataRequest.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackage := new Windows.ApplicationModel.DataTransfer.IDataPackage;
+         Retval.m_IDataPackage := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
          Retval.m_IDataPackage.all := m_ComRetVal;
       end return;
    end;
@@ -3635,7 +3635,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Data
    (
       this : in out DataRequest;
-      value : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3655,7 +3655,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IDataRequest.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3689,14 +3689,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataRequestDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataRequestDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataRequestDeferral do
          Hr := this.m_IDataRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataRequestDeferral := new Windows.ApplicationModel.DataTransfer.IDataRequestDeferral;
+         Retval.m_IDataRequestDeferral := new WinRt.Windows.ApplicationModel.DataTransfer.IDataRequestDeferral;
          Retval.m_IDataRequestDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3769,14 +3769,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataRequest do
          Hr := this.m_IDataRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataRequest := new Windows.ApplicationModel.DataTransfer.IDataRequest;
+         Retval.m_IDataRequest := new WinRt.Windows.ApplicationModel.DataTransfer.IDataRequest;
          Retval.m_IDataRequest.all := m_ComRetVal;
       end return;
    end;
@@ -3827,7 +3827,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
    procedure ShowShareUI
    (
-      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
+      options : WinRt.Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3871,7 +3871,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DataTransferManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataTransferManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataTransferManager do
          Hr := RoGetActivationFactory (m_hString, IID_IDataTransferManagerStatics'Access , m_Factory'Address);
@@ -3881,7 +3881,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDataTransferManager := new Windows.ApplicationModel.DataTransfer.IDataTransferManager;
+            Retval.m_IDataTransferManager := new WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager;
             Retval.m_IDataTransferManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3900,7 +3900,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDataTransferManager.all.add_DataRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3912,7 +3912,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_DataRequested
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3933,7 +3933,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDataTransferManager.all.add_TargetApplicationChosen (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3945,7 +3945,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_TargetApplicationChosen
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3967,7 +3967,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager_Interface, WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager2, WinRt.Windows.ApplicationModel.DataTransfer.IID_IDataTransferManager2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDataTransferManager.all);
@@ -3982,7 +3982,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareProvidersRequested
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4093,7 +4093,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DataPackageOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation;
    begin
       Hr := this.m_IOperationCompletedEventArgs.all.get_Operation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4157,14 +4157,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IShareTargetInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IShareTargetInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.ShareTargetInfo do
          Hr := this.m_IShareCompletedEventArgs.all.get_ShareTarget (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IShareTargetInfo := new Windows.ApplicationModel.DataTransfer.IShareTargetInfo;
+         Retval.m_IShareTargetInfo := new WinRt.Windows.ApplicationModel.DataTransfer.IShareTargetInfo;
          Retval.m_IShareTargetInfo.all := m_ComRetVal;
       end return;
    end;
@@ -4195,24 +4195,24 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Constructor
    (
       title : WinRt.WString;
-      displayIcon : Windows.Storage.Streams.RandomAccessStreamReference'Class;
-      backgroundColor : Windows.UI.Color;
-      handler : Windows.ApplicationModel.DataTransfer.ShareProviderHandler
+      displayIcon : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
+      backgroundColor : WinRt.Windows.UI.Color;
+      handler : WinRt.Windows.ApplicationModel.DataTransfer.ShareProviderHandler
    )
    return ShareProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IShareProvider");
       m_Factory    : access IShareProviderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.IShareProvider;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
       HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : ShareProvider do
          Hr := RoGetActivationFactory (m_hString, IID_IShareProviderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_title, displayIcon.m_IRandomAccessStreamReference.all, backgroundColor, handler, m_ComRetVal'Access);
-            Retval.m_IShareProvider := new Windows.ApplicationModel.DataTransfer.IShareProvider;
+            Retval.m_IShareProvider := new WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
             Retval.m_IShareProvider.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4252,14 +4252,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := this.m_IShareProvider.all.get_DisplayIcon (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;
@@ -4272,7 +4272,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IShareProvider.all.get_BackgroundColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4319,7 +4319,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Invoke
    (
       this : access ShareProviderHandler_Delegate;
-      operation : Windows.ApplicationModel.DataTransfer.IShareProviderOperation
+      operation : WinRt.Windows.ApplicationModel.DataTransfer.IShareProviderOperation
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -4359,14 +4359,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_IShareProviderOperation.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -4379,14 +4379,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IShareProvider;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.ShareProvider do
          Hr := this.m_IShareProviderOperation.all.get_Provider (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IShareProvider := new Windows.ApplicationModel.DataTransfer.IShareProvider;
+         Retval.m_IShareProvider := new WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
          Retval.m_IShareProvider.all := m_ComRetVal;
       end return;
    end;
@@ -4436,7 +4436,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IShareProvider.Kind;
    begin
       Hr := this.m_IShareProvidersRequestedEventArgs.all.get_Providers (m_ComRetVal'Access);
@@ -4456,14 +4456,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_IShareProvidersRequestedEventArgs.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -4476,14 +4476,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IShareProvidersRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -4539,14 +4539,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IShareProvider;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.ShareProvider do
          Hr := this.m_IShareTargetInfo.all.get_ShareProvider (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IShareProvider := new Windows.ApplicationModel.DataTransfer.IShareProvider;
+         Retval.m_IShareProvider := new WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider;
          Retval.m_IShareProvider.all := m_ComRetVal;
       end return;
    end;
@@ -4577,13 +4577,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function Constructor return ShareUIOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareUIOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.IShareUIOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IShareUIOptions");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.IShareUIOptions;
    begin
       return RetVal : ShareUIOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IShareUIOptions := new Windows.ApplicationModel.DataTransfer.IShareUIOptions;
+            Retval.m_IShareUIOptions := new WinRt.Windows.ApplicationModel.DataTransfer.IShareUIOptions;
             Retval.m_IShareUIOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4601,7 +4601,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ShareUITheme;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.ShareUITheme;
    begin
       Hr := this.m_IShareUIOptions.all.get_Theme (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4613,7 +4613,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Theme
    (
       this : in out ShareUIOptions;
-      value : Windows.ApplicationModel.DataTransfer.ShareUITheme
+      value : WinRt.Windows.ApplicationModel.DataTransfer.ShareUITheme
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4633,7 +4633,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Rect.Kind;
    begin
       Hr := this.m_IShareUIOptions.all.get_SelectionRect (m_ComRetVal'Access);
@@ -4666,7 +4666,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
       function AddFile
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -4750,7 +4750,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                        Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                         Retval.m_IStorageFile.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -5081,7 +5081,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
    function CreateWatcher
    (
-      options : Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions'Class
+      options : WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetWatcher is
       Hr               : WinRt.HResult := S_OK;
@@ -5089,7 +5089,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.TransferTarget");
       m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_ITransferTargetStatics'Access , m_Factory'Address);
@@ -5099,7 +5099,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ITransferTargetWatcher := new Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher;
+            Retval.m_ITransferTargetWatcher := new WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher;
             Retval.m_ITransferTargetWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5157,7 +5157,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_ITransferTarget.all.get_DisplayIcon (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5214,14 +5214,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ITransferTarget;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.ITransferTarget;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.TransferTarget do
          Hr := this.m_ITransferTargetChangedEventArgs.all.get_Target (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransferTarget := new Windows.ApplicationModel.DataTransfer.ITransferTarget;
+         Retval.m_ITransferTarget := new WinRt.Windows.ApplicationModel.DataTransfer.ITransferTarget;
          Retval.m_ITransferTarget.all := m_ComRetVal;
       end return;
    end;
@@ -5251,21 +5251,21 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
    function Constructor
    (
-      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+      dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class
    )
    return TransferTargetDiscoveryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions");
       m_Factory    : access ITransferTargetDiscoveryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
    begin
       return RetVal : TransferTargetDiscoveryOptions do
          Hr := RoGetActivationFactory (m_hString, IID_ITransferTargetDiscoveryOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (dataPackage_p.m_IDataPackageView.all, m_ComRetVal'Access);
-            Retval.m_ITransferTargetDiscoveryOptions := new Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
+            Retval.m_ITransferTargetDiscoveryOptions := new WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
             Retval.m_ITransferTargetDiscoveryOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5284,14 +5284,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_ITransferTargetDiscoveryOptions.all.get_DataPackage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -5420,7 +5420,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_ITransferTargetInvokeResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5454,7 +5454,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
 
    function IsSupported
    (
-      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+      dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5510,8 +5510,8 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    function TransferToAsync
    (
       this : in out TransferTargetWatcher;
-      target : Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
-      parentWindowHandle : Windows.UI.WindowId
+      target : WinRt.Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
+      parentWindowHandle : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetInvokeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5562,7 +5562,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ITransferTargetInvokeResult := new Windows.ApplicationModel.DataTransfer.ITransferTargetInvokeResult;
+                  Retval.m_ITransferTargetInvokeResult := new WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetInvokeResult;
                   Retval.m_ITransferTargetInvokeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5584,7 +5584,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITransferTargetWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5596,7 +5596,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Added
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5617,7 +5617,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITransferTargetWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5629,7 +5629,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Removed
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5650,7 +5650,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITransferTargetWatcher.all.add_Updated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5662,7 +5662,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Updated
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5683,7 +5683,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITransferTargetWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5695,7 +5695,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_EnumerationCompleted
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5716,7 +5716,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITransferTargetWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5728,7 +5728,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Stopped
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

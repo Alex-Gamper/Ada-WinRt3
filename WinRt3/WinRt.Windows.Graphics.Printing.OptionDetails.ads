@@ -539,7 +539,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
          itemId : WinRt.HString;
          displayName : WinRt.HString;
          description : WinRt.HString;
-         icon : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         icon : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -858,7 +858,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       function get_OptionType
       (
          this : access IPrintOptionDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.PrintOptionType
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType
       )
       return WinRt.Hresult is abstract;
 
@@ -879,14 +879,14 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       function put_State
       (
          this : access IPrintOptionDetails_Interface;
-         value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+         value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IPrintOptionDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
       )
       return WinRt.Hresult is abstract;
 
@@ -1066,7 +1066,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
          this : access IPrintTaskOptionDetails_Interface;
          optionId : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1075,7 +1075,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
          this : access IPrintTaskOptionDetails_Interface;
          optionId : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1083,14 +1083,14 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       (
          this : access IPrintTaskOptionDetails_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OptionChanged
       (
          this : access IPrintTaskOptionDetails_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,14 +1098,14 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       (
          this : access IPrintTaskOptionDetails_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BeginValidation
       (
          this : access IPrintTaskOptionDetails_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1119,7 +1119,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
          this : access IPrintTaskOptionDetails2_Interface;
          optionId : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1131,8 +1131,8 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       function GetFromPrintTaskOptions
       (
          this : access IPrintTaskOptionDetailsStatic_Interface;
-         printTaskOptions : Windows.Graphics.Printing.IPrintTaskOptionsCore;
-         RetVal : access Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails
+         printTaskOptions : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
+         RetVal : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1190,7 +1190,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintBindingOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintBorderingOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1366,7 +1366,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCollationOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1454,7 +1454,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintColorModeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1542,7 +1542,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCopiesOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1663,7 +1663,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomItemListOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1716,7 +1716,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
       itemId : WinRt.WString;
       displayName : WinRt.WString;
       description : WinRt.WString;
-      icon : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      icon : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    );
 
    procedure put_WarningText
@@ -1779,7 +1779,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomTextOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1885,7 +1885,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomToggleOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -1979,7 +1979,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintDuplexOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2067,7 +2067,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintHolePunchOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2155,7 +2155,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintMediaSizeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2243,7 +2243,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintMediaTypeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2331,7 +2331,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintOrientationOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2419,7 +2419,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintPageRangeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2501,7 +2501,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintQualityOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2589,7 +2589,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintStapleOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    );
 
    function get_State
@@ -2667,7 +2667,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
 
    function GetFromPrintTaskOptions
    (
-      printTaskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class
+      printTaskOptions : WinRt.Windows.Graphics.Printing.PrintTaskOptions'Class
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails;
 
@@ -2706,7 +2706,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure remove_OptionChanged
    (
       this : in out PrintTaskOptionDetails;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BeginValidation
@@ -2719,7 +2719,7 @@ package WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure remove_BeginValidation
    (
       this : in out PrintTaskOptionDetails;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetPageDescription

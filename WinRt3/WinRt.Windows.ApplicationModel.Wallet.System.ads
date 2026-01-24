@@ -94,15 +94,15 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
       function DeleteAsync
       (
          this : access IWalletItemSystemStore_Interface;
-         item : Windows.ApplicationModel.Wallet.IWalletItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         item : WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ImportItemAsync
       (
          this : access IWalletItemSystemStore_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -110,15 +110,15 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
       function GetAppStatusForItem
       (
          this : access IWalletItemSystemStore_Interface;
-         item : Windows.ApplicationModel.Wallet.IWalletItem;
-         RetVal : access Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation
+         item : WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation
       )
       return WinRt.Hresult is abstract;
 
       function LaunchAppForItemAsync
       (
          this : access IWalletItemSystemStore_Interface;
-         item : Windows.ApplicationModel.Wallet.IWalletItem;
+         item : WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -132,14 +132,14 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
       (
          this : access IWalletItemSystemStore2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemsChanged
       (
          this : access IWalletItemSystemStore2_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -179,27 +179,27 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
    procedure DeleteAsync
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    );
 
    function ImportItemAsync
    (
       this : in out WalletItemSystemStore;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class;
 
    function GetAppStatusForItem
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    )
    return WinRt.Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation;
 
    function LaunchAppForItemAsync
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    )
    return WinRt.Boolean;
 
@@ -213,7 +213,7 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
    procedure remove_ItemsChanged
    (
       this : in out WalletItemSystemStore;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

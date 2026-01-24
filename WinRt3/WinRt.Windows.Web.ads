@@ -175,7 +175,7 @@ package WinRt.Windows.Web is
       function UriToStreamAsync
       (
          this : access IUriToStreamResolver_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -189,7 +189,7 @@ package WinRt.Windows.Web is
       (
          this : access IWebErrorStatics_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Web.WebErrorStatus
+         RetVal : access WinRt.Windows.Web.WebErrorStatus
       )
       return WinRt.Hresult is abstract;
 

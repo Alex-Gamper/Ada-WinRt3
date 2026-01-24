@@ -423,28 +423,28 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Condition
       (
          this : access ICompositionConditionalValue_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Condition
       (
          this : access ICompositionConditionalValue_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access ICompositionConditionalValue_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Value
       (
          this : access ICompositionConditionalValue_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -456,8 +456,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access ICompositionConditionalValueStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.ICompositionConditionalValue
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.ICompositionConditionalValue
       )
       return WinRt.Hresult is abstract;
 
@@ -481,14 +481,14 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Add
       (
          this : access ICompositionInteractionSourceCollection_Interface;
-         value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
+         value : WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access ICompositionInteractionSourceCollection_Interface;
-         value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
+         value : WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -506,42 +506,42 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_PositionXSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionXSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionYSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionYSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ScaleSourceMode
       (
          this : access IInteractionSourceConfiguration_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -553,7 +553,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_InteractionSources
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSourceCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -567,14 +567,14 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_MaxPosition
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxPosition
       (
          this : access IInteractionTracker_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -595,14 +595,14 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_MinPosition
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_MinPosition
       (
          this : access IInteractionTracker_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -623,7 +623,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_NaturalRestingPosition
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -637,14 +637,14 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Owner
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTrackerOwner
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerOwner
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -665,7 +665,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_PositionVelocityInPixelsPerSecond
       (
          this : access IInteractionTracker_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -737,7 +737,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePosition
       (
          this : access IInteractionTracker_Interface;
-         value : Windows.Foundation.Numerics.Vector3;
+         value : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -745,7 +745,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePositionBy
       (
          this : access IInteractionTracker_Interface;
-         amount : Windows.Foundation.Numerics.Vector3;
+         amount : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -753,7 +753,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePositionWithAnimation
       (
          this : access IInteractionTracker_Interface;
-         animation : Windows.UI.Composition.ICompositionAnimation;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimation;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -761,7 +761,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePositionWithAdditionalVelocity
       (
          this : access IInteractionTracker_Interface;
-         velocityInPixelsPerSecond : Windows.Foundation.Numerics.Vector3;
+         velocityInPixelsPerSecond : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -770,7 +770,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       (
          this : access IInteractionTracker_Interface;
          value : WinRt.Single;
-         centerPoint : Windows.Foundation.Numerics.Vector3;
+         centerPoint : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -778,8 +778,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdateScaleWithAnimation
       (
          this : access IInteractionTracker_Interface;
-         animation : Windows.UI.Composition.ICompositionAnimation;
-         centerPoint : Windows.Foundation.Numerics.Vector3;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimation;
+         centerPoint : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -788,7 +788,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       (
          this : access IInteractionTracker_Interface;
          velocityInPercentPerSecond : WinRt.Single;
-         centerPoint : Windows.Foundation.Numerics.Vector3;
+         centerPoint : WinRt.Windows.Foundation.Numerics.Vector3;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -832,8 +832,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePosition
       (
          this : access IInteractionTracker4_Interface;
-         value : Windows.Foundation.Numerics.Vector3;
-         option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
+         value : WinRt.Windows.Foundation.Numerics.Vector3;
+         option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -841,8 +841,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePositionBy
       (
          this : access IInteractionTracker4_Interface;
-         amount : Windows.Foundation.Numerics.Vector3;
-         option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
+         amount : WinRt.Windows.Foundation.Numerics.Vector3;
+         option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -862,9 +862,9 @@ package WinRt.Windows.UI.Composition.Interactions is
       function TryUpdatePosition
       (
          this : access IInteractionTracker5_Interface;
-         value : Windows.Foundation.Numerics.Vector3;
-         option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
-         posUpdateOption : Windows.UI.Composition.Interactions.InteractionTrackerPositionUpdateOption;
+         value : WinRt.Windows.Foundation.Numerics.Vector3;
+         option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
+         posUpdateOption : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerPositionUpdateOption;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -935,28 +935,28 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Condition
       (
          this : access IInteractionTrackerInertiaMotion_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Condition
       (
          this : access IInteractionTrackerInertiaMotion_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function get_Motion
       (
          this : access IInteractionTrackerInertiaMotion_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Motion
       (
          this : access IInteractionTrackerInertiaMotion_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -968,8 +968,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IInteractionTrackerInertiaMotionStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTrackerInertiaMotion
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaMotion
       )
       return WinRt.Hresult is abstract;
 
@@ -981,28 +981,28 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Condition
       (
          this : access IInteractionTrackerInertiaNaturalMotion_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Condition
       (
          this : access IInteractionTrackerInertiaNaturalMotion_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function get_NaturalMotion
       (
          this : access IInteractionTrackerInertiaNaturalMotion_Interface;
-         RetVal : access Windows.UI.Composition.IScalarNaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IScalarNaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_NaturalMotion
       (
          this : access IInteractionTrackerInertiaNaturalMotion_Interface;
-         value : Windows.UI.Composition.IScalarNaturalMotionAnimation
+         value : WinRt.Windows.UI.Composition.IScalarNaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -1014,8 +1014,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IInteractionTrackerInertiaNaturalMotionStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTrackerInertiaNaturalMotion
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaNaturalMotion
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,28 +1027,28 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Condition
       (
          this : access IInteractionTrackerInertiaRestingValue_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Condition
       (
          this : access IInteractionTrackerInertiaRestingValue_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function get_RestingValue
       (
          this : access IInteractionTrackerInertiaRestingValue_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_RestingValue
       (
          this : access IInteractionTrackerInertiaRestingValue_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -1060,8 +1060,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IInteractionTrackerInertiaRestingValueStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTrackerInertiaRestingValue
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaRestingValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1087,7 +1087,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_NaturalRestingPosition
       (
          this : access IInteractionTrackerInertiaStateEnteredArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1101,7 +1101,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_PositionVelocityInPixelsPerSecond
       (
          this : access IInteractionTrackerInertiaStateEnteredArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,48 +1175,48 @@ package WinRt.Windows.UI.Composition.Interactions is
       function CustomAnimationStateEntered
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs
       )
       return WinRt.Hresult is abstract;
 
       function IdleStateEntered
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs
       )
       return WinRt.Hresult is abstract;
 
       function InertiaStateEntered
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInertiaStateEnteredArgs
       )
       return WinRt.Hresult is abstract;
 
       function InteractingStateEntered
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerInteractingStateEnteredArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerInteractingStateEnteredArgs
       )
       return WinRt.Hresult is abstract;
 
       function RequestIgnored
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerRequestIgnoredArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerRequestIgnoredArgs
       )
       return WinRt.Hresult is abstract;
 
       function ValuesChanged
       (
          this : access IInteractionTrackerOwner_Interface;
-         sender : Windows.UI.Composition.Interactions.IInteractionTracker;
-         args : Windows.UI.Composition.Interactions.IInteractionTrackerValuesChangedArgs
+         sender : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         args : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerValuesChangedArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -1240,17 +1240,17 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IInteractionTrackerStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTracker
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTracker
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithOwner
       (
          this : access IInteractionTrackerStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTracker
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         owner : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerOwner;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -1262,18 +1262,18 @@ package WinRt.Windows.UI.Composition.Interactions is
       function SetBindingMode
       (
          this : access IInteractionTrackerStatics2_Interface;
-         boundTracker1 : Windows.UI.Composition.Interactions.IInteractionTracker;
-         boundTracker2 : Windows.UI.Composition.Interactions.IInteractionTracker;
-         axisMode : Windows.UI.Composition.Interactions.InteractionBindingAxisModes
+         boundTracker1 : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         boundTracker2 : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         axisMode : WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes
       )
       return WinRt.Hresult is abstract;
 
       function GetBindingMode
       (
          this : access IInteractionTrackerStatics2_Interface;
-         boundTracker1 : Windows.UI.Composition.Interactions.IInteractionTracker;
-         boundTracker2 : Windows.UI.Composition.Interactions.IInteractionTracker;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionBindingAxisModes
+         boundTracker1 : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         boundTracker2 : WinRt.Windows.UI.Composition.Interactions.IInteractionTracker;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes
       )
       return WinRt.Hresult is abstract;
 
@@ -1285,7 +1285,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Position
       (
          this : access IInteractionTrackerValuesChangedArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1321,28 +1321,28 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Condition
       (
          this : access IInteractionTrackerVector2InertiaNaturalMotion_Interface;
-         RetVal : access Windows.UI.Composition.IExpressionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_Condition
       (
          this : access IInteractionTrackerVector2InertiaNaturalMotion_Interface;
-         value : Windows.UI.Composition.IExpressionAnimation
+         value : WinRt.Windows.UI.Composition.IExpressionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function get_NaturalMotion
       (
          this : access IInteractionTrackerVector2InertiaNaturalMotion_Interface;
-         RetVal : access Windows.UI.Composition.IVector2NaturalMotionAnimation
+         RetVal : access WinRt.Windows.UI.Composition.IVector2NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
       function put_NaturalMotion
       (
          this : access IInteractionTrackerVector2InertiaNaturalMotion_Interface;
-         value : Windows.UI.Composition.IVector2NaturalMotionAnimation
+         value : WinRt.Windows.UI.Composition.IVector2NaturalMotionAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -1354,8 +1354,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IInteractionTrackerVector2InertiaNaturalMotionStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionTrackerVector2InertiaNaturalMotion
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerVector2InertiaNaturalMotion
       )
       return WinRt.Hresult is abstract;
 
@@ -1395,112 +1395,112 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_ManipulationRedirectionMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ManipulationRedirectionMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
+         value : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionXChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionChainingMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionXChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionChainingMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionXSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionXSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionYChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionChainingMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionYChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionChainingMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionYSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PositionYSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionChainingMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ScaleChainingMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionChainingMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.InteractionSourceMode
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ScaleSourceMode
       (
          this : access IVisualInteractionSource_Interface;
-         value : Windows.UI.Composition.Interactions.InteractionSourceMode
+         value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IVisualInteractionSource_Interface;
-         RetVal : access Windows.UI.Composition.IVisual
+         RetVal : access WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function TryRedirectForManipulation
       (
          this : access IVisualInteractionSource_Interface;
-         pointerPoint : Windows.UI.Input.IPointerPoint
+         pointerPoint : WinRt.Windows.UI.Input.IPointerPoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1512,7 +1512,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_DeltaPosition
       (
          this : access IVisualInteractionSource2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1526,14 +1526,14 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_Position
       (
          this : access IVisualInteractionSource2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionVelocity
       (
          this : access IVisualInteractionSource2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1594,7 +1594,7 @@ package WinRt.Windows.UI.Composition.Interactions is
       function get_PointerWheelConfig
       (
          this : access IVisualInteractionSource3_Interface;
-         RetVal : access Windows.UI.Composition.Interactions.IInteractionSourceConfiguration
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IInteractionSourceConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1611,8 +1611,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function Create
       (
          this : access IVisualInteractionSourceStatics_Interface;
-         source : Windows.UI.Composition.IVisual;
-         RetVal : access Windows.UI.Composition.Interactions.IVisualInteractionSource
+         source : WinRt.Windows.UI.Composition.IVisual;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1624,8 +1624,8 @@ package WinRt.Windows.UI.Composition.Interactions is
       function CreateFromIVisualElement
       (
          this : access IVisualInteractionSourceStatics2_Interface;
-         source : Windows.UI.Composition.IVisualElement;
-         RetVal : access Windows.UI.Composition.Interactions.IVisualInteractionSource
+         source : WinRt.Windows.UI.Composition.IVisualElement;
+         RetVal : access WinRt.Windows.UI.Composition.Interactions.IVisualInteractionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1646,7 +1646,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.CompositionConditionalValue;
 
@@ -1662,7 +1662,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Condition
    (
       this : in out CompositionConditionalValue;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    function get_Value
@@ -1674,7 +1674,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Value
    (
       this : in out CompositionConditionalValue;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1695,13 +1695,13 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure Add
    (
       this : in out CompositionInteractionSourceCollection;
-      value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
+      value : WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource
    );
 
    procedure Remove
    (
       this : in out CompositionInteractionSourceCollection;
-      value : Windows.UI.Composition.Interactions.ICompositionInteractionSource
+      value : WinRt.Windows.UI.Composition.Interactions.ICompositionInteractionSource
    );
 
    procedure RemoveAll
@@ -1734,7 +1734,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionXSourceMode
    (
       this : in out InteractionSourceConfiguration;
-      value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    );
 
    function get_PositionYSourceMode
@@ -1746,7 +1746,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionYSourceMode
    (
       this : in out InteractionSourceConfiguration;
-      value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    );
 
    function get_ScaleSourceMode
@@ -1758,7 +1758,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_ScaleSourceMode
    (
       this : in out InteractionSourceConfiguration;
-      value : Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode
    );
 
    -----------------------------------------------------------------------------
@@ -1772,28 +1772,28 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
 
    function CreateWithOwner
    (
-      compositor : Windows.UI.Composition.Compositor'Class;
-      owner : Windows.UI.Composition.Interactions.IInteractionTrackerOwner
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class;
+      owner : WinRt.Windows.UI.Composition.Interactions.IInteractionTrackerOwner
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTracker;
 
    procedure SetBindingMode
    (
-      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      axisMode : Windows.UI.Composition.Interactions.InteractionBindingAxisModes
+      boundTracker1 : WinRt.Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : WinRt.Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      axisMode : WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes
    );
 
    function GetBindingMode
    (
-      boundTracker1 : Windows.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : Windows.UI.Composition.Interactions.InteractionTracker'Class
+      boundTracker1 : WinRt.Windows.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : WinRt.Windows.UI.Composition.Interactions.InteractionTracker'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionBindingAxisModes;
 
@@ -1821,7 +1821,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_MaxPosition
    (
       this : in out InteractionTracker;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_MaxScale
@@ -1845,7 +1845,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_MinPosition
    (
       this : in out InteractionTracker;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_MinScale
@@ -1961,28 +1961,28 @@ package WinRt.Windows.UI.Composition.Interactions is
    function TryUpdatePosition
    (
       this : in out InteractionTracker;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
    function TryUpdatePositionBy
    (
       this : in out InteractionTracker;
-      amount : Windows.Foundation.Numerics.Vector3
+      amount : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
    function TryUpdatePositionWithAnimation
    (
       this : in out InteractionTracker;
-      animation : Windows.UI.Composition.CompositionAnimation'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    )
    return WinRt.Int32;
 
    function TryUpdatePositionWithAdditionalVelocity
    (
       this : in out InteractionTracker;
-      velocityInPixelsPerSecond : Windows.Foundation.Numerics.Vector3
+      velocityInPixelsPerSecond : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
@@ -1990,15 +1990,15 @@ package WinRt.Windows.UI.Composition.Interactions is
    (
       this : in out InteractionTracker;
       value : WinRt.Single;
-      centerPoint : Windows.Foundation.Numerics.Vector3
+      centerPoint : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
    function TryUpdateScaleWithAnimation
    (
       this : in out InteractionTracker;
-      animation : Windows.UI.Composition.CompositionAnimation'Class;
-      centerPoint : Windows.Foundation.Numerics.Vector3
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class;
+      centerPoint : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
@@ -2006,7 +2006,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    (
       this : in out InteractionTracker;
       velocityInPercentPerSecond : WinRt.Single;
-      centerPoint : Windows.Foundation.Numerics.Vector3
+      centerPoint : WinRt.Windows.Foundation.Numerics.Vector3
    )
    return WinRt.Int32;
 
@@ -2031,16 +2031,16 @@ package WinRt.Windows.UI.Composition.Interactions is
    function TryUpdatePosition
    (
       this : in out InteractionTracker;
-      value : Windows.Foundation.Numerics.Vector3;
-      option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption
+      value : WinRt.Windows.Foundation.Numerics.Vector3;
+      option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption
    )
    return WinRt.Int32;
 
    function TryUpdatePositionBy
    (
       this : in out InteractionTracker;
-      amount : Windows.Foundation.Numerics.Vector3;
-      option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption
+      amount : WinRt.Windows.Foundation.Numerics.Vector3;
+      option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption
    )
    return WinRt.Int32;
 
@@ -2053,9 +2053,9 @@ package WinRt.Windows.UI.Composition.Interactions is
    function TryUpdatePosition
    (
       this : in out InteractionTracker;
-      value : Windows.Foundation.Numerics.Vector3;
-      option : Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
-      posUpdateOption : Windows.UI.Composition.Interactions.InteractionTrackerPositionUpdateOption
+      value : WinRt.Windows.Foundation.Numerics.Vector3;
+      option : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerClampingOption;
+      posUpdateOption : WinRt.Windows.UI.Composition.Interactions.InteractionTrackerPositionUpdateOption
    )
    return WinRt.Int32;
 
@@ -2124,7 +2124,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaMotion;
 
@@ -2140,7 +2140,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Condition
    (
       this : in out InteractionTrackerInertiaMotion;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    function get_Motion
@@ -2152,7 +2152,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Motion
    (
       this : in out InteractionTrackerInertiaMotion;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2166,7 +2166,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaNaturalMotion;
 
@@ -2182,7 +2182,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Condition
    (
       this : in out InteractionTrackerInertiaNaturalMotion;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    function get_NaturalMotion
@@ -2194,7 +2194,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_NaturalMotion
    (
       this : in out InteractionTrackerInertiaNaturalMotion;
-      value : Windows.UI.Composition.ScalarNaturalMotionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ScalarNaturalMotionAnimation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2208,7 +2208,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerInertiaRestingValue;
 
@@ -2224,7 +2224,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Condition
    (
       this : in out InteractionTrackerInertiaRestingValue;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    function get_RestingValue
@@ -2236,7 +2236,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_RestingValue
    (
       this : in out InteractionTrackerInertiaRestingValue;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2388,7 +2388,7 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.InteractionTrackerVector2InertiaNaturalMotion;
 
@@ -2404,7 +2404,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_Condition
    (
       this : in out InteractionTrackerVector2InertiaNaturalMotion;
-      value : Windows.UI.Composition.ExpressionAnimation'Class
+      value : WinRt.Windows.UI.Composition.ExpressionAnimation'Class
    );
 
    function get_NaturalMotion
@@ -2416,7 +2416,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_NaturalMotion
    (
       this : in out InteractionTrackerVector2InertiaNaturalMotion;
-      value : Windows.UI.Composition.Vector2NaturalMotionAnimation'Class
+      value : WinRt.Windows.UI.Composition.Vector2NaturalMotionAnimation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2433,13 +2433,13 @@ package WinRt.Windows.UI.Composition.Interactions is
 
    function CreateFromIVisualElement
    (
-      source : Windows.UI.Composition.IVisualElement
+      source : WinRt.Windows.UI.Composition.IVisualElement
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
 
    function Create
    (
-      source : Windows.UI.Composition.Visual'Class
+      source : WinRt.Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.UI.Composition.Interactions.VisualInteractionSource;
 
@@ -2479,7 +2479,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_ManipulationRedirectionMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
+      value : WinRt.Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode
    );
 
    function get_PositionXChainingMode
@@ -2491,7 +2491,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionXChainingMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionChainingMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
    );
 
    function get_PositionXSourceMode
@@ -2503,7 +2503,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionXSourceMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionSourceMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
    );
 
    function get_PositionYChainingMode
@@ -2515,7 +2515,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionYChainingMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionChainingMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
    );
 
    function get_PositionYSourceMode
@@ -2527,7 +2527,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_PositionYSourceMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionSourceMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
    );
 
    function get_ScaleChainingMode
@@ -2539,7 +2539,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_ScaleChainingMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionChainingMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionChainingMode
    );
 
    function get_ScaleSourceMode
@@ -2551,7 +2551,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure put_ScaleSourceMode
    (
       this : in out VisualInteractionSource;
-      value : Windows.UI.Composition.Interactions.InteractionSourceMode
+      value : WinRt.Windows.UI.Composition.Interactions.InteractionSourceMode
    );
 
    function get_Source
@@ -2563,7 +2563,7 @@ package WinRt.Windows.UI.Composition.Interactions is
    procedure TryRedirectForManipulation
    (
       this : in out VisualInteractionSource;
-      pointerPoint : Windows.UI.Input.PointerPoint'Class
+      pointerPoint : WinRt.Windows.UI.Input.PointerPoint'Class
    );
 
    function get_DeltaPosition

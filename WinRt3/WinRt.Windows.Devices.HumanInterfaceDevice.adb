@@ -161,14 +161,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription do
          Hr := this.m_IHidBooleanControl.all.get_ControlDescription (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControlDescription := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
+         Retval.m_IHidBooleanControlDescription := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
          Retval.m_IHidBooleanControlDescription.all := m_ComRetVal;
       end return;
    end;
@@ -238,7 +238,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.HidReportType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
    begin
       Hr := this.m_IHidBooleanControlDescription.all.get_ReportType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -289,7 +289,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidCollection.Kind;
    begin
       Hr := this.m_IHidBooleanControlDescription.all.get_ParentCollections (m_ComRetVal'Access);
@@ -370,7 +370,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.HidCollectionType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.HidCollectionType;
    begin
       Hr := this.m_IHidCollection.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -497,7 +497,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidDevice is
       Hr               : WinRt.HResult := S_OK;
@@ -554,7 +554,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHidDevice := new Windows.Devices.HumanInterfaceDevice.IHidDevice;
+                     Retval.m_IHidDevice := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidDevice;
                      Retval.m_IHidDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -711,7 +711,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHidInputReport := new Windows.Devices.HumanInterfaceDevice.IHidInputReport;
+                  Retval.m_IHidInputReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidInputReport;
                   Retval.m_IHidInputReport.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -778,7 +778,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHidInputReport := new Windows.Devices.HumanInterfaceDevice.IHidInputReport;
+                  Retval.m_IHidInputReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidInputReport;
                   Retval.m_IHidInputReport.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -844,7 +844,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHidFeatureReport := new Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+                  Retval.m_IHidFeatureReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
                   Retval.m_IHidFeatureReport.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -911,7 +911,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHidFeatureReport := new Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+                  Retval.m_IHidFeatureReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
                   Retval.m_IHidFeatureReport.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -932,14 +932,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidOutputReport do
          Hr := this.m_IHidDevice.all.CreateOutputReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidOutputReport := new Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
+         Retval.m_IHidOutputReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
          Retval.m_IHidOutputReport.all := m_ComRetVal;
       end return;
    end;
@@ -953,14 +953,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidOutputReport do
          Hr := this.m_IHidDevice.all.CreateOutputReport (reportId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidOutputReport := new Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
+         Retval.m_IHidOutputReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
          Retval.m_IHidOutputReport.all := m_ComRetVal;
       end return;
    end;
@@ -973,14 +973,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidFeatureReport do
          Hr := this.m_IHidDevice.all.CreateFeatureReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidFeatureReport := new Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+         Retval.m_IHidFeatureReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
          Retval.m_IHidFeatureReport.all := m_ComRetVal;
       end return;
    end;
@@ -994,14 +994,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidFeatureReport do
          Hr := this.m_IHidDevice.all.CreateFeatureReport (reportId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidFeatureReport := new Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+         Retval.m_IHidFeatureReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
          Retval.m_IHidFeatureReport.all := m_ComRetVal;
       end return;
    end;
@@ -1009,7 +1009,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function SendOutputReportAsync
    (
       this : in out HidDevice;
-      outputReport : Windows.Devices.HumanInterfaceDevice.HidOutputReport'Class
+      outputReport : WinRt.Windows.Devices.HumanInterfaceDevice.HidOutputReport'Class
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1073,7 +1073,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function SendFeatureReportAsync
    (
       this : in out HidDevice;
-      featureReport : Windows.Devices.HumanInterfaceDevice.HidFeatureReport'Class
+      featureReport : WinRt.Windows.Devices.HumanInterfaceDevice.HidFeatureReport'Class
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1137,7 +1137,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlDescriptions
    (
       this : in out HidDevice;
-      reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+      reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
       usagePage : WinRt.UInt16;
       usageId : WinRt.UInt16
    )
@@ -1145,7 +1145,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidBooleanControlDescription.Kind;
    begin
       Hr := this.m_IHidDevice.all.GetBooleanControlDescriptions (reportType, usagePage, usageId, m_ComRetVal'Access);
@@ -1160,7 +1160,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlDescriptions
    (
       this : in out HidDevice;
-      reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+      reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
       usagePage : WinRt.UInt16;
       usageId : WinRt.UInt16
    )
@@ -1168,7 +1168,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidNumericControlDescription.Kind;
    begin
       Hr := this.m_IHidDevice.all.GetNumericControlDescriptions (reportType, usagePage, usageId, m_ComRetVal'Access);
@@ -1189,7 +1189,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHidDevice.all.add_InputReportReceived (reportHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure remove_InputReportReceived
    (
       this : in out HidDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1279,7 +1279,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHidFeatureReport.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1291,7 +1291,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure put_Data
    (
       this : in out HidFeatureReport;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1313,14 +1313,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidFeatureReport.all.GetBooleanControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -1328,20 +1328,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidFeatureReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidFeatureReport.all.GetBooleanControlByDescription (controlDescription.m_IHidBooleanControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -1356,14 +1356,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidFeatureReport.all.GetNumericControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;
@@ -1371,20 +1371,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidFeatureReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidFeatureReport.all.GetNumericControlByDescription (controlDescription.m_IHidNumericControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;
@@ -1437,7 +1437,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHidInputReport.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1454,7 +1454,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidBooleanControl.Kind;
    begin
       Hr := this.m_IHidInputReport.all.get_ActivatedBooleanControls (m_ComRetVal'Access);
@@ -1474,7 +1474,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidBooleanControl.Kind;
    begin
       Hr := this.m_IHidInputReport.all.get_TransitionedBooleanControls (m_ComRetVal'Access);
@@ -1496,14 +1496,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidInputReport.all.GetBooleanControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -1511,20 +1511,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidInputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidInputReport.all.GetBooleanControlByDescription (controlDescription.m_IHidBooleanControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -1539,14 +1539,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidInputReport.all.GetNumericControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;
@@ -1554,20 +1554,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidInputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidInputReport.all.GetNumericControlByDescription (controlDescription.m_IHidNumericControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;
@@ -1603,14 +1603,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidInputReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidInputReport;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidInputReport do
          Hr := this.m_IHidInputReportReceivedEventArgs.all.get_Report (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidInputReport := new Windows.Devices.HumanInterfaceDevice.IHidInputReport;
+         Retval.m_IHidInputReport := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidInputReport;
          Retval.m_IHidInputReport.all := m_ComRetVal;
       end return;
    end;
@@ -1778,14 +1778,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription do
          Hr := this.m_IHidNumericControl.all.get_ControlDescription (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControlDescription := new Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
+         Retval.m_IHidNumericControlDescription := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
          Retval.m_IHidNumericControlDescription.all := m_ComRetVal;
       end return;
    end;
@@ -1855,7 +1855,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.HidReportType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
    begin
       Hr := this.m_IHidNumericControlDescription.all.get_ReportType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2076,7 +2076,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHidCollection.Kind;
    begin
       Hr := this.m_IHidNumericControlDescription.all.get_ParentCollections (m_ComRetVal'Access);
@@ -2136,7 +2136,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHidOutputReport.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2148,7 +2148,7 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure put_Data
    (
       this : in out HidOutputReport;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2170,14 +2170,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidOutputReport.all.GetBooleanControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -2185,20 +2185,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidOutputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl do
          Hr := this.m_IHidOutputReport.all.GetBooleanControlByDescription (controlDescription.m_IHidBooleanControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidBooleanControl := new Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
+         Retval.m_IHidBooleanControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl;
          Retval.m_IHidBooleanControl.all := m_ComRetVal;
       end return;
    end;
@@ -2213,14 +2213,14 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidOutputReport.all.GetNumericControl (usagePage, usageId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;
@@ -2228,20 +2228,20 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidOutputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
    begin
       return RetVal : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl do
          Hr := this.m_IHidOutputReport.all.GetNumericControlByDescription (controlDescription.m_IHidNumericControlDescription.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHidNumericControl := new Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
+         Retval.m_IHidNumericControl := new WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl;
          Retval.m_IHidNumericControl.all := m_ComRetVal;
       end return;
    end;

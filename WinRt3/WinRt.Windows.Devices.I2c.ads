@@ -159,28 +159,28 @@ package WinRt.Windows.Devices.I2c is
       function get_BusSpeed
       (
          this : access II2cConnectionSettings_Interface;
-         RetVal : access Windows.Devices.I2c.I2cBusSpeed
+         RetVal : access WinRt.Windows.Devices.I2c.I2cBusSpeed
       )
       return WinRt.Hresult is abstract;
 
       function put_BusSpeed
       (
          this : access II2cConnectionSettings_Interface;
-         value : Windows.Devices.I2c.I2cBusSpeed
+         value : WinRt.Windows.Devices.I2c.I2cBusSpeed
       )
       return WinRt.Hresult is abstract;
 
       function get_SharingMode
       (
          this : access II2cConnectionSettings_Interface;
-         RetVal : access Windows.Devices.I2c.I2cSharingMode
+         RetVal : access WinRt.Windows.Devices.I2c.I2cSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SharingMode
       (
          this : access II2cConnectionSettings_Interface;
-         value : Windows.Devices.I2c.I2cSharingMode
+         value : WinRt.Windows.Devices.I2c.I2cSharingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -193,7 +193,7 @@ package WinRt.Windows.Devices.I2c is
       (
          this : access II2cConnectionSettingsFactory_Interface;
          slaveAddress : WinRt.Int32;
-         RetVal : access Windows.Devices.I2c.II2cConnectionSettings
+         RetVal : access WinRt.Windows.Devices.I2c.II2cConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -205,8 +205,8 @@ package WinRt.Windows.Devices.I2c is
       function GetDevice
       (
          this : access II2cController_Interface;
-         settings : Windows.Devices.I2c.II2cConnectionSettings;
-         RetVal : access Windows.Devices.I2c.II2cDevice
+         settings : WinRt.Windows.Devices.I2c.II2cConnectionSettings;
+         RetVal : access WinRt.Windows.Devices.I2c.II2cDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -218,7 +218,7 @@ package WinRt.Windows.Devices.I2c is
       function GetControllersAsync
       (
          this : access II2cControllerStatics_Interface;
-         provider : Windows.Devices.I2c.Provider.II2cProvider;
+         provider : WinRt.Windows.Devices.I2c.Provider.II2cProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -245,7 +245,7 @@ package WinRt.Windows.Devices.I2c is
       function get_ConnectionSettings
       (
          this : access II2cDevice_Interface;
-         RetVal : access Windows.Devices.I2c.II2cConnectionSettings
+         RetVal : access WinRt.Windows.Devices.I2c.II2cConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -262,7 +262,7 @@ package WinRt.Windows.Devices.I2c is
          this : access II2cDevice_Interface;
          bufferSize : WinRt.UInt32;
          buffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Devices.I2c.I2cTransferResult
+         RetVal : access WinRt.Windows.Devices.I2c.I2cTransferResult
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.Devices.I2c is
          this : access II2cDevice_Interface;
          bufferSize : WinRt.UInt32;
          buffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Devices.I2c.I2cTransferResult
+         RetVal : access WinRt.Windows.Devices.I2c.I2cTransferResult
       )
       return WinRt.Hresult is abstract;
 
@@ -300,7 +300,7 @@ package WinRt.Windows.Devices.I2c is
          writeBuffer : WinRt.Byte_Ptr;
          readBufferSize : WinRt.UInt32;
          readBuffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Devices.I2c.I2cTransferResult
+         RetVal : access WinRt.Windows.Devices.I2c.I2cTransferResult
       )
       return WinRt.Hresult is abstract;
 
@@ -328,7 +328,7 @@ package WinRt.Windows.Devices.I2c is
       (
          this : access II2cDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         settings : Windows.Devices.I2c.II2cConnectionSettings;
+         settings : WinRt.Windows.Devices.I2c.II2cConnectionSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -378,7 +378,7 @@ package WinRt.Windows.Devices.I2c is
    procedure put_BusSpeed
    (
       this : in out I2cConnectionSettings;
-      value : Windows.Devices.I2c.I2cBusSpeed
+      value : WinRt.Windows.Devices.I2c.I2cBusSpeed
    );
 
    function get_SharingMode
@@ -390,7 +390,7 @@ package WinRt.Windows.Devices.I2c is
    procedure put_SharingMode
    (
       this : in out I2cConnectionSettings;
-      value : Windows.Devices.I2c.I2cSharingMode
+      value : WinRt.Windows.Devices.I2c.I2cSharingMode
    );
 
    -----------------------------------------------------------------------------
@@ -404,7 +404,7 @@ package WinRt.Windows.Devices.I2c is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.I2c.Provider.II2cProvider
+      provider : WinRt.Windows.Devices.I2c.Provider.II2cProvider
    )
    return WinRt.GenericObject;
 
@@ -417,7 +417,7 @@ package WinRt.Windows.Devices.I2c is
    function GetDevice
    (
       this : in out I2cController;
-      settings : Windows.Devices.I2c.I2cConnectionSettings'Class
+      settings : WinRt.Windows.Devices.I2c.I2cConnectionSettings'Class
    )
    return WinRt.Windows.Devices.I2c.I2cDevice'Class;
 
@@ -442,7 +442,7 @@ package WinRt.Windows.Devices.I2c is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      settings : Windows.Devices.I2c.I2cConnectionSettings'Class
+      settings : WinRt.Windows.Devices.I2c.I2cConnectionSettings'Class
    )
    return WinRt.Windows.Devices.I2c.I2cDevice;
 

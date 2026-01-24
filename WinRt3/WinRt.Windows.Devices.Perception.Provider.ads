@@ -177,20 +177,20 @@ package WinRt.Windows.Devices.Perception.Provider is
    -----------------------------------------------------------------------------
 
    IID_PerceptionStartFaceAuthenticationHandler : aliased WinRt.IID := (1954639146, 8336, 18032, (140, 72, 239, 57, 231, 255, 124, 38 ));
-   type PerceptionStartFaceAuthenticationHandler_Delegate (Callback : access procedure  (sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup)) is new WinRt.IMulticastDelegate_Interface (IID_PerceptionStartFaceAuthenticationHandler'Access) with null record;
+   type PerceptionStartFaceAuthenticationHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup)) is new WinRt.IMulticastDelegate_Interface (IID_PerceptionStartFaceAuthenticationHandler'Access) with null record;
       function Invoke
       (
          this : access PerceptionStartFaceAuthenticationHandler_Delegate;
-         sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+         sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
       )
       return WinRt.Hresult;
 
    IID_PerceptionStopFaceAuthenticationHandler : aliased WinRt.IID := (947840682, 35277, 18462, (170, 222, 221, 146, 247, 11, 42, 215 ));
-   type PerceptionStopFaceAuthenticationHandler_Delegate (Callback : access procedure  (sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup)) is new WinRt.IMulticastDelegate_Interface (IID_PerceptionStopFaceAuthenticationHandler'Access) with null record;
+   type PerceptionStopFaceAuthenticationHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup)) is new WinRt.IMulticastDelegate_Interface (IID_PerceptionStopFaceAuthenticationHandler'Access) with null record;
       function Invoke
       (
          this : access PerceptionStopFaceAuthenticationHandler_Delegate;
-         sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+         sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
       )
       return WinRt.Hresult;
 
@@ -255,7 +255,7 @@ package WinRt.Windows.Devices.Perception.Provider is
       (
          this : access IPerceptionControlGroupFactory_Interface;
          ids : GenericObject;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionControlGroup
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -274,14 +274,14 @@ package WinRt.Windows.Devices.Perception.Provider is
       function get_Position
       (
          this : access IPerceptionCorrelation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access IPerceptionCorrelation_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -294,9 +294,9 @@ package WinRt.Windows.Devices.Perception.Provider is
       (
          this : access IPerceptionCorrelationFactory_Interface;
          targetId : WinRt.HString;
-         position : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionCorrelation
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelation
       )
       return WinRt.Hresult is abstract;
 
@@ -321,7 +321,7 @@ package WinRt.Windows.Devices.Perception.Provider is
       (
          this : access IPerceptionCorrelationGroupFactory_Interface;
          relativeLocations : GenericObject;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -346,9 +346,9 @@ package WinRt.Windows.Devices.Perception.Provider is
       (
          this : access IPerceptionFaceAuthenticationGroupFactory_Interface;
          ids : GenericObject;
-         startHandler : Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
-         stopHandler : Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+         startHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
+         stopHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler;
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -360,28 +360,28 @@ package WinRt.Windows.Devices.Perception.Provider is
       function get_RelativeTime
       (
          this : access IPerceptionFrame_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeTime
       (
          this : access IPerceptionFrame_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access IPerceptionFrame_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_FrameData
       (
          this : access IPerceptionFrame_Interface;
-         RetVal : access Windows.Foundation.IMemoryBuffer
+         RetVal : access WinRt.Windows.Foundation.IMemoryBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -393,7 +393,7 @@ package WinRt.Windows.Devices.Perception.Provider is
       function get_FrameProviderInfo
       (
          this : access IPerceptionFrameProvider_Interface;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -407,7 +407,7 @@ package WinRt.Windows.Devices.Perception.Provider is
       function get_Properties
       (
          this : access IPerceptionFrameProvider_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -426,7 +426,7 @@ package WinRt.Windows.Devices.Perception.Provider is
       function SetProperty
       (
          this : access IPerceptionFrameProvider_Interface;
-         value : Windows.Devices.Perception.Provider.IPerceptionPropertyChangeRequest
+         value : WinRt.Windows.Devices.Perception.Provider.IPerceptionPropertyChangeRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -513,8 +513,8 @@ package WinRt.Windows.Devices.Perception.Provider is
       function GetFrameProvider
       (
          this : access IPerceptionFrameProviderManager_Interface;
-         frameProviderInfo : Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionFrameProvider
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -526,71 +526,71 @@ package WinRt.Windows.Devices.Perception.Provider is
       function RegisterFrameProviderInfo
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterFrameProviderInfo
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo
       )
       return WinRt.Hresult is abstract;
 
       function RegisterFaceAuthenticationGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterFaceAuthenticationGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
       )
       return WinRt.Hresult is abstract;
 
       function RegisterControlGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.IPerceptionControlGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterControlGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.IPerceptionControlGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup
       )
       return WinRt.Hresult is abstract;
 
       function RegisterCorrelationGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterCorrelationGroup
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup
       )
       return WinRt.Hresult is abstract;
 
       function UpdateAvailabilityForProvider
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
          available : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -598,8 +598,8 @@ package WinRt.Windows.Devices.Perception.Provider is
       function PublishFrameForProvider
       (
          this : access IPerceptionFrameProviderManagerServiceStatics_Interface;
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
-         frame : Windows.Devices.Perception.Provider.IPerceptionFrame
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         frame : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -625,21 +625,21 @@ package WinRt.Windows.Devices.Perception.Provider is
       function get_Status
       (
          this : access IPerceptionPropertyChangeRequest_Interface;
-         RetVal : access Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
+         RetVal : access WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IPerceptionPropertyChangeRequest_Interface;
-         value : Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
+         value : WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPerceptionPropertyChangeRequest_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -651,15 +651,15 @@ package WinRt.Windows.Devices.Perception.Provider is
       function AllocateFrame
       (
          this : access IPerceptionVideoFrameAllocator_Interface;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionFrame
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame
       )
       return WinRt.Hresult is abstract;
 
       function CopyFromVideoFrame
       (
          this : access IPerceptionVideoFrameAllocator_Interface;
-         frame : Windows.Media.IVideoFrame;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionFrame
+         frame : WinRt.Windows.Media.IVideoFrame;
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -672,10 +672,10 @@ package WinRt.Windows.Devices.Perception.Provider is
       (
          this : access IPerceptionVideoFrameAllocatorFactory_Interface;
          maxOutstandingFrameCountForWrite : WinRt.UInt32;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
-         resolution : Windows.Foundation.Size;
-         alpha : Windows.Graphics.Imaging.BitmapAlphaMode;
-         RetVal : access Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         resolution : WinRt.Windows.Foundation.Size;
+         alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         RetVal : access WinRt.Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator
       )
       return WinRt.Hresult is abstract;
 
@@ -736,8 +736,8 @@ package WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       targetId : WinRt.WString;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    )
    return PerceptionCorrelation;
 
@@ -798,8 +798,8 @@ package WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       ids : GenericObject;
-      startHandler : Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
-      stopHandler : Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler
+      startHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
+      stopHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler
    )
    return PerceptionFaceAuthenticationGroup;
 
@@ -830,7 +830,7 @@ package WinRt.Windows.Devices.Perception.Provider is
    procedure put_RelativeTime
    (
       this : in out PerceptionFrame;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Properties
@@ -925,62 +925,62 @@ package WinRt.Windows.Devices.Perception.Provider is
 
       procedure RegisterFrameProviderInfo
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
       );
 
       procedure UnregisterFrameProviderInfo
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
       );
 
       procedure RegisterFaceAuthenticationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
       );
 
       procedure UnregisterFaceAuthenticationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
       );
 
       procedure RegisterControlGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
       );
 
       procedure UnregisterControlGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
       );
 
       procedure RegisterCorrelationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
       );
 
       procedure UnregisterCorrelationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
       );
 
       procedure UpdateAvailabilityForProvider
       (
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
          available : WinRt.Boolean
       );
 
       procedure PublishFrameForProvider
       (
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
-         frame : Windows.Devices.Perception.Provider.PerceptionFrame'Class
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         frame : WinRt.Windows.Devices.Perception.Provider.PerceptionFrame'Class
       );
 
    end PerceptionFrameProviderManagerService;
@@ -1015,7 +1015,7 @@ package WinRt.Windows.Devices.Perception.Provider is
    procedure put_Status
    (
       this : in out PerceptionPropertyChangeRequest;
-      value : Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
+      value : WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
    );
 
    function GetDeferral
@@ -1036,9 +1036,9 @@ package WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       maxOutstandingFrameCountForWrite : WinRt.UInt32;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
-      resolution : Windows.Foundation.Size;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      resolution : WinRt.Windows.Foundation.Size;
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return PerceptionVideoFrameAllocator;
 
@@ -1054,7 +1054,7 @@ package WinRt.Windows.Devices.Perception.Provider is
    function CopyFromVideoFrame
    (
       this : in out PerceptionVideoFrameAllocator;
-      frame : Windows.Media.VideoFrame'Class
+      frame : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.Windows.Devices.Perception.Provider.PerceptionFrame'Class;
 

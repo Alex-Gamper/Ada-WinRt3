@@ -111,7 +111,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_ICrossSlidingEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -128,7 +128,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ICrossSlidingEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -145,7 +145,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.CrossSlidingState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.CrossSlidingState;
    begin
       Hr := this.m_ICrossSlidingEventArgs.all.get_CrossSlidingState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -206,7 +206,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IDraggingEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -223,7 +223,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDraggingEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -240,7 +240,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.DraggingState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.DraggingState;
    begin
       Hr := this.m_IDraggingEventArgs.all.get_DraggingState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -300,7 +300,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.EdgeGesture");
       m_Factory        : access WinRt.Windows.UI.Input.IEdgeGestureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IEdgeGesture;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IEdgeGesture;
    begin
       return RetVal : WinRt.Windows.UI.Input.EdgeGesture do
          Hr := RoGetActivationFactory (m_hString, IID_IEdgeGestureStatics'Access , m_Factory'Address);
@@ -310,7 +310,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IEdgeGesture := new Windows.UI.Input.IEdgeGesture;
+            Retval.m_IEdgeGesture := new WinRt.Windows.UI.Input.IEdgeGesture;
             Retval.m_IEdgeGesture.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -329,7 +329,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IEdgeGesture.all.add_Starting (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -341,7 +341,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Starting
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -362,7 +362,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IEdgeGesture.all.add_Completed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -374,7 +374,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Completed
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -395,7 +395,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IEdgeGesture.all.add_Canceled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -407,7 +407,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Canceled
    (
       this : in out EdgeGesture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -450,7 +450,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.EdgeGestureKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.EdgeGestureKind;
    begin
       Hr := this.m_IEdgeGestureEventArgs.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -485,13 +485,13 @@ package body WinRt.Windows.UI.Input is
    function Constructor return GestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.GestureRecognizer");
-      m_ComRetVal  : aliased Windows.UI.Input.IGestureRecognizer;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.IGestureRecognizer");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Input.IGestureRecognizer;
    begin
       return RetVal : GestureRecognizer do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGestureRecognizer := new Windows.UI.Input.IGestureRecognizer;
+            Retval.m_IGestureRecognizer := new WinRt.Windows.UI.Input.IGestureRecognizer;
             Retval.m_IGestureRecognizer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -509,7 +509,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.GestureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.GestureSettings;
    begin
       Hr := this.m_IGestureRecognizer.all.get_GestureSettings (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -521,7 +521,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_GestureSettings
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.GestureSettings
+      value : WinRt.Windows.UI.Input.GestureSettings
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -607,7 +607,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IGestureRecognizer.all.get_PivotCenter (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -619,7 +619,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_PivotCenter
    (
       this : in out GestureRecognizer;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -895,7 +895,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.CrossSlideThresholds;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.CrossSlideThresholds;
    begin
       Hr := this.m_IGestureRecognizer.all.get_CrossSlideThresholds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -907,7 +907,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_CrossSlideThresholds
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.CrossSlideThresholds
+      value : WinRt.Windows.UI.Input.CrossSlideThresholds
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1023,14 +1023,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IMouseWheelParameters;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IMouseWheelParameters;
    begin
       return RetVal : WinRt.Windows.UI.Input.MouseWheelParameters do
          Hr := this.m_IGestureRecognizer.all.get_MouseWheelParameters (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMouseWheelParameters := new Windows.UI.Input.IMouseWheelParameters;
+         Retval.m_IMouseWheelParameters := new WinRt.Windows.UI.Input.IMouseWheelParameters;
          Retval.m_IMouseWheelParameters.all := m_ComRetVal;
       end return;
    end;
@@ -1038,7 +1038,7 @@ package body WinRt.Windows.UI.Input is
    function CanBeDoubleTap
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.UI.Input is
    procedure ProcessDownEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1086,7 +1086,7 @@ package body WinRt.Windows.UI.Input is
    procedure ProcessUpEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1101,7 +1101,7 @@ package body WinRt.Windows.UI.Input is
    procedure ProcessMouseWheelEvent
    (
       this : in out GestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class;
+      value : WinRt.Windows.UI.Input.PointerPoint'Class;
       isShiftKeyDown : WinRt.Boolean;
       isControlKeyDown : WinRt.Boolean
    ) is
@@ -1152,7 +1152,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_Tapped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1164,7 +1164,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Tapped
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1185,7 +1185,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_RightTapped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1197,7 +1197,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_RightTapped
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1218,7 +1218,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_Holding (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1230,7 +1230,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Holding
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1251,7 +1251,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_Dragging (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1263,7 +1263,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Dragging
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1284,7 +1284,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_ManipulationStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationStarted
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1317,7 +1317,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_ManipulationUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1329,7 +1329,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationUpdated
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1350,7 +1350,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_ManipulationInertiaStarting (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1362,7 +1362,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationInertiaStarting
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1383,7 +1383,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_ManipulationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1395,7 +1395,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationCompleted
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1416,7 +1416,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGestureRecognizer.all.add_CrossSliding (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1428,7 +1428,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_CrossSliding
    (
       this : in out GestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1649,7 +1649,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IGestureRecognizer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IGestureRecognizer_Interface, WinRt.Windows.UI.Input.IGestureRecognizer2, WinRt.Windows.UI.Input.IID_IGestureRecognizer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGestureRecognizer.all);
@@ -1664,7 +1664,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_HoldStartDelay
    (
       this : in out GestureRecognizer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1791,7 +1791,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IHoldingEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1808,7 +1808,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IHoldingEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1825,7 +1825,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.HoldingState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.HoldingState;
    begin
       Hr := this.m_IHoldingEventArgs.all.get_HoldingState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1907,7 +1907,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.InputActivationState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.InputActivationState;
    begin
       Hr := this.m_IInputActivationListener.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1925,7 +1925,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInputActivationListener.all.add_InputActivationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1937,7 +1937,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_InputActivationChanged
    (
       this : in out InputActivationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1980,7 +1980,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.InputActivationState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.InputActivationState;
    begin
       Hr := this.m_IInputActivationListenerActivationChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2019,7 +2019,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.KeyboardDeliveryInterceptor");
       m_Factory        : access WinRt.Windows.UI.Input.IKeyboardDeliveryInterceptorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IKeyboardDeliveryInterceptor;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IKeyboardDeliveryInterceptor;
    begin
       return RetVal : WinRt.Windows.UI.Input.KeyboardDeliveryInterceptor do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyboardDeliveryInterceptorStatics'Access , m_Factory'Address);
@@ -2029,7 +2029,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyboardDeliveryInterceptor := new Windows.UI.Input.IKeyboardDeliveryInterceptor;
+            Retval.m_IKeyboardDeliveryInterceptor := new WinRt.Windows.UI.Input.IKeyboardDeliveryInterceptor;
             Retval.m_IKeyboardDeliveryInterceptor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2080,7 +2080,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IKeyboardDeliveryInterceptor.all.add_KeyDown (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2092,7 +2092,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_KeyDown
    (
       this : in out KeyboardDeliveryInterceptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2113,7 +2113,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IKeyboardDeliveryInterceptor.all.add_KeyUp (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2125,7 +2125,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_KeyUp
    (
       this : in out KeyboardDeliveryInterceptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2168,7 +2168,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationCompletedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2185,7 +2185,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationCompletedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2202,7 +2202,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationCompletedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2219,7 +2219,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationCompletedEventArgs.all.get_Velocities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2301,7 +2301,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationInertiaStartingEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2318,7 +2318,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationInertiaStartingEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2335,7 +2335,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationInertiaStartingEventArgs.all.get_Delta (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2352,7 +2352,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationInertiaStartingEventArgs.all.get_Cumulative (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2369,7 +2369,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationInertiaStartingEventArgs.all.get_Velocities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2430,7 +2430,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationStartedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2447,7 +2447,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationStartedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2464,7 +2464,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationStartedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2525,7 +2525,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IManipulationUpdatedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2542,7 +2542,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IManipulationUpdatedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2559,7 +2559,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationUpdatedEventArgs.all.get_Delta (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2576,7 +2576,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationDelta;
    begin
       Hr := this.m_IManipulationUpdatedEventArgs.all.get_Cumulative (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2593,7 +2593,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ManipulationVelocities;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ManipulationVelocities;
    begin
       Hr := this.m_IManipulationUpdatedEventArgs.all.get_Velocities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2675,7 +2675,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IMouseWheelParameters.all.get_CharTranslation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2687,7 +2687,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_CharTranslation
    (
       this : in out MouseWheelParameters;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2771,7 +2771,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IMouseWheelParameters.all.get_PageTranslation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2783,7 +2783,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_PageTranslation
    (
       this : in out MouseWheelParameters;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2821,13 +2821,13 @@ package body WinRt.Windows.UI.Input is
    function Constructor return PhysicalGestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.PhysicalGestureRecognizer");
-      m_ComRetVal  : aliased Windows.UI.Input.IPhysicalGestureRecognizer;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.IPhysicalGestureRecognizer");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Input.IPhysicalGestureRecognizer;
    begin
       return RetVal : PhysicalGestureRecognizer do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPhysicalGestureRecognizer := new Windows.UI.Input.IPhysicalGestureRecognizer;
+            Retval.m_IPhysicalGestureRecognizer := new WinRt.Windows.UI.Input.IPhysicalGestureRecognizer;
             Retval.m_IPhysicalGestureRecognizer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2862,7 +2862,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.GestureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.GestureSettings;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.get_GestureSettings (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2874,7 +2874,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_GestureSettings
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.GestureSettings
+      value : WinRt.Windows.UI.Input.GestureSettings
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3054,7 +3054,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.get_HoldStartDelay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3066,7 +3066,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_HoldStartDelay
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3145,7 +3145,7 @@ package body WinRt.Windows.UI.Input is
    procedure ProcessDownEvent
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3175,7 +3175,7 @@ package body WinRt.Windows.UI.Input is
    procedure ProcessUpEvent
    (
       this : in out PhysicalGestureRecognizer;
-      value : Windows.UI.Input.PointerPoint'Class
+      value : WinRt.Windows.UI.Input.PointerPoint'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3210,7 +3210,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3222,7 +3222,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationStarted
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3243,7 +3243,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3255,7 +3255,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationUpdated
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3276,7 +3276,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.add_ManipulationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3288,7 +3288,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ManipulationCompleted
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3309,7 +3309,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.add_Tapped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3321,7 +3321,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Tapped
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3342,7 +3342,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhysicalGestureRecognizer.all.add_Holding (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3354,7 +3354,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Holding
    (
       this : in out PhysicalGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3399,7 +3399,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.PointerPoint");
       m_Factory        : access WinRt.Windows.UI.Input.IPointerPointStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IPointerPoint;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IPointerPoint;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPoint do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerPointStatics'Access , m_Factory'Address);
@@ -3409,7 +3409,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPointerPoint := new Windows.UI.Input.IPointerPoint;
+            Retval.m_IPointerPoint := new WinRt.Windows.UI.Input.IPointerPoint;
             Retval.m_IPointerPoint.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3426,7 +3426,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.PointerPoint");
       m_Factory        : access WinRt.Windows.UI.Input.IPointerPointStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPointerPointStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3443,7 +3443,7 @@ package body WinRt.Windows.UI.Input is
    function GetCurrentPoint
    (
       pointerId : WinRt.UInt32;
-      transform : Windows.UI.Input.IPointerPointTransform
+      transform : WinRt.Windows.UI.Input.IPointerPointTransform
    )
    return WinRt.Windows.UI.Input.PointerPoint is
       Hr               : WinRt.HResult := S_OK;
@@ -3451,7 +3451,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.PointerPoint");
       m_Factory        : access WinRt.Windows.UI.Input.IPointerPointStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IPointerPoint;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IPointerPoint;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPoint do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerPointStatics'Access , m_Factory'Address);
@@ -3461,7 +3461,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPointerPoint := new Windows.UI.Input.IPointerPoint;
+            Retval.m_IPointerPoint := new WinRt.Windows.UI.Input.IPointerPoint;
             Retval.m_IPointerPoint.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3471,7 +3471,7 @@ package body WinRt.Windows.UI.Input is
    function GetIntermediatePoints
    (
       pointerId : WinRt.UInt32;
-      transform : Windows.UI.Input.IPointerPointTransform
+      transform : WinRt.Windows.UI.Input.IPointerPointTransform
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -3479,7 +3479,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.PointerPoint");
       m_Factory        : access WinRt.Windows.UI.Input.IPointerPointStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPointerPointStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3504,14 +3504,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPointerDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPointerDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PointerDevice do
          Hr := this.m_IPointerPoint.all.get_PointerDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPointerDevice := new Windows.Devices.Input.IPointerDevice;
+         Retval.m_IPointerDevice := new WinRt.Windows.Devices.Input.IPointerDevice;
          Retval.m_IPointerDevice.all := m_ComRetVal;
       end return;
    end;
@@ -3524,7 +3524,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPointerPoint.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3541,7 +3541,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPointerPoint.all.get_RawPosition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3626,14 +3626,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IPointerPointProperties;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IPointerPointProperties;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerPointProperties do
          Hr := this.m_IPointerPoint.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPointerPointProperties := new Windows.UI.Input.IPointerPointProperties;
+         Retval.m_IPointerPointProperties := new WinRt.Windows.UI.Input.IPointerPointProperties;
          Retval.m_IPointerPointProperties.all := m_ComRetVal;
       end return;
    end;
@@ -3668,7 +3668,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IPointerPointPhysicalPosition := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IPointerPoint_Interface, WinRt.Windows.UI.Input.IPointerPointPhysicalPosition, WinRt.Windows.UI.Input.IID_IPointerPointPhysicalPosition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPointerPoint.all);
@@ -3830,7 +3830,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPointerPointProperties.all.get_ContactRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3847,7 +3847,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPointerPointProperties.all.get_ContactRectRaw (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4068,7 +4068,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.PointerUpdateKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.PointerUpdateKind;
    begin
       Hr := this.m_IPointerPointProperties.all.get_PointerUpdateKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4124,7 +4124,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IPointerPointProperties2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IPointerPointProperties_Interface, WinRt.Windows.UI.Input.IPointerPointProperties2, WinRt.Windows.UI.Input.IID_IPointerPointProperties2'Unchecked_Access);
    begin
@@ -4169,7 +4169,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.PointerVisualizationSettings");
       m_Factory        : access WinRt.Windows.UI.Input.IPointerVisualizationSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IPointerVisualizationSettings;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IPointerVisualizationSettings;
    begin
       return RetVal : WinRt.Windows.UI.Input.PointerVisualizationSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerVisualizationSettingsStatics'Access , m_Factory'Address);
@@ -4179,7 +4179,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPointerVisualizationSettings := new Windows.UI.Input.IPointerVisualizationSettings;
+            Retval.m_IPointerVisualizationSettings := new WinRt.Windows.UI.Input.IPointerVisualizationSettings;
             Retval.m_IPointerVisualizationSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4304,7 +4304,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialController");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialController;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialController do
          Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerStatics'Access , m_Factory'Address);
@@ -4314,7 +4314,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialController := new Windows.UI.Input.IRadialController;
+            Retval.m_IRadialController := new WinRt.Windows.UI.Input.IRadialController;
             Retval.m_IRadialController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4332,14 +4332,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenu;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenu;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerMenu do
          Hr := this.m_IRadialController.all.get_Menu (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerMenu := new Windows.UI.Input.IRadialControllerMenu;
+         Retval.m_IRadialControllerMenu := new WinRt.Windows.UI.Input.IRadialControllerMenu;
          Retval.m_IRadialControllerMenu.all := m_ComRetVal;
       end return;
    end;
@@ -4417,7 +4417,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ScreenContactStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4429,7 +4429,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ScreenContactStarted
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4450,7 +4450,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ScreenContactEnded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4462,7 +4462,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ScreenContactEnded
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4483,7 +4483,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ScreenContactContinued (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4495,7 +4495,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ScreenContactContinued
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4516,7 +4516,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ControlLost (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4528,7 +4528,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ControlLost
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4549,7 +4549,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_RotationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4561,7 +4561,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_RotationChanged
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4582,7 +4582,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ButtonClicked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4594,7 +4594,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ButtonClicked
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4615,7 +4615,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialController.all.add_ControlAcquired (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4627,7 +4627,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ControlAcquired
    (
       this : in out RadialController;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4649,7 +4649,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialController2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialController_Interface, WinRt.Windows.UI.Input.IRadialController2, WinRt.Windows.UI.Input.IID_IRadialController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadialController.all);
@@ -4664,7 +4664,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ButtonPressed
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4690,7 +4690,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialController2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialController_Interface, WinRt.Windows.UI.Input.IRadialController2, WinRt.Windows.UI.Input.IID_IRadialController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadialController.all);
@@ -4705,7 +4705,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ButtonHolding
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4731,7 +4731,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialController2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialController_Interface, WinRt.Windows.UI.Input.IRadialController2, WinRt.Windows.UI.Input.IID_IRadialController2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRadialController.all);
@@ -4746,7 +4746,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_ButtonReleased
    (
       this : in out RadialController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4793,14 +4793,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerButtonClickedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -4814,7 +4814,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerButtonClickedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerButtonClickedEventArgs_Interface, WinRt.Windows.UI.Input.IRadialControllerButtonClickedEventArgs2, WinRt.Windows.UI.Input.IID_IRadialControllerButtonClickedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -4824,7 +4824,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -4860,14 +4860,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerButtonHoldingEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -4880,14 +4880,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IRadialControllerButtonHoldingEventArgs.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -4923,14 +4923,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerButtonPressedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -4943,14 +4943,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IRadialControllerButtonPressedEventArgs.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -4986,14 +4986,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerButtonReleasedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -5006,14 +5006,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IRadialControllerButtonReleasedEventArgs.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -5048,7 +5048,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerConfiguration");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerConfigurationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerConfiguration;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerConfiguration do
          Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerConfigurationStatics'Access , m_Factory'Address);
@@ -5058,7 +5058,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerConfiguration := new Windows.UI.Input.IRadialControllerConfiguration;
+            Retval.m_IRadialControllerConfiguration := new WinRt.Windows.UI.Input.IRadialControllerConfiguration;
             Retval.m_IRadialControllerConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5067,7 +5067,7 @@ package body WinRt.Windows.UI.Input is
 
    procedure put_AppController
    (
-      value : Windows.UI.Input.RadialController'Class
+      value : WinRt.Windows.UI.Input.RadialController'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5093,7 +5093,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerConfiguration");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerConfigurationStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialController;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialController do
          Hr := RoGetActivationFactory (m_hString, IID_IRadialControllerConfigurationStatics2'Access , m_Factory'Address);
@@ -5103,7 +5103,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialController := new Windows.UI.Input.IRadialController;
+            Retval.m_IRadialController := new WinRt.Windows.UI.Input.IRadialController;
             Retval.m_IRadialController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5187,7 +5187,7 @@ package body WinRt.Windows.UI.Input is
    function TrySelectDefaultMenuItem
    (
       this : in out RadialControllerConfiguration;
-      type_x : Windows.UI.Input.RadialControllerSystemMenuItemKind
+      type_x : WinRt.Windows.UI.Input.RadialControllerSystemMenuItemKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5205,7 +5205,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_ActiveControllerWhenMenuIsSuppressed
    (
       this : in out RadialControllerConfiguration;
-      value : Windows.UI.Input.RadialController'Class
+      value : WinRt.Windows.UI.Input.RadialController'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5230,7 +5230,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerConfiguration_Interface, WinRt.Windows.UI.Input.IRadialControllerConfiguration2, WinRt.Windows.UI.Input.IID_IRadialControllerConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialController do
@@ -5240,7 +5240,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialController := new Windows.UI.Input.IRadialController;
+         Retval.m_IRadialController := new WinRt.Windows.UI.Input.IRadialController;
          Retval.m_IRadialController.all := m_ComRetVal;
       end return;
    end;
@@ -5316,14 +5316,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerControlAcquiredEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -5358,7 +5358,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerControlAcquiredEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerControlAcquiredEventArgs_Interface, WinRt.Windows.UI.Input.IRadialControllerControlAcquiredEventArgs2, WinRt.Windows.UI.Input.IID_IRadialControllerControlAcquiredEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -5368,7 +5368,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -5404,7 +5404,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IRadialControllerMenuItem.Kind;
    begin
       Hr := this.m_IRadialControllerMenu.all.get_Items (m_ComRetVal'Access);
@@ -5456,14 +5456,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenuItem;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
          Hr := this.m_IRadialControllerMenu.all.GetSelectedMenuItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+         Retval.m_IRadialControllerMenuItem := new WinRt.Windows.UI.Input.IRadialControllerMenuItem;
          Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
       end return;
    end;
@@ -5471,7 +5471,7 @@ package body WinRt.Windows.UI.Input is
    procedure SelectMenuItem
    (
       this : in out RadialControllerMenu;
-      menuItem : Windows.UI.Input.RadialControllerMenuItem'Class
+      menuItem : WinRt.Windows.UI.Input.RadialControllerMenuItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5535,7 +5535,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenuItem;
       HStr_displayText : constant WinRt.HString := To_HString (displayText);
       HStr_glyph : constant WinRt.HString := To_HString (glyph);
       HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
@@ -5548,7 +5548,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem := new WinRt.Windows.UI.Input.IRadialControllerMenuItem;
             Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5563,7 +5563,7 @@ package body WinRt.Windows.UI.Input is
       displayText : WinRt.WString;
       glyph : WinRt.WString;
       fontFamily : WinRt.WString;
-      fontUri : Windows.Foundation.Uri'Class
+      fontUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem is
       Hr               : WinRt.HResult := S_OK;
@@ -5571,7 +5571,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenuItem;
       HStr_displayText : constant WinRt.HString := To_HString (displayText);
       HStr_glyph : constant WinRt.HString := To_HString (glyph);
       HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
@@ -5584,7 +5584,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem := new WinRt.Windows.UI.Input.IRadialControllerMenuItem;
             Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5597,7 +5597,7 @@ package body WinRt.Windows.UI.Input is
    function CreateFromIcon
    (
       displayText : WinRt.WString;
-      icon : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      icon : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem is
       Hr               : WinRt.HResult := S_OK;
@@ -5605,7 +5605,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenuItem;
       HStr_displayText : constant WinRt.HString := To_HString (displayText);
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
@@ -5616,7 +5616,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem := new WinRt.Windows.UI.Input.IRadialControllerMenuItem;
             Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5627,7 +5627,7 @@ package body WinRt.Windows.UI.Input is
    function CreateFromKnownIcon
    (
       displayText : WinRt.WString;
-      value : Windows.UI.Input.RadialControllerMenuKnownIcon
+      value : WinRt.Windows.UI.Input.RadialControllerMenuKnownIcon
    )
    return WinRt.Windows.UI.Input.RadialControllerMenuItem is
       Hr               : WinRt.HResult := S_OK;
@@ -5635,7 +5635,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.RadialControllerMenuItem");
       m_Factory        : access WinRt.Windows.UI.Input.IRadialControllerMenuItemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerMenuItem;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerMenuItem;
       HStr_displayText : constant WinRt.HString := To_HString (displayText);
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerMenuItem do
@@ -5646,7 +5646,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRadialControllerMenuItem := new Windows.UI.Input.IRadialControllerMenuItem;
+            Retval.m_IRadialControllerMenuItem := new WinRt.Windows.UI.Input.IRadialControllerMenuItem;
             Retval.m_IRadialControllerMenuItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5718,7 +5718,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRadialControllerMenuItem.all.add_Invoked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5730,7 +5730,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_Invoked
    (
       this : in out RadialControllerMenuItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5790,14 +5790,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerRotationChangedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -5832,7 +5832,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerRotationChangedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerRotationChangedEventArgs_Interface, WinRt.Windows.UI.Input.IRadialControllerRotationChangedEventArgs2, WinRt.Windows.UI.Input.IID_IRadialControllerRotationChangedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -5842,7 +5842,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -5878,7 +5878,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IRadialControllerScreenContact.all.get_Bounds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5895,7 +5895,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IRadialControllerScreenContact.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5935,14 +5935,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerScreenContactContinuedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -5977,7 +5977,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerScreenContactContinuedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerScreenContactContinuedEventArgs_Interface, WinRt.Windows.UI.Input.IRadialControllerScreenContactContinuedEventArgs2, WinRt.Windows.UI.Input.IID_IRadialControllerScreenContactContinuedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -5987,7 +5987,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -6040,14 +6040,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IRadialControllerScreenContactEndedEventArgs.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -6083,14 +6083,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.IRadialControllerScreenContact;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.IRadialControllerScreenContact;
    begin
       return RetVal : WinRt.Windows.UI.Input.RadialControllerScreenContact do
          Hr := this.m_IRadialControllerScreenContactStartedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRadialControllerScreenContact := new Windows.UI.Input.IRadialControllerScreenContact;
+         Retval.m_IRadialControllerScreenContact := new WinRt.Windows.UI.Input.IRadialControllerScreenContact;
          Retval.m_IRadialControllerScreenContact.all := m_ComRetVal;
       end return;
    end;
@@ -6125,7 +6125,7 @@ package body WinRt.Windows.UI.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.IRadialControllerScreenContactStartedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.IRadialControllerScreenContactStartedEventArgs_Interface, WinRt.Windows.UI.Input.IRadialControllerScreenContactStartedEventArgs2, WinRt.Windows.UI.Input.IID_IRadialControllerScreenContactStartedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -6135,7 +6135,7 @@ package body WinRt.Windows.UI.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -6171,7 +6171,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IRightTappedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6188,7 +6188,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IRightTappedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6243,7 +6243,7 @@ package body WinRt.Windows.UI.Input is
 
    function CreateForDispatcherQueue
    (
-      queue : Windows.System.DispatcherQueue'Class
+      queue : WinRt.Windows.System.DispatcherQueue'Class
    )
    return WinRt.Windows.UI.Input.SystemButtonEventController is
       Hr               : WinRt.HResult := S_OK;
@@ -6251,7 +6251,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.SystemButtonEventController");
       m_Factory        : access WinRt.Windows.UI.Input.ISystemButtonEventControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ISystemButtonEventController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ISystemButtonEventController;
    begin
       return RetVal : WinRt.Windows.UI.Input.SystemButtonEventController do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemButtonEventControllerStatics'Access , m_Factory'Address);
@@ -6261,7 +6261,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISystemButtonEventController := new Windows.UI.Input.ISystemButtonEventController;
+            Retval.m_ISystemButtonEventController := new WinRt.Windows.UI.Input.ISystemButtonEventController;
             Retval.m_ISystemButtonEventController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6280,7 +6280,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemButtonEventController.all.add_SystemFunctionButtonPressed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6292,7 +6292,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionButtonPressed
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6313,7 +6313,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemButtonEventController.all.add_SystemFunctionButtonReleased (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6325,7 +6325,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionButtonReleased
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6346,7 +6346,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemButtonEventController.all.add_SystemFunctionLockChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6358,7 +6358,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionLockChanged
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6379,7 +6379,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISystemButtonEventController.all.add_SystemFunctionLockIndicatorChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6391,7 +6391,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_SystemFunctionLockIndicatorChanged
    (
       this : in out SystemButtonEventController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6684,7 +6684,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_ITappedEventArgs.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6701,7 +6701,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ITappedEventArgs.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6799,7 +6799,7 @@ package body WinRt.Windows.UI.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.TouchpadGesturesController");
       m_Factory        : access WinRt.Windows.UI.Input.ITouchpadGesturesControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.ITouchpadGesturesController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.ITouchpadGesturesController;
    begin
       return RetVal : WinRt.Windows.UI.Input.TouchpadGesturesController do
          Hr := RoGetActivationFactory (m_hString, IID_ITouchpadGesturesControllerStatics'Access , m_Factory'Address);
@@ -6809,7 +6809,7 @@ package body WinRt.Windows.UI.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ITouchpadGesturesController := new Windows.UI.Input.ITouchpadGesturesController;
+            Retval.m_ITouchpadGesturesController := new WinRt.Windows.UI.Input.ITouchpadGesturesController;
             Retval.m_ITouchpadGesturesController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6859,7 +6859,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.TouchpadGlobalGestureKinds;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds;
    begin
       Hr := this.m_ITouchpadGesturesController.all.get_SupportedGestures (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6871,7 +6871,7 @@ package body WinRt.Windows.UI.Input is
    procedure put_SupportedGestures
    (
       this : in out TouchpadGesturesController;
-      value : Windows.UI.Input.TouchpadGlobalGestureKinds
+      value : WinRt.Windows.UI.Input.TouchpadGlobalGestureKinds
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6892,7 +6892,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITouchpadGesturesController.all.add_PointerPressed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6904,7 +6904,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_PointerPressed
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6925,7 +6925,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITouchpadGesturesController.all.add_PointerMoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6937,7 +6937,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_PointerMoved
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6958,7 +6958,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITouchpadGesturesController.all.add_PointerReleased (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6970,7 +6970,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_PointerReleased
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6991,7 +6991,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITouchpadGesturesController.all.add_GlobalActionPerformed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7003,7 +7003,7 @@ package body WinRt.Windows.UI.Input is
    procedure remove_GlobalActionPerformed
    (
       this : in out TouchpadGesturesController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7046,7 +7046,7 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.TouchpadGlobalAction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.TouchpadGlobalAction;
    begin
       Hr := this.m_ITouchpadGlobalActionEventArgs.all.get_Action (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7063,14 +7063,14 @@ package body WinRt.Windows.UI.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPointerDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPointerDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PointerDevice do
          Hr := this.m_ITouchpadGlobalActionEventArgs.all.get_PointerDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPointerDevice := new Windows.Devices.Input.IPointerDevice;
+         Retval.m_IPointerDevice := new WinRt.Windows.Devices.Input.IPointerDevice;
          Retval.m_IPointerDevice.all := m_ComRetVal;
       end return;
    end;

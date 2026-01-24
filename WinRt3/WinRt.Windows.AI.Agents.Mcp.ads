@@ -151,21 +151,21 @@ package WinRt.Windows.AI.Agents.Mcp is
       function get_Uri
       (
          this : access IMcpHttpConnectionResult_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IMcpHttpConnectionResult_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Headers
       (
          this : access IMcpHttpConnectionResult_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -182,9 +182,9 @@ package WinRt.Windows.AI.Agents.Mcp is
       function Connect
       (
          this : access IMcpNamedPipeConnectionServer_Interface;
-         hostContext : Windows.AI.Agents.Mcp.IMcpServerContext;
+         hostContext : WinRt.Windows.AI.Agents.Mcp.IMcpServerContext;
          pipeName : WinRt.HString;
-         connectionResult : Windows.AI.Agents.Mcp.IMcpNamedPipeConnectionResult
+         connectionResult : WinRt.Windows.AI.Agents.Mcp.IMcpNamedPipeConnectionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -264,10 +264,10 @@ package WinRt.Windows.AI.Agents.Mcp is
       function RequestResourceAccess
       (
          this : access IMcpServerContext_Interface;
-         resource : Windows.Foundation.IUriRuntimeClass;
+         resource : WinRt.Windows.Foundation.IUriRuntimeClass;
          description : WinRt.HString;
          reasonForAsking : WinRt.HString;
-         RetVal : access Windows.AI.Agents.Mcp.McpAuthorizationResponse
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.McpAuthorizationResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.AI.Agents.Mcp is
       function GetContextForCaller
       (
          this : access IMcpServerContextStatics_Interface;
-         RetVal : access Windows.AI.Agents.Mcp.IMcpServerContext
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.IMcpServerContext
       )
       return WinRt.Hresult is abstract;
 
@@ -312,7 +312,7 @@ package WinRt.Windows.AI.Agents.Mcp is
       function get_Package
       (
          this : access IMcpServerInfo_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -339,7 +339,7 @@ package WinRt.Windows.AI.Agents.Mcp is
       (
          this : access IMcpServerRegistry_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -347,8 +347,8 @@ package WinRt.Windows.AI.Agents.Mcp is
       (
          this : access IMcpServerRegistry_Interface;
          mcpServerId : WinRt.Guid;
-         ownerWindowId : Windows.UI.WindowId;
-         RetVal : access Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo
+         ownerWindowId : WinRt.Windows.UI.WindowId;
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -360,7 +360,7 @@ package WinRt.Windows.AI.Agents.Mcp is
       function GetDefault
       (
          this : access IMcpServerRegistryStatics_Interface;
-         RetVal : access Windows.AI.Agents.Mcp.IMcpServerRegistry
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.IMcpServerRegistry
       )
       return WinRt.Hresult is abstract;
 
@@ -372,8 +372,8 @@ package WinRt.Windows.AI.Agents.Mcp is
       function Connect
       (
          this : access IMcpSseConnectionServer_Interface;
-         hostContext : Windows.AI.Agents.Mcp.IMcpServerContext;
-         connectionResult : Windows.AI.Agents.Mcp.IMcpHttpConnectionResult
+         hostContext : WinRt.Windows.AI.Agents.Mcp.IMcpServerContext;
+         connectionResult : WinRt.Windows.AI.Agents.Mcp.IMcpHttpConnectionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -400,7 +400,7 @@ package WinRt.Windows.AI.Agents.Mcp is
       function get_Info
       (
          this : access IMcpStdioConnectionInfo_Interface;
-         RetVal : access Windows.AI.Agents.Mcp.IMcpServerInfo
+         RetVal : access WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -428,7 +428,7 @@ package WinRt.Windows.AI.Agents.Mcp is
    procedure put_Uri
    (
       this : in out McpHttpConnectionResult;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Headers
@@ -500,7 +500,7 @@ package WinRt.Windows.AI.Agents.Mcp is
    function RequestResourceAccess
    (
       this : in out McpServerContext;
-      resource : Windows.Foundation.Uri'Class;
+      resource : WinRt.Windows.Foundation.Uri'Class;
       description : WinRt.WString;
       reasonForAsking : WinRt.WString
    )
@@ -576,7 +576,7 @@ package WinRt.Windows.AI.Agents.Mcp is
    (
       this : in out McpServerRegistry;
       mcpServerId : WinRt.Guid;
-      ownerWindowId : Windows.UI.WindowId
+      ownerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Agents.Mcp.McpStdioConnectionInfo'Class;
 

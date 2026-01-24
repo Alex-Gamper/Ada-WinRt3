@@ -64,13 +64,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationAttribute is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationAttribute;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationAttribute");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationAttribute;
    begin
       return RetVal : SyndicationAttribute do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationAttribute := new Windows.Web.Syndication.ISyndicationAttribute;
+            Retval.m_ISyndicationAttribute := new WinRt.Windows.Web.Syndication.ISyndicationAttribute;
             Retval.m_ISyndicationAttribute.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -86,10 +86,10 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationAttribute is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationAttribute");
       m_Factory    : access ISyndicationAttributeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationAttribute;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationAttribute;
       HStr_attributeName : constant WinRt.HString := To_HString (attributeName);
       HStr_attributeNamespace : constant WinRt.HString := To_HString (attributeNamespace);
       HStr_attributeValue : constant WinRt.HString := To_HString (attributeValue);
@@ -98,7 +98,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationAttributeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationAttribute (HStr_attributeName, HStr_attributeNamespace, HStr_attributeValue, m_ComRetVal'Access);
-            Retval.m_ISyndicationAttribute := new Windows.Web.Syndication.ISyndicationAttribute;
+            Retval.m_ISyndicationAttribute := new WinRt.Windows.Web.Syndication.ISyndicationAttribute;
             Retval.m_ISyndicationAttribute.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -249,13 +249,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationCategory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationCategory;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationCategory;
    begin
       return RetVal : SyndicationCategory do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationCategory := new Windows.Web.Syndication.ISyndicationCategory;
+            Retval.m_ISyndicationCategory := new WinRt.Windows.Web.Syndication.ISyndicationCategory;
             Retval.m_ISyndicationCategory.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -269,17 +269,17 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationCategory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
       m_Factory    : access ISyndicationCategoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationCategory;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationCategory;
       HStr_term : constant WinRt.HString := To_HString (term);
    begin
       return RetVal : SyndicationCategory do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationCategoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationCategory (HStr_term, m_ComRetVal'Access);
-            Retval.m_ISyndicationCategory := new Windows.Web.Syndication.ISyndicationCategory;
+            Retval.m_ISyndicationCategory := new WinRt.Windows.Web.Syndication.ISyndicationCategory;
             Retval.m_ISyndicationCategory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -297,10 +297,10 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationCategory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
       m_Factory    : access ISyndicationCategoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationCategory;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationCategory;
       HStr_term : constant WinRt.HString := To_HString (term);
       HStr_scheme : constant WinRt.HString := To_HString (scheme);
       HStr_label : constant WinRt.HString := To_HString (label);
@@ -309,7 +309,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationCategoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationCategoryEx (HStr_term, HStr_scheme, HStr_label, m_ComRetVal'Access);
-            Retval.m_ISyndicationCategory := new Windows.Web.Syndication.ISyndicationCategory;
+            Retval.m_ISyndicationCategory := new WinRt.Windows.Web.Syndication.ISyndicationCategory;
             Retval.m_ISyndicationCategory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -623,7 +623,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationCategory_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -633,7 +633,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -641,7 +641,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationCategory;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -666,7 +666,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationCategory_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -690,7 +690,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationCategory_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -708,14 +708,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationCategory;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationCategory_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -725,7 +725,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -755,21 +755,21 @@ package body WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      serverCredential : Windows.Security.Credentials.PasswordCredential'Class
+      serverCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return SyndicationClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationClient");
       m_Factory    : access ISyndicationClientFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationClient;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationClient;
    begin
       return RetVal : SyndicationClient do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationClientFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationClient (serverCredential.m_IPasswordCredential.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationClient := new Windows.Web.Syndication.ISyndicationClient;
+            Retval.m_ISyndicationClient := new WinRt.Windows.Web.Syndication.ISyndicationClient;
             Retval.m_ISyndicationClient.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -780,13 +780,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationClient");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationClient;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationClient");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationClient;
    begin
       return RetVal : SyndicationClient do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationClient := new Windows.Web.Syndication.ISyndicationClient;
+            Retval.m_ISyndicationClient := new WinRt.Windows.Web.Syndication.ISyndicationClient;
             Retval.m_ISyndicationClient.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -804,14 +804,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_ISyndicationClient.all.get_ServerCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -819,7 +819,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_ServerCredential
    (
       this : in out SyndicationClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -839,14 +839,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_ISyndicationClient.all.get_ProxyCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -854,7 +854,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_ProxyCredential
    (
       this : in out SyndicationClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -985,7 +985,7 @@ package body WinRt.Windows.Web.Syndication is
    function RetrieveFeedAsync
    (
       this : in out SyndicationClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationFeed'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1036,7 +1036,7 @@ package body WinRt.Windows.Web.Syndication is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISyndicationFeed := new Windows.Web.Syndication.ISyndicationFeed;
+                  Retval.m_ISyndicationFeed := new WinRt.Windows.Web.Syndication.ISyndicationFeed;
                   Retval.m_ISyndicationFeed.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1075,13 +1075,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationContent;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationContent;
    begin
       return RetVal : SyndicationContent do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
+            Retval.m_ISyndicationContent := new WinRt.Windows.Web.Syndication.ISyndicationContent;
             Retval.m_ISyndicationContent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1091,22 +1091,22 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor
    (
       text : WinRt.WString;
-      type_x : Windows.Web.Syndication.SyndicationTextType
+      type_x : WinRt.Windows.Web.Syndication.SyndicationTextType
    )
    return SyndicationContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
       m_Factory    : access ISyndicationContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationContent;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationContent;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : SyndicationContent do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationContentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationContent (HStr_text, type_x, m_ComRetVal'Access);
-            Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
+            Retval.m_ISyndicationContent := new WinRt.Windows.Web.Syndication.ISyndicationContent;
             Retval.m_ISyndicationContent.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1117,21 +1117,21 @@ package body WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      sourceUri : Windows.Foundation.Uri'Class
+      sourceUri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
       m_Factory    : access ISyndicationContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationContent;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationContent;
    begin
       return RetVal : SyndicationContent do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationContentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationContentWithSourceUri (sourceUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
+            Retval.m_ISyndicationContent := new WinRt.Windows.Web.Syndication.ISyndicationContent;
             Retval.m_ISyndicationContent.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationText := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationContent_Interface, WinRt.Windows.Web.Syndication.ISyndicationText, WinRt.Windows.Web.Syndication.IID_ISyndicationText'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -1251,7 +1251,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1259,7 +1259,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Xml
    (
       this : in out SyndicationContent;
-      value : Windows.Data.Xml.Dom.XmlDocument'Class
+      value : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1464,7 +1464,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationContent_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1474,7 +1474,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1482,7 +1482,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationContent;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1507,7 +1507,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationContent_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -1531,7 +1531,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationContent_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -1549,14 +1549,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationContent;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationContent_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -1566,7 +1566,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1579,14 +1579,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationContent.all.get_SourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1594,7 +1594,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_SourceUri
    (
       this : in out SyndicationContent;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1620,7 +1620,7 @@ package body WinRt.Windows.Web.Syndication is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationError");
          m_Factory        : access WinRt.Windows.Web.Syndication.ISyndicationErrorStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Web.Syndication.SyndicationErrorStatus;
+         m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.SyndicationErrorStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationErrorStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1663,15 +1663,15 @@ package body WinRt.Windows.Web.Syndication is
    (
       title : WinRt.WString;
       subtitle : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationFeed is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationFeed");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationFeed");
       m_Factory    : access ISyndicationFeedFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationFeed;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationFeed;
       HStr_title : constant WinRt.HString := To_HString (title);
       HStr_subtitle : constant WinRt.HString := To_HString (subtitle);
    begin
@@ -1679,7 +1679,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationFeedFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationFeed (HStr_title, HStr_subtitle, uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationFeed := new Windows.Web.Syndication.ISyndicationFeed;
+            Retval.m_ISyndicationFeed := new WinRt.Windows.Web.Syndication.ISyndicationFeed;
             Retval.m_ISyndicationFeed.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1692,13 +1692,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationFeed is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationFeed");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationFeed;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationFeed");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationFeed;
    begin
       return RetVal : SyndicationFeed do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationFeed := new Windows.Web.Syndication.ISyndicationFeed;
+            Retval.m_ISyndicationFeed := new WinRt.Windows.Web.Syndication.ISyndicationFeed;
             Retval.m_ISyndicationFeed.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1716,7 +1716,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationPerson.Kind;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Authors (m_ComRetVal'Access);
@@ -1736,7 +1736,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationCategory.Kind;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Categories (m_ComRetVal'Access);
@@ -1756,7 +1756,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationPerson.Kind;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Contributors (m_ComRetVal'Access);
@@ -1776,14 +1776,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationGenerator;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationGenerator;
    begin
       return RetVal : WinRt.Windows.Web.Syndication.SyndicationGenerator do
          Hr := this.m_ISyndicationFeed.all.get_Generator (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISyndicationGenerator := new Windows.Web.Syndication.ISyndicationGenerator;
+         Retval.m_ISyndicationGenerator := new WinRt.Windows.Web.Syndication.ISyndicationGenerator;
          Retval.m_ISyndicationGenerator.all := m_ComRetVal;
       end return;
    end;
@@ -1791,7 +1791,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Generator
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.SyndicationGenerator'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationGenerator'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1811,14 +1811,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_IconUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1826,7 +1826,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_IconUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1883,7 +1883,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationItem.Kind;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Items (m_ComRetVal'Access);
@@ -1903,7 +1903,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISyndicationFeed.all.get_LastUpdatedTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1915,7 +1915,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_LastUpdatedTime
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1935,7 +1935,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationLink.Kind;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Links (m_ComRetVal'Access);
@@ -1955,14 +1955,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_ImageUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1970,7 +1970,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_ImageUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1990,7 +1990,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Rights (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2002,7 +2002,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Rights
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2022,7 +2022,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Subtitle (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2034,7 +2034,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Subtitle
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2054,7 +2054,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationFeed.all.get_Title (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2066,7 +2066,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Title
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2086,14 +2086,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_FirstUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2106,14 +2106,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_LastUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2126,14 +2126,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_NextUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2146,14 +2146,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationFeed.all.get_PreviousUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2166,7 +2166,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.SyndicationFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.SyndicationFormat;
    begin
       Hr := this.m_ISyndicationFeed.all.get_SourceFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2195,7 +2195,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure LoadFromXml
    (
       this : in out SyndicationFeed;
-      feedDocument : Windows.Data.Xml.Dom.XmlDocument'Class
+      feedDocument : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2396,7 +2396,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationFeed_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2406,7 +2406,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2414,7 +2414,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2439,7 +2439,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationFeed_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationFeed_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -2481,14 +2481,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationFeed;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationFeed_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -2498,7 +2498,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -2529,13 +2529,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationGenerator");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationGenerator;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationGenerator");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationGenerator;
    begin
       return RetVal : SyndicationGenerator do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationGenerator := new Windows.Web.Syndication.ISyndicationGenerator;
+            Retval.m_ISyndicationGenerator := new WinRt.Windows.Web.Syndication.ISyndicationGenerator;
             Retval.m_ISyndicationGenerator.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2549,17 +2549,17 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationGenerator");
       m_Factory    : access ISyndicationGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationGenerator;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationGenerator;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : SyndicationGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationGeneratorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationGenerator (HStr_text, m_ComRetVal'Access);
-            Retval.m_ISyndicationGenerator := new Windows.Web.Syndication.ISyndicationGenerator;
+            Retval.m_ISyndicationGenerator := new WinRt.Windows.Web.Syndication.ISyndicationGenerator;
             Retval.m_ISyndicationGenerator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2616,14 +2616,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationGenerator.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2631,7 +2631,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationGenerator;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2869,7 +2869,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationGenerator_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2879,7 +2879,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2887,7 +2887,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationGenerator;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2912,7 +2912,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationGenerator_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -2936,7 +2936,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationGenerator_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -2954,14 +2954,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationGenerator;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationGenerator_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -2971,7 +2971,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -3002,23 +3002,23 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor
    (
       title : WinRt.WString;
-      content : Windows.Web.Syndication.SyndicationContent'Class;
-      uri : Windows.Foundation.Uri'Class
+      content : WinRt.Windows.Web.Syndication.SyndicationContent'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationItem");
       m_Factory    : access ISyndicationItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationItem;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationItem;
       HStr_title : constant WinRt.HString := To_HString (title);
    begin
       return RetVal : SyndicationItem do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationItem (HStr_title, content.m_ISyndicationContent.all, uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationItem := new Windows.Web.Syndication.ISyndicationItem;
+            Retval.m_ISyndicationItem := new WinRt.Windows.Web.Syndication.ISyndicationItem;
             Retval.m_ISyndicationItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3030,13 +3030,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationItem");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationItem;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationItem");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationItem;
    begin
       return RetVal : SyndicationItem do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationItem := new Windows.Web.Syndication.ISyndicationItem;
+            Retval.m_ISyndicationItem := new WinRt.Windows.Web.Syndication.ISyndicationItem;
             Retval.m_ISyndicationItem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3054,7 +3054,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationPerson.Kind;
    begin
       Hr := this.m_ISyndicationItem.all.get_Authors (m_ComRetVal'Access);
@@ -3074,7 +3074,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationCategory.Kind;
    begin
       Hr := this.m_ISyndicationItem.all.get_Categories (m_ComRetVal'Access);
@@ -3094,7 +3094,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationPerson.Kind;
    begin
       Hr := this.m_ISyndicationItem.all.get_Contributors (m_ComRetVal'Access);
@@ -3114,14 +3114,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationContent;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationContent;
    begin
       return RetVal : WinRt.Windows.Web.Syndication.SyndicationContent do
          Hr := this.m_ISyndicationItem.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISyndicationContent := new Windows.Web.Syndication.ISyndicationContent;
+         Retval.m_ISyndicationContent := new WinRt.Windows.Web.Syndication.ISyndicationContent;
          Retval.m_ISyndicationContent.all := m_ComRetVal;
       end return;
    end;
@@ -3129,7 +3129,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Content
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.SyndicationContent'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationContent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3186,7 +3186,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISyndicationItem.all.get_LastUpdatedTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3198,7 +3198,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_LastUpdatedTime
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3218,7 +3218,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationLink.Kind;
    begin
       Hr := this.m_ISyndicationItem.all.get_Links (m_ComRetVal'Access);
@@ -3238,7 +3238,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISyndicationItem.all.get_PublishedDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3250,7 +3250,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_PublishedDate
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3270,7 +3270,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationItem.all.get_Rights (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3282,7 +3282,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Rights
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3302,14 +3302,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationFeed;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationFeed;
    begin
       return RetVal : WinRt.Windows.Web.Syndication.SyndicationFeed do
          Hr := this.m_ISyndicationItem.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISyndicationFeed := new Windows.Web.Syndication.ISyndicationFeed;
+         Retval.m_ISyndicationFeed := new WinRt.Windows.Web.Syndication.ISyndicationFeed;
          Retval.m_ISyndicationFeed.all := m_ComRetVal;
       end return;
    end;
@@ -3317,7 +3317,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Source
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.SyndicationFeed'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationFeed'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3337,7 +3337,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationItem.all.get_Summary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3349,7 +3349,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Summary
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3369,7 +3369,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_ISyndicationItem.all.get_Title (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3381,7 +3381,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Title
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3401,14 +3401,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationItem.all.get_CommentsUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3416,7 +3416,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_CommentsUri
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3436,14 +3436,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationItem.all.get_EditUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3456,14 +3456,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationItem.all.get_EditMediaUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3496,14 +3496,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationItem.all.get_ItemUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3528,7 +3528,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure LoadFromXml
    (
       this : in out SyndicationItem;
-      itemDocument : Windows.Data.Xml.Dom.XmlDocument'Class
+      itemDocument : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3729,7 +3729,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationItem_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -3739,7 +3739,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3747,7 +3747,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3772,7 +3772,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationItem_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -3796,7 +3796,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationItem_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -3814,14 +3814,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationItem;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationItem_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -3831,7 +3831,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -3862,13 +3862,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationLink is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationLink;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationLink;
    begin
       return RetVal : SyndicationLink do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationLink := new Windows.Web.Syndication.ISyndicationLink;
+            Retval.m_ISyndicationLink := new WinRt.Windows.Web.Syndication.ISyndicationLink;
             Retval.m_ISyndicationLink.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3877,21 +3877,21 @@ package body WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationLink is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
       m_Factory    : access ISyndicationLinkFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationLink;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationLink;
    begin
       return RetVal : SyndicationLink do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationLinkFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationLink (uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationLink := new Windows.Web.Syndication.ISyndicationLink;
+            Retval.m_ISyndicationLink := new WinRt.Windows.Web.Syndication.ISyndicationLink;
             Retval.m_ISyndicationLink.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3901,7 +3901,7 @@ package body WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       relationship : WinRt.WString;
       title : WinRt.WString;
       mediaType : WinRt.WString;
@@ -3910,10 +3910,10 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationLink is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
       m_Factory    : access ISyndicationLinkFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationLink;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationLink;
       HStr_relationship : constant WinRt.HString := To_HString (relationship);
       HStr_title : constant WinRt.HString := To_HString (title);
       HStr_mediaType : constant WinRt.HString := To_HString (mediaType);
@@ -3922,7 +3922,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationLinkFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationLinkEx (uri.m_IUriRuntimeClass.all, HStr_relationship, HStr_title, HStr_mediaType, length, m_ComRetVal'Access);
-            Retval.m_ISyndicationLink := new Windows.Web.Syndication.ISyndicationLink;
+            Retval.m_ISyndicationLink := new WinRt.Windows.Web.Syndication.ISyndicationLink;
             Retval.m_ISyndicationLink.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4087,14 +4087,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationLink.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4102,7 +4102,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationLink;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4340,7 +4340,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationLink_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -4350,7 +4350,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4358,7 +4358,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationLink;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4383,7 +4383,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationLink_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -4407,7 +4407,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationLink_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -4425,14 +4425,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationLink;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationLink_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -4442,7 +4442,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -4479,10 +4479,10 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationNode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationNode");
       m_Factory    : access ISyndicationNodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationNode;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationNode;
       HStr_nodeName : constant WinRt.HString := To_HString (nodeName);
       HStr_nodeNamespace : constant WinRt.HString := To_HString (nodeNamespace);
       HStr_nodeValue : constant WinRt.HString := To_HString (nodeValue);
@@ -4491,7 +4491,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationNodeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationNode (HStr_nodeName, HStr_nodeNamespace, HStr_nodeValue, m_ComRetVal'Access);
-            Retval.m_ISyndicationNode := new Windows.Web.Syndication.ISyndicationNode;
+            Retval.m_ISyndicationNode := new WinRt.Windows.Web.Syndication.ISyndicationNode;
             Retval.m_ISyndicationNode.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4505,13 +4505,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationNode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationNode;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationNode");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationNode;
    begin
       return RetVal : SyndicationNode do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationNode := new Windows.Web.Syndication.ISyndicationNode;
+            Retval.m_ISyndicationNode := new WinRt.Windows.Web.Syndication.ISyndicationNode;
             Retval.m_ISyndicationNode.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4677,14 +4677,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationNode.all.get_BaseUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4692,7 +4692,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationNode;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4712,7 +4712,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
    begin
       Hr := this.m_ISyndicationNode.all.get_AttributeExtensions (m_ComRetVal'Access);
@@ -4732,7 +4732,7 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
    begin
       Hr := this.m_ISyndicationNode.all.get_ElementExtensions (m_ComRetVal'Access);
@@ -4747,20 +4747,20 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationNode;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_ISyndicationNode.all.GetXmlDocument (format, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -4795,17 +4795,17 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationPerson is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
       m_Factory    : access ISyndicationPersonFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationPerson;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationPerson;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : SyndicationPerson do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationPersonFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationPerson (HStr_name, m_ComRetVal'Access);
-            Retval.m_ISyndicationPerson := new Windows.Web.Syndication.ISyndicationPerson;
+            Retval.m_ISyndicationPerson := new WinRt.Windows.Web.Syndication.ISyndicationPerson;
             Retval.m_ISyndicationPerson.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4818,15 +4818,15 @@ package body WinRt.Windows.Web.Syndication is
    (
       name : WinRt.WString;
       email : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationPerson is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
       m_Factory    : access ISyndicationPersonFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationPerson;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationPerson;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_email : constant WinRt.HString := To_HString (email);
    begin
@@ -4834,7 +4834,7 @@ package body WinRt.Windows.Web.Syndication is
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationPersonFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationPersonEx (HStr_name, HStr_email, uri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_ISyndicationPerson := new Windows.Web.Syndication.ISyndicationPerson;
+            Retval.m_ISyndicationPerson := new WinRt.Windows.Web.Syndication.ISyndicationPerson;
             Retval.m_ISyndicationPerson.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4847,13 +4847,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationPerson is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationPerson;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationPerson;
    begin
       return RetVal : SyndicationPerson do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationPerson := new Windows.Web.Syndication.ISyndicationPerson;
+            Retval.m_ISyndicationPerson := new WinRt.Windows.Web.Syndication.ISyndicationPerson;
             Retval.m_ISyndicationPerson.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4945,14 +4945,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISyndicationPerson.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4960,7 +4960,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationPerson;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5161,7 +5161,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationPerson_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -5171,7 +5171,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -5179,7 +5179,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationPerson;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5204,7 +5204,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationPerson_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -5228,7 +5228,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationPerson_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -5246,14 +5246,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationPerson;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationPerson_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -5263,7 +5263,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -5294,13 +5294,13 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor return SyndicationText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationText;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       return RetVal : SyndicationText do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISyndicationText := new Windows.Web.Syndication.ISyndicationText;
+            Retval.m_ISyndicationText := new WinRt.Windows.Web.Syndication.ISyndicationText;
             Retval.m_ISyndicationText.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5314,17 +5314,17 @@ package body WinRt.Windows.Web.Syndication is
    return SyndicationText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
       m_Factory    : access ISyndicationTextFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : SyndicationText do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationTextFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationText (HStr_text, m_ComRetVal'Access);
-            Retval.m_ISyndicationText := new Windows.Web.Syndication.ISyndicationText;
+            Retval.m_ISyndicationText := new WinRt.Windows.Web.Syndication.ISyndicationText;
             Retval.m_ISyndicationText.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5336,22 +5336,22 @@ package body WinRt.Windows.Web.Syndication is
    function Constructor
    (
       text : WinRt.WString;
-      type_x : Windows.Web.Syndication.SyndicationTextType
+      type_x : WinRt.Windows.Web.Syndication.SyndicationTextType
    )
    return SyndicationText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
       m_Factory    : access ISyndicationTextFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal  : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : SyndicationText do
          Hr := RoGetActivationFactory (m_hString, IID_ISyndicationTextFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateSyndicationTextEx (HStr_text, type_x, m_ComRetVal'Access);
-            Retval.m_ISyndicationText := new Windows.Web.Syndication.ISyndicationText;
+            Retval.m_ISyndicationText := new WinRt.Windows.Web.Syndication.ISyndicationText;
             Retval.m_ISyndicationText.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5445,14 +5445,14 @@ package body WinRt.Windows.Web.Syndication is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_ISyndicationText.all.get_Xml (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -5460,7 +5460,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_Xml
    (
       this : in out SyndicationText;
-      value : Windows.Data.Xml.Dom.XmlDocument'Class
+      value : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5661,7 +5661,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationText_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -5671,7 +5671,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -5679,7 +5679,7 @@ package body WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationText;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5704,7 +5704,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationAttribute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationText_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -5728,7 +5728,7 @@ package body WinRt.Windows.Web.Syndication is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISyndicationNode.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationText_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
@@ -5746,14 +5746,14 @@ package body WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationText;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Syndication.ISyndicationText_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -5763,7 +5763,7 @@ package body WinRt.Windows.Web.Syndication is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;

@@ -293,22 +293,22 @@ package WinRt.Windows.UI.Xaml.Data is
    -----------------------------------------------------------------------------
 
    IID_CurrentChangingEventHandler : aliased WinRt.IID := (4085812664, 5023, 19918, (141, 201, 247, 241, 68, 77, 17, 133 ));
-   type CurrentChangingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Data.ICurrentChangingEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_CurrentChangingEventHandler'Access) with null record;
+   type CurrentChangingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_CurrentChangingEventHandler'Access) with null record;
       function Invoke
       (
          this : access CurrentChangingEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Data.ICurrentChangingEventArgs
+         e : WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs
       )
       return WinRt.Hresult;
 
    IID_PropertyChangedEventHandler : aliased WinRt.IID := (1358011414, 2594, 19854, (160, 137, 30, 169, 149, 22, 87, 210 ));
-   type PropertyChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Data.IPropertyChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PropertyChangedEventHandler'Access) with null record;
+   type PropertyChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PropertyChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access PropertyChangedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Data.IPropertyChangedEventArgs
+         e : WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs
       )
       return WinRt.Hresult;
 
@@ -322,28 +322,28 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_Path
       (
          this : access IBinding_Interface;
-         RetVal : access Windows.UI.Xaml.IPropertyPath
+         RetVal : access WinRt.Windows.UI.Xaml.IPropertyPath
       )
       return WinRt.Hresult is abstract;
 
       function put_Path
       (
          this : access IBinding_Interface;
-         value : Windows.UI.Xaml.IPropertyPath
+         value : WinRt.Windows.UI.Xaml.IPropertyPath
       )
       return WinRt.Hresult is abstract;
 
       function get_Mode
       (
          this : access IBinding_Interface;
-         RetVal : access Windows.UI.Xaml.Data.BindingMode
+         RetVal : access WinRt.Windows.UI.Xaml.Data.BindingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IBinding_Interface;
-         value : Windows.UI.Xaml.Data.BindingMode
+         value : WinRt.Windows.UI.Xaml.Data.BindingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -364,14 +364,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_RelativeSource
       (
          this : access IBinding_Interface;
-         RetVal : access Windows.UI.Xaml.Data.IRelativeSource
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IRelativeSource
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeSource
       (
          this : access IBinding_Interface;
-         value : Windows.UI.Xaml.Data.IRelativeSource
+         value : WinRt.Windows.UI.Xaml.Data.IRelativeSource
       )
       return WinRt.Hresult is abstract;
 
@@ -392,14 +392,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_Converter
       (
          this : access IBinding_Interface;
-         RetVal : access Windows.UI.Xaml.Data.IValueConverter
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IValueConverter
       )
       return WinRt.Hresult is abstract;
 
       function put_Converter
       (
          this : access IBinding_Interface;
-         value : Windows.UI.Xaml.Data.IValueConverter
+         value : WinRt.Windows.UI.Xaml.Data.IValueConverter
       )
       return WinRt.Hresult is abstract;
 
@@ -467,14 +467,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_UpdateSourceTrigger
       (
          this : access IBinding2_Interface;
-         RetVal : access Windows.UI.Xaml.Data.UpdateSourceTrigger
+         RetVal : access WinRt.Windows.UI.Xaml.Data.UpdateSourceTrigger
       )
       return WinRt.Hresult is abstract;
 
       function put_UpdateSourceTrigger
       (
          this : access IBinding2_Interface;
-         value : Windows.UI.Xaml.Data.UpdateSourceTrigger
+         value : WinRt.Windows.UI.Xaml.Data.UpdateSourceTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -493,7 +493,7 @@ package WinRt.Windows.UI.Xaml.Data is
          this : access IBindingBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.IBindingBase
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IBindingBase
       )
       return WinRt.Hresult is abstract;
 
@@ -512,7 +512,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_ParentBinding
       (
          this : access IBindingExpression_Interface;
-         RetVal : access Windows.UI.Xaml.Data.IBinding
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IBinding
       )
       return WinRt.Hresult is abstract;
 
@@ -547,7 +547,7 @@ package WinRt.Windows.UI.Xaml.Data is
          this : access IBindingFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.IBinding
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IBinding
       )
       return WinRt.Hresult is abstract;
 
@@ -564,9 +564,9 @@ package WinRt.Windows.UI.Xaml.Data is
       function SetBinding
       (
          this : access IBindingOperationsStatics_Interface;
-         target : Windows.UI.Xaml.IDependencyObject;
-         dp : Windows.UI.Xaml.IDependencyProperty;
-         binding_p : Windows.UI.Xaml.Data.IBindingBase
+         target : WinRt.Windows.UI.Xaml.IDependencyObject;
+         dp : WinRt.Windows.UI.Xaml.IDependencyProperty;
+         binding_p : WinRt.Windows.UI.Xaml.Data.IBindingBase
       )
       return WinRt.Hresult is abstract;
 
@@ -621,29 +621,29 @@ package WinRt.Windows.UI.Xaml.Data is
       (
          this : access ICollectionView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentChanged
       (
          this : access ICollectionView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_CurrentChanging
       (
          this : access ICollectionView_Interface;
-         handler : Windows.UI.Xaml.Data.CurrentChangingEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Data.CurrentChangingEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentChanging
       (
          this : access ICollectionView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -707,7 +707,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function CreateView
       (
          this : access ICollectionViewFactory_Interface;
-         RetVal : access Windows.UI.Xaml.Data.ICollectionView
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICollectionView
       )
       return WinRt.Hresult is abstract;
 
@@ -752,7 +752,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_View
       (
          this : access ICollectionViewSource_Interface;
-         RetVal : access Windows.UI.Xaml.Data.ICollectionView
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICollectionView
       )
       return WinRt.Hresult is abstract;
 
@@ -773,14 +773,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_ItemsPath
       (
          this : access ICollectionViewSource_Interface;
-         RetVal : access Windows.UI.Xaml.IPropertyPath
+         RetVal : access WinRt.Windows.UI.Xaml.IPropertyPath
       )
       return WinRt.Hresult is abstract;
 
       function put_ItemsPath
       (
          this : access ICollectionViewSource_Interface;
-         value : Windows.UI.Xaml.IPropertyPath
+         value : WinRt.Windows.UI.Xaml.IPropertyPath
       )
       return WinRt.Hresult is abstract;
 
@@ -792,28 +792,28 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_SourceProperty
       (
          this : access ICollectionViewSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewProperty
       (
          this : access ICollectionViewSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsSourceGroupedProperty
       (
          this : access ICollectionViewSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemsPathProperty
       (
          this : access ICollectionViewSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -853,7 +853,7 @@ package WinRt.Windows.UI.Xaml.Data is
          this : access ICurrentChangingEventArgsFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.ICurrentChangingEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -863,7 +863,7 @@ package WinRt.Windows.UI.Xaml.Data is
          isCancelable : WinRt.Boolean;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.ICurrentChangingEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICurrentChangingEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -875,7 +875,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_Type
       (
          this : access ICustomProperty_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -943,7 +943,7 @@ package WinRt.Windows.UI.Xaml.Data is
       (
          this : access ICustomPropertyProvider_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Data.ICustomProperty
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICustomProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -951,8 +951,8 @@ package WinRt.Windows.UI.Xaml.Data is
       (
          this : access ICustomPropertyProvider_Interface;
          name : WinRt.HString;
-         type_x : Windows.UI.Xaml.Interop.TypeName;
-         RetVal : access Windows.UI.Xaml.Data.ICustomProperty
+         type_x : WinRt.Windows.UI.Xaml.Interop.TypeName;
+         RetVal : access WinRt.Windows.UI.Xaml.Data.ICustomProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -966,7 +966,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_Type
       (
          this : access ICustomPropertyProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -1008,7 +1008,7 @@ package WinRt.Windows.UI.Xaml.Data is
          length : WinRt.UInt32;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.IItemIndexRange
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IItemIndexRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1020,7 +1020,7 @@ package WinRt.Windows.UI.Xaml.Data is
       function RangesChanged
       (
          this : access IItemsRangeInfo_Interface;
-         visibleRange : Windows.UI.Xaml.Data.IItemIndexRange;
+         visibleRange : WinRt.Windows.UI.Xaml.Data.IItemIndexRange;
          trackedItems : GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1033,15 +1033,15 @@ package WinRt.Windows.UI.Xaml.Data is
       function add_PropertyChanged
       (
          this : access INotifyPropertyChanged_Interface;
-         handler : Windows.UI.Xaml.Data.PropertyChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Data.PropertyChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertyChanged
       (
          this : access INotifyPropertyChanged_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.UI.Xaml.Data is
          name : WinRt.HString;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.IPropertyChangedEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IPropertyChangedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -1080,14 +1080,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function get_Mode
       (
          this : access IRelativeSource_Interface;
-         RetVal : access Windows.UI.Xaml.Data.RelativeSourceMode
+         RetVal : access WinRt.Windows.UI.Xaml.Data.RelativeSourceMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IRelativeSource_Interface;
-         value : Windows.UI.Xaml.Data.RelativeSourceMode
+         value : WinRt.Windows.UI.Xaml.Data.RelativeSourceMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1101,7 +1101,7 @@ package WinRt.Windows.UI.Xaml.Data is
          this : access IRelativeSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Data.IRelativeSource
+         RetVal : access WinRt.Windows.UI.Xaml.Data.IRelativeSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1113,14 +1113,14 @@ package WinRt.Windows.UI.Xaml.Data is
       function SelectRange
       (
          this : access ISelectionInfo_Interface;
-         itemIndexRange_p : Windows.UI.Xaml.Data.IItemIndexRange
+         itemIndexRange_p : WinRt.Windows.UI.Xaml.Data.IItemIndexRange
       )
       return WinRt.Hresult is abstract;
 
       function DeselectRange
       (
          this : access ISelectionInfo_Interface;
-         itemIndexRange_p : Windows.UI.Xaml.Data.IItemIndexRange
+         itemIndexRange_p : WinRt.Windows.UI.Xaml.Data.IItemIndexRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1168,7 +1168,7 @@ package WinRt.Windows.UI.Xaml.Data is
       (
          this : access IValueConverter_Interface;
          value : WinRt.IInspectable;
-         targetType : Windows.UI.Xaml.Interop.TypeName;
+         targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
          parameter : WinRt.IInspectable;
          language : WinRt.HString;
          RetVal : access WinRt.IInspectable
@@ -1179,7 +1179,7 @@ package WinRt.Windows.UI.Xaml.Data is
       (
          this : access IValueConverter_Interface;
          value : WinRt.IInspectable;
-         targetType : Windows.UI.Xaml.Interop.TypeName;
+         targetType : WinRt.Windows.UI.Xaml.Interop.TypeName;
          parameter : WinRt.IInspectable;
          language : WinRt.HString;
          RetVal : access WinRt.IInspectable
@@ -1239,7 +1239,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_Path
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.PropertyPath'Class
+      value : WinRt.Windows.UI.Xaml.PropertyPath'Class
    );
 
    function get_Mode
@@ -1251,7 +1251,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_Mode
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.BindingMode
+      value : WinRt.Windows.UI.Xaml.Data.BindingMode
    );
 
    function get_Source
@@ -1275,7 +1275,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_RelativeSource
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.RelativeSource'Class
+      value : WinRt.Windows.UI.Xaml.Data.RelativeSource'Class
    );
 
    function get_ElementName
@@ -1299,7 +1299,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_Converter
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.IValueConverter
+      value : WinRt.Windows.UI.Xaml.Data.IValueConverter
    );
 
    function get_ConverterParameter
@@ -1359,7 +1359,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_UpdateSourceTrigger
    (
       this : in out Binding;
-      value : Windows.UI.Xaml.Data.UpdateSourceTrigger
+      value : WinRt.Windows.UI.Xaml.Data.UpdateSourceTrigger
    );
 
    -----------------------------------------------------------------------------
@@ -1414,9 +1414,9 @@ package WinRt.Windows.UI.Xaml.Data is
 
    procedure SetBinding
    (
-      target : Windows.UI.Xaml.DependencyObject'Class;
-      dp : Windows.UI.Xaml.DependencyProperty'Class;
-      binding_p : Windows.UI.Xaml.Data.BindingBase'Class
+      target : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      dp : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      binding_p : WinRt.Windows.UI.Xaml.Data.BindingBase'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1490,7 +1490,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_ItemsPath
    (
       this : in out CollectionViewSource;
-      value : Windows.UI.Xaml.PropertyPath'Class
+      value : WinRt.Windows.UI.Xaml.PropertyPath'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1631,7 +1631,7 @@ package WinRt.Windows.UI.Xaml.Data is
    procedure put_Mode
    (
       this : in out RelativeSource;
-      value : Windows.UI.Xaml.Data.RelativeSourceMode
+      value : WinRt.Windows.UI.Xaml.Data.RelativeSourceMode
    );
 
 end WinRt.Windows.UI.Xaml.Data;

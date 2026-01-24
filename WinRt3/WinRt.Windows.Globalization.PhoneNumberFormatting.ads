@@ -162,7 +162,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       function Format
       (
          this : access IPhoneNumberFormatter_Interface;
-         number : Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+         number : WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -170,8 +170,8 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       function Format
       (
          this : access IPhoneNumberFormatter_Interface;
-         number : Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
-         numberFormat : Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat;
+         number : WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+         numberFormat : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -209,7 +209,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       (
          this : access IPhoneNumberFormatterStatics_Interface;
          regionCode : WinRt.HString;
-         phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
+         phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -281,7 +281,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       function PredictNumberKind
       (
          this : access IPhoneNumberInfo_Interface;
-         RetVal : access Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind
+         RetVal : access WinRt.Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind
       )
       return WinRt.Hresult is abstract;
 
@@ -295,8 +295,8 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       function CheckNumberMatch
       (
          this : access IPhoneNumberInfo_Interface;
-         otherNumber : Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
-         RetVal : access Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult
+         otherNumber : WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+         RetVal : access WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult
       )
       return WinRt.Hresult is abstract;
 
@@ -309,7 +309,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       (
          this : access IPhoneNumberInfoFactory_Interface;
          number : WinRt.HString;
-         RetVal : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
+         RetVal : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -322,8 +322,8 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
       (
          this : access IPhoneNumberInfoStatics_Interface;
          input : WinRt.HString;
-         phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
-         RetVal : access Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult
+         phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+         RetVal : access WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult
       )
       return WinRt.Hresult is abstract;
 
@@ -332,8 +332,8 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
          this : access IPhoneNumberInfoStatics_Interface;
          input : WinRt.HString;
          regionCode : WinRt.HString;
-         phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
-         RetVal : access Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult
+         phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo;
+         RetVal : access WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult
       )
       return WinRt.Hresult is abstract;
 
@@ -360,7 +360,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    procedure TryCreate
    (
       regionCode : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatter
    );
 
    function GetCountryCodeForRegion
@@ -388,15 +388,15 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    function Format
    (
       this : in out PhoneNumberFormatter;
-      number : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
+      number : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
    )
    return WinRt.WString;
 
    function Format
    (
       this : in out PhoneNumberFormatter;
-      number : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class;
-      numberFormat : Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat
+      number : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class;
+      numberFormat : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat
    )
    return WinRt.WString;
 
@@ -442,7 +442,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    function TryParse
    (
       input : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
 
@@ -450,7 +450,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    (
       input : WinRt.WString;
       regionCode : WinRt.WString;
-      phoneNumber : access Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
+      phoneNumber : access WinRt.Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfo
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult;
 
@@ -502,7 +502,7 @@ package WinRt.Windows.Globalization.PhoneNumberFormatting is
    function CheckNumberMatch
    (
       this : in out PhoneNumberInfo;
-      otherNumber : Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
+      otherNumber : WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'Class
    )
    return WinRt.Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult;
 

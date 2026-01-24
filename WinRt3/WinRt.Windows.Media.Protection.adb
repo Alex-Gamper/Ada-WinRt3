@@ -71,14 +71,14 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.IRevocationAndRenewalInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.IRevocationAndRenewalInformation;
    begin
       return RetVal : WinRt.Windows.Media.Protection.RevocationAndRenewalInformation do
          Hr := this.m_IComponentLoadFailedEventArgs.all.get_Information (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRevocationAndRenewalInformation := new Windows.Media.Protection.IRevocationAndRenewalInformation;
+         Retval.m_IRevocationAndRenewalInformation := new WinRt.Windows.Media.Protection.IRevocationAndRenewalInformation;
          Retval.m_IRevocationAndRenewalInformation.all := m_ComRetVal;
       end return;
    end;
@@ -91,14 +91,14 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.IMediaProtectionServiceCompletion;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion;
    begin
       return RetVal : WinRt.Windows.Media.Protection.MediaProtectionServiceCompletion do
          Hr := this.m_IComponentLoadFailedEventArgs.all.get_Completion (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaProtectionServiceCompletion := new Windows.Media.Protection.IMediaProtectionServiceCompletion;
+         Retval.m_IMediaProtectionServiceCompletion := new WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion;
          Retval.m_IMediaProtectionServiceCompletion.all := m_ComRetVal;
       end return;
    end;
@@ -109,8 +109,8 @@ package body WinRt.Windows.Media.Protection is
    function Invoke
    (
       this : access ComponentLoadFailedEventHandler_Delegate;
-      sender : Windows.Media.Protection.IMediaProtectionManager;
-      e : Windows.Media.Protection.IComponentLoadFailedEventArgs
+      sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;
+      e : WinRt.Windows.Media.Protection.IComponentLoadFailedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -125,7 +125,7 @@ package body WinRt.Windows.Media.Protection is
 
       function RenewSystemComponentsAsync
       (
-         information : Windows.Media.Protection.RevocationAndRenewalInformation'Class
+         information : WinRt.Windows.Media.Protection.RevocationAndRenewalInformation'Class
       )
       return WinRt.Windows.Media.Protection.RenewalStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -221,13 +221,13 @@ package body WinRt.Windows.Media.Protection is
    function Constructor return HdcpSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.HdcpSession");
-      m_ComRetVal  : aliased Windows.Media.Protection.IHdcpSession;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.IHdcpSession");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Protection.IHdcpSession;
    begin
       return RetVal : HdcpSession do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IHdcpSession := new Windows.Media.Protection.IHdcpSession;
+            Retval.m_IHdcpSession := new WinRt.Windows.Media.Protection.IHdcpSession;
             Retval.m_IHdcpSession.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -240,7 +240,7 @@ package body WinRt.Windows.Media.Protection is
    function IsEffectiveProtectionAtLeast
    (
       this : in out HdcpSession;
-      protection : Windows.Media.Protection.HdcpProtection
+      protection : WinRt.Windows.Media.Protection.HdcpProtection
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -263,7 +263,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_HdcpProtection.Kind;
    begin
       Hr := this.m_IHdcpSession.all.GetEffectiveProtection (m_ComRetVal'Access);
@@ -278,7 +278,7 @@ package body WinRt.Windows.Media.Protection is
    function SetDesiredMinProtectionAsync
    (
       this : in out HdcpSession;
-      protection : Windows.Media.Protection.HdcpProtection
+      protection : WinRt.Windows.Media.Protection.HdcpProtection
    )
    return WinRt.Windows.Media.Protection.HdcpSetProtectionResult is
       Hr               : WinRt.HResult := S_OK;
@@ -348,7 +348,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHdcpSession.all.add_ProtectionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -360,7 +360,7 @@ package body WinRt.Windows.Media.Protection is
    procedure remove_ProtectionChanged
    (
       this : in out HdcpSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -416,13 +416,13 @@ package body WinRt.Windows.Media.Protection is
    function Constructor return MediaProtectionManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.MediaProtectionManager");
-      m_ComRetVal  : aliased Windows.Media.Protection.IMediaProtectionManager;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.IMediaProtectionManager");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Protection.IMediaProtectionManager;
    begin
       return RetVal : MediaProtectionManager do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaProtectionManager := new Windows.Media.Protection.IMediaProtectionManager;
+            Retval.m_IMediaProtectionManager := new WinRt.Windows.Media.Protection.IMediaProtectionManager;
             Retval.m_IMediaProtectionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -435,13 +435,13 @@ package body WinRt.Windows.Media.Protection is
    function add_ServiceRequested
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.ServiceRequestedEventHandler
+      handler : WinRt.Windows.Media.Protection.ServiceRequestedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaProtectionManager.all.add_ServiceRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -453,7 +453,7 @@ package body WinRt.Windows.Media.Protection is
    procedure remove_ServiceRequested
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -468,13 +468,13 @@ package body WinRt.Windows.Media.Protection is
    function add_RebootNeeded
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.RebootNeededEventHandler
+      handler : WinRt.Windows.Media.Protection.RebootNeededEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaProtectionManager.all.add_RebootNeeded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -486,7 +486,7 @@ package body WinRt.Windows.Media.Protection is
    procedure remove_RebootNeeded
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -501,13 +501,13 @@ package body WinRt.Windows.Media.Protection is
    function add_ComponentLoadFailed
    (
       this : in out MediaProtectionManager;
-      handler : Windows.Media.Protection.ComponentLoadFailedEventHandler
+      handler : WinRt.Windows.Media.Protection.ComponentLoadFailedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaProtectionManager.all.add_ComponentLoadFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -519,7 +519,7 @@ package body WinRt.Windows.Media.Protection is
    procedure remove_ComponentLoadFailed
    (
       this : in out MediaProtectionManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -539,7 +539,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IMediaProtectionManager.all.get_Properties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -573,21 +573,21 @@ package body WinRt.Windows.Media.Protection is
 
    function Constructor
    (
-      pProperties : Windows.Foundation.Collections.IPropertySet
+      pProperties : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return MediaProtectionPMPServer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.MediaProtectionPMPServer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.IMediaProtectionPMPServer");
       m_Factory    : access IMediaProtectionPMPServerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Protection.IMediaProtectionPMPServer;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Protection.IMediaProtectionPMPServer;
    begin
       return RetVal : MediaProtectionPMPServer do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaProtectionPMPServerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePMPServer (pProperties, m_ComRetVal'Access);
-            Retval.m_IMediaProtectionPMPServer := new Windows.Media.Protection.IMediaProtectionPMPServer;
+            Retval.m_IMediaProtectionPMPServer := new WinRt.Windows.Media.Protection.IMediaProtectionPMPServer;
             Retval.m_IMediaProtectionPMPServer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -606,7 +606,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IMediaProtectionPMPServer.all.get_Properties (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -679,13 +679,13 @@ package body WinRt.Windows.Media.Protection is
    function Constructor return ProtectionCapabilities is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.ProtectionCapabilities");
-      m_ComRetVal  : aliased Windows.Media.Protection.IProtectionCapabilities;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Protection.IProtectionCapabilities");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Protection.IProtectionCapabilities;
    begin
       return RetVal : ProtectionCapabilities do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IProtectionCapabilities := new Windows.Media.Protection.IProtectionCapabilities;
+            Retval.m_IProtectionCapabilities := new WinRt.Windows.Media.Protection.IProtectionCapabilities;
             Retval.m_IProtectionCapabilities.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -705,7 +705,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.ProtectionCapabilityResult;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.ProtectionCapabilityResult;
       HStr_type_x : constant WinRt.HString := To_HString (type_x);
       HStr_keySystem : constant WinRt.HString := To_HString (keySystem);
    begin
@@ -724,7 +724,7 @@ package body WinRt.Windows.Media.Protection is
    function Invoke
    (
       this : access RebootNeededEventHandler_Delegate;
-      sender : Windows.Media.Protection.IMediaProtectionManager
+      sender : WinRt.Windows.Media.Protection.IMediaProtectionManager
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -764,7 +764,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IRevocationAndRenewalItem.Kind;
    begin
       Hr := this.m_IRevocationAndRenewalInformation.all.get_Items (m_ComRetVal'Access);
@@ -807,7 +807,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.RevocationAndRenewalReasons;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.RevocationAndRenewalReasons;
    begin
       Hr := this.m_IRevocationAndRenewalItem.all.get_Reasons (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -927,7 +927,7 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.IMediaProtectionServiceRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.IMediaProtectionServiceRequest;
    begin
       Hr := this.m_IServiceRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -944,14 +944,14 @@ package body WinRt.Windows.Media.Protection is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Protection.IMediaProtectionServiceCompletion;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion;
    begin
       return RetVal : WinRt.Windows.Media.Protection.MediaProtectionServiceCompletion do
          Hr := this.m_IServiceRequestedEventArgs.all.get_Completion (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaProtectionServiceCompletion := new Windows.Media.Protection.IMediaProtectionServiceCompletion;
+         Retval.m_IMediaProtectionServiceCompletion := new WinRt.Windows.Media.Protection.IMediaProtectionServiceCompletion;
          Retval.m_IMediaProtectionServiceCompletion.all := m_ComRetVal;
       end return;
    end;
@@ -965,7 +965,7 @@ package body WinRt.Windows.Media.Protection is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Protection.IServiceRequestedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.IMediaPlaybackItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.IMediaPlaybackItem;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Protection.IServiceRequestedEventArgs_Interface, WinRt.Windows.Media.Protection.IServiceRequestedEventArgs2, WinRt.Windows.Media.Protection.IID_IServiceRequestedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Playback.MediaPlaybackItem do
@@ -975,7 +975,7 @@ package body WinRt.Windows.Media.Protection is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaPlaybackItem := new Windows.Media.Playback.IMediaPlaybackItem;
+         Retval.m_IMediaPlaybackItem := new WinRt.Windows.Media.Playback.IMediaPlaybackItem;
          Retval.m_IMediaPlaybackItem.all := m_ComRetVal;
       end return;
    end;
@@ -986,8 +986,8 @@ package body WinRt.Windows.Media.Protection is
    function Invoke
    (
       this : access ServiceRequestedEventHandler_Delegate;
-      sender : Windows.Media.Protection.IMediaProtectionManager;
-      e : Windows.Media.Protection.IServiceRequestedEventArgs
+      sender : WinRt.Windows.Media.Protection.IMediaProtectionManager;
+      e : WinRt.Windows.Media.Protection.IServiceRequestedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;

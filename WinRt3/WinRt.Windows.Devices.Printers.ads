@@ -493,14 +493,14 @@ package WinRt.Windows.Devices.Printers is
       function get_Reason
       (
          this : access IIppAttributeError_Interface;
-         RetVal : access Windows.Devices.Printers.IppAttributeErrorReason
+         RetVal : access WinRt.Windows.Devices.Printers.IppAttributeErrorReason
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIppAttributeError_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -519,7 +519,7 @@ package WinRt.Windows.Devices.Printers is
       function get_Kind
       (
          this : access IIppAttributeValue_Interface;
-         RetVal : access Windows.Devices.Printers.IppAttributeValueKind
+         RetVal : access WinRt.Windows.Devices.Printers.IppAttributeValueKind
       )
       return WinRt.Hresult is abstract;
 
@@ -657,21 +657,21 @@ package WinRt.Windows.Devices.Printers is
       function CreateUnsupported
       (
          this : access IIppAttributeValueStatics_Interface;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateUnknown
       (
          this : access IIppAttributeValueStatics_Interface;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateNoValue
       (
          this : access IIppAttributeValueStatics_Interface;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -679,7 +679,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.Int32;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -687,7 +687,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -695,7 +695,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.Boolean;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -703,7 +703,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -711,7 +711,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.Int32;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -719,15 +719,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateOctetString
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -735,15 +735,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateDateTime
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Foundation.DateTime;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -751,15 +751,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateResolution
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Devices.Printers.IIppResolution;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Devices.Printers.IIppResolution;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -767,15 +767,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateRangeOfInteger
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Devices.Printers.IIppIntegerRange;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Devices.Printers.IIppIntegerRange;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -783,7 +783,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -791,7 +791,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          memberAttributes : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -799,15 +799,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          memberAttributesArray : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateTextWithLanguage
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Devices.Printers.IIppTextWithLanguage;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Devices.Printers.IIppTextWithLanguage;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -815,15 +815,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateNameWithLanguage
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Devices.Printers.IIppTextWithLanguage;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Devices.Printers.IIppTextWithLanguage;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -831,7 +831,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -839,7 +839,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -847,7 +847,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -855,7 +855,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -863,7 +863,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -871,7 +871,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -879,15 +879,15 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
       function CreateUri
       (
          this : access IIppAttributeValueStatics_Interface;
-         value : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         value : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -895,7 +895,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -903,7 +903,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -911,7 +911,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -919,7 +919,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -927,7 +927,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -935,7 +935,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -943,7 +943,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -951,7 +951,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -959,7 +959,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppAttributeValueStatics_Interface;
          values : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppAttributeValue
+         RetVal : access WinRt.Windows.Devices.Printers.IIppAttributeValue
       )
       return WinRt.Hresult is abstract;
 
@@ -992,7 +992,7 @@ package WinRt.Windows.Devices.Printers is
          this : access IIppIntegerRangeFactory_Interface;
          start : WinRt.Int32;
          end_x : WinRt.Int32;
-         RetVal : access Windows.Devices.Printers.IIppIntegerRange
+         RetVal : access WinRt.Windows.Devices.Printers.IIppIntegerRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Devices.Printers is
       function get_PrinterUri
       (
          this : access IIppPrintDevice_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1019,7 +1019,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppPrintDevice_Interface;
          attributeNames : GenericObject;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1034,8 +1034,8 @@ package WinRt.Windows.Devices.Printers is
       function SetPrinterAttributesFromBuffer
       (
          this : access IIppPrintDevice_Interface;
-         printerAttributesBuffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+         printerAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppSetAttributesResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1043,7 +1043,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppPrintDevice_Interface;
          printerAttributes : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+         RetVal : access WinRt.Windows.Devices.Printers.IIppSetAttributesResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1077,7 +1077,7 @@ package WinRt.Windows.Devices.Printers is
       function GetPdlPassthroughProvider
       (
          this : access IIppPrintDevice2_Interface;
-         RetVal : access Windows.Devices.Printers.IPdlPassthroughProvider
+         RetVal : access WinRt.Windows.Devices.Printers.IPdlPassthroughProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1101,7 +1101,7 @@ package WinRt.Windows.Devices.Printers is
       function get_DeviceKind
       (
          this : access IIppPrintDevice4_Interface;
-         RetVal : access Windows.Devices.Printers.IppPrintDeviceKind
+         RetVal : access WinRt.Windows.Devices.Printers.IppPrintDeviceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,14 +1115,14 @@ package WinRt.Windows.Devices.Printers is
       function get_UserDefaultPrintTicket
       (
          this : access IIppPrintDevice4_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function put_UserDefaultPrintTicket
       (
          this : access IIppPrintDevice4_Interface;
-         value : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         value : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -1148,7 +1148,7 @@ package WinRt.Windows.Devices.Printers is
       function GetDeviceProperties
       (
          this : access IIppPrintDevice5_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppPrintDevice5_Interface;
          deviceProperties : GenericObject;
-         RetVal : access Windows.Devices.Printers.IReplaceDevicePropertiesResult
+         RetVal : access WinRt.Windows.Devices.Printers.IReplaceDevicePropertiesResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1168,7 +1168,7 @@ package WinRt.Windows.Devices.Printers is
       function get_Status
       (
          this : access IIppPrintDeviceInstallationResult_Interface;
-         RetVal : access Windows.Devices.Printers.IppPrintDeviceInstallationStatus
+         RetVal : access WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1182,7 +1182,7 @@ package WinRt.Windows.Devices.Printers is
       function get_ExtendedError
       (
          this : access IIppPrintDeviceInstallationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1201,7 +1201,7 @@ package WinRt.Windows.Devices.Printers is
       function InstallIppPrintDeviceAsync
       (
          this : access IIppPrintDeviceManagerStatics_Interface;
-         printerUri : Windows.Foundation.IUriRuntimeClass;
+         printerUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          printerName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1223,7 +1223,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppPrintDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1231,7 +1231,7 @@ package WinRt.Windows.Devices.Printers is
       (
          this : access IIppPrintDeviceStatics_Interface;
          printerName : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1265,7 +1265,7 @@ package WinRt.Windows.Devices.Printers is
       function get_Unit
       (
          this : access IIppResolution_Interface;
-         RetVal : access Windows.Devices.Printers.IppResolutionUnit
+         RetVal : access WinRt.Windows.Devices.Printers.IppResolutionUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1279,8 +1279,8 @@ package WinRt.Windows.Devices.Printers is
          this : access IIppResolutionFactory_Interface;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         unit : Windows.Devices.Printers.IppResolutionUnit;
-         RetVal : access Windows.Devices.Printers.IIppResolution
+         unit : WinRt.Windows.Devices.Printers.IppResolutionUnit;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppResolution
       )
       return WinRt.Hresult is abstract;
 
@@ -1332,7 +1332,7 @@ package WinRt.Windows.Devices.Printers is
          this : access IIppTextWithLanguageFactory_Interface;
          language : WinRt.HString;
          text : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IIppTextWithLanguage
+         RetVal : access WinRt.Windows.Devices.Printers.IIppTextWithLanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -1344,28 +1344,28 @@ package WinRt.Windows.Devices.Printers is
       function get_OrientationSource
       (
          this : access IPageConfigurationSettings_Interface;
-         RetVal : access Windows.Devices.Printers.PageConfigurationSource
+         RetVal : access WinRt.Windows.Devices.Printers.PageConfigurationSource
       )
       return WinRt.Hresult is abstract;
 
       function put_OrientationSource
       (
          this : access IPageConfigurationSettings_Interface;
-         value : Windows.Devices.Printers.PageConfigurationSource
+         value : WinRt.Windows.Devices.Printers.PageConfigurationSource
       )
       return WinRt.Hresult is abstract;
 
       function get_SizeSource
       (
          this : access IPageConfigurationSettings_Interface;
-         RetVal : access Windows.Devices.Printers.PageConfigurationSource
+         RetVal : access WinRt.Windows.Devices.Printers.PageConfigurationSource
       )
       return WinRt.Hresult is abstract;
 
       function put_SizeSource
       (
          this : access IPageConfigurationSettings_Interface;
-         value : Windows.Devices.Printers.PageConfigurationSource
+         value : WinRt.Windows.Devices.Printers.PageConfigurationSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1386,9 +1386,9 @@ package WinRt.Windows.Devices.Printers is
          this : access IPdlPassthroughProvider_Interface;
          jobName : WinRt.HString;
          pdlContentType : WinRt.HString;
-         taskOptions : Windows.Graphics.Printing.IPrintTaskOptionsCore;
-         pageConfigurationSettings_p : Windows.Devices.Printers.IPageConfigurationSettings;
-         RetVal : access Windows.Devices.Printers.IPdlPassthroughTarget
+         taskOptions : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
+         pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.IPageConfigurationSettings;
+         RetVal : access WinRt.Windows.Devices.Printers.IPdlPassthroughTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -1397,9 +1397,9 @@ package WinRt.Windows.Devices.Printers is
          this : access IPdlPassthroughProvider_Interface;
          jobName : WinRt.HString;
          pdlContentType : WinRt.HString;
-         printTicket : Windows.Storage.Streams.IInputStream;
-         pageConfigurationSettings_p : Windows.Devices.Printers.IPageConfigurationSettings;
-         RetVal : access Windows.Devices.Printers.IPdlPassthroughTarget
+         printTicket : WinRt.Windows.Storage.Streams.IInputStream;
+         pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.IPageConfigurationSettings;
+         RetVal : access WinRt.Windows.Devices.Printers.IPdlPassthroughTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -1418,7 +1418,7 @@ package WinRt.Windows.Devices.Printers is
       function GetOutputStream
       (
          this : access IPdlPassthroughTarget_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1436,7 +1436,7 @@ package WinRt.Windows.Devices.Printers is
       function get_PrintSchema
       (
          this : access IPrint3DDevice_Interface;
-         RetVal : access Windows.Devices.Printers.IPrintSchema
+         RetVal : access WinRt.Windows.Devices.Printers.IPrintSchema
       )
       return WinRt.Hresult is abstract;
 
@@ -1475,7 +1475,7 @@ package WinRt.Windows.Devices.Printers is
       function GetCapabilitiesAsync
       (
          this : access IPrintSchema_Interface;
-         constrainTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+         constrainTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1483,7 +1483,7 @@ package WinRt.Windows.Devices.Printers is
       function MergeAndValidateWithDefaultPrintTicketAsync
       (
          this : access IPrintSchema_Interface;
-         deltaTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+         deltaTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1496,14 +1496,14 @@ package WinRt.Windows.Devices.Printers is
       function get_Status
       (
          this : access IReplaceDevicePropertiesResult_Interface;
-         RetVal : access Windows.Devices.Printers.ReplaceDevicePropertiesStatus
+         RetVal : access WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IReplaceDevicePropertiesResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1571,28 +1571,28 @@ package WinRt.Windows.Devices.Printers is
       function get_PreferredInputFormat
       (
          this : access IVirtualPrinterInstallationParameters_Interface;
-         RetVal : access Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+         RetVal : access WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredInputFormat
       (
          this : access IVirtualPrinterInstallationParameters_Interface;
-         value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+         value : WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_PrinterUri
       (
          this : access IVirtualPrinterInstallationParameters_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_PrinterUri
       (
          this : access IVirtualPrinterInstallationParameters_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1618,14 +1618,14 @@ package WinRt.Windows.Devices.Printers is
       function get_Status
       (
          this : access IVirtualPrinterInstallationResult_Interface;
-         RetVal : access Windows.Devices.Printers.VirtualPrinterInstallationStatus
+         RetVal : access WinRt.Windows.Devices.Printers.VirtualPrinterInstallationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IVirtualPrinterInstallationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1637,7 +1637,7 @@ package WinRt.Windows.Devices.Printers is
       function InstallVirtualPrinterAsync
       (
          this : access IVirtualPrinterManagerStatics_Interface;
-         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         parameters : WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1645,7 +1645,7 @@ package WinRt.Windows.Devices.Printers is
       function InstallVirtualPrinterAsync
       (
          this : access IVirtualPrinterManagerStatics_Interface;
-         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         parameters : WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
          appPackageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1654,7 +1654,7 @@ package WinRt.Windows.Devices.Printers is
       function InstallVirtualPrinterForAllUsersAsync
       (
          this : access IVirtualPrinterManagerStatics_Interface;
-         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         parameters : WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1662,7 +1662,7 @@ package WinRt.Windows.Devices.Printers is
       function InstallVirtualPrinterForAllUsersAsync
       (
          this : access IVirtualPrinterManagerStatics_Interface;
-         parameters : Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+         parameters : WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
          appPackageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1742,7 +1742,7 @@ package WinRt.Windows.Devices.Printers is
          this : access IVirtualPrinterSupportedFormatFactory_Interface;
          contentType : WinRt.HString;
          maxSupportedVersion : WinRt.HString;
-         RetVal : access Windows.Devices.Printers.IVirtualPrinterSupportedFormat
+         RetVal : access WinRt.Windows.Devices.Printers.IVirtualPrinterSupportedFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1835,7 +1835,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateOctetString
    (
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1847,7 +1847,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateDateTime
    (
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1859,7 +1859,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateResolution
    (
-      value : Windows.Devices.Printers.IppResolution'Class
+      value : WinRt.Windows.Devices.Printers.IppResolution'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1871,7 +1871,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateRangeOfInteger
    (
-      value : Windows.Devices.Printers.IppIntegerRange'Class
+      value : WinRt.Windows.Devices.Printers.IppIntegerRange'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1895,7 +1895,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateTextWithLanguage
    (
-      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+      value : WinRt.Windows.Devices.Printers.IppTextWithLanguage'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1907,7 +1907,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateNameWithLanguage
    (
-      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+      value : WinRt.Windows.Devices.Printers.IppTextWithLanguage'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -1955,7 +1955,7 @@ package WinRt.Windows.Devices.Printers is
 
    function CreateUri
    (
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue;
 
@@ -2223,7 +2223,7 @@ package WinRt.Windows.Devices.Printers is
    function SetPrinterAttributesFromBuffer
    (
       this : in out IppPrintDevice;
-      printerAttributesBuffer : Windows.Storage.Streams.IBuffer
+      printerAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
 
@@ -2286,7 +2286,7 @@ package WinRt.Windows.Devices.Printers is
    procedure put_UserDefaultPrintTicket
    (
       this : in out IppPrintDevice;
-      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    );
 
    procedure RefreshPrintDeviceCapabilities
@@ -2350,7 +2350,7 @@ package WinRt.Windows.Devices.Printers is
 
       function InstallIppPrintDeviceAsync
       (
-         printerUri : Windows.Foundation.Uri'Class;
+         printerUri : WinRt.Windows.Foundation.Uri'Class;
          printerName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationResult;
@@ -2370,7 +2370,7 @@ package WinRt.Windows.Devices.Printers is
    (
       width : WinRt.Int32;
       height : WinRt.Int32;
-      unit : Windows.Devices.Printers.IppResolutionUnit
+      unit : WinRt.Windows.Devices.Printers.IppResolutionUnit
    )
    return IppResolution;
 
@@ -2470,7 +2470,7 @@ package WinRt.Windows.Devices.Printers is
    procedure put_OrientationSource
    (
       this : in out PageConfigurationSettings;
-      value : Windows.Devices.Printers.PageConfigurationSource
+      value : WinRt.Windows.Devices.Printers.PageConfigurationSource
    );
 
    function get_SizeSource
@@ -2482,7 +2482,7 @@ package WinRt.Windows.Devices.Printers is
    procedure put_SizeSource
    (
       this : in out PageConfigurationSettings;
-      value : Windows.Devices.Printers.PageConfigurationSource
+      value : WinRt.Windows.Devices.Printers.PageConfigurationSource
    );
 
    -----------------------------------------------------------------------------
@@ -2505,8 +2505,8 @@ package WinRt.Windows.Devices.Printers is
       this : in out PdlPassthroughProvider;
       jobName : WinRt.WString;
       pdlContentType : WinRt.WString;
-      taskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class;
-      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+      taskOptions : WinRt.Windows.Graphics.Printing.PrintTaskOptions'Class;
+      pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.PageConfigurationSettings'Class
    )
    return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class;
 
@@ -2515,8 +2515,8 @@ package WinRt.Windows.Devices.Printers is
       this : in out PdlPassthroughProvider;
       jobName : WinRt.WString;
       pdlContentType : WinRt.WString;
-      printTicket : Windows.Storage.Streams.IInputStream;
-      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+      printTicket : WinRt.Windows.Storage.Streams.IInputStream;
+      pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.PageConfigurationSettings'Class
    )
    return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class;
 
@@ -2596,14 +2596,14 @@ package WinRt.Windows.Devices.Printers is
    function GetCapabilitiesAsync
    (
       this : in out PrintSchema;
-      constrainTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      constrainTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
 
    function MergeAndValidateWithDefaultPrintTicketAsync
    (
       this : in out PrintSchema;
-      deltaTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      deltaTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
 
@@ -2699,7 +2699,7 @@ package WinRt.Windows.Devices.Printers is
    procedure put_PreferredInputFormat
    (
       this : in out VirtualPrinterInstallationParameters;
-      value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+      value : WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
    );
 
    function get_PrinterUri
@@ -2711,7 +2711,7 @@ package WinRt.Windows.Devices.Printers is
    procedure put_PrinterUri
    (
       this : in out VirtualPrinterInstallationParameters;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_EntryPoint
@@ -2753,26 +2753,26 @@ package WinRt.Windows.Devices.Printers is
 
       function InstallVirtualPrinterAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
 
       function InstallVirtualPrinterAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
          appPackageFamilyName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
 
       function InstallVirtualPrinterForAllUsersAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;
 
       function InstallVirtualPrinterForAllUsersAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
          appPackageFamilyName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult;

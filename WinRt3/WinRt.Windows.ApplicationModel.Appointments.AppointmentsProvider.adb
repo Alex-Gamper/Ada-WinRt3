@@ -63,14 +63,14 @@ package body WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAddAppointmentOperation.all.get_AppointmentInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+         Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
    end;
@@ -334,7 +334,7 @@ package body WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IRemoveAppointmentOperation.all.get_InstanceStartDate (m_ComRetVal'Access);
@@ -476,14 +476,14 @@ package body WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IReplaceAppointmentOperation.all.get_AppointmentInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+         Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
    end;
@@ -496,7 +496,7 @@ package body WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IReplaceAppointmentOperation.all.get_InstanceStartDate (m_ComRetVal'Access);

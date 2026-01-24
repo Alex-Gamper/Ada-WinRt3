@@ -225,28 +225,28 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_X1Property
       (
          this : access ILineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Y1Property
       (
          this : access ILineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_X2Property
       (
          this : access ILineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Y2Property
       (
          this : access ILineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -258,14 +258,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_Data
       (
          this : access IPath_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IGeometry
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGeometry
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IPath_Interface;
-         value : Windows.UI.Xaml.Media.IGeometry
+         value : WinRt.Windows.UI.Xaml.Media.IGeometry
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
          this : access IPathFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Shapes.IPath
+         RetVal : access WinRt.Windows.UI.Xaml.Shapes.IPath
       )
       return WinRt.Hresult is abstract;
 
@@ -291,7 +291,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_DataProperty
       (
          this : access IPathStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -303,14 +303,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_FillRule
       (
          this : access IPolygon_Interface;
-         RetVal : access Windows.UI.Xaml.Media.FillRule
+         RetVal : access WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
       function put_FillRule
       (
          this : access IPolygon_Interface;
-         value : Windows.UI.Xaml.Media.FillRule
+         value : WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
@@ -336,14 +336,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_FillRuleProperty
       (
          this : access IPolygonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointsProperty
       (
          this : access IPolygonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -355,14 +355,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_FillRule
       (
          this : access IPolyline_Interface;
-         RetVal : access Windows.UI.Xaml.Media.FillRule
+         RetVal : access WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
       function put_FillRule
       (
          this : access IPolyline_Interface;
-         value : Windows.UI.Xaml.Media.FillRule
+         value : WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
@@ -388,14 +388,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_FillRuleProperty
       (
          this : access IPolylineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PointsProperty
       (
          this : access IPolylineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -440,14 +440,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_RadiusXProperty
       (
          this : access IRectangleStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RadiusYProperty
       (
          this : access IRectangleStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -459,28 +459,28 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_Fill
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Fill
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Stroke
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Stroke
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -515,42 +515,42 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_StrokeStartLineCap
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.PenLineCap
+         RetVal : access WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeStartLineCap
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.PenLineCap
+         value : WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeEndLineCap
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.PenLineCap
+         RetVal : access WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeEndLineCap
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.PenLineCap
+         value : WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeLineJoin
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.PenLineJoin
+         RetVal : access WinRt.Windows.UI.Xaml.Media.PenLineJoin
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeLineJoin
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.PenLineJoin
+         value : WinRt.Windows.UI.Xaml.Media.PenLineJoin
       )
       return WinRt.Hresult is abstract;
 
@@ -571,14 +571,14 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_StrokeDashCap
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.PenLineCap
+         RetVal : access WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeDashCap
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.PenLineCap
+         value : WinRt.Windows.UI.Xaml.Media.PenLineCap
       )
       return WinRt.Hresult is abstract;
 
@@ -599,21 +599,21 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_Stretch
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Stretch
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Stretch
       )
       return WinRt.Hresult is abstract;
 
       function put_Stretch
       (
          this : access IShape_Interface;
-         value : Windows.UI.Xaml.Media.Stretch
+         value : WinRt.Windows.UI.Xaml.Media.Stretch
       )
       return WinRt.Hresult is abstract;
 
       function get_GeometryTransform
       (
          this : access IShape_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ITransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
@@ -625,7 +625,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function GetAlphaMask
       (
          this : access IShape2_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -639,7 +639,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
          this : access IShapeFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Shapes.IShape
+         RetVal : access WinRt.Windows.UI.Xaml.Shapes.IShape
       )
       return WinRt.Hresult is abstract;
 
@@ -651,77 +651,77 @@ package WinRt.Windows.UI.Xaml.Shapes is
       function get_FillProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeMiterLimitProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeThicknessProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeStartLineCapProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeEndLineCapProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeLineJoinProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeDashOffsetProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeDashCapProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeDashArrayProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StretchProperty
       (
          this : access IShapeStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -795,7 +795,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Fill
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Stroke
@@ -807,7 +807,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Stroke
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_StrokeMiterLimit
@@ -843,7 +843,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_StrokeStartLineCap
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.PenLineCap
+      value : WinRt.Windows.UI.Xaml.Media.PenLineCap
    );
 
    function get_StrokeEndLineCap
@@ -855,7 +855,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_StrokeEndLineCap
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.PenLineCap
+      value : WinRt.Windows.UI.Xaml.Media.PenLineCap
    );
 
    function get_StrokeLineJoin
@@ -867,7 +867,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_StrokeLineJoin
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.PenLineJoin
+      value : WinRt.Windows.UI.Xaml.Media.PenLineJoin
    );
 
    function get_StrokeDashOffset
@@ -891,7 +891,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_StrokeDashCap
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.PenLineCap
+      value : WinRt.Windows.UI.Xaml.Media.PenLineCap
    );
 
    function get_StrokeDashArray
@@ -903,7 +903,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_StrokeDashArray
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.DoubleCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.DoubleCollection'Class
    );
 
    function get_Stretch
@@ -915,7 +915,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Stretch
    (
       this : in out Shape;
-      value : Windows.UI.Xaml.Media.Stretch
+      value : WinRt.Windows.UI.Xaml.Media.Stretch
    );
 
    function get_GeometryTransform
@@ -1055,7 +1055,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Data
    (
       this : in out Path;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1090,7 +1090,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_FillRule
    (
       this : in out Polygon;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    );
 
    function get_Points
@@ -1102,7 +1102,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Points
    (
       this : in out Polygon;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1137,7 +1137,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_FillRule
    (
       this : in out Polyline;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    );
 
    function get_Points
@@ -1149,7 +1149,7 @@ package WinRt.Windows.UI.Xaml.Shapes is
    procedure put_Points
    (
       this : in out Polyline;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    );
 
    -----------------------------------------------------------------------------

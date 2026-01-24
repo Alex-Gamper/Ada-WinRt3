@@ -407,7 +407,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_AudioNotification
       (
          this : access IGuidanceAudioNotificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceAudioNotificationKind
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotificationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -433,7 +433,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_LaneMarkers
       (
          this : access IGuidanceLaneInfo_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceLaneMarkers
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceLaneMarkers
       )
       return WinRt.Hresult is abstract;
 
@@ -452,7 +452,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_StartLocation
       (
          this : access IGuidanceManeuver_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -501,7 +501,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Kind
       (
          this : access IGuidanceManeuver_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceManeuverKind
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceManeuverKind
       )
       return WinRt.Hresult is abstract;
 
@@ -522,7 +522,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_RoadSignpost
       (
          this : access IGuidanceManeuver_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceRoadSignpost
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSignpost
       )
       return WinRt.Hresult is abstract;
 
@@ -541,7 +541,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Location
       (
          this : access IGuidanceMapMatchedCoordinate_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -569,7 +569,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Road
       (
          this : access IGuidanceMapMatchedCoordinate_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceRoadSegment
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRoadSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -581,14 +581,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function StartNavigating
       (
          this : access IGuidanceNavigator_Interface;
-         route : Windows.Services.Maps.Guidance.IGuidanceRoute
+         route : WinRt.Windows.Services.Maps.Guidance.IGuidanceRoute
       )
       return WinRt.Hresult is abstract;
 
       function StartSimulating
       (
          this : access IGuidanceNavigator_Interface;
-         route : Windows.Services.Maps.Guidance.IGuidanceRoute;
+         route : WinRt.Windows.Services.Maps.Guidance.IGuidanceRoute;
          speedInMetersPerSecond : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -626,28 +626,28 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_AudioMeasurementSystem
       (
          this : access IGuidanceNavigator_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioMeasurementSystem
       (
          this : access IGuidanceNavigator_Interface;
-         value : Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
+         value : WinRt.Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioNotifications
       (
          this : access IGuidanceNavigator_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceAudioNotifications
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotifications
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioNotifications
       (
          this : access IGuidanceNavigator_Interface;
-         value : Windows.Services.Maps.Guidance.GuidanceAudioNotifications
+         value : WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotifications
       )
       return WinRt.Hresult is abstract;
 
@@ -655,14 +655,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GuidanceUpdated
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -670,14 +670,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DestinationReached
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -685,14 +685,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Rerouting
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -700,14 +700,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Rerouted
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -715,14 +715,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RerouteFailed
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -730,14 +730,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserLocationLost
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -745,14 +745,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserLocationRestored
       (
          this : access IGuidanceNavigator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -767,15 +767,15 @@ package WinRt.Windows.Services.Maps.Guidance is
       function UpdateUserLocation
       (
          this : access IGuidanceNavigator_Interface;
-         userLocation : Windows.Devices.Geolocation.IGeocoordinate
+         userLocation : WinRt.Windows.Devices.Geolocation.IGeocoordinate
       )
       return WinRt.Hresult is abstract;
 
       function UpdateUserLocation
       (
          this : access IGuidanceNavigator_Interface;
-         userLocation : Windows.Devices.Geolocation.IGeocoordinate;
-         positionOverride : Windows.Devices.Geolocation.BasicGeoposition
+         userLocation : WinRt.Windows.Devices.Geolocation.IGeocoordinate;
+         positionOverride : WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -788,14 +788,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       (
          this : access IGuidanceNavigator2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioNotificationRequested
       (
          this : access IGuidanceNavigator2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -821,7 +821,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function GetCurrent
       (
          this : access IGuidanceNavigatorStatics_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceNavigator
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceNavigator
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Route
       (
          this : access IGuidanceReroutedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceRoute
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRoute
       )
       return WinRt.Hresult is abstract;
 
@@ -878,14 +878,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_TravelTime
       (
          this : access IGuidanceRoadSegment_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Path
       (
          this : access IGuidanceRoadSegment_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -951,14 +951,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_BackgroundColor
       (
          this : access IGuidanceRoadSignpost_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundColor
       (
          this : access IGuidanceRoadSignpost_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -977,7 +977,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Duration
       (
          this : access IGuidanceRoute_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -998,14 +998,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_BoundingBox
       (
          this : access IGuidanceRoute_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
       function get_Path
       (
          this : access IGuidanceRoute_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -1019,7 +1019,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function ConvertToMapRoute
       (
          this : access IGuidanceRoute_Interface;
-         RetVal : access Windows.Services.Maps.IMapRoute
+         RetVal : access WinRt.Windows.Services.Maps.IMapRoute
       )
       return WinRt.Hresult is abstract;
 
@@ -1031,7 +1031,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function CanCreateFromMapRoute
       (
          this : access IGuidanceRouteStatics_Interface;
-         mapRoute : Windows.Services.Maps.IMapRoute;
+         mapRoute : WinRt.Windows.Services.Maps.IMapRoute;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1039,8 +1039,8 @@ package WinRt.Windows.Services.Maps.Guidance is
       function TryCreateFromMapRoute
       (
          this : access IGuidanceRouteStatics_Interface;
-         mapRoute : Windows.Services.Maps.IMapRoute;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceRoute
+         mapRoute : WinRt.Windows.Services.Maps.IMapRoute;
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRoute
       )
       return WinRt.Hresult is abstract;
 
@@ -1105,7 +1105,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function GetCurrent
       (
          this : access IGuidanceTelemetryCollectorStatics_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceTelemetryCollector
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceTelemetryCollector
       )
       return WinRt.Hresult is abstract;
 
@@ -1117,14 +1117,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Mode
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.GuidanceMode
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.GuidanceMode
       )
       return WinRt.Hresult is abstract;
 
       function get_NextManeuver
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceManeuver
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceManeuver
       )
       return WinRt.Hresult is abstract;
 
@@ -1138,7 +1138,7 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_AfterNextManeuver
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceManeuver
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceManeuver
       )
       return WinRt.Hresult is abstract;
 
@@ -1166,14 +1166,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_ElapsedTime
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TimeToDestination
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1187,14 +1187,14 @@ package WinRt.Windows.Services.Maps.Guidance is
       function get_Route
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceRoute
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceRoute
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentLocation
       (
          this : access IGuidanceUpdatedEventArgs_Interface;
-         RetVal : access Windows.Services.Maps.Guidance.IGuidanceMapMatchedCoordinate
+         RetVal : access WinRt.Windows.Services.Maps.Guidance.IGuidanceMapMatchedCoordinate
       )
       return WinRt.Hresult is abstract;
 
@@ -1407,13 +1407,13 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure StartNavigating
    (
       this : in out GuidanceNavigator;
-      route : Windows.Services.Maps.Guidance.GuidanceRoute'Class
+      route : WinRt.Windows.Services.Maps.Guidance.GuidanceRoute'Class
    );
 
    procedure StartSimulating
    (
       this : in out GuidanceNavigator;
-      route : Windows.Services.Maps.Guidance.GuidanceRoute'Class;
+      route : WinRt.Windows.Services.Maps.Guidance.GuidanceRoute'Class;
       speedInMetersPerSecond : WinRt.Int32
    );
 
@@ -1451,7 +1451,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure put_AudioMeasurementSystem
    (
       this : in out GuidanceNavigator;
-      value : Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
+      value : WinRt.Windows.Services.Maps.Guidance.GuidanceAudioMeasurementSystem
    );
 
    function get_AudioNotifications
@@ -1463,7 +1463,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure put_AudioNotifications
    (
       this : in out GuidanceNavigator;
-      value : Windows.Services.Maps.Guidance.GuidanceAudioNotifications
+      value : WinRt.Windows.Services.Maps.Guidance.GuidanceAudioNotifications
    );
 
    function add_GuidanceUpdated
@@ -1476,7 +1476,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_GuidanceUpdated
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DestinationReached
@@ -1489,7 +1489,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_DestinationReached
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Rerouting
@@ -1502,7 +1502,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_Rerouting
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Rerouted
@@ -1515,7 +1515,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_Rerouted
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RerouteFailed
@@ -1528,7 +1528,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_RerouteFailed
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserLocationLost
@@ -1541,7 +1541,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_UserLocationLost
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserLocationRestored
@@ -1554,7 +1554,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_UserLocationRestored
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetGuidanceVoice
@@ -1567,14 +1567,14 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure UpdateUserLocation
    (
       this : in out GuidanceNavigator;
-      userLocation : Windows.Devices.Geolocation.Geocoordinate'Class
+      userLocation : WinRt.Windows.Devices.Geolocation.Geocoordinate'Class
    );
 
    procedure UpdateUserLocation
    (
       this : in out GuidanceNavigator;
-      userLocation : Windows.Devices.Geolocation.Geocoordinate'Class;
-      positionOverride : Windows.Devices.Geolocation.BasicGeoposition
+      userLocation : WinRt.Windows.Devices.Geolocation.Geocoordinate'Class;
+      positionOverride : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    );
 
    function add_AudioNotificationRequested
@@ -1587,7 +1587,7 @@ package WinRt.Windows.Services.Maps.Guidance is
    procedure remove_AudioNotificationRequested
    (
       this : in out GuidanceNavigator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsGuidanceAudioMuted
@@ -1736,13 +1736,13 @@ package WinRt.Windows.Services.Maps.Guidance is
 
    function CanCreateFromMapRoute
    (
-      mapRoute : Windows.Services.Maps.MapRoute'Class
+      mapRoute : WinRt.Windows.Services.Maps.MapRoute'Class
    )
    return WinRt.Boolean;
 
    function TryCreateFromMapRoute
    (
-      mapRoute : Windows.Services.Maps.MapRoute'Class
+      mapRoute : WinRt.Windows.Services.Maps.MapRoute'Class
    )
    return WinRt.Windows.Services.Maps.Guidance.GuidanceRoute;
 

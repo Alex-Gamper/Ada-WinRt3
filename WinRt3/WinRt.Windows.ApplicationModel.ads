@@ -672,8 +672,8 @@ package WinRt.Windows.ApplicationModel is
       function GetLogo
       (
          this : access IAppDisplayInfo_Interface;
-         size : Windows.Foundation.Size;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         size : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -699,7 +699,7 @@ package WinRt.Windows.ApplicationModel is
       function get_DisplayInfo
       (
          this : access IAppInfo_Interface;
-         RetVal : access Windows.ApplicationModel.IAppDisplayInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppDisplayInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -718,7 +718,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IAppInfo2_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -730,7 +730,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ExecutionContext
       (
          this : access IAppInfo3_Interface;
-         RetVal : access Windows.ApplicationModel.AppExecutionContext
+         RetVal : access WinRt.Windows.ApplicationModel.AppExecutionContext
       )
       return WinRt.Hresult is abstract;
 
@@ -755,7 +755,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Current
       (
          this : access IAppInfoStatics_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -763,16 +763,16 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IAppInfoStatics_Interface;
          appUserModelId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
       function GetFromAppUserModelIdForUser
       (
          this : access IAppInfoStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          appUserModelId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -784,7 +784,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Uri
       (
          this : access IAppInstallerInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -845,14 +845,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Version
       (
          this : access IAppInstallerInfo2_Interface;
-         RetVal : access Windows.ApplicationModel.PackageVersion
+         RetVal : access WinRt.Windows.ApplicationModel.PackageVersion
       )
       return WinRt.Hresult is abstract;
 
       function get_LastChecked
       (
          this : access IAppInstallerInfo2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -894,7 +894,7 @@ package WinRt.Windows.ApplicationModel is
       function get_PolicySource
       (
          this : access IAppInstallerInfo2_Interface;
-         RetVal : access Windows.ApplicationModel.AppInstallerPolicySource
+         RetVal : access WinRt.Windows.ApplicationModel.AppInstallerPolicySource
       )
       return WinRt.Hresult is abstract;
 
@@ -931,14 +931,14 @@ package WinRt.Windows.ApplicationModel is
       function get_RecommendedInstance
       (
          this : access IAppInstanceStatics_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInstance
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInstance
       )
       return WinRt.Hresult is abstract;
 
       function GetActivatedEventArgs
       (
          this : access IAppInstanceStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.IActivatedEventArgs
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -946,7 +946,7 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IAppInstanceStatics_Interface;
          key : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.IAppInstance
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -995,7 +995,7 @@ package WinRt.Windows.ApplicationModel is
       function GetDeferral
       (
          this : access IEnteredBackgroundEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1007,14 +1007,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Relationship
       (
          this : access IFindRelatedPackagesOptions_Interface;
-         RetVal : access Windows.ApplicationModel.PackageRelationship
+         RetVal : access WinRt.Windows.ApplicationModel.PackageRelationship
       )
       return WinRt.Hresult is abstract;
 
       function put_Relationship
       (
          this : access IFindRelatedPackagesOptions_Interface;
-         value : Windows.ApplicationModel.PackageRelationship
+         value : WinRt.Windows.ApplicationModel.PackageRelationship
       )
       return WinRt.Hresult is abstract;
 
@@ -1082,8 +1082,8 @@ package WinRt.Windows.ApplicationModel is
       function CreateInstance
       (
          this : access IFindRelatedPackagesOptionsFactory_Interface;
-         Relationship : Windows.ApplicationModel.PackageRelationship;
-         RetVal : access Windows.ApplicationModel.IFindRelatedPackagesOptions
+         Relationship : WinRt.Windows.ApplicationModel.PackageRelationship;
+         RetVal : access WinRt.Windows.ApplicationModel.IFindRelatedPackagesOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1095,14 +1095,14 @@ package WinRt.Windows.ApplicationModel is
       function get_LaunchResult
       (
          this : access IFullTrustProcessLaunchResult_Interface;
-         RetVal : access Windows.ApplicationModel.FullTrustLaunchResult
+         RetVal : access WinRt.Windows.ApplicationModel.FullTrustLaunchResult
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IFullTrustProcessLaunchResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1114,7 +1114,7 @@ package WinRt.Windows.ApplicationModel is
       function LaunchFullTrustProcessForCurrentAppAsync
       (
          this : access IFullTrustProcessLauncherStatics_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1122,7 +1122,7 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IFullTrustProcessLauncherStatics_Interface;
          parameterGroupId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1130,7 +1130,7 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IFullTrustProcessLauncherStatics_Interface;
          fullTrustPackageRelativeAppId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,7 +1139,7 @@ package WinRt.Windows.ApplicationModel is
          this : access IFullTrustProcessLauncherStatics_Interface;
          fullTrustPackageRelativeAppId : WinRt.HString;
          parameterGroupId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1173,7 +1173,7 @@ package WinRt.Windows.ApplicationModel is
       function GetDeferral
       (
          this : access ILeavingBackgroundEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1192,7 +1192,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Status
       (
          this : access ILimitedAccessFeatureRequestResult_Interface;
-         RetVal : access Windows.ApplicationModel.LimitedAccessFeatureStatus
+         RetVal : access WinRt.Windows.ApplicationModel.LimitedAccessFeatureStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1214,7 +1214,7 @@ package WinRt.Windows.ApplicationModel is
          featureId : WinRt.HString;
          token : WinRt.HString;
          attestation : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.ILimitedAccessFeatureRequestResult
+         RetVal : access WinRt.Windows.ApplicationModel.ILimitedAccessFeatureRequestResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1226,14 +1226,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Id
       (
          this : access IPackage_Interface;
-         RetVal : access Windows.ApplicationModel.IPackageId
+         RetVal : access WinRt.Windows.ApplicationModel.IPackageId
       )
       return WinRt.Hresult is abstract;
 
       function get_InstalledLocation
       (
          this : access IPackage_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1280,7 +1280,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Logo
       (
          this : access IPackage2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1313,14 +1313,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Status
       (
          this : access IPackage3_Interface;
-         RetVal : access Windows.ApplicationModel.IPackageStatus
+         RetVal : access WinRt.Windows.ApplicationModel.IPackageStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_InstalledDate
       (
          this : access IPackage3_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,7 +1339,7 @@ package WinRt.Windows.ApplicationModel is
       function get_SignatureKind
       (
          this : access IPackage4_Interface;
-         RetVal : access Windows.ApplicationModel.PackageSignatureKind
+         RetVal : access WinRt.Windows.ApplicationModel.PackageSignatureKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1410,7 +1410,7 @@ package WinRt.Windows.ApplicationModel is
       function GetAppInstallerInfo
       (
          this : access IPackage6_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInstallerInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInstallerInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1429,14 +1429,14 @@ package WinRt.Windows.ApplicationModel is
       function get_MutableLocation
       (
          this : access IPackage7_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_EffectiveLocation
       (
          this : access IPackage7_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1448,21 +1448,21 @@ package WinRt.Windows.ApplicationModel is
       function get_EffectiveExternalLocation
       (
          this : access IPackage8_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_MachineExternalLocation
       (
          this : access IPackage8_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_UserExternalLocation
       (
          this : access IPackage8_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1511,8 +1511,8 @@ package WinRt.Windows.ApplicationModel is
       function GetLogoAsRandomAccessStreamReference
       (
          this : access IPackage8_Interface;
-         size : Windows.Foundation.Size;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         size : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1538,7 +1538,7 @@ package WinRt.Windows.ApplicationModel is
       function FindRelatedPackages
       (
          this : access IPackage9_Interface;
-         options : Windows.ApplicationModel.IFindRelatedPackagesOptions;
+         options : WinRt.Windows.ApplicationModel.IFindRelatedPackagesOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1559,14 +1559,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageStaging
       (
          this : access IPackageCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1574,14 +1574,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageInstalling
       (
          this : access IPackageCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1589,14 +1589,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUpdating
       (
          this : access IPackageCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1604,14 +1604,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageUninstalling
       (
          this : access IPackageCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1619,14 +1619,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageStatusChanged
       (
          this : access IPackageCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1639,14 +1639,14 @@ package WinRt.Windows.ApplicationModel is
       (
          this : access IPackageCatalog2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PackageContentGroupStaging
       (
          this : access IPackageCatalog2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1681,7 +1681,7 @@ package WinRt.Windows.ApplicationModel is
          this : access IPackageCatalog4_Interface;
          resourcePackageFamilyName : WinRt.HString;
          resourceID : WinRt.HString;
-         options : Windows.ApplicationModel.AddResourcePackageOptions;
+         options : WinRt.Windows.ApplicationModel.AddResourcePackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1702,14 +1702,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageCatalogAddOptionalPackageResult_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IPackageCatalogAddOptionalPackageResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1721,7 +1721,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageCatalogAddResourcePackageResult_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1735,7 +1735,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ExtendedError
       (
          this : access IPackageCatalogAddResourcePackageResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1754,7 +1754,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ExtendedError
       (
          this : access IPackageCatalogRemoveOptionalPackagesResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1773,7 +1773,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ExtendedError
       (
          this : access IPackageCatalogRemoveResourcePackagesResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1785,14 +1785,14 @@ package WinRt.Windows.ApplicationModel is
       function OpenForCurrentPackage
       (
          this : access IPackageCatalogStatics_Interface;
-         RetVal : access Windows.ApplicationModel.IPackageCatalog
+         RetVal : access WinRt.Windows.ApplicationModel.IPackageCatalog
       )
       return WinRt.Hresult is abstract;
 
       function OpenForCurrentUser
       (
          this : access IPackageCatalogStatics_Interface;
-         RetVal : access Windows.ApplicationModel.IPackageCatalog
+         RetVal : access WinRt.Windows.ApplicationModel.IPackageCatalog
       )
       return WinRt.Hresult is abstract;
 
@@ -1804,8 +1804,8 @@ package WinRt.Windows.ApplicationModel is
       function OpenForPackage
       (
          this : access IPackageCatalogStatics2_Interface;
-         package_x_p : Windows.ApplicationModel.IPackage;
-         RetVal : access Windows.ApplicationModel.IPackageCatalog
+         package_x_p : WinRt.Windows.ApplicationModel.IPackage;
+         RetVal : access WinRt.Windows.ApplicationModel.IPackageCatalog
       )
       return WinRt.Hresult is abstract;
 
@@ -1817,7 +1817,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageContentGroup_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1831,7 +1831,7 @@ package WinRt.Windows.ApplicationModel is
       function get_State
       (
          this : access IPackageContentGroup_Interface;
-         RetVal : access Windows.ApplicationModel.PackageContentGroupState
+         RetVal : access WinRt.Windows.ApplicationModel.PackageContentGroupState
       )
       return WinRt.Hresult is abstract;
 
@@ -1857,7 +1857,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageContentGroupStagingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1878,7 +1878,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ErrorCode
       (
          this : access IPackageContentGroupStagingEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1923,14 +1923,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Version
       (
          this : access IPackageId_Interface;
-         RetVal : access Windows.ApplicationModel.PackageVersion
+         RetVal : access WinRt.Windows.ApplicationModel.PackageVersion
       )
       return WinRt.Hresult is abstract;
 
       function get_Architecture
       (
          this : access IPackageId_Interface;
-         RetVal : access Windows.System.ProcessorArchitecture
+         RetVal : access WinRt.Windows.System.ProcessorArchitecture
       )
       return WinRt.Hresult is abstract;
 
@@ -2003,7 +2003,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageInstallingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2024,7 +2024,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ErrorCode
       (
          this : access IPackageInstallingEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2043,7 +2043,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageStagingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2064,7 +2064,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ErrorCode
       (
          this : access IPackageStagingEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2076,7 +2076,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Current
       (
          this : access IPackageStatics_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2189,7 +2189,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageStatusChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2208,7 +2208,7 @@ package WinRt.Windows.ApplicationModel is
       function get_Package
       (
          this : access IPackageUninstallingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2229,7 +2229,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ErrorCode
       (
          this : access IPackageUninstallingEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2241,14 +2241,14 @@ package WinRt.Windows.ApplicationModel is
       function get_Availability
       (
          this : access IPackageUpdateAvailabilityResult_Interface;
-         RetVal : access Windows.ApplicationModel.PackageUpdateAvailability
+         RetVal : access WinRt.Windows.ApplicationModel.PackageUpdateAvailability
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IPackageUpdateAvailabilityResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2267,14 +2267,14 @@ package WinRt.Windows.ApplicationModel is
       function get_SourcePackage
       (
          this : access IPackageUpdatingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetPackage
       (
          this : access IPackageUpdatingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -2295,7 +2295,7 @@ package WinRt.Windows.ApplicationModel is
       function get_ErrorCode
       (
          this : access IPackageUpdatingEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2307,7 +2307,7 @@ package WinRt.Windows.ApplicationModel is
       function get_InstallDate
       (
          this : access IPackageWithMetadata_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2346,7 +2346,7 @@ package WinRt.Windows.ApplicationModel is
       function get_State
       (
          this : access IStartupTask_Interface;
-         RetVal : access Windows.ApplicationModel.StartupTaskState
+         RetVal : access WinRt.Windows.ApplicationModel.StartupTaskState
       )
       return WinRt.Hresult is abstract;
 
@@ -2396,7 +2396,7 @@ package WinRt.Windows.ApplicationModel is
       function get_SuspendingOperation
       (
          this : access ISuspendingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.ISuspendingOperation
+         RetVal : access WinRt.Windows.ApplicationModel.ISuspendingOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -2408,14 +2408,14 @@ package WinRt.Windows.ApplicationModel is
       function GetDeferral
       (
          this : access ISuspendingOperation_Interface;
-         RetVal : access Windows.ApplicationModel.ISuspendingDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.ISuspendingDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access ISuspendingOperation_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2449,7 +2449,7 @@ package WinRt.Windows.ApplicationModel is
    function GetLogo
    (
       this : in out AppDisplayInfo;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
 
@@ -2473,7 +2473,7 @@ package WinRt.Windows.ApplicationModel is
 
    function GetFromAppUserModelIdForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       appUserModelId : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.AppInfo;
@@ -2712,7 +2712,7 @@ package WinRt.Windows.ApplicationModel is
 
    function Constructor
    (
-      Relationship : Windows.ApplicationModel.PackageRelationship
+      Relationship : WinRt.Windows.ApplicationModel.PackageRelationship
    )
    return FindRelatedPackagesOptions;
 
@@ -2728,7 +2728,7 @@ package WinRt.Windows.ApplicationModel is
    procedure put_Relationship
    (
       this : in out FindRelatedPackagesOptions;
-      value : Windows.ApplicationModel.PackageRelationship
+      value : WinRt.Windows.ApplicationModel.PackageRelationship
    );
 
    function get_IncludeFrameworks
@@ -3144,7 +3144,7 @@ package WinRt.Windows.ApplicationModel is
    function GetLogoAsRandomAccessStreamReference
    (
       this : in out Package_x;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
 
@@ -3163,7 +3163,7 @@ package WinRt.Windows.ApplicationModel is
    function FindRelatedPackages
    (
       this : in out Package_x;
-      options : Windows.ApplicationModel.FindRelatedPackagesOptions'Class
+      options : WinRt.Windows.ApplicationModel.FindRelatedPackagesOptions'Class
    )
    return IVector_IPackage.Kind;
 
@@ -3190,7 +3190,7 @@ package WinRt.Windows.ApplicationModel is
 
    function OpenForPackage
    (
-      package_x_p : Windows.ApplicationModel.Package_x'Class
+      package_x_p : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.ApplicationModel.PackageCatalog;
 
@@ -3207,7 +3207,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageStaging
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageInstalling
@@ -3220,7 +3220,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageInstalling
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUpdating
@@ -3233,7 +3233,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageUpdating
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageUninstalling
@@ -3246,7 +3246,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageUninstalling
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageStatusChanged
@@ -3259,7 +3259,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageStatusChanged
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PackageContentGroupStaging
@@ -3272,7 +3272,7 @@ package WinRt.Windows.ApplicationModel is
    procedure remove_PackageContentGroupStaging
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function AddOptionalPackageAsync
@@ -3294,7 +3294,7 @@ package WinRt.Windows.ApplicationModel is
       this : in out PackageCatalog;
       resourcePackageFamilyName : WinRt.WString;
       resourceID : WinRt.WString;
-      options : Windows.ApplicationModel.AddResourcePackageOptions
+      options : WinRt.Windows.ApplicationModel.AddResourcePackageOptions
    )
    return WinRt.Windows.ApplicationModel.PackageCatalogAddResourcePackageResult'Class;
 

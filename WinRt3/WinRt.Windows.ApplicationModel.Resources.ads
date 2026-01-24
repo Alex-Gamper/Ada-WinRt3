@@ -100,7 +100,7 @@ package WinRt.Windows.ApplicationModel.Resources is
       function GetStringForUri
       (
          this : access IResourceLoader2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -114,7 +114,7 @@ package WinRt.Windows.ApplicationModel.Resources is
       (
          this : access IResourceLoaderFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -126,7 +126,7 @@ package WinRt.Windows.ApplicationModel.Resources is
       function GetStringForReference
       (
          this : access IResourceLoaderStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -139,7 +139,7 @@ package WinRt.Windows.ApplicationModel.Resources is
       function GetForCurrentView
       (
          this : access IResourceLoaderStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -147,14 +147,14 @@ package WinRt.Windows.ApplicationModel.Resources is
       (
          this : access IResourceLoaderStatics2_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
       function GetForViewIndependentUse
       (
          this : access IResourceLoaderStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -162,7 +162,7 @@ package WinRt.Windows.ApplicationModel.Resources is
       (
          this : access IResourceLoaderStatics2_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -174,8 +174,8 @@ package WinRt.Windows.ApplicationModel.Resources is
       function GetForUIContext
       (
          this : access IResourceLoaderStatics3_Interface;
-         context : Windows.UI.IUIContext;
-         RetVal : access Windows.ApplicationModel.Resources.IResourceLoader
+         context : WinRt.Windows.UI.IUIContext;
+         RetVal : access WinRt.Windows.ApplicationModel.Resources.IResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -244,13 +244,13 @@ package WinRt.Windows.ApplicationModel.Resources is
 
    function GetStringForReference
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.WString;
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
 
@@ -267,7 +267,7 @@ package WinRt.Windows.ApplicationModel.Resources is
    function GetStringForUri
    (
       this : in out ResourceLoader;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.WString;
 

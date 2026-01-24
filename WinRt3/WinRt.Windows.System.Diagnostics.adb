@@ -68,7 +68,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IDiagnosticActionResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -85,14 +85,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IDiagnosticActionResult.all.get_Results (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -127,7 +127,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IDiagnosticInvokerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IDiagnosticInvoker;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IDiagnosticInvoker;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.DiagnosticInvoker do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticInvokerStatics'Access , m_Factory'Address);
@@ -137,7 +137,7 @@ package body WinRt.Windows.System.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDiagnosticInvoker := new Windows.System.Diagnostics.IDiagnosticInvoker;
+            Retval.m_IDiagnosticInvoker := new WinRt.Windows.System.Diagnostics.IDiagnosticInvoker;
             Retval.m_IDiagnosticInvoker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -146,7 +146,7 @@ package body WinRt.Windows.System.Diagnostics is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticInvoker is
       Hr               : WinRt.HResult := S_OK;
@@ -154,7 +154,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.DiagnosticInvoker");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IDiagnosticInvokerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IDiagnosticInvoker;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IDiagnosticInvoker;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.DiagnosticInvoker do
          Hr := RoGetActivationFactory (m_hString, IID_IDiagnosticInvokerStatics'Access , m_Factory'Address);
@@ -164,7 +164,7 @@ package body WinRt.Windows.System.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDiagnosticInvoker := new Windows.System.Diagnostics.IDiagnosticInvoker;
+            Retval.m_IDiagnosticInvoker := new WinRt.Windows.System.Diagnostics.IDiagnosticInvoker;
             Retval.m_IDiagnosticInvoker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -198,7 +198,7 @@ package body WinRt.Windows.System.Diagnostics is
    function RunDiagnosticActionAsync
    (
       this : in out DiagnosticInvoker;
-      context : Windows.Data.Json.JsonObject'Class
+      context : WinRt.Windows.Data.Json.JsonObject'Class
    )
    return WinRt.Windows.System.Diagnostics.DiagnosticActionResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -249,7 +249,7 @@ package body WinRt.Windows.System.Diagnostics is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDiagnosticActionResult := new Windows.System.Diagnostics.IDiagnosticActionResult;
+                  Retval.m_IDiagnosticActionResult := new WinRt.Windows.System.Diagnostics.IDiagnosticActionResult;
                   Retval.m_IDiagnosticActionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -321,7 +321,7 @@ package body WinRt.Windows.System.Diagnostics is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDiagnosticActionResult := new Windows.System.Diagnostics.IDiagnosticActionResult;
+                  Retval.m_IDiagnosticActionResult := new WinRt.Windows.System.Diagnostics.IDiagnosticActionResult;
                   Retval.m_IDiagnosticActionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -366,14 +366,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessCpuUsageReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessCpuUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessCpuUsageReport do
          Hr := this.m_IProcessCpuUsage.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessCpuUsageReport := new Windows.System.Diagnostics.IProcessCpuUsageReport;
+         Retval.m_IProcessCpuUsageReport := new WinRt.Windows.System.Diagnostics.IProcessCpuUsageReport;
          Retval.m_IProcessCpuUsageReport.all := m_ComRetVal;
       end return;
    end;
@@ -409,7 +409,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IProcessCpuUsageReport.all.get_KernelTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -426,7 +426,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IProcessCpuUsageReport.all.get_UserTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -465,7 +465,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -486,7 +486,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics'Access , m_Factory'Address);
@@ -496,7 +496,7 @@ package body WinRt.Windows.System.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
+            Retval.m_IProcessDiagnosticInfo := new WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
             Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -513,7 +513,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.ProcessDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfoStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IProcessDiagnosticInfoStatics2'Access , m_Factory'Address);
@@ -523,7 +523,7 @@ package body WinRt.Windows.System.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
+            Retval.m_IProcessDiagnosticInfo := new WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
             Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -578,14 +578,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiagnosticInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiagnosticInfo do
          Hr := this.m_IProcessDiagnosticInfo.all.get_Parent (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessDiagnosticInfo := new Windows.System.Diagnostics.IProcessDiagnosticInfo;
+         Retval.m_IProcessDiagnosticInfo := new WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo;
          Retval.m_IProcessDiagnosticInfo.all := m_ComRetVal;
       end return;
    end;
@@ -598,7 +598,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IProcessDiagnosticInfo.all.get_ProcessStartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -615,14 +615,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiskUsage;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessDiskUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiskUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_DiskUsage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessDiskUsage := new Windows.System.Diagnostics.IProcessDiskUsage;
+         Retval.m_IProcessDiskUsage := new WinRt.Windows.System.Diagnostics.IProcessDiskUsage;
          Retval.m_IProcessDiskUsage.all := m_ComRetVal;
       end return;
    end;
@@ -635,14 +635,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessMemoryUsage;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessMemoryUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessMemoryUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_MemoryUsage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessMemoryUsage := new Windows.System.Diagnostics.IProcessMemoryUsage;
+         Retval.m_IProcessMemoryUsage := new WinRt.Windows.System.Diagnostics.IProcessMemoryUsage;
          Retval.m_IProcessMemoryUsage.all := m_ComRetVal;
       end return;
    end;
@@ -655,14 +655,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessCpuUsage;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessCpuUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessCpuUsage do
          Hr := this.m_IProcessDiagnosticInfo.all.get_CpuUsage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessCpuUsage := new Windows.System.Diagnostics.IProcessCpuUsage;
+         Retval.m_IProcessCpuUsage := new WinRt.Windows.System.Diagnostics.IProcessCpuUsage;
          Retval.m_IProcessCpuUsage.all := m_ComRetVal;
       end return;
    end;
@@ -676,7 +676,7 @@ package body WinRt.Windows.System.Diagnostics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAppDiagnosticInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo_Interface, WinRt.Windows.System.Diagnostics.IProcessDiagnosticInfo2, WinRt.Windows.System.Diagnostics.IID_IProcessDiagnosticInfo2'Unchecked_Access);
    begin
@@ -743,14 +743,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessDiskUsageReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessDiskUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessDiskUsageReport do
          Hr := this.m_IProcessDiskUsage.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessDiskUsageReport := new Windows.System.Diagnostics.IProcessDiskUsageReport;
+         Retval.m_IProcessDiskUsageReport := new WinRt.Windows.System.Diagnostics.IProcessDiskUsageReport;
          Retval.m_IProcessDiskUsageReport.all := m_ComRetVal;
       end return;
    end;
@@ -911,14 +911,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.IProcessMemoryUsageReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.IProcessMemoryUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.ProcessMemoryUsageReport do
          Hr := this.m_IProcessMemoryUsage.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProcessMemoryUsageReport := new Windows.System.Diagnostics.IProcessMemoryUsageReport;
+         Retval.m_IProcessMemoryUsageReport := new WinRt.Windows.System.Diagnostics.IProcessMemoryUsageReport;
          Retval.m_IProcessMemoryUsageReport.all := m_ComRetVal;
       end return;
    end;
@@ -1181,14 +1181,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemCpuUsageReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.ISystemCpuUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemCpuUsageReport do
          Hr := this.m_ISystemCpuUsage.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISystemCpuUsageReport := new Windows.System.Diagnostics.ISystemCpuUsageReport;
+         Retval.m_ISystemCpuUsageReport := new WinRt.Windows.System.Diagnostics.ISystemCpuUsageReport;
          Retval.m_ISystemCpuUsageReport.all := m_ComRetVal;
       end return;
    end;
@@ -1224,7 +1224,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_KernelTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_UserTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1258,7 +1258,7 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISystemCpuUsageReport.all.get_IdleTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1292,7 +1292,7 @@ package body WinRt.Windows.System.Diagnostics is
 
    function IsArchitectureSupported
    (
-      type_x : Windows.System.ProcessorArchitecture
+      type_x : WinRt.Windows.System.ProcessorArchitecture
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1321,7 +1321,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfoStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.ProcessorArchitecture;
+      m_ComRetVal      : aliased WinRt.Windows.System.ProcessorArchitecture;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISystemDiagnosticInfoStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1342,7 +1342,7 @@ package body WinRt.Windows.System.Diagnostics is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.SystemDiagnosticInfo");
       m_Factory        : access WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemDiagnosticInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfo;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemDiagnosticInfo do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemDiagnosticInfoStatics'Access , m_Factory'Address);
@@ -1352,7 +1352,7 @@ package body WinRt.Windows.System.Diagnostics is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISystemDiagnosticInfo := new Windows.System.Diagnostics.ISystemDiagnosticInfo;
+            Retval.m_ISystemDiagnosticInfo := new WinRt.Windows.System.Diagnostics.ISystemDiagnosticInfo;
             Retval.m_ISystemDiagnosticInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1370,14 +1370,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemMemoryUsage;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.ISystemMemoryUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemMemoryUsage do
          Hr := this.m_ISystemDiagnosticInfo.all.get_MemoryUsage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISystemMemoryUsage := new Windows.System.Diagnostics.ISystemMemoryUsage;
+         Retval.m_ISystemMemoryUsage := new WinRt.Windows.System.Diagnostics.ISystemMemoryUsage;
          Retval.m_ISystemMemoryUsage.all := m_ComRetVal;
       end return;
    end;
@@ -1390,14 +1390,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemCpuUsage;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.ISystemCpuUsage;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemCpuUsage do
          Hr := this.m_ISystemDiagnosticInfo.all.get_CpuUsage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISystemCpuUsage := new Windows.System.Diagnostics.ISystemCpuUsage;
+         Retval.m_ISystemCpuUsage := new WinRt.Windows.System.Diagnostics.ISystemCpuUsage;
          Retval.m_ISystemCpuUsage.all := m_ComRetVal;
       end return;
    end;
@@ -1433,14 +1433,14 @@ package body WinRt.Windows.System.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Diagnostics.ISystemMemoryUsageReport;
+      m_ComRetVal      : aliased WinRt.Windows.System.Diagnostics.ISystemMemoryUsageReport;
    begin
       return RetVal : WinRt.Windows.System.Diagnostics.SystemMemoryUsageReport do
          Hr := this.m_ISystemMemoryUsage.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISystemMemoryUsageReport := new Windows.System.Diagnostics.ISystemMemoryUsageReport;
+         Retval.m_ISystemMemoryUsageReport := new WinRt.Windows.System.Diagnostics.ISystemMemoryUsageReport;
          Retval.m_ISystemMemoryUsageReport.all := m_ComRetVal;
       end return;
    end;

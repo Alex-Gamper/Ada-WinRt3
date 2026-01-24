@@ -410,7 +410,7 @@ package WinRt.Windows.Media.Import is
       function get_Session
       (
          this : access IPhotoImportDeleteImportedItemsFromSourceResult_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSession
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSession
       )
       return WinRt.Hresult is abstract;
 
@@ -506,7 +506,7 @@ package WinRt.Windows.Media.Import is
       function get_Session
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSession
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSession
       )
       return WinRt.Hresult is abstract;
 
@@ -609,21 +609,21 @@ package WinRt.Windows.Media.Import is
       function SelectNewAsync
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetImportMode
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         value : Windows.Media.Import.PhotoImportImportMode
+         value : WinRt.Windows.Media.Import.PhotoImportImportMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ImportMode
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportImportMode
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportImportMode
       )
       return WinRt.Hresult is abstract;
 
@@ -701,14 +701,14 @@ package WinRt.Windows.Media.Import is
       (
          this : access IPhotoImportFindItemsResult_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectionChanged
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -723,14 +723,14 @@ package WinRt.Windows.Media.Import is
       (
          this : access IPhotoImportFindItemsResult_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemImported
       (
          this : access IPhotoImportFindItemsResult_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -742,8 +742,8 @@ package WinRt.Windows.Media.Import is
       function AddItemsInDateRangeToSelection
       (
          this : access IPhotoImportFindItemsResult2_Interface;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -755,7 +755,7 @@ package WinRt.Windows.Media.Import is
       function get_Session
       (
          this : access IPhotoImportImportItemsResult_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSession
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSession
       )
       return WinRt.Hresult is abstract;
 
@@ -872,7 +872,7 @@ package WinRt.Windows.Media.Import is
       function get_ContentType
       (
          this : access IPhotoImportItem_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportContentType
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -886,14 +886,14 @@ package WinRt.Windows.Media.Import is
       function get_Date
       (
          this : access IPhotoImportItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Sibling
       (
          this : access IPhotoImportItem_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSidecar
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSidecar
       )
       return WinRt.Hresult is abstract;
 
@@ -928,7 +928,7 @@ package WinRt.Windows.Media.Import is
       function get_Thumbnail
       (
          this : access IPhotoImportItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -966,7 +966,7 @@ package WinRt.Windows.Media.Import is
       function get_ImportedItem
       (
          this : access IPhotoImportItemImportedEventArgs_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportItem
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportItem
       )
       return WinRt.Hresult is abstract;
 
@@ -1004,14 +1004,14 @@ package WinRt.Windows.Media.Import is
       function get_Stage
       (
          this : access IPhotoImportOperation_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportStage
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportStage
       )
       return WinRt.Hresult is abstract;
 
       function get_Session
       (
          this : access IPhotoImportOperation_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSession
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1056,7 +1056,7 @@ package WinRt.Windows.Media.Import is
       function get_Source
       (
          this : access IPhotoImportSession_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSource
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1070,14 +1070,14 @@ package WinRt.Windows.Media.Import is
       function put_DestinationFolder
       (
          this : access IPhotoImportSession_Interface;
-         value : Windows.Storage.IStorageFolder
+         value : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_DestinationFolder
       (
          this : access IPhotoImportSession_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,14 +1098,14 @@ package WinRt.Windows.Media.Import is
       function put_SubfolderCreationMode
       (
          this : access IPhotoImportSession_Interface;
-         value : Windows.Media.Import.PhotoImportSubfolderCreationMode
+         value : WinRt.Windows.Media.Import.PhotoImportSubfolderCreationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_SubfolderCreationMode
       (
          this : access IPhotoImportSession_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportSubfolderCreationMode
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportSubfolderCreationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1126,8 +1126,8 @@ package WinRt.Windows.Media.Import is
       function FindItemsAsync
       (
          this : access IPhotoImportSession_Interface;
-         contentTypeFilter : Windows.Media.Import.PhotoImportContentTypeFilter;
-         itemSelectionMode : Windows.Media.Import.PhotoImportItemSelectionMode;
+         contentTypeFilter : WinRt.Windows.Media.Import.PhotoImportContentTypeFilter;
+         itemSelectionMode : WinRt.Windows.Media.Import.PhotoImportItemSelectionMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1140,14 +1140,14 @@ package WinRt.Windows.Media.Import is
       function put_SubfolderDateFormat
       (
          this : access IPhotoImportSession2_Interface;
-         value : Windows.Media.Import.PhotoImportSubfolderDateFormat
+         value : WinRt.Windows.Media.Import.PhotoImportSubfolderDateFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_SubfolderDateFormat
       (
          this : access IPhotoImportSession2_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportSubfolderDateFormat
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportSubfolderDateFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1187,7 +1187,7 @@ package WinRt.Windows.Media.Import is
       function get_Date
       (
          this : access IPhotoImportSidecar_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1248,21 +1248,21 @@ package WinRt.Windows.Media.Import is
       function get_ConnectionTransport
       (
          this : access IPhotoImportSource_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportConnectionTransport
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportConnectionTransport
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access IPhotoImportSource_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportSourceType
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportSourceType
       )
       return WinRt.Hresult is abstract;
 
       function get_PowerSource
       (
          this : access IPhotoImportSource_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportPowerSource
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportPowerSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1304,14 +1304,14 @@ package WinRt.Windows.Media.Import is
       function get_Thumbnail
       (
          this : access IPhotoImportSource_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateImportSession
       (
          this : access IPhotoImportSource_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSession
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1331,7 +1331,7 @@ package WinRt.Windows.Media.Import is
       function FromFolderAsync
       (
          this : access IPhotoImportSourceStatics_Interface;
-         sourceRootFolder : Windows.Storage.IStorageFolder;
+         sourceRootFolder : WinRt.Windows.Storage.IStorageFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1365,14 +1365,14 @@ package WinRt.Windows.Media.Import is
       function get_StorageMediumType
       (
          this : access IPhotoImportStorageMedium_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportStorageMediumType
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportStorageMediumType
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportedAccessMode
       (
          this : access IPhotoImportStorageMedium_Interface;
-         RetVal : access Windows.Media.Import.PhotoImportAccessMode
+         RetVal : access WinRt.Windows.Media.Import.PhotoImportAccessMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1418,14 +1418,14 @@ package WinRt.Windows.Media.Import is
       function get_Date
       (
          this : access IPhotoImportVideoSegment_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Sibling
       (
          this : access IPhotoImportVideoSegment_Interface;
-         RetVal : access Windows.Media.Import.IPhotoImportSidecar
+         RetVal : access WinRt.Windows.Media.Import.IPhotoImportSidecar
       )
       return WinRt.Hresult is abstract;
 
@@ -1634,7 +1634,7 @@ package WinRt.Windows.Media.Import is
    procedure SetImportMode
    (
       this : in out PhotoImportFindItemsResult;
-      value : Windows.Media.Import.PhotoImportImportMode
+      value : WinRt.Windows.Media.Import.PhotoImportImportMode
    );
 
    function get_ImportMode
@@ -1713,7 +1713,7 @@ package WinRt.Windows.Media.Import is
    procedure remove_SelectionChanged
    (
       this : in out PhotoImportFindItemsResult;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function ImportItemsAsync
@@ -1732,14 +1732,14 @@ package WinRt.Windows.Media.Import is
    procedure remove_ItemImported
    (
       this : in out PhotoImportFindItemsResult;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddItemsInDateRangeToSelection
    (
       this : in out PhotoImportFindItemsResult;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -2036,7 +2036,7 @@ package WinRt.Windows.Media.Import is
    procedure put_DestinationFolder
    (
       this : in out PhotoImportSession;
-      value : Windows.Storage.IStorageFolder
+      value : WinRt.Windows.Storage.IStorageFolder
    );
 
    function get_DestinationFolder
@@ -2060,7 +2060,7 @@ package WinRt.Windows.Media.Import is
    procedure put_SubfolderCreationMode
    (
       this : in out PhotoImportSession;
-      value : Windows.Media.Import.PhotoImportSubfolderCreationMode
+      value : WinRt.Windows.Media.Import.PhotoImportSubfolderCreationMode
    );
 
    function get_SubfolderCreationMode
@@ -2084,8 +2084,8 @@ package WinRt.Windows.Media.Import is
    function FindItemsAsync
    (
       this : in out PhotoImportSession;
-      contentTypeFilter : Windows.Media.Import.PhotoImportContentTypeFilter;
-      itemSelectionMode : Windows.Media.Import.PhotoImportItemSelectionMode
+      contentTypeFilter : WinRt.Windows.Media.Import.PhotoImportContentTypeFilter;
+      itemSelectionMode : WinRt.Windows.Media.Import.PhotoImportItemSelectionMode
    )
    return WinRt.Windows.Media.Import.PhotoImportFindItemsResult'Class;
 
@@ -2097,7 +2097,7 @@ package WinRt.Windows.Media.Import is
    procedure put_SubfolderDateFormat
    (
       this : in out PhotoImportSession;
-      value : Windows.Media.Import.PhotoImportSubfolderDateFormat
+      value : WinRt.Windows.Media.Import.PhotoImportSubfolderDateFormat
    );
 
    function get_SubfolderDateFormat
@@ -2162,7 +2162,7 @@ package WinRt.Windows.Media.Import is
 
    function FromFolderAsync
    (
-      sourceRootFolder : Windows.Storage.IStorageFolder
+      sourceRootFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Media.Import.PhotoImportSource;
 

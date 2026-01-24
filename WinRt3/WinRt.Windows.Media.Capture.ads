@@ -1583,21 +1583,21 @@ package WinRt.Windows.Media.Capture is
    -----------------------------------------------------------------------------
 
    IID_MediaCaptureFailedEventHandler : aliased WinRt.IID := (538243067, 23768, 20232, (163, 20, 13, 54, 13, 165, 159, 20 ));
-   type MediaCaptureFailedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Capture.IMediaCapture;errorEventArgs : Windows.Media.Capture.IMediaCaptureFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_MediaCaptureFailedEventHandler'Access) with null record;
+   type MediaCaptureFailedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Capture.IMediaCapture;errorEventArgs : WinRt.Windows.Media.Capture.IMediaCaptureFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_MediaCaptureFailedEventHandler'Access) with null record;
       function Invoke
       (
          this : access MediaCaptureFailedEventHandler_Delegate;
-         sender : Windows.Media.Capture.IMediaCapture;
-         errorEventArgs : Windows.Media.Capture.IMediaCaptureFailedEventArgs
+         sender : WinRt.Windows.Media.Capture.IMediaCapture;
+         errorEventArgs : WinRt.Windows.Media.Capture.IMediaCaptureFailedEventArgs
       )
       return WinRt.Hresult;
 
    IID_RecordLimitationExceededEventHandler : aliased WinRt.IID := (1068404526, 20449, 20477, (170, 186, 225, 241, 51, 125, 78, 83 ));
-   type RecordLimitationExceededEventHandler_Delegate (Callback : access procedure  (sender : Windows.Media.Capture.IMediaCapture)) is new WinRt.IMulticastDelegate_Interface (IID_RecordLimitationExceededEventHandler'Access) with null record;
+   type RecordLimitationExceededEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Media.Capture.IMediaCapture)) is new WinRt.IMulticastDelegate_Interface (IID_RecordLimitationExceededEventHandler'Access) with null record;
       function Invoke
       (
          this : access RecordLimitationExceededEventHandler_Delegate;
-         sender : Windows.Media.Capture.IMediaCapture
+         sender : WinRt.Windows.Media.Capture.IMediaCapture
       )
       return WinRt.Hresult;
 
@@ -1663,14 +1663,14 @@ package WinRt.Windows.Media.Capture is
       function get_Frame
       (
          this : access IAdvancedCapturedPhoto_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_Mode
       (
          this : access IAdvancedCapturedPhoto_Interface;
-         RetVal : access Windows.Media.Devices.AdvancedPhotoMode
+         RetVal : access WinRt.Windows.Media.Devices.AdvancedPhotoMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1717,14 +1717,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAdvancedPhotoCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OptionalReferencePhotoCaptured
       (
          this : access IAdvancedPhotoCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1732,21 +1732,21 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAdvancedPhotoCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AllPhotosCaptured
       (
          this : access IAdvancedPhotoCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function FinishAsync
       (
          this : access IAdvancedPhotoCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1758,42 +1758,42 @@ package WinRt.Windows.Media.Capture is
       function put_PlugInState
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         value : Windows.Media.Capture.AppBroadcastPlugInState
+         value : WinRt.Windows.Media.Capture.AppBroadcastPlugInState
       )
       return WinRt.Hresult is abstract;
 
       function get_PlugInState
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastPlugInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastPlugInState
       )
       return WinRt.Hresult is abstract;
 
       function put_SignInInfo
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         value : Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo
+         value : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_SignInInfo
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_StreamInfo
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         value : Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo
+         value : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_StreamInfo
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1828,7 +1828,7 @@ package WinRt.Windows.Media.Capture is
       function TerminateBroadcast
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         reason : Windows.Media.Capture.AppBroadcastTerminationReason;
+         reason : WinRt.Windows.Media.Capture.AppBroadcastTerminationReason;
          providerSpecificReason : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -1837,14 +1837,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundService_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HeartbeatRequested
       (
          this : access IAppBroadcastBackgroundService_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1899,14 +1899,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundService2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BroadcastTitleChanged
       (
          this : access IAppBroadcastBackgroundService2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1914,14 +1914,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundService2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BroadcastLanguageChanged
       (
          this : access IAppBroadcastBackgroundService2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1929,14 +1929,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundService2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BroadcastChannelChanged
       (
          this : access IAppBroadcastBackgroundService2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1948,42 +1948,42 @@ package WinRt.Windows.Media.Capture is
       function get_SignInState
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastSignInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastSignInState
       )
       return WinRt.Hresult is abstract;
 
       function put_OAuthRequestUri
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_OAuthRequestUri
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_OAuthCallbackUri
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_OAuthCallbackUri
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationResult
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Web.IWebAuthenticationResult
+         RetVal : access WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2005,14 +2005,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SignInStateChanged
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2025,14 +2025,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserNameChanged
       (
          this : access IAppBroadcastBackgroundServiceSignInInfo2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2044,7 +2044,7 @@ package WinRt.Windows.Media.Capture is
       function get_StreamState
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastStreamState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastStreamState
       )
       return WinRt.Hresult is abstract;
 
@@ -2093,7 +2093,7 @@ package WinRt.Windows.Media.Capture is
       function get_BroadcastStreamReader
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastStreamReader
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastStreamReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2101,14 +2101,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StreamStateChanged
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2116,14 +2116,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoEncodingResolutionChanged
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2131,14 +2131,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoEncodingBitrateChanged
       (
          this : access IAppBroadcastBackgroundServiceStreamInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2161,7 +2161,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppBroadcastCameraCaptureStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastCameraCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastCameraCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -2306,28 +2306,28 @@ package WinRt.Windows.Media.Capture is
       function put_CameraOverlayLocation
       (
          this : access IAppBroadcastGlobalSettings_Interface;
-         value : Windows.Media.Capture.AppBroadcastCameraOverlayLocation
+         value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlayLocation
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraOverlayLocation
       (
          this : access IAppBroadcastGlobalSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastCameraOverlayLocation
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastCameraOverlayLocation
       )
       return WinRt.Hresult is abstract;
 
       function put_CameraOverlaySize
       (
          this : access IAppBroadcastGlobalSettings_Interface;
-         value : Windows.Media.Capture.AppBroadcastCameraOverlaySize
+         value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlaySize
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraOverlaySize
       (
          this : access IAppBroadcastGlobalSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastCameraOverlaySize
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastCameraOverlaySize
       )
       return WinRt.Hresult is abstract;
 
@@ -2372,28 +2372,28 @@ package WinRt.Windows.Media.Capture is
       function GetGlobalSettings
       (
          this : access IAppBroadcastManagerStatics_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastGlobalSettings
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastGlobalSettings
       )
       return WinRt.Hresult is abstract;
 
       function ApplyGlobalSettings
       (
          this : access IAppBroadcastManagerStatics_Interface;
-         value : Windows.Media.Capture.IAppBroadcastGlobalSettings
+         value : WinRt.Windows.Media.Capture.IAppBroadcastGlobalSettings
       )
       return WinRt.Hresult is abstract;
 
       function GetProviderSettings
       (
          this : access IAppBroadcastManagerStatics_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastProviderSettings
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings
       )
       return WinRt.Hresult is abstract;
 
       function ApplyProviderSettings
       (
          this : access IAppBroadcastManagerStatics_Interface;
-         value : Windows.Media.Capture.IAppBroadcastProviderSettings
+         value : WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -2405,7 +2405,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppBroadcastMicrophoneCaptureStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastMicrophoneCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastMicrophoneCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -2431,14 +2431,14 @@ package WinRt.Windows.Media.Capture is
       function get_ProviderSettings
       (
          this : access IAppBroadcastPlugIn_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastProviderSettings
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings
       )
       return WinRt.Hresult is abstract;
 
       function get_Logo
       (
          this : access IAppBroadcastPlugIn_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -2471,14 +2471,14 @@ package WinRt.Windows.Media.Capture is
       function get_DefaultPlugIn
       (
          this : access IAppBroadcastPlugInManager_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPlugIn
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPlugIn
       )
       return WinRt.Hresult is abstract;
 
       function put_DefaultPlugIn
       (
          this : access IAppBroadcastPlugInManager_Interface;
-         value : Windows.Media.Capture.IAppBroadcastPlugIn
+         value : WinRt.Windows.Media.Capture.IAppBroadcastPlugIn
       )
       return WinRt.Hresult is abstract;
 
@@ -2490,15 +2490,15 @@ package WinRt.Windows.Media.Capture is
       function GetDefault
       (
          this : access IAppBroadcastPlugInManagerStatics_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPlugInManager
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IAppBroadcastPlugInManagerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPlugInManager
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2510,7 +2510,7 @@ package WinRt.Windows.Media.Capture is
       function get_PlugInState
       (
          this : access IAppBroadcastPlugInStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastPlugInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastPlugInState
       )
       return WinRt.Hresult is abstract;
 
@@ -2528,7 +2528,7 @@ package WinRt.Windows.Media.Capture is
       function get_PreviewState
       (
          this : access IAppBroadcastPreview_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastPreviewState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastPreviewState
       )
       return WinRt.Hresult is abstract;
 
@@ -2543,21 +2543,21 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastPreview_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PreviewStateChanged
       (
          this : access IAppBroadcastPreview_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviewStreamReader
       (
          this : access IAppBroadcastPreview_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPreviewStreamReader
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2569,7 +2569,7 @@ package WinRt.Windows.Media.Capture is
       function get_PreviewState
       (
          this : access IAppBroadcastPreviewStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastPreviewState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastPreviewState
       )
       return WinRt.Hresult is abstract;
 
@@ -2609,21 +2609,21 @@ package WinRt.Windows.Media.Capture is
       function get_VideoBitmapPixelFormat
       (
          this : access IAppBroadcastPreviewStreamReader_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoBitmapAlphaMode
       (
          this : access IAppBroadcastPreviewStreamReader_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapAlphaMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function TryGetNextVideoFrame
       (
          this : access IAppBroadcastPreviewStreamReader_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -2631,14 +2631,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastPreviewStreamReader_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoFrameArrived
       (
          this : access IAppBroadcastPreviewStreamReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2650,14 +2650,14 @@ package WinRt.Windows.Media.Capture is
       function get_VideoHeader
       (
          this : access IAppBroadcastPreviewStreamVideoFrame_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoBuffer
       (
          this : access IAppBroadcastPreviewStreamVideoFrame_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2669,21 +2669,21 @@ package WinRt.Windows.Media.Capture is
       function get_AbsoluteTimestamp
       (
          this : access IAppBroadcastPreviewStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeTimestamp
       (
          this : access IAppBroadcastPreviewStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppBroadcastPreviewStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2772,28 +2772,28 @@ package WinRt.Windows.Media.Capture is
       function put_VideoEncodingBitrateMode
       (
          this : access IAppBroadcastProviderSettings_Interface;
-         value : Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
+         value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoEncodingBitrateMode
       (
          this : access IAppBroadcastProviderSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
       )
       return WinRt.Hresult is abstract;
 
       function put_VideoEncodingResolutionMode
       (
          this : access IAppBroadcastProviderSettings_Interface;
-         value : Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
+         value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoEncodingResolutionMode
       (
          this : access IAppBroadcastProviderSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2805,14 +2805,14 @@ package WinRt.Windows.Media.Capture is
       function get_CaptureTargetType
       (
          this : access IAppBroadcastServices_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastCaptureTargetType
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastCaptureTargetType
       )
       return WinRt.Hresult is abstract;
 
       function put_CaptureTargetType
       (
          this : access IAppBroadcastServices_Interface;
-         value : Windows.Media.Capture.AppBroadcastCaptureTargetType
+         value : WinRt.Windows.Media.Capture.AppBroadcastCaptureTargetType
       )
       return WinRt.Hresult is abstract;
 
@@ -2861,7 +2861,7 @@ package WinRt.Windows.Media.Capture is
       function EnterBroadcastModeAsync
       (
          this : access IAppBroadcastServices_Interface;
-         plugIn : Windows.Media.Capture.IAppBroadcastPlugIn;
+         plugIn : WinRt.Windows.Media.Capture.IAppBroadcastPlugIn;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2869,7 +2869,7 @@ package WinRt.Windows.Media.Capture is
       function ExitBroadcastMode
       (
          this : access IAppBroadcastServices_Interface;
-         reason : Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
+         reason : WinRt.Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2894,15 +2894,15 @@ package WinRt.Windows.Media.Capture is
       function StartPreview
       (
          this : access IAppBroadcastServices_Interface;
-         desiredSize : Windows.Foundation.Size;
-         RetVal : access Windows.Media.Capture.IAppBroadcastPreview
+         desiredSize : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastPreview
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IAppBroadcastServices_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastState
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastState
       )
       return WinRt.Hresult is abstract;
 
@@ -2914,14 +2914,14 @@ package WinRt.Windows.Media.Capture is
       function get_SignInState
       (
          this : access IAppBroadcastSignInStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastSignInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastSignInState
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access IAppBroadcastSignInStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastSignInResult
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastSignInResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2987,14 +2987,14 @@ package WinRt.Windows.Media.Capture is
       function get_EncodedVideoSize
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_MicrophoneCaptureState
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastMicrophoneCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastMicrophoneCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -3008,7 +3008,7 @@ package WinRt.Windows.Media.Capture is
       function get_CameraCaptureState
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastCameraCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastCameraCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -3022,63 +3022,63 @@ package WinRt.Windows.Media.Capture is
       function get_StreamState
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastStreamState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastStreamState
       )
       return WinRt.Hresult is abstract;
 
       function get_PlugInState
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastPlugInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastPlugInState
       )
       return WinRt.Hresult is abstract;
 
       function get_OAuthRequestUri
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_OAuthCallbackUri
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationResult
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Security.Authentication.Web.IWebAuthenticationResult
+         RetVal : access WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthenticationResult
       (
          this : access IAppBroadcastState_Interface;
-         value : Windows.Security.Authentication.Web.IWebAuthenticationResult
+         value : WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult
       )
       return WinRt.Hresult is abstract;
 
       function put_SignInState
       (
          this : access IAppBroadcastState_Interface;
-         value : Windows.Media.Capture.AppBroadcastSignInState
+         value : WinRt.Windows.Media.Capture.AppBroadcastSignInState
       )
       return WinRt.Hresult is abstract;
 
       function get_SignInState
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastSignInState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastSignInState
       )
       return WinRt.Hresult is abstract;
 
       function get_TerminationReason
       (
          this : access IAppBroadcastState_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastTerminationReason
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastTerminationReason
       )
       return WinRt.Hresult is abstract;
 
@@ -3093,14 +3093,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ViewerCountChanged
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3108,14 +3108,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MicrophoneCaptureStateChanged
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3123,14 +3123,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraCaptureStateChanged
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3138,14 +3138,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlugInStateChanged
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3153,14 +3153,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StreamStateChanged
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3168,14 +3168,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CaptureTargetClosed
       (
          this : access IAppBroadcastState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3187,14 +3187,14 @@ package WinRt.Windows.Media.Capture is
       function get_AudioHeader
       (
          this : access IAppBroadcastStreamAudioFrame_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastStreamAudioHeader
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioHeader
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioBuffer
       (
          this : access IAppBroadcastStreamAudioFrame_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3206,21 +3206,21 @@ package WinRt.Windows.Media.Capture is
       function get_AbsoluteTimestamp
       (
          this : access IAppBroadcastStreamAudioHeader_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeTimestamp
       (
          this : access IAppBroadcastStreamAudioHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppBroadcastStreamAudioHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3260,7 +3260,7 @@ package WinRt.Windows.Media.Capture is
       function get_AudioAacSequence
       (
          this : access IAppBroadcastStreamReader_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3274,7 +3274,7 @@ package WinRt.Windows.Media.Capture is
       function TryGetNextAudioFrame
       (
          this : access IAppBroadcastStreamReader_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastStreamAudioFrame
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -3302,7 +3302,7 @@ package WinRt.Windows.Media.Capture is
       function TryGetNextVideoFrame
       (
          this : access IAppBroadcastStreamReader_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastStreamVideoFrame
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -3310,14 +3310,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastStreamReader_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioFrameArrived
       (
          this : access IAppBroadcastStreamReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3325,14 +3325,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppBroadcastStreamReader_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoFrameArrived
       (
          this : access IAppBroadcastStreamReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3344,7 +3344,7 @@ package WinRt.Windows.Media.Capture is
       function get_StreamState
       (
          this : access IAppBroadcastStreamStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppBroadcastStreamState
+         RetVal : access WinRt.Windows.Media.Capture.AppBroadcastStreamState
       )
       return WinRt.Hresult is abstract;
 
@@ -3356,14 +3356,14 @@ package WinRt.Windows.Media.Capture is
       function get_VideoHeader
       (
          this : access IAppBroadcastStreamVideoFrame_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastStreamVideoHeader
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoHeader
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoBuffer
       (
          this : access IAppBroadcastStreamVideoFrame_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3375,21 +3375,21 @@ package WinRt.Windows.Media.Capture is
       function get_AbsoluteTimestamp
       (
          this : access IAppBroadcastStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeTimestamp
       (
          this : access IAppBroadcastStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppBroadcastStreamVideoHeader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3422,7 +3422,7 @@ package WinRt.Windows.Media.Capture is
       function get_BackgroundService
       (
          this : access IAppBroadcastTriggerDetails_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastBackgroundService
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService
       )
       return WinRt.Hresult is abstract;
 
@@ -3461,14 +3461,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CapturingChanged
       (
          this : access IAppCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3480,140 +3480,140 @@ package WinRt.Windows.Media.Capture is
       function put_ToggleGameBarKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleGameBarKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleGameBarKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleGameBarKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_SaveHistoricalVideoKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_SaveHistoricalVideoKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_SaveHistoricalVideoKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_SaveHistoricalVideoKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleRecordingKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleRecordingKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleRecordingKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleRecordingKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_TakeScreenshotKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_TakeScreenshotKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_TakeScreenshotKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_TakeScreenshotKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleRecordingIndicatorKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleRecordingIndicatorKey
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleRecordingIndicatorKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleRecordingIndicatorKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -3625,28 +3625,28 @@ package WinRt.Windows.Media.Capture is
       function put_ToggleMicrophoneCaptureKey
       (
          this : access IAppCaptureAlternateShortcutKeys2_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleMicrophoneCaptureKey
       (
          this : access IAppCaptureAlternateShortcutKeys2_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleMicrophoneCaptureKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys2_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleMicrophoneCaptureKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys2_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -3658,56 +3658,56 @@ package WinRt.Windows.Media.Capture is
       function put_ToggleCameraCaptureKey
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleCameraCaptureKey
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleCameraCaptureKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleCameraCaptureKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleBroadcastKey
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         value : Windows.System.VirtualKey
+         value : WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleBroadcastKey
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function put_ToggleBroadcastKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         value : Windows.System.VirtualKeyModifiers
+         value : WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_ToggleBroadcastKeyModifiers
       (
          this : access IAppCaptureAlternateShortcutKeys3_Interface;
-         RetVal : access Windows.System.VirtualKeyModifiers
+         RetVal : access WinRt.Windows.System.VirtualKeyModifiers
       )
       return WinRt.Hresult is abstract;
 
@@ -3719,7 +3719,7 @@ package WinRt.Windows.Media.Capture is
       function get_Duration
       (
          this : access IAppCaptureDurationGeneratedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3731,7 +3731,7 @@ package WinRt.Windows.Media.Capture is
       function get_File
       (
          this : access IAppCaptureFileGeneratedEventArgs_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -3743,14 +3743,14 @@ package WinRt.Windows.Media.Capture is
       function GetCurrentSettings
       (
          this : access IAppCaptureManagerStatics_Interface;
-         RetVal : access Windows.Media.Capture.IAppCaptureSettings
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
       function ApplySettings
       (
          this : access IAppCaptureManagerStatics_Interface;
-         appCaptureSettings_p : Windows.Media.Capture.IAppCaptureSettings
+         appCaptureSettings_p : WinRt.Windows.Media.Capture.IAppCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -3764,7 +3764,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3773,7 +3773,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.Int32;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3782,7 +3782,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.Double;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3791,7 +3791,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3800,7 +3800,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.Int32;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3809,7 +3809,7 @@ package WinRt.Windows.Media.Capture is
          this : access IAppCaptureMetadataWriter_Interface;
          name : WinRt.HString;
          value : WinRt.Double;
-         priority : Windows.Media.Capture.AppCaptureMetadataPriority
+         priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -3837,14 +3837,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureMetadataWriter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MetadataPurged
       (
          this : access IAppCaptureMetadataWriter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3856,7 +3856,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppCaptureMicrophoneCaptureStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureMicrophoneCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureMicrophoneCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -3881,7 +3881,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppCaptureRecordOperation_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureRecordingState
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureRecordingState
       )
       return WinRt.Hresult is abstract;
 
@@ -3902,7 +3902,7 @@ package WinRt.Windows.Media.Capture is
       function get_File
       (
          this : access IAppCaptureRecordOperation_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -3917,14 +3917,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureRecordOperation_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IAppCaptureRecordOperation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3932,14 +3932,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureRecordOperation_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DurationGenerated
       (
          this : access IAppCaptureRecordOperation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3947,14 +3947,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureRecordOperation_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FileGenerated
       (
          this : access IAppCaptureRecordOperation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3966,7 +3966,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppCaptureRecordingStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureRecordingState
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureRecordingState
       )
       return WinRt.Hresult is abstract;
 
@@ -3985,16 +3985,16 @@ package WinRt.Windows.Media.Capture is
       function Record_x
       (
          this : access IAppCaptureServices_Interface;
-         RetVal : access Windows.Media.Capture.IAppCaptureRecordOperation
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureRecordOperation
       )
       return WinRt.Hresult is abstract;
 
       function RecordTimeSpan
       (
          this : access IAppCaptureServices_Interface;
-         startTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Capture.IAppCaptureRecordOperation
+         startTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureRecordOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -4008,7 +4008,7 @@ package WinRt.Windows.Media.Capture is
       function get_State
       (
          this : access IAppCaptureServices_Interface;
-         RetVal : access Windows.Media.Capture.IAppCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -4020,14 +4020,14 @@ package WinRt.Windows.Media.Capture is
       function put_AppCaptureDestinationFolder
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Storage.IStorageFolder
+         value : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_AppCaptureDestinationFolder
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -4118,14 +4118,14 @@ package WinRt.Windows.Media.Capture is
       function put_HistoricalBufferLengthUnit
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
+         value : WinRt.Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
       )
       return WinRt.Hresult is abstract;
 
       function get_HistoricalBufferLengthUnit
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -4174,56 +4174,56 @@ package WinRt.Windows.Media.Capture is
       function put_MaximumRecordLength
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaximumRecordLength
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_ScreenshotDestinationFolder
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Storage.IStorageFolder
+         value : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_ScreenshotDestinationFolder
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function put_VideoEncodingBitrateMode
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
+         value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoEncodingBitrateMode
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
       )
       return WinRt.Hresult is abstract;
 
       function put_VideoEncodingResolutionMode
       (
          this : access IAppCaptureSettings_Interface;
-         value : Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
+         value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoEncodingResolutionMode
       (
          this : access IAppCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -4284,7 +4284,7 @@ package WinRt.Windows.Media.Capture is
       function get_AlternateShortcutKeys
       (
          this : access IAppCaptureSettings2_Interface;
-         RetVal : access Windows.Media.Capture.IAppCaptureAlternateShortcutKeys
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys
       )
       return WinRt.Hresult is abstract;
 
@@ -4357,14 +4357,14 @@ package WinRt.Windows.Media.Capture is
       function put_VideoEncodingFrameRateMode
       (
          this : access IAppCaptureSettings4_Interface;
-         value : Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
+         value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoEncodingFrameRateMode
       (
          this : access IAppCaptureSettings4_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
       )
       return WinRt.Hresult is abstract;
 
@@ -4443,7 +4443,7 @@ package WinRt.Windows.Media.Capture is
       function get_MicrophoneCaptureState
       (
          this : access IAppCaptureState_Interface;
-         RetVal : access Windows.Media.Capture.AppCaptureMicrophoneCaptureState
+         RetVal : access WinRt.Windows.Media.Capture.AppCaptureMicrophoneCaptureState
       )
       return WinRt.Hresult is abstract;
 
@@ -4458,14 +4458,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MicrophoneCaptureStateChanged
       (
          this : access IAppCaptureState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4473,14 +4473,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureState_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CaptureTargetClosed
       (
          this : access IAppCaptureState_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4492,7 +4492,7 @@ package WinRt.Windows.Media.Capture is
       function GetForCurrentView
       (
          this : access IAppCaptureStatics_Interface;
-         RetVal : access Windows.Media.Capture.IAppCapture
+         RetVal : access WinRt.Windows.Media.Capture.IAppCapture
       )
       return WinRt.Hresult is abstract;
 
@@ -4505,7 +4505,7 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IAppCaptureStatics2_Interface;
          allowed : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -4517,21 +4517,21 @@ package WinRt.Windows.Media.Capture is
       function get_PhotoSettings
       (
          this : access ICameraCaptureUI_Interface;
-         RetVal : access Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings
+         RetVal : access WinRt.Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoSettings
       (
          this : access ICameraCaptureUI_Interface;
-         RetVal : access Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings
+         RetVal : access WinRt.Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
       function CaptureFileAsync
       (
          this : access ICameraCaptureUI_Interface;
-         mode : Windows.Media.Capture.CameraCaptureUIMode;
+         mode : WinRt.Windows.Media.Capture.CameraCaptureUIMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4544,56 +4544,56 @@ package WinRt.Windows.Media.Capture is
       function get_Format
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.CameraCaptureUIPhotoFormat
+         RetVal : access WinRt.Windows.Media.Capture.CameraCaptureUIPhotoFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         value : Windows.Media.Capture.CameraCaptureUIPhotoFormat
+         value : WinRt.Windows.Media.Capture.CameraCaptureUIPhotoFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxResolution
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
+         RetVal : access WinRt.Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxResolution
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         value : Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
+         value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
       )
       return WinRt.Hresult is abstract;
 
       function get_CroppedSizeInPixels
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_CroppedSizeInPixels
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_CroppedAspectRatio
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_CroppedAspectRatio
       (
          this : access ICameraCaptureUIPhotoCaptureSettings_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -4619,28 +4619,28 @@ package WinRt.Windows.Media.Capture is
       function get_Format
       (
          this : access ICameraCaptureUIVideoCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.CameraCaptureUIVideoFormat
+         RetVal : access WinRt.Windows.Media.Capture.CameraCaptureUIVideoFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access ICameraCaptureUIVideoCaptureSettings_Interface;
-         value : Windows.Media.Capture.CameraCaptureUIVideoFormat
+         value : WinRt.Windows.Media.Capture.CameraCaptureUIVideoFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxResolution
       (
          this : access ICameraCaptureUIVideoCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
+         RetVal : access WinRt.Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxResolution
       (
          this : access ICameraCaptureUIVideoCaptureSettings_Interface;
-         value : Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
+         value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
       )
       return WinRt.Hresult is abstract;
 
@@ -4680,7 +4680,7 @@ package WinRt.Windows.Media.Capture is
       function Show
       (
          this : access ICameraOptionsUIStatics_Interface;
-         mediaCapture_p : Windows.Media.Capture.IMediaCapture
+         mediaCapture_p : WinRt.Windows.Media.Capture.IMediaCapture
       )
       return WinRt.Hresult is abstract;
 
@@ -4711,7 +4711,7 @@ package WinRt.Windows.Media.Capture is
       function get_ControlValues
       (
          this : access ICapturedFrame2_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrameControlValues
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrameControlValues
       )
       return WinRt.Hresult is abstract;
 
@@ -4819,7 +4819,7 @@ package WinRt.Windows.Media.Capture is
       function get_SensorFrameRate
       (
          this : access ICapturedFrameControlValues2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
@@ -4838,7 +4838,7 @@ package WinRt.Windows.Media.Capture is
       function get_SoftwareBitmap
       (
          this : access ICapturedFrameWithSoftwareBitmap_Interface;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -4850,14 +4850,14 @@ package WinRt.Windows.Media.Capture is
       function get_Frame
       (
          this : access ICapturedPhoto_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access ICapturedPhoto_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -4869,7 +4869,7 @@ package WinRt.Windows.Media.Capture is
       function get_TargetCapturePolicy
       (
          this : access IGameBarServices_Interface;
-         RetVal : access Windows.Media.Capture.GameBarTargetCapturePolicy
+         RetVal : access WinRt.Windows.Media.Capture.GameBarTargetCapturePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -4888,7 +4888,7 @@ package WinRt.Windows.Media.Capture is
       function get_TargetInfo
       (
          this : access IGameBarServices_Interface;
-         RetVal : access Windows.Media.Capture.IGameBarServicesTargetInfo
+         RetVal : access WinRt.Windows.Media.Capture.IGameBarServicesTargetInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -4902,14 +4902,14 @@ package WinRt.Windows.Media.Capture is
       function get_AppBroadcastServices
       (
          this : access IGameBarServices_Interface;
-         RetVal : access Windows.Media.Capture.IAppBroadcastServices
+         RetVal : access WinRt.Windows.Media.Capture.IAppBroadcastServices
       )
       return WinRt.Hresult is abstract;
 
       function get_AppCaptureServices
       (
          this : access IGameBarServices_Interface;
-         RetVal : access Windows.Media.Capture.IAppCaptureServices
+         RetVal : access WinRt.Windows.Media.Capture.IAppCaptureServices
       )
       return WinRt.Hresult is abstract;
 
@@ -4917,14 +4917,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IGameBarServices_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommandReceived
       (
          this : access IGameBarServices_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4936,14 +4936,14 @@ package WinRt.Windows.Media.Capture is
       function get_Command
       (
          this : access IGameBarServicesCommandEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.GameBarCommand
+         RetVal : access WinRt.Windows.Media.Capture.GameBarCommand
       )
       return WinRt.Hresult is abstract;
 
       function get_Origin
       (
          this : access IGameBarServicesCommandEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.GameBarCommandOrigin
+         RetVal : access WinRt.Windows.Media.Capture.GameBarCommandOrigin
       )
       return WinRt.Hresult is abstract;
 
@@ -4956,14 +4956,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IGameBarServicesManager_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GameBarServicesCreated
       (
          this : access IGameBarServicesManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4975,7 +4975,7 @@ package WinRt.Windows.Media.Capture is
       function get_GameBarServices
       (
          this : access IGameBarServicesManagerGameBarServicesCreatedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.IGameBarServices
+         RetVal : access WinRt.Windows.Media.Capture.IGameBarServices
       )
       return WinRt.Hresult is abstract;
 
@@ -4987,7 +4987,7 @@ package WinRt.Windows.Media.Capture is
       function GetDefault
       (
          this : access IGameBarServicesManagerStatics_Interface;
-         RetVal : access Windows.Media.Capture.IGameBarServicesManager
+         RetVal : access WinRt.Windows.Media.Capture.IGameBarServicesManager
       )
       return WinRt.Hresult is abstract;
 
@@ -5020,7 +5020,7 @@ package WinRt.Windows.Media.Capture is
       function get_DisplayMode
       (
          this : access IGameBarServicesTargetInfo_Interface;
-         RetVal : access Windows.Media.Capture.GameBarServicesDisplayMode
+         RetVal : access WinRt.Windows.Media.Capture.GameBarServicesDisplayMode
       )
       return WinRt.Hresult is abstract;
 
@@ -5032,21 +5032,21 @@ package WinRt.Windows.Media.Capture is
       function StartAsync
       (
          this : access ILowLagMediaRecording_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopAsync
       (
          this : access ILowLagMediaRecording_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function FinishAsync
       (
          this : access ILowLagMediaRecording_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5058,15 +5058,15 @@ package WinRt.Windows.Media.Capture is
       function PauseAsync
       (
          this : access ILowLagMediaRecording2_Interface;
-         behavior : Windows.Media.Devices.MediaCapturePauseBehavior;
-         RetVal : access Windows.Foundation.IAsyncAction
+         behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ResumeAsync
       (
          this : access ILowLagMediaRecording2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5078,7 +5078,7 @@ package WinRt.Windows.Media.Capture is
       function PauseWithResultAsync
       (
          this : access ILowLagMediaRecording3_Interface;
-         behavior : Windows.Media.Devices.MediaCapturePauseBehavior;
+         behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5105,7 +5105,7 @@ package WinRt.Windows.Media.Capture is
       function FinishAsync
       (
          this : access ILowLagPhotoCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5117,21 +5117,21 @@ package WinRt.Windows.Media.Capture is
       function StartAsync
       (
          this : access ILowLagPhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopAsync
       (
          this : access ILowLagPhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function FinishAsync
       (
          this : access ILowLagPhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5139,14 +5139,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access ILowLagPhotoSequenceCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PhotoCaptured
       (
          this : access ILowLagPhotoSequenceCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5158,102 +5158,102 @@ package WinRt.Windows.Media.Capture is
       function InitializeAsync
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function InitializeAsync
       (
          this : access IMediaCapture_Interface;
-         mediaCaptureInitializationSettings_p : Windows.Media.Capture.IMediaCaptureInitializationSettings;
-         RetVal : access Windows.Foundation.IAsyncAction
+         mediaCaptureInitializationSettings_p : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartRecordToStorageFileAsync
       (
          this : access IMediaCapture_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartRecordToStreamAsync
       (
          this : access IMediaCapture_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartRecordToCustomSinkAsync
       (
          this : access IMediaCapture_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         customMediaSink : Windows.Media.IMediaExtension;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         customMediaSink : WinRt.Windows.Media.IMediaExtension;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartRecordToCustomSinkAsync
       (
          this : access IMediaCapture_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          customSinkActivationId : WinRt.HString;
-         customSinkSettings : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Foundation.IAsyncAction
+         customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopRecordAsync
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CapturePhotoToStorageFileAsync
       (
          this : access IMediaCapture_Interface;
-         type_x : Windows.Media.MediaProperties.IImageEncodingProperties;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         type_x : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CapturePhotoToStreamAsync
       (
          this : access IMediaCapture_Interface;
-         type_x : Windows.Media.MediaProperties.IImageEncodingProperties;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         type_x : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AddEffectAsync
       (
          this : access IMediaCapture_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
          effectActivationID : WinRt.HString;
-         effectSettings : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Foundation.IAsyncAction
+         effectSettings : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearEffectsAsync
       (
          this : access IMediaCapture_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
-         RetVal : access Windows.Foundation.IAsyncAction
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetEncoderProperty
       (
          this : access IMediaCapture_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
          propertyId : WinRt.Guid;
          propertyValue : WinRt.IInspectable
       )
@@ -5262,7 +5262,7 @@ package WinRt.Windows.Media.Capture is
       function GetEncoderProperty
       (
          this : access IMediaCapture_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
          propertyId : WinRt.Guid;
          RetVal : access WinRt.IInspectable
       )
@@ -5271,51 +5271,51 @@ package WinRt.Windows.Media.Capture is
       function add_Failed
       (
          this : access IMediaCapture_Interface;
-         errorEventHandler : Windows.Media.Capture.MediaCaptureFailedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         errorEventHandler : WinRt.Windows.Media.Capture.MediaCaptureFailedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Failed
       (
          this : access IMediaCapture_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_RecordLimitationExceeded
       (
          this : access IMediaCapture_Interface;
-         recordLimitationExceededEventHandler : Windows.Media.Capture.RecordLimitationExceededEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         recordLimitationExceededEventHandler : WinRt.Windows.Media.Capture.RecordLimitationExceededEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecordLimitationExceeded
       (
          this : access IMediaCapture_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaCaptureSettings
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Media.Capture.IMediaCaptureSettings
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureSettings
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioDeviceController
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Media.Devices.IAudioDeviceController
+         RetVal : access WinRt.Windows.Media.Devices.IAudioDeviceController
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoDeviceController
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Media.Devices.IVideoDeviceController
+         RetVal : access WinRt.Windows.Media.Devices.IVideoDeviceController
       )
       return WinRt.Hresult is abstract;
 
@@ -5336,28 +5336,28 @@ package WinRt.Windows.Media.Capture is
       function SetPreviewRotation
       (
          this : access IMediaCapture_Interface;
-         value : Windows.Media.Capture.VideoRotation
+         value : WinRt.Windows.Media.Capture.VideoRotation
       )
       return WinRt.Hresult is abstract;
 
       function GetPreviewRotation
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Media.Capture.VideoRotation
+         RetVal : access WinRt.Windows.Media.Capture.VideoRotation
       )
       return WinRt.Hresult is abstract;
 
       function SetRecordRotation
       (
          this : access IMediaCapture_Interface;
-         value : Windows.Media.Capture.VideoRotation
+         value : WinRt.Windows.Media.Capture.VideoRotation
       )
       return WinRt.Hresult is abstract;
 
       function GetRecordRotation
       (
          this : access IMediaCapture_Interface;
-         RetVal : access Windows.Media.Capture.VideoRotation
+         RetVal : access WinRt.Windows.Media.Capture.VideoRotation
       )
       return WinRt.Hresult is abstract;
 
@@ -5369,8 +5369,8 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagRecordToStorageFileAsync
       (
          this : access IMediaCapture2_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         file : Windows.Storage.IStorageFile;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5378,8 +5378,8 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagRecordToStreamAsync
       (
          this : access IMediaCapture2_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5387,8 +5387,8 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagRecordToCustomSinkAsync
       (
          this : access IMediaCapture2_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         customMediaSink : Windows.Media.IMediaExtension;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         customMediaSink : WinRt.Windows.Media.IMediaExtension;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5396,9 +5396,9 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagRecordToCustomSinkAsync
       (
          this : access IMediaCapture2_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          customSinkActivationId : WinRt.HString;
-         customSinkSettings : Windows.Foundation.Collections.IPropertySet;
+         customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5406,7 +5406,7 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagPhotoCaptureAsync
       (
          this : access IMediaCapture2_Interface;
-         type_x : Windows.Media.MediaProperties.IImageEncodingProperties;
+         type_x : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5414,7 +5414,7 @@ package WinRt.Windows.Media.Capture is
       function PrepareLowLagPhotoSequenceCaptureAsync
       (
          this : access IMediaCapture2_Interface;
-         type_x : Windows.Media.MediaProperties.IImageEncodingProperties;
+         type_x : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5422,10 +5422,10 @@ package WinRt.Windows.Media.Capture is
       function SetEncodingPropertiesAsync
       (
          this : access IMediaCapture2_Interface;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
-         mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+         mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
          encoderProperties : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5437,7 +5437,7 @@ package WinRt.Windows.Media.Capture is
       function PrepareVariablePhotoSequenceCaptureAsync
       (
          this : access IMediaCapture3_Interface;
-         type_x : Windows.Media.MediaProperties.IImageEncodingProperties;
+         type_x : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5446,14 +5446,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCapture3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FocusChanged
       (
          this : access IMediaCapture3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5461,14 +5461,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCapture3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PhotoConfirmationCaptured
       (
          this : access IMediaCapture3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5480,7 +5480,7 @@ package WinRt.Windows.Media.Capture is
       function AddAudioEffectAsync
       (
          this : access IMediaCapture4_Interface;
-         definition : Windows.Media.Effects.IAudioEffectDefinition;
+         definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5488,8 +5488,8 @@ package WinRt.Windows.Media.Capture is
       function AddVideoEffectAsync
       (
          this : access IMediaCapture4_Interface;
-         definition : Windows.Media.Effects.IVideoEffectDefinition;
-         mediaStreamType : Windows.Media.Capture.MediaStreamType;
+         definition : WinRt.Windows.Media.Effects.IVideoEffectDefinition;
+         mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5497,15 +5497,15 @@ package WinRt.Windows.Media.Capture is
       function PauseRecordAsync
       (
          this : access IMediaCapture4_Interface;
-         behavior : Windows.Media.Devices.MediaCapturePauseBehavior;
-         RetVal : access Windows.Foundation.IAsyncAction
+         behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ResumeRecordAsync
       (
          this : access IMediaCapture4_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5513,21 +5513,21 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCapture4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraStreamStateChanged
       (
          this : access IMediaCapture4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraStreamState
       (
          this : access IMediaCapture4_Interface;
-         RetVal : access Windows.Media.Devices.CameraStreamState
+         RetVal : access WinRt.Windows.Media.Devices.CameraStreamState
       )
       return WinRt.Hresult is abstract;
 
@@ -5541,7 +5541,7 @@ package WinRt.Windows.Media.Capture is
       function GetPreviewFrameAsync
       (
          this : access IMediaCapture4_Interface;
-         destination : Windows.Media.IVideoFrame;
+         destination : WinRt.Windows.Media.IVideoFrame;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5550,28 +5550,28 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCapture4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ThermalStatusChanged
       (
          this : access IMediaCapture4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_ThermalStatus
       (
          this : access IMediaCapture4_Interface;
-         RetVal : access Windows.Media.Capture.MediaCaptureThermalStatus
+         RetVal : access WinRt.Windows.Media.Capture.MediaCaptureThermalStatus
       )
       return WinRt.Hresult is abstract;
 
       function PrepareAdvancedPhotoCaptureAsync
       (
          this : access IMediaCapture4_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IImageEncodingProperties;
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5584,15 +5584,15 @@ package WinRt.Windows.Media.Capture is
       function RemoveEffectAsync
       (
          this : access IMediaCapture5_Interface;
-         effect : Windows.Media.IMediaExtension;
-         RetVal : access Windows.Foundation.IAsyncAction
+         effect : WinRt.Windows.Media.IMediaExtension;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function PauseRecordWithResultAsync
       (
          this : access IMediaCapture5_Interface;
-         behavior : Windows.Media.Devices.MediaCapturePauseBehavior;
+         behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5614,7 +5614,7 @@ package WinRt.Windows.Media.Capture is
       function CreateFrameReaderAsync
       (
          this : access IMediaCapture5_Interface;
-         inputSource : Windows.Media.Capture.Frames.IMediaFrameSource;
+         inputSource : WinRt.Windows.Media.Capture.Frames.IMediaFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5622,7 +5622,7 @@ package WinRt.Windows.Media.Capture is
       function CreateFrameReaderAsync
       (
          this : access IMediaCapture5_Interface;
-         inputSource : Windows.Media.Capture.Frames.IMediaFrameSource;
+         inputSource : WinRt.Windows.Media.Capture.Frames.IMediaFrameSource;
          outputSubtype : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -5631,9 +5631,9 @@ package WinRt.Windows.Media.Capture is
       function CreateFrameReaderAsync
       (
          this : access IMediaCapture5_Interface;
-         inputSource : Windows.Media.Capture.Frames.IMediaFrameSource;
+         inputSource : WinRt.Windows.Media.Capture.Frames.IMediaFrameSource;
          outputSubtype : WinRt.HString;
-         outputSize : Windows.Graphics.Imaging.BitmapSize;
+         outputSize : WinRt.Windows.Graphics.Imaging.BitmapSize;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5647,14 +5647,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCapture6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CaptureDeviceExclusiveControlStatusChanged
       (
          this : access IMediaCapture6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5674,9 +5674,9 @@ package WinRt.Windows.Media.Capture is
       function CreateRelativePanelWatcher
       (
          this : access IMediaCapture7_Interface;
-         captureMode : Windows.Media.Capture.StreamingCaptureMode;
-         displayRegion : Windows.UI.WindowManagement.IDisplayRegion;
-         RetVal : access Windows.Media.Capture.IMediaCaptureRelativePanelWatcher
+         captureMode : WinRt.Windows.Media.Capture.StreamingCaptureMode;
+         displayRegion : WinRt.Windows.UI.WindowManagement.IDisplayRegion;
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureRelativePanelWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -5695,7 +5695,7 @@ package WinRt.Windows.Media.Capture is
       function get_Status
       (
          this : access IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus
+         RetVal : access WinRt.Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5726,7 +5726,7 @@ package WinRt.Windows.Media.Capture is
       function get_FocusState
       (
          this : access IMediaCaptureFocusChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Devices.MediaCaptureFocusState
+         RetVal : access WinRt.Windows.Media.Devices.MediaCaptureFocusState
       )
       return WinRt.Hresult is abstract;
 
@@ -5766,28 +5766,28 @@ package WinRt.Windows.Media.Capture is
       function put_StreamingCaptureMode
       (
          this : access IMediaCaptureInitializationSettings_Interface;
-         value : Windows.Media.Capture.StreamingCaptureMode
+         value : WinRt.Windows.Media.Capture.StreamingCaptureMode
       )
       return WinRt.Hresult is abstract;
 
       function get_StreamingCaptureMode
       (
          this : access IMediaCaptureInitializationSettings_Interface;
-         RetVal : access Windows.Media.Capture.StreamingCaptureMode
+         RetVal : access WinRt.Windows.Media.Capture.StreamingCaptureMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PhotoCaptureSource
       (
          this : access IMediaCaptureInitializationSettings_Interface;
-         value : Windows.Media.Capture.PhotoCaptureSource
+         value : WinRt.Windows.Media.Capture.PhotoCaptureSource
       )
       return WinRt.Hresult is abstract;
 
       function get_PhotoCaptureSource
       (
          this : access IMediaCaptureInitializationSettings_Interface;
-         RetVal : access Windows.Media.Capture.PhotoCaptureSource
+         RetVal : access WinRt.Windows.Media.Capture.PhotoCaptureSource
       )
       return WinRt.Hresult is abstract;
 
@@ -5799,28 +5799,28 @@ package WinRt.Windows.Media.Capture is
       function put_MediaCategory
       (
          this : access IMediaCaptureInitializationSettings2_Interface;
-         value : Windows.Media.Capture.MediaCategory
+         value : WinRt.Windows.Media.Capture.MediaCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaCategory
       (
          this : access IMediaCaptureInitializationSettings2_Interface;
-         RetVal : access Windows.Media.Capture.MediaCategory
+         RetVal : access WinRt.Windows.Media.Capture.MediaCategory
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioProcessing
       (
          this : access IMediaCaptureInitializationSettings2_Interface;
-         value : Windows.Media.AudioProcessing
+         value : WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioProcessing
       (
          this : access IMediaCaptureInitializationSettings2_Interface;
-         RetVal : access Windows.Media.AudioProcessing
+         RetVal : access WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
@@ -5832,28 +5832,28 @@ package WinRt.Windows.Media.Capture is
       function put_AudioSource
       (
          this : access IMediaCaptureInitializationSettings3_Interface;
-         value : Windows.Media.Core.IMediaSource
+         value : WinRt.Windows.Media.Core.IMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioSource
       (
          this : access IMediaCaptureInitializationSettings3_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function put_VideoSource
       (
          this : access IMediaCaptureInitializationSettings3_Interface;
-         value : Windows.Media.Core.IMediaSource
+         value : WinRt.Windows.Media.Core.IMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoSource
       (
          this : access IMediaCaptureInitializationSettings3_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource
       )
       return WinRt.Hresult is abstract;
 
@@ -5865,56 +5865,56 @@ package WinRt.Windows.Media.Capture is
       function get_VideoProfile
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         RetVal : access Windows.Media.Capture.IMediaCaptureVideoProfile
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile
       )
       return WinRt.Hresult is abstract;
 
       function put_VideoProfile
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         value : Windows.Media.Capture.IMediaCaptureVideoProfile
+         value : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviewMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         RetVal : access Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_PreviewMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         value : Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         value : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
       function get_RecordMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         RetVal : access Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_RecordMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         value : Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         value : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
       function get_PhotoMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         RetVal : access Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         RetVal : access WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_PhotoMediaDescription
       (
          this : access IMediaCaptureInitializationSettings4_Interface;
-         value : Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
+         value : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -5926,42 +5926,42 @@ package WinRt.Windows.Media.Capture is
       function get_SourceGroup
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameSourceGroup
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceGroup
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         value : Windows.Media.Capture.Frames.IMediaFrameSourceGroup
+         value : WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup
       )
       return WinRt.Hresult is abstract;
 
       function get_SharingMode
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         RetVal : access Windows.Media.Capture.MediaCaptureSharingMode
+         RetVal : access WinRt.Windows.Media.Capture.MediaCaptureSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SharingMode
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         value : Windows.Media.Capture.MediaCaptureSharingMode
+         value : WinRt.Windows.Media.Capture.MediaCaptureSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_MemoryPreference
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         RetVal : access Windows.Media.Capture.MediaCaptureMemoryPreference
+         RetVal : access WinRt.Windows.Media.Capture.MediaCaptureMemoryPreference
       )
       return WinRt.Hresult is abstract;
 
       function put_MemoryPreference
       (
          this : access IMediaCaptureInitializationSettings5_Interface;
-         value : Windows.Media.Capture.MediaCaptureMemoryPreference
+         value : WinRt.Windows.Media.Capture.MediaCaptureMemoryPreference
       )
       return WinRt.Hresult is abstract;
 
@@ -5992,28 +5992,28 @@ package WinRt.Windows.Media.Capture is
       function get_DeviceUriPasswordCredential
       (
          this : access IMediaCaptureInitializationSettings7_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_DeviceUriPasswordCredential
       (
          this : access IMediaCaptureInitializationSettings7_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceUri
       (
          this : access IMediaCaptureInitializationSettings7_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_DeviceUri
       (
          this : access IMediaCaptureInitializationSettings7_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -6025,14 +6025,14 @@ package WinRt.Windows.Media.Capture is
       function get_LastFrame
       (
          this : access IMediaCapturePauseResult_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_RecordDuration
       (
          this : access IMediaCapturePauseResult_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -6044,7 +6044,7 @@ package WinRt.Windows.Media.Capture is
       function get_RelativePanel
       (
          this : access IMediaCaptureRelativePanelWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.Panel
+         RetVal : access WinRt.Windows.Devices.Enumeration.Panel
       )
       return WinRt.Hresult is abstract;
 
@@ -6052,14 +6052,14 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCaptureRelativePanelWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IMediaCaptureRelativePanelWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6097,21 +6097,21 @@ package WinRt.Windows.Media.Capture is
       function get_StreamingCaptureMode
       (
          this : access IMediaCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.StreamingCaptureMode
+         RetVal : access WinRt.Windows.Media.Capture.StreamingCaptureMode
       )
       return WinRt.Hresult is abstract;
 
       function get_PhotoCaptureSource
       (
          this : access IMediaCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.PhotoCaptureSource
+         RetVal : access WinRt.Windows.Media.Capture.PhotoCaptureSource
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoDeviceCharacteristic
       (
          this : access IMediaCaptureSettings_Interface;
-         RetVal : access Windows.Media.Capture.VideoDeviceCharacteristic
+         RetVal : access WinRt.Windows.Media.Capture.VideoDeviceCharacteristic
       )
       return WinRt.Hresult is abstract;
 
@@ -6165,14 +6165,14 @@ package WinRt.Windows.Media.Capture is
       function get_MediaCategory
       (
          this : access IMediaCaptureSettings2_Interface;
-         RetVal : access Windows.Media.Capture.MediaCategory
+         RetVal : access WinRt.Windows.Media.Capture.MediaCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioProcessing
       (
          this : access IMediaCaptureSettings2_Interface;
-         RetVal : access Windows.Media.AudioProcessing
+         RetVal : access WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
@@ -6184,7 +6184,7 @@ package WinRt.Windows.Media.Capture is
       function get_Direct3D11Device
       (
          this : access IMediaCaptureSettings3_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -6221,7 +6221,7 @@ package WinRt.Windows.Media.Capture is
       (
          this : access IMediaCaptureStatics_Interface;
          videoDeviceId : WinRt.HString;
-         name : Windows.Media.Capture.KnownVideoProfile;
+         name : WinRt.Windows.Media.Capture.KnownVideoProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -6234,14 +6234,14 @@ package WinRt.Windows.Media.Capture is
       function get_LastFrame
       (
          this : access IMediaCaptureStopResult_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_RecordDuration
       (
          this : access IMediaCaptureStopResult_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -6253,33 +6253,33 @@ package WinRt.Windows.Media.Capture is
       function StartPreviewAsync
       (
          this : access IMediaCaptureVideoPreview_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartPreviewToCustomSinkAsync
       (
          this : access IMediaCaptureVideoPreview_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         customMediaSink : Windows.Media.IMediaExtension;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         customMediaSink : WinRt.Windows.Media.IMediaExtension;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StartPreviewToCustomSinkAsync
       (
          this : access IMediaCaptureVideoPreview_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          customSinkActivationId : WinRt.HString;
-         customSinkSettings : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Foundation.IAsyncAction
+         customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopPreviewAsync
       (
          this : access IMediaCaptureVideoPreview_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -6416,7 +6416,7 @@ package WinRt.Windows.Media.Capture is
       function get_Frame
       (
          this : access IOptionalReferencePhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -6435,21 +6435,21 @@ package WinRt.Windows.Media.Capture is
       function get_Frame
       (
          this : access IPhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access IPhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_CaptureTimeOffset
       (
          this : access IPhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -6461,14 +6461,14 @@ package WinRt.Windows.Media.Capture is
       function get_Frame
       (
          this : access IPhotoConfirmationCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_CaptureTimeOffset
       (
          this : access IPhotoConfirmationCapturedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -6480,14 +6480,14 @@ package WinRt.Windows.Media.Capture is
       function get_InputProperties
       (
          this : access IVideoStreamConfiguration_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputProperties
       (
          this : access IVideoStreamConfiguration_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -6562,7 +6562,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_OptionalReferencePhotoCaptured
    (
       this : in out AdvancedPhotoCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AllPhotosCaptured
@@ -6575,7 +6575,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_AllPhotosCaptured
    (
       this : in out AdvancedPhotoCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure FinishAsync
@@ -6595,7 +6595,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_PlugInState
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastPlugInState
+      value : WinRt.Windows.Media.Capture.AppBroadcastPlugInState
    );
 
    function get_PlugInState
@@ -6607,7 +6607,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_SignInInfo
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo'Class
    );
 
    function get_SignInInfo
@@ -6619,7 +6619,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_StreamInfo
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo'Class
    );
 
    function get_StreamInfo
@@ -6655,7 +6655,7 @@ package WinRt.Windows.Media.Capture is
    procedure TerminateBroadcast
    (
       this : in out AppBroadcastBackgroundService;
-      reason : Windows.Media.Capture.AppBroadcastTerminationReason;
+      reason : WinRt.Windows.Media.Capture.AppBroadcastTerminationReason;
       providerSpecificReason : WinRt.UInt32
    );
 
@@ -6669,7 +6669,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_HeartbeatRequested
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_TitleId
@@ -6718,7 +6718,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_BroadcastTitleChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BroadcastLanguageChanged
@@ -6731,7 +6731,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_BroadcastLanguageChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BroadcastChannelChanged
@@ -6744,7 +6744,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_BroadcastChannelChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6765,7 +6765,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_OAuthRequestUri
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_OAuthRequestUri
@@ -6777,7 +6777,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_OAuthCallbackUri
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_OAuthCallbackUri
@@ -6814,7 +6814,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_SignInStateChanged
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserNameChanged
@@ -6827,7 +6827,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_UserNameChanged
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6897,7 +6897,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_StreamStateChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoEncodingResolutionChanged
@@ -6910,7 +6910,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_VideoEncodingResolutionChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoEncodingBitrateChanged
@@ -6923,7 +6923,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_VideoEncodingBitrateChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ReportProblemWithStream
@@ -7072,7 +7072,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_CameraOverlayLocation
    (
       this : in out AppBroadcastGlobalSettings;
-      value : Windows.Media.Capture.AppBroadcastCameraOverlayLocation
+      value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlayLocation
    );
 
    function get_CameraOverlayLocation
@@ -7084,7 +7084,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_CameraOverlaySize
    (
       this : in out AppBroadcastGlobalSettings;
-      value : Windows.Media.Capture.AppBroadcastCameraOverlaySize
+      value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlaySize
    );
 
    function get_CameraOverlaySize
@@ -7135,7 +7135,7 @@ package WinRt.Windows.Media.Capture is
 
       procedure ApplyGlobalSettings
       (
-         value : Windows.Media.Capture.AppBroadcastGlobalSettings'Class
+         value : WinRt.Windows.Media.Capture.AppBroadcastGlobalSettings'Class
       );
 
       function GetProviderSettings
@@ -7143,7 +7143,7 @@ package WinRt.Windows.Media.Capture is
 
       procedure ApplyProviderSettings
       (
-         value : Windows.Media.Capture.AppBroadcastProviderSettings'Class
+         value : WinRt.Windows.Media.Capture.AppBroadcastProviderSettings'Class
       );
 
    end AppBroadcastManager;
@@ -7216,7 +7216,7 @@ package WinRt.Windows.Media.Capture is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Media.Capture.AppBroadcastPlugInManager;
 
@@ -7244,7 +7244,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_DefaultPlugIn
    (
       this : in out AppBroadcastPlugInManager;
-      value : Windows.Media.Capture.AppBroadcastPlugIn'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastPlugIn'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7298,7 +7298,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_PreviewStateChanged
    (
       this : in out AppBroadcastPreview;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_PreviewStreamReader
@@ -7383,7 +7383,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_VideoFrameArrived
    (
       this : in out AppBroadcastPreviewStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7512,7 +7512,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingBitrateMode
    (
       this : in out AppBroadcastProviderSettings;
-      value : Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
+      value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
    );
 
    function get_VideoEncodingBitrateMode
@@ -7524,7 +7524,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingResolutionMode
    (
       this : in out AppBroadcastProviderSettings;
-      value : Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
+      value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
    );
 
    function get_VideoEncodingResolutionMode
@@ -7551,7 +7551,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_CaptureTargetType
    (
       this : in out AppBroadcastServices;
-      value : Windows.Media.Capture.AppBroadcastCaptureTargetType
+      value : WinRt.Windows.Media.Capture.AppBroadcastCaptureTargetType
    );
 
    function get_BroadcastTitle
@@ -7593,14 +7593,14 @@ package WinRt.Windows.Media.Capture is
    function EnterBroadcastModeAsync
    (
       this : in out AppBroadcastServices;
-      plugIn : Windows.Media.Capture.AppBroadcastPlugIn'Class
+      plugIn : WinRt.Windows.Media.Capture.AppBroadcastPlugIn'Class
    )
    return WinRt.UInt32;
 
    procedure ExitBroadcastMode
    (
       this : in out AppBroadcastServices;
-      reason : Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
+      reason : WinRt.Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
    );
 
    procedure StartBroadcast
@@ -7621,7 +7621,7 @@ package WinRt.Windows.Media.Capture is
    function StartPreview
    (
       this : in out AppBroadcastServices;
-      desiredSize : Windows.Foundation.Size
+      desiredSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Media.Capture.AppBroadcastPreview'Class;
 
@@ -7770,13 +7770,13 @@ package WinRt.Windows.Media.Capture is
    procedure put_AuthenticationResult
    (
       this : in out AppBroadcastState;
-      value : Windows.Security.Authentication.Web.WebAuthenticationResult'Class
+      value : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult'Class
    );
 
    procedure put_SignInState
    (
       this : in out AppBroadcastState;
-      value : Windows.Media.Capture.AppBroadcastSignInState
+      value : WinRt.Windows.Media.Capture.AppBroadcastSignInState
    );
 
    function get_SignInState
@@ -7807,7 +7807,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_ViewerCountChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MicrophoneCaptureStateChanged
@@ -7820,7 +7820,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_MicrophoneCaptureStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CameraCaptureStateChanged
@@ -7833,7 +7833,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CameraCaptureStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlugInStateChanged
@@ -7846,7 +7846,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_PlugInStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StreamStateChanged
@@ -7859,7 +7859,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_StreamStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CaptureTargetClosed
@@ -7872,7 +7872,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CaptureTargetClosed
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8008,7 +8008,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_AudioFrameArrived
    (
       this : in out AppBroadcastStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoFrameArrived
@@ -8021,7 +8021,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_VideoFrameArrived
    (
       this : in out AppBroadcastStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8177,7 +8177,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CapturingChanged
    (
       this : in out AppCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8192,7 +8192,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleGameBarKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleGameBarKey
@@ -8204,7 +8204,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleGameBarKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleGameBarKeyModifiers
@@ -8216,7 +8216,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_SaveHistoricalVideoKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_SaveHistoricalVideoKey
@@ -8228,7 +8228,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_SaveHistoricalVideoKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_SaveHistoricalVideoKeyModifiers
@@ -8240,7 +8240,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleRecordingKey
@@ -8252,7 +8252,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleRecordingKeyModifiers
@@ -8264,7 +8264,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_TakeScreenshotKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_TakeScreenshotKey
@@ -8276,7 +8276,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_TakeScreenshotKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_TakeScreenshotKeyModifiers
@@ -8288,7 +8288,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingIndicatorKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleRecordingIndicatorKey
@@ -8300,7 +8300,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingIndicatorKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleRecordingIndicatorKeyModifiers
@@ -8312,7 +8312,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleMicrophoneCaptureKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleMicrophoneCaptureKey
@@ -8324,7 +8324,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleMicrophoneCaptureKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleMicrophoneCaptureKeyModifiers
@@ -8336,7 +8336,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleCameraCaptureKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleCameraCaptureKey
@@ -8348,7 +8348,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleCameraCaptureKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleCameraCaptureKeyModifiers
@@ -8360,7 +8360,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleBroadcastKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    );
 
    function get_ToggleBroadcastKey
@@ -8372,7 +8372,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ToggleBroadcastKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    );
 
    function get_ToggleBroadcastKeyModifiers
@@ -8420,7 +8420,7 @@ package WinRt.Windows.Media.Capture is
 
       procedure ApplySettings
       (
-         appCaptureSettings_p : Windows.Media.Capture.AppCaptureSettings'Class
+         appCaptureSettings_p : WinRt.Windows.Media.Capture.AppCaptureSettings'Class
       );
 
    end AppCaptureManager;
@@ -8444,7 +8444,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.WString;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure AddInt32Event
@@ -8452,7 +8452,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Int32;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure AddDoubleEvent
@@ -8460,7 +8460,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Double;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure StartStringState
@@ -8468,7 +8468,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.WString;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure StartInt32State
@@ -8476,7 +8476,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Int32;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure StartDoubleState
@@ -8484,7 +8484,7 @@ package WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Double;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    );
 
    procedure StopState
@@ -8514,7 +8514,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_MetadataPurged
    (
       this : in out AppCaptureMetadataWriter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -8597,7 +8597,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_StateChanged
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DurationGenerated
@@ -8610,7 +8610,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_DurationGenerated
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FileGenerated
@@ -8623,7 +8623,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_FileGenerated
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8665,8 +8665,8 @@ package WinRt.Windows.Media.Capture is
    function RecordTimeSpan
    (
       this : in out AppCaptureServices;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Capture.AppCaptureRecordOperation'Class;
 
@@ -8694,7 +8694,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_AppCaptureDestinationFolder
    (
       this : in out AppCaptureSettings;
-      value : Windows.Storage.StorageFolder'Class
+      value : WinRt.Windows.Storage.StorageFolder'Class
    );
 
    function get_AppCaptureDestinationFolder
@@ -8778,7 +8778,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_HistoricalBufferLengthUnit
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
+      value : WinRt.Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
    );
 
    function get_HistoricalBufferLengthUnit
@@ -8826,7 +8826,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_MaximumRecordLength
    (
       this : in out AppCaptureSettings;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_MaximumRecordLength
@@ -8838,7 +8838,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_ScreenshotDestinationFolder
    (
       this : in out AppCaptureSettings;
-      value : Windows.Storage.StorageFolder'Class
+      value : WinRt.Windows.Storage.StorageFolder'Class
    );
 
    function get_ScreenshotDestinationFolder
@@ -8850,7 +8850,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingBitrateMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
    );
 
    function get_VideoEncodingBitrateMode
@@ -8862,7 +8862,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingResolutionMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
    );
 
    function get_VideoEncodingResolutionMode
@@ -8970,7 +8970,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingFrameRateMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
    );
 
    function get_VideoEncodingFrameRateMode
@@ -9063,7 +9063,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_MicrophoneCaptureStateChanged
    (
       this : in out AppCaptureState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CaptureTargetClosed
@@ -9076,7 +9076,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CaptureTargetClosed
    (
       this : in out AppCaptureState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9108,7 +9108,7 @@ package WinRt.Windows.Media.Capture is
    function CaptureFileAsync
    (
       this : in out CameraCaptureUI;
-      mode : Windows.Media.Capture.CameraCaptureUIMode
+      mode : WinRt.Windows.Media.Capture.CameraCaptureUIMode
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
@@ -9130,7 +9130,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_Format
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIPhotoFormat
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIPhotoFormat
    );
 
    function get_MaxResolution
@@ -9142,7 +9142,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_MaxResolution
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
    );
 
    function get_CroppedSizeInPixels
@@ -9154,7 +9154,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_CroppedSizeInPixels
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_CroppedAspectRatio
@@ -9166,7 +9166,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_CroppedAspectRatio
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_AllowCropping
@@ -9199,7 +9199,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_Format
    (
       this : in out CameraCaptureUIVideoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIVideoFormat
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIVideoFormat
    );
 
    function get_MaxResolution
@@ -9211,7 +9211,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_MaxResolution
    (
       this : in out CameraCaptureUIVideoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
    );
 
    function get_MaxDurationInSeconds
@@ -9244,7 +9244,7 @@ package WinRt.Windows.Media.Capture is
 
       procedure Show
       (
-         mediaCapture_p : Windows.Media.Capture.MediaCapture'Class
+         mediaCapture_p : WinRt.Windows.Media.Capture.MediaCapture'Class
       );
 
    end CameraOptionsUI;
@@ -9335,7 +9335,7 @@ package WinRt.Windows.Media.Capture is
    function WriteAsync
    (
       this : in out CapturedFrame;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -9353,9 +9353,9 @@ package WinRt.Windows.Media.Capture is
    function ReadAsync
    (
       this : in out CapturedFrame;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -9550,7 +9550,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CommandReceived
    (
       this : in out GameBarServices;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9599,7 +9599,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_GameBarServicesCreated
    (
       this : in out GameBarServicesManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9677,7 +9677,7 @@ package WinRt.Windows.Media.Capture is
    procedure PauseAsync
    (
       this : in out LowLagMediaRecording;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    );
 
    procedure ResumeAsync
@@ -9688,7 +9688,7 @@ package WinRt.Windows.Media.Capture is
    function PauseWithResultAsync
    (
       this : in out LowLagMediaRecording;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    )
    return WinRt.Windows.Media.Capture.MediaCapturePauseResult'Class;
 
@@ -9752,7 +9752,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_PhotoCaptured
    (
       this : in out LowLagPhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -9790,7 +9790,7 @@ package WinRt.Windows.Media.Capture is
    function FindKnownVideoProfiles
    (
       videoDeviceId : WinRt.WString;
-      name : Windows.Media.Capture.KnownVideoProfile
+      name : WinRt.Windows.Media.Capture.KnownVideoProfile
    )
    return IVectorView_IMediaCaptureVideoProfile.Kind;
 
@@ -9805,36 +9805,36 @@ package WinRt.Windows.Media.Capture is
    procedure InitializeAsync
    (
       this : in out MediaCapture;
-      mediaCaptureInitializationSettings_p : Windows.Media.Capture.MediaCaptureInitializationSettings'Class
+      mediaCaptureInitializationSettings_p : WinRt.Windows.Media.Capture.MediaCaptureInitializationSettings'Class
    );
 
    procedure StartRecordToStorageFileAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      file : Windows.Storage.IStorageFile
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure StartRecordToStreamAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure StartRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    );
 
    procedure StartRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure StopRecordAsync
@@ -9845,35 +9845,35 @@ package WinRt.Windows.Media.Capture is
    procedure CapturePhotoToStorageFileAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class;
-      file : Windows.Storage.IStorageFile
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure CapturePhotoToStreamAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure AddEffectAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       effectActivationID : WinRt.WString;
-      effectSettings : Windows.Foundation.Collections.IPropertySet
+      effectSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure ClearEffectsAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    );
 
    procedure SetEncoderProperty
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       propertyId : WinRt.Guid;
       propertyValue : WinRt.IInspectable
    );
@@ -9881,7 +9881,7 @@ package WinRt.Windows.Media.Capture is
    function GetEncoderProperty
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       propertyId : WinRt.Guid
    )
    return WinRt.IInspectable;
@@ -9889,27 +9889,27 @@ package WinRt.Windows.Media.Capture is
    function add_Failed
    (
       this : in out MediaCapture;
-      errorEventHandler : Windows.Media.Capture.MediaCaptureFailedEventHandler
+      errorEventHandler : WinRt.Windows.Media.Capture.MediaCaptureFailedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Failed
    (
       this : in out MediaCapture;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RecordLimitationExceeded
    (
       this : in out MediaCapture;
-      recordLimitationExceededEventHandler : Windows.Media.Capture.RecordLimitationExceededEventHandler
+      recordLimitationExceededEventHandler : WinRt.Windows.Media.Capture.RecordLimitationExceededEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_RecordLimitationExceeded
    (
       this : in out MediaCapture;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MediaCaptureSettings
@@ -9945,7 +9945,7 @@ package WinRt.Windows.Media.Capture is
    procedure SetPreviewRotation
    (
       this : in out MediaCapture;
-      value : Windows.Media.Capture.VideoRotation
+      value : WinRt.Windows.Media.Capture.VideoRotation
    );
 
    function GetPreviewRotation
@@ -9957,7 +9957,7 @@ package WinRt.Windows.Media.Capture is
    procedure SetRecordRotation
    (
       this : in out MediaCapture;
-      value : Windows.Media.Capture.VideoRotation
+      value : WinRt.Windows.Media.Capture.VideoRotation
    );
 
    function GetRecordRotation
@@ -9974,16 +9974,16 @@ package WinRt.Windows.Media.Capture is
    procedure StartPreviewToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    );
 
    procedure StartPreviewToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    procedure StopPreviewAsync
@@ -9994,56 +9994,56 @@ package WinRt.Windows.Media.Capture is
    function PrepareLowLagRecordToStorageFileAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      file : Windows.Storage.IStorageFile
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class;
 
    function PrepareLowLagRecordToStreamAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class;
 
    function PrepareLowLagRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class;
 
    function PrepareLowLagRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class;
 
    function PrepareLowLagPhotoCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.LowLagPhotoCapture'Class;
 
    function PrepareLowLagPhotoSequenceCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.LowLagPhotoSequenceCapture'Class;
 
    procedure SetEncodingPropertiesAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
-      mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-      encoderProperties : Windows.Media.MediaProperties.MediaPropertySet'Class
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+      mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+      encoderProperties : WinRt.Windows.Media.MediaProperties.MediaPropertySet'Class
    );
 
    procedure Close
@@ -10054,7 +10054,7 @@ package WinRt.Windows.Media.Capture is
    function PrepareVariablePhotoSequenceCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.Core.VariablePhotoSequenceCapture'Class;
 
@@ -10068,7 +10068,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_FocusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PhotoConfirmationCaptured
@@ -10081,28 +10081,28 @@ package WinRt.Windows.Media.Capture is
    procedure remove_PhotoConfirmationCaptured
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function AddAudioEffectAsync
    (
       this : in out MediaCapture;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    )
    return WinRt.Windows.Media.IMediaExtension;
 
    function AddVideoEffectAsync
    (
       this : in out MediaCapture;
-      definition : Windows.Media.Effects.IVideoEffectDefinition;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      definition : WinRt.Windows.Media.Effects.IVideoEffectDefinition;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.Windows.Media.IMediaExtension;
 
    procedure PauseRecordAsync
    (
       this : in out MediaCapture;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    );
 
    procedure ResumeRecordAsync
@@ -10120,7 +10120,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CameraStreamStateChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CameraStreamState
@@ -10138,7 +10138,7 @@ package WinRt.Windows.Media.Capture is
    function GetPreviewFrameAsync
    (
       this : in out MediaCapture;
-      destination : Windows.Media.VideoFrame'Class
+      destination : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.Windows.Media.VideoFrame'Class;
 
@@ -10152,7 +10152,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_ThermalStatusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ThermalStatus
@@ -10164,20 +10164,20 @@ package WinRt.Windows.Media.Capture is
    function PrepareAdvancedPhotoCaptureAsync
    (
       this : in out MediaCapture;
-      encodingProperties : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.AdvancedPhotoCapture'Class;
 
    procedure RemoveEffectAsync
    (
       this : in out MediaCapture;
-      effect : Windows.Media.IMediaExtension
+      effect : WinRt.Windows.Media.IMediaExtension
    );
 
    function PauseRecordWithResultAsync
    (
       this : in out MediaCapture;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    )
    return WinRt.Windows.Media.Capture.MediaCapturePauseResult'Class;
 
@@ -10196,14 +10196,14 @@ package WinRt.Windows.Media.Capture is
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class;
 
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class;
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class;
       outputSubtype : WinRt.WString
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class;
@@ -10211,9 +10211,9 @@ package WinRt.Windows.Media.Capture is
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class;
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class;
       outputSubtype : WinRt.WString;
-      outputSize : Windows.Graphics.Imaging.BitmapSize
+      outputSize : WinRt.Windows.Graphics.Imaging.BitmapSize
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class;
 
@@ -10227,7 +10227,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_CaptureDeviceExclusiveControlStatusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateMultiSourceFrameReaderAsync
@@ -10240,8 +10240,8 @@ package WinRt.Windows.Media.Capture is
    function CreateRelativePanelWatcher
    (
       this : in out MediaCapture;
-      captureMode : Windows.Media.Capture.StreamingCaptureMode;
-      displayRegion : Windows.UI.WindowManagement.DisplayRegion'Class
+      captureMode : WinRt.Windows.Media.Capture.StreamingCaptureMode;
+      displayRegion : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    )
    return WinRt.Windows.Media.Capture.MediaCaptureRelativePanelWatcher'Class;
 
@@ -10343,7 +10343,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_StreamingCaptureMode
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.StreamingCaptureMode
+      value : WinRt.Windows.Media.Capture.StreamingCaptureMode
    );
 
    function get_StreamingCaptureMode
@@ -10355,7 +10355,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_PhotoCaptureSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.PhotoCaptureSource
+      value : WinRt.Windows.Media.Capture.PhotoCaptureSource
    );
 
    function get_PhotoCaptureSource
@@ -10367,7 +10367,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_MediaCategory
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCategory
+      value : WinRt.Windows.Media.Capture.MediaCategory
    );
 
    function get_MediaCategory
@@ -10379,7 +10379,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_AudioProcessing
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.AudioProcessing
+      value : WinRt.Windows.Media.AudioProcessing
    );
 
    function get_AudioProcessing
@@ -10391,7 +10391,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_AudioSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Core.IMediaSource
+      value : WinRt.Windows.Media.Core.IMediaSource
    );
 
    function get_AudioSource
@@ -10403,7 +10403,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Core.IMediaSource
+      value : WinRt.Windows.Media.Core.IMediaSource
    );
 
    function get_VideoSource
@@ -10421,7 +10421,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_VideoProfile
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfile'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfile'Class
    );
 
    function get_PreviewMediaDescription
@@ -10433,7 +10433,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_PreviewMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    );
 
    function get_RecordMediaDescription
@@ -10445,7 +10445,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_RecordMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    );
 
    function get_PhotoMediaDescription
@@ -10457,7 +10457,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_PhotoMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    );
 
    function get_SourceGroup
@@ -10469,7 +10469,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_SourceGroup
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.Frames.MediaFrameSourceGroup'Class
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGroup'Class
    );
 
    function get_SharingMode
@@ -10481,7 +10481,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_SharingMode
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureSharingMode
+      value : WinRt.Windows.Media.Capture.MediaCaptureSharingMode
    );
 
    function get_MemoryPreference
@@ -10493,7 +10493,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_MemoryPreference
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureMemoryPreference
+      value : WinRt.Windows.Media.Capture.MediaCaptureMemoryPreference
    );
 
    function get_AlwaysPlaySystemShutterSound
@@ -10517,7 +10517,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_DeviceUriPasswordCredential
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_DeviceUri
@@ -10529,7 +10529,7 @@ package WinRt.Windows.Media.Capture is
    procedure put_DeviceUri
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -10583,7 +10583,7 @@ package WinRt.Windows.Media.Capture is
    procedure remove_Changed
    (
       this : in out MediaCaptureRelativePanelWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start

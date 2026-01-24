@@ -502,20 +502,20 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    -----------------------------------------------------------------------------
 
    IID_DataProviderHandler : aliased WinRt.IID := (3891058464, 62196, 18989, (146, 14, 23, 10, 47, 72, 42, 39 ));
-   type DataProviderHandler_Delegate (Callback : access procedure  (request : Windows.ApplicationModel.DataTransfer.IDataProviderRequest)) is new WinRt.IMulticastDelegate_Interface (IID_DataProviderHandler'Access) with null record;
+   type DataProviderHandler_Delegate (Callback : access procedure  (request : WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderRequest)) is new WinRt.IMulticastDelegate_Interface (IID_DataProviderHandler'Access) with null record;
       function Invoke
       (
          this : access DataProviderHandler_Delegate;
-         request : Windows.ApplicationModel.DataTransfer.IDataProviderRequest
+         request : WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderRequest
       )
       return WinRt.Hresult;
 
    IID_ShareProviderHandler : aliased WinRt.IID := (3891911098, 57786, 20045, (189, 101, 212, 56, 69, 211, 33, 47 ));
-   type ShareProviderHandler_Delegate (Callback : access procedure  (operation : Windows.ApplicationModel.DataTransfer.IShareProviderOperation)) is new WinRt.IMulticastDelegate_Interface (IID_ShareProviderHandler'Access) with null record;
+   type ShareProviderHandler_Delegate (Callback : access procedure  (operation : WinRt.Windows.ApplicationModel.DataTransfer.IShareProviderOperation)) is new WinRt.IMulticastDelegate_Interface (IID_ShareProviderHandler'Access) with null record;
       function Invoke
       (
          this : access ShareProviderHandler_Delegate;
-         operation : Windows.ApplicationModel.DataTransfer.IShareProviderOperation
+         operation : WinRt.Windows.ApplicationModel.DataTransfer.IShareProviderOperation
       )
       return WinRt.Hresult;
 
@@ -612,14 +612,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Timestamp
       (
          this : access IClipboardHistoryItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Content
       (
          this : access IClipboardHistoryItem_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
@@ -631,7 +631,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Status
       (
          this : access IClipboardHistoryItemsResult_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -650,14 +650,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function GetContent
       (
          this : access IClipboardStatics_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
       function SetContent
       (
          this : access IClipboardStatics_Interface;
-         content : Windows.ApplicationModel.DataTransfer.IDataPackage
+         content : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -677,14 +677,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IClipboardStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContentChanged
       (
          this : access IClipboardStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -710,7 +710,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function DeleteItemFromHistory
       (
          this : access IClipboardStatics2_Interface;
-         item : Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem;
+         item : WinRt.Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -718,8 +718,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function SetHistoryItemAsContent
       (
          this : access IClipboardStatics2_Interface;
-         item : Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem;
-         RetVal : access Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus
+         item : WinRt.Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem;
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -740,8 +740,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function SetContentWithOptions
       (
          this : access IClipboardStatics2_Interface;
-         content : Windows.ApplicationModel.DataTransfer.IDataPackage;
-         options : Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
+         content : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
+         options : WinRt.Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -750,14 +750,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IClipboardStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HistoryChanged
       (
          this : access IClipboardStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -765,14 +765,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IClipboardStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RoamingEnabledChanged
       (
          this : access IClipboardStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -780,14 +780,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IClipboardStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HistoryEnabledChanged
       (
          this : access IClipboardStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -799,28 +799,28 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function GetView
       (
          this : access IDataPackage_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access IDataPackage_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestedOperation
       (
          this : access IDataPackage_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestedOperation
       (
          this : access IDataPackage_Interface;
-         value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -828,14 +828,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataPackage_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OperationCompleted
       (
          this : access IDataPackage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -843,14 +843,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataPackage_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Destroyed
       (
          this : access IDataPackage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -866,7 +866,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataPackage_Interface;
          formatId : WinRt.HString;
-         delayRenderer : Windows.ApplicationModel.DataTransfer.DataProviderHandler
+         delayRenderer : WinRt.Windows.ApplicationModel.DataTransfer.DataProviderHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -880,7 +880,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function SetUri
       (
          this : access IDataPackage_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -908,7 +908,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function SetBitmap
       (
          this : access IDataPackage_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -935,14 +935,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function SetApplicationLink
       (
          this : access IDataPackage2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function SetWebLink
       (
          this : access IDataPackage2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -955,14 +955,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataPackage3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShareCompleted
       (
          this : access IDataPackage3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -975,14 +975,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataPackage4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShareCanceled
       (
          this : access IDataPackage4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1022,14 +1022,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Thumbnail
       (
          this : access IDataPackagePropertySet_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IDataPackagePropertySet_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1057,14 +1057,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ApplicationListingUri
       (
          this : access IDataPackagePropertySet_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ApplicationListingUri
       (
          this : access IDataPackagePropertySet_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1076,28 +1076,28 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ContentSourceWebLink
       (
          this : access IDataPackagePropertySet2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentSourceWebLink
       (
          this : access IDataPackagePropertySet2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentSourceApplicationLink
       (
          this : access IDataPackagePropertySet2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentSourceApplicationLink
       (
          this : access IDataPackagePropertySet2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1118,28 +1118,28 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Square30x30Logo
       (
          this : access IDataPackagePropertySet2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Square30x30Logo
       (
          this : access IDataPackagePropertySet2_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_LogoBackgroundColor
       (
          this : access IDataPackagePropertySet2_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_LogoBackgroundColor
       (
          this : access IDataPackagePropertySet2_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1203,7 +1203,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Thumbnail
       (
          this : access IDataPackagePropertySetView_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1224,7 +1224,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ApplicationListingUri
       (
          this : access IDataPackagePropertySetView_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1243,28 +1243,28 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ContentSourceWebLink
       (
          this : access IDataPackagePropertySetView2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentSourceApplicationLink
       (
          this : access IDataPackagePropertySetView2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square30x30Logo
       (
          this : access IDataPackagePropertySetView2_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_LogoBackgroundColor
       (
          this : access IDataPackagePropertySetView2_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1312,21 +1312,21 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Properties
       (
          this : access IDataPackageView_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackagePropertySetView
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestedOperation
       (
          this : access IDataPackageView_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
       function ReportOperationCompleted
       (
          this : access IDataPackageView_Interface;
-         value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1452,7 +1452,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function UnlockAndAssumeEnterpriseIdentity
       (
          this : access IDataPackageView3_Interface;
-         RetVal : access Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
+         RetVal : access WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1494,14 +1494,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Deadline
       (
          this : access IDataProviderRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IDataProviderRequest_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataProviderDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataProviderDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1520,21 +1520,21 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Data
       (
          this : access IDataRequest_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackage
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IDataRequest_Interface;
-         value : Windows.ApplicationModel.DataTransfer.IDataPackage
+         value : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access IDataRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1548,7 +1548,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function GetDeferral
       (
          this : access IDataRequest_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataRequestDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1571,7 +1571,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Request
       (
          this : access IDataRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataRequest
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1584,14 +1584,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataTransferManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataRequested
       (
          this : access IDataTransferManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1599,14 +1599,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataTransferManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TargetApplicationChosen
       (
          this : access IDataTransferManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1619,14 +1619,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IDataTransferManager2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ShareProvidersRequested
       (
          this : access IDataTransferManager2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1644,7 +1644,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function GetForCurrentView
       (
          this : access IDataTransferManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataTransferManager
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataTransferManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1668,7 +1668,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function ShowShareUI
       (
          this : access IDataTransferManagerStatics3_Interface;
-         options : Windows.ApplicationModel.DataTransfer.IShareUIOptions
+         options : WinRt.Windows.ApplicationModel.DataTransfer.IShareUIOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1701,7 +1701,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Operation
       (
          this : access IOperationCompletedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1725,7 +1725,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ShareTarget
       (
          this : access IShareCompletedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IShareTargetInfo
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IShareTargetInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1744,14 +1744,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_DisplayIcon
       (
          this : access IShareProvider_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access IShareProvider_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1778,10 +1778,10 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access IShareProviderFactory_Interface;
          title : WinRt.HString;
-         displayIcon : Windows.Storage.Streams.IRandomAccessStreamReference;
-         backgroundColor : Windows.UI.Color;
-         handler : Windows.ApplicationModel.DataTransfer.ShareProviderHandler;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IShareProvider
+         displayIcon : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         backgroundColor : WinRt.Windows.UI.Color;
+         handler : WinRt.Windows.ApplicationModel.DataTransfer.ShareProviderHandler;
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1793,14 +1793,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Data
       (
          this : access IShareProviderOperation_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
       function get_Provider
       (
          this : access IShareProviderOperation_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IShareProvider
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1825,14 +1825,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Data
       (
          this : access IShareProvidersRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IShareProvidersRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1851,7 +1851,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ShareProvider
       (
          this : access IShareTargetInfo_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IShareProvider
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IShareProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1863,14 +1863,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Theme
       (
          this : access IShareUIOptions_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ShareUITheme
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ShareUITheme
       )
       return WinRt.Hresult is abstract;
 
       function put_Theme
       (
          this : access IShareUIOptions_Interface;
-         value : Windows.ApplicationModel.DataTransfer.ShareUITheme
+         value : WinRt.Windows.ApplicationModel.DataTransfer.ShareUITheme
       )
       return WinRt.Hresult is abstract;
 
@@ -1896,7 +1896,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function AddFile
       (
          this : access ISharedStorageAccessManagerStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2028,7 +2028,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_DisplayIcon
       (
          this : access ITransferTarget_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -2047,7 +2047,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_Target
       (
          this : access ITransferTargetChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTarget
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ITransferTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -2059,7 +2059,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_DataPackage
       (
          this : access ITransferTargetDiscoveryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
@@ -2101,8 +2101,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function CreateInstance
       (
          this : access ITransferTargetDiscoveryOptionsFactory_Interface;
-         dataPackage_p : Windows.ApplicationModel.DataTransfer.IDataPackageView;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions
+         dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2121,7 +2121,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function get_ExtendedError
       (
          this : access ITransferTargetInvokeResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2133,8 +2133,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function CreateWatcher
       (
          this : access ITransferTargetStatics_Interface;
-         options : Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher
+         options : WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ITransferTargetWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -2158,8 +2158,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function TransferToAsync
       (
          this : access ITransferTargetWatcher_Interface;
-         target : Windows.ApplicationModel.DataTransfer.ITransferTarget;
-         parentWindowHandle : Windows.UI.WindowId;
+         target : WinRt.Windows.ApplicationModel.DataTransfer.ITransferTarget;
+         parentWindowHandle : WinRt.Windows.UI.WindowId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2168,14 +2168,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access ITransferTargetWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access ITransferTargetWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2183,14 +2183,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access ITransferTargetWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access ITransferTargetWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2198,14 +2198,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access ITransferTargetWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access ITransferTargetWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2213,14 +2213,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access ITransferTargetWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access ITransferTargetWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2228,14 +2228,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       (
          this : access ITransferTargetWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access ITransferTargetWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2247,7 +2247,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
       function IsSupported
       (
          this : access ITransferTargetWatcherStatics_Interface;
-         dataPackage_p : Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2270,13 +2270,13 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       function DeleteItemFromHistory
       (
-         item : Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
+         item : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
       )
       return WinRt.Boolean;
 
       function SetHistoryItemAsContent
       (
-         item : Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
+         item : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem'Class
       )
       return WinRt.Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus;
 
@@ -2288,8 +2288,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       function SetContentWithOptions
       (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class;
-         options : Windows.ApplicationModel.DataTransfer.ClipboardContentOptions'Class
+         content : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class;
+         options : WinRt.Windows.ApplicationModel.DataTransfer.ClipboardContentOptions'Class
       )
       return WinRt.Boolean;
 
@@ -2301,7 +2301,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_HistoryChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_RoamingEnabledChanged
@@ -2312,7 +2312,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_RoamingEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_HistoryEnabledChanged
@@ -2323,7 +2323,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_HistoryEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function GetContent
@@ -2331,7 +2331,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure SetContent
       (
-         content : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+         content : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
       );
 
       procedure Flush;
@@ -2346,7 +2346,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       procedure remove_ContentChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end Clipboard;
@@ -2493,7 +2493,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_RequestedOperation
    (
       this : in out DataPackage;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    );
 
    function add_OperationCompleted
@@ -2506,7 +2506,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_OperationCompleted
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Destroyed
@@ -2519,7 +2519,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Destroyed
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetData
@@ -2533,7 +2533,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    (
       this : in out DataPackage;
       formatId : WinRt.WString;
-      delayRenderer : Windows.ApplicationModel.DataTransfer.DataProviderHandler
+      delayRenderer : WinRt.Windows.ApplicationModel.DataTransfer.DataProviderHandler
    );
 
    procedure SetText
@@ -2545,7 +2545,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetUri
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetHtmlFormat
@@ -2569,7 +2569,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetBitmap
    (
       this : in out DataPackage;
-      value : Windows.Storage.Streams.RandomAccessStreamReference'Class
+      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
    );
 
    procedure SetStorageItems
@@ -2588,13 +2588,13 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure SetApplicationLink
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetWebLink
    (
       this : in out DataPackage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function add_ShareCompleted
@@ -2607,7 +2607,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareCompleted
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ShareCanceled
@@ -2620,7 +2620,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareCanceled
    (
       this : in out DataPackage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2665,7 +2665,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Thumbnail
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_FileTypes
@@ -2695,7 +2695,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ApplicationListingUri
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -2753,7 +2753,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ContentSourceWebLink
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ContentSourceApplicationLink
@@ -2765,7 +2765,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_ContentSourceApplicationLink
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_PackageFamilyName
@@ -2789,7 +2789,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Square30x30Logo
    (
       this : in out DataPackagePropertySet;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_LogoBackgroundColor
@@ -2801,7 +2801,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_LogoBackgroundColor
    (
       this : in out DataPackagePropertySet;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_EnterpriseId
@@ -2973,7 +2973,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure ReportOperationCompleted
    (
       this : in out DataPackageView;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    );
 
    function get_AvailableFormats
@@ -3147,7 +3147,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Data
    (
       this : in out DataRequest;
-      value : Windows.ApplicationModel.DataTransfer.DataPackage'Class
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage'Class
    );
 
    function get_Deadline
@@ -3211,7 +3211,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    procedure ShowShareUI
    (
-      options : Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
+      options : WinRt.Windows.ApplicationModel.DataTransfer.ShareUIOptions'Class
    );
 
    procedure ShowShareUI;
@@ -3232,7 +3232,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_DataRequested
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TargetApplicationChosen
@@ -3245,7 +3245,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_TargetApplicationChosen
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ShareProvidersRequested
@@ -3258,7 +3258,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_ShareProvidersRequested
    (
       this : in out DataTransferManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3327,9 +3327,9 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    function Constructor
    (
       title : WinRt.WString;
-      displayIcon : Windows.Storage.Streams.RandomAccessStreamReference'Class;
-      backgroundColor : Windows.UI.Color;
-      handler : Windows.ApplicationModel.DataTransfer.ShareProviderHandler
+      displayIcon : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
+      backgroundColor : WinRt.Windows.UI.Color;
+      handler : WinRt.Windows.ApplicationModel.DataTransfer.ShareProviderHandler
    )
    return ShareProvider;
 
@@ -3463,7 +3463,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure put_Theme
    (
       this : in out ShareUIOptions;
-      value : Windows.ApplicationModel.DataTransfer.ShareUITheme
+      value : WinRt.Windows.ApplicationModel.DataTransfer.ShareUITheme
    );
 
    function get_SelectionRect
@@ -3484,7 +3484,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
       function AddFile
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.WString;
 
@@ -3560,7 +3560,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    function CreateWatcher
    (
-      options : Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions'Class
+      options : WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetWatcher;
 
@@ -3617,7 +3617,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    function Constructor
    (
-      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+      dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class
    )
    return TransferTargetDiscoveryOptions;
 
@@ -3686,7 +3686,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
 
    function IsSupported
    (
-      dataPackage_p : Windows.ApplicationModel.DataTransfer.DataPackageView'Class
+      dataPackage_p : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class
    )
    return WinRt.Boolean;
 
@@ -3706,8 +3706,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    function TransferToAsync
    (
       this : in out TransferTargetWatcher;
-      target : Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
-      parentWindowHandle : Windows.UI.WindowId
+      target : WinRt.Windows.ApplicationModel.DataTransfer.TransferTarget'Class;
+      parentWindowHandle : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.ApplicationModel.DataTransfer.TransferTargetInvokeResult'Class;
 
@@ -3721,7 +3721,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Added
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -3734,7 +3734,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Removed
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -3747,7 +3747,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Updated
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3760,7 +3760,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_EnumerationCompleted
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -3773,7 +3773,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer is
    procedure remove_Stopped
    (
       this : in out TransferTargetWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.ApplicationModel.DataTransfer;

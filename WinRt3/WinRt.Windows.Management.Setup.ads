@@ -225,11 +225,11 @@ package WinRt.Windows.Management.Setup is
    -----------------------------------------------------------------------------
 
    IID_DeploymentSessionHeartbeatRequested : aliased WinRt.IID := (3377100555, 23301, 17813, (158, 105, 121, 7, 4, 132, 55, 126 ));
-   type DeploymentSessionHeartbeatRequested_Delegate (Callback : access procedure  (eventArgs : Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DeploymentSessionHeartbeatRequested'Access) with null record;
+   type DeploymentSessionHeartbeatRequested_Delegate (Callback : access procedure  (eventArgs : WinRt.Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DeploymentSessionHeartbeatRequested'Access) with null record;
       function Invoke
       (
          this : access DeploymentSessionHeartbeatRequested_Delegate;
-         eventArgs : Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs
+         eventArgs : WinRt.Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs
       )
       return WinRt.Hresult;
 
@@ -259,14 +259,14 @@ package WinRt.Windows.Management.Setup is
       function get_State
       (
          this : access IAgentProvisioningProgressReport_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentAgentProgressState
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentAgentProgressState
       )
       return WinRt.Hresult is abstract;
 
       function put_State
       (
          this : access IAgentProvisioningProgressReport_Interface;
-         value : Windows.Management.Setup.DeploymentAgentProgressState
+         value : WinRt.Windows.Management.Setup.DeploymentAgentProgressState
       )
       return WinRt.Hresult is abstract;
 
@@ -287,14 +287,14 @@ package WinRt.Windows.Management.Setup is
       function get_EstimatedTimeRemaining
       (
          this : access IAgentProvisioningProgressReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_EstimatedTimeRemaining
       (
          this : access IAgentProvisioningProgressReport_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -362,7 +362,7 @@ package WinRt.Windows.Management.Setup is
       function get_Change
       (
          this : access IDeploymentSessionConnectionChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentSessionConnectionChange
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentSessionConnectionChange
       )
       return WinRt.Hresult is abstract;
 
@@ -400,7 +400,7 @@ package WinRt.Windows.Management.Setup is
       function get_Change
       (
          this : access IDeploymentSessionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentSessionStateChange
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentSessionStateChange
       )
       return WinRt.Hresult is abstract;
 
@@ -517,14 +517,14 @@ package WinRt.Windows.Management.Setup is
       function get_State
       (
          this : access IDeploymentWorkload_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentWorkloadState
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentWorkloadState
       )
       return WinRt.Hresult is abstract;
 
       function put_State
       (
          this : access IDeploymentWorkload_Interface;
-         value : Windows.Management.Setup.DeploymentWorkloadState
+         value : WinRt.Windows.Management.Setup.DeploymentWorkloadState
       )
       return WinRt.Hresult is abstract;
 
@@ -584,7 +584,7 @@ package WinRt.Windows.Management.Setup is
       (
          this : access IDeploymentWorkloadBatchFactory_Interface;
          id : WinRt.UInt32;
-         RetVal : access Windows.Management.Setup.IDeploymentWorkloadBatch
+         RetVal : access WinRt.Windows.Management.Setup.IDeploymentWorkloadBatch
       )
       return WinRt.Hresult is abstract;
 
@@ -597,7 +597,7 @@ package WinRt.Windows.Management.Setup is
       (
          this : access IDeploymentWorkloadFactory_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Management.Setup.IDeploymentWorkload
+         RetVal : access WinRt.Windows.Management.Setup.IDeploymentWorkload
       )
       return WinRt.Hresult is abstract;
 
@@ -628,14 +628,14 @@ package WinRt.Windows.Management.Setup is
       function get_SessionConnection
       (
          this : access IMachineProvisioningProgressReporter_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentSessionConnectionChange
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentSessionConnectionChange
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionState
       (
          this : access IMachineProvisioningProgressReporter_Interface;
-         RetVal : access Windows.Management.Setup.DeploymentSessionStateChange
+         RetVal : access WinRt.Windows.Management.Setup.DeploymentSessionStateChange
       )
       return WinRt.Hresult is abstract;
 
@@ -643,14 +643,14 @@ package WinRt.Windows.Management.Setup is
       (
          this : access IMachineProvisioningProgressReporter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionStateChanged
       (
          this : access IMachineProvisioningProgressReporter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -658,21 +658,21 @@ package WinRt.Windows.Management.Setup is
       (
          this : access IMachineProvisioningProgressReporter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionConnectionChanged
       (
          this : access IMachineProvisioningProgressReporter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function ReportProgress
       (
          this : access IMachineProvisioningProgressReporter_Interface;
-         updateReport : Windows.Management.Setup.IAgentProvisioningProgressReport
+         updateReport : WinRt.Windows.Management.Setup.IAgentProvisioningProgressReport
       )
       return WinRt.Hresult is abstract;
 
@@ -691,9 +691,9 @@ package WinRt.Windows.Management.Setup is
       function GetForLaunchUri
       (
          this : access IMachineProvisioningProgressReporterStatics_Interface;
-         launchUri : Windows.Foundation.IUriRuntimeClass;
-         heartbeatHandler : Windows.Management.Setup.DeploymentSessionHeartbeatRequested;
-         RetVal : access Windows.Management.Setup.IMachineProvisioningProgressReporter
+         launchUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         heartbeatHandler : WinRt.Windows.Management.Setup.DeploymentSessionHeartbeatRequested;
+         RetVal : access WinRt.Windows.Management.Setup.IMachineProvisioningProgressReporter
       )
       return WinRt.Hresult is abstract;
 
@@ -726,7 +726,7 @@ package WinRt.Windows.Management.Setup is
    procedure put_State
    (
       this : in out AgentProvisioningProgressReport;
-      value : Windows.Management.Setup.DeploymentAgentProgressState
+      value : WinRt.Windows.Management.Setup.DeploymentAgentProgressState
    );
 
    function get_ProgressPercentage
@@ -750,7 +750,7 @@ package WinRt.Windows.Management.Setup is
    procedure put_EstimatedTimeRemaining
    (
       this : in out AgentProvisioningProgressReport;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DisplayProgress
@@ -975,7 +975,7 @@ package WinRt.Windows.Management.Setup is
    procedure put_State
    (
       this : in out DeploymentWorkload;
-      value : Windows.Management.Setup.DeploymentWorkloadState
+      value : WinRt.Windows.Management.Setup.DeploymentWorkloadState
    );
 
    function get_StateDetails
@@ -1058,8 +1058,8 @@ package WinRt.Windows.Management.Setup is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class;
-      heartbeatHandler : Windows.Management.Setup.DeploymentSessionHeartbeatRequested
+      launchUri : WinRt.Windows.Foundation.Uri'Class;
+      heartbeatHandler : WinRt.Windows.Management.Setup.DeploymentSessionHeartbeatRequested
    )
    return WinRt.Windows.Management.Setup.MachineProvisioningProgressReporter;
 
@@ -1094,7 +1094,7 @@ package WinRt.Windows.Management.Setup is
    procedure remove_SessionStateChanged
    (
       this : in out MachineProvisioningProgressReporter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SessionConnectionChanged
@@ -1107,13 +1107,13 @@ package WinRt.Windows.Management.Setup is
    procedure remove_SessionConnectionChanged
    (
       this : in out MachineProvisioningProgressReporter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure ReportProgress
    (
       this : in out MachineProvisioningProgressReporter;
-      updateReport : Windows.Management.Setup.AgentProvisioningProgressReport'Class
+      updateReport : WinRt.Windows.Management.Setup.AgentProvisioningProgressReport'Class
    );
 
    function GetDevicePreparationExecutionContextAsync

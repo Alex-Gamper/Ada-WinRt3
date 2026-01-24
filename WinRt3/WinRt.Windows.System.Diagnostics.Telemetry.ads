@@ -92,7 +92,7 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       (
          this : access IPlatformTelemetryClientStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult
+         RetVal : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -100,8 +100,8 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       (
          this : access IPlatformTelemetryClientStatics_Interface;
          id : WinRt.HString;
-         settings : Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
-         RetVal : access Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult
+         settings : WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
+         RetVal : access WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -113,7 +113,7 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       function get_Status
       (
          this : access IPlatformTelemetryRegistrationResult_Interface;
-         RetVal : access Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus
+         RetVal : access WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -169,7 +169,7 @@ package WinRt.Windows.System.Diagnostics.Telemetry is
       function Register
       (
          id : WinRt.WString;
-         settings : Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings'Class
+         settings : WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings'Class
       )
       return WinRt.Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationResult;
 

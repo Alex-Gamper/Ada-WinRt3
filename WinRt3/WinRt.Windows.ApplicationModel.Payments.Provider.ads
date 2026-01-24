@@ -100,14 +100,14 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function get_Request
       (
          this : access IPaymentAppCanMakePaymentTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
       function ReportCanMakePaymentResult
       (
          this : access IPaymentAppCanMakePaymentTriggerDetails_Interface;
-         value : Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult
+         value : WinRt.Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult
       )
       return WinRt.Hresult is abstract;
 
@@ -120,14 +120,14 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       (
          this : access IPaymentAppManager_Interface;
          supportedPaymentMethodIds : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UnregisterAsync
       (
          this : access IPaymentAppManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -139,7 +139,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function get_Current
       (
          this : access IPaymentAppManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.Provider.IPaymentAppManager
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentAppManager
       )
       return WinRt.Hresult is abstract;
 
@@ -151,7 +151,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function get_PaymentRequest
       (
          this : access IPaymentTransaction_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -200,7 +200,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function UpdateShippingAddressAsync
       (
          this : access IPaymentTransaction_Interface;
-         shippingAddress : Windows.ApplicationModel.Payments.IPaymentAddress;
+         shippingAddress : WinRt.Windows.ApplicationModel.Payments.IPaymentAddress;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -208,7 +208,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function UpdateSelectedShippingOptionAsync
       (
          this : access IPaymentTransaction_Interface;
-         selectedShippingOption : Windows.ApplicationModel.Payments.IPaymentShippingOption;
+         selectedShippingOption : WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -216,7 +216,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function AcceptAsync
       (
          this : access IPaymentTransaction_Interface;
-         paymentToken : Windows.ApplicationModel.Payments.IPaymentToken;
+         paymentToken : WinRt.Windows.ApplicationModel.Payments.IPaymentToken;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -235,7 +235,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
       function get_Status
       (
          this : access IPaymentTransactionAcceptResult_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -276,7 +276,7 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
    procedure ReportCanMakePaymentResult
    (
       this : in out PaymentAppCanMakePaymentTriggerDetails;
-      value : Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class
    );
 
    -----------------------------------------------------------------------------
@@ -368,21 +368,21 @@ package WinRt.Windows.ApplicationModel.Payments.Provider is
    function UpdateShippingAddressAsync
    (
       this : in out PaymentTransaction;
-      shippingAddress : Windows.ApplicationModel.Payments.PaymentAddress'Class
+      shippingAddress : WinRt.Windows.ApplicationModel.Payments.PaymentAddress'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class;
 
    function UpdateSelectedShippingOptionAsync
    (
       this : in out PaymentTransaction;
-      selectedShippingOption : Windows.ApplicationModel.Payments.PaymentShippingOption'Class
+      selectedShippingOption : WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class;
 
    function AcceptAsync
    (
       this : in out PaymentTransaction;
-      paymentToken : Windows.ApplicationModel.Payments.PaymentToken'Class
+      paymentToken : WinRt.Windows.ApplicationModel.Payments.PaymentToken'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.Provider.PaymentTransactionAcceptResult'Class;
 

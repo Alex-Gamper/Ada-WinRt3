@@ -319,7 +319,7 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IAdaptiveCardBuilderStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.UI.Shell.IAdaptiveCard
+         RetVal : access WinRt.Windows.UI.Shell.IAdaptiveCard
       )
       return WinRt.Hresult is abstract;
 
@@ -357,22 +357,22 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IFocusSessionManager_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.UI.Shell.IFocusSession
+         RetVal : access WinRt.Windows.UI.Shell.IFocusSession
       )
       return WinRt.Hresult is abstract;
 
       function TryStartFocusSession
       (
          this : access IFocusSessionManager_Interface;
-         RetVal : access Windows.UI.Shell.IFocusSession
+         RetVal : access WinRt.Windows.UI.Shell.IFocusSession
       )
       return WinRt.Hresult is abstract;
 
       function TryStartFocusSession
       (
          this : access IFocusSessionManager_Interface;
-         endTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.UI.Shell.IFocusSession
+         endTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.UI.Shell.IFocusSession
       )
       return WinRt.Hresult is abstract;
 
@@ -386,14 +386,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IFocusSessionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsFocusActiveChanged
       (
          this : access IFocusSessionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -405,7 +405,7 @@ package WinRt.Windows.UI.Shell is
       function GetDefault
       (
          this : access IFocusSessionManagerStatics_Interface;
-         RetVal : access Windows.UI.Shell.IFocusSessionManager
+         RetVal : access WinRt.Windows.UI.Shell.IFocusSessionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -424,9 +424,9 @@ package WinRt.Windows.UI.Shell is
       function Register
       (
          this : access ISecurityAppManager_Interface;
-         kind : Windows.UI.Shell.SecurityAppKind;
+         kind : WinRt.Windows.UI.Shell.SecurityAppKind;
          displayName : WinRt.HString;
-         detailsUri : Windows.Foundation.IUriRuntimeClass;
+         detailsUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          registerPerUser : WinRt.Boolean;
          RetVal : access WinRt.Guid
       )
@@ -435,7 +435,7 @@ package WinRt.Windows.UI.Shell is
       function Unregister
       (
          this : access ISecurityAppManager_Interface;
-         kind : Windows.UI.Shell.SecurityAppKind;
+         kind : WinRt.Windows.UI.Shell.SecurityAppKind;
          guidRegistration : WinRt.Guid
       )
       return WinRt.Hresult is abstract;
@@ -443,11 +443,11 @@ package WinRt.Windows.UI.Shell is
       function UpdateState
       (
          this : access ISecurityAppManager_Interface;
-         kind : Windows.UI.Shell.SecurityAppKind;
+         kind : WinRt.Windows.UI.Shell.SecurityAppKind;
          guidRegistration : WinRt.Guid;
-         state : Windows.UI.Shell.SecurityAppState;
-         substatus : Windows.UI.Shell.SecurityAppSubstatus;
-         detailsUri : Windows.Foundation.IUriRuntimeClass
+         state : WinRt.Windows.UI.Shell.SecurityAppState;
+         substatus : WinRt.Windows.UI.Shell.SecurityAppSubstatus;
+         detailsUri : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -459,21 +459,21 @@ package WinRt.Windows.UI.Shell is
       function get_WindowId
       (
          this : access IShareWindowCommandEventArgs_Interface;
-         RetVal : access Windows.UI.WindowId
+         RetVal : access WinRt.Windows.UI.WindowId
       )
       return WinRt.Hresult is abstract;
 
       function get_Command
       (
          this : access IShareWindowCommandEventArgs_Interface;
-         RetVal : access Windows.UI.Shell.ShareWindowCommand
+         RetVal : access WinRt.Windows.UI.Shell.ShareWindowCommand
       )
       return WinRt.Hresult is abstract;
 
       function put_Command
       (
          this : access IShareWindowCommandEventArgs_Interface;
-         value : Windows.UI.Shell.ShareWindowCommand
+         value : WinRt.Windows.UI.Shell.ShareWindowCommand
       )
       return WinRt.Hresult is abstract;
 
@@ -504,14 +504,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IShareWindowCommandSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommandRequested
       (
          this : access IShareWindowCommandSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -519,14 +519,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IShareWindowCommandSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommandInvoked
       (
          this : access IShareWindowCommandSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -538,7 +538,7 @@ package WinRt.Windows.UI.Shell is
       function GetForCurrentView
       (
          this : access IShareWindowCommandSourceStatics_Interface;
-         RetVal : access Windows.UI.Shell.IShareWindowCommandSource
+         RetVal : access WinRt.Windows.UI.Shell.IShareWindowCommandSource
       )
       return WinRt.Hresult is abstract;
 
@@ -571,7 +571,7 @@ package WinRt.Windows.UI.Shell is
       function IsAppListEntryPinnedAsync
       (
          this : access ITaskbarManager_Interface;
-         appListEntry : Windows.ApplicationModel.Core.IAppListEntry;
+         appListEntry : WinRt.Windows.ApplicationModel.Core.IAppListEntry;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -586,7 +586,7 @@ package WinRt.Windows.UI.Shell is
       function RequestPinAppListEntryAsync
       (
          this : access ITaskbarManager_Interface;
-         appListEntry : Windows.ApplicationModel.Core.IAppListEntry;
+         appListEntry : WinRt.Windows.ApplicationModel.Core.IAppListEntry;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -607,7 +607,7 @@ package WinRt.Windows.UI.Shell is
       function RequestPinSecondaryTileAsync
       (
          this : access ITaskbarManager2_Interface;
-         secondaryTile : Windows.UI.StartScreen.ISecondaryTile;
+         secondaryTile : WinRt.Windows.UI.StartScreen.ISecondaryTile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -633,7 +633,7 @@ package WinRt.Windows.UI.Shell is
       function GetDefault
       (
          this : access ITaskbarManagerStatics_Interface;
-         RetVal : access Windows.UI.Shell.ITaskbarManager
+         RetVal : access WinRt.Windows.UI.Shell.ITaskbarManager
       )
       return WinRt.Hresult is abstract;
 
@@ -673,14 +673,14 @@ package WinRt.Windows.UI.Shell is
       function get_Icon
       (
          this : access IWindowTab_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTabIcon
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
       function put_Icon
       (
          this : access IWindowTab_Interface;
-         value : Windows.UI.Shell.IWindowTabIcon
+         value : WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
@@ -701,14 +701,14 @@ package WinRt.Windows.UI.Shell is
       function get_Group
       (
          this : access IWindowTab_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTabGroup
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_Group
       (
          this : access IWindowTab_Interface;
-         value : Windows.UI.Shell.IWindowTabGroup
+         value : WinRt.Windows.UI.Shell.IWindowTabGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -726,7 +726,7 @@ package WinRt.Windows.UI.Shell is
       function get_Tab
       (
          this : access IWindowTabCloseRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTab
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTab
       )
       return WinRt.Hresult is abstract;
 
@@ -738,7 +738,7 @@ package WinRt.Windows.UI.Shell is
       function MoveTab
       (
          this : access IWindowTabCollection_Interface;
-         tab : Windows.UI.Shell.IWindowTab;
+         tab : WinRt.Windows.UI.Shell.IWindowTab;
          index : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -765,14 +765,14 @@ package WinRt.Windows.UI.Shell is
       function get_Icon
       (
          this : access IWindowTabGroup_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTabIcon
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
       function put_Icon
       (
          this : access IWindowTabGroup_Interface;
-         value : Windows.UI.Shell.IWindowTabIcon
+         value : WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
@@ -791,7 +791,7 @@ package WinRt.Windows.UI.Shell is
          this : access IWindowTabIconStatics_Interface;
          glyph : WinRt.HString;
          fontFamily : WinRt.HString;
-         RetVal : access Windows.UI.Shell.IWindowTabIcon
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
@@ -800,16 +800,16 @@ package WinRt.Windows.UI.Shell is
          this : access IWindowTabIconStatics_Interface;
          glyph : WinRt.HString;
          fontFamily : WinRt.HString;
-         fontUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.Shell.IWindowTabIcon
+         fontUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromImage
       (
          this : access IWindowTabIconStatics_Interface;
-         image : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.UI.Shell.IWindowTabIcon
+         image : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabIcon
       )
       return WinRt.Hresult is abstract;
 
@@ -821,14 +821,14 @@ package WinRt.Windows.UI.Shell is
       function get_Tabs
       (
          this : access IWindowTabManager_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTabCollection
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabCollection
       )
       return WinRt.Hresult is abstract;
 
       function SetActiveTab
       (
          this : access IWindowTabManager_Interface;
-         tab : Windows.UI.Shell.IWindowTab
+         tab : WinRt.Windows.UI.Shell.IWindowTab
       )
       return WinRt.Hresult is abstract;
 
@@ -836,14 +836,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IWindowTabManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TabSwitchRequested
       (
          this : access IWindowTabManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -851,14 +851,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IWindowTabManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TabCloseRequested
       (
          this : access IWindowTabManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -866,14 +866,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IWindowTabManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TabTearOutRequested
       (
          this : access IWindowTabManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -881,14 +881,14 @@ package WinRt.Windows.UI.Shell is
       (
          this : access IWindowTabManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TabThumbnailRequested
       (
          this : access IWindowTabManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -900,8 +900,8 @@ package WinRt.Windows.UI.Shell is
       function GetForWindow
       (
          this : access IWindowTabManagerStatics_Interface;
-         id : Windows.UI.WindowId;
-         RetVal : access Windows.UI.Shell.IWindowTabManager
+         id : WinRt.Windows.UI.WindowId;
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTabManager
       )
       return WinRt.Hresult is abstract;
 
@@ -927,7 +927,7 @@ package WinRt.Windows.UI.Shell is
       function get_Tab
       (
          this : access IWindowTabSwitchRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTab
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTab
       )
       return WinRt.Hresult is abstract;
 
@@ -939,7 +939,7 @@ package WinRt.Windows.UI.Shell is
       function get_Tab
       (
          this : access IWindowTabTearOutRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTab
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTab
       )
       return WinRt.Hresult is abstract;
 
@@ -960,7 +960,7 @@ package WinRt.Windows.UI.Shell is
       function GetDeferral
       (
          this : access IWindowTabTearOutRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -972,35 +972,35 @@ package WinRt.Windows.UI.Shell is
       function get_Tab
       (
          this : access IWindowTabThumbnailRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Shell.IWindowTab
+         RetVal : access WinRt.Windows.UI.Shell.IWindowTab
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestedSize
       (
          this : access IWindowTabThumbnailRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function get_Image
       (
          this : access IWindowTabThumbnailRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IWindowTabThumbnailRequestedEventArgs_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IWindowTabThumbnailRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1089,7 +1089,7 @@ package WinRt.Windows.UI.Shell is
    function TryStartFocusSession
    (
       this : in out FocusSessionManager;
-      endTime : Windows.Foundation.DateTime
+      endTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.UI.Shell.FocusSession'Class;
 
@@ -1108,7 +1108,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_IsFocusActiveChanged
    (
       this : in out FocusSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1128,9 +1128,9 @@ package WinRt.Windows.UI.Shell is
    function Register
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       displayName : WinRt.WString;
-      detailsUri : Windows.Foundation.Uri'Class;
+      detailsUri : WinRt.Windows.Foundation.Uri'Class;
       registerPerUser : WinRt.Boolean
    )
    return WinRt.Guid;
@@ -1138,18 +1138,18 @@ package WinRt.Windows.UI.Shell is
    procedure Unregister
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       guidRegistration : WinRt.Guid
    );
 
    procedure UpdateState
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       guidRegistration : WinRt.Guid;
-      state : Windows.UI.Shell.SecurityAppState;
-      substatus : Windows.UI.Shell.SecurityAppSubstatus;
-      detailsUri : Windows.Foundation.Uri'Class
+      state : WinRt.Windows.UI.Shell.SecurityAppState;
+      substatus : WinRt.Windows.UI.Shell.SecurityAppSubstatus;
+      detailsUri : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1176,7 +1176,7 @@ package WinRt.Windows.UI.Shell is
    procedure put_Command
    (
       this : in out ShareWindowCommandEventArgs;
-      value : Windows.UI.Shell.ShareWindowCommand
+      value : WinRt.Windows.UI.Shell.ShareWindowCommand
    );
 
    -----------------------------------------------------------------------------
@@ -1219,7 +1219,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_CommandRequested
    (
       this : in out ShareWindowCommandSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CommandInvoked
@@ -1232,7 +1232,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_CommandInvoked
    (
       this : in out ShareWindowCommandSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1271,7 +1271,7 @@ package WinRt.Windows.UI.Shell is
    function IsAppListEntryPinnedAsync
    (
       this : in out TaskbarManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean;
 
@@ -1284,7 +1284,7 @@ package WinRt.Windows.UI.Shell is
    function RequestPinAppListEntryAsync
    (
       this : in out TaskbarManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean;
 
@@ -1298,7 +1298,7 @@ package WinRt.Windows.UI.Shell is
    function RequestPinSecondaryTileAsync
    (
       this : in out TaskbarManager;
-      secondaryTile : Windows.UI.StartScreen.SecondaryTile'Class
+      secondaryTile : WinRt.Windows.UI.StartScreen.SecondaryTile'Class
    )
    return WinRt.Boolean;
 
@@ -1356,7 +1356,7 @@ package WinRt.Windows.UI.Shell is
    procedure put_Icon
    (
       this : in out WindowTab;
-      value : Windows.UI.Shell.WindowTabIcon'Class
+      value : WinRt.Windows.UI.Shell.WindowTabIcon'Class
    );
 
    function get_TreatAsSecondaryTileId
@@ -1380,7 +1380,7 @@ package WinRt.Windows.UI.Shell is
    procedure put_Group
    (
       this : in out WindowTab;
-      value : Windows.UI.Shell.WindowTabGroup'Class
+      value : WinRt.Windows.UI.Shell.WindowTabGroup'Class
    );
 
    procedure ReportThumbnailAvailable
@@ -1415,7 +1415,7 @@ package WinRt.Windows.UI.Shell is
    procedure MoveTab
    (
       this : in out WindowTabCollection;
-      tab : Windows.UI.Shell.WindowTab'Class;
+      tab : WinRt.Windows.UI.Shell.WindowTab'Class;
       index : WinRt.UInt32
    );
 
@@ -1442,7 +1442,7 @@ package WinRt.Windows.UI.Shell is
    function IndexOf
    (
       this : in out WindowTabCollection;
-      value : Windows.UI.Shell.WindowTab'Class;
+      value : WinRt.Windows.UI.Shell.WindowTab'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1451,14 +1451,14 @@ package WinRt.Windows.UI.Shell is
    (
       this : in out WindowTabCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    );
 
    procedure InsertAt
    (
       this : in out WindowTabCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    );
 
    procedure RemoveAt
@@ -1470,7 +1470,7 @@ package WinRt.Windows.UI.Shell is
    procedure Append
    (
       this : in out WindowTabCollection;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    );
 
    procedure RemoveAtEnd
@@ -1487,14 +1487,14 @@ package WinRt.Windows.UI.Shell is
    (
       this : in out WindowTabCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Shell.IWindowTab_Array
+      items : WinRt.Windows.UI.Shell.IWindowTab_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out WindowTabCollection;
-      items : Windows.UI.Shell.IWindowTab_Array
+      items : WinRt.Windows.UI.Shell.IWindowTab_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Shell.WindowTab>
@@ -1539,7 +1539,7 @@ package WinRt.Windows.UI.Shell is
    procedure put_Icon
    (
       this : in out WindowTabGroup;
-      value : Windows.UI.Shell.WindowTabIcon'Class
+      value : WinRt.Windows.UI.Shell.WindowTabIcon'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1562,13 +1562,13 @@ package WinRt.Windows.UI.Shell is
    (
       glyph : WinRt.WString;
       fontFamily : WinRt.WString;
-      fontUri : Windows.Foundation.Uri'Class
+      fontUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Shell.WindowTabIcon;
 
    function CreateFromImage
    (
-      image : Windows.Storage.Streams.IRandomAccessStreamReference
+      image : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.UI.Shell.WindowTabIcon;
 
@@ -1586,7 +1586,7 @@ package WinRt.Windows.UI.Shell is
 
    function GetForWindow
    (
-      id : Windows.UI.WindowId
+      id : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.UI.Shell.WindowTabManager;
 
@@ -1608,7 +1608,7 @@ package WinRt.Windows.UI.Shell is
    procedure SetActiveTab
    (
       this : in out WindowTabManager;
-      tab : Windows.UI.Shell.WindowTab'Class
+      tab : WinRt.Windows.UI.Shell.WindowTab'Class
    );
 
    function add_TabSwitchRequested
@@ -1621,7 +1621,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_TabSwitchRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TabCloseRequested
@@ -1634,7 +1634,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_TabCloseRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TabTearOutRequested
@@ -1647,7 +1647,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_TabTearOutRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TabThumbnailRequested
@@ -1660,7 +1660,7 @@ package WinRt.Windows.UI.Shell is
    procedure remove_TabThumbnailRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1741,7 +1741,7 @@ package WinRt.Windows.UI.Shell is
    procedure put_Image
    (
       this : in out WindowTabThumbnailRequestedEventArgs;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function GetDeferral

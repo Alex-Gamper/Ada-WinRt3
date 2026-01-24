@@ -77,13 +77,13 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundDownloader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundDownloader");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
    begin
       return RetVal : BackgroundDownloader do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBackgroundDownloader := new Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
+            Retval.m_IBackgroundDownloader := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
             Retval.m_IBackgroundDownloader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -92,21 +92,21 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
 
    function Constructor
    (
-      completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
+      completionGroup : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
    )
    return BackgroundDownloader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundDownloader");
       m_Factory    : access IBackgroundDownloaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
    begin
       return RetVal : BackgroundDownloader do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundDownloaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithCompletionGroup (completionGroup.m_IBackgroundTransferCompletionGroup.all, m_ComRetVal'Access);
-            Retval.m_IBackgroundDownloader := new Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
+            Retval.m_IBackgroundDownloader := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
             Retval.m_IBackgroundDownloader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -258,7 +258,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
 
    function GetCurrentDownloadsForTransferGroupAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      group : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -384,7 +384,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IUnconstrainedTransferRequestResult := new Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
+                     Retval.m_IUnconstrainedTransferRequestResult := new WinRt.Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
                      Retval.m_IUnconstrainedTransferRequestResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -405,21 +405,21 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateDownload
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IDownloadOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation do
          Hr := this.m_IBackgroundDownloader.all.CreateDownload (uri.m_IUriRuntimeClass.all, resultFile, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
+         Retval.m_IDownloadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
          Retval.m_IDownloadOperation.all := m_ComRetVal;
       end return;
    end;
@@ -427,22 +427,22 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateDownload
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile;
-      requestBodyFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile;
+      requestBodyFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IDownloadOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation do
          Hr := this.m_IBackgroundDownloader.all.CreateDownload (uri.m_IUriRuntimeClass.all, resultFile, requestBodyFile, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
+         Retval.m_IDownloadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
          Retval.m_IDownloadOperation.all := m_ComRetVal;
       end return;
    end;
@@ -450,9 +450,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateDownloadAsync
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile;
-      requestBodyStream : Windows.Storage.Streams.IInputStream
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile;
+      requestBodyStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -503,7 +503,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
+                  Retval.m_IDownloadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
                   Retval.m_IDownloadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -549,7 +549,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -559,7 +559,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -567,7 +567,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ServerCredential
    (
       this : in out BackgroundDownloader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -592,7 +592,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -602,7 +602,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -610,7 +610,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ProxyCredential
    (
       this : in out BackgroundDownloader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -725,7 +725,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundDownloader.all);
@@ -740,7 +740,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out BackgroundDownloader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -765,7 +765,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup do
@@ -775,7 +775,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         Retval.m_IBackgroundTransferGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          Retval.m_IBackgroundTransferGroup.all := m_ComRetVal;
       end return;
    end;
@@ -783,7 +783,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferGroup
    (
       this : in out BackgroundDownloader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -808,7 +808,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotification do
@@ -818,7 +818,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+         Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
          Retval.m_IToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -826,7 +826,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessToastNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -851,7 +851,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotification do
@@ -861,7 +861,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+         Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
          Retval.m_IToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -869,7 +869,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureToastNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -894,7 +894,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileNotification do
@@ -904,7 +904,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+         Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
          Retval.m_ITileNotification.all := m_ComRetVal;
       end return;
    end;
@@ -912,7 +912,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessTileNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -937,7 +937,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileNotification do
@@ -947,7 +947,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+         Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
          Retval.m_ITileNotification.all := m_ComRetVal;
       end return;
    end;
@@ -955,7 +955,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureTileNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -980,7 +980,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader3, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundDownloader3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup do
@@ -990,7 +990,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferCompletionGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+         Retval.m_IBackgroundTransferCompletionGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
          Retval.m_IBackgroundTransferCompletionGroup.all := m_ComRetVal;
       end return;
    end;
@@ -1021,13 +1021,13 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundTransferCompletionGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
    begin
       return RetVal : BackgroundTransferCompletionGroup do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBackgroundTransferCompletionGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+            Retval.m_IBackgroundTransferCompletionGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
             Retval.m_IBackgroundTransferCompletionGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1045,7 +1045,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTrigger;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       Hr := this.m_IBackgroundTransferCompletionGroup.all.get_Trigger (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1116,7 +1116,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDownloadOperation.Kind;
    begin
       Hr := this.m_IBackgroundTransferCompletionGroupTriggerDetails.all.get_Downloads (m_ComRetVal'Access);
@@ -1136,7 +1136,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUploadOperation.Kind;
    begin
       Hr := this.m_IBackgroundTransferCompletionGroupTriggerDetails.all.get_Uploads (m_ComRetVal'Access);
@@ -1178,17 +1178,17 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    return BackgroundTransferContentPart is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
       m_Factory    : access IBackgroundTransferContentPartFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : BackgroundTransferContentPart do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTransferContentPartFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithName (HStr_name, m_ComRetVal'Access);
-            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+            Retval.m_IBackgroundTransferContentPart := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
             Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1205,10 +1205,10 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    return BackgroundTransferContentPart is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
       m_Factory    : access IBackgroundTransferContentPartFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_fileName : constant WinRt.HString := To_HString (fileName);
    begin
@@ -1216,7 +1216,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTransferContentPartFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithNameAndFileName (HStr_name, HStr_fileName, m_ComRetVal'Access);
-            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+            Retval.m_IBackgroundTransferContentPart := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
             Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1229,13 +1229,13 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundTransferContentPart is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
    begin
       return RetVal : BackgroundTransferContentPart do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBackgroundTransferContentPart := new Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
+            Retval.m_IBackgroundTransferContentPart := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
             Retval.m_IBackgroundTransferContentPart.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1285,7 +1285,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure SetFile
    (
       this : in out BackgroundTransferContentPart;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1311,7 +1311,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferError");
          m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferErrorStaticMethods_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Web.WebErrorStatus;
+         m_ComRetVal      : aliased WinRt.Windows.Web.WebErrorStatus;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundTransferErrorStaticMethods'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1360,7 +1360,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferGroup");
       m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroupStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup do
@@ -1371,7 +1371,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBackgroundTransferGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+            Retval.m_IBackgroundTransferGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
             Retval.m_IBackgroundTransferGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1410,7 +1410,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior;
    begin
       Hr := this.m_IBackgroundTransferGroup.all.get_TransferBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1422,7 +1422,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferBehavior
    (
       this : in out BackgroundTransferGroup;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1482,7 +1482,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_BackgroundTransferFileRange.Kind;
    begin
       Hr := this.m_IBackgroundTransferRangesDownloadedEventArgs.all.get_AddedRanges (m_ComRetVal'Access);
@@ -1502,14 +1502,14 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IBackgroundTransferRangesDownloadedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1539,21 +1539,21 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
 
    function Constructor
    (
-      completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
+      completionGroup : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
    )
    return BackgroundUploader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundUploader");
       m_Factory    : access IBackgroundUploaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
    begin
       return RetVal : BackgroundUploader do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundUploaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithCompletionGroup (completionGroup.m_IBackgroundTransferCompletionGroup.all, m_ComRetVal'Access);
-            Retval.m_IBackgroundUploader := new Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+            Retval.m_IBackgroundUploader := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
             Retval.m_IBackgroundUploader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1564,13 +1564,13 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundUploader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
-      m_ComRetVal  : aliased Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundUploader");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
    begin
       return RetVal : BackgroundUploader do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBackgroundUploader := new Windows.Networking.BackgroundTransfer.IBackgroundUploader;
+            Retval.m_IBackgroundUploader := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
             Retval.m_IBackgroundUploader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1638,7 +1638,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IUnconstrainedTransferRequestResult := new Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
+                     Retval.m_IUnconstrainedTransferRequestResult := new WinRt.Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult;
                      Retval.m_IUnconstrainedTransferRequestResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1794,7 +1794,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
 
    function GetCurrentUploadsForTransferGroupAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      group : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1868,21 +1868,21 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUpload
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
-      sourceFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      sourceFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IUploadOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.UploadOperation do
          Hr := this.m_IBackgroundUploader.all.CreateUpload (uri.m_IUriRuntimeClass.all, sourceFile, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+         Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
          Retval.m_IUploadOperation.all := m_ComRetVal;
       end return;
    end;
@@ -1890,8 +1890,8 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadFromStreamAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
-      sourceStream : Windows.Storage.Streams.IInputStream
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      sourceStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1942,7 +1942,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1958,7 +1958,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class is
@@ -2010,7 +2010,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject;
       subType_x : WinRt.WString
    )
@@ -2080,7 +2080,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2097,7 +2097,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject;
       subType_x : WinRt.WString;
       boundary : WinRt.WString
@@ -2153,7 +2153,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2201,7 +2201,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -2211,7 +2211,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -2219,7 +2219,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ServerCredential
    (
       this : in out BackgroundUploader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2244,7 +2244,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -2254,7 +2254,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -2262,7 +2262,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ProxyCredential
    (
       this : in out BackgroundUploader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2377,7 +2377,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferBase, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBackgroundUploader.all);
@@ -2392,7 +2392,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out BackgroundUploader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2417,7 +2417,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup do
@@ -2427,7 +2427,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         Retval.m_IBackgroundTransferGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          Retval.m_IBackgroundTransferGroup.all := m_ComRetVal;
       end return;
    end;
@@ -2435,7 +2435,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferGroup
    (
       this : in out BackgroundUploader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2460,7 +2460,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotification do
@@ -2470,7 +2470,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+         Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
          Retval.m_IToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -2478,7 +2478,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessToastNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2503,7 +2503,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotification do
@@ -2513,7 +2513,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+         Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
          Retval.m_IToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -2521,7 +2521,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureToastNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2546,7 +2546,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileNotification do
@@ -2556,7 +2556,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+         Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
          Retval.m_ITileNotification.all := m_ComRetVal;
       end return;
    end;
@@ -2564,7 +2564,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessTileNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2589,7 +2589,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileNotification;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader2, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileNotification do
@@ -2599,7 +2599,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+         Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
          Retval.m_ITileNotification.all := m_ComRetVal;
       end return;
    end;
@@ -2607,7 +2607,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureTileNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2632,7 +2632,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader3, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundUploader3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup do
@@ -2642,7 +2642,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferCompletionGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+         Retval.m_IBackgroundTransferCompletionGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
          Retval.m_IBackgroundTransferCompletionGroup.all := m_ComRetVal;
       end return;
    end;
@@ -2658,7 +2658,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.ContentPrefetcher");
          m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IContentPrefetcherTime_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IContentPrefetcherTime'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2679,7 +2679,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.ContentPrefetcher");
          m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IContentPrefetcher_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IContentPrefetcher'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2695,7 +2695,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
 
       procedure put_IndirectContentUri
       (
-         value : Windows.Foundation.Uri'Class
+         value : WinRt.Windows.Foundation.Uri'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2721,7 +2721,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.BackgroundTransfer.ContentPrefetcher");
          m_Factory        : access WinRt.Windows.Networking.BackgroundTransfer.IContentPrefetcher_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_IContentPrefetcher'Access , m_Factory'Address);
@@ -2731,7 +2731,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+               Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2771,7 +2771,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       Hr := this.m_IDownloadOperation.all.get_ResultFile (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2788,7 +2788,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress;
    begin
       Hr := this.m_IDownloadOperation.all.get_Progress (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2850,7 +2850,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
+                  Retval.m_IDownloadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
                   Retval.m_IDownloadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2916,7 +2916,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDownloadOperation := new Windows.Networking.BackgroundTransfer.IDownloadOperation;
+                  Retval.m_IDownloadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
                   Retval.m_IDownloadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2987,7 +2987,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2997,7 +2997,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3059,7 +3059,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3074,7 +3074,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out DownloadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3100,7 +3100,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3121,7 +3121,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IResponseInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IResponseInformation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.ResponseInformation do
@@ -3131,7 +3131,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IResponseInformation := new Windows.Networking.BackgroundTransfer.IResponseInformation;
+         Retval.m_IResponseInformation := new WinRt.Windows.Networking.BackgroundTransfer.IResponseInformation;
          Retval.m_IResponseInformation.all := m_ComRetVal;
       end return;
    end;
@@ -3145,7 +3145,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperationPriority := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferPriority;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperationPriority, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperationPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3160,7 +3160,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_Priority
    (
       this : in out DownloadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3185,7 +3185,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation2, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup do
@@ -3195,7 +3195,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         Retval.m_IBackgroundTransferGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          Retval.m_IBackgroundTransferGroup.all := m_ComRetVal;
       end return;
    end;
@@ -3249,7 +3249,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3270,7 +3270,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_BackgroundTransferFileRange.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation3'Unchecked_Access);
    begin
@@ -3295,7 +3295,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3310,7 +3310,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure remove_RangesDownloaded
    (
       this : in out DownloadOperation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3329,7 +3329,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_RequestedUri
    (
       this : in out DownloadOperation;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3354,7 +3354,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3375,7 +3375,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation3, WinRt.Windows.Networking.BackgroundTransfer.IID_IDownloadOperation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDownloadOperation.all);
@@ -3498,14 +3498,14 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IResponseInformation.all.get_ActualUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3535,7 +3535,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_IResponseInformation.all.get_Headers (m_ComRetVal'Access);
@@ -3618,7 +3618,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       Hr := this.m_IUploadOperation.all.get_SourceFile (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3635,7 +3635,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundUploadProgress;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundUploadProgress;
    begin
       Hr := this.m_IUploadOperation.all.get_Progress (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3697,7 +3697,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3763,7 +3763,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUploadOperation := new Windows.Networking.BackgroundTransfer.IUploadOperation;
+                  Retval.m_IUploadOperation := new WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation;
                   Retval.m_IUploadOperation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3806,7 +3806,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -3816,7 +3816,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3878,7 +3878,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUploadOperation.all);
@@ -3893,7 +3893,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out UploadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3919,7 +3919,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUploadOperation.all);
@@ -3940,7 +3940,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IResponseInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IResponseInformation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperation'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.ResponseInformation do
@@ -3950,7 +3950,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IResponseInformation := new Windows.Networking.BackgroundTransfer.IResponseInformation;
+         Retval.m_IResponseInformation := new WinRt.Windows.Networking.BackgroundTransfer.IResponseInformation;
          Retval.m_IResponseInformation.all := m_ComRetVal;
       end return;
    end;
@@ -3964,7 +3964,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperationPriority := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.BackgroundTransferPriority;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferOperationPriority, WinRt.Windows.Networking.BackgroundTransfer.IID_IBackgroundTransferOperationPriority'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUploadOperation.all);
@@ -3979,7 +3979,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_Priority
    (
       this : in out UploadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4004,7 +4004,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation_Interface, WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation2, WinRt.Windows.Networking.BackgroundTransfer.IID_IUploadOperation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup do
@@ -4014,7 +4014,7 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundTransferGroup := new Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         Retval.m_IBackgroundTransferGroup := new WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          Retval.m_IBackgroundTransferGroup.all := m_ComRetVal;
       end return;
    end;

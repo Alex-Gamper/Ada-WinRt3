@@ -258,14 +258,14 @@ package WinRt.Windows.Storage.FileProperties is
       function get_DateModified
       (
          this : access IBasicProperties_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemDate
       (
          this : access IBasicProperties_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -324,7 +324,7 @@ package WinRt.Windows.Storage.FileProperties is
       function GetGeotagAsync
       (
          this : access IGeotagHelperStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -332,18 +332,18 @@ package WinRt.Windows.Storage.FileProperties is
       function SetGeotagFromGeolocatorAsync
       (
          this : access IGeotagHelperStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         geolocator : Windows.Devices.Geolocation.IGeolocator;
-         RetVal : access Windows.Foundation.IAsyncAction
+         file : WinRt.Windows.Storage.IStorageFile;
+         geolocator : WinRt.Windows.Devices.Geolocation.IGeolocator;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetGeotagAsync
       (
          this : access IGeotagHelperStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         geopoint : Windows.Devices.Geolocation.IGeopoint;
-         RetVal : access Windows.Foundation.IAsyncAction
+         file : WinRt.Windows.Storage.IStorageFile;
+         geopoint : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -376,14 +376,14 @@ package WinRt.Windows.Storage.FileProperties is
       function get_DateTaken
       (
          this : access IImageProperties_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_DateTaken
       (
          this : access IImageProperties_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -460,7 +460,7 @@ package WinRt.Windows.Storage.FileProperties is
       function get_Orientation
       (
          this : access IImageProperties_Interface;
-         RetVal : access Windows.Storage.FileProperties.PhotoOrientation
+         RetVal : access WinRt.Windows.Storage.FileProperties.PhotoOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -556,7 +556,7 @@ package WinRt.Windows.Storage.FileProperties is
       function get_Duration
       (
          this : access IMusicProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -701,14 +701,14 @@ package WinRt.Windows.Storage.FileProperties is
       (
          this : access IStorageItemExtraProperties_Interface;
          propertiesToSave : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SavePropertiesAsync
       (
          this : access IStorageItemExtraProperties_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -741,7 +741,7 @@ package WinRt.Windows.Storage.FileProperties is
       function get_Type
       (
          this : access IThumbnailProperties_Interface;
-         RetVal : access Windows.Storage.FileProperties.ThumbnailType
+         RetVal : access WinRt.Windows.Storage.FileProperties.ThumbnailType
       )
       return WinRt.Hresult is abstract;
 
@@ -788,7 +788,7 @@ package WinRt.Windows.Storage.FileProperties is
       function get_Duration
       (
          this : access IVideoProperties_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -893,7 +893,7 @@ package WinRt.Windows.Storage.FileProperties is
       function get_Orientation
       (
          this : access IVideoProperties_Interface;
-         RetVal : access Windows.Storage.FileProperties.VideoOrientation
+         RetVal : access WinRt.Windows.Storage.FileProperties.VideoOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -1017,20 +1017,20 @@ package WinRt.Windows.Storage.FileProperties is
 
       function GetGeotagAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Devices.Geolocation.Geopoint;
 
       procedure SetGeotagFromGeolocatorAsync
       (
-         file : Windows.Storage.IStorageFile;
-         geolocator : Windows.Devices.Geolocation.Geolocator'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         geolocator : WinRt.Windows.Devices.Geolocation.Geolocator'Class
       );
 
       procedure SetGeotagAsync
       (
-         file : Windows.Storage.IStorageFile;
-         geopoint : Windows.Devices.Geolocation.Geopoint'Class
+         file : WinRt.Windows.Storage.IStorageFile;
+         geopoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
       );
 
    end GeotagHelper;
@@ -1071,7 +1071,7 @@ package WinRt.Windows.Storage.FileProperties is
    procedure put_DateTaken
    (
       this : in out ImageProperties;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Width
@@ -1466,7 +1466,7 @@ package WinRt.Windows.Storage.FileProperties is
    function WriteAsync
    (
       this : in out StorageItemThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -1484,9 +1484,9 @@ package WinRt.Windows.Storage.FileProperties is
    function ReadAsync
    (
       this : in out StorageItemThumbnail;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 

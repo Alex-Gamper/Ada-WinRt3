@@ -129,14 +129,14 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       (
          this : access IDevicePortalConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IDevicePortalConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -144,14 +144,14 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       (
          this : access IDevicePortalConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RequestReceived
       (
          this : access IDevicePortalConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -163,7 +163,7 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       function get_Reason
       (
          this : access IDevicePortalConnectionClosedEventArgs_Interface;
-         RetVal : access Windows.System.Diagnostics.DevicePortal.DevicePortalConnectionClosedReason
+         RetVal : access WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnectionClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -175,14 +175,14 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       function get_RequestMessage
       (
          this : access IDevicePortalConnectionRequestReceivedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseMessage
       (
          this : access IDevicePortalConnectionRequestReceivedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -194,8 +194,8 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       function GetForAppServiceConnection
       (
          this : access IDevicePortalConnectionStatics_Interface;
-         appServiceConnection : Windows.ApplicationModel.AppService.IAppServiceConnection;
-         RetVal : access Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection
+         appServiceConnection : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
+         RetVal : access WinRt.Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -207,50 +207,50 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       function GetServerMessageWebSocketForRequest
       (
          this : access IDevicePortalWebSocketConnection_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         RetVal : access Windows.Networking.Sockets.IServerMessageWebSocket
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerMessageWebSocket
       )
       return WinRt.Hresult is abstract;
 
       function GetServerMessageWebSocketForRequest
       (
          this : access IDevicePortalWebSocketConnection_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         messageType : Windows.Networking.Sockets.SocketMessageType;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
          protocol : WinRt.HString;
-         RetVal : access Windows.Networking.Sockets.IServerMessageWebSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerMessageWebSocket
       )
       return WinRt.Hresult is abstract;
 
       function GetServerMessageWebSocketForRequest
       (
          this : access IDevicePortalWebSocketConnection_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         messageType : Windows.Networking.Sockets.SocketMessageType;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
          protocol : WinRt.HString;
          outboundBufferSizeInBytes : WinRt.UInt32;
          maxMessageSize : WinRt.UInt32;
-         receiveMode : Windows.Networking.Sockets.MessageWebSocketReceiveMode;
-         RetVal : access Windows.Networking.Sockets.IServerMessageWebSocket
+         receiveMode : WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode;
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerMessageWebSocket
       )
       return WinRt.Hresult is abstract;
 
       function GetServerStreamWebSocketForRequest
       (
          this : access IDevicePortalWebSocketConnection_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         RetVal : access Windows.Networking.Sockets.IServerStreamWebSocket
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerStreamWebSocket
       )
       return WinRt.Hresult is abstract;
 
       function GetServerStreamWebSocketForRequest
       (
          this : access IDevicePortalWebSocketConnection_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
          protocol : WinRt.HString;
          outboundBufferSizeInBytes : WinRt.UInt32;
          noDelay : WinRt.Boolean;
-         RetVal : access Windows.Networking.Sockets.IServerStreamWebSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IServerStreamWebSocket
       )
       return WinRt.Hresult is abstract;
 
@@ -276,7 +276,7 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       function GetDeferral
       (
          this : access IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -297,7 +297,7 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
 
    function GetForAppServiceConnection
    (
-      appServiceConnection : Windows.ApplicationModel.AppService.AppServiceConnection'Class
+      appServiceConnection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class
    )
    return WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnection;
 
@@ -314,7 +314,7 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    procedure remove_Closed
    (
       this : in out DevicePortalConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RequestReceived
@@ -327,21 +327,21 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    procedure remove_RequestReceived
    (
       this : in out DevicePortalConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetServerMessageWebSocketForRequest
    (
       this : in out DevicePortalConnection;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
 
    function GetServerMessageWebSocketForRequest
    (
       this : in out DevicePortalConnection;
-      request : Windows.Web.Http.HttpRequestMessage'Class;
-      messageType : Windows.Networking.Sockets.SocketMessageType;
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
+      messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
       protocol : WinRt.WString
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
@@ -349,26 +349,26 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    function GetServerMessageWebSocketForRequest
    (
       this : in out DevicePortalConnection;
-      request : Windows.Web.Http.HttpRequestMessage'Class;
-      messageType : Windows.Networking.Sockets.SocketMessageType;
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
+      messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
       protocol : WinRt.WString;
       outboundBufferSizeInBytes : WinRt.UInt32;
       maxMessageSize : WinRt.UInt32;
-      receiveMode : Windows.Networking.Sockets.MessageWebSocketReceiveMode
+      receiveMode : WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode
    )
    return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
 
    function GetServerStreamWebSocketForRequest
    (
       this : in out DevicePortalConnection;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Networking.Sockets.ServerStreamWebSocket'Class;
 
    function GetServerStreamWebSocketForRequest
    (
       this : in out DevicePortalConnection;
-      request : Windows.Web.Http.HttpRequestMessage'Class;
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
       protocol : WinRt.WString;
       outboundBufferSizeInBytes : WinRt.UInt32;
       noDelay : WinRt.Boolean

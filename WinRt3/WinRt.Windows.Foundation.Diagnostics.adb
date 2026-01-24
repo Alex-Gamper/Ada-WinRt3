@@ -45,8 +45,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceOperationCreation
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
          operationName : WinRt.WString;
@@ -73,11 +73,11 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceOperationCompletion
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         status : Windows.Foundation.AsyncStatus
+         status : WinRt.Windows.Foundation.AsyncStatus
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -98,11 +98,11 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceOperationRelation
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         relation : Windows.Foundation.Diagnostics.CausalityRelation
+         relation : WinRt.Windows.Foundation.Diagnostics.CausalityRelation
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -123,11 +123,11 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceSynchronousWorkStart
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -148,9 +148,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceSynchronousWorkCompletion
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -179,7 +179,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.AsyncCausalityTracer");
          m_Factory        : access WinRt.Windows.Foundation.Diagnostics.IAsyncCausalityTracerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAsyncCausalityTracerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -195,7 +195,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
 
       procedure remove_TracingStatusChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -297,7 +297,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IErrorDetails := new Windows.Foundation.Diagnostics.IErrorDetails;
+                     Retval.m_IErrorDetails := new WinRt.Windows.Foundation.Diagnostics.IErrorDetails;
                      Retval.m_IErrorDetails.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -363,14 +363,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IErrorDetails.all.get_HelpUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -405,17 +405,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return FileLoggingSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.FileLoggingSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.IFileLoggingSession");
       m_Factory    : access IFileLoggingSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.IFileLoggingSession;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.IFileLoggingSession;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : FileLoggingSession do
          Hr := RoGetActivationFactory (m_hString, IID_IFileLoggingSessionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_IFileLoggingSession := new Windows.Foundation.Diagnostics.IFileLoggingSession;
+            Retval.m_IFileLoggingSession := new WinRt.Windows.Foundation.Diagnostics.IFileLoggingSession;
             Retval.m_IFileLoggingSession.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -450,7 +450,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -465,8 +465,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -481,7 +481,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure RemoveLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -546,7 +546,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -568,7 +568,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileLoggingSession.all.add_LogFileGenerated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -580,7 +580,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure remove_LogFileGenerated
    (
       this : in out FileLoggingSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -641,14 +641,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_ILogFileGeneratedEventArgs.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -679,22 +679,22 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       activityName : WinRt.WString;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    )
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_activityName : constant WinRt.HString := To_HString (activityName);
    begin
       return RetVal : LoggingActivity do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingActivityFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateLoggingActivity (HStr_activityName, loggingChannel_p, m_ComRetVal'Access);
-            Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+            Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
             Retval.m_ILoggingActivity.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -706,23 +706,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       activityName : WinRt.WString;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_activityName : constant WinRt.HString := To_HString (activityName);
    begin
       return RetVal : LoggingActivity do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingActivityFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateLoggingActivityWithLevel (HStr_activityName, loggingChannel_p, level, m_ComRetVal'Access);
-            Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+            Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
             Retval.m_ILoggingActivity.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -798,7 +798,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingActivity2, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingActivity2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Diagnostics.LoggingChannel do
@@ -808,7 +808,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
+         Retval.m_ILoggingChannel := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
          Retval.m_ILoggingChannel.all := m_ComRetVal;
       end return;
    end;
@@ -838,7 +838,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       stopEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -860,8 +860,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       stopEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -903,7 +903,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingActivity;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -925,7 +925,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingActivity;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
       keywords : WinRt.Int64
    )
    return WinRt.Boolean is
@@ -970,7 +970,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -992,8 +992,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1015,9 +1015,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1045,7 +1045,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1066,14 +1066,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1084,7 +1084,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1094,15 +1094,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1113,7 +1113,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1123,16 +1123,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingActivity_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1143,7 +1143,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1175,22 +1175,22 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       name : WinRt.WString;
-      options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
    )
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithOptions (HStr_name, options.m_ILoggingChannelOptions.all, m_ComRetVal'Access);
-            Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
+            Retval.m_ILoggingChannel := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1202,23 +1202,23 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       name : WinRt.WString;
-      options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingChannelOptions'Class;
       id : WinRt.Guid
    )
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithOptionsAndId (HStr_name, options.m_ILoggingChannelOptions.all, id, m_ComRetVal'Access);
-            Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
+            Retval.m_ILoggingChannel := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1234,17 +1234,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
       m_Factory    : access ILoggingChannelFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannel;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingChannel do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_ILoggingChannel := new Windows.Foundation.Diagnostics.ILoggingChannel;
+            Retval.m_ILoggingChannel := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
             Retval.m_ILoggingChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1301,7 +1301,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.LoggingLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
    begin
       Hr := this.m_ILoggingChannel.all.get_Level (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1331,7 +1331,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventString : WinRt.WString;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1368,7 +1368,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingChannel;
       value1 : WinRt.WString;
       value2 : WinRt.Int32;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1391,7 +1391,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILoggingChannel.all.add_LoggingEnabled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1403,7 +1403,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure remove_LoggingEnabled
    (
       this : in out LoggingChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1478,7 +1478,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1500,7 +1500,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
       keywords : WinRt.Int64
    )
    return WinRt.Boolean is
@@ -1545,7 +1545,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1567,8 +1567,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1590,9 +1590,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1620,7 +1620,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1631,7 +1631,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1641,14 +1641,14 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1659,7 +1659,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1669,15 +1669,15 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1688,7 +1688,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1698,16 +1698,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.Diagnostics.ILoggingTarget := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ILoggingActivity;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
       HStr_startEventName : constant WinRt.HString := To_HString (startEventName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Diagnostics.ILoggingChannel_Interface, WinRt.Windows.Foundation.Diagnostics.ILoggingTarget, WinRt.Windows.Foundation.Diagnostics.IID_ILoggingTarget'Unchecked_Access);
    begin
@@ -1718,7 +1718,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILoggingActivity := new Windows.Foundation.Diagnostics.ILoggingActivity;
+         Retval.m_ILoggingActivity := new WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
          Retval.m_ILoggingActivity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_startEventName);
       end return;
@@ -1754,16 +1754,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannelOptions");
       m_Factory    : access ILoggingChannelOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
    begin
       return RetVal : LoggingChannelOptions do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingChannelOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (group, m_ComRetVal'Access);
-            Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+            Retval.m_ILoggingChannelOptions := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
             Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1774,13 +1774,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannelOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
    begin
       return RetVal : LoggingChannelOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILoggingChannelOptions := new Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+            Retval.m_ILoggingChannelOptions := new WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
             Retval.m_ILoggingChannelOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1848,13 +1848,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingFields is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingFields");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingFields;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingFields");
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
    begin
       return RetVal : LoggingFields do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILoggingFields := new Windows.Foundation.Diagnostics.ILoggingFields;
+            Retval.m_ILoggingFields := new WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
             Retval.m_ILoggingFields.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1948,7 +1948,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1966,7 +1966,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2004,7 +2004,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2023,7 +2023,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2062,7 +2062,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2082,7 +2082,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2121,7 +2121,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2140,7 +2140,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2179,7 +2179,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2199,7 +2199,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2238,7 +2238,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2257,7 +2257,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2296,7 +2296,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2316,7 +2316,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2355,7 +2355,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2374,7 +2374,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2413,7 +2413,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2433,7 +2433,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2472,7 +2472,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2491,7 +2491,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2530,7 +2530,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2550,7 +2550,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2589,7 +2589,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2608,7 +2608,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2647,7 +2647,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2667,7 +2667,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2706,7 +2706,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2725,7 +2725,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2764,7 +2764,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2784,7 +2784,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2823,7 +2823,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2842,7 +2842,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2881,7 +2881,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2901,7 +2901,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2940,7 +2940,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2959,7 +2959,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2998,7 +2998,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3018,7 +3018,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3057,7 +3057,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3076,7 +3076,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3115,7 +3115,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3135,7 +3135,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3174,7 +3174,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3193,7 +3193,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3232,7 +3232,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3252,7 +3252,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3293,7 +3293,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3314,7 +3314,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3355,7 +3355,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.HString_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3375,7 +3375,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.HString_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3414,7 +3414,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3433,7 +3433,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3472,7 +3472,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3492,7 +3492,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3512,7 +3512,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3530,8 +3530,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.DateTime;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3549,8 +3549,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.DateTime;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3569,7 +3569,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array
+      value : WinRt.Windows.Foundation.DateTime_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3588,8 +3588,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.DateTime_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3608,8 +3608,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.DateTime_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3629,7 +3629,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3647,8 +3647,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.TimeSpan;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3666,8 +3666,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.TimeSpan;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3686,7 +3686,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array
+      value : WinRt.Windows.Foundation.TimeSpan_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3705,8 +3705,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.TimeSpan_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3725,8 +3725,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.TimeSpan_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3746,7 +3746,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3764,8 +3764,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Point;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3783,8 +3783,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Point;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3803,7 +3803,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array
+      value : WinRt.Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3822,8 +3822,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Point_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3842,8 +3842,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Point_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3863,7 +3863,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3881,8 +3881,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Size;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3900,8 +3900,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Size;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3920,7 +3920,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array
+      value : WinRt.Windows.Foundation.Size_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3939,8 +3939,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Size_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3959,8 +3959,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Size_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -3980,7 +3980,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3998,8 +3998,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Rect;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4017,8 +4017,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Rect;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -4037,7 +4037,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array
+      value : WinRt.Windows.Foundation.Rect_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4056,8 +4056,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Rect_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4076,8 +4076,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Rect_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -4119,13 +4119,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
    begin
       return RetVal : LoggingOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
+            Retval.m_ILoggingOptions := new WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
             Retval.m_ILoggingOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4139,16 +4139,16 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingOptions");
       m_Factory    : access ILoggingOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingOptions;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
    begin
       return RetVal : LoggingOptions do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithKeywords (keywords, m_ComRetVal'Access);
-            Retval.m_ILoggingOptions := new Windows.Foundation.Diagnostics.ILoggingOptions;
+            Retval.m_ILoggingOptions := new WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
             Retval.m_ILoggingOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4263,7 +4263,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.LoggingOpcode;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.LoggingOpcode;
    begin
       Hr := this.m_ILoggingOptions.all.get_Opcode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4275,7 +4275,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure put_Opcode
    (
       this : in out LoggingOptions;
-      value : Windows.Foundation.Diagnostics.LoggingOpcode
+      value : WinRt.Windows.Foundation.Diagnostics.LoggingOpcode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4381,17 +4381,17 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingSession");
       m_Factory    : access ILoggingSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.ILoggingSession;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingSession;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : LoggingSession do
          Hr := RoGetActivationFactory (m_hString, IID_ILoggingSessionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_ILoggingSession := new Windows.Foundation.Diagnostics.ILoggingSession;
+            Retval.m_ILoggingSession := new WinRt.Windows.Foundation.Diagnostics.ILoggingSession;
             Retval.m_ILoggingSession.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4426,7 +4426,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function SaveToFileAsync
    (
       this : in out LoggingSession;
-      folder : Windows.Storage.IStorageFolder;
+      folder : WinRt.Windows.Storage.IStorageFolder;
       fileName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class is
@@ -4479,7 +4479,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4496,7 +4496,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4511,8 +4511,8 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4527,7 +4527,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure RemoveLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4583,13 +4583,13 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return RuntimeBrokerErrorSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings");
-      m_ComRetVal  : aliased Windows.Foundation.Diagnostics.IErrorReportingSettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.IErrorReportingSettings");
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.IErrorReportingSettings;
    begin
       return RetVal : RuntimeBrokerErrorSettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IErrorReportingSettings := new Windows.Foundation.Diagnostics.IErrorReportingSettings;
+            Retval.m_IErrorReportingSettings := new WinRt.Windows.Foundation.Diagnostics.IErrorReportingSettings;
             Retval.m_IErrorReportingSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4602,7 +4602,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    procedure SetErrorOptions
    (
       this : in out RuntimeBrokerErrorSettings;
-      value : Windows.Foundation.Diagnostics.ErrorOptions
+      value : WinRt.Windows.Foundation.Diagnostics.ErrorOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4622,7 +4622,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.ErrorOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.ErrorOptions;
    begin
       Hr := this.m_IErrorReportingSettings.all.GetErrorOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4679,7 +4679,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Diagnostics.CausalityTraceLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
    begin
       Hr := this.m_ITracingStatusChangedEventArgs.all.get_TraceLevel (m_ComRetVal'Access);
       if Hr /= S_OK then

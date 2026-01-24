@@ -771,21 +771,21 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Kind
       (
          this : access IActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.ActivationKind
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.ActivationKind
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviousExecutionState
       (
          this : access IActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.ApplicationExecutionState
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState
       )
       return WinRt.Hresult is abstract;
 
       function get_SplashScreen
       (
          this : access IActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.ISplashScreen
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.ISplashScreen
       )
       return WinRt.Hresult is abstract;
 
@@ -797,7 +797,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_User
       (
          this : access IActivatedEventArgsWithUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -833,7 +833,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_AddAppointmentOperation
       (
          this : access IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_RemoveAppointmentOperation
       (
          this : access IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -857,7 +857,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ReplaceAppointmentOperation
       (
          this : access IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -895,14 +895,14 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_TimeToShow
       (
          this : access IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -914,7 +914,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_TaskInstance
       (
          this : access IBackgroundActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskInstance
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -938,7 +938,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_CachedFileUpdaterUI
       (
          this : access ICachedFileUpdaterActivatedEventArgs_Interface;
-         RetVal : access Windows.Storage.Provider.ICachedFileUpdaterUI
+         RetVal : access WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI
       )
       return WinRt.Hresult is abstract;
 
@@ -969,7 +969,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Operation
       (
          this : access ICommandLineActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.ICommandLineActivationOperation
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.ICommandLineActivationOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1009,7 +1009,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function GetDeferral
       (
          this : access ICommandLineActivationOperation_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1047,7 +1047,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Contact
       (
          this : access IContactCallActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1059,14 +1059,14 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Address
       (
          this : access IContactMapActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactAddress
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_Contact
       (
          this : access IContactMapActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1092,7 +1092,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Contact
       (
          this : access IContactMessageActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1104,14 +1104,14 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ContactPanel
       (
          this : access IContactPanelActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactPanel
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactPanel
       )
       return WinRt.Hresult is abstract;
 
       function get_Contact
       (
          this : access IContactPanelActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1123,7 +1123,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ContactPickerUI
       (
          this : access IContactPickerActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.Provider.IContactPickerUI
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI
       )
       return WinRt.Hresult is abstract;
 
@@ -1149,7 +1149,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Contact
       (
          this : access IContactPostActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,7 +1175,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Contact
       (
          this : access IContactVideoCallActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
@@ -1199,7 +1199,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ContinuationData
       (
          this : access IContinuationActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1230,7 +1230,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_DeviceInformation
       (
          this : access IDevicePairingActivatedEventArgs_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1285,7 +1285,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_NeighboringFilesQuery
       (
          this : access IFileActivatedEventArgsWithNeighboringFiles_Interface;
-         RetVal : access Windows.Storage.Search.IStorageFileQueryResult
+         RetVal : access WinRt.Windows.Storage.Search.IStorageFileQueryResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1297,7 +1297,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_FileOpenPickerUI
       (
          this : access IFileOpenPickerActivatedEventArgs_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.IFileOpenPickerUI
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.IFileOpenPickerUI
       )
       return WinRt.Hresult is abstract;
 
@@ -1333,7 +1333,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_FileSavePickerUI
       (
          this : access IFileSavePickerActivatedEventArgs_Interface;
-         RetVal : access Windows.Storage.Pickers.Provider.IFileSavePickerUI
+         RetVal : access WinRt.Windows.Storage.Pickers.Provider.IFileSavePickerUI
       )
       return WinRt.Hresult is abstract;
 
@@ -1364,7 +1364,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_File
       (
          this : access IFileSavePickerContinuationEventArgs_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -1376,7 +1376,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Folder
       (
          this : access IFolderPickerContinuationEventArgs_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1407,7 +1407,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_TileActivatedInfo
       (
          this : access ILaunchActivatedEventArgs2_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.ITileActivatedInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.ITileActivatedInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1431,7 +1431,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_CallUI
       (
          this : access ILockScreenCallActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.ILockScreenCallUI
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.ILockScreenCallUI
       )
       return WinRt.Hresult is abstract;
 
@@ -1479,7 +1479,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Workflow
       (
          this : access IPrint3DWorkflowActivatedEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.Extensions.IPrint3DWorkflow
+         RetVal : access WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow
       )
       return WinRt.Hresult is abstract;
 
@@ -1491,7 +1491,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Configuration
       (
          this : access IPrintTaskSettingsActivatedEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.Extensions.IPrintTaskConfiguration
+         RetVal : access WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1503,7 +1503,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Uri
       (
          this : access IProtocolActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1522,7 +1522,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Data
       (
          this : access IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,7 +1534,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ProtocolForResultsOperation
       (
          this : access IProtocolForResultsActivatedEventArgs_Interface;
-         RetVal : access Windows.System.IProtocolForResultsOperation
+         RetVal : access WinRt.Windows.System.IProtocolForResultsOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1577,7 +1577,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_LinguisticDetails
       (
          this : access ISearchActivatedEventArgsWithLinguisticDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1589,7 +1589,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ShareOperation
       (
          this : access IShareTargetActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1601,7 +1601,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ImageLocation
       (
          this : access ISplashScreen_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,14 +1609,14 @@ package WinRt.Windows.ApplicationModel.Activation is
       (
          this : access ISplashScreen_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Dismissed
       (
          this : access ISplashScreen_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,7 +1659,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_UserInput
       (
          this : access IToastNotificationActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1671,7 +1671,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Operation
       (
          this : access IUserDataAccountProviderActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1683,7 +1683,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ViewSwitcher
       (
          this : access IViewSwitcherProvider_Interface;
-         RetVal : access Windows.UI.ViewManagement.IActivationViewSwitcher
+         RetVal : access WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1695,7 +1695,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Result
       (
          this : access IVoiceCommandActivatedEventArgs_Interface;
-         RetVal : access Windows.Media.SpeechRecognition.ISpeechRecognitionResult
+         RetVal : access WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1714,7 +1714,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_ActionKind
       (
          this : access IWalletActionActivatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.WalletActionKind
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.WalletActionKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1733,7 +1733,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_Operation
       (
          this : access IWebAccountProviderActivatedEventArgs_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1745,7 +1745,7 @@ package WinRt.Windows.ApplicationModel.Activation is
       function get_WebAuthenticationResult
       (
          this : access IWebAuthenticationBrokerContinuationEventArgs_Interface;
-         RetVal : access Windows.Security.Authentication.Web.IWebAuthenticationResult
+         RetVal : access WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -3622,7 +3622,7 @@ package WinRt.Windows.ApplicationModel.Activation is
    procedure remove_Dismissed
    (
       this : in out SplashScreen;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

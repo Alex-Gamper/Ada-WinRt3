@@ -363,12 +363,12 @@ package WinRt.Windows.ApplicationModel.Payments is
    -----------------------------------------------------------------------------
 
    IID_PaymentRequestChangedHandler : aliased WinRt.IID := (1350089185, 62360, 20268, (162, 126, 148, 211, 113, 207, 108, 125 ));
-   type PaymentRequestChangedHandler_Delegate (Callback : access procedure  (paymentRequest_p : Windows.ApplicationModel.Payments.IPaymentRequest;args : Windows.ApplicationModel.Payments.IPaymentRequestChangedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PaymentRequestChangedHandler'Access) with null record;
+   type PaymentRequestChangedHandler_Delegate (Callback : access procedure  (paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;args : WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_PaymentRequestChangedHandler'Access) with null record;
       function Invoke
       (
          this : access PaymentRequestChangedHandler_Delegate;
-         paymentRequest_p : Windows.ApplicationModel.Payments.IPaymentRequest;
-         args : Windows.ApplicationModel.Payments.IPaymentRequestChangedArgs
+         paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
+         args : WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedArgs
       )
       return WinRt.Hresult;
 
@@ -560,7 +560,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Properties
       (
          this : access IPaymentAddress_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -572,7 +572,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Status
       (
          this : access IPaymentCanMakePaymentResult_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -584,8 +584,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       function Create
       (
          this : access IPaymentCanMakePaymentResultFactory_Interface;
-         value : Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult
+         value : WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult
       )
       return WinRt.Hresult is abstract;
 
@@ -646,7 +646,7 @@ package WinRt.Windows.ApplicationModel.Payments is
          this : access IPaymentCurrencyAmountFactory_Interface;
          value : WinRt.HString;
          currency : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -656,7 +656,7 @@ package WinRt.Windows.ApplicationModel.Payments is
          value : WinRt.HString;
          currency : WinRt.HString;
          currencySystem : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -668,14 +668,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Total
       (
          this : access IPaymentDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentItem
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentItem
       )
       return WinRt.Hresult is abstract;
 
       function put_Total
       (
          this : access IPaymentDetails_Interface;
-         value : Windows.ApplicationModel.Payments.IPaymentItem
+         value : WinRt.Windows.ApplicationModel.Payments.IPaymentItem
       )
       return WinRt.Hresult is abstract;
 
@@ -729,17 +729,17 @@ package WinRt.Windows.ApplicationModel.Payments is
       function Create
       (
          this : access IPaymentDetailsFactory_Interface;
-         total : Windows.ApplicationModel.Payments.IPaymentItem;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetails
+         total : WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetails
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithDisplayItems
       (
          this : access IPaymentDetailsFactory_Interface;
-         total : Windows.ApplicationModel.Payments.IPaymentItem;
+         total : WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
          displayItems : GenericObject;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -765,7 +765,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Total
       (
          this : access IPaymentDetailsModifier_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentItem
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentItem
       )
       return WinRt.Hresult is abstract;
 
@@ -785,8 +785,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentDetailsModifierFactory_Interface;
          supportedMethodIds : GenericObject;
-         total : Windows.ApplicationModel.Payments.IPaymentItem;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetailsModifier
+         total : WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier
       )
       return WinRt.Hresult is abstract;
 
@@ -794,9 +794,9 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentDetailsModifierFactory_Interface;
          supportedMethodIds : GenericObject;
-         total : Windows.ApplicationModel.Payments.IPaymentItem;
+         total : WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
          additionalDisplayItems : GenericObject;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetailsModifier
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier
       )
       return WinRt.Hresult is abstract;
 
@@ -804,10 +804,10 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentDetailsModifierFactory_Interface;
          supportedMethodIds : GenericObject;
-         total : Windows.ApplicationModel.Payments.IPaymentItem;
+         total : WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
          additionalDisplayItems : GenericObject;
          jsonData : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetailsModifier
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier
       )
       return WinRt.Hresult is abstract;
 
@@ -833,14 +833,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Amount
       (
          this : access IPaymentItem_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
       function put_Amount
       (
          this : access IPaymentItem_Interface;
-         value : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         value : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -867,8 +867,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentItemFactory_Interface;
          label : WinRt.HString;
-         amount : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentItem
+         amount : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentItem
       )
       return WinRt.Hresult is abstract;
 
@@ -887,7 +887,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function SubmitPaymentRequestAsync
       (
          this : access IPaymentMediator_Interface;
-         paymentRequest_p : Windows.ApplicationModel.Payments.IPaymentRequest;
+         paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -895,8 +895,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       function SubmitPaymentRequestAsync
       (
          this : access IPaymentMediator_Interface;
-         paymentRequest_p : Windows.ApplicationModel.Payments.IPaymentRequest;
-         changeHandler : Windows.ApplicationModel.Payments.PaymentRequestChangedHandler;
+         paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
+         changeHandler : WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -909,7 +909,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function CanMakePaymentAsync
       (
          this : access IPaymentMediator2_Interface;
-         paymentRequest_p : Windows.ApplicationModel.Payments.IPaymentRequest;
+         paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -929,7 +929,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Uri
       (
          this : access IPaymentMerchantInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -941,8 +941,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       function Create
       (
          this : access IPaymentMerchantInfoFactory_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentMerchantInfo
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -974,7 +974,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentMethodDataFactory_Interface;
          supportedMethodIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentMethodData
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentMethodData
       )
       return WinRt.Hresult is abstract;
 
@@ -983,7 +983,7 @@ package WinRt.Windows.ApplicationModel.Payments is
          this : access IPaymentMethodDataFactory_Interface;
          supportedMethodIds : GenericObject;
          jsonData : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentMethodData
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentMethodData
       )
       return WinRt.Hresult is abstract;
 
@@ -995,42 +995,42 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_RequestPayerEmail
       (
          this : access IPaymentOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentOptionPresence
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestPayerEmail
       (
          this : access IPaymentOptions_Interface;
-         value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+         value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestPayerName
       (
          this : access IPaymentOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentOptionPresence
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestPayerName
       (
          this : access IPaymentOptions_Interface;
-         value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+         value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestPayerPhoneNumber
       (
          this : access IPaymentOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentOptionPresence
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestPayerPhoneNumber
       (
          this : access IPaymentOptions_Interface;
-         value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+         value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
       )
       return WinRt.Hresult is abstract;
 
@@ -1051,14 +1051,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_ShippingType
       (
          this : access IPaymentOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentShippingType
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentShippingType
       )
       return WinRt.Hresult is abstract;
 
       function put_ShippingType
       (
          this : access IPaymentOptions_Interface;
-         value : Windows.ApplicationModel.Payments.PaymentShippingType
+         value : WinRt.Windows.ApplicationModel.Payments.PaymentShippingType
       )
       return WinRt.Hresult is abstract;
 
@@ -1070,14 +1070,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_MerchantInfo
       (
          this : access IPaymentRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentMerchantInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_Details
       (
          this : access IPaymentRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,7 +1091,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Options
       (
          this : access IPaymentRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,28 +1115,28 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_ChangeKind
       (
          this : access IPaymentRequestChangedArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentRequestChangeKind
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangeKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ShippingAddress
       (
          this : access IPaymentRequestChangedArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentAddress
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_SelectedShippingOption
       (
          this : access IPaymentRequestChangedArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentShippingOption
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption
       )
       return WinRt.Hresult is abstract;
 
       function Acknowledge
       (
          this : access IPaymentRequestChangedArgs_Interface;
-         changeResult : Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
+         changeResult : WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1176,14 +1176,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_UpdatedPaymentDetails
       (
          this : access IPaymentRequestChangedResult_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentDetails
       )
       return WinRt.Hresult is abstract;
 
       function put_UpdatedPaymentDetails
       (
          this : access IPaymentRequestChangedResult_Interface;
-         value : Windows.ApplicationModel.Payments.IPaymentDetails
+         value : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -1196,7 +1196,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentRequestChangedResultFactory_Interface;
          changeAcceptedByMerchant : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1204,8 +1204,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentRequestChangedResultFactory_Interface;
          changeAcceptedByMerchant : WinRt.Boolean;
-         updatedPaymentDetails : Windows.ApplicationModel.Payments.IPaymentDetails;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
+         updatedPaymentDetails : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1217,30 +1217,30 @@ package WinRt.Windows.ApplicationModel.Payments is
       function Create
       (
          this : access IPaymentRequestFactory_Interface;
-         details : Windows.ApplicationModel.Payments.IPaymentDetails;
+         details : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
          methodData : GenericObject;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithMerchantInfo
       (
          this : access IPaymentRequestFactory_Interface;
-         details : Windows.ApplicationModel.Payments.IPaymentDetails;
+         details : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
          methodData : GenericObject;
-         merchantInfo : Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         merchantInfo : WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithMerchantInfoAndOptions
       (
          this : access IPaymentRequestFactory_Interface;
-         details : Windows.ApplicationModel.Payments.IPaymentDetails;
+         details : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
          methodData : GenericObject;
-         merchantInfo : Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
-         options : Windows.ApplicationModel.Payments.IPaymentOptions;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         merchantInfo : WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
+         options : WinRt.Windows.ApplicationModel.Payments.IPaymentOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1252,12 +1252,12 @@ package WinRt.Windows.ApplicationModel.Payments is
       function CreateWithMerchantInfoOptionsAndId
       (
          this : access IPaymentRequestFactory2_Interface;
-         details : Windows.ApplicationModel.Payments.IPaymentDetails;
+         details : WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
          methodData : GenericObject;
-         merchantInfo : Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
-         options : Windows.ApplicationModel.Payments.IPaymentOptions;
+         merchantInfo : WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
+         options : WinRt.Windows.ApplicationModel.Payments.IPaymentOptions;
          id : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1269,14 +1269,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Status
       (
          this : access IPaymentRequestSubmitResult_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.PaymentRequestStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.PaymentRequestStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Response
       (
          this : access IPaymentRequestSubmitResult_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentResponse
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -1288,21 +1288,21 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_PaymentToken
       (
          this : access IPaymentResponse_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentToken
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentToken
       )
       return WinRt.Hresult is abstract;
 
       function get_ShippingOption
       (
          this : access IPaymentResponse_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentShippingOption
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption
       )
       return WinRt.Hresult is abstract;
 
       function get_ShippingAddress
       (
          this : access IPaymentResponse_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentAddress
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -1330,8 +1330,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       function CompleteAsync
       (
          this : access IPaymentResponse_Interface;
-         status : Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         status : WinRt.Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1357,14 +1357,14 @@ package WinRt.Windows.ApplicationModel.Payments is
       function get_Amount
       (
          this : access IPaymentShippingOption_Interface;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
       function put_Amount
       (
          this : access IPaymentShippingOption_Interface;
-         value : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
+         value : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -1405,8 +1405,8 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentShippingOptionFactory_Interface;
          label : WinRt.HString;
-         amount : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentShippingOption
+         amount : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption
       )
       return WinRt.Hresult is abstract;
 
@@ -1414,9 +1414,9 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentShippingOptionFactory_Interface;
          label : WinRt.HString;
-         amount : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
+         amount : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
          selected : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentShippingOption
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption
       )
       return WinRt.Hresult is abstract;
 
@@ -1424,10 +1424,10 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentShippingOptionFactory_Interface;
          label : WinRt.HString;
-         amount : Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
+         amount : WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
          selected : WinRt.Boolean;
          tag : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentShippingOption
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption
       )
       return WinRt.Hresult is abstract;
 
@@ -1459,7 +1459,7 @@ package WinRt.Windows.ApplicationModel.Payments is
       (
          this : access IPaymentTokenFactory_Interface;
          paymentMethodId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentToken
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1468,7 +1468,7 @@ package WinRt.Windows.ApplicationModel.Payments is
          this : access IPaymentTokenFactory_Interface;
          paymentMethodId : WinRt.HString;
          jsonDetails : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Payments.IPaymentToken
+         RetVal : access WinRt.Windows.ApplicationModel.Payments.IPaymentToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1641,7 +1641,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor
    (
-      value : Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResultStatus
    )
    return PaymentCanMakePaymentResult;
 
@@ -1728,13 +1728,13 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor
    (
-      total : Windows.ApplicationModel.Payments.PaymentItem'Class
+      total : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class
    )
    return PaymentDetails;
 
    function Constructor
    (
-      total : Windows.ApplicationModel.Payments.PaymentItem'Class;
+      total : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class;
       displayItems : GenericObject
    )
    return PaymentDetails;
@@ -1753,7 +1753,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_Total
    (
       this : in out PaymentDetails;
-      value : Windows.ApplicationModel.Payments.PaymentItem'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class
    );
 
    function get_DisplayItems
@@ -1804,14 +1804,14 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       supportedMethodIds : GenericObject;
-      total : Windows.ApplicationModel.Payments.PaymentItem'Class
+      total : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class
    )
    return PaymentDetailsModifier;
 
    function Constructor
    (
       supportedMethodIds : GenericObject;
-      total : Windows.ApplicationModel.Payments.PaymentItem'Class;
+      total : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class;
       additionalDisplayItems : GenericObject
    )
    return PaymentDetailsModifier;
@@ -1819,7 +1819,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       supportedMethodIds : GenericObject;
-      total : Windows.ApplicationModel.Payments.PaymentItem'Class;
+      total : WinRt.Windows.ApplicationModel.Payments.PaymentItem'Class;
       additionalDisplayItems : GenericObject;
       jsonData : WinRt.WString
    )
@@ -1864,7 +1864,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       label : WinRt.WString;
-      amount : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
+      amount : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    )
    return PaymentItem;
 
@@ -1892,7 +1892,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_Amount
    (
       this : in out PaymentItem;
-      value : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    );
 
    function get_Pending
@@ -1930,22 +1930,22 @@ package WinRt.Windows.ApplicationModel.Payments is
    function SubmitPaymentRequestAsync
    (
       this : in out PaymentMediator;
-      paymentRequest_p : Windows.ApplicationModel.Payments.PaymentRequest'Class
+      paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.PaymentRequest'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestSubmitResult'Class;
 
    function SubmitPaymentRequestAsync
    (
       this : in out PaymentMediator;
-      paymentRequest_p : Windows.ApplicationModel.Payments.PaymentRequest'Class;
-      changeHandler : Windows.ApplicationModel.Payments.PaymentRequestChangedHandler
+      paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.PaymentRequest'Class;
+      changeHandler : WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedHandler
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestSubmitResult'Class;
 
    function CanMakePaymentAsync
    (
       this : in out PaymentMediator;
-      paymentRequest_p : Windows.ApplicationModel.Payments.PaymentRequest'Class
+      paymentRequest_p : WinRt.Windows.ApplicationModel.Payments.PaymentRequest'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class;
 
@@ -1962,7 +1962,7 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return PaymentMerchantInfo;
 
@@ -2041,7 +2041,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_RequestPayerEmail
    (
       this : in out PaymentOptions;
-      value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
    );
 
    function get_RequestPayerName
@@ -2053,7 +2053,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_RequestPayerName
    (
       this : in out PaymentOptions;
-      value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
    );
 
    function get_RequestPayerPhoneNumber
@@ -2065,7 +2065,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_RequestPayerPhoneNumber
    (
       this : in out PaymentOptions;
-      value : Windows.ApplicationModel.Payments.PaymentOptionPresence
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentOptionPresence
    );
 
    function get_RequestShipping
@@ -2089,7 +2089,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_ShippingType
    (
       this : in out PaymentOptions;
-      value : Windows.ApplicationModel.Payments.PaymentShippingType
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentShippingType
    );
 
    -----------------------------------------------------------------------------
@@ -2103,34 +2103,34 @@ package WinRt.Windows.ApplicationModel.Payments is
 
    function Constructor
    (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      details : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject
    )
    return PaymentRequest;
 
    function Constructor
    (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      details : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject;
-      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class
+      merchantInfo : WinRt.Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class
    )
    return PaymentRequest;
 
    function Constructor
    (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      details : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject;
-      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
-      options : Windows.ApplicationModel.Payments.PaymentOptions'Class
+      merchantInfo : WinRt.Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
+      options : WinRt.Windows.ApplicationModel.Payments.PaymentOptions'Class
    )
    return PaymentRequest;
 
    function Constructor
    (
-      details : Windows.ApplicationModel.Payments.PaymentDetails'Class;
+      details : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class;
       methodData : GenericObject;
-      merchantInfo : Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
-      options : Windows.ApplicationModel.Payments.PaymentOptions'Class;
+      merchantInfo : WinRt.Windows.ApplicationModel.Payments.PaymentMerchantInfo'Class;
+      options : WinRt.Windows.ApplicationModel.Payments.PaymentOptions'Class;
       id : WinRt.WString
    )
    return PaymentRequest;
@@ -2198,7 +2198,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure Acknowledge
    (
       this : in out PaymentRequestChangedArgs;
-      changeResult : Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class
+      changeResult : WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2219,7 +2219,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       changeAcceptedByMerchant : WinRt.Boolean;
-      updatedPaymentDetails : Windows.ApplicationModel.Payments.PaymentDetails'Class
+      updatedPaymentDetails : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class
    )
    return PaymentRequestChangedResult;
 
@@ -2259,7 +2259,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_UpdatedPaymentDetails
    (
       this : in out PaymentRequestChangedResult;
-      value : Windows.ApplicationModel.Payments.PaymentDetails'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentDetails'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2331,7 +2331,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure CompleteAsync
    (
       this : in out PaymentResponse;
-      status : Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus
+      status : WinRt.Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2346,14 +2346,14 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       label : WinRt.WString;
-      amount : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
+      amount : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    )
    return PaymentShippingOption;
 
    function Constructor
    (
       label : WinRt.WString;
-      amount : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class;
+      amount : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class;
       selected : WinRt.Boolean
    )
    return PaymentShippingOption;
@@ -2361,7 +2361,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    function Constructor
    (
       label : WinRt.WString;
-      amount : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class;
+      amount : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class;
       selected : WinRt.Boolean;
       tag : WinRt.WString
    )
@@ -2391,7 +2391,7 @@ package WinRt.Windows.ApplicationModel.Payments is
    procedure put_Amount
    (
       this : in out PaymentShippingOption;
-      value : Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentCurrencyAmount'Class
    );
 
    function get_Tag

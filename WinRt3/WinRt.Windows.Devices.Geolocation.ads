@@ -462,7 +462,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Timestamp
       (
          this : access ICivicAddress_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -474,21 +474,21 @@ package WinRt.Windows.Devices.Geolocation is
       function get_NorthwestCorner
       (
          this : access IGeoboundingBox_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
       function get_SoutheastCorner
       (
          this : access IGeoboundingBox_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
       function get_Center
       (
          this : access IGeoboundingBox_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -514,30 +514,30 @@ package WinRt.Windows.Devices.Geolocation is
       function Create
       (
          this : access IGeoboundingBoxFactory_Interface;
-         northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReference
       (
          this : access IGeoboundingBoxFactory_Interface;
-         northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReferenceAndSpatialReference
       (
          this : access IGeoboundingBoxFactory_Interface;
-         northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
          spatialReferenceId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -550,7 +550,7 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeoboundingBoxStatics_Interface;
          positions : GenericObject;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -558,8 +558,8 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeoboundingBoxStatics_Interface;
          positions : GenericObject;
-         altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -567,9 +567,9 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeoboundingBoxStatics_Interface;
          positions : GenericObject;
-         altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
          spatialReferenceId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -581,7 +581,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Center
       (
          this : access IGeocircle_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -600,30 +600,30 @@ package WinRt.Windows.Devices.Geolocation is
       function Create
       (
          this : access IGeocircleFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
          radius : WinRt.Double;
-         RetVal : access Windows.Devices.Geolocation.IGeocircle
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeocircle
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReferenceSystem
       (
          this : access IGeocircleFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
          radius : WinRt.Double;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         RetVal : access Windows.Devices.Geolocation.IGeocircle
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeocircle
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReferenceSystemAndSpatialReferenceId
       (
          this : access IGeocircleFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
          radius : WinRt.Double;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
          spatialReferenceId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Geolocation.IGeocircle
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeocircle
       )
       return WinRt.Hresult is abstract;
 
@@ -684,7 +684,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Timestamp
       (
          this : access IGeocoordinate_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -741,7 +741,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Point
       (
          this : access IGeocoordinateWithPoint_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -753,14 +753,14 @@ package WinRt.Windows.Devices.Geolocation is
       function get_PositionSource
       (
          this : access IGeocoordinateWithPositionData_Interface;
-         RetVal : access Windows.Devices.Geolocation.PositionSource
+         RetVal : access WinRt.Windows.Devices.Geolocation.PositionSource
       )
       return WinRt.Hresult is abstract;
 
       function get_SatelliteData
       (
          this : access IGeocoordinateWithPositionData_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeocoordinateSatelliteData
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeocoordinateSatelliteData
       )
       return WinRt.Hresult is abstract;
 
@@ -796,14 +796,14 @@ package WinRt.Windows.Devices.Geolocation is
       function get_DesiredAccuracy
       (
          this : access IGeolocator_Interface;
-         RetVal : access Windows.Devices.Geolocation.PositionAccuracy
+         RetVal : access WinRt.Windows.Devices.Geolocation.PositionAccuracy
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredAccuracy
       (
          this : access IGeolocator_Interface;
-         value : Windows.Devices.Geolocation.PositionAccuracy
+         value : WinRt.Windows.Devices.Geolocation.PositionAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -838,7 +838,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_LocationStatus
       (
          this : access IGeolocator_Interface;
-         RetVal : access Windows.Devices.Geolocation.PositionStatus
+         RetVal : access WinRt.Windows.Devices.Geolocation.PositionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -852,8 +852,8 @@ package WinRt.Windows.Devices.Geolocation is
       function GetGeopositionAsync
       (
          this : access IGeolocator_Interface;
-         maximumAge : Windows.Foundation.TimeSpan;
-         timeout : Windows.Foundation.TimeSpan;
+         maximumAge : WinRt.Windows.Foundation.TimeSpan;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -862,14 +862,14 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeolocator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PositionChanged
       (
          this : access IGeolocator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -877,14 +877,14 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeolocator_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IGeolocator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -914,7 +914,7 @@ package WinRt.Windows.Devices.Geolocation is
       function GetGeopositionHistoryAsync
       (
          this : access IGeolocatorStatics_Interface;
-         startTime : Windows.Foundation.DateTime;
+         startTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -922,8 +922,8 @@ package WinRt.Windows.Devices.Geolocation is
       function GetGeopositionHistoryAsync
       (
          this : access IGeolocatorStatics_Interface;
-         startTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -994,7 +994,7 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeopathFactory_Interface;
          positions : GenericObject;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -1002,8 +1002,8 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeopathFactory_Interface;
          positions : GenericObject;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,9 +1011,9 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeopathFactory_Interface;
          positions : GenericObject;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
          spatialReferenceId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -1025,7 +1025,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Position
       (
          this : access IGeopoint_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -1037,27 +1037,27 @@ package WinRt.Windows.Devices.Geolocation is
       function Create
       (
          this : access IGeopointFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReferenceSystem
       (
          this : access IGeopointFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAltitudeReferenceSystemAndSpatialReferenceId
       (
          this : access IGeopointFactory_Interface;
-         position : Windows.Devices.Geolocation.BasicGeoposition;
-         altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
          spatialReferenceId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1069,14 +1069,14 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Coordinate
       (
          this : access IGeoposition_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeocoordinate
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeocoordinate
       )
       return WinRt.Hresult is abstract;
 
       function get_CivicAddress
       (
          this : access IGeoposition_Interface;
-         RetVal : access Windows.Devices.Geolocation.ICivicAddress
+         RetVal : access WinRt.Windows.Devices.Geolocation.ICivicAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -1088,7 +1088,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_VenueData
       (
          this : access IGeoposition2_Interface;
-         RetVal : access Windows.Devices.Geolocation.IVenueData
+         RetVal : access WinRt.Windows.Devices.Geolocation.IVenueData
       )
       return WinRt.Hresult is abstract;
 
@@ -1100,7 +1100,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_GeoshapeType
       (
          this : access IGeoshape_Interface;
-         RetVal : access Windows.Devices.Geolocation.GeoshapeType
+         RetVal : access WinRt.Windows.Devices.Geolocation.GeoshapeType
       )
       return WinRt.Hresult is abstract;
 
@@ -1114,7 +1114,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_AltitudeReferenceSystem
       (
          this : access IGeoshape_Interface;
-         RetVal : access Windows.Devices.Geolocation.AltitudeReferenceSystem
+         RetVal : access WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -1126,21 +1126,21 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Position
       (
          this : access IGeovisit_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoposition
       )
       return WinRt.Hresult is abstract;
 
       function get_StateChange
       (
          this : access IGeovisit_Interface;
-         RetVal : access Windows.Devices.Geolocation.VisitStateChange
+         RetVal : access WinRt.Windows.Devices.Geolocation.VisitStateChange
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access IGeovisit_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1152,14 +1152,14 @@ package WinRt.Windows.Devices.Geolocation is
       function get_MonitoringScope
       (
          this : access IGeovisitMonitor_Interface;
-         RetVal : access Windows.Devices.Geolocation.VisitMonitoringScope
+         RetVal : access WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
       )
       return WinRt.Hresult is abstract;
 
       function Start
       (
          this : access IGeovisitMonitor_Interface;
-         value : Windows.Devices.Geolocation.VisitMonitoringScope
+         value : WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
       )
       return WinRt.Hresult is abstract;
 
@@ -1173,14 +1173,14 @@ package WinRt.Windows.Devices.Geolocation is
       (
          this : access IGeovisitMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisitStateChanged
       (
          this : access IGeovisitMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1204,7 +1204,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Visit
       (
          this : access IGeovisitStateChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeovisit
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeovisit
       )
       return WinRt.Hresult is abstract;
 
@@ -1228,7 +1228,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Position
       (
          this : access IPositionChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -1240,7 +1240,7 @@ package WinRt.Windows.Devices.Geolocation is
       function get_Status
       (
          this : access IStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.PositionStatus
+         RetVal : access WinRt.Windows.Devices.Geolocation.PositionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1319,24 +1319,24 @@ package WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    )
    return GeoboundingBox;
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return GeoboundingBox;
 
    function Constructor
    (
-      northwestCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      southeastCorner : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      northwestCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      southeastCorner : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return GeoboundingBox;
@@ -1353,14 +1353,14 @@ package WinRt.Windows.Devices.Geolocation is
    function TryCompute
    (
       positions : GenericObject;
-      altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox;
 
    function TryCompute
    (
       positions : GenericObject;
-      altitudeRefSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeRefSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return WinRt.Windows.Devices.Geolocation.GeoboundingBox;
@@ -1427,24 +1427,24 @@ package WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double
    )
    return Geocircle;
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geocircle;
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
       radius : WinRt.Double;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geocircle;
@@ -1627,14 +1627,14 @@ package WinRt.Windows.Devices.Geolocation is
 
    function GetGeopositionHistoryAsync
    (
-      startTime : Windows.Foundation.DateTime
+      startTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject;
 
    function GetGeopositionHistoryAsync
    (
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
@@ -1661,7 +1661,7 @@ package WinRt.Windows.Devices.Geolocation is
    procedure put_DesiredAccuracy
    (
       this : in out Geolocator;
-      value : Windows.Devices.Geolocation.PositionAccuracy
+      value : WinRt.Windows.Devices.Geolocation.PositionAccuracy
    );
 
    function get_MovementThreshold
@@ -1703,8 +1703,8 @@ package WinRt.Windows.Devices.Geolocation is
    function GetGeopositionAsync
    (
       this : in out Geolocator;
-      maximumAge : Windows.Foundation.TimeSpan;
-      timeout : Windows.Foundation.TimeSpan
+      maximumAge : WinRt.Windows.Foundation.TimeSpan;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Devices.Geolocation.Geoposition'Class;
 
@@ -1718,7 +1718,7 @@ package WinRt.Windows.Devices.Geolocation is
    procedure remove_PositionChanged
    (
       this : in out Geolocator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StatusChanged
@@ -1731,7 +1731,7 @@ package WinRt.Windows.Devices.Geolocation is
    procedure remove_StatusChanged
    (
       this : in out Geolocator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DesiredAccuracyInMeters
@@ -1769,14 +1769,14 @@ package WinRt.Windows.Devices.Geolocation is
    function Constructor
    (
       positions : GenericObject;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geopath;
 
    function Constructor
    (
       positions : GenericObject;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geopath;
@@ -1819,21 +1819,21 @@ package WinRt.Windows.Devices.Geolocation is
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    )
    return Geopoint;
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem
    )
    return Geopoint;
 
    function Constructor
    (
-      position : Windows.Devices.Geolocation.BasicGeoposition;
-      altitudeReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      position : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      altitudeReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
       spatialReferenceId : WinRt.UInt32
    )
    return Geopoint;
@@ -1948,7 +1948,7 @@ package WinRt.Windows.Devices.Geolocation is
    procedure Start
    (
       this : in out GeovisitMonitor;
-      value : Windows.Devices.Geolocation.VisitMonitoringScope
+      value : WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
    );
 
    procedure Stop
@@ -1966,7 +1966,7 @@ package WinRt.Windows.Devices.Geolocation is
    procedure remove_VisitStateChanged
    (
       this : in out GeovisitMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

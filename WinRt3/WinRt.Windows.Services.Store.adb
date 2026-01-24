@@ -112,14 +112,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStorePackageLicense;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStorePackageLicense;
    begin
       return RetVal : WinRt.Windows.Services.Store.StorePackageLicense do
          Hr := this.m_IStoreAcquireLicenseResult.all.get_StorePackageLicense (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorePackageLicense := new Windows.Services.Store.IStorePackageLicense;
+         Retval.m_IStorePackageLicense := new WinRt.Windows.Services.Store.IStorePackageLicense;
          Retval.m_IStorePackageLicense.all := m_ComRetVal;
       end return;
    end;
@@ -132,7 +132,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreAcquireLicenseResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -226,7 +226,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreAppLicense.all.get_ExpirationDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -263,7 +263,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IStoreLicense.Kind;
    begin
       Hr := this.m_IStoreAppLicense.all.get_AddOnLicenses (m_ComRetVal'Access);
@@ -283,7 +283,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IStoreAppLicense.all.get_TrialTimeRemaining (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -401,7 +401,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreAvailability.all.get_EndDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -418,14 +418,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStorePrice;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStorePrice;
    begin
       return RetVal : WinRt.Windows.Services.Store.StorePrice do
          Hr := this.m_IStoreAvailability.all.get_Price (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorePrice := new Windows.Services.Store.IStorePrice;
+         Retval.m_IStorePrice := new WinRt.Windows.Services.Store.IStorePrice;
          Retval.m_IStorePrice.all := m_ComRetVal;
       end return;
    end;
@@ -503,7 +503,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -519,7 +519,7 @@ package body WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreAvailability;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -570,7 +570,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -614,7 +614,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreCanAcquireLicenseResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -651,7 +651,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreCanLicenseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreCanLicenseStatus;
    begin
       Hr := this.m_IStoreCanAcquireLicenseResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -748,7 +748,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreCollectionData.all.get_AcquiredDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -765,7 +765,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreCollectionData.all.get_StartDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -782,7 +782,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreCollectionData.all.get_EndDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -799,7 +799,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IStoreCollectionData.all.get_TrialTimeRemaining (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -859,7 +859,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreConsumableStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreConsumableStatus;
    begin
       Hr := this.m_IStoreConsumableResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -910,7 +910,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreConsumableResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -949,7 +949,7 @@ package body WinRt.Windows.Services.Store is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Store.StoreContext");
       m_Factory        : access WinRt.Windows.Services.Store.IStoreContextStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreContext;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreContext;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreContext do
          Hr := RoGetActivationFactory (m_hString, IID_IStoreContextStatics'Access , m_Factory'Address);
@@ -959,7 +959,7 @@ package body WinRt.Windows.Services.Store is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IStoreContext := new Windows.Services.Store.IStoreContext;
+            Retval.m_IStoreContext := new WinRt.Windows.Services.Store.IStoreContext;
             Retval.m_IStoreContext.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -968,7 +968,7 @@ package body WinRt.Windows.Services.Store is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Services.Store.StoreContext is
       Hr               : WinRt.HResult := S_OK;
@@ -976,7 +976,7 @@ package body WinRt.Windows.Services.Store is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Store.StoreContext");
       m_Factory        : access WinRt.Windows.Services.Store.IStoreContextStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreContext;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreContext;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreContext do
          Hr := RoGetActivationFactory (m_hString, IID_IStoreContextStatics'Access , m_Factory'Address);
@@ -986,7 +986,7 @@ package body WinRt.Windows.Services.Store is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IStoreContext := new Windows.Services.Store.IStoreContext;
+            Retval.m_IStoreContext := new WinRt.Windows.Services.Store.IStoreContext;
             Retval.m_IStoreContext.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1004,14 +1004,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IStoreContext.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1025,7 +1025,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStoreContext.all.add_OfflineLicensesChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1037,7 +1037,7 @@ package body WinRt.Windows.Services.Store is
    procedure remove_OfflineLicensesChanged
    (
       this : in out StoreContext;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1246,7 +1246,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreAppLicense := new Windows.Services.Store.IStoreAppLicense;
+                  Retval.m_IStoreAppLicense := new WinRt.Windows.Services.Store.IStoreAppLicense;
                   Retval.m_IStoreAppLicense.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1312,7 +1312,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductResult := new Windows.Services.Store.IStoreProductResult;
+                  Retval.m_IStoreProductResult := new WinRt.Windows.Services.Store.IStoreProductResult;
                   Retval.m_IStoreProductResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1447,7 +1447,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1515,7 +1515,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductPagedQueryResult := new Windows.Services.Store.IStoreProductPagedQueryResult;
+                  Retval.m_IStoreProductPagedQueryResult := new WinRt.Windows.Services.Store.IStoreProductPagedQueryResult;
                   Retval.m_IStoreProductPagedQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1582,7 +1582,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1650,7 +1650,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductPagedQueryResult := new Windows.Services.Store.IStoreProductPagedQueryResult;
+                  Retval.m_IStoreProductPagedQueryResult := new WinRt.Windows.Services.Store.IStoreProductPagedQueryResult;
                   Retval.m_IStoreProductPagedQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1720,7 +1720,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreConsumableResult := new Windows.Services.Store.IStoreConsumableResult;
+                  Retval.m_IStoreConsumableResult := new WinRt.Windows.Services.Store.IStoreConsumableResult;
                   Retval.m_IStoreConsumableResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1789,7 +1789,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreConsumableResult := new Windows.Services.Store.IStoreConsumableResult;
+                  Retval.m_IStoreConsumableResult := new WinRt.Windows.Services.Store.IStoreConsumableResult;
                   Retval.m_IStoreConsumableResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1806,7 +1806,7 @@ package body WinRt.Windows.Services.Store is
    function AcquireStoreLicenseForOptionalPackageAsync
    (
       this : in out StoreContext;
-      optionalPackage : Windows.ApplicationModel.Package_x'Class
+      optionalPackage : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreAcquireLicenseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1857,7 +1857,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreAcquireLicenseResult := new Windows.Services.Store.IStoreAcquireLicenseResult;
+                  Retval.m_IStoreAcquireLicenseResult := new WinRt.Windows.Services.Store.IStoreAcquireLicenseResult;
                   Retval.m_IStoreAcquireLicenseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1925,7 +1925,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1943,7 +1943,7 @@ package body WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       storeId : WinRt.WString;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1995,7 +1995,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2126,7 +2126,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2193,7 +2193,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2260,7 +2260,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2277,7 +2277,7 @@ package body WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       productKinds : GenericObject;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreProductResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2332,7 +2332,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductResult := new Windows.Services.Store.IStoreProductResult;
+                  Retval.m_IStoreProductResult := new WinRt.Windows.Services.Store.IStoreProductResult;
                   Retval.m_IStoreProductResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2424,7 +2424,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2495,7 +2495,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2511,7 +2511,7 @@ package body WinRt.Windows.Services.Store is
    function CanAcquireStoreLicenseForOptionalPackageAsync
    (
       this : in out StoreContext;
-      optionalPackage : Windows.ApplicationModel.Package_x'Class
+      optionalPackage : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreCanAcquireLicenseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2566,7 +2566,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreCanAcquireLicenseResult := new Windows.Services.Store.IStoreCanAcquireLicenseResult;
+                  Retval.m_IStoreCanAcquireLicenseResult := new WinRt.Windows.Services.Store.IStoreCanAcquireLicenseResult;
                   Retval.m_IStoreCanAcquireLicenseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2638,7 +2638,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreCanAcquireLicenseResult := new Windows.Services.Store.IStoreCanAcquireLicenseResult;
+                  Retval.m_IStoreCanAcquireLicenseResult := new WinRt.Windows.Services.Store.IStoreCanAcquireLicenseResult;
                   Retval.m_IStoreCanAcquireLicenseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2657,7 +2657,7 @@ package body WinRt.Windows.Services.Store is
       this : in out StoreContext;
       productKinds : GenericObject;
       storeIds : GenericObject;
-      storeProductOptions_p : Windows.Services.Store.StoreProductOptions'Class
+      storeProductOptions_p : WinRt.Windows.Services.Store.StoreProductOptions'Class
    )
    return WinRt.Windows.Services.Store.StoreProductQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2712,7 +2712,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2864,7 +2864,7 @@ package body WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       storeIds : GenericObject;
-      storePackageInstallOptions_p : Windows.Services.Store.StorePackageInstallOptions'Class
+      storePackageInstallOptions_p : WinRt.Windows.Services.Store.StorePackageInstallOptions'Class
    )
    return WinRt.Windows.Services.Store.StorePackageUpdateResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2919,7 +2919,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2990,7 +2990,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePackageUpdateResult := new Windows.Services.Store.IStorePackageUpdateResult;
+                  Retval.m_IStorePackageUpdateResult := new WinRt.Windows.Services.Store.IStorePackageUpdateResult;
                   Retval.m_IStorePackageUpdateResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3006,7 +3006,7 @@ package body WinRt.Windows.Services.Store is
    function RequestUninstallStorePackageAsync
    (
       this : in out StoreContext;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreUninstallStorePackageResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3061,7 +3061,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreUninstallStorePackageResult := new Windows.Services.Store.IStoreUninstallStorePackageResult;
+                  Retval.m_IStoreUninstallStorePackageResult := new WinRt.Windows.Services.Store.IStoreUninstallStorePackageResult;
                   Retval.m_IStoreUninstallStorePackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3133,7 +3133,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreUninstallStorePackageResult := new Windows.Services.Store.IStoreUninstallStorePackageResult;
+                  Retval.m_IStoreUninstallStorePackageResult := new WinRt.Windows.Services.Store.IStoreUninstallStorePackageResult;
                   Retval.m_IStoreUninstallStorePackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3150,7 +3150,7 @@ package body WinRt.Windows.Services.Store is
    function UninstallStorePackageAsync
    (
       this : in out StoreContext;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreUninstallStorePackageResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3205,7 +3205,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreUninstallStorePackageResult := new Windows.Services.Store.IStoreUninstallStorePackageResult;
+                  Retval.m_IStoreUninstallStorePackageResult := new WinRt.Windows.Services.Store.IStoreUninstallStorePackageResult;
                   Retval.m_IStoreUninstallStorePackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3277,7 +3277,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreUninstallStorePackageResult := new Windows.Services.Store.IStoreUninstallStorePackageResult;
+                  Retval.m_IStoreUninstallStorePackageResult := new WinRt.Windows.Services.Store.IStoreUninstallStorePackageResult;
                   Retval.m_IStoreUninstallStorePackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3348,7 +3348,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreRateAndReviewResult := new Windows.Services.Store.IStoreRateAndReviewResult;
+                  Retval.m_IStoreRateAndReviewResult := new WinRt.Windows.Services.Store.IStoreRateAndReviewResult;
                   Retval.m_IStoreRateAndReviewResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3487,7 +3487,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3558,7 +3558,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductQueryResult := new Windows.Services.Store.IStoreProductQueryResult;
+                  Retval.m_IStoreProductQueryResult := new WinRt.Windows.Services.Store.IStoreProductQueryResult;
                   Retval.m_IStoreProductQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3630,7 +3630,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3675,14 +3675,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IStoreImage.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3829,7 +3829,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStoreLicense.all.get_ExpirationDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3904,13 +3904,13 @@ package body WinRt.Windows.Services.Store is
    function Constructor return StorePackageInstallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePackageInstallOptions");
-      m_ComRetVal  : aliased Windows.Services.Store.IStorePackageInstallOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.IStorePackageInstallOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Store.IStorePackageInstallOptions;
    begin
       return RetVal : StorePackageInstallOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorePackageInstallOptions := new Windows.Services.Store.IStorePackageInstallOptions;
+            Retval.m_IStorePackageInstallOptions := new WinRt.Windows.Services.Store.IStorePackageInstallOptions;
             Retval.m_IStorePackageInstallOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3984,7 +3984,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorePackageLicense.all.add_LicenseLost (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3996,7 +3996,7 @@ package body WinRt.Windows.Services.Store is
    procedure remove_LicenseLost
    (
       this : in out StorePackageLicense;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4016,14 +4016,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IStorePackageLicense.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4108,14 +4108,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IStorePackageUpdate.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4168,7 +4168,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StorePackageUpdateState;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StorePackageUpdateState;
    begin
       Hr := this.m_IStorePackageUpdateResult.all.get_OverallState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4185,7 +4185,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_StorePackageUpdateStatus.Kind;
    begin
       Hr := this.m_IStorePackageUpdateResult.all.get_StorePackageUpdateStatuses (m_ComRetVal'Access);
@@ -4206,7 +4206,7 @@ package body WinRt.Windows.Services.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Store.IStorePackageUpdateResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreQueueItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStorePackageUpdateResult_Interface, WinRt.Windows.Services.Store.IStorePackageUpdateResult2, WinRt.Windows.Services.Store.IID_IStorePackageUpdateResult2'Unchecked_Access);
    begin
@@ -4309,7 +4309,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IStorePrice.all.get_SaleEndDate (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4578,7 +4578,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IStoreProduct.all.get_Keywords (m_ComRetVal'Access);
@@ -4598,7 +4598,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreImage.Kind;
    begin
       Hr := this.m_IStoreProduct.all.get_Images (m_ComRetVal'Access);
@@ -4618,7 +4618,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreVideo.Kind;
    begin
       Hr := this.m_IStoreProduct.all.get_Videos (m_ComRetVal'Access);
@@ -4638,7 +4638,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreSku.Kind;
    begin
       Hr := this.m_IStoreProduct.all.get_Skus (m_ComRetVal'Access);
@@ -4675,14 +4675,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStorePrice;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStorePrice;
    begin
       return RetVal : WinRt.Windows.Services.Store.StorePrice do
          Hr := this.m_IStoreProduct.all.get_Price (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorePrice := new Windows.Services.Store.IStorePrice;
+         Retval.m_IStorePrice := new WinRt.Windows.Services.Store.IStorePrice;
          Retval.m_IStorePrice.all := m_ComRetVal;
       end return;
    end;
@@ -4715,14 +4715,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IStoreProduct.all.get_LinkUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4843,7 +4843,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4859,7 +4859,7 @@ package body WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreProduct;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4910,7 +4910,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4969,13 +4969,13 @@ package body WinRt.Windows.Services.Store is
    function Constructor return StoreProductOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StoreProductOptions");
-      m_ComRetVal  : aliased Windows.Services.Store.IStoreProductOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.IStoreProductOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Store.IStoreProductOptions;
    begin
       return RetVal : StoreProductOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStoreProductOptions := new Windows.Services.Store.IStoreProductOptions;
+            Retval.m_IStoreProductOptions := new WinRt.Windows.Services.Store.IStoreProductOptions;
             Retval.m_IStoreProductOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4993,7 +4993,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IStoreProductOptions.all.get_ActionFilters (m_ComRetVal'Access);
@@ -5036,7 +5036,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IStoreProduct.Kind;
    begin
       Hr := this.m_IStoreProductPagedQueryResult.all.get_Products (m_ComRetVal'Access);
@@ -5073,7 +5073,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreProductPagedQueryResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5135,7 +5135,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStoreProductPagedQueryResult := new Windows.Services.Store.IStoreProductPagedQueryResult;
+                  Retval.m_IStoreProductPagedQueryResult := new WinRt.Windows.Services.Store.IStoreProductPagedQueryResult;
                   Retval.m_IStoreProductPagedQueryResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5179,7 +5179,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IStoreProduct.Kind;
    begin
       Hr := this.m_IStoreProductQueryResult.all.get_Products (m_ComRetVal'Access);
@@ -5199,7 +5199,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreProductQueryResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5239,14 +5239,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreProduct;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreProduct;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreProduct do
          Hr := this.m_IStoreProductResult.all.get_Product (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreProduct := new Windows.Services.Store.IStoreProduct;
+         Retval.m_IStoreProduct := new WinRt.Windows.Services.Store.IStoreProduct;
          Retval.m_IStoreProduct.all := m_ComRetVal;
       end return;
    end;
@@ -5259,7 +5259,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreProductResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5294,13 +5294,13 @@ package body WinRt.Windows.Services.Store is
    function Constructor return StorePurchaseProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
-      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.IStorePurchaseProperties");
+      m_ComRetVal  : aliased WinRt.Windows.Services.Store.IStorePurchaseProperties;
    begin
       return RetVal : StorePurchaseProperties do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
+            Retval.m_IStorePurchaseProperties := new WinRt.Windows.Services.Store.IStorePurchaseProperties;
             Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5314,17 +5314,17 @@ package body WinRt.Windows.Services.Store is
    return StorePurchaseProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Store.IStorePurchaseProperties");
       m_Factory    : access IStorePurchasePropertiesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Services.Store.IStorePurchaseProperties;
+      m_ComRetVal  : aliased WinRt.Windows.Services.Store.IStorePurchaseProperties;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : StorePurchaseProperties do
          Hr := RoGetActivationFactory (m_hString, IID_IStorePurchasePropertiesFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_IStorePurchaseProperties := new Windows.Services.Store.IStorePurchaseProperties;
+            Retval.m_IStorePurchaseProperties := new WinRt.Windows.Services.Store.IStorePurchaseProperties;
             Retval.m_IStorePurchaseProperties.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5441,7 +5441,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StorePurchaseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StorePurchaseStatus;
    begin
       Hr := this.m_IStorePurchaseResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5458,7 +5458,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStorePurchaseResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5538,7 +5538,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreQueueItemKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreQueueItemKind;
    begin
       Hr := this.m_IStoreQueueItem.all.get_InstallKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5555,14 +5555,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreQueueItemStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreQueueItemStatus;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreQueueItemStatus do
          Hr := this.m_IStoreQueueItem.all.GetCurrentStatus (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreQueueItemStatus := new Windows.Services.Store.IStoreQueueItemStatus;
+         Retval.m_IStoreQueueItemStatus := new WinRt.Windows.Services.Store.IStoreQueueItemStatus;
          Retval.m_IStoreQueueItemStatus.all := m_ComRetVal;
       end return;
    end;
@@ -5576,7 +5576,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStoreQueueItem.all.add_Completed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5588,7 +5588,7 @@ package body WinRt.Windows.Services.Store is
    procedure remove_Completed
    (
       this : in out StoreQueueItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5609,7 +5609,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStoreQueueItem.all.add_StatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5621,7 +5621,7 @@ package body WinRt.Windows.Services.Store is
    procedure remove_StatusChanged
    (
       this : in out StoreQueueItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5802,14 +5802,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreQueueItemStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreQueueItemStatus;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreQueueItemStatus do
          Hr := this.m_IStoreQueueItemCompletedEventArgs.all.get_Status (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreQueueItemStatus := new Windows.Services.Store.IStoreQueueItemStatus;
+         Retval.m_IStoreQueueItemStatus := new WinRt.Windows.Services.Store.IStoreQueueItemStatus;
          Retval.m_IStoreQueueItemStatus.all := m_ComRetVal;
       end return;
    end;
@@ -5845,7 +5845,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreQueueItemState;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreQueueItemState;
    begin
       Hr := this.m_IStoreQueueItemStatus.all.get_PackageInstallState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5862,7 +5862,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreQueueItemExtendedState;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreQueueItemExtendedState;
    begin
       Hr := this.m_IStoreQueueItemStatus.all.get_PackageInstallExtendedState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5879,7 +5879,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StorePackageUpdateStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StorePackageUpdateStatus;
    begin
       Hr := this.m_IStoreQueueItemStatus.all.get_UpdateStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5896,7 +5896,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreQueueItemStatus.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5936,7 +5936,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreRateAndReviewResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5990,7 +5990,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreRateAndReviewStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreRateAndReviewStatus;
    begin
       Hr := this.m_IStoreRateAndReviewResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6005,7 +6005,7 @@ package body WinRt.Windows.Services.Store is
 
       function SendRequestAsync
       (
-         context : Windows.Services.Store.StoreContext'Class;
+         context : WinRt.Windows.Services.Store.StoreContext'Class;
          requestKind : WinRt.UInt32;
          parametersAsJson : WinRt.WString
       )
@@ -6064,7 +6064,7 @@ package body WinRt.Windows.Services.Store is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStoreSendRequestResult := new Windows.Services.Store.IStoreSendRequestResult;
+                        Retval.m_IStoreSendRequestResult := new WinRt.Windows.Services.Store.IStoreSendRequestResult;
                         Retval.m_IStoreSendRequestResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -6133,7 +6133,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreSendRequestResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6151,7 +6151,7 @@ package body WinRt.Windows.Services.Store is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Store.IStoreSendRequestResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.HttpStatusCode;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.HttpStatusCode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Store.IStoreSendRequestResult_Interface, WinRt.Windows.Services.Store.IStoreSendRequestResult2, WinRt.Windows.Services.Store.IID_IStoreSendRequestResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStoreSendRequestResult.all);
@@ -6311,7 +6311,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreImage.Kind;
    begin
       Hr := this.m_IStoreSku.all.get_Images (m_ComRetVal'Access);
@@ -6331,7 +6331,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreVideo.Kind;
    begin
       Hr := this.m_IStoreSku.all.get_Videos (m_ComRetVal'Access);
@@ -6351,7 +6351,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IStoreAvailability.Kind;
    begin
       Hr := this.m_IStoreSku.all.get_Availabilities (m_ComRetVal'Access);
@@ -6371,14 +6371,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStorePrice;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStorePrice;
    begin
       return RetVal : WinRt.Windows.Services.Store.StorePrice do
          Hr := this.m_IStoreSku.all.get_Price (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorePrice := new Windows.Services.Store.IStorePrice;
+         Retval.m_IStorePrice := new WinRt.Windows.Services.Store.IStorePrice;
          Retval.m_IStorePrice.all := m_ComRetVal;
       end return;
    end;
@@ -6428,7 +6428,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IStoreSku.all.get_BundledSkus (m_ComRetVal'Access);
@@ -6448,14 +6448,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreCollectionData;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreCollectionData;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreCollectionData do
          Hr := this.m_IStoreSku.all.get_CollectionData (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreCollectionData := new Windows.Services.Store.IStoreCollectionData;
+         Retval.m_IStoreCollectionData := new WinRt.Windows.Services.Store.IStoreCollectionData;
          Retval.m_IStoreCollectionData.all := m_ComRetVal;
       end return;
    end;
@@ -6576,7 +6576,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6592,7 +6592,7 @@ package body WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreSku;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6643,7 +6643,7 @@ package body WinRt.Windows.Services.Store is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorePurchaseResult := new Windows.Services.Store.IStorePurchaseResult;
+                  Retval.m_IStorePurchaseResult := new WinRt.Windows.Services.Store.IStorePurchaseResult;
                   Retval.m_IStorePurchaseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6681,14 +6681,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreSubscriptionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreSubscriptionInfo;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreSubscriptionInfo do
          Hr := this.m_IStoreSku.all.get_SubscriptionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreSubscriptionInfo := new Windows.Services.Store.IStoreSubscriptionInfo;
+         Retval.m_IStoreSubscriptionInfo := new WinRt.Windows.Services.Store.IStoreSubscriptionInfo;
          Retval.m_IStoreSubscriptionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -6741,7 +6741,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreDurationUnit;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreDurationUnit;
    begin
       Hr := this.m_IStoreSubscriptionInfo.all.get_BillingPeriodUnit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6792,7 +6792,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreDurationUnit;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreDurationUnit;
    begin
       Hr := this.m_IStoreSubscriptionInfo.all.get_TrialPeriodUnit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6832,7 +6832,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IStoreUninstallStorePackageResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6849,7 +6849,7 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.StoreUninstallStorePackageStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.StoreUninstallStorePackageStatus;
    begin
       Hr := this.m_IStoreUninstallStorePackageResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6889,14 +6889,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IStoreVideo.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -6983,14 +6983,14 @@ package body WinRt.Windows.Services.Store is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Store.IStoreImage;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Store.IStoreImage;
    begin
       return RetVal : WinRt.Windows.Services.Store.StoreImage do
          Hr := this.m_IStoreVideo.all.get_PreviewImage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStoreImage := new Windows.Services.Store.IStoreImage;
+         Retval.m_IStoreImage := new WinRt.Windows.Services.Store.IStoreImage;
          Retval.m_IStoreImage.all := m_ComRetVal;
       end return;
    end;

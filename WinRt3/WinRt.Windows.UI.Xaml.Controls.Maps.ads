@@ -1056,14 +1056,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access ICustomMapTileDataSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BitmapRequested
       (
          this : access ICustomMapTileDataSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1077,7 +1077,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access ICustomMapTileDataSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1125,14 +1125,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IHttpMapTileDataSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UriRequested
       (
          this : access IHttpMapTileDataSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1146,7 +1146,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IHttpMapTileDataSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1156,7 +1156,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          uriFormatString : WinRt.HString;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1183,14 +1183,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access ILocalMapTileDataSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UriRequested
       (
          this : access ILocalMapTileDataSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1204,7 +1204,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access ILocalMapTileDataSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1214,7 +1214,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          uriFormatString : WinRt.HString;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1226,7 +1226,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Camera
       (
          this : access IMapActualCameraChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -1238,7 +1238,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ChangeReason
       (
          this : access IMapActualCameraChangedEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
       )
       return WinRt.Hresult is abstract;
 
@@ -1250,7 +1250,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Camera
       (
          this : access IMapActualCameraChangingEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -1262,7 +1262,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ChangeReason
       (
          this : access IMapActualCameraChangingEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
       )
       return WinRt.Hresult is abstract;
 
@@ -1274,63 +1274,63 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapBillboard_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Location
       (
          this : access IMapBillboard_Interface;
-         value : Windows.Devices.Geolocation.IGeopoint
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedAnchorPoint
       (
          this : access IMapBillboard_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalizedAnchorPoint
       (
          this : access IMapBillboard_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Image
       (
          this : access IMapBillboard_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IMapBillboard_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_CollisionBehaviorDesired
       (
          this : access IMapBillboard_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_CollisionBehaviorDesired
       (
          this : access IMapBillboard_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_ReferenceCamera
       (
          this : access IMapBillboard_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -1342,8 +1342,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateInstanceFromCamera
       (
          this : access IMapBillboardFactory_Interface;
-         camera : Windows.UI.Xaml.Controls.Maps.IMapCamera;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapBillboard
+         camera : WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapBillboard
       )
       return WinRt.Hresult is abstract;
 
@@ -1355,21 +1355,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_LocationProperty
       (
          this : access IMapBillboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedAnchorPointProperty
       (
          this : access IMapBillboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CollisionBehaviorDesiredProperty
       (
          this : access IMapBillboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1381,14 +1381,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapCamera_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Location
       (
          this : access IMapCamera_Interface;
-         value : Windows.Devices.Geolocation.IGeopoint
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1456,39 +1456,39 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateInstanceWithLocation
       (
          this : access IMapCameraFactory_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithLocationAndHeading
       (
          this : access IMapCameraFactory_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          headingInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithLocationHeadingAndPitch
       (
          this : access IMapCameraFactory_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithLocationHeadingPitchRollAndFieldOfView
       (
          this : access IMapCameraFactory_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
          rollInDegrees : WinRt.Double;
          fieldOfViewInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -1500,14 +1500,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapContextRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapContextRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1526,14 +1526,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Center
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Center
       (
          this : access IMapControl_Interface;
-         value : Windows.Devices.Geolocation.IGeopoint
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1547,14 +1547,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ColorScheme
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapColorScheme
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapColorScheme
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorScheme
       (
          this : access IMapControl_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapColorScheme
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapColorScheme
       )
       return WinRt.Hresult is abstract;
 
@@ -1603,7 +1603,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_LoadingStatus
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapLoadingStatus
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapLoadingStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,14 +1659,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Style
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapStyle
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_Style
       (
          this : access IMapControl_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapStyle
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -1687,28 +1687,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_TransformOrigin
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_TransformOrigin
       (
          this : access IMapControl_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_WatermarkMode
       (
          this : access IMapControl_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
       )
       return WinRt.Hresult is abstract;
 
       function put_WatermarkMode
       (
          this : access IMapControl_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1751,14 +1751,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CenterChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1766,14 +1766,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HeadingChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1781,14 +1781,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LoadingStatusChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1796,14 +1796,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapDoubleTapped
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1811,14 +1811,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapHolding
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1826,14 +1826,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapTapped
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1841,14 +1841,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PitchChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1856,14 +1856,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransformOriginChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1871,21 +1871,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ZoomLevelChanged
       (
          this : access IMapControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function FindMapElementsAtOffset
       (
          this : access IMapControl_Interface;
-         offset : Windows.Foundation.Point;
+         offset : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1893,23 +1893,23 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function GetLocationFromOffset
       (
          this : access IMapControl_Interface;
-         offset : Windows.Foundation.Point;
-         location : access Windows.Devices.Geolocation.IGeopoint
+         offset : WinRt.Windows.Foundation.Point;
+         location : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function GetOffsetFromLocation
       (
          this : access IMapControl_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
-         offset : Windows.Foundation.Point_Ptr
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         offset : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function IsLocationInView
       (
          this : access IMapControl_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          isInView : WinRt.Boolean_Ptr
       )
       return WinRt.Hresult is abstract;
@@ -1917,9 +1917,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetViewBoundsAsync
       (
          this : access IMapControl_Interface;
-         bounds : Windows.Devices.Geolocation.IGeoboundingBox;
+         bounds : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          margin : GenericObject;
-         animation : Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
+         animation : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1927,7 +1927,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetViewAsync
       (
          this : access IMapControl_Interface;
-         center : Windows.Devices.Geolocation.IGeopoint;
+         center : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1935,7 +1935,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetViewAsync
       (
          this : access IMapControl_Interface;
-         center : Windows.Devices.Geolocation.IGeopoint;
+         center : WinRt.Windows.Devices.Geolocation.IGeopoint;
          zoomLevel : GenericObject;
          RetVal : access GenericObject
       )
@@ -1944,22 +1944,22 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetViewAsync
       (
          this : access IMapControl_Interface;
-         center : Windows.Devices.Geolocation.IGeopoint;
-         zoomLevel : GenericObject;
-         heading : GenericObject;
-         desiredPitch : GenericObject;
-         RetVal : access GenericObject
-      )
-      return WinRt.Hresult is abstract;
-
-      function TrySetViewAsync
-      (
-         this : access IMapControl_Interface;
-         center : Windows.Devices.Geolocation.IGeopoint;
+         center : WinRt.Windows.Devices.Geolocation.IGeopoint;
          zoomLevel : GenericObject;
          heading : GenericObject;
          desiredPitch : GenericObject;
-         animation : Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
+         RetVal : access GenericObject
+      )
+      return WinRt.Hresult is abstract;
+
+      function TrySetViewAsync
+      (
+         this : access IMapControl_Interface;
+         center : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         zoomLevel : GenericObject;
+         heading : GenericObject;
+         desiredPitch : GenericObject;
+         animation : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2000,56 +2000,56 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_PanInteractionMode
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_PanInteractionMode
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_RotateInteractionMode
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_RotateInteractionMode
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_TiltInteractionMode
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_TiltInteractionMode
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomInteractionMode
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ZoomInteractionMode
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2070,42 +2070,42 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Scene
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function put_Scene
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.IMapScene
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function get_ActualCamera
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetCamera
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
       function get_CustomExperience
       (
          this : access IMapControl2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
       )
       return WinRt.Hresult is abstract;
 
       function put_CustomExperience
       (
          this : access IMapControl2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
       )
       return WinRt.Hresult is abstract;
 
@@ -2113,14 +2113,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementClick
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2128,14 +2128,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementPointerEntered
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2143,14 +2143,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementPointerExited
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2158,14 +2158,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActualCameraChanged
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2173,14 +2173,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActualCameraChanging
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2188,14 +2188,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TargetCameraChanged
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2203,14 +2203,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CustomExperienceChanged
       (
          this : access IMapControl2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2310,7 +2310,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetSceneAsync
       (
          this : access IMapControl2_Interface;
-         scene : Windows.UI.Xaml.Controls.Maps.IMapScene;
+         scene : WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2318,8 +2318,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TrySetSceneAsync
       (
          this : access IMapControl2_Interface;
-         scene : Windows.UI.Xaml.Controls.Maps.IMapScene;
-         animationKind : Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
+         scene : WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene;
+         animationKind : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2333,14 +2333,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapRightTapped
       (
          this : access IMapControl3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2380,8 +2380,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function GetVisibleRegion
       (
          this : access IMapControl4_Interface;
-         region : Windows.UI.Xaml.Controls.Maps.MapVisibleRegionKind;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         region : WinRt.Windows.UI.Xaml.Controls.Maps.MapVisibleRegionKind;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
@@ -2393,42 +2393,42 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapProjection
       (
          this : access IMapControl5_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapProjection
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapProjection
       )
       return WinRt.Hresult is abstract;
 
       function put_MapProjection
       (
          this : access IMapControl5_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapProjection
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapProjection
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleSheet
       (
          this : access IMapControl5_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function put_StyleSheet
       (
          this : access IMapControl5_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewPadding
       (
          this : access IMapControl5_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewPadding
       (
          this : access IMapControl5_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -2436,21 +2436,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControl5_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapContextRequested
       (
          this : access IMapControl5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function FindMapElementsAtOffset
       (
          this : access IMapControl5_Interface;
-         offset : Windows.Foundation.Point;
+         offset : WinRt.Windows.Foundation.Point;
          radius : WinRt.Double;
          RetVal : access GenericObject
       )
@@ -2459,9 +2459,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function GetLocationFromOffset
       (
          this : access IMapControl5_Interface;
-         offset : Windows.Foundation.Point;
-         desiredReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         location : access Windows.Devices.Geolocation.IGeopoint
+         offset : WinRt.Windows.Foundation.Point;
+         desiredReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         location : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2491,7 +2491,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TryPanToAsync
       (
          this : access IMapControl5_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2518,8 +2518,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TryGetLocationFromOffset
       (
          this : access IMapControl6_Interface;
-         offset : Windows.Foundation.Point;
-         location : access Windows.Devices.Geolocation.IGeopoint;
+         offset : WinRt.Windows.Foundation.Point;
+         location : access WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2527,9 +2527,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function TryGetLocationFromOffset
       (
          this : access IMapControl6_Interface;
-         offset : Windows.Foundation.Point;
-         desiredReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-         location : access Windows.Devices.Geolocation.IGeopoint;
+         offset : WinRt.Windows.Foundation.Point;
+         desiredReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+         location : access WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2643,14 +2643,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BusinessLandmarkClick
       (
          this : access IMapControlDataHelper_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2658,14 +2658,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransitFeatureClick
       (
          this : access IMapControlDataHelper_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2673,14 +2673,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BusinessLandmarkRightTapped
       (
          this : access IMapControlDataHelper_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2688,14 +2688,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransitFeatureRightTapped
       (
          this : access IMapControlDataHelper_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2708,14 +2708,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BusinessLandmarkPointerEntered
       (
          this : access IMapControlDataHelper2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2723,14 +2723,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransitFeaturePointerEntered
       (
          this : access IMapControlDataHelper2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2738,14 +2738,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BusinessLandmarkPointerExited
       (
          this : access IMapControlDataHelper2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2753,14 +2753,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelper2_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransitFeaturePointerExited
       (
          this : access IMapControlDataHelper2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2772,8 +2772,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateInstance
       (
          this : access IMapControlDataHelperFactory_Interface;
-         map : Windows.UI.Xaml.Controls.Maps.IMapControl;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper
+         map : WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper
       )
       return WinRt.Hresult is abstract;
 
@@ -2786,7 +2786,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapControlDataHelperStatics_Interface;
          rasterRenderMode : WinRt.Boolean;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapControl
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapControl
       )
       return WinRt.Hresult is abstract;
 
@@ -2798,172 +2798,172 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_CenterProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ChildrenProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorSchemeProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredPitchProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HeadingProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LandmarksVisibleProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LoadingStatusProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MapServiceTokenProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PedestrianFeaturesVisibleProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PitchProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TrafficFlowVisibleProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformOriginProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_WatermarkModeProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomLevelProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MapElementsProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RoutesProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TileSourcesProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LocationProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetLocation
       (
          this : access IMapControlStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function SetLocation
       (
          this : access IMapControlStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.Devices.Geolocation.IGeopoint
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedAnchorPointProperty
       (
          this : access IMapControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetNormalizedAnchorPoint
       (
          this : access IMapControlStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.Foundation.Point
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function SetNormalizedAnchorPoint
       (
          this : access IMapControlStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.Foundation.Point
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2975,63 +2975,63 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_BusinessLandmarksVisibleProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TransitFeaturesVisibleProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PanInteractionModeProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotateInteractionModeProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TiltInteractionModeProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomInteractionModeProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Is3DSupportedProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsStreetsideSupportedProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SceneProperty
       (
          this : access IMapControlStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3043,14 +3043,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_BusinessLandmarksEnabledProperty
       (
          this : access IMapControlStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TransitFeaturesEnabledProperty
       (
          this : access IMapControlStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3062,21 +3062,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapProjectionProperty
       (
          this : access IMapControlStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleSheetProperty
       (
          this : access IMapControlStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ViewPaddingProperty
       (
          this : access IMapControlStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3088,7 +3088,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_LayersProperty
       (
          this : access IMapControlStatics6_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3100,7 +3100,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_RegionProperty
       (
          this : access IMapControlStatics7_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3112,28 +3112,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_CanTiltDownProperty
       (
          this : access IMapControlStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanTiltUpProperty
       (
          this : access IMapControlStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanZoomInProperty
       (
          this : access IMapControlStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CanZoomOutProperty
       (
          this : access IMapControlStatics8_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3152,7 +3152,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapControlTransitFeatureClickEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3178,7 +3178,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapControlTransitFeaturePointerEnteredEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3204,7 +3204,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapControlTransitFeaturePointerExitedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3230,7 +3230,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapControlTransitFeatureRightTappedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3261,7 +3261,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapCustomExperienceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCustomExperience
       )
       return WinRt.Hresult is abstract;
 
@@ -3372,28 +3372,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapElement3D_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Location
       (
          this : access IMapElement3D_Interface;
-         value : Windows.Devices.Geolocation.IGeopoint
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_Model
       (
          this : access IMapElement3D_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapModel3D
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapModel3D
       )
       return WinRt.Hresult is abstract;
 
       function put_Model
       (
          this : access IMapElement3D_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.IMapModel3D
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.IMapModel3D
       )
       return WinRt.Hresult is abstract;
 
@@ -3442,14 +3442,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Scale
       (
          this : access IMapElement3D_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access IMapElement3D_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -3461,35 +3461,35 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_LocationProperty
       (
          this : access IMapElement3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_HeadingProperty
       (
          this : access IMapElement3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PitchProperty
       (
          this : access IMapElement3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RollProperty
       (
          this : access IMapElement3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleProperty
       (
          this : access IMapElement3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3520,14 +3520,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementClickEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementClickEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3548,7 +3548,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapElementFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3560,21 +3560,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_MapElement
       (
          this : access IMapElementPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3586,21 +3586,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementPointerExitedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementPointerExitedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_MapElement
       (
          this : access IMapElementPointerExitedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3612,14 +3612,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ZIndexProperty
       (
          this : access IMapElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VisibleProperty
       (
          this : access IMapElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3631,7 +3631,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapTabIndexProperty
       (
          this : access IMapElementStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3643,21 +3643,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapStyleSheetEntryProperty
       (
          this : access IMapElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MapStyleSheetEntryStateProperty
       (
          this : access IMapElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TagProperty
       (
          this : access IMapElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3669,7 +3669,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_IsEnabledProperty
       (
          this : access IMapElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3696,14 +3696,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapElementsLayer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementClick
       (
          this : access IMapElementsLayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3711,14 +3711,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapElementsLayer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementPointerEntered
       (
          this : access IMapElementsLayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3726,14 +3726,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapElementsLayer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapElementPointerExited
       (
          this : access IMapElementsLayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3741,14 +3741,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapElementsLayer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapContextRequested
       (
          this : access IMapElementsLayer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3760,14 +3760,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementsLayerClickEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementsLayerClickEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3786,14 +3786,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementsLayerContextRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementsLayerContextRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3812,21 +3812,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementsLayerPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementsLayerPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_MapElement
       (
          this : access IMapElementsLayerPointerEnteredEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3838,21 +3838,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapElementsLayerPointerExitedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapElementsLayerPointerExitedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function get_MapElement
       (
          this : access IMapElementsLayerPointerExitedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapElement
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3864,7 +3864,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapElementsProperty
       (
          this : access IMapElementsLayerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3876,14 +3876,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IMapIcon_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Location
       (
          this : access IMapIcon_Interface;
-         value : Windows.Devices.Geolocation.IGeopoint
+         value : WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -3904,28 +3904,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_NormalizedAnchorPoint
       (
          this : access IMapIcon_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalizedAnchorPoint
       (
          this : access IMapIcon_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Image
       (
          this : access IMapIcon_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IMapIcon_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -3937,14 +3937,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_CollisionBehaviorDesired
       (
          this : access IMapIcon2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_CollisionBehaviorDesired
       (
          this : access IMapIcon2_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -3956,21 +3956,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_LocationProperty
       (
          this : access IMapIconStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TitleProperty
       (
          this : access IMapIconStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedAnchorPointProperty
       (
          this : access IMapIconStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3982,7 +3982,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_CollisionBehaviorDesiredProperty
       (
          this : access IMapIconStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3994,14 +3994,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapInputEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapInputEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -4034,14 +4034,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ItemTemplate
       (
          this : access IMapItemsControl_Interface;
-         RetVal : access Windows.UI.Xaml.IDataTemplate
+         RetVal : access WinRt.Windows.UI.Xaml.IDataTemplate
       )
       return WinRt.Hresult is abstract;
 
       function put_ItemTemplate
       (
          this : access IMapItemsControl_Interface;
-         value : Windows.UI.Xaml.IDataTemplate
+         value : WinRt.Windows.UI.Xaml.IDataTemplate
       )
       return WinRt.Hresult is abstract;
 
@@ -4053,21 +4053,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ItemsSourceProperty
       (
          this : access IMapItemsControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemsProperty
       (
          this : access IMapItemsControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ItemTemplateProperty
       (
          this : access IMapItemsControlStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4128,7 +4128,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapLayerFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapLayer
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapLayer
       )
       return WinRt.Hresult is abstract;
 
@@ -4140,21 +4140,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_MapTabIndexProperty
       (
          this : access IMapLayerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VisibleProperty
       (
          this : access IMapLayerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZIndexProperty
       (
          this : access IMapLayerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4173,7 +4173,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapModel3DFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapModel3D
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapModel3D
       )
       return WinRt.Hresult is abstract;
 
@@ -4185,7 +4185,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateFrom3MFAsync
       (
          this : access IMapModel3DStatics_Interface;
-         source : Windows.Storage.Streams.IRandomAccessStreamReference;
+         source : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4193,8 +4193,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateFrom3MFAsync
       (
          this : access IMapModel3DStatics_Interface;
-         source : Windows.Storage.Streams.IRandomAccessStreamReference;
-         shadingOption : Windows.UI.Xaml.Controls.Maps.MapModel3DShadingOption;
+         source : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         shadingOption : WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3DShadingOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4207,28 +4207,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Path
       (
          this : access IMapPolygon_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
       function put_Path
       (
          this : access IMapPolygon_Interface;
-         value : Windows.Devices.Geolocation.IGeopath
+         value : WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeColor
       (
          this : access IMapPolygon_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeColor
       (
          this : access IMapPolygon_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4263,14 +4263,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_FillColor
       (
          this : access IMapPolygon_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_FillColor
       (
          this : access IMapPolygon_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4294,21 +4294,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_PathProperty
       (
          this : access IMapPolygonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeThicknessProperty
       (
          this : access IMapPolygonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeDashedProperty
       (
          this : access IMapPolygonStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4320,28 +4320,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Path
       (
          this : access IMapPolyline_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopath
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
       function put_Path
       (
          this : access IMapPolyline_Interface;
-         value : Windows.Devices.Geolocation.IGeopath
+         value : WinRt.Windows.Devices.Geolocation.IGeopath
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeColor
       (
          this : access IMapPolyline_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_StrokeColor
       (
          this : access IMapPolyline_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4381,14 +4381,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_PathProperty
       (
          this : access IMapPolylineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StrokeDashedProperty
       (
          this : access IMapPolylineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4400,14 +4400,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Position
       (
          this : access IMapRightTappedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Location
       (
          this : access IMapRightTappedEventArgs_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -4419,35 +4419,35 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_RouteColor
       (
          this : access IMapRouteView_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_RouteColor
       (
          this : access IMapRouteView_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_OutlineColor
       (
          this : access IMapRouteView_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_OutlineColor
       (
          this : access IMapRouteView_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Route
       (
          this : access IMapRouteView_Interface;
-         RetVal : access Windows.Services.Maps.IMapRoute
+         RetVal : access WinRt.Windows.Services.Maps.IMapRoute
       )
       return WinRt.Hresult is abstract;
 
@@ -4459,10 +4459,10 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateInstanceWithMapRoute
       (
          this : access IMapRouteViewFactory_Interface;
-         route : Windows.Services.Maps.IMapRoute;
+         route : WinRt.Windows.Services.Maps.IMapRoute;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapRouteView
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapRouteView
       )
       return WinRt.Hresult is abstract;
 
@@ -4474,7 +4474,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_TargetCamera
       (
          this : access IMapScene_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -4482,14 +4482,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapScene_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TargetCameraChanged
       (
          this : access IMapScene_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4501,64 +4501,64 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateFromBoundingBox
       (
          this : access IMapSceneStatics_Interface;
-         bounds : Windows.Devices.Geolocation.IGeoboundingBox;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         bounds : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromBoundingBox
       (
          this : access IMapSceneStatics_Interface;
-         bounds : Windows.Devices.Geolocation.IGeoboundingBox;
+         bounds : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromCamera
       (
          this : access IMapSceneStatics_Interface;
-         camera : Windows.UI.Xaml.Controls.Maps.IMapCamera;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         camera : WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromLocation
       (
          this : access IMapSceneStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromLocation
       (
          this : access IMapSceneStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromLocationAndRadius
       (
          this : access IMapSceneStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          radiusInMeters : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromLocationAndRadius
       (
          this : access IMapSceneStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          radiusInMeters : WinRt.Double;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
@@ -4566,7 +4566,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapSceneStatics_Interface;
          locations : GenericObject;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
@@ -4576,7 +4576,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          locations : GenericObject;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapScene
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapScene
       )
       return WinRt.Hresult is abstract;
 
@@ -5072,42 +5072,42 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function Aerial
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function AerialWithOverlay
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function RoadLight
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function RoadDark
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function RoadHighContrastLight
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
       function RoadHighContrastDark
       (
          this : access IMapStyleSheetStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
@@ -5115,7 +5115,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapStyleSheetStatics_Interface;
          styleSheets : GenericObject;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
@@ -5123,7 +5123,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapStyleSheetStatics_Interface;
          styleAsJson : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
       )
       return WinRt.Hresult is abstract;
 
@@ -5131,7 +5131,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       (
          this : access IMapStyleSheetStatics_Interface;
          styleAsJson : WinRt.HString;
-         styleSheet : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
+         styleSheet : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -5144,7 +5144,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Camera
       (
          this : access IMapTargetCameraChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapCamera
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -5156,7 +5156,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_ChangeReason
       (
          this : access IMapTargetCameraChangedEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapCameraChangeReason
       )
       return WinRt.Hresult is abstract;
 
@@ -5168,21 +5168,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_PixelData
       (
          this : access IMapTileBitmapRequest_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_PixelData
       (
          this : access IMapTileBitmapRequest_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMapTileBitmapRequest_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -5226,7 +5226,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Request
       (
          this : access IMapTileBitmapRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -5257,7 +5257,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapTileDataSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
@@ -5269,56 +5269,56 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_DataSource
       (
          this : access IMapTileSource_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
       function put_DataSource
       (
          this : access IMapTileSource_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource
       )
       return WinRt.Hresult is abstract;
 
       function get_Layer
       (
          this : access IMapTileSource_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapTileLayer
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapTileLayer
       )
       return WinRt.Hresult is abstract;
 
       function put_Layer
       (
          this : access IMapTileSource_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapTileLayer
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileLayer
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomLevelRange
       (
          this : access IMapTileSource_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
       )
       return WinRt.Hresult is abstract;
 
       function put_ZoomLevelRange
       (
          this : access IMapTileSource_Interface;
-         value : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
+         value : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
       )
       return WinRt.Hresult is abstract;
 
       function get_Bounds
       (
          this : access IMapTileSource_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeoboundingBox
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
       function put_Bounds
       (
          this : access IMapTileSource_Interface;
-         value : Windows.Devices.Geolocation.IGeoboundingBox
+         value : WinRt.Windows.Devices.Geolocation.IGeoboundingBox
       )
       return WinRt.Hresult is abstract;
 
@@ -5428,7 +5428,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_AnimationState
       (
          this : access IMapTileSource2_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.MapTileAnimationState
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.MapTileAnimationState
       )
       return WinRt.Hresult is abstract;
 
@@ -5463,14 +5463,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_FrameDuration
       (
          this : access IMapTileSource2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_FrameDuration
       (
          this : access IMapTileSource2_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -5502,53 +5502,53 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
          this : access IMapTileSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithDataSource
       (
          this : access IMapTileSourceFactory_Interface;
-         dataSource : Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
+         dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithDataSourceAndZoomRange
       (
          this : access IMapTileSourceFactory_Interface;
-         dataSource : Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
-         zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+         dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
+         zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithDataSourceZoomRangeAndBounds
       (
          this : access IMapTileSourceFactory_Interface;
-         dataSource : Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
-         zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
-         bounds : Windows.Devices.Geolocation.IGeoboundingBox;
+         dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
+         zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+         bounds : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithDataSourceZoomRangeBoundsAndTileSize
       (
          this : access IMapTileSourceFactory_Interface;
-         dataSource : Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
-         zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
-         bounds : Windows.Devices.Geolocation.IGeoboundingBox;
+         dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
+         zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+         bounds : WinRt.Windows.Devices.Geolocation.IGeoboundingBox;
          tileSizeInPixels : WinRt.Int32;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileSource
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileSource
       )
       return WinRt.Hresult is abstract;
 
@@ -5560,77 +5560,77 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_DataSourceProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LayerProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZoomLevelRangeProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundsProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AllowOverstretchProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsFadingEnabledProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsTransparencyEnabledProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsRetryEnabledProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ZIndexProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TilePixelSizeProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VisibleProperty
       (
          this : access IMapTileSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5642,28 +5642,28 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_AnimationStateProperty
       (
          this : access IMapTileSourceStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoPlayProperty
       (
          this : access IMapTileSourceStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FrameCountProperty
       (
          this : access IMapTileSourceStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FrameDurationProperty
       (
          this : access IMapTileSourceStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5675,21 +5675,21 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Uri
       (
          this : access IMapTileUriRequest_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IMapTileUriRequest_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMapTileUriRequest_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -5733,7 +5733,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Request
       (
          this : access IMapTileUriRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -5846,19 +5846,19 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function CreateInstanceWithPanorama
       (
          this : access IStreetsideExperienceFactory_Interface;
-         panorama : Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IStreetsideExperience
+         panorama : WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsideExperience
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithPanoramaHeadingPitchAndFieldOfView
       (
          this : access IStreetsideExperienceFactory_Interface;
-         panorama : Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
+         panorama : WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsidePanorama;
          headingInDegrees : WinRt.Double;
          pitchInDegrees : WinRt.Double;
          fieldOfViewInDegrees : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Controls.Maps.IStreetsideExperience
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Maps.IStreetsideExperience
       )
       return WinRt.Hresult is abstract;
 
@@ -5870,7 +5870,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function get_Location
       (
          this : access IStreetsidePanorama_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -5882,7 +5882,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function FindNearbyAsync
       (
          this : access IStreetsidePanoramaStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5890,7 +5890,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
       function FindNearbyAsync
       (
          this : access IStreetsidePanoramaStatics_Interface;
-         location : Windows.Devices.Geolocation.IGeopoint;
+         location : WinRt.Windows.Devices.Geolocation.IGeopoint;
          radiusInMeters : WinRt.Double;
          RetVal : access GenericObject
       )
@@ -5950,7 +5950,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_BitmapRequested
    (
       this : in out CustomMapTileDataSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6020,7 +6020,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_UriRequested
    (
       this : in out HttpMapTileDataSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6072,7 +6072,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_UriRequested
    (
       this : in out LocalMapTileDataSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6265,7 +6265,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      camera : Windows.UI.Xaml.Controls.Maps.MapCamera'Class
+      camera : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class
    )
    return MapBillboard;
 
@@ -6293,7 +6293,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Location
    (
       this : in out MapBillboard;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_NormalizedAnchorPoint
@@ -6305,7 +6305,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_NormalizedAnchorPoint
    (
       this : in out MapBillboard;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Image
@@ -6317,7 +6317,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Image
    (
       this : in out MapBillboard;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_CollisionBehaviorDesired
@@ -6329,7 +6329,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_CollisionBehaviorDesired
    (
       this : in out MapBillboard;
-      value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
    );
 
    function get_ReferenceCamera
@@ -6349,20 +6349,20 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return MapCamera;
 
    function Constructor
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       headingInDegrees : WinRt.Double
    )
    return MapCamera;
 
    function Constructor
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double
    )
@@ -6370,7 +6370,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double;
       rollInDegrees : WinRt.Double;
@@ -6390,7 +6390,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Location
    (
       this : in out MapCamera;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_Heading
@@ -6594,14 +6594,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function GetLocation
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.Devices.Geolocation.Geopoint;
 
    procedure SetLocation
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_NormalizedAnchorPointProperty_MapControl
@@ -6609,14 +6609,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function GetNormalizedAnchorPoint
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.Foundation.Point;
 
    procedure SetNormalizedAnchorPoint
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.Foundation.Point
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_LayersProperty
@@ -6643,7 +6643,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Center
    (
       this : in out MapControl;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_Children
@@ -6661,7 +6661,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_ColorScheme
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapColorScheme
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapColorScheme
    );
 
    function get_DesiredPitch
@@ -6757,7 +6757,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Style
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapStyle
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyle
    );
 
    function get_TrafficFlowVisible
@@ -6781,7 +6781,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_TransformOrigin
    (
       this : in out MapControl;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_WatermarkMode
@@ -6793,7 +6793,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_WatermarkMode
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapWatermarkMode
    );
 
    function get_ZoomLevel
@@ -6836,7 +6836,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_CenterChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadingChanged
@@ -6849,7 +6849,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_HeadingChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LoadingStatusChanged
@@ -6862,7 +6862,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_LoadingStatusChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapDoubleTapped
@@ -6875,7 +6875,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapDoubleTapped
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapHolding
@@ -6888,7 +6888,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapHolding
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapTapped
@@ -6901,7 +6901,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapTapped
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PitchChanged
@@ -6914,7 +6914,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_PitchChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TransformOriginChanged
@@ -6927,7 +6927,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TransformOriginChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ZoomLevelChanged
@@ -6940,57 +6940,57 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_ZoomLevelChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindMapElementsAtOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point
+      offset : WinRt.Windows.Foundation.Point
    )
    return IVectorView_IMapElement.Kind;
 
    procedure GetLocationFromOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point;
-      location : access Windows.Devices.Geolocation.IGeopoint
+      offset : WinRt.Windows.Foundation.Point;
+      location : access WinRt.Windows.Devices.Geolocation.IGeopoint
    );
 
    procedure GetOffsetFromLocation
    (
       this : in out MapControl;
-      location : Windows.Devices.Geolocation.Geopoint'Class;
-      offset : Windows.Foundation.Point_Ptr
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
+      offset : WinRt.Windows.Foundation.Point_Ptr
    );
 
    procedure IsLocationInView
    (
       this : in out MapControl;
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       isInView : WinRt.Boolean_Ptr
    );
 
    function TrySetViewBoundsAsync
    (
       this : in out MapControl;
-      bounds : Windows.Devices.Geolocation.GeoboundingBox'Class;
+      bounds : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class;
       margin : GenericObject;
-      animation : Windows.UI.Xaml.Controls.Maps.MapAnimationKind
+      animation : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind
    )
    return WinRt.Boolean;
 
    function TrySetViewAsync
    (
       this : in out MapControl;
-      center : Windows.Devices.Geolocation.Geopoint'Class
+      center : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Boolean;
 
    function TrySetViewAsync
    (
       this : in out MapControl;
-      center : Windows.Devices.Geolocation.Geopoint'Class;
+      center : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       zoomLevel : GenericObject
    )
    return WinRt.Boolean;
@@ -6998,7 +6998,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TrySetViewAsync
    (
       this : in out MapControl;
-      center : Windows.Devices.Geolocation.Geopoint'Class;
+      center : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       zoomLevel : GenericObject;
       heading : GenericObject;
       desiredPitch : GenericObject
@@ -7008,11 +7008,11 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TrySetViewAsync
    (
       this : in out MapControl;
-      center : Windows.Devices.Geolocation.Geopoint'Class;
+      center : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       zoomLevel : GenericObject;
       heading : GenericObject;
       desiredPitch : GenericObject;
-      animation : Windows.UI.Xaml.Controls.Maps.MapAnimationKind
+      animation : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind
    )
    return WinRt.Boolean;
 
@@ -7049,7 +7049,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_PanInteractionMode
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapPanInteractionMode
    );
 
    function get_RotateInteractionMode
@@ -7061,7 +7061,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_RotateInteractionMode
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    );
 
    function get_TiltInteractionMode
@@ -7073,7 +7073,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_TiltInteractionMode
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    );
 
    function get_ZoomInteractionMode
@@ -7085,7 +7085,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_ZoomInteractionMode
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapInteractionMode
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapInteractionMode
    );
 
    function get_Is3DSupported
@@ -7109,7 +7109,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Scene
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapScene'Class
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene'Class
    );
 
    function get_ActualCamera
@@ -7133,7 +7133,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_CustomExperience
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapCustomExperience'Class
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapCustomExperience'Class
    );
 
    function add_MapElementClick
@@ -7146,7 +7146,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementClick
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapElementPointerEntered
@@ -7159,7 +7159,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementPointerEntered
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapElementPointerExited
@@ -7172,7 +7172,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementPointerExited
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActualCameraChanged
@@ -7185,7 +7185,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_ActualCameraChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActualCameraChanging
@@ -7198,7 +7198,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_ActualCameraChanging
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TargetCameraChanged
@@ -7211,7 +7211,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TargetCameraChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CustomExperienceChanged
@@ -7224,7 +7224,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_CustomExperienceChanged
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure StartContinuousRotate
@@ -7310,15 +7310,15 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TrySetSceneAsync
    (
       this : in out MapControl;
-      scene : Windows.UI.Xaml.Controls.Maps.MapScene'Class
+      scene : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene'Class
    )
    return WinRt.Boolean;
 
    function TrySetSceneAsync
    (
       this : in out MapControl;
-      scene : Windows.UI.Xaml.Controls.Maps.MapScene'Class;
-      animationKind : Windows.UI.Xaml.Controls.Maps.MapAnimationKind
+      scene : WinRt.Windows.UI.Xaml.Controls.Maps.MapScene'Class;
+      animationKind : WinRt.Windows.UI.Xaml.Controls.Maps.MapAnimationKind
    )
    return WinRt.Boolean;
 
@@ -7332,7 +7332,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapRightTapped
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_BusinessLandmarksEnabled
@@ -7362,7 +7362,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function GetVisibleRegion
    (
       this : in out MapControl;
-      region : Windows.UI.Xaml.Controls.Maps.MapVisibleRegionKind
+      region : WinRt.Windows.UI.Xaml.Controls.Maps.MapVisibleRegionKind
    )
    return WinRt.Windows.Devices.Geolocation.Geopath'Class;
 
@@ -7375,7 +7375,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_MapProjection
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapProjection
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapProjection
    );
 
    function get_StyleSheet
@@ -7387,7 +7387,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_StyleSheet
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Controls.Maps.MapStyleSheet'Class
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapStyleSheet'Class
    );
 
    function get_ViewPadding
@@ -7399,7 +7399,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_ViewPadding
    (
       this : in out MapControl;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function add_MapContextRequested
@@ -7412,13 +7412,13 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapContextRequested
    (
       this : in out MapControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function FindMapElementsAtOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point;
+      offset : WinRt.Windows.Foundation.Point;
       radius : WinRt.Double
    )
    return IVectorView_IMapElement.Kind;
@@ -7426,9 +7426,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure GetLocationFromOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point;
-      desiredReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-      location : access Windows.Devices.Geolocation.IGeopoint
+      offset : WinRt.Windows.Foundation.Point;
+      desiredReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      location : access WinRt.Windows.Devices.Geolocation.IGeopoint
    );
 
    procedure StartContinuousPan
@@ -7454,7 +7454,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TryPanToAsync
    (
       this : in out MapControl;
-      location : Windows.Devices.Geolocation.Geopoint'Class
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Boolean;
 
@@ -7473,17 +7473,17 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TryGetLocationFromOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point;
-      location : access Windows.Devices.Geolocation.IGeopoint
+      offset : WinRt.Windows.Foundation.Point;
+      location : access WinRt.Windows.Devices.Geolocation.IGeopoint
    )
    return WinRt.Boolean;
 
    function TryGetLocationFromOffset
    (
       this : in out MapControl;
-      offset : Windows.Foundation.Point;
-      desiredReferenceSystem : Windows.Devices.Geolocation.AltitudeReferenceSystem;
-      location : access Windows.Devices.Geolocation.IGeopoint
+      offset : WinRt.Windows.Foundation.Point;
+      desiredReferenceSystem : WinRt.Windows.Devices.Geolocation.AltitudeReferenceSystem;
+      location : access WinRt.Windows.Devices.Geolocation.IGeopoint
    )
    return WinRt.Boolean;
 
@@ -7614,7 +7614,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      map : Windows.UI.Xaml.Controls.Maps.MapControl'Class
+      map : WinRt.Windows.UI.Xaml.Controls.Maps.MapControl'Class
    )
    return MapControlDataHelper;
 
@@ -7640,7 +7640,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_BusinessLandmarkClick
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TransitFeatureClick
@@ -7653,7 +7653,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TransitFeatureClick
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BusinessLandmarkRightTapped
@@ -7666,7 +7666,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_BusinessLandmarkRightTapped
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TransitFeatureRightTapped
@@ -7679,7 +7679,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TransitFeatureRightTapped
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BusinessLandmarkPointerEntered
@@ -7692,7 +7692,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_BusinessLandmarkPointerEntered
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TransitFeaturePointerEntered
@@ -7705,7 +7705,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TransitFeaturePointerEntered
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BusinessLandmarkPointerExited
@@ -7718,7 +7718,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_BusinessLandmarkPointerExited
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TransitFeaturePointerExited
@@ -7731,7 +7731,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TransitFeaturePointerExited
    (
       this : in out MapControlDataHelper;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7936,7 +7936,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Location
    (
       this : in out MapElement3D;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_Model
@@ -7948,7 +7948,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Model
    (
       this : in out MapElement3D;
-      value : Windows.UI.Xaml.Controls.Maps.MapModel3D'Class
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D'Class
    );
 
    function get_Heading
@@ -7996,7 +7996,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Scale
    (
       this : in out MapElement3D;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    -----------------------------------------------------------------------------
@@ -8204,7 +8204,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementClick
    (
       this : in out MapElementsLayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapElementPointerEntered
@@ -8217,7 +8217,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementPointerEntered
    (
       this : in out MapElementsLayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapElementPointerExited
@@ -8230,7 +8230,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapElementPointerExited
    (
       this : in out MapElementsLayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MapContextRequested
@@ -8243,7 +8243,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_MapContextRequested
    (
       this : in out MapElementsLayer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8412,7 +8412,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Location
    (
       this : in out MapIcon;
-      value : Windows.Devices.Geolocation.Geopoint'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    );
 
    function get_Title
@@ -8436,7 +8436,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_NormalizedAnchorPoint
    (
       this : in out MapIcon;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Image
@@ -8448,7 +8448,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Image
    (
       this : in out MapIcon;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_CollisionBehaviorDesired
@@ -8460,7 +8460,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_CollisionBehaviorDesired
    (
       this : in out MapIcon;
-      value : Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapElementCollisionBehavior
    );
 
    -----------------------------------------------------------------------------
@@ -8542,7 +8542,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_ItemTemplate
    (
       this : in out MapItemsControl;
-      value : Windows.UI.Xaml.DataTemplate'Class
+      value : WinRt.Windows.UI.Xaml.DataTemplate'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8566,14 +8566,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function CreateFrom3MFAsync
    (
-      source : Windows.Storage.Streams.IRandomAccessStreamReference
+      source : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D;
 
    function CreateFrom3MFAsync
    (
-      source : Windows.Storage.Streams.IRandomAccessStreamReference;
-      shadingOption : Windows.UI.Xaml.Controls.Maps.MapModel3DShadingOption
+      source : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      shadingOption : WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3DShadingOption
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapModel3D;
 
@@ -8615,7 +8615,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Path
    (
       this : in out MapPolygon;
-      value : Windows.Devices.Geolocation.Geopath'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopath'Class
    );
 
    function get_StrokeColor
@@ -8627,7 +8627,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_StrokeColor
    (
       this : in out MapPolygon;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_StrokeThickness
@@ -8663,7 +8663,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_FillColor
    (
       this : in out MapPolygon;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Paths
@@ -8704,7 +8704,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Path
    (
       this : in out MapPolyline;
-      value : Windows.Devices.Geolocation.Geopath'Class
+      value : WinRt.Windows.Devices.Geolocation.Geopath'Class
    );
 
    function get_StrokeColor
@@ -8716,7 +8716,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_StrokeColor
    (
       this : in out MapPolyline;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_StrokeThickness
@@ -8780,7 +8780,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      route : Windows.Services.Maps.MapRoute'Class;
+      route : WinRt.Windows.Services.Maps.MapRoute'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -8798,7 +8798,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_RouteColor
    (
       this : in out MapRouteView;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_OutlineColor
@@ -8810,7 +8810,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_OutlineColor
    (
       this : in out MapRouteView;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Route
@@ -8830,13 +8830,13 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function CreateFromBoundingBox
    (
-      bounds : Windows.Devices.Geolocation.GeoboundingBox'Class
+      bounds : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene;
 
    function CreateFromBoundingBox
    (
-      bounds : Windows.Devices.Geolocation.GeoboundingBox'Class;
+      bounds : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double
    )
@@ -8844,19 +8844,19 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function CreateFromCamera
    (
-      camera : Windows.UI.Xaml.Controls.Maps.MapCamera'Class
+      camera : WinRt.Windows.UI.Xaml.Controls.Maps.MapCamera'Class
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene;
 
    function CreateFromLocation
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene;
 
    function CreateFromLocation
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double
    )
@@ -8864,14 +8864,14 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function CreateFromLocationAndRadius
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       radiusInMeters : WinRt.Double
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.MapScene;
 
    function CreateFromLocationAndRadius
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       radiusInMeters : WinRt.Double;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double
@@ -8911,7 +8911,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure remove_TargetCameraChanged
    (
       this : in out MapScene;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8956,7 +8956,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    function TryParseFromJson
    (
       styleAsJson : WinRt.WString;
-      styleSheet : access Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
+      styleSheet : access WinRt.Windows.UI.Xaml.Controls.Maps.IMapStyleSheet
    )
    return WinRt.Boolean;
 
@@ -9225,7 +9225,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_PixelData
    (
       this : in out MapTileBitmapRequest;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function GetDeferral
@@ -9315,7 +9315,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      dataSource : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
+      dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -9323,8 +9323,8 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      dataSource : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
-      zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+      dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
+      zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -9332,9 +9332,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      dataSource : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
-      zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
-      bounds : Windows.Devices.Geolocation.GeoboundingBox'Class;
+      dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
+      zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+      bounds : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -9342,9 +9342,9 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      dataSource : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
-      zoomLevelRange : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
-      bounds : Windows.Devices.Geolocation.GeoboundingBox'Class;
+      dataSource : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class;
+      zoomLevelRange : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange;
+      bounds : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class;
       tileSizeInPixels : WinRt.Int32;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
@@ -9411,7 +9411,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_DataSource
    (
       this : in out MapTileSource;
-      value : Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileDataSource'Class
    );
 
    function get_Layer
@@ -9423,7 +9423,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Layer
    (
       this : in out MapTileSource;
-      value : Windows.UI.Xaml.Controls.Maps.MapTileLayer
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapTileLayer
    );
 
    function get_ZoomLevelRange
@@ -9435,7 +9435,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_ZoomLevelRange
    (
       this : in out MapTileSource;
-      value : Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
+      value : WinRt.Windows.UI.Xaml.Controls.Maps.MapZoomLevelRange
    );
 
    function get_Bounds
@@ -9447,7 +9447,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Bounds
    (
       this : in out MapTileSource;
-      value : Windows.Devices.Geolocation.GeoboundingBox'Class
+      value : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class
    );
 
    function get_AllowOverstretch
@@ -9573,7 +9573,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_FrameDuration
    (
       this : in out MapTileSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure Pause
@@ -9614,7 +9614,7 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
    procedure put_Uri
    (
       this : in out MapTileUriRequest;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function GetDeferral
@@ -9697,13 +9697,13 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function Constructor
    (
-      panorama : Windows.UI.Xaml.Controls.Maps.StreetsidePanorama'Class
+      panorama : WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama'Class
    )
    return StreetsideExperience;
 
    function Constructor
    (
-      panorama : Windows.UI.Xaml.Controls.Maps.StreetsidePanorama'Class;
+      panorama : WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama'Class;
       headingInDegrees : WinRt.Double;
       pitchInDegrees : WinRt.Double;
       fieldOfViewInDegrees : WinRt.Double
@@ -9796,13 +9796,13 @@ package WinRt.Windows.UI.Xaml.Controls.Maps is
 
    function FindNearbyAsync
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama;
 
    function FindNearbyAsync
    (
-      location : Windows.Devices.Geolocation.Geopoint'Class;
+      location : WinRt.Windows.Devices.Geolocation.Geopoint'Class;
       radiusInMeters : WinRt.Double
    )
    return WinRt.Windows.UI.Xaml.Controls.Maps.StreetsidePanorama;

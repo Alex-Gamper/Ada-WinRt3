@@ -185,14 +185,14 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_ServerType
       (
          this : access IDeviceAccountConfiguration_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerType
       (
          this : access IDeviceAccountConfiguration_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
       )
       return WinRt.Hresult is abstract;
 
@@ -386,28 +386,28 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_IncomingServerCredential
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_IncomingServerCredential
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_OutgoingServerCredential
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_OutgoingServerCredential
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -442,28 +442,28 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_AccountIconId
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
       )
       return WinRt.Hresult is abstract;
 
       function put_AccountIconId
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationType
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthenticationType
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
       )
       return WinRt.Hresult is abstract;
 
@@ -512,28 +512,28 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_SyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function put_SyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function get_MailAgeFilter
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
       )
       return WinRt.Hresult is abstract;
 
       function put_MailAgeFilter
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -582,42 +582,42 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_CardDavSyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function put_CardDavSyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function get_CalDavSyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function put_CalDavSyncScheduleKind
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
       )
       return WinRt.Hresult is abstract;
 
       function get_CardDavServerUrl
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_CardDavServerUrl
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -638,14 +638,14 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       function get_CalDavServerUrl
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_CalDavServerUrl
       (
          this : access IDeviceAccountConfiguration2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -797,14 +797,14 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       (
          this : access IUserDataAccountSystemAccessManagerStatics2_Interface;
          userDataAccountId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CreateDeviceAccountAsync
       (
          this : access IUserDataAccountSystemAccessManagerStatics2_Interface;
-         account : Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
+         account : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -813,7 +813,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       (
          this : access IUserDataAccountSystemAccessManagerStatics2_Interface;
          accountId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -878,7 +878,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_ServerType
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
    );
 
    function get_EmailAddress
@@ -1046,7 +1046,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_IncomingServerCredential
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_OutgoingServerCredential
@@ -1058,7 +1058,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_OutgoingServerCredential
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_OAuthRefreshToken
@@ -1094,7 +1094,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_AccountIconId
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
    );
 
    function get_AuthenticationType
@@ -1106,7 +1106,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_AuthenticationType
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
    );
 
    function get_IsSsoAuthenticationSupported
@@ -1154,7 +1154,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_SyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    );
 
    function get_MailAgeFilter
@@ -1166,7 +1166,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_MailAgeFilter
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
    );
 
    function get_IsClientAuthenticationCertificateRequired
@@ -1214,7 +1214,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CardDavSyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    );
 
    function get_CalDavSyncScheduleKind
@@ -1226,7 +1226,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CalDavSyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    );
 
    function get_CardDavServerUrl
@@ -1238,7 +1238,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CardDavServerUrl
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_CardDavRequiresSsl
@@ -1262,7 +1262,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CalDavServerUrl
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_CalDavRequiresSsl
@@ -1384,7 +1384,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
 
       function CreateDeviceAccountAsync
       (
-         account : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration'Class
+         account : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration'Class
       )
       return WinRt.WString;
 

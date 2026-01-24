@@ -96,8 +96,8 @@ package body WinRt.Windows.Devices.Custom is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      desiredAccess : Windows.Devices.Custom.DeviceAccessMode;
-      sharingMode : Windows.Devices.Custom.DeviceSharingMode
+      desiredAccess : WinRt.Windows.Devices.Custom.DeviceAccessMode;
+      sharingMode : WinRt.Windows.Devices.Custom.DeviceSharingMode
    )
    return WinRt.Windows.Devices.Custom.CustomDevice is
       Hr               : WinRt.HResult := S_OK;
@@ -154,7 +154,7 @@ package body WinRt.Windows.Devices.Custom is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ICustomDevice := new Windows.Devices.Custom.ICustomDevice;
+                     Retval.m_ICustomDevice := new WinRt.Windows.Devices.Custom.ICustomDevice;
                      Retval.m_ICustomDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -181,7 +181,7 @@ package body WinRt.Windows.Devices.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_ICustomDevice.all.get_InputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -198,7 +198,7 @@ package body WinRt.Windows.Devices.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_ICustomDevice.all.get_OutputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -210,9 +210,9 @@ package body WinRt.Windows.Devices.Custom is
    function SendIOControlAsync
    (
       this : in out CustomDevice;
-      ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : Windows.Storage.Streams.IBuffer;
-      outputBuffer : Windows.Storage.Streams.IBuffer
+      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -276,9 +276,9 @@ package body WinRt.Windows.Devices.Custom is
    function TrySendIOControlAsync
    (
       this : in out CustomDevice;
-      ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : Windows.Storage.Streams.IBuffer;
-      outputBuffer : Windows.Storage.Streams.IBuffer
+      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -366,22 +366,22 @@ package body WinRt.Windows.Devices.Custom is
    (
       deviceType : WinRt.UInt16;
       function_x : WinRt.UInt16;
-      accessMode : Windows.Devices.Custom.IOControlAccessMode;
-      bufferingMethod : Windows.Devices.Custom.IOControlBufferingMethod
+      accessMode : WinRt.Windows.Devices.Custom.IOControlAccessMode;
+      bufferingMethod : WinRt.Windows.Devices.Custom.IOControlBufferingMethod
    )
    return IOControlCode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Custom.IOControlCode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Custom.IIOControlCode");
       m_Factory    : access IIOControlCodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Custom.IIOControlCode;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Custom.IIOControlCode;
    begin
       return RetVal : IOControlCode do
          Hr := RoGetActivationFactory (m_hString, IID_IIOControlCodeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateIOControlCode (deviceType, function_x, accessMode, bufferingMethod, m_ComRetVal'Access);
-            Retval.m_IIOControlCode := new Windows.Devices.Custom.IIOControlCode;
+            Retval.m_IIOControlCode := new WinRt.Windows.Devices.Custom.IIOControlCode;
             Retval.m_IIOControlCode.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -400,7 +400,7 @@ package body WinRt.Windows.Devices.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Custom.IOControlAccessMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Custom.IOControlAccessMode;
    begin
       Hr := this.m_IIOControlCode.all.get_AccessMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -417,7 +417,7 @@ package body WinRt.Windows.Devices.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Custom.IOControlBufferingMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Custom.IOControlBufferingMethod;
    begin
       Hr := this.m_IIOControlCode.all.get_BufferingMethod (m_ComRetVal'Access);
       if Hr /= S_OK then

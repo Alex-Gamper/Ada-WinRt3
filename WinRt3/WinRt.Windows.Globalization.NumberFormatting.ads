@@ -248,21 +248,21 @@ package WinRt.Windows.Globalization.NumberFormatting is
       function get_Mode
       (
          this : access ICurrencyFormatter2_Interface;
-         RetVal : access Windows.Globalization.NumberFormatting.CurrencyFormatterMode
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.CurrencyFormatterMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access ICurrencyFormatter2_Interface;
-         value : Windows.Globalization.NumberFormatting.CurrencyFormatterMode
+         value : WinRt.Windows.Globalization.NumberFormatting.CurrencyFormatterMode
       )
       return WinRt.Hresult is abstract;
 
       function ApplyRoundingForCurrency
       (
          this : access ICurrencyFormatter2_Interface;
-         roundingAlgorithm : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+         roundingAlgorithm : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -275,7 +275,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
       (
          this : access ICurrencyFormatterFactory_Interface;
          currencyCode : WinRt.HString;
-         RetVal : access Windows.Globalization.NumberFormatting.ICurrencyFormatter
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -285,7 +285,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
          currencyCode : WinRt.HString;
          languages : GenericObject;
          geographicRegion : WinRt.HString;
-         RetVal : access Windows.Globalization.NumberFormatting.ICurrencyFormatter
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -299,7 +299,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
          this : access IDecimalFormatterFactory_Interface;
          languages : GenericObject;
          geographicRegion : WinRt.HString;
-         RetVal : access Windows.Globalization.NumberFormatting.INumberFormatter
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.INumberFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -311,14 +311,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
       function get_RoundingAlgorithm
       (
          this : access IIncrementNumberRounder_Interface;
-         RetVal : access Windows.Globalization.NumberFormatting.RoundingAlgorithm
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function put_RoundingAlgorithm
       (
          this : access IIncrementNumberRounder_Interface;
-         value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+         value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -587,14 +587,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
       function get_NumberRounder
       (
          this : access INumberRounderOption_Interface;
-         RetVal : access Windows.Globalization.NumberFormatting.INumberRounder
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.INumberRounder
       )
       return WinRt.Hresult is abstract;
 
       function put_NumberRounder
       (
          this : access INumberRounderOption_Interface;
-         value : Windows.Globalization.NumberFormatting.INumberRounder
+         value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
       )
       return WinRt.Hresult is abstract;
 
@@ -648,7 +648,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
       (
          this : access INumeralSystemTranslatorFactory_Interface;
          languages : GenericObject;
-         RetVal : access Windows.Globalization.NumberFormatting.INumeralSystemTranslator
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.INumeralSystemTranslator
       )
       return WinRt.Hresult is abstract;
 
@@ -662,7 +662,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
          this : access IPercentFormatterFactory_Interface;
          languages : GenericObject;
          geographicRegion : WinRt.HString;
-         RetVal : access Windows.Globalization.NumberFormatting.INumberFormatter
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.INumberFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -676,7 +676,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
          this : access IPermilleFormatterFactory_Interface;
          languages : GenericObject;
          geographicRegion : WinRt.HString;
-         RetVal : access Windows.Globalization.NumberFormatting.INumberFormatter
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.INumberFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -707,14 +707,14 @@ package WinRt.Windows.Globalization.NumberFormatting is
       function get_RoundingAlgorithm
       (
          this : access ISignificantDigitsNumberRounder_Interface;
-         RetVal : access Windows.Globalization.NumberFormatting.RoundingAlgorithm
+         RetVal : access WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function put_RoundingAlgorithm
       (
          this : access ISignificantDigitsNumberRounder_Interface;
-         value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+         value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -951,13 +951,13 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_Mode
    (
       this : in out CurrencyFormatter;
-      value : Windows.Globalization.NumberFormatting.CurrencyFormatterMode
+      value : WinRt.Windows.Globalization.NumberFormatting.CurrencyFormatterMode
    );
 
    procedure ApplyRoundingForCurrency
    (
       this : in out CurrencyFormatter;
-      roundingAlgorithm : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      roundingAlgorithm : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    );
 
    function get_SignificantDigits
@@ -981,7 +981,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out CurrencyFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    );
 
    function get_IsZeroSigned
@@ -1185,7 +1185,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out DecimalFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    );
 
    function get_IsZeroSigned
@@ -1265,7 +1265,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_RoundingAlgorithm
    (
       this : in out IncrementNumberRounder;
-      value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    );
 
    function get_Increment
@@ -1520,7 +1520,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out PercentFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    );
 
    function get_IsZeroSigned
@@ -1724,7 +1724,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out PermilleFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    );
 
    function get_IsZeroSigned
@@ -1804,7 +1804,7 @@ package WinRt.Windows.Globalization.NumberFormatting is
    procedure put_RoundingAlgorithm
    (
       this : in out SignificantDigitsNumberRounder;
-      value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    );
 
    function get_SignificantDigits

@@ -245,14 +245,14 @@ package WinRt.Windows.Web.UI is
       function get_Source
       (
          this : access IWebViewControl_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access IWebViewControl_Interface;
-         source : Windows.Foundation.IUriRuntimeClass
+         source : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -280,14 +280,14 @@ package WinRt.Windows.Web.UI is
       function put_DefaultBackgroundColor
       (
          this : access IWebViewControl_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_DefaultBackgroundColor
       (
          this : access IWebViewControl_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -301,7 +301,7 @@ package WinRt.Windows.Web.UI is
       function get_Settings
       (
          this : access IWebViewControl_Interface;
-         RetVal : access Windows.Web.UI.IWebViewControlSettings
+         RetVal : access WinRt.Windows.Web.UI.IWebViewControlSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -339,7 +339,7 @@ package WinRt.Windows.Web.UI is
       function Navigate
       (
          this : access IWebViewControl_Interface;
-         source : Windows.Foundation.IUriRuntimeClass
+         source : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -353,15 +353,15 @@ package WinRt.Windows.Web.UI is
       function NavigateToLocalStreamUri
       (
          this : access IWebViewControl_Interface;
-         source : Windows.Foundation.IUriRuntimeClass;
-         streamResolver : Windows.Web.IUriToStreamResolver
+         source : WinRt.Windows.Foundation.IUriRuntimeClass;
+         streamResolver : WinRt.Windows.Web.IUriToStreamResolver
       )
       return WinRt.Hresult is abstract;
 
       function NavigateWithHttpRequestMessage
       (
          this : access IWebViewControl_Interface;
-         requestMessage : Windows.Web.Http.IHttpRequestMessage
+         requestMessage : WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -377,8 +377,8 @@ package WinRt.Windows.Web.UI is
       function CapturePreviewToStreamAsync
       (
          this : access IWebViewControl_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.Web.UI is
          this : access IWebViewControl_Interface;
          contentIdentifier : WinRt.HString;
          relativePath : WinRt.HString;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -402,7 +402,7 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          id : WinRt.UInt32;
-         result : access Windows.Web.UI.IWebViewControlDeferredPermissionRequest
+         result : access WinRt.Windows.Web.UI.IWebViewControlDeferredPermissionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -410,14 +410,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationStarting
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -425,14 +425,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContentLoading
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -440,14 +440,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DOMContentLoaded
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -455,14 +455,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationCompleted
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -470,14 +470,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameNavigationStarting
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -485,14 +485,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameContentLoading
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -500,14 +500,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameDOMContentLoaded
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -515,14 +515,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameNavigationCompleted
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -530,14 +530,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScriptNotify
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -545,14 +545,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LongRunningScriptDetected
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -560,14 +560,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UnsafeContentWarningDisplaying
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -575,14 +575,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UnviewableContentIdentified
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -590,14 +590,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PermissionRequested
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -605,14 +605,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UnsupportedUriSchemeIdentified
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -620,14 +620,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NewWindowRequested
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -635,14 +635,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContainsFullScreenElementChanged
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -650,14 +650,14 @@ package WinRt.Windows.Web.UI is
       (
          this : access IWebViewControl_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WebResourceRequested
       (
          this : access IWebViewControl_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -681,7 +681,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlContentLoadingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -693,7 +693,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlDOMContentLoadedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -712,14 +712,14 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlDeferredPermissionRequest_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_PermissionType
       (
          this : access IWebViewControlDeferredPermissionRequest_Interface;
-         RetVal : access Windows.Web.UI.WebViewControlPermissionType
+         RetVal : access WinRt.Windows.Web.UI.WebViewControlPermissionType
       )
       return WinRt.Hresult is abstract;
 
@@ -743,7 +743,7 @@ package WinRt.Windows.Web.UI is
       function get_ExecutionTime
       (
          this : access IWebViewControlLongRunningScriptDetectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -769,7 +769,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlNavigationCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -783,7 +783,7 @@ package WinRt.Windows.Web.UI is
       function get_WebErrorStatus
       (
          this : access IWebViewControlNavigationCompletedEventArgs_Interface;
-         RetVal : access Windows.Web.WebErrorStatus
+         RetVal : access WinRt.Windows.Web.WebErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -795,7 +795,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlNavigationStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -821,14 +821,14 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlNewWindowRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Referrer
       (
          this : access IWebViewControlNewWindowRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -854,21 +854,21 @@ package WinRt.Windows.Web.UI is
       function get_NewWindow
       (
          this : access IWebViewControlNewWindowRequestedEventArgs2_Interface;
-         RetVal : access Windows.Web.UI.IWebViewControl
+         RetVal : access WinRt.Windows.Web.UI.IWebViewControl
       )
       return WinRt.Hresult is abstract;
 
       function put_NewWindow
       (
          this : access IWebViewControlNewWindowRequestedEventArgs2_Interface;
-         value : Windows.Web.UI.IWebViewControl
+         value : WinRt.Windows.Web.UI.IWebViewControl
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IWebViewControlNewWindowRequestedEventArgs2_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -887,21 +887,21 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlPermissionRequest_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_PermissionType
       (
          this : access IWebViewControlPermissionRequest_Interface;
-         RetVal : access Windows.Web.UI.WebViewControlPermissionType
+         RetVal : access WinRt.Windows.Web.UI.WebViewControlPermissionType
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IWebViewControlPermissionRequest_Interface;
-         RetVal : access Windows.Web.UI.WebViewControlPermissionState
+         RetVal : access WinRt.Windows.Web.UI.WebViewControlPermissionState
       )
       return WinRt.Hresult is abstract;
 
@@ -931,7 +931,7 @@ package WinRt.Windows.Web.UI is
       function get_PermissionRequest
       (
          this : access IWebViewControlPermissionRequestedEventArgs_Interface;
-         RetVal : access Windows.Web.UI.IWebViewControlPermissionRequest
+         RetVal : access WinRt.Windows.Web.UI.IWebViewControlPermissionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -943,7 +943,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlScriptNotifyEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1009,7 +1009,7 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,14 +1035,14 @@ package WinRt.Windows.Web.UI is
       function get_Uri
       (
          this : access IWebViewControlUnviewableContentIdentifiedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Referrer
       (
          this : access IWebViewControlUnviewableContentIdentifiedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1061,28 +1061,28 @@ package WinRt.Windows.Web.UI is
       function GetDeferral
       (
          this : access IWebViewControlWebResourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Request
       (
          this : access IWebViewControlWebResourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function put_Response
       (
          this : access IWebViewControlWebResourceRequestedEventArgs_Interface;
-         value : Windows.Web.Http.IHttpResponseMessage
+         value : WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_Response
       (
          this : access IWebViewControlWebResourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1282,7 +1282,7 @@ package WinRt.Windows.Web.UI is
    procedure put_NewWindow
    (
       this : in out WebViewControlNewWindowRequestedEventArgs;
-      value : Windows.Web.UI.IWebViewControl
+      value : WinRt.Windows.Web.UI.IWebViewControl
    );
 
    function GetDeferral
@@ -1498,7 +1498,7 @@ package WinRt.Windows.Web.UI is
    procedure put_Response
    (
       this : in out WebViewControlWebResourceRequestedEventArgs;
-      value : Windows.Web.Http.HttpResponseMessage'Class
+      value : WinRt.Windows.Web.Http.HttpResponseMessage'Class
    );
 
    function get_Response

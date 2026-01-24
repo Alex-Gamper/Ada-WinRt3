@@ -64,7 +64,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Core.Direct.XamlDirect");
       m_Factory        : access WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Core.Direct.IXamlDirect;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirect;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Core.Direct.XamlDirect do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlDirectStatics'Access , m_Factory'Address);
@@ -74,7 +74,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IXamlDirect := new Windows.UI.Xaml.Core.Direct.IXamlDirect;
+            Retval.m_IXamlDirect := new WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirect;
             Retval.m_IXamlDirect.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -87,7 +87,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetObject
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -111,7 +111,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
    begin
       Hr := this.m_IXamlDirect.all.GetXamlDirectObject (object, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -123,13 +123,13 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function CreateInstance
    (
       this : in out XamlDirect;
-      typeIndex : Windows.UI.Xaml.Core.Direct.XamlTypeIndex
+      typeIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlTypeIndex
    )
    return WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
    begin
       Hr := this.m_IXamlDirect.all.CreateInstance (typeIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -141,8 +141,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetObjectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -158,9 +158,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetXamlDirectObjectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -175,8 +175,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetBooleanProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -192,8 +192,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetDoubleProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -209,8 +209,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetInt32Property
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -226,8 +226,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetStringProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -245,9 +245,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetDateTimeProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.Foundation.DateTime
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -262,9 +262,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetPointProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.Foundation.Point
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -279,9 +279,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetRectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.Foundation.Rect
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -296,9 +296,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetSizeProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.Foundation.Size
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -313,9 +313,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetTimeSpanProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.Foundation.TimeSpan
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -330,9 +330,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetColorProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Color
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -347,9 +347,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetCornerRadiusProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.CornerRadius
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.CornerRadius
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -364,9 +364,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetDurationProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.Duration
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.Duration
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -381,9 +381,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetGridLengthProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.GridLength
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.GridLength
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -398,9 +398,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetThicknessProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.Thickness
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.Thickness
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -415,9 +415,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetMatrixProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.Media.Matrix
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.Media.Matrix
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -432,9 +432,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetMatrix3DProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
-      value : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      value : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -449,8 +449,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure SetEnumProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex;
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -466,8 +466,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetObjectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -485,14 +485,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetXamlDirectObjectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
    begin
       Hr := this.m_IXamlDirect.all.GetXamlDirectObjectProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -504,8 +504,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetBooleanProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -523,8 +523,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetDoubleProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
@@ -542,8 +542,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetInt32Property
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -561,8 +561,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetStringProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -583,14 +583,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetDateTimeProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.Foundation.DateTime is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IXamlDirect.all.GetDateTimeProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -602,14 +602,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetPointProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IXamlDirect.all.GetPointProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -621,14 +621,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetRectProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IXamlDirect.all.GetRectProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -640,14 +640,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetSizeProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IXamlDirect.all.GetSizeProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -659,14 +659,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetTimeSpanProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.Foundation.TimeSpan is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IXamlDirect.all.GetTimeSpanProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -678,14 +678,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetColorProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IXamlDirect.all.GetColorProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -697,14 +697,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetCornerRadiusProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.CornerRadius is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.CornerRadius;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.CornerRadius;
    begin
       Hr := this.m_IXamlDirect.all.GetCornerRadiusProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -716,14 +716,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetDurationProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.Duration is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Duration;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Duration;
    begin
       Hr := this.m_IXamlDirect.all.GetDurationProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -735,14 +735,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetGridLengthProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.GridLength is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.GridLength;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.GridLength;
    begin
       Hr := this.m_IXamlDirect.all.GetGridLengthProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -754,14 +754,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetThicknessProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.Thickness is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Thickness;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Thickness;
    begin
       Hr := this.m_IXamlDirect.all.GetThicknessProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -773,14 +773,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetMatrixProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.Media.Matrix is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Matrix;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Matrix;
    begin
       Hr := this.m_IXamlDirect.all.GetMatrixProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -792,14 +792,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetMatrix3DProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := this.m_IXamlDirect.all.GetMatrix3DProperty (xamlDirectObject, propertyIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -811,8 +811,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetEnumProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -830,8 +830,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure ClearProperty
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      propertyIndex : Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      propertyIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlPropertyIndex
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -846,7 +846,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetCollectionCount
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -864,14 +864,14 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function GetXamlDirectObjectFromCollectionAt
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
       index : WinRt.UInt32
    )
    return WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
    begin
       Hr := this.m_IXamlDirect.all.GetXamlDirectObjectFromCollectionAt (xamlDirectObject, index, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -883,8 +883,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure AddToCollection
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      value : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      value : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -899,9 +899,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure InsertIntoCollectionAt
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      value : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -916,8 +916,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    function RemoveFromCollection
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      value : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      value : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -935,7 +935,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure RemoveFromCollectionAt
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -951,7 +951,7 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure ClearCollection
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -966,8 +966,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure AddEventHandler
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      eventIndex : Windows.UI.Xaml.Core.Direct.XamlEventIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      eventIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlEventIndex;
       handler : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -983,8 +983,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure AddEventHandler
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      eventIndex : Windows.UI.Xaml.Core.Direct.XamlEventIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      eventIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlEventIndex;
       handler : WinRt.IInspectable;
       handledEventsToo : WinRt.Boolean
    ) is
@@ -1001,8 +1001,8 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
    procedure RemoveEventHandler
    (
       this : in out XamlDirect;
-      xamlDirectObject : Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
-      eventIndex : Windows.UI.Xaml.Core.Direct.XamlEventIndex;
+      xamlDirectObject : WinRt.Windows.UI.Xaml.Core.Direct.IXamlDirectObject;
+      eventIndex : WinRt.Windows.UI.Xaml.Core.Direct.XamlEventIndex;
       handler : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;

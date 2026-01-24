@@ -137,14 +137,14 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function get_UpdateTime
       (
          this : access ISpatialSurfaceInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function TryGetBounds
       (
          this : access ISpatialSurfaceInfo_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -161,7 +161,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       (
          this : access ISpatialSurfaceInfo_Interface;
          maxTrianglesPerCubicMeter : WinRt.Double;
-         options : Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions;
+         options : WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -174,42 +174,42 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function get_SurfaceInfo
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Perception.Spatial.Surfaces.ISpatialSurfaceInfo
+         RetVal : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_CoordinateSystem
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
       function get_TriangleIndices
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
+         RetVal : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_VertexPositions
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
+         RetVal : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_VertexPositionScale
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_VertexNormals
       (
          this : access ISpatialSurfaceMesh_Interface;
-         RetVal : access Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
+         RetVal : access WinRt.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -221,7 +221,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function get_Format
       (
          this : access ISpatialSurfaceMeshBuffer_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -242,7 +242,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function get_Data
       (
          this : access ISpatialSurfaceMeshBuffer_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -254,42 +254,42 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function get_VertexPositionFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_VertexPositionFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         value : Windows.Graphics.DirectX.DirectXPixelFormat
+         value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_TriangleIndexFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_TriangleIndexFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         value : Windows.Graphics.DirectX.DirectXPixelFormat
+         value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_VertexNormalFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_VertexNormalFormat
       (
          this : access ISpatialSurfaceMeshOptions_Interface;
-         value : Windows.Graphics.DirectX.DirectXPixelFormat
+         value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -348,7 +348,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       function SetBoundingVolume
       (
          this : access ISpatialSurfaceObserver_Interface;
-         bounds : Windows.Perception.Spatial.ISpatialBoundingVolume
+         bounds : WinRt.Windows.Perception.Spatial.ISpatialBoundingVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -363,14 +363,14 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
       (
          this : access ISpatialSurfaceObserver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ObservedSurfacesChanged
       (
          this : access ISpatialSurfaceObserver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -428,7 +428,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    function TryGetBounds
    (
       this : in out SpatialSurfaceInfo;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_SpatialBoundingOrientedBox.Kind;
 
@@ -443,7 +443,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    (
       this : in out SpatialSurfaceInfo;
       maxTrianglesPerCubicMeter : WinRt.Double;
-      options : Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions'Class
+      options : WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions'Class
    )
    return WinRt.Windows.Perception.Spatial.Surfaces.SpatialSurfaceMesh'Class;
 
@@ -560,7 +560,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    procedure put_VertexPositionFormat
    (
       this : in out SpatialSurfaceMeshOptions;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    );
 
    function get_TriangleIndexFormat
@@ -572,7 +572,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    procedure put_TriangleIndexFormat
    (
       this : in out SpatialSurfaceMeshOptions;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    );
 
    function get_VertexNormalFormat
@@ -584,7 +584,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    procedure put_VertexNormalFormat
    (
       this : in out SpatialSurfaceMeshOptions;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    );
 
    function get_IncludeVertexNormals
@@ -631,7 +631,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    procedure SetBoundingVolume
    (
       this : in out SpatialSurfaceObserver;
-      bounds : Windows.Perception.Spatial.SpatialBoundingVolume'Class
+      bounds : WinRt.Windows.Perception.Spatial.SpatialBoundingVolume'Class
    );
 
    procedure SetBoundingVolumes
@@ -650,7 +650,7 @@ package WinRt.Windows.Perception.Spatial.Surfaces is
    procedure remove_ObservedSurfacesChanged
    (
       this : in out SpatialSurfaceObserver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.Perception.Spatial.Surfaces;

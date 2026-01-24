@@ -454,14 +454,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Data
       (
          this : access IBluetoothLEAdvertisementBytePattern_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IBluetoothLEAdvertisementBytePattern_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -475,8 +475,8 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
          this : access IBluetoothLEAdvertisementBytePatternFactory_Interface;
          dataType : WinRt.Byte;
          offset : WinRt.Int16;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern
       )
       return WinRt.Hresult is abstract;
 
@@ -502,14 +502,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Data
       (
          this : access IBluetoothLEAdvertisementDataSection_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IBluetoothLEAdvertisementDataSection_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -522,8 +522,8 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       (
          this : access IBluetoothLEAdvertisementDataSectionFactory_Interface;
          dataType : WinRt.Byte;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection
       )
       return WinRt.Hresult is abstract;
 
@@ -694,14 +694,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Advertisement
       (
          this : access IBluetoothLEAdvertisementFilter_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
       )
       return WinRt.Hresult is abstract;
 
       function put_Advertisement
       (
          this : access IBluetoothLEAdvertisementFilter_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
       )
       return WinRt.Hresult is abstract;
 
@@ -720,14 +720,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Status
       (
          this : access IBluetoothLEAdvertisementPublisher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Advertisement
       (
          this : access IBluetoothLEAdvertisementPublisher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
       )
       return WinRt.Hresult is abstract;
 
@@ -747,14 +747,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       (
          this : access IBluetoothLEAdvertisementPublisher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IBluetoothLEAdvertisementPublisher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -827,28 +827,28 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_PrimaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisher3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function put_PrimaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisher3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function get_SecondaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisher3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function put_SecondaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisher3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
@@ -860,8 +860,8 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function Create
       (
          this : access IBluetoothLEAdvertisementPublisherFactory_Interface;
-         advertisement : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher
+         advertisement : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher
       )
       return WinRt.Hresult is abstract;
 
@@ -873,14 +873,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Status
       (
          this : access IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IBluetoothLEAdvertisementPublisherStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -918,21 +918,21 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_AdvertisementType
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementType
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Advertisement
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
       )
       return WinRt.Hresult is abstract;
 
@@ -944,7 +944,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_BluetoothAddressType
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothAddressType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothAddressType
       )
       return WinRt.Hresult is abstract;
 
@@ -998,14 +998,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_PrimaryPhy
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function get_SecondaryPhy
       (
          this : access IBluetoothLEAdvertisementReceivedEventArgs3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,14 +1036,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function CoexistenceOptimized
       (
          this : access IBluetoothLEAdvertisementScanParametersStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
       function LowLatency
       (
          this : access IBluetoothLEAdvertisementScanParametersStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -1055,77 +1055,77 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_MinSamplingInterval
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSamplingInterval
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MinOutOfRangeTimeout
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxOutOfRangeTimeout
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ScanningMode
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ScanningMode
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
       )
       return WinRt.Hresult is abstract;
 
       function get_SignalStrengthFilter
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
       )
       return WinRt.Hresult is abstract;
 
       function put_SignalStrengthFilter
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         value : Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
+         value : WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvertisementFilter
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
       )
       return WinRt.Hresult is abstract;
 
       function put_AdvertisementFilter
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -1145,14 +1145,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Received
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1160,14 +1160,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IBluetoothLEAdvertisementWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1226,14 +1226,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_ScanParameters
       (
          this : access IBluetoothLEAdvertisementWatcher3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
       function put_ScanParameters
       (
          this : access IBluetoothLEAdvertisementWatcher3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -1259,8 +1259,8 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function Create
       (
          this : access IBluetoothLEAdvertisementWatcherFactory_Interface;
-         advertisementFilter : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher
+         advertisementFilter : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1272,7 +1272,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Error
       (
          this : access IBluetoothLEAdvertisementWatcherStoppedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -1298,14 +1298,14 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       function get_Data
       (
          this : access IBluetoothLEManufacturerData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IBluetoothLEManufacturerData_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1318,8 +1318,8 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
       (
          this : access IBluetoothLEManufacturerDataFactory_Interface;
          companyId : WinRt.UInt16;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData
       )
       return WinRt.Hresult is abstract;
 
@@ -1414,7 +1414,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    (
       dataType : WinRt.Byte;
       offset : WinRt.Int16;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEAdvertisementBytePattern;
 
@@ -1454,7 +1454,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_Data
    (
       this : in out BluetoothLEAdvertisementBytePattern;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    -----------------------------------------------------------------------------
@@ -1469,7 +1469,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    function Constructor
    (
       dataType : WinRt.Byte;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEAdvertisementDataSection;
 
@@ -1499,7 +1499,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_Data
    (
       this : in out BluetoothLEAdvertisementDataSection;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    -----------------------------------------------------------------------------
@@ -1597,7 +1597,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_Advertisement
    (
       this : in out BluetoothLEAdvertisementFilter;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement'Class
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement'Class
    );
 
    function get_BytePatterns
@@ -1619,7 +1619,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    function Constructor
    (
-      advertisement : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement'Class
+      advertisement : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement'Class
    )
    return BluetoothLEAdvertisementPublisher;
 
@@ -1658,7 +1658,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure remove_StatusChanged
    (
       this : in out BluetoothLEAdvertisementPublisher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_PreferredTransmitPowerLevelInDBm
@@ -1718,7 +1718,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_PrimaryPhy
    (
       this : in out BluetoothLEAdvertisementPublisher;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
    );
 
    function get_SecondaryPhy
@@ -1730,7 +1730,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_SecondaryPhy
    (
       this : in out BluetoothLEAdvertisementPublisher;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
    );
 
    -----------------------------------------------------------------------------
@@ -1894,7 +1894,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
 
    function Constructor
    (
-      advertisementFilter : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
+      advertisementFilter : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
    )
    return BluetoothLEAdvertisementWatcher;
 
@@ -1942,7 +1942,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_ScanningMode
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode
    );
 
    function get_SignalStrengthFilter
@@ -1954,7 +1954,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_SignalStrengthFilter
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      value : Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class
+      value : WinRt.Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class
    );
 
    function get_AdvertisementFilter
@@ -1966,7 +1966,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_AdvertisementFilter
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
    );
 
    procedure Start
@@ -1989,7 +1989,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure remove_Received
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -2002,7 +2002,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure remove_Stopped
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AllowExtendedAdvertisements
@@ -2050,7 +2050,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_ScanParameters
    (
       this : in out BluetoothLEAdvertisementWatcher;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
    );
 
    function get_UseHardwareFilter
@@ -2094,7 +2094,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    function Constructor
    (
       companyId : WinRt.UInt16;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return BluetoothLEManufacturerData;
 
@@ -2122,7 +2122,7 @@ package WinRt.Windows.Devices.Bluetooth.Advertisement is
    procedure put_Data
    (
       this : in out BluetoothLEManufacturerData;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
 end WinRt.Windows.Devices.Bluetooth.Advertisement;

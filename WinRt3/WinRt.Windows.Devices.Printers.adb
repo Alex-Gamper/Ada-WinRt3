@@ -82,7 +82,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IppAttributeErrorReason;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IppAttributeErrorReason;
    begin
       Hr := this.m_IIppAttributeError.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -99,7 +99,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IIppAttributeError.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -116,7 +116,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IIppAttributeValue.Kind;
    begin
       Hr := this.m_IIppAttributeError.all.GetUnsupportedValues (m_ComRetVal'Access);
@@ -158,7 +158,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -168,7 +168,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -182,7 +182,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -192,7 +192,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -206,7 +206,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -216,7 +216,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -233,7 +233,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -243,7 +243,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -260,7 +260,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -270,7 +270,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -287,7 +287,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -297,7 +297,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -314,7 +314,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -324,7 +324,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -341,7 +341,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -351,7 +351,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -368,7 +368,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -378,7 +378,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -387,7 +387,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateOctetString
    (
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -395,7 +395,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -405,7 +405,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -422,7 +422,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -432,7 +432,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -441,7 +441,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateDateTime
    (
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -449,7 +449,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -459,7 +459,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -476,7 +476,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -486,7 +486,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -495,7 +495,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateResolution
    (
-      value : Windows.Devices.Printers.IppResolution'Class
+      value : WinRt.Windows.Devices.Printers.IppResolution'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -503,7 +503,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -513,7 +513,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -530,7 +530,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -540,7 +540,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -549,7 +549,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateRangeOfInteger
    (
-      value : Windows.Devices.Printers.IppIntegerRange'Class
+      value : WinRt.Windows.Devices.Printers.IppIntegerRange'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -557,7 +557,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -567,7 +567,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -584,7 +584,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -594,7 +594,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -611,7 +611,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -621,7 +621,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -638,7 +638,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -648,7 +648,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -657,7 +657,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateTextWithLanguage
    (
-      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+      value : WinRt.Windows.Devices.Printers.IppTextWithLanguage'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -665,7 +665,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -675,7 +675,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -692,7 +692,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -702,7 +702,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -711,7 +711,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateNameWithLanguage
    (
-      value : Windows.Devices.Printers.IppTextWithLanguage'Class
+      value : WinRt.Windows.Devices.Printers.IppTextWithLanguage'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -719,7 +719,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -729,7 +729,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -746,7 +746,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -756,7 +756,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -773,7 +773,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -784,7 +784,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -802,7 +802,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -812,7 +812,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -829,7 +829,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -840,7 +840,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -858,7 +858,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -868,7 +868,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -885,7 +885,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -896,7 +896,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -914,7 +914,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -924,7 +924,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -933,7 +933,7 @@ package body WinRt.Windows.Devices.Printers is
 
    function CreateUri
    (
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Devices.Printers.IppAttributeValue is
       Hr               : WinRt.HResult := S_OK;
@@ -941,7 +941,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -951,7 +951,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -968,7 +968,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -978,7 +978,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -995,7 +995,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -1006,7 +1006,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1024,7 +1024,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -1034,7 +1034,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1051,7 +1051,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -1062,7 +1062,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1080,7 +1080,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -1090,7 +1090,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1107,7 +1107,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -1118,7 +1118,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1136,7 +1136,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -1146,7 +1146,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1163,7 +1163,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
@@ -1174,7 +1174,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1192,7 +1192,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppAttributeValue");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppAttributeValueStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppAttributeValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppAttributeValue;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppAttributeValue do
          Hr := RoGetActivationFactory (m_hString, IID_IIppAttributeValueStatics'Access , m_Factory'Address);
@@ -1202,7 +1202,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppAttributeValue := new Windows.Devices.Printers.IIppAttributeValue;
+            Retval.m_IIppAttributeValue := new WinRt.Windows.Devices.Printers.IIppAttributeValue;
             Retval.m_IIppAttributeValue.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1220,7 +1220,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IppAttributeValueKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IppAttributeValueKind;
    begin
       Hr := this.m_IIppAttributeValue.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1237,7 +1237,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetIntegerArray (m_ComRetVal'Access);
@@ -1257,7 +1257,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Boolean.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetBooleanArray (m_ComRetVal'Access);
@@ -1277,7 +1277,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetEnumArray (m_ComRetVal'Access);
@@ -1297,7 +1297,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IIppAttributeValue.all.GetOctetStringArray (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1314,7 +1314,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_DateTime.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetDateTimeArray (m_ComRetVal'Access);
@@ -1334,7 +1334,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IIppResolution.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetResolutionArray (m_ComRetVal'Access);
@@ -1354,7 +1354,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IIppIntegerRange.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetRangeOfIntegerArray (m_ComRetVal'Access);
@@ -1374,7 +1374,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IIppAttributeValue.all.GetCollectionArray (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1391,7 +1391,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IIppTextWithLanguage.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetTextWithLanguageArray (m_ComRetVal'Access);
@@ -1411,7 +1411,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IIppTextWithLanguage.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetNameWithLanguageArray (m_ComRetVal'Access);
@@ -1431,7 +1431,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetTextWithoutLanguageArray (m_ComRetVal'Access);
@@ -1451,7 +1451,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetNameWithoutLanguageArray (m_ComRetVal'Access);
@@ -1471,7 +1471,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetKeywordArray (m_ComRetVal'Access);
@@ -1491,7 +1491,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetUriArray (m_ComRetVal'Access);
@@ -1511,7 +1511,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetUriSchemaArray (m_ComRetVal'Access);
@@ -1531,7 +1531,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetCharsetArray (m_ComRetVal'Access);
@@ -1551,7 +1551,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetNaturalLanguageArray (m_ComRetVal'Access);
@@ -1571,7 +1571,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IIppAttributeValue.all.GetMimeMediaTypeArray (m_ComRetVal'Access);
@@ -1614,16 +1614,16 @@ package body WinRt.Windows.Devices.Printers is
    return IppIntegerRange is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppIntegerRange");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppIntegerRange");
       m_Factory    : access IIppIntegerRangeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Printers.IIppIntegerRange;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppIntegerRange;
    begin
       return RetVal : IppIntegerRange do
          Hr := RoGetActivationFactory (m_hString, IID_IIppIntegerRangeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (start, end_x, m_ComRetVal'Access);
-            Retval.m_IIppIntegerRange := new Windows.Devices.Printers.IIppIntegerRange;
+            Retval.m_IIppIntegerRange := new WinRt.Windows.Devices.Printers.IIppIntegerRange;
             Retval.m_IIppIntegerRange.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1725,7 +1725,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppPrintDevice;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
@@ -1736,7 +1736,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+            Retval.m_IIppPrintDevice := new WinRt.Windows.Devices.Printers.IIppPrintDevice;
             Retval.m_IIppPrintDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1754,7 +1754,7 @@ package body WinRt.Windows.Devices.Printers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppPrintDevice");
       m_Factory        : access WinRt.Windows.Devices.Printers.IIppPrintDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppPrintDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppPrintDevice;
       HStr_printerName : constant WinRt.HString := To_HString (printerName);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppPrintDevice do
@@ -1765,7 +1765,7 @@ package body WinRt.Windows.Devices.Printers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IIppPrintDevice := new Windows.Devices.Printers.IIppPrintDevice;
+            Retval.m_IIppPrintDevice := new WinRt.Windows.Devices.Printers.IIppPrintDevice;
             Retval.m_IIppPrintDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1830,14 +1830,14 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IIppPrintDevice.all.get_PrinterUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1851,7 +1851,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IIppPrintDevice.all.GetPrinterAttributesAsBuffer (attributeNames, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1869,7 +1869,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IIppAttributeValue.Kind;
    begin
       Hr := this.m_IIppPrintDevice.all.GetPrinterAttributes (attributeNames, m_ComRetVal'Access);
@@ -1884,20 +1884,20 @@ package body WinRt.Windows.Devices.Printers is
    function SetPrinterAttributesFromBuffer
    (
       this : in out IppPrintDevice;
-      printerAttributesBuffer : Windows.Storage.Streams.IBuffer
+      printerAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppSetAttributesResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppSetAttributesResult;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppSetAttributesResult do
          Hr := this.m_IIppPrintDevice.all.SetPrinterAttributesFromBuffer (printerAttributesBuffer, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIppSetAttributesResult := new Windows.Devices.Printers.IIppSetAttributesResult;
+         Retval.m_IIppSetAttributesResult := new WinRt.Windows.Devices.Printers.IIppSetAttributesResult;
          Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
       end return;
    end;
@@ -1911,14 +1911,14 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IIppSetAttributesResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IIppSetAttributesResult;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.IppSetAttributesResult do
          Hr := this.m_IIppPrintDevice.all.SetPrinterAttributes (printerAttributes, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIppSetAttributesResult := new Windows.Devices.Printers.IIppSetAttributesResult;
+         Retval.m_IIppSetAttributesResult := new WinRt.Windows.Devices.Printers.IIppSetAttributesResult;
          Retval.m_IIppSetAttributesResult.all := m_ComRetVal;
       end return;
    end;
@@ -2001,7 +2001,7 @@ package body WinRt.Windows.Devices.Printers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IPdlPassthroughProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice2, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.PdlPassthroughProvider do
@@ -2011,7 +2011,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPdlPassthroughProvider := new Windows.Devices.Printers.IPdlPassthroughProvider;
+         Retval.m_IPdlPassthroughProvider := new WinRt.Windows.Devices.Printers.IPdlPassthroughProvider;
          Retval.m_IPdlPassthroughProvider.all := m_ComRetVal;
       end return;
    end;
@@ -2046,7 +2046,7 @@ package body WinRt.Windows.Devices.Printers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IppPrintDeviceKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IppPrintDeviceKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IIppPrintDevice.all);
@@ -2088,7 +2088,7 @@ package body WinRt.Windows.Devices.Printers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice4, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
@@ -2098,7 +2098,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
       end return;
    end;
@@ -2106,7 +2106,7 @@ package body WinRt.Windows.Devices.Printers is
    procedure put_UserDefaultPrintTicket
    (
       this : in out IppPrintDevice;
-      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2176,7 +2176,7 @@ package body WinRt.Windows.Devices.Printers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice5, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -2186,7 +2186,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -2201,7 +2201,7 @@ package body WinRt.Windows.Devices.Printers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.IIppPrintDevice5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IReplaceDevicePropertiesResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IReplaceDevicePropertiesResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.IIppPrintDevice_Interface, WinRt.Windows.Devices.Printers.IIppPrintDevice5, WinRt.Windows.Devices.Printers.IID_IIppPrintDevice5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesResult do
@@ -2211,7 +2211,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IReplaceDevicePropertiesResult := new Windows.Devices.Printers.IReplaceDevicePropertiesResult;
+         Retval.m_IReplaceDevicePropertiesResult := new WinRt.Windows.Devices.Printers.IReplaceDevicePropertiesResult;
          Retval.m_IReplaceDevicePropertiesResult.all := m_ComRetVal;
       end return;
    end;
@@ -2247,7 +2247,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IppPrintDeviceInstallationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationStatus;
    begin
       Hr := this.m_IIppPrintDeviceInstallationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2284,7 +2284,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IIppPrintDeviceInstallationResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2320,7 +2320,7 @@ package body WinRt.Windows.Devices.Printers is
 
       function InstallIppPrintDeviceAsync
       (
-         printerUri : Windows.Foundation.Uri'Class;
+         printerUri : WinRt.Windows.Foundation.Uri'Class;
          printerName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.IppPrintDeviceInstallationResult is
@@ -2378,7 +2378,7 @@ package body WinRt.Windows.Devices.Printers is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IIppPrintDeviceInstallationResult := new Windows.Devices.Printers.IIppPrintDeviceInstallationResult;
+                        Retval.m_IIppPrintDeviceInstallationResult := new WinRt.Windows.Devices.Printers.IIppPrintDeviceInstallationResult;
                         Retval.m_IIppPrintDeviceInstallationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2423,21 +2423,21 @@ package body WinRt.Windows.Devices.Printers is
    (
       width : WinRt.Int32;
       height : WinRt.Int32;
-      unit : Windows.Devices.Printers.IppResolutionUnit
+      unit : WinRt.Windows.Devices.Printers.IppResolutionUnit
    )
    return IppResolution is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppResolution");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppResolution");
       m_Factory    : access IIppResolutionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Printers.IIppResolution;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppResolution;
    begin
       return RetVal : IppResolution do
          Hr := RoGetActivationFactory (m_hString, IID_IIppResolutionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (width, height, unit, m_ComRetVal'Access);
-            Retval.m_IIppResolution := new Windows.Devices.Printers.IIppResolution;
+            Retval.m_IIppResolution := new WinRt.Windows.Devices.Printers.IIppResolution;
             Retval.m_IIppResolution.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2490,7 +2490,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IppResolutionUnit;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IppResolutionUnit;
    begin
       Hr := this.m_IIppResolution.all.get_Unit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2547,7 +2547,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IIppAttributeError.Kind;
    begin
       Hr := this.m_IIppSetAttributesResult.all.get_AttributeErrors (m_ComRetVal'Access);
@@ -2590,10 +2590,10 @@ package body WinRt.Windows.Devices.Printers is
    return IppTextWithLanguage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppTextWithLanguage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppTextWithLanguage");
       m_Factory    : access IIppTextWithLanguageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Printers.IIppTextWithLanguage;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppTextWithLanguage;
       HStr_language : constant WinRt.HString := To_HString (language);
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
@@ -2601,7 +2601,7 @@ package body WinRt.Windows.Devices.Printers is
          Hr := RoGetActivationFactory (m_hString, IID_IIppTextWithLanguageFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_language, HStr_text, m_ComRetVal'Access);
-            Retval.m_IIppTextWithLanguage := new Windows.Devices.Printers.IIppTextWithLanguage;
+            Retval.m_IIppTextWithLanguage := new WinRt.Windows.Devices.Printers.IIppTextWithLanguage;
             Retval.m_IIppTextWithLanguage.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2680,13 +2680,13 @@ package body WinRt.Windows.Devices.Printers is
    function Constructor return PageConfigurationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.PageConfigurationSettings");
-      m_ComRetVal  : aliased Windows.Devices.Printers.IPageConfigurationSettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IPageConfigurationSettings");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IPageConfigurationSettings;
    begin
       return RetVal : PageConfigurationSettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPageConfigurationSettings := new Windows.Devices.Printers.IPageConfigurationSettings;
+            Retval.m_IPageConfigurationSettings := new WinRt.Windows.Devices.Printers.IPageConfigurationSettings;
             Retval.m_IPageConfigurationSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2704,7 +2704,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.PageConfigurationSource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.PageConfigurationSource;
    begin
       Hr := this.m_IPageConfigurationSettings.all.get_OrientationSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2716,7 +2716,7 @@ package body WinRt.Windows.Devices.Printers is
    procedure put_OrientationSource
    (
       this : in out PageConfigurationSettings;
-      value : Windows.Devices.Printers.PageConfigurationSource
+      value : WinRt.Windows.Devices.Printers.PageConfigurationSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2736,7 +2736,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.PageConfigurationSource;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.PageConfigurationSource;
    begin
       Hr := this.m_IPageConfigurationSettings.all.get_SizeSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2748,7 +2748,7 @@ package body WinRt.Windows.Devices.Printers is
    procedure put_SizeSource
    (
       this : in out PageConfigurationSettings;
-      value : Windows.Devices.Printers.PageConfigurationSource
+      value : WinRt.Windows.Devices.Printers.PageConfigurationSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2791,7 +2791,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPdlPassthroughProvider.all.get_SupportedPdlContentTypes (m_ComRetVal'Access);
@@ -2808,14 +2808,14 @@ package body WinRt.Windows.Devices.Printers is
       this : in out PdlPassthroughProvider;
       jobName : WinRt.WString;
       pdlContentType : WinRt.WString;
-      taskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class;
-      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+      taskOptions : WinRt.Windows.Graphics.Printing.PrintTaskOptions'Class;
+      pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.PageConfigurationSettings'Class
    )
    return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IPdlPassthroughTarget;
       HStr_jobName : constant WinRt.HString := To_HString (jobName);
       HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
    begin
@@ -2824,7 +2824,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPdlPassthroughTarget := new Windows.Devices.Printers.IPdlPassthroughTarget;
+         Retval.m_IPdlPassthroughTarget := new WinRt.Windows.Devices.Printers.IPdlPassthroughTarget;
          Retval.m_IPdlPassthroughTarget.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_jobName);
          tmp := WindowsDeleteString (HStr_pdlContentType);
@@ -2836,14 +2836,14 @@ package body WinRt.Windows.Devices.Printers is
       this : in out PdlPassthroughProvider;
       jobName : WinRt.WString;
       pdlContentType : WinRt.WString;
-      printTicket : Windows.Storage.Streams.IInputStream;
-      pageConfigurationSettings_p : Windows.Devices.Printers.PageConfigurationSettings'Class
+      printTicket : WinRt.Windows.Storage.Streams.IInputStream;
+      pageConfigurationSettings_p : WinRt.Windows.Devices.Printers.PageConfigurationSettings'Class
    )
    return WinRt.Windows.Devices.Printers.PdlPassthroughTarget'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IPdlPassthroughTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IPdlPassthroughTarget;
       HStr_jobName : constant WinRt.HString := To_HString (jobName);
       HStr_pdlContentType : constant WinRt.HString := To_HString (pdlContentType);
    begin
@@ -2852,7 +2852,7 @@ package body WinRt.Windows.Devices.Printers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPdlPassthroughTarget := new Windows.Devices.Printers.IPdlPassthroughTarget;
+         Retval.m_IPdlPassthroughTarget := new WinRt.Windows.Devices.Printers.IPdlPassthroughTarget;
          Retval.m_IPdlPassthroughTarget.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_jobName);
          tmp := WindowsDeleteString (HStr_pdlContentType);
@@ -2907,7 +2907,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IPdlPassthroughTarget.all.GetOutputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3030,7 +3030,7 @@ package body WinRt.Windows.Devices.Printers is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPrint3DDevice := new Windows.Devices.Printers.IPrint3DDevice;
+                     Retval.m_IPrint3DDevice := new WinRt.Windows.Devices.Printers.IPrint3DDevice;
                      Retval.m_IPrint3DDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -3081,14 +3081,14 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.IPrintSchema;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.IPrintSchema;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.PrintSchema do
          Hr := this.m_IPrint3DDevice.all.get_PrintSchema (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintSchema := new Windows.Devices.Printers.IPrintSchema;
+         Retval.m_IPrintSchema := new WinRt.Windows.Devices.Printers.IPrintSchema;
          Retval.m_IPrintSchema.all := m_ComRetVal;
       end return;
    end;
@@ -3182,7 +3182,7 @@ package body WinRt.Windows.Devices.Printers is
    function GetCapabilitiesAsync
    (
       this : in out PrintSchema;
-      constrainTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      constrainTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
@@ -3246,7 +3246,7 @@ package body WinRt.Windows.Devices.Printers is
    function MergeAndValidateWithDefaultPrintTicketAsync
    (
       this : in out PrintSchema;
-      deltaTicket : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      deltaTicket : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType is
       Hr               : WinRt.HResult := S_OK;
@@ -3338,7 +3338,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.ReplaceDevicePropertiesStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.ReplaceDevicePropertiesStatus;
    begin
       Hr := this.m_IReplaceDevicePropertiesResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3355,7 +3355,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IReplaceDevicePropertiesResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3390,13 +3390,13 @@ package body WinRt.Windows.Devices.Printers is
    function Constructor return VirtualPrinterInstallationParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterInstallationParameters");
-      m_ComRetVal  : aliased Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IVirtualPrinterInstallationParameters");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
    begin
       return RetVal : VirtualPrinterInstallationParameters do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVirtualPrinterInstallationParameters := new Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
+            Retval.m_IVirtualPrinterInstallationParameters := new WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
             Retval.m_IVirtualPrinterInstallationParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3451,7 +3451,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVirtualPrinterInstallationParameters.all.get_OutputFileExtensions (m_ComRetVal'Access);
@@ -3471,7 +3471,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVirtualPrinterSupportedFormat.Kind;
    begin
       Hr := this.m_IVirtualPrinterInstallationParameters.all.get_SupportedInputFormats (m_ComRetVal'Access);
@@ -3565,7 +3565,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.VirtualPrinterPreferredInputFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat;
    begin
       Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PreferredInputFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3577,7 +3577,7 @@ package body WinRt.Windows.Devices.Printers is
    procedure put_PreferredInputFormat
    (
       this : in out VirtualPrinterInstallationParameters;
-      value : Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
+      value : WinRt.Windows.Devices.Printers.VirtualPrinterPreferredInputFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3597,14 +3597,14 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IVirtualPrinterInstallationParameters.all.get_PrinterUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3612,7 +3612,7 @@ package body WinRt.Windows.Devices.Printers is
    procedure put_PrinterUri
    (
       this : in out VirtualPrinterInstallationParameters;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3692,7 +3692,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.VirtualPrinterInstallationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.VirtualPrinterInstallationStatus;
    begin
       Hr := this.m_IVirtualPrinterInstallationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3709,7 +3709,7 @@ package body WinRt.Windows.Devices.Printers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IVirtualPrinterInstallationResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3724,7 +3724,7 @@ package body WinRt.Windows.Devices.Printers is
 
       function InstallVirtualPrinterAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -3780,7 +3780,7 @@ package body WinRt.Windows.Devices.Printers is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult := new WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
                         Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3797,7 +3797,7 @@ package body WinRt.Windows.Devices.Printers is
 
       function InstallVirtualPrinterAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
          appPackageFamilyName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
@@ -3855,7 +3855,7 @@ package body WinRt.Windows.Devices.Printers is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult := new WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
                         Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3873,7 +3873,7 @@ package body WinRt.Windows.Devices.Printers is
 
       function InstallVirtualPrinterForAllUsersAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -3929,7 +3929,7 @@ package body WinRt.Windows.Devices.Printers is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult := new WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
                         Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3946,7 +3946,7 @@ package body WinRt.Windows.Devices.Printers is
 
       function InstallVirtualPrinterForAllUsersAsync
       (
-         parameters : Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
+         parameters : WinRt.Windows.Devices.Printers.VirtualPrinterInstallationParameters'Class;
          appPackageFamilyName : WinRt.WString
       )
       return WinRt.Windows.Devices.Printers.VirtualPrinterInstallationResult is
@@ -4004,7 +4004,7 @@ package body WinRt.Windows.Devices.Printers is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IVirtualPrinterInstallationResult := new Windows.Devices.Printers.IVirtualPrinterInstallationResult;
+                        Retval.m_IVirtualPrinterInstallationResult := new WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationResult;
                         Retval.m_IVirtualPrinterInstallationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -4027,7 +4027,7 @@ package body WinRt.Windows.Devices.Printers is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
          m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterManagerStatics'Access , m_Factory'Address);
@@ -4054,7 +4054,7 @@ package body WinRt.Windows.Devices.Printers is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterManager");
          m_Factory        : access WinRt.Windows.Devices.Printers.IVirtualPrinterManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_HString.Kind;
          HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
       begin
@@ -4250,10 +4250,10 @@ package body WinRt.Windows.Devices.Printers is
    return VirtualPrinterSupportedFormat is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterSupportedFormat");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IVirtualPrinterSupportedFormat");
       m_Factory    : access IVirtualPrinterSupportedFormatFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
       HStr_contentType : constant WinRt.HString := To_HString (contentType);
       HStr_maxSupportedVersion : constant WinRt.HString := To_HString (maxSupportedVersion);
    begin
@@ -4261,7 +4261,7 @@ package body WinRt.Windows.Devices.Printers is
          Hr := RoGetActivationFactory (m_hString, IID_IVirtualPrinterSupportedFormatFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_contentType, HStr_maxSupportedVersion, m_ComRetVal'Access);
-            Retval.m_IVirtualPrinterSupportedFormat := new Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
+            Retval.m_IVirtualPrinterSupportedFormat := new WinRt.Windows.Devices.Printers.IVirtualPrinterSupportedFormat;
             Retval.m_IVirtualPrinterSupportedFormat.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;

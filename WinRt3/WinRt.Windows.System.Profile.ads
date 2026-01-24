@@ -247,7 +247,7 @@ package WinRt.Windows.System.Profile is
       function get_VersionInfo
       (
          this : access IAnalyticsInfoStatics_Interface;
-         RetVal : access Windows.System.Profile.IAnalyticsVersionInfo
+         RetVal : access WinRt.Windows.System.Profile.IAnalyticsVersionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -335,8 +335,8 @@ package WinRt.Windows.System.Profile is
       function GetPackageSpecificToken
       (
          this : access IHardwareIdentificationStatics_Interface;
-         nonce : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.System.Profile.IHardwareToken
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.System.Profile.IHardwareToken
       )
       return WinRt.Hresult is abstract;
 
@@ -348,21 +348,21 @@ package WinRt.Windows.System.Profile is
       function get_Id
       (
          this : access IHardwareToken_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Signature
       (
          this : access IHardwareToken_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Certificate
       (
          this : access IHardwareToken_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -533,7 +533,7 @@ package WinRt.Windows.System.Profile is
       function get_Policy
       (
          this : access IPlatformAutomaticAppSignInManagerStatics_Interface;
-         RetVal : access Windows.System.Profile.PlatformAutomaticAppSignInPolicy
+         RetVal : access WinRt.Windows.System.Profile.PlatformAutomaticAppSignInPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -545,7 +545,7 @@ package WinRt.Windows.System.Profile is
       function get_CollectionLevel
       (
          this : access IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface;
-         RetVal : access Windows.System.Profile.PlatformDataCollectionLevel
+         RetVal : access WinRt.Windows.System.Profile.PlatformDataCollectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -553,21 +553,21 @@ package WinRt.Windows.System.Profile is
       (
          this : access IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CollectionLevelChanged
       (
          this : access IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CanCollectDiagnostics
       (
          this : access IPlatformDiagnosticsAndUsageDataSettingsStatics_Interface;
-         level : Windows.System.Profile.PlatformDataCollectionLevel;
+         level : WinRt.Windows.System.Profile.PlatformDataCollectionLevel;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -631,14 +631,14 @@ package WinRt.Windows.System.Profile is
       (
          this : access ISmartAppControlPolicyStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access ISmartAppControlPolicyStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -650,14 +650,14 @@ package WinRt.Windows.System.Profile is
       function get_Id
       (
          this : access ISystemIdentificationInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access ISystemIdentificationInfo_Interface;
-         RetVal : access Windows.System.Profile.SystemIdentificationSource
+         RetVal : access WinRt.Windows.System.Profile.SystemIdentificationSource
       )
       return WinRt.Hresult is abstract;
 
@@ -669,15 +669,15 @@ package WinRt.Windows.System.Profile is
       function GetSystemIdForPublisher
       (
          this : access ISystemIdentificationStatics_Interface;
-         RetVal : access Windows.System.Profile.ISystemIdentificationInfo
+         RetVal : access WinRt.Windows.System.Profile.ISystemIdentificationInfo
       )
       return WinRt.Hresult is abstract;
 
       function GetSystemIdForUser
       (
          this : access ISystemIdentificationStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.Profile.ISystemIdentificationInfo
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.Profile.ISystemIdentificationInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -689,7 +689,7 @@ package WinRt.Windows.System.Profile is
       function get_OutOfBoxExperienceState
       (
          this : access ISystemSetupInfoStatics_Interface;
-         RetVal : access Windows.System.Profile.SystemOutOfBoxExperienceState
+         RetVal : access WinRt.Windows.System.Profile.SystemOutOfBoxExperienceState
       )
       return WinRt.Hresult is abstract;
 
@@ -697,14 +697,14 @@ package WinRt.Windows.System.Profile is
       (
          this : access ISystemSetupInfoStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OutOfBoxExperienceStateChanged
       (
          this : access ISystemSetupInfoStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -723,7 +723,7 @@ package WinRt.Windows.System.Profile is
       function get_Reasons
       (
          this : access IUnsupportedAppRequirement_Interface;
-         RetVal : access Windows.System.Profile.UnsupportedAppRequirementReasons
+         RetVal : access WinRt.Windows.System.Profile.UnsupportedAppRequirementReasons
       )
       return WinRt.Hresult is abstract;
 
@@ -764,14 +764,14 @@ package WinRt.Windows.System.Profile is
       (
          this : access IWindowsIntegrityPolicyStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PolicyChanged
       (
          this : access IWindowsIntegrityPolicyStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -853,7 +853,7 @@ package WinRt.Windows.System.Profile is
 
       function GetPackageSpecificToken
       (
-         nonce : Windows.Storage.Streams.IBuffer
+         nonce : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.System.Profile.HardwareToken;
 
@@ -982,12 +982,12 @@ package WinRt.Windows.System.Profile is
 
       procedure remove_CollectionLevelChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function CanCollectDiagnostics
       (
-         level : Windows.System.Profile.PlatformDataCollectionLevel
+         level : WinRt.Windows.System.Profile.PlatformDataCollectionLevel
       )
       return WinRt.Boolean;
 
@@ -1032,7 +1032,7 @@ package WinRt.Windows.System.Profile is
 
       procedure remove_Changed
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end SmartAppControlPolicy;
@@ -1046,7 +1046,7 @@ package WinRt.Windows.System.Profile is
 
       function GetSystemIdForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.System.Profile.SystemIdentificationInfo;
 
@@ -1088,7 +1088,7 @@ package WinRt.Windows.System.Profile is
 
       procedure remove_OutOfBoxExperienceStateChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end SystemSetupInfo;
@@ -1138,7 +1138,7 @@ package WinRt.Windows.System.Profile is
 
       procedure remove_PolicyChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end WindowsIntegrityPolicy;

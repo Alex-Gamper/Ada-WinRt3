@@ -131,14 +131,14 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       (
          this : access ILockApplicationHost_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Unlocking
       (
          this : access ILockApplicationHost_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -150,7 +150,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       function GetForCurrentView
       (
          this : access ILockApplicationHostStatics_Interface;
-         RetVal : access Windows.ApplicationModel.LockScreen.ILockApplicationHost
+         RetVal : access WinRt.Windows.ApplicationModel.LockScreen.ILockApplicationHost
       )
       return WinRt.Hresult is abstract;
 
@@ -162,14 +162,14 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       function get_Logo
       (
          this : access ILockScreenBadge_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function get_Glyph
       (
          this : access ILockScreenBadge_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -202,21 +202,21 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       (
          this : access ILockScreenInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LockScreenImageChanged
       (
          this : access ILockScreenInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_LockScreenImage
       (
          this : access ILockScreenInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -224,14 +224,14 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       (
          this : access ILockScreenInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BadgesChanged
       (
          this : access ILockScreenInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -246,14 +246,14 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       (
          this : access ILockScreenInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DetailTextChanged
       (
          this : access ILockScreenInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -268,21 +268,21 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       (
          this : access ILockScreenInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AlarmIconChanged
       (
          this : access ILockScreenInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_AlarmIcon
       (
          this : access ILockScreenInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -305,14 +305,14 @@ package WinRt.Windows.ApplicationModel.LockScreen is
       function GetDeferral
       (
          this : access ILockScreenUnlockingEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.LockScreen.ILockScreenUnlockingDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.LockScreen.ILockScreenUnlockingDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access ILockScreenUnlockingEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -352,7 +352,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    procedure remove_Unlocking
    (
       this : in out LockApplicationHost;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -412,7 +412,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    procedure remove_LockScreenImageChanged
    (
       this : in out LockScreenInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_LockScreenImage
@@ -431,7 +431,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    procedure remove_BadgesChanged
    (
       this : in out LockScreenInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Badges
@@ -450,7 +450,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    procedure remove_DetailTextChanged
    (
       this : in out LockScreenInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DetailText
@@ -469,7 +469,7 @@ package WinRt.Windows.ApplicationModel.LockScreen is
    procedure remove_AlarmIconChanged
    (
       this : in out LockScreenInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AlarmIcon

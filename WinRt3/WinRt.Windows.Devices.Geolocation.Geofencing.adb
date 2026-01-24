@@ -58,22 +58,22 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape
    )
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.Geofencing.IGeofence;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : Geofence do
          Hr := RoGetActivationFactory (m_hString, IID_IGeofenceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_id, geoshape, m_ComRetVal'Access);
-            Retval.m_IGeofence := new Windows.Devices.Geolocation.Geofencing.IGeofence;
+            Retval.m_IGeofence := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
             Retval.m_IGeofence.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -85,24 +85,24 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean
    )
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.Geofencing.IGeofence;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : Geofence do
          Hr := RoGetActivationFactory (m_hString, IID_IGeofenceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithMonitorStates (HStr_id, geoshape, monitoredStates, singleUse, m_ComRetVal'Access);
-            Retval.m_IGeofence := new Windows.Devices.Geolocation.Geofencing.IGeofence;
+            Retval.m_IGeofence := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
             Retval.m_IGeofence.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -114,25 +114,25 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean;
-      dwellTime : Windows.Foundation.TimeSpan
+      dwellTime : WinRt.Windows.Foundation.TimeSpan
    )
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.Geofencing.IGeofence;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : Geofence do
          Hr := RoGetActivationFactory (m_hString, IID_IGeofenceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithMonitorStatesAndDwellTime (HStr_id, geoshape, monitoredStates, singleUse, dwellTime, m_ComRetVal'Access);
-            Retval.m_IGeofence := new Windows.Devices.Geolocation.Geofencing.IGeofence;
+            Retval.m_IGeofence := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
             Retval.m_IGeofence.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -144,27 +144,27 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    function Constructor
    (
       id : WinRt.WString;
-      geoshape : Windows.Devices.Geolocation.IGeoshape;
-      monitoredStates : Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      geoshape : WinRt.Windows.Devices.Geolocation.IGeoshape;
+      monitoredStates : WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
       singleUse : WinRt.Boolean;
-      dwellTime : Windows.Foundation.TimeSpan;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      dwellTime : WinRt.Windows.Foundation.TimeSpan;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.Geofencing.IGeofence;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : Geofence do
          Hr := RoGetActivationFactory (m_hString, IID_IGeofenceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithMonitorStatesDwellTimeStartTimeAndDuration (HStr_id, geoshape, monitoredStates, singleUse, dwellTime, startTime, duration, m_ComRetVal'Access);
-            Retval.m_IGeofence := new Windows.Devices.Geolocation.Geofencing.IGeofence;
+            Retval.m_IGeofence := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
             Retval.m_IGeofence.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -184,7 +184,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGeofence.all.get_StartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -201,7 +201,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGeofence.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -218,7 +218,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGeofence.all.get_DwellTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -255,7 +255,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates;
    begin
       Hr := this.m_IGeofence.all.get_MonitoredStates (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -272,7 +272,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoshape;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoshape;
    begin
       Hr := this.m_IGeofence.all.get_Geoshape (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -328,7 +328,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.GeofenceMonitor");
       m_Factory        : access WinRt.Windows.Devices.Geolocation.Geofencing.IGeofenceMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IGeofenceMonitorStatics'Access , m_Factory'Address);
@@ -338,7 +338,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGeofenceMonitor := new Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor;
+            Retval.m_IGeofenceMonitor := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor;
             Retval.m_IGeofenceMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -356,7 +356,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus;
    begin
       Hr := this.m_IGeofenceMonitor.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -373,7 +373,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IGeofence.Kind;
    begin
       Hr := this.m_IGeofenceMonitor.all.get_Geofences (m_ComRetVal'Access);
@@ -393,14 +393,14 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoposition;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geoposition do
          Hr := this.m_IGeofenceMonitor.all.get_LastKnownGeoposition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+         Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
          Retval.m_IGeoposition.all := m_ComRetVal;
       end return;
    end;
@@ -414,7 +414,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeofenceMonitor.all.add_GeofenceStateChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -426,7 +426,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    procedure remove_GeofenceStateChanged
    (
       this : in out GeofenceMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -446,7 +446,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGeofenceStateChangeReport.Kind;
    begin
       Hr := this.m_IGeofenceMonitor.all.ReadReports (m_ComRetVal'Access);
@@ -467,7 +467,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeofenceMonitor.all.add_StatusChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -479,7 +479,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    procedure remove_StatusChanged
    (
       this : in out GeofenceMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -522,7 +522,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.GeofenceState;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceState;
    begin
       Hr := this.m_IGeofenceStateChangeReport.all.get_NewState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -539,14 +539,14 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.IGeofence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geofencing.Geofence do
          Hr := this.m_IGeofenceStateChangeReport.all.get_Geofence (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeofence := new Windows.Devices.Geolocation.Geofencing.IGeofence;
+         Retval.m_IGeofence := new WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
          Retval.m_IGeofence.all := m_ComRetVal;
       end return;
    end;
@@ -559,14 +559,14 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeoposition;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geoposition do
          Hr := this.m_IGeofenceStateChangeReport.all.get_Geoposition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeoposition := new Windows.Devices.Geolocation.IGeoposition;
+         Retval.m_IGeoposition := new WinRt.Windows.Devices.Geolocation.IGeoposition;
          Retval.m_IGeoposition.all := m_ComRetVal;
       end return;
    end;
@@ -579,7 +579,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason;
    begin
       Hr := this.m_IGeofenceStateChangeReport.all.get_RemovalReason (m_ComRetVal'Access);
       if Hr /= S_OK then

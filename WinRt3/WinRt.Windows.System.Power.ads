@@ -158,14 +158,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IBackgroundEnergyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecentEnergyUsageIncreased
       (
          this : access IBackgroundEnergyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -173,14 +173,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IBackgroundEnergyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecentEnergyUsageReturnedToLow
       (
          this : access IBackgroundEnergyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -235,14 +235,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IForegroundEnergyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecentEnergyUsageIncreased
       (
          this : access IForegroundEnergyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -250,14 +250,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IForegroundEnergyManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecentEnergyUsageReturnedToLow
       (
          this : access IForegroundEnergyManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -269,7 +269,7 @@ package WinRt.Windows.System.Power is
       function get_EnergySaverStatus
       (
          this : access IPowerManagerStatics_Interface;
-         RetVal : access Windows.System.Power.EnergySaverStatus
+         RetVal : access WinRt.Windows.System.Power.EnergySaverStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -277,21 +277,21 @@ package WinRt.Windows.System.Power is
       (
          this : access IPowerManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnergySaverStatusChanged
       (
          this : access IPowerManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_BatteryStatus
       (
          this : access IPowerManagerStatics_Interface;
-         RetVal : access Windows.System.Power.BatteryStatus
+         RetVal : access WinRt.Windows.System.Power.BatteryStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -299,21 +299,21 @@ package WinRt.Windows.System.Power is
       (
          this : access IPowerManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BatteryStatusChanged
       (
          this : access IPowerManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_PowerSupplyStatus
       (
          this : access IPowerManagerStatics_Interface;
-         RetVal : access Windows.System.Power.PowerSupplyStatus
+         RetVal : access WinRt.Windows.System.Power.PowerSupplyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -321,14 +321,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IPowerManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PowerSupplyStatusChanged
       (
          this : access IPowerManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -343,21 +343,21 @@ package WinRt.Windows.System.Power is
       (
          this : access IPowerManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemainingChargePercentChanged
       (
          this : access IPowerManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_RemainingDischargeTime
       (
          this : access IPowerManagerStatics_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -365,14 +365,14 @@ package WinRt.Windows.System.Power is
       (
          this : access IPowerManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemainingDischargeTimeChanged
       (
          this : access IPowerManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 

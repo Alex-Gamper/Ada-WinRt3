@@ -63,7 +63,7 @@ package body WinRt.Windows.UI.Accessibility is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IScreenReaderPositionChangedEventArgs.all.get_ScreenPositionInRawPixels (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -115,13 +115,13 @@ package body WinRt.Windows.UI.Accessibility is
    function Constructor return ScreenReaderService is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Accessibility.ScreenReaderService");
-      m_ComRetVal  : aliased Windows.UI.Accessibility.IScreenReaderService;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Accessibility.IScreenReaderService");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Accessibility.IScreenReaderService;
    begin
       return RetVal : ScreenReaderService do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IScreenReaderService := new Windows.UI.Accessibility.IScreenReaderService;
+            Retval.m_IScreenReaderService := new WinRt.Windows.UI.Accessibility.IScreenReaderService;
             Retval.m_IScreenReaderService.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -139,14 +139,14 @@ package body WinRt.Windows.UI.Accessibility is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
    begin
       return RetVal : WinRt.Windows.UI.Accessibility.ScreenReaderPositionChangedEventArgs do
          Hr := this.m_IScreenReaderService.all.get_CurrentScreenReaderPosition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IScreenReaderPositionChangedEventArgs := new Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
+         Retval.m_IScreenReaderPositionChangedEventArgs := new WinRt.Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
          Retval.m_IScreenReaderPositionChangedEventArgs.all := m_ComRetVal;
       end return;
    end;
@@ -160,7 +160,7 @@ package body WinRt.Windows.UI.Accessibility is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IScreenReaderService.all.add_ScreenReaderPositionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -172,7 +172,7 @@ package body WinRt.Windows.UI.Accessibility is
    procedure remove_ScreenReaderPositionChanged
    (
       this : in out ScreenReaderService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

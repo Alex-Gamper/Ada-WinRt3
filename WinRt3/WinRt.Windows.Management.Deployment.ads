@@ -606,14 +606,14 @@ package WinRt.Windows.Management.Deployment is
       function get_TargetVolume
       (
          this : access IAddPackageOptions_Interface;
-         RetVal : access Windows.Management.Deployment.IPackageVolume
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetVolume
       (
          this : access IAddPackageOptions_Interface;
-         value : Windows.Management.Deployment.IPackageVolume
+         value : WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -641,28 +641,28 @@ package WinRt.Windows.Management.Deployment is
       function get_ExternalLocationUri
       (
          this : access IAddPackageOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ExternalLocationUri
       (
          this : access IAddPackageOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_StubPackageOption
       (
          this : access IAddPackageOptions_Interface;
-         RetVal : access Windows.Management.Deployment.StubPackageOption
+         RetVal : access WinRt.Windows.Management.Deployment.StubPackageOption
       )
       return WinRt.Hresult is abstract;
 
       function put_StubPackageOption
       (
          this : access IAddPackageOptions_Interface;
-         value : Windows.Management.Deployment.StubPackageOption
+         value : WinRt.Windows.Management.Deployment.StubPackageOption
       )
       return WinRt.Hresult is abstract;
 
@@ -841,7 +841,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IAppInstallerManager_Interface;
          packageFamilyName : WinRt.HString;
-         appInstallerInfo : Windows.Management.Deployment.IAutoUpdateSettingsOptions
+         appInstallerInfo : WinRt.Windows.Management.Deployment.IAutoUpdateSettingsOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -856,7 +856,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IAppInstallerManager_Interface;
          packageFamilyName : WinRt.HString;
-         dateTime : Windows.Foundation.DateTime
+         dateTime : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -868,14 +868,14 @@ package WinRt.Windows.Management.Deployment is
       function GetDefault
       (
          this : access IAppInstallerManagerStatics_Interface;
-         RetVal : access Windows.Management.Deployment.IAppInstallerManager
+         RetVal : access WinRt.Windows.Management.Deployment.IAppInstallerManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForSystem
       (
          this : access IAppInstallerManagerStatics_Interface;
-         RetVal : access Windows.Management.Deployment.IAppInstallerManager
+         RetVal : access WinRt.Windows.Management.Deployment.IAppInstallerManager
       )
       return WinRt.Hresult is abstract;
 
@@ -887,28 +887,28 @@ package WinRt.Windows.Management.Deployment is
       function get_Version
       (
          this : access IAutoUpdateSettingsOptions_Interface;
-         RetVal : access Windows.ApplicationModel.PackageVersion
+         RetVal : access WinRt.Windows.ApplicationModel.PackageVersion
       )
       return WinRt.Hresult is abstract;
 
       function put_Version
       (
          this : access IAutoUpdateSettingsOptions_Interface;
-         value : Windows.ApplicationModel.PackageVersion
+         value : WinRt.Windows.ApplicationModel.PackageVersion
       )
       return WinRt.Hresult is abstract;
 
       function get_AppInstallerUri
       (
          this : access IAutoUpdateSettingsOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_AppInstallerUri
       (
          this : access IAutoUpdateSettingsOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1046,8 +1046,8 @@ package WinRt.Windows.Management.Deployment is
       function CreateFromAppInstallerInfo
       (
          this : access IAutoUpdateSettingsOptionsStatics_Interface;
-         appInstallerInfo : Windows.ApplicationModel.IAppInstallerInfo;
-         RetVal : access Windows.Management.Deployment.IAutoUpdateSettingsOptions
+         appInstallerInfo : WinRt.Windows.ApplicationModel.IAppInstallerInfo;
+         RetVal : access WinRt.Windows.Management.Deployment.IAutoUpdateSettingsOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1080,14 +1080,14 @@ package WinRt.Windows.Management.Deployment is
       function get_CreateCollisionOption
       (
          this : access ICreateSharedPackageContainerOptions_Interface;
-         RetVal : access Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+         RetVal : access WinRt.Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_CreateCollisionOption
       (
          this : access ICreateSharedPackageContainerOptions_Interface;
-         value : Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+         value : WinRt.Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1099,21 +1099,21 @@ package WinRt.Windows.Management.Deployment is
       function get_Container
       (
          this : access ICreateSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainer
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainer
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access ICreateSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+         RetVal : access WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access ICreateSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1158,14 +1158,14 @@ package WinRt.Windows.Management.Deployment is
       function get_Status
       (
          this : access IDeleteSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+         RetVal : access WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IDeleteSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1191,7 +1191,7 @@ package WinRt.Windows.Management.Deployment is
       function get_ExtendedErrorCode
       (
          this : access IDeploymentResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1286,9 +1286,9 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageAsync
       (
          this : access IPackageManager_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1296,9 +1296,9 @@ package WinRt.Windows.Management.Deployment is
       function UpdatePackageAsync
       (
          this : access IPackageManager_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1314,7 +1314,7 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageAsync
       (
          this : access IPackageManager_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
          RetVal : access GenericObject
       )
@@ -1323,9 +1323,9 @@ package WinRt.Windows.Management.Deployment is
       function RegisterPackageAsync
       (
          this : access IPackageManager_Interface;
-         manifestUri : Windows.Foundation.IUriRuntimeClass;
+         manifestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1376,7 +1376,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager_Interface;
          packageFullName : WinRt.HString;
-         packageState : Windows.Management.Deployment.PackageState
+         packageState : WinRt.Windows.Management.Deployment.PackageState
       )
       return WinRt.Hresult is abstract;
 
@@ -1384,7 +1384,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager_Interface;
          packageFullName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1419,7 +1419,7 @@ package WinRt.Windows.Management.Deployment is
          this : access IPackageManager_Interface;
          userSecurityId : WinRt.HString;
          packageFullName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1432,7 +1432,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager10_Interface;
          mainPackageFamilyName : WinRt.HString;
-         options : Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
+         options : WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1445,8 +1445,8 @@ package WinRt.Windows.Management.Deployment is
       function RemovePackageByUriAsync
       (
          this : access IPackageManager11_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.IRemovePackageOptions;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.IRemovePackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1476,7 +1476,7 @@ package WinRt.Windows.Management.Deployment is
       function IsPackageRemovalPendingByUri
       (
          this : access IPackageManager12_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1484,7 +1484,7 @@ package WinRt.Windows.Management.Deployment is
       function IsPackageRemovalPendingByUriForUser
       (
          this : access IPackageManager12_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          userSecurityId : WinRt.HString;
          RetVal : access WinRt.Boolean
       )
@@ -1499,7 +1499,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager2_Interface;
          packageFullName : WinRt.HString;
-         removalOptions : Windows.Management.Deployment.RemovalOptions;
+         removalOptions : WinRt.Windows.Management.Deployment.RemovalOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1507,9 +1507,9 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageAsync
       (
          this : access IPackageManager2_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1519,7 +1519,7 @@ package WinRt.Windows.Management.Deployment is
          this : access IPackageManager2_Interface;
          mainPackageFullName : WinRt.HString;
          dependencyPackageFullNames : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1527,7 +1527,7 @@ package WinRt.Windows.Management.Deployment is
       function FindPackagesWithPackageTypes
       (
          this : access IPackageManager2_Interface;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1536,7 +1536,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager2_Interface;
          userSecurityId : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1546,7 +1546,7 @@ package WinRt.Windows.Management.Deployment is
          this : access IPackageManager2_Interface;
          packageName : WinRt.HString;
          packagePublisher : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1557,7 +1557,7 @@ package WinRt.Windows.Management.Deployment is
          userSecurityId : WinRt.HString;
          packageName : WinRt.HString;
          packagePublisher : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1566,7 +1566,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager2_Interface;
          packageFamilyName : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1576,7 +1576,7 @@ package WinRt.Windows.Management.Deployment is
          this : access IPackageManager2_Interface;
          userSecurityId : WinRt.HString;
          packageFamilyName : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1605,10 +1605,10 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageAsync
       (
          this : access IPackageManager3_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1617,17 +1617,17 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager3_Interface;
          packageFullName : WinRt.HString;
-         status : Windows.Management.Deployment.PackageStatus
+         status : WinRt.Windows.Management.Deployment.PackageStatus
       )
       return WinRt.Hresult is abstract;
 
       function RegisterPackageAsync
       (
          this : access IPackageManager3_Interface;
-         manifestUri : Windows.Foundation.IUriRuntimeClass;
+         manifestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         appDataVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         appDataVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1636,7 +1636,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager3_Interface;
          volumeName : WinRt.HString;
-         RetVal : access Windows.Management.Deployment.IPackageVolume
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -1650,7 +1650,7 @@ package WinRt.Windows.Management.Deployment is
       function GetDefaultPackageVolume
       (
          this : access IPackageManager3_Interface;
-         RetVal : access Windows.Management.Deployment.IPackageVolume
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -1658,8 +1658,8 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager3_Interface;
          packageFullName : WinRt.HString;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1667,7 +1667,7 @@ package WinRt.Windows.Management.Deployment is
       function RemovePackageVolumeAsync
       (
          this : access IPackageManager3_Interface;
-         volume : Windows.Management.Deployment.IPackageVolume;
+         volume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1675,7 +1675,7 @@ package WinRt.Windows.Management.Deployment is
       function SetDefaultPackageVolume
       (
          this : access IPackageManager3_Interface;
-         volume : Windows.Management.Deployment.IPackageVolume
+         volume : WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -1683,14 +1683,14 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager3_Interface;
          packageFullName : WinRt.HString;
-         status : Windows.Management.Deployment.PackageStatus
+         status : WinRt.Windows.Management.Deployment.PackageStatus
       )
       return WinRt.Hresult is abstract;
 
       function SetPackageVolumeOfflineAsync
       (
          this : access IPackageManager3_Interface;
-         packageVolume_p : Windows.Management.Deployment.IPackageVolume;
+         packageVolume_p : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1698,7 +1698,7 @@ package WinRt.Windows.Management.Deployment is
       function SetPackageVolumeOnlineAsync
       (
          this : access IPackageManager3_Interface;
-         packageVolume_p : Windows.Management.Deployment.IPackageVolume;
+         packageVolume_p : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1706,10 +1706,10 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageAsync
       (
          this : access IPackageManager3_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1718,7 +1718,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager3_Interface;
          packageFullName : WinRt.HString;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1743,10 +1743,10 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageAsync
       (
          this : access IPackageManager5_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          externalPackageUris : GenericObject;
          RetVal : access GenericObject
@@ -1756,10 +1756,10 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageAsync
       (
          this : access IPackageManager5_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          externalPackageUris : GenericObject;
          RetVal : access GenericObject
@@ -1771,8 +1771,8 @@ package WinRt.Windows.Management.Deployment is
          this : access IPackageManager5_Interface;
          mainPackageFamilyName : WinRt.HString;
          dependencyPackageFamilyNames : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         appDataVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         appDataVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          RetVal : access GenericObject
       )
@@ -1781,7 +1781,7 @@ package WinRt.Windows.Management.Deployment is
       function get_DebugSettings
       (
          this : access IPackageManager5_Interface;
-         RetVal : access Windows.Management.Deployment.IPackageManagerDebugSettings
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageManagerDebugSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1801,9 +1801,9 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageByAppInstallerFileAsync
       (
          this : access IPackageManager6_Interface;
-         appInstallerFileUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.AddPackageByAppInstallerOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         appInstallerFileUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.AddPackageByAppInstallerOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1811,9 +1811,9 @@ package WinRt.Windows.Management.Deployment is
       function RequestAddPackageByAppInstallerFileAsync
       (
          this : access IPackageManager6_Interface;
-         appInstallerFileUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.AddPackageByAppInstallerOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         appInstallerFileUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.AddPackageByAppInstallerOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1821,10 +1821,10 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageAsync
       (
          this : access IPackageManager6_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         options : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         options : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          packageUrisToInstall : GenericObject;
          relatedPackageUris : GenericObject;
@@ -1835,10 +1835,10 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageAsync
       (
          this : access IPackageManager6_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         options : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         options : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          packageUrisToInstall : GenericObject;
          relatedPackageUris : GenericObject;
@@ -1849,10 +1849,10 @@ package WinRt.Windows.Management.Deployment is
       function RequestAddPackageAsync
       (
          this : access IPackageManager6_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          relatedPackageUris : GenericObject;
          RetVal : access GenericObject
@@ -1867,10 +1867,10 @@ package WinRt.Windows.Management.Deployment is
       function RequestAddPackageAsync
       (
          this : access IPackageManager7_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          dependencyPackageUris : GenericObject;
-         deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-         targetVolume : Windows.Management.Deployment.IPackageVolume;
+         deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+         targetVolume : WinRt.Windows.Management.Deployment.IPackageVolume;
          optionalPackageFamilyNames : GenericObject;
          relatedPackageUris : GenericObject;
          packageUrisToInstall : GenericObject;
@@ -1906,8 +1906,8 @@ package WinRt.Windows.Management.Deployment is
       function AddPackageByUriAsync
       (
          this : access IPackageManager9_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.IAddPackageOptions;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.IAddPackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1915,8 +1915,8 @@ package WinRt.Windows.Management.Deployment is
       function StagePackageByUriAsync
       (
          this : access IPackageManager9_Interface;
-         packageUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.IStagePackageOptions;
+         packageUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.IStagePackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1924,8 +1924,8 @@ package WinRt.Windows.Management.Deployment is
       function RegisterPackageByUriAsync
       (
          this : access IPackageManager9_Interface;
-         manifestUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Management.Deployment.IRegisterPackageOptions;
+         manifestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Management.Deployment.IRegisterPackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1934,7 +1934,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager9_Interface;
          packageFullNames : GenericObject;
-         options : Windows.Management.Deployment.IRegisterPackageOptions;
+         options : WinRt.Windows.Management.Deployment.IRegisterPackageOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1943,7 +1943,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager9_Interface;
          packageFamilyName : WinRt.HString;
-         useStub : Windows.Management.Deployment.PackageStubPreference
+         useStub : WinRt.Windows.Management.Deployment.PackageStubPreference
       )
       return WinRt.Hresult is abstract;
 
@@ -1951,7 +1951,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageManager9_Interface;
          packageFamilyName : WinRt.HString;
-         RetVal : access Windows.Management.Deployment.PackageStubPreference
+         RetVal : access WinRt.Windows.Management.Deployment.PackageStubPreference
       )
       return WinRt.Hresult is abstract;
 
@@ -1963,21 +1963,21 @@ package WinRt.Windows.Management.Deployment is
       function SetContentGroupStateAsync
       (
          this : access IPackageManagerDebugSettings_Interface;
-         package_x : Windows.ApplicationModel.IPackage;
+         package_x : WinRt.Windows.ApplicationModel.IPackage;
          contentGroupName : WinRt.HString;
-         state : Windows.ApplicationModel.PackageContentGroupState;
-         RetVal : access Windows.Foundation.IAsyncAction
+         state : WinRt.Windows.ApplicationModel.PackageContentGroupState;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetContentGroupStateAsync
       (
          this : access IPackageManagerDebugSettings_Interface;
-         package_x : Windows.ApplicationModel.IPackage;
+         package_x : WinRt.Windows.ApplicationModel.IPackage;
          contentGroupName : WinRt.HString;
-         state : Windows.ApplicationModel.PackageContentGroupState;
+         state : WinRt.Windows.ApplicationModel.PackageContentGroupState;
          completionPercentage : WinRt.Double;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1996,7 +1996,7 @@ package WinRt.Windows.Management.Deployment is
       function get_InstallState
       (
          this : access IPackageUserInformation_Interface;
-         RetVal : access Windows.Management.Deployment.PackageInstallState
+         RetVal : access WinRt.Windows.Management.Deployment.PackageInstallState
       )
       return WinRt.Hresult is abstract;
 
@@ -2074,7 +2074,7 @@ package WinRt.Windows.Management.Deployment is
       function FindPackagesWithPackageTypes
       (
          this : access IPackageVolume_Interface;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2082,7 +2082,7 @@ package WinRt.Windows.Management.Deployment is
       function FindPackagesWithPackageTypes
       (
          this : access IPackageVolume_Interface;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          packageName : WinRt.HString;
          packagePublisher : WinRt.HString;
          RetVal : access GenericObject
@@ -2092,7 +2092,7 @@ package WinRt.Windows.Management.Deployment is
       function FindPackagesWithPackageTypes
       (
          this : access IPackageVolume_Interface;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          packageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2137,7 +2137,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageVolume_Interface;
          userSecurityId : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2146,7 +2146,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageVolume_Interface;
          userSecurityId : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          packageName : WinRt.HString;
          packagePublisher : WinRt.HString;
          RetVal : access GenericObject
@@ -2157,7 +2157,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access IPackageVolume_Interface;
          userSecurityId : WinRt.HString;
-         packageTypes : Windows.Management.Deployment.PackageTypes;
+         packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
          packageFamilyName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2213,14 +2213,14 @@ package WinRt.Windows.Management.Deployment is
       function get_AppDataVolume
       (
          this : access IRegisterPackageOptions_Interface;
-         RetVal : access Windows.Management.Deployment.IPackageVolume
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
       function put_AppDataVolume
       (
          this : access IRegisterPackageOptions_Interface;
-         value : Windows.Management.Deployment.IPackageVolume
+         value : WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -2234,14 +2234,14 @@ package WinRt.Windows.Management.Deployment is
       function get_ExternalLocationUri
       (
          this : access IRegisterPackageOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ExternalLocationUri
       (
          this : access IRegisterPackageOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2465,15 +2465,15 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainer_Interface;
          packageFamilyName : WinRt.HString;
-         options : Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
-         RetVal : access Windows.Management.Deployment.IUpdateSharedPackageContainerResult
+         options : WinRt.Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
+         RetVal : access WinRt.Windows.Management.Deployment.IUpdateSharedPackageContainerResult
       )
       return WinRt.Hresult is abstract;
 
       function ResetData
       (
          this : access ISharedPackageContainer_Interface;
-         RetVal : access Windows.Management.Deployment.IUpdateSharedPackageContainerResult
+         RetVal : access WinRt.Windows.Management.Deployment.IUpdateSharedPackageContainerResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2486,8 +2486,8 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainerManager_Interface;
          name : WinRt.HString;
-         options : Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
-         RetVal : access Windows.Management.Deployment.ICreateSharedPackageContainerResult
+         options : WinRt.Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
+         RetVal : access WinRt.Windows.Management.Deployment.ICreateSharedPackageContainerResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2495,8 +2495,8 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainerManager_Interface;
          id : WinRt.HString;
-         options : Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
-         RetVal : access Windows.Management.Deployment.IDeleteSharedPackageContainerResult
+         options : WinRt.Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
+         RetVal : access WinRt.Windows.Management.Deployment.IDeleteSharedPackageContainerResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2504,7 +2504,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainerManager_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainer
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainer
       )
       return WinRt.Hresult is abstract;
 
@@ -2518,7 +2518,7 @@ package WinRt.Windows.Management.Deployment is
       function FindContainers
       (
          this : access ISharedPackageContainerManager_Interface;
-         options : Windows.Management.Deployment.IFindSharedPackageContainerOptions;
+         options : WinRt.Windows.Management.Deployment.IFindSharedPackageContainerOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2531,7 +2531,7 @@ package WinRt.Windows.Management.Deployment is
       function GetDefault
       (
          this : access ISharedPackageContainerManagerStatics_Interface;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2539,14 +2539,14 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainerManagerStatics_Interface;
          userSid : WinRt.HString;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForProvisioning
       (
          this : access ISharedPackageContainerManagerStatics_Interface;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainerManager
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainerManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2571,7 +2571,7 @@ package WinRt.Windows.Management.Deployment is
       (
          this : access ISharedPackageContainerMemberFactory_Interface;
          packageFamilyName : WinRt.HString;
-         RetVal : access Windows.Management.Deployment.ISharedPackageContainerMember
+         RetVal : access WinRt.Windows.Management.Deployment.ISharedPackageContainerMember
       )
       return WinRt.Hresult is abstract;
 
@@ -2590,14 +2590,14 @@ package WinRt.Windows.Management.Deployment is
       function get_TargetVolume
       (
          this : access IStagePackageOptions_Interface;
-         RetVal : access Windows.Management.Deployment.IPackageVolume
+         RetVal : access WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetVolume
       (
          this : access IStagePackageOptions_Interface;
-         value : Windows.Management.Deployment.IPackageVolume
+         value : WinRt.Windows.Management.Deployment.IPackageVolume
       )
       return WinRt.Hresult is abstract;
 
@@ -2625,28 +2625,28 @@ package WinRt.Windows.Management.Deployment is
       function get_ExternalLocationUri
       (
          this : access IStagePackageOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ExternalLocationUri
       (
          this : access IStagePackageOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_StubPackageOption
       (
          this : access IStagePackageOptions_Interface;
-         RetVal : access Windows.Management.Deployment.StubPackageOption
+         RetVal : access WinRt.Windows.Management.Deployment.StubPackageOption
       )
       return WinRt.Hresult is abstract;
 
       function put_StubPackageOption
       (
          this : access IStagePackageOptions_Interface;
-         value : Windows.Management.Deployment.StubPackageOption
+         value : WinRt.Windows.Management.Deployment.StubPackageOption
       )
       return WinRt.Hresult is abstract;
 
@@ -2787,14 +2787,14 @@ package WinRt.Windows.Management.Deployment is
       function get_Status
       (
          this : access IUpdateSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Management.Deployment.SharedPackageContainerOperationStatus
+         RetVal : access WinRt.Windows.Management.Deployment.SharedPackageContainerOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IUpdateSharedPackageContainerResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2833,7 +2833,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_TargetVolume
    (
       this : in out AddPackageOptions;
-      value : Windows.Management.Deployment.PackageVolume'Class
+      value : WinRt.Windows.Management.Deployment.PackageVolume'Class
    );
 
    function get_OptionalPackageFamilyNames
@@ -2863,7 +2863,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_ExternalLocationUri
    (
       this : in out AddPackageOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_StubPackageOption
@@ -2875,7 +2875,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_StubPackageOption
    (
       this : in out AddPackageOptions;
-      value : Windows.Management.Deployment.StubPackageOption
+      value : WinRt.Windows.Management.Deployment.StubPackageOption
    );
 
    function get_DeveloperMode
@@ -3038,7 +3038,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out AppInstallerManager;
       packageFamilyName : WinRt.WString;
-      appInstallerInfo : Windows.Management.Deployment.AutoUpdateSettingsOptions'Class
+      appInstallerInfo : WinRt.Windows.Management.Deployment.AutoUpdateSettingsOptions'Class
    );
 
    procedure ClearAutoUpdateSettings
@@ -3051,7 +3051,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out AppInstallerManager;
       packageFamilyName : WinRt.WString;
-      dateTime : Windows.Foundation.DateTime
+      dateTime : WinRt.Windows.Foundation.DateTime
    );
 
    -----------------------------------------------------------------------------
@@ -3070,7 +3070,7 @@ package WinRt.Windows.Management.Deployment is
 
    function CreateFromAppInstallerInfo
    (
-      appInstallerInfo : Windows.ApplicationModel.AppInstallerInfo'Class
+      appInstallerInfo : WinRt.Windows.ApplicationModel.AppInstallerInfo'Class
    )
    return WinRt.Windows.Management.Deployment.AutoUpdateSettingsOptions;
 
@@ -3086,7 +3086,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_Version
    (
       this : in out AutoUpdateSettingsOptions;
-      value : Windows.ApplicationModel.PackageVersion
+      value : WinRt.Windows.ApplicationModel.PackageVersion
    );
 
    function get_AppInstallerUri
@@ -3098,7 +3098,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_AppInstallerUri
    (
       this : in out AutoUpdateSettingsOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_OnLaunch
@@ -3250,7 +3250,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_CreateCollisionOption
    (
       this : in out CreateSharedPackageContainerOptions;
-      value : Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
+      value : WinRt.Windows.Management.Deployment.SharedPackageContainerCreationCollisionOptions
    );
 
    -----------------------------------------------------------------------------
@@ -3465,18 +3465,18 @@ package WinRt.Windows.Management.Deployment is
    function AddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function UpdatePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3490,7 +3490,7 @@ package WinRt.Windows.Management.Deployment is
    function StagePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
@@ -3498,9 +3498,9 @@ package WinRt.Windows.Management.Deployment is
    function RegisterPackageAsync
    (
       this : in out PackageManager;
-      manifestUri : Windows.Foundation.Uri'Class;
+      manifestUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3545,7 +3545,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      packageState : Windows.Management.Deployment.PackageState
+      packageState : WinRt.Windows.Management.Deployment.PackageState
    );
 
    function FindPackage
@@ -3590,16 +3590,16 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      removalOptions : Windows.Management.Deployment.RemovalOptions
+      removalOptions : WinRt.Windows.Management.Deployment.RemovalOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function StagePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3608,14 +3608,14 @@ package WinRt.Windows.Management.Deployment is
       this : in out PackageManager;
       mainPackageFullName : WinRt.WString;
       dependencyPackageFullNames : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function FindPackagesWithPackageTypes
    (
       this : in out PackageManager;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3623,7 +3623,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       userSecurityId : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3632,7 +3632,7 @@ package WinRt.Windows.Management.Deployment is
       this : in out PackageManager;
       packageName : WinRt.WString;
       packagePublisher : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3642,7 +3642,7 @@ package WinRt.Windows.Management.Deployment is
       userSecurityId : WinRt.WString;
       packageName : WinRt.WString;
       packagePublisher : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3650,7 +3650,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFamilyName : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3659,7 +3659,7 @@ package WinRt.Windows.Management.Deployment is
       this : in out PackageManager;
       userSecurityId : WinRt.WString;
       packageFamilyName : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -3680,10 +3680,10 @@ package WinRt.Windows.Management.Deployment is
    function AddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3691,16 +3691,16 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      status : Windows.Management.Deployment.PackageStatus
+      status : WinRt.Windows.Management.Deployment.PackageStatus
    );
 
    function RegisterPackageAsync
    (
       this : in out PackageManager;
-      manifestUri : Windows.Foundation.Uri'Class;
+      manifestUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      appDataVolume : Windows.Management.Deployment.PackageVolume'Class
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      appDataVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3727,52 +3727,52 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function RemovePackageVolumeAsync
    (
       this : in out PackageManager;
-      volume : Windows.Management.Deployment.PackageVolume'Class
+      volume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    procedure SetDefaultPackageVolume
    (
       this : in out PackageManager;
-      volume : Windows.Management.Deployment.PackageVolume'Class
+      volume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    );
 
    procedure SetPackageStatus
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      status : Windows.Management.Deployment.PackageStatus
+      status : WinRt.Windows.Management.Deployment.PackageStatus
    );
 
    function SetPackageVolumeOfflineAsync
    (
       this : in out PackageManager;
-      packageVolume_p : Windows.Management.Deployment.PackageVolume'Class
+      packageVolume_p : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function SetPackageVolumeOnlineAsync
    (
       this : in out PackageManager;
-      packageVolume_p : Windows.Management.Deployment.PackageVolume'Class
+      packageVolume_p : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function StagePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3780,7 +3780,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullName : WinRt.WString;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3793,10 +3793,10 @@ package WinRt.Windows.Management.Deployment is
    function AddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       externalPackageUris : GenericObject
    )
@@ -3805,10 +3805,10 @@ package WinRt.Windows.Management.Deployment is
    function StagePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       externalPackageUris : GenericObject
    )
@@ -3819,8 +3819,8 @@ package WinRt.Windows.Management.Deployment is
       this : in out PackageManager;
       mainPackageFamilyName : WinRt.WString;
       dependencyPackageFamilyNames : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      appDataVolume : Windows.Management.Deployment.PackageVolume'Class;
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      appDataVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
@@ -3841,28 +3841,28 @@ package WinRt.Windows.Management.Deployment is
    function AddPackageByAppInstallerFileAsync
    (
       this : in out PackageManager;
-      appInstallerFileUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.AddPackageByAppInstallerOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class
+      appInstallerFileUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.AddPackageByAppInstallerOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function RequestAddPackageByAppInstallerFileAsync
    (
       this : in out PackageManager;
-      appInstallerFileUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.AddPackageByAppInstallerOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class
+      appInstallerFileUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.AddPackageByAppInstallerOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function AddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      options : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      options : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       packageUrisToInstall : GenericObject;
       relatedPackageUris : GenericObject
@@ -3872,10 +3872,10 @@ package WinRt.Windows.Management.Deployment is
    function StagePackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      options : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      options : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       packageUrisToInstall : GenericObject;
       relatedPackageUris : GenericObject
@@ -3885,10 +3885,10 @@ package WinRt.Windows.Management.Deployment is
    function RequestAddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       relatedPackageUris : GenericObject
    )
@@ -3897,10 +3897,10 @@ package WinRt.Windows.Management.Deployment is
    function RequestAddPackageAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       dependencyPackageUris : GenericObject;
-      deploymentOptions : Windows.Management.Deployment.DeploymentOptions;
-      targetVolume : Windows.Management.Deployment.PackageVolume'Class;
+      deploymentOptions : WinRt.Windows.Management.Deployment.DeploymentOptions;
+      targetVolume : WinRt.Windows.Management.Deployment.PackageVolume'Class;
       optionalPackageFamilyNames : GenericObject;
       relatedPackageUris : GenericObject;
       packageUrisToInstall : GenericObject
@@ -3923,24 +3923,24 @@ package WinRt.Windows.Management.Deployment is
    function AddPackageByUriAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.AddPackageOptions'Class
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.AddPackageOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function StagePackageByUriAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.StagePackageOptions'Class
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.StagePackageOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function RegisterPackageByUriAsync
    (
       this : in out PackageManager;
-      manifestUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.RegisterPackageOptions'Class
+      manifestUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.RegisterPackageOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3948,7 +3948,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFullNames : GenericObject;
-      options : Windows.Management.Deployment.RegisterPackageOptions'Class
+      options : WinRt.Windows.Management.Deployment.RegisterPackageOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -3956,7 +3956,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       packageFamilyName : WinRt.WString;
-      useStub : Windows.Management.Deployment.PackageStubPreference
+      useStub : WinRt.Windows.Management.Deployment.PackageStubPreference
    );
 
    function GetPackageStubPreference
@@ -3970,15 +3970,15 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageManager;
       mainPackageFamilyName : WinRt.WString;
-      options : Windows.Management.Deployment.PackageAllUserProvisioningOptions'Class
+      options : WinRt.Windows.Management.Deployment.PackageAllUserProvisioningOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
    function RemovePackageByUriAsync
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
-      options : Windows.Management.Deployment.RemovePackageOptions'Class
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
+      options : WinRt.Windows.Management.Deployment.RemovePackageOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeploymentResult'Class;
 
@@ -4000,14 +4000,14 @@ package WinRt.Windows.Management.Deployment is
    function IsPackageRemovalPendingByUri
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class
+      packageUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Boolean;
 
    function IsPackageRemovalPendingByUriForUser
    (
       this : in out PackageManager;
-      packageUri : Windows.Foundation.Uri'Class;
+      packageUri : WinRt.Windows.Foundation.Uri'Class;
       userSecurityId : WinRt.WString
    )
    return WinRt.Boolean;
@@ -4024,17 +4024,17 @@ package WinRt.Windows.Management.Deployment is
    procedure SetContentGroupStateAsync
    (
       this : in out PackageManagerDebugSettings;
-      package_x : Windows.ApplicationModel.Package_x'Class;
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class;
       contentGroupName : WinRt.WString;
-      state : Windows.ApplicationModel.PackageContentGroupState
+      state : WinRt.Windows.ApplicationModel.PackageContentGroupState
    );
 
    procedure SetContentGroupStateAsync
    (
       this : in out PackageManagerDebugSettings;
-      package_x : Windows.ApplicationModel.Package_x'Class;
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class;
       contentGroupName : WinRt.WString;
-      state : Windows.ApplicationModel.PackageContentGroupState;
+      state : WinRt.Windows.ApplicationModel.PackageContentGroupState;
       completionPercentage : WinRt.Double
    );
 
@@ -4128,14 +4128,14 @@ package WinRt.Windows.Management.Deployment is
    function FindPackagesWithPackageTypes
    (
       this : in out PackageVolume;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
    function FindPackagesWithPackageTypes
    (
       this : in out PackageVolume;
-      packageTypes : Windows.Management.Deployment.PackageTypes;
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
       packageName : WinRt.WString;
       packagePublisher : WinRt.WString
    )
@@ -4144,7 +4144,7 @@ package WinRt.Windows.Management.Deployment is
    function FindPackagesWithPackageTypes
    (
       this : in out PackageVolume;
-      packageTypes : Windows.Management.Deployment.PackageTypes;
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
       packageFamilyName : WinRt.WString
    )
    return WinRt.GenericObject;
@@ -4184,7 +4184,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageVolume;
       userSecurityId : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes
    )
    return WinRt.GenericObject;
 
@@ -4192,7 +4192,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageVolume;
       userSecurityId : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes;
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
       packageName : WinRt.WString;
       packagePublisher : WinRt.WString
    )
@@ -4202,7 +4202,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out PackageVolume;
       userSecurityId : WinRt.WString;
-      packageTypes : Windows.Management.Deployment.PackageTypes;
+      packageTypes : WinRt.Windows.Management.Deployment.PackageTypes;
       packageFamilyName : WinRt.WString
    )
    return WinRt.GenericObject;
@@ -4262,7 +4262,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_AppDataVolume
    (
       this : in out RegisterPackageOptions;
-      value : Windows.Management.Deployment.PackageVolume'Class
+      value : WinRt.Windows.Management.Deployment.PackageVolume'Class
    );
 
    function get_OptionalPackageFamilyNames
@@ -4280,7 +4280,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_ExternalLocationUri
    (
       this : in out RegisterPackageOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_DeveloperMode
@@ -4478,7 +4478,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out SharedPackageContainer;
       packageFamilyName : WinRt.WString;
-      options : Windows.Management.Deployment.UpdateSharedPackageContainerOptions'Class
+      options : WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerOptions'Class
    )
    return WinRt.Windows.Management.Deployment.UpdateSharedPackageContainerResult'Class;
 
@@ -4516,7 +4516,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out SharedPackageContainerManager;
       name : WinRt.WString;
-      options : Windows.Management.Deployment.CreateSharedPackageContainerOptions'Class
+      options : WinRt.Windows.Management.Deployment.CreateSharedPackageContainerOptions'Class
    )
    return WinRt.Windows.Management.Deployment.CreateSharedPackageContainerResult'Class;
 
@@ -4524,7 +4524,7 @@ package WinRt.Windows.Management.Deployment is
    (
       this : in out SharedPackageContainerManager;
       id : WinRt.WString;
-      options : Windows.Management.Deployment.DeleteSharedPackageContainerOptions'Class
+      options : WinRt.Windows.Management.Deployment.DeleteSharedPackageContainerOptions'Class
    )
    return WinRt.Windows.Management.Deployment.DeleteSharedPackageContainerResult'Class;
 
@@ -4544,7 +4544,7 @@ package WinRt.Windows.Management.Deployment is
    function FindContainers
    (
       this : in out SharedPackageContainerManager;
-      options : Windows.Management.Deployment.FindSharedPackageContainerOptions'Class
+      options : WinRt.Windows.Management.Deployment.FindSharedPackageContainerOptions'Class
    )
    return IVector_ISharedPackageContainer.Kind;
 
@@ -4601,7 +4601,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_TargetVolume
    (
       this : in out StagePackageOptions;
-      value : Windows.Management.Deployment.PackageVolume'Class
+      value : WinRt.Windows.Management.Deployment.PackageVolume'Class
    );
 
    function get_OptionalPackageFamilyNames
@@ -4631,7 +4631,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_ExternalLocationUri
    (
       this : in out StagePackageOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_StubPackageOption
@@ -4643,7 +4643,7 @@ package WinRt.Windows.Management.Deployment is
    procedure put_StubPackageOption
    (
       this : in out StagePackageOptions;
-      value : Windows.Management.Deployment.StubPackageOption
+      value : WinRt.Windows.Management.Deployment.StubPackageOption
    );
 
    function get_DeveloperMode

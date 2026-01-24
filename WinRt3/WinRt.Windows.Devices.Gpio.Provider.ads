@@ -142,8 +142,8 @@ package WinRt.Windows.Devices.Gpio.Provider is
       (
          this : access IGpioControllerProvider_Interface;
          pin : WinRt.Int32;
-         sharingMode : Windows.Devices.Gpio.Provider.ProviderGpioSharingMode;
-         RetVal : access Windows.Devices.Gpio.Provider.IGpioPinProvider
+         sharingMode : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioSharingMode;
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.IGpioPinProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -156,28 +156,28 @@ package WinRt.Windows.Devices.Gpio.Provider is
       (
          this : access IGpioPinProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValueChanged
       (
          this : access IGpioPinProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_DebounceTimeout
       (
          this : access IGpioPinProvider_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DebounceTimeout
       (
          this : access IGpioPinProvider_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -191,14 +191,14 @@ package WinRt.Windows.Devices.Gpio.Provider is
       function get_SharingMode
       (
          this : access IGpioPinProvider_Interface;
-         RetVal : access Windows.Devices.Gpio.Provider.ProviderGpioSharingMode
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.ProviderGpioSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function IsDriveModeSupported
       (
          this : access IGpioPinProvider_Interface;
-         driveMode : Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode;
+         driveMode : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -206,28 +206,28 @@ package WinRt.Windows.Devices.Gpio.Provider is
       function GetDriveMode
       (
          this : access IGpioPinProvider_Interface;
-         RetVal : access Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode
       )
       return WinRt.Hresult is abstract;
 
       function SetDriveMode
       (
          this : access IGpioPinProvider_Interface;
-         value : Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode
+         value : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinDriveMode
       )
       return WinRt.Hresult is abstract;
 
       function Write
       (
          this : access IGpioPinProvider_Interface;
-         value : Windows.Devices.Gpio.Provider.ProviderGpioPinValue
+         value : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinValue
       )
       return WinRt.Hresult is abstract;
 
       function Read
       (
          this : access IGpioPinProvider_Interface;
-         RetVal : access Windows.Devices.Gpio.Provider.ProviderGpioPinValue
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinValue
       )
       return WinRt.Hresult is abstract;
 
@@ -239,7 +239,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
       function get_Edge
       (
          this : access IGpioPinProviderValueChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
       )
       return WinRt.Hresult is abstract;
 
@@ -251,8 +251,8 @@ package WinRt.Windows.Devices.Gpio.Provider is
       function Create
       (
          this : access IGpioPinProviderValueChangedEventArgsFactory_Interface;
-         edge : Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
-         RetVal : access Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs
+         edge : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -285,7 +285,7 @@ package WinRt.Windows.Devices.Gpio.Provider is
 
    function Constructor
    (
-      edge : Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
+      edge : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
    )
    return GpioPinProviderValueChangedEventArgs;
 

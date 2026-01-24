@@ -71,7 +71,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.AdvancedColorKind;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.AdvancedColorKind;
    begin
       Hr := this.m_IAdvancedColorInfo.all.get_CurrentAdvancedColorKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -88,7 +88,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAdvancedColorInfo.all.get_RedPrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -105,7 +105,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAdvancedColorInfo.all.get_GreenPrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -122,7 +122,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAdvancedColorInfo.all.get_BluePrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -139,7 +139,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAdvancedColorInfo.all.get_WhitePoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -219,7 +219,7 @@ package body WinRt.Windows.Graphics.Display is
    function IsHdrMetadataFormatCurrentlySupported
    (
       this : in out AdvancedColorInfo;
-      format : Windows.Graphics.Display.HdrMetadataFormat
+      format : WinRt.Windows.Graphics.Display.HdrMetadataFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -237,7 +237,7 @@ package body WinRt.Windows.Graphics.Display is
    function IsAdvancedColorKindAvailable
    (
       this : in out AdvancedColorInfo;
-      kind : Windows.Graphics.Display.AdvancedColorKind
+      kind : WinRt.Windows.Graphics.Display.AdvancedColorKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -282,7 +282,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.BrightnessOverride");
       m_Factory        : access WinRt.Windows.Graphics.Display.IBrightnessOverrideStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverride;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverride;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverride do
          Hr := RoGetActivationFactory (m_hString, IID_IBrightnessOverrideStatics'Access , m_Factory'Address);
@@ -292,7 +292,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBrightnessOverride := new Windows.Graphics.Display.IBrightnessOverride;
+            Retval.m_IBrightnessOverride := new WinRt.Windows.Graphics.Display.IBrightnessOverride;
             Retval.m_IBrightnessOverride.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -306,7 +306,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.BrightnessOverride");
       m_Factory        : access WinRt.Windows.Graphics.Display.IBrightnessOverrideStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverride;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverride;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverride do
          Hr := RoGetActivationFactory (m_hString, IID_IBrightnessOverrideStatics'Access , m_Factory'Address);
@@ -316,7 +316,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBrightnessOverride := new Windows.Graphics.Display.IBrightnessOverride;
+            Retval.m_IBrightnessOverride := new WinRt.Windows.Graphics.Display.IBrightnessOverride;
             Retval.m_IBrightnessOverride.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -325,7 +325,7 @@ package body WinRt.Windows.Graphics.Display is
 
    function SaveForSystemAsync
    (
-      value : Windows.Graphics.Display.BrightnessOverride'Class
+      value : WinRt.Windows.Graphics.Display.BrightnessOverride'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -451,7 +451,7 @@ package body WinRt.Windows.Graphics.Display is
    (
       this : in out BrightnessOverride;
       brightnessLevel : WinRt.Double;
-      options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+      options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -466,8 +466,8 @@ package body WinRt.Windows.Graphics.Display is
    procedure SetBrightnessScenario
    (
       this : in out BrightnessOverride;
-      scenario : Windows.Graphics.Display.DisplayBrightnessScenario;
-      options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+      scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario;
+      options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -482,7 +482,7 @@ package body WinRt.Windows.Graphics.Display is
    function GetLevelForScenario
    (
       this : in out BrightnessOverride;
-      scenario : Windows.Graphics.Display.DisplayBrightnessScenario
+      scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario
    )
    return WinRt.Double is
       Hr               : WinRt.HResult := S_OK;
@@ -534,7 +534,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBrightnessOverride.all.add_IsSupportedChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -546,7 +546,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_IsSupportedChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -567,7 +567,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBrightnessOverride.all.add_IsOverrideActiveChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -579,7 +579,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_IsOverrideActiveChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -600,7 +600,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBrightnessOverride.all.add_BrightnessLevelChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -612,7 +612,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_BrightnessLevelChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -657,7 +657,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.BrightnessOverrideSettings");
       m_Factory        : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IBrightnessOverrideSettingsStatics'Access , m_Factory'Address);
@@ -667,7 +667,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBrightnessOverrideSettings := new Windows.Graphics.Display.IBrightnessOverrideSettings;
+            Retval.m_IBrightnessOverrideSettings := new WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
             Retval.m_IBrightnessOverrideSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -684,7 +684,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.BrightnessOverrideSettings");
       m_Factory        : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IBrightnessOverrideSettingsStatics'Access , m_Factory'Address);
@@ -694,7 +694,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBrightnessOverrideSettings := new Windows.Graphics.Display.IBrightnessOverrideSettings;
+            Retval.m_IBrightnessOverrideSettings := new WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
             Retval.m_IBrightnessOverrideSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -703,7 +703,7 @@ package body WinRt.Windows.Graphics.Display is
 
    function CreateFromDisplayBrightnessOverrideScenario
    (
-      overrideScenario : Windows.Graphics.Display.DisplayBrightnessOverrideScenario
+      overrideScenario : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideScenario
    )
    return WinRt.Windows.Graphics.Display.BrightnessOverrideSettings is
       Hr               : WinRt.HResult := S_OK;
@@ -711,7 +711,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.BrightnessOverrideSettings");
       m_Factory        : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IBrightnessOverrideSettingsStatics'Access , m_Factory'Address);
@@ -721,7 +721,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBrightnessOverrideSettings := new Windows.Graphics.Display.IBrightnessOverrideSettings;
+            Retval.m_IBrightnessOverrideSettings := new WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
             Retval.m_IBrightnessOverrideSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -790,7 +790,7 @@ package body WinRt.Windows.Graphics.Display is
 
    function CreateFromDisplayColorOverrideScenario
    (
-      overrideScenario : Windows.Graphics.Display.DisplayColorOverrideScenario
+      overrideScenario : WinRt.Windows.Graphics.Display.DisplayColorOverrideScenario
    )
    return WinRt.Windows.Graphics.Display.ColorOverrideSettings is
       Hr               : WinRt.HResult := S_OK;
@@ -798,7 +798,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.ColorOverrideSettings");
       m_Factory        : access WinRt.Windows.Graphics.Display.IColorOverrideSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IColorOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IColorOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.ColorOverrideSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IColorOverrideSettingsStatics'Access , m_Factory'Address);
@@ -808,7 +808,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IColorOverrideSettings := new Windows.Graphics.Display.IColorOverrideSettings;
+            Retval.m_IColorOverrideSettings := new WinRt.Windows.Graphics.Display.IColorOverrideSettings;
             Retval.m_IColorOverrideSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -826,7 +826,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayColorOverrideScenario;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayColorOverrideScenario;
    begin
       Hr := this.m_IColorOverrideSettings.all.get_DesiredDisplayColorOverrideScenario (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -865,7 +865,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayEnhancementOverride");
       m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IDisplayEnhancementOverride;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IDisplayEnhancementOverride;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.DisplayEnhancementOverride do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayEnhancementOverrideStatics'Access , m_Factory'Address);
@@ -875,7 +875,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayEnhancementOverride := new Windows.Graphics.Display.IDisplayEnhancementOverride;
+            Retval.m_IDisplayEnhancementOverride := new WinRt.Windows.Graphics.Display.IDisplayEnhancementOverride;
             Retval.m_IDisplayEnhancementOverride.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -893,14 +893,14 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IColorOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IColorOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.ColorOverrideSettings do
          Hr := this.m_IDisplayEnhancementOverride.all.get_ColorOverrideSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IColorOverrideSettings := new Windows.Graphics.Display.IColorOverrideSettings;
+         Retval.m_IColorOverrideSettings := new WinRt.Windows.Graphics.Display.IColorOverrideSettings;
          Retval.m_IColorOverrideSettings.all := m_ComRetVal;
       end return;
    end;
@@ -908,7 +908,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure put_ColorOverrideSettings
    (
       this : in out DisplayEnhancementOverride;
-      value : Windows.Graphics.Display.ColorOverrideSettings'Class
+      value : WinRt.Windows.Graphics.Display.ColorOverrideSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -928,14 +928,14 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IBrightnessOverrideSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings do
          Hr := this.m_IDisplayEnhancementOverride.all.get_BrightnessOverrideSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBrightnessOverrideSettings := new Windows.Graphics.Display.IBrightnessOverrideSettings;
+         Retval.m_IBrightnessOverrideSettings := new WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings;
          Retval.m_IBrightnessOverrideSettings.all := m_ComRetVal;
       end return;
    end;
@@ -943,7 +943,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure put_BrightnessOverrideSettings
    (
       this : in out DisplayEnhancementOverride;
-      value : Windows.Graphics.Display.BrightnessOverrideSettings'Class
+      value : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -997,14 +997,14 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.DisplayEnhancementOverrideCapabilities do
          Hr := this.m_IDisplayEnhancementOverride.all.GetCurrentDisplayEnhancementOverrideCapabilities (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayEnhancementOverrideCapabilities := new Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
+         Retval.m_IDisplayEnhancementOverrideCapabilities := new WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
          Retval.m_IDisplayEnhancementOverrideCapabilities.all := m_ComRetVal;
       end return;
    end;
@@ -1046,7 +1046,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayEnhancementOverride.all.add_CanOverrideChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1058,7 +1058,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_CanOverrideChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1079,7 +1079,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayEnhancementOverride.all.add_IsOverrideActiveChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1091,7 +1091,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_IsOverrideActiveChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1112,7 +1112,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayEnhancementOverride.all.add_DisplayEnhancementOverrideCapabilitiesChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1124,7 +1124,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_DisplayEnhancementOverrideCapabilitiesChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_NitRange.Kind;
    begin
       Hr := this.m_IDisplayEnhancementOverrideCapabilities.all.GetSupportedNitRanges (m_ComRetVal'Access);
@@ -1244,14 +1244,14 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.DisplayEnhancementOverrideCapabilities do
          Hr := this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs.all.get_Capabilities (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayEnhancementOverrideCapabilities := new Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
+         Retval.m_IDisplayEnhancementOverrideCapabilities := new WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities;
          Retval.m_IDisplayEnhancementOverrideCapabilities.all := m_ComRetVal;
       end return;
    end;
@@ -1286,7 +1286,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayInformation");
       m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayInformationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IDisplayInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IDisplayInformation;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.DisplayInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayInformationStatics'Access , m_Factory'Address);
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.Graphics.Display is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDisplayInformation := new Windows.Graphics.Display.IDisplayInformation;
+            Retval.m_IDisplayInformation := new WinRt.Windows.Graphics.Display.IDisplayInformation;
             Retval.m_IDisplayInformation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1310,7 +1310,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayInformation");
       m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayInformationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDisplayInformationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1326,7 +1326,7 @@ package body WinRt.Windows.Graphics.Display is
 
    procedure put_AutoRotationPreferences
    (
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1355,7 +1355,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayInformation");
       m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayInformationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDisplayInformationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1371,7 +1371,7 @@ package body WinRt.Windows.Graphics.Display is
 
    procedure remove_DisplayContentsInvalidated
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1401,7 +1401,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
    begin
       Hr := this.m_IDisplayInformation.all.get_CurrentOrientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1418,7 +1418,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
    begin
       Hr := this.m_IDisplayInformation.all.get_NativeOrientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1436,7 +1436,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayInformation.all.add_OrientationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1448,7 +1448,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_OrientationChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1468,7 +1468,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.ResolutionScale;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.ResolutionScale;
    begin
       Hr := this.m_IDisplayInformation.all.get_ResolutionScale (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1537,7 +1537,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayInformation.all.add_DpiChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1549,7 +1549,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_DpiChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1587,7 +1587,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayInformation.all.add_StereoEnabledChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1599,7 +1599,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_StereoEnabledChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1683,7 +1683,7 @@ package body WinRt.Windows.Graphics.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayInformation.all.add_ColorProfileChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1695,7 +1695,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_ColorProfileChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1737,7 +1737,7 @@ package body WinRt.Windows.Graphics.Display is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Display.IDisplayInformation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Display.IDisplayInformation_Interface, WinRt.Windows.Graphics.Display.IDisplayInformation3, WinRt.Windows.Graphics.Display.IID_IDisplayInformation3'Unchecked_Access);
    begin
@@ -1803,7 +1803,7 @@ package body WinRt.Windows.Graphics.Display is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Display.IDisplayInformation5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.IAdvancedColorInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.IAdvancedColorInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Display.IDisplayInformation_Interface, WinRt.Windows.Graphics.Display.IDisplayInformation5, WinRt.Windows.Graphics.Display.IID_IDisplayInformation5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Display.AdvancedColorInfo do
@@ -1813,7 +1813,7 @@ package body WinRt.Windows.Graphics.Display is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdvancedColorInfo := new Windows.Graphics.Display.IAdvancedColorInfo;
+         Retval.m_IAdvancedColorInfo := new WinRt.Windows.Graphics.Display.IAdvancedColorInfo;
          Retval.m_IAdvancedColorInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1828,7 +1828,7 @@ package body WinRt.Windows.Graphics.Display is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Display.IDisplayInformation5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Display.IDisplayInformation_Interface, WinRt.Windows.Graphics.Display.IDisplayInformation5, WinRt.Windows.Graphics.Display.IID_IDisplayInformation5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDisplayInformation.all);
@@ -1843,7 +1843,7 @@ package body WinRt.Windows.Graphics.Display is
    procedure remove_AdvancedColorInfoChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1870,7 +1870,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+         m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1891,7 +1891,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+         m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1912,7 +1912,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+         m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1928,7 +1928,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure put_AutoRotationPreferences_DisplayProperties
       (
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1949,7 +1949,7 @@ package body WinRt.Windows.Graphics.Display is
 
       function add_OrientationChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
@@ -1957,7 +1957,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1973,7 +1973,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure remove_OrientationChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1999,7 +1999,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Graphics.Display.ResolutionScale;
+         m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.ResolutionScale;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2036,7 +2036,7 @@ package body WinRt.Windows.Graphics.Display is
 
       function add_LogicalDpiChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
@@ -2044,7 +2044,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2060,7 +2060,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure remove_LogicalDpiChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2102,7 +2102,7 @@ package body WinRt.Windows.Graphics.Display is
 
       function add_StereoEnabledChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
@@ -2110,7 +2110,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2126,7 +2126,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure remove_StereoEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2214,7 +2214,7 @@ package body WinRt.Windows.Graphics.Display is
 
       function add_ColorProfileChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
@@ -2222,7 +2222,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2238,7 +2238,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure remove_ColorProfileChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2259,7 +2259,7 @@ package body WinRt.Windows.Graphics.Display is
 
       function add_DisplayContentsInvalidated
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken is
          Hr               : WinRt.HResult := S_OK;
@@ -2267,7 +2267,7 @@ package body WinRt.Windows.Graphics.Display is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayProperties");
          m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayPropertiesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayPropertiesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2283,7 +2283,7 @@ package body WinRt.Windows.Graphics.Display is
 
       procedure remove_DisplayContentsInvalidated_DisplayProperties
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2349,7 +2349,7 @@ package body WinRt.Windows.Graphics.Display is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.DisplayServices");
       m_Factory        : access WinRt.Windows.Graphics.Display.IDisplayServicesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DisplayId_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DisplayId_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IDisplayServicesStatics'Access , m_Factory'Address);

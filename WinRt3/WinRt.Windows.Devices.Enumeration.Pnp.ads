@@ -132,7 +132,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function get_Type
       (
          this : access IPnpObject_Interface;
-         RetVal : access Windows.Devices.Enumeration.Pnp.PnpObjectType
+         RetVal : access WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType
       )
       return WinRt.Hresult is abstract;
 
@@ -153,7 +153,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function Update
       (
          this : access IPnpObject_Interface;
-         updateInfo : Windows.Devices.Enumeration.Pnp.IPnpObjectUpdate
+         updateInfo : WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -165,7 +165,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function CreateFromIdAsync
       (
          this : access IPnpObjectStatics_Interface;
-         type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+         type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
          id : WinRt.HString;
          requestedProperties : GenericObject;
          RetVal : access GenericObject
@@ -175,7 +175,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function FindAllAsync
       (
          this : access IPnpObjectStatics_Interface;
-         type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+         type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
          requestedProperties : GenericObject;
          RetVal : access GenericObject
       )
@@ -184,7 +184,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function FindAllAsync
       (
          this : access IPnpObjectStatics_Interface;
-         type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+         type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
          requestedProperties : GenericObject;
          aqsFilter : WinRt.HString;
          RetVal : access GenericObject
@@ -194,19 +194,19 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function CreateWatcher
       (
          this : access IPnpObjectStatics_Interface;
-         type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+         type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
          requestedProperties : GenericObject;
-         RetVal : access Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher
+         RetVal : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher
       )
       return WinRt.Hresult is abstract;
 
       function CreateWatcher
       (
          this : access IPnpObjectStatics_Interface;
-         type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+         type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
          requestedProperties : GenericObject;
          aqsFilter : WinRt.HString;
-         RetVal : access Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher
+         RetVal : access WinRt.Windows.Devices.Enumeration.Pnp.IPnpObjectWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -218,7 +218,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       function get_Type
       (
          this : access IPnpObjectUpdate_Interface;
-         RetVal : access Windows.Devices.Enumeration.Pnp.PnpObjectType
+         RetVal : access WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType
       )
       return WinRt.Hresult is abstract;
 
@@ -245,14 +245,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       (
          this : access IPnpObjectWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IPnpObjectWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -260,14 +260,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       (
          this : access IPnpObjectWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IPnpObjectWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -275,14 +275,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       (
          this : access IPnpObjectWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IPnpObjectWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -290,14 +290,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       (
          this : access IPnpObjectWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPnpObjectWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -305,21 +305,21 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
       (
          this : access IPnpObjectWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPnpObjectWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPnpObjectWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -352,7 +352,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
 
    function CreateFromIdAsync
    (
-      type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+      type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
       id : WinRt.WString;
       requestedProperties : GenericObject
    )
@@ -360,14 +360,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
 
    function FindAllAsync
    (
-      type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+      type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
       requestedProperties : GenericObject
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectCollection;
 
    function FindAllAsync
    (
-      type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+      type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
       requestedProperties : GenericObject;
       aqsFilter : WinRt.WString
    )
@@ -375,14 +375,14 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
 
    function CreateWatcher
    (
-      type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+      type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
       requestedProperties : GenericObject
    )
    return WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectWatcher;
 
    function CreateWatcher
    (
-      type_x : Windows.Devices.Enumeration.Pnp.PnpObjectType;
+      type_x : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectType;
       requestedProperties : GenericObject;
       aqsFilter : WinRt.WString
    )
@@ -412,7 +412,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure Update
    (
       this : in out PnpObject;
-      updateInfo : Windows.Devices.Enumeration.Pnp.PnpObjectUpdate'Class
+      updateInfo : WinRt.Windows.Devices.Enumeration.Pnp.PnpObjectUpdate'Class
    );
 
    -----------------------------------------------------------------------------
@@ -441,7 +441,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    function IndexOf
    (
       this : in out PnpObjectCollection;
-      value : Windows.Devices.Enumeration.Pnp.PnpObject'Class;
+      value : WinRt.Windows.Devices.Enumeration.Pnp.PnpObject'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -450,7 +450,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    (
       this : in out PnpObjectCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Devices.Enumeration.Pnp.IPnpObject_Array
+      items : WinRt.Windows.Devices.Enumeration.Pnp.IPnpObject_Array
    )
    return WinRt.UInt32;
 
@@ -507,7 +507,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure remove_Added
    (
       this : in out PnpObjectWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -520,7 +520,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure remove_Updated
    (
       this : in out PnpObjectWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -533,7 +533,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure remove_Removed
    (
       this : in out PnpObjectWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -546,7 +546,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure remove_EnumerationCompleted
    (
       this : in out PnpObjectWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -559,7 +559,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    procedure remove_Stopped
    (
       this : in out PnpObjectWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status

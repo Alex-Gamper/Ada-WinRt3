@@ -95,7 +95,7 @@ package body WinRt.Windows.Devices.I2c.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.Provider.ProviderI2cBusSpeed;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.Provider.ProviderI2cBusSpeed;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.get_BusSpeed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -107,7 +107,7 @@ package body WinRt.Windows.Devices.I2c.Provider is
    procedure put_BusSpeed
    (
       this : in out ProviderI2cConnectionSettings;
-      value : Windows.Devices.I2c.Provider.ProviderI2cBusSpeed
+      value : WinRt.Windows.Devices.I2c.Provider.ProviderI2cBusSpeed
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -127,7 +127,7 @@ package body WinRt.Windows.Devices.I2c.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.Provider.ProviderI2cSharingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.Provider.ProviderI2cSharingMode;
    begin
       Hr := this.m_IProviderI2cConnectionSettings.all.get_SharingMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -139,7 +139,7 @@ package body WinRt.Windows.Devices.I2c.Provider is
    procedure put_SharingMode
    (
       this : in out ProviderI2cConnectionSettings;
-      value : Windows.Devices.I2c.Provider.ProviderI2cSharingMode
+      value : WinRt.Windows.Devices.I2c.Provider.ProviderI2cSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

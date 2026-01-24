@@ -94,7 +94,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IContentRestrictionsBrowsePolicy.all.get_MaxBrowsableAgeRating (m_ComRetVal'Access);
@@ -114,7 +114,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IContentRestrictionsBrowsePolicy.all.get_PreferredAgeRating (m_ComRetVal'Access);
@@ -153,15 +153,15 @@ package body WinRt.Windows.Media.ContentRestrictions is
    (
       id : WinRt.WString;
       title : WinRt.WString;
-      category : Windows.Media.ContentRestrictions.RatedContentCategory
+      category : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
    )
    return RatedContentDescription is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentDescription");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentDescription");
       m_Factory    : access IRatedContentDescriptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.ContentRestrictions.IRatedContentDescription;
+      m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
       HStr_id : constant WinRt.HString := To_HString (id);
       HStr_title : constant WinRt.HString := To_HString (title);
    begin
@@ -169,7 +169,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
          Hr := RoGetActivationFactory (m_hString, IID_IRatedContentDescriptionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_id, HStr_title, category, m_ComRetVal'Access);
-            Retval.m_IRatedContentDescription := new Windows.Media.ContentRestrictions.IRatedContentDescription;
+            Retval.m_IRatedContentDescription := new WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
             Retval.m_IRatedContentDescription.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -264,7 +264,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IRatedContentDescription.all.get_Image (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -276,7 +276,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    procedure put_Image
    (
       this : in out RatedContentDescription;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -296,7 +296,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.ContentRestrictions.RatedContentCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Media.ContentRestrictions.RatedContentCategory;
    begin
       Hr := this.m_IRatedContentDescription.all.get_Category (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -308,7 +308,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    procedure put_Category
    (
       this : in out RatedContentDescription;
-      value : Windows.Media.ContentRestrictions.RatedContentCategory
+      value : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -328,7 +328,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IRatedContentDescription.all.get_Ratings (m_ComRetVal'Access);
@@ -385,16 +385,16 @@ package body WinRt.Windows.Media.ContentRestrictions is
    return RatedContentRestrictions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentRestrictions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentRestrictions");
       m_Factory    : access IRatedContentRestrictionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.ContentRestrictions.IRatedContentRestrictions;
+      m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
    begin
       return RetVal : RatedContentRestrictions do
          Hr := RoGetActivationFactory (m_hString, IID_IRatedContentRestrictionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithMaxAgeRating (maxAgeRating, m_ComRetVal'Access);
-            Retval.m_IRatedContentRestrictions := new Windows.Media.ContentRestrictions.IRatedContentRestrictions;
+            Retval.m_IRatedContentRestrictions := new WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
             Retval.m_IRatedContentRestrictions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -405,13 +405,13 @@ package body WinRt.Windows.Media.ContentRestrictions is
    function Constructor return RatedContentRestrictions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentRestrictions");
-      m_ComRetVal  : aliased Windows.Media.ContentRestrictions.IRatedContentRestrictions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentRestrictions");
+      m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
    begin
       return RetVal : RatedContentRestrictions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRatedContentRestrictions := new Windows.Media.ContentRestrictions.IRatedContentRestrictions;
+            Retval.m_IRatedContentRestrictions := new WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
             Retval.m_IRatedContentRestrictions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -474,7 +474,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IContentRestrictionsBrowsePolicy := new Windows.Media.ContentRestrictions.IContentRestrictionsBrowsePolicy;
+                  Retval.m_IContentRestrictionsBrowsePolicy := new WinRt.Windows.Media.ContentRestrictions.IContentRestrictionsBrowsePolicy;
                   Retval.m_IContentRestrictionsBrowsePolicy.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -490,7 +490,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    function GetRestrictionLevelAsync
    (
       this : in out RatedContentRestrictions;
-      RatedContentDescription_p : Windows.Media.ContentRestrictions.RatedContentDescription'Class
+      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
    )
    return WinRt.Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel is
       Hr               : WinRt.HResult := S_OK;
@@ -554,7 +554,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    function RequestContentAccessAsync
    (
       this : in out RatedContentRestrictions;
-      RatedContentDescription_p : Windows.Media.ContentRestrictions.RatedContentDescription'Class
+      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -624,7 +624,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRatedContentRestrictions.all.add_RestrictionsChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -636,7 +636,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    procedure remove_RestrictionsChanged
    (
       this : in out RatedContentRestrictions;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

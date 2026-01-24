@@ -67,8 +67,8 @@ package WinRt.Windows.Security.Cryptography is
       function Compare
       (
          this : access ICryptographicBufferStatics_Interface;
-         object1 : Windows.Storage.Streams.IBuffer;
-         object2 : Windows.Storage.Streams.IBuffer;
+         object1 : WinRt.Windows.Storage.Streams.IBuffer;
+         object2 : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -77,7 +77,7 @@ package WinRt.Windows.Security.Cryptography is
       (
          this : access ICryptographicBufferStatics_Interface;
          length : WinRt.UInt32;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -93,14 +93,14 @@ package WinRt.Windows.Security.Cryptography is
          this : access ICryptographicBufferStatics_Interface;
          valueSize : WinRt.UInt32;
          value : WinRt.Byte_Ptr;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CopyToByteArray
       (
          this : access ICryptographicBufferStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          valueSize : WinRt.UInt32;
          value : WinRt.Byte_Ptr
       )
@@ -110,14 +110,14 @@ package WinRt.Windows.Security.Cryptography is
       (
          this : access ICryptographicBufferStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function EncodeToHexString
       (
          this : access ICryptographicBufferStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -126,14 +126,14 @@ package WinRt.Windows.Security.Cryptography is
       (
          this : access ICryptographicBufferStatics_Interface;
          value : WinRt.HString;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function EncodeToBase64String
       (
          this : access ICryptographicBufferStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -142,16 +142,16 @@ package WinRt.Windows.Security.Cryptography is
       (
          this : access ICryptographicBufferStatics_Interface;
          value : WinRt.HString;
-         encoding : Windows.Security.Cryptography.BinaryStringEncoding;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         encoding : WinRt.Windows.Security.Cryptography.BinaryStringEncoding;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function ConvertBinaryToString
       (
          this : access ICryptographicBufferStatics_Interface;
-         encoding : Windows.Security.Cryptography.BinaryStringEncoding;
-         buffer : Windows.Storage.Streams.IBuffer;
+         encoding : WinRt.Windows.Security.Cryptography.BinaryStringEncoding;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;

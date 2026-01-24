@@ -683,21 +683,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_CharacteristicProperties
       (
          this : access IGattCharacteristic_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_ProtectionLevel
       (
          this : access IGattCharacteristic_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectionLevel
       (
          this : access IGattCharacteristic_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -739,7 +739,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function ReadValueAsync
       (
          this : access IGattCharacteristic_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -747,7 +747,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueAsync
       (
          this : access IGattCharacteristic_Interface;
-         value : Windows.Storage.Streams.IBuffer;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -755,8 +755,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueAsync
       (
          this : access IGattCharacteristic_Interface;
-         value : Windows.Storage.Streams.IBuffer;
-         writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
+         writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -771,7 +771,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteClientCharacteristicConfigurationDescriptorAsync
       (
          this : access IGattCharacteristic_Interface;
-         clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
+         clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -780,14 +780,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattCharacteristic_Interface;
          valueChangedHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValueChanged
       (
          this : access IGattCharacteristic_Interface;
-         valueChangedEventCookie : Windows.Foundation.EventRegistrationToken
+         valueChangedEventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -799,7 +799,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Service
       (
          this : access IGattCharacteristic2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService
       )
       return WinRt.Hresult is abstract;
 
@@ -825,7 +825,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetDescriptorsAsync
       (
          this : access IGattCharacteristic3_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -842,7 +842,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattCharacteristic3_Interface;
          descriptorUuid : WinRt.Guid;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -850,7 +850,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueWithResultAsync
       (
          this : access IGattCharacteristic3_Interface;
-         value : Windows.Storage.Streams.IBuffer;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -858,8 +858,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueWithResultAsync
       (
          this : access IGattCharacteristic3_Interface;
-         value : Windows.Storage.Streams.IBuffer;
-         writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
+         writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -867,7 +867,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteClientCharacteristicConfigurationDescriptorWithResultAsync
       (
          this : access IGattCharacteristic3_Interface;
-         clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
+         clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1470,7 +1470,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattCharacteristicsResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1496,14 +1496,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_SubscribedClient
       (
          this : access IGattClientNotificationResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IGattClientNotificationResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,14 +1534,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_ProtectionLevel
       (
          this : access IGattDescriptor_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectionLevel
       (
          this : access IGattDescriptor_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -1569,7 +1569,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function ReadValueAsync
       (
          this : access IGattDescriptor_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1577,7 +1577,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueAsync
       (
          this : access IGattDescriptor_Interface;
-         value : Windows.Storage.Streams.IBuffer;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1590,7 +1590,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValueWithResultAsync
       (
          this : access IGattDescriptor2_Interface;
-         value : Windows.Storage.Streams.IBuffer;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1663,7 +1663,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattDescriptorsResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1731,7 +1731,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Device
       (
          this : access IGattDeviceService2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEDevice
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1764,21 +1764,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_DeviceAccessInformation
       (
          this : access IGattDeviceService3_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_Session
       (
          this : access IGattDeviceService3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
       )
       return WinRt.Hresult is abstract;
 
       function get_SharingMode
       (
          this : access IGattDeviceService3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1792,7 +1792,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function OpenAsync
       (
          this : access IGattDeviceService3_Interface;
-         sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
+         sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1807,7 +1807,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetCharacteristicsAsync
       (
          this : access IGattDeviceService3_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1824,7 +1824,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattDeviceService3_Interface;
          characteristicUuid : WinRt.Guid;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1839,7 +1839,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetIncludedServicesAsync
       (
          this : access IGattDeviceService3_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1856,7 +1856,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattDeviceService3_Interface;
          serviceUuid : WinRt.Guid;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1907,7 +1907,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattDeviceServiceStatics2_Interface;
          deviceId : WinRt.HString;
-         sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
+         sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1915,7 +1915,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetDeviceSelectorForBluetoothDeviceId
       (
          this : access IGattDeviceServiceStatics2_Interface;
-         bluetoothDeviceId : Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1923,8 +1923,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetDeviceSelectorForBluetoothDeviceId
       (
          this : access IGattDeviceServiceStatics2_Interface;
-         bluetoothDeviceId : Windows.Devices.Bluetooth.IBluetoothDeviceId;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1932,7 +1932,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetDeviceSelectorForBluetoothDeviceIdAndUuid
       (
          this : access IGattDeviceServiceStatics2_Interface;
-         bluetoothDeviceId : Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
          serviceUuid : WinRt.Guid;
          RetVal : access WinRt.HString
       )
@@ -1941,9 +1941,9 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function GetDeviceSelectorForBluetoothDeviceIdAndUuid
       (
          this : access IGattDeviceServiceStatics2_Interface;
-         bluetoothDeviceId : Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
          serviceUuid : WinRt.Guid;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1956,7 +1956,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattDeviceServicesResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1989,28 +1989,28 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_StaticValue
       (
          this : access IGattLocalCharacteristic_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_CharacteristicProperties
       (
          this : access IGattLocalCharacteristic_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadProtectionLevel
       (
          this : access IGattLocalCharacteristic_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteProtectionLevel
       (
          this : access IGattLocalCharacteristic_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2018,7 +2018,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalCharacteristic_Interface;
          descriptorUuid : WinRt.Guid;
-         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
+         parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2055,14 +2055,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalCharacteristic_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SubscribedClientsChanged
       (
          this : access IGattLocalCharacteristic_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2070,14 +2070,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalCharacteristic_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadRequested
       (
          this : access IGattLocalCharacteristic_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2085,21 +2085,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalCharacteristic_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WriteRequested
       (
          this : access IGattLocalCharacteristic_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function NotifyValueAsync
       (
          this : access IGattLocalCharacteristic_Interface;
-         value : Windows.Storage.Streams.IBuffer;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2107,8 +2107,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function NotifyValueAsync
       (
          this : access IGattLocalCharacteristic_Interface;
-         value : Windows.Storage.Streams.IBuffer;
-         subscribedClient : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
+         value : WinRt.Windows.Storage.Streams.IBuffer;
+         subscribedClient : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSubscribedClient;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2121,56 +2121,56 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function put_StaticValue
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_StaticValue
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_CharacteristicProperties
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_CharacteristicProperties
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_ReadProtectionLevel
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadProtectionLevel
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteProtectionLevel
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteProtectionLevel
       (
          this : access IGattLocalCharacteristicParameters_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2203,14 +2203,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Characteristic
       (
          this : access IGattLocalCharacteristicResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristic
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IGattLocalCharacteristicResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -2229,21 +2229,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_StaticValue
       (
          this : access IGattLocalDescriptor_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadProtectionLevel
       (
          this : access IGattLocalDescriptor_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteProtectionLevel
       (
          this : access IGattLocalDescriptor_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2251,14 +2251,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalDescriptor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadRequested
       (
          this : access IGattLocalDescriptor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2266,14 +2266,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalDescriptor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WriteRequested
       (
          this : access IGattLocalDescriptor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2285,42 +2285,42 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function put_StaticValue
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_StaticValue
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_ReadProtectionLevel
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadProtectionLevel
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteProtectionLevel
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteProtectionLevel
       (
          this : access IGattLocalDescriptorParameters_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2332,14 +2332,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Descriptor
       (
          this : access IGattLocalDescriptorResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IGattLocalDescriptorResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -2359,7 +2359,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattLocalService_Interface;
          characteristicUuid : WinRt.Guid;
-         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
+         parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2436,7 +2436,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
          unit : WinRt.UInt16;
          namespaceId : WinRt.Byte;
          description : WinRt.UInt16;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattPresentationFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2766,14 +2766,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattReadClientCharacteristicConfigurationDescriptorResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ClientCharacteristicConfigurationDescriptor
       (
          this : access IGattReadClientCharacteristicConfigurationDescriptorResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2811,7 +2811,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_State
       (
          this : access IGattReadRequest_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
       )
       return WinRt.Hresult is abstract;
 
@@ -2819,21 +2819,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattReadRequest_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IGattReadRequest_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function RespondWithValue
       (
          this : access IGattReadRequest_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2852,14 +2852,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Session
       (
          this : access IGattReadRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IGattReadRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2878,14 +2878,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattReadResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IGattReadResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2909,8 +2909,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function WriteValue
       (
          this : access IGattReliableWriteTransaction_Interface;
-         characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
-         value : Windows.Storage.Streams.IBuffer
+         characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2941,14 +2941,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_State
       (
          this : access IGattRequestStateChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IGattRequestStateChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -2960,14 +2960,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Service
       (
          this : access IGattServiceProvider_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvertisementStatus
       (
          this : access IGattServiceProvider_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2975,14 +2975,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattServiceProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AdvertisementStatusChanged
       (
          this : access IGattServiceProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2995,7 +2995,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function StartAdvertising
       (
          this : access IGattServiceProvider_Interface;
-         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+         parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -3013,7 +3013,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function UpdateAdvertisingParameters
       (
          this : access IGattServiceProvider2_Interface;
-         parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+         parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -3025,14 +3025,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Error
       (
          this : access IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IGattServiceProviderAdvertisementStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisementStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3077,14 +3077,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function put_ServiceData
       (
          this : access IGattServiceProviderAdvertisingParameters2_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceData
       (
          this : access IGattServiceProviderAdvertisingParameters2_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3129,14 +3129,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Error
       (
          this : access IGattServiceProviderResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceProvider
       (
          this : access IGattServiceProviderResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -3325,7 +3325,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_DeviceId
       (
          this : access IGattSession_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDeviceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId
       )
       return WinRt.Hresult is abstract;
 
@@ -3360,7 +3360,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_SessionStatus
       (
          this : access IGattSession_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3368,14 +3368,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MaxPduSizeChanged
       (
          this : access IGattSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3383,14 +3383,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionStatusChanged
       (
          this : access IGattSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3402,7 +3402,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function FromDeviceIdAsync
       (
          this : access IGattSessionStatics_Interface;
-         deviceId : Windows.Devices.Bluetooth.IBluetoothDeviceId;
+         deviceId : WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3415,14 +3415,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Error
       (
          this : access IGattSessionStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IGattSessionStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3434,7 +3434,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Session
       (
          this : access IGattSubscribedClient_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
       )
       return WinRt.Hresult is abstract;
 
@@ -3449,14 +3449,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattSubscribedClient_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MaxNotificationSizeChanged
       (
          this : access IGattSubscribedClient_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3468,14 +3468,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_CharacteristicValue
       (
          this : access IGattValueChangedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access IGattValueChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3487,7 +3487,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Value
       (
          this : access IGattWriteRequest_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3501,14 +3501,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Option
       (
          this : access IGattWriteRequest_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IGattWriteRequest_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattRequestState
       )
       return WinRt.Hresult is abstract;
 
@@ -3516,14 +3516,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       (
          this : access IGattWriteRequest_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IGattWriteRequest_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3548,14 +3548,14 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Session
       (
          this : access IGattWriteRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattSession
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IGattWriteRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -3574,7 +3574,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
       function get_Status
       (
          this : access IGattWriteResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3631,7 +3631,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ProtectionLevel
    (
       this : in out GattCharacteristic;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_UserDescription
@@ -3667,22 +3667,22 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function ReadValueAsync
    (
       this : in out GattCharacteristic;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattReadResult'Class;
 
    function WriteValueAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
 
    function WriteValueAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
 
@@ -3695,7 +3695,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function WriteClientCharacteristicConfigurationDescriptorAsync
    (
       this : in out GattCharacteristic;
-      clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
+      clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
 
@@ -3709,7 +3709,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ValueChanged
    (
       this : in out GattCharacteristic;
-      valueChangedEventCookie : Windows.Foundation.EventRegistrationToken
+      valueChangedEventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Service
@@ -3733,7 +3733,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetDescriptorsAsync
    (
       this : in out GattCharacteristic;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDescriptorsResult'Class;
 
@@ -3748,29 +3748,29 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattCharacteristic;
       descriptorUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDescriptorsResult'Class;
 
    function WriteValueWithResultAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class;
 
    function WriteValueWithResultAsync
    (
       this : in out GattCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      writeOption : Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      writeOption : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteOption
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class;
 
    function WriteClientCharacteristicConfigurationDescriptorWithResultAsync
    (
       this : in out GattCharacteristic;
-      clientCharacteristicConfigurationDescriptorValue : Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
+      clientCharacteristicConfigurationDescriptorValue : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientCharacteristicConfigurationDescriptorValue
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class;
 
@@ -4110,7 +4110,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ProtectionLevel
    (
       this : in out GattDescriptor;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_Uuid
@@ -4134,21 +4134,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function ReadValueAsync
    (
       this : in out GattDescriptor;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattReadResult'Class;
 
    function WriteValueAsync
    (
       this : in out GattDescriptor;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCommunicationStatus;
 
    function WriteValueWithResultAsync
    (
       this : in out GattDescriptor;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattWriteResult'Class;
 
@@ -4215,35 +4215,35 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
+      sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceService;
 
    function GetDeviceSelectorForBluetoothDeviceId
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDeviceId
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDeviceIdAndUuid
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
       serviceUuid : WinRt.Guid
    )
    return WinRt.WString;
 
    function GetDeviceSelectorForBluetoothDeviceIdAndUuid
    (
-      bluetoothDeviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
+      bluetoothDeviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class;
       serviceUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.WString;
 
@@ -4362,7 +4362,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function OpenAsync
    (
       this : in out GattDeviceService;
-      sharingMode : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
+      sharingMode : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSharingMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattOpenStatus;
 
@@ -4375,7 +4375,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetCharacteristicsAsync
    (
       this : in out GattDeviceService;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicsResult'Class;
 
@@ -4390,7 +4390,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattDeviceService;
       characteristicUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicsResult'Class;
 
@@ -4403,7 +4403,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function GetIncludedServicesAsync
    (
       this : in out GattDeviceService;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class;
 
@@ -4418,7 +4418,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattDeviceService;
       serviceUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class;
 
@@ -4492,7 +4492,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattLocalCharacteristic;
       descriptorUuid : WinRt.Guid;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorResult'Class;
 
@@ -4530,7 +4530,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_SubscribedClientsChanged
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ReadRequested
@@ -4543,7 +4543,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ReadRequested
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WriteRequested
@@ -4556,21 +4556,21 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_WriteRequested
    (
       this : in out GattLocalCharacteristic;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function NotifyValueAsync
    (
       this : in out GattLocalCharacteristic;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.GenericObject;
 
    function NotifyValueAsync
    (
       this : in out GattLocalCharacteristic;
-      value : Windows.Storage.Streams.IBuffer;
-      subscribedClient : Windows.Devices.Bluetooth.GenericAttributeProfile.GattSubscribedClient'Class
+      value : WinRt.Windows.Storage.Streams.IBuffer;
+      subscribedClient : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSubscribedClient'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattClientNotificationResult'Class;
 
@@ -4591,7 +4591,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_StaticValue
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_StaticValue
@@ -4603,7 +4603,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_CharacteristicProperties
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristicProperties
    );
 
    function get_CharacteristicProperties
@@ -4615,7 +4615,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ReadProtectionLevel
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_ReadProtectionLevel
@@ -4627,7 +4627,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_WriteProtectionLevel
    (
       this : in out GattLocalCharacteristicParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_WriteProtectionLevel
@@ -4718,7 +4718,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_ReadRequested
    (
       this : in out GattLocalDescriptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WriteRequested
@@ -4731,7 +4731,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_WriteRequested
    (
       this : in out GattLocalDescriptor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4751,7 +4751,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_StaticValue
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_StaticValue
@@ -4763,7 +4763,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ReadProtectionLevel
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_ReadProtectionLevel
@@ -4775,7 +4775,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_WriteProtectionLevel
    (
       this : in out GattLocalDescriptorParameters;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattProtectionLevel
    );
 
    function get_WriteProtectionLevel
@@ -4824,7 +4824,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    (
       this : in out GattLocalService;
       characteristicUuid : WinRt.Guid;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicResult'Class;
 
@@ -5097,13 +5097,13 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_StateChanged
    (
       this : in out GattReadRequest;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure RespondWithValue
    (
       this : in out GattReadRequest;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure RespondWithProtocolError
@@ -5183,8 +5183,8 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure WriteValue
    (
       this : in out GattReliableWriteTransaction;
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
-      value : Windows.Storage.Streams.IBuffer
+      characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function CommitAsync
@@ -5260,7 +5260,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_AdvertisementStatusChanged
    (
       this : in out GattServiceProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure StartAdvertising
@@ -5271,7 +5271,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure StartAdvertising
    (
       this : in out GattServiceProvider;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    );
 
    procedure StopAdvertising
@@ -5282,7 +5282,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure UpdateAdvertisingParameters
    (
       this : in out GattServiceProvider;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5347,7 +5347,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure put_ServiceData
    (
       this : in out GattServiceProviderAdvertisingParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ServiceData
@@ -5484,7 +5484,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
 
    function FromDeviceIdAsync
    (
-      deviceId : Windows.Devices.Bluetooth.BluetoothDeviceId'Class
+      deviceId : WinRt.Windows.Devices.Bluetooth.BluetoothDeviceId'Class
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattSession;
 
@@ -5537,7 +5537,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_MaxPduSizeChanged
    (
       this : in out GattSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SessionStatusChanged
@@ -5550,7 +5550,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_SessionStatusChanged
    (
       this : in out GattSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -5610,7 +5610,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_MaxNotificationSizeChanged
    (
       this : in out GattSubscribedClient;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5677,7 +5677,7 @@ package WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    procedure remove_StateChanged
    (
       this : in out GattWriteRequest;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Respond

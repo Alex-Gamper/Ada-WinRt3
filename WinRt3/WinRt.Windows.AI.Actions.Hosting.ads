@@ -147,7 +147,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionCatalog_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionDefinition_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -155,14 +155,14 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionCatalog_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IActionCatalog_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -175,9 +175,9 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionCatalog2_Interface;
          inputEntitiesSize : WinRt.UInt32;
-         inputEntities : Windows.AI.Actions.IActionEntity_Ptr;
+         inputEntities : WinRt.Windows.AI.Actions.IActionEntity_Ptr;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionInstance_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -185,10 +185,10 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionCatalog2_Interface;
          inputEntitiesSize : WinRt.UInt32;
-         inputEntities : Windows.AI.Actions.IActionEntity_Ptr;
-         invokerWindowId : Windows.UI.WindowId;
+         inputEntities : WinRt.Windows.AI.Actions.IActionEntity_Ptr;
+         invokerWindowId : WinRt.Windows.UI.WindowId;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionInstance_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionInstance_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -201,7 +201,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionCatalog3_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionDefinition_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionDefinition_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -242,7 +242,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionDefinition_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -250,7 +250,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionDefinition_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -258,7 +258,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionDefinition_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionOverload_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionOverload_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -320,7 +320,7 @@ package WinRt.Windows.AI.Actions.Hosting is
       function GetIconFullPath
       (
          this : access IActionDefinition5_Interface;
-         qualifierValues : Windows.Foundation.Collections.IPropertySet;
+         qualifierValues : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -347,14 +347,14 @@ package WinRt.Windows.AI.Actions.Hosting is
       function get_Kind
       (
          this : access IActionEntityRegistrationInfo_Interface;
-         RetVal : access Windows.AI.Actions.ActionEntityKind
+         RetVal : access WinRt.Windows.AI.Actions.ActionEntityKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IActionEntityRegistrationInfo_Interface;
-         value : Windows.AI.Actions.ActionEntityKind
+         value : WinRt.Windows.AI.Actions.ActionEntityKind
       )
       return WinRt.Hresult is abstract;
 
@@ -366,28 +366,28 @@ package WinRt.Windows.AI.Actions.Hosting is
       function get_DisplayInfo
       (
          this : access IActionInstance_Interface;
-         RetVal : access Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_Definition
       (
          this : access IActionInstance_Interface;
-         RetVal : access Windows.AI.Actions.Hosting.IActionDefinition
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionDefinition
       )
       return WinRt.Hresult is abstract;
 
       function get_Context
       (
          this : access IActionInstance_Interface;
-         RetVal : access Windows.AI.Actions.IActionInvocationContext
+         RetVal : access WinRt.Windows.AI.Actions.IActionInvocationContext
       )
       return WinRt.Hresult is abstract;
 
       function InvokeAsync
       (
          this : access IActionInstance_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -419,15 +419,15 @@ package WinRt.Windows.AI.Actions.Hosting is
       (
          this : access IActionOverload_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
+         RetVal : access WinRt.Windows.AI.Actions.Hosting.IActionEntityRegistrationInfo_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function InvokeAsync
       (
          this : access IActionOverload_Interface;
-         context : Windows.AI.Actions.IActionInvocationContext;
-         RetVal : access Windows.Foundation.IAsyncAction
+         context : WinRt.Windows.AI.Actions.IActionInvocationContext;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -439,9 +439,9 @@ package WinRt.Windows.AI.Actions.Hosting is
       function InvokeFeedbackAsync
       (
          this : access IActionOverload2_Interface;
-         context : Windows.AI.Actions.IActionInvocationContext;
-         feedback : Windows.AI.Actions.IActionFeedback;
-         RetVal : access Windows.Foundation.IAsyncAction
+         context : WinRt.Windows.AI.Actions.IActionInvocationContext;
+         feedback : WinRt.Windows.AI.Actions.IActionFeedback;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -483,21 +483,21 @@ package WinRt.Windows.AI.Actions.Hosting is
    procedure remove_Changed
    (
       this : in out ActionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetActionsForInputs
    (
       this : in out ActionCatalog;
-      inputEntities : Windows.AI.Actions.ActionEntity_Array
+      inputEntities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array;
 
    function GetActionsForInputs
    (
       this : in out ActionCatalog;
-      inputEntities : Windows.AI.Actions.ActionEntity_Array;
-      invokerWindowId : Windows.UI.WindowId
+      inputEntities : WinRt.Windows.AI.Actions.ActionEntity_Array;
+      invokerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array;
 
@@ -596,7 +596,7 @@ package WinRt.Windows.AI.Actions.Hosting is
    function GetIconFullPath
    (
       this : in out ActionDefinition;
-      qualifierValues : Windows.Foundation.Collections.PropertySet'Class
+      qualifierValues : WinRt.Windows.Foundation.Collections.PropertySet'Class
    )
    return WinRt.WString;
 
@@ -635,7 +635,7 @@ package WinRt.Windows.AI.Actions.Hosting is
    procedure put_Kind
    (
       this : in out ActionEntityRegistrationInfo;
-      value : Windows.AI.Actions.ActionEntityKind
+      value : WinRt.Windows.AI.Actions.ActionEntityKind
    );
 
    procedure Close
@@ -714,14 +714,14 @@ package WinRt.Windows.AI.Actions.Hosting is
    procedure InvokeAsync
    (
       this : in out ActionOverload;
-      context : Windows.AI.Actions.ActionInvocationContext'Class
+      context : WinRt.Windows.AI.Actions.ActionInvocationContext'Class
    );
 
    procedure InvokeFeedbackAsync
    (
       this : in out ActionOverload;
-      context : Windows.AI.Actions.ActionInvocationContext'Class;
-      feedback : Windows.AI.Actions.ActionFeedback'Class
+      context : WinRt.Windows.AI.Actions.ActionInvocationContext'Class;
+      feedback : WinRt.Windows.AI.Actions.ActionFeedback'Class
    );
 
    function GetSupportsFeedback

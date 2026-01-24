@@ -422,21 +422,21 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameReference
       (
          this : access IAudioMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioEncodingProperties
       (
          this : access IAudioMediaFrame_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function GetAudioFrame
       (
          this : access IAudioMediaFrame_Interface;
-         RetVal : access Windows.Media.IAudioFrame
+         RetVal : access WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -448,14 +448,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameReference
       (
          this : access IBufferMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
       function get_Buffer
       (
          this : access IBufferMediaFrame_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -467,30 +467,30 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameReference
       (
          this : access IDepthMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoMediaFrame
       (
          this : access IDepthMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_DepthFormat
       (
          this : access IDepthMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IDepthMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateCoordinateMapper
       (
          this : access IDepthMediaFrame_Interface;
-         cameraIntrinsics : Windows.Media.Devices.Core.ICameraIntrinsics;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper
+         cameraIntrinsics : WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper
       )
       return WinRt.Hresult is abstract;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_VideoFormat
       (
          this : access IDepthMediaFrameFormat_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -540,14 +540,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameReference
       (
          this : access IInfraredMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoMediaFrame
       (
          this : access IInfraredMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -585,7 +585,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameRate
       (
          this : access IMediaFrameFormat_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
@@ -599,7 +599,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_VideoFormat
       (
          this : access IMediaFrameFormat_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_AudioEncodingProperties
       (
          this : access IMediaFrameFormat2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -624,21 +624,21 @@ package WinRt.Windows.Media.Capture.Frames is
       (
          this : access IMediaFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IMediaFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryAcquireLatestFrame
       (
          this : access IMediaFrameReader_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
@@ -652,7 +652,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function StopAsync
       (
          this : access IMediaFrameReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -664,14 +664,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function put_AcquisitionMode
       (
          this : access IMediaFrameReader2_Interface;
-         value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+         value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_AcquisitionMode
       (
          this : access IMediaFrameReader2_Interface;
-         RetVal : access Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+         RetVal : access WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -683,14 +683,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_SourceKind
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Media.Capture.Frames.MediaFrameSourceKind
+         RetVal : access WinRt.Windows.Media.Capture.Frames.MediaFrameSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Format
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -704,7 +704,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_Duration
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -718,21 +718,21 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_BufferMediaFrame
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IBufferMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IBufferMediaFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoMediaFrame
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_CoordinateSystem
       (
          this : access IMediaFrameReference_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -744,7 +744,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_AudioMediaFrame
       (
          this : access IMediaFrameReference2_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IAudioMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IAudioMediaFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -756,14 +756,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_Info
       (
          this : access IMediaFrameSource_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameSourceInfo
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_Controller
       (
          this : access IMediaFrameSource_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameSourceController
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController
       )
       return WinRt.Hresult is abstract;
 
@@ -777,15 +777,15 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_CurrentFormat
       (
          this : access IMediaFrameSource_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function SetFormatAsync
       (
          this : access IMediaFrameSource_Interface;
-         format : Windows.Media.Capture.Frames.IMediaFrameFormat;
-         RetVal : access Windows.Foundation.IAsyncAction
+         format : WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -793,22 +793,22 @@ package WinRt.Windows.Media.Capture.Frames is
       (
          this : access IMediaFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FormatChanged
       (
          this : access IMediaFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryGetCameraIntrinsics
       (
          this : access IMediaFrameSource_Interface;
-         format : Windows.Media.Capture.Frames.IMediaFrameFormat;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         format : WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
@@ -837,7 +837,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_VideoDeviceController
       (
          this : access IMediaFrameSourceController_Interface;
-         RetVal : access Windows.Media.Devices.IVideoDeviceController
+         RetVal : access WinRt.Windows.Media.Devices.IVideoDeviceController
       )
       return WinRt.Hresult is abstract;
 
@@ -875,7 +875,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_AudioDeviceController
       (
          this : access IMediaFrameSourceController3_Interface;
-         RetVal : access Windows.Media.Devices.IAudioDeviceController
+         RetVal : access WinRt.Windows.Media.Devices.IAudioDeviceController
       )
       return WinRt.Hresult is abstract;
 
@@ -887,7 +887,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_Status
       (
          this : access IMediaFrameSourceGetPropertyResult_Interface;
-         RetVal : access Windows.Media.Capture.Frames.MediaFrameSourceGetPropertyStatus
+         RetVal : access WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGetPropertyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -966,28 +966,28 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_MediaStreamType
       (
          this : access IMediaFrameSourceInfo_Interface;
-         RetVal : access Windows.Media.Capture.MediaStreamType
+         RetVal : access WinRt.Windows.Media.Capture.MediaStreamType
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceKind
       (
          this : access IMediaFrameSourceInfo_Interface;
-         RetVal : access Windows.Media.Capture.Frames.MediaFrameSourceKind
+         RetVal : access WinRt.Windows.Media.Capture.Frames.MediaFrameSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceGroup
       (
          this : access IMediaFrameSourceInfo_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameSourceGroup
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceInformation
       (
          this : access IMediaFrameSourceInfo_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1001,7 +1001,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_CoordinateSystem
       (
          this : access IMediaFrameSourceInfo_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -1032,8 +1032,8 @@ package WinRt.Windows.Media.Capture.Frames is
       function GetRelativePanel
       (
          this : access IMediaFrameSourceInfo3_Interface;
-         displayRegion : Windows.UI.WindowManagement.IDisplayRegion;
-         RetVal : access Windows.Devices.Enumeration.Panel
+         displayRegion : WinRt.Windows.UI.WindowManagement.IDisplayRegion;
+         RetVal : access WinRt.Windows.Devices.Enumeration.Panel
       )
       return WinRt.Hresult is abstract;
 
@@ -1063,21 +1063,21 @@ package WinRt.Windows.Media.Capture.Frames is
       (
          this : access IMultiSourceMediaFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IMultiSourceMediaFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryAcquireLatestFrame
       (
          this : access IMultiSourceMediaFrameReader_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,7 +1091,7 @@ package WinRt.Windows.Media.Capture.Frames is
       function StopAsync
       (
          this : access IMultiSourceMediaFrameReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1103,14 +1103,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function put_AcquisitionMode
       (
          this : access IMultiSourceMediaFrameReader2_Interface;
-         value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+         value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_AcquisitionMode
       (
          this : access IMultiSourceMediaFrameReader2_Interface;
-         RetVal : access Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+         RetVal : access WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1123,7 +1123,7 @@ package WinRt.Windows.Media.Capture.Frames is
       (
          this : access IMultiSourceMediaFrameReference_Interface;
          sourceId : WinRt.HString;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1135,56 +1135,56 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_FrameReference
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameReference
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameReference
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoFormat
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IVideoMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_SoftwareBitmap
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function get_Direct3DSurface
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraIntrinsics
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
       function get_InfraredMediaFrame
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IInfraredMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IInfraredMediaFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_DepthMediaFrame
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IDepthMediaFrame
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IDepthMediaFrame
       )
       return WinRt.Hresult is abstract;
 
       function GetVideoFrame
       (
          this : access IVideoMediaFrame_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1196,14 +1196,14 @@ package WinRt.Windows.Media.Capture.Frames is
       function get_MediaFrameFormat
       (
          this : access IVideoMediaFrameFormat_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_DepthFormat
       (
          this : access IVideoMediaFrameFormat_Interface;
-         RetVal : access Windows.Media.Capture.Frames.IDepthMediaFrameFormat
+         RetVal : access WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1305,8 +1305,8 @@ package WinRt.Windows.Media.Capture.Frames is
    function TryCreateCoordinateMapper
    (
       this : in out DepthMediaFrame;
-      cameraIntrinsics : Windows.Media.Devices.Core.CameraIntrinsics'Class;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      cameraIntrinsics : WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class;
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Media.Devices.Core.DepthCorrelatedCoordinateMapper'Class;
 
@@ -1443,7 +1443,7 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure remove_FrameArrived
    (
       this : in out MediaFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryAcquireLatestFrame
@@ -1471,7 +1471,7 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure put_AcquisitionMode
    (
       this : in out MediaFrameReader;
-      value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
    );
 
    function get_AcquisitionMode
@@ -1584,7 +1584,7 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure SetFormatAsync
    (
       this : in out MediaFrameSource;
-      format : Windows.Media.Capture.Frames.MediaFrameFormat'Class
+      format : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat'Class
    );
 
    function add_FormatChanged
@@ -1597,13 +1597,13 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure remove_FormatChanged
    (
       this : in out MediaFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryGetCameraIntrinsics
    (
       this : in out MediaFrameSource;
-      format : Windows.Media.Capture.Frames.MediaFrameFormat'Class
+      format : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat'Class
    )
    return WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class;
 
@@ -1788,7 +1788,7 @@ package WinRt.Windows.Media.Capture.Frames is
    function GetRelativePanel
    (
       this : in out MediaFrameSourceInfo;
-      displayRegion : Windows.UI.WindowManagement.DisplayRegion'Class
+      displayRegion : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    )
    return WinRt.Windows.Devices.Enumeration.Panel;
 
@@ -1826,7 +1826,7 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure remove_FrameArrived
    (
       this : in out MultiSourceMediaFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryAcquireLatestFrame
@@ -1854,7 +1854,7 @@ package WinRt.Windows.Media.Capture.Frames is
    procedure put_AcquisitionMode
    (
       this : in out MultiSourceMediaFrameReader;
-      value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
    );
 
    function get_AcquisitionMode

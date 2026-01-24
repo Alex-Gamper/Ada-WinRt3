@@ -66,13 +66,13 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return AccessibilitySettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.AccessibilitySettings");
-      m_ComRetVal  : aliased Windows.UI.ViewManagement.IAccessibilitySettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IAccessibilitySettings");
+      m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IAccessibilitySettings;
    begin
       return RetVal : AccessibilitySettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAccessibilitySettings := new Windows.UI.ViewManagement.IAccessibilitySettings;
+            Retval.m_IAccessibilitySettings := new WinRt.Windows.UI.ViewManagement.IAccessibilitySettings;
             Retval.m_IAccessibilitySettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -128,7 +128,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAccessibilitySettings.all.add_HighContrastChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -140,7 +140,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_HighContrastChanged
    (
       this : in out AccessibilitySettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -222,7 +222,7 @@ package body WinRt.Windows.UI.ViewManagement is
    (
       this : in out ActivationViewSwitcher;
       viewId : WinRt.Int32;
-      sizePreference : Windows.UI.ViewManagement.ViewSizePreference
+      sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -351,7 +351,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IApplicationView;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IApplicationView;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ApplicationView do
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics2'Access , m_Factory'Address);
@@ -361,7 +361,7 @@ package body WinRt.Windows.UI.ViewManagement is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IApplicationView := new Windows.UI.ViewManagement.IApplicationView;
+            Retval.m_IApplicationView := new WinRt.Windows.UI.ViewManagement.IApplicationView;
             Retval.m_IApplicationView.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -433,7 +433,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function GetApplicationViewIdForWindow
    (
-      window : Windows.UI.Core.ICoreWindow
+      window : WinRt.Windows.UI.Core.ICoreWindow
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -462,7 +462,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewWindowingMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -478,7 +478,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
    procedure put_PreferredLaunchWindowingMode
    (
-      value : Windows.UI.ViewManagement.ApplicationViewWindowingMode
+      value : WinRt.Windows.UI.ViewManagement.ApplicationViewWindowingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -504,7 +504,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -520,7 +520,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
    procedure put_PreferredLaunchViewSize
    (
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -546,7 +546,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationView");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IApplicationViewStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ApplicationViewState;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IApplicationViewStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -592,7 +592,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ApplicationViewOrientation;
    begin
       Hr := this.m_IApplicationView.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -764,7 +764,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IApplicationView.all.add_Consolidated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -776,7 +776,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_Consolidated
    (
       this : in out ApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -837,7 +837,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -859,7 +859,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -874,7 +874,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_VisibleBoundsChanged
    (
       this : in out ApplicationView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -893,7 +893,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function SetDesiredBoundsMode
    (
       this : in out ApplicationView;
-      boundsMode : Windows.UI.ViewManagement.ApplicationViewBoundsMode
+      boundsMode : WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -921,7 +921,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewBoundsMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ApplicationViewBoundsMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView2, WinRt.Windows.UI.ViewManagement.IID_IApplicationView2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -942,7 +942,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IApplicationViewTitleBar;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IApplicationViewTitleBar;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ApplicationViewTitleBar do
@@ -952,7 +952,7 @@ package body WinRt.Windows.UI.ViewManagement is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IApplicationViewTitleBar := new Windows.UI.ViewManagement.IApplicationViewTitleBar;
+         Retval.m_IApplicationViewTitleBar := new WinRt.Windows.UI.ViewManagement.IApplicationViewTitleBar;
          Retval.m_IApplicationViewTitleBar.all := m_ComRetVal;
       end return;
    end;
@@ -966,7 +966,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.FullScreenSystemOverlayMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView3, WinRt.Windows.UI.ViewManagement.IID_IApplicationView3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -981,7 +981,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure put_FullScreenSystemOverlayMode
    (
       this : in out ApplicationView;
-      value : Windows.UI.ViewManagement.FullScreenSystemOverlayMode
+      value : WinRt.Windows.UI.ViewManagement.FullScreenSystemOverlayMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1078,7 +1078,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function TryResizeView
    (
       this : in out ApplicationView;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1100,7 +1100,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure SetPreferredMinSize
    (
       this : in out ApplicationView;
-      minSize : Windows.Foundation.Size
+      minSize : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1125,7 +1125,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ApplicationViewMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView4, WinRt.Windows.UI.ViewManagement.IID_IApplicationView4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -1140,7 +1140,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function IsViewModeSupported
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1162,7 +1162,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function TryEnterViewModeAsync
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1230,8 +1230,8 @@ package body WinRt.Windows.UI.ViewManagement is
    function TryEnterViewModeAsync
    (
       this : in out ApplicationView;
-      viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-      viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+      viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+      viewModePreferences_p : WinRt.Windows.UI.ViewManagement.ViewModePreferences'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1417,7 +1417,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView9 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView9, WinRt.Windows.UI.ViewManagement.IID_IApplicationView9'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
@@ -1427,7 +1427,7 @@ package body WinRt.Windows.UI.ViewManagement is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
+         Retval.m_IWindowingEnvironment := new WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
    end;
@@ -1441,7 +1441,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationView9 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationView9, WinRt.Windows.UI.ViewManagement.IID_IApplicationView9'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IApplicationView.all);
@@ -1462,7 +1462,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IApplicationViewWithContext := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.IUIContext;
+      m_ComRetVal      : aliased WinRt.Windows.UI.IUIContext;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IApplicationView_Interface, WinRt.Windows.UI.ViewManagement.IApplicationViewWithContext, WinRt.Windows.UI.ViewManagement.IID_IApplicationViewWithContext'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.UIContext do
@@ -1472,7 +1472,7 @@ package body WinRt.Windows.UI.ViewManagement is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIContext := new Windows.UI.IUIContext;
+         Retval.m_IUIContext := new WinRt.Windows.UI.IUIContext;
          Retval.m_IUIContext.all := m_ComRetVal;
       end return;
    end;
@@ -1704,7 +1704,7 @@ package body WinRt.Windows.UI.ViewManagement is
       function TryShowAsStandaloneAsync
       (
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1775,9 +1775,9 @@ package body WinRt.Windows.UI.ViewManagement is
       function TryShowAsStandaloneAsync
       (
          viewId : WinRt.Int32;
-         sizePreference : Windows.UI.ViewManagement.ViewSizePreference;
+         sizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference;
          anchorViewId : WinRt.Int32;
-         anchorSizePreference : Windows.UI.ViewManagement.ViewSizePreference
+         anchorSizePreference : WinRt.Windows.UI.ViewManagement.ViewSizePreference
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1948,7 +1948,7 @@ package body WinRt.Windows.UI.ViewManagement is
       (
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1999,7 +1999,7 @@ package body WinRt.Windows.UI.ViewManagement is
       (
          toViewId : WinRt.Int32;
          fromViewId : WinRt.Int32;
-         options : Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
+         options : WinRt.Windows.UI.ViewManagement.ApplicationViewSwitchingOptions
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -2070,7 +2070,7 @@ package body WinRt.Windows.UI.ViewManagement is
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -2141,8 +2141,8 @@ package body WinRt.Windows.UI.ViewManagement is
       function TryShowAsViewModeAsync
       (
          viewId : WinRt.Int32;
-         viewMode : Windows.UI.ViewManagement.ApplicationViewMode;
-         viewModePreferences_p : Windows.UI.ViewManagement.ViewModePreferences'Class
+         viewMode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode;
+         viewModePreferences_p : WinRt.Windows.UI.ViewManagement.ViewModePreferences'Class
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -2276,7 +2276,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ForegroundColor (m_ComRetVal'Access);
@@ -2311,7 +2311,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_BackgroundColor (m_ComRetVal'Access);
@@ -2346,7 +2346,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonForegroundColor (m_ComRetVal'Access);
@@ -2381,7 +2381,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonBackgroundColor (m_ComRetVal'Access);
@@ -2416,7 +2416,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonHoverForegroundColor (m_ComRetVal'Access);
@@ -2451,7 +2451,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonHoverBackgroundColor (m_ComRetVal'Access);
@@ -2486,7 +2486,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonPressedForegroundColor (m_ComRetVal'Access);
@@ -2521,7 +2521,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonPressedBackgroundColor (m_ComRetVal'Access);
@@ -2556,7 +2556,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_InactiveForegroundColor (m_ComRetVal'Access);
@@ -2591,7 +2591,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_InactiveBackgroundColor (m_ComRetVal'Access);
@@ -2626,7 +2626,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonInactiveForegroundColor (m_ComRetVal'Access);
@@ -2661,7 +2661,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IApplicationViewTitleBar.all.get_ButtonInactiveBackgroundColor (m_ComRetVal'Access);
@@ -2699,13 +2699,13 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return ApplicationViewTransferContext is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
-      m_ComRetVal  : aliased Windows.UI.ViewManagement.IApplicationViewTransferContext;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IApplicationViewTransferContext");
+      m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IApplicationViewTransferContext;
    begin
       return RetVal : ApplicationViewTransferContext do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IApplicationViewTransferContext := new Windows.UI.ViewManagement.IApplicationViewTransferContext;
+            Retval.m_IApplicationViewTransferContext := new WinRt.Windows.UI.ViewManagement.IApplicationViewTransferContext;
             Retval.m_IApplicationViewTransferContext.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2804,7 +2804,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IInputPane;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics'Access , m_Factory'Address);
@@ -2814,7 +2814,7 @@ package body WinRt.Windows.UI.ViewManagement is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
+            Retval.m_IInputPane := new WinRt.Windows.UI.ViewManagement.IInputPane;
             Retval.m_IInputPane.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2823,7 +2823,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.UI.ViewManagement.InputPane is
       Hr               : WinRt.HResult := S_OK;
@@ -2831,7 +2831,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.InputPane");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IInputPaneStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IInputPane;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IInputPane;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.InputPane do
          Hr := RoGetActivationFactory (m_hString, IID_IInputPaneStatics2'Access , m_Factory'Address);
@@ -2841,7 +2841,7 @@ package body WinRt.Windows.UI.ViewManagement is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IInputPane := new Windows.UI.ViewManagement.IInputPane;
+            Retval.m_IInputPane := new WinRt.Windows.UI.ViewManagement.IInputPane;
             Retval.m_IInputPane.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2860,7 +2860,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInputPane.all.add_Showing (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2872,7 +2872,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_Showing
    (
       this : in out InputPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2893,7 +2893,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInputPane.all.add_Hiding (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2905,7 +2905,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_Hiding
    (
       this : in out InputPane;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2925,7 +2925,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IInputPane.all.get_OccludedRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3047,7 +3047,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IInputPaneVisibilityEventArgs.all.get_OccludedRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3273,7 +3273,7 @@ package body WinRt.Windows.UI.ViewManagement is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ProjectionManager");
          m_Factory        : access WinRt.Windows.UI.ViewManagement.IProjectionManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -3289,7 +3289,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
       procedure remove_ProjectionDisplayAvailableChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3312,7 +3312,7 @@ package body WinRt.Windows.UI.ViewManagement is
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         displayDeviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class
+         displayDeviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3363,7 +3363,7 @@ package body WinRt.Windows.UI.ViewManagement is
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -3435,8 +3435,8 @@ package body WinRt.Windows.UI.ViewManagement is
       (
          projectionViewId : WinRt.Int32;
          anchorViewId : WinRt.Int32;
-         selection : Windows.Foundation.Rect;
-         prefferedPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         prefferedPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -3556,13 +3556,13 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return UISettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.UISettings");
-      m_ComRetVal  : aliased Windows.UI.ViewManagement.IUISettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IUISettings");
+      m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IUISettings;
    begin
       return RetVal : UISettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUISettings := new Windows.UI.ViewManagement.IUISettings;
+            Retval.m_IUISettings := new WinRt.Windows.UI.ViewManagement.IUISettings;
             Retval.m_IUISettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3580,7 +3580,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.HandPreference;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.HandPreference;
    begin
       Hr := this.m_IUISettings.all.get_HandPreference (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3597,7 +3597,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_CursorSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3614,7 +3614,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3631,7 +3631,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarArrowSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3648,7 +3648,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IUISettings.all.get_ScrollBarThumbBoxSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3779,13 +3779,13 @@ package body WinRt.Windows.UI.ViewManagement is
    function UIElementColor
    (
       this : in out UISettings;
-      desiredElement : Windows.UI.ViewManagement.UIElementType
+      desiredElement : WinRt.Windows.UI.ViewManagement.UIElementType
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IUISettings.all.UIElementColor (desiredElement, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3825,7 +3825,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings2, WinRt.Windows.UI.ViewManagement.IID_IUISettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -3840,7 +3840,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_TextScaleFactorChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3859,14 +3859,14 @@ package body WinRt.Windows.UI.ViewManagement is
    function GetColorValue
    (
       this : in out UISettings;
-      desiredColor : Windows.UI.ViewManagement.UIColorType
+      desiredColor : WinRt.Windows.UI.ViewManagement.UIColorType
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings3, WinRt.Windows.UI.ViewManagement.IID_IUISettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -3888,7 +3888,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings3, WinRt.Windows.UI.ViewManagement.IID_IUISettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -3903,7 +3903,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_ColorValuesChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3950,7 +3950,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings4, WinRt.Windows.UI.ViewManagement.IID_IUISettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -3965,7 +3965,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_AdvancedEffectsEnabledChanged
    (
       this : in out UISettings;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4012,7 +4012,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings5, WinRt.Windows.UI.ViewManagement.IID_IUISettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -4027,7 +4027,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_AutoHideScrollBarsChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4053,7 +4053,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -4068,7 +4068,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_AnimationsEnabledChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4094,7 +4094,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUISettings6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUISettings_Interface, WinRt.Windows.UI.ViewManagement.IUISettings6, WinRt.Windows.UI.ViewManagement.IID_IUISettings6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUISettings.all);
@@ -4109,7 +4109,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_MessageDurationChanged
    (
       this : in out UISettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4224,7 +4224,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.UIViewSettings");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IUIViewSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IUIViewSettings;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IUIViewSettings;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.UIViewSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IUIViewSettingsStatics'Access , m_Factory'Address);
@@ -4234,7 +4234,7 @@ package body WinRt.Windows.UI.ViewManagement is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUIViewSettings := new Windows.UI.ViewManagement.IUIViewSettings;
+            Retval.m_IUIViewSettings := new WinRt.Windows.UI.ViewManagement.IUIViewSettings;
             Retval.m_IUIViewSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4252,7 +4252,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.UserInteractionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.UserInteractionMode;
    begin
       Hr := this.m_IUIViewSettings.all.get_UserInteractionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4264,14 +4264,14 @@ package body WinRt.Windows.UI.ViewManagement is
    function GetPreferredInteractionMode
    (
       this : in out UIViewSettings;
-      supportedModes : Windows.UI.ViewManagement.UserInteractionMode_Array
+      supportedModes : WinRt.Windows.UI.ViewManagement.UserInteractionMode_Array
    )
    return WinRt.Windows.UI.ViewManagement.UserInteractionMode is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.UserInteractionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.UserInteractionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUIViewSettings_Interface, WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode, WinRt.Windows.UI.ViewManagement.IID_IUIViewSettingsPreferredInteractionMode'Unchecked_Access);
       function Convert_supportedModes is new Ada.Unchecked_Conversion (Address, WinRt.Windows.UI.ViewManagement.UserInteractionMode_Ptr);
    begin
@@ -4294,7 +4294,7 @@ package body WinRt.Windows.UI.ViewManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.ViewManagement.IUIViewSettings_Interface, WinRt.Windows.UI.ViewManagement.IUIViewSettingsPreferredInteractionMode, WinRt.Windows.UI.ViewManagement.IID_IUIViewSettingsPreferredInteractionMode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUIViewSettings.all);
@@ -4309,7 +4309,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure remove_PreferredInteractionModeChanged
    (
       this : in out UIViewSettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4350,7 +4350,7 @@ package body WinRt.Windows.UI.ViewManagement is
 
    function CreateDefault
    (
-      mode : Windows.UI.ViewManagement.ApplicationViewMode
+      mode : WinRt.Windows.UI.ViewManagement.ApplicationViewMode
    )
    return WinRt.Windows.UI.ViewManagement.ViewModePreferences is
       Hr               : WinRt.HResult := S_OK;
@@ -4358,7 +4358,7 @@ package body WinRt.Windows.UI.ViewManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ViewModePreferences");
       m_Factory        : access WinRt.Windows.UI.ViewManagement.IViewModePreferencesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IViewModePreferences;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IViewModePreferences;
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ViewModePreferences do
          Hr := RoGetActivationFactory (m_hString, IID_IViewModePreferencesStatics'Access , m_Factory'Address);
@@ -4368,7 +4368,7 @@ package body WinRt.Windows.UI.ViewManagement is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IViewModePreferences := new Windows.UI.ViewManagement.IViewModePreferences;
+            Retval.m_IViewModePreferences := new WinRt.Windows.UI.ViewManagement.IViewModePreferences;
             Retval.m_IViewModePreferences.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4386,7 +4386,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.ViewSizePreference;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.ViewSizePreference;
    begin
       Hr := this.m_IViewModePreferences.all.get_ViewSizePreference (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4398,7 +4398,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure put_ViewSizePreference
    (
       this : in out ViewModePreferences;
-      value : Windows.UI.ViewManagement.ViewSizePreference
+      value : WinRt.Windows.UI.ViewManagement.ViewSizePreference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4418,7 +4418,7 @@ package body WinRt.Windows.UI.ViewManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IViewModePreferences.all.get_CustomSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4430,7 +4430,7 @@ package body WinRt.Windows.UI.ViewManagement is
    procedure put_CustomSize
    (
       this : in out ViewModePreferences;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

@@ -62,13 +62,13 @@ package body WinRt.Windows.Management.Setup is
    function Constructor return AgentProvisioningProgressReport is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.AgentProvisioningProgressReport");
-      m_ComRetVal  : aliased Windows.Management.Setup.IAgentProvisioningProgressReport;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IAgentProvisioningProgressReport");
+      m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IAgentProvisioningProgressReport;
    begin
       return RetVal : AgentProvisioningProgressReport do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAgentProvisioningProgressReport := new Windows.Management.Setup.IAgentProvisioningProgressReport;
+            Retval.m_IAgentProvisioningProgressReport := new WinRt.Windows.Management.Setup.IAgentProvisioningProgressReport;
             Retval.m_IAgentProvisioningProgressReport.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -86,7 +86,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentAgentProgressState;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentAgentProgressState;
    begin
       Hr := this.m_IAgentProvisioningProgressReport.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -98,7 +98,7 @@ package body WinRt.Windows.Management.Setup is
    procedure put_State
    (
       this : in out AgentProvisioningProgressReport;
-      value : Windows.Management.Setup.DeploymentAgentProgressState
+      value : WinRt.Windows.Management.Setup.DeploymentAgentProgressState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -150,7 +150,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAgentProvisioningProgressReport.all.get_EstimatedTimeRemaining (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -162,7 +162,7 @@ package body WinRt.Windows.Management.Setup is
    procedure put_EstimatedTimeRemaining
    (
       this : in out AgentProvisioningProgressReport;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -256,7 +256,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IDeploymentWorkloadBatch.Kind;
    begin
       Hr := this.m_IAgentProvisioningProgressReport.all.get_Batches (m_ComRetVal'Access);
@@ -351,7 +351,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentSessionConnectionChange;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentSessionConnectionChange;
    begin
       Hr := this.m_IDeploymentSessionConnectionChangedEventArgs.all.get_Change (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -366,7 +366,7 @@ package body WinRt.Windows.Management.Setup is
    function Invoke
    (
       this : access DeploymentSessionHeartbeatRequested_Delegate;
-      eventArgs : Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs
+      eventArgs : WinRt.Windows.Management.Setup.IDeploymentSessionHeartbeatRequestedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -481,7 +481,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentSessionStateChange;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentSessionStateChange;
    begin
       Hr := this.m_IDeploymentSessionStateChangedEventArgs.all.get_Change (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -520,17 +520,17 @@ package body WinRt.Windows.Management.Setup is
    return DeploymentWorkload is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.DeploymentWorkload");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IDeploymentWorkload");
       m_Factory    : access IDeploymentWorkloadFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Management.Setup.IDeploymentWorkload;
+      m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IDeploymentWorkload;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : DeploymentWorkload do
          Hr := RoGetActivationFactory (m_hString, IID_IDeploymentWorkloadFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_id, m_ComRetVal'Access);
-            Retval.m_IDeploymentWorkload := new Windows.Management.Setup.IDeploymentWorkload;
+            Retval.m_IDeploymentWorkload := new WinRt.Windows.Management.Setup.IDeploymentWorkload;
             Retval.m_IDeploymentWorkload.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -607,7 +607,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IDeploymentWorkload.all.get_StartTime (m_ComRetVal'Access);
@@ -642,7 +642,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IDeploymentWorkload.all.get_EndTime (m_ComRetVal'Access);
@@ -820,7 +820,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentWorkloadState;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentWorkloadState;
    begin
       Hr := this.m_IDeploymentWorkload.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -832,7 +832,7 @@ package body WinRt.Windows.Management.Setup is
    procedure put_State
    (
       this : in out DeploymentWorkload;
-      value : Windows.Management.Setup.DeploymentWorkloadState
+      value : WinRt.Windows.Management.Setup.DeploymentWorkloadState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -911,16 +911,16 @@ package body WinRt.Windows.Management.Setup is
    return DeploymentWorkloadBatch is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.DeploymentWorkloadBatch");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IDeploymentWorkloadBatch");
       m_Factory    : access IDeploymentWorkloadBatchFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Management.Setup.IDeploymentWorkloadBatch;
+      m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IDeploymentWorkloadBatch;
    begin
       return RetVal : DeploymentWorkloadBatch do
          Hr := RoGetActivationFactory (m_hString, IID_IDeploymentWorkloadBatchFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (id, m_ComRetVal'Access);
-            Retval.m_IDeploymentWorkloadBatch := new Windows.Management.Setup.IDeploymentWorkloadBatch;
+            Retval.m_IDeploymentWorkloadBatch := new WinRt.Windows.Management.Setup.IDeploymentWorkloadBatch;
             Retval.m_IDeploymentWorkloadBatch.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -993,7 +993,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IDeploymentWorkload.Kind;
    begin
       Hr := this.m_IDeploymentWorkloadBatch.all.get_BatchWorkloads (m_ComRetVal'Access);
@@ -1073,8 +1073,8 @@ package body WinRt.Windows.Management.Setup is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class;
-      heartbeatHandler : Windows.Management.Setup.DeploymentSessionHeartbeatRequested
+      launchUri : WinRt.Windows.Foundation.Uri'Class;
+      heartbeatHandler : WinRt.Windows.Management.Setup.DeploymentSessionHeartbeatRequested
    )
    return WinRt.Windows.Management.Setup.MachineProvisioningProgressReporter is
       Hr               : WinRt.HResult := S_OK;
@@ -1082,7 +1082,7 @@ package body WinRt.Windows.Management.Setup is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Setup.MachineProvisioningProgressReporter");
       m_Factory        : access WinRt.Windows.Management.Setup.IMachineProvisioningProgressReporterStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.IMachineProvisioningProgressReporter;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.IMachineProvisioningProgressReporter;
    begin
       return RetVal : WinRt.Windows.Management.Setup.MachineProvisioningProgressReporter do
          Hr := RoGetActivationFactory (m_hString, IID_IMachineProvisioningProgressReporterStatics'Access , m_Factory'Address);
@@ -1092,7 +1092,7 @@ package body WinRt.Windows.Management.Setup is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMachineProvisioningProgressReporter := new Windows.Management.Setup.IMachineProvisioningProgressReporter;
+            Retval.m_IMachineProvisioningProgressReporter := new WinRt.Windows.Management.Setup.IMachineProvisioningProgressReporter;
             Retval.m_IMachineProvisioningProgressReporter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1127,7 +1127,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentSessionConnectionChange;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentSessionConnectionChange;
    begin
       Hr := this.m_IMachineProvisioningProgressReporter.all.get_SessionConnection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1144,7 +1144,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Setup.DeploymentSessionStateChange;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Setup.DeploymentSessionStateChange;
    begin
       Hr := this.m_IMachineProvisioningProgressReporter.all.get_SessionState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1162,7 +1162,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMachineProvisioningProgressReporter.all.add_SessionStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1174,7 +1174,7 @@ package body WinRt.Windows.Management.Setup is
    procedure remove_SessionStateChanged
    (
       this : in out MachineProvisioningProgressReporter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1195,7 +1195,7 @@ package body WinRt.Windows.Management.Setup is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMachineProvisioningProgressReporter.all.add_SessionConnectionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1207,7 +1207,7 @@ package body WinRt.Windows.Management.Setup is
    procedure remove_SessionConnectionChanged
    (
       this : in out MachineProvisioningProgressReporter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1222,7 +1222,7 @@ package body WinRt.Windows.Management.Setup is
    procedure ReportProgress
    (
       this : in out MachineProvisioningProgressReporter;
-      updateReport : Windows.Management.Setup.AgentProvisioningProgressReport'Class
+      updateReport : WinRt.Windows.Management.Setup.AgentProvisioningProgressReport'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1287,7 +1287,7 @@ package body WinRt.Windows.Management.Setup is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IDevicePreparationExecutionContext := new Windows.Management.Setup.IDevicePreparationExecutionContext;
+                  Retval.m_IDevicePreparationExecutionContext := new WinRt.Windows.Management.Setup.IDevicePreparationExecutionContext;
                   Retval.m_IDevicePreparationExecutionContext.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

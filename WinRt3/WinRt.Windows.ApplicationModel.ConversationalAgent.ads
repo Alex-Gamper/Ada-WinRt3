@@ -555,14 +555,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
          value : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_AvailabilityInfo
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IDetectionConfigurationAvailabilityInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -570,14 +570,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailabilityChanged
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -585,7 +585,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
          dataType : WinRt.HString;
-         data : Windows.Storage.Streams.IInputStream
+         data : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -593,8 +593,8 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
          dataType : WinRt.HString;
-         data : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         data : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -615,7 +615,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function GetModelData
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -635,7 +635,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function ClearModelDataAsync
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -656,24 +656,24 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_TrainingDataFormat
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat
       )
       return WinRt.Hresult is abstract;
 
       function ApplyTrainingData
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         trainingDataFormat : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
-         trainingData : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus
+         trainingDataFormat : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
+         trainingData : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus
       )
       return WinRt.Hresult is abstract;
 
       function ApplyTrainingDataAsync
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         trainingDataFormat : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
-         trainingData : Windows.Storage.Streams.IInputStream;
+         trainingDataFormat : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
+         trainingData : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -687,7 +687,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function ClearTrainingDataAsync
       (
          this : access IActivationSignalDetectionConfiguration_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -700,8 +700,8 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration2_Interface;
          dataType : WinRt.HString;
-         data : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult
+         data : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult
       )
       return WinRt.Hresult is abstract;
 
@@ -709,7 +709,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration2_Interface;
          dataType : WinRt.HString;
-         data : Windows.Storage.Streams.IInputStream;
+         data : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -726,7 +726,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IActivationSignalDetectionConfiguration2_Interface;
          value : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationStateChangeResult
       )
       return WinRt.Hresult is abstract;
 
@@ -745,14 +745,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_Status
       (
          this : access IActivationSignalDetectionConfigurationCreationResult_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Configuration
       (
          this : access IActivationSignalDetectionConfigurationCreationResult_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -771,7 +771,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_Kind
       (
          this : access IActivationSignalDetector_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
       )
       return WinRt.Hresult is abstract;
 
@@ -834,7 +834,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          signalId : WinRt.HString;
          modelId : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -857,7 +857,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          this : access IActivationSignalDetector_Interface;
          signalId : WinRt.HString;
          modelId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -883,7 +883,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          this : access IActivationSignalDetector_Interface;
          signalId : WinRt.HString;
          modelId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -924,7 +924,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          signalId : WinRt.HString;
          modelId : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetectionConfigurationCreationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -942,7 +942,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
          this : access IActivationSignalDetector2_Interface;
          signalId : WinRt.HString;
          modelId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationRemovalResult
       )
       return WinRt.Hresult is abstract;
 
@@ -975,7 +975,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function GetActivationSignalDetectors
       (
          this : access IConversationalAgentDetectorManager_Interface;
-         kind : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
+         kind : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -983,7 +983,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function GetActivationSignalDetectorsAsync
       (
          this : access IConversationalAgentDetectorManager_Interface;
-         kind : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
+         kind : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -997,7 +997,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentDetectorManager2_Interface;
          detectorId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IActivationSignalDetector
       )
       return WinRt.Hresult is abstract;
 
@@ -1017,7 +1017,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_Default
       (
          this : access IConversationalAgentDetectorManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentDetectorManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1030,14 +1030,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionInterrupted
       (
          this : access IConversationalAgentSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1045,14 +1045,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SignalDetected
       (
          this : access IConversationalAgentSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1060,28 +1060,28 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SystemStateChanged
       (
          this : access IConversationalAgentSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_AgentState
       (
          this : access IConversationalAgentSession_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
       )
       return WinRt.Hresult is abstract;
 
       function get_Signal
       (
          this : access IConversationalAgentSession_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSignal
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,14 +1139,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentSession_Interface;
          interruptible : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
       )
       return WinRt.Hresult is abstract;
 
       function RequestAgentStateChangeAsync
       (
          this : access IConversationalAgentSession_Interface;
-         state : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState;
+         state : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1154,8 +1154,8 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function RequestAgentStateChange
       (
          this : access IConversationalAgentSession_Interface;
-         state : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
+         state : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState;
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -1169,7 +1169,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function RequestForegroundActivation
       (
          this : access IConversationalAgentSession_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -1190,7 +1190,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function CreateAudioDeviceInputNodeAsync
       (
          this : access IConversationalAgentSession_Interface;
-         graph : Windows.Media.Audio.IAudioGraph;
+         graph : WinRt.Windows.Media.Audio.IAudioGraph;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1198,8 +1198,8 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function CreateAudioDeviceInputNode
       (
          this : access IConversationalAgentSession_Interface;
-         graph : Windows.Media.Audio.IAudioGraph;
-         RetVal : access Windows.Media.Audio.IAudioDeviceInputNode
+         graph : WinRt.Windows.Media.Audio.IAudioGraph;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioDeviceInputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1283,7 +1283,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function RequestActivationAsync
       (
          this : access IConversationalAgentSession2_Interface;
-         activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
+         activationKind : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1291,8 +1291,8 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function RequestActivation
       (
          this : access IConversationalAgentSession2_Interface;
-         activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult
+         activationKind : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind;
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1300,7 +1300,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       (
          this : access IConversationalAgentSession2_Interface;
          lockScreenActivationSupported : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1345,7 +1345,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function GetCurrentSessionSync
       (
          this : access IConversationalAgentSessionStatics_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.IConversationalAgentSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1413,28 +1413,28 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_SignalStart
       (
          this : access IConversationalAgentSignal_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_SignalStart
       (
          this : access IConversationalAgentSignal_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SignalEnd
       (
          this : access IConversationalAgentSignal_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_SignalEnd
       (
          this : access IConversationalAgentSignal_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1453,7 +1453,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_DetectorKind
       (
          this : access IConversationalAgentSignal2_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1470,7 +1470,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_SystemStateChangeType
       (
          this : access IConversationalAgentSystemStateChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSystemStateChangeType
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSystemStateChangeType
       )
       return WinRt.Hresult is abstract;
 
@@ -1482,7 +1482,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
       function get_Kind
       (
          this : access IDetectionConfigurationAvailabilityChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityChangeKind
+         RetVal : access WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationAvailabilityChangeKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1598,21 +1598,21 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure remove_AvailabilityChanged
    (
       this : in out ActivationSignalDetectionConfiguration;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetModelData
    (
       this : in out ActivationSignalDetectionConfiguration;
       dataType : WinRt.WString;
-      data : Windows.Storage.Streams.IInputStream
+      data : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    procedure SetModelDataAsync
    (
       this : in out ActivationSignalDetectionConfiguration;
       dataType : WinRt.WString;
-      data : Windows.Storage.Streams.IInputStream
+      data : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function GetModelDataType
@@ -1670,16 +1670,16 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    function ApplyTrainingData
    (
       this : in out ActivationSignalDetectionConfiguration;
-      trainingDataFormat : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
-      trainingData : Windows.Storage.Streams.IInputStream
+      trainingDataFormat : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
+      trainingData : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus;
 
    function ApplyTrainingDataAsync
    (
       this : in out ActivationSignalDetectionConfiguration;
-      trainingDataFormat : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
-      trainingData : Windows.Storage.Streams.IInputStream
+      trainingDataFormat : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionTrainingDataFormat;
+      trainingData : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.DetectionConfigurationTrainingStatus;
 
@@ -1702,7 +1702,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    (
       this : in out ActivationSignalDetectionConfiguration;
       dataType : WinRt.WString;
-      data : Windows.Storage.Streams.IInputStream
+      data : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
 
@@ -1710,7 +1710,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    (
       this : in out ActivationSignalDetectionConfiguration;
       dataType : WinRt.WString;
-      data : Windows.Storage.Streams.IInputStream
+      data : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectionConfigurationSetModelDataResult;
 
@@ -1956,14 +1956,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    function GetActivationSignalDetectors
    (
       this : in out ConversationalAgentDetectorManager;
-      kind : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
+      kind : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
    )
    return IVectorView_IActivationSignalDetector.Kind;
 
    function GetActivationSignalDetectorsAsync
    (
       this : in out ConversationalAgentDetectorManager;
-      kind : Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
+      kind : WinRt.Windows.ApplicationModel.ConversationalAgent.ActivationSignalDetectorKind
    )
    return WinRt.GenericObject;
 
@@ -2009,7 +2009,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure remove_SessionInterrupted
    (
       this : in out ConversationalAgentSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SignalDetected
@@ -2022,7 +2022,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure remove_SignalDetected
    (
       this : in out ConversationalAgentSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SystemStateChanged
@@ -2035,7 +2035,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure remove_SystemStateChanged
    (
       this : in out ConversationalAgentSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AgentState
@@ -2103,14 +2103,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    function RequestAgentStateChangeAsync
    (
       this : in out ConversationalAgentSession;
-      state : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
+      state : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse;
 
    function RequestAgentStateChange
    (
       this : in out ConversationalAgentSession;
-      state : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
+      state : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentState
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentSessionUpdateResponse;
 
@@ -2141,14 +2141,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    function CreateAudioDeviceInputNodeAsync
    (
       this : in out ConversationalAgentSession;
-      graph : Windows.Media.Audio.AudioGraph'Class
+      graph : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return WinRt.Windows.Media.Audio.AudioDeviceInputNode'Class;
 
    function CreateAudioDeviceInputNode
    (
       this : in out ConversationalAgentSession;
-      graph : Windows.Media.Audio.AudioGraph'Class
+      graph : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return WinRt.Windows.Media.Audio.AudioDeviceInputNode'Class;
 
@@ -2217,14 +2217,14 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    function RequestActivationAsync
    (
       this : in out ConversationalAgentSession;
-      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+      activationKind : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
 
    function RequestActivation
    (
       this : in out ConversationalAgentSession;
-      activationKind : Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
+      activationKind : WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationKind
    )
    return WinRt.Windows.ApplicationModel.ConversationalAgent.ConversationalAgentActivationResult;
 
@@ -2332,7 +2332,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure put_SignalStart
    (
       this : in out ConversationalAgentSignal;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_SignalEnd
@@ -2344,7 +2344,7 @@ package WinRt.Windows.ApplicationModel.ConversationalAgent is
    procedure put_SignalEnd
    (
       this : in out ConversationalAgentSignal;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DetectorId

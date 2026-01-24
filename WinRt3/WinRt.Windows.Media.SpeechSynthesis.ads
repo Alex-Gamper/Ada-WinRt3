@@ -164,7 +164,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function get_DefaultVoice
       (
          this : access IInstalledVoicesStatic_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.IVoiceInformation
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.IVoiceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -176,7 +176,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function TrySetDefaultVoiceAsync
       (
          this : access IInstalledVoicesStatic2_Interface;
-         voice : Windows.Media.SpeechSynthesis.IVoiceInformation;
+         voice : WinRt.Windows.Media.SpeechSynthesis.IVoiceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -217,14 +217,14 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function put_Voice
       (
          this : access ISpeechSynthesizer_Interface;
-         value : Windows.Media.SpeechSynthesis.IVoiceInformation
+         value : WinRt.Windows.Media.SpeechSynthesis.IVoiceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_Voice
       (
          this : access ISpeechSynthesizer_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.IVoiceInformation
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.IVoiceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -236,7 +236,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function get_Options
       (
          this : access ISpeechSynthesizer2_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizerOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -328,28 +328,28 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function get_AppendedSilence
       (
          this : access ISpeechSynthesizerOptions3_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.SpeechAppendedSilence
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.SpeechAppendedSilence
       )
       return WinRt.Hresult is abstract;
 
       function put_AppendedSilence
       (
          this : access ISpeechSynthesizerOptions3_Interface;
-         value : Windows.Media.SpeechSynthesis.SpeechAppendedSilence
+         value : WinRt.Windows.Media.SpeechSynthesis.SpeechAppendedSilence
       )
       return WinRt.Hresult is abstract;
 
       function get_PunctuationSilence
       (
          this : access ISpeechSynthesizerOptions3_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
       )
       return WinRt.Hresult is abstract;
 
       function put_PunctuationSilence
       (
          this : access ISpeechSynthesizerOptions3_Interface;
-         value : Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
+         value : WinRt.Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
       )
       return WinRt.Hresult is abstract;
 
@@ -389,7 +389,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
       function get_Gender
       (
          this : access IVoiceInformation_Interface;
-         RetVal : access Windows.Media.SpeechSynthesis.VoiceGender
+         RetVal : access WinRt.Windows.Media.SpeechSynthesis.VoiceGender
       )
       return WinRt.Hresult is abstract;
 
@@ -479,7 +479,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
    function WriteAsync
    (
       this : in out SpeechSynthesisStream;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -497,9 +497,9 @@ package WinRt.Windows.Media.SpeechSynthesis is
    function ReadAsync
    (
       this : in out SpeechSynthesisStream;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -525,7 +525,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
 
    function TrySetDefaultVoiceAsync
    (
-      voice : Windows.Media.SpeechSynthesis.VoiceInformation'Class
+      voice : WinRt.Windows.Media.SpeechSynthesis.VoiceInformation'Class
    )
    return WinRt.Boolean;
 
@@ -555,7 +555,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
    procedure put_Voice
    (
       this : in out SpeechSynthesizer;
-      value : Windows.Media.SpeechSynthesis.VoiceInformation'Class
+      value : WinRt.Windows.Media.SpeechSynthesis.VoiceInformation'Class
    );
 
    function get_Voice
@@ -653,7 +653,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
    procedure put_AppendedSilence
    (
       this : in out SpeechSynthesizerOptions;
-      value : Windows.Media.SpeechSynthesis.SpeechAppendedSilence
+      value : WinRt.Windows.Media.SpeechSynthesis.SpeechAppendedSilence
    );
 
    function get_PunctuationSilence
@@ -665,7 +665,7 @@ package WinRt.Windows.Media.SpeechSynthesis is
    procedure put_PunctuationSilence
    (
       this : in out SpeechSynthesizerOptions;
-      value : Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
+      value : WinRt.Windows.Media.SpeechSynthesis.SpeechPunctuationSilence
    );
 
    -----------------------------------------------------------------------------

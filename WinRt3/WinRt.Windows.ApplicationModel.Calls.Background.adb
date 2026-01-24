@@ -100,7 +100,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason;
    begin
       Hr := this.m_IPhoneCallBlockedTriggerDetails.all.get_CallBlockedReason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -257,7 +257,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_DismissalTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -294,7 +294,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason;
    begin
       Hr := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -411,7 +411,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind;
    begin
       Hr := this.m_IPhoneLineChangedTriggerDetails.all.get_ChangeType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -423,7 +423,7 @@ package body WinRt.Windows.ApplicationModel.Calls.Background is
    function HasLinePropertyChanged
    (
       this : in out PhoneLineChangedTriggerDetails;
-      lineProperty : Windows.ApplicationModel.Calls.Background.PhoneLineProperties
+      lineProperty : WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineProperties
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;

@@ -70,21 +70,21 @@ package body WinRt.Windows.UI.Input.Spatial is
 
    function Constructor
    (
-      settings : Windows.UI.Input.Spatial.SpatialGestureSettings
+      settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return SpatialGestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialGestureRecognizer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.ISpatialGestureRecognizer");
       m_Factory    : access ISpatialGestureRecognizerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Input.Spatial.ISpatialGestureRecognizer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Input.Spatial.ISpatialGestureRecognizer;
    begin
       return RetVal : SpatialGestureRecognizer do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialGestureRecognizerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (settings, m_ComRetVal'Access);
-            Retval.m_ISpatialGestureRecognizer := new Windows.UI.Input.Spatial.ISpatialGestureRecognizer;
+            Retval.m_ISpatialGestureRecognizer := new WinRt.Windows.UI.Input.Spatial.ISpatialGestureRecognizer;
             Retval.m_ISpatialGestureRecognizer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -104,7 +104,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_RecognitionStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -116,7 +116,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_RecognitionStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -137,7 +137,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_RecognitionEnded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -149,7 +149,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_RecognitionEnded
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -170,7 +170,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_Tapped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -182,7 +182,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_Tapped
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -203,7 +203,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_HoldStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -215,7 +215,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -236,7 +236,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_HoldCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -248,7 +248,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -269,7 +269,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_HoldCanceled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -281,7 +281,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -302,7 +302,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_ManipulationStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -314,7 +314,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -335,7 +335,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_ManipulationUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -347,7 +347,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationUpdated
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -368,7 +368,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_ManipulationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -380,7 +380,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -401,7 +401,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_ManipulationCanceled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -413,7 +413,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -434,7 +434,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_NavigationStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -446,7 +446,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -467,7 +467,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_NavigationUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -479,7 +479,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationUpdated
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -500,7 +500,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_NavigationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -512,7 +512,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -533,7 +533,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.add_NavigationCanceled (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -545,7 +545,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -560,7 +560,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure CaptureInteraction
    (
       this : in out SpatialGestureRecognizer;
-      interaction : Windows.UI.Input.Spatial.SpatialInteraction'Class
+      interaction : WinRt.Windows.UI.Input.Spatial.SpatialInteraction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -589,7 +589,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TrySetGestureSettings
    (
       this : in out SpatialGestureRecognizer;
-      settings : Windows.UI.Input.Spatial.SpatialGestureSettings
+      settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -612,7 +612,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialGestureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings;
    begin
       Hr := this.m_ISpatialGestureRecognizer.all.get_GestureSettings (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -652,7 +652,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialHoldCanceledEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -692,7 +692,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialHoldCompletedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -732,7 +732,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialHoldStartedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -744,20 +744,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialHoldStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialHoldStartedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -793,14 +793,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceState do
          Hr := this.m_ISpatialInteraction.all.get_SourceState (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSourceState := new Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+         Retval.m_ISpatialInteractionSourceState := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
          Retval.m_ISpatialInteractionSourceState.all := m_ComRetVal;
       end return;
    end;
@@ -870,14 +870,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_ISpatialInteractionController.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -1009,7 +1009,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Power.IBatteryReport;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionController3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
@@ -1019,7 +1019,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
+         Retval.m_IBatteryReport := new WinRt.Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
    end;
@@ -1197,7 +1197,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialInteractionDetectedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1209,20 +1209,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialInteractionDetectedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialInteractionDetectedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -1235,14 +1235,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteraction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteraction;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteraction do
          Hr := this.m_ISpatialInteractionDetectedEventArgs.all.get_Interaction (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteraction := new Windows.UI.Input.Spatial.ISpatialInteraction;
+         Retval.m_ISpatialInteraction := new WinRt.Windows.UI.Input.Spatial.ISpatialInteraction;
          Retval.m_ISpatialInteraction.all := m_ComRetVal;
       end return;
    end;
@@ -1256,7 +1256,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionDetectedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionDetectedEventArgs_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionDetectedEventArgs2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionDetectedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource do
@@ -1266,7 +1266,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSource := new Windows.UI.Input.Spatial.ISpatialInteractionSource;
+         Retval.m_ISpatialInteractionSource := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
          Retval.m_ISpatialInteractionSource.all := m_ComRetVal;
       end return;
    end;
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.UI.Input.Spatial is
 
    function IsSourceKindSupported
    (
-      kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+      kind : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1325,7 +1325,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialInteractionManager");
       m_Factory        : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManager;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionManager do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialInteractionManagerStatics'Access , m_Factory'Address);
@@ -1335,7 +1335,7 @@ package body WinRt.Windows.UI.Input.Spatial is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISpatialInteractionManager := new Windows.UI.Input.Spatial.ISpatialInteractionManager;
+            Retval.m_ISpatialInteractionManager := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManager;
             Retval.m_ISpatialInteractionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1354,7 +1354,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_SourceDetected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1366,7 +1366,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceDetected
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1387,7 +1387,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_SourceLost (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1399,7 +1399,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceLost
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_SourceUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1432,7 +1432,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceUpdated
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1453,7 +1453,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_SourcePressed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1465,7 +1465,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourcePressed
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1486,7 +1486,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_SourceReleased (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1498,7 +1498,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceReleased
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1519,7 +1519,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialInteractionManager.all.add_InteractionDetected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1531,7 +1531,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    procedure remove_InteractionDetected
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1546,13 +1546,13 @@ package body WinRt.Windows.UI.Input.Spatial is
    function GetDetectedSourcesAtTimestamp
    (
       this : in out SpatialInteractionManager;
-      timeStamp : Windows.Perception.PerceptionTimestamp'Class
+      timeStamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return IVectorView_ISpatialInteractionSourceState.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISpatialInteractionSourceState.Kind;
    begin
       Hr := this.m_ISpatialInteractionManager.all.GetDetectedSourcesAtTimestamp (timeStamp.m_IPerceptionTimestamp.all, m_ComRetVal'Access);
@@ -1612,7 +1612,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialInteractionSource.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1693,7 +1693,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionController do
@@ -1703,7 +1703,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionController := new Windows.UI.Input.Spatial.ISpatialInteractionController;
+         Retval.m_ISpatialInteractionController := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController;
          Retval.m_ISpatialInteractionController.all := m_ComRetVal;
       end return;
    end;
@@ -1711,14 +1711,14 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetStateAtTimestamp
    (
       this : in out SpatialInteractionSource;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceState'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSource2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceState do
@@ -1728,7 +1728,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSourceState := new Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+         Retval.m_ISpatialInteractionSourceState := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
          Retval.m_ISpatialInteractionSourceState.all := m_ComRetVal;
       end return;
    end;
@@ -1742,7 +1742,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceHandedness;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceHandedness;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSource3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialInteractionSource.all);
@@ -1763,7 +1763,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IHandMeshObserver;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IHandMeshObserver;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource4, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSource4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Perception.People.HandMeshObserver do
@@ -1773,7 +1773,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHandMeshObserver := new Windows.Perception.People.IHandMeshObserver;
+         Retval.m_IHandMeshObserver := new WinRt.Windows.Perception.People.IHandMeshObserver;
          Retval.m_IHandMeshObserver.all := m_ComRetVal;
       end return;
    end;
@@ -1835,7 +1835,7 @@ package body WinRt.Windows.UI.Input.Spatial is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHandMeshObserver := new Windows.Perception.People.IHandMeshObserver;
+                  Retval.m_IHandMeshObserver := new WinRt.Windows.Perception.People.IHandMeshObserver;
                   Retval.m_IHandMeshObserver.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1879,14 +1879,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceState do
          Hr := this.m_ISpatialInteractionSourceEventArgs.all.get_State (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSourceState := new Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
+         Retval.m_ISpatialInteractionSourceState := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState;
          Retval.m_ISpatialInteractionSourceState.all := m_ComRetVal;
       end return;
    end;
@@ -1900,7 +1900,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionPressKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionPressKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceEventArgs_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceEventArgs2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialInteractionSourceEventArgs.all);
@@ -1943,7 +1943,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_ISpatialInteractionSourceLocation.all.get_Position (m_ComRetVal'Access);
@@ -1963,7 +1963,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_ISpatialInteractionSourceLocation.all.get_Velocity (m_ComRetVal'Access);
@@ -1984,7 +1984,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Quaternion.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceLocation2'Unchecked_Access);
    begin
@@ -2008,7 +2008,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceLocation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialInteractionSourceLocation.all);
@@ -2029,7 +2029,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceLocation3'Unchecked_Access);
    begin
@@ -2053,7 +2053,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceLocation3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerInteractionSourcePose do
@@ -2063,7 +2063,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerInteractionSourcePose := new Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
+         Retval.m_ISpatialPointerInteractionSourcePose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
          Retval.m_ISpatialPointerInteractionSourcePose.all := m_ComRetVal;
       end return;
    end;
@@ -2094,13 +2094,13 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetSourceLossMitigationDirection
    (
       this : in out SpatialInteractionSourceProperties;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_Vector3.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_ISpatialInteractionSourceProperties.all.TryGetSourceLossMitigationDirection (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
@@ -2132,20 +2132,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetLocation
    (
       this : in out SpatialInteractionSourceProperties;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceLocation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceLocation do
          Hr := this.m_ISpatialInteractionSourceProperties.all.TryGetLocation (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSourceLocation := new Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation;
+         Retval.m_ISpatialInteractionSourceLocation := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation;
          Retval.m_ISpatialInteractionSourceLocation.all := m_ComRetVal;
       end return;
    end;
@@ -2181,14 +2181,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource do
          Hr := this.m_ISpatialInteractionSourceState.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSource := new Windows.UI.Input.Spatial.ISpatialInteractionSource;
+         Retval.m_ISpatialInteractionSource := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
          Retval.m_ISpatialInteractionSource.all := m_ComRetVal;
       end return;
    end;
@@ -2201,14 +2201,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceProperties do
          Hr := this.m_ISpatialInteractionSourceState.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionSourceProperties := new Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties;
+         Retval.m_ISpatialInteractionSourceProperties := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties;
          Retval.m_ISpatialInteractionSourceProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2238,14 +2238,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_ISpatialInteractionSourceState.all.get_Timestamp (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+         Retval.m_IPerceptionTimestamp := new WinRt.Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
    end;
@@ -2253,20 +2253,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialInteractionSourceState;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialInteractionSourceState.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -2364,7 +2364,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceState2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialInteractionControllerProperties do
@@ -2374,7 +2374,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialInteractionControllerProperties := new Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties;
+         Retval.m_ISpatialInteractionControllerProperties := new WinRt.Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties;
          Retval.m_ISpatialInteractionControllerProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2388,7 +2388,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IHandPose;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IHandPose;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialInteractionSourceState3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Perception.People.HandPose do
@@ -2398,7 +2398,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHandPose := new Windows.Perception.People.IHandPose;
+         Retval.m_IHandPose := new WinRt.Windows.Perception.People.IHandPose;
          Retval.m_IHandPose.all := m_ComRetVal;
       end return;
    end;
@@ -2434,7 +2434,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialManipulationCanceledEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2474,7 +2474,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialManipulationCompletedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2486,20 +2486,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetCumulativeDelta
    (
       this : in out SpatialManipulationCompletedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta do
          Hr := this.m_ISpatialManipulationCompletedEventArgs.all.TryGetCumulativeDelta (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialManipulationDelta := new Windows.UI.Input.Spatial.ISpatialManipulationDelta;
+         Retval.m_ISpatialManipulationDelta := new WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta;
          Retval.m_ISpatialManipulationDelta.all := m_ComRetVal;
       end return;
    end;
@@ -2535,7 +2535,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialManipulationDelta.all.get_Translation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2575,7 +2575,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialManipulationStartedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2587,20 +2587,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialManipulationStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialManipulationStartedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -2636,7 +2636,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialManipulationUpdatedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2648,20 +2648,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetCumulativeDelta
    (
       this : in out SpatialManipulationUpdatedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialManipulationDelta;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta do
          Hr := this.m_ISpatialManipulationUpdatedEventArgs.all.TryGetCumulativeDelta (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialManipulationDelta := new Windows.UI.Input.Spatial.ISpatialManipulationDelta;
+         Retval.m_ISpatialManipulationDelta := new WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta;
          Retval.m_ISpatialManipulationDelta.all := m_ComRetVal;
       end return;
    end;
@@ -2697,7 +2697,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialNavigationCanceledEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2737,7 +2737,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialNavigationCompletedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2754,7 +2754,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialNavigationCompletedEventArgs.all.get_NormalizedOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2794,7 +2794,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialNavigationStartedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2806,20 +2806,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialNavigationStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialNavigationStartedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -2906,7 +2906,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialNavigationUpdatedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2923,7 +2923,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialNavigationUpdatedEventArgs.all.get_NormalizedOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2963,7 +2963,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialPointerInteractionSourcePose.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2980,7 +2980,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialPointerInteractionSourcePose.all.get_ForwardDirection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2997,7 +2997,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpatialPointerInteractionSourcePose.all.get_UpDirection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3015,7 +3015,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Quaternion;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialPointerInteractionSourcePose2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialPointerInteractionSourcePose.all);
@@ -3036,7 +3036,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialPointerInteractionSourcePose2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISpatialPointerInteractionSourcePose.all);
@@ -3073,8 +3073,8 @@ package body WinRt.Windows.UI.Input.Spatial is
 
    function TryGetAtTimestamp
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose is
       Hr               : WinRt.HResult := S_OK;
@@ -3082,7 +3082,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialPointerPose");
       m_Factory        : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPoseStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialPointerPoseStatics'Access , m_Factory'Address);
@@ -3092,7 +3092,7 @@ package body WinRt.Windows.UI.Input.Spatial is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+            Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
             Retval.m_ISpatialPointerPose.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3110,14 +3110,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_ISpatialPointerPose.all.get_Timestamp (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+         Retval.m_IPerceptionTimestamp := new WinRt.Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
    end;
@@ -3130,14 +3130,14 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IHeadPose;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IHeadPose;
    begin
       return RetVal : WinRt.Windows.Perception.People.HeadPose do
          Hr := this.m_ISpatialPointerPose.all.get_Head (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHeadPose := new Windows.Perception.People.IHeadPose;
+         Retval.m_IHeadPose := new WinRt.Windows.Perception.People.IHeadPose;
          Retval.m_IHeadPose.all := m_ComRetVal;
       end return;
    end;
@@ -3145,14 +3145,14 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetInteractionSourcePose
    (
       this : in out SpatialPointerPose;
-      source : Windows.UI.Input.Spatial.SpatialInteractionSource'Class
+      source : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerInteractionSourcePose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose2, WinRt.Windows.UI.Input.Spatial.IID_ISpatialPointerPose2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerInteractionSourcePose do
@@ -3162,7 +3162,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerInteractionSourcePose := new Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
+         Retval.m_ISpatialPointerInteractionSourcePose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose;
          Retval.m_ISpatialPointerInteractionSourcePose.all := m_ComRetVal;
       end return;
    end;
@@ -3176,7 +3176,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.People.IEyesPose;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.People.IEyesPose;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose_Interface, WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose3, WinRt.Windows.UI.Input.Spatial.IID_ISpatialPointerPose3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Perception.People.EyesPose do
@@ -3186,7 +3186,7 @@ package body WinRt.Windows.UI.Input.Spatial is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IEyesPose := new Windows.Perception.People.IEyesPose;
+         Retval.m_IEyesPose := new WinRt.Windows.Perception.People.IEyesPose;
          Retval.m_IEyesPose.all := m_ComRetVal;
       end return;
    end;
@@ -3243,7 +3243,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialRecognitionEndedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3283,7 +3283,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialRecognitionStartedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3295,20 +3295,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialRecognitionStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialRecognitionStartedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;
@@ -3316,7 +3316,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    function IsGesturePossible
    (
       this : in out SpatialRecognitionStartedEventArgs;
-      gesture : Windows.UI.Input.Spatial.SpatialGestureSettings
+      gesture : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3362,7 +3362,7 @@ package body WinRt.Windows.UI.Input.Spatial is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
    begin
       Hr := this.m_ISpatialTappedEventArgs.all.get_InteractionSourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3374,20 +3374,20 @@ package body WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialTappedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Input.Spatial.ISpatialPointerPose;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
    begin
       return RetVal : WinRt.Windows.UI.Input.Spatial.SpatialPointerPose do
          Hr := this.m_ISpatialTappedEventArgs.all.TryGetPointerPose (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialPointerPose := new Windows.UI.Input.Spatial.ISpatialPointerPose;
+         Retval.m_ISpatialPointerPose := new WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose;
          Retval.m_ISpatialPointerPose.all := m_ComRetVal;
       end return;
    end;

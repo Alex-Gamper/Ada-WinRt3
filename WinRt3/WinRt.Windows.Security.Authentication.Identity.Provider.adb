@@ -78,7 +78,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure ShowNotificationMessageAsync
    (
       deviceName : WinRt.WString;
-      message : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage
+      message : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -130,7 +130,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    function StartAuthenticationAsync
    (
       deviceId : WinRt.WString;
-      serviceAuthenticationNonce : Windows.Storage.Streams.IBuffer
+      serviceAuthenticationNonce : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -187,7 +187,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISecondaryAuthenticationFactorAuthenticationResult := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationResult;
+                     Retval.m_ISecondaryAuthenticationFactorAuthenticationResult := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationResult;
                      Retval.m_ISecondaryAuthenticationFactorAuthenticationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -213,7 +213,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthentication");
       m_Factory        : access WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISecondaryAuthenticationFactorAuthenticationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -229,7 +229,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
 
    procedure remove_AuthenticationStageChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -303,7 +303,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
+                     Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
                      Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -329,7 +329,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthentication.all.get_ServiceAuthenticationHmac (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -346,7 +346,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthentication.all.get_SessionNonce (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -363,7 +363,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthentication.all.get_DeviceNonce (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -380,7 +380,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthentication.all.get_DeviceConfigurationData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -392,8 +392,8 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    function FinishAuthenticationAsync
    (
       this : in out SecondaryAuthenticationFactorAuthentication;
-      deviceHmac : Windows.Storage.Streams.IBuffer;
-      sessionHmac : Windows.Storage.Streams.IBuffer
+      deviceHmac : WinRt.Windows.Storage.Streams.IBuffer;
+      sessionHmac : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorFinishAuthenticationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -530,7 +530,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStatus;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthenticationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -547,14 +547,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthentication do
          Hr := this.m_ISecondaryAuthenticationFactorAuthenticationResult.all.get_Authentication (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISecondaryAuthenticationFactorAuthentication := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication;
+         Retval.m_ISecondaryAuthenticationFactorAuthentication := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication;
          Retval.m_ISecondaryAuthenticationFactorAuthentication.all := m_ComRetVal;
       end return;
    end;
@@ -590,14 +590,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStageInfo do
          Hr := this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs.all.get_StageInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
+         Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo;
          Retval.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all := m_ComRetVal;
       end return;
    end;
@@ -633,7 +633,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStage;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStage;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all.get_Stage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -650,7 +650,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationScenario;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationScenario;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all.get_Scenario (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -770,7 +770,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorInfo.all.get_DeviceConfigurationData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -788,7 +788,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorInfo_Interface, WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorInfo2, WinRt.Windows.Security.Authentication.Identity.Provider.IID_ISecondaryAuthenticationFactorInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISecondaryAuthenticationFactorInfo.all);
@@ -803,7 +803,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure UpdateDevicePresenceAsync
    (
       this : in out SecondaryAuthenticationFactorInfo;
-      presenceState : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence
+      presenceState : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -894,11 +894,11 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    function RequestStartRegisteringDeviceAsync
    (
       deviceId : WinRt.WString;
-      capabilities : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
+      capabilities : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
       deviceFriendlyName : WinRt.WString;
       deviceModelNumber : WinRt.WString;
-      deviceKey : Windows.Storage.Streams.IBuffer;
-      mutualAuthenticationKey : Windows.Storage.Streams.IBuffer
+      deviceKey : WinRt.Windows.Storage.Streams.IBuffer;
+      mutualAuthenticationKey : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -957,7 +957,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISecondaryAuthenticationFactorRegistrationResult := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistrationResult;
+                     Retval.m_ISecondaryAuthenticationFactorRegistrationResult := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistrationResult;
                      Retval.m_ISecondaryAuthenticationFactorRegistrationResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -977,7 +977,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
 
    function FindAllRegisteredDeviceInfoAsync
    (
-      queryType : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope
+      queryType : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1099,7 +1099,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure UpdateDeviceConfigurationDataAsync
    (
       deviceId : WinRt.WString;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1152,7 +1152,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    (
       deviceId : WinRt.WString;
       deviceInstancePath : WinRt.WString;
-      monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
+      monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -1228,10 +1228,10 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    (
       deviceId : WinRt.WString;
       deviceInstancePath : WinRt.WString;
-      monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+      monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
       deviceFriendlyName : WinRt.WString;
       deviceModelNumber : WinRt.WString;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -1385,7 +1385,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure FinishRegisteringDeviceAsync
    (
       this : in out SecondaryAuthenticationFactorRegistration;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1501,7 +1501,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationStatus;
    begin
       Hr := this.m_ISecondaryAuthenticationFactorRegistrationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1518,14 +1518,14 @@ package body WinRt.Windows.Security.Authentication.Identity.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistration do
          Hr := this.m_ISecondaryAuthenticationFactorRegistrationResult.all.get_Registration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISecondaryAuthenticationFactorRegistration := new Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration;
+         Retval.m_ISecondaryAuthenticationFactorRegistration := new WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration;
          Retval.m_ISecondaryAuthenticationFactorRegistration.all := m_ComRetVal;
       end return;
    end;

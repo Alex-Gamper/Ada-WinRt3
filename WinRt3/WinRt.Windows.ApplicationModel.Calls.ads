@@ -984,14 +984,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Media
       (
          this : access IAcceptedVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IAcceptedVoipPhoneCallOptions_Interface;
-         value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IAcceptedVoipPhoneCallOptionsFactory_Interface;
          associatedDeviceIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1079,14 +1079,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Media
       (
          this : access IAppInitiatedVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IAppInitiatedVoipPhoneCallOptions_Interface;
-         value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -1106,7 +1106,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IAppInitiatedVoipPhoneCallOptionsFactory_Interface;
          associatedDeviceIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1118,7 +1118,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_AcceptedMedia
       (
          this : access ICallAnswerEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -1142,7 +1142,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_RejectReason
       (
          this : access ICallRejectEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallRejectReason
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallRejectReason
       )
       return WinRt.Hresult is abstract;
 
@@ -1154,7 +1154,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_State
       (
          this : access ICallStateChangeEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallState
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallState
       )
       return WinRt.Hresult is abstract;
 
@@ -1208,14 +1208,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_ContactImage
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContactImage
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1236,14 +1236,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_BrandingImage
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_BrandingImage
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1264,42 +1264,42 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Ringtone
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Ringtone
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Media
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function get_RingTimeout
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RingTimeout
       (
          this : access IIncomingVoipPhoneCallOptions_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1333,7 +1333,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IIncomingVoipPhoneCallOptionsFactory_Interface;
          associatedDeviceIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1356,14 +1356,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetDeferral
       (
          this : access ILockScreenCallEndRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.ILockScreenCallEndCallDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.ILockScreenCallEndCallDeferral
       )
       return WinRt.Hresult is abstract;
 
       function get_Deadline
       (
          this : access ILockScreenCallEndRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1382,14 +1382,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access ILockScreenCallUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EndRequested
       (
          this : access ILockScreenCallUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1397,14 +1397,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access ILockScreenCallUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access ILockScreenCallUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1484,14 +1484,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Media
       (
          this : access IOutgoingVoipPhoneCallOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IOutgoingVoipPhoneCallOptions_Interface;
-         value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -1511,7 +1511,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IOutgoingVoipPhoneCallOptionsFactory_Interface;
          associatedDeviceIds : GenericObject;
-         RetVal : access Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1524,14 +1524,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1539,14 +1539,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioDeviceChanged
       (
          this : access IPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1554,14 +1554,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsMutedChanged
       (
          this : access IPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1582,21 +1582,21 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Status
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioDevice
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallAudioDevice
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice
       )
       return WinRt.Hresult is abstract;
 
       function GetPhoneCallInfo
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1610,7 +1610,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function End_x
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1624,17 +1624,17 @@ package WinRt.Windows.ApplicationModel.Calls is
       function SendDtmfKey
       (
          this : access IPhoneCall_Interface;
-         key : Windows.ApplicationModel.Calls.DtmfKey;
-         dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         key : WinRt.Windows.ApplicationModel.Calls.DtmfKey;
+         dtmfToneAudioPlayback : WinRt.Windows.ApplicationModel.Calls.DtmfToneAudioPlayback;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function SendDtmfKeyAsync
       (
          this : access IPhoneCall_Interface;
-         key : Windows.ApplicationModel.Calls.DtmfKey;
-         dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback;
+         key : WinRt.Windows.ApplicationModel.Calls.DtmfKey;
+         dtmfToneAudioPlayback : WinRt.Windows.ApplicationModel.Calls.DtmfToneAudioPlayback;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1642,7 +1642,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function AcceptIncoming
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1656,7 +1656,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function Hold
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1670,7 +1670,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function ResumeFromHold
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1684,7 +1684,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function Mute
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1698,7 +1698,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function Unmute
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1712,7 +1712,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RejectIncoming
       (
          this : access IPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1726,15 +1726,15 @@ package WinRt.Windows.ApplicationModel.Calls is
       function ChangeAudioDevice
       (
          this : access IPhoneCall_Interface;
-         endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         endpoint : WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function ChangeAudioDeviceAsync
       (
          this : access IPhoneCall_Interface;
-         endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice;
+         endpoint : WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1795,14 +1795,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Address
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
       )
       return WinRt.Hresult is abstract;
 
       function put_Address
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         value : Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
+         value : WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -1935,28 +1935,28 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Media
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
       )
       return WinRt.Hresult is abstract;
 
       function get_OtherAppReadAccess
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
@@ -1998,28 +1998,28 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_SourceIdKind
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceIdKind
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
       )
       return WinRt.Hresult is abstract;
 
       function get_StartTime
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_StartTime
       (
          this : access IPhoneCallHistoryEntry_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2073,14 +2073,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_RawAddressKind
       (
          this : access IPhoneCallHistoryEntryAddress_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
       )
       return WinRt.Hresult is abstract;
 
       function put_RawAddressKind
       (
          this : access IPhoneCallHistoryEntryAddress_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2093,8 +2093,8 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallHistoryEntryAddressFactory_Interface;
          rawAddress : WinRt.HString;
-         rawAddressKind : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
+         rawAddressKind : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -2106,14 +2106,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_DesiredMedia
       (
          this : access IPhoneCallHistoryEntryQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredMedia
       (
          this : access IPhoneCallHistoryEntryQueryOptions_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -2144,7 +2144,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RequestStoreAsync
       (
          this : access IPhoneCallHistoryManagerForUser_Interface;
-         accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2152,7 +2152,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_User
       (
          this : access IPhoneCallHistoryManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2164,7 +2164,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RequestStoreAsync
       (
          this : access IPhoneCallHistoryManagerStatics_Interface;
-         accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2177,8 +2177,8 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetForUser
       (
          this : access IPhoneCallHistoryManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2198,31 +2198,31 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetEntryReader
       (
          this : access IPhoneCallHistoryStore_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryReader
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryReader
       )
       return WinRt.Hresult is abstract;
 
       function GetEntryReader
       (
          this : access IPhoneCallHistoryStore_Interface;
-         queryOptions : Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryQueryOptions;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryReader
+         queryOptions : WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryReader
       )
       return WinRt.Hresult is abstract;
 
       function SaveEntryAsync
       (
          this : access IPhoneCallHistoryStore_Interface;
-         callHistoryEntry : Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
-         RetVal : access Windows.Foundation.IAsyncAction
+         callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteEntryAsync
       (
          this : access IPhoneCallHistoryStore_Interface;
-         callHistoryEntry : Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
-         RetVal : access Windows.Foundation.IAsyncAction
+         callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2230,15 +2230,15 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallHistoryStore_Interface;
          callHistoryEntries : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MarkEntryAsSeenAsync
       (
          this : access IPhoneCallHistoryStore_Interface;
-         callHistoryEntry : Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
-         RetVal : access Windows.Foundation.IAsyncAction
+         callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2246,7 +2246,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallHistoryStore_Interface;
          callHistoryEntries : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2260,7 +2260,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function MarkAllAsSeenAsync
       (
          this : access IPhoneCallHistoryStore_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2276,7 +2276,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallHistoryStore_Interface;
          sourceIds : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2302,7 +2302,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_StartTime
       (
          this : access IPhoneCallInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2323,7 +2323,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_CallDirection
       (
          this : access IPhoneCallInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallDirection
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2349,14 +2349,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallManagerStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CallStateChanged
       (
          this : access IPhoneCallManagerStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2396,7 +2396,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneCallStatics_Interface;
          callId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCall
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -2423,7 +2423,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RequestLineWatcher
       (
          this : access IPhoneCallStore_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneLineWatcher
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneLineWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -2460,7 +2460,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_OperationStatus
       (
          this : access IPhoneCallsResult_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneLineOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneLineOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2507,56 +2507,56 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Contact
       (
          this : access IPhoneDialOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
       function put_Contact
       (
          this : access IPhoneDialOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.IContact
+         value : WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
       function get_ContactPhone
       (
          this : access IPhoneDialOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactPhone
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactPhone
       )
       return WinRt.Hresult is abstract;
 
       function put_ContactPhone
       (
          this : access IPhoneDialOptions_Interface;
-         value : Windows.ApplicationModel.Contacts.IContactPhone
+         value : WinRt.Windows.ApplicationModel.Contacts.IContactPhone
       )
       return WinRt.Hresult is abstract;
 
       function get_Media
       (
          this : access IPhoneDialOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_Media
       (
          this : access IPhoneDialOptions_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function get_AudioEndpoint
       (
          this : access IPhoneDialOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioEndpoint
       (
          this : access IPhoneDialOptions_Interface;
-         value : Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
+         value : WinRt.Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
       )
       return WinRt.Hresult is abstract;
 
@@ -2569,14 +2569,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLine_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LineChanged
       (
          this : access IPhoneLine_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2590,14 +2590,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_DisplayColor
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkState
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneNetworkState
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneNetworkState
       )
       return WinRt.Hresult is abstract;
 
@@ -2611,7 +2611,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Voicemail
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneVoicemail
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneVoicemail
       )
       return WinRt.Hresult is abstract;
 
@@ -2625,14 +2625,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_CellularDetails
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneLineCellularDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneLineCellularDetails
       )
       return WinRt.Hresult is abstract;
 
       function get_Transport
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneLineTransport
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneLineTransport
       )
       return WinRt.Hresult is abstract;
 
@@ -2653,14 +2653,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_VideoCallingCapabilities
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallVideoCapabilities
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallVideoCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_LineConfiguration
       (
          this : access IPhoneLine_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneLineConfiguration
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneLineConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -2683,7 +2683,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function DialWithOptions
       (
          this : access IPhoneLine_Interface;
-         options : Windows.ApplicationModel.Calls.IPhoneDialOptions
+         options : WinRt.Windows.ApplicationModel.Calls.IPhoneDialOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2716,7 +2716,7 @@ package WinRt.Windows.ApplicationModel.Calls is
          this : access IPhoneLine3_Interface;
          number : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneLineDialResult
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneLineDialResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2732,7 +2732,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetAllActivePhoneCalls
       (
          this : access IPhoneLine3_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCallsResult
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCallsResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2751,7 +2751,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_SimState
       (
          this : access IPhoneLineCellularDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneSimState
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneSimState
       )
       return WinRt.Hresult is abstract;
 
@@ -2779,7 +2779,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetNetworkOperatorDisplayText
       (
          this : access IPhoneLineCellularDetails_Interface;
-         location : Windows.ApplicationModel.Calls.PhoneLineNetworkOperatorDisplayTextLocation;
+         location : WinRt.Windows.ApplicationModel.Calls.PhoneLineNetworkOperatorDisplayTextLocation;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2811,14 +2811,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_DialCallStatus
       (
          this : access IPhoneLineDialResult_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneCallOperationStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_DialedCall
       (
          this : access IPhoneLineDialResult_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneCall
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -2850,7 +2850,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Transport
       (
          this : access IPhoneLineTransportDevice_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneLineTransport
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneLineTransport
       )
       return WinRt.Hresult is abstract;
 
@@ -2870,7 +2870,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RegisterAppForUser
       (
          this : access IPhoneLineTransportDevice_Interface;
-         user : Windows.System.IUser
+         user : WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2883,7 +2883,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function UnregisterAppForUser
       (
          this : access IPhoneLineTransportDevice_Interface;
-         user : Windows.System.IUser
+         user : WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2916,7 +2916,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_AudioRoutingStatus
       (
          this : access IPhoneLineTransportDevice2_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.TransportDeviceAudioRoutingStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.TransportDeviceAudioRoutingStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2924,14 +2924,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineTransportDevice2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioRoutingStatusChanged
       (
          this : access IPhoneLineTransportDevice2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2946,14 +2946,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineTransportDevice2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InBandRingingEnabledChanged
       (
          this : access IPhoneLineTransportDevice2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2966,7 +2966,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineTransportDeviceStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Calls.IPhoneLineTransportDevice
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IPhoneLineTransportDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -2980,7 +2980,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetDeviceSelector
       (
          this : access IPhoneLineTransportDeviceStatics_Interface;
-         transport : Windows.ApplicationModel.Calls.PhoneLineTransport;
+         transport : WinRt.Windows.ApplicationModel.Calls.PhoneLineTransport;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -3006,14 +3006,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LineAdded
       (
          this : access IPhoneLineWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3021,14 +3021,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LineRemoved
       (
          this : access IPhoneLineWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3036,14 +3036,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LineUpdated
       (
          this : access IPhoneLineWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3051,14 +3051,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPhoneLineWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3066,21 +3066,21 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IPhoneLineWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPhoneLineWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPhoneLineWatcher_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneLineWatcherStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneLineWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3118,14 +3118,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_Type
       (
          this : access IPhoneVoicemail_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.PhoneVoicemailType
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.PhoneVoicemailType
       )
       return WinRt.Hresult is abstract;
 
       function DialVoicemailAsync
       (
          this : access IPhoneVoicemail_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3146,14 +3146,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipCallCoordinator_Interface;
          muteChangeHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MuteStateChanged
       (
          this : access IVoipCallCoordinator_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3163,14 +3163,14 @@ package WinRt.Windows.ApplicationModel.Calls is
          context : WinRt.HString;
          contactName : WinRt.HString;
          contactNumber : WinRt.HString;
-         contactImage : Windows.Foundation.IUriRuntimeClass;
+         contactImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          serviceName : WinRt.HString;
-         brandingImage : Windows.Foundation.IUriRuntimeClass;
+         brandingImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          callDetails : WinRt.HString;
-         ringtone : Windows.Foundation.IUriRuntimeClass;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-         ringTimeout : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         ringtone : WinRt.Windows.Foundation.IUriRuntimeClass;
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+         ringTimeout : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3180,8 +3180,8 @@ package WinRt.Windows.ApplicationModel.Calls is
          context : WinRt.HString;
          contactName : WinRt.HString;
          serviceName : WinRt.HString;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3204,7 +3204,7 @@ package WinRt.Windows.ApplicationModel.Calls is
          context : WinRt.HString;
          contactName : WinRt.HString;
          serviceName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3214,13 +3214,13 @@ package WinRt.Windows.ApplicationModel.Calls is
          context : WinRt.HString;
          contactName : WinRt.HString;
          contactNumber : WinRt.HString;
-         contactImage : Windows.Foundation.IUriRuntimeClass;
+         contactImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          serviceName : WinRt.HString;
-         brandingImage : Windows.Foundation.IUriRuntimeClass;
+         brandingImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          callDetails : WinRt.HString;
-         ringtone : Windows.Foundation.IUriRuntimeClass;
-         ringTimeout : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         ringtone : WinRt.Windows.Foundation.IUriRuntimeClass;
+         ringTimeout : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3250,8 +3250,8 @@ package WinRt.Windows.ApplicationModel.Calls is
          contactName : WinRt.HString;
          contactNumber : WinRt.HString;
          serviceName : WinRt.HString;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3267,8 +3267,8 @@ package WinRt.Windows.ApplicationModel.Calls is
          contactName : WinRt.HString;
          contactNumber : WinRt.HString;
          serviceName : WinRt.HString;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3278,15 +3278,15 @@ package WinRt.Windows.ApplicationModel.Calls is
          context : WinRt.HString;
          contactName : WinRt.HString;
          contactNumber : WinRt.HString;
-         contactImage : Windows.Foundation.IUriRuntimeClass;
+         contactImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          serviceName : WinRt.HString;
-         brandingImage : Windows.Foundation.IUriRuntimeClass;
+         brandingImage : WinRt.Windows.Foundation.IUriRuntimeClass;
          callDetails : WinRt.HString;
-         ringtone : Windows.Foundation.IUriRuntimeClass;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-         ringTimeout : Windows.Foundation.TimeSpan;
+         ringtone : WinRt.Windows.Foundation.IUriRuntimeClass;
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+         ringTimeout : WinRt.Windows.Foundation.TimeSpan;
          contactRemoteId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3310,32 +3310,32 @@ package WinRt.Windows.ApplicationModel.Calls is
       function RequestNewIncomingCallWithOptions
       (
          this : access IVoipCallCoordinator5_Interface;
-         callOptions : Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         callOptions : WinRt.Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
       function RequestNewOutgoingCallWithOptions
       (
          this : access IVoipCallCoordinator5_Interface;
-         callOptions : Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         callOptions : WinRt.Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
       function SetupNewAcceptedCallWithOptions
       (
          this : access IVoipCallCoordinator5_Interface;
-         callOptions : Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         callOptions : WinRt.Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
       function RequestNewAppInitiatedCallWithOptions
       (
          this : access IVoipCallCoordinator5_Interface;
-         callOptions : Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipPhoneCall
+         callOptions : WinRt.Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipPhoneCall
       )
       return WinRt.Hresult is abstract;
 
@@ -3347,7 +3347,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function GetDefault
       (
          this : access IVoipCallCoordinatorStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.IVoipCallCoordinator
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.IVoipCallCoordinator
       )
       return WinRt.Hresult is abstract;
 
@@ -3359,7 +3359,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function IsCallControlDeviceKindSupportedForAssociation
       (
          this : access IVoipCallCoordinatorStatics2_Interface;
-         kind : Windows.ApplicationModel.Calls.VoipCallControlDeviceKind;
+         kind : WinRt.Windows.ApplicationModel.Calls.VoipCallControlDeviceKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3380,14 +3380,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EndRequested
       (
          this : access IVoipPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3395,14 +3395,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HoldRequested
       (
          this : access IVoipPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3410,14 +3410,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipPhoneCall_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResumeRequested
       (
          this : access IVoipPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3425,14 +3425,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipPhoneCall_Interface;
          acceptHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AnswerRequested
       (
          this : access IVoipPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3440,14 +3440,14 @@ package WinRt.Windows.ApplicationModel.Calls is
       (
          this : access IVoipPhoneCall_Interface;
          rejectHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RejectRequested
       (
          this : access IVoipPhoneCall_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3486,28 +3486,28 @@ package WinRt.Windows.ApplicationModel.Calls is
       function get_StartTime
       (
          this : access IVoipPhoneCall_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_StartTime
       (
          this : access IVoipPhoneCall_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_CallMedia
       (
          this : access IVoipPhoneCall_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
       function put_CallMedia
       (
          this : access IVoipPhoneCall_Interface;
-         value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -3536,7 +3536,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       function NotifyCallAccepted
       (
          this : access IVoipPhoneCall3_Interface;
-         media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+         media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
       )
       return WinRt.Hresult is abstract;
 
@@ -3670,7 +3670,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out AcceptedVoipPhoneCallOptions;
-      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    function get_AssociatedDeviceIds
@@ -3756,7 +3756,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out AppInitiatedVoipPhoneCallOptions;
-      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    function get_AssociatedDeviceIds
@@ -3881,7 +3881,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_ContactImage
    (
       this : in out IncomingVoipPhoneCallOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ServiceName
@@ -3905,7 +3905,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_BrandingImage
    (
       this : in out IncomingVoipPhoneCallOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_CallDetails
@@ -3929,7 +3929,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Ringtone
    (
       this : in out IncomingVoipPhoneCallOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Media
@@ -3941,7 +3941,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out IncomingVoipPhoneCallOptions;
-      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    function get_RingTimeout
@@ -3953,7 +3953,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_RingTimeout
    (
       this : in out IncomingVoipPhoneCallOptions;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ContactRemoteId
@@ -4033,7 +4033,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_EndRequested
    (
       this : in out LockScreenCallUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -4046,7 +4046,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_Closed
    (
       this : in out LockScreenCallUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CallTitle
@@ -4141,7 +4141,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out OutgoingVoipPhoneCallOptions;
-      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    function get_AssociatedDeviceIds
@@ -4178,7 +4178,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_StatusChanged
    (
       this : in out PhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AudioDeviceChanged
@@ -4191,7 +4191,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_AudioDeviceChanged
    (
       this : in out PhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_IsMutedChanged
@@ -4204,7 +4204,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_IsMutedChanged
    (
       this : in out PhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CallId
@@ -4258,16 +4258,16 @@ package WinRt.Windows.ApplicationModel.Calls is
    function SendDtmfKey
    (
       this : in out PhoneCall;
-      key : Windows.ApplicationModel.Calls.DtmfKey;
-      dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
+      key : WinRt.Windows.ApplicationModel.Calls.DtmfKey;
+      dtmfToneAudioPlayback : WinRt.Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
 
    function SendDtmfKeyAsync
    (
       this : in out PhoneCall;
-      key : Windows.ApplicationModel.Calls.DtmfKey;
-      dtmfToneAudioPlayback : Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
+      key : WinRt.Windows.ApplicationModel.Calls.DtmfKey;
+      dtmfToneAudioPlayback : WinRt.Windows.ApplicationModel.Calls.DtmfToneAudioPlayback
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
 
@@ -4346,14 +4346,14 @@ package WinRt.Windows.ApplicationModel.Calls is
    function ChangeAudioDevice
    (
       this : in out PhoneCall;
-      endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice
+      endpoint : WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
 
    function ChangeAudioDeviceAsync
    (
       this : in out PhoneCall;
-      endpoint : Windows.ApplicationModel.Calls.PhoneCallAudioDevice
+      endpoint : WinRt.Windows.ApplicationModel.Calls.PhoneCallAudioDevice
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallOperationStatus;
 
@@ -4414,7 +4414,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Address
    (
       this : in out PhoneCallHistoryEntry;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress'Class
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress'Class
    );
 
    function get_Duration
@@ -4534,7 +4534,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out PhoneCallHistoryEntry;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryMedia
    );
 
    function get_OtherAppReadAccess
@@ -4546,7 +4546,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_OtherAppReadAccess
    (
       this : in out PhoneCallHistoryEntry;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryOtherAppReadAccess
    );
 
    function get_RemoteId
@@ -4588,7 +4588,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_SourceIdKind
    (
       this : in out PhoneCallHistoryEntry;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistorySourceIdKind
    );
 
    function get_StartTime
@@ -4600,7 +4600,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_StartTime
    (
       this : in out PhoneCallHistoryEntry;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    -----------------------------------------------------------------------------
@@ -4617,7 +4617,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    function Constructor
    (
       rawAddress : WinRt.WString;
-      rawAddressKind : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
+      rawAddressKind : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
    )
    return PhoneCallHistoryEntryAddress;
 
@@ -4669,7 +4669,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_RawAddressKind
    (
       this : in out PhoneCallHistoryEntryAddress;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind
    );
 
    -----------------------------------------------------------------------------
@@ -4695,7 +4695,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_DesiredMedia
    (
       this : in out PhoneCallHistoryEntryQueryOptions;
-      value : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryDesiredMedia
    );
 
    function get_SourceIds
@@ -4725,13 +4725,13 @@ package WinRt.Windows.ApplicationModel.Calls is
 
       function RequestStoreAsync
       (
-         accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
+         accessType : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStore;
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryManagerForUser;
 
@@ -4749,7 +4749,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    function RequestStoreAsync
    (
       this : in out PhoneCallHistoryManagerForUser;
-      accessType : Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryStore'Class;
 
@@ -4784,20 +4784,20 @@ package WinRt.Windows.ApplicationModel.Calls is
    function GetEntryReader
    (
       this : in out PhoneCallHistoryStore;
-      queryOptions : Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryOptions'Class
+      queryOptions : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntryReader'Class;
 
    procedure SaveEntryAsync
    (
       this : in out PhoneCallHistoryStore;
-      callHistoryEntry : Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
+      callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
    );
 
    procedure DeleteEntryAsync
    (
       this : in out PhoneCallHistoryStore;
-      callHistoryEntry : Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
+      callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
    );
 
    procedure DeleteEntriesAsync
@@ -4809,7 +4809,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure MarkEntryAsSeenAsync
    (
       this : in out PhoneCallHistoryStore;
-      callHistoryEntry : Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
+      callHistoryEntry : WinRt.Windows.ApplicationModel.Calls.PhoneCallHistoryEntry'Class
    );
 
    procedure MarkEntriesAsSeenAsync
@@ -4899,7 +4899,7 @@ package WinRt.Windows.ApplicationModel.Calls is
 
       procedure remove_CallStateChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_IsCallActive
@@ -5044,7 +5044,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Contact
    (
       this : in out PhoneDialOptions;
-      value : Windows.ApplicationModel.Contacts.Contact'Class
+      value : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    function get_ContactPhone
@@ -5056,7 +5056,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_ContactPhone
    (
       this : in out PhoneDialOptions;
-      value : Windows.ApplicationModel.Contacts.ContactPhone'Class
+      value : WinRt.Windows.ApplicationModel.Contacts.ContactPhone'Class
    );
 
    function get_Media
@@ -5068,7 +5068,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_Media
    (
       this : in out PhoneDialOptions;
-      value : Windows.ApplicationModel.Calls.PhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneCallMedia
    );
 
    function get_AudioEndpoint
@@ -5080,7 +5080,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_AudioEndpoint
    (
       this : in out PhoneDialOptions;
-      value : Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
+      value : WinRt.Windows.ApplicationModel.Calls.PhoneAudioRoutingEndpoint
    );
 
    -----------------------------------------------------------------------------
@@ -5111,7 +5111,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_LineChanged
    (
       this : in out PhoneLine;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Id
@@ -5203,7 +5203,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure DialWithOptions
    (
       this : in out PhoneLine;
-      options : Windows.ApplicationModel.Calls.PhoneDialOptions'Class
+      options : WinRt.Windows.ApplicationModel.Calls.PhoneDialOptions'Class
    );
 
    procedure EnableTextReply
@@ -5282,7 +5282,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    function GetNetworkOperatorDisplayText
    (
       this : in out PhoneLineCellularDetails;
-      location : Windows.ApplicationModel.Calls.PhoneLineNetworkOperatorDisplayTextLocation
+      location : WinRt.Windows.ApplicationModel.Calls.PhoneLineNetworkOperatorDisplayTextLocation
    )
    return WinRt.WString;
 
@@ -5348,7 +5348,7 @@ package WinRt.Windows.ApplicationModel.Calls is
 
    function GetDeviceSelector
    (
-      transport : Windows.ApplicationModel.Calls.PhoneLineTransport
+      transport : WinRt.Windows.ApplicationModel.Calls.PhoneLineTransport
    )
    return WinRt.WString;
 
@@ -5381,7 +5381,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure RegisterAppForUser
    (
       this : in out PhoneLineTransportDevice;
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    );
 
    procedure UnregisterApp
@@ -5392,7 +5392,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure UnregisterAppForUser
    (
       this : in out PhoneLineTransportDevice;
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    );
 
    function IsRegistered
@@ -5429,7 +5429,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_AudioRoutingStatusChanged
    (
       this : in out PhoneLineTransportDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_InBandRingingEnabled
@@ -5448,7 +5448,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_InBandRingingEnabledChanged
    (
       this : in out PhoneLineTransportDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5480,7 +5480,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_LineAdded
    (
       this : in out PhoneLineWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LineRemoved
@@ -5493,7 +5493,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_LineRemoved
    (
       this : in out PhoneLineWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LineUpdated
@@ -5506,7 +5506,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_LineUpdated
    (
       this : in out PhoneLineWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -5519,7 +5519,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_EnumerationCompleted
    (
       this : in out PhoneLineWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -5532,7 +5532,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_Stopped
    (
       this : in out PhoneLineWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -5599,7 +5599,7 @@ package WinRt.Windows.ApplicationModel.Calls is
 
    function IsCallControlDeviceKindSupportedForAssociation
    (
-      kind : Windows.ApplicationModel.Calls.VoipCallControlDeviceKind
+      kind : WinRt.Windows.ApplicationModel.Calls.VoipCallControlDeviceKind
    )
    return WinRt.Boolean;
 
@@ -5629,7 +5629,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_MuteStateChanged
    (
       this : in out VoipCallCoordinator;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RequestNewIncomingCall
@@ -5638,13 +5638,13 @@ package WinRt.Windows.ApplicationModel.Calls is
       context : WinRt.WString;
       contactName : WinRt.WString;
       contactNumber : WinRt.WString;
-      contactImage : Windows.Foundation.Uri'Class;
+      contactImage : WinRt.Windows.Foundation.Uri'Class;
       serviceName : WinRt.WString;
-      brandingImage : Windows.Foundation.Uri'Class;
+      brandingImage : WinRt.Windows.Foundation.Uri'Class;
       callDetails : WinRt.WString;
-      ringtone : Windows.Foundation.Uri'Class;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-      ringTimeout : Windows.Foundation.TimeSpan
+      ringtone : WinRt.Windows.Foundation.Uri'Class;
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+      ringTimeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5654,7 +5654,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       context : WinRt.WString;
       contactName : WinRt.WString;
       serviceName : WinRt.WString;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5684,12 +5684,12 @@ package WinRt.Windows.ApplicationModel.Calls is
       context : WinRt.WString;
       contactName : WinRt.WString;
       contactNumber : WinRt.WString;
-      contactImage : Windows.Foundation.Uri'Class;
+      contactImage : WinRt.Windows.Foundation.Uri'Class;
       serviceName : WinRt.WString;
-      brandingImage : Windows.Foundation.Uri'Class;
+      brandingImage : WinRt.Windows.Foundation.Uri'Class;
       callDetails : WinRt.WString;
-      ringtone : Windows.Foundation.Uri'Class;
-      ringTimeout : Windows.Foundation.TimeSpan
+      ringtone : WinRt.Windows.Foundation.Uri'Class;
+      ringTimeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5712,7 +5712,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       contactName : WinRt.WString;
       contactNumber : WinRt.WString;
       serviceName : WinRt.WString;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5723,7 +5723,7 @@ package WinRt.Windows.ApplicationModel.Calls is
       contactName : WinRt.WString;
       contactNumber : WinRt.WString;
       serviceName : WinRt.WString;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5733,13 +5733,13 @@ package WinRt.Windows.ApplicationModel.Calls is
       context : WinRt.WString;
       contactName : WinRt.WString;
       contactNumber : WinRt.WString;
-      contactImage : Windows.Foundation.Uri'Class;
+      contactImage : WinRt.Windows.Foundation.Uri'Class;
       serviceName : WinRt.WString;
-      brandingImage : Windows.Foundation.Uri'Class;
+      brandingImage : WinRt.Windows.Foundation.Uri'Class;
       callDetails : WinRt.WString;
-      ringtone : Windows.Foundation.Uri'Class;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
-      ringTimeout : Windows.Foundation.TimeSpan;
+      ringtone : WinRt.Windows.Foundation.Uri'Class;
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia;
+      ringTimeout : WinRt.Windows.Foundation.TimeSpan;
       contactRemoteId : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
@@ -5753,28 +5753,28 @@ package WinRt.Windows.ApplicationModel.Calls is
    function RequestNewIncomingCallWithOptions
    (
       this : in out VoipCallCoordinator;
-      callOptions : Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions'Class
+      callOptions : WinRt.Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
    function RequestNewOutgoingCallWithOptions
    (
       this : in out VoipCallCoordinator;
-      callOptions : Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions'Class
+      callOptions : WinRt.Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
    function SetupNewAcceptedCallWithOptions
    (
       this : in out VoipCallCoordinator;
-      callOptions : Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions'Class
+      callOptions : WinRt.Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
    function RequestNewAppInitiatedCallWithOptions
    (
       this : in out VoipCallCoordinator;
-      callOptions : Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions'Class
+      callOptions : WinRt.Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Calls.VoipPhoneCall'Class;
 
@@ -5797,7 +5797,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_EndRequested
    (
       this : in out VoipPhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HoldRequested
@@ -5810,7 +5810,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_HoldRequested
    (
       this : in out VoipPhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResumeRequested
@@ -5823,7 +5823,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_ResumeRequested
    (
       this : in out VoipPhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AnswerRequested
@@ -5836,7 +5836,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_AnswerRequested
    (
       this : in out VoipPhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RejectRequested
@@ -5849,7 +5849,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure remove_RejectRequested
    (
       this : in out VoipPhoneCall;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure NotifyCallHeld
@@ -5888,7 +5888,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_StartTime
    (
       this : in out VoipPhoneCall;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_CallMedia
@@ -5900,7 +5900,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure put_CallMedia
    (
       this : in out VoipPhoneCall;
-      value : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      value : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    procedure NotifyCallReady
@@ -5916,7 +5916,7 @@ package WinRt.Windows.ApplicationModel.Calls is
    procedure NotifyCallAccepted
    (
       this : in out VoipPhoneCall;
-      media : Windows.ApplicationModel.Calls.VoipPhoneCallMedia
+      media : WinRt.Windows.ApplicationModel.Calls.VoipPhoneCallMedia
    );
 
    function get_IsUsingAssociatedDevicesList

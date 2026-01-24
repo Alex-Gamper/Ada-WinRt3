@@ -180,49 +180,49 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_Author
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialUserInfo
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialUserInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_PrimaryContent
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_SecondaryContent
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_Timestamp
       (
          this : access ISocialFeedChildItem_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetUri
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialFeedChildItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -236,14 +236,14 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_SharedItem
       (
          this : access ISocialFeedChildItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
       )
       return WinRt.Hresult is abstract;
 
       function put_SharedItem
       (
          this : access ISocialFeedChildItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
+         value : WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
       )
       return WinRt.Hresult is abstract;
 
@@ -283,14 +283,14 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_TargetUri
       (
          this : access ISocialFeedContent_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialFeedContent_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -302,49 +302,49 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_Author
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialUserInfo
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialUserInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_PrimaryContent
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_SecondaryContent
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_Timestamp
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetUri
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -358,28 +358,28 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_SharedItem
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
       )
       return WinRt.Hresult is abstract;
 
       function put_SharedItem
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
+         value : WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem
       )
       return WinRt.Hresult is abstract;
 
       function get_BadgeStyle
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_BadgeStyle
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
+         value : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -414,28 +414,28 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_ChildItem
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem
       )
       return WinRt.Hresult is abstract;
 
       function put_ChildItem
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem
+         value : WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem
       )
       return WinRt.Hresult is abstract;
 
       function get_Style
       (
          this : access ISocialFeedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_Style
       (
          this : access ISocialFeedItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
+         value : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -447,63 +447,63 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_OriginalSource
       (
          this : access ISocialFeedSharedItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_OriginalSource
       (
          this : access ISocialFeedSharedItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Content
       (
          this : access ISocialFeedSharedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialFeedContent
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access ISocialFeedSharedItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_Timestamp
       (
          this : access ISocialFeedSharedItem_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetUri
       (
          this : access ISocialFeedSharedItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialFeedSharedItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access ISocialFeedSharedItem_Interface;
-         value : Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
+         value : WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access ISocialFeedSharedItem_Interface;
-         RetVal : access Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
+         RetVal : access WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail
       )
       return WinRt.Hresult is abstract;
 
@@ -515,50 +515,50 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_TargetUri
       (
          this : access ISocialItemThumbnail_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialItemThumbnail_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ImageUri
       (
          this : access ISocialItemThumbnail_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ImageUri
       (
          this : access ISocialItemThumbnail_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapSize
       (
          this : access ISocialItemThumbnail_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapSize
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function put_BitmapSize
       (
          this : access ISocialItemThumbnail_Interface;
-         value : Windows.Graphics.Imaging.BitmapSize
+         value : WinRt.Windows.Graphics.Imaging.BitmapSize
       )
       return WinRt.Hresult is abstract;
 
       function SetImageAsync
       (
          this : access ISocialItemThumbnail_Interface;
-         image : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         image : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -612,14 +612,14 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
       function get_TargetUri
       (
          this : access ISocialUserInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetUri
       (
          this : access ISocialUserInfo_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -670,7 +670,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_Timestamp
    (
       this : in out SocialFeedChildItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_TargetUri
@@ -682,7 +682,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialFeedChildItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Thumbnails
@@ -700,7 +700,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_SharedItem
    (
       this : in out SocialFeedChildItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
    );
 
    -----------------------------------------------------------------------------
@@ -745,7 +745,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialFeedContent;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -789,7 +789,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_Timestamp
    (
       this : in out SocialFeedItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_TargetUri
@@ -801,7 +801,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialFeedItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Thumbnails
@@ -819,7 +819,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_SharedItem
    (
       this : in out SocialFeedItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem'Class
    );
 
    function get_BadgeStyle
@@ -831,7 +831,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_BadgeStyle
    (
       this : in out SocialFeedItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemBadgeStyle
    );
 
    function get_BadgeCountValue
@@ -867,7 +867,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_ChildItem
    (
       this : in out SocialFeedItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialFeedChildItem'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedChildItem'Class
    );
 
    function get_Style
@@ -879,7 +879,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_Style
    (
       this : in out SocialFeedItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedItemStyle
    );
 
    -----------------------------------------------------------------------------
@@ -905,7 +905,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_OriginalSource
    (
       this : in out SocialFeedSharedItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Content
@@ -923,7 +923,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_Timestamp
    (
       this : in out SocialFeedSharedItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_TargetUri
@@ -935,13 +935,13 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialFeedSharedItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure put_Thumbnail
    (
       this : in out SocialFeedSharedItem;
-      value : Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
    );
 
    function get_Thumbnail
@@ -973,7 +973,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialItemThumbnail;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ImageUri
@@ -985,7 +985,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_ImageUri
    (
       this : in out SocialItemThumbnail;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_BitmapSize
@@ -997,13 +997,13 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_BitmapSize
    (
       this : in out SocialItemThumbnail;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    );
 
    procedure SetImageAsync
    (
       this : in out SocialItemThumbnail;
-      image : Windows.Storage.Streams.IInputStream
+      image : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    -----------------------------------------------------------------------------
@@ -1060,7 +1060,7 @@ package WinRt.Windows.ApplicationModel.SocialInfo is
    procedure put_TargetUri
    (
       this : in out SocialUserInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
 end WinRt.Windows.ApplicationModel.SocialInfo;

@@ -288,14 +288,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_Status
       (
          this : access IFindAllAccountsResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.FindAllWebAccountsStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.FindAllWebAccountsStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ProviderError
       (
          this : access IFindAllAccountsResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError
       )
       return WinRt.Hresult is abstract;
 
@@ -307,7 +307,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_Account
       (
          this : access IWebAccountEventArgs_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -320,14 +320,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebAccountMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IWebAccountMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -335,14 +335,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebAccountMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IWebAccountMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -350,14 +350,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebAccountMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DefaultSignInAccountChanged
       (
          this : access IWebAccountMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -370,14 +370,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebAccountMonitor2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountPictureUpdated
       (
          this : access IWebAccountMonitor2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -389,7 +389,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_WebAccount
       (
          this : access IWebAuthenticationAddAccountResponse_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -408,8 +408,8 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function CreateWithAccount
       (
          this : access IWebAuthenticationAddAccountResponseFactory_Interface;
-         webAccount : Windows.Security.Credentials.IWebAccount;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -421,21 +421,21 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_ResponseData
       (
          this : access IWebAuthenticationAddAccountResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseStatus
       (
          this : access IWebAuthenticationAddAccountResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseError
       (
          this : access IWebAuthenticationAddAccountResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError
       )
       return WinRt.Hresult is abstract;
 
@@ -447,7 +447,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function GetTokenSilentlyAsync
       (
          this : access IWebAuthenticationCoreManagerStatics_Interface;
-         request : Windows.Security.Authentication.Web.Core.IWebTokenRequest;
+         request : WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -455,8 +455,8 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function GetTokenSilentlyAsync
       (
          this : access IWebAuthenticationCoreManagerStatics_Interface;
-         request : Windows.Security.Authentication.Web.Core.IWebTokenRequest;
-         webAccount : Windows.Security.Credentials.IWebAccount;
+         request : WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -464,7 +464,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function RequestTokenAsync
       (
          this : access IWebAuthenticationCoreManagerStatics_Interface;
-         request : Windows.Security.Authentication.Web.Core.IWebTokenRequest;
+         request : WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -472,8 +472,8 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function RequestTokenAsync
       (
          this : access IWebAuthenticationCoreManagerStatics_Interface;
-         request : Windows.Security.Authentication.Web.Core.IWebTokenRequest;
-         webAccount : Windows.Security.Credentials.IWebAccount;
+         request : WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -481,7 +481,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function FindAccountAsync
       (
          this : access IWebAuthenticationCoreManagerStatics_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          webAccountId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -514,7 +514,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
          this : access IWebAuthenticationCoreManagerStatics2_Interface;
          webAccountProviderId : WinRt.HString;
          authority : WinRt.HString;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -528,7 +528,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebAuthenticationCoreManagerStatics3_Interface;
          webAccounts : GenericObject;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebAccountMonitor
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebAccountMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -540,7 +540,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function FindAllAccountsAsync
       (
          this : access IWebAuthenticationCoreManagerStatics4_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -548,7 +548,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function FindAllAccountsAsync
       (
          this : access IWebAuthenticationCoreManagerStatics4_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          clientId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -576,7 +576,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
          this : access IWebAuthenticationCoreManagerStatics4_Interface;
          webAccountProviderId : WinRt.HString;
          authority : WinRt.HString;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -589,7 +589,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function AddAccountWithTransferTokenAsync
       (
          this : access IWebAuthenticationCoreManagerStatics5_Interface;
-         request : Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
+         request : WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -602,7 +602,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_WebAccountProvider
       (
          this : access IWebAuthenticationTransferTokenRequest_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccountProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -649,19 +649,19 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function Create
       (
          this : access IWebAuthenticationTransferTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          transferToken : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithCorrelationId
       (
          this : access IWebAuthenticationTransferTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          transferToken : WinRt.HString;
          correlationId : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -701,7 +701,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
          this : access IWebProviderErrorFactory_Interface;
          errorCode : WinRt.UInt32;
          errorMessage : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError
       )
       return WinRt.Hresult is abstract;
 
@@ -713,7 +713,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_WebAccountProvider
       (
          this : access IWebTokenRequest_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccountProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -734,7 +734,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_PromptType
       (
          this : access IWebTokenRequest_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType
       )
       return WinRt.Hresult is abstract;
 
@@ -784,38 +784,38 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function Create
       (
          this : access IWebTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          scope : WinRt.HString;
          clientId : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenRequest
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithPromptType
       (
          this : access IWebTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          scope : WinRt.HString;
          clientId : WinRt.HString;
-         promptType : Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenRequest
+         promptType : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType;
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithProvider
       (
          this : access IWebTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenRequest
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithScope
       (
          this : access IWebTokenRequestFactory_Interface;
-         provider : Windows.Security.Credentials.IWebAccountProvider;
+         provider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          scope : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenRequest
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -834,21 +834,21 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_ResponseStatus
       (
          this : access IWebTokenRequestResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.WebTokenRequestStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseError
       (
          this : access IWebTokenRequestResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError
       )
       return WinRt.Hresult is abstract;
 
       function InvalidateCacheAsync
       (
          this : access IWebTokenRequestResult_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -867,14 +867,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       function get_ProviderError
       (
          this : access IWebTokenResponse_Interface;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebProviderError
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError
       )
       return WinRt.Hresult is abstract;
 
       function get_WebAccount
       (
          this : access IWebTokenResponse_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -894,7 +894,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebTokenResponseFactory_Interface;
          token : WinRt.HString;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenResponse
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -902,8 +902,8 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebTokenResponseFactory_Interface;
          token : WinRt.HString;
-         webAccount : Windows.Security.Credentials.IWebAccount;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenResponse
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -911,9 +911,9 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          this : access IWebTokenResponseFactory_Interface;
          token : WinRt.HString;
-         webAccount : Windows.Security.Credentials.IWebAccount;
-         error : Windows.Security.Authentication.Web.Core.IWebProviderError;
-         RetVal : access Windows.Security.Authentication.Web.Core.IWebTokenResponse
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
+         error : WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError;
+         RetVal : access WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -984,7 +984,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    procedure remove_Updated
    (
       this : in out WebAccountMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -997,7 +997,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    procedure remove_Removed
    (
       this : in out WebAccountMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DefaultSignInAccountChanged
@@ -1010,7 +1010,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    procedure remove_DefaultSignInAccountChanged
    (
       this : in out WebAccountMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AccountPictureUpdated
@@ -1023,7 +1023,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    procedure remove_AccountPictureUpdated
    (
       this : in out WebAccountMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1037,7 +1037,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    function Constructor
    (
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return WebAuthenticationAddAccountResponse;
 
@@ -1089,13 +1089,13 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
       function FindAllAccountsAsync
       (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class
+         provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
 
       function FindAllAccountsAsync
       (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class;
+         provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
          clientId : WinRt.WString
       )
       return WinRt.Windows.Security.Authentication.Web.Core.FindAllAccountsResult;
@@ -1117,13 +1117,13 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          webAccountProviderId : WinRt.WString;
          authority : WinRt.WString;
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Security.Credentials.WebAccountProvider;
 
       function AddAccountWithTransferTokenAsync
       (
-         request : Windows.Security.Authentication.Web.Core.WebAuthenticationTransferTokenRequest'Class
+         request : WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationTransferTokenRequest'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountResult;
 
@@ -1131,7 +1131,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
       (
          webAccountProviderId : WinRt.WString;
          authority : WinRt.WString;
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Security.Credentials.WebAccountProvider;
 
@@ -1143,33 +1143,33 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
       function GetTokenSilentlyAsync
       (
-         request : Windows.Security.Authentication.Web.Core.WebTokenRequest'Class
+         request : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequest'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult;
 
       function GetTokenSilentlyAsync
       (
-         request : Windows.Security.Authentication.Web.Core.WebTokenRequest'Class;
-         webAccount : Windows.Security.Credentials.WebAccount'Class
+         request : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequest'Class;
+         webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult;
 
       function RequestTokenAsync
       (
-         request : Windows.Security.Authentication.Web.Core.WebTokenRequest'Class
+         request : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequest'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult;
 
       function RequestTokenAsync
       (
-         request : Windows.Security.Authentication.Web.Core.WebTokenRequest'Class;
-         webAccount : Windows.Security.Credentials.WebAccount'Class
+         request : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequest'Class;
+         webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
       )
       return WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestResult;
 
       function FindAccountAsync
       (
-         provider : Windows.Security.Credentials.WebAccountProvider'Class;
+         provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
          webAccountId : WinRt.WString
       )
       return WinRt.Windows.Security.Credentials.WebAccount;
@@ -1200,14 +1200,14 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       transferToken : WinRt.WString
    )
    return WebAuthenticationTransferTokenRequest;
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       transferToken : WinRt.WString;
       correlationId : WinRt.WString
    )
@@ -1300,7 +1300,7 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       scope : WinRt.WString;
       clientId : WinRt.WString
    )
@@ -1308,22 +1308,22 @@ package WinRt.Windows.Security.Authentication.Web.Core is
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       scope : WinRt.WString;
       clientId : WinRt.WString;
-      promptType : Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType
+      promptType : WinRt.Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType
    )
    return WebTokenRequest;
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class
    )
    return WebTokenRequest;
 
    function Constructor
    (
-      provider : Windows.Security.Credentials.WebAccountProvider'Class;
+      provider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       scope : WinRt.WString
    )
    return WebTokenRequest;
@@ -1429,15 +1429,15 @@ package WinRt.Windows.Security.Authentication.Web.Core is
    function Constructor
    (
       token : WinRt.WString;
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return WebTokenResponse;
 
    function Constructor
    (
       token : WinRt.WString;
-      webAccount : Windows.Security.Credentials.WebAccount'Class;
-      error : Windows.Security.Authentication.Web.Core.WebProviderError'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class;
+      error : WinRt.Windows.Security.Authentication.Web.Core.WebProviderError'Class
    )
    return WebTokenResponse;
 

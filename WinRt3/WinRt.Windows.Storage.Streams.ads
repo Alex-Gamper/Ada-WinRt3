@@ -289,7 +289,7 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IBufferFactory_Interface;
          capacity : WinRt.UInt32;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -301,16 +301,16 @@ package WinRt.Windows.Storage.Streams is
       function CreateCopyFromMemoryBuffer
       (
          this : access IBufferStatics_Interface;
-         input : Windows.Foundation.IMemoryBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         input : WinRt.Windows.Foundation.IMemoryBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CreateMemoryBufferOverIBuffer
       (
          this : access IBufferStatics_Interface;
-         input : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IMemoryBuffer
+         input : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IMemoryBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -341,42 +341,42 @@ package WinRt.Windows.Storage.Streams is
       function get_UnicodeEncoding
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Storage.Streams.UnicodeEncoding
+         RetVal : access WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.Hresult is abstract;
 
       function put_UnicodeEncoding
       (
          this : access IDataReader_Interface;
-         value : Windows.Storage.Streams.UnicodeEncoding
+         value : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.Hresult is abstract;
 
       function get_ByteOrder
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Storage.Streams.ByteOrder
+         RetVal : access WinRt.Windows.Storage.Streams.ByteOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_ByteOrder
       (
          this : access IDataReader_Interface;
-         value : Windows.Storage.Streams.ByteOrder
+         value : WinRt.Windows.Storage.Streams.ByteOrder
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStreamOptions
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Storage.Streams.InputStreamOptions
+         RetVal : access WinRt.Windows.Storage.Streams.InputStreamOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_InputStreamOptions
       (
          this : access IDataReader_Interface;
-         value : Windows.Storage.Streams.InputStreamOptions
+         value : WinRt.Windows.Storage.Streams.InputStreamOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -399,7 +399,7 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IDataReader_Interface;
          length : WinRt.UInt32;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -484,14 +484,14 @@ package WinRt.Windows.Storage.Streams is
       function ReadDateTime
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function ReadTimeSpan
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -506,14 +506,14 @@ package WinRt.Windows.Storage.Streams is
       function DetachBuffer
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function DetachStream
       (
          this : access IDataReader_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -525,8 +525,8 @@ package WinRt.Windows.Storage.Streams is
       function CreateDataReader
       (
          this : access IDataReaderFactory_Interface;
-         inputStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Storage.Streams.IDataReader
+         inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Storage.Streams.IDataReader
       )
       return WinRt.Hresult is abstract;
 
@@ -538,8 +538,8 @@ package WinRt.Windows.Storage.Streams is
       function FromBuffer
       (
          this : access IDataReaderStatics_Interface;
-         buffer_p : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IDataReader
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IDataReader
       )
       return WinRt.Hresult is abstract;
 
@@ -558,28 +558,28 @@ package WinRt.Windows.Storage.Streams is
       function get_UnicodeEncoding
       (
          this : access IDataWriter_Interface;
-         RetVal : access Windows.Storage.Streams.UnicodeEncoding
+         RetVal : access WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.Hresult is abstract;
 
       function put_UnicodeEncoding
       (
          this : access IDataWriter_Interface;
-         value : Windows.Storage.Streams.UnicodeEncoding
+         value : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.Hresult is abstract;
 
       function get_ByteOrder
       (
          this : access IDataWriter_Interface;
-         RetVal : access Windows.Storage.Streams.ByteOrder
+         RetVal : access WinRt.Windows.Storage.Streams.ByteOrder
       )
       return WinRt.Hresult is abstract;
 
       function put_ByteOrder
       (
          this : access IDataWriter_Interface;
-         value : Windows.Storage.Streams.ByteOrder
+         value : WinRt.Windows.Storage.Streams.ByteOrder
       )
       return WinRt.Hresult is abstract;
 
@@ -601,14 +601,14 @@ package WinRt.Windows.Storage.Streams is
       function WriteBuffer
       (
          this : access IDataWriter_Interface;
-         buffer_p : Windows.Storage.Streams.IBuffer
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function WriteBuffer
       (
          this : access IDataWriter_Interface;
-         buffer_p : Windows.Storage.Streams.IBuffer;
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
          start : WinRt.UInt32;
          count : WinRt.UInt32
       )
@@ -687,14 +687,14 @@ package WinRt.Windows.Storage.Streams is
       function WriteDateTime
       (
          this : access IDataWriter_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function WriteTimeSpan
       (
          this : access IDataWriter_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -731,14 +731,14 @@ package WinRt.Windows.Storage.Streams is
       function DetachBuffer
       (
          this : access IDataWriter_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function DetachStream
       (
          this : access IDataWriter_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -750,8 +750,8 @@ package WinRt.Windows.Storage.Streams is
       function CreateDataWriter
       (
          this : access IDataWriterFactory_Interface;
-         outputStream : Windows.Storage.Streams.IOutputStream;
-         RetVal : access Windows.Storage.Streams.IDataWriter
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         RetVal : access WinRt.Windows.Storage.Streams.IDataWriter
       )
       return WinRt.Hresult is abstract;
 
@@ -764,7 +764,7 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IFileRandomAccessStreamStatics_Interface;
          filePath : WinRt.HString;
-         accessMode : Windows.Storage.FileAccessMode;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -773,9 +773,9 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IFileRandomAccessStreamStatics_Interface;
          filePath : WinRt.HString;
-         accessMode : Windows.Storage.FileAccessMode;
-         sharingOptions : Windows.Storage.StorageOpenOptions;
-         openDisposition : Windows.Storage.Streams.FileOpenDisposition;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
+         sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+         openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -792,8 +792,8 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IFileRandomAccessStreamStatics_Interface;
          filePath : WinRt.HString;
-         openOptions : Windows.Storage.StorageOpenOptions;
-         openDisposition : Windows.Storage.Streams.FileOpenDisposition;
+         openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+         openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -801,9 +801,9 @@ package WinRt.Windows.Storage.Streams is
       function OpenForUserAsync
       (
          this : access IFileRandomAccessStreamStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          filePath : WinRt.HString;
-         accessMode : Windows.Storage.FileAccessMode;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -811,11 +811,11 @@ package WinRt.Windows.Storage.Streams is
       function OpenForUserAsync
       (
          this : access IFileRandomAccessStreamStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          filePath : WinRt.HString;
-         accessMode : Windows.Storage.FileAccessMode;
-         sharingOptions : Windows.Storage.StorageOpenOptions;
-         openDisposition : Windows.Storage.Streams.FileOpenDisposition;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
+         sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+         openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -823,7 +823,7 @@ package WinRt.Windows.Storage.Streams is
       function OpenTransactedWriteForUserAsync
       (
          this : access IFileRandomAccessStreamStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          filePath : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -832,10 +832,10 @@ package WinRt.Windows.Storage.Streams is
       function OpenTransactedWriteForUserAsync
       (
          this : access IFileRandomAccessStreamStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          filePath : WinRt.HString;
-         openOptions : Windows.Storage.StorageOpenOptions;
-         openDisposition : Windows.Storage.Streams.FileOpenDisposition;
+         openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+         openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -848,9 +848,9 @@ package WinRt.Windows.Storage.Streams is
       function ReadAsync
       (
          this : access IInputStream_Interface;
-         buffer_p : Windows.Storage.Streams.IBuffer;
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
          count : WinRt.UInt32;
-         options : Windows.Storage.Streams.InputStreamOptions;
+         options : WinRt.Windows.Storage.Streams.InputStreamOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -875,7 +875,7 @@ package WinRt.Windows.Storage.Streams is
       function WriteAsync
       (
          this : access IOutputStream_Interface;
-         buffer_p : Windows.Storage.Streams.IBuffer;
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -895,16 +895,16 @@ package WinRt.Windows.Storage.Streams is
       function Serialize
       (
          this : access IPropertySetSerializer_Interface;
-         propertySet : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         propertySet : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function Deserialize
       (
          this : access IPropertySetSerializer_Interface;
-         propertySet : Windows.Foundation.Collections.IPropertySet;
-         buffer_p : Windows.Storage.Streams.IBuffer
+         propertySet : WinRt.Windows.Foundation.Collections.IPropertySet;
+         buffer_p : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -931,7 +931,7 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IRandomAccessStream_Interface;
          position : WinRt.UInt64;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -939,7 +939,7 @@ package WinRt.Windows.Storage.Streams is
       (
          this : access IRandomAccessStream_Interface;
          position : WinRt.UInt64;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -960,7 +960,7 @@ package WinRt.Windows.Storage.Streams is
       function CloneStream
       (
          this : access IRandomAccessStream_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -998,24 +998,24 @@ package WinRt.Windows.Storage.Streams is
       function CreateFromFile
       (
          this : access IRandomAccessStreamReferenceStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUri
       (
          this : access IRandomAccessStreamReferenceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStream
       (
          this : access IRandomAccessStreamReferenceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,8 +1027,8 @@ package WinRt.Windows.Storage.Streams is
       function CopyAsync
       (
          this : access IRandomAccessStreamStatics_Interface;
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream;
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1036,8 +1036,8 @@ package WinRt.Windows.Storage.Streams is
       function CopyAsync
       (
          this : access IRandomAccessStreamStatics_Interface;
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream;
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream;
          bytesToCopy : WinRt.UInt64;
          RetVal : access GenericObject
       )
@@ -1046,8 +1046,8 @@ package WinRt.Windows.Storage.Streams is
       function CopyAndCloseAsync
       (
          this : access IRandomAccessStreamStatics_Interface;
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream;
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1083,13 +1083,13 @@ package WinRt.Windows.Storage.Streams is
 
    function CreateCopyFromMemoryBuffer
    (
-      input : Windows.Foundation.IMemoryBuffer
+      input : WinRt.Windows.Foundation.IMemoryBuffer
    )
    return WinRt.Windows.Storage.Streams.Buffer;
 
    function CreateMemoryBufferOverIBuffer
    (
-      input : Windows.Storage.Streams.IBuffer
+      input : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Foundation.MemoryBuffer;
 
@@ -1125,7 +1125,7 @@ package WinRt.Windows.Storage.Streams is
 
    function Constructor
    (
-      inputStream : Windows.Storage.Streams.IInputStream
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return DataReader;
 
@@ -1134,7 +1134,7 @@ package WinRt.Windows.Storage.Streams is
 
    function FromBuffer
    (
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.DataReader;
 
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Storage.Streams is
    procedure put_UnicodeEncoding
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.UnicodeEncoding
+      value : WinRt.Windows.Storage.Streams.UnicodeEncoding
    );
 
    function get_ByteOrder
@@ -1168,7 +1168,7 @@ package WinRt.Windows.Storage.Streams is
    procedure put_ByteOrder
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.ByteOrder
+      value : WinRt.Windows.Storage.Streams.ByteOrder
    );
 
    function get_InputStreamOptions
@@ -1180,7 +1180,7 @@ package WinRt.Windows.Storage.Streams is
    procedure put_InputStreamOptions
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.InputStreamOptions
+      value : WinRt.Windows.Storage.Streams.InputStreamOptions
    );
 
    function ReadByte
@@ -1372,7 +1372,7 @@ package WinRt.Windows.Storage.Streams is
 
    function Constructor
    (
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return DataWriter;
 
@@ -1396,7 +1396,7 @@ package WinRt.Windows.Storage.Streams is
    procedure put_UnicodeEncoding
    (
       this : in out DataWriter;
-      value : Windows.Storage.Streams.UnicodeEncoding
+      value : WinRt.Windows.Storage.Streams.UnicodeEncoding
    );
 
    function get_ByteOrder
@@ -1408,7 +1408,7 @@ package WinRt.Windows.Storage.Streams is
    procedure put_ByteOrder
    (
       this : in out DataWriter;
-      value : Windows.Storage.Streams.ByteOrder
+      value : WinRt.Windows.Storage.Streams.ByteOrder
    );
 
    procedure WriteByte
@@ -1426,13 +1426,13 @@ package WinRt.Windows.Storage.Streams is
    procedure WriteBuffer
    (
       this : in out DataWriter;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure WriteBuffer
    (
       this : in out DataWriter;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       start : WinRt.UInt32;
       count : WinRt.UInt32
    );
@@ -1500,13 +1500,13 @@ package WinRt.Windows.Storage.Streams is
    procedure WriteDateTime
    (
       this : in out DataWriter;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure WriteTimeSpan
    (
       this : in out DataWriter;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function WriteString
@@ -1620,9 +1620,9 @@ package WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out FileInputStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -1643,7 +1643,7 @@ package WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out FileOutputStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -1670,16 +1670,16 @@ package WinRt.Windows.Storage.Streams is
    function OpenAsync
    (
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
    function OpenAsync
    (
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode;
-      sharingOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
@@ -1692,42 +1692,42 @@ package WinRt.Windows.Storage.Streams is
    function OpenTransactedWriteAsync
    (
       filePath : WinRt.WString;
-      openOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.StorageStreamTransaction;
 
    function OpenForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
    function OpenForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode;
-      sharingOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
    function OpenTransactedWriteForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageStreamTransaction;
 
    function OpenTransactedWriteForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      openOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.StorageStreamTransaction;
 
@@ -1793,7 +1793,7 @@ package WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out FileRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -1811,9 +1811,9 @@ package WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out FileRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -1890,7 +1890,7 @@ package WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out InMemoryRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -1908,9 +1908,9 @@ package WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out InMemoryRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -1926,9 +1926,9 @@ package WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out InputStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -1949,7 +1949,7 @@ package WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out OutputStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -1970,23 +1970,23 @@ package WinRt.Windows.Storage.Streams is
 
       function CopyAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.UInt64;
 
       function CopyAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream;
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream;
          bytesToCopy : WinRt.UInt64
       )
       return WinRt.UInt64;
 
       function CopyAndCloseAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.UInt64;
 
@@ -2060,7 +2060,7 @@ package WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out RandomAccessStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -2078,9 +2078,9 @@ package WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out RandomAccessStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2095,19 +2095,19 @@ package WinRt.Windows.Storage.Streams is
 
    function CreateFromFile
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference;
 
    function CreateFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference;
 
    function CreateFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference;
 

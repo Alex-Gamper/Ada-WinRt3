@@ -265,14 +265,14 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_LicenseInformation
       (
          this : access ICurrentApp_Interface;
-         RetVal : access Windows.ApplicationModel.Store.ILicenseInformation
+         RetVal : access WinRt.Windows.ApplicationModel.Store.ILicenseInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_LinkUri
       (
          this : access ICurrentApp_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -353,14 +353,14 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_LicenseInformation
       (
          this : access ICurrentAppSimulator_Interface;
-         RetVal : access Windows.ApplicationModel.Store.ILicenseInformation
+         RetVal : access WinRt.Windows.ApplicationModel.Store.ILicenseInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_LinkUri
       (
          this : access ICurrentAppSimulator_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -413,8 +413,8 @@ package WinRt.Windows.ApplicationModel.Store is
       function ReloadSimulatorAsync
       (
          this : access ICurrentAppSimulator_Interface;
-         simulatorSettingsFile : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         simulatorSettingsFile : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -478,7 +478,7 @@ package WinRt.Windows.ApplicationModel.Store is
          this : access ICurrentAppSimulatorWithConsumables_Interface;
          productId : WinRt.HString;
          offerId : WinRt.HString;
-         displayProperties : Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+         displayProperties : WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -557,7 +557,7 @@ package WinRt.Windows.ApplicationModel.Store is
          this : access ICurrentAppWithConsumables_Interface;
          productId : WinRt.HString;
          offerId : WinRt.HString;
-         displayProperties : Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
+         displayProperties : WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -598,22 +598,22 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_ExpirationDate
       (
          this : access ILicenseInformation_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function add_LicenseChanged
       (
          this : access ILicenseInformation_Interface;
-         handler : Windows.ApplicationModel.Store.LicenseChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.ApplicationModel.Store.LicenseChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LicenseChanged
       (
          this : access ILicenseInformation_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -679,7 +679,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_SaleEndDate
       (
          this : access IListingInformation2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -719,7 +719,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_ExpirationDate
       (
          this : access IProductLicense_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -776,7 +776,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_SaleEndDate
       (
          this : access IProductListing2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -802,7 +802,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_ProductType
       (
          this : access IProductListingWithConsumables_Interface;
-         RetVal : access Windows.ApplicationModel.Store.ProductType
+         RetVal : access WinRt.Windows.ApplicationModel.Store.ProductType
       )
       return WinRt.Hresult is abstract;
 
@@ -828,7 +828,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_ProductType
       (
          this : access IProductListingWithMetadata_Interface;
-         RetVal : access Windows.ApplicationModel.Store.ProductType
+         RetVal : access WinRt.Windows.ApplicationModel.Store.ProductType
       )
       return WinRt.Hresult is abstract;
 
@@ -842,7 +842,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_ImageUri
       (
          this : access IProductListingWithMetadata_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -882,14 +882,14 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_Image
       (
          this : access IProductPurchaseDisplayProperties_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Image
       (
          this : access IProductPurchaseDisplayProperties_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -902,7 +902,7 @@ package WinRt.Windows.ApplicationModel.Store is
       (
          this : access IProductPurchaseDisplayPropertiesFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties
+         RetVal : access WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -914,7 +914,7 @@ package WinRt.Windows.ApplicationModel.Store is
       function get_Status
       (
          this : access IPurchaseResults_Interface;
-         RetVal : access Windows.ApplicationModel.Store.ProductPurchaseStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Store.ProductPurchaseStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1060,7 +1060,7 @@ package WinRt.Windows.ApplicationModel.Store is
       (
          productId : WinRt.WString;
          offerId : WinRt.WString;
-         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
+         displayProperties : WinRt.Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
       )
       return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
 
@@ -1124,7 +1124,7 @@ package WinRt.Windows.ApplicationModel.Store is
 
       procedure ReloadSimulatorAsync
       (
-         simulatorSettingsFile : Windows.Storage.StorageFile'Class
+         simulatorSettingsFile : WinRt.Windows.Storage.StorageFile'Class
       );
 
       function ReportConsumableFulfillmentAsync_CurrentAppSimulator
@@ -1144,7 +1144,7 @@ package WinRt.Windows.ApplicationModel.Store is
       (
          productId : WinRt.WString;
          offerId : WinRt.WString;
-         displayProperties : Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
+         displayProperties : WinRt.Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties'Class
       )
       return WinRt.Windows.ApplicationModel.Store.PurchaseResults;
 
@@ -1189,14 +1189,14 @@ package WinRt.Windows.ApplicationModel.Store is
    function add_LicenseChanged
    (
       this : in out LicenseInformation;
-      handler : Windows.ApplicationModel.Store.LicenseChangedEventHandler
+      handler : WinRt.Windows.ApplicationModel.Store.LicenseChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_LicenseChanged
    (
       this : in out LicenseInformation;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1435,7 +1435,7 @@ package WinRt.Windows.ApplicationModel.Store is
    procedure put_Image
    (
       this : in out ProductPurchaseDisplayProperties;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------

@@ -129,11 +129,11 @@ package WinRt.Windows.UI.Popups is
    -----------------------------------------------------------------------------
 
    IID_UICommandInvokedHandler : aliased WinRt.IID := (3673651791, 49786, 17048, (154, 198, 41, 34, 196, 94, 125, 166 ));
-   type UICommandInvokedHandler_Delegate (Callback : access procedure  (command : Windows.UI.Popups.IUICommand)) is new WinRt.IMulticastDelegate_Interface (IID_UICommandInvokedHandler'Access) with null record;
+   type UICommandInvokedHandler_Delegate (Callback : access procedure  (command : WinRt.Windows.UI.Popups.IUICommand)) is new WinRt.IMulticastDelegate_Interface (IID_UICommandInvokedHandler'Access) with null record;
       function Invoke
       (
          this : access UICommandInvokedHandler_Delegate;
-         command : Windows.UI.Popups.IUICommand
+         command : WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult;
 
@@ -225,14 +225,14 @@ package WinRt.Windows.UI.Popups is
       function get_Options
       (
          this : access IMessageDialog_Interface;
-         RetVal : access Windows.UI.Popups.MessageDialogOptions
+         RetVal : access WinRt.Windows.UI.Popups.MessageDialogOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_Options
       (
          this : access IMessageDialog_Interface;
-         value : Windows.UI.Popups.MessageDialogOptions
+         value : WinRt.Windows.UI.Popups.MessageDialogOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -245,7 +245,7 @@ package WinRt.Windows.UI.Popups is
       (
          this : access IMessageDialogFactory_Interface;
          content : WinRt.HString;
-         RetVal : access Windows.UI.Popups.IMessageDialog
+         RetVal : access WinRt.Windows.UI.Popups.IMessageDialog
       )
       return WinRt.Hresult is abstract;
 
@@ -254,7 +254,7 @@ package WinRt.Windows.UI.Popups is
          this : access IMessageDialogFactory_Interface;
          content : WinRt.HString;
          title : WinRt.HString;
-         RetVal : access Windows.UI.Popups.IMessageDialog
+         RetVal : access WinRt.Windows.UI.Popups.IMessageDialog
       )
       return WinRt.Hresult is abstract;
 
@@ -273,7 +273,7 @@ package WinRt.Windows.UI.Popups is
       function ShowAsync
       (
          this : access IPopupMenu_Interface;
-         invocationPoint : Windows.Foundation.Point;
+         invocationPoint : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -281,7 +281,7 @@ package WinRt.Windows.UI.Popups is
       function ShowForSelectionAsync
       (
          this : access IPopupMenu_Interface;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -289,8 +289,8 @@ package WinRt.Windows.UI.Popups is
       function ShowForSelectionAsync
       (
          this : access IPopupMenu_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -317,14 +317,14 @@ package WinRt.Windows.UI.Popups is
       function get_Invoked
       (
          this : access IUICommand_Interface;
-         RetVal : access Windows.UI.Popups.UICommandInvokedHandler
+         RetVal : access WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
       function put_Invoked
       (
          this : access IUICommand_Interface;
-         value : Windows.UI.Popups.UICommandInvokedHandler
+         value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -351,7 +351,7 @@ package WinRt.Windows.UI.Popups is
       (
          this : access IUICommandFactory_Interface;
          label : WinRt.HString;
-         RetVal : access Windows.UI.Popups.IUICommand
+         RetVal : access WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -359,8 +359,8 @@ package WinRt.Windows.UI.Popups is
       (
          this : access IUICommandFactory_Interface;
          label : WinRt.HString;
-         action : Windows.UI.Popups.UICommandInvokedHandler;
-         RetVal : access Windows.UI.Popups.IUICommand
+         action : WinRt.Windows.UI.Popups.UICommandInvokedHandler;
+         RetVal : access WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -368,9 +368,9 @@ package WinRt.Windows.UI.Popups is
       (
          this : access IUICommandFactory_Interface;
          label : WinRt.HString;
-         action : Windows.UI.Popups.UICommandInvokedHandler;
+         action : WinRt.Windows.UI.Popups.UICommandInvokedHandler;
          commandId : WinRt.IInspectable;
-         RetVal : access Windows.UI.Popups.IUICommand
+         RetVal : access WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -474,7 +474,7 @@ package WinRt.Windows.UI.Popups is
    procedure put_Options
    (
       this : in out MessageDialog;
-      value : Windows.UI.Popups.MessageDialogOptions
+      value : WinRt.Windows.UI.Popups.MessageDialogOptions
    );
 
    -----------------------------------------------------------------------------
@@ -500,22 +500,22 @@ package WinRt.Windows.UI.Popups is
    function ShowAsync
    (
       this : in out PopupMenu;
-      invocationPoint : Windows.Foundation.Point
+      invocationPoint : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.UI.Popups.IUICommand;
 
    function ShowForSelectionAsync
    (
       this : in out PopupMenu;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.UI.Popups.IUICommand;
 
    function ShowForSelectionAsync
    (
       this : in out PopupMenu;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Windows.UI.Popups.IUICommand;
 
@@ -537,14 +537,14 @@ package WinRt.Windows.UI.Popups is
    function Constructor
    (
       label : WinRt.WString;
-      action : Windows.UI.Popups.UICommandInvokedHandler
+      action : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    )
    return UICommand;
 
    function Constructor
    (
       label : WinRt.WString;
-      action : Windows.UI.Popups.UICommandInvokedHandler;
+      action : WinRt.Windows.UI.Popups.UICommandInvokedHandler;
       commandId : WinRt.IInspectable
    )
    return UICommand;
@@ -575,7 +575,7 @@ package WinRt.Windows.UI.Popups is
    procedure put_Invoked
    (
       this : in out UICommand;
-      value : Windows.UI.Popups.UICommandInvokedHandler
+      value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    );
 
    function get_Id
@@ -625,7 +625,7 @@ package WinRt.Windows.UI.Popups is
    procedure put_Invoked
    (
       this : in out UICommandSeparator;
-      value : Windows.UI.Popups.UICommandInvokedHandler
+      value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    );
 
    function get_Id

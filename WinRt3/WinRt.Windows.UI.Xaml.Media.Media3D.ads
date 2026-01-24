@@ -304,84 +304,84 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       function get_CenterXProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterYProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterZProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationXProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationYProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationZProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleXProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleYProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleZProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslateXProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslateYProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslateZProperty
       (
          this : access ICompositeTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -398,16 +398,16 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       function get_Identity
       (
          this : access IMatrix3DHelperStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
       function Multiply
       (
          this : access IMatrix3DHelperStatics_Interface;
-         matrix1 : Windows.UI.Xaml.Media.Media3D.Matrix3D;
-         matrix2 : Windows.UI.Xaml.Media.Media3D.Matrix3D;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         matrix1 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
+         matrix2 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
@@ -430,14 +430,14 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
          offsetY : WinRt.Double;
          offsetZ : WinRt.Double;
          m44 : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
       function GetHasInverse
       (
          this : access IMatrix3DHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Media3D.Matrix3D;
+         target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -445,7 +445,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       function GetIsIdentity
       (
          this : access IMatrix3DHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Media3D.Matrix3D;
+         target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -453,8 +453,8 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       function Invert
       (
          this : access IMatrix3DHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Media3D.Matrix3D;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
@@ -513,21 +513,21 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
       function get_DepthProperty
       (
          this : access IPerspectiveTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OffsetXProperty
       (
          this : access IPerspectiveTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OffsetYProperty
       (
          this : access IPerspectiveTransform3DStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -546,7 +546,7 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
          this : access ITransform3DFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.ITransform3D
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.ITransform3D
       )
       return WinRt.Hresult is abstract;
 
@@ -786,8 +786,8 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function Multiply
    (
-      matrix1 : Windows.UI.Xaml.Media.Media3D.Matrix3D;
-      matrix2 : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      matrix1 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      matrix2 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
 
@@ -814,19 +814,19 @@ package WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function GetHasInverse
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Boolean;
 
    function GetIsIdentity
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Boolean;
 
    function Invert
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
 

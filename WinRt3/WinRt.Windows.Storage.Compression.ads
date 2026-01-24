@@ -110,7 +110,7 @@ package WinRt.Windows.Storage.Compression is
       function DetachStream
       (
          this : access ICompressor_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -122,18 +122,18 @@ package WinRt.Windows.Storage.Compression is
       function CreateCompressor
       (
          this : access ICompressorFactory_Interface;
-         underlyingStream : Windows.Storage.Streams.IOutputStream;
-         RetVal : access Windows.Storage.Compression.ICompressor
+         underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         RetVal : access WinRt.Windows.Storage.Compression.ICompressor
       )
       return WinRt.Hresult is abstract;
 
       function CreateCompressorEx
       (
          this : access ICompressorFactory_Interface;
-         underlyingStream : Windows.Storage.Streams.IOutputStream;
-         algorithm : Windows.Storage.Compression.CompressAlgorithm;
+         underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         algorithm : WinRt.Windows.Storage.Compression.CompressAlgorithm;
          blockSize : WinRt.UInt32;
-         RetVal : access Windows.Storage.Compression.ICompressor
+         RetVal : access WinRt.Windows.Storage.Compression.ICompressor
       )
       return WinRt.Hresult is abstract;
 
@@ -145,7 +145,7 @@ package WinRt.Windows.Storage.Compression is
       function DetachStream
       (
          this : access IDecompressor_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -157,8 +157,8 @@ package WinRt.Windows.Storage.Compression is
       function CreateDecompressor
       (
          this : access IDecompressorFactory_Interface;
-         underlyingStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Storage.Compression.IDecompressor
+         underlyingStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Storage.Compression.IDecompressor
       )
       return WinRt.Hresult is abstract;
 
@@ -179,14 +179,14 @@ package WinRt.Windows.Storage.Compression is
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IOutputStream
+      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return Compressor;
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IOutputStream;
-      algorithm : Windows.Storage.Compression.CompressAlgorithm;
+      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream;
+      algorithm : WinRt.Windows.Storage.Compression.CompressAlgorithm;
       blockSize : WinRt.UInt32
    )
    return Compressor;
@@ -209,7 +209,7 @@ package WinRt.Windows.Storage.Compression is
    function WriteAsync
    (
       this : in out Compressor;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -235,7 +235,7 @@ package WinRt.Windows.Storage.Compression is
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IInputStream
+      underlyingStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return Decompressor;
 
@@ -251,9 +251,9 @@ package WinRt.Windows.Storage.Compression is
    function ReadAsync
    (
       this : in out Decompressor;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 

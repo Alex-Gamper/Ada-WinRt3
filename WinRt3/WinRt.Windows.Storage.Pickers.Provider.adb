@@ -59,13 +59,13 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    (
       this : in out FileOpenPickerUI;
       id : WinRt.WString;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Storage.Pickers.Provider.AddFileResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.AddFileResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.AddFileResult;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       Hr := this.m_IFileOpenPickerUI.all.AddFile (HStr_id, file, m_ComRetVal'Access);
@@ -116,7 +116,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    function CanAddFile
    (
       this : in out FileOpenPickerUI;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -139,7 +139,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IFileOpenPickerUI.all.get_AllowedFileTypes (m_ComRetVal'Access);
@@ -159,7 +159,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.FileSelectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.FileSelectionMode;
    begin
       Hr := this.m_IFileOpenPickerUI.all.get_SelectionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -234,7 +234,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileOpenPickerUI.all.add_FileRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -246,7 +246,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_FileRemoved
    (
       this : in out FileOpenPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -267,7 +267,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileOpenPickerUI.all.add_Closing (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -279,7 +279,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_Closing
    (
       this : in out FileOpenPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -402,7 +402,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IFileSavePickerUI.all.get_AllowedFileTypes (m_ComRetVal'Access);
@@ -463,7 +463,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.SetFileNameResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.SetFileNameResult;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       Hr := this.m_IFileSavePickerUI.all.TrySetFileName (HStr_value, m_ComRetVal'Access);
@@ -483,7 +483,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileSavePickerUI.all.add_FileNameChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -495,7 +495,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_FileNameChanged
    (
       this : in out FileSavePickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -516,7 +516,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFileSavePickerUI.all.add_TargetFileRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -528,7 +528,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    procedure remove_TargetFileRequested
    (
       this : in out FileSavePickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -608,14 +608,14 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IPickerClosingOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.IPickerClosingOperation;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.PickerClosingOperation do
          Hr := this.m_IPickerClosingEventArgs.all.get_ClosingOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPickerClosingOperation := new Windows.Storage.Pickers.Provider.IPickerClosingOperation;
+         Retval.m_IPickerClosingOperation := new WinRt.Windows.Storage.Pickers.Provider.IPickerClosingOperation;
          Retval.m_IPickerClosingOperation.all := m_ComRetVal;
       end return;
    end;
@@ -668,14 +668,14 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IPickerClosingDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.IPickerClosingDeferral;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.PickerClosingDeferral do
          Hr := this.m_IPickerClosingOperation.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPickerClosingDeferral := new Windows.Storage.Pickers.Provider.IPickerClosingDeferral;
+         Retval.m_IPickerClosingDeferral := new WinRt.Windows.Storage.Pickers.Provider.IPickerClosingDeferral;
          Retval.m_IPickerClosingDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -688,7 +688,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPickerClosingOperation.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -728,7 +728,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       Hr := this.m_ITargetFileRequest.all.get_TargetFile (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -740,7 +740,7 @@ package body WinRt.Windows.Storage.Pickers.Provider is
    procedure put_TargetFile
    (
       this : in out TargetFileRequest;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -760,14 +760,14 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.TargetFileRequestDeferral do
          Hr := this.m_ITargetFileRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetFileRequestDeferral := new Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral;
+         Retval.m_ITargetFileRequestDeferral := new WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral;
          Retval.m_ITargetFileRequestDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -840,14 +840,14 @@ package body WinRt.Windows.Storage.Pickers.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.ITargetFileRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequest;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.TargetFileRequest do
          Hr := this.m_ITargetFileRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetFileRequest := new Windows.Storage.Pickers.Provider.ITargetFileRequest;
+         Retval.m_ITargetFileRequest := new WinRt.Windows.Storage.Pickers.Provider.ITargetFileRequest;
          Retval.m_ITargetFileRequest.all := m_ComRetVal;
       end return;
    end;

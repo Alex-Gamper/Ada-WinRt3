@@ -103,7 +103,7 @@ package body WinRt.Windows.Devices.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IDeviceServicingDetails.all.get_ExpectedDuration (m_ComRetVal'Access);
       if Hr /= S_OK then

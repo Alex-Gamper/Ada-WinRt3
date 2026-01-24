@@ -58,13 +58,13 @@ package body WinRt.Windows.Management is
    function Constructor return MdmAlert is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.MdmAlert");
-      m_ComRetVal  : aliased Windows.Management.IMdmAlert;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.IMdmAlert");
+      m_ComRetVal  : aliased WinRt.Windows.Management.IMdmAlert;
    begin
       return RetVal : MdmAlert do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMdmAlert := new Windows.Management.IMdmAlert;
+            Retval.m_IMdmAlert := new WinRt.Windows.Management.IMdmAlert;
             Retval.m_IMdmAlert.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -119,7 +119,7 @@ package body WinRt.Windows.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.MdmAlertDataType;
+      m_ComRetVal      : aliased WinRt.Windows.Management.MdmAlertDataType;
    begin
       Hr := this.m_IMdmAlert.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -131,7 +131,7 @@ package body WinRt.Windows.Management is
    procedure put_Format
    (
       this : in out MdmAlert;
-      value : Windows.Management.MdmAlertDataType
+      value : WinRt.Windows.Management.MdmAlertDataType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -151,7 +151,7 @@ package body WinRt.Windows.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.MdmAlertMark;
+      m_ComRetVal      : aliased WinRt.Windows.Management.MdmAlertMark;
    begin
       Hr := this.m_IMdmAlert.all.get_Mark (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -163,7 +163,7 @@ package body WinRt.Windows.Management is
    procedure put_Mark
    (
       this : in out MdmAlert;
-      value : Windows.Management.MdmAlertMark
+      value : WinRt.Windows.Management.MdmAlertMark
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -334,7 +334,7 @@ package body WinRt.Windows.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMdmAlert.Kind;
    begin
       Hr := this.m_IMdmSession.all.get_Alerts (m_ComRetVal'Access);
@@ -354,7 +354,7 @@ package body WinRt.Windows.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IMdmSession.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -391,7 +391,7 @@ package body WinRt.Windows.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.MdmSessionState;
+      m_ComRetVal      : aliased WinRt.Windows.Management.MdmSessionState;
    begin
       Hr := this.m_IMdmSession.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -552,7 +552,7 @@ package body WinRt.Windows.Management is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Management.MdmSessionManager");
          m_Factory        : access WinRt.Windows.Management.IMdmSessionManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IMdmSessionManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -573,7 +573,7 @@ package body WinRt.Windows.Management is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Management.MdmSessionManager");
          m_Factory        : access WinRt.Windows.Management.IMdmSessionManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Management.IMdmSession;
+         m_ComRetVal      : aliased WinRt.Windows.Management.IMdmSession;
       begin
          return RetVal : WinRt.Windows.Management.MdmSession do
             Hr := RoGetActivationFactory (m_hString, IID_IMdmSessionManagerStatics'Access , m_Factory'Address);
@@ -583,7 +583,7 @@ package body WinRt.Windows.Management is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IMdmSession := new Windows.Management.IMdmSession;
+               Retval.m_IMdmSession := new WinRt.Windows.Management.IMdmSession;
                Retval.m_IMdmSession.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -623,7 +623,7 @@ package body WinRt.Windows.Management is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Management.MdmSessionManager");
          m_Factory        : access WinRt.Windows.Management.IMdmSessionManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Management.IMdmSession;
+         m_ComRetVal      : aliased WinRt.Windows.Management.IMdmSession;
          HStr_sessionId : constant WinRt.HString := To_HString (sessionId);
       begin
          return RetVal : WinRt.Windows.Management.MdmSession do
@@ -634,7 +634,7 @@ package body WinRt.Windows.Management is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IMdmSession := new Windows.Management.IMdmSession;
+               Retval.m_IMdmSession := new WinRt.Windows.Management.IMdmSession;
                Retval.m_IMdmSession.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);

@@ -381,14 +381,14 @@ package WinRt.Windows.Media.Miracast is
       function GetDefaultSettings
       (
          this : access IMiracastReceiver_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverSettings
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverSettings
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentSettings
       (
          this : access IMiracastReceiver_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverSettings
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -402,15 +402,15 @@ package WinRt.Windows.Media.Miracast is
       function DisconnectAllAndApplySettings
       (
          this : access IMiracastReceiver_Interface;
-         settings : Windows.Media.Miracast.IMiracastReceiverSettings;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverApplySettingsResult
+         settings : WinRt.Windows.Media.Miracast.IMiracastReceiverSettings;
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverApplySettingsResult
       )
       return WinRt.Hresult is abstract;
 
       function DisconnectAllAndApplySettingsAsync
       (
          this : access IMiracastReceiver_Interface;
-         settings : Windows.Media.Miracast.IMiracastReceiverSettings;
+         settings : WinRt.Windows.Media.Miracast.IMiracastReceiverSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -418,7 +418,7 @@ package WinRt.Windows.Media.Miracast is
       function GetStatus
       (
          this : access IMiracastReceiver_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverStatus
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -433,29 +433,29 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiver_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IMiracastReceiver_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateSession
       (
          this : access IMiracastReceiver_Interface;
-         view : Windows.ApplicationModel.Core.ICoreApplicationView;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverSession
+         view : WinRt.Windows.ApplicationModel.Core.ICoreApplicationView;
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverSession
       )
       return WinRt.Hresult is abstract;
 
       function CreateSessionAsync
       (
          this : access IMiracastReceiver_Interface;
-         view : Windows.ApplicationModel.Core.ICoreApplicationView;
+         view : WinRt.Windows.ApplicationModel.Core.ICoreApplicationView;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -469,7 +469,7 @@ package WinRt.Windows.Media.Miracast is
       function RemoveKnownTransmitter
       (
          this : access IMiracastReceiver_Interface;
-         transmitter : Windows.Media.Miracast.IMiracastTransmitter
+         transmitter : WinRt.Windows.Media.Miracast.IMiracastTransmitter
       )
       return WinRt.Hresult is abstract;
 
@@ -481,14 +481,14 @@ package WinRt.Windows.Media.Miracast is
       function get_Status
       (
          this : access IMiracastReceiverApplySettingsResult_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverApplySettingsStatus
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IMiracastReceiverApplySettingsResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -500,14 +500,14 @@ package WinRt.Windows.Media.Miracast is
       function Disconnect
       (
          this : access IMiracastReceiverConnection_Interface;
-         reason : Windows.Media.Miracast.MiracastReceiverDisconnectReason
+         reason : WinRt.Windows.Media.Miracast.MiracastReceiverDisconnectReason
       )
       return WinRt.Hresult is abstract;
 
       function Disconnect
       (
          this : access IMiracastReceiverConnection_Interface;
-         reason : Windows.Media.Miracast.MiracastReceiverDisconnectReason;
+         reason : WinRt.Windows.Media.Miracast.MiracastReceiverDisconnectReason;
          message : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -521,7 +521,7 @@ package WinRt.Windows.Media.Miracast is
       function PauseAsync
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -534,35 +534,35 @@ package WinRt.Windows.Media.Miracast is
       function ResumeAsync
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_Transmitter
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastTransmitter
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastTransmitter
       )
       return WinRt.Hresult is abstract;
 
       function get_InputDevices
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverInputDevices
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverInputDevices
       )
       return WinRt.Hresult is abstract;
 
       function get_CursorImageChannel
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverCursorImageChannel
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverCursorImageChannel
       )
       return WinRt.Hresult is abstract;
 
       function get_StreamControl
       (
          this : access IMiracastReceiverConnection_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverStreamControl
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverStreamControl
       )
       return WinRt.Hresult is abstract;
 
@@ -574,7 +574,7 @@ package WinRt.Windows.Media.Miracast is
       function get_Connection
       (
          this : access IMiracastReceiverConnectionCreatedEventArgs_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverConnection
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -588,7 +588,7 @@ package WinRt.Windows.Media.Miracast is
       function GetDeferral
       (
          this : access IMiracastReceiverConnectionCreatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -607,21 +607,21 @@ package WinRt.Windows.Media.Miracast is
       function get_MaxImageSize
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
-         RetVal : access Windows.Graphics.PointInt32
+         RetVal : access WinRt.Windows.Graphics.PointInt32
       )
       return WinRt.Hresult is abstract;
 
       function get_ImageStream
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -629,14 +629,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImageStreamChanged
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -644,14 +644,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PositionChanged
       (
          this : access IMiracastReceiverCursorImageChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -677,14 +677,14 @@ package WinRt.Windows.Media.Miracast is
       function get_MaxImageSize
       (
          this : access IMiracastReceiverCursorImageChannelSettings_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function put_MaxImageSize
       (
          this : access IMiracastReceiverCursorImageChannelSettings_Interface;
-         value : Windows.Graphics.SizeInt32
+         value : WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -696,7 +696,7 @@ package WinRt.Windows.Media.Miracast is
       function get_Connection
       (
          this : access IMiracastReceiverDisconnectedEventArgs_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverConnection
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -736,14 +736,14 @@ package WinRt.Windows.Media.Miracast is
       function get_Mode
       (
          this : access IMiracastReceiverGameControllerDevice_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IMiracastReceiverGameControllerDevice_Interface;
-         value : Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
+         value : WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
       )
       return WinRt.Hresult is abstract;
 
@@ -751,14 +751,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverGameControllerDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IMiracastReceiverGameControllerDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -770,14 +770,14 @@ package WinRt.Windows.Media.Miracast is
       function get_Keyboard
       (
          this : access IMiracastReceiverInputDevices_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverKeyboardDevice
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverKeyboardDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_GameController
       (
          this : access IMiracastReceiverInputDevices_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverGameControllerDevice
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverGameControllerDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -818,14 +818,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverKeyboardDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IMiracastReceiverKeyboardDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -837,28 +837,28 @@ package WinRt.Windows.Media.Miracast is
       function get_Connection
       (
          this : access IMiracastReceiverMediaSourceCreatedEventArgs_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverConnection
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverConnection
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSource
       (
          this : access IMiracastReceiverMediaSourceCreatedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function get_CursorImageChannelSettings
       (
          this : access IMiracastReceiverMediaSourceCreatedEventArgs_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverCursorImageChannelSettings
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverCursorImageChannelSettings
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMiracastReceiverMediaSourceCreatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -871,14 +871,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionCreated
       (
          this : access IMiracastReceiverSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -886,14 +886,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaSourceCreated
       (
          this : access IMiracastReceiverSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -901,14 +901,14 @@ package WinRt.Windows.Media.Miracast is
       (
          this : access IMiracastReceiverSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Disconnected
       (
          this : access IMiracastReceiverSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -943,7 +943,7 @@ package WinRt.Windows.Media.Miracast is
       function Start
       (
          this : access IMiracastReceiverSession_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverSessionStartResult
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverSessionStartResult
       )
       return WinRt.Hresult is abstract;
 
@@ -962,14 +962,14 @@ package WinRt.Windows.Media.Miracast is
       function get_Status
       (
          this : access IMiracastReceiverSessionStartResult_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverSessionStartStatus
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverSessionStartStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IMiracastReceiverSessionStartResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1023,14 +1023,14 @@ package WinRt.Windows.Media.Miracast is
       function get_AuthorizationMethod
       (
          this : access IMiracastReceiverSettings_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthorizationMethod
       (
          this : access IMiracastReceiverSettings_Interface;
-         value : Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
+         value : WinRt.Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -1056,14 +1056,14 @@ package WinRt.Windows.Media.Miracast is
       function get_ListeningStatus
       (
          this : access IMiracastReceiverStatus_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverListeningStatus
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverListeningStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_WiFiStatus
       (
          this : access IMiracastReceiverStatus_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastReceiverWiFiStatus
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastReceiverWiFiStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1096,7 +1096,7 @@ package WinRt.Windows.Media.Miracast is
       function GetVideoStreamSettings
       (
          this : access IMiracastReceiverStreamControl_Interface;
-         RetVal : access Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings
+         RetVal : access WinRt.Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1110,15 +1110,15 @@ package WinRt.Windows.Media.Miracast is
       function SuggestVideoStreamSettings
       (
          this : access IMiracastReceiverStreamControl_Interface;
-         settings : Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings
+         settings : WinRt.Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings
       )
       return WinRt.Hresult is abstract;
 
       function SuggestVideoStreamSettingsAsync
       (
          this : access IMiracastReceiverStreamControl_Interface;
-         settings : Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings;
-         RetVal : access Windows.Foundation.IAsyncAction
+         settings : WinRt.Windows.Media.Miracast.IMiracastReceiverVideoStreamSettings;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1144,14 +1144,14 @@ package WinRt.Windows.Media.Miracast is
       function get_Size
       (
          this : access IMiracastReceiverVideoStreamSettings_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access IMiracastReceiverVideoStreamSettings_Interface;
-         value : Windows.Graphics.SizeInt32
+         value : WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -1191,14 +1191,14 @@ package WinRt.Windows.Media.Miracast is
       function get_AuthorizationStatus
       (
          this : access IMiracastTransmitter_Interface;
-         RetVal : access Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
+         RetVal : access WinRt.Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthorizationStatus
       (
          this : access IMiracastTransmitter_Interface;
-         value : Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
+         value : WinRt.Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1219,7 +1219,7 @@ package WinRt.Windows.Media.Miracast is
       function get_LastConnectionTime
       (
          this : access IMiracastTransmitter_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1264,14 +1264,14 @@ package WinRt.Windows.Media.Miracast is
    function DisconnectAllAndApplySettings
    (
       this : in out MiracastReceiver;
-      settings : Windows.Media.Miracast.MiracastReceiverSettings'Class
+      settings : WinRt.Windows.Media.Miracast.MiracastReceiverSettings'Class
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsResult'Class;
 
    function DisconnectAllAndApplySettingsAsync
    (
       this : in out MiracastReceiver;
-      settings : Windows.Media.Miracast.MiracastReceiverSettings'Class
+      settings : WinRt.Windows.Media.Miracast.MiracastReceiverSettings'Class
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverApplySettingsResult'Class;
 
@@ -1297,20 +1297,20 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_StatusChanged
    (
       this : in out MiracastReceiver;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateSession
    (
       this : in out MiracastReceiver;
-      view : Windows.ApplicationModel.Core.CoreApplicationView'Class
+      view : WinRt.Windows.ApplicationModel.Core.CoreApplicationView'Class
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSession'Class;
 
    function CreateSessionAsync
    (
       this : in out MiracastReceiver;
-      view : Windows.ApplicationModel.Core.CoreApplicationView'Class
+      view : WinRt.Windows.ApplicationModel.Core.CoreApplicationView'Class
    )
    return WinRt.Windows.Media.Miracast.MiracastReceiverSession'Class;
 
@@ -1322,7 +1322,7 @@ package WinRt.Windows.Media.Miracast is
    procedure RemoveKnownTransmitter
    (
       this : in out MiracastReceiver;
-      transmitter : Windows.Media.Miracast.MiracastTransmitter'Class
+      transmitter : WinRt.Windows.Media.Miracast.MiracastTransmitter'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1358,13 +1358,13 @@ package WinRt.Windows.Media.Miracast is
    procedure Disconnect
    (
       this : in out MiracastReceiverConnection;
-      reason : Windows.Media.Miracast.MiracastReceiverDisconnectReason
+      reason : WinRt.Windows.Media.Miracast.MiracastReceiverDisconnectReason
    );
 
    procedure Disconnect
    (
       this : in out MiracastReceiverConnection;
-      reason : Windows.Media.Miracast.MiracastReceiverDisconnectReason;
+      reason : WinRt.Windows.Media.Miracast.MiracastReceiverDisconnectReason;
       message : WinRt.WString
    );
 
@@ -1487,7 +1487,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_ImageStreamChanged
    (
       this : in out MiracastReceiverCursorImageChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PositionChanged
@@ -1500,7 +1500,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_PositionChanged
    (
       this : in out MiracastReceiverCursorImageChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1533,7 +1533,7 @@ package WinRt.Windows.Media.Miracast is
    procedure put_MaxImageSize
    (
       this : in out MiracastReceiverCursorImageChannelSettings;
-      value : Windows.Graphics.SizeInt32
+      value : WinRt.Windows.Graphics.SizeInt32
    );
 
    -----------------------------------------------------------------------------
@@ -1593,7 +1593,7 @@ package WinRt.Windows.Media.Miracast is
    procedure put_Mode
    (
       this : in out MiracastReceiverGameControllerDevice;
-      value : Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
+      value : WinRt.Windows.Media.Miracast.MiracastReceiverGameControllerDeviceUsageMode
    );
 
    function add_Changed
@@ -1606,7 +1606,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_Changed
    (
       this : in out MiracastReceiverGameControllerDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1673,7 +1673,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_Changed
    (
       this : in out MiracastReceiverKeyboardDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1728,7 +1728,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_ConnectionCreated
    (
       this : in out MiracastReceiverSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MediaSourceCreated
@@ -1741,7 +1741,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_MediaSourceCreated
    (
       this : in out MiracastReceiverSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Disconnected
@@ -1754,7 +1754,7 @@ package WinRt.Windows.Media.Miracast is
    procedure remove_Disconnected
    (
       this : in out MiracastReceiverSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AllowConnectionTakeover
@@ -1873,7 +1873,7 @@ package WinRt.Windows.Media.Miracast is
    procedure put_AuthorizationMethod
    (
       this : in out MiracastReceiverSettings;
-      value : Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
+      value : WinRt.Windows.Media.Miracast.MiracastReceiverAuthorizationMethod
    );
 
    function get_RequireAuthorizationFromKnownTransmitters
@@ -1951,13 +1951,13 @@ package WinRt.Windows.Media.Miracast is
    procedure SuggestVideoStreamSettings
    (
       this : in out MiracastReceiverStreamControl;
-      settings : Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
+      settings : WinRt.Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
    );
 
    procedure SuggestVideoStreamSettingsAsync
    (
       this : in out MiracastReceiverStreamControl;
-      settings : Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
+      settings : WinRt.Windows.Media.Miracast.MiracastReceiverVideoStreamSettings'Class
    );
 
    function get_MuteAudio
@@ -1990,7 +1990,7 @@ package WinRt.Windows.Media.Miracast is
    procedure put_Size
    (
       this : in out MiracastReceiverVideoStreamSettings;
-      value : Windows.Graphics.SizeInt32
+      value : WinRt.Windows.Graphics.SizeInt32
    );
 
    function get_Bitrate
@@ -2035,7 +2035,7 @@ package WinRt.Windows.Media.Miracast is
    procedure put_AuthorizationStatus
    (
       this : in out MiracastTransmitter;
-      value : Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
+      value : WinRt.Windows.Media.Miracast.MiracastTransmitterAuthorizationStatus
    );
 
    function GetConnections

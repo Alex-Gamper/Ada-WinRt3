@@ -49,7 +49,7 @@ package body WinRt.Windows.Management.Policies is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
          m_Factory        : access WinRt.Windows.Management.Policies.INamedPolicyStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Management.Policies.INamedPolicyData;
+         m_ComRetVal      : aliased WinRt.Windows.Management.Policies.INamedPolicyData;
          HStr_area : constant WinRt.HString := To_HString (area);
          HStr_name : constant WinRt.HString := To_HString (name);
       begin
@@ -61,7 +61,7 @@ package body WinRt.Windows.Management.Policies is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_INamedPolicyData := new Windows.Management.Policies.INamedPolicyData;
+               Retval.m_INamedPolicyData := new WinRt.Windows.Management.Policies.INamedPolicyData;
                Retval.m_INamedPolicyData.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -72,7 +72,7 @@ package body WinRt.Windows.Management.Policies is
 
       function GetPolicyFromPathForUser
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          area : WinRt.WString;
          name : WinRt.WString
       )
@@ -82,7 +82,7 @@ package body WinRt.Windows.Management.Policies is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Policies.NamedPolicy");
          m_Factory        : access WinRt.Windows.Management.Policies.INamedPolicyStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Management.Policies.INamedPolicyData;
+         m_ComRetVal      : aliased WinRt.Windows.Management.Policies.INamedPolicyData;
          HStr_area : constant WinRt.HString := To_HString (area);
          HStr_name : constant WinRt.HString := To_HString (name);
       begin
@@ -94,7 +94,7 @@ package body WinRt.Windows.Management.Policies is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_INamedPolicyData := new Windows.Management.Policies.INamedPolicyData;
+               Retval.m_INamedPolicyData := new WinRt.Windows.Management.Policies.INamedPolicyData;
                Retval.m_INamedPolicyData.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -176,7 +176,7 @@ package body WinRt.Windows.Management.Policies is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Management.Policies.NamedPolicyKind;
+      m_ComRetVal      : aliased WinRt.Windows.Management.Policies.NamedPolicyKind;
    begin
       Hr := this.m_INamedPolicyData.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -227,14 +227,14 @@ package body WinRt.Windows.Management.Policies is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_INamedPolicyData.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -264,7 +264,7 @@ package body WinRt.Windows.Management.Policies is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_INamedPolicyData.all.GetBinary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -336,7 +336,7 @@ package body WinRt.Windows.Management.Policies is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_INamedPolicyData.all.add_Changed (changedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -348,7 +348,7 @@ package body WinRt.Windows.Management.Policies is
    procedure remove_Changed
    (
       this : in out NamedPolicyData;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

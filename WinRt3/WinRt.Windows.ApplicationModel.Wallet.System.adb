@@ -135,7 +135,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
    procedure DeleteAsync
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -178,7 +178,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
    function ImportItemAsync
    (
       this : in out WalletItemSystemStore;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -229,7 +229,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWalletItem := new Windows.ApplicationModel.Wallet.IWalletItem;
+                  Retval.m_IWalletItem := new WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
                   Retval.m_IWalletItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -245,13 +245,13 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
    function GetAppStatusForItem
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    )
    return WinRt.Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation;
    begin
       Hr := this.m_IWalletItemSystemStore.all.GetAppStatusForItem (item.m_IWalletItem.all, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -263,7 +263,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
    function LaunchAppForItemAsync
    (
       this : in out WalletItemSystemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -334,7 +334,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore_Interface, WinRt.Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore2, WinRt.Windows.ApplicationModel.Wallet.System.IID_IWalletItemSystemStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWalletItemSystemStore.all);
@@ -349,7 +349,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
    procedure remove_ItemsChanged
    (
       this : in out WalletItemSystemStore;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -424,7 +424,7 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWalletItemSystemStore := new Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore;
+                        Retval.m_IWalletItemSystemStore := new WinRt.Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore;
                         Retval.m_IWalletItemSystemStore.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;

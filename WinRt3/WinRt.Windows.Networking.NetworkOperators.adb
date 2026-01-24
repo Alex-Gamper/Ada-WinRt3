@@ -119,7 +119,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IESim.all.get_AvailableMemoryInBytes (m_ComRetVal'Access);
@@ -199,14 +199,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimPolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimPolicy do
          Hr := this.m_IESim.all.get_Policy (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimPolicy := new Windows.Networking.NetworkOperators.IESimPolicy;
+         Retval.m_IESimPolicy := new WinRt.Windows.Networking.NetworkOperators.IESimPolicy;
          Retval.m_IESimPolicy.all := m_ComRetVal;
       end return;
    end;
@@ -219,7 +219,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimState;
    begin
       Hr := this.m_IESim.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -236,7 +236,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IESimProfile.Kind;
    begin
       Hr := this.m_IESim.all.GetProfiles (m_ComRetVal'Access);
@@ -303,7 +303,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -372,7 +372,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimDownloadProfileMetadataResult := new Windows.Networking.NetworkOperators.IESimDownloadProfileMetadataResult;
+                  Retval.m_IESimDownloadProfileMetadataResult := new WinRt.Windows.Networking.NetworkOperators.IESimDownloadProfileMetadataResult;
                   Retval.m_IESimDownloadProfileMetadataResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -439,7 +439,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -461,7 +461,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESim.all.add_ProfileChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -473,7 +473,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_ProfileChanged
    (
       this : in out ESim;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -494,7 +494,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimDiscoverResult;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim2, WinRt.Windows.Networking.NetworkOperators.IID_IESim2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResult do
@@ -504,7 +504,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
+         Retval.m_IESimDiscoverResult := new WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
          Retval.m_IESimDiscoverResult.all := m_ComRetVal;
       end return;
    end;
@@ -520,7 +520,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimDiscoverResult;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
       HStr_serverAddress : constant WinRt.HString := To_HString (serverAddress);
       HStr_matchingId : constant WinRt.HString := To_HString (matchingId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim2, WinRt.Windows.Networking.NetworkOperators.IID_IESim2'Unchecked_Access);
@@ -532,7 +532,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
+         Retval.m_IESimDiscoverResult := new WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
          Retval.m_IESimDiscoverResult.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_serverAddress);
          tmp := WindowsDeleteString (HStr_matchingId);
@@ -596,7 +596,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
+                  Retval.m_IESimDiscoverResult := new WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
                   Retval.m_IESimDiscoverResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -670,7 +670,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimDiscoverResult := new Windows.Networking.NetworkOperators.IESimDiscoverResult;
+                  Retval.m_IESimDiscoverResult := new WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult;
                   Retval.m_IESimDiscoverResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -694,7 +694,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IESim3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IESim_Interface, WinRt.Windows.Networking.NetworkOperators.IESim3, WinRt.Windows.Networking.NetworkOperators.IID_IESim3'Unchecked_Access);
    begin
@@ -740,14 +740,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimAddedEventArgs.all.get_ESim (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
+         Retval.m_IESim := new WinRt.Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
    end;
@@ -846,7 +846,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IESimDiscoverEvent.Kind;
    begin
       Hr := this.m_IESimDiscoverResult.all.get_Events (m_ComRetVal'Access);
@@ -866,7 +866,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimDiscoverResultKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResultKind;
    begin
       Hr := this.m_IESimDiscoverResult.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -883,14 +883,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfileMetadata;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata do
          Hr := this.m_IESimDiscoverResult.all.get_ProfileMetadata (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimProfileMetadata := new Windows.Networking.NetworkOperators.IESimProfileMetadata;
+         Retval.m_IESimProfileMetadata := new WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata;
          Retval.m_IESimProfileMetadata.all := m_ComRetVal;
       end return;
    end;
@@ -903,14 +903,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimOperationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimOperationResult do
          Hr := this.m_IESimDiscoverResult.all.get_Result (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+         Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
          Retval.m_IESimOperationResult.all := m_ComRetVal;
       end return;
    end;
@@ -946,14 +946,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimOperationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimOperationResult do
          Hr := this.m_IESimDownloadProfileMetadataResult.all.get_Result (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+         Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
          Retval.m_IESimOperationResult.all := m_ComRetVal;
       end return;
    end;
@@ -966,14 +966,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfileMetadata;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadata do
          Hr := this.m_IESimDownloadProfileMetadataResult.all.get_ProfileMetadata (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimProfileMetadata := new Windows.Networking.NetworkOperators.IESimProfileMetadata;
+         Retval.m_IESimProfileMetadata := new WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata;
          Retval.m_IESimProfileMetadata.all := m_ComRetVal;
       end return;
    end;
@@ -989,7 +989,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimServiceInfo;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimServiceInfo;
       begin
          return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimServiceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
@@ -999,7 +999,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IESimServiceInfo := new Windows.Networking.NetworkOperators.IESimServiceInfo;
+               Retval.m_IESimServiceInfo := new WinRt.Windows.Networking.NetworkOperators.IESimServiceInfo;
                Retval.m_IESimServiceInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1013,7 +1013,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimWatcher;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimWatcher;
       begin
          return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimWatcher do
             Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
@@ -1023,7 +1023,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IESimWatcher := new Windows.Networking.NetworkOperators.IESimWatcher;
+               Retval.m_IESimWatcher := new WinRt.Windows.Networking.NetworkOperators.IESimWatcher;
                Retval.m_IESimWatcher.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1040,7 +1040,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ESimManager");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IESimManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IESimManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
       procedure remove_ServiceInfoChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1108,7 +1108,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimOperationStatus;
    begin
       Hr := this.m_IESimOperationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1188,7 +1188,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileClass;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimProfileClass;
    begin
       Hr := this.m_IESimProfile.all.get_Class (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1225,14 +1225,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfilePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy do
          Hr := this.m_IESimProfile.all.get_Policy (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimProfilePolicy := new Windows.Networking.NetworkOperators.IESimProfilePolicy;
+         Retval.m_IESimProfilePolicy := new WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy;
          Retval.m_IESimProfilePolicy.all := m_ComRetVal;
       end return;
    end;
@@ -1265,7 +1265,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IESimProfile.all.get_ProviderIcon (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1322,7 +1322,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimProfileState;
    begin
       Hr := this.m_IESimProfile.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1384,7 +1384,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1450,7 +1450,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1518,7 +1518,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1580,14 +1580,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESimProfilePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESimProfilePolicy do
          Hr := this.m_IESimProfileMetadata.all.get_Policy (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESimProfilePolicy := new Windows.Networking.NetworkOperators.IESimProfilePolicy;
+         Retval.m_IESimProfilePolicy := new WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy;
          Retval.m_IESimProfilePolicy.all := m_ComRetVal;
       end return;
    end;
@@ -1620,7 +1620,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_ProviderIcon (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1677,7 +1677,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimProfileMetadataState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadataState;
    begin
       Hr := this.m_IESimProfileMetadata.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1739,7 +1739,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1805,7 +1805,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1873,7 +1873,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1940,7 +1940,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IESimOperationResult := new Windows.Networking.NetworkOperators.IESimOperationResult;
+                  Retval.m_IESimOperationResult := new WinRt.Windows.Networking.NetworkOperators.IESimOperationResult;
                   Retval.m_IESimOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimProfileMetadata.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1974,7 +1974,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_StateChanged
    (
       this : in out ESimProfileMetadata;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2091,14 +2091,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimRemovedEventArgs.all.get_ESim (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
+         Retval.m_IESim := new WinRt.Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
    end;
@@ -2134,7 +2134,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimAuthenticationPreference;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimAuthenticationPreference;
    begin
       Hr := this.m_IESimServiceInfo.all.get_AuthenticationPreference (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2191,14 +2191,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IESim;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IESim;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ESim do
          Hr := this.m_IESimUpdatedEventArgs.all.get_ESim (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IESim := new Windows.Networking.NetworkOperators.IESim;
+         Retval.m_IESim := new WinRt.Windows.Networking.NetworkOperators.IESim;
          Retval.m_IESim.all := m_ComRetVal;
       end return;
    end;
@@ -2234,7 +2234,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.ESimWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.ESimWatcherStatus;
    begin
       Hr := this.m_IESimWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2280,7 +2280,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2292,7 +2292,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Added
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2313,7 +2313,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2325,7 +2325,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_EnumerationCompleted
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2346,7 +2346,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2358,7 +2358,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Removed
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2379,7 +2379,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2391,7 +2391,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Stopped
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2412,7 +2412,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IESimWatcher.all.add_Updated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2424,7 +2424,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Updated
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2462,7 +2462,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function TryGetAuthenticationContext
    (
       evenToken : WinRt.WString;
-      context : access Windows.Networking.NetworkOperators.IHotspotAuthenticationContext
+      context : access WinRt.Windows.Networking.NetworkOperators.IHotspotAuthenticationContext
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2523,14 +2523,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IHotspotAuthenticationContext.all.get_NetworkAdapter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
+         Retval.m_INetworkAdapter := new WinRt.Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
    end;
@@ -2543,14 +2543,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotAuthenticationContext.all.get_RedirectMessageUrl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2563,14 +2563,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IHotspotAuthenticationContext.all.get_RedirectMessageXml (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -2583,14 +2583,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotAuthenticationContext.all.get_AuthenticationUrl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2732,7 +2732,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHotspotCredentialsAuthenticationResult := new Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult;
+                  Retval.m_IHotspotCredentialsAuthenticationResult := new WinRt.Windows.Networking.NetworkOperators.IHotspotCredentialsAuthenticationResult;
                   Retval.m_IHotspotCredentialsAuthenticationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2839,7 +2839,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode;
    begin
       Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_ResponseCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2856,14 +2856,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_LogoffUrl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2876,14 +2876,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IHotspotCredentialsAuthenticationResult.all.get_AuthenticationReplyXml (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -2899,7 +2899,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
@@ -2923,7 +2923,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
@@ -2947,7 +2947,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownCSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownCSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownCSimFilePathsStatics'Access , m_Factory'Address);
@@ -2977,7 +2977,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
@@ -3001,7 +3001,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
@@ -3025,7 +3025,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownRuimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownRuimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownRuimFilePathsStatics'Access , m_Factory'Address);
@@ -3055,7 +3055,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
@@ -3079,7 +3079,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
@@ -3103,7 +3103,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
@@ -3127,7 +3127,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownSimFilePathsStatics'Access , m_Factory'Address);
@@ -3157,7 +3157,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
@@ -3181,7 +3181,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
@@ -3205,7 +3205,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
@@ -3229,7 +3229,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
@@ -3253,7 +3253,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.KnownUSimFilePaths");
          m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IKnownUSimFilePathsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
          m_GenericRetval  : aliased IVectorView_UInt32.Kind;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IKnownUSimFilePathsStatics'Access , m_Factory'Address);
@@ -3302,7 +3302,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandAccountStatics'Access , m_Factory'Address);
@@ -3329,7 +3329,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccount");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
       HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount do
@@ -3340,7 +3340,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMobileBroadbandAccount := new Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
+            Retval.m_IMobileBroadbandAccount := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
             Retval.m_IMobileBroadbandAccount.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3416,14 +3416,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandAccount.all.get_CurrentNetwork (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+         Retval.m_IMobileBroadbandNetwork := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
    end;
@@ -3436,14 +3436,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation do
          Hr := this.m_IMobileBroadbandAccount.all.get_CurrentDeviceInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandDeviceInformation := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
+         Retval.m_IMobileBroadbandDeviceInformation := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
          Retval.m_IMobileBroadbandDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -3457,7 +3457,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandAccount2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandAccount.all);
@@ -3478,7 +3478,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandAccount3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -3488,7 +3488,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3639,13 +3639,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function Constructor return MobileBroadbandAccountWatcher is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher");
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
    begin
       return RetVal : MobileBroadbandAccountWatcher do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMobileBroadbandAccountWatcher := new Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
+            Retval.m_IMobileBroadbandAccountWatcher := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
             Retval.m_IMobileBroadbandAccountWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3664,7 +3664,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountAdded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3676,7 +3676,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountAdded
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3697,7 +3697,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3709,7 +3709,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountUpdated
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3730,7 +3730,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_AccountRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3742,7 +3742,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountRemoved
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3763,7 +3763,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3775,7 +3775,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_EnumerationCompleted
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3796,7 +3796,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3808,7 +3808,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Stopped
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3828,7 +3828,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus;
    begin
       Hr := this.m_IMobileBroadbandAccountWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3896,16 +3896,16 @@ package body WinRt.Windows.Networking.NetworkOperators is
    return MobileBroadbandAntennaSar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAntennaSar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar");
       m_Factory    : access IMobileBroadbandAntennaSarFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
    begin
       return RetVal : MobileBroadbandAntennaSar do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandAntennaSarFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithIndex (antennaIndex, sarBackoffIndex, m_ComRetVal'Access);
-            Retval.m_IMobileBroadbandAntennaSar := new Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
+            Retval.m_IMobileBroadbandAntennaSar := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
             Retval.m_IMobileBroadbandAntennaSar.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3981,7 +3981,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationId (m_ComRetVal'Access);
@@ -4001,7 +4001,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationPNCode (m_ComRetVal'Access);
@@ -4021,7 +4021,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLatitude (m_ComRetVal'Access);
@@ -4041,7 +4041,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLongitude (m_ComRetVal'Access);
@@ -4061,7 +4061,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_BaseStationLastBroadcastGpsTime (m_ComRetVal'Access);
@@ -4081,7 +4081,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_NetworkId (m_ComRetVal'Access);
@@ -4101,7 +4101,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_PilotSignalStrengthInDB (m_ComRetVal'Access);
@@ -4121,7 +4121,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellCdma.all.get_SystemId (m_ComRetVal'Access);
@@ -4164,7 +4164,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_BaseStationId (m_ComRetVal'Access);
@@ -4184,7 +4184,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_CellId (m_ComRetVal'Access);
@@ -4204,7 +4204,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_ChannelNumber (m_ComRetVal'Access);
@@ -4224,7 +4224,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_LocationAreaCode (m_ComRetVal'Access);
@@ -4264,7 +4264,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_ReceivedSignalStrengthInDBm (m_ComRetVal'Access);
@@ -4284,7 +4284,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellGsm.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
@@ -4327,7 +4327,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_CellId (m_ComRetVal'Access);
@@ -4347,7 +4347,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ChannelNumber (m_ComRetVal'Access);
@@ -4367,7 +4367,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_PhysicalCellId (m_ComRetVal'Access);
@@ -4407,7 +4407,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ReferenceSignalReceivedPowerInDBm (m_ComRetVal'Access);
@@ -4427,7 +4427,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_ReferenceSignalReceivedQualityInDBm (m_ComRetVal'Access);
@@ -4447,7 +4447,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
@@ -4467,7 +4467,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellLte.all.get_TrackingAreaCode (m_ComRetVal'Access);
@@ -4510,7 +4510,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int64.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_CellId (m_ComRetVal'Access);
@@ -4530,7 +4530,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_ChannelNumber (m_ComRetVal'Access);
@@ -4550,7 +4550,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_PhysicalCellId (m_ComRetVal'Access);
@@ -4590,7 +4590,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_ReferenceSignalReceivedPowerInDBm (m_ComRetVal'Access);
@@ -4610,7 +4610,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_ReferenceSignalReceivedQualityInDBm (m_ComRetVal'Access);
@@ -4630,7 +4630,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_TimingAdvanceInNanoseconds (m_ComRetVal'Access);
@@ -4650,7 +4650,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_TrackingAreaCode (m_ComRetVal'Access);
@@ -4670,7 +4670,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellNR.all.get_SignalToNoiseRatioInDB (m_ComRetVal'Access);
@@ -4713,7 +4713,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_CellId (m_ComRetVal'Access);
@@ -4733,7 +4733,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_CellParameterId (m_ComRetVal'Access);
@@ -4753,7 +4753,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_ChannelNumber (m_ComRetVal'Access);
@@ -4773,7 +4773,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_LocationAreaCode (m_ComRetVal'Access);
@@ -4793,7 +4793,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_PathLossInDB (m_ComRetVal'Access);
@@ -4833,7 +4833,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_ReceivedSignalCodePowerInDBm (m_ComRetVal'Access);
@@ -4853,7 +4853,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellTdscdma.all.get_TimingAdvanceInBitPeriods (m_ComRetVal'Access);
@@ -4896,7 +4896,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_CellId (m_ComRetVal'Access);
@@ -4916,7 +4916,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_ChannelNumber (m_ComRetVal'Access);
@@ -4936,7 +4936,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_LocationAreaCode (m_ComRetVal'Access);
@@ -4956,7 +4956,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_PathLossInDB (m_ComRetVal'Access);
@@ -4976,7 +4976,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_PrimaryScramblingCode (m_ComRetVal'Access);
@@ -5016,7 +5016,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_ReceivedSignalCodePowerInDBm (m_ComRetVal'Access);
@@ -5036,7 +5036,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellUmts.all.get_SignalToNoiseRatioInDB (m_ComRetVal'Access);
@@ -5079,7 +5079,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellCdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsCdma (m_ComRetVal'Access);
@@ -5099,7 +5099,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellGsm.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsGsm (m_ComRetVal'Access);
@@ -5119,7 +5119,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellLte.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsLte (m_ComRetVal'Access);
@@ -5139,7 +5139,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellTdscdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsTdscdma (m_ComRetVal'Access);
@@ -5159,7 +5159,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellUmts.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_NeighboringCellsUmts (m_ComRetVal'Access);
@@ -5179,7 +5179,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellCdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsCdma (m_ComRetVal'Access);
@@ -5199,7 +5199,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellGsm.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsGsm (m_ComRetVal'Access);
@@ -5219,7 +5219,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellLte.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsLte (m_ComRetVal'Access);
@@ -5239,7 +5239,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellTdscdma.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsTdscdma (m_ComRetVal'Access);
@@ -5259,7 +5259,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellUmts.Kind;
    begin
       Hr := this.m_IMobileBroadbandCellsInfo.all.get_ServingCellsUmts (m_ComRetVal'Access);
@@ -5280,7 +5280,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellNR.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandCellsInfo2'Unchecked_Access);
    begin
@@ -5304,7 +5304,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandCellNR.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandCellsInfo2'Unchecked_Access);
    begin
@@ -5390,7 +5390,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkDeviceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.NetworkDeviceStatus;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_NetworkDeviceStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5467,7 +5467,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_CellularClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5484,7 +5484,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.DataClasses;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.DataClasses;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_DataClasses (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5541,7 +5541,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_TelephoneNumbers (m_ComRetVal'Access);
@@ -5601,7 +5601,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceType;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_DeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5638,7 +5638,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
    begin
       Hr := this.m_IMobileBroadbandDeviceInformation.all.get_CurrentRadioState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5656,7 +5656,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinManager do
@@ -5666,7 +5666,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandPinManager := new Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
+         Retval.m_IMobileBroadbandPinManager := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinManager;
          Retval.m_IMobileBroadbandPinManager.all := m_ComRetVal;
       end return;
    end;
@@ -5800,7 +5800,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceInformation4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotManager do
@@ -5810,7 +5810,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandSlotManager := new Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
+         Retval.m_IMobileBroadbandSlotManager := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager;
          Retval.m_IMobileBroadbandSlotManager.all := m_ComRetVal;
       end return;
    end;
@@ -5863,7 +5863,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IMobileBroadbandDeviceService.all.get_SupportedCommands (m_ComRetVal'Access);
@@ -5883,14 +5883,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceDataSession do
          Hr := this.m_IMobileBroadbandDeviceService.all.OpenDataSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandDeviceServiceDataSession := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
+         Retval.m_IMobileBroadbandDeviceServiceDataSession := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession;
          Retval.m_IMobileBroadbandDeviceServiceDataSession.all := m_ComRetVal;
       end return;
    end;
@@ -5903,14 +5903,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandSession do
          Hr := this.m_IMobileBroadbandDeviceService.all.OpenCommandSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandDeviceServiceCommandSession := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
+         Retval.m_IMobileBroadbandDeviceServiceCommandSession := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession;
          Retval.m_IMobileBroadbandDeviceServiceCommandSession.all := m_ComRetVal;
       end return;
    end;
@@ -6000,7 +6000,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.get_ReceivedData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6057,7 +6057,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceCommandResult.all.get_ResponseData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6093,7 +6093,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
       commandId : WinRt.UInt32;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6144,7 +6144,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandDeviceServiceCommandResult := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
+                  Retval.m_IMobileBroadbandDeviceServiceCommandResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6161,7 +6161,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
       commandId : WinRt.UInt32;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6212,7 +6212,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandDeviceServiceCommandResult := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
+                  Retval.m_IMobileBroadbandDeviceServiceCommandResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandResult;
                   Retval.m_IMobileBroadbandDeviceServiceCommandResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6249,7 +6249,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandDeviceServiceCommandSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandDeviceServiceCommandSession.all);
@@ -6264,7 +6264,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_CommandReceived
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6311,7 +6311,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all.get_ReceivedData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6346,7 +6346,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure WriteDataAsync
    (
       this : in out MobileBroadbandDeviceServiceDataSession;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6409,7 +6409,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceDataSession.all.add_DataReceived (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6421,7 +6421,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_DataReceived
    (
       this : in out MobileBroadbandDeviceServiceDataSession;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6575,7 +6575,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.get_ReceivedData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6662,7 +6662,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModem;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem do
@@ -6673,7 +6673,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMobileBroadbandModem := new Windows.Networking.NetworkOperators.IMobileBroadbandModem;
+            Retval.m_IMobileBroadbandModem := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem;
             Retval.m_IMobileBroadbandModem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6688,7 +6688,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModem");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModem;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModem do
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemStatics'Access , m_Factory'Address);
@@ -6698,7 +6698,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMobileBroadbandModem := new Windows.Networking.NetworkOperators.IMobileBroadbandModem;
+            Retval.m_IMobileBroadbandModem := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem;
             Retval.m_IMobileBroadbandModem.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6716,14 +6716,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccount do
          Hr := this.m_IMobileBroadbandModem.all.get_CurrentAccount (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandAccount := new Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
+         Retval.m_IMobileBroadbandAccount := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount;
          Retval.m_IMobileBroadbandAccount.all := m_ComRetVal;
       end return;
    end;
@@ -6736,14 +6736,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation do
          Hr := this.m_IMobileBroadbandModem.all.get_DeviceInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandDeviceInformation := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
+         Retval.m_IMobileBroadbandDeviceInformation := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation;
          Retval.m_IMobileBroadbandDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -6790,7 +6790,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandDeviceServiceInformation.Kind;
    begin
       Hr := this.m_IMobileBroadbandModem.all.get_DeviceServices (m_ComRetVal'Access);
@@ -6811,14 +6811,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceService do
          Hr := this.m_IMobileBroadbandModem.all.GetDeviceService (deviceServiceId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandDeviceService := new Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
+         Retval.m_IMobileBroadbandDeviceService := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService;
          Retval.m_IMobileBroadbandDeviceService.all := m_ComRetVal;
       end return;
    end;
@@ -6935,7 +6935,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandModemConfiguration := new Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration;
+                  Retval.m_IMobileBroadbandModemConfiguration := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration;
                   Retval.m_IMobileBroadbandModemConfiguration.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6956,14 +6956,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandModem.all.get_CurrentNetwork (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+         Retval.m_IMobileBroadbandNetwork := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
    end;
@@ -7160,7 +7160,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPco := new Windows.Networking.NetworkOperators.IMobileBroadbandPco;
+                  Retval.m_IMobileBroadbandPco := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPco;
                   Retval.m_IMobileBroadbandPco.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7204,7 +7204,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem3, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
@@ -7219,7 +7219,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_IsInEmergencyCallModeChanged
    (
       this : in out MobileBroadbandModem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7383,7 +7383,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem4, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModem4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMobileBroadbandModem.all);
@@ -7448,14 +7448,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUicc do
          Hr := this.m_IMobileBroadbandModemConfiguration.all.get_Uicc (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandUicc := new Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
+         Retval.m_IMobileBroadbandUicc := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUicc;
          Retval.m_IMobileBroadbandUicc.all := m_ComRetVal;
       end return;
    end;
@@ -7509,7 +7509,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandModemConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSarManager do
@@ -7519,7 +7519,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandSarManager := new Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
+         Retval.m_IMobileBroadbandSarManager := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSarManager;
          Retval.m_IMobileBroadbandSarManager.all := m_ComRetVal;
       end return;
    end;
@@ -7555,10 +7555,10 @@ package body WinRt.Windows.Networking.NetworkOperators is
    return MobileBroadbandModemIsolation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModemIsolation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation");
       m_Factory    : access IMobileBroadbandModemIsolationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
       HStr_modemDeviceId : constant WinRt.HString := To_HString (modemDeviceId);
       HStr_ruleGroupId : constant WinRt.HString := To_HString (ruleGroupId);
    begin
@@ -7566,7 +7566,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          Hr := RoGetActivationFactory (m_hString, IID_IMobileBroadbandModemIsolationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_modemDeviceId, HStr_ruleGroupId, m_ComRetVal'Access);
-            Retval.m_IMobileBroadbandModemIsolation := new Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
+            Retval.m_IMobileBroadbandModemIsolation := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
             Retval.m_IMobileBroadbandModemIsolation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7582,7 +7582,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure AddAllowedHost
    (
       this : in out MobileBroadbandModemIsolation;
-      host : Windows.Networking.HostName'Class
+      host : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7597,8 +7597,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure AddAllowedHostRange
    (
       this : in out MobileBroadbandModemIsolation;
-      first : Windows.Networking.HostName'Class;
-      last : Windows.Networking.HostName'Class
+      first : WinRt.Windows.Networking.HostName'Class;
+      last : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7725,14 +7725,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IMobileBroadbandNetwork.all.get_NetworkAdapter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
+         Retval.m_INetworkAdapter := new WinRt.Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
    end;
@@ -7745,7 +7745,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkRegistrationState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.NetworkRegistrationState;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_NetworkRegistrationState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7833,7 +7833,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.DataClasses;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.DataClasses;
    begin
       Hr := this.m_IMobileBroadbandNetwork.all.get_RegisteredDataClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7972,7 +7972,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandUiccApp.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork_Interface, WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork2, WinRt.Windows.Networking.NetworkOperators.IID_IMobileBroadbandNetwork2'Unchecked_Access);
    begin
@@ -8044,7 +8044,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandCellsInfo := new Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo;
+                  Retval.m_IMobileBroadbandCellsInfo := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandCellsInfo;
                   Retval.m_IMobileBroadbandCellsInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8108,14 +8108,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandNetwork do
          Hr := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.get_Network (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandNetwork := new Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
+         Retval.m_IMobileBroadbandNetwork := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork;
          Retval.m_IMobileBroadbandNetwork.all := m_ComRetVal;
       end return;
    end;
@@ -8151,7 +8151,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandNetworkRegistrationStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all.get_NetworkRegistrationStateChanges (m_ComRetVal'Access);
@@ -8194,7 +8194,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandPco.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8271,14 +8271,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPco;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPco;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPco do
          Hr := this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all.get_UpdatedData (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandPco := new Windows.Networking.NetworkOperators.IMobileBroadbandPco;
+         Retval.m_IMobileBroadbandPco := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPco;
          Retval.m_IMobileBroadbandPco.all := m_ComRetVal;
       end return;
    end;
@@ -8314,7 +8314,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8331,7 +8331,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_LockState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8348,7 +8348,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinFormat;
    begin
       Hr := this.m_IMobileBroadbandPin.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8480,7 +8480,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
+                  Retval.m_IMobileBroadbandPinOperationResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8549,7 +8549,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
+                  Retval.m_IMobileBroadbandPinOperationResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8618,7 +8618,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
+                  Retval.m_IMobileBroadbandPinOperationResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8689,7 +8689,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
+                  Retval.m_IMobileBroadbandPinOperationResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8761,7 +8761,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandPinOperationResult := new Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
+                  Retval.m_IMobileBroadbandPinOperationResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinOperationResult;
                   Retval.m_IMobileBroadbandPinOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8827,7 +8827,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChange.all.get_PinType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8844,7 +8844,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChange.all.get_PinLockState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8884,7 +8884,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandPinLockStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all.get_PinLockStateChanges (m_ComRetVal'Access);
@@ -8927,7 +8927,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_MobileBroadbandPinType.Kind;
    begin
       Hr := this.m_IMobileBroadbandPinManager.all.get_SupportedPins (m_ComRetVal'Access);
@@ -8942,20 +8942,20 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function GetPin
    (
       this : in out MobileBroadbandPinManager;
-      pinType : Windows.Networking.NetworkOperators.MobileBroadbandPinType
+      pinType : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPin'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandPin;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPin;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPin do
          Hr := this.m_IMobileBroadbandPinManager.all.GetPin (pinType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandPin := new Windows.Networking.NetworkOperators.IMobileBroadbandPin;
+         Retval.m_IMobileBroadbandPin := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPin;
          Retval.m_IMobileBroadbandPin.all := m_ComRetVal;
       end return;
    end;
@@ -9068,7 +9068,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
    begin
       Hr := this.m_IMobileBroadbandRadioStateChange.all.get_RadioState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9108,7 +9108,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandRadioStateChange.Kind;
    begin
       Hr := this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all.get_RadioStateChanges (m_ComRetVal'Access);
@@ -9202,7 +9202,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandAntennaSar.Kind;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_Antennas (m_ComRetVal'Access);
@@ -9222,7 +9222,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.get_HysteresisTimerPeriod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9240,7 +9240,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandSarManager.all.add_TransmissionStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9252,7 +9252,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_TransmissionStateChanged
    (
       this : in out MobileBroadbandSarManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9436,7 +9436,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure SetTransmissionStateChangedHysteresisAsync
    (
       this : in out MobileBroadbandSarManager;
-      timerPeriod : Windows.Foundation.TimeSpan
+      timerPeriod : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9615,7 +9615,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandSlotState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotState;
    begin
       Hr := this.m_IMobileBroadbandSlotInfo.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9679,14 +9679,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotInfo do
          Hr := this.m_IMobileBroadbandSlotInfoChangedEventArgs.all.get_SlotInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMobileBroadbandSlotInfo := new Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
+         Retval.m_IMobileBroadbandSlotInfo := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo;
          Retval.m_IMobileBroadbandSlotInfo.all := m_ComRetVal;
       end return;
    end;
@@ -9722,7 +9722,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandSlotInfo.Kind;
    begin
       Hr := this.m_IMobileBroadbandSlotManager.all.get_SlotInfos (m_ComRetVal'Access);
@@ -9760,7 +9760,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus;
    begin
       Hr := this.m_IMobileBroadbandSlotManager.all.SetCurrentSlot (slotIndex, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9842,7 +9842,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandSlotManager.all.add_SlotInfoChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9854,7 +9854,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_SlotInfoChanged
    (
       this : in out MobileBroadbandSlotManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9875,7 +9875,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMobileBroadbandSlotManager.all.add_CurrentSlotIndexChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9887,7 +9887,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure remove_CurrentSlotIndexChanged
    (
       this : in out MobileBroadbandSlotManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10035,7 +10035,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandUiccAppsResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppsResult;
+                  Retval.m_IMobileBroadbandUiccAppsResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppsResult;
                   Retval.m_IMobileBroadbandUiccAppsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10079,7 +10079,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandUiccApp.all.get_Id (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10096,7 +10096,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAppKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.UiccAppKind;
    begin
       Hr := this.m_IMobileBroadbandUiccApp.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10159,7 +10159,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandUiccAppRecordDetailsResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppRecordDetailsResult;
+                  Retval.m_IMobileBroadbandUiccAppRecordDetailsResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppRecordDetailsResult;
                   Retval.m_IMobileBroadbandUiccAppRecordDetailsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10227,7 +10227,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMobileBroadbandUiccAppReadRecordResult := new Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppReadRecordResult;
+                  Retval.m_IMobileBroadbandUiccAppReadRecordResult := new WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppReadRecordResult;
                   Retval.m_IMobileBroadbandUiccAppReadRecordResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10271,7 +10271,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppReadRecordResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10288,7 +10288,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IMobileBroadbandUiccAppReadRecordResult.all.get_Data (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10328,7 +10328,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10345,7 +10345,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAppRecordKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.UiccAppRecordKind;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10396,7 +10396,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAccessCondition;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_ReadAccessCondition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10413,7 +10413,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UiccAccessCondition;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition;
    begin
       Hr := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.get_WriteAccessCondition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10453,7 +10453,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus;
    begin
       Hr := this.m_IMobileBroadbandUiccAppsResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10470,7 +10470,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMobileBroadbandUiccApp.Kind;
    begin
       Hr := this.m_IMobileBroadbandUiccAppsResult.all.get_UiccApps (m_ComRetVal'Access);
@@ -10513,7 +10513,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind;
    begin
       Hr := this.m_INetworkOperatorDataUsageTriggerDetails.all.get_NotificationKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10553,7 +10553,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_NotificationType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10647,7 +10647,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsMessage;
    begin
       Hr := this.m_INetworkOperatorNotificationEventDetails.all.get_SmsMessage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10704,13 +10704,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function Constructor return NetworkOperatorTetheringAccessPointConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration");
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
    begin
       return RetVal : NetworkOperatorTetheringAccessPointConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
+            Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
             Retval.m_INetworkOperatorTetheringAccessPointConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10797,7 +10797,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupported
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10819,7 +10819,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupportedAsync
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10893,7 +10893,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiBand;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
@@ -10908,7 +10908,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure put_Band
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10927,7 +10927,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsAuthenticationKindSupported
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10949,7 +10949,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsAuthenticationKindSupportedAsync
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -11023,7 +11023,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration3, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringAccessPointConfiguration3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INetworkOperatorTetheringAccessPointConfiguration.all);
@@ -11038,7 +11038,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure put_AuthenticationKind
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11105,7 +11105,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHostName.Kind;
    begin
       Hr := this.m_INetworkOperatorTetheringClient.all.get_HostNames (m_ComRetVal'Access);
@@ -11150,7 +11150,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringCapability;
       HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics'Access , m_Factory'Address);
@@ -11176,7 +11176,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
       HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
@@ -11187,7 +11187,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11346,7 +11346,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function GetTetheringCapabilityFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringCapability is
       Hr               : WinRt.HResult := S_OK;
@@ -11354,7 +11354,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringCapability;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringCapability;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -11370,7 +11370,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function CreateFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
@@ -11378,7 +11378,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics2'Access , m_Factory'Address);
@@ -11388,7 +11388,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11397,8 +11397,8 @@ package body WinRt.Windows.Networking.NetworkOperators is
 
    function CreateFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager is
       Hr               : WinRt.HResult := S_OK;
@@ -11406,7 +11406,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager do
          Hr := RoGetActivationFactory (m_hString, IID_INetworkOperatorTetheringManagerStatics3'Access , m_Factory'Address);
@@ -11416,7 +11416,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_INetworkOperatorTetheringManager := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
+            Retval.m_INetworkOperatorTetheringManager := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager;
             Retval.m_INetworkOperatorTetheringManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11468,7 +11468,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringOperationalState;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringOperationalState;
    begin
       Hr := this.m_INetworkOperatorTetheringManager.all.get_TetheringOperationalState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11485,14 +11485,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration do
          Hr := this.m_INetworkOperatorTetheringManager.all.GetCurrentAccessPointConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
+         Retval.m_INetworkOperatorTetheringAccessPointConfiguration := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
          Retval.m_INetworkOperatorTetheringAccessPointConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -11500,7 +11500,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure ConfigureAccessPointAsync
    (
       this : in out NetworkOperatorTetheringManager;
-      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class
+      configuration : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11593,7 +11593,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
+                  Retval.m_INetworkOperatorTetheringOperationResult := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
                   Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11659,7 +11659,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
+                  Retval.m_INetworkOperatorTetheringOperationResult := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
                   Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11681,7 +11681,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringClientManager := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_INetworkOperatorTetheringClient.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager_Interface, WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringClientManager, WinRt.Windows.Networking.NetworkOperators.IID_INetworkOperatorTetheringClientManager'Unchecked_Access);
    begin
@@ -11699,7 +11699,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function StartTetheringAsync
    (
       this : in out NetworkOperatorTetheringManager;
-      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
+      configuration : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11754,7 +11754,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_INetworkOperatorTetheringOperationResult := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
+                  Retval.m_INetworkOperatorTetheringOperationResult := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringOperationResult;
                   Retval.m_INetworkOperatorTetheringOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11798,7 +11798,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringOperationStatus;
    begin
       Hr := this.m_INetworkOperatorTetheringOperationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11853,13 +11853,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function Constructor return NetworkOperatorTetheringSessionAccessPointConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration");
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
    begin
       return RetVal : NetworkOperatorTetheringSessionAccessPointConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INetworkOperatorTetheringSessionAccessPointConfiguration := new Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+            Retval.m_INetworkOperatorTetheringSessionAccessPointConfiguration := new WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
             Retval.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11946,7 +11946,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupported
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -11964,7 +11964,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupportedAsync
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -12033,7 +12033,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiBand;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
    begin
       Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_Band (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12045,7 +12045,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure put_Band
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12060,7 +12060,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsAuthenticationKindSupported
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -12078,7 +12078,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function IsAuthenticationKindSupportedAsync
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -12147,7 +12147,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
    begin
       Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_AuthenticationKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12159,7 +12159,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure put_AuthenticationKind
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12179,7 +12179,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority;
    begin
       Hr := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.get_PerformancePriority (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12191,7 +12191,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure put_PerformancePriority
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12289,7 +12289,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure UpdateCost
    (
       this : in out ProvisionedProfile;
-      value : Windows.Networking.Connectivity.NetworkCostType
+      value : WinRt.Windows.Networking.Connectivity.NetworkCostType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12304,7 +12304,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    procedure UpdateUsage
    (
       this : in out ProvisionedProfile;
-      value : Windows.Networking.NetworkOperators.ProfileUsage
+      value : WinRt.Windows.Networking.NetworkOperators.ProfileUsage
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12342,13 +12342,13 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function Constructor return ProvisioningAgent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IProvisioningAgent;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.IProvisioningAgent");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.IProvisioningAgent;
    begin
       return RetVal : ProvisioningAgent do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IProvisioningAgent := new Windows.Networking.NetworkOperators.IProvisioningAgent;
+            Retval.m_IProvisioningAgent := new WinRt.Windows.Networking.NetworkOperators.IProvisioningAgent;
             Retval.m_IProvisioningAgent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12368,7 +12368,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IProvisioningAgentStaticMethods_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IProvisioningAgent;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IProvisioningAgent;
       HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ProvisioningAgent do
@@ -12379,7 +12379,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProvisioningAgent := new Windows.Networking.NetworkOperators.IProvisioningAgent;
+            Retval.m_IProvisioningAgent := new WinRt.Windows.Networking.NetworkOperators.IProvisioningAgent;
             Retval.m_IProvisioningAgent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12445,7 +12445,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IProvisionFromXmlDocumentResults := new Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults;
+                  Retval.m_IProvisionFromXmlDocumentResults := new WinRt.Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults;
                   Retval.m_IProvisionFromXmlDocumentResults.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12462,14 +12462,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function GetProvisionedProfile
    (
       this : in out ProvisioningAgent;
-      mediaType : Windows.Networking.NetworkOperators.ProfileMediaType;
+      mediaType : WinRt.Windows.Networking.NetworkOperators.ProfileMediaType;
       profileName : WinRt.WString
    )
    return WinRt.Windows.Networking.NetworkOperators.ProvisionedProfile'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IProvisionedProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IProvisionedProfile;
       HStr_profileName : constant WinRt.HString := To_HString (profileName);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.ProvisionedProfile do
@@ -12477,7 +12477,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProvisionedProfile := new Windows.Networking.NetworkOperators.IProvisionedProfile;
+         Retval.m_IProvisionedProfile := new WinRt.Windows.Networking.NetworkOperators.IProvisionedProfile;
          Retval.m_IProvisionedProfile.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_profileName);
       end return;
@@ -12587,17 +12587,17 @@ package body WinRt.Windows.Networking.NetworkOperators is
    return UssdMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.IUssdMessage");
       m_Factory    : access IUssdMessageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.NetworkOperators.IUssdMessage;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.NetworkOperators.IUssdMessage;
       HStr_messageText : constant WinRt.HString := To_HString (messageText);
    begin
       return RetVal : UssdMessage do
          Hr := RoGetActivationFactory (m_hString, IID_IUssdMessageFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateMessage (HStr_messageText, m_ComRetVal'Access);
-            Retval.m_IUssdMessage := new Windows.Networking.NetworkOperators.IUssdMessage;
+            Retval.m_IUssdMessage := new WinRt.Windows.Networking.NetworkOperators.IUssdMessage;
             Retval.m_IUssdMessage.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -12751,7 +12751,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.UssdResultCode;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.UssdResultCode;
    begin
       Hr := this.m_IUssdReply.all.get_ResultCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12768,14 +12768,14 @@ package body WinRt.Windows.Networking.NetworkOperators is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IUssdMessage;
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdMessage do
          Hr := this.m_IUssdReply.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUssdMessage := new Windows.Networking.NetworkOperators.IUssdMessage;
+         Retval.m_IUssdMessage := new WinRt.Windows.Networking.NetworkOperators.IUssdMessage;
          Retval.m_IUssdMessage.all := m_ComRetVal;
       end return;
    end;
@@ -12813,7 +12813,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IUssdSessionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdSession;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IUssdSession;
       HStr_networkAccountId : constant WinRt.HString := To_HString (networkAccountId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdSession do
@@ -12824,7 +12824,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUssdSession := new Windows.Networking.NetworkOperators.IUssdSession;
+            Retval.m_IUssdSession := new WinRt.Windows.Networking.NetworkOperators.IUssdSession;
             Retval.m_IUssdSession.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12842,7 +12842,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.NetworkOperators.UssdSession");
       m_Factory        : access WinRt.Windows.Networking.NetworkOperators.IUssdSessionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.NetworkOperators.IUssdSession;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.NetworkOperators.IUssdSession;
       HStr_networkInterfaceId : constant WinRt.HString := To_HString (networkInterfaceId);
    begin
       return RetVal : WinRt.Windows.Networking.NetworkOperators.UssdSession do
@@ -12853,7 +12853,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUssdSession := new Windows.Networking.NetworkOperators.IUssdSession;
+            Retval.m_IUssdSession := new WinRt.Windows.Networking.NetworkOperators.IUssdSession;
             Retval.m_IUssdSession.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12867,7 +12867,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
    function SendMessageAndGetReplyAsync
    (
       this : in out UssdSession;
-      message : Windows.Networking.NetworkOperators.UssdMessage'Class
+      message : WinRt.Windows.Networking.NetworkOperators.UssdMessage'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdReply'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12918,7 +12918,7 @@ package body WinRt.Windows.Networking.NetworkOperators is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IUssdReply := new Windows.Networking.NetworkOperators.IUssdReply;
+                  Retval.m_IUssdReply := new WinRt.Windows.Networking.NetworkOperators.IUssdReply;
                   Retval.m_IUssdReply.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;

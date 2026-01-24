@@ -779,7 +779,7 @@ package WinRt.Windows.Media.Audio is
       function get_Device
       (
          this : access IAudioDeviceInputNode_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -791,7 +791,7 @@ package WinRt.Windows.Media.Audio is
       function get_Device
       (
          this : access IAudioDeviceOutputNode_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access IAudioEffectsPackConfiguration_Interface;
-         RetVal : access Windows.Media.Audio.AudioEffectsPackStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioEffectsPackStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -825,14 +825,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioEffectsPackConfiguration_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IAudioEffectsPackConfiguration_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -846,7 +846,7 @@ package WinRt.Windows.Media.Audio is
          this : access IAudioEffectsPackConfigurationStatics_Interface;
          effectsPackId : WinRt.HString;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Audio.IAudioEffectsPackConfiguration
+         RetVal : access WinRt.Windows.Media.Audio.IAudioEffectsPackConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -881,14 +881,14 @@ package WinRt.Windows.Media.Audio is
       function get_Position
       (
          this : access IAudioFileInputNode_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function Seek
       (
          this : access IAudioFileInputNode_Interface;
-         position : Windows.Foundation.TimeSpan
+         position : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -937,14 +937,14 @@ package WinRt.Windows.Media.Audio is
       function get_Duration
       (
          this : access IAudioFileInputNode_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceFile
       (
          this : access IAudioFileInputNode_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -952,14 +952,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioFileInputNode_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FileCompleted
       (
          this : access IAudioFileInputNode_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -971,14 +971,14 @@ package WinRt.Windows.Media.Audio is
       function get_File
       (
          this : access IAudioFileOutputNode_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function get_FileEncodingProfile
       (
          this : access IAudioFileOutputNode_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -997,7 +997,7 @@ package WinRt.Windows.Media.Audio is
       function get_Frame
       (
          this : access IAudioFrameCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.IAudioFrame
+         RetVal : access WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1023,7 +1023,7 @@ package WinRt.Windows.Media.Audio is
       function AddFrame
       (
          this : access IAudioFrameInputNode_Interface;
-         frame : Windows.Media.IAudioFrame
+         frame : WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1044,14 +1044,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioFrameInputNode_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AudioFrameCompleted
       (
          this : access IAudioFrameInputNode_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1059,14 +1059,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioFrameInputNode_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_QuantumStarted
       (
          this : access IAudioFrameInputNode_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1078,7 +1078,7 @@ package WinRt.Windows.Media.Audio is
       function GetFrame
       (
          this : access IAudioFrameOutputNode_Interface;
-         RetVal : access Windows.Media.IAudioFrame
+         RetVal : access WinRt.Windows.Media.IAudioFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1090,22 +1090,22 @@ package WinRt.Windows.Media.Audio is
       function CreateFrameInputNode
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Media.Audio.IAudioFrameInputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFrameInputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateFrameInputNode
       (
          this : access IAudioGraph_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         RetVal : access Windows.Media.Audio.IAudioFrameInputNode
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFrameInputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateDeviceInputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         category : Windows.Media.Capture.MediaCategory;
+         category : WinRt.Windows.Media.Capture.MediaCategory;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1113,8 +1113,8 @@ package WinRt.Windows.Media.Audio is
       function CreateDeviceInputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         category : Windows.Media.Capture.MediaCategory;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1122,9 +1122,9 @@ package WinRt.Windows.Media.Audio is
       function CreateDeviceInputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         category : Windows.Media.Capture.MediaCategory;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         device : Windows.Devices.Enumeration.IDeviceInformation;
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1132,15 +1132,15 @@ package WinRt.Windows.Media.Audio is
       function CreateFrameOutputNode
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Media.Audio.IAudioFrameOutputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFrameOutputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateFrameOutputNode
       (
          this : access IAudioGraph_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         RetVal : access Windows.Media.Audio.IAudioFrameOutputNode
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFrameOutputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1154,7 +1154,7 @@ package WinRt.Windows.Media.Audio is
       function CreateFileInputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1162,7 +1162,7 @@ package WinRt.Windows.Media.Audio is
       function CreateFileOutputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1170,8 +1170,8 @@ package WinRt.Windows.Media.Audio is
       function CreateFileOutputNodeAsync
       (
          this : access IAudioGraph_Interface;
-         file : Windows.Storage.IStorageFile;
-         fileEncodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         file : WinRt.Windows.Storage.IStorageFile;
+         fileEncodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1179,15 +1179,15 @@ package WinRt.Windows.Media.Audio is
       function CreateSubmixNode
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Media.Audio.IAudioInputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioInputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateSubmixNode
       (
          this : access IAudioGraph_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         RetVal : access Windows.Media.Audio.IAudioInputNode
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioInputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1213,14 +1213,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioGraph_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_QuantumStarted
       (
          this : access IAudioGraph_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1228,14 +1228,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioGraph_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_QuantumProcessed
       (
          this : access IAudioGraph_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1243,14 +1243,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioGraph_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UnrecoverableErrorOccurred
       (
          this : access IAudioGraph_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1264,7 +1264,7 @@ package WinRt.Windows.Media.Audio is
       function get_EncodingProperties
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,14 +1278,14 @@ package WinRt.Windows.Media.Audio is
       function get_PrimaryRenderDevice
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_RenderDeviceAudioProcessing
       (
          this : access IAudioGraph_Interface;
-         RetVal : access Windows.Media.AudioProcessing
+         RetVal : access WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
@@ -1304,19 +1304,19 @@ package WinRt.Windows.Media.Audio is
       function CreateFrameInputNode
       (
          this : access IAudioGraph2_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         emitter : Windows.Media.Audio.IAudioNodeEmitter;
-         RetVal : access Windows.Media.Audio.IAudioFrameInputNode
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         emitter : WinRt.Windows.Media.Audio.IAudioNodeEmitter;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFrameInputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateDeviceInputNodeAsync
       (
          this : access IAudioGraph2_Interface;
-         category : Windows.Media.Capture.MediaCategory;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         device : Windows.Devices.Enumeration.IDeviceInformation;
-         emitter : Windows.Media.Audio.IAudioNodeEmitter;
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         device : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
+         emitter : WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1324,8 +1324,8 @@ package WinRt.Windows.Media.Audio is
       function CreateFileInputNodeAsync
       (
          this : access IAudioGraph2_Interface;
-         file : Windows.Storage.IStorageFile;
-         emitter : Windows.Media.Audio.IAudioNodeEmitter;
+         file : WinRt.Windows.Storage.IStorageFile;
+         emitter : WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1333,16 +1333,16 @@ package WinRt.Windows.Media.Audio is
       function CreateSubmixNode
       (
          this : access IAudioGraph2_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         emitter : Windows.Media.Audio.IAudioNodeEmitter;
-         RetVal : access Windows.Media.Audio.IAudioInputNode
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         emitter : WinRt.Windows.Media.Audio.IAudioNodeEmitter;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioInputNode
       )
       return WinRt.Hresult is abstract;
 
       function CreateBatchUpdater
       (
          this : access IAudioGraph2_Interface;
-         RetVal : access Windows.Foundation.IClosable
+         RetVal : access WinRt.Windows.Foundation.IClosable
       )
       return WinRt.Hresult is abstract;
 
@@ -1354,7 +1354,7 @@ package WinRt.Windows.Media.Audio is
       function CreateMediaSourceAudioInputNodeAsync
       (
          this : access IAudioGraph3_Interface;
-         mediaSource : Windows.Media.Core.IMediaSource2;
+         mediaSource : WinRt.Windows.Media.Core.IMediaSource2;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1362,8 +1362,8 @@ package WinRt.Windows.Media.Audio is
       function CreateMediaSourceAudioInputNodeAsync
       (
          this : access IAudioGraph3_Interface;
-         mediaSource : Windows.Media.Core.IMediaSource2;
-         emitter : Windows.Media.Audio.IAudioNodeEmitter;
+         mediaSource : WinRt.Windows.Media.Core.IMediaSource2;
+         emitter : WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1376,7 +1376,7 @@ package WinRt.Windows.Media.Audio is
       function get_Destination
       (
          this : access IAudioGraphConnection_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1402,42 +1402,42 @@ package WinRt.Windows.Media.Audio is
       function get_EncodingProperties
       (
          this : access IAudioGraphSettings_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_EncodingProperties
       (
          this : access IAudioGraphSettings_Interface;
-         value : Windows.Media.MediaProperties.IAudioEncodingProperties
+         value : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_PrimaryRenderDevice
       (
          this : access IAudioGraphSettings_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function put_PrimaryRenderDevice
       (
          this : access IAudioGraphSettings_Interface;
-         value : Windows.Devices.Enumeration.IDeviceInformation
+         value : WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_QuantumSizeSelectionMode
       (
          this : access IAudioGraphSettings_Interface;
-         RetVal : access Windows.Media.Audio.QuantumSizeSelectionMode
+         RetVal : access WinRt.Windows.Media.Audio.QuantumSizeSelectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_QuantumSizeSelectionMode
       (
          this : access IAudioGraphSettings_Interface;
-         value : Windows.Media.Audio.QuantumSizeSelectionMode
+         value : WinRt.Windows.Media.Audio.QuantumSizeSelectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1458,28 +1458,28 @@ package WinRt.Windows.Media.Audio is
       function get_AudioRenderCategory
       (
          this : access IAudioGraphSettings_Interface;
-         RetVal : access Windows.Media.Render.AudioRenderCategory
+         RetVal : access WinRt.Windows.Media.Render.AudioRenderCategory
       )
       return WinRt.Hresult is abstract;
 
       function put_AudioRenderCategory
       (
          this : access IAudioGraphSettings_Interface;
-         value : Windows.Media.Render.AudioRenderCategory
+         value : WinRt.Windows.Media.Render.AudioRenderCategory
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredRenderDeviceAudioProcessing
       (
          this : access IAudioGraphSettings_Interface;
-         RetVal : access Windows.Media.AudioProcessing
+         RetVal : access WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredRenderDeviceAudioProcessing
       (
          this : access IAudioGraphSettings_Interface;
-         value : Windows.Media.AudioProcessing
+         value : WinRt.Windows.Media.AudioProcessing
       )
       return WinRt.Hresult is abstract;
 
@@ -1510,8 +1510,8 @@ package WinRt.Windows.Media.Audio is
       function Create
       (
          this : access IAudioGraphSettingsFactory_Interface;
-         audioRenderCategory : Windows.Media.Render.AudioRenderCategory;
-         RetVal : access Windows.Media.Audio.IAudioGraphSettings
+         audioRenderCategory : WinRt.Windows.Media.Render.AudioRenderCategory;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioGraphSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -1523,7 +1523,7 @@ package WinRt.Windows.Media.Audio is
       function CreateAsync
       (
          this : access IAudioGraphStatics_Interface;
-         settings : Windows.Media.Audio.IAudioGraphSettings;
+         settings : WinRt.Windows.Media.Audio.IAudioGraphSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1536,7 +1536,7 @@ package WinRt.Windows.Media.Audio is
       function get_Error
       (
          this : access IAudioGraphUnrecoverableErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Media.Audio.AudioGraphUnrecoverableError
+         RetVal : access WinRt.Windows.Media.Audio.AudioGraphUnrecoverableError
       )
       return WinRt.Hresult is abstract;
 
@@ -1555,14 +1555,14 @@ package WinRt.Windows.Media.Audio is
       function AddOutgoingConnection
       (
          this : access IAudioInputNode_Interface;
-         destination : Windows.Media.Audio.IAudioNode
+         destination : WinRt.Windows.Media.Audio.IAudioNode
       )
       return WinRt.Hresult is abstract;
 
       function AddOutgoingConnection
       (
          this : access IAudioInputNode_Interface;
-         destination : Windows.Media.Audio.IAudioNode;
+         destination : WinRt.Windows.Media.Audio.IAudioNode;
          gain : WinRt.Double
       )
       return WinRt.Hresult is abstract;
@@ -1570,7 +1570,7 @@ package WinRt.Windows.Media.Audio is
       function RemoveOutgoingConnection
       (
          this : access IAudioInputNode_Interface;
-         destination : Windows.Media.Audio.IAudioNode
+         destination : WinRt.Windows.Media.Audio.IAudioNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1582,7 +1582,7 @@ package WinRt.Windows.Media.Audio is
       function get_Emitter
       (
          this : access IAudioInputNode2_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitter
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitter
       )
       return WinRt.Hresult is abstract;
 
@@ -1615,7 +1615,7 @@ package WinRt.Windows.Media.Audio is
       function get_EncodingProperties
       (
          this : access IAudioNode_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1654,14 +1654,14 @@ package WinRt.Windows.Media.Audio is
       function DisableEffectsByDefinition
       (
          this : access IAudioNode_Interface;
-         definition : Windows.Media.Effects.IAudioEffectDefinition
+         definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
       function EnableEffectsByDefinition
       (
          this : access IAudioNode_Interface;
-         definition : Windows.Media.Effects.IAudioEffectDefinition
+         definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -1673,42 +1673,42 @@ package WinRt.Windows.Media.Audio is
       function get_Position
       (
          this : access IAudioNodeEmitter_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IAudioNodeEmitter_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access IAudioNodeEmitter_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access IAudioNodeEmitter_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Shape
       (
          this : access IAudioNodeEmitter_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterShape
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterShape
       )
       return WinRt.Hresult is abstract;
 
       function get_DecayModel
       (
          this : access IAudioNodeEmitter_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterDecayModel
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1757,14 +1757,14 @@ package WinRt.Windows.Media.Audio is
       function get_DopplerVelocity
       (
          this : access IAudioNodeEmitter_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_DopplerVelocity
       (
          this : access IAudioNodeEmitter_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1783,14 +1783,14 @@ package WinRt.Windows.Media.Audio is
       function get_SpatialAudioModel
       (
          this : access IAudioNodeEmitter2_Interface;
-         RetVal : access Windows.Media.Audio.SpatialAudioModel
+         RetVal : access WinRt.Windows.Media.Audio.SpatialAudioModel
       )
       return WinRt.Hresult is abstract;
 
       function put_SpatialAudioModel
       (
          this : access IAudioNodeEmitter2_Interface;
-         value : Windows.Media.Audio.SpatialAudioModel
+         value : WinRt.Windows.Media.Audio.SpatialAudioModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1828,7 +1828,7 @@ package WinRt.Windows.Media.Audio is
       function get_Kind
       (
          this : access IAudioNodeEmitterDecayModel_Interface;
-         RetVal : access Windows.Media.Audio.AudioNodeEmitterDecayKind
+         RetVal : access WinRt.Windows.Media.Audio.AudioNodeEmitterDecayKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1849,7 +1849,7 @@ package WinRt.Windows.Media.Audio is
       function get_NaturalProperties
       (
          this : access IAudioNodeEmitterDecayModel_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,7 +1865,7 @@ package WinRt.Windows.Media.Audio is
          maxGain : WinRt.Double;
          unityGainDistance : WinRt.Double;
          cutoffDistance : WinRt.Double;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterDecayModel
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1874,7 +1874,7 @@ package WinRt.Windows.Media.Audio is
          this : access IAudioNodeEmitterDecayModelStatics_Interface;
          minGain : WinRt.Double;
          maxGain : WinRt.Double;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterDecayModel
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1886,10 +1886,10 @@ package WinRt.Windows.Media.Audio is
       function CreateAudioNodeEmitter
       (
          this : access IAudioNodeEmitterFactory_Interface;
-         shape : Windows.Media.Audio.IAudioNodeEmitterShape;
-         decayModel : Windows.Media.Audio.IAudioNodeEmitterDecayModel;
-         settings : Windows.Media.Audio.AudioNodeEmitterSettings;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitter
+         shape : WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
+         decayModel : WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+         settings : WinRt.Windows.Media.Audio.AudioNodeEmitterSettings;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitter
       )
       return WinRt.Hresult is abstract;
 
@@ -1920,14 +1920,14 @@ package WinRt.Windows.Media.Audio is
       function get_Kind
       (
          this : access IAudioNodeEmitterShape_Interface;
-         RetVal : access Windows.Media.Audio.AudioNodeEmitterShapeKind
+         RetVal : access WinRt.Windows.Media.Audio.AudioNodeEmitterShapeKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ConeProperties
       (
          this : access IAudioNodeEmitterShape_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterConeProperties
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterConeProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1942,14 +1942,14 @@ package WinRt.Windows.Media.Audio is
          innerAngle : WinRt.Double;
          outerAngle : WinRt.Double;
          outerAngleGain : WinRt.Double;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterShape
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterShape
       )
       return WinRt.Hresult is abstract;
 
       function CreateOmnidirectional
       (
          this : access IAudioNodeEmitterShapeStatics_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeEmitterShape
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeEmitterShape
       )
       return WinRt.Hresult is abstract;
 
@@ -1961,28 +1961,28 @@ package WinRt.Windows.Media.Audio is
       function get_Position
       (
          this : access IAudioNodeListener_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IAudioNodeListener_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access IAudioNodeListener_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_Orientation
       (
          this : access IAudioNodeListener_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -2003,14 +2003,14 @@ package WinRt.Windows.Media.Audio is
       function get_DopplerVelocity
       (
          this : access IAudioNodeListener_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_DopplerVelocity
       (
          this : access IAudioNodeListener_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -2022,14 +2022,14 @@ package WinRt.Windows.Media.Audio is
       function put_Listener
       (
          this : access IAudioNodeWithListener_Interface;
-         value : Windows.Media.Audio.IAudioNodeListener
+         value : WinRt.Windows.Media.Audio.IAudioNodeListener
       )
       return WinRt.Hresult is abstract;
 
       function get_Listener
       (
          this : access IAudioNodeWithListener_Interface;
-         RetVal : access Windows.Media.Audio.IAudioNodeListener
+         RetVal : access WinRt.Windows.Media.Audio.IAudioNodeListener
       )
       return WinRt.Hresult is abstract;
 
@@ -2047,7 +2047,7 @@ package WinRt.Windows.Media.Audio is
       function StartAsync
       (
          this : access IAudioPlaybackConnection_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2061,14 +2061,14 @@ package WinRt.Windows.Media.Audio is
       function get_State
       (
          this : access IAudioPlaybackConnection_Interface;
-         RetVal : access Windows.Media.Audio.AudioPlaybackConnectionState
+         RetVal : access WinRt.Windows.Media.Audio.AudioPlaybackConnectionState
       )
       return WinRt.Hresult is abstract;
 
       function Open
       (
          this : access IAudioPlaybackConnection_Interface;
-         RetVal : access Windows.Media.Audio.IAudioPlaybackConnectionOpenResult
+         RetVal : access WinRt.Windows.Media.Audio.IAudioPlaybackConnectionOpenResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2083,14 +2083,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioPlaybackConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IAudioPlaybackConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2102,14 +2102,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access IAudioPlaybackConnectionOpenResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioPlaybackConnectionOpenResultStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioPlaybackConnectionOpenResultStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IAudioPlaybackConnectionOpenResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2129,7 +2129,7 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioPlaybackConnectionStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Media.Audio.IAudioPlaybackConnection
+         RetVal : access WinRt.Windows.Media.Audio.IAudioPlaybackConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -2142,21 +2142,21 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IAudioStateMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SoundLevelChanged
       (
          this : access IAudioStateMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_SoundLevel
       (
          this : access IAudioStateMonitor_Interface;
-         RetVal : access Windows.Media.SoundLevel
+         RetVal : access WinRt.Windows.Media.SoundLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2168,66 +2168,66 @@ package WinRt.Windows.Media.Audio is
       function CreateForRenderMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForRenderMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Render.AudioRenderCategory;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForRenderMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Render.AudioRenderCategory;
-         role : Windows.Media.Devices.AudioDeviceRole;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForRenderMonitoringWithCategoryAndDeviceId
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Render.AudioRenderCategory;
+         category : WinRt.Windows.Media.Render.AudioRenderCategory;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForCaptureMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForCaptureMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Capture.MediaCategory;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForCaptureMonitoring
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Capture.MediaCategory;
-         role : Windows.Media.Devices.AudioDeviceRole;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         category : WinRt.Windows.Media.Capture.MediaCategory;
+         role : WinRt.Windows.Media.Devices.AudioDeviceRole;
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
       function CreateForCaptureMonitoringWithCategoryAndDeviceId
       (
          this : access IAudioStateMonitorStatics_Interface;
-         category : Windows.Media.Capture.MediaCategory;
+         category : WinRt.Windows.Media.Capture.MediaCategory;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Audio.IAudioStateMonitor
+         RetVal : access WinRt.Windows.Media.Audio.IAudioStateMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -2239,14 +2239,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateAudioDeviceInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioDeviceNodeCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioDeviceNodeCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceInputNode
       (
          this : access ICreateAudioDeviceInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.IAudioDeviceInputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioDeviceInputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -2258,7 +2258,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateAudioDeviceInputNodeResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2270,14 +2270,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateAudioDeviceOutputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioDeviceNodeCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioDeviceNodeCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceOutputNode
       (
          this : access ICreateAudioDeviceOutputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.IAudioDeviceOutputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioDeviceOutputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -2289,7 +2289,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateAudioDeviceOutputNodeResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2301,14 +2301,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateAudioFileInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioFileNodeCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioFileNodeCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_FileInputNode
       (
          this : access ICreateAudioFileInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.IAudioFileInputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFileInputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -2320,7 +2320,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateAudioFileInputNodeResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2332,14 +2332,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateAudioFileOutputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioFileNodeCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioFileNodeCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_FileOutputNode
       (
          this : access ICreateAudioFileOutputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.IAudioFileOutputNode
+         RetVal : access WinRt.Windows.Media.Audio.IAudioFileOutputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -2351,7 +2351,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateAudioFileOutputNodeResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2363,14 +2363,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateAudioGraphResult_Interface;
-         RetVal : access Windows.Media.Audio.AudioGraphCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.AudioGraphCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Graph
       (
          this : access ICreateAudioGraphResult_Interface;
-         RetVal : access Windows.Media.Audio.IAudioGraph
+         RetVal : access WinRt.Windows.Media.Audio.IAudioGraph
       )
       return WinRt.Hresult is abstract;
 
@@ -2382,7 +2382,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateAudioGraphResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2394,14 +2394,14 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ICreateMediaSourceAudioInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.MediaSourceAudioInputNodeCreationStatus
+         RetVal : access WinRt.Windows.Media.Audio.MediaSourceAudioInputNodeCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Node
       (
          this : access ICreateMediaSourceAudioInputNodeResult_Interface;
-         RetVal : access Windows.Media.Audio.IMediaSourceAudioInputNode
+         RetVal : access WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode
       )
       return WinRt.Hresult is abstract;
 
@@ -2413,7 +2413,7 @@ package WinRt.Windows.Media.Audio is
       function get_ExtendedError
       (
          this : access ICreateMediaSourceAudioInputNodeResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2472,8 +2472,8 @@ package WinRt.Windows.Media.Audio is
       function Create
       (
          this : access IEchoEffectDefinitionFactory_Interface;
-         audioGraph_p : Windows.Media.Audio.IAudioGraph;
-         RetVal : access Windows.Media.Audio.IEchoEffectDefinition
+         audioGraph_p : WinRt.Windows.Media.Audio.IAudioGraph;
+         RetVal : access WinRt.Windows.Media.Audio.IEchoEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -2544,8 +2544,8 @@ package WinRt.Windows.Media.Audio is
       function Create
       (
          this : access IEqualizerEffectDefinitionFactory_Interface;
-         audioGraph_p : Windows.Media.Audio.IAudioGraph;
-         RetVal : access Windows.Media.Audio.IEqualizerEffectDefinition
+         audioGraph_p : WinRt.Windows.Media.Audio.IAudioGraph;
+         RetVal : access WinRt.Windows.Media.Audio.IEqualizerEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -2602,8 +2602,8 @@ package WinRt.Windows.Media.Audio is
       function Create
       (
          this : access ILimiterEffectDefinitionFactory_Interface;
-         audioGraph_p : Windows.Media.Audio.IAudioGraph;
-         RetVal : access Windows.Media.Audio.ILimiterEffectDefinition
+         audioGraph_p : WinRt.Windows.Media.Audio.IAudioGraph;
+         RetVal : access WinRt.Windows.Media.Audio.ILimiterEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -2629,14 +2629,14 @@ package WinRt.Windows.Media.Audio is
       function get_Position
       (
          this : access IMediaSourceAudioInputNode_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function Seek
       (
          this : access IMediaSourceAudioInputNode_Interface;
-         position : Windows.Foundation.TimeSpan
+         position : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2685,14 +2685,14 @@ package WinRt.Windows.Media.Audio is
       function get_Duration
       (
          this : access IMediaSourceAudioInputNode_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSource
       (
          this : access IMediaSourceAudioInputNode_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2700,14 +2700,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access IMediaSourceAudioInputNode_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MediaSourceCompleted
       (
          this : access IMediaSourceAudioInputNode_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3046,8 +3046,8 @@ package WinRt.Windows.Media.Audio is
       function Create
       (
          this : access IReverbEffectDefinitionFactory_Interface;
-         audioGraph_p : Windows.Media.Audio.IAudioGraph;
-         RetVal : access Windows.Media.Audio.IReverbEffectDefinition
+         audioGraph_p : WinRt.Windows.Media.Audio.IAudioGraph;
+         RetVal : access WinRt.Windows.Media.Audio.IReverbEffectDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -3059,7 +3059,7 @@ package WinRt.Windows.Media.Audio is
       function get_Status
       (
          this : access ISetDefaultSpatialAudioFormatResult_Interface;
-         RetVal : access Windows.Media.Audio.SetDefaultSpatialAudioFormatStatus
+         RetVal : access WinRt.Windows.Media.Audio.SetDefaultSpatialAudioFormatStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3116,14 +3116,14 @@ package WinRt.Windows.Media.Audio is
       (
          this : access ISpatialAudioDeviceConfiguration_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConfigurationChanged
       (
          this : access ISpatialAudioDeviceConfiguration_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3136,7 +3136,7 @@ package WinRt.Windows.Media.Audio is
       (
          this : access ISpatialAudioDeviceConfigurationStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Media.Audio.ISpatialAudioDeviceConfiguration
+         RetVal : access WinRt.Windows.Media.Audio.ISpatialAudioDeviceConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -3149,7 +3149,7 @@ package WinRt.Windows.Media.Audio is
       (
          this : access ISpatialAudioFormatConfiguration_Interface;
          subtype_x : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3157,21 +3157,21 @@ package WinRt.Windows.Media.Audio is
       (
          this : access ISpatialAudioFormatConfiguration_Interface;
          subtype_x : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_MixedRealityExclusiveModePolicy
       (
          this : access ISpatialAudioFormatConfiguration_Interface;
-         RetVal : access Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
+         RetVal : access WinRt.Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_MixedRealityExclusiveModePolicy
       (
          this : access ISpatialAudioFormatConfiguration_Interface;
-         value : Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
+         value : WinRt.Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -3183,7 +3183,7 @@ package WinRt.Windows.Media.Audio is
       function GetDefault
       (
          this : access ISpatialAudioFormatConfigurationStatics_Interface;
-         RetVal : access Windows.Media.Audio.ISpatialAudioFormatConfiguration
+         RetVal : access WinRt.Windows.Media.Audio.ISpatialAudioFormatConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -3276,20 +3276,20 @@ package WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    procedure AddOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    );
 
    procedure RemoveOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    function get_EffectDefinitions
@@ -3346,13 +3346,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioDeviceInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioDeviceInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -3435,13 +3435,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioDeviceOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioDeviceOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -3452,7 +3452,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_Listener
    (
       this : in out AudioDeviceOutputNode;
-      value : Windows.Media.Audio.AudioNodeListener'Class
+      value : WinRt.Windows.Media.Audio.AudioNodeListener'Class
    );
 
    function get_Listener
@@ -3515,7 +3515,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_StatusChanged
    (
       this : in out AudioEffectsPackConfiguration;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3548,7 +3548,7 @@ package WinRt.Windows.Media.Audio is
    procedure Seek
    (
       this : in out AudioFileInputNode;
-      position : Windows.Foundation.TimeSpan
+      position : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -3609,7 +3609,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_FileCompleted
    (
       this : in out AudioFileInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_OutgoingConnections
@@ -3621,20 +3621,20 @@ package WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    procedure AddOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    );
 
    procedure RemoveOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    function get_EffectDefinitions
@@ -3691,13 +3691,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFileInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFileInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -3792,13 +3792,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFileOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFileOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -3845,7 +3845,7 @@ package WinRt.Windows.Media.Audio is
    procedure AddFrame
    (
       this : in out AudioFrameInputNode;
-      frame : Windows.Media.AudioFrame'Class
+      frame : WinRt.Windows.Media.AudioFrame'Class
    );
 
    procedure DiscardQueuedFrames
@@ -3869,7 +3869,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_AudioFrameCompleted
    (
       this : in out AudioFrameInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_QuantumStarted
@@ -3882,7 +3882,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_QuantumStarted
    (
       this : in out AudioFrameInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_OutgoingConnections
@@ -3894,20 +3894,20 @@ package WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    procedure AddOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    );
 
    procedure RemoveOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    function get_EffectDefinitions
@@ -3964,13 +3964,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFrameInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFrameInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -4053,13 +4053,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFrameOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFrameOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -4078,7 +4078,7 @@ package WinRt.Windows.Media.Audio is
 
    function CreateAsync
    (
-      settings : Windows.Media.Audio.AudioGraphSettings'Class
+      settings : WinRt.Windows.Media.Audio.AudioGraphSettings'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioGraphResult;
 
@@ -4094,31 +4094,31 @@ package WinRt.Windows.Media.Audio is
    function CreateFrameInputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameInputNode'Class;
 
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory
+      category : WinRt.Windows.Media.Capture.MediaCategory
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class;
 
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class;
 
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class;
 
@@ -4131,7 +4131,7 @@ package WinRt.Windows.Media.Audio is
    function CreateFrameOutputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameOutputNode'Class;
 
@@ -4144,22 +4144,22 @@ package WinRt.Windows.Media.Audio is
    function CreateFileInputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileInputNodeResult'Class;
 
    function CreateFileOutputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileOutputNodeResult'Class;
 
    function CreateFileOutputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile;
-      fileEncodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      file : WinRt.Windows.Storage.IStorageFile;
+      fileEncodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileOutputNodeResult'Class;
 
@@ -4172,7 +4172,7 @@ package WinRt.Windows.Media.Audio is
    function CreateSubmixNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioSubmixNode'Class;
 
@@ -4201,7 +4201,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_QuantumStarted
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_QuantumProcessed
@@ -4214,7 +4214,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_QuantumProcessed
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnrecoverableErrorOccurred
@@ -4227,7 +4227,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_UnrecoverableErrorOccurred
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CompletedQuantumCount
@@ -4274,34 +4274,34 @@ package WinRt.Windows.Media.Audio is
    function CreateFrameInputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameInputNode'Class;
 
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class;
 
    function CreateFileInputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      file : WinRt.Windows.Storage.IStorageFile;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileInputNodeResult'Class;
 
    function CreateSubmixNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.AudioSubmixNode'Class;
 
@@ -4314,15 +4314,15 @@ package WinRt.Windows.Media.Audio is
    function CreateMediaSourceAudioInputNodeAsync
    (
       this : in out AudioGraph;
-      mediaSource : Windows.Media.Core.MediaSource'Class
+      mediaSource : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return WinRt.Windows.Media.Audio.CreateMediaSourceAudioInputNodeResult'Class;
 
    function CreateMediaSourceAudioInputNodeAsync
    (
       this : in out AudioGraph;
-      mediaSource : Windows.Media.Core.MediaSource'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      mediaSource : WinRt.Windows.Media.Core.MediaSource'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateMediaSourceAudioInputNodeResult'Class;
 
@@ -4378,7 +4378,7 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioRenderCategory : Windows.Media.Render.AudioRenderCategory
+      audioRenderCategory : WinRt.Windows.Media.Render.AudioRenderCategory
    )
    return AudioGraphSettings;
 
@@ -4394,7 +4394,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_EncodingProperties
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    );
 
    function get_PrimaryRenderDevice
@@ -4406,7 +4406,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_PrimaryRenderDevice
    (
       this : in out AudioGraphSettings;
-      value : Windows.Devices.Enumeration.DeviceInformation'Class
+      value : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    );
 
    function get_QuantumSizeSelectionMode
@@ -4418,7 +4418,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_QuantumSizeSelectionMode
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.Audio.QuantumSizeSelectionMode
+      value : WinRt.Windows.Media.Audio.QuantumSizeSelectionMode
    );
 
    function get_DesiredSamplesPerQuantum
@@ -4442,7 +4442,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_AudioRenderCategory
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.Render.AudioRenderCategory
+      value : WinRt.Windows.Media.Render.AudioRenderCategory
    );
 
    function get_DesiredRenderDeviceAudioProcessing
@@ -4454,7 +4454,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_DesiredRenderDeviceAudioProcessing
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.AudioProcessing
+      value : WinRt.Windows.Media.AudioProcessing
    );
 
    procedure put_MaxPlaybackSpeedFactor
@@ -4497,9 +4497,9 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      shape : Windows.Media.Audio.AudioNodeEmitterShape'Class;
-      decayModel : Windows.Media.Audio.AudioNodeEmitterDecayModel'Class;
-      settings : Windows.Media.Audio.AudioNodeEmitterSettings
+      shape : WinRt.Windows.Media.Audio.AudioNodeEmitterShape'Class;
+      decayModel : WinRt.Windows.Media.Audio.AudioNodeEmitterDecayModel'Class;
+      settings : WinRt.Windows.Media.Audio.AudioNodeEmitterSettings
    )
    return AudioNodeEmitter;
 
@@ -4515,7 +4515,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_Position
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Direction
@@ -4527,7 +4527,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_Direction
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Shape
@@ -4587,7 +4587,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_DopplerVelocity
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_IsDopplerDisabled
@@ -4605,7 +4605,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_SpatialAudioModel
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Media.Audio.SpatialAudioModel
+      value : WinRt.Windows.Media.Audio.SpatialAudioModel
    );
 
    -----------------------------------------------------------------------------
@@ -4766,7 +4766,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_Position
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Orientation
@@ -4778,7 +4778,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_Orientation
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    function get_SpeedOfSound
@@ -4802,7 +4802,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_DopplerVelocity
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    -----------------------------------------------------------------------------
@@ -4870,7 +4870,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_StateChanged
    (
       this : in out AudioPlaybackConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -4913,20 +4913,20 @@ package WinRt.Windows.Media.Audio is
 
    function CreateForRenderMonitoring
    (
-      category : Windows.Media.Render.AudioRenderCategory
+      category : WinRt.Windows.Media.Render.AudioRenderCategory
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
 
    function CreateForRenderMonitoring
    (
-      category : Windows.Media.Render.AudioRenderCategory;
-      role : Windows.Media.Devices.AudioDeviceRole
+      category : WinRt.Windows.Media.Render.AudioRenderCategory;
+      role : WinRt.Windows.Media.Devices.AudioDeviceRole
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
 
    function CreateForRenderMonitoringWithCategoryAndDeviceId
    (
-      category : Windows.Media.Render.AudioRenderCategory;
+      category : WinRt.Windows.Media.Render.AudioRenderCategory;
       deviceId : WinRt.WString
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
@@ -4936,20 +4936,20 @@ package WinRt.Windows.Media.Audio is
 
    function CreateForCaptureMonitoring
    (
-      category : Windows.Media.Capture.MediaCategory
+      category : WinRt.Windows.Media.Capture.MediaCategory
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
 
    function CreateForCaptureMonitoring
    (
-      category : Windows.Media.Capture.MediaCategory;
-      role : Windows.Media.Devices.AudioDeviceRole
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      role : WinRt.Windows.Media.Devices.AudioDeviceRole
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
 
    function CreateForCaptureMonitoringWithCategoryAndDeviceId
    (
-      category : Windows.Media.Capture.MediaCategory;
+      category : WinRt.Windows.Media.Capture.MediaCategory;
       deviceId : WinRt.WString
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor;
@@ -4967,7 +4967,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_SoundLevelChanged
    (
       this : in out AudioStateMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SoundLevel
@@ -4994,20 +4994,20 @@ package WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    procedure AddOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    );
 
    procedure RemoveOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    function get_EffectDefinitions
@@ -5064,13 +5064,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioSubmixNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out AudioSubmixNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -5257,7 +5257,7 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return EchoEffectDefinition;
 
@@ -5368,7 +5368,7 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return EqualizerEffectDefinition;
 
@@ -5419,7 +5419,7 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return LimiterEffectDefinition;
 
@@ -5492,7 +5492,7 @@ package WinRt.Windows.Media.Audio is
    procedure Seek
    (
       this : in out MediaSourceAudioInputNode;
-      position : Windows.Foundation.TimeSpan
+      position : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -5553,7 +5553,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_MediaSourceCompleted
    (
       this : in out MediaSourceAudioInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Emitter
@@ -5571,20 +5571,20 @@ package WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    procedure AddOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    );
 
    procedure RemoveOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    );
 
    function get_EffectDefinitions
@@ -5641,13 +5641,13 @@ package WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out MediaSourceAudioInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure EnableEffectsByDefinition
    (
       this : in out MediaSourceAudioInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    );
 
    procedure Close
@@ -5666,7 +5666,7 @@ package WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return ReverbEffectDefinition;
 
@@ -6042,7 +6042,7 @@ package WinRt.Windows.Media.Audio is
    procedure remove_ConfigurationChanged
    (
       this : in out SpatialAudioDeviceConfiguration;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6081,7 +6081,7 @@ package WinRt.Windows.Media.Audio is
    procedure put_MixedRealityExclusiveModePolicy
    (
       this : in out SpatialAudioFormatConfiguration;
-      value : Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
+      value : WinRt.Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
    );
 
    -----------------------------------------------------------------------------

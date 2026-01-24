@@ -285,14 +285,14 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function get_DrawingKind
       (
          this : access IInkAnalysisInkDrawing_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.InkAnalysisDrawingKind
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisDrawingKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Center
       (
          this : access IInkAnalysisInkDrawing_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -368,14 +368,14 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function get_Kind
       (
          this : access IInkAnalysisNode_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind
       )
       return WinRt.Hresult is abstract;
 
       function get_BoundingRect
       (
          this : access IInkAnalysisNode_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -396,7 +396,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function get_Parent
       (
          this : access IInkAnalysisNode_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.IInkAnalysisNode
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisNode
       )
       return WinRt.Hresult is abstract;
 
@@ -427,7 +427,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function get_Status
       (
          this : access IInkAnalysisResult_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.InkAnalysisStatus
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -446,7 +446,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function FindNodes
       (
          this : access IInkAnalysisRoot_Interface;
-         nodeKind : Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
+         nodeKind : WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -471,7 +471,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function get_AnalysisRoot
       (
          this : access IInkAnalyzer_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalysisRoot
       )
       return WinRt.Hresult is abstract;
 
@@ -485,7 +485,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function AddDataForStroke
       (
          this : access IInkAnalyzer_Interface;
-         stroke : Windows.UI.Input.Inking.IInkStroke
+         stroke : WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -519,7 +519,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function ReplaceDataForStroke
       (
          this : access IInkAnalyzer_Interface;
-         stroke : Windows.UI.Input.Inking.IInkStroke
+         stroke : WinRt.Windows.UI.Input.Inking.IInkStroke
       )
       return WinRt.Hresult is abstract;
 
@@ -527,7 +527,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       (
          this : access IInkAnalyzer_Interface;
          strokeId : WinRt.UInt32;
-         strokeKind : Windows.UI.Input.Inking.Analysis.InkAnalysisStrokeKind
+         strokeKind : WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisStrokeKind
       )
       return WinRt.Hresult is abstract;
 
@@ -546,7 +546,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
       function CreateAnalyzer
       (
          this : access IInkAnalyzerFactory_Interface;
-         RetVal : access Windows.UI.Input.Inking.Analysis.IInkAnalyzer
+         RetVal : access WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalyzer
       )
       return WinRt.Hresult is abstract;
 
@@ -1006,7 +1006,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    function FindNodes
    (
       this : in out InkAnalysisRoot;
-      nodeKind : Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind
+      nodeKind : WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisNodeKind
    )
    return IVectorView_IInkAnalysisNode.Kind;
 
@@ -1138,7 +1138,7 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    procedure AddDataForStroke
    (
       this : in out InkAnalyzer;
-      stroke : Windows.UI.Input.Inking.InkStroke'Class
+      stroke : WinRt.Windows.UI.Input.Inking.InkStroke'Class
    );
 
    procedure AddDataForStrokes
@@ -1167,14 +1167,14 @@ package WinRt.Windows.UI.Input.Inking.Analysis is
    procedure ReplaceDataForStroke
    (
       this : in out InkAnalyzer;
-      stroke : Windows.UI.Input.Inking.InkStroke'Class
+      stroke : WinRt.Windows.UI.Input.Inking.InkStroke'Class
    );
 
    procedure SetStrokeDataKind
    (
       this : in out InkAnalyzer;
       strokeId : WinRt.UInt32;
-      strokeKind : Windows.UI.Input.Inking.Analysis.InkAnalysisStrokeKind
+      strokeKind : WinRt.Windows.UI.Input.Inking.Analysis.InkAnalysisStrokeKind
    );
 
    function AnalyzeAsync

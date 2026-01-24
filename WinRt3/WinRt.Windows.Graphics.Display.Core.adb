@@ -66,7 +66,7 @@ package body WinRt.Windows.Graphics.Display.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Display.Core.HdmiDisplayInformation");
       m_Factory        : access WinRt.Windows.Graphics.Display.Core.IHdmiDisplayInformationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.Core.IHdmiDisplayInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.Core.IHdmiDisplayInformation;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.Core.HdmiDisplayInformation do
          Hr := RoGetActivationFactory (m_hString, IID_IHdmiDisplayInformationStatics'Access , m_Factory'Address);
@@ -76,7 +76,7 @@ package body WinRt.Windows.Graphics.Display.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHdmiDisplayInformation := new Windows.Graphics.Display.Core.IHdmiDisplayInformation;
+            Retval.m_IHdmiDisplayInformation := new WinRt.Windows.Graphics.Display.Core.IHdmiDisplayInformation;
             Retval.m_IHdmiDisplayInformation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -94,7 +94,7 @@ package body WinRt.Windows.Graphics.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHdmiDisplayMode.Kind;
    begin
       Hr := this.m_IHdmiDisplayInformation.all.GetSupportedDisplayModes (m_ComRetVal'Access);
@@ -114,14 +114,14 @@ package body WinRt.Windows.Graphics.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.Core.IHdmiDisplayMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
    begin
       return RetVal : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode do
          Hr := this.m_IHdmiDisplayInformation.all.GetCurrentDisplayMode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHdmiDisplayMode := new Windows.Graphics.Display.Core.IHdmiDisplayMode;
+         Retval.m_IHdmiDisplayMode := new WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
          Retval.m_IHdmiDisplayMode.all := m_ComRetVal;
       end return;
    end;
@@ -171,7 +171,7 @@ package body WinRt.Windows.Graphics.Display.Core is
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -235,8 +235,8 @@ package body WinRt.Windows.Graphics.Display.Core is
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
-      hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
+      hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -300,9 +300,9 @@ package body WinRt.Windows.Graphics.Display.Core is
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
-      hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
-      hdrMetadata : Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
+      hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
+      hdrMetadata : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -372,7 +372,7 @@ package body WinRt.Windows.Graphics.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHdmiDisplayInformation.all.add_DisplayModesChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -384,7 +384,7 @@ package body WinRt.Windows.Graphics.Display.Core is
    procedure remove_DisplayModesChanged
    (
       this : in out HdmiDisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -507,7 +507,7 @@ package body WinRt.Windows.Graphics.Display.Core is
    function IsEqual
    (
       this : in out HdmiDisplayMode;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -530,7 +530,7 @@ package body WinRt.Windows.Graphics.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.Core.HdmiDisplayColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.Core.HdmiDisplayColorSpace;
    begin
       Hr := this.m_IHdmiDisplayMode.all.get_ColorSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -547,7 +547,7 @@ package body WinRt.Windows.Graphics.Display.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.Core.HdmiDisplayPixelEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.Core.HdmiDisplayPixelEncoding;
    begin
       Hr := this.m_IHdmiDisplayMode.all.get_PixelEncoding (m_ComRetVal'Access);
       if Hr /= S_OK then

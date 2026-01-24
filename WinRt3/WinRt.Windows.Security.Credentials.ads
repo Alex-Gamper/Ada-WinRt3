@@ -293,11 +293,11 @@ package WinRt.Windows.Security.Credentials is
    -----------------------------------------------------------------------------
 
    IID_AttestationChallengeHandler : aliased WinRt.IID := (4138612144, 55301, 22653, (148, 79, 160, 155, 208, 50, 172, 245 ));
-   type AttestationChallengeHandler_Delegate (Callback : access procedure  (challenge : Windows.Storage.Streams.IBuffer)) is new WinRt.IMulticastDelegate_Interface (IID_AttestationChallengeHandler'Access) with null record;
+   type AttestationChallengeHandler_Delegate (Callback : access procedure  (challenge : WinRt.Windows.Storage.Streams.IBuffer)) is new WinRt.IMulticastDelegate_Interface (IID_AttestationChallengeHandler'Access) with null record;
       function Invoke
       (
          this : access AttestationChallengeHandler_Delegate;
-         challenge : Windows.Storage.Streams.IBuffer
+         challenge : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult;
 
@@ -326,7 +326,7 @@ package WinRt.Windows.Security.Credentials is
          resource : WinRt.HString;
          userName : WinRt.HString;
          password : WinRt.HString;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -345,22 +345,22 @@ package WinRt.Windows.Security.Credentials is
       function RetrievePublicKey
       (
          this : access IKeyCredential_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RetrievePublicKey
       (
          this : access IKeyCredential_Interface;
-         blobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         blobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RequestSignAsync
       (
          this : access IKeyCredential_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -380,9 +380,9 @@ package WinRt.Windows.Security.Credentials is
       function RequestDeriveSharedSecretAsync
       (
          this : access IKeyCredential2_Interface;
-         windowId : Windows.UI.WindowId;
+         windowId : WinRt.Windows.UI.WindowId;
          message : WinRt.HString;
-         encryptedRequest : Windows.Storage.Streams.IBuffer;
+         encryptedRequest : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -390,8 +390,8 @@ package WinRt.Windows.Security.Credentials is
       function RetrieveAuthorizationContext
       (
          this : access IKeyCredential2_Interface;
-         encryptedRequest : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         encryptedRequest : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -403,21 +403,21 @@ package WinRt.Windows.Security.Credentials is
       function get_CertificateChainBuffer
       (
          this : access IKeyCredentialAttestationResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_AttestationBuffer
       (
          this : access IKeyCredentialAttestationResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IKeyCredentialAttestationResult_Interface;
-         RetVal : access Windows.Security.Credentials.KeyCredentialAttestationStatus
+         RetVal : access WinRt.Windows.Security.Credentials.KeyCredentialAttestationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -429,14 +429,14 @@ package WinRt.Windows.Security.Credentials is
       function get_CacheOption
       (
          this : access IKeyCredentialCacheConfiguration_Interface;
-         RetVal : access Windows.Security.Credentials.KeyCredentialCacheOption
+         RetVal : access WinRt.Windows.Security.Credentials.KeyCredentialCacheOption
       )
       return WinRt.Hresult is abstract;
 
       function get_Timeout
       (
          this : access IKeyCredentialCacheConfiguration_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -455,10 +455,10 @@ package WinRt.Windows.Security.Credentials is
       function CreateInstance
       (
          this : access IKeyCredentialCacheConfigurationFactory_Interface;
-         cacheOption : Windows.Security.Credentials.KeyCredentialCacheOption;
-         timeout : Windows.Foundation.TimeSpan;
+         cacheOption : WinRt.Windows.Security.Credentials.KeyCredentialCacheOption;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
          usageCount : WinRt.UInt32;
-         RetVal : access Windows.Security.Credentials.IKeyCredentialCacheConfiguration
+         RetVal : access WinRt.Windows.Security.Credentials.IKeyCredentialCacheConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -477,7 +477,7 @@ package WinRt.Windows.Security.Credentials is
       function RenewAttestationAsync
       (
          this : access IKeyCredentialManagerStatics_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -485,7 +485,7 @@ package WinRt.Windows.Security.Credentials is
       (
          this : access IKeyCredentialManagerStatics_Interface;
          name : WinRt.HString;
-         option : Windows.Security.Credentials.KeyCredentialCreationOption;
+         option : WinRt.Windows.Security.Credentials.KeyCredentialCreationOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -502,7 +502,7 @@ package WinRt.Windows.Security.Credentials is
       (
          this : access IKeyCredentialManagerStatics_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -515,13 +515,13 @@ package WinRt.Windows.Security.Credentials is
       (
          this : access IKeyCredentialManagerStatics2_Interface;
          name : WinRt.HString;
-         option : Windows.Security.Credentials.KeyCredentialCreationOption;
+         option : WinRt.Windows.Security.Credentials.KeyCredentialCreationOption;
          algorithm : WinRt.HString;
          message : WinRt.HString;
-         cacheConfiguration : Windows.Security.Credentials.IKeyCredentialCacheConfiguration;
-         windowId : Windows.UI.WindowId;
-         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
-         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler;
+         cacheConfiguration : WinRt.Windows.Security.Credentials.IKeyCredentialCacheConfiguration;
+         windowId : WinRt.Windows.UI.WindowId;
+         callbackType : WinRt.Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : WinRt.Windows.Security.Credentials.AttestationChallengeHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -530,8 +530,8 @@ package WinRt.Windows.Security.Credentials is
       (
          this : access IKeyCredentialManagerStatics2_Interface;
          name : WinRt.HString;
-         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
-         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler;
+         callbackType : WinRt.Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : WinRt.Windows.Security.Credentials.AttestationChallengeHandler;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -544,14 +544,14 @@ package WinRt.Windows.Security.Credentials is
       function get_Result
       (
          this : access IKeyCredentialOperationResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IKeyCredentialOperationResult_Interface;
-         RetVal : access Windows.Security.Credentials.KeyCredentialStatus
+         RetVal : access WinRt.Windows.Security.Credentials.KeyCredentialStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -563,14 +563,14 @@ package WinRt.Windows.Security.Credentials is
       function get_Credential
       (
          this : access IKeyCredentialRetrievalResult_Interface;
-         RetVal : access Windows.Security.Credentials.IKeyCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IKeyCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IKeyCredentialRetrievalResult_Interface;
-         RetVal : access Windows.Security.Credentials.KeyCredentialStatus
+         RetVal : access WinRt.Windows.Security.Credentials.KeyCredentialStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -630,7 +630,7 @@ package WinRt.Windows.Security.Credentials is
       function get_Properties
       (
          this : access IPasswordCredential_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -642,14 +642,14 @@ package WinRt.Windows.Security.Credentials is
       function Add
       (
          this : access IPasswordVault_Interface;
-         credential : Windows.Security.Credentials.IPasswordCredential
+         credential : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function Remove
       (
          this : access IPasswordVault_Interface;
-         credential : Windows.Security.Credentials.IPasswordCredential
+         credential : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -658,7 +658,7 @@ package WinRt.Windows.Security.Credentials is
          this : access IPasswordVault_Interface;
          resource : WinRt.HString;
          userName : WinRt.HString;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -693,7 +693,7 @@ package WinRt.Windows.Security.Credentials is
       function get_WebAccountProvider
       (
          this : access IWebAccount_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccountProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -707,7 +707,7 @@ package WinRt.Windows.Security.Credentials is
       function get_State
       (
          this : access IWebAccount_Interface;
-         RetVal : access Windows.Security.Credentials.WebAccountState
+         RetVal : access WinRt.Windows.Security.Credentials.WebAccountState
       )
       return WinRt.Hresult is abstract;
 
@@ -733,7 +733,7 @@ package WinRt.Windows.Security.Credentials is
       function GetPictureAsync
       (
          this : access IWebAccount2_Interface;
-         desizedSize : Windows.Security.Credentials.WebAccountPictureSize;
+         desizedSize : WinRt.Windows.Security.Credentials.WebAccountPictureSize;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -741,7 +741,7 @@ package WinRt.Windows.Security.Credentials is
       function SignOutAsync
       (
          this : access IWebAccount2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -749,7 +749,7 @@ package WinRt.Windows.Security.Credentials is
       (
          this : access IWebAccount2_Interface;
          clientId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -761,10 +761,10 @@ package WinRt.Windows.Security.Credentials is
       function CreateWebAccount
       (
          this : access IWebAccountFactory_Interface;
-         webAccountProvider_p : Windows.Security.Credentials.IWebAccountProvider;
+         webAccountProvider_p : WinRt.Windows.Security.Credentials.IWebAccountProvider;
          userName : WinRt.HString;
-         state : Windows.Security.Credentials.WebAccountState;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         state : WinRt.Windows.Security.Credentials.WebAccountState;
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -790,7 +790,7 @@ package WinRt.Windows.Security.Credentials is
       function get_IconUri
       (
          this : access IWebAccountProvider_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -821,7 +821,7 @@ package WinRt.Windows.Security.Credentials is
       function get_User
       (
          this : access IWebAccountProvider3_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -847,8 +847,8 @@ package WinRt.Windows.Security.Credentials is
          this : access IWebAccountProviderFactory_Interface;
          id : WinRt.HString;
          displayName : WinRt.HString;
-         iconUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+         iconUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccountProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -882,14 +882,14 @@ package WinRt.Windows.Security.Credentials is
    function RetrievePublicKey
    (
       this : in out KeyCredential;
-      blobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      blobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    function RequestSignAsync
    (
       this : in out KeyCredential;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialOperationResult'Class;
 
@@ -902,16 +902,16 @@ package WinRt.Windows.Security.Credentials is
    function RequestDeriveSharedSecretAsync
    (
       this : in out KeyCredential;
-      windowId : Windows.UI.WindowId;
+      windowId : WinRt.Windows.UI.WindowId;
       message : WinRt.WString;
-      encryptedRequest : Windows.Storage.Streams.IBuffer
+      encryptedRequest : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Credentials.KeyCredentialOperationResult'Class;
 
    function RetrieveAuthorizationContext
    (
       this : in out KeyCredential;
-      encryptedRequest : Windows.Storage.Streams.IBuffer
+      encryptedRequest : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -953,8 +953,8 @@ package WinRt.Windows.Security.Credentials is
 
    function Constructor
    (
-      cacheOption : Windows.Security.Credentials.KeyCredentialCacheOption;
-      timeout : Windows.Foundation.TimeSpan;
+      cacheOption : WinRt.Windows.Security.Credentials.KeyCredentialCacheOption;
+      timeout : WinRt.Windows.Foundation.TimeSpan;
       usageCount : WinRt.UInt32
    )
    return KeyCredentialCacheConfiguration;
@@ -992,7 +992,7 @@ package WinRt.Windows.Security.Credentials is
       function RequestCreateAsync
       (
          name : WinRt.WString;
-         option : Windows.Security.Credentials.KeyCredentialCreationOption
+         option : WinRt.Windows.Security.Credentials.KeyCredentialCreationOption
       )
       return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult;
 
@@ -1010,21 +1010,21 @@ package WinRt.Windows.Security.Credentials is
       function RequestCreateAsync
       (
          name : WinRt.WString;
-         option : Windows.Security.Credentials.KeyCredentialCreationOption;
+         option : WinRt.Windows.Security.Credentials.KeyCredentialCreationOption;
          algorithm : WinRt.WString;
          message : WinRt.WString;
-         cacheConfiguration : Windows.Security.Credentials.KeyCredentialCacheConfiguration'Class;
-         windowId : Windows.UI.WindowId;
-         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
-         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler
+         cacheConfiguration : WinRt.Windows.Security.Credentials.KeyCredentialCacheConfiguration'Class;
+         windowId : WinRt.Windows.UI.WindowId;
+         callbackType : WinRt.Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : WinRt.Windows.Security.Credentials.AttestationChallengeHandler
       )
       return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult;
 
       function OpenAsync
       (
          name : WinRt.WString;
-         callbackType : Windows.Security.Credentials.ChallengeResponseKind;
-         attestationCallback : Windows.Security.Credentials.AttestationChallengeHandler
+         callbackType : WinRt.Windows.Security.Credentials.ChallengeResponseKind;
+         attestationCallback : WinRt.Windows.Security.Credentials.AttestationChallengeHandler
       )
       return WinRt.Windows.Security.Credentials.KeyCredentialRetrievalResult;
 
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Security.Credentials is
    procedure remove_MapChanged
    (
       this : in out PasswordCredentialPropertyStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -1232,13 +1232,13 @@ package WinRt.Windows.Security.Credentials is
    procedure Add
    (
       this : in out PasswordVault;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    procedure Remove
    (
       this : in out PasswordVault;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function Retrieve
@@ -1280,9 +1280,9 @@ package WinRt.Windows.Security.Credentials is
 
    function Constructor
    (
-      webAccountProvider_p : Windows.Security.Credentials.WebAccountProvider'Class;
+      webAccountProvider_p : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
       userName : WinRt.WString;
-      state : Windows.Security.Credentials.WebAccountState
+      state : WinRt.Windows.Security.Credentials.WebAccountState
    )
    return WebAccount;
 
@@ -1322,7 +1322,7 @@ package WinRt.Windows.Security.Credentials is
    function GetPictureAsync
    (
       this : in out WebAccount;
-      desizedSize : Windows.Security.Credentials.WebAccountPictureSize
+      desizedSize : WinRt.Windows.Security.Credentials.WebAccountPictureSize
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
@@ -1350,7 +1350,7 @@ package WinRt.Windows.Security.Credentials is
    (
       id : WinRt.WString;
       displayName : WinRt.WString;
-      iconUri : Windows.Foundation.Uri'Class
+      iconUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WebAccountProvider;
 

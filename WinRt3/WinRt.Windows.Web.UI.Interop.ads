@@ -163,28 +163,28 @@ package WinRt.Windows.Web.UI.Interop is
       function get_EventType
       (
          this : access IWebViewControlAcceleratorKeyPressedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CoreAcceleratorKeyEventType
+         RetVal : access WinRt.Windows.UI.Core.CoreAcceleratorKeyEventType
       )
       return WinRt.Hresult is abstract;
 
       function get_VirtualKey
       (
          this : access IWebViewControlAcceleratorKeyPressedEventArgs_Interface;
-         RetVal : access Windows.System.VirtualKey
+         RetVal : access WinRt.Windows.System.VirtualKey
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyStatus
       (
          this : access IWebViewControlAcceleratorKeyPressedEventArgs_Interface;
-         RetVal : access Windows.UI.Core.CorePhysicalKeyStatus
+         RetVal : access WinRt.Windows.UI.Core.CorePhysicalKeyStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_RoutingStage
       (
          this : access IWebViewControlAcceleratorKeyPressedEventArgs_Interface;
-         RetVal : access Windows.Web.UI.Interop.WebViewControlAcceleratorKeyRoutingStage
+         RetVal : access WinRt.Windows.Web.UI.Interop.WebViewControlAcceleratorKeyRoutingStage
       )
       return WinRt.Hresult is abstract;
 
@@ -210,7 +210,7 @@ package WinRt.Windows.Web.UI.Interop is
       function get_Reason
       (
          this : access IWebViewControlMoveFocusRequestedEventArgs_Interface;
-         RetVal : access Windows.Web.UI.Interop.WebViewControlMoveFocusReason
+         RetVal : access WinRt.Windows.Web.UI.Interop.WebViewControlMoveFocusReason
       )
       return WinRt.Hresult is abstract;
 
@@ -244,7 +244,7 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlProcess_Interface;
          hostWindowHandle : WinRt.Int64;
-         bounds : Windows.Foundation.Rect;
+         bounds : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -266,14 +266,14 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlProcess_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProcessExited
       (
          this : access IWebViewControlProcess_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -285,8 +285,8 @@ package WinRt.Windows.Web.UI.Interop is
       function CreateWithOptions
       (
          this : access IWebViewControlProcessFactory_Interface;
-         processOptions : Windows.Web.UI.Interop.IWebViewControlProcessOptions;
-         RetVal : access Windows.Web.UI.Interop.IWebViewControlProcess
+         processOptions : WinRt.Windows.Web.UI.Interop.IWebViewControlProcessOptions;
+         RetVal : access WinRt.Windows.Web.UI.Interop.IWebViewControlProcess
       )
       return WinRt.Hresult is abstract;
 
@@ -312,14 +312,14 @@ package WinRt.Windows.Web.UI.Interop is
       function put_PrivateNetworkClientServerCapability
       (
          this : access IWebViewControlProcessOptions_Interface;
-         value : Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
+         value : WinRt.Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
       )
       return WinRt.Hresult is abstract;
 
       function get_PrivateNetworkClientServerCapability
       (
          this : access IWebViewControlProcessOptions_Interface;
-         RetVal : access Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
+         RetVal : access WinRt.Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
       )
       return WinRt.Hresult is abstract;
 
@@ -331,7 +331,7 @@ package WinRt.Windows.Web.UI.Interop is
       function get_Process
       (
          this : access IWebViewControlSite_Interface;
-         RetVal : access Windows.Web.UI.Interop.IWebViewControlProcess
+         RetVal : access WinRt.Windows.Web.UI.Interop.IWebViewControlProcess
       )
       return WinRt.Hresult is abstract;
 
@@ -352,14 +352,14 @@ package WinRt.Windows.Web.UI.Interop is
       function put_Bounds
       (
          this : access IWebViewControlSite_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_Bounds
       (
          this : access IWebViewControlSite_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -386,7 +386,7 @@ package WinRt.Windows.Web.UI.Interop is
       function MoveFocus
       (
          this : access IWebViewControlSite_Interface;
-         reason : Windows.Web.UI.Interop.WebViewControlMoveFocusReason
+         reason : WinRt.Windows.Web.UI.Interop.WebViewControlMoveFocusReason
       )
       return WinRt.Hresult is abstract;
 
@@ -394,14 +394,14 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlSite_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MoveFocusRequested
       (
          this : access IWebViewControlSite_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -409,14 +409,14 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlSite_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AcceleratorKeyPressed
       (
          this : access IWebViewControlSite_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -429,14 +429,14 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlSite2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access IWebViewControlSite2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -444,14 +444,14 @@ package WinRt.Windows.Web.UI.Interop is
       (
          this : access IWebViewControlSite2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LostFocus
       (
          this : access IWebViewControlSite2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -479,7 +479,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure put_Source
    (
       this : in out WebViewControl;
-      source : Windows.Foundation.Uri'Class
+      source : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_DocumentTitle
@@ -503,7 +503,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure put_DefaultBackgroundColor
    (
       this : in out WebViewControl;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_DefaultBackgroundColor
@@ -553,7 +553,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure Navigate
    (
       this : in out WebViewControl;
-      source : Windows.Foundation.Uri'Class
+      source : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure NavigateToString
@@ -565,14 +565,14 @@ package WinRt.Windows.Web.UI.Interop is
    procedure NavigateToLocalStreamUri
    (
       this : in out WebViewControl;
-      source : Windows.Foundation.Uri'Class;
-      streamResolver : Windows.Web.IUriToStreamResolver
+      source : WinRt.Windows.Foundation.Uri'Class;
+      streamResolver : WinRt.Windows.Web.IUriToStreamResolver
    );
 
    procedure NavigateWithHttpRequestMessage
    (
       this : in out WebViewControl;
-      requestMessage : Windows.Web.Http.HttpRequestMessage'Class
+      requestMessage : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    );
 
    function InvokeScriptAsync
@@ -586,7 +586,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure CapturePreviewToStreamAsync
    (
       this : in out WebViewControl;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function CaptureSelectedContentToDataPackageAsync
@@ -607,7 +607,7 @@ package WinRt.Windows.Web.UI.Interop is
    (
       this : in out WebViewControl;
       id : WinRt.UInt32;
-      result : access Windows.Web.UI.IWebViewControlDeferredPermissionRequest
+      result : access WinRt.Windows.Web.UI.IWebViewControlDeferredPermissionRequest
    );
 
    function add_NavigationStarting
@@ -620,7 +620,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_NavigationStarting
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ContentLoading
@@ -633,7 +633,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_ContentLoading
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DOMContentLoaded
@@ -646,7 +646,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_DOMContentLoaded
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationCompleted
@@ -659,7 +659,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_NavigationCompleted
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameNavigationStarting
@@ -672,7 +672,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_FrameNavigationStarting
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameContentLoading
@@ -685,7 +685,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_FrameContentLoading
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameDOMContentLoaded
@@ -698,7 +698,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_FrameDOMContentLoaded
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameNavigationCompleted
@@ -711,7 +711,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_FrameNavigationCompleted
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ScriptNotify
@@ -724,7 +724,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_ScriptNotify
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LongRunningScriptDetected
@@ -737,7 +737,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_LongRunningScriptDetected
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnsafeContentWarningDisplaying
@@ -750,7 +750,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_UnsafeContentWarningDisplaying
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnviewableContentIdentified
@@ -763,7 +763,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_UnviewableContentIdentified
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PermissionRequested
@@ -776,7 +776,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_PermissionRequested
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnsupportedUriSchemeIdentified
@@ -789,7 +789,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_UnsupportedUriSchemeIdentified
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NewWindowRequested
@@ -802,7 +802,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_NewWindowRequested
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ContainsFullScreenElementChanged
@@ -815,7 +815,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_ContainsFullScreenElementChanged
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WebResourceRequested
@@ -828,7 +828,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_WebResourceRequested
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Process
@@ -852,7 +852,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure put_Bounds
    (
       this : in out WebViewControl;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_Bounds
@@ -881,7 +881,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure MoveFocus
    (
       this : in out WebViewControl;
-      reason : Windows.Web.UI.Interop.WebViewControlMoveFocusReason
+      reason : WinRt.Windows.Web.UI.Interop.WebViewControlMoveFocusReason
    );
 
    function add_MoveFocusRequested
@@ -894,7 +894,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_MoveFocusRequested
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AcceleratorKeyPressed
@@ -907,7 +907,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_AcceleratorKeyPressed
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddInitializeScript
@@ -926,7 +926,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_GotFocus
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LostFocus
@@ -939,7 +939,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_LostFocus
    (
       this : in out WebViewControl;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1015,7 +1015,7 @@ package WinRt.Windows.Web.UI.Interop is
 
    function Constructor
    (
-      processOptions : Windows.Web.UI.Interop.WebViewControlProcessOptions'Class
+      processOptions : WinRt.Windows.Web.UI.Interop.WebViewControlProcessOptions'Class
    )
    return WebViewControlProcess;
 
@@ -1044,7 +1044,7 @@ package WinRt.Windows.Web.UI.Interop is
    (
       this : in out WebViewControlProcess;
       hostWindowHandle : WinRt.Int64;
-      bounds : Windows.Foundation.Rect
+      bounds : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Web.UI.Interop.WebViewControl'Class;
 
@@ -1069,7 +1069,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure remove_ProcessExited
    (
       this : in out WebViewControlProcess;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1101,7 +1101,7 @@ package WinRt.Windows.Web.UI.Interop is
    procedure put_PrivateNetworkClientServerCapability
    (
       this : in out WebViewControlProcessOptions;
-      value : Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
+      value : WinRt.Windows.Web.UI.Interop.WebViewControlProcessCapabilityState
    );
 
    function get_PrivateNetworkClientServerCapability

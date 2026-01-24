@@ -75,7 +75,7 @@ package body WinRt.Windows.Storage.Search is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Search.ContentIndexer");
       m_Factory        : access WinRt.Windows.Storage.Search.IContentIndexerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IContentIndexer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IContentIndexer;
       HStr_indexName : constant WinRt.HString := To_HString (indexName);
    begin
       return RetVal : WinRt.Windows.Storage.Search.ContentIndexer do
@@ -86,7 +86,7 @@ package body WinRt.Windows.Storage.Search is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IContentIndexer := new Windows.Storage.Search.IContentIndexer;
+            Retval.m_IContentIndexer := new WinRt.Windows.Storage.Search.IContentIndexer;
             Retval.m_IContentIndexer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -101,7 +101,7 @@ package body WinRt.Windows.Storage.Search is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Search.ContentIndexer");
       m_Factory        : access WinRt.Windows.Storage.Search.IContentIndexerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IContentIndexer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IContentIndexer;
    begin
       return RetVal : WinRt.Windows.Storage.Search.ContentIndexer do
          Hr := RoGetActivationFactory (m_hString, IID_IContentIndexerStatics'Access , m_Factory'Address);
@@ -111,7 +111,7 @@ package body WinRt.Windows.Storage.Search is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IContentIndexer := new Windows.Storage.Search.IContentIndexer;
+            Retval.m_IContentIndexer := new WinRt.Windows.Storage.Search.IContentIndexer;
             Retval.m_IContentIndexer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -124,7 +124,7 @@ package body WinRt.Windows.Storage.Search is
    procedure AddAsync
    (
       this : in out ContentIndexer;
-      indexableContent_p : Windows.Storage.Search.IIndexableContent
+      indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -167,7 +167,7 @@ package body WinRt.Windows.Storage.Search is
    procedure UpdateAsync
    (
       this : in out ContentIndexer;
-      indexableContent_p : Windows.Storage.Search.IIndexableContent
+      indexableContent_p : WinRt.Windows.Storage.Search.IIndexableContent
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -434,7 +434,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IContentIndexerQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IContentIndexerQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IContentIndexerQuery;
       HStr_searchFilter : constant WinRt.HString := To_HString (searchFilter);
       HStr_searchFilterLanguage : constant WinRt.HString := To_HString (searchFilterLanguage);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IContentIndexer_Interface, WinRt.Windows.Storage.Search.IContentIndexerQueryOperations, WinRt.Windows.Storage.Search.IID_IContentIndexerQueryOperations'Unchecked_Access);
@@ -446,7 +446,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContentIndexerQuery := new Windows.Storage.Search.IContentIndexerQuery;
+         Retval.m_IContentIndexerQuery := new WinRt.Windows.Storage.Search.IContentIndexerQuery;
          Retval.m_IContentIndexerQuery.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_searchFilter);
          tmp := WindowsDeleteString (HStr_searchFilterLanguage);
@@ -465,7 +465,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IContentIndexerQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IContentIndexerQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IContentIndexerQuery;
       HStr_searchFilter : constant WinRt.HString := To_HString (searchFilter);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IContentIndexer_Interface, WinRt.Windows.Storage.Search.IContentIndexerQueryOperations, WinRt.Windows.Storage.Search.IID_IContentIndexerQueryOperations'Unchecked_Access);
    begin
@@ -476,7 +476,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContentIndexerQuery := new Windows.Storage.Search.IContentIndexerQuery;
+         Retval.m_IContentIndexerQuery := new WinRt.Windows.Storage.Search.IContentIndexerQuery;
          Retval.m_IContentIndexerQuery.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_searchFilter);
       end return;
@@ -493,7 +493,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IContentIndexerQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IContentIndexerQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IContentIndexerQuery;
       HStr_searchFilter : constant WinRt.HString := To_HString (searchFilter);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IContentIndexer_Interface, WinRt.Windows.Storage.Search.IContentIndexerQueryOperations, WinRt.Windows.Storage.Search.IID_IContentIndexerQueryOperations'Unchecked_Access);
    begin
@@ -504,7 +504,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContentIndexerQuery := new Windows.Storage.Search.IContentIndexerQuery;
+         Retval.m_IContentIndexerQuery := new WinRt.Windows.Storage.Search.IContentIndexerQuery;
          Retval.m_IContentIndexerQuery.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_searchFilter);
       end return;
@@ -860,14 +860,14 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IContentIndexerQuery.all.get_QueryFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -898,13 +898,13 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return IndexableContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IndexableContent");
-      m_ComRetVal  : aliased Windows.Storage.Search.IIndexableContent;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IIndexableContent");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IIndexableContent;
    begin
       return RetVal : IndexableContent do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IIndexableContent := new Windows.Storage.Search.IIndexableContent;
+            Retval.m_IIndexableContent := new WinRt.Windows.Storage.Search.IIndexableContent;
             Retval.m_IIndexableContent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -959,7 +959,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IInspectable.Kind;
    begin
       Hr := this.m_IIndexableContent.all.get_Properties (m_ComRetVal'Access);
@@ -979,7 +979,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IIndexableContent.all.get_Stream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -991,7 +991,7 @@ package body WinRt.Windows.Storage.Search is
    procedure put_Stream
    (
       this : in out IndexableContent;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1065,22 +1065,22 @@ package body WinRt.Windows.Storage.Search is
 
    function Constructor
    (
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       fileTypeFilter : GenericObject
    )
    return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
       m_Factory    : access IQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Search.IQueryOptions;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
    begin
       return RetVal : QueryOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IQueryOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCommonFileQuery (query, fileTypeFilter, m_ComRetVal'Access);
-            Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+            Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
             Retval.m_IQueryOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1090,21 +1090,21 @@ package body WinRt.Windows.Storage.Search is
 
    function Constructor
    (
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
       m_Factory    : access IQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Search.IQueryOptions;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
    begin
       return RetVal : QueryOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IQueryOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCommonFolderQuery (query, m_ComRetVal'Access);
-            Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+            Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
             Retval.m_IQueryOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1115,13 +1115,13 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
-      m_ComRetVal  : aliased Windows.Storage.Search.IQueryOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
    begin
       return RetVal : QueryOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+            Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
             Retval.m_IQueryOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1139,7 +1139,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IQueryOptions.all.get_FileTypeFilter (m_ComRetVal'Access);
@@ -1159,7 +1159,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.FolderDepth;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.FolderDepth;
    begin
       Hr := this.m_IQueryOptions.all.get_FolderDepth (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1171,7 +1171,7 @@ package body WinRt.Windows.Storage.Search is
    procedure put_FolderDepth
    (
       this : in out QueryOptions;
-      value : Windows.Storage.Search.FolderDepth
+      value : WinRt.Windows.Storage.Search.FolderDepth
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1302,7 +1302,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IndexerOption;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IndexerOption;
    begin
       Hr := this.m_IQueryOptions.all.get_IndexerOption (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1314,7 +1314,7 @@ package body WinRt.Windows.Storage.Search is
    procedure put_IndexerOption
    (
       this : in out QueryOptions;
-      value : Windows.Storage.Search.IndexerOption
+      value : WinRt.Windows.Storage.Search.IndexerOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1334,7 +1334,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_SortEntry.Kind;
    begin
       Hr := this.m_IQueryOptions.all.get_SortOrder (m_ComRetVal'Access);
@@ -1374,7 +1374,7 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.DateStackOption;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.DateStackOption;
    begin
       Hr := this.m_IQueryOptions.all.get_DateStackOption (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1423,9 +1423,9 @@ package body WinRt.Windows.Storage.Search is
    procedure SetThumbnailPrefetch
    (
       this : in out QueryOptions;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1440,7 +1440,7 @@ package body WinRt.Windows.Storage.Search is
    procedure SetPropertyPrefetch
    (
       this : in out QueryOptions;
-      options : Windows.Storage.FileProperties.PropertyPrefetchOptions;
+      options : WinRt.Windows.Storage.FileProperties.PropertyPrefetchOptions;
       propertiesToRetrieve : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1462,7 +1462,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IQueryOptionsWithProviderFilter := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IQueryOptions_Interface, WinRt.Windows.Storage.Search.IQueryOptionsWithProviderFilter, WinRt.Windows.Storage.Search.IID_IQueryOptionsWithProviderFilter'Unchecked_Access);
    begin
@@ -1504,7 +1504,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_SortEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.SortEntry;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.SortEntry;
       m_GenericIID     : aliased WinRt.IID := (3639230491, 18355, 21076, (132, 244, 238, 161, 12, 76, 240, 104 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_SortEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1548,7 +1548,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_SortEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.SortEntry;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.SortEntry;
       m_GenericIID     : aliased WinRt.IID := (3639230491, 18355, 21076, (132, 244, 238, 161, 12, 76, 240, 104 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_SortEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1564,7 +1564,7 @@ package body WinRt.Windows.Storage.Search is
    function IndexOf
    (
       this : in out SortEntryVector;
-      value : Windows.Storage.Search.SortEntry;
+      value : WinRt.Windows.Storage.Search.SortEntry;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1589,7 +1589,7 @@ package body WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector;
       index : WinRt.UInt32;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1610,7 +1610,7 @@ package body WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector;
       index : WinRt.UInt32;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1650,7 +1650,7 @@ package body WinRt.Windows.Storage.Search is
    procedure Append
    (
       this : in out SortEntryVector;
-      value : Windows.Storage.Search.SortEntry
+      value : WinRt.Windows.Storage.Search.SortEntry
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1709,7 +1709,7 @@ package body WinRt.Windows.Storage.Search is
    (
       this : in out SortEntryVector;
       startIndex : WinRt.UInt32;
-      items : Windows.Storage.Search.SortEntry_Array
+      items : WinRt.Windows.Storage.Search.SortEntry_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1733,7 +1733,7 @@ package body WinRt.Windows.Storage.Search is
    procedure ReplaceAll
    (
       this : in out SortEntryVector;
-      items : Windows.Storage.Search.SortEntry_Array
+      items : WinRt.Windows.Storage.Search.SortEntry_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1761,7 +1761,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_SortEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.SortEntry;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.SortEntry;
       m_GenericIID     : aliased WinRt.IID := (900724473, 61301, 21120, (187, 132, 162, 191, 131, 23, 207, 53 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_SortEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2001,7 +2001,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFileQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2011,7 +2011,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFileQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFileQueryResult.all);
@@ -2041,7 +2041,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageFileQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2067,7 +2067,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFileQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFileQueryResult.all);
@@ -2082,7 +2082,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageFileQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2175,7 +2175,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IQueryOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IQueryOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFileQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.QueryOptions do
@@ -2185,7 +2185,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+         Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
          Retval.m_IQueryOptions.all := m_ComRetVal;
       end return;
    end;
@@ -2193,7 +2193,7 @@ package body WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageFileQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2212,14 +2212,14 @@ package body WinRt.Windows.Storage.Search is
    function GetMatchingPropertiesWithRanges
    (
       this : in out StorageFileQueryResult;
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFileQueryResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFileQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageFileQueryResult2, WinRt.Windows.Storage.Search.IID_IStorageFileQueryResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFileQueryResult.all);
@@ -2458,7 +2458,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFolderQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2468,7 +2468,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2483,7 +2483,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFolderQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFolderQueryResult.all);
@@ -2498,7 +2498,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageFolderQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2524,7 +2524,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFolderQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFolderQueryResult.all);
@@ -2539,7 +2539,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageFolderQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2632,7 +2632,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IQueryOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IQueryOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageFolderQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.QueryOptions do
@@ -2642,7 +2642,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+         Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
          Retval.m_IQueryOptions.all := m_ComRetVal;
       end return;
    end;
@@ -2650,7 +2650,7 @@ package body WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageFolderQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2893,7 +2893,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageItemQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2903,7 +2903,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2918,7 +2918,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageItemQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemQueryResult.all);
@@ -2933,7 +2933,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_ContentsChanged
    (
       this : in out StorageItemQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2959,7 +2959,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageItemQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemQueryResult.all);
@@ -2974,7 +2974,7 @@ package body WinRt.Windows.Storage.Search is
    procedure remove_OptionsChanged
    (
       this : in out StorageItemQueryResult;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3067,7 +3067,7 @@ package body WinRt.Windows.Storage.Search is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageQueryResultBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IQueryOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IQueryOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Search.IStorageItemQueryResult_Interface, WinRt.Windows.Storage.Search.IStorageQueryResultBase, WinRt.Windows.Storage.Search.IID_IStorageQueryResultBase'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.QueryOptions do
@@ -3077,7 +3077,7 @@ package body WinRt.Windows.Storage.Search is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IQueryOptions := new Windows.Storage.Search.IQueryOptions;
+         Retval.m_IQueryOptions := new WinRt.Windows.Storage.Search.IQueryOptions;
          Retval.m_IQueryOptions.all := m_ComRetVal;
       end return;
    end;
@@ -3085,7 +3085,7 @@ package body WinRt.Windows.Storage.Search is
    procedure ApplyNewQueryOptions
    (
       this : in out StorageItemQueryResult;
-      newQueryOptions : Windows.Storage.Search.QueryOptions'Class
+      newQueryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3132,14 +3132,14 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IStorageLibraryChangeTrackerTriggerDetails.all.get_Folder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -3152,14 +3152,14 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageLibraryChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageLibraryChangeTracker;
    begin
       return RetVal : WinRt.Windows.Storage.StorageLibraryChangeTracker do
          Hr := this.m_IStorageLibraryChangeTrackerTriggerDetails.all.get_ChangeTracker (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageLibraryChangeTracker := new Windows.Storage.IStorageLibraryChangeTracker;
+         Retval.m_IStorageLibraryChangeTracker := new WinRt.Windows.Storage.IStorageLibraryChangeTracker;
          Retval.m_IStorageLibraryChangeTracker.all := m_ComRetVal;
       end return;
    end;
@@ -3195,14 +3195,14 @@ package body WinRt.Windows.Storage.Search is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IStorageLibraryContentChangedTriggerDetails.all.get_Folder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -3210,20 +3210,20 @@ package body WinRt.Windows.Storage.Search is
    function CreateModifiedSinceQuery
    (
       this : in out StorageLibraryContentChangedTriggerDetails;
-      lastQueryTime : Windows.Foundation.DateTime
+      lastQueryTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageItemQueryResult;
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
          Hr := this.m_IStorageLibraryContentChangedTriggerDetails.all.CreateModifiedSinceQuery (lastQueryTime, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
+         Retval.m_IStorageItemQueryResult := new WinRt.Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -3254,13 +3254,13 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return ValueAndLanguage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.ValueAndLanguage");
-      m_ComRetVal  : aliased Windows.Storage.Search.IValueAndLanguage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IValueAndLanguage");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IValueAndLanguage;
    begin
       return RetVal : ValueAndLanguage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IValueAndLanguage := new Windows.Storage.Search.IValueAndLanguage;
+            Retval.m_IValueAndLanguage := new WinRt.Windows.Storage.Search.IValueAndLanguage;
             Retval.m_IValueAndLanguage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

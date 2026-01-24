@@ -116,7 +116,7 @@ package WinRt.Windows.Management.Workplace is
       function GetMessagingSyncPolicy
       (
          this : access IMdmPolicyStatics2_Interface;
-         RetVal : access Windows.Management.Workplace.MessagingSyncPolicy
+         RetVal : access WinRt.Windows.Management.Workplace.MessagingSyncPolicy
       )
       return WinRt.Hresult is abstract;
 

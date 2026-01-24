@@ -346,14 +346,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_AppInfo
       (
          this : access IPrintSupportAppInfo_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportedContracts
       (
          this : access IPrintSupportAppInfo_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportAppContracts
       )
       return WinRt.Hresult is abstract;
 
@@ -366,7 +366,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportAppInfoStatics_Interface;
          printerName : WinRt.HString;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -375,7 +375,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportAppInfoStatics_Interface;
          printerName : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -387,28 +387,28 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_ErrorKind
       (
          this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IppCommunicationErrorKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_CommunicationConfiguration
       (
          this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintSupportCommunicationErrorDetectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -420,7 +420,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_Printer
       (
          this : access IPrintSupportEnterpriseManagementUIEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -432,7 +432,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_Printer
       (
          this : access IPrintSupportExtensionSession_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -440,14 +440,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportExtensionSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrintTicketValidationRequested
       (
          this : access IPrintSupportExtensionSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -455,14 +455,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportExtensionSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrintDeviceCapabilitiesChanged
       (
          this : access IPrintSupportExtensionSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -481,14 +481,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportExtensionSession2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrinterSelected
       (
          this : access IPrintSupportExtensionSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -501,14 +501,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportExtensionSession3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommunicationErrorDetected
       (
          this : access IPrintSupportExtensionSession3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -520,7 +520,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_Session
       (
          this : access IPrintSupportExtensionTriggerDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportExtensionSession
       )
       return WinRt.Hresult is abstract;
 
@@ -532,7 +532,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_CommunicationKind
       (
          this : access IPrintSupportIppCommunicationConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IppPrinterCommunicationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -546,14 +546,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_IppAttributeTimeouts
       (
          this : access IPrintSupportIppCommunicationConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
       )
       return WinRt.Hresult is abstract;
 
       function get_IppJobTimeouts
       (
          this : access IPrintSupportIppCommunicationConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationTimeouts
       )
       return WinRt.Hresult is abstract;
 
@@ -565,42 +565,42 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_ConnectTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_ConnectTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SendTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_SendTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ReceiveTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_ReceiveTimeout
       (
          this : access IPrintSupportIppCommunicationTimeouts_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -612,98 +612,98 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_NormalOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_DraftOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_DraftOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_HighOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_HighOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_PhotographicOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_PhotographicOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_TextOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_TextOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_AutomaticOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_AutomaticOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function get_FaxOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
       function put_FaxOutputQuality
       (
          this : access IPrintSupportMxdcImageQualityConfiguration_Interface;
-         value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+         value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
       )
       return WinRt.Hresult is abstract;
 
@@ -715,21 +715,21 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function GetCurrentPrintDeviceCapabilities
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function UpdatePrintDeviceCapabilities
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface;
-         updatedPdc : Windows.Data.Xml.Dom.IXmlDocument
+         updatedPdc : WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -755,21 +755,21 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function GetCurrentPrintDeviceResources
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function UpdatePrintDeviceResources
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
-         updatedPdr : Windows.Data.Xml.Dom.IXmlDocument
+         updatedPdr : WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function SetPrintDeviceCapabilitiesUpdatePolicy
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs2_Interface;
-         updatePolicy : Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+         updatePolicy : WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -781,7 +781,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_CommunicationConfiguration
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs3_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportIppCommunicationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -793,7 +793,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_MxdcImageQualityConfiguration
       (
          this : access IPrintSupportPrintDeviceCapabilitiesChangedEventArgs4_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportMxdcImageQualityConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -810,8 +810,8 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function CreatePeriodicRefresh
       (
          this : access IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface;
-         updatePeriod : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+         updatePeriod : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -819,7 +819,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       (
          this : access IPrintSupportPrintDeviceCapabilitiesUpdatePolicyStatics_Interface;
          numberOfJobs : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintDeviceCapabilitiesUpdatePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -864,21 +864,21 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_PrintTicket
       (
          this : access IPrintSupportPrintTicketValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function SetPrintTicketValidationStatus
       (
          this : access IPrintSupportPrintTicketValidationRequestedEventArgs_Interface;
-         status : Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
+         status : WinRt.Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintSupportPrintTicketValidationRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -902,21 +902,21 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_SourceAppInfo
       (
          this : access IPrintSupportPrinterSelectedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_PrintTicket
       (
          this : access IPrintSupportPrinterSelectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function put_PrintTicket
       (
          this : access IPrintSupportPrinterSelectedEventArgs_Interface;
-         value : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         value : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -944,14 +944,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function SetAdaptiveCard
       (
          this : access IPrintSupportPrinterSelectedEventArgs_Interface;
-         adaptiveCard : Windows.UI.Shell.IAdaptiveCard
+         adaptiveCard : WinRt.Windows.UI.Shell.IAdaptiveCard
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintSupportPrinterSelectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -963,14 +963,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_SourceAppInfo
       (
          this : access IPrintSupportSessionInfo_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_Printer
       (
          this : access IPrintSupportSessionInfo_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -982,14 +982,14 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_Session
       (
          this : access IPrintSupportSettingsActivatedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSettingsUISession
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintSupportSettingsActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1001,7 +1001,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_OwnerWindowId
       (
          this : access IPrintSupportSettingsActivatedEventArgs2_Interface;
-         RetVal : access Windows.UI.WindowId
+         RetVal : access WinRt.Windows.UI.WindowId
       )
       return WinRt.Hresult is abstract;
 
@@ -1013,7 +1013,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_SessionPrintTicket
       (
          this : access IPrintSupportSettingsUISession_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,21 +1027,21 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
       function get_LaunchKind
       (
          this : access IPrintSupportSettingsUISession_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.SettingsLaunchKind
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.SettingsLaunchKind
       )
       return WinRt.Hresult is abstract;
 
       function UpdatePrintTicket
       (
          this : access IPrintSupportSettingsUISession_Interface;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionInfo
       (
          this : access IPrintSupportSettingsUISession_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportSessionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1063,7 +1063,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    function GetPrintJobShowsUI
    (
       printerName : WinRt.WString;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    )
    return WinRt.GenericObject;
 
@@ -1161,7 +1161,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrintTicketValidationRequested
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PrintDeviceCapabilitiesChanged
@@ -1174,7 +1174,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrintDeviceCapabilitiesChanged
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -1192,7 +1192,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_PrinterSelected
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CommunicationErrorDetected
@@ -1205,7 +1205,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure remove_CommunicationErrorDetected
    (
       this : in out PrintSupportExtensionSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1274,7 +1274,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_ConnectTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_SendTimeout
@@ -1286,7 +1286,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_SendTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ReceiveTimeout
@@ -1298,7 +1298,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_ReceiveTimeout
    (
       this : in out PrintSupportIppCommunicationTimeouts;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -1319,7 +1319,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_NormalOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_DraftOutputQuality
@@ -1331,7 +1331,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_DraftOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_HighOutputQuality
@@ -1343,7 +1343,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_HighOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_PhotographicOutputQuality
@@ -1355,7 +1355,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_PhotographicOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_TextOutputQuality
@@ -1367,7 +1367,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_TextOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_AutomaticOutputQuality
@@ -1379,7 +1379,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_AutomaticOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    function get_FaxOutputQuality
@@ -1391,7 +1391,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_FaxOutputQuality
    (
       this : in out PrintSupportMxdcImageQualityConfiguration;
-      value : Windows.Graphics.Printing.PrintSupport.XpsImageQuality
+      value : WinRt.Windows.Graphics.Printing.PrintSupport.XpsImageQuality
    );
 
    -----------------------------------------------------------------------------
@@ -1412,7 +1412,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintDeviceCapabilities
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatedPdc : Windows.Data.Xml.Dom.XmlDocument'Class
+      updatedPdc : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    function GetDeferral
@@ -1442,13 +1442,13 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintDeviceResources
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatedPdr : Windows.Data.Xml.Dom.XmlDocument'Class
+      updatedPdr : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    procedure SetPrintDeviceCapabilitiesUpdatePolicy
    (
       this : in out PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
-      updatePolicy : Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy'Class
+      updatePolicy : WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy'Class
    );
 
    function get_CommunicationConfiguration
@@ -1474,7 +1474,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
 
    function CreatePeriodicRefresh
    (
-      updatePeriod : Windows.Foundation.TimeSpan
+      updatePeriod : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Graphics.Printing.PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
 
@@ -1543,7 +1543,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure SetPrintTicketValidationStatus
    (
       this : in out PrintSupportPrintTicketValidationRequestedEventArgs;
-      status : Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
+      status : WinRt.Windows.Graphics.Printing.PrintSupport.WorkflowPrintTicketValidationStatus
    );
 
    function GetDeferral
@@ -1582,7 +1582,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure put_PrintTicket
    (
       this : in out PrintSupportPrinterSelectedEventArgs;
-      value : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    );
 
    procedure SetAdditionalFeatures
@@ -1606,7 +1606,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure SetAdaptiveCard
    (
       this : in out PrintSupportPrinterSelectedEventArgs;
-      adaptiveCard : Windows.UI.Shell.IAdaptiveCard
+      adaptiveCard : WinRt.Windows.UI.Shell.IAdaptiveCard
    );
 
    function GetDeferral
@@ -1717,7 +1717,7 @@ package WinRt.Windows.Graphics.Printing.PrintSupport is
    procedure UpdatePrintTicket
    (
       this : in out PrintSupportSettingsUISession;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    );
 
    function get_SessionInfo

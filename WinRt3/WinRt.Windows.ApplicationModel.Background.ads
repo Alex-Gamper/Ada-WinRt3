@@ -1123,32 +1123,32 @@ package WinRt.Windows.ApplicationModel.Background is
    -----------------------------------------------------------------------------
 
    IID_BackgroundTaskCanceledEventHandler : aliased WinRt.IID := (2797910720, 20984, 19543, (172, 63, 21, 109, 209, 104, 12, 79 ));
-   type BackgroundTaskCanceledEventHandler_Delegate (Callback : access procedure  (sender : Windows.ApplicationModel.Background.IBackgroundTaskInstance;reason : Windows.ApplicationModel.Background.BackgroundTaskCancellationReason)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskCanceledEventHandler'Access) with null record;
+   type BackgroundTaskCanceledEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance;reason : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCancellationReason)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskCanceledEventHandler'Access) with null record;
       function Invoke
       (
          this : access BackgroundTaskCanceledEventHandler_Delegate;
-         sender : Windows.ApplicationModel.Background.IBackgroundTaskInstance;
-         reason : Windows.ApplicationModel.Background.BackgroundTaskCancellationReason
+         sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance;
+         reason : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCancellationReason
       )
       return WinRt.Hresult;
 
    IID_BackgroundTaskCompletedEventHandler : aliased WinRt.IID := (1530456361, 41094, 18087, (166, 120, 67, 145, 53, 130, 43, 207 ));
-   type BackgroundTaskCompletedEventHandler_Delegate (Callback : access procedure  (sender : Windows.ApplicationModel.Background.IBackgroundTaskRegistration;args : Windows.ApplicationModel.Background.IBackgroundTaskCompletedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskCompletedEventHandler'Access) with null record;
+   type BackgroundTaskCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration;args : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskCompletedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskCompletedEventHandler'Access) with null record;
       function Invoke
       (
          this : access BackgroundTaskCompletedEventHandler_Delegate;
-         sender : Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
-         args : Windows.ApplicationModel.Background.IBackgroundTaskCompletedEventArgs
+         sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
+         args : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskCompletedEventArgs
       )
       return WinRt.Hresult;
 
    IID_BackgroundTaskProgressEventHandler : aliased WinRt.IID := (1189111868, 35464, 19609, (128, 76, 118, 137, 127, 98, 119, 166 ));
-   type BackgroundTaskProgressEventHandler_Delegate (Callback : access procedure  (sender : Windows.ApplicationModel.Background.IBackgroundTaskRegistration;args : Windows.ApplicationModel.Background.IBackgroundTaskProgressEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskProgressEventHandler'Access) with null record;
+   type BackgroundTaskProgressEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration;args : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskProgressEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundTaskProgressEventHandler'Access) with null record;
       function Invoke
       (
          this : access BackgroundTaskProgressEventHandler_Delegate;
-         sender : Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
-         args : Windows.ApplicationModel.Background.IBackgroundTaskProgressEventArgs
+         sender : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration;
+         args : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskProgressEventArgs
       )
       return WinRt.Hresult;
 
@@ -1208,7 +1208,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IActivitySensorTriggerFactory_Interface;
          reportIntervalInMilliseconds : WinRt.UInt32;
-         RetVal : access Windows.ApplicationModel.Background.IActivitySensorTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IActivitySensorTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -1227,7 +1227,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function GetAccessStatus
       (
          this : access IAlarmApplicationManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Background.AlarmAccessStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Background.AlarmAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1239,14 +1239,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function put_ProviderInfo
       (
          this : access IAppBroadcastTrigger_Interface;
-         value : Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo
+         value : WinRt.Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ProviderInfo
       (
          this : access IAppBroadcastTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1259,7 +1259,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IAppBroadcastTriggerFactory_Interface;
          providerKey : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IAppBroadcastTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IAppBroadcastTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -1299,14 +1299,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function put_VideoKeyFrameInterval
       (
          this : access IAppBroadcastTriggerProviderInfo_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoKeyFrameInterval
       (
          this : access IAppBroadcastTriggerProviderInfo_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1367,7 +1367,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function RequestAsync
       (
          this : access IApplicationTrigger_Interface;
-         arguments : Windows.Foundation.Collections.IPropertySet;
+         arguments : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1380,7 +1380,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Arguments
       (
          this : access IApplicationTriggerDetails_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1430,7 +1430,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function GetAccessStatus
       (
          this : access IBackgroundExecutionManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1438,7 +1438,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundExecutionManagerStatics_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1450,7 +1450,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function RequestAccessKindAsync
       (
          this : access IBackgroundExecutionManagerStatics2_Interface;
-         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         requestedAccess : WinRt.Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1464,7 +1464,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function RequestAccessKindForModernStandbyAsync
       (
          this : access IBackgroundExecutionManagerStatics3_Interface;
-         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         requestedAccess : WinRt.Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1473,7 +1473,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function GetAccessStatusForModernStandby
       (
          this : access IBackgroundExecutionManagerStatics3_Interface;
-         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1481,7 +1481,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundExecutionManagerStatics3_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.BackgroundAccessStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Background.BackgroundAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1493,7 +1493,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function Run
       (
          this : access IBackgroundTask_Interface;
-         taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
+         taskInstance : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -1519,14 +1519,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function SetTrigger
       (
          this : access IBackgroundTaskBuilder_Interface;
-         trigger : Windows.ApplicationModel.Background.IBackgroundTrigger
+         trigger : WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
       function AddCondition
       (
          this : access IBackgroundTaskBuilder_Interface;
-         condition : Windows.ApplicationModel.Background.IBackgroundCondition
+         condition : WinRt.Windows.ApplicationModel.Background.IBackgroundCondition
       )
       return WinRt.Hresult is abstract;
 
@@ -1547,7 +1547,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function Register
       (
          this : access IBackgroundTaskBuilder_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistration
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -1597,14 +1597,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TaskGroup
       (
          this : access IBackgroundTaskBuilder4_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_TaskGroup
       (
          this : access IBackgroundTaskBuilder4_Interface;
-         value : Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         value : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1650,7 +1650,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundTaskBuilder6_Interface;
          taskName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistration
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -1710,7 +1710,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Task
       (
          this : access IBackgroundTaskInstance_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistration
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -1738,15 +1738,15 @@ package WinRt.Windows.ApplicationModel.Background is
       function add_Canceled
       (
          this : access IBackgroundTaskInstance_Interface;
-         cancelHandler : Windows.ApplicationModel.Background.BackgroundTaskCanceledEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         cancelHandler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCanceledEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Canceled
       (
          this : access IBackgroundTaskInstance_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1760,7 +1760,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function GetDeferral
       (
          this : access IBackgroundTaskInstance_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1772,7 +1772,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function GetThrottleCount
       (
          this : access IBackgroundTaskInstance2_Interface;
-         counter : Windows.ApplicationModel.Background.BackgroundTaskThrottleCounter;
+         counter : WinRt.Windows.ApplicationModel.Background.BackgroundTaskThrottleCounter;
          RetVal : access WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -1785,7 +1785,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_User
       (
          this : access IBackgroundTaskInstance4_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1830,30 +1830,30 @@ package WinRt.Windows.ApplicationModel.Background is
       function add_Progress
       (
          this : access IBackgroundTaskRegistration_Interface;
-         handler : Windows.ApplicationModel.Background.BackgroundTaskProgressEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskProgressEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Progress
       (
          this : access IBackgroundTaskRegistration_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Completed
       (
          this : access IBackgroundTaskRegistration_Interface;
-         handler : Windows.ApplicationModel.Background.BackgroundTaskCompletedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCompletedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IBackgroundTaskRegistration_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1872,7 +1872,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Trigger
       (
          this : access IBackgroundTaskRegistration2_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -1884,7 +1884,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TaskGroup
       (
          this : access IBackgroundTaskRegistration3_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1896,7 +1896,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TaskLastThrottledInStandbyTimestamp
       (
          this : access IBackgroundTaskRegistration4_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1930,14 +1930,14 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundTaskRegistrationGroup_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackgroundActivated
       (
          this : access IBackgroundTaskRegistrationGroup_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1957,7 +1957,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundTaskRegistrationGroupFactory_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1966,7 +1966,7 @@ package WinRt.Windows.ApplicationModel.Background is
          this : access IBackgroundTaskRegistrationGroupFactory_Interface;
          id : WinRt.HString;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1998,7 +1998,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IBackgroundTaskRegistrationStatics2_Interface;
          groupId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -2015,7 +2015,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_CurrentBackgroundWorkCost
       (
          this : access IBackgroundWorkCostStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Background.BackgroundWorkCostValue
+         RetVal : access WinRt.Windows.ApplicationModel.Background.BackgroundWorkCostValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2027,21 +2027,21 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_AppEnergyUseLevel
       (
          this : access IBackgroundWorkCostStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Background.EnergyUseLevel
+         RetVal : access WinRt.Windows.ApplicationModel.Background.EnergyUseLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_AppEnergyUsePrediction
       (
          this : access IBackgroundWorkCostStatics2_Interface;
-         RetVal : access Windows.ApplicationModel.Background.EnergyUseLevel
+         RetVal : access WinRt.Windows.ApplicationModel.Background.EnergyUseLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_AppLastThrottledInStandbyTimestamp
       (
          this : access IBackgroundWorkCostStatics2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2053,7 +2053,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Advertisement
       (
          this : access IBluetoothLEAdvertisementPublisherTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement
       )
       return WinRt.Hresult is abstract;
 
@@ -2126,28 +2126,28 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_PrimaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function put_PrimaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function get_SecondaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
       function put_SecondaryPhy
       (
          this : access IBluetoothLEAdvertisementPublisherTrigger3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
       )
       return WinRt.Hresult is abstract;
 
@@ -2159,56 +2159,56 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_MinSamplingInterval
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxSamplingInterval
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MinOutOfRangeTimeout
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MaxOutOfRangeTimeout
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SignalStrengthFilter
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
       )
       return WinRt.Hresult is abstract;
 
       function put_SignalStrengthFilter
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         value : Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
+         value : WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvertisementFilter
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
       )
       return WinRt.Hresult is abstract;
 
       function put_AdvertisementFilter
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -2267,14 +2267,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_ScanParameters
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
       function put_ScanParameters
       (
          this : access IBluetoothLEAdvertisementWatcherTrigger3_Interface;
-         value : Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
+         value : WinRt.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementScanParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -2291,14 +2291,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_UpdateTarget
       (
          this : access ICachedFileUpdaterTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Provider.CachedFileTarget
+         RetVal : access WinRt.Windows.Storage.Provider.CachedFileTarget
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateRequest
       (
          this : access ICachedFileUpdaterTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Provider.IFileUpdateRequest
+         RetVal : access WinRt.Windows.Storage.Provider.IFileUpdateRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -2337,7 +2337,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_WaitInterval
       (
          this : access IContentPrefetchTrigger_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2349,8 +2349,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IContentPrefetchTriggerFactory_Interface;
-         waitInterval : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.ApplicationModel.Background.IContentPrefetchTrigger
+         waitInterval : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IContentPrefetchTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2369,7 +2369,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Recurrence
       (
          this : access ICustomSystemEventTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence
+         RetVal : access WinRt.Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -2382,8 +2382,8 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access ICustomSystemEventTriggerFactory_Interface;
          triggerId : WinRt.HString;
-         recurrence : Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence;
-         RetVal : access Windows.ApplicationModel.Background.ICustomSystemEventTrigger
+         recurrence : WinRt.Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ICustomSystemEventTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2462,7 +2462,7 @@ package WinRt.Windows.ApplicationModel.Background is
          this : access IDeviceManufacturerNotificationTriggerFactory_Interface;
          triggerQualifier : WinRt.HString;
          oneShot : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2475,7 +2475,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IDeviceServicingTrigger_Interface;
          deviceId : WinRt.HString;
-         expectedDuration : Windows.Foundation.TimeSpan;
+         expectedDuration : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2484,7 +2484,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IDeviceServicingTrigger_Interface;
          deviceId : WinRt.HString;
-         expectedDuration : Windows.Foundation.TimeSpan;
+         expectedDuration : WinRt.Windows.Foundation.TimeSpan;
          arguments : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2530,7 +2530,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Characteristic
       (
          this : access IGattCharacteristicNotificationTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic
       )
       return WinRt.Hresult is abstract;
 
@@ -2542,7 +2542,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_EventTriggeringMode
       (
          this : access IGattCharacteristicNotificationTrigger2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2554,8 +2554,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IGattCharacteristicNotificationTriggerFactory_Interface;
-         characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
-         RetVal : access Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger
+         characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2567,9 +2567,9 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IGattCharacteristicNotificationTriggerFactory2_Interface;
-         characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
-         eventTriggeringMode : Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode;
-         RetVal : access Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger
+         characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
+         eventTriggeringMode : WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2588,21 +2588,21 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Service
       (
          this : access IGattServiceProviderTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService
       )
       return WinRt.Hresult is abstract;
 
       function put_AdvertisingParameters
       (
          this : access IGattServiceProviderTrigger_Interface;
-         value : Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+         value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvertisingParameters
       (
          this : access IGattServiceProviderTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -2614,14 +2614,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_Trigger
       (
          this : access IGattServiceProviderTriggerResult_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IGattServiceProviderTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IGattServiceProviderTrigger
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IGattServiceProviderTriggerResult_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothError
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothError
       )
       return WinRt.Hresult is abstract;
 
@@ -2647,14 +2647,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_MonitoringScope
       (
          this : access IGeovisitTrigger_Interface;
-         RetVal : access Windows.Devices.Geolocation.VisitMonitoringScope
+         RetVal : access WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
       )
       return WinRt.Hresult is abstract;
 
       function put_MonitoringScope
       (
          this : access IGeovisitTrigger_Interface;
-         value : Windows.Devices.Geolocation.VisitMonitoringScope
+         value : WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
       )
       return WinRt.Hresult is abstract;
 
@@ -2666,7 +2666,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TriggerType
       (
          this : access ILocationTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.LocationTriggerType
+         RetVal : access WinRt.Windows.ApplicationModel.Background.LocationTriggerType
       )
       return WinRt.Hresult is abstract;
 
@@ -2678,8 +2678,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ILocationTriggerFactory_Interface;
-         triggerType : Windows.ApplicationModel.Background.LocationTriggerType;
-         RetVal : access Windows.ApplicationModel.Background.ILocationTrigger
+         triggerType : WinRt.Windows.ApplicationModel.Background.LocationTriggerType;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ILocationTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2712,7 +2712,7 @@ package WinRt.Windows.ApplicationModel.Background is
          this : access IMaintenanceTriggerFactory_Interface;
          freshnessTime : WinRt.UInt32;
          oneShot : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Background.IMaintenanceTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IMaintenanceTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2731,7 +2731,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function RequestAsync
       (
          this : access IMediaProcessingTrigger_Interface;
-         arguments : Windows.Foundation.Collections.IPropertySet;
+         arguments : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2762,7 +2762,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access INetworkOperatorNotificationTriggerFactory_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2781,7 +2781,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TriggerType
       (
          this : access IPhoneTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.Background.PhoneTriggerType
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.Background.PhoneTriggerType
       )
       return WinRt.Hresult is abstract;
 
@@ -2793,9 +2793,9 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IPhoneTriggerFactory_Interface;
-         type_x : Windows.ApplicationModel.Calls.Background.PhoneTriggerType;
+         type_x : WinRt.Windows.ApplicationModel.Calls.Background.PhoneTriggerType;
          oneShot : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Background.IPhoneTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IPhoneTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2808,7 +2808,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IPushNotificationTriggerFactory_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2825,14 +2825,14 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_InboundConnection
       (
          this : access IRfcommConnectionTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Background.IRfcommInboundConnectionInformation
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Background.IRfcommInboundConnectionInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_OutboundConnection
       (
          this : access IRfcommConnectionTrigger_Interface;
-         RetVal : access Windows.Devices.Bluetooth.Background.IRfcommOutboundConnectionInformation
+         RetVal : access WinRt.Windows.Devices.Bluetooth.Background.IRfcommOutboundConnectionInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -2853,28 +2853,28 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_ProtectionLevel
       (
          this : access IRfcommConnectionTrigger_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketProtectionLevel
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectionLevel
       (
          this : access IRfcommConnectionTrigger_Interface;
-         value : Windows.Networking.Sockets.SocketProtectionLevel
+         value : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
       )
       return WinRt.Hresult is abstract;
 
       function get_RemoteHostName
       (
          this : access IRfcommConnectionTrigger_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_RemoteHostName
       (
          this : access IRfcommConnectionTrigger_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -2896,8 +2896,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ISensorDataThresholdTriggerFactory_Interface;
-         threshold : Windows.Devices.Sensors.ISensorDataThreshold;
-         RetVal : access Windows.ApplicationModel.Background.ISensorDataThresholdTrigger
+         threshold : WinRt.Windows.Devices.Sensors.ISensorDataThreshold;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ISensorDataThresholdTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2909,7 +2909,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TriggerType
       (
          this : access ISmartCardTrigger_Interface;
-         RetVal : access Windows.Devices.SmartCards.SmartCardTriggerType
+         RetVal : access WinRt.Windows.Devices.SmartCards.SmartCardTriggerType
       )
       return WinRt.Hresult is abstract;
 
@@ -2921,8 +2921,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ISmartCardTriggerFactory_Interface;
-         triggerType : Windows.Devices.SmartCards.SmartCardTriggerType;
-         RetVal : access Windows.ApplicationModel.Background.ISmartCardTrigger
+         triggerType : WinRt.Windows.Devices.SmartCards.SmartCardTriggerType;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ISmartCardTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2934,8 +2934,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ISmsMessageReceivedTriggerFactory_Interface;
-         filterRules : Windows.Devices.Sms.ISmsFilterRules;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         filterRules : WinRt.Windows.Devices.Sms.ISmsFilterRules;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2959,8 +2959,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IStorageLibraryChangeTrackerTriggerFactory_Interface;
-         tracker : Windows.Storage.IStorageLibraryChangeTracker;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         tracker : WinRt.Windows.Storage.IStorageLibraryChangeTracker;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2977,8 +2977,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IStorageLibraryContentChangedTriggerStatics_Interface;
-         storageLibrary : Windows.Storage.IStorageLibrary;
-         RetVal : access Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger
+         storageLibrary : WinRt.Windows.Storage.IStorageLibrary;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2986,7 +2986,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IStorageLibraryContentChangedTriggerStatics_Interface;
          storageLibraries : GenericObject;
-         RetVal : access Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IStorageLibraryContentChangedTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -2998,7 +2998,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_ConditionType
       (
          this : access ISystemCondition_Interface;
-         RetVal : access Windows.ApplicationModel.Background.SystemConditionType
+         RetVal : access WinRt.Windows.ApplicationModel.Background.SystemConditionType
       )
       return WinRt.Hresult is abstract;
 
@@ -3010,8 +3010,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ISystemConditionFactory_Interface;
-         conditionType : Windows.ApplicationModel.Background.SystemConditionType;
-         RetVal : access Windows.ApplicationModel.Background.ISystemCondition
+         conditionType : WinRt.Windows.ApplicationModel.Background.SystemConditionType;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ISystemCondition
       )
       return WinRt.Hresult is abstract;
 
@@ -3030,7 +3030,7 @@ package WinRt.Windows.ApplicationModel.Background is
       function get_TriggerType
       (
          this : access ISystemTrigger_Interface;
-         RetVal : access Windows.ApplicationModel.Background.SystemTriggerType
+         RetVal : access WinRt.Windows.ApplicationModel.Background.SystemTriggerType
       )
       return WinRt.Hresult is abstract;
 
@@ -3042,9 +3042,9 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access ISystemTriggerFactory_Interface;
-         triggerType : Windows.ApplicationModel.Background.SystemTriggerType;
+         triggerType : WinRt.Windows.ApplicationModel.Background.SystemTriggerType;
          oneShot : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Background.ISystemTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ISystemTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -3077,7 +3077,7 @@ package WinRt.Windows.ApplicationModel.Background is
          this : access ITimeTriggerFactory_Interface;
          freshnessTime : WinRt.UInt32;
          oneShot : WinRt.Boolean;
-         RetVal : access Windows.ApplicationModel.Background.ITimeTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.ITimeTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -3090,7 +3090,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IToastNotificationActionTriggerFactory_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -3103,7 +3103,7 @@ package WinRt.Windows.ApplicationModel.Background is
       (
          this : access IToastNotificationHistoryChangedTriggerFactory_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -3115,8 +3115,8 @@ package WinRt.Windows.ApplicationModel.Background is
       function Create
       (
          this : access IUserNotificationChangedTriggerFactory_Interface;
-         notificationKinds : Windows.UI.Notifications.NotificationKinds;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         notificationKinds : WinRt.Windows.UI.Notifications.NotificationKinds;
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -3201,7 +3201,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_ProviderInfo
    (
       this : in out AppBroadcastTrigger;
-      value : Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo'Class
+      value : WinRt.Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo'Class
    );
 
    function get_ProviderInfo
@@ -3246,7 +3246,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_VideoKeyFrameInterval
    (
       this : in out AppBroadcastTriggerProviderInfo;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_VideoKeyFrameInterval
@@ -3314,7 +3314,7 @@ package WinRt.Windows.ApplicationModel.Background is
    function RequestAsync
    (
       this : in out ApplicationTrigger;
-      arguments : Windows.Foundation.Collections.ValueSet'Class
+      arguments : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.Background.ApplicationTriggerResult;
 
@@ -3353,7 +3353,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
       function RequestAccessKindAsync
       (
-         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         requestedAccess : WinRt.Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.WString
       )
       return WinRt.Boolean;
@@ -3385,7 +3385,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
       function RequestAccessKindForModernStandbyAsync
       (
-         requestedAccess : Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
+         requestedAccess : WinRt.Windows.ApplicationModel.Background.BackgroundAccessRequestKind;
          reason : WinRt.WString
       )
       return WinRt.Boolean;
@@ -3436,13 +3436,13 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure SetTrigger
    (
       this : in out BackgroundTaskBuilder;
-      trigger : Windows.ApplicationModel.Background.IBackgroundTrigger
+      trigger : WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
    );
 
    procedure AddCondition
    (
       this : in out BackgroundTaskBuilder;
-      condition : Windows.ApplicationModel.Background.IBackgroundCondition
+      condition : WinRt.Windows.ApplicationModel.Background.IBackgroundCondition
    );
 
    procedure put_Name
@@ -3496,7 +3496,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_TaskGroup
    (
       this : in out BackgroundTaskBuilder;
-      value : Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class
+      value : WinRt.Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup'Class
    );
 
    procedure SetTaskEntryPointClsid
@@ -3624,27 +3624,27 @@ package WinRt.Windows.ApplicationModel.Background is
    function add_Progress
    (
       this : in out BackgroundTaskRegistration;
-      handler : Windows.ApplicationModel.Background.BackgroundTaskProgressEventHandler
+      handler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskProgressEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Progress
    (
       this : in out BackgroundTaskRegistration;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Completed
    (
       this : in out BackgroundTaskRegistration;
-      handler : Windows.ApplicationModel.Background.BackgroundTaskCompletedEventHandler
+      handler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCompletedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Completed
    (
       this : in out BackgroundTaskRegistration;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Unregister
@@ -3724,7 +3724,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure remove_BackgroundActivated
    (
       this : in out BackgroundTaskRegistrationGroup;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AllTasks
@@ -3828,7 +3828,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_PrimaryPhy
    (
       this : in out BluetoothLEAdvertisementPublisherTrigger;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
    );
 
    function get_SecondaryPhy
@@ -3840,7 +3840,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_SecondaryPhy
    (
       this : in out BluetoothLEAdvertisementPublisherTrigger;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPhyType
    );
 
    -----------------------------------------------------------------------------
@@ -3890,7 +3890,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_SignalStrengthFilter
    (
       this : in out BluetoothLEAdvertisementWatcherTrigger;
-      value : Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class
+      value : WinRt.Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter'Class
    );
 
    function get_AdvertisementFilter
@@ -3902,7 +3902,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_AdvertisementFilter
    (
       this : in out BluetoothLEAdvertisementWatcherTrigger;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter'Class
    );
 
    function get_AllowExtendedAdvertisements
@@ -3950,7 +3950,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_ScanParameters
    (
       this : in out BluetoothLEAdvertisementWatcherTrigger;
-      value : Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
+      value : WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementScanParameters'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4063,7 +4063,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      waitInterval : Windows.Foundation.TimeSpan
+      waitInterval : WinRt.Windows.Foundation.TimeSpan
    )
    return ContentPrefetchTrigger;
 
@@ -4102,7 +4102,7 @@ package WinRt.Windows.ApplicationModel.Background is
    function Constructor
    (
       triggerId : WinRt.WString;
-      recurrence : Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence
+      recurrence : WinRt.Windows.ApplicationModel.Background.CustomSystemEventTriggerRecurrence
    )
    return CustomSystemEventTrigger;
 
@@ -4212,7 +4212,7 @@ package WinRt.Windows.ApplicationModel.Background is
    (
       this : in out DeviceServicingTrigger;
       deviceId : WinRt.WString;
-      expectedDuration : Windows.Foundation.TimeSpan
+      expectedDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult;
 
@@ -4220,7 +4220,7 @@ package WinRt.Windows.ApplicationModel.Background is
    (
       this : in out DeviceServicingTrigger;
       deviceId : WinRt.WString;
-      expectedDuration : Windows.Foundation.TimeSpan;
+      expectedDuration : WinRt.Windows.Foundation.TimeSpan;
       arguments : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.Background.DeviceTriggerResult;
@@ -4288,14 +4288,14 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
+      characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class
    )
    return GattCharacteristicNotificationTrigger;
 
    function Constructor
    (
-      characteristic : Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
-      eventTriggeringMode : Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
+      characteristic : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic'Class;
+      eventTriggeringMode : WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode
    )
    return GattCharacteristicNotificationTrigger;
 
@@ -4348,7 +4348,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_AdvertisingParameters
    (
       this : in out GattServiceProviderTrigger;
-      value : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      value : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    );
 
    function get_AdvertisingParameters
@@ -4401,7 +4401,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_MonitoringScope
    (
       this : in out GeovisitTrigger;
-      value : Windows.Devices.Geolocation.VisitMonitoringScope
+      value : WinRt.Windows.Devices.Geolocation.VisitMonitoringScope
    );
 
    -----------------------------------------------------------------------------
@@ -4415,7 +4415,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      triggerType : Windows.ApplicationModel.Background.LocationTriggerType
+      triggerType : WinRt.Windows.ApplicationModel.Background.LocationTriggerType
    )
    return LocationTrigger;
 
@@ -4482,7 +4482,7 @@ package WinRt.Windows.ApplicationModel.Background is
    function RequestAsync
    (
       this : in out MediaProcessingTrigger;
-      arguments : Windows.Foundation.Collections.ValueSet'Class
+      arguments : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.Background.MediaProcessingTriggerResult;
 
@@ -4633,7 +4633,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      type_x : Windows.ApplicationModel.Calls.Background.PhoneTriggerType;
+      type_x : WinRt.Windows.ApplicationModel.Calls.Background.PhoneTriggerType;
       oneShot : WinRt.Boolean
    )
    return PhoneTrigger;
@@ -4734,7 +4734,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_ProtectionLevel
    (
       this : in out RfcommConnectionTrigger;
-      value : Windows.Networking.Sockets.SocketProtectionLevel
+      value : WinRt.Windows.Networking.Sockets.SocketProtectionLevel
    );
 
    function get_RemoteHostName
@@ -4746,7 +4746,7 @@ package WinRt.Windows.ApplicationModel.Background is
    procedure put_RemoteHostName
    (
       this : in out RfcommConnectionTrigger;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4774,7 +4774,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      threshold : Windows.Devices.Sensors.ISensorDataThreshold
+      threshold : WinRt.Windows.Devices.Sensors.ISensorDataThreshold
    )
    return SensorDataThresholdTrigger;
 
@@ -4792,7 +4792,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      triggerType : Windows.Devices.SmartCards.SmartCardTriggerType
+      triggerType : WinRt.Windows.Devices.SmartCards.SmartCardTriggerType
    )
    return SmartCardTrigger;
 
@@ -4816,7 +4816,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      filterRules : Windows.Devices.Sms.SmsFilterRules'Class
+      filterRules : WinRt.Windows.Devices.Sms.SmsFilterRules'Class
    )
    return SmsMessageReceivedTrigger;
 
@@ -4854,7 +4854,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      tracker : Windows.Storage.StorageLibraryChangeTracker'Class
+      tracker : WinRt.Windows.Storage.StorageLibraryChangeTracker'Class
    )
    return StorageLibraryChangeTrackerTrigger;
 
@@ -4872,7 +4872,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Create
    (
-      storageLibrary : Windows.Storage.StorageLibrary'Class
+      storageLibrary : WinRt.Windows.Storage.StorageLibrary'Class
    )
    return WinRt.Windows.ApplicationModel.Background.StorageLibraryContentChangedTrigger;
 
@@ -4896,7 +4896,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      conditionType : Windows.ApplicationModel.Background.SystemConditionType
+      conditionType : WinRt.Windows.ApplicationModel.Background.SystemConditionType
    )
    return SystemCondition;
 
@@ -4920,7 +4920,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      triggerType : Windows.ApplicationModel.Background.SystemTriggerType;
+      triggerType : WinRt.Windows.ApplicationModel.Background.SystemTriggerType;
       oneShot : WinRt.Boolean
    )
    return SystemTrigger;
@@ -5036,7 +5036,7 @@ package WinRt.Windows.ApplicationModel.Background is
 
    function Constructor
    (
-      notificationKinds : Windows.UI.Notifications.NotificationKinds
+      notificationKinds : WinRt.Windows.UI.Notifications.NotificationKinds
    )
    return UserNotificationChangedTrigger;
 

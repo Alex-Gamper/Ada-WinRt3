@@ -65,7 +65,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction;
    begin
       Hr := this.m_IPerformLocalActionRequestedEventArgs.all.get_Action (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -99,8 +99,8 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class;
-      windowId : Windows.UI.WindowId
+      launchUri : WinRt.Windows.Foundation.Uri'Class;
+      windowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -108,7 +108,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionInfo");
       m_Factory        : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteDesktopConnectionInfoStatics'Access , m_Factory'Address);
@@ -118,7 +118,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteDesktopConnectionInfo := new Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo;
+            Retval.m_IRemoteDesktopConnectionInfo := new WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo;
             Retval.m_IRemoteDesktopConnectionInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -131,7 +131,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    procedure SetConnectionStatus
    (
       this : in out RemoteDesktopConnectionInfo;
-      value : Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
+      value : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -160,7 +160,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    procedure PerformLocalActionFromRemote
    (
       this : in out RemoteDesktopConnectionInfo;
-      action : Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
+      action : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -222,7 +222,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class
+      launchUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionRemoteInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -230,7 +230,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionRemoteInfo");
       m_Factory        : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionRemoteInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteDesktopConnectionRemoteInfoStatics'Access , m_Factory'Address);
@@ -240,7 +240,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteDesktopConnectionRemoteInfo := new Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo;
+            Retval.m_IRemoteDesktopConnectionRemoteInfo := new WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo;
             Retval.m_IRemoteDesktopConnectionRemoteInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -273,7 +273,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteDesktopConnectionRemoteInfo.all.add_SwitchToLocalSessionRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -285,7 +285,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    procedure remove_SwitchToLocalSessionRequested
    (
       this : in out RemoteDesktopConnectionRemoteInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -306,7 +306,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteDesktopConnectionRemoteInfo.all.add_PerformLocalActionRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -318,7 +318,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    procedure remove_PerformLocalActionRequested
    (
       this : in out RemoteDesktopConnectionRemoteInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -379,10 +379,10 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    return RemoteDesktopInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.RemoteDesktopInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo");
       m_Factory    : access IRemoteDesktopInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo;
       HStr_id : constant WinRt.HString := To_HString (id);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
@@ -390,7 +390,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteDesktopInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_id, HStr_displayName, m_ComRetVal'Access);
-            Retval.m_IRemoteDesktopInfo := new Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo;
+            Retval.m_IRemoteDesktopInfo := new WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo;
             Retval.m_IRemoteDesktopInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -454,7 +454,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.RemoteDesktopRegistrar");
          m_Factory        : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopRegistrarStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteDesktopRegistrarStatics'Access , m_Factory'Address);
          if Hr = S_OK then

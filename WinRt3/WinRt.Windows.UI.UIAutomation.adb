@@ -142,14 +142,14 @@ package body WinRt.Windows.UI.UIAutomation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.UIAutomation.IAutomationConnection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.UIAutomation.IAutomationConnection;
    begin
       return RetVal : WinRt.Windows.UI.UIAutomation.AutomationConnection do
          Hr := this.m_IAutomationConnectionBoundObject.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationConnection := new Windows.UI.UIAutomation.IAutomationConnection;
+         Retval.m_IAutomationConnection := new WinRt.Windows.UI.UIAutomation.IAutomationConnection;
          Retval.m_IAutomationConnection.all := m_ComRetVal;
       end return;
    end;

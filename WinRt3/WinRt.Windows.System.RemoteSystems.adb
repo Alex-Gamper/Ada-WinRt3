@@ -178,7 +178,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function FindByHostNameAsync
    (
-      hostName : Windows.Networking.HostName'Class
+      hostName : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystem is
       Hr               : WinRt.HResult := S_OK;
@@ -234,7 +234,7 @@ package body WinRt.Windows.System.RemoteSystems is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+                     Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
                      Retval.m_IRemoteSystem.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -256,7 +256,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics'Access , m_Factory'Address);
@@ -266,7 +266,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
             Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -283,7 +283,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics'Access , m_Factory'Address);
@@ -293,7 +293,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
             Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -369,7 +369,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function CreateWatcherForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
       Hr               : WinRt.HResult := S_OK;
@@ -377,7 +377,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
@@ -387,7 +387,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
             Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -396,7 +396,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function CreateWatcherForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filters : GenericObject
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher is
@@ -405,7 +405,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystem");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatics3'Access , m_Factory'Address);
@@ -415,7 +415,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemWatcher := new Windows.System.RemoteSystems.IRemoteSystemWatcher;
+            Retval.m_IRemoteSystemWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher;
             Retval.m_IRemoteSystemWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -424,7 +424,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function IsAuthorizationKindEnabled
    (
-      kind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+      kind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -517,7 +517,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemStatus;
    begin
       Hr := this.m_IRemoteSystem.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -691,7 +691,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystem4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemPlatform;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemPlatform;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystem_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystem4, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystem4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRemoteSystem.all);
@@ -712,7 +712,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystem5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IRemoteSystemApp.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystem_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystem5, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystem5'Unchecked_Access);
    begin
@@ -736,7 +736,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystem6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystem_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystem6, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystem6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -746,7 +746,7 @@ package body WinRt.Windows.System.RemoteSystems is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -782,14 +782,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystem;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystem;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystem do
          Hr := this.m_IRemoteSystemAddedEventArgs.all.get_RemoteSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+         Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          Retval.m_IRemoteSystem.all := m_ComRetVal;
       end return;
    end;
@@ -899,7 +899,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_IRemoteSystemApp.all.get_Attributes (m_ComRetVal'Access);
@@ -920,7 +920,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystemApp2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystemApp_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystemApp2, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystemApp2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -930,7 +930,7 @@ package body WinRt.Windows.System.RemoteSystems is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -989,7 +989,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemAppRegistration");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistrationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemAppRegistration do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemAppRegistrationStatics'Access , m_Factory'Address);
@@ -999,7 +999,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemAppRegistration := new Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
+            Retval.m_IRemoteSystemAppRegistration := new WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
             Retval.m_IRemoteSystemAppRegistration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1008,7 +1008,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemAppRegistration is
       Hr               : WinRt.HResult := S_OK;
@@ -1016,7 +1016,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemAppRegistration");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistrationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemAppRegistration do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemAppRegistrationStatics'Access , m_Factory'Address);
@@ -1026,7 +1026,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemAppRegistration := new Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
+            Retval.m_IRemoteSystemAppRegistration := new WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration;
             Retval.m_IRemoteSystemAppRegistration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1044,14 +1044,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IRemoteSystemAppRegistration.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IRemoteSystemAppRegistration.all.get_Attributes (m_ComRetVal'Access);
@@ -1164,21 +1164,21 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystemAuthorizationKind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+      remoteSystemAuthorizationKind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
    )
    return RemoteSystemAuthorizationKindFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemAuthorizationKindFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter");
       m_Factory    : access IRemoteSystemAuthorizationKindFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter;
    begin
       return RetVal : RemoteSystemAuthorizationKindFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemAuthorizationKindFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (remoteSystemAuthorizationKind, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemAuthorizationKindFilter := new Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter;
+            Retval.m_IRemoteSystemAuthorizationKindFilter := new WinRt.Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter;
             Retval.m_IRemoteSystemAuthorizationKindFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1197,7 +1197,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
    begin
       Hr := this.m_IRemoteSystemAuthorizationKindFilter.all.get_RemoteSystemAuthorizationKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1231,7 +1231,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function TryCreateFromAppServiceConnection
    (
-      connection : Windows.ApplicationModel.AppService.AppServiceConnection'Class
+      connection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionInfo is
       Hr               : WinRt.HResult := S_OK;
@@ -1239,7 +1239,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionInfo");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemConnectionInfoStatics'Access , m_Factory'Address);
@@ -1249,7 +1249,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemConnectionInfo := new Windows.System.RemoteSystems.IRemoteSystemConnectionInfo;
+            Retval.m_IRemoteSystemConnectionInfo := new WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionInfo;
             Retval.m_IRemoteSystemConnectionInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1301,21 +1301,21 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystem_p : Windows.System.RemoteSystems.RemoteSystem'Class
+      remoteSystem_p : WinRt.Windows.System.RemoteSystems.RemoteSystem'Class
    )
    return RemoteSystemConnectionRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemConnectionRequest");
       m_Factory    : access IRemoteSystemConnectionRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
    begin
       return RetVal : RemoteSystemConnectionRequest do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemConnectionRequestFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (remoteSystem_p.m_IRemoteSystem.all, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+            Retval.m_IRemoteSystemConnectionRequest := new WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
             Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1328,7 +1328,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function CreateForApp
    (
-      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
+      remoteSystemApp_p : WinRt.Windows.System.RemoteSystems.RemoteSystemApp'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest is
       Hr               : WinRt.HResult := S_OK;
@@ -1336,7 +1336,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequestStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemConnectionRequestStatics'Access , m_Factory'Address);
@@ -1346,7 +1346,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+            Retval.m_IRemoteSystemConnectionRequest := new WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
             Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1363,7 +1363,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequestStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
       HStr_connectionToken : constant WinRt.HString := To_HString (connectionToken);
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest do
@@ -1374,7 +1374,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+            Retval.m_IRemoteSystemConnectionRequest := new WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
             Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1384,7 +1384,7 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function CreateFromConnectionTokenForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       connectionToken : WinRt.WString
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest is
@@ -1393,7 +1393,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequestStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
       HStr_connectionToken : constant WinRt.HString := To_HString (connectionToken);
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest do
@@ -1404,7 +1404,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemConnectionRequest := new Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+            Retval.m_IRemoteSystemConnectionRequest := new WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
             Retval.m_IRemoteSystemConnectionRequest.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1423,14 +1423,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystem;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystem;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystem do
          Hr := this.m_IRemoteSystemConnectionRequest.all.get_RemoteSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+         Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          Retval.m_IRemoteSystem.all := m_ComRetVal;
       end return;
    end;
@@ -1444,7 +1444,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemApp;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemApp;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest2, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystemConnectionRequest2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemApp do
@@ -1454,7 +1454,7 @@ package body WinRt.Windows.System.RemoteSystems is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemApp := new Windows.System.RemoteSystems.IRemoteSystemApp;
+         Retval.m_IRemoteSystemApp := new WinRt.Windows.System.RemoteSystems.IRemoteSystemApp;
          Retval.m_IRemoteSystemApp.all := m_ComRetVal;
       end return;
    end;
@@ -1508,21 +1508,21 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      discoveryType : Windows.System.RemoteSystems.RemoteSystemDiscoveryType
+      discoveryType : WinRt.Windows.System.RemoteSystems.RemoteSystemDiscoveryType
    )
    return RemoteSystemDiscoveryTypeFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemDiscoveryTypeFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter");
       m_Factory    : access IRemoteSystemDiscoveryTypeFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter;
    begin
       return RetVal : RemoteSystemDiscoveryTypeFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemDiscoveryTypeFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (discoveryType, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemDiscoveryTypeFilter := new Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter;
+            Retval.m_IRemoteSystemDiscoveryTypeFilter := new WinRt.Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter;
             Retval.m_IRemoteSystemDiscoveryTypeFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1541,7 +1541,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemDiscoveryType;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemDiscoveryType;
    begin
       Hr := this.m_IRemoteSystemDiscoveryTypeFilter.all.get_RemoteSystemDiscoveryType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1603,16 +1603,16 @@ package body WinRt.Windows.System.RemoteSystems is
    return RemoteSystemKindFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemKindFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemKindFilter");
       m_Factory    : access IRemoteSystemKindFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemKindFilter;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemKindFilter;
    begin
       return RetVal : RemoteSystemKindFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemKindFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (remoteSystemKinds_p, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemKindFilter := new Windows.System.RemoteSystems.IRemoteSystemKindFilter;
+            Retval.m_IRemoteSystemKindFilter := new WinRt.Windows.System.RemoteSystems.IRemoteSystemKindFilter;
             Retval.m_IRemoteSystemKindFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1631,7 +1631,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IRemoteSystemKindFilter.all.get_RemoteSystemKinds (m_ComRetVal'Access);
@@ -1914,7 +1914,7 @@ package body WinRt.Windows.System.RemoteSystems is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSession");
       m_Factory        : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionWatcher do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemSessionStatics'Access , m_Factory'Address);
@@ -1924,7 +1924,7 @@ package body WinRt.Windows.System.RemoteSystems is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRemoteSystemSessionWatcher := new Windows.System.RemoteSystems.IRemoteSystemSessionWatcher;
+            Retval.m_IRemoteSystemSessionWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionWatcher;
             Retval.m_IRemoteSystemSessionWatcher.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2003,7 +2003,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSession.all.add_Disconnected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2015,7 +2015,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Disconnected
    (
       this : in out RemoteSystemSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2035,14 +2035,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipantWatcher do
          Hr := this.m_IRemoteSystemSession.all.CreateParticipantWatcher (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionParticipantWatcher := new Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher;
+         Retval.m_IRemoteSystemSessionParticipantWatcher := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher;
          Retval.m_IRemoteSystemSessionParticipantWatcher.all := m_ComRetVal;
       end return;
    end;
@@ -2050,7 +2050,7 @@ package body WinRt.Windows.System.RemoteSystems is
    function SendInvitationAsync
    (
       this : in out RemoteSystemSession;
-      invitee : Windows.System.RemoteSystems.RemoteSystem'Class
+      invitee : WinRt.Windows.System.RemoteSystems.RemoteSystem'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2160,14 +2160,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionInfo do
          Hr := this.m_IRemoteSystemSessionAddedEventArgs.all.get_SessionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionInfo := new Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+         Retval.m_IRemoteSystemSessionInfo := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
          Retval.m_IRemoteSystemSessionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -2202,17 +2202,17 @@ package body WinRt.Windows.System.RemoteSystems is
    return RemoteSystemSessionController is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionController");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionController");
       m_Factory    : access IRemoteSystemSessionControllerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionController;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController;
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : RemoteSystemSessionController do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemSessionControllerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateController (HStr_displayName, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemSessionController := new Windows.System.RemoteSystems.IRemoteSystemSessionController;
+            Retval.m_IRemoteSystemSessionController := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController;
             Retval.m_IRemoteSystemSessionController.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2224,22 +2224,22 @@ package body WinRt.Windows.System.RemoteSystems is
    function Constructor
    (
       displayName : WinRt.WString;
-      options : Windows.System.RemoteSystems.RemoteSystemSessionOptions'Class
+      options : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionOptions'Class
    )
    return RemoteSystemSessionController is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionController");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionController");
       m_Factory    : access IRemoteSystemSessionControllerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionController;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController;
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : RemoteSystemSessionController do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemSessionControllerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateController (HStr_displayName, options.m_IRemoteSystemSessionOptions.all, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemSessionController := new Windows.System.RemoteSystems.IRemoteSystemSessionController;
+            Retval.m_IRemoteSystemSessionController := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController;
             Retval.m_IRemoteSystemSessionController.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2260,7 +2260,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionController.all.add_JoinRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2272,7 +2272,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_JoinRequested
    (
       this : in out RemoteSystemSessionController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2287,7 +2287,7 @@ package body WinRt.Windows.System.RemoteSystems is
    function RemoveParticipantAsync
    (
       this : in out RemoteSystemSessionController;
-      pParticipant : Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
+      pParticipant : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2401,7 +2401,7 @@ package body WinRt.Windows.System.RemoteSystems is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRemoteSystemSessionCreationResult := new Windows.System.RemoteSystems.IRemoteSystemSessionCreationResult;
+                  Retval.m_IRemoteSystemSessionCreationResult := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionCreationResult;
                   Retval.m_IRemoteSystemSessionCreationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2445,7 +2445,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemSessionCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemSessionCreationStatus;
    begin
       Hr := this.m_IRemoteSystemSessionCreationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2462,14 +2462,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSession;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSession do
          Hr := this.m_IRemoteSystemSessionCreationResult.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSession := new Windows.System.RemoteSystems.IRemoteSystemSession;
+         Retval.m_IRemoteSystemSession := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
          Retval.m_IRemoteSystemSession.all := m_ComRetVal;
       end return;
    end;
@@ -2505,7 +2505,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemSessionDisconnectedReason;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemSessionDisconnectedReason;
    begin
       Hr := this.m_IRemoteSystemSessionDisconnectedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2630,7 +2630,7 @@ package body WinRt.Windows.System.RemoteSystems is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRemoteSystemSessionJoinResult := new Windows.System.RemoteSystems.IRemoteSystemSessionJoinResult;
+                  Retval.m_IRemoteSystemSessionJoinResult := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionJoinResult;
                   Retval.m_IRemoteSystemSessionJoinResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2674,14 +2674,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystem;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystem;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystem do
          Hr := this.m_IRemoteSystemSessionInvitation.all.get_Sender (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+         Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          Retval.m_IRemoteSystem.all := m_ComRetVal;
       end return;
    end;
@@ -2694,14 +2694,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionInfo do
          Hr := this.m_IRemoteSystemSessionInvitation.all.get_SessionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionInfo := new Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+         Retval.m_IRemoteSystemSessionInfo := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
          Retval.m_IRemoteSystemSessionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -2732,13 +2732,13 @@ package body WinRt.Windows.System.RemoteSystems is
    function Constructor return RemoteSystemSessionInvitationListener is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionInvitationListener");
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener");
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener;
    begin
       return RetVal : RemoteSystemSessionInvitationListener do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRemoteSystemSessionInvitationListener := new Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener;
+            Retval.m_IRemoteSystemSessionInvitationListener := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener;
             Retval.m_IRemoteSystemSessionInvitationListener.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2757,7 +2757,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionInvitationListener.all.add_InvitationReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2769,7 +2769,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_InvitationReceived
    (
       this : in out RemoteSystemSessionInvitationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2812,14 +2812,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInvitation;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInvitation;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionInvitation do
          Hr := this.m_IRemoteSystemSessionInvitationReceivedEventArgs.all.get_Invitation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionInvitation := new Windows.System.RemoteSystems.IRemoteSystemSessionInvitation;
+         Retval.m_IRemoteSystemSessionInvitation := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInvitation;
          Retval.m_IRemoteSystemSessionInvitation.all := m_ComRetVal;
       end return;
    end;
@@ -2855,14 +2855,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant do
          Hr := this.m_IRemoteSystemSessionJoinRequest.all.get_Participant (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionParticipant := new Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         Retval.m_IRemoteSystemSessionParticipant := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          Retval.m_IRemoteSystemSessionParticipant.all := m_ComRetVal;
       end return;
    end;
@@ -2912,14 +2912,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionJoinRequest do
          Hr := this.m_IRemoteSystemSessionJoinRequestedEventArgs.all.get_JoinRequest (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionJoinRequest := new Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest;
+         Retval.m_IRemoteSystemSessionJoinRequest := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest;
          Retval.m_IRemoteSystemSessionJoinRequest.all := m_ComRetVal;
       end return;
    end;
@@ -2932,14 +2932,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IRemoteSystemSessionJoinRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2975,7 +2975,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemSessionJoinStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemSessionJoinStatus;
    begin
       Hr := this.m_IRemoteSystemSessionJoinResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2992,14 +2992,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSession;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSession do
          Hr := this.m_IRemoteSystemSessionJoinResult.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSession := new Windows.System.RemoteSystems.IRemoteSystemSession;
+         Retval.m_IRemoteSystemSession := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
          Retval.m_IRemoteSystemSession.all := m_ComRetVal;
       end return;
    end;
@@ -3029,23 +3029,23 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      session : Windows.System.RemoteSystems.RemoteSystemSession'Class;
+      session : WinRt.Windows.System.RemoteSystems.RemoteSystemSession'Class;
       channelName : WinRt.WString
    )
    return RemoteSystemSessionMessageChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionMessageChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel");
       m_Factory    : access IRemoteSystemSessionMessageChannelFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
       HStr_channelName : constant WinRt.HString := To_HString (channelName);
    begin
       return RetVal : RemoteSystemSessionMessageChannel do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemSessionMessageChannelFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (session.m_IRemoteSystemSession.all, HStr_channelName, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemSessionMessageChannel := new Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
+            Retval.m_IRemoteSystemSessionMessageChannel := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
             Retval.m_IRemoteSystemSessionMessageChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3056,24 +3056,24 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      session : Windows.System.RemoteSystems.RemoteSystemSession'Class;
+      session : WinRt.Windows.System.RemoteSystems.RemoteSystemSession'Class;
       channelName : WinRt.WString;
-      reliability : Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability
+      reliability : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability
    )
    return RemoteSystemSessionMessageChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionMessageChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel");
       m_Factory    : access IRemoteSystemSessionMessageChannelFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
       HStr_channelName : constant WinRt.HString := To_HString (channelName);
    begin
       return RetVal : RemoteSystemSessionMessageChannel do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemSessionMessageChannelFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (session.m_IRemoteSystemSession.all, HStr_channelName, reliability, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemSessionMessageChannel := new Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
+            Retval.m_IRemoteSystemSessionMessageChannel := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
             Retval.m_IRemoteSystemSessionMessageChannel.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3093,14 +3093,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSession;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSession do
          Hr := this.m_IRemoteSystemSessionMessageChannel.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSession := new Windows.System.RemoteSystems.IRemoteSystemSession;
+         Retval.m_IRemoteSystemSession := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
          Retval.m_IRemoteSystemSession.all := m_ComRetVal;
       end return;
    end;
@@ -3108,7 +3108,7 @@ package body WinRt.Windows.System.RemoteSystems is
    function BroadcastValueSetAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3172,8 +3172,8 @@ package body WinRt.Windows.System.RemoteSystems is
    function SendValueSetAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class;
-      participant : Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
+      participant : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3237,7 +3237,7 @@ package body WinRt.Windows.System.RemoteSystems is
    function SendValueSetToParticipantsAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class;
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
       participants : GenericObject
    )
    return WinRt.Boolean is
@@ -3308,7 +3308,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionMessageChannel.all.add_ValueSetReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3320,7 +3320,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_ValueSetReceived
    (
       this : in out RemoteSystemSessionMessageChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3358,13 +3358,13 @@ package body WinRt.Windows.System.RemoteSystems is
    function Constructor return RemoteSystemSessionOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionOptions");
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionOptions");
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
    begin
       return RetVal : RemoteSystemSessionOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRemoteSystemSessionOptions := new Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
+            Retval.m_IRemoteSystemSessionOptions := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
             Retval.m_IRemoteSystemSessionOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3437,14 +3437,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystem;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystem;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystem do
          Hr := this.m_IRemoteSystemSessionParticipant.all.get_RemoteSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+         Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          Retval.m_IRemoteSystem.all := m_ComRetVal;
       end return;
    end;
@@ -3457,7 +3457,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IRemoteSystemSessionParticipant.all.GetHostNames (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3497,14 +3497,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant do
          Hr := this.m_IRemoteSystemSessionParticipantAddedEventArgs.all.get_Participant (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionParticipant := new Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         Retval.m_IRemoteSystemSessionParticipant := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          Retval.m_IRemoteSystemSessionParticipant.all := m_ComRetVal;
       end return;
    end;
@@ -3540,14 +3540,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant do
          Hr := this.m_IRemoteSystemSessionParticipantRemovedEventArgs.all.get_Participant (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionParticipant := new Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         Retval.m_IRemoteSystemSessionParticipant := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          Retval.m_IRemoteSystemSessionParticipant.all := m_ComRetVal;
       end return;
    end;
@@ -3611,7 +3611,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemSessionParticipantWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipantWatcherStatus;
    begin
       Hr := this.m_IRemoteSystemSessionParticipantWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3629,7 +3629,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionParticipantWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3641,7 +3641,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Added
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3662,7 +3662,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionParticipantWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3674,7 +3674,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Removed
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3695,7 +3695,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionParticipantWatcher.all.add_EnumerationCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3707,7 +3707,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_EnumerationCompleted
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3750,14 +3750,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionInfo do
          Hr := this.m_IRemoteSystemSessionRemovedEventArgs.all.get_SessionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionInfo := new Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+         Retval.m_IRemoteSystemSessionInfo := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
          Retval.m_IRemoteSystemSessionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -3793,14 +3793,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionInfo do
          Hr := this.m_IRemoteSystemSessionUpdatedEventArgs.all.get_SessionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionInfo := new Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
+         Retval.m_IRemoteSystemSessionInfo := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo;
          Retval.m_IRemoteSystemSessionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -3836,14 +3836,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant do
          Hr := this.m_IRemoteSystemSessionValueSetReceivedEventArgs.all.get_Sender (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystemSessionParticipant := new Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         Retval.m_IRemoteSystemSessionParticipant := new WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          Retval.m_IRemoteSystemSessionParticipant.all := m_ComRetVal;
       end return;
    end;
@@ -3856,14 +3856,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IRemoteSystemSessionValueSetReceivedEventArgs.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3927,7 +3927,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemSessionWatcherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemSessionWatcherStatus;
    begin
       Hr := this.m_IRemoteSystemSessionWatcher.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3945,7 +3945,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionWatcher.all.add_Added (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3957,7 +3957,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Added
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3978,7 +3978,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionWatcher.all.add_Updated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3990,7 +3990,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Updated
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4011,7 +4011,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemSessionWatcher.all.add_Removed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4023,7 +4023,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_Removed
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4060,21 +4060,21 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystemStatusType : Windows.System.RemoteSystems.RemoteSystemStatusType
+      remoteSystemStatusType : WinRt.Windows.System.RemoteSystems.RemoteSystemStatusType
    )
    return RemoteSystemStatusTypeFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemStatusTypeFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter");
       m_Factory    : access IRemoteSystemStatusTypeFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter;
    begin
       return RetVal : RemoteSystemStatusTypeFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemStatusTypeFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (remoteSystemStatusType, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemStatusTypeFilter := new Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter;
+            Retval.m_IRemoteSystemStatusTypeFilter := new WinRt.Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter;
             Retval.m_IRemoteSystemStatusTypeFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4093,7 +4093,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemStatusType;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemStatusType;
    begin
       Hr := this.m_IRemoteSystemStatusTypeFilter.all.get_RemoteSystemStatusType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4133,14 +4133,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.IRemoteSystem;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystem;
    begin
       return RetVal : WinRt.Windows.System.RemoteSystems.RemoteSystem do
          Hr := this.m_IRemoteSystemUpdatedEventArgs.all.get_RemoteSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteSystem := new Windows.System.RemoteSystems.IRemoteSystem;
+         Retval.m_IRemoteSystem := new WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          Retval.m_IRemoteSystem.all := m_ComRetVal;
       end return;
    end;
@@ -4205,7 +4205,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemWatcher.all.add_RemoteSystemAdded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4217,7 +4217,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemAdded
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4238,7 +4238,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemWatcher.all.add_RemoteSystemUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4250,7 +4250,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemUpdated
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4271,7 +4271,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteSystemWatcher.all.add_RemoteSystemRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4283,7 +4283,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemRemoved
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4305,7 +4305,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher2, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystemWatcher2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRemoteSystemWatcher.all);
@@ -4320,7 +4320,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_EnumerationCompleted
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4346,7 +4346,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher2, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystemWatcher2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRemoteSystemWatcher.all);
@@ -4361,7 +4361,7 @@ package body WinRt.Windows.System.RemoteSystems is
    procedure remove_ErrorOccurred
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4386,7 +4386,7 @@ package body WinRt.Windows.System.RemoteSystems is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher_Interface, WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher3, WinRt.Windows.System.RemoteSystems.IID_IRemoteSystemWatcher3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -4396,7 +4396,7 @@ package body WinRt.Windows.System.RemoteSystems is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4432,7 +4432,7 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.RemoteSystems.RemoteSystemWatcherError;
+      m_ComRetVal      : aliased WinRt.Windows.System.RemoteSystems.RemoteSystemWatcherError;
    begin
       Hr := this.m_IRemoteSystemWatcherErrorOccurredEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4466,21 +4466,21 @@ package body WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      account : Windows.Security.Credentials.WebAccount'Class
+      account : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return RemoteSystemWebAccountFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemWebAccountFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter");
       m_Factory    : access IRemoteSystemWebAccountFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter;
+      m_ComRetVal  : aliased WinRt.Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter;
    begin
       return RetVal : RemoteSystemWebAccountFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteSystemWebAccountFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (account.m_IWebAccount.all, m_ComRetVal'Access);
-            Retval.m_IRemoteSystemWebAccountFilter := new Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter;
+            Retval.m_IRemoteSystemWebAccountFilter := new WinRt.Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter;
             Retval.m_IRemoteSystemWebAccountFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4499,14 +4499,14 @@ package body WinRt.Windows.System.RemoteSystems is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IWebAccount;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IWebAccount;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.WebAccount do
          Hr := this.m_IRemoteSystemWebAccountFilter.all.get_Account (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWebAccount := new Windows.Security.Credentials.IWebAccount;
+         Retval.m_IWebAccount := new WinRt.Windows.Security.Credentials.IWebAccount;
          Retval.m_IWebAccount.all := m_ComRetVal;
       end return;
    end;

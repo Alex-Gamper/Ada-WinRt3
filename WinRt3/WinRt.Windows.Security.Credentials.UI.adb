@@ -49,7 +49,7 @@ package body WinRt.Windows.Security.Credentials.UI is
 
       function PickAsync
       (
-         options : Windows.Security.Credentials.UI.CredentialPickerOptions'Class
+         options : WinRt.Windows.Security.Credentials.UI.CredentialPickerOptions'Class
       )
       return WinRt.Windows.Security.Credentials.UI.CredentialPickerResults is
          Hr               : WinRt.HResult := S_OK;
@@ -105,7 +105,7 @@ package body WinRt.Windows.Security.Credentials.UI is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
+                        Retval.m_ICredentialPickerResults := new WinRt.Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -181,7 +181,7 @@ package body WinRt.Windows.Security.Credentials.UI is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
+                        Retval.m_ICredentialPickerResults := new WinRt.Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -261,7 +261,7 @@ package body WinRt.Windows.Security.Credentials.UI is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ICredentialPickerResults := new Windows.Security.Credentials.UI.ICredentialPickerResults;
+                        Retval.m_ICredentialPickerResults := new WinRt.Windows.Security.Credentials.UI.ICredentialPickerResults;
                         Retval.m_ICredentialPickerResults.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -307,13 +307,13 @@ package body WinRt.Windows.Security.Credentials.UI is
    function Constructor return CredentialPickerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPickerOptions");
-      m_ComRetVal  : aliased Windows.Security.Credentials.UI.ICredentialPickerOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.ICredentialPickerOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Security.Credentials.UI.ICredentialPickerOptions;
    begin
       return RetVal : CredentialPickerOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICredentialPickerOptions := new Windows.Security.Credentials.UI.ICredentialPickerOptions;
+            Retval.m_ICredentialPickerOptions := new WinRt.Windows.Security.Credentials.UI.ICredentialPickerOptions;
             Retval.m_ICredentialPickerOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -469,7 +469,7 @@ package body WinRt.Windows.Security.Credentials.UI is
    procedure put_AuthenticationProtocol
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Security.Credentials.UI.AuthenticationProtocol
+      value : WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -489,7 +489,7 @@ package body WinRt.Windows.Security.Credentials.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.UI.AuthenticationProtocol;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_AuthenticationProtocol (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -538,7 +538,7 @@ package body WinRt.Windows.Security.Credentials.UI is
    procedure put_PreviousCredential
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -558,7 +558,7 @@ package body WinRt.Windows.Security.Credentials.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_PreviousCredential (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -634,7 +634,7 @@ package body WinRt.Windows.Security.Credentials.UI is
    procedure put_CredentialSaveOption
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Security.Credentials.UI.CredentialSaveOption
+      value : WinRt.Windows.Security.Credentials.UI.CredentialSaveOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -654,7 +654,7 @@ package body WinRt.Windows.Security.Credentials.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.UI.CredentialSaveOption;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.UI.CredentialSaveOption;
    begin
       Hr := this.m_ICredentialPickerOptions.all.get_CredentialSaveOption (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -711,7 +711,7 @@ package body WinRt.Windows.Security.Credentials.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.UI.CredentialSaveOption;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.UI.CredentialSaveOption;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_CredentialSaveOption (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -745,7 +745,7 @@ package body WinRt.Windows.Security.Credentials.UI is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICredentialPickerResults.all.get_Credential (m_ComRetVal'Access);
       if Hr /= S_OK then

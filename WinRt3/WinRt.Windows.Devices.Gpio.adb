@@ -65,21 +65,21 @@ package body WinRt.Windows.Devices.Gpio is
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class
    )
    return GpioChangeCounter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeCounter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeCounter");
       m_Factory    : access IGpioChangeCounterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Gpio.IGpioChangeCounter;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeCounter;
    begin
       return RetVal : GpioChangeCounter do
          Hr := RoGetActivationFactory (m_hString, IID_IGpioChangeCounterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (pin.m_IGpioPin.all, m_ComRetVal'Access);
-            Retval.m_IGpioChangeCounter := new Windows.Devices.Gpio.IGpioChangeCounter;
+            Retval.m_IGpioChangeCounter := new WinRt.Windows.Devices.Gpio.IGpioChangeCounter;
             Retval.m_IGpioChangeCounter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -93,7 +93,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure put_Polarity
    (
       this : in out GpioChangeCounter;
-      value : Windows.Devices.Gpio.GpioChangePolarity
+      value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -113,7 +113,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangePolarity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangePolarity;
    begin
       Hr := this.m_IGpioChangeCounter.all.get_Polarity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -175,7 +175,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangeCount;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangeCount;
    begin
       Hr := this.m_IGpioChangeCounter.all.Read (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -192,7 +192,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangeCount;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangeCount;
    begin
       Hr := this.m_IGpioChangeCounter.all.Reset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -244,21 +244,21 @@ package body WinRt.Windows.Devices.Gpio is
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class
    )
    return GpioChangeReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeReader");
       m_Factory    : access IGpioChangeReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Gpio.IGpioChangeReader;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeReader;
    begin
       return RetVal : GpioChangeReader do
          Hr := RoGetActivationFactory (m_hString, IID_IGpioChangeReaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (pin.m_IGpioPin.all, m_ComRetVal'Access);
-            Retval.m_IGpioChangeReader := new Windows.Devices.Gpio.IGpioChangeReader;
+            Retval.m_IGpioChangeReader := new WinRt.Windows.Devices.Gpio.IGpioChangeReader;
             Retval.m_IGpioChangeReader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -268,22 +268,22 @@ package body WinRt.Windows.Devices.Gpio is
 
    function Constructor
    (
-      pin : Windows.Devices.Gpio.GpioPin'Class;
+      pin : WinRt.Windows.Devices.Gpio.GpioPin'Class;
       minCapacity : WinRt.Int32
    )
    return GpioChangeReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeReader");
       m_Factory    : access IGpioChangeReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Gpio.IGpioChangeReader;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeReader;
    begin
       return RetVal : GpioChangeReader do
          Hr := RoGetActivationFactory (m_hString, IID_IGpioChangeReaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithCapacity (pin.m_IGpioPin.all, minCapacity, m_ComRetVal'Access);
-            Retval.m_IGpioChangeReader := new Windows.Devices.Gpio.IGpioChangeReader;
+            Retval.m_IGpioChangeReader := new WinRt.Windows.Devices.Gpio.IGpioChangeReader;
             Retval.m_IGpioChangeReader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -365,7 +365,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure put_Polarity
    (
       this : in out GpioChangeReader;
-      value : Windows.Devices.Gpio.GpioChangePolarity
+      value : WinRt.Windows.Devices.Gpio.GpioChangePolarity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -385,7 +385,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangePolarity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangePolarity;
    begin
       Hr := this.m_IGpioChangeReader.all.get_Polarity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -461,7 +461,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangeRecord;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangeRecord;
    begin
       Hr := this.m_IGpioChangeReader.all.GetNextItem (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -478,7 +478,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioChangeRecord;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioChangeRecord;
    begin
       Hr := this.m_IGpioChangeReader.all.PeekNextItem (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -495,7 +495,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_GpioChangeRecord.Kind;
    begin
       Hr := this.m_IGpioChangeReader.all.GetAllItems (m_ComRetVal'Access);
@@ -598,7 +598,7 @@ package body WinRt.Windows.Devices.Gpio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioController");
       m_Factory        : access WinRt.Windows.Devices.Gpio.IGpioControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.IGpioController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.IGpioController;
    begin
       return RetVal : WinRt.Windows.Devices.Gpio.GpioController do
          Hr := RoGetActivationFactory (m_hString, IID_IGpioControllerStatics'Access , m_Factory'Address);
@@ -608,7 +608,7 @@ package body WinRt.Windows.Devices.Gpio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGpioController := new Windows.Devices.Gpio.IGpioController;
+            Retval.m_IGpioController := new WinRt.Windows.Devices.Gpio.IGpioController;
             Retval.m_IGpioController.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -617,7 +617,7 @@ package body WinRt.Windows.Devices.Gpio is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Gpio.Provider.IGpioProvider
+      provider : WinRt.Windows.Devices.Gpio.Provider.IGpioProvider
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -740,7 +740,7 @@ package body WinRt.Windows.Devices.Gpio is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGpioController := new Windows.Devices.Gpio.IGpioController;
+                     Retval.m_IGpioController := new WinRt.Windows.Devices.Gpio.IGpioController;
                      Retval.m_IGpioController.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -784,14 +784,14 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.IGpioPin;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.IGpioPin;
    begin
       return RetVal : WinRt.Windows.Devices.Gpio.GpioPin do
          Hr := this.m_IGpioController.all.OpenPin (pinNumber, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGpioPin := new Windows.Devices.Gpio.IGpioPin;
+         Retval.m_IGpioPin := new WinRt.Windows.Devices.Gpio.IGpioPin;
          Retval.m_IGpioPin.all := m_ComRetVal;
       end return;
    end;
@@ -800,20 +800,20 @@ package body WinRt.Windows.Devices.Gpio is
    (
       this : in out GpioController;
       pinNumber : WinRt.Int32;
-      sharingMode : Windows.Devices.Gpio.GpioSharingMode
+      sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode
    )
    return WinRt.Windows.Devices.Gpio.GpioPin'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.IGpioPin;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.IGpioPin;
    begin
       return RetVal : WinRt.Windows.Devices.Gpio.GpioPin do
          Hr := this.m_IGpioController.all.OpenPin (pinNumber, sharingMode, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGpioPin := new Windows.Devices.Gpio.IGpioPin;
+         Retval.m_IGpioPin := new WinRt.Windows.Devices.Gpio.IGpioPin;
          Retval.m_IGpioPin.all := m_ComRetVal;
       end return;
    end;
@@ -822,9 +822,9 @@ package body WinRt.Windows.Devices.Gpio is
    (
       this : in out GpioController;
       pinNumber : WinRt.Int32;
-      sharingMode : Windows.Devices.Gpio.GpioSharingMode;
-      pin : access Windows.Devices.Gpio.IGpioPin;
-      openStatus : Windows.Devices.Gpio.GpioOpenStatus_Ptr
+      sharingMode : WinRt.Windows.Devices.Gpio.GpioSharingMode;
+      pin : access WinRt.Windows.Devices.Gpio.IGpioPin;
+      openStatus : WinRt.Windows.Devices.Gpio.GpioOpenStatus_Ptr
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -871,7 +871,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGpioPin.all.add_ValueChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -883,7 +883,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure remove_ValueChanged
    (
       this : in out GpioPin;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -903,7 +903,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGpioPin.all.get_DebounceTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -915,7 +915,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure put_DebounceTimeout
    (
       this : in out GpioPin;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -952,7 +952,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioSharingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioSharingMode;
    begin
       Hr := this.m_IGpioPin.all.get_SharingMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -964,7 +964,7 @@ package body WinRt.Windows.Devices.Gpio is
    function IsDriveModeSupported
    (
       this : in out GpioPin;
-      driveMode : Windows.Devices.Gpio.GpioPinDriveMode
+      driveMode : WinRt.Windows.Devices.Gpio.GpioPinDriveMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -987,7 +987,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioPinDriveMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioPinDriveMode;
    begin
       Hr := this.m_IGpioPin.all.GetDriveMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -999,7 +999,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure SetDriveMode
    (
       this : in out GpioPin;
-      value : Windows.Devices.Gpio.GpioPinDriveMode
+      value : WinRt.Windows.Devices.Gpio.GpioPinDriveMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1014,7 +1014,7 @@ package body WinRt.Windows.Devices.Gpio is
    procedure Write
    (
       this : in out GpioPin;
-      value : Windows.Devices.Gpio.GpioPinValue
+      value : WinRt.Windows.Devices.Gpio.GpioPinValue
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1034,7 +1034,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioPinValue;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioPinValue;
    begin
       Hr := this.m_IGpioPin.all.Read (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1092,7 +1092,7 @@ package body WinRt.Windows.Devices.Gpio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.GpioPinEdge;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.GpioPinEdge;
    begin
       Hr := this.m_IGpioPinValueChangedEventArgs.all.get_Edge (m_ComRetVal'Access);
       if Hr /= S_OK then

@@ -251,14 +251,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarCancelMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarCancelMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -270,14 +270,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarCancelMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarCancelMeetingRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarCancelMeetingRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarCancelMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -296,7 +296,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Appointment
       (
          this : access IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 
@@ -317,15 +317,15 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface;
-         createdOrUpdatedAppointment : Windows.ApplicationModel.Appointments.IAppointment;
-         RetVal : access Windows.Foundation.IAsyncAction
+         createdOrUpdatedAppointment : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarCreateOrUpdateAppointmentRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -337,14 +337,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarCreateOrUpdateAppointmentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarCreateOrUpdateAppointmentRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -405,14 +405,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarForwardMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarForwardMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -424,14 +424,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarForwardMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarForwardMeetingRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarForwardMeetingRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarForwardMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -464,14 +464,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_NewStartTime
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_NewDuration
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -492,14 +492,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -511,14 +511,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarProposeNewTimeForMeetingRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarProposeNewTimeForMeetingRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -537,14 +537,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -556,14 +556,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarSyncManagerSyncRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarSyncManagerSyncRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -596,7 +596,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Response
       (
          this : access IAppointmentCalendarUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -624,14 +624,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function ReportCompletedAsync
       (
          this : access IAppointmentCalendarUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IAppointmentCalendarUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -643,14 +643,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Request
       (
          this : access IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarUpdateMeetingResponseRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentCalendarUpdateMeetingResponseRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppointmentCalendarUpdateMeetingResponseRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -663,14 +663,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -678,14 +678,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CreateOrUpdateAppointmentRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -693,14 +693,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CancelMeetingRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -708,14 +708,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ForwardMeetingRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -723,14 +723,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProposeNewTimeForMeetingRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -738,14 +738,14 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       (
          this : access IAppointmentDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UpdateMeetingResponseRequested
       (
          this : access IAppointmentDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -763,7 +763,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
       function get_Connection
       (
          this : access IAppointmentDataProviderTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.DataProvider.IAppointmentDataProviderConnection
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.DataProvider.IAppointmentDataProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -885,7 +885,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out AppointmentCalendarCreateOrUpdateAppointmentRequest;
-      createdOrUpdatedAppointment : Windows.ApplicationModel.Appointments.Appointment'Class
+      createdOrUpdatedAppointment : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    );
 
    procedure ReportFailedAsync
@@ -1225,7 +1225,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_SyncRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CreateOrUpdateAppointmentRequested
@@ -1238,7 +1238,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_CreateOrUpdateAppointmentRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CancelMeetingRequested
@@ -1251,7 +1251,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_CancelMeetingRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ForwardMeetingRequested
@@ -1264,7 +1264,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_ForwardMeetingRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProposeNewTimeForMeetingRequested
@@ -1277,7 +1277,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_ProposeNewTimeForMeetingRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UpdateMeetingResponseRequested
@@ -1290,7 +1290,7 @@ package WinRt.Windows.ApplicationModel.Appointments.DataProvider is
    procedure remove_UpdateMeetingResponseRequested
    (
       this : in out AppointmentDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start

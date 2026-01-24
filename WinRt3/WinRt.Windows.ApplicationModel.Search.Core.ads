@@ -132,7 +132,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       function get_Kind
       (
          this : access ISearchSuggestion_Interface;
-         RetVal : access Windows.ApplicationModel.Search.Core.SearchSuggestionKind
+         RetVal : access WinRt.Windows.ApplicationModel.Search.Core.SearchSuggestionKind
       )
       return WinRt.Hresult is abstract;
 
@@ -160,7 +160,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       function get_Image
       (
          this : access ISearchSuggestion_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -207,7 +207,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       function SetLocalContentSuggestionSettings
       (
          this : access ISearchSuggestionManager_Interface;
-         settings : Windows.ApplicationModel.Search.ILocalContentSuggestionSettings
+         settings : WinRt.Windows.ApplicationModel.Search.ILocalContentSuggestionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -231,7 +231,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
          this : access ISearchSuggestionManager_Interface;
          queryText : WinRt.HString;
          language : WinRt.HString;
-         linguisticDetails : Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
+         linguisticDetails : WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -267,14 +267,14 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       (
          this : access ISearchSuggestionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SuggestionsRequested
       (
          this : access ISearchSuggestionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -282,14 +282,14 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       (
          this : access ISearchSuggestionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RequestingFocusOnKeyboardInput
       (
          this : access ISearchSuggestionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -315,14 +315,14 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       function get_LinguisticDetails
       (
          this : access ISearchSuggestionsRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails
       )
       return WinRt.Hresult is abstract;
 
       function get_Request
       (
          this : access ISearchSuggestionsRequestedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Search.ISearchSuggestionsRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Search.ISearchSuggestionsRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -427,7 +427,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    procedure SetLocalContentSuggestionSettings
    (
       this : in out SearchSuggestionManager;
-      settings : Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
+      settings : WinRt.Windows.ApplicationModel.Search.LocalContentSuggestionSettings'Class
    );
 
    procedure SetQuery
@@ -448,7 +448,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
       this : in out SearchSuggestionManager;
       queryText : WinRt.WString;
       language : WinRt.WString;
-      linguisticDetails : Windows.ApplicationModel.Search.SearchQueryLinguisticDetails'Class
+      linguisticDetails : WinRt.Windows.ApplicationModel.Search.SearchQueryLinguisticDetails'Class
    );
 
    function get_Suggestions
@@ -485,7 +485,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    procedure remove_SuggestionsRequested
    (
       this : in out SearchSuggestionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RequestingFocusOnKeyboardInput
@@ -498,7 +498,7 @@ package WinRt.Windows.ApplicationModel.Search.Core is
    procedure remove_RequestingFocusOnKeyboardInput
    (
       this : in out SearchSuggestionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

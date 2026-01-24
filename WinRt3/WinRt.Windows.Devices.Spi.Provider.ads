@@ -119,14 +119,14 @@ package WinRt.Windows.Devices.Spi.Provider is
       function get_Mode
       (
          this : access IProviderSpiConnectionSettings_Interface;
-         RetVal : access Windows.Devices.Spi.Provider.ProviderSpiMode
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.ProviderSpiMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IProviderSpiConnectionSettings_Interface;
-         value : Windows.Devices.Spi.Provider.ProviderSpiMode
+         value : WinRt.Windows.Devices.Spi.Provider.ProviderSpiMode
       )
       return WinRt.Hresult is abstract;
 
@@ -161,14 +161,14 @@ package WinRt.Windows.Devices.Spi.Provider is
       function get_SharingMode
       (
          this : access IProviderSpiConnectionSettings_Interface;
-         RetVal : access Windows.Devices.Spi.Provider.ProviderSpiSharingMode
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.ProviderSpiSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SharingMode
       (
          this : access IProviderSpiConnectionSettings_Interface;
-         value : Windows.Devices.Spi.Provider.ProviderSpiSharingMode
+         value : WinRt.Windows.Devices.Spi.Provider.ProviderSpiSharingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -181,7 +181,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       (
          this : access IProviderSpiConnectionSettingsFactory_Interface;
          chipSelectLine : WinRt.Int32;
-         RetVal : access Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -193,8 +193,8 @@ package WinRt.Windows.Devices.Spi.Provider is
       function GetDeviceProvider
       (
          this : access ISpiControllerProvider_Interface;
-         settings : Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;
-         RetVal : access Windows.Devices.Spi.Provider.ISpiDeviceProvider
+         settings : WinRt.Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.ISpiDeviceProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -213,7 +213,7 @@ package WinRt.Windows.Devices.Spi.Provider is
       function get_ConnectionSettings
       (
          this : access ISpiDeviceProvider_Interface;
-         RetVal : access Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -310,7 +310,7 @@ package WinRt.Windows.Devices.Spi.Provider is
    procedure put_Mode
    (
       this : in out ProviderSpiConnectionSettings;
-      value : Windows.Devices.Spi.Provider.ProviderSpiMode
+      value : WinRt.Windows.Devices.Spi.Provider.ProviderSpiMode
    );
 
    function get_DataBitLength
@@ -346,7 +346,7 @@ package WinRt.Windows.Devices.Spi.Provider is
    procedure put_SharingMode
    (
       this : in out ProviderSpiConnectionSettings;
-      value : Windows.Devices.Spi.Provider.ProviderSpiSharingMode
+      value : WinRt.Windows.Devices.Spi.Provider.ProviderSpiSharingMode
    );
 
 end WinRt.Windows.Devices.Spi.Provider;

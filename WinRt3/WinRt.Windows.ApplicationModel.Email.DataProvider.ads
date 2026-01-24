@@ -386,14 +386,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MailboxSyncRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -401,14 +401,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadMessageRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -416,14 +416,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadAttachmentRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -431,14 +431,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CreateFolderRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -446,14 +446,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeleteFolderRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -461,14 +461,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EmptyFolderRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -476,14 +476,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MoveFolderRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -491,14 +491,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UpdateMeetingResponseRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -506,14 +506,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ForwardMeetingRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -521,14 +521,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProposeNewTimeForMeetingRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -536,14 +536,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SetAutoReplySettingsRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -551,14 +551,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GetAutoReplySettingsRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -566,14 +566,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ResolveRecipientsRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -581,14 +581,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValidateCertificatesRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -596,14 +596,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServerSearchReadBatchRequested
       (
          this : access IEmailDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -621,7 +621,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Connection
       (
          this : access IEmailDataProviderTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailDataProviderConnection
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailDataProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -654,16 +654,16 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxCreateFolderRequest_Interface;
-         folder : Windows.ApplicationModel.Email.IEmailFolder;
-         RetVal : access Windows.Foundation.IAsyncAction
+         folder : WinRt.Windows.ApplicationModel.Email.IEmailFolder;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxCreateFolderRequest_Interface;
-         status : Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         status : WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -675,14 +675,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxCreateFolderRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxCreateFolderRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxCreateFolderRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxCreateFolderRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -708,15 +708,15 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxDeleteFolderRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxDeleteFolderRequest_Interface;
-         status : Windows.ApplicationModel.Email.EmailMailboxDeleteFolderStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         status : WinRt.Windows.ApplicationModel.Email.EmailMailboxDeleteFolderStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -728,14 +728,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxDeleteFolderRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDeleteFolderRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDeleteFolderRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxDeleteFolderRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -768,14 +768,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxDownloadAttachmentRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxDownloadAttachmentRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -787,14 +787,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxDownloadAttachmentRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDownloadAttachmentRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDownloadAttachmentRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxDownloadAttachmentRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -820,14 +820,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxDownloadMessageRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxDownloadMessageRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -839,14 +839,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxDownloadMessageRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDownloadMessageRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxDownloadMessageRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxDownloadMessageRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -872,15 +872,15 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxEmptyFolderRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxEmptyFolderRequest_Interface;
-         status : Windows.ApplicationModel.Email.EmailMailboxEmptyFolderStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         status : WinRt.Windows.ApplicationModel.Email.EmailMailboxEmptyFolderStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -892,14 +892,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxEmptyFolderRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxEmptyFolderRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxEmptyFolderRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxEmptyFolderRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -939,7 +939,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_ForwardHeaderType
       (
          this : access IEmailMailboxForwardMeetingRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMessageBodyKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind
       )
       return WinRt.Hresult is abstract;
 
@@ -960,14 +960,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxForwardMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxForwardMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -979,14 +979,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxForwardMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxForwardMeetingRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxForwardMeetingRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxForwardMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1005,22 +1005,22 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_RequestedFormat
       (
          this : access IEmailMailboxGetAutoReplySettingsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IEmailMailboxGetAutoReplySettingsRequest_Interface;
-         autoReplySettings : Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
-         RetVal : access Windows.Foundation.IAsyncAction
+         autoReplySettings : WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxGetAutoReplySettingsRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1032,14 +1032,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxGetAutoReplySettingsRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxGetAutoReplySettingsRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxGetAutoReplySettingsRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxGetAutoReplySettingsRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1079,14 +1079,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxMoveFolderRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxMoveFolderRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,14 +1098,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxMoveFolderRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxMoveFolderRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxMoveFolderRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxMoveFolderRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1131,14 +1131,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_NewStartTime
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_NewDuration
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1159,14 +1159,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1178,14 +1178,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxProposeNewTimeForMeetingRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxProposeNewTimeForMeetingRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxProposeNewTimeForMeetingRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1212,14 +1212,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailMailboxResolveRecipientsRequest_Interface;
          resolutionResults : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxResolveRecipientsRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1231,14 +1231,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxResolveRecipientsRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxResolveRecipientsRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxResolveRecipientsRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxResolveRecipientsRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1271,7 +1271,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Options
       (
          this : access IEmailMailboxServerSearchReadBatchRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailQueryOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1285,23 +1285,23 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function SaveMessageAsync
       (
          this : access IEmailMailboxServerSearchReadBatchRequest_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IEmailMailboxServerSearchReadBatchRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxServerSearchReadBatchRequest_Interface;
-         batchStatus : Windows.ApplicationModel.Email.EmailBatchStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         batchStatus : WinRt.Windows.ApplicationModel.Email.EmailBatchStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1313,14 +1313,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxServerSearchReadBatchRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxServerSearchReadBatchRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxServerSearchReadBatchRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxServerSearchReadBatchRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,21 +1339,21 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_AutoReplySettings
       (
          this : access IEmailMailboxSetAutoReplySettingsRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IEmailMailboxSetAutoReplySettingsRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxSetAutoReplySettingsRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1365,14 +1365,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxSetAutoReplySettingsRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxSetAutoReplySettingsRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxSetAutoReplySettingsRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxSetAutoReplySettingsRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1391,14 +1391,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1410,14 +1410,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxSyncManagerSyncRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxSyncManagerSyncRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1443,7 +1443,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Response
       (
          this : access IEmailMailboxUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMeetingResponseType
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMeetingResponseType
       )
       return WinRt.Hresult is abstract;
 
@@ -1471,14 +1471,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function ReportCompletedAsync
       (
          this : access IEmailMailboxUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxUpdateMeetingResponseRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1490,14 +1490,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxUpdateMeetingResponseRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxUpdateMeetingResponseRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxUpdateMeetingResponseRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxUpdateMeetingResponseRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1524,14 +1524,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       (
          this : access IEmailMailboxValidateCertificatesRequest_Interface;
          validationStatuses : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IEmailMailboxValidateCertificatesRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1543,14 +1543,14 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
       function get_Request
       (
          this : access IEmailMailboxValidateCertificatesRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.DataProvider.IEmailMailboxValidateCertificatesRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Email.DataProvider.IEmailMailboxValidateCertificatesRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IEmailMailboxValidateCertificatesRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1579,7 +1579,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_MailboxSyncRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadMessageRequested
@@ -1592,7 +1592,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_DownloadMessageRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadAttachmentRequested
@@ -1605,7 +1605,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_DownloadAttachmentRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CreateFolderRequested
@@ -1618,7 +1618,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_CreateFolderRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DeleteFolderRequested
@@ -1631,7 +1631,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_DeleteFolderRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EmptyFolderRequested
@@ -1644,7 +1644,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_EmptyFolderRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_MoveFolderRequested
@@ -1657,7 +1657,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_MoveFolderRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UpdateMeetingResponseRequested
@@ -1670,7 +1670,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_UpdateMeetingResponseRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ForwardMeetingRequested
@@ -1683,7 +1683,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_ForwardMeetingRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProposeNewTimeForMeetingRequested
@@ -1696,7 +1696,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_ProposeNewTimeForMeetingRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SetAutoReplySettingsRequested
@@ -1709,7 +1709,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_SetAutoReplySettingsRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GetAutoReplySettingsRequested
@@ -1722,7 +1722,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_GetAutoReplySettingsRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ResolveRecipientsRequested
@@ -1735,7 +1735,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_ResolveRecipientsRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ValidateCertificatesRequested
@@ -1748,7 +1748,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_ValidateCertificatesRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ServerSearchReadBatchRequested
@@ -1761,7 +1761,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure remove_ServerSearchReadBatchRequested
    (
       this : in out EmailDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -1814,13 +1814,13 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out EmailMailboxCreateFolderRequest;
-      folder : Windows.ApplicationModel.Email.EmailFolder'Class
+      folder : WinRt.Windows.ApplicationModel.Email.EmailFolder'Class
    );
 
    procedure ReportFailedAsync
    (
       this : in out EmailMailboxCreateFolderRequest;
-      status : Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus
+      status : WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus
    );
 
    -----------------------------------------------------------------------------
@@ -1873,7 +1873,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure ReportFailedAsync
    (
       this : in out EmailMailboxDeleteFolderRequest;
-      status : Windows.ApplicationModel.Email.EmailMailboxDeleteFolderStatus
+      status : WinRt.Windows.ApplicationModel.Email.EmailMailboxDeleteFolderStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2036,7 +2036,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure ReportFailedAsync
    (
       this : in out EmailMailboxEmptyFolderRequest;
-      status : Windows.ApplicationModel.Email.EmailMailboxEmptyFolderStatus
+      status : WinRt.Windows.ApplicationModel.Email.EmailMailboxEmptyFolderStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2166,7 +2166,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out EmailMailboxGetAutoReplySettingsRequest;
-      autoReplySettings : Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class
+      autoReplySettings : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class
    );
 
    procedure ReportFailedAsync
@@ -2430,7 +2430,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure SaveMessageAsync
    (
       this : in out EmailMailboxServerSearchReadBatchRequest;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
    );
 
    procedure ReportCompletedAsync
@@ -2441,7 +2441,7 @@ package WinRt.Windows.ApplicationModel.Email.DataProvider is
    procedure ReportFailedAsync
    (
       this : in out EmailMailboxServerSearchReadBatchRequest;
-      batchStatus : Windows.ApplicationModel.Email.EmailBatchStatus
+      batchStatus : WinRt.Windows.ApplicationModel.Email.EmailBatchStatus
    );
 
    -----------------------------------------------------------------------------

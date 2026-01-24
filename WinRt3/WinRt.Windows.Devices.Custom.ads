@@ -147,23 +147,23 @@ package WinRt.Windows.Devices.Custom is
       function get_InputStream
       (
          this : access ICustomDevice_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access ICustomDevice_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function SendIOControlAsync
       (
          this : access ICustomDevice_Interface;
-         ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-         inputBuffer : Windows.Storage.Streams.IBuffer;
-         outputBuffer : Windows.Storage.Streams.IBuffer;
+         ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+         inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         outputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -171,9 +171,9 @@ package WinRt.Windows.Devices.Custom is
       function TrySendIOControlAsync
       (
          this : access ICustomDevice_Interface;
-         ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-         inputBuffer : Windows.Storage.Streams.IBuffer;
-         outputBuffer : Windows.Storage.Streams.IBuffer;
+         ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+         inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         outputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -195,8 +195,8 @@ package WinRt.Windows.Devices.Custom is
       (
          this : access ICustomDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         desiredAccess : Windows.Devices.Custom.DeviceAccessMode;
-         sharingMode : Windows.Devices.Custom.DeviceSharingMode;
+         desiredAccess : WinRt.Windows.Devices.Custom.DeviceAccessMode;
+         sharingMode : WinRt.Windows.Devices.Custom.DeviceSharingMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -209,14 +209,14 @@ package WinRt.Windows.Devices.Custom is
       function get_AccessMode
       (
          this : access IIOControlCode_Interface;
-         RetVal : access Windows.Devices.Custom.IOControlAccessMode
+         RetVal : access WinRt.Windows.Devices.Custom.IOControlAccessMode
       )
       return WinRt.Hresult is abstract;
 
       function get_BufferingMethod
       (
          this : access IIOControlCode_Interface;
-         RetVal : access Windows.Devices.Custom.IOControlBufferingMethod
+         RetVal : access WinRt.Windows.Devices.Custom.IOControlBufferingMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -251,9 +251,9 @@ package WinRt.Windows.Devices.Custom is
          this : access IIOControlCodeFactory_Interface;
          deviceType : WinRt.UInt16;
          function_x : WinRt.UInt16;
-         accessMode : Windows.Devices.Custom.IOControlAccessMode;
-         bufferingMethod : Windows.Devices.Custom.IOControlBufferingMethod;
-         RetVal : access Windows.Devices.Custom.IIOControlCode
+         accessMode : WinRt.Windows.Devices.Custom.IOControlAccessMode;
+         bufferingMethod : WinRt.Windows.Devices.Custom.IOControlBufferingMethod;
+         RetVal : access WinRt.Windows.Devices.Custom.IIOControlCode
       )
       return WinRt.Hresult is abstract;
 
@@ -293,8 +293,8 @@ package WinRt.Windows.Devices.Custom is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      desiredAccess : Windows.Devices.Custom.DeviceAccessMode;
-      sharingMode : Windows.Devices.Custom.DeviceSharingMode
+      desiredAccess : WinRt.Windows.Devices.Custom.DeviceAccessMode;
+      sharingMode : WinRt.Windows.Devices.Custom.DeviceSharingMode
    )
    return WinRt.Windows.Devices.Custom.CustomDevice;
 
@@ -316,18 +316,18 @@ package WinRt.Windows.Devices.Custom is
    function SendIOControlAsync
    (
       this : in out CustomDevice;
-      ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : Windows.Storage.Streams.IBuffer;
-      outputBuffer : Windows.Storage.Streams.IBuffer
+      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
    function TrySendIOControlAsync
    (
       this : in out CustomDevice;
-      ioControlCode_p : Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : Windows.Storage.Streams.IBuffer;
-      outputBuffer : Windows.Storage.Streams.IBuffer
+      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean;
 
@@ -344,8 +344,8 @@ package WinRt.Windows.Devices.Custom is
    (
       deviceType : WinRt.UInt16;
       function_x : WinRt.UInt16;
-      accessMode : Windows.Devices.Custom.IOControlAccessMode;
-      bufferingMethod : Windows.Devices.Custom.IOControlBufferingMethod
+      accessMode : WinRt.Windows.Devices.Custom.IOControlAccessMode;
+      bufferingMethod : WinRt.Windows.Devices.Custom.IOControlBufferingMethod
    )
    return IOControlCode;
 

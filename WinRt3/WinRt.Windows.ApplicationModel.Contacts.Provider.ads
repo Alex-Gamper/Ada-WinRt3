@@ -106,8 +106,8 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       (
          this : access IContactPickerUI_Interface;
          id : WinRt.HString;
-         contact : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.ApplicationModel.Contacts.Provider.AddContactResult
+         contact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult
       )
       return WinRt.Hresult is abstract;
 
@@ -136,7 +136,7 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       function get_SelectionMode
       (
          this : access IContactPickerUI_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.ContactSelectionMode
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -144,14 +144,14 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       (
          this : access IContactPickerUI_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContactRemoved
       (
          this : access IContactPickerUI_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -163,8 +163,8 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       function AddContact
       (
          this : access IContactPickerUI2_Interface;
-         contact : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.ApplicationModel.Contacts.Provider.AddContactResult
+         contact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult
       )
       return WinRt.Hresult is abstract;
 
@@ -206,7 +206,7 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
    (
       this : in out ContactPickerUI;
       id : WinRt.WString;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
 
@@ -245,13 +245,13 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
    procedure remove_ContactRemoved
    (
       this : in out ContactPickerUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function AddContact
    (
       this : in out ContactPickerUI;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
 

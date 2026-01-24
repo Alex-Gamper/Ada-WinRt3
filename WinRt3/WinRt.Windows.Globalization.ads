@@ -293,7 +293,7 @@ package WinRt.Windows.Globalization is
       function GetLanguagesForUser
       (
          this : access IApplicationLanguagesStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -306,7 +306,7 @@ package WinRt.Windows.Globalization is
       function Clone
       (
          this : access ICalendar_Interface;
-         RetVal : access Windows.Globalization.ICalendar
+         RetVal : access WinRt.Windows.Globalization.ICalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -374,14 +374,14 @@ package WinRt.Windows.Globalization is
       function GetDateTime
       (
          this : access ICalendar_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function SetDateTime
       (
          this : access ICalendar_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -667,7 +667,7 @@ package WinRt.Windows.Globalization is
       function get_DayOfWeek
       (
          this : access ICalendar_Interface;
-         RetVal : access Windows.Globalization.DayOfWeek
+         RetVal : access WinRt.Windows.Globalization.DayOfWeek
       )
       return WinRt.Hresult is abstract;
 
@@ -926,7 +926,7 @@ package WinRt.Windows.Globalization is
       function Compare
       (
          this : access ICalendar_Interface;
-         other : Windows.Globalization.ICalendar;
+         other : WinRt.Windows.Globalization.ICalendar;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -934,7 +934,7 @@ package WinRt.Windows.Globalization is
       function CompareDateTime
       (
          this : access ICalendar_Interface;
-         other : Windows.Foundation.DateTime;
+         other : WinRt.Windows.Foundation.DateTime;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -942,7 +942,7 @@ package WinRt.Windows.Globalization is
       function CopyTo
       (
          this : access ICalendar_Interface;
-         other : Windows.Globalization.ICalendar
+         other : WinRt.Windows.Globalization.ICalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Globalization is
       (
          this : access ICalendarFactory_Interface;
          languages : GenericObject;
-         RetVal : access Windows.Globalization.ICalendar
+         RetVal : access WinRt.Windows.Globalization.ICalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -1021,7 +1021,7 @@ package WinRt.Windows.Globalization is
          languages : GenericObject;
          calendar_p : WinRt.HString;
          clock : WinRt.HString;
-         RetVal : access Windows.Globalization.ICalendar
+         RetVal : access WinRt.Windows.Globalization.ICalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -1037,7 +1037,7 @@ package WinRt.Windows.Globalization is
          calendar_p : WinRt.HString;
          clock : WinRt.HString;
          timeZoneId : WinRt.HString;
-         RetVal : access Windows.Globalization.ICalendar
+         RetVal : access WinRt.Windows.Globalization.ICalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -1209,7 +1209,7 @@ package WinRt.Windows.Globalization is
          this : access ICurrencyAmountFactory_Interface;
          amount : WinRt.HString;
          currency : WinRt.HString;
-         RetVal : access Windows.Globalization.ICurrencyAmount
+         RetVal : access WinRt.Windows.Globalization.ICurrencyAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -2425,7 +2425,7 @@ package WinRt.Windows.Globalization is
       (
          this : access IGeographicRegionFactory_Interface;
          geographicRegionCode : WinRt.HString;
-         RetVal : access Windows.Globalization.IGeographicRegion
+         RetVal : access WinRt.Windows.Globalization.IGeographicRegion
       )
       return WinRt.Hresult is abstract;
 
@@ -2531,7 +2531,7 @@ package WinRt.Windows.Globalization is
       function get_LayoutDirection
       (
          this : access ILanguage2_Interface;
-         RetVal : access Windows.Globalization.LanguageLayoutDirection
+         RetVal : access WinRt.Windows.Globalization.LanguageLayoutDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2569,7 +2569,7 @@ package WinRt.Windows.Globalization is
       (
          this : access ILanguageFactory_Interface;
          languageTag : WinRt.HString;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -3025,7 +3025,7 @@ package WinRt.Windows.Globalization is
 
       function GetLanguagesForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return IVectorView_HString.Kind;
 
@@ -3135,7 +3135,7 @@ package WinRt.Windows.Globalization is
    procedure SetDateTime
    (
       this : in out Calendar;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure SetToNow
@@ -3604,21 +3604,21 @@ package WinRt.Windows.Globalization is
    function Compare
    (
       this : in out Calendar;
-      other : Windows.Globalization.Calendar'Class
+      other : WinRt.Windows.Globalization.Calendar'Class
    )
    return WinRt.Int32;
 
    function CompareDateTime
    (
       this : in out Calendar;
-      other : Windows.Foundation.DateTime
+      other : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Int32;
 
    procedure CopyTo
    (
       this : in out Calendar;
-      other : Windows.Globalization.Calendar'Class
+      other : WinRt.Windows.Globalization.Calendar'Class
    );
 
    function get_FirstMinuteInThisHour

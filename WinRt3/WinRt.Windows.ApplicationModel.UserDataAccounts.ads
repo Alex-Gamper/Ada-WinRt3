@@ -190,21 +190,21 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function get_OtherAppReadAccess
       (
          this : access IUserDataAccount_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IUserDataAccount_Interface;
-         value : Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_Icon
       (
          this : access IUserDataAccount_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -225,14 +225,14 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function SaveAsync
       (
          this : access IUserDataAccount_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IUserDataAccount_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -331,7 +331,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function get_ProviderProperties
       (
          this : access IUserDataAccount4_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -366,7 +366,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function put_Icon
       (
          this : access IUserDataAccount4_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -378,7 +378,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function RequestStoreAsync
       (
          this : access IUserDataAccountManagerForUser_Interface;
-         storeAccessType : Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType;
+         storeAccessType : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -386,7 +386,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function get_User
       (
          this : access IUserDataAccountManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -398,7 +398,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function RequestStoreAsync
       (
          this : access IUserDataAccountManagerStatics_Interface;
-         storeAccessType : Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType;
+         storeAccessType : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -406,7 +406,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function ShowAddAccountAsync
       (
          this : access IUserDataAccountManagerStatics_Interface;
-         contentKinds : Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
+         contentKinds : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -415,7 +415,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       (
          this : access IUserDataAccountManagerStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -423,7 +423,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       (
          this : access IUserDataAccountManagerStatics_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -435,8 +435,8 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function GetForUser
       (
          this : access IUserDataAccountManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.IUserDataAccountManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -486,14 +486,14 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       (
          this : access IUserDataAccountStore2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StoreChanged
       (
          this : access IUserDataAccountStore2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -520,7 +520,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
       function GetDeferral
       (
          this : access IUserDataAccountStoreChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -566,7 +566,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    procedure put_OtherAppReadAccess
    (
       this : in out UserDataAccount;
-      value : Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountOtherAppReadAccess
    );
 
    function get_Icon
@@ -696,7 +696,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    procedure put_Icon
    (
       this : in out UserDataAccount;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    -----------------------------------------------------------------------------
@@ -705,19 +705,19 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountManagerForUser;
 
       function RequestStoreAsync
       (
-         storeAccessType : Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType
+         storeAccessType : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore;
 
       function ShowAddAccountAsync
       (
-         contentKinds : Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds
+         contentKinds : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds
       )
       return WinRt.WString;
 
@@ -745,7 +745,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    function RequestStoreAsync
    (
       this : in out UserDataAccountManagerForUser;
-      storeAccessType : Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType
+      storeAccessType : WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountStore'Class;
 
@@ -802,7 +802,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts is
    procedure remove_StoreChanged
    (
       this : in out UserDataAccountStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateAccountAsync

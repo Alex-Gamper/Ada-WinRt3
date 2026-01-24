@@ -108,14 +108,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkInPipe;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkInPipe;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkInPipe do
          Hr := this.m_IUsbBulkInEndpointDescriptor.all.get_Pipe (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkInPipe := new Windows.Devices.Usb.IUsbBulkInPipe;
+         Retval.m_IUsbBulkInPipe := new WinRt.Windows.Devices.Usb.IUsbBulkInPipe;
          Retval.m_IUsbBulkInPipe.all := m_ComRetVal;
       end return;
    end;
@@ -168,14 +168,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkInEndpointDescriptor do
          Hr := this.m_IUsbBulkInPipe.all.get_EndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkInEndpointDescriptor := new Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
+         Retval.m_IUsbBulkInEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
          Retval.m_IUsbBulkInEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -225,7 +225,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_ReadOptions
    (
       this : in out UsbBulkInPipe;
-      value : Windows.Devices.Usb.UsbReadOptions
+      value : WinRt.Windows.Devices.Usb.UsbReadOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -245,7 +245,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbReadOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbReadOptions;
    begin
       Hr := this.m_IUsbBulkInPipe.all.get_ReadOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -276,7 +276,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IUsbBulkInPipe.all.get_InputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -350,14 +350,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkOutPipe;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkOutPipe;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkOutPipe do
          Hr := this.m_IUsbBulkOutEndpointDescriptor.all.get_Pipe (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkOutPipe := new Windows.Devices.Usb.IUsbBulkOutPipe;
+         Retval.m_IUsbBulkOutPipe := new WinRt.Windows.Devices.Usb.IUsbBulkOutPipe;
          Retval.m_IUsbBulkOutPipe.all := m_ComRetVal;
       end return;
    end;
@@ -393,14 +393,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkOutEndpointDescriptor do
          Hr := this.m_IUsbBulkOutPipe.all.get_EndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkOutEndpointDescriptor := new Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
+         Retval.m_IUsbBulkOutEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
          Retval.m_IUsbBulkOutEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -450,7 +450,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_WriteOptions
    (
       this : in out UsbBulkOutPipe;
-      value : Windows.Devices.Usb.UsbWriteOptions
+      value : WinRt.Windows.Devices.Usb.UsbWriteOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -470,7 +470,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbWriteOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbWriteOptions;
    begin
       Hr := this.m_IUsbBulkOutPipe.all.get_WriteOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -487,7 +487,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IUsbBulkOutPipe.all.get_OutputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -527,7 +527,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterface.Kind;
    begin
       Hr := this.m_IUsbConfiguration.all.get_UsbInterfaces (m_ComRetVal'Access);
@@ -547,14 +547,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbConfigurationDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbConfigurationDescriptor do
          Hr := this.m_IUsbConfiguration.all.get_ConfigurationDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbConfigurationDescriptor := new Windows.Devices.Usb.IUsbConfigurationDescriptor;
+         Retval.m_IUsbConfigurationDescriptor := new WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor;
          Retval.m_IUsbConfigurationDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -567,7 +567,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbDescriptor.Kind;
    begin
       Hr := this.m_IUsbConfiguration.all.get_Descriptors (m_ComRetVal'Access);
@@ -604,8 +604,8 @@ package body WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbConfigurationDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -629,7 +629,7 @@ package body WinRt.Windows.Devices.Usb is
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbConfigurationDescriptor is
       Hr               : WinRt.HResult := S_OK;
@@ -637,7 +637,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbConfigurationDescriptor");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbConfigurationDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbConfigurationDescriptor do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbConfigurationDescriptorStatics'Access , m_Factory'Address);
@@ -647,7 +647,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbConfigurationDescriptor := new Windows.Devices.Usb.IUsbConfigurationDescriptor;
+            Retval.m_IUsbConfigurationDescriptor := new WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor;
             Retval.m_IUsbConfigurationDescriptor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -751,13 +751,13 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbControlRequestType is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbControlRequestType");
-      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbControlRequestType;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbControlRequestType");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbControlRequestType;
    begin
       return RetVal : UsbControlRequestType do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUsbControlRequestType := new Windows.Devices.Usb.IUsbControlRequestType;
+            Retval.m_IUsbControlRequestType := new WinRt.Windows.Devices.Usb.IUsbControlRequestType;
             Retval.m_IUsbControlRequestType.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -775,7 +775,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbTransferDirection;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbTransferDirection;
    begin
       Hr := this.m_IUsbControlRequestType.all.get_Direction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -787,7 +787,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_Direction
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbTransferDirection
+      value : WinRt.Windows.Devices.Usb.UsbTransferDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -807,7 +807,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbControlTransferType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbControlTransferType;
    begin
       Hr := this.m_IUsbControlRequestType.all.get_ControlTransferType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -819,7 +819,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_ControlTransferType
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbControlTransferType
+      value : WinRt.Windows.Devices.Usb.UsbControlTransferType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -839,7 +839,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbControlRecipient;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbControlRecipient;
    begin
       Hr := this.m_IUsbControlRequestType.all.get_Recipient (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -851,7 +851,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_Recipient
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbControlRecipient
+      value : WinRt.Windows.Devices.Usb.UsbControlRecipient
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -955,7 +955,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure ReadDescriptorBuffer
    (
       this : in out UsbDescriptor;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1076,7 +1076,7 @@ package body WinRt.Windows.Devices.Usb is
 
    function GetDeviceClassSelector
    (
-      usbClass : Windows.Devices.Usb.UsbDeviceClass'Class
+      usbClass : WinRt.Windows.Devices.Usb.UsbDeviceClass'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -1160,7 +1160,7 @@ package body WinRt.Windows.Devices.Usb is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IUsbDevice := new Windows.Devices.Usb.IUsbDevice;
+                     Retval.m_IUsbDevice := new WinRt.Windows.Devices.Usb.IUsbDevice;
                      Retval.m_IUsbDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1182,8 +1182,8 @@ package body WinRt.Windows.Devices.Usb is
    function SendControlOutTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class;
-      buffer : Windows.Storage.Streams.IBuffer
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1247,7 +1247,7 @@ package body WinRt.Windows.Devices.Usb is
    function SendControlOutTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1311,8 +1311,8 @@ package body WinRt.Windows.Devices.Usb is
    function SendControlInTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class;
-      buffer : Windows.Storage.Streams.IBuffer
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -1376,7 +1376,7 @@ package body WinRt.Windows.Devices.Usb is
    function SendControlInTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -1445,14 +1445,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterface;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterface;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterface do
          Hr := this.m_IUsbDevice.all.get_DefaultInterface (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterface := new Windows.Devices.Usb.IUsbInterface;
+         Retval.m_IUsbInterface := new WinRt.Windows.Devices.Usb.IUsbInterface;
          Retval.m_IUsbInterface.all := m_ComRetVal;
       end return;
    end;
@@ -1465,14 +1465,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceDescriptor do
          Hr := this.m_IUsbDevice.all.get_DeviceDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbDeviceDescriptor := new Windows.Devices.Usb.IUsbDeviceDescriptor;
+         Retval.m_IUsbDeviceDescriptor := new WinRt.Windows.Devices.Usb.IUsbDeviceDescriptor;
          Retval.m_IUsbDeviceDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -1485,14 +1485,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbConfiguration do
          Hr := this.m_IUsbDevice.all.get_Configuration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbConfiguration := new Windows.Devices.Usb.IUsbConfiguration;
+         Retval.m_IUsbConfiguration := new WinRt.Windows.Devices.Usb.IUsbConfiguration;
          Retval.m_IUsbConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -1541,13 +1541,13 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbDeviceClass is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClass");
-      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbDeviceClass");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : UsbDeviceClass do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1597,7 +1597,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IUsbDeviceClass.all.get_SubclassCode (m_ComRetVal'Access);
@@ -1632,7 +1632,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Byte.Kind;
    begin
       Hr := this.m_IUsbDeviceClass.all.get_ProtocolCode (m_ComRetVal'Access);
@@ -1689,7 +1689,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1699,7 +1699,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1713,7 +1713,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1723,7 +1723,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1737,7 +1737,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1747,7 +1747,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1761,7 +1761,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1771,7 +1771,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1785,7 +1785,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1795,7 +1795,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1809,7 +1809,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1819,7 +1819,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1833,7 +1833,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1843,7 +1843,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1857,7 +1857,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1867,7 +1867,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1881,7 +1881,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClasses");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbDeviceClassesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbDeviceClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbDeviceClass do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbDeviceClassesStatics'Access , m_Factory'Address);
@@ -1891,7 +1891,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbDeviceClass := new Windows.Devices.Usb.IUsbDeviceClass;
+            Retval.m_IUsbDeviceClass := new WinRt.Windows.Devices.Usb.IUsbDeviceClass;
             Retval.m_IUsbDeviceClass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2051,8 +2051,8 @@ package body WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbEndpointDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2076,7 +2076,7 @@ package body WinRt.Windows.Devices.Usb is
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbEndpointDescriptor is
       Hr               : WinRt.HResult := S_OK;
@@ -2084,7 +2084,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbEndpointDescriptor");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbEndpointDescriptorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbEndpointDescriptor do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbEndpointDescriptorStatics'Access , m_Factory'Address);
@@ -2094,7 +2094,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbEndpointDescriptor := new Windows.Devices.Usb.IUsbEndpointDescriptor;
+            Retval.m_IUsbEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor;
             Retval.m_IUsbEndpointDescriptor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2129,7 +2129,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbTransferDirection;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbTransferDirection;
    begin
       Hr := this.m_IUsbEndpointDescriptor.all.get_Direction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2146,7 +2146,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbEndpointType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbEndpointType;
    begin
       Hr := this.m_IUsbEndpointDescriptor.all.get_EndpointType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2163,14 +2163,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkInEndpointDescriptor do
          Hr := this.m_IUsbEndpointDescriptor.all.get_AsBulkInEndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkInEndpointDescriptor := new Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
+         Retval.m_IUsbBulkInEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor;
          Retval.m_IUsbBulkInEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2183,14 +2183,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptInEndpointDescriptor do
          Hr := this.m_IUsbEndpointDescriptor.all.get_AsInterruptInEndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptInEndpointDescriptor := new Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
+         Retval.m_IUsbInterruptInEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
          Retval.m_IUsbInterruptInEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2203,14 +2203,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbBulkOutEndpointDescriptor do
          Hr := this.m_IUsbEndpointDescriptor.all.get_AsBulkOutEndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbBulkOutEndpointDescriptor := new Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
+         Retval.m_IUsbBulkOutEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor;
          Retval.m_IUsbBulkOutEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2223,14 +2223,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptOutEndpointDescriptor do
          Hr := this.m_IUsbEndpointDescriptor.all.get_AsInterruptOutEndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptOutEndpointDescriptor := new Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
+         Retval.m_IUsbInterruptOutEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
          Retval.m_IUsbInterruptOutEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2266,7 +2266,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbBulkInPipe.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_BulkInPipes (m_ComRetVal'Access);
@@ -2286,7 +2286,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterruptInPipe.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_InterruptInPipes (m_ComRetVal'Access);
@@ -2306,7 +2306,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbBulkOutPipe.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_BulkOutPipes (m_ComRetVal'Access);
@@ -2326,7 +2326,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterruptOutPipe.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_InterruptOutPipes (m_ComRetVal'Access);
@@ -2346,7 +2346,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterfaceSetting.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_InterfaceSettings (m_ComRetVal'Access);
@@ -2383,7 +2383,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterface.all.get_Descriptors (m_ComRetVal'Access);
@@ -2420,8 +2420,8 @@ package body WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbInterfaceDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2445,7 +2445,7 @@ package body WinRt.Windows.Devices.Usb is
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbInterfaceDescriptor is
       Hr               : WinRt.HResult := S_OK;
@@ -2453,7 +2453,7 @@ package body WinRt.Windows.Devices.Usb is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbInterfaceDescriptor");
       m_Factory        : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterfaceDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterfaceDescriptor do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbInterfaceDescriptorStatics'Access , m_Factory'Address);
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.Devices.Usb is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUsbInterfaceDescriptor := new Windows.Devices.Usb.IUsbInterfaceDescriptor;
+            Retval.m_IUsbInterfaceDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor;
             Retval.m_IUsbInterfaceDescriptor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2589,7 +2589,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbBulkInEndpointDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterfaceSetting.all.get_BulkInEndpoints (m_ComRetVal'Access);
@@ -2609,7 +2609,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterruptInEndpointDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterfaceSetting.all.get_InterruptInEndpoints (m_ComRetVal'Access);
@@ -2629,7 +2629,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbBulkOutEndpointDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterfaceSetting.all.get_BulkOutEndpoints (m_ComRetVal'Access);
@@ -2649,7 +2649,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbInterruptOutEndpointDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterfaceSetting.all.get_InterruptOutEndpoints (m_ComRetVal'Access);
@@ -2728,14 +2728,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterfaceDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterfaceDescriptor do
          Hr := this.m_IUsbInterfaceSetting.all.get_InterfaceDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterfaceDescriptor := new Windows.Devices.Usb.IUsbInterfaceDescriptor;
+         Retval.m_IUsbInterfaceDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor;
          Retval.m_IUsbInterfaceDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2748,7 +2748,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUsbDescriptor.Kind;
    begin
       Hr := this.m_IUsbInterfaceSetting.all.get_Descriptors (m_ComRetVal'Access);
@@ -2825,7 +2825,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IUsbInterruptInEndpointDescriptor.all.get_Interval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2842,14 +2842,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptInPipe;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptInPipe;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptInPipe do
          Hr := this.m_IUsbInterruptInEndpointDescriptor.all.get_Pipe (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptInPipe := new Windows.Devices.Usb.IUsbInterruptInPipe;
+         Retval.m_IUsbInterruptInPipe := new WinRt.Windows.Devices.Usb.IUsbInterruptInPipe;
          Retval.m_IUsbInterruptInPipe.all := m_ComRetVal;
       end return;
    end;
@@ -2885,7 +2885,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IUsbInterruptInEventArgs.all.get_InterruptData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2925,14 +2925,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptInEndpointDescriptor do
          Hr := this.m_IUsbInterruptInPipe.all.get_EndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptInEndpointDescriptor := new Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
+         Retval.m_IUsbInterruptInEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor;
          Retval.m_IUsbInterruptInEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -2988,7 +2988,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUsbInterruptInPipe.all.add_DataReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3000,7 +3000,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure remove_DataReceived
    (
       this : in out UsbInterruptInPipe;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3077,7 +3077,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IUsbInterruptOutEndpointDescriptor.all.get_Interval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3094,14 +3094,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptOutPipe;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptOutPipe;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptOutPipe do
          Hr := this.m_IUsbInterruptOutEndpointDescriptor.all.get_Pipe (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptOutPipe := new Windows.Devices.Usb.IUsbInterruptOutPipe;
+         Retval.m_IUsbInterruptOutPipe := new WinRt.Windows.Devices.Usb.IUsbInterruptOutPipe;
          Retval.m_IUsbInterruptOutPipe.all := m_ComRetVal;
       end return;
    end;
@@ -3137,14 +3137,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbInterruptOutEndpointDescriptor do
          Hr := this.m_IUsbInterruptOutPipe.all.get_EndpointDescriptor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbInterruptOutEndpointDescriptor := new Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
+         Retval.m_IUsbInterruptOutEndpointDescriptor := new WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor;
          Retval.m_IUsbInterruptOutEndpointDescriptor.all := m_ComRetVal;
       end return;
    end;
@@ -3194,7 +3194,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_WriteOptions
    (
       this : in out UsbInterruptOutPipe;
-      value : Windows.Devices.Usb.UsbWriteOptions
+      value : WinRt.Windows.Devices.Usb.UsbWriteOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3214,7 +3214,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.UsbWriteOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.UsbWriteOptions;
    begin
       Hr := this.m_IUsbInterruptOutPipe.all.get_WriteOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3231,7 +3231,7 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IUsbInterruptOutPipe.all.get_OutputStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3266,13 +3266,13 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbSetupPacket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
-      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbSetupPacket;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbSetupPacket");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbSetupPacket;
    begin
       return RetVal : UsbSetupPacket do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IUsbSetupPacket := new Windows.Devices.Usb.IUsbSetupPacket;
+            Retval.m_IUsbSetupPacket := new WinRt.Windows.Devices.Usb.IUsbSetupPacket;
             Retval.m_IUsbSetupPacket.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3281,21 +3281,21 @@ package body WinRt.Windows.Devices.Usb is
 
    function Constructor
    (
-      eightByteBuffer : Windows.Storage.Streams.IBuffer
+      eightByteBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return UsbSetupPacket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbSetupPacket");
       m_Factory    : access IUsbSetupPacketFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Usb.IUsbSetupPacket;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbSetupPacket;
    begin
       return RetVal : UsbSetupPacket do
          Hr := RoGetActivationFactory (m_hString, IID_IUsbSetupPacketFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithEightByteBuffer (eightByteBuffer, m_ComRetVal'Access);
-            Retval.m_IUsbSetupPacket := new Windows.Devices.Usb.IUsbSetupPacket;
+            Retval.m_IUsbSetupPacket := new WinRt.Windows.Devices.Usb.IUsbSetupPacket;
             Retval.m_IUsbSetupPacket.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3314,14 +3314,14 @@ package body WinRt.Windows.Devices.Usb is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Usb.IUsbControlRequestType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Usb.IUsbControlRequestType;
    begin
       return RetVal : WinRt.Windows.Devices.Usb.UsbControlRequestType do
          Hr := this.m_IUsbSetupPacket.all.get_RequestType (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUsbControlRequestType := new Windows.Devices.Usb.IUsbControlRequestType;
+         Retval.m_IUsbControlRequestType := new WinRt.Windows.Devices.Usb.IUsbControlRequestType;
          Retval.m_IUsbControlRequestType.all := m_ComRetVal;
       end return;
    end;
@@ -3329,7 +3329,7 @@ package body WinRt.Windows.Devices.Usb is
    procedure put_RequestType
    (
       this : in out UsbSetupPacket;
-      value : Windows.Devices.Usb.UsbControlRequestType'Class
+      value : WinRt.Windows.Devices.Usb.UsbControlRequestType'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

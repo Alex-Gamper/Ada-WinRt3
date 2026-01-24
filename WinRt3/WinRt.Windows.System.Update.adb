@@ -68,7 +68,7 @@ package body WinRt.Windows.System.Update is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Update.SystemUpdateItemState;
+      m_ComRetVal      : aliased WinRt.Windows.System.Update.SystemUpdateItemState;
    begin
       Hr := this.m_ISystemUpdateItem.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -196,7 +196,7 @@ package body WinRt.Windows.System.Update is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_ISystemUpdateItem.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -236,7 +236,7 @@ package body WinRt.Windows.System.Update is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Update.SystemUpdateManagerState;
+      m_ComRetVal      : aliased WinRt.Windows.System.Update.SystemUpdateManagerState;
    begin
       Hr := this.m_ISystemUpdateLastErrorInfo.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -253,7 +253,7 @@ package body WinRt.Windows.System.Update is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_ISystemUpdateLastErrorInfo.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -311,7 +311,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Update.SystemUpdateManagerState;
+         m_ComRetVal      : aliased WinRt.Windows.System.Update.SystemUpdateManagerState;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -335,7 +335,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -351,7 +351,7 @@ package body WinRt.Windows.System.Update is
 
       procedure remove_StateChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -419,7 +419,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -440,7 +440,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -477,8 +477,8 @@ package body WinRt.Windows.System.Update is
 
       function TrySetUserActiveHours
       (
-         start : Windows.Foundation.TimeSpan;
-         end_x : Windows.Foundation.TimeSpan
+         start : WinRt.Windows.Foundation.TimeSpan;
+         end_x : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -507,7 +507,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.DateTime;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -528,7 +528,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.DateTime;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -549,7 +549,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Update.ISystemUpdateLastErrorInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Update.ISystemUpdateLastErrorInfo;
       begin
          return RetVal : WinRt.Windows.System.Update.SystemUpdateLastErrorInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
@@ -559,7 +559,7 @@ package body WinRt.Windows.System.Update is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemUpdateLastErrorInfo := new Windows.System.Update.ISystemUpdateLastErrorInfo;
+               Retval.m_ISystemUpdateLastErrorInfo := new WinRt.Windows.System.Update.ISystemUpdateLastErrorInfo;
                Retval.m_ISystemUpdateLastErrorInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -573,7 +573,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -738,7 +738,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.HResult;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -759,7 +759,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -780,7 +780,7 @@ package body WinRt.Windows.System.Update is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Update.SystemUpdateManager");
          m_Factory        : access WinRt.Windows.System.Update.ISystemUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Update.SystemUpdateAttentionRequiredReason;
+         m_ComRetVal      : aliased WinRt.Windows.System.Update.SystemUpdateAttentionRequiredReason;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ISystemUpdateManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -846,7 +846,7 @@ package body WinRt.Windows.System.Update is
 
       procedure StartInstall
       (
-         action : Windows.System.Update.SystemUpdateStartInstallAction
+         action : WinRt.Windows.System.Update.SystemUpdateStartInstallAction
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;

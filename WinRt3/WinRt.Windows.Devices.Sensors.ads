@@ -1384,7 +1384,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IAccelerometer_Interface;
-         RetVal : access Windows.Devices.Sensors.IAccelerometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IAccelerometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1413,14 +1413,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IAccelerometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IAccelerometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1428,14 +1428,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IAccelerometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Shaken
       (
          this : access IAccelerometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1447,14 +1447,14 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access IAccelerometer2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access IAccelerometer2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -1492,7 +1492,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReadingType
       (
          this : access IAccelerometer4_Interface;
-         RetVal : access Windows.Devices.Sensors.AccelerometerReadingType
+         RetVal : access WinRt.Windows.Devices.Sensors.AccelerometerReadingType
       )
       return WinRt.Hresult is abstract;
 
@@ -1504,7 +1504,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access IAccelerometer5_Interface;
-         RetVal : access Windows.Devices.Sensors.IAccelerometerDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.IAccelerometerDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -1575,7 +1575,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IAccelerometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1627,7 +1627,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IAccelerometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IAccelerometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IAccelerometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1639,7 +1639,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IAccelerometerShakenEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1651,7 +1651,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IAccelerometerStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IAccelerometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IAccelerometer
       )
       return WinRt.Hresult is abstract;
 
@@ -1663,8 +1663,8 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IAccelerometerStatics2_Interface;
-         readingType : Windows.Devices.Sensors.AccelerometerReadingType;
-         RetVal : access Windows.Devices.Sensors.IAccelerometer
+         readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType;
+         RetVal : access WinRt.Windows.Devices.Sensors.IAccelerometer
       )
       return WinRt.Hresult is abstract;
 
@@ -1684,7 +1684,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDeviceSelector
       (
          this : access IAccelerometerStatics3_Interface;
-         readingType : Windows.Devices.Sensors.AccelerometerReadingType;
+         readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1740,14 +1740,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IActivitySensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IActivitySensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1759,21 +1759,21 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IActivitySensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Activity
       (
          this : access IActivitySensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.ActivityType
+         RetVal : access WinRt.Windows.Devices.Sensors.ActivityType
       )
       return WinRt.Hresult is abstract;
 
       function get_Confidence
       (
          this : access IActivitySensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.ActivitySensorReadingConfidence
+         RetVal : access WinRt.Windows.Devices.Sensors.ActivitySensorReadingConfidence
       )
       return WinRt.Hresult is abstract;
 
@@ -1785,7 +1785,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IActivitySensorReadingChangeReport_Interface;
-         RetVal : access Windows.Devices.Sensors.IActivitySensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IActivitySensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1797,7 +1797,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IActivitySensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IActivitySensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IActivitySensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1831,7 +1831,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetSystemHistoryAsync
       (
          this : access IActivitySensorStatics_Interface;
-         fromTime : Windows.Foundation.DateTime;
+         fromTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1839,8 +1839,8 @@ package WinRt.Windows.Devices.Sensors is
       function GetSystemHistoryAsync
       (
          this : access IActivitySensorStatics_Interface;
-         fromTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
+         fromTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1884,7 +1884,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IAltimeter_Interface;
-         RetVal : access Windows.Devices.Sensors.IAltimeterReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IAltimeterReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1920,14 +1920,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IAltimeter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IAltimeter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1965,7 +1965,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IAltimeterReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2003,7 +2003,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IAltimeterReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IAltimeterReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IAltimeterReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2015,7 +2015,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IAltimeterStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IAltimeter
+         RetVal : access WinRt.Windows.Devices.Sensors.IAltimeter
       )
       return WinRt.Hresult is abstract;
 
@@ -2027,7 +2027,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IBarometer_Interface;
-         RetVal : access Windows.Devices.Sensors.IBarometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IBarometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2063,14 +2063,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IBarometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IBarometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2108,7 +2108,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access IBarometer3_Interface;
-         RetVal : access Windows.Devices.Sensors.IBarometerDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.IBarometerDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -2139,7 +2139,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IBarometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2177,7 +2177,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IBarometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IBarometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IBarometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2189,7 +2189,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IBarometerStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IBarometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IBarometer
       )
       return WinRt.Hresult is abstract;
 
@@ -2221,7 +2221,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access ICompass_Interface;
-         RetVal : access Windows.Devices.Sensors.ICompassReading
+         RetVal : access WinRt.Windows.Devices.Sensors.ICompassReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2250,14 +2250,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access ICompass_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access ICompass_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2269,14 +2269,14 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access ICompass2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access ICompass2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -2314,7 +2314,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access ICompass4_Interface;
-         RetVal : access Windows.Devices.Sensors.ICompassDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.ICompassDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -2357,7 +2357,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access ICompassReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2402,7 +2402,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access ICompassReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.ICompassReading
+         RetVal : access WinRt.Windows.Devices.Sensors.ICompassReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2414,7 +2414,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_HeadingAccuracy
       (
          this : access ICompassReadingHeadingAccuracy_Interface;
-         RetVal : access Windows.Devices.Sensors.MagnetometerAccuracy
+         RetVal : access WinRt.Windows.Devices.Sensors.MagnetometerAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -2426,7 +2426,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access ICompassStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.ICompass
+         RetVal : access WinRt.Windows.Devices.Sensors.ICompass
       )
       return WinRt.Hresult is abstract;
 
@@ -2458,7 +2458,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Engagement
       (
          this : access IDetectedPerson_Interface;
-         RetVal : access Windows.Devices.Sensors.HumanEngagement
+         RetVal : access WinRt.Windows.Devices.Sensors.HumanEngagement
       )
       return WinRt.Hresult is abstract;
 
@@ -2472,14 +2472,14 @@ package WinRt.Windows.Devices.Sensors is
       function get_HeadOrientation
       (
          this : access IDetectedPerson_Interface;
-         RetVal : access Windows.Devices.Sensors.IHeadOrientation
+         RetVal : access WinRt.Windows.Devices.Sensors.IHeadOrientation
       )
       return WinRt.Hresult is abstract;
 
       function get_HeadPosition
       (
          this : access IDetectedPerson_Interface;
-         RetVal : access Windows.Devices.Sensors.IHeadPosition
+         RetVal : access WinRt.Windows.Devices.Sensors.IHeadPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -2498,7 +2498,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IGyrometer_Interface;
-         RetVal : access Windows.Devices.Sensors.IGyrometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IGyrometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2527,14 +2527,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IGyrometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IGyrometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2546,14 +2546,14 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access IGyrometer2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access IGyrometer2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -2591,7 +2591,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access IGyrometer4_Interface;
-         RetVal : access Windows.Devices.Sensors.IGyrometerDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.IGyrometerDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -2662,7 +2662,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IGyrometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2714,7 +2714,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IGyrometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IGyrometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IGyrometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -2726,7 +2726,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IGyrometerStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IGyrometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IGyrometer
       )
       return WinRt.Hresult is abstract;
 
@@ -2803,7 +2803,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IHingeAngleReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2865,14 +2865,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IHingeAngleSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IHingeAngleSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2884,7 +2884,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IHingeAngleSensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IHingeAngleReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IHingeAngleReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3017,7 +3017,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IHumanPresenceSensor_Interface;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3025,14 +3025,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IHumanPresenceSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IHumanPresenceSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3116,15 +3116,15 @@ package WinRt.Windows.Devices.Sensors is
       function ProcessReading
       (
          this : access IHumanPresenceSensorExtension_Interface;
-         reading : Windows.Devices.Sensors.IHumanPresenceSensorReading;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate
+         reading : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate
       )
       return WinRt.Hresult is abstract;
 
       function ProcessReadingTimeoutExpired
       (
          this : access IHumanPresenceSensorExtension_Interface;
-         reading : Windows.Devices.Sensors.IHumanPresenceSensorReading
+         reading : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3154,21 +3154,21 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IHumanPresenceSensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Presence
       (
          this : access IHumanPresenceSensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.HumanPresence
+         RetVal : access WinRt.Windows.Devices.Sensors.HumanPresence
       )
       return WinRt.Hresult is abstract;
 
       function get_Engagement
       (
          this : access IHumanPresenceSensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.HumanEngagement
+         RetVal : access WinRt.Windows.Devices.Sensors.HumanEngagement
       )
       return WinRt.Hresult is abstract;
 
@@ -3199,7 +3199,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_OnlookerPresence
       (
          this : access IHumanPresenceSensorReading3_Interface;
-         RetVal : access Windows.Devices.Sensors.HumanPresence
+         RetVal : access WinRt.Windows.Devices.Sensors.HumanPresence
       )
       return WinRt.Hresult is abstract;
 
@@ -3218,7 +3218,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IHumanPresenceSensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3338,14 +3338,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IHumanPresenceSensorStatics2_Interface;
          sensorId : WinRt.HString;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensor
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access IHumanPresenceSensorStatics2_Interface;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -3427,14 +3427,14 @@ package WinRt.Windows.Devices.Sensors is
       function get_LockOnLeaveTimeout
       (
          this : access IHumanPresenceSettings_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_LockOnLeaveTimeout
       (
          this : access IHumanPresenceSettings_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3474,21 +3474,21 @@ package WinRt.Windows.Devices.Sensors is
       function get_WakeOptions
       (
          this : access IHumanPresenceSettings2_Interface;
-         RetVal : access Windows.Devices.Sensors.IWakeOnApproachOptions
+         RetVal : access WinRt.Windows.Devices.Sensors.IWakeOnApproachOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_DimmingOptions
       (
          this : access IHumanPresenceSettings2_Interface;
-         RetVal : access Windows.Devices.Sensors.IAdaptiveDimmingOptions
+         RetVal : access WinRt.Windows.Devices.Sensors.IAdaptiveDimmingOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_LockOptions
       (
          this : access IHumanPresenceSettings2_Interface;
-         RetVal : access Windows.Devices.Sensors.ILockOnLeaveOptions
+         RetVal : access WinRt.Windows.Devices.Sensors.ILockOnLeaveOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3514,7 +3514,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_OnlookerDetectionOptions
       (
          this : access IHumanPresenceSettings3_Interface;
-         RetVal : access Windows.Devices.Sensors.IOnlookerDetectionOptions
+         RetVal : access WinRt.Windows.Devices.Sensors.IOnlookerDetectionOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3533,22 +3533,22 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentSettings
       (
          this : access IHumanPresenceSettingsStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceSettings
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettings
       )
       return WinRt.Hresult is abstract;
 
       function UpdateSettingsAsync
       (
          this : access IHumanPresenceSettingsStatics_Interface;
-         settings : Windows.Devices.Sensors.IHumanPresenceSettings;
-         RetVal : access Windows.Foundation.IAsyncAction
+         settings : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpdateSettings
       (
          this : access IHumanPresenceSettingsStatics_Interface;
-         settings : Windows.Devices.Sensors.IHumanPresenceSettings
+         settings : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -3564,7 +3564,7 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IHumanPresenceSettingsStatics_Interface;
          sensorId : WinRt.HString;
-         RetVal : access Windows.Devices.Sensors.IHumanPresenceFeatures
+         RetVal : access WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures
       )
       return WinRt.Hresult is abstract;
 
@@ -3579,14 +3579,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IHumanPresenceSettingsStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SettingsChanged
       (
          this : access IHumanPresenceSettingsStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3598,7 +3598,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IInclinometer_Interface;
-         RetVal : access Windows.Devices.Sensors.IInclinometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3627,14 +3627,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IInclinometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IInclinometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3646,21 +3646,21 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access IInclinometer2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access IInclinometer2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingType
       (
          this : access IInclinometer2_Interface;
-         RetVal : access Windows.Devices.Sensors.SensorReadingType
+         RetVal : access WinRt.Windows.Devices.Sensors.SensorReadingType
       )
       return WinRt.Hresult is abstract;
 
@@ -3698,7 +3698,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access IInclinometer4_Interface;
-         RetVal : access Windows.Devices.Sensors.IInclinometerDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometerDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -3769,7 +3769,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IInclinometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3821,7 +3821,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IInclinometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IInclinometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3833,7 +3833,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_YawAccuracy
       (
          this : access IInclinometerReadingYawAccuracy_Interface;
-         RetVal : access Windows.Devices.Sensors.MagnetometerAccuracy
+         RetVal : access WinRt.Windows.Devices.Sensors.MagnetometerAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -3845,7 +3845,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IInclinometerStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IInclinometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometer
       )
       return WinRt.Hresult is abstract;
 
@@ -3857,7 +3857,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefaultForRelativeReadings
       (
          this : access IInclinometerStatics2_Interface;
-         RetVal : access Windows.Devices.Sensors.IInclinometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometer
       )
       return WinRt.Hresult is abstract;
 
@@ -3869,8 +3869,8 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IInclinometerStatics3_Interface;
-         sensorReadingtype : Windows.Devices.Sensors.SensorReadingType;
-         RetVal : access Windows.Devices.Sensors.IInclinometer
+         sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType;
+         RetVal : access WinRt.Windows.Devices.Sensors.IInclinometer
       )
       return WinRt.Hresult is abstract;
 
@@ -3882,7 +3882,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDeviceSelector
       (
          this : access IInclinometerStatics4_Interface;
-         readingType : Windows.Devices.Sensors.SensorReadingType;
+         readingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -3903,7 +3903,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access ILightSensor_Interface;
-         RetVal : access Windows.Devices.Sensors.ILightSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.ILightSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -3932,14 +3932,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access ILightSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access ILightSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3977,7 +3977,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access ILightSensor3_Interface;
-         RetVal : access Windows.Devices.Sensors.ILightSensorDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -4034,14 +4034,14 @@ package WinRt.Windows.Devices.Sensors is
       function get_Chromaticity
       (
          this : access ILightSensorDataThreshold2_Interface;
-         RetVal : access Windows.Devices.Sensors.LightSensorChromaticity
+         RetVal : access WinRt.Windows.Devices.Sensors.LightSensorChromaticity
       )
       return WinRt.Hresult is abstract;
 
       function put_Chromaticity
       (
          this : access ILightSensorDataThreshold2_Interface;
-         value : Windows.Devices.Sensors.LightSensorChromaticity
+         value : WinRt.Windows.Devices.Sensors.LightSensorChromaticity
       )
       return WinRt.Hresult is abstract;
 
@@ -4065,7 +4065,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access ILightSensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -4103,7 +4103,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Chromaticity
       (
          this : access ILightSensorReading3_Interface;
-         RetVal : access Windows.Devices.Sensors.LightSensorChromaticity
+         RetVal : access WinRt.Windows.Devices.Sensors.LightSensorChromaticity
       )
       return WinRt.Hresult is abstract;
 
@@ -4115,7 +4115,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access ILightSensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.ILightSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.ILightSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4127,7 +4127,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access ILightSensorStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.ILightSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.ILightSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -4178,7 +4178,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IMagnetometer_Interface;
-         RetVal : access Windows.Devices.Sensors.IMagnetometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IMagnetometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4207,14 +4207,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IMagnetometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IMagnetometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4226,14 +4226,14 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access IMagnetometer2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access IMagnetometer2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -4271,7 +4271,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_ReportThreshold
       (
          this : access IMagnetometer4_Interface;
-         RetVal : access Windows.Devices.Sensors.IMagnetometerDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.IMagnetometerDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -4342,7 +4342,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IMagnetometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -4370,7 +4370,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_DirectionalAccuracy
       (
          this : access IMagnetometerReading_Interface;
-         RetVal : access Windows.Devices.Sensors.MagnetometerAccuracy
+         RetVal : access WinRt.Windows.Devices.Sensors.MagnetometerAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -4401,7 +4401,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IMagnetometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IMagnetometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IMagnetometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4413,7 +4413,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IMagnetometerStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IMagnetometer
+         RetVal : access WinRt.Windows.Devices.Sensors.IMagnetometer
       )
       return WinRt.Hresult is abstract;
 
@@ -4445,28 +4445,28 @@ package WinRt.Windows.Devices.Sensors is
       function get_Action
       (
          this : access IOnlookerDetectionOptions_Interface;
-         RetVal : access Windows.Devices.Sensors.OnlookerDetectionAction
+         RetVal : access WinRt.Windows.Devices.Sensors.OnlookerDetectionAction
       )
       return WinRt.Hresult is abstract;
 
       function put_Action
       (
          this : access IOnlookerDetectionOptions_Interface;
-         value : Windows.Devices.Sensors.OnlookerDetectionAction
+         value : WinRt.Windows.Devices.Sensors.OnlookerDetectionAction
       )
       return WinRt.Hresult is abstract;
 
       function get_BackOnMode
       (
          this : access IOnlookerDetectionOptions_Interface;
-         RetVal : access Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+         RetVal : access WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode
       )
       return WinRt.Hresult is abstract;
 
       function put_BackOnMode
       (
          this : access IOnlookerDetectionOptions_Interface;
-         value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+         value : WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode
       )
       return WinRt.Hresult is abstract;
 
@@ -4478,7 +4478,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IOrientationSensor_Interface;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4507,14 +4507,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IOrientationSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IOrientationSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4526,21 +4526,21 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access IOrientationSensor2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access IOrientationSensor2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingType
       (
          this : access IOrientationSensor2_Interface;
-         RetVal : access Windows.Devices.Sensors.SensorReadingType
+         RetVal : access WinRt.Windows.Devices.Sensors.SensorReadingType
       )
       return WinRt.Hresult is abstract;
 
@@ -4590,21 +4590,21 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IOrientationSensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationMatrix
       (
          this : access IOrientationSensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.ISensorRotationMatrix
+         RetVal : access WinRt.Windows.Devices.Sensors.ISensorRotationMatrix
       )
       return WinRt.Hresult is abstract;
 
       function get_Quaternion
       (
          this : access IOrientationSensorReading_Interface;
-         RetVal : access Windows.Devices.Sensors.ISensorQuaternion
+         RetVal : access WinRt.Windows.Devices.Sensors.ISensorQuaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -4635,7 +4635,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IOrientationSensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4647,7 +4647,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_YawAccuracy
       (
          this : access IOrientationSensorReadingYawAccuracy_Interface;
-         RetVal : access Windows.Devices.Sensors.MagnetometerAccuracy
+         RetVal : access WinRt.Windows.Devices.Sensors.MagnetometerAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -4659,7 +4659,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IOrientationSensorStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -4671,7 +4671,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefaultForRelativeReadings
       (
          this : access IOrientationSensorStatics2_Interface;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -4683,17 +4683,17 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access IOrientationSensorStatics3_Interface;
-         sensorReadingtype : Windows.Devices.Sensors.SensorReadingType;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensor
+         sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType;
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensor
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access IOrientationSensorStatics3_Interface;
-         sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-         optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal;
-         RetVal : access Windows.Devices.Sensors.IOrientationSensor
+         sensorReadingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+         optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal;
+         RetVal : access WinRt.Windows.Devices.Sensors.IOrientationSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -4705,7 +4705,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDeviceSelector
       (
          this : access IOrientationSensorStatics4_Interface;
-         readingType : Windows.Devices.Sensors.SensorReadingType;
+         readingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4713,8 +4713,8 @@ package WinRt.Windows.Devices.Sensors is
       function GetDeviceSelector
       (
          this : access IOrientationSensorStatics4_Interface;
-         readingType : Windows.Devices.Sensors.SensorReadingType;
-         optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal;
+         readingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+         optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4771,14 +4771,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IPedometer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IPedometer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4802,9 +4802,9 @@ package WinRt.Windows.Devices.Sensors is
       function Create
       (
          this : access IPedometerDataThresholdFactory_Interface;
-         sensor : Windows.Devices.Sensors.IPedometer;
+         sensor : WinRt.Windows.Devices.Sensors.IPedometer;
          stepGoal : WinRt.Int32;
-         RetVal : access Windows.Devices.Sensors.ISensorDataThreshold
+         RetVal : access WinRt.Windows.Devices.Sensors.ISensorDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -4816,7 +4816,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_StepKind
       (
          this : access IPedometerReading_Interface;
-         RetVal : access Windows.Devices.Sensors.PedometerStepKind
+         RetVal : access WinRt.Windows.Devices.Sensors.PedometerStepKind
       )
       return WinRt.Hresult is abstract;
 
@@ -4830,14 +4830,14 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IPedometerReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_CumulativeStepsDuration
       (
          this : access IPedometerReading_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4849,7 +4849,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IPedometerReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IPedometerReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IPedometerReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4883,7 +4883,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetSystemHistoryAsync
       (
          this : access IPedometerStatics_Interface;
-         fromTime : Windows.Foundation.DateTime;
+         fromTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4891,8 +4891,8 @@ package WinRt.Windows.Devices.Sensors is
       function GetSystemHistoryAsync
       (
          this : access IPedometerStatics_Interface;
-         fromTime : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
+         fromTime : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4905,7 +4905,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetReadingsFromTriggerDetails
       (
          this : access IPedometerStatics2_Interface;
-         triggerDetails : Windows.Devices.Sensors.ISensorDataThresholdTriggerDetails;
+         triggerDetails : WinRt.Windows.Devices.Sensors.ISensorDataThresholdTriggerDetails;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4939,7 +4939,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentReading
       (
          this : access IProximitySensor_Interface;
-         RetVal : access Windows.Devices.Sensors.IProximitySensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IProximitySensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -4947,21 +4947,21 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IProximitySensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access IProximitySensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateDisplayOnOffController
       (
          this : access IProximitySensor_Interface;
-         RetVal : access Windows.Foundation.IClosable
+         RetVal : access WinRt.Windows.Foundation.IClosable
       )
       return WinRt.Hresult is abstract;
 
@@ -4973,8 +4973,8 @@ package WinRt.Windows.Devices.Sensors is
       function Create
       (
          this : access IProximitySensorDataThresholdFactory_Interface;
-         sensor : Windows.Devices.Sensors.IProximitySensor;
-         RetVal : access Windows.Devices.Sensors.ISensorDataThreshold
+         sensor : WinRt.Windows.Devices.Sensors.IProximitySensor;
+         RetVal : access WinRt.Windows.Devices.Sensors.ISensorDataThreshold
       )
       return WinRt.Hresult is abstract;
 
@@ -4986,7 +4986,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access IProximitySensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -5012,7 +5012,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_Reading
       (
          this : access IProximitySensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.IProximitySensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.IProximitySensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -5032,7 +5032,7 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access IProximitySensorStatics_Interface;
          sensorId : WinRt.HString;
-         RetVal : access Windows.Devices.Sensors.IProximitySensor
+         RetVal : access WinRt.Windows.Devices.Sensors.IProximitySensor
       )
       return WinRt.Hresult is abstract;
 
@@ -5044,7 +5044,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetReadingsFromTriggerDetails
       (
          this : access IProximitySensorStatics2_Interface;
-         triggerDetails : Windows.Devices.Sensors.ISensorDataThresholdTriggerDetails;
+         triggerDetails : WinRt.Windows.Devices.Sensors.ISensorDataThresholdTriggerDetails;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5069,7 +5069,7 @@ package WinRt.Windows.Devices.Sensors is
       function get_SensorType
       (
          this : access ISensorDataThresholdTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sensors.SensorType
+         RetVal : access WinRt.Windows.Devices.Sensors.SensorType
       )
       return WinRt.Hresult is abstract;
 
@@ -5182,7 +5182,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetCurrentOrientation
       (
          this : access ISimpleOrientationSensor_Interface;
-         RetVal : access Windows.Devices.Sensors.SimpleOrientation
+         RetVal : access WinRt.Windows.Devices.Sensors.SimpleOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -5190,14 +5190,14 @@ package WinRt.Windows.Devices.Sensors is
       (
          this : access ISimpleOrientationSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OrientationChanged
       (
          this : access ISimpleOrientationSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5209,14 +5209,14 @@ package WinRt.Windows.Devices.Sensors is
       function put_ReadingTransform
       (
          this : access ISimpleOrientationSensor2_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadingTransform
       (
          this : access ISimpleOrientationSensor2_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -5240,14 +5240,14 @@ package WinRt.Windows.Devices.Sensors is
       function get_Timestamp
       (
          this : access ISimpleOrientationSensorOrientationChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Orientation
       (
          this : access ISimpleOrientationSensorOrientationChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.SimpleOrientation
+         RetVal : access WinRt.Windows.Devices.Sensors.SimpleOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -5259,7 +5259,7 @@ package WinRt.Windows.Devices.Sensors is
       function GetDefault
       (
          this : access ISimpleOrientationSensorStatics_Interface;
-         RetVal : access Windows.Devices.Sensors.ISimpleOrientationSensor
+         RetVal : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor
       )
       return WinRt.Hresult is abstract;
 
@@ -5339,13 +5339,13 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+      readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType
    )
    return WinRt.WString;
 
    function GetDefault
    (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+      readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType
    )
    return WinRt.Windows.Devices.Sensors.Accelerometer;
 
@@ -5389,7 +5389,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Accelerometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Shaken
@@ -5402,7 +5402,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_Shaken
    (
       this : in out Accelerometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -5414,7 +5414,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Accelerometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -5596,14 +5596,14 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync
    (
-      fromTime : Windows.Foundation.DateTime
+      fromTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject;
 
    function GetSystemHistoryAsync
    (
-      fromTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      fromTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
@@ -5656,7 +5656,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out ActivitySensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5807,7 +5807,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Altimeter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_ReportLatency
@@ -5940,7 +5940,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Barometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_ReportLatency
@@ -6094,7 +6094,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Compass;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -6106,7 +6106,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Compass;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -6317,7 +6317,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Gyrometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -6329,7 +6329,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Gyrometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -6613,7 +6613,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out HingeAngleSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6749,7 +6749,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out HumanPresenceSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsPresenceSupported
@@ -6951,12 +6951,12 @@ package WinRt.Windows.Devices.Sensors is
 
    procedure UpdateSettingsAsync
    (
-      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+      settings : WinRt.Windows.Devices.Sensors.HumanPresenceSettings'Class
    );
 
    procedure UpdateSettings
    (
-      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+      settings : WinRt.Windows.Devices.Sensors.HumanPresenceSettings'Class
    );
 
    function GetSupportedFeaturesForSensorIdAsync
@@ -6982,7 +6982,7 @@ package WinRt.Windows.Devices.Sensors is
 
    procedure remove_SettingsChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7057,7 +7057,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_LockOnLeaveTimeout
    (
       this : in out HumanPresenceSettings;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_IsAttentionAwareDimmingEnabled
@@ -7134,13 +7134,13 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+      sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.Windows.Devices.Sensors.Inclinometer;
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.WString;
 
@@ -7190,7 +7190,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Inclinometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -7202,7 +7202,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Inclinometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -7410,7 +7410,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out LightSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -7491,7 +7491,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_Chromaticity
    (
       this : in out LightSensorDataThreshold;
-      value : Windows.Devices.Sensors.LightSensorChromaticity
+      value : WinRt.Windows.Devices.Sensors.LightSensorChromaticity
    );
 
    -----------------------------------------------------------------------------
@@ -7627,7 +7627,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Magnetometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -7639,7 +7639,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Magnetometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -7801,7 +7801,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_Action
    (
       this : in out OnlookerDetectionOptions;
-      value : Windows.Devices.Sensors.OnlookerDetectionAction
+      value : WinRt.Windows.Devices.Sensors.OnlookerDetectionAction
    );
 
    function get_BackOnMode
@@ -7813,7 +7813,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_BackOnMode
    (
       this : in out OnlookerDetectionOptions;
-      value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+      value : WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode
    );
 
    -----------------------------------------------------------------------------
@@ -7827,14 +7827,14 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+      sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
    function GetDefault
    (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+      sensorReadingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal
    )
    return WinRt.Windows.Devices.Sensors.OrientationSensor;
 
@@ -7846,14 +7846,14 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector_OrientationSensor
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.WString;
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal
    )
    return WinRt.WString;
 
@@ -7900,7 +7900,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out OrientationSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -7912,7 +7912,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out OrientationSensor;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform
@@ -8016,7 +8016,7 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetReadingsFromTriggerDetails
    (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+      triggerDetails : WinRt.Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
    )
    return WinRt.GenericObject;
 
@@ -8034,14 +8034,14 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync_Pedometer
    (
-      fromTime : Windows.Foundation.DateTime
+      fromTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject;
 
    function GetSystemHistoryAsync_Pedometer
    (
-      fromTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      fromTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
@@ -8088,7 +8088,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Pedometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCurrentReadings
@@ -8108,7 +8108,7 @@ package WinRt.Windows.Devices.Sensors is
 
    function Constructor
    (
-      sensor : Windows.Devices.Sensors.Pedometer'Class;
+      sensor : WinRt.Windows.Devices.Sensors.Pedometer'Class;
       stepGoal : WinRt.Int32
    )
    return PedometerDataThreshold;
@@ -8184,7 +8184,7 @@ package WinRt.Windows.Devices.Sensors is
 
    function GetReadingsFromTriggerDetails_ProximitySensor
    (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+      triggerDetails : WinRt.Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
    )
    return WinRt.GenericObject;
 
@@ -8225,7 +8225,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out ProximitySensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateDisplayOnOffController
@@ -8245,7 +8245,7 @@ package WinRt.Windows.Devices.Sensors is
 
    function Constructor
    (
-      sensor : Windows.Devices.Sensors.ProximitySensor'Class
+      sensor : WinRt.Windows.Devices.Sensors.ProximitySensor'Class
    )
    return ProximitySensorDataThreshold;
 
@@ -8465,7 +8465,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure remove_OrientationChanged
    (
       this : in out SimpleOrientationSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -8477,7 +8477,7 @@ package WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out SimpleOrientationSensor;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function get_ReadingTransform

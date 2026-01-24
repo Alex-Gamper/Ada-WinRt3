@@ -133,7 +133,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrint3DWorkflow.all.add_PrintRequested (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -145,7 +145,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_PrintRequested
    (
       this : in out Print3DWorkflow;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -167,7 +167,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow_Interface, WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow2, WinRt.Windows.Devices.Printers.Extensions.IID_IPrint3DWorkflow2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrint3DWorkflow.all);
@@ -182,7 +182,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_PrinterChanged
    (
       this : in out Print3DWorkflow;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -229,7 +229,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.Print3DWorkflowStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflowStatus;
    begin
       Hr := this.m_IPrint3DWorkflowPrintRequestedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -241,7 +241,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
    procedure SetExtendedStatus
    (
       this : in out Print3DWorkflowPrintRequestedEventArgs;
-      value : Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
+      value : WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflowDetail
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -487,7 +487,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTaskConfiguration.all.add_SaveRequested (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -499,7 +499,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
    procedure remove_SaveRequested
    (
       this : in out PrintTaskConfiguration;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -571,14 +571,14 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequestedDeferral do
          Hr := this.m_IPrintTaskConfigurationSaveRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTaskConfigurationSaveRequestedDeferral := new Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral;
+         Retval.m_IPrintTaskConfigurationSaveRequestedDeferral := new WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequestedDeferral;
          Retval.m_IPrintTaskConfigurationSaveRequestedDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -591,7 +591,7 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPrintTaskConfigurationSaveRequest.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -668,14 +668,14 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfigurationSaveRequest do
          Hr := this.m_IPrintTaskConfigurationSaveRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTaskConfigurationSaveRequest := new Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest;
+         Retval.m_IPrintTaskConfigurationSaveRequest := new WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfigurationSaveRequest;
          Retval.m_IPrintTaskConfigurationSaveRequest.all := m_ComRetVal;
       end return;
    end;

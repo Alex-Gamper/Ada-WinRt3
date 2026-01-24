@@ -365,7 +365,7 @@ package WinRt.Windows.Data.Text is
       function get_SourceTextSegment
       (
          this : access IAlternateWordForm_Interface;
-         RetVal : access Windows.Data.Text.TextSegment
+         RetVal : access WinRt.Windows.Data.Text.TextSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -379,7 +379,7 @@ package WinRt.Windows.Data.Text is
       function get_NormalizationFormat
       (
          this : access IAlternateWordForm_Interface;
-         RetVal : access Windows.Data.Text.AlternateNormalizationFormat
+         RetVal : access WinRt.Windows.Data.Text.AlternateNormalizationFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -398,7 +398,7 @@ package WinRt.Windows.Data.Text is
       function get_SourceTextSegment
       (
          this : access ISelectableWordSegment_Interface;
-         RetVal : access Windows.Data.Text.TextSegment
+         RetVal : access WinRt.Windows.Data.Text.TextSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -419,7 +419,7 @@ package WinRt.Windows.Data.Text is
          this : access ISelectableWordsSegmenter_Interface;
          text : WinRt.HString;
          startIndex : WinRt.UInt32;
-         RetVal : access Windows.Data.Text.ISelectableWordSegment
+         RetVal : access WinRt.Windows.Data.Text.ISelectableWordSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -436,7 +436,7 @@ package WinRt.Windows.Data.Text is
          this : access ISelectableWordsSegmenter_Interface;
          text : WinRt.HString;
          startIndex : WinRt.UInt32;
-         handler : Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
+         handler : WinRt.Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -449,7 +449,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access ISelectableWordsSegmenterFactory_Interface;
          language : WinRt.HString;
-         RetVal : access Windows.Data.Text.ISelectableWordsSegmenter
+         RetVal : access WinRt.Windows.Data.Text.ISelectableWordsSegmenter
       )
       return WinRt.Hresult is abstract;
 
@@ -484,7 +484,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access ISemanticTextQueryFactory_Interface;
          aqsFilter : WinRt.HString;
-         RetVal : access Windows.Data.Text.ISemanticTextQuery
+         RetVal : access WinRt.Windows.Data.Text.ISemanticTextQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -493,7 +493,7 @@ package WinRt.Windows.Data.Text is
          this : access ISemanticTextQueryFactory_Interface;
          aqsFilter : WinRt.HString;
          filterLanguage : WinRt.HString;
-         RetVal : access Windows.Data.Text.ISemanticTextQuery
+         RetVal : access WinRt.Windows.Data.Text.ISemanticTextQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -542,7 +542,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access ITextConversionGeneratorFactory_Interface;
          languageTag : WinRt.HString;
-         RetVal : access Windows.Data.Text.ITextConversionGenerator
+         RetVal : access WinRt.Windows.Data.Text.ITextConversionGenerator
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Data.Text is
          this : access ITextPredictionGenerator2_Interface;
          input : WinRt.HString;
          maxCandidates : WinRt.UInt32;
-         predictionOptions : Windows.Data.Text.TextPredictionOptions;
+         predictionOptions : WinRt.Windows.Data.Text.TextPredictionOptions;
          previousStrings : GenericObject;
          RetVal : access GenericObject
       )
@@ -629,14 +629,14 @@ package WinRt.Windows.Data.Text is
       function get_InputScope
       (
          this : access ITextPredictionGenerator2_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextInputScope
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextInputScope
       )
       return WinRt.Hresult is abstract;
 
       function put_InputScope
       (
          this : access ITextPredictionGenerator2_Interface;
-         value : Windows.UI.Text.Core.CoreTextInputScope
+         value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
       )
       return WinRt.Hresult is abstract;
 
@@ -649,7 +649,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access ITextPredictionGeneratorFactory_Interface;
          languageTag : WinRt.HString;
-         RetVal : access Windows.Data.Text.ITextPredictionGenerator
+         RetVal : access WinRt.Windows.Data.Text.ITextPredictionGenerator
       )
       return WinRt.Hresult is abstract;
 
@@ -702,7 +702,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access ITextReverseConversionGeneratorFactory_Interface;
          languageTag : WinRt.HString;
-         RetVal : access Windows.Data.Text.ITextReverseConversionGenerator
+         RetVal : access WinRt.Windows.Data.Text.ITextReverseConversionGenerator
       )
       return WinRt.Hresult is abstract;
 
@@ -837,7 +837,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access IUnicodeCharactersStatics_Interface;
          codepoint : WinRt.UInt32;
-         RetVal : access Windows.Data.Text.UnicodeNumericType
+         RetVal : access WinRt.Windows.Data.Text.UnicodeNumericType
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access IUnicodeCharactersStatics_Interface;
          codepoint : WinRt.UInt32;
-         RetVal : access Windows.Data.Text.UnicodeGeneralCategory
+         RetVal : access WinRt.Windows.Data.Text.UnicodeGeneralCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -864,7 +864,7 @@ package WinRt.Windows.Data.Text is
       function get_SourceTextSegment
       (
          this : access IWordSegment_Interface;
-         RetVal : access Windows.Data.Text.TextSegment
+         RetVal : access WinRt.Windows.Data.Text.TextSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -892,7 +892,7 @@ package WinRt.Windows.Data.Text is
          this : access IWordsSegmenter_Interface;
          text : WinRt.HString;
          startIndex : WinRt.UInt32;
-         RetVal : access Windows.Data.Text.IWordSegment
+         RetVal : access WinRt.Windows.Data.Text.IWordSegment
       )
       return WinRt.Hresult is abstract;
 
@@ -909,7 +909,7 @@ package WinRt.Windows.Data.Text is
          this : access IWordsSegmenter_Interface;
          text : WinRt.HString;
          startIndex : WinRt.UInt32;
-         handler : Windows.Data.Text.WordSegmentsTokenizingHandler
+         handler : WinRt.Windows.Data.Text.WordSegmentsTokenizingHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -922,7 +922,7 @@ package WinRt.Windows.Data.Text is
       (
          this : access IWordsSegmenterFactory_Interface;
          language : WinRt.HString;
-         RetVal : access Windows.Data.Text.IWordsSegmenter
+         RetVal : access WinRt.Windows.Data.Text.IWordsSegmenter
       )
       return WinRt.Hresult is abstract;
 
@@ -1024,7 +1024,7 @@ package WinRt.Windows.Data.Text is
       this : in out SelectableWordsSegmenter;
       text : WinRt.WString;
       startIndex : WinRt.UInt32;
-      handler : Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
+      handler : WinRt.Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
    );
 
    -----------------------------------------------------------------------------
@@ -1183,7 +1183,7 @@ package WinRt.Windows.Data.Text is
       this : in out TextPredictionGenerator;
       input : WinRt.WString;
       maxCandidates : WinRt.UInt32;
-      predictionOptions : Windows.Data.Text.TextPredictionOptions;
+      predictionOptions : WinRt.Windows.Data.Text.TextPredictionOptions;
       previousStrings : GenericObject
    )
    return WinRt.GenericObject;
@@ -1205,7 +1205,7 @@ package WinRt.Windows.Data.Text is
    procedure put_InputScope
    (
       this : in out TextPredictionGenerator;
-      value : Windows.UI.Text.Core.CoreTextInputScope
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
    );
 
    -----------------------------------------------------------------------------
@@ -1433,7 +1433,7 @@ package WinRt.Windows.Data.Text is
       this : in out WordsSegmenter;
       text : WinRt.WString;
       startIndex : WinRt.UInt32;
-      handler : Windows.Data.Text.WordSegmentsTokenizingHandler
+      handler : WinRt.Windows.Data.Text.WordSegmentsTokenizingHandler
    );
 
 end WinRt.Windows.Data.Text;

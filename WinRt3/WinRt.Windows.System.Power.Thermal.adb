@@ -64,7 +64,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelId;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelId;
    begin
       Hr := this.m_IPowerThermalChannelConfiguration.all.get_Id (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -144,22 +144,22 @@ package body WinRt.Windows.System.Power.Thermal is
 
    function Constructor
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return PowerThermalChannelDataConsumer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataConsumer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer");
       m_Factory    : access IPowerThermalChannelDataConsumerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
+      m_ComRetVal  : aliased WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
       function Convert_channelIds is new Ada.Unchecked_Conversion (Address, WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr);
    begin
       return RetVal : PowerThermalChannelDataConsumer do
          Hr := RoGetActivationFactory (m_hString, IID_IPowerThermalChannelDataConsumerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (WinRt.UInt32(channelIds'Length), Convert_channelIds (channelIds (channelIds'First)'Address), m_ComRetVal'Access);
-            Retval.m_IPowerThermalChannelDataConsumer := new Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
+            Retval.m_IPowerThermalChannelDataConsumer := new WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
             Retval.m_IPowerThermalChannelDataConsumer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -178,7 +178,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPowerThermalChannelDataConsumer.all.GetChannelIds (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -204,7 +204,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_PowerThermalChannelId_IPowerThermalChannelConfiguration.Kind;
    begin
       Hr := this.m_IPowerThermalChannelDataConsumer.all.GetChannelConfigurations (m_ComRetVal'Access);
@@ -253,7 +253,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPowerThermalChannelDataConsumer.all.add_ChannelDataReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -265,7 +265,7 @@ package body WinRt.Windows.System.Power.Thermal is
    procedure remove_ChannelDataReceived
    (
       this : in out PowerThermalChannelDataConsumer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -285,7 +285,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalBackEndStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalBackEndStatus;
    begin
       Hr := this.m_IPowerThermalChannelDataConsumer.all.get_BackEndStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -303,7 +303,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPowerThermalChannelDataConsumer.all.add_BackEndStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -315,7 +315,7 @@ package body WinRt.Windows.System.Power.Thermal is
    procedure remove_BackEndStatusChanged
    (
       this : in out PowerThermalChannelDataConsumer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -370,22 +370,22 @@ package body WinRt.Windows.System.Power.Thermal is
 
    function Constructor
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return PowerThermalChannelDataProducer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataProducer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataProducer");
       m_Factory    : access IPowerThermalChannelDataProducerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;
+      m_ComRetVal  : aliased WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;
       function Convert_channelIds is new Ada.Unchecked_Conversion (Address, WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr);
    begin
       return RetVal : PowerThermalChannelDataProducer do
          Hr := RoGetActivationFactory (m_hString, IID_IPowerThermalChannelDataProducerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (WinRt.UInt32(channelIds'Length), Convert_channelIds (channelIds (channelIds'First)'Address), m_ComRetVal'Access);
-            Retval.m_IPowerThermalChannelDataProducer := new Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;
+            Retval.m_IPowerThermalChannelDataProducer := new WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;
             Retval.m_IPowerThermalChannelDataProducer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -404,7 +404,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPowerThermalChannelDataProducer.all.GetChannelIds (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -430,7 +430,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_PowerThermalChannelId_IPowerThermalChannelConfiguration.Kind;
    begin
       Hr := this.m_IPowerThermalChannelDataProducer.all.GetChannelConfigurations (m_ComRetVal'Access);
@@ -445,7 +445,7 @@ package body WinRt.Windows.System.Power.Thermal is
    procedure DisableChannel
    (
       this : in out PowerThermalChannelDataProducer;
-      channelId : Windows.System.Power.Thermal.PowerThermalChannelId
+      channelId : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -488,7 +488,7 @@ package body WinRt.Windows.System.Power.Thermal is
    procedure PublishInputChannelData
    (
       this : in out PowerThermalChannelDataProducer;
-      data : Windows.System.Power.Thermal.PowerThermalChannelData_Array
+      data : WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -509,7 +509,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalBackEndStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalBackEndStatus;
    begin
       Hr := this.m_IPowerThermalChannelDataProducer.all.get_BackEndStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -527,7 +527,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPowerThermalChannelDataProducer.all.add_BackEndStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -539,7 +539,7 @@ package body WinRt.Windows.System.Power.Thermal is
    procedure remove_BackEndStatusChanged
    (
       this : in out PowerThermalChannelDataProducer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -600,7 +600,7 @@ package body WinRt.Windows.System.Power.Thermal is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelData_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IPowerThermalChannelDataReceivedEventArgs.all.GetData (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -648,7 +648,7 @@ package body WinRt.Windows.System.Power.Thermal is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDiagnostics");
       m_Factory        : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDiagnosticsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics;
    begin
       return RetVal : WinRt.Windows.System.Power.Thermal.PowerThermalChannelDiagnostics do
          Hr := RoGetActivationFactory (m_hString, IID_IPowerThermalChannelDiagnosticsStatics'Access , m_Factory'Address);
@@ -658,7 +658,7 @@ package body WinRt.Windows.System.Power.Thermal is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPowerThermalChannelDiagnostics := new Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics;
+            Retval.m_IPowerThermalChannelDiagnostics := new WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics;
             Retval.m_IPowerThermalChannelDiagnostics.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -667,7 +667,7 @@ package body WinRt.Windows.System.Power.Thermal is
 
    function GetDataForChannels
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Array is
       Hr               : WinRt.HResult := S_OK;
@@ -675,7 +675,7 @@ package body WinRt.Windows.System.Power.Thermal is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDiagnostics");
       m_Factory        : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDiagnosticsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelData_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       function Convert_channelIds is new Ada.Unchecked_Conversion (Address, WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr);
    begin
@@ -716,7 +716,7 @@ package body WinRt.Windows.System.Power.Thermal is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelFinder");
          m_Factory        : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelFinderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+         m_ComRetVal      : aliased WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
          m_ComRetValSize  : aliased WinRt.UInt32 := 0;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPowerThermalChannelFinderStatics'Access , m_Factory'Address);

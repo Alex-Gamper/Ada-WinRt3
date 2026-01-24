@@ -156,84 +156,84 @@ package WinRt.Windows.Media.ClosedCaptioning is
       function get_FontColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionColor
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionColor
       )
       return WinRt.Hresult is abstract;
 
       function get_ComputedFontColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_FontOpacity
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
       )
       return WinRt.Hresult is abstract;
 
       function get_FontSize
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionSize
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionSize
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStyle
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionStyle
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionStyle
       )
       return WinRt.Hresult is abstract;
 
       function get_FontEffect
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionColor
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionColor
       )
       return WinRt.Hresult is abstract;
 
       function get_ComputedBackgroundColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundOpacity
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
       )
       return WinRt.Hresult is abstract;
 
       function get_RegionColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionColor
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionColor
       )
       return WinRt.Hresult is abstract;
 
       function get_ComputedRegionColor
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_RegionOpacity
       (
          this : access IClosedCaptionPropertiesStatics_Interface;
-         RetVal : access Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
+         RetVal : access WinRt.Windows.Media.ClosedCaptioning.ClosedCaptionOpacity
       )
       return WinRt.Hresult is abstract;
 
@@ -246,14 +246,14 @@ package WinRt.Windows.Media.ClosedCaptioning is
       (
          this : access IClosedCaptionPropertiesStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertiesChanged
       (
          this : access IClosedCaptionPropertiesStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 

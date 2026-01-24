@@ -361,7 +361,7 @@ package WinRt.Windows.Web.Syndication is
          attributeName : WinRt.HString;
          attributeNamespace : WinRt.HString;
          attributeValue : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationAttribute
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationAttribute
       )
       return WinRt.Hresult is abstract;
 
@@ -421,7 +421,7 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationCategoryFactory_Interface;
          term : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationCategory
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -431,7 +431,7 @@ package WinRt.Windows.Web.Syndication is
          term : WinRt.HString;
          scheme : WinRt.HString;
          label : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationCategory
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -443,28 +443,28 @@ package WinRt.Windows.Web.Syndication is
       function get_ServerCredential
       (
          this : access ISyndicationClient_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerCredential
       (
          this : access ISyndicationClient_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyCredential
       (
          this : access ISyndicationClient_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ProxyCredential
       (
          this : access ISyndicationClient_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.Web.Syndication is
       function RetrieveFeedAsync
       (
          this : access ISyndicationClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -534,8 +534,8 @@ package WinRt.Windows.Web.Syndication is
       function CreateSyndicationClient
       (
          this : access ISyndicationClientFactory_Interface;
-         serverCredential : Windows.Security.Credentials.IPasswordCredential;
-         RetVal : access Windows.Web.Syndication.ISyndicationClient
+         serverCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationClient
       )
       return WinRt.Hresult is abstract;
 
@@ -547,14 +547,14 @@ package WinRt.Windows.Web.Syndication is
       function get_SourceUri
       (
          this : access ISyndicationContent_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_SourceUri
       (
          this : access ISyndicationContent_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -567,16 +567,16 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationContentFactory_Interface;
          text : WinRt.HString;
-         type_x : Windows.Web.Syndication.SyndicationTextType;
-         RetVal : access Windows.Web.Syndication.ISyndicationContent
+         type_x : WinRt.Windows.Web.Syndication.SyndicationTextType;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationContent
       )
       return WinRt.Hresult is abstract;
 
       function CreateSyndicationContentWithSourceUri
       (
          this : access ISyndicationContentFactory_Interface;
-         sourceUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Syndication.ISyndicationContent
+         sourceUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationContent
       )
       return WinRt.Hresult is abstract;
 
@@ -589,7 +589,7 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationErrorStatics_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Web.Syndication.SyndicationErrorStatus
+         RetVal : access WinRt.Windows.Web.Syndication.SyndicationErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -622,28 +622,28 @@ package WinRt.Windows.Web.Syndication is
       function get_Generator
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationGenerator
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationGenerator
       )
       return WinRt.Hresult is abstract;
 
       function put_Generator
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Web.Syndication.ISyndicationGenerator
+         value : WinRt.Windows.Web.Syndication.ISyndicationGenerator
       )
       return WinRt.Hresult is abstract;
 
       function get_IconUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_IconUri
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -671,14 +671,14 @@ package WinRt.Windows.Web.Syndication is
       function get_LastUpdatedTime
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastUpdatedTime
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -692,91 +692,91 @@ package WinRt.Windows.Web.Syndication is
       function get_ImageUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ImageUri
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Rights
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Rights
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_Subtitle
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Subtitle
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_Title
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Title
       (
          this : access ISyndicationFeed_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_FirstUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_LastUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_NextUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviousUri
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceFormat
       (
          this : access ISyndicationFeed_Interface;
-         RetVal : access Windows.Web.Syndication.SyndicationFormat
+         RetVal : access WinRt.Windows.Web.Syndication.SyndicationFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -790,7 +790,7 @@ package WinRt.Windows.Web.Syndication is
       function LoadFromXml
       (
          this : access ISyndicationFeed_Interface;
-         feedDocument : Windows.Data.Xml.Dom.IXmlDocument
+         feedDocument : WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -804,8 +804,8 @@ package WinRt.Windows.Web.Syndication is
          this : access ISyndicationFeedFactory_Interface;
          title : WinRt.HString;
          subtitle : WinRt.HString;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Syndication.ISyndicationFeed
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationFeed
       )
       return WinRt.Hresult is abstract;
 
@@ -831,14 +831,14 @@ package WinRt.Windows.Web.Syndication is
       function get_Uri
       (
          this : access ISyndicationGenerator_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access ISyndicationGenerator_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -865,7 +865,7 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationGeneratorFactory_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationGenerator
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationGenerator
       )
       return WinRt.Hresult is abstract;
 
@@ -898,14 +898,14 @@ package WinRt.Windows.Web.Syndication is
       function get_Content
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationContent
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationContent
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Web.Syndication.ISyndicationContent
+         value : WinRt.Windows.Web.Syndication.ISyndicationContent
       )
       return WinRt.Hresult is abstract;
 
@@ -926,14 +926,14 @@ package WinRt.Windows.Web.Syndication is
       function get_LastUpdatedTime
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastUpdatedTime
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -947,98 +947,98 @@ package WinRt.Windows.Web.Syndication is
       function get_PublishedDate
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_PublishedDate
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Rights
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Rights
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationFeed
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationFeed
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Web.Syndication.ISyndicationFeed
+         value : WinRt.Windows.Web.Syndication.ISyndicationFeed
       )
       return WinRt.Hresult is abstract;
 
       function get_Summary
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Summary
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_Title
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function put_Title
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Web.Syndication.ISyndicationText
+         value : WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
       function get_CommentsUri
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_CommentsUri
       (
          this : access ISyndicationItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_EditUri
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_EditMediaUri
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1052,7 +1052,7 @@ package WinRt.Windows.Web.Syndication is
       function get_ItemUri
       (
          this : access ISyndicationItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1066,7 +1066,7 @@ package WinRt.Windows.Web.Syndication is
       function LoadFromXml
       (
          this : access ISyndicationItem_Interface;
-         itemDocument : Windows.Data.Xml.Dom.IXmlDocument
+         itemDocument : WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1079,9 +1079,9 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationItemFactory_Interface;
          title : WinRt.HString;
-         content : Windows.Web.Syndication.ISyndicationContent;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Syndication.ISyndicationItem
+         content : WinRt.Windows.Web.Syndication.ISyndicationContent;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationItem
       )
       return WinRt.Hresult is abstract;
 
@@ -1149,14 +1149,14 @@ package WinRt.Windows.Web.Syndication is
       function get_Uri
       (
          this : access ISyndicationLink_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access ISyndicationLink_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1182,20 +1182,20 @@ package WinRt.Windows.Web.Syndication is
       function CreateSyndicationLink
       (
          this : access ISyndicationLinkFactory_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Syndication.ISyndicationLink
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationLink
       )
       return WinRt.Hresult is abstract;
 
       function CreateSyndicationLinkEx
       (
          this : access ISyndicationLinkFactory_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          relationship : WinRt.HString;
          title : WinRt.HString;
          mediaType : WinRt.HString;
          length : WinRt.UInt32;
-         RetVal : access Windows.Web.Syndication.ISyndicationLink
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationLink
       )
       return WinRt.Hresult is abstract;
 
@@ -1263,14 +1263,14 @@ package WinRt.Windows.Web.Syndication is
       function get_BaseUri
       (
          this : access ISyndicationNode_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_BaseUri
       (
          this : access ISyndicationNode_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1291,8 +1291,8 @@ package WinRt.Windows.Web.Syndication is
       function GetXmlDocument
       (
          this : access ISyndicationNode_Interface;
-         format : Windows.Web.Syndication.SyndicationFormat;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         format : WinRt.Windows.Web.Syndication.SyndicationFormat;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1307,7 +1307,7 @@ package WinRt.Windows.Web.Syndication is
          nodeName : WinRt.HString;
          nodeNamespace : WinRt.HString;
          nodeValue : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationNode
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1347,14 +1347,14 @@ package WinRt.Windows.Web.Syndication is
       function get_Uri
       (
          this : access ISyndicationPerson_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access ISyndicationPerson_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1367,7 +1367,7 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationPersonFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationPerson
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationPerson
       )
       return WinRt.Hresult is abstract;
 
@@ -1376,8 +1376,8 @@ package WinRt.Windows.Web.Syndication is
          this : access ISyndicationPersonFactory_Interface;
          name : WinRt.HString;
          email : WinRt.HString;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Syndication.ISyndicationPerson
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationPerson
       )
       return WinRt.Hresult is abstract;
 
@@ -1417,14 +1417,14 @@ package WinRt.Windows.Web.Syndication is
       function get_Xml
       (
          this : access ISyndicationText_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function put_Xml
       (
          this : access ISyndicationText_Interface;
-         value : Windows.Data.Xml.Dom.IXmlDocument
+         value : WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1437,7 +1437,7 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationTextFactory_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
@@ -1445,8 +1445,8 @@ package WinRt.Windows.Web.Syndication is
       (
          this : access ISyndicationTextFactory_Interface;
          text : WinRt.HString;
-         type_x : Windows.Web.Syndication.SyndicationTextType;
-         RetVal : access Windows.Web.Syndication.ISyndicationText
+         type_x : WinRt.Windows.Web.Syndication.SyndicationTextType;
+         RetVal : access WinRt.Windows.Web.Syndication.ISyndicationText
       )
       return WinRt.Hresult is abstract;
 
@@ -1635,7 +1635,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationCategory;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -1653,7 +1653,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationCategory;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -1668,7 +1668,7 @@ package WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      serverCredential : Windows.Security.Credentials.PasswordCredential'Class
+      serverCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return SyndicationClient;
 
@@ -1686,7 +1686,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_ServerCredential
    (
       this : in out SyndicationClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -1698,7 +1698,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_ProxyCredential
    (
       this : in out SyndicationClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_MaxResponseBufferSize
@@ -1747,7 +1747,7 @@ package WinRt.Windows.Web.Syndication is
    function RetrieveFeedAsync
    (
       this : in out SyndicationClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationFeed'Class;
 
@@ -1765,13 +1765,13 @@ package WinRt.Windows.Web.Syndication is
    function Constructor
    (
       text : WinRt.WString;
-      type_x : Windows.Web.Syndication.SyndicationTextType
+      type_x : WinRt.Windows.Web.Syndication.SyndicationTextType
    )
    return SyndicationContent;
 
    function Constructor
    (
-      sourceUri : Windows.Foundation.Uri'Class
+      sourceUri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationContent;
 
@@ -1811,7 +1811,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Xml
    (
       this : in out SyndicationContent;
-      value : Windows.Data.Xml.Dom.XmlDocument'Class
+      value : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    function get_NodeName
@@ -1871,7 +1871,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationContent;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -1889,7 +1889,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationContent;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -1902,7 +1902,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_SourceUri
    (
       this : in out SyndicationContent;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1930,7 +1930,7 @@ package WinRt.Windows.Web.Syndication is
    (
       title : WinRt.WString;
       subtitle : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationFeed;
 
@@ -1966,7 +1966,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Generator
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.SyndicationGenerator'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationGenerator'Class
    );
 
    function get_IconUri
@@ -1978,7 +1978,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_IconUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Id
@@ -2008,7 +2008,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_LastUpdatedTime
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Links
@@ -2026,7 +2026,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_ImageUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Rights
@@ -2038,7 +2038,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Rights
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_Subtitle
@@ -2050,7 +2050,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Subtitle
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_Title
@@ -2062,7 +2062,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Title
    (
       this : in out SyndicationFeed;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_FirstUri
@@ -2104,7 +2104,7 @@ package WinRt.Windows.Web.Syndication is
    procedure LoadFromXml
    (
       this : in out SyndicationFeed;
-      feedDocument : Windows.Data.Xml.Dom.XmlDocument'Class
+      feedDocument : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    function get_NodeName
@@ -2164,7 +2164,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationFeed;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -2182,7 +2182,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationFeed;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -2227,7 +2227,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationGenerator;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Version
@@ -2299,7 +2299,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationGenerator;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -2317,7 +2317,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationGenerator;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -2333,8 +2333,8 @@ package WinRt.Windows.Web.Syndication is
    function Constructor
    (
       title : WinRt.WString;
-      content : Windows.Web.Syndication.SyndicationContent'Class;
-      uri : Windows.Foundation.Uri'Class
+      content : WinRt.Windows.Web.Syndication.SyndicationContent'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationItem;
 
@@ -2370,7 +2370,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Content
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.SyndicationContent'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationContent'Class
    );
 
    function get_Id
@@ -2394,7 +2394,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_LastUpdatedTime
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Links
@@ -2412,7 +2412,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_PublishedDate
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Rights
@@ -2424,7 +2424,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Rights
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_Source
@@ -2436,7 +2436,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Source
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.SyndicationFeed'Class
+      value : WinRt.Windows.Web.Syndication.SyndicationFeed'Class
    );
 
    function get_Summary
@@ -2448,7 +2448,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Summary
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_Title
@@ -2460,7 +2460,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Title
    (
       this : in out SyndicationItem;
-      value : Windows.Web.Syndication.ISyndicationText
+      value : WinRt.Windows.Web.Syndication.ISyndicationText
    );
 
    function get_CommentsUri
@@ -2472,7 +2472,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_CommentsUri
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_EditUri
@@ -2508,7 +2508,7 @@ package WinRt.Windows.Web.Syndication is
    procedure LoadFromXml
    (
       this : in out SyndicationItem;
-      itemDocument : Windows.Data.Xml.Dom.XmlDocument'Class
+      itemDocument : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    function get_NodeName
@@ -2568,7 +2568,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -2586,7 +2586,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationItem;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -2603,13 +2603,13 @@ package WinRt.Windows.Web.Syndication is
 
    function Constructor
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationLink;
 
    function Constructor
    (
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       relationship : WinRt.WString;
       title : WinRt.WString;
       mediaType : WinRt.WString;
@@ -2677,7 +2677,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationLink;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ResourceLanguage
@@ -2749,7 +2749,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationLink;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -2767,7 +2767,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationLink;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -2850,7 +2850,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationNode;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -2868,7 +2868,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationNode;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -2891,7 +2891,7 @@ package WinRt.Windows.Web.Syndication is
    (
       name : WinRt.WString;
       email : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return SyndicationPerson;
 
@@ -2933,7 +2933,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Uri
    (
       this : in out SyndicationPerson;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_NodeName
@@ -2993,7 +2993,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationPerson;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -3011,7 +3011,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationPerson;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
@@ -3035,7 +3035,7 @@ package WinRt.Windows.Web.Syndication is
    function Constructor
    (
       text : WinRt.WString;
-      type_x : Windows.Web.Syndication.SyndicationTextType
+      type_x : WinRt.Windows.Web.Syndication.SyndicationTextType
    )
    return SyndicationText;
 
@@ -3075,7 +3075,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_Xml
    (
       this : in out SyndicationText;
-      value : Windows.Data.Xml.Dom.XmlDocument'Class
+      value : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    );
 
    function get_NodeName
@@ -3135,7 +3135,7 @@ package WinRt.Windows.Web.Syndication is
    procedure put_BaseUri
    (
       this : in out SyndicationText;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_AttributeExtensions
@@ -3153,7 +3153,7 @@ package WinRt.Windows.Web.Syndication is
    function GetXmlDocument
    (
       this : in out SyndicationText;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 

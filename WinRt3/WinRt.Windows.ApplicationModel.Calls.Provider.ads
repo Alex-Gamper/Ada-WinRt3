@@ -148,14 +148,14 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
       function get_DisplayPicture
       (
          this : access IPhoneCallOrigin3_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function put_DisplayPicture
       (
          this : access IPhoneCallOrigin3_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -181,7 +181,7 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
       (
          this : access IPhoneCallOriginManagerStatics_Interface;
          requestId : WinRt.Guid;
-         callOrigin : Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin
+         callOrigin : WinRt.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin
       )
       return WinRt.Hresult is abstract;
 
@@ -286,7 +286,7 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
    procedure put_DisplayPicture
    (
       this : in out PhoneCallOrigin;
-      value : Windows.Storage.StorageFile'Class
+      value : WinRt.Windows.Storage.StorageFile'Class
    );
 
    -----------------------------------------------------------------------------
@@ -307,7 +307,7 @@ package WinRt.Windows.ApplicationModel.Calls.Provider is
       procedure SetCallOrigin
       (
          requestId : WinRt.Guid;
-         callOrigin : Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
+         callOrigin : WinRt.Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin'Class
       );
 
    end PhoneCallOriginManager;

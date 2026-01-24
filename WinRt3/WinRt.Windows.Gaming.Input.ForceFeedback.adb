@@ -64,21 +64,21 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor
    (
-      effectKind : Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
+      effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind
    )
    return ConditionForceEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConditionForceEffect");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
       m_Factory    : access IConditionForceEffectFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+      m_ComRetVal  : aliased WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : ConditionForceEffect do
          Hr := RoGetActivationFactory (m_hString, IID_IConditionForceEffectFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (effectKind, m_ComRetVal'Access);
-            Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+            Retval.m_IForceFeedbackEffect := new WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -129,7 +129,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -175,7 +175,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ConditionForceEffectKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IConditionForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IConditionForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
@@ -190,7 +190,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out ConditionForceEffect;
-      direction : Windows.Foundation.Numerics.Vector3;
+      direction : WinRt.Windows.Foundation.Numerics.Vector3;
       positiveCoefficient : WinRt.Single;
       negativeCoefficient : WinRt.Single;
       maxPositiveMagnitude : WinRt.Single;
@@ -238,13 +238,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    function Constructor return ConstantForceEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConstantForceEffect");
-      m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_ComRetVal  : aliased WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : ConstantForceEffect do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+            Retval.m_IForceFeedbackEffect := new WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -294,7 +294,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -334,8 +334,8 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out ConstantForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
-      duration : Windows.Foundation.TimeSpan
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
+      duration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -354,14 +354,14 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParametersWithEnvelope
    (
       this : in out ConstantForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -475,7 +475,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectAxes;
    begin
       Hr := this.m_IForceFeedbackMotor.all.get_SupportedAxes (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -487,7 +487,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    function LoadEffectAsync
    (
       this : in out ForceFeedbackMotor;
-      effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+      effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
    )
    return WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackLoadEffectResult is
       Hr               : WinRt.HResult := S_OK;
@@ -782,7 +782,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    function TryUnloadEffectAsync
    (
       this : in out ForceFeedbackMotor;
-      effect : Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
+      effect : WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -868,21 +868,21 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
 
    function Constructor
    (
-      effectKind : Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
+      effectKind : WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind
    )
    return PeriodicForceEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
       m_Factory    : access IPeriodicForceEffectFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+      m_ComRetVal  : aliased WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : PeriodicForceEffect do
          Hr := RoGetActivationFactory (m_hString, IID_IPeriodicForceEffectFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (effectKind, m_ComRetVal'Access);
-            Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+            Retval.m_IForceFeedbackEffect := new WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -933,7 +933,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -979,7 +979,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.PeriodicForceEffectKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect_Interface, WinRt.Windows.Gaming.Input.ForceFeedback.IPeriodicForceEffect, WinRt.Windows.Gaming.Input.ForceFeedback.IID_IPeriodicForceEffect'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IForceFeedbackEffect.all);
@@ -994,11 +994,11 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out PeriodicForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       frequency : WinRt.Single;
       phase : WinRt.Single;
       bias : WinRt.Single;
-      duration : Windows.Foundation.TimeSpan
+      duration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1017,17 +1017,17 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParametersWithEnvelope
    (
       this : in out PeriodicForceEffect;
-      vector : Windows.Foundation.Numerics.Vector3;
+      vector : WinRt.Windows.Foundation.Numerics.Vector3;
       frequency : WinRt.Single;
       phase : WinRt.Single;
       bias : WinRt.Single;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1070,13 +1070,13 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    function Constructor return RampForceEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.RampForceEffect");
-      m_ComRetVal  : aliased Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_ComRetVal  : aliased WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : RampForceEffect do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IForceFeedbackEffect := new Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
+            Retval.m_IForceFeedbackEffect := new WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
             Retval.m_IForceFeedbackEffect.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1126,7 +1126,7 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.Input.ForceFeedback.ForceFeedbackEffectState;
    begin
       Hr := this.m_IForceFeedbackEffect.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1166,9 +1166,9 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParameters
    (
       this : in out RampForceEffect;
-      startVector : Windows.Foundation.Numerics.Vector3;
-      endVector : Windows.Foundation.Numerics.Vector3;
-      duration : Windows.Foundation.TimeSpan
+      startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      endVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      duration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1187,15 +1187,15 @@ package body WinRt.Windows.Gaming.Input.ForceFeedback is
    procedure SetParametersWithEnvelope
    (
       this : in out RampForceEffect;
-      startVector : Windows.Foundation.Numerics.Vector3;
-      endVector : Windows.Foundation.Numerics.Vector3;
+      startVector : WinRt.Windows.Foundation.Numerics.Vector3;
+      endVector : WinRt.Windows.Foundation.Numerics.Vector3;
       attackGain : WinRt.Single;
       sustainGain : WinRt.Single;
       releaseGain : WinRt.Single;
-      startDelay : Windows.Foundation.TimeSpan;
-      attackDuration : Windows.Foundation.TimeSpan;
-      sustainDuration : Windows.Foundation.TimeSpan;
-      releaseDuration : Windows.Foundation.TimeSpan;
+      startDelay : WinRt.Windows.Foundation.TimeSpan;
+      attackDuration : WinRt.Windows.Foundation.TimeSpan;
+      sustainDuration : WinRt.Windows.Foundation.TimeSpan;
+      releaseDuration : WinRt.Windows.Foundation.TimeSpan;
       repeatCount : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;

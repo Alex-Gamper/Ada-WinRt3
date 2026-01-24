@@ -75,7 +75,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager");
       m_Factory        : access WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticatorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationManager do
          Hr := RoGetActivationFactory (m_hString, IID_IMicrosoftAccountMultiFactorAuthenticatorStatics'Access , m_Factory'Address);
@@ -85,7 +85,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMicrosoftAccountMultiFactorAuthenticationManager := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
+            Retval.m_IMicrosoftAccountMultiFactorAuthenticationManager := new WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorAuthenticationManager;
             Retval.m_IMicrosoftAccountMultiFactorAuthenticationManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -151,7 +151,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorOneTimeCodedInfo;
+                  Retval.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo := new WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorOneTimeCodedInfo;
                   Retval.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -426,7 +426,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMicrosoftAccountMultiFactorGetSessionsResult := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorGetSessionsResult;
+                  Retval.m_IMicrosoftAccountMultiFactorGetSessionsResult := new WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorGetSessionsResult;
                   Retval.m_IMicrosoftAccountMultiFactorGetSessionsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -493,7 +493,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo := new Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo;
+                  Retval.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo := new WinRt.Windows.Security.Authentication.Identity.Core.IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo;
                   Retval.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -509,8 +509,8 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    function ApproveSessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
-      authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
+      sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+      authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
@@ -574,10 +574,10 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    function ApproveSessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      sessionAuthentictionStatus : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
+      sessionAuthentictionStatus : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionAuthenticationStatus;
       userAccountId : WinRt.WString;
       sessionId : WinRt.WString;
-      sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
+      sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
@@ -645,7 +645,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
    function DenySessionAsync
    (
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
-      authenticationSessionInfo : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
+      authenticationSessionInfo : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionInfo'Class
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
@@ -711,7 +711,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       this : in out MicrosoftAccountMultiFactorAuthenticationManager;
       userAccountId : WinRt.WString;
       sessionId : WinRt.WString;
-      sessionAuthenticationType : Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
+      sessionAuthenticationType : WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType
    )
    return WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse is
       Hr               : WinRt.HResult := S_OK;
@@ -807,7 +807,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.get_Sessions (m_ComRetVal'Access);
@@ -827,7 +827,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.get_ServiceResponse (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -887,7 +887,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_TimeInterval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -904,7 +904,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_TimeToLive (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -921,7 +921,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.get_ServiceResponse (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1021,7 +1021,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorSessionApprovalStatus;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_ApprovalStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1038,7 +1038,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorAuthenticationType;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_AuthenticationType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1055,7 +1055,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_RequestTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1072,7 +1072,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.get_ExpirationTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1112,7 +1112,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMicrosoftAccountMultiFactorSessionInfo.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_Sessions (m_ComRetVal'Access);
@@ -1132,7 +1132,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_UnregisteredAccounts (m_ComRetVal'Access);
@@ -1152,7 +1152,7 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Identity.Core.MicrosoftAccountMultiFactorServiceResponse;
    begin
       Hr := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.get_ServiceResponse (m_ComRetVal'Access);
       if Hr /= S_OK then

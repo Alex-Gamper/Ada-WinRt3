@@ -436,14 +436,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_DetailsKind
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
       )
       return WinRt.Hresult is abstract;
 
       function put_DetailsKind
       (
          this : access IUserDataTask_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
       )
       return WinRt.Hresult is abstract;
 
@@ -464,49 +464,49 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_Kind
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Priority
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
       )
       return WinRt.Hresult is abstract;
 
       function put_Priority
       (
          this : access IUserDataTask_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
       )
       return WinRt.Hresult is abstract;
 
       function get_RecurrenceProperties
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_RecurrenceProperties
       (
          this : access IUserDataTask_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_RegenerationProperties
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_RegenerationProperties
       (
          this : access IUserDataTask_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -527,14 +527,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_Sensitivity
       (
          this : access IUserDataTask_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
       )
       return WinRt.Hresult is abstract;
 
       function put_Sensitivity
       (
          this : access IUserDataTask_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
       )
       return WinRt.Hresult is abstract;
 
@@ -621,64 +621,64 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_OtherAppReadAccess
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IUserDataTaskList_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_OtherAppWriteAccess
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppWriteAccess
       (
          this : access IUserDataTaskList_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_LimitedWriteOperations
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListLimitedWriteOperations
       )
       return WinRt.Hresult is abstract;
 
       function get_SyncManager
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskListSyncManager
       )
       return WinRt.Hresult is abstract;
 
       function RegisterSyncManagerAsync
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetTaskReader
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader
       )
       return WinRt.Hresult is abstract;
 
       function GetTaskReader
       (
          this : access IUserDataTaskList_Interface;
-         options : Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader
+         options : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskReader
       )
       return WinRt.Hresult is abstract;
 
@@ -693,8 +693,8 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function SaveTaskAsync
       (
          this : access IUserDataTaskList_Interface;
-         userDataTask_p : Windows.ApplicationModel.UserDataTasks.IUserDataTask;
-         RetVal : access Windows.Foundation.IAsyncAction
+         userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -702,21 +702,21 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       (
          this : access IUserDataTaskList_Interface;
          userDataTaskId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IUserDataTaskList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -736,7 +736,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function TryCreateOrUpdateTaskAsync
       (
          this : access IUserDataTaskListLimitedWriteOperations_Interface;
-         userDataTask_p : Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+         userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -765,42 +765,42 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_LastAttemptedSyncTime
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastAttemptedSyncTime
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastSuccessfulSyncTime
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastSuccessfulSyncTime
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -815,14 +815,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       (
          this : access IUserDataTaskListSyncManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncStatusChanged
       (
          this : access IUserDataTaskListSyncManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -834,7 +834,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function RequestStoreAsync
       (
          this : access IUserDataTaskManager_Interface;
-         accessType : Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -842,7 +842,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_User
       (
          this : access IUserDataTaskManager_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -854,15 +854,15 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function GetDefault
       (
          this : access IUserDataTaskManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IUserDataTaskManagerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTaskManager
       )
       return WinRt.Hresult is abstract;
 
@@ -874,28 +874,28 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_SortProperty
       (
          this : access IUserDataTaskQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
       )
       return WinRt.Hresult is abstract;
 
       function put_SortProperty
       (
          this : access IUserDataTaskQueryOptions_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IUserDataTaskQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IUserDataTaskQueryOptions_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
       )
       return WinRt.Hresult is abstract;
 
@@ -919,14 +919,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_Unit
       (
          this : access IUserDataTaskRecurrenceProperties_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
       )
       return WinRt.Hresult is abstract;
 
       function put_Unit
       (
          this : access IUserDataTaskRecurrenceProperties_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,14 +1036,14 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
       function get_Unit
       (
          this : access IUserDataTaskRegenerationProperties_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
       )
       return WinRt.Hresult is abstract;
 
       function put_Unit
       (
          this : access IUserDataTaskRegenerationProperties_Interface;
-         value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
+         value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1203,7 +1203,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_DetailsKind
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskDetailsKind
    );
 
    function get_DueDate
@@ -1233,7 +1233,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Priority
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskPriority
    );
 
    function get_RecurrenceProperties
@@ -1245,7 +1245,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_RecurrenceProperties
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties'Class
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties'Class
    );
 
    function get_RegenerationProperties
@@ -1257,7 +1257,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_RegenerationProperties
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties'Class
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties'Class
    );
 
    function get_Reminder
@@ -1281,7 +1281,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Sensitivity
    (
       this : in out UserDataTask;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskSensitivity
    );
 
    function get_Subject
@@ -1371,7 +1371,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_OtherAppReadAccess
    (
       this : in out UserDataTaskList;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppReadAccess
    );
 
    function get_OtherAppWriteAccess
@@ -1383,7 +1383,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_OtherAppWriteAccess
    (
       this : in out UserDataTaskList;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListOtherAppWriteAccess
    );
 
    function get_LimitedWriteOperations
@@ -1412,7 +1412,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    function GetTaskReader
    (
       this : in out UserDataTaskList;
-      options : Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskReader'Class;
 
@@ -1426,7 +1426,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure SaveTaskAsync
    (
       this : in out UserDataTaskList;
-      userDataTask_p : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    );
 
    procedure DeleteTaskAsync
@@ -1464,7 +1464,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    function TryCreateOrUpdateTaskAsync
    (
       this : in out UserDataTaskListLimitedWriteOperations;
-      userDataTask_p : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      userDataTask_p : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    )
    return WinRt.Boolean;
 
@@ -1500,7 +1500,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_LastAttemptedSyncTime
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_LastSuccessfulSyncTime
@@ -1512,7 +1512,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_LastSuccessfulSyncTime
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Status
@@ -1524,7 +1524,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Status
    (
       this : in out UserDataTaskListSyncManager;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskListSyncStatus
    );
 
    function SyncAsync
@@ -1543,7 +1543,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure remove_SyncStatusChanged
    (
       this : in out UserDataTaskListSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1560,7 +1560,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskManager;
 
@@ -1570,7 +1570,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    function RequestStoreAsync
    (
       this : in out UserDataTaskManager;
-      accessType : Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskStore'Class;
 
@@ -1603,7 +1603,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_SortProperty
    (
       this : in out UserDataTaskQueryOptions;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQuerySortProperty
    );
 
    function get_Kind
@@ -1615,7 +1615,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Kind
    (
       this : in out UserDataTaskQueryOptions;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryKind
    );
 
    -----------------------------------------------------------------------------
@@ -1656,7 +1656,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Unit
    (
       this : in out UserDataTaskRecurrenceProperties;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceUnit
    );
 
    function get_Occurrences
@@ -1766,7 +1766,7 @@ package WinRt.Windows.ApplicationModel.UserDataTasks is
    procedure put_Unit
    (
       this : in out UserDataTaskRegenerationProperties;
-      value : Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
+      value : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationUnit
    );
 
    function get_Occurrences

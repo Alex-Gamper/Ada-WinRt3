@@ -147,7 +147,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       function get_Action
       (
          this : access IPerformLocalActionRequestedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
       )
       return WinRt.Hresult is abstract;
 
@@ -159,7 +159,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       function SetConnectionStatus
       (
          this : access IRemoteDesktopConnectionInfo_Interface;
-         value : Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
+         value : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -177,7 +177,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       function PerformLocalActionFromRemote
       (
          this : access IRemoteDesktopConnectionInfo2_Interface;
-         action : Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
+         action : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
       )
       return WinRt.Hresult is abstract;
 
@@ -189,9 +189,9 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       function GetForLaunchUri
       (
          this : access IRemoteDesktopConnectionInfoStatics_Interface;
-         launchUri : Windows.Foundation.IUriRuntimeClass;
-         windowId : Windows.UI.WindowId;
-         RetVal : access Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo
+         launchUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         windowId : WinRt.Windows.UI.WindowId;
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -210,14 +210,14 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       (
          this : access IRemoteDesktopConnectionRemoteInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SwitchToLocalSessionRequested
       (
          this : access IRemoteDesktopConnectionRemoteInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -225,14 +225,14 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       (
          this : access IRemoteDesktopConnectionRemoteInfo_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PerformLocalActionRequested
       (
          this : access IRemoteDesktopConnectionRemoteInfo_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -251,8 +251,8 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
       function GetForLaunchUri
       (
          this : access IRemoteDesktopConnectionRemoteInfoStatics_Interface;
-         launchUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo
+         launchUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopConnectionRemoteInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -285,7 +285,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
          this : access IRemoteDesktopInfoFactory_Interface;
          id : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -340,8 +340,8 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class;
-      windowId : Windows.UI.WindowId
+      launchUri : WinRt.Windows.Foundation.Uri'Class;
+      windowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionInfo;
 
@@ -351,7 +351,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
    procedure SetConnectionStatus
    (
       this : in out RemoteDesktopConnectionInfo;
-      value : Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
+      value : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionStatus
    );
 
    procedure SwitchToLocalSession
@@ -362,7 +362,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
    procedure PerformLocalActionFromRemote
    (
       this : in out RemoteDesktopConnectionInfo;
-      action : Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
+      action : WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopLocalAction
    );
 
    -----------------------------------------------------------------------------
@@ -379,7 +379,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
 
    function GetForLaunchUri
    (
-      launchUri : Windows.Foundation.Uri'Class
+      launchUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.System.RemoteDesktop.Provider.RemoteDesktopConnectionRemoteInfo;
 
@@ -401,7 +401,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
    procedure remove_SwitchToLocalSessionRequested
    (
       this : in out RemoteDesktopConnectionRemoteInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PerformLocalActionRequested
@@ -414,7 +414,7 @@ package WinRt.Windows.System.RemoteDesktop.Provider is
    procedure remove_PerformLocalActionRequested
    (
       this : in out RemoteDesktopConnectionRemoteInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close

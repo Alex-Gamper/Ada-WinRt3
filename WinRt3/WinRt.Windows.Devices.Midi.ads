@@ -373,7 +373,7 @@ package WinRt.Windows.Devices.Midi is
          this : access IMidiChannelPressureMessageFactory_Interface;
          channel : WinRt.Byte;
          pressure : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiChannelPressureMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiChannelPressureMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -414,7 +414,7 @@ package WinRt.Windows.Devices.Midi is
          channel : WinRt.Byte;
          controller : WinRt.Byte;
          controlValue : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiControlChangeMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiControlChangeMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -427,14 +427,14 @@ package WinRt.Windows.Devices.Midi is
       (
          this : access IMidiInPort_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access IMidiInPort_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -473,21 +473,21 @@ package WinRt.Windows.Devices.Midi is
       function get_Timestamp
       (
          this : access IMidiMessage_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_RawData
       (
          this : access IMidiMessage_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access IMidiMessage_Interface;
-         RetVal : access Windows.Devices.Midi.MidiMessageType
+         RetVal : access WinRt.Windows.Devices.Midi.MidiMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -499,7 +499,7 @@ package WinRt.Windows.Devices.Midi is
       function get_Message
       (
          this : access IMidiMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Midi.IMidiMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -540,7 +540,7 @@ package WinRt.Windows.Devices.Midi is
          channel : WinRt.Byte;
          note : WinRt.Byte;
          velocity : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiNoteOffMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiNoteOffMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -581,7 +581,7 @@ package WinRt.Windows.Devices.Midi is
          channel : WinRt.Byte;
          note : WinRt.Byte;
          velocity : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiNoteOnMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiNoteOnMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -593,14 +593,14 @@ package WinRt.Windows.Devices.Midi is
       function SendMessage
       (
          this : access IMidiOutPort_Interface;
-         midiMessage : Windows.Devices.Midi.IMidiMessage
+         midiMessage : WinRt.Windows.Devices.Midi.IMidiMessage
       )
       return WinRt.Hresult is abstract;
 
       function SendBuffer
       (
          this : access IMidiOutPort_Interface;
-         midiData : Windows.Storage.Streams.IBuffer
+         midiData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -660,7 +660,7 @@ package WinRt.Windows.Devices.Midi is
          this : access IMidiPitchBendChangeMessageFactory_Interface;
          channel : WinRt.Byte;
          bend : WinRt.UInt16;
-         RetVal : access Windows.Devices.Midi.IMidiPitchBendChangeMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiPitchBendChangeMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -701,7 +701,7 @@ package WinRt.Windows.Devices.Midi is
          channel : WinRt.Byte;
          note : WinRt.Byte;
          pressure : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -734,7 +734,7 @@ package WinRt.Windows.Devices.Midi is
          this : access IMidiProgramChangeMessageFactory_Interface;
          channel : WinRt.Byte;
          program : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiProgramChangeMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiProgramChangeMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -759,7 +759,7 @@ package WinRt.Windows.Devices.Midi is
       (
          this : access IMidiSongPositionPointerMessageFactory_Interface;
          beats : WinRt.UInt16;
-         RetVal : access Windows.Devices.Midi.IMidiSongPositionPointerMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiSongPositionPointerMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -784,7 +784,7 @@ package WinRt.Windows.Devices.Midi is
       (
          this : access IMidiSongSelectMessageFactory_Interface;
          song : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiSongSelectMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiSongSelectMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.Devices.Midi is
       function get_AudioDevice
       (
          this : access IMidiSynthesizer_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -829,7 +829,7 @@ package WinRt.Windows.Devices.Midi is
       function CreateAsync
       (
          this : access IMidiSynthesizerStatics_Interface;
-         audioDevice : Windows.Devices.Enumeration.IDeviceInformation;
+         audioDevice : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -837,7 +837,7 @@ package WinRt.Windows.Devices.Midi is
       function IsSynthesizer
       (
          this : access IMidiSynthesizerStatics_Interface;
-         midiDevice : Windows.Devices.Enumeration.IDeviceInformation;
+         midiDevice : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -850,8 +850,8 @@ package WinRt.Windows.Devices.Midi is
       function CreateMidiSystemExclusiveMessage
       (
          this : access IMidiSystemExclusiveMessageFactory_Interface;
-         rawData : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Midi.IMidiMessage
+         rawData : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -884,7 +884,7 @@ package WinRt.Windows.Devices.Midi is
          this : access IMidiTimeCodeMessageFactory_Interface;
          frameType : WinRt.Byte;
          values : WinRt.Byte;
-         RetVal : access Windows.Devices.Midi.IMidiTimeCodeMessage
+         RetVal : access WinRt.Windows.Devices.Midi.IMidiTimeCodeMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1094,7 +1094,7 @@ package WinRt.Windows.Devices.Midi is
    procedure remove_MessageReceived
    (
       this : in out MidiInPort;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceId
@@ -1259,13 +1259,13 @@ package WinRt.Windows.Devices.Midi is
    procedure SendMessage
    (
       this : in out MidiOutPort;
-      midiMessage : Windows.Devices.Midi.IMidiMessage
+      midiMessage : WinRt.Windows.Devices.Midi.IMidiMessage
    );
 
    procedure SendBuffer
    (
       this : in out MidiOutPort;
-      midiData : Windows.Storage.Streams.IBuffer
+      midiData : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_DeviceId
@@ -1595,13 +1595,13 @@ package WinRt.Windows.Devices.Midi is
 
    function CreateAsync
    (
-      audioDevice : Windows.Devices.Enumeration.DeviceInformation'Class
+      audioDevice : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Windows.Devices.Midi.MidiSynthesizer;
 
    function IsSynthesizer
    (
-      midiDevice : Windows.Devices.Enumeration.DeviceInformation'Class
+      midiDevice : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Boolean;
 
@@ -1629,13 +1629,13 @@ package WinRt.Windows.Devices.Midi is
    procedure SendMessage
    (
       this : in out MidiSynthesizer;
-      midiMessage : Windows.Devices.Midi.IMidiMessage
+      midiMessage : WinRt.Windows.Devices.Midi.IMidiMessage
    );
 
    procedure SendBuffer
    (
       this : in out MidiSynthesizer;
-      midiData : Windows.Storage.Streams.IBuffer
+      midiData : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_DeviceId
@@ -1660,7 +1660,7 @@ package WinRt.Windows.Devices.Midi is
 
    function Constructor
    (
-      rawData : Windows.Storage.Streams.IBuffer
+      rawData : WinRt.Windows.Storage.Streams.IBuffer
    )
    return MidiSystemExclusiveMessage;
 

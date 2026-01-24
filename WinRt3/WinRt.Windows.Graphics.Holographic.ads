@@ -448,7 +448,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_RenderTargetSize
       (
          this : access IHolographicCamera_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -502,21 +502,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_LeftViewportParameters
       (
          this : access IHolographicCamera2_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCameraViewportParameters
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_RightViewportParameters
       (
          this : access IHolographicCamera2_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCameraViewportParameters
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_Display
       (
          this : access IHolographicCamera2_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicDisplay
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicDisplay
       )
       return WinRt.Hresult is abstract;
 
@@ -599,7 +599,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_ViewConfiguration
       (
          this : access IHolographicCamera6_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicViewConfiguration
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -611,21 +611,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_HolographicCamera
       (
          this : access IHolographicCameraPose_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCamera
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCamera
       )
       return WinRt.Hresult is abstract;
 
       function get_Viewport
       (
          this : access IHolographicCameraPose_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function TryGetViewTransform
       (
          this : access IHolographicCameraPose_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -633,14 +633,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_ProjectionTransform
       (
          this : access IHolographicCameraPose_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicStereoTransform
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
       )
       return WinRt.Hresult is abstract;
 
       function TryGetCullingFrustum
       (
          this : access IHolographicCameraPose_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -648,7 +648,7 @@ package WinRt.Windows.Graphics.Holographic is
       function TryGetVisibleFrustum
       (
          this : access IHolographicCameraPose_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -675,23 +675,23 @@ package WinRt.Windows.Graphics.Holographic is
       function OverrideViewTransform
       (
          this : access IHolographicCameraPose2_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         coordinateSystemToViewTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystemToViewTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
       )
       return WinRt.Hresult is abstract;
 
       function OverrideProjectionTransform
       (
          this : access IHolographicCameraPose2_Interface;
-         projectionTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+         projectionTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
       )
       return WinRt.Hresult is abstract;
 
       function OverrideViewport
       (
          this : access IHolographicCameraPose2_Interface;
-         leftViewport : Windows.Foundation.Rect;
-         rightViewport : Windows.Foundation.Rect
+         leftViewport : WinRt.Windows.Foundation.Rect;
+         rightViewport : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -703,41 +703,41 @@ package WinRt.Windows.Graphics.Holographic is
       function SetFocusPoint
       (
          this : access IHolographicCameraRenderingParameters_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function SetFocusPoint
       (
          this : access IHolographicCameraRenderingParameters_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3;
-         normal : Windows.Foundation.Numerics.Vector3
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         normal : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function SetFocusPoint
       (
          this : access IHolographicCameraRenderingParameters_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3;
-         normal : Windows.Foundation.Numerics.Vector3;
-         linearVelocity : Windows.Foundation.Numerics.Vector3
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         normal : WinRt.Windows.Foundation.Numerics.Vector3;
+         linearVelocity : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Direct3D11Device
       (
          this : access IHolographicCameraRenderingParameters_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_Direct3D11BackBuffer
       (
          this : access IHolographicCameraRenderingParameters_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -749,21 +749,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_ReprojectionMode
       (
          this : access IHolographicCameraRenderingParameters2_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicReprojectionMode
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicReprojectionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ReprojectionMode
       (
          this : access IHolographicCameraRenderingParameters2_Interface;
-         value : Windows.Graphics.Holographic.HolographicReprojectionMode
+         value : WinRt.Windows.Graphics.Holographic.HolographicReprojectionMode
       )
       return WinRt.Hresult is abstract;
 
       function CommitDirect3D11DepthBuffer
       (
          this : access IHolographicCameraRenderingParameters2_Interface;
-         value : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -794,14 +794,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_DepthReprojectionMethod
       (
          this : access IHolographicCameraRenderingParameters4_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_DepthReprojectionMethod
       (
          this : access IHolographicCameraRenderingParameters4_Interface;
-         value : Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
+         value : WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -814,7 +814,7 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicCameraViewportParameters_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Foundation.Numerics.Vector2_Ptr
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -822,7 +822,7 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicCameraViewportParameters_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Foundation.Numerics.Vector2_Ptr
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector2_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -841,7 +841,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_MaxViewportSize
       (
          this : access IHolographicDisplay_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -862,14 +862,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_AdapterId
       (
          this : access IHolographicDisplay_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicAdapterId
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicAdapterId
       )
       return WinRt.Hresult is abstract;
 
       function get_SpatialLocator
       (
          this : access IHolographicDisplay_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialLocator
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialLocator
       )
       return WinRt.Hresult is abstract;
 
@@ -893,8 +893,8 @@ package WinRt.Windows.Graphics.Holographic is
       function TryGetViewConfiguration
       (
          this : access IHolographicDisplay3_Interface;
-         kind : Windows.Graphics.Holographic.HolographicViewConfigurationKind;
-         RetVal : access Windows.Graphics.Holographic.IHolographicViewConfiguration
+         kind : WinRt.Windows.Graphics.Holographic.HolographicViewConfigurationKind;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -906,7 +906,7 @@ package WinRt.Windows.Graphics.Holographic is
       function GetDefault
       (
          this : access IHolographicDisplayStatics_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicDisplay
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicDisplay
       )
       return WinRt.Hresult is abstract;
 
@@ -932,22 +932,22 @@ package WinRt.Windows.Graphics.Holographic is
       function GetRenderingParameters
       (
          this : access IHolographicFrame_Interface;
-         cameraPose : Windows.Graphics.Holographic.IHolographicCameraPose;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCameraRenderingParameters
+         cameraPose : WinRt.Windows.Graphics.Holographic.IHolographicCameraPose;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IHolographicFrame_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentPrediction
       (
          this : access IHolographicFrame_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicFramePrediction
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicFramePrediction
       )
       return WinRt.Hresult is abstract;
 
@@ -960,15 +960,15 @@ package WinRt.Windows.Graphics.Holographic is
       function PresentUsingCurrentPrediction
       (
          this : access IHolographicFrame_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicFramePresentResult
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult
       )
       return WinRt.Hresult is abstract;
 
       function PresentUsingCurrentPrediction
       (
          this : access IHolographicFrame_Interface;
-         waitBehavior : Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior;
-         RetVal : access Windows.Graphics.Holographic.HolographicFramePresentResult
+         waitBehavior : WinRt.Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior;
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult
       )
       return WinRt.Hresult is abstract;
 
@@ -986,8 +986,8 @@ package WinRt.Windows.Graphics.Holographic is
       function GetQuadLayerUpdateParameters
       (
          this : access IHolographicFrame2_Interface;
-         layer : Windows.Graphics.Holographic.IHolographicQuadLayer;
-         RetVal : access Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters
+         layer : WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -999,7 +999,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_Id
       (
          this : access IHolographicFrame3_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicFrameId
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicFrameId
       )
       return WinRt.Hresult is abstract;
 
@@ -1018,7 +1018,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_Timestamp
       (
          this : access IHolographicFramePrediction_Interface;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
@@ -1042,21 +1042,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_CompositorGpuDuration
       (
          this : access IHolographicFramePresentationReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_AppGpuDuration
       (
          this : access IHolographicFramePresentationReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_AppGpuOverrun
       (
          this : access IHolographicFramePresentationReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1082,7 +1082,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_FrameId
       (
          this : access IHolographicFrameRenderingReport_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicFrameId
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicFrameId
       )
       return WinRt.Hresult is abstract;
 
@@ -1096,21 +1096,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_SystemRelativeFrameReadyTime
       (
          this : access IHolographicFrameRenderingReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemRelativeActualGpuFinishTime
       (
          this : access IHolographicFrameRenderingReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemRelativeTargetLatchTime
       (
          this : access IHolographicFrameRenderingReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1134,7 +1134,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_RenderingReport
       (
          this : access IHolographicFrameScanoutReport_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicFrameRenderingReport
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicFrameRenderingReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1148,21 +1148,21 @@ package WinRt.Windows.Graphics.Holographic is
       function get_SystemRelativeLatchTime
       (
          this : access IHolographicFrameScanoutReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemRelativeScanoutStartTime
       (
          this : access IHolographicFrameScanoutReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemRelativePhotonTime
       (
          this : access IHolographicFrameScanoutReport_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1174,14 +1174,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_PixelFormat
       (
          this : access IHolographicQuadLayer_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access IHolographicQuadLayer_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1193,17 +1193,17 @@ package WinRt.Windows.Graphics.Holographic is
       function Create
       (
          this : access IHolographicQuadLayerFactory_Interface;
-         size : Windows.Foundation.Size;
-         RetVal : access Windows.Graphics.Holographic.IHolographicQuadLayer
+         size : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithPixelFormat
       (
          this : access IHolographicQuadLayerFactory_Interface;
-         size : Windows.Foundation.Size;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         RetVal : access Windows.Graphics.Holographic.IHolographicQuadLayer
+         size : WinRt.Windows.Foundation.Size;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer
       )
       return WinRt.Hresult is abstract;
 
@@ -1215,14 +1215,14 @@ package WinRt.Windows.Graphics.Holographic is
       function AcquireBufferToUpdateContent
       (
          this : access IHolographicQuadLayerUpdateParameters_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
       function UpdateViewport
       (
          this : access IHolographicQuadLayerUpdateParameters_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1236,24 +1236,24 @@ package WinRt.Windows.Graphics.Holographic is
       function UpdateExtents
       (
          this : access IHolographicQuadLayerUpdateParameters_Interface;
-         value : Windows.Foundation.Numerics.Vector2
+         value : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
       function UpdateLocationWithStationaryMode
       (
          this : access IHolographicQuadLayerUpdateParameters_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         position : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function UpdateLocationWithDisplayRelativeMode
       (
          this : access IHolographicQuadLayerUpdateParameters_Interface;
-         position : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion
+         position : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -1272,7 +1272,7 @@ package WinRt.Windows.Graphics.Holographic is
       function AcquireBufferToUpdateContentWithHardwareProtection
       (
          this : access IHolographicQuadLayerUpdateParameters2_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -1284,14 +1284,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_PrimaryAdapterId
       (
          this : access IHolographicSpace_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicAdapterId
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicAdapterId
       )
       return WinRt.Hresult is abstract;
 
       function SetDirect3D11Device
       (
          this : access IHolographicSpace_Interface;
-         value : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+         value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1299,14 +1299,14 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpace_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraAdded
       (
          this : access IHolographicSpace_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1314,21 +1314,21 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpace_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraRemoved
       (
          this : access IHolographicSpace_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateNextFrame
       (
          this : access IHolographicSpace_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicFrame
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1340,7 +1340,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_UserPresence
       (
          this : access IHolographicSpace2_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicSpaceUserPresence
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicSpaceUserPresence
       )
       return WinRt.Hresult is abstract;
 
@@ -1348,14 +1348,14 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpace2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserPresenceChanged
       (
          this : access IHolographicSpace2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1368,7 +1368,7 @@ package WinRt.Windows.Graphics.Holographic is
       function WaitForNextFrameReadyWithHeadStart
       (
          this : access IHolographicSpace2_Interface;
-         requestedHeadStartDuration : Windows.Foundation.TimeSpan
+         requestedHeadStartDuration : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1376,7 +1376,7 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpace2_Interface;
          maxQueuedReports : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Holographic.IHolographicFramePresentationMonitor
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicFramePresentationMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -1389,7 +1389,7 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpace3_Interface;
          maxQueuedReports : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -1401,14 +1401,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_Camera
       (
          this : access IHolographicSpaceCameraAddedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCamera
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCamera
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IHolographicSpaceCameraAddedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1420,7 +1420,7 @@ package WinRt.Windows.Graphics.Holographic is
       function get_Camera
       (
          this : access IHolographicSpaceCameraRemovedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicCamera
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicCamera
       )
       return WinRt.Hresult is abstract;
 
@@ -1432,8 +1432,8 @@ package WinRt.Windows.Graphics.Holographic is
       function CreateForCoreWindow
       (
          this : access IHolographicSpaceStatics_Interface;
-         window : Windows.UI.Core.ICoreWindow;
-         RetVal : access Windows.Graphics.Holographic.IHolographicSpace
+         window : WinRt.Windows.UI.Core.ICoreWindow;
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicSpace
       )
       return WinRt.Hresult is abstract;
 
@@ -1460,14 +1460,14 @@ package WinRt.Windows.Graphics.Holographic is
       (
          this : access IHolographicSpaceStatics2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsAvailableChanged
       (
          this : access IHolographicSpaceStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1491,22 +1491,22 @@ package WinRt.Windows.Graphics.Holographic is
       function get_NativeRenderTargetSize
       (
          this : access IHolographicViewConfiguration_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_RenderTargetSize
       (
          this : access IHolographicViewConfiguration_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function RequestRenderTargetSize
       (
          this : access IHolographicViewConfiguration_Interface;
-         size : Windows.Foundation.Size;
-         RetVal : access Windows.Foundation.Size
+         size : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1520,14 +1520,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_PixelFormat
       (
          this : access IHolographicViewConfiguration_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_PixelFormat
       (
          this : access IHolographicViewConfiguration_Interface;
-         value : Windows.Graphics.DirectX.DirectXPixelFormat
+         value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1548,14 +1548,14 @@ package WinRt.Windows.Graphics.Holographic is
       function get_Kind
       (
          this : access IHolographicViewConfiguration_Interface;
-         RetVal : access Windows.Graphics.Holographic.HolographicViewConfigurationKind
+         RetVal : access WinRt.Windows.Graphics.Holographic.HolographicViewConfigurationKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Display
       (
          this : access IHolographicViewConfiguration_Interface;
-         RetVal : access Windows.Graphics.Holographic.IHolographicDisplay
+         RetVal : access WinRt.Windows.Graphics.Holographic.IHolographicDisplay
       )
       return WinRt.Hresult is abstract;
 
@@ -1738,7 +1738,7 @@ package WinRt.Windows.Graphics.Holographic is
    function TryGetViewTransform
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_HolographicStereoTransform.Kind;
 
@@ -1751,14 +1751,14 @@ package WinRt.Windows.Graphics.Holographic is
    function TryGetCullingFrustum
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.GenericObject;
 
    function TryGetVisibleFrustum
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.GenericObject;
 
@@ -1777,21 +1777,21 @@ package WinRt.Windows.Graphics.Holographic is
    procedure OverrideViewTransform
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      coordinateSystemToViewTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      coordinateSystemToViewTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
    );
 
    procedure OverrideProjectionTransform
    (
       this : in out HolographicCameraPose;
-      projectionTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+      projectionTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
    );
 
    procedure OverrideViewport
    (
       this : in out HolographicCameraPose;
-      leftViewport : Windows.Foundation.Rect;
-      rightViewport : Windows.Foundation.Rect
+      leftViewport : WinRt.Windows.Foundation.Rect;
+      rightViewport : WinRt.Windows.Foundation.Rect
    );
 
    -----------------------------------------------------------------------------
@@ -1806,25 +1806,25 @@ package WinRt.Windows.Graphics.Holographic is
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      normal : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      normal : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      normal : Windows.Foundation.Numerics.Vector3;
-      linearVelocity : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      normal : WinRt.Windows.Foundation.Numerics.Vector3;
+      linearVelocity : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Direct3D11Device
@@ -1848,13 +1848,13 @@ package WinRt.Windows.Graphics.Holographic is
    procedure put_ReprojectionMode
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.Holographic.HolographicReprojectionMode
+      value : WinRt.Windows.Graphics.Holographic.HolographicReprojectionMode
    );
 
    procedure CommitDirect3D11DepthBuffer
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    );
 
    function get_IsContentProtectionEnabled
@@ -1878,7 +1878,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure put_DepthReprojectionMethod
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
+      value : WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
    );
 
    -----------------------------------------------------------------------------
@@ -1962,7 +1962,7 @@ package WinRt.Windows.Graphics.Holographic is
    function TryGetViewConfiguration
    (
       this : in out HolographicDisplay;
-      kind : Windows.Graphics.Holographic.HolographicViewConfigurationKind
+      kind : WinRt.Windows.Graphics.Holographic.HolographicViewConfigurationKind
    )
    return WinRt.Windows.Graphics.Holographic.HolographicViewConfiguration'Class;
 
@@ -1990,7 +1990,7 @@ package WinRt.Windows.Graphics.Holographic is
    function GetRenderingParameters
    (
       this : in out HolographicFrame;
-      cameraPose : Windows.Graphics.Holographic.HolographicCameraPose'Class
+      cameraPose : WinRt.Windows.Graphics.Holographic.HolographicCameraPose'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicCameraRenderingParameters'Class;
 
@@ -2020,7 +2020,7 @@ package WinRt.Windows.Graphics.Holographic is
    function PresentUsingCurrentPrediction
    (
       this : in out HolographicFrame;
-      waitBehavior : Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior
+      waitBehavior : WinRt.Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior
    )
    return WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult;
 
@@ -2032,7 +2032,7 @@ package WinRt.Windows.Graphics.Holographic is
    function GetQuadLayerUpdateParameters
    (
       this : in out HolographicFrame;
-      layer : Windows.Graphics.Holographic.HolographicQuadLayer'Class
+      layer : WinRt.Windows.Graphics.Holographic.HolographicQuadLayer'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicQuadLayerUpdateParameters'Class;
 
@@ -2231,14 +2231,14 @@ package WinRt.Windows.Graphics.Holographic is
 
    function Constructor
    (
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return HolographicQuadLayer;
 
    function Constructor
    (
-      size : Windows.Foundation.Size;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat
+      size : WinRt.Windows.Foundation.Size;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    )
    return HolographicQuadLayer;
 
@@ -2280,7 +2280,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure UpdateViewport
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure UpdateContentProtectionEnabled
@@ -2292,22 +2292,22 @@ package WinRt.Windows.Graphics.Holographic is
    procedure UpdateExtents
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    procedure UpdateLocationWithStationaryMode
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure UpdateLocationWithDisplayRelativeMode
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    function get_CanAcquireWithHardwareProtection
@@ -2345,12 +2345,12 @@ package WinRt.Windows.Graphics.Holographic is
 
    procedure remove_IsAvailableChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateForCoreWindow
    (
-      window : Windows.UI.Core.CoreWindow'Class
+      window : WinRt.Windows.UI.Core.CoreWindow'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicSpace;
 
@@ -2369,7 +2369,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure SetDirect3D11Device
    (
       this : in out HolographicSpace;
-      value : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+      value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
    );
 
    function add_CameraAdded
@@ -2382,7 +2382,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure remove_CameraAdded
    (
       this : in out HolographicSpace;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CameraRemoved
@@ -2395,7 +2395,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure remove_CameraRemoved
    (
       this : in out HolographicSpace;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateNextFrame
@@ -2420,7 +2420,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure remove_UserPresenceChanged
    (
       this : in out HolographicSpace;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure WaitForNextFrameReady
@@ -2431,7 +2431,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure WaitForNextFrameReadyWithHeadStart
    (
       this : in out HolographicSpace;
-      requestedHeadStartDuration : Windows.Foundation.TimeSpan
+      requestedHeadStartDuration : WinRt.Windows.Foundation.TimeSpan
    );
 
    function CreateFramePresentationMonitor
@@ -2508,7 +2508,7 @@ package WinRt.Windows.Graphics.Holographic is
    function RequestRenderTargetSize
    (
       this : in out HolographicViewConfiguration;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Foundation.Size;
 
@@ -2527,7 +2527,7 @@ package WinRt.Windows.Graphics.Holographic is
    procedure put_PixelFormat
    (
       this : in out HolographicViewConfiguration;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    );
 
    function get_IsStereo

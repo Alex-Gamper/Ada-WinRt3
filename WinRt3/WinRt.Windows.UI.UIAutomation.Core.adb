@@ -67,7 +67,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.UIAutomation.Core.AutomationRemoteOperationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationStatus;
    begin
       Hr := this.m_IAutomationRemoteOperationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -84,7 +84,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAutomationRemoteOperationResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -113,7 +113,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    function HasOperand
    (
       this : in out AutomationRemoteOperationResult;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -131,7 +131,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    function GetOperand
    (
       this : in out AutomationRemoteOperationResult;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -160,7 +160,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.CoreAutomationRegistrar");
          m_Factory        : access WinRt.Windows.UI.UIAutomation.Core.ICoreAutomationRegistrarStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration;
+         m_ComRetVal      : aliased WinRt.Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICoreAutomationRegistrarStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -176,7 +176,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
 
       procedure UnregisterAnnotationType
       (
-         registration : Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
+         registration : WinRt.Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -223,13 +223,13 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    function Constructor return CoreAutomationRemoteOperation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.CoreAutomationRemoteOperation");
-      m_ComRetVal  : aliased Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation");
+      m_ComRetVal  : aliased WinRt.Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation;
    begin
       return RetVal : CoreAutomationRemoteOperation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICoreAutomationRemoteOperation := new Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation;
+            Retval.m_ICoreAutomationRemoteOperation := new WinRt.Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation;
             Retval.m_ICoreAutomationRemoteOperation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -260,8 +260,8 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure ImportElement
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      element : Windows.UI.UIAutomation.AutomationElement'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      element : WinRt.Windows.UI.UIAutomation.AutomationElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -276,8 +276,8 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure ImportTextRange
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      textRange : Windows.UI.UIAutomation.AutomationTextRange'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      textRange : WinRt.Windows.UI.UIAutomation.AutomationTextRange'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -292,7 +292,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure AddToResults
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -313,7 +313,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult;
       function Convert_bytecodeBuffer is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationResult do
@@ -321,7 +321,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationRemoteOperationResult := new Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult;
+         Retval.m_IAutomationRemoteOperationResult := new WinRt.Windows.UI.UIAutomation.Core.IAutomationRemoteOperationResult;
          Retval.m_IAutomationRemoteOperationResult.all := m_ComRetVal;
       end return;
    end;
@@ -329,8 +329,8 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure ImportConnectionBoundObject
    (
       this : in out CoreAutomationRemoteOperation;
-      operandId : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
-      connectionBoundObject : Windows.UI.UIAutomation.AutomationConnectionBoundObject'Class
+      operandId : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      connectionBoundObject : WinRt.Windows.UI.UIAutomation.AutomationConnectionBoundObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -372,7 +372,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    function GetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -390,7 +390,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure SetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
       operand : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -406,7 +406,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure SetOperand
    (
       this : in out CoreAutomationRemoteOperationContext;
-      id : Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
+      id : WinRt.Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId;
       operand : WinRt.IInspectable;
       operandInterfaceId : WinRt.Guid
    ) is
@@ -450,17 +450,17 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    return RemoteAutomationClientSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.RemoteAutomationClientSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession");
       m_Factory    : access IRemoteAutomationClientSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
+      m_ComRetVal  : aliased WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : RemoteAutomationClientSession do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteAutomationClientSessionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_name, m_ComRetVal'Access);
-            Retval.m_IRemoteAutomationClientSession := new Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
+            Retval.m_IRemoteAutomationClientSession := new WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
             Retval.m_IRemoteAutomationClientSession.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -477,17 +477,17 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    return RemoteAutomationClientSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.RemoteAutomationClientSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession");
       m_Factory    : access IRemoteAutomationClientSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
+      m_ComRetVal  : aliased WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : RemoteAutomationClientSession do
          Hr := RoGetActivationFactory (m_hString, IID_IRemoteAutomationClientSessionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance2 (HStr_name, sessionId, m_ComRetVal'Access);
-            Retval.m_IRemoteAutomationClientSession := new Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
+            Retval.m_IRemoteAutomationClientSession := new WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
             Retval.m_IRemoteAutomationClientSession.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -583,7 +583,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IRemoteAutomationWindow := new Windows.UI.UIAutomation.Core.IRemoteAutomationWindow;
+                  Retval.m_IRemoteAutomationWindow := new WinRt.Windows.UI.UIAutomation.Core.IRemoteAutomationWindow;
                   Retval.m_IRemoteAutomationWindow.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -622,7 +622,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteAutomationClientSession.all.add_ConnectionRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -634,7 +634,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure remove_ConnectionRequested
    (
       this : in out RemoteAutomationClientSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -655,7 +655,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRemoteAutomationClientSession.all.add_Disconnected (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -667,7 +667,7 @@ package body WinRt.Windows.UI.UIAutomation.Core is
    procedure remove_Disconnected
    (
       this : in out RemoteAutomationClientSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

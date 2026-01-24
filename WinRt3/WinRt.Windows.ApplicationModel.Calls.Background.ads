@@ -225,7 +225,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       function get_CallBlockedReason
       (
          this : access IPhoneCallBlockedTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -277,7 +277,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       function get_DismissalTime
       (
          this : access IPhoneIncomingCallDismissedTriggerDetails_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -291,7 +291,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       function get_Reason
       (
          this : access IPhoneIncomingCallDismissedTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.Background.PhoneIncomingCallDismissedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -329,14 +329,14 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
       function get_ChangeType
       (
          this : access IPhoneLineChangedTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind
+         RetVal : access WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind
       )
       return WinRt.Hresult is abstract;
 
       function HasLinePropertyChanged
       (
          this : access IPhoneLineChangedTriggerDetails_Interface;
-         lineProperty : Windows.ApplicationModel.Calls.Background.PhoneLineProperties;
+         lineProperty : WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineProperties;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -511,7 +511,7 @@ package WinRt.Windows.ApplicationModel.Calls.Background is
    function HasLinePropertyChanged
    (
       this : in out PhoneLineChangedTriggerDetails;
-      lineProperty : Windows.ApplicationModel.Calls.Background.PhoneLineProperties
+      lineProperty : WinRt.Windows.ApplicationModel.Calls.Background.PhoneLineProperties
    )
    return WinRt.Boolean;
 

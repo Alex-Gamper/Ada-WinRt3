@@ -57,21 +57,21 @@ package body WinRt.Windows.System.Threading.Core is
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler
+      handler : WinRt.Windows.System.Threading.WorkItemHandler
    )
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Threading.Core.IPreallocatedWorkItem;
+      m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
    begin
       return RetVal : PreallocatedWorkItem do
          Hr := RoGetActivationFactory (m_hString, IID_IPreallocatedWorkItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWorkItem (handler, m_ComRetVal'Access);
-            Retval.m_IPreallocatedWorkItem := new Windows.System.Threading.Core.IPreallocatedWorkItem;
+            Retval.m_IPreallocatedWorkItem := new WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
             Retval.m_IPreallocatedWorkItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -81,22 +81,22 @@ package body WinRt.Windows.System.Threading.Core is
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler;
-      priority : Windows.System.Threading.WorkItemPriority
+      handler : WinRt.Windows.System.Threading.WorkItemHandler;
+      priority : WinRt.Windows.System.Threading.WorkItemPriority
    )
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Threading.Core.IPreallocatedWorkItem;
+      m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
    begin
       return RetVal : PreallocatedWorkItem do
          Hr := RoGetActivationFactory (m_hString, IID_IPreallocatedWorkItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWorkItemWithPriority (handler, priority, m_ComRetVal'Access);
-            Retval.m_IPreallocatedWorkItem := new Windows.System.Threading.Core.IPreallocatedWorkItem;
+            Retval.m_IPreallocatedWorkItem := new WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
             Retval.m_IPreallocatedWorkItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -106,23 +106,23 @@ package body WinRt.Windows.System.Threading.Core is
 
    function Constructor
    (
-      handler : Windows.System.Threading.WorkItemHandler;
-      priority : Windows.System.Threading.WorkItemPriority;
-      options : Windows.System.Threading.WorkItemOptions
+      handler : WinRt.Windows.System.Threading.WorkItemHandler;
+      priority : WinRt.Windows.System.Threading.WorkItemPriority;
+      options : WinRt.Windows.System.Threading.WorkItemOptions
    )
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.System.Threading.Core.IPreallocatedWorkItem;
+      m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
    begin
       return RetVal : PreallocatedWorkItem do
          Hr := RoGetActivationFactory (m_hString, IID_IPreallocatedWorkItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWorkItemWithPriorityAndOptions (handler, priority, options, m_ComRetVal'Access);
-            Retval.m_IPreallocatedWorkItem := new Windows.System.Threading.Core.IPreallocatedWorkItem;
+            Retval.m_IPreallocatedWorkItem := new WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
             Retval.m_IPreallocatedWorkItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -181,7 +181,7 @@ package body WinRt.Windows.System.Threading.Core is
    function Invoke
    (
       this : access SignalHandler_Delegate;
-      signalNotifier_p : Windows.System.Threading.Core.ISignalNotifier;
+      signalNotifier_p : WinRt.Windows.System.Threading.Core.ISignalNotifier;
       timedOut : WinRt.Boolean
    )
    return WinRt.Hresult is
@@ -217,7 +217,7 @@ package body WinRt.Windows.System.Threading.Core is
    function AttachToEvent
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier is
       Hr               : WinRt.HResult := S_OK;
@@ -225,7 +225,7 @@ package body WinRt.Windows.System.Threading.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.SignalNotifier");
       m_Factory        : access WinRt.Windows.System.Threading.Core.ISignalNotifierStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.Core.ISignalNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.Core.ISignalNotifier;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.System.Threading.Core.SignalNotifier do
@@ -236,7 +236,7 @@ package body WinRt.Windows.System.Threading.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISignalNotifier := new Windows.System.Threading.Core.ISignalNotifier;
+            Retval.m_ISignalNotifier := new WinRt.Windows.System.Threading.Core.ISignalNotifier;
             Retval.m_ISignalNotifier.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -247,8 +247,8 @@ package body WinRt.Windows.System.Threading.Core is
    function AttachToEvent
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler;
-      timeout : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier is
       Hr               : WinRt.HResult := S_OK;
@@ -256,7 +256,7 @@ package body WinRt.Windows.System.Threading.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.SignalNotifier");
       m_Factory        : access WinRt.Windows.System.Threading.Core.ISignalNotifierStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.Core.ISignalNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.Core.ISignalNotifier;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.System.Threading.Core.SignalNotifier do
@@ -267,7 +267,7 @@ package body WinRt.Windows.System.Threading.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISignalNotifier := new Windows.System.Threading.Core.ISignalNotifier;
+            Retval.m_ISignalNotifier := new WinRt.Windows.System.Threading.Core.ISignalNotifier;
             Retval.m_ISignalNotifier.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -278,7 +278,7 @@ package body WinRt.Windows.System.Threading.Core is
    function AttachToSemaphore
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier is
       Hr               : WinRt.HResult := S_OK;
@@ -286,7 +286,7 @@ package body WinRt.Windows.System.Threading.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.SignalNotifier");
       m_Factory        : access WinRt.Windows.System.Threading.Core.ISignalNotifierStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.Core.ISignalNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.Core.ISignalNotifier;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.System.Threading.Core.SignalNotifier do
@@ -297,7 +297,7 @@ package body WinRt.Windows.System.Threading.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISignalNotifier := new Windows.System.Threading.Core.ISignalNotifier;
+            Retval.m_ISignalNotifier := new WinRt.Windows.System.Threading.Core.ISignalNotifier;
             Retval.m_ISignalNotifier.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -308,8 +308,8 @@ package body WinRt.Windows.System.Threading.Core is
    function AttachToSemaphore
    (
       name : WinRt.WString;
-      handler : Windows.System.Threading.Core.SignalHandler;
-      timeout : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.Core.SignalNotifier is
       Hr               : WinRt.HResult := S_OK;
@@ -317,7 +317,7 @@ package body WinRt.Windows.System.Threading.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.SignalNotifier");
       m_Factory        : access WinRt.Windows.System.Threading.Core.ISignalNotifierStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.Core.ISignalNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.Core.ISignalNotifier;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.System.Threading.Core.SignalNotifier do
@@ -328,7 +328,7 @@ package body WinRt.Windows.System.Threading.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISignalNotifier := new Windows.System.Threading.Core.ISignalNotifier;
+            Retval.m_ISignalNotifier := new WinRt.Windows.System.Threading.Core.ISignalNotifier;
             Retval.m_ISignalNotifier.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

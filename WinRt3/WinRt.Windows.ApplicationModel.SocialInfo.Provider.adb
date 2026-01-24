@@ -93,14 +93,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedContent do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISocialFeedContent := new Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
+         Retval.m_ISocialFeedContent := new WinRt.Windows.ApplicationModel.SocialInfo.ISocialFeedContent;
          Retval.m_ISocialFeedContent.all := m_ComRetVal;
       end return;
    end;
@@ -113,7 +113,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISocialDashboardItemUpdater.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -125,7 +125,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    procedure put_Timestamp
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -140,7 +140,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    procedure put_Thumbnail
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
+      value : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -160,14 +160,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SocialInfo.SocialItemThumbnail do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISocialItemThumbnail := new Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
+         Retval.m_ISocialItemThumbnail := new WinRt.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
          Retval.m_ISocialItemThumbnail.all := m_ComRetVal;
       end return;
    end;
@@ -222,14 +222,14 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISocialDashboardItemUpdater.all.get_TargetUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -237,7 +237,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
    procedure put_TargetUri
    (
       this : in out SocialDashboardItemUpdater;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -300,7 +300,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.SocialInfo.SocialFeedKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind;
    begin
       Hr := this.m_ISocialFeedUpdater.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -317,7 +317,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISocialFeedItem.Kind;
    begin
       Hr := this.m_ISocialFeedUpdater.all.get_Items (m_ComRetVal'Access);
@@ -377,8 +377,8 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
 
       function CreateSocialFeedUpdaterAsync
       (
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind;
-         mode : Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind;
+         mode : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode;
          ownerRemoteId : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater is
@@ -436,7 +436,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ISocialFeedUpdater := new Windows.ApplicationModel.SocialInfo.Provider.ISocialFeedUpdater;
+                        Retval.m_ISocialFeedUpdater := new WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialFeedUpdater;
                         Retval.m_ISocialFeedUpdater.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -511,7 +511,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ISocialDashboardItemUpdater := new Windows.ApplicationModel.SocialInfo.Provider.ISocialDashboardItemUpdater;
+                        Retval.m_ISocialDashboardItemUpdater := new WinRt.Windows.ApplicationModel.SocialInfo.Provider.ISocialDashboardItemUpdater;
                         Retval.m_ISocialDashboardItemUpdater.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -554,7 +554,7 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       procedure ReportNewContentAvailable
       (
          contactRemoteId : WinRt.WString;
-         kind : Windows.ApplicationModel.SocialInfo.SocialFeedKind
+         kind : WinRt.Windows.ApplicationModel.SocialInfo.SocialFeedKind
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;

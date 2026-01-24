@@ -107,7 +107,7 @@ package WinRt.Windows.Devices.Sensors.Custom is
       function GetCurrentReading
       (
          this : access ICustomSensor_Interface;
-         RetVal : access Windows.Devices.Sensors.Custom.ICustomSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -143,14 +143,14 @@ package WinRt.Windows.Devices.Sensors.Custom is
       (
          this : access ICustomSensor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReadingChanged
       (
          this : access ICustomSensor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -188,7 +188,7 @@ package WinRt.Windows.Devices.Sensors.Custom is
       function get_Timestamp
       (
          this : access ICustomSensorReading_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -219,7 +219,7 @@ package WinRt.Windows.Devices.Sensors.Custom is
       function get_Reading
       (
          this : access ICustomSensorReadingChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sensors.Custom.ICustomSensorReading
+         RetVal : access WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading
       )
       return WinRt.Hresult is abstract;
 
@@ -314,7 +314,7 @@ package WinRt.Windows.Devices.Sensors.Custom is
    procedure remove_ReadingChanged
    (
       this : in out CustomSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_ReportLatency

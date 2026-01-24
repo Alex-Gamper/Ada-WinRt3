@@ -209,39 +209,39 @@ package WinRt.Windows.Networking.Proximity is
    -----------------------------------------------------------------------------
 
    IID_DeviceArrivedEventHandler : aliased WinRt.IID := (4020886121, 63201, 18889, (164, 158, 142, 15, 197, 143, 185, 17 ));
-   type DeviceArrivedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Networking.Proximity.IProximityDevice)) is new WinRt.IMulticastDelegate_Interface (IID_DeviceArrivedEventHandler'Access) with null record;
+   type DeviceArrivedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Networking.Proximity.IProximityDevice)) is new WinRt.IMulticastDelegate_Interface (IID_DeviceArrivedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DeviceArrivedEventHandler_Delegate;
-         sender : Windows.Networking.Proximity.IProximityDevice
+         sender : WinRt.Windows.Networking.Proximity.IProximityDevice
       )
       return WinRt.Hresult;
 
    IID_DeviceDepartedEventHandler : aliased WinRt.IID := (4020886121, 63202, 18889, (164, 158, 142, 15, 197, 143, 185, 17 ));
-   type DeviceDepartedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Networking.Proximity.IProximityDevice)) is new WinRt.IMulticastDelegate_Interface (IID_DeviceDepartedEventHandler'Access) with null record;
+   type DeviceDepartedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Networking.Proximity.IProximityDevice)) is new WinRt.IMulticastDelegate_Interface (IID_DeviceDepartedEventHandler'Access) with null record;
       function Invoke
       (
          this : access DeviceDepartedEventHandler_Delegate;
-         sender : Windows.Networking.Proximity.IProximityDevice
+         sender : WinRt.Windows.Networking.Proximity.IProximityDevice
       )
       return WinRt.Hresult;
 
    IID_MessageReceivedHandler : aliased WinRt.IID := (4020963202, 63202, 18037, (160, 69, 216, 227, 32, 194, 72, 8 ));
-   type MessageReceivedHandler_Delegate (Callback : access procedure  (sender : Windows.Networking.Proximity.IProximityDevice;message : Windows.Networking.Proximity.IProximityMessage)) is new WinRt.IMulticastDelegate_Interface (IID_MessageReceivedHandler'Access) with null record;
+   type MessageReceivedHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Networking.Proximity.IProximityDevice;message : WinRt.Windows.Networking.Proximity.IProximityMessage)) is new WinRt.IMulticastDelegate_Interface (IID_MessageReceivedHandler'Access) with null record;
       function Invoke
       (
          this : access MessageReceivedHandler_Delegate;
-         sender : Windows.Networking.Proximity.IProximityDevice;
-         message : Windows.Networking.Proximity.IProximityMessage
+         sender : WinRt.Windows.Networking.Proximity.IProximityDevice;
+         message : WinRt.Windows.Networking.Proximity.IProximityMessage
       )
       return WinRt.Hresult;
 
    IID_MessageTransmittedHandler : aliased WinRt.IID := (4020898634, 63202, 19837, (133, 108, 120, 252, 142, 252, 2, 30 ));
-   type MessageTransmittedHandler_Delegate (Callback : access procedure  (sender : Windows.Networking.Proximity.IProximityDevice;messageId : WinRt.Int64)) is new WinRt.IMulticastDelegate_Interface (IID_MessageTransmittedHandler'Access) with null record;
+   type MessageTransmittedHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Networking.Proximity.IProximityDevice;messageId : WinRt.Int64)) is new WinRt.IMulticastDelegate_Interface (IID_MessageTransmittedHandler'Access) with null record;
       function Invoke
       (
          this : access MessageTransmittedHandler_Delegate;
-         sender : Windows.Networking.Proximity.IProximityDevice;
+         sender : WinRt.Windows.Networking.Proximity.IProximityDevice;
          messageId : WinRt.Int64
       )
       return WinRt.Hresult;
@@ -256,7 +256,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_PeerInformation
       (
          this : access IConnectionRequestedEventArgs_Interface;
-         RetVal : access Windows.Networking.Proximity.IPeerInformation
+         RetVal : access WinRt.Windows.Networking.Proximity.IPeerInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -324,7 +324,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_SupportedDiscoveryTypes
       (
          this : access IPeerFinderStatics_Interface;
-         RetVal : access Windows.Networking.Proximity.PeerDiscoveryTypes
+         RetVal : access WinRt.Windows.Networking.Proximity.PeerDiscoveryTypes
       )
       return WinRt.Hresult is abstract;
 
@@ -358,14 +358,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerFinderStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TriggeredConnectionStateChanged
       (
          this : access IPeerFinderStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -373,14 +373,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerFinderStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionRequested
       (
          this : access IPeerFinderStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.Networking.Proximity is
       function ConnectAsync
       (
          this : access IPeerFinderStatics_Interface;
-         peerInformation_p : Windows.Networking.Proximity.IPeerInformation;
+         peerInformation_p : WinRt.Windows.Networking.Proximity.IPeerInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -407,35 +407,35 @@ package WinRt.Windows.Networking.Proximity is
       function get_Role
       (
          this : access IPeerFinderStatics2_Interface;
-         RetVal : access Windows.Networking.Proximity.PeerRole
+         RetVal : access WinRt.Windows.Networking.Proximity.PeerRole
       )
       return WinRt.Hresult is abstract;
 
       function put_Role
       (
          this : access IPeerFinderStatics2_Interface;
-         value : Windows.Networking.Proximity.PeerRole
+         value : WinRt.Windows.Networking.Proximity.PeerRole
       )
       return WinRt.Hresult is abstract;
 
       function get_DiscoveryData
       (
          this : access IPeerFinderStatics2_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_DiscoveryData
       (
          this : access IPeerFinderStatics2_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CreateWatcher
       (
          this : access IPeerFinderStatics2_Interface;
-         RetVal : access Windows.Networking.Proximity.IPeerWatcher
+         RetVal : access WinRt.Windows.Networking.Proximity.IPeerWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -466,7 +466,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_DiscoveryData
       (
          this : access IPeerInformation3_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -478,7 +478,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_HostName
       (
          this : access IPeerInformationWithHostAndService_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -498,14 +498,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IPeerWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -513,14 +513,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IPeerWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -528,14 +528,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IPeerWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -543,14 +543,14 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPeerWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -558,21 +558,21 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IPeerWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPeerWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPeerWatcher_Interface;
-         RetVal : access Windows.Networking.Proximity.PeerWatcherStatus
+         RetVal : access WinRt.Windows.Networking.Proximity.PeerWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -597,7 +597,7 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IProximityDevice_Interface;
          messageType : WinRt.HString;
-         messageReceivedHandler : Windows.Networking.Proximity.MessageReceivedHandler;
+         messageReceivedHandler : WinRt.Windows.Networking.Proximity.MessageReceivedHandler;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -616,7 +616,7 @@ package WinRt.Windows.Networking.Proximity is
          this : access IProximityDevice_Interface;
          messageType : WinRt.HString;
          message : WinRt.HString;
-         messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler;
+         messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -625,7 +625,7 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IProximityDevice_Interface;
          messageType : WinRt.HString;
-         message : Windows.Storage.Streams.IBuffer;
+         message : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -634,8 +634,8 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IProximityDevice_Interface;
          messageType : WinRt.HString;
-         message : Windows.Storage.Streams.IBuffer;
-         messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler;
+         message : WinRt.Windows.Storage.Streams.IBuffer;
+         messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -643,7 +643,7 @@ package WinRt.Windows.Networking.Proximity is
       function PublishUriMessage
       (
          this : access IProximityDevice_Interface;
-         message : Windows.Foundation.IUriRuntimeClass;
+         message : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -651,8 +651,8 @@ package WinRt.Windows.Networking.Proximity is
       function PublishUriMessage
       (
          this : access IProximityDevice_Interface;
-         message : Windows.Foundation.IUriRuntimeClass;
-         messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler;
+         message : WinRt.Windows.Foundation.IUriRuntimeClass;
+         messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler;
          RetVal : access WinRt.Int64
       )
       return WinRt.Hresult is abstract;
@@ -674,30 +674,30 @@ package WinRt.Windows.Networking.Proximity is
       function add_DeviceArrived
       (
          this : access IProximityDevice_Interface;
-         arrivedHandler : Windows.Networking.Proximity.DeviceArrivedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         arrivedHandler : WinRt.Windows.Networking.Proximity.DeviceArrivedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeviceArrived
       (
          this : access IProximityDevice_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_DeviceDeparted
       (
          this : access IProximityDevice_Interface;
-         departedHandler : Windows.Networking.Proximity.DeviceDepartedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         departedHandler : WinRt.Windows.Networking.Proximity.DeviceDepartedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeviceDeparted
       (
          this : access IProximityDevice_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -737,7 +737,7 @@ package WinRt.Windows.Networking.Proximity is
       function GetDefault
       (
          this : access IProximityDeviceStatics_Interface;
-         RetVal : access Windows.Networking.Proximity.IProximityDevice
+         RetVal : access WinRt.Windows.Networking.Proximity.IProximityDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -745,7 +745,7 @@ package WinRt.Windows.Networking.Proximity is
       (
          this : access IProximityDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Networking.Proximity.IProximityDevice
+         RetVal : access WinRt.Windows.Networking.Proximity.IProximityDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -771,7 +771,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_Data
       (
          this : access IProximityMessage_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -790,7 +790,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_State
       (
          this : access ITriggeredConnectionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Networking.Proximity.TriggeredConnectState
+         RetVal : access WinRt.Windows.Networking.Proximity.TriggeredConnectState
       )
       return WinRt.Hresult is abstract;
 
@@ -804,7 +804,7 @@ package WinRt.Windows.Networking.Proximity is
       function get_Socket
       (
          this : access ITriggeredConnectionStateChangedEventArgs_Interface;
-         RetVal : access Windows.Networking.Sockets.IStreamSocket
+         RetVal : access WinRt.Windows.Networking.Sockets.IStreamSocket
       )
       return WinRt.Hresult is abstract;
 
@@ -888,7 +888,7 @@ package WinRt.Windows.Networking.Proximity is
 
       procedure remove_TriggeredConnectionStateChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_ConnectionRequested
@@ -899,7 +899,7 @@ package WinRt.Windows.Networking.Proximity is
 
       procedure remove_ConnectionRequested
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function FindAllPeersAsync
@@ -907,7 +907,7 @@ package WinRt.Windows.Networking.Proximity is
 
       function ConnectAsync
       (
-         peerInformation_p : Windows.Networking.Proximity.PeerInformation'Class
+         peerInformation_p : WinRt.Windows.Networking.Proximity.PeerInformation'Class
       )
       return WinRt.Windows.Networking.Sockets.StreamSocket;
 
@@ -916,7 +916,7 @@ package WinRt.Windows.Networking.Proximity is
 
       procedure put_Role
       (
-         value : Windows.Networking.Proximity.PeerRole
+         value : WinRt.Windows.Networking.Proximity.PeerRole
       );
 
       function get_DiscoveryData
@@ -924,7 +924,7 @@ package WinRt.Windows.Networking.Proximity is
 
       procedure put_DiscoveryData
       (
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       );
 
       function CreateWatcher
@@ -990,7 +990,7 @@ package WinRt.Windows.Networking.Proximity is
    procedure remove_Added
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -1003,7 +1003,7 @@ package WinRt.Windows.Networking.Proximity is
    procedure remove_Removed
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -1016,7 +1016,7 @@ package WinRt.Windows.Networking.Proximity is
    procedure remove_Updated
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -1029,7 +1029,7 @@ package WinRt.Windows.Networking.Proximity is
    procedure remove_EnumerationCompleted
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -1042,7 +1042,7 @@ package WinRt.Windows.Networking.Proximity is
    procedure remove_Stopped
    (
       this : in out PeerWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -1089,7 +1089,7 @@ package WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      messageReceivedHandler : Windows.Networking.Proximity.MessageReceivedHandler
+      messageReceivedHandler : WinRt.Windows.Networking.Proximity.MessageReceivedHandler
    )
    return WinRt.Int64;
 
@@ -1106,7 +1106,7 @@ package WinRt.Windows.Networking.Proximity is
       this : in out ProximityDevice;
       messageType : WinRt.WString;
       message : WinRt.WString;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64;
 
@@ -1114,7 +1114,7 @@ package WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      message : Windows.Storage.Streams.IBuffer
+      message : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Int64;
 
@@ -1122,23 +1122,23 @@ package WinRt.Windows.Networking.Proximity is
    (
       this : in out ProximityDevice;
       messageType : WinRt.WString;
-      message : Windows.Storage.Streams.IBuffer;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      message : WinRt.Windows.Storage.Streams.IBuffer;
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64;
 
    function PublishUriMessage
    (
       this : in out ProximityDevice;
-      message : Windows.Foundation.Uri'Class
+      message : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Int64;
 
    function PublishUriMessage
    (
       this : in out ProximityDevice;
-      message : Windows.Foundation.Uri'Class;
-      messageTransmittedHandler : Windows.Networking.Proximity.MessageTransmittedHandler
+      message : WinRt.Windows.Foundation.Uri'Class;
+      messageTransmittedHandler : WinRt.Windows.Networking.Proximity.MessageTransmittedHandler
    )
    return WinRt.Int64;
 
@@ -1157,27 +1157,27 @@ package WinRt.Windows.Networking.Proximity is
    function add_DeviceArrived
    (
       this : in out ProximityDevice;
-      arrivedHandler : Windows.Networking.Proximity.DeviceArrivedEventHandler
+      arrivedHandler : WinRt.Windows.Networking.Proximity.DeviceArrivedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DeviceArrived
    (
       this : in out ProximityDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DeviceDeparted
    (
       this : in out ProximityDevice;
-      departedHandler : Windows.Networking.Proximity.DeviceDepartedEventHandler
+      departedHandler : WinRt.Windows.Networking.Proximity.DeviceDepartedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DeviceDeparted
    (
       this : in out ProximityDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MaxMessageBytes

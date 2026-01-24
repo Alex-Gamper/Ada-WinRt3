@@ -279,12 +279,12 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
 
    IID_DownloadProgressEventHandler : aliased WinRt.IID := (448458275, 29934, 19655, (153, 186, 177, 113, 227, 205, 166, 30 ));
-   type DownloadProgressEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DownloadProgressEventHandler'Access) with null record;
+   type DownloadProgressEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_DownloadProgressEventHandler'Access) with null record;
       function Invoke
       (
          this : access DownloadProgressEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs
+         e : WinRt.Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs
       )
       return WinRt.Hresult;
 
@@ -298,28 +298,28 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_CreateOptions
       (
          this : access IBitmapImage_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_CreateOptions
       (
          this : access IBitmapImage_Interface;
-         value : Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
+         value : WinRt.Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_UriSource
       (
          this : access IBitmapImage_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_UriSource
       (
          this : access IBitmapImage_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -354,45 +354,45 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function add_DownloadProgress
       (
          this : access IBitmapImage_Interface;
-         handler : Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadProgress
       (
          this : access IBitmapImage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_ImageOpened
       (
          this : access IBitmapImage_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImageOpened
       (
          this : access IBitmapImage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_ImageFailed
       (
          this : access IBitmapImage_Interface;
-         handler : Windows.UI.Xaml.ExceptionRoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImageFailed
       (
          this : access IBitmapImage_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -404,14 +404,14 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_DecodePixelType
       (
          this : access IBitmapImage2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.DecodePixelType
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.DecodePixelType
       )
       return WinRt.Hresult is abstract;
 
       function put_DecodePixelType
       (
          this : access IBitmapImage2_Interface;
-         value : Windows.UI.Xaml.Media.Imaging.DecodePixelType
+         value : WinRt.Windows.UI.Xaml.Media.Imaging.DecodePixelType
       )
       return WinRt.Hresult is abstract;
 
@@ -468,8 +468,8 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function CreateInstanceWithUriSource
       (
          this : access IBitmapImageFactory_Interface;
-         uriSource : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IBitmapImage
+         uriSource : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage
       )
       return WinRt.Hresult is abstract;
 
@@ -481,28 +481,28 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_CreateOptionsProperty
       (
          this : access IBitmapImageStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_UriSourceProperty
       (
          this : access IBitmapImageStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DecodePixelWidthProperty
       (
          this : access IBitmapImageStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DecodePixelHeightProperty
       (
          this : access IBitmapImageStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -514,7 +514,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_DecodePixelTypeProperty
       (
          this : access IBitmapImageStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -526,21 +526,21 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_IsAnimatedBitmapProperty
       (
          this : access IBitmapImageStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsPlayingProperty
       (
          this : access IBitmapImageStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoPlayProperty
       (
          this : access IBitmapImageStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -566,15 +566,15 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function SetSource
       (
          this : access IBitmapSource_Interface;
-         streamSource : Windows.Storage.Streams.IRandomAccessStream
+         streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function SetSourceAsync
       (
          this : access IBitmapSource_Interface;
-         streamSource : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -588,7 +588,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          this : access IBitmapSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IBitmapSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapSource
       )
       return WinRt.Hresult is abstract;
 
@@ -600,14 +600,14 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_PixelWidthProperty
       (
          this : access IBitmapSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelHeightProperty
       (
          this : access IBitmapSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -652,18 +652,18 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function RenderAsync
       (
          this : access IRenderTargetBitmap_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.Foundation.IAsyncAction
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RenderAsync
       (
          this : access IRenderTargetBitmap_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          scaledWidth : WinRt.Int32;
          scaledHeight : WinRt.Int32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -682,14 +682,14 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_PixelWidthProperty
       (
          this : access IRenderTargetBitmapStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelHeightProperty
       (
          this : access IRenderTargetBitmapStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -701,8 +701,8 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function SetBitmapAsync
       (
          this : access ISoftwareBitmapSource_Interface;
-         softwareBitmap : Windows.Graphics.Imaging.ISoftwareBitmap;
-         RetVal : access Windows.Foundation.IAsyncAction
+         softwareBitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -723,7 +723,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          pixelHeight : WinRt.Int32;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -735,7 +735,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          isOpaque : WinRt.Boolean;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -747,14 +747,14 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_UriSource
       (
          this : access ISvgImageSource_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_UriSource
       (
          this : access ISvgImageSource_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -790,14 +790,14 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       (
          this : access ISvgImageSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Opened
       (
          this : access ISvgImageSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -805,21 +805,21 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       (
          this : access ISvgImageSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OpenFailed
       (
          this : access ISvgImageSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SetSourceAsync
       (
          this : access ISvgImageSource_Interface;
-         streamSource : Windows.Storage.Streams.IRandomAccessStream;
+         streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -834,17 +834,17 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          this : access ISvgImageSourceFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.ISvgImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstanceWithUriSource
       (
          this : access ISvgImageSourceFactory_Interface;
-         uriSource : Windows.Foundation.IUriRuntimeClass;
+         uriSource : WinRt.Windows.Foundation.IUriRuntimeClass;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.ISvgImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -856,7 +856,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_Status
       (
          this : access ISvgImageSourceFailedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -873,21 +873,21 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_UriSourceProperty
       (
          this : access ISvgImageSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RasterizePixelWidthProperty
       (
          this : access ISvgImageSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RasterizePixelHeightProperty
       (
          this : access ISvgImageSourceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -906,7 +906,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          this : access IVirtualSurfaceImageSourceFactory_Interface;
          pixelWidth : WinRt.Int32;
          pixelHeight : WinRt.Int32;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -916,7 +916,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          pixelWidth : WinRt.Int32;
          pixelHeight : WinRt.Int32;
          isOpaque : WinRt.Boolean;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource
       )
       return WinRt.Hresult is abstract;
 
@@ -928,7 +928,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function get_PixelBuffer
       (
          this : access IWriteableBitmap_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -948,7 +948,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          this : access IWriteableBitmapFactory_Interface;
          pixelWidth : WinRt.Int32;
          pixelHeight : WinRt.Int32;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IWriteableBitmap
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IWriteableBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -967,7 +967,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
          this : access IXamlRenderingBackgroundTaskFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask
       )
       return WinRt.Hresult is abstract;
 
@@ -979,7 +979,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
       function OnRun
       (
          this : access IXamlRenderingBackgroundTaskOverrides_Interface;
-         taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
+         taskInstance : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -1032,13 +1032,13 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure SetSource
    (
       this : in out BitmapSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure SetSourceAsync
    (
       this : in out BitmapSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    -----------------------------------------------------------------------------
@@ -1054,7 +1054,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    function Constructor
    (
-      uriSource : Windows.Foundation.Uri'Class
+      uriSource : WinRt.Windows.Foundation.Uri'Class
    )
    return BitmapImage;
 
@@ -1097,7 +1097,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_CreateOptions
    (
       this : in out BitmapImage;
-      value : Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
+      value : WinRt.Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
    );
 
    function get_UriSource
@@ -1109,7 +1109,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_UriSource
    (
       this : in out BitmapImage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_DecodePixelWidth
@@ -1139,40 +1139,40 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    function add_DownloadProgress
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler
+      handler : WinRt.Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_DownloadProgress
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ImageOpened
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ImageOpened
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ImageFailed
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.ExceptionRoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ImageFailed
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DecodePixelType
@@ -1184,7 +1184,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_DecodePixelType
    (
       this : in out BitmapImage;
-      value : Windows.UI.Xaml.Media.Imaging.DecodePixelType
+      value : WinRt.Windows.UI.Xaml.Media.Imaging.DecodePixelType
    );
 
    function get_IsAnimatedBitmap
@@ -1280,13 +1280,13 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure RenderAsync
    (
       this : in out RenderTargetBitmap;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure RenderAsync
    (
       this : in out RenderTargetBitmap;
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32
    );
@@ -1314,7 +1314,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure SetBitmapAsync
    (
       this : in out SoftwareBitmapSource;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    procedure Close
@@ -1371,7 +1371,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
 
    function Constructor
    (
-      uriSource : Windows.Foundation.Uri'Class;
+      uriSource : WinRt.Windows.Foundation.Uri'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -1401,7 +1401,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_UriSource
    (
       this : in out SvgImageSource;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_RasterizePixelWidth
@@ -1438,7 +1438,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_Opened
    (
       this : in out SvgImageSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_OpenFailed
@@ -1451,13 +1451,13 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_OpenFailed
    (
       this : in out SvgImageSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function SetSourceAsync
    (
       this : in out SvgImageSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus;
 
@@ -1564,7 +1564,7 @@ package WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure OnRun
    (
       this : in out XamlRenderingBackgroundTask;
-      taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
+      taskInstance : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
    );
 
 end WinRt.Windows.UI.Xaml.Media.Imaging;

@@ -123,14 +123,14 @@ package WinRt.Windows.Networking is
       function get_LocalHostName
       (
          this : access IEndpointPair_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_LocalHostName
       (
          this : access IEndpointPair_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -151,14 +151,14 @@ package WinRt.Windows.Networking is
       function get_RemoteHostName
       (
          this : access IEndpointPair_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_RemoteHostName
       (
          this : access IEndpointPair_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -184,11 +184,11 @@ package WinRt.Windows.Networking is
       function CreateEndpointPair
       (
          this : access IEndpointPairFactory_Interface;
-         localHostName : Windows.Networking.IHostName;
+         localHostName : WinRt.Windows.Networking.IHostName;
          localServiceName : WinRt.HString;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remoteServiceName : WinRt.HString;
-         RetVal : access Windows.Networking.IEndpointPair
+         RetVal : access WinRt.Windows.Networking.IEndpointPair
       )
       return WinRt.Hresult is abstract;
 
@@ -200,7 +200,7 @@ package WinRt.Windows.Networking is
       function get_IPInformation
       (
          this : access IHostName_Interface;
-         RetVal : access Windows.Networking.Connectivity.IIPInformation
+         RetVal : access WinRt.Windows.Networking.Connectivity.IIPInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -228,14 +228,14 @@ package WinRt.Windows.Networking is
       function get_Type
       (
          this : access IHostName_Interface;
-         RetVal : access Windows.Networking.HostNameType
+         RetVal : access WinRt.Windows.Networking.HostNameType
       )
       return WinRt.Hresult is abstract;
 
       function IsEqual
       (
          this : access IHostName_Interface;
-         hostName_p : Windows.Networking.IHostName;
+         hostName_p : WinRt.Windows.Networking.IHostName;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -249,7 +249,7 @@ package WinRt.Windows.Networking is
       (
          this : access IHostNameFactory_Interface;
          hostName_p : WinRt.HString;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -284,9 +284,9 @@ package WinRt.Windows.Networking is
 
    function Constructor
    (
-      localHostName : Windows.Networking.HostName'Class;
+      localHostName : WinRt.Windows.Networking.HostName'Class;
       localServiceName : WinRt.WString;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    )
    return EndpointPair;
@@ -303,7 +303,7 @@ package WinRt.Windows.Networking is
    procedure put_LocalHostName
    (
       this : in out EndpointPair;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_LocalServiceName
@@ -327,7 +327,7 @@ package WinRt.Windows.Networking is
    procedure put_RemoteHostName
    (
       this : in out EndpointPair;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_RemoteServiceName
@@ -403,7 +403,7 @@ package WinRt.Windows.Networking is
    function IsEqual
    (
       this : in out HostName;
-      hostName_p : Windows.Networking.HostName'Class
+      hostName_p : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.Boolean;
 

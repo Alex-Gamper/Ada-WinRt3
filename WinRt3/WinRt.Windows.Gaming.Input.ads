@@ -632,15 +632,15 @@ package WinRt.Windows.Gaming.Input is
       function GetButtonLabel
       (
          this : access IArcadeStick_Interface;
-         button : Windows.Gaming.Input.ArcadeStickButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.ArcadeStickButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentReading
       (
          this : access IArcadeStick_Interface;
-         RetVal : access Windows.Gaming.Input.ArcadeStickReading
+         RetVal : access WinRt.Windows.Gaming.Input.ArcadeStickReading
       )
       return WinRt.Hresult is abstract;
 
@@ -653,14 +653,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IArcadeStickStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ArcadeStickAdded
       (
          this : access IArcadeStickStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -668,14 +668,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IArcadeStickStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ArcadeStickRemoved
       (
          this : access IArcadeStickStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -694,8 +694,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IArcadeStickStatics2_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IArcadeStick
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IArcadeStick
       )
       return WinRt.Hresult is abstract;
 
@@ -707,22 +707,22 @@ package WinRt.Windows.Gaming.Input is
       function get_HatSwitchKind
       (
          this : access IFlightStick_Interface;
-         RetVal : access Windows.Gaming.Input.GameControllerSwitchKind
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerSwitchKind
       )
       return WinRt.Hresult is abstract;
 
       function GetButtonLabel
       (
          this : access IFlightStick_Interface;
-         button : Windows.Gaming.Input.FlightStickButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.FlightStickButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentReading
       (
          this : access IFlightStick_Interface;
-         RetVal : access Windows.Gaming.Input.FlightStickReading
+         RetVal : access WinRt.Windows.Gaming.Input.FlightStickReading
       )
       return WinRt.Hresult is abstract;
 
@@ -735,14 +735,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IFlightStickStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FlightStickAdded
       (
          this : access IFlightStickStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -750,14 +750,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IFlightStickStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FlightStickRemoved
       (
          this : access IFlightStickStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -771,8 +771,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IFlightStickStatics_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IFlightStick
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IFlightStick
       )
       return WinRt.Hresult is abstract;
 
@@ -785,14 +785,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IGameController_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HeadsetConnected
       (
          this : access IGameController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -800,14 +800,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IGameController_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HeadsetDisconnected
       (
          this : access IGameController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -815,21 +815,21 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IGameController_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UserChanged
       (
          this : access IGameController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Headset
       (
          this : access IGameController_Interface;
-         RetVal : access Windows.Gaming.Input.IHeadset
+         RetVal : access WinRt.Windows.Gaming.Input.IHeadset
       )
       return WinRt.Hresult is abstract;
 
@@ -843,7 +843,7 @@ package WinRt.Windows.Gaming.Input is
       function get_User
       (
          this : access IGameController_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -855,7 +855,7 @@ package WinRt.Windows.Gaming.Input is
       function TryGetBatteryReport
       (
          this : access IGameControllerBatteryInfo_Interface;
-         RetVal : access Windows.Devices.Power.IBatteryReport
+         RetVal : access WinRt.Windows.Devices.Power.IBatteryReport
       )
       return WinRt.Hresult is abstract;
 
@@ -867,21 +867,21 @@ package WinRt.Windows.Gaming.Input is
       function get_Vibration
       (
          this : access IGamepad_Interface;
-         RetVal : access Windows.Gaming.Input.GamepadVibration
+         RetVal : access WinRt.Windows.Gaming.Input.GamepadVibration
       )
       return WinRt.Hresult is abstract;
 
       function put_Vibration
       (
          this : access IGamepad_Interface;
-         value : Windows.Gaming.Input.GamepadVibration
+         value : WinRt.Windows.Gaming.Input.GamepadVibration
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentReading
       (
          this : access IGamepad_Interface;
-         RetVal : access Windows.Gaming.Input.GamepadReading
+         RetVal : access WinRt.Windows.Gaming.Input.GamepadReading
       )
       return WinRt.Hresult is abstract;
 
@@ -893,8 +893,8 @@ package WinRt.Windows.Gaming.Input is
       function GetButtonLabel
       (
          this : access IGamepad2_Interface;
-         button : Windows.Gaming.Input.GamepadButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.GamepadButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
@@ -907,14 +907,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IGamepadStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GamepadAdded
       (
          this : access IGamepadStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -922,14 +922,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IGamepadStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GamepadRemoved
       (
          this : access IGamepadStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -948,8 +948,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IGamepadStatics2_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IGamepad
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IGamepad
       )
       return WinRt.Hresult is abstract;
 
@@ -1015,22 +1015,22 @@ package WinRt.Windows.Gaming.Input is
       function get_WheelMotor
       (
          this : access IRacingWheel_Interface;
-         RetVal : access Windows.Gaming.Input.ForceFeedback.IForceFeedbackMotor
+         RetVal : access WinRt.Windows.Gaming.Input.ForceFeedback.IForceFeedbackMotor
       )
       return WinRt.Hresult is abstract;
 
       function GetButtonLabel
       (
          this : access IRacingWheel_Interface;
-         button : Windows.Gaming.Input.RacingWheelButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.RacingWheelButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentReading
       (
          this : access IRacingWheel_Interface;
-         RetVal : access Windows.Gaming.Input.RacingWheelReading
+         RetVal : access WinRt.Windows.Gaming.Input.RacingWheelReading
       )
       return WinRt.Hresult is abstract;
 
@@ -1043,14 +1043,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRacingWheelStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RacingWheelAdded
       (
          this : access IRacingWheelStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1058,14 +1058,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRacingWheelStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RacingWheelRemoved
       (
          this : access IRacingWheelStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1084,8 +1084,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IRacingWheelStatics2_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IRacingWheel
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IRacingWheel
       )
       return WinRt.Hresult is abstract;
 
@@ -1140,7 +1140,7 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRawGameController_Interface;
          buttonIndex : WinRt.Int32;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
@@ -1150,7 +1150,7 @@ package WinRt.Windows.Gaming.Input is
          buttonArraySize : WinRt.UInt32;
          buttonArray : WinRt.Boolean_Ptr;
          switchArraySize : WinRt.UInt32;
-         switchArray : Windows.Gaming.Input.GameControllerSwitchPosition_Ptr;
+         switchArray : WinRt.Windows.Gaming.Input.GameControllerSwitchPosition_Ptr;
          axisArraySize : WinRt.UInt32;
          axisArray : WinRt.Double_Ptr;
          RetVal : access WinRt.UInt64
@@ -1161,7 +1161,7 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRawGameController_Interface;
          switchIndex : WinRt.Int32;
-         RetVal : access Windows.Gaming.Input.GameControllerSwitchKind
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerSwitchKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1200,14 +1200,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRawGameControllerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RawGameControllerAdded
       (
          this : access IRawGameControllerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1215,14 +1215,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IRawGameControllerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RawGameControllerRemoved
       (
          this : access IRawGameControllerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1236,8 +1236,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IRawGameControllerStatics_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IRawGameController
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IRawGameController
       )
       return WinRt.Hresult is abstract;
 
@@ -1249,23 +1249,23 @@ package WinRt.Windows.Gaming.Input is
       function GetCurrentReading
       (
          this : access IUINavigationController_Interface;
-         RetVal : access Windows.Gaming.Input.UINavigationReading
+         RetVal : access WinRt.Windows.Gaming.Input.UINavigationReading
       )
       return WinRt.Hresult is abstract;
 
       function GetOptionalButtonLabel
       (
          this : access IUINavigationController_Interface;
-         button : Windows.Gaming.Input.OptionalUINavigationButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.OptionalUINavigationButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
       function GetRequiredButtonLabel
       (
          this : access IUINavigationController_Interface;
-         button : Windows.Gaming.Input.RequiredUINavigationButtons;
-         RetVal : access Windows.Gaming.Input.GameControllerButtonLabel
+         button : WinRt.Windows.Gaming.Input.RequiredUINavigationButtons;
+         RetVal : access WinRt.Windows.Gaming.Input.GameControllerButtonLabel
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,14 +1278,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IUINavigationControllerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UINavigationControllerAdded
       (
          this : access IUINavigationControllerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1293,14 +1293,14 @@ package WinRt.Windows.Gaming.Input is
       (
          this : access IUINavigationControllerStatics_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UINavigationControllerRemoved
       (
          this : access IUINavigationControllerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1319,8 +1319,8 @@ package WinRt.Windows.Gaming.Input is
       function FromGameController
       (
          this : access IUINavigationControllerStatics2_Interface;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IUINavigationController
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IUINavigationController
       )
       return WinRt.Hresult is abstract;
 
@@ -1341,7 +1341,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.ArcadeStick;
 
@@ -1353,7 +1353,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_ArcadeStickAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ArcadeStickRemoved
@@ -1364,7 +1364,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_ArcadeStickRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ArcadeSticks
@@ -1376,7 +1376,7 @@ package WinRt.Windows.Gaming.Input is
    function GetButtonLabel
    (
       this : in out ArcadeStick;
-      button : Windows.Gaming.Input.ArcadeStickButtons
+      button : WinRt.Windows.Gaming.Input.ArcadeStickButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
@@ -1396,7 +1396,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out ArcadeStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -1409,7 +1409,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out ArcadeStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -1422,7 +1422,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out ArcadeStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset
@@ -1466,7 +1466,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_FlightStickAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FlightStickRemoved
@@ -1477,7 +1477,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_FlightStickRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_FlightSticks
@@ -1485,7 +1485,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.FlightStick;
 
@@ -1501,7 +1501,7 @@ package WinRt.Windows.Gaming.Input is
    function GetButtonLabel
    (
       this : in out FlightStick;
-      button : Windows.Gaming.Input.FlightStickButtons
+      button : WinRt.Windows.Gaming.Input.FlightStickButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
@@ -1521,7 +1521,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out FlightStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -1534,7 +1534,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out FlightStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -1547,7 +1547,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out FlightStick;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset
@@ -1585,7 +1585,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.Gamepad;
 
@@ -1597,7 +1597,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_GamepadAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GamepadRemoved
@@ -1608,7 +1608,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_GamepadRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Gamepads
@@ -1626,7 +1626,7 @@ package WinRt.Windows.Gaming.Input is
    procedure put_Vibration
    (
       this : in out Gamepad;
-      value : Windows.Gaming.Input.GamepadVibration
+      value : WinRt.Windows.Gaming.Input.GamepadVibration
    );
 
    function GetCurrentReading
@@ -1645,7 +1645,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out Gamepad;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -1658,7 +1658,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out Gamepad;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -1671,7 +1671,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out Gamepad;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset
@@ -1695,7 +1695,7 @@ package WinRt.Windows.Gaming.Input is
    function GetButtonLabel
    (
       this : in out Gamepad;
-      button : Windows.Gaming.Input.GamepadButtons
+      button : WinRt.Windows.Gaming.Input.GamepadButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
@@ -1743,7 +1743,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.RacingWheel;
 
@@ -1755,7 +1755,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_RacingWheelAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RacingWheelRemoved
@@ -1766,7 +1766,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_RacingWheelRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_RacingWheels
@@ -1814,7 +1814,7 @@ package WinRt.Windows.Gaming.Input is
    function GetButtonLabel
    (
       this : in out RacingWheel;
-      button : Windows.Gaming.Input.RacingWheelButtons
+      button : WinRt.Windows.Gaming.Input.RacingWheelButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
@@ -1834,7 +1834,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out RacingWheel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -1847,7 +1847,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out RacingWheel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -1860,7 +1860,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out RacingWheel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset
@@ -1904,7 +1904,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_RawGameControllerAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RawGameControllerRemoved
@@ -1915,7 +1915,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_RawGameControllerRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_RawGameControllers
@@ -1923,7 +1923,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.RawGameController;
 
@@ -1977,7 +1977,7 @@ package WinRt.Windows.Gaming.Input is
    (
       this : in out RawGameController;
       buttonArray : WinRt.Boolean_Array;
-      switchArray : Windows.Gaming.Input.GameControllerSwitchPosition_Array;
+      switchArray : WinRt.Windows.Gaming.Input.GameControllerSwitchPosition_Array;
       axisArray : WinRt.Double_Array
    )
    return WinRt.UInt64;
@@ -1999,7 +1999,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out RawGameController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -2012,7 +2012,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out RawGameController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -2025,7 +2025,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out RawGameController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset
@@ -2087,7 +2087,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_UINavigationControllerAdded
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UINavigationControllerRemoved
@@ -2098,7 +2098,7 @@ package WinRt.Windows.Gaming.Input is
 
    procedure remove_UINavigationControllerRemoved
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_UINavigationControllers
@@ -2106,7 +2106,7 @@ package WinRt.Windows.Gaming.Input is
 
    function FromGameController
    (
-      gameController : Windows.Gaming.Input.IGameController
+      gameController : WinRt.Windows.Gaming.Input.IGameController
    )
    return WinRt.Windows.Gaming.Input.UINavigationController;
 
@@ -2122,14 +2122,14 @@ package WinRt.Windows.Gaming.Input is
    function GetOptionalButtonLabel
    (
       this : in out UINavigationController;
-      button : Windows.Gaming.Input.OptionalUINavigationButtons
+      button : WinRt.Windows.Gaming.Input.OptionalUINavigationButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
    function GetRequiredButtonLabel
    (
       this : in out UINavigationController;
-      button : Windows.Gaming.Input.RequiredUINavigationButtons
+      button : WinRt.Windows.Gaming.Input.RequiredUINavigationButtons
    )
    return WinRt.Windows.Gaming.Input.GameControllerButtonLabel;
 
@@ -2143,7 +2143,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetConnected
    (
       this : in out UINavigationController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HeadsetDisconnected
@@ -2156,7 +2156,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_HeadsetDisconnected
    (
       this : in out UINavigationController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UserChanged
@@ -2169,7 +2169,7 @@ package WinRt.Windows.Gaming.Input is
    procedure remove_UserChanged
    (
       this : in out UINavigationController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Headset

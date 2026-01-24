@@ -86,7 +86,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
    begin
       Hr := this.m_IGameSaveBlobGetResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -103,7 +103,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IGameSaveBlobGetResult.all.get_Value (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -203,7 +203,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
    begin
       Hr := this.m_IGameSaveBlobInfoGetResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -220,7 +220,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGameSaveBlobInfo.Kind;
    begin
       Hr := this.m_IGameSaveBlobInfoGetResult.all.get_Value (m_ComRetVal'Access);
@@ -308,7 +308,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveBlobInfoGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoGetResult;
+                  Retval.m_IGameSaveBlobInfoGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoGetResult;
                   Retval.m_IGameSaveBlobInfoGetResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -376,7 +376,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveBlobInfoGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoGetResult;
+                  Retval.m_IGameSaveBlobInfoGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoGetResult;
                   Retval.m_IGameSaveBlobInfoGetResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -503,14 +503,14 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProvider do
          Hr := this.m_IGameSaveContainer.all.get_Provider (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveProvider := new Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
+         Retval.m_IGameSaveProvider := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
          Retval.m_IGameSaveProvider.all := m_ComRetVal;
       end return;
    end;
@@ -572,7 +572,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveOperationResult := new Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
+                  Retval.m_IGameSaveOperationResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
                   Retval.m_IGameSaveOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -640,7 +640,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveOperationResult := new Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
+                  Retval.m_IGameSaveOperationResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
                   Retval.m_IGameSaveOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -707,7 +707,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveBlobGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveBlobGetResult;
+                  Retval.m_IGameSaveBlobGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobGetResult;
                   Retval.m_IGameSaveBlobGetResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -723,7 +723,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
    function SubmitPropertySetUpdatesAsync
    (
       this : in out GameSaveContainer;
-      blobsToWrite : Windows.Foundation.Collections.IPropertySet;
+      blobsToWrite : WinRt.Windows.Foundation.Collections.IPropertySet;
       blobsToDelete : GenericObject;
       displayName : WinRt.WString
    )
@@ -777,7 +777,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveOperationResult := new Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
+                  Retval.m_IGameSaveOperationResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
                   Retval.m_IGameSaveOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -800,7 +800,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery;
       HStr_blobNamePrefix : constant WinRt.HString := To_HString (blobNamePrefix);
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveBlobInfoQuery do
@@ -808,7 +808,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveBlobInfoQuery := new Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery;
+         Retval.m_IGameSaveBlobInfoQuery := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery;
          Retval.m_IGameSaveBlobInfoQuery.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_blobNamePrefix);
       end return;
@@ -902,7 +902,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGameSaveContainerInfo.all.get_LastModifiedTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -959,7 +959,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
    begin
       Hr := this.m_IGameSaveContainerInfoGetResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -976,7 +976,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGameSaveContainerInfo.Kind;
    begin
       Hr := this.m_IGameSaveContainerInfoGetResult.all.get_Value (m_ComRetVal'Access);
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveContainerInfoGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoGetResult;
+                  Retval.m_IGameSaveContainerInfoGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoGetResult;
                   Retval.m_IGameSaveContainerInfoGetResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1132,7 +1132,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveContainerInfoGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoGetResult;
+                  Retval.m_IGameSaveContainerInfoGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoGetResult;
                   Retval.m_IGameSaveContainerInfoGetResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1239,7 +1239,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
    begin
       Hr := this.m_IGameSaveOperationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1273,7 +1273,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
 
    function GetForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       serviceConfigId : WinRt.WString
    )
    return WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProviderGetResult is
@@ -1331,7 +1331,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGameSaveProviderGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveProviderGetResult;
+                     Retval.m_IGameSaveProviderGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProviderGetResult;
                      Retval.m_IGameSaveProviderGetResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1349,7 +1349,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
 
    function GetSyncOnDemandForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       serviceConfigId : WinRt.WString
    )
    return WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProviderGetResult is
@@ -1407,7 +1407,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGameSaveProviderGetResult := new Windows.Gaming.XboxLive.Storage.IGameSaveProviderGetResult;
+                     Retval.m_IGameSaveProviderGetResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProviderGetResult;
                      Retval.m_IGameSaveProviderGetResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1434,14 +1434,14 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IGameSaveProvider.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1455,7 +1455,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveContainer;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainer;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveContainer do
@@ -1463,7 +1463,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveContainer := new Windows.Gaming.XboxLive.Storage.IGameSaveContainer;
+         Retval.m_IGameSaveContainer := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainer;
          Retval.m_IGameSaveContainer.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
       end return;
@@ -1524,7 +1524,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGameSaveOperationResult := new Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
+                  Retval.m_IGameSaveOperationResult := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveOperationResult;
                   Retval.m_IGameSaveOperationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1546,14 +1546,14 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveContainerInfoQuery do
          Hr := this.m_IGameSaveProvider.all.CreateContainerInfoQuery (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveContainerInfoQuery := new Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
+         Retval.m_IGameSaveContainerInfoQuery := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
          Retval.m_IGameSaveContainerInfoQuery.all := m_ComRetVal;
       end return;
    end;
@@ -1567,7 +1567,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
       HStr_containerNamePrefix : constant WinRt.HString := To_HString (containerNamePrefix);
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveContainerInfoQuery do
@@ -1575,7 +1575,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveContainerInfoQuery := new Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
+         Retval.m_IGameSaveContainerInfoQuery := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery;
          Retval.m_IGameSaveContainerInfoQuery.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_containerNamePrefix);
       end return;
@@ -1652,7 +1652,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGameSaveProvider.all.get_ContainersChangedSinceLastSync (m_ComRetVal'Access);
@@ -1695,7 +1695,7 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus;
    begin
       Hr := this.m_IGameSaveProviderGetResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1712,14 +1712,14 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
    begin
       return RetVal : WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProvider do
          Hr := this.m_IGameSaveProviderGetResult.all.get_Value (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameSaveProvider := new Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
+         Retval.m_IGameSaveProvider := new WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider;
          Retval.m_IGameSaveProvider.all := m_ComRetVal;
       end return;
    end;

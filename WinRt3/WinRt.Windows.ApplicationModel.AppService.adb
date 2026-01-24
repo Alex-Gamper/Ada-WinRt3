@@ -162,7 +162,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.AppServiceClosedStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.AppServiceClosedStatus;
    begin
       Hr := this.m_IAppServiceClosedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -197,13 +197,13 @@ package body WinRt.Windows.ApplicationModel.AppService is
    function Constructor return AppServiceConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
-      m_ComRetVal  : aliased Windows.ApplicationModel.AppService.IAppServiceConnection;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.IAppServiceConnection");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : AppServiceConnection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppServiceConnection := new Windows.ApplicationModel.AppService.IAppServiceConnection;
+            Retval.m_IAppServiceConnection := new WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
             Retval.m_IAppServiceConnection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -215,9 +215,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
 
    function SendStatelessMessageAsync
    (
-      connection : Windows.ApplicationModel.AppService.AppServiceConnection'Class;
-      connectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      connection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class;
+      connectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponse is
       Hr               : WinRt.HResult := S_OK;
@@ -273,7 +273,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStatelessAppServiceResponse := new Windows.ApplicationModel.AppService.IStatelessAppServiceResponse;
+                     Retval.m_IStatelessAppServiceResponse := new WinRt.Windows.ApplicationModel.AppService.IStatelessAppServiceResponse;
                      Retval.m_IStatelessAppServiceResponse.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -431,7 +431,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    function SendMessageAsync
    (
       this : in out AppServiceConnection;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponse'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -482,7 +482,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppServiceResponse := new Windows.ApplicationModel.AppService.IAppServiceResponse;
+                  Retval.m_IAppServiceResponse := new WinRt.Windows.ApplicationModel.AppService.IAppServiceResponse;
                   Retval.m_IAppServiceResponse.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -504,7 +504,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppServiceConnection.all.add_RequestReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -516,7 +516,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    procedure remove_RequestReceived
    (
       this : in out AppServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -537,7 +537,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppServiceConnection.all.add_ServiceClosed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -549,7 +549,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    procedure remove_ServiceClosed
    (
       this : in out AppServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -564,7 +564,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    function OpenRemoteAsync
    (
       this : in out AppServiceConnection;
-      remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class
+      remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceConnectionStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -638,7 +638,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection_Interface, WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection2, WinRt.Windows.ApplicationModel.AppService.IID_IAppServiceConnection2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -648,7 +648,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -656,7 +656,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    procedure put_User
    (
       this : in out AppServiceConnection;
-      value : Windows.System.User'Class
+      value : WinRt.Windows.System.User'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -758,14 +758,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IAppServiceRequest.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -773,7 +773,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    function SendResponseAsync
    (
       this : in out AppServiceRequest;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -865,14 +865,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.IAppServiceRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceRequest do
          Hr := this.m_IAppServiceRequestReceivedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppServiceRequest := new Windows.ApplicationModel.AppService.IAppServiceRequest;
+         Retval.m_IAppServiceRequest := new WinRt.Windows.ApplicationModel.AppService.IAppServiceRequest;
          Retval.m_IAppServiceRequest.all := m_ComRetVal;
       end return;
    end;
@@ -885,14 +885,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.IAppServiceDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceDeferral do
          Hr := this.m_IAppServiceRequestReceivedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppServiceDeferral := new Windows.ApplicationModel.AppService.IAppServiceDeferral;
+         Retval.m_IAppServiceDeferral := new WinRt.Windows.ApplicationModel.AppService.IAppServiceDeferral;
          Retval.m_IAppServiceDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -928,14 +928,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IAppServiceResponse.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -948,7 +948,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.AppServiceResponseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus;
    begin
       Hr := this.m_IAppServiceResponse.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1028,14 +1028,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.IAppServiceConnection;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection do
          Hr := this.m_IAppServiceTriggerDetails.all.get_AppServiceConnection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppServiceConnection := new Windows.ApplicationModel.AppService.IAppServiceConnection;
+         Retval.m_IAppServiceConnection := new WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
          Retval.m_IAppServiceConnection.all := m_ComRetVal;
       end return;
    end;
@@ -1186,14 +1186,14 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IStatelessAppServiceResponse.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -1206,7 +1206,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus;
    begin
       Hr := this.m_IStatelessAppServiceResponse.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then

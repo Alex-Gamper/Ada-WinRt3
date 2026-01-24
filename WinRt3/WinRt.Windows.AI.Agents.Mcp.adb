@@ -66,14 +66,14 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IMcpHttpConnectionResult.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -81,7 +81,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
    procedure put_Uri
    (
       this : in out McpHttpConnectionResult;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -101,14 +101,14 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IMcpHttpConnectionResult.all.get_Headers (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -364,7 +364,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
       m_hString        : constant WinRt.HString := To_HString ("Windows.AI.Agents.Mcp.McpServerContext");
       m_Factory        : access WinRt.Windows.AI.Agents.Mcp.IMcpServerContextStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.IMcpServerContext;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.IMcpServerContext;
    begin
       return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerContext do
          Hr := RoGetActivationFactory (m_hString, IID_IMcpServerContextStatics'Access , m_Factory'Address);
@@ -374,7 +374,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMcpServerContext := new Windows.AI.Agents.Mcp.IMcpServerContext;
+            Retval.m_IMcpServerContext := new WinRt.Windows.AI.Agents.Mcp.IMcpServerContext;
             Retval.m_IMcpServerContext.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -407,7 +407,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
    function RequestResourceAccess
    (
       this : in out McpServerContext;
-      resource : Windows.Foundation.Uri'Class;
+      resource : WinRt.Windows.Foundation.Uri'Class;
       description : WinRt.WString;
       reasonForAsking : WinRt.WString
    )
@@ -415,7 +415,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.McpAuthorizationResponse;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.McpAuthorizationResponse;
       HStr_description : constant WinRt.HString := To_HString (description);
       HStr_reasonForAsking : constant WinRt.HString := To_HString (reasonForAsking);
    begin
@@ -516,14 +516,14 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IMcpServerInfo.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -598,7 +598,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
       m_hString        : constant WinRt.HString := To_HString ("Windows.AI.Agents.Mcp.McpServerRegistry");
       m_Factory        : access WinRt.Windows.AI.Agents.Mcp.IMcpServerRegistryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.IMcpServerRegistry;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.IMcpServerRegistry;
    begin
       return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerRegistry do
          Hr := RoGetActivationFactory (m_hString, IID_IMcpServerRegistryStatics'Access , m_Factory'Address);
@@ -608,7 +608,7 @@ package body WinRt.Windows.AI.Agents.Mcp is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMcpServerRegistry := new Windows.AI.Agents.Mcp.IMcpServerRegistry;
+            Retval.m_IMcpServerRegistry := new WinRt.Windows.AI.Agents.Mcp.IMcpServerRegistry;
             Retval.m_IMcpServerRegistry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -653,20 +653,20 @@ package body WinRt.Windows.AI.Agents.Mcp is
    (
       this : in out McpServerRegistry;
       mcpServerId : WinRt.Guid;
-      ownerWindowId : Windows.UI.WindowId
+      ownerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Agents.Mcp.McpStdioConnectionInfo'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo;
    begin
       return RetVal : WinRt.Windows.AI.Agents.Mcp.McpStdioConnectionInfo do
          Hr := this.m_IMcpServerRegistry.all.GetMcpConnectionInfo (mcpServerId, ownerWindowId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMcpStdioConnectionInfo := new Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo;
+         Retval.m_IMcpStdioConnectionInfo := new WinRt.Windows.AI.Agents.Mcp.IMcpStdioConnectionInfo;
          Retval.m_IMcpStdioConnectionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -750,14 +750,14 @@ package body WinRt.Windows.AI.Agents.Mcp is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Agents.Mcp.IMcpServerInfo;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo;
    begin
       return RetVal : WinRt.Windows.AI.Agents.Mcp.McpServerInfo do
          Hr := this.m_IMcpStdioConnectionInfo.all.get_Info (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMcpServerInfo := new Windows.AI.Agents.Mcp.IMcpServerInfo;
+         Retval.m_IMcpServerInfo := new WinRt.Windows.AI.Agents.Mcp.IMcpServerInfo;
          Retval.m_IMcpServerInfo.all := m_ComRetVal;
       end return;
    end;

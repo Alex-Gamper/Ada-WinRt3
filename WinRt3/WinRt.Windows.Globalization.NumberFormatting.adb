@@ -62,17 +62,17 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return CurrencyFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.CurrencyFormatter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.ICurrencyFormatter");
       m_Factory    : access ICurrencyFormatterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.ICurrencyFormatter;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
       HStr_currencyCode : constant WinRt.HString := To_HString (currencyCode);
    begin
       return RetVal : CurrencyFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_ICurrencyFormatterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCurrencyFormatterCode (HStr_currencyCode, m_ComRetVal'Access);
-            Retval.m_ICurrencyFormatter := new Windows.Globalization.NumberFormatting.ICurrencyFormatter;
+            Retval.m_ICurrencyFormatter := new WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
             Retval.m_ICurrencyFormatter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -90,10 +90,10 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return CurrencyFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.CurrencyFormatter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.ICurrencyFormatter");
       m_Factory    : access ICurrencyFormatterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.ICurrencyFormatter;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
       HStr_currencyCode : constant WinRt.HString := To_HString (currencyCode);
       HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
    begin
@@ -101,7 +101,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
          Hr := RoGetActivationFactory (m_hString, IID_ICurrencyFormatterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCurrencyFormatterCodeContext (HStr_currencyCode, languages, HStr_geographicRegion, m_ComRetVal'Access);
-            Retval.m_ICurrencyFormatter := new Windows.Globalization.NumberFormatting.ICurrencyFormatter;
+            Retval.m_ICurrencyFormatter := new WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
             Retval.m_ICurrencyFormatter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -161,7 +161,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -188,7 +188,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -215,7 +215,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -391,7 +391,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions, WinRt.Windows.Globalization.NumberFormatting.IID_INumberFormatterOptions'Unchecked_Access);
    begin
@@ -692,7 +692,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.CurrencyFormatterMode;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.CurrencyFormatterMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter2, WinRt.Windows.Globalization.NumberFormatting.IID_ICurrencyFormatter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICurrencyFormatter.all);
@@ -707,7 +707,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_Mode
    (
       this : in out CurrencyFormatter;
-      value : Windows.Globalization.NumberFormatting.CurrencyFormatterMode
+      value : WinRt.Windows.Globalization.NumberFormatting.CurrencyFormatterMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -726,7 +726,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure ApplyRoundingForCurrency
    (
       this : in out CurrencyFormatter;
-      roundingAlgorithm : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      roundingAlgorithm : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -791,7 +791,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.ICurrencyFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption, WinRt.Windows.Globalization.NumberFormatting.IID_INumberRounderOption'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICurrencyFormatter.all);
@@ -806,7 +806,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out CurrencyFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -893,17 +893,17 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return DecimalFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.DecimalFormatter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
       m_Factory    : access IDecimalFormatterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
       HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
    begin
       return RetVal : DecimalFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IDecimalFormatterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDecimalFormatter (languages, HStr_geographicRegion, m_ComRetVal'Access);
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -915,13 +915,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return DecimalFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.DecimalFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : DecimalFormatter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -940,7 +940,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions, WinRt.Windows.Globalization.NumberFormatting.IID_INumberFormatterOptions'Unchecked_Access);
    begin
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -1407,7 +1407,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -1434,7 +1434,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -1500,7 +1500,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption, WinRt.Windows.Globalization.NumberFormatting.IID_INumberRounderOption'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INumberFormatter.all);
@@ -1515,7 +1515,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out DecimalFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1597,13 +1597,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return IncrementNumberRounder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.IncrementNumberRounder");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberRounder");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
    begin
       return RetVal : IncrementNumberRounder do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumberRounder := new Windows.Globalization.NumberFormatting.INumberRounder;
+            Retval.m_INumberRounder := new WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
             Retval.m_INumberRounder.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1730,7 +1730,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.IIncrementNumberRounder := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.RoundingAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberRounder_Interface, WinRt.Windows.Globalization.NumberFormatting.IIncrementNumberRounder, WinRt.Windows.Globalization.NumberFormatting.IID_IIncrementNumberRounder'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INumberRounder.all);
@@ -1745,7 +1745,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_RoundingAlgorithm
    (
       this : in out IncrementNumberRounder;
-      value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1831,16 +1831,16 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return NumeralSystemTranslator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumeralSystemTranslator");
       m_Factory    : access INumeralSystemTranslatorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
    begin
       return RetVal : NumeralSystemTranslator do
          Hr := RoGetActivationFactory (m_hString, IID_INumeralSystemTranslatorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (languages, m_ComRetVal'Access);
-            Retval.m_INumeralSystemTranslator := new Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+            Retval.m_INumeralSystemTranslator := new WinRt.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
             Retval.m_INumeralSystemTranslator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1851,13 +1851,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return NumeralSystemTranslator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumeralSystemTranslator");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
    begin
       return RetVal : NumeralSystemTranslator do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumeralSystemTranslator := new Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
+            Retval.m_INumeralSystemTranslator := new WinRt.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
             Retval.m_INumeralSystemTranslator.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1875,7 +1875,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_INumeralSystemTranslator.all.get_Languages (m_ComRetVal'Access);
@@ -1998,17 +1998,17 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return PercentFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
       m_Factory    : access IPercentFormatterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
       HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
    begin
       return RetVal : PercentFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IPercentFormatterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePercentFormatter (languages, HStr_geographicRegion, m_ComRetVal'Access);
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2020,13 +2020,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return PercentFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : PercentFormatter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2045,7 +2045,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions, WinRt.Windows.Globalization.NumberFormatting.IID_INumberFormatterOptions'Unchecked_Access);
    begin
@@ -2485,7 +2485,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -2512,7 +2512,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -2539,7 +2539,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -2605,7 +2605,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption, WinRt.Windows.Globalization.NumberFormatting.IID_INumberRounderOption'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INumberFormatter.all);
@@ -2620,7 +2620,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out PercentFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2707,17 +2707,17 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    return PermilleFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
       m_Factory    : access IPermilleFormatterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
       HStr_geographicRegion : constant WinRt.HString := To_HString (geographicRegion);
    begin
       return RetVal : PermilleFormatter do
          Hr := RoGetActivationFactory (m_hString, IID_IPermilleFormatterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreatePermilleFormatter (languages, HStr_geographicRegion, m_ComRetVal'Access);
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2729,13 +2729,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return PermilleFormatter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberFormatter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : PermilleFormatter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumberFormatter := new Windows.Globalization.NumberFormatting.INumberFormatter;
+            Retval.m_INumberFormatter := new WinRt.Windows.Globalization.NumberFormatting.INumberFormatter;
             Retval.m_INumberFormatter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2754,7 +2754,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberFormatterOptions, WinRt.Windows.Globalization.NumberFormatting.IID_INumberFormatterOptions'Unchecked_Access);
    begin
@@ -3194,7 +3194,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -3221,7 +3221,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt64.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -3248,7 +3248,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberParser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberParser, WinRt.Windows.Globalization.NumberFormatting.IID_INumberParser'Unchecked_Access);
@@ -3314,7 +3314,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberFormatter_Interface, WinRt.Windows.Globalization.NumberFormatting.INumberRounderOption, WinRt.Windows.Globalization.NumberFormatting.IID_INumberRounderOption'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INumberFormatter.all);
@@ -3329,7 +3329,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_NumberRounder
    (
       this : in out PermilleFormatter;
-      value : Windows.Globalization.NumberFormatting.INumberRounder
+      value : WinRt.Windows.Globalization.NumberFormatting.INumberRounder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3411,13 +3411,13 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    function Constructor return SignificantDigitsNumberRounder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.SignificantDigitsNumberRounder");
-      m_ComRetVal  : aliased Windows.Globalization.NumberFormatting.INumberRounder;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberRounder");
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
    begin
       return RetVal : SignificantDigitsNumberRounder do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INumberRounder := new Windows.Globalization.NumberFormatting.INumberRounder;
+            Retval.m_INumberRounder := new WinRt.Windows.Globalization.NumberFormatting.INumberRounder;
             Retval.m_INumberRounder.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3544,7 +3544,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Globalization.NumberFormatting.ISignificantDigitsNumberRounder := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.NumberFormatting.RoundingAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Globalization.NumberFormatting.INumberRounder_Interface, WinRt.Windows.Globalization.NumberFormatting.ISignificantDigitsNumberRounder, WinRt.Windows.Globalization.NumberFormatting.IID_ISignificantDigitsNumberRounder'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_INumberRounder.all);
@@ -3559,7 +3559,7 @@ package body WinRt.Windows.Globalization.NumberFormatting is
    procedure put_RoundingAlgorithm
    (
       this : in out SignificantDigitsNumberRounder;
-      value : Windows.Globalization.NumberFormatting.RoundingAlgorithm
+      value : WinRt.Windows.Globalization.NumberFormatting.RoundingAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

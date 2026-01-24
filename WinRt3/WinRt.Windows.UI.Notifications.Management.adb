@@ -69,7 +69,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.Management.UserNotificationListener");
       m_Factory        : access WinRt.Windows.UI.Notifications.Management.IUserNotificationListenerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.Management.IUserNotificationListener;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.Management.IUserNotificationListener;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.Management.UserNotificationListener do
          Hr := RoGetActivationFactory (m_hString, IID_IUserNotificationListenerStatics'Access , m_Factory'Address);
@@ -79,7 +79,7 @@ package body WinRt.Windows.UI.Notifications.Management is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserNotificationListener := new Windows.UI.Notifications.Management.IUserNotificationListener;
+            Retval.m_IUserNotificationListener := new WinRt.Windows.UI.Notifications.Management.IUserNotificationListener;
             Retval.m_IUserNotificationListener.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -160,7 +160,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus;
    begin
       Hr := this.m_IUserNotificationListener.all.GetAccessStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -178,7 +178,7 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserNotificationListener.all.add_NotificationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -190,7 +190,7 @@ package body WinRt.Windows.UI.Notifications.Management is
    procedure remove_NotificationChanged
    (
       this : in out UserNotificationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -205,7 +205,7 @@ package body WinRt.Windows.UI.Notifications.Management is
    function GetNotificationsAsync
    (
       this : in out UserNotificationListener;
-      kinds : Windows.UI.Notifications.NotificationKinds
+      kinds : WinRt.Windows.UI.Notifications.NotificationKinds
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -275,14 +275,14 @@ package body WinRt.Windows.UI.Notifications.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IUserNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IUserNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.UserNotification do
          Hr := this.m_IUserNotificationListener.all.GetNotification (notificationId, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserNotification := new Windows.UI.Notifications.IUserNotification;
+         Retval.m_IUserNotification := new WinRt.Windows.UI.Notifications.IUserNotification;
          Retval.m_IUserNotification.all := m_ComRetVal;
       end return;
    end;

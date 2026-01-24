@@ -64,7 +64,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_CreateOrUpdateTaskRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -76,7 +76,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_CreateOrUpdateTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -97,7 +97,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_SyncRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -109,7 +109,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_SyncRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -130,7 +130,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_SkipOccurrenceRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -142,7 +142,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_SkipOccurrenceRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -163,7 +163,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_CompleteTaskRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -175,7 +175,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_CompleteTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -196,7 +196,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IUserDataTaskDataProviderConnection.all.add_DeleteTaskRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -208,7 +208,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure remove_DeleteTaskRequested
    (
       this : in out UserDataTaskDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -265,14 +265,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskDataProviderConnection do
          Hr := this.m_IUserDataTaskDataProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskDataProviderConnection := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
+         Retval.m_IUserDataTaskDataProviderConnection := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskDataProviderConnection;
          Retval.m_IUserDataTaskDataProviderConnection.all := m_ComRetVal;
       end return;
    end;
@@ -458,14 +458,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCompleteTaskRequest do
          Hr := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListCompleteTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
+         Retval.m_IUserDataTaskListCompleteTaskRequest := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCompleteTaskRequest;
          Retval.m_IUserDataTaskListCompleteTaskRequest.all := m_ComRetVal;
       end return;
    end;
@@ -478,14 +478,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -541,14 +541,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.get_Task (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTask := new Windows.ApplicationModel.UserDataTasks.IUserDataTask;
+         Retval.m_IUserDataTask := new WinRt.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
          Retval.m_IUserDataTask.all := m_ComRetVal;
       end return;
    end;
@@ -556,7 +556,7 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out UserDataTaskListCreateOrUpdateTaskRequest;
-      createdOrUpdatedUserDataTask : Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
+      createdOrUpdatedUserDataTask : WinRt.Windows.ApplicationModel.UserDataTasks.UserDataTask'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -669,14 +669,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListCreateOrUpdateTaskRequest do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListCreateOrUpdateTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
+         Retval.m_IUserDataTaskListCreateOrUpdateTaskRequest := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListCreateOrUpdateTaskRequest;
          Retval.m_IUserDataTaskListCreateOrUpdateTaskRequest.all := m_ComRetVal;
       end return;
    end;
@@ -689,14 +689,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -879,14 +879,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListDeleteTaskRequest do
          Hr := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListDeleteTaskRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
+         Retval.m_IUserDataTaskListDeleteTaskRequest := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListDeleteTaskRequest;
          Retval.m_IUserDataTaskListDeleteTaskRequest.all := m_ComRetVal;
       end return;
    end;
@@ -899,14 +899,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1089,14 +1089,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSkipOccurrenceRequest do
          Hr := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListSkipOccurrenceRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
+         Retval.m_IUserDataTaskListSkipOccurrenceRequest := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSkipOccurrenceRequest;
          Retval.m_IUserDataTaskListSkipOccurrenceRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1109,14 +1109,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1279,14 +1279,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.UserDataTaskListSyncManagerSyncRequest do
          Hr := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserDataTaskListSyncManagerSyncRequest := new Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
+         Retval.m_IUserDataTaskListSyncManagerSyncRequest := new WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider.IUserDataTaskListSyncManagerSyncRequest;
          Retval.m_IUserDataTaskListSyncManagerSyncRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1299,14 +1299,14 @@ package body WinRt.Windows.ApplicationModel.UserDataTasks.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;

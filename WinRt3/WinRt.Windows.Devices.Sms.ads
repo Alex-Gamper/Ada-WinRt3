@@ -563,21 +563,21 @@ package WinRt.Windows.Devices.Sms is
    -----------------------------------------------------------------------------
 
    IID_SmsDeviceStatusChangedEventHandler : aliased WinRt.IID := (2552959330, 15831, 17944, (175, 137, 12, 39, 45, 93, 6, 216 ));
-   type SmsDeviceStatusChangedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Devices.Sms.ISmsDevice)) is new WinRt.IMulticastDelegate_Interface (IID_SmsDeviceStatusChangedEventHandler'Access) with null record;
+   type SmsDeviceStatusChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Devices.Sms.ISmsDevice)) is new WinRt.IMulticastDelegate_Interface (IID_SmsDeviceStatusChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access SmsDeviceStatusChangedEventHandler_Delegate;
-         sender : Windows.Devices.Sms.ISmsDevice
+         sender : WinRt.Windows.Devices.Sms.ISmsDevice
       )
       return WinRt.Hresult;
 
    IID_SmsMessageReceivedEventHandler : aliased WinRt.IID := (192599049, 60461, 18382, (162, 83, 115, 43, 238, 235, 202, 205 ));
-   type SmsMessageReceivedEventHandler_Delegate (Callback : access procedure  (sender : Windows.Devices.Sms.ISmsDevice;e : Windows.Devices.Sms.ISmsMessageReceivedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_SmsMessageReceivedEventHandler'Access) with null record;
+   type SmsMessageReceivedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.Windows.Devices.Sms.ISmsDevice;e : WinRt.Windows.Devices.Sms.ISmsMessageReceivedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_SmsMessageReceivedEventHandler'Access) with null record;
       function Invoke
       (
          this : access SmsMessageReceivedEventHandler_Delegate;
-         sender : Windows.Devices.Sms.ISmsDevice;
-         e : Windows.Devices.Sms.ISmsMessageReceivedEventArgs
+         sender : WinRt.Windows.Devices.Sms.ISmsDevice;
+         e : WinRt.Windows.Devices.Sms.ISmsMessageReceivedEventArgs
       )
       return WinRt.Hresult;
 
@@ -627,7 +627,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsAppMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -711,14 +711,14 @@ package WinRt.Windows.Devices.Sms is
       function get_Encoding
       (
          this : access ISmsAppMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsEncoding
+         RetVal : access WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
       function put_Encoding
       (
          this : access ISmsAppMessage_Interface;
-         value : Windows.Devices.Sms.SmsEncoding
+         value : WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
@@ -767,14 +767,14 @@ package WinRt.Windows.Devices.Sms is
       function get_BinaryBody
       (
          this : access ISmsAppMessage_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_BinaryBody
       (
          this : access ISmsAppMessage_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -786,14 +786,14 @@ package WinRt.Windows.Devices.Sms is
       function get_Format
       (
          this : access ISmsBinaryMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsDataFormat
+         RetVal : access WinRt.Windows.Devices.Sms.SmsDataFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access ISmsBinaryMessage_Interface;
-         value : Windows.Devices.Sms.SmsDataFormat
+         value : WinRt.Windows.Devices.Sms.SmsDataFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -821,7 +821,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsBroadcastMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -849,7 +849,7 @@ package WinRt.Windows.Devices.Sms is
       function get_GeographicalScope
       (
          this : access ISmsBroadcastMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsGeographicalScope
+         RetVal : access WinRt.Windows.Devices.Sms.SmsGeographicalScope
       )
       return WinRt.Hresult is abstract;
 
@@ -870,7 +870,7 @@ package WinRt.Windows.Devices.Sms is
       function get_BroadcastType
       (
          this : access ISmsBroadcastMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsBroadcastType
+         RetVal : access WinRt.Windows.Devices.Sms.SmsBroadcastType
       )
       return WinRt.Hresult is abstract;
 
@@ -896,16 +896,16 @@ package WinRt.Windows.Devices.Sms is
       function SendMessageAsync
       (
          this : access ISmsDevice_Interface;
-         message : Windows.Devices.Sms.ISmsMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.Devices.Sms.ISmsMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function CalculateLength
       (
          this : access ISmsDevice_Interface;
-         message : Windows.Devices.Sms.ISmsTextMessage;
-         RetVal : access Windows.Devices.Sms.SmsEncodedLength
+         message : WinRt.Windows.Devices.Sms.ISmsTextMessage;
+         RetVal : access WinRt.Windows.Devices.Sms.SmsEncodedLength
       )
       return WinRt.Hresult is abstract;
 
@@ -919,51 +919,51 @@ package WinRt.Windows.Devices.Sms is
       function get_CellularClass
       (
          this : access ISmsDevice_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function get_MessageStore
       (
          this : access ISmsDevice_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsDeviceMessageStore
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsDeviceMessageStore
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceStatus
       (
          this : access ISmsDevice_Interface;
-         RetVal : access Windows.Devices.Sms.SmsDeviceStatus
+         RetVal : access WinRt.Windows.Devices.Sms.SmsDeviceStatus
       )
       return WinRt.Hresult is abstract;
 
       function add_SmsMessageReceived
       (
          this : access ISmsDevice_Interface;
-         eventHandler : Windows.Devices.Sms.SmsMessageReceivedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         eventHandler : WinRt.Windows.Devices.Sms.SmsMessageReceivedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SmsMessageReceived
       (
          this : access ISmsDevice_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_SmsDeviceStatusChanged
       (
          this : access ISmsDevice_Interface;
-         eventHandler : Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         eventHandler : WinRt.Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SmsDeviceStatusChanged
       (
          this : access ISmsDevice_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1010,29 +1010,29 @@ package WinRt.Windows.Devices.Sms is
       function get_CellularClass
       (
          this : access ISmsDevice2_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceStatus
       (
          this : access ISmsDevice2_Interface;
-         RetVal : access Windows.Devices.Sms.SmsDeviceStatus
+         RetVal : access WinRt.Windows.Devices.Sms.SmsDeviceStatus
       )
       return WinRt.Hresult is abstract;
 
       function CalculateLength
       (
          this : access ISmsDevice2_Interface;
-         message : Windows.Devices.Sms.ISmsMessageBase;
-         RetVal : access Windows.Devices.Sms.SmsEncodedLength
+         message : WinRt.Windows.Devices.Sms.ISmsMessageBase;
+         RetVal : access WinRt.Windows.Devices.Sms.SmsEncodedLength
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageAndGetResultAsync
       (
          this : access ISmsDevice2_Interface;
-         message : Windows.Devices.Sms.ISmsMessageBase;
+         message : WinRt.Windows.Devices.Sms.ISmsMessageBase;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1041,14 +1041,14 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsDevice2_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeviceStatusChanged
       (
          this : access ISmsDevice2_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,14 +1068,14 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsDevice2Statics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Devices.Sms.ISmsDevice2
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsDevice2
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access ISmsDevice2Statics_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsDevice2
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsDevice2
       )
       return WinRt.Hresult is abstract;
 
@@ -1083,7 +1083,7 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsDevice2Statics_Interface;
          parentDeviceId : WinRt.HString;
-         RetVal : access Windows.Devices.Sms.ISmsDevice2
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsDevice2
       )
       return WinRt.Hresult is abstract;
 
@@ -1096,15 +1096,15 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsDeviceMessageStore_Interface;
          messageId : WinRt.UInt32;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteMessagesAsync
       (
          this : access ISmsDeviceMessageStore_Interface;
-         messageFilter : Windows.Devices.Sms.SmsMessageFilter;
-         RetVal : access Windows.Foundation.IAsyncAction
+         messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1119,7 +1119,7 @@ package WinRt.Windows.Devices.Sms is
       function GetMessagesAsync
       (
          this : access ISmsDeviceMessageStore_Interface;
-         messageFilter : Windows.Devices.Sms.SmsMessageFilter;
+         messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1179,7 +1179,7 @@ package WinRt.Windows.Devices.Sms is
       function get_MessageType
       (
          this : access ISmsFilterRule_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageType
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -1221,14 +1221,14 @@ package WinRt.Windows.Devices.Sms is
       function get_CellularClass
       (
          this : access ISmsFilterRule_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function put_CellularClass
       (
          this : access ISmsFilterRule_Interface;
-         value : Windows.Devices.Sms.CellularClass
+         value : WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1282,8 +1282,8 @@ package WinRt.Windows.Devices.Sms is
       function CreateFilterRule
       (
          this : access ISmsFilterRuleFactory_Interface;
-         messageType : Windows.Devices.Sms.SmsMessageType;
-         RetVal : access Windows.Devices.Sms.ISmsFilterRule
+         messageType : WinRt.Windows.Devices.Sms.SmsMessageType;
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsFilterRule
       )
       return WinRt.Hresult is abstract;
 
@@ -1295,7 +1295,7 @@ package WinRt.Windows.Devices.Sms is
       function get_ActionType
       (
          this : access ISmsFilterRules_Interface;
-         RetVal : access Windows.Devices.Sms.SmsFilterActionType
+         RetVal : access WinRt.Windows.Devices.Sms.SmsFilterActionType
       )
       return WinRt.Hresult is abstract;
 
@@ -1314,8 +1314,8 @@ package WinRt.Windows.Devices.Sms is
       function CreateFilterRules
       (
          this : access ISmsFilterRulesFactory_Interface;
-         actionType : Windows.Devices.Sms.SmsFilterActionType;
-         RetVal : access Windows.Devices.Sms.ISmsFilterRules
+         actionType : WinRt.Windows.Devices.Sms.SmsFilterActionType;
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsFilterRules
       )
       return WinRt.Hresult is abstract;
 
@@ -1334,7 +1334,7 @@ package WinRt.Windows.Devices.Sms is
       function get_MessageClass
       (
          this : access ISmsMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageClass
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1346,7 +1346,7 @@ package WinRt.Windows.Devices.Sms is
       function get_MessageType
       (
          this : access ISmsMessageBase_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageType
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -1360,14 +1360,14 @@ package WinRt.Windows.Devices.Sms is
       function get_CellularClass
       (
          this : access ISmsMessageBase_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function get_MessageClass
       (
          this : access ISmsMessageBase_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageClass
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1386,14 +1386,14 @@ package WinRt.Windows.Devices.Sms is
       function get_TextMessage
       (
          this : access ISmsMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsTextMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsTextMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_BinaryMessage
       (
          this : access ISmsMessageReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsBinaryMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsBinaryMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1405,49 +1405,49 @@ package WinRt.Windows.Devices.Sms is
       function get_MessageType
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageType
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageType
       )
       return WinRt.Hresult is abstract;
 
       function get_TextMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsTextMessage2
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsTextMessage2
       )
       return WinRt.Hresult is abstract;
 
       function get_WapMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsWapMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsWapMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_AppMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsAppMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsAppMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_BroadcastMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsBroadcastMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsBroadcastMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_VoicemailMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsVoicemailMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsVoicemailMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_StatusMessage
       (
          this : access ISmsMessageReceivedTriggerDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsStatusMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsStatusMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1485,14 +1485,14 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsMessageRegistration_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MessageReceived
       (
          this : access ISmsMessageRegistration_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1512,8 +1512,8 @@ package WinRt.Windows.Devices.Sms is
       (
          this : access ISmsMessageRegistrationStatics_Interface;
          id : WinRt.HString;
-         filterRules : Windows.Devices.Sms.ISmsFilterRules;
-         RetVal : access Windows.Devices.Sms.ISmsMessageRegistration
+         filterRules : WinRt.Windows.Devices.Sms.ISmsFilterRules;
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsMessageRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -1544,14 +1544,14 @@ package WinRt.Windows.Devices.Sms is
       function get_MessageClass
       (
          this : access ISmsReceivedEventDetails2_Interface;
-         RetVal : access Windows.Devices.Sms.SmsMessageClass
+         RetVal : access WinRt.Windows.Devices.Sms.SmsMessageClass
       )
       return WinRt.Hresult is abstract;
 
       function get_BinaryMessage
       (
          this : access ISmsReceivedEventDetails2_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsBinaryMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsBinaryMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1577,14 +1577,14 @@ package WinRt.Windows.Devices.Sms is
       function get_CellularClass
       (
          this : access ISmsSendMessageResult_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ModemErrorCode
       (
          this : access ISmsSendMessageResult_Interface;
-         RetVal : access Windows.Devices.Sms.SmsModemErrorCode
+         RetVal : access WinRt.Windows.Devices.Sms.SmsModemErrorCode
       )
       return WinRt.Hresult is abstract;
 
@@ -1652,14 +1652,14 @@ package WinRt.Windows.Devices.Sms is
       function get_ServiceCenterTimestamp
       (
          this : access ISmsStatusMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_DischargeTime
       (
          this : access ISmsStatusMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1671,7 +1671,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsTextMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1741,21 +1741,21 @@ package WinRt.Windows.Devices.Sms is
       function get_Encoding
       (
          this : access ISmsTextMessage_Interface;
-         RetVal : access Windows.Devices.Sms.SmsEncoding
+         RetVal : access WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
       function put_Encoding
       (
          this : access ISmsTextMessage_Interface;
-         value : Windows.Devices.Sms.SmsEncoding
+         value : WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
       function ToBinaryMessages
       (
          this : access ISmsTextMessage_Interface;
-         format : Windows.Devices.Sms.SmsDataFormat;
+         format : WinRt.Windows.Devices.Sms.SmsDataFormat;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1768,7 +1768,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsTextMessage2_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1810,14 +1810,14 @@ package WinRt.Windows.Devices.Sms is
       function get_Encoding
       (
          this : access ISmsTextMessage2_Interface;
-         RetVal : access Windows.Devices.Sms.SmsEncoding
+         RetVal : access WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
       function put_Encoding
       (
          this : access ISmsTextMessage2_Interface;
-         value : Windows.Devices.Sms.SmsEncoding
+         value : WinRt.Windows.Devices.Sms.SmsEncoding
       )
       return WinRt.Hresult is abstract;
 
@@ -1885,18 +1885,18 @@ package WinRt.Windows.Devices.Sms is
       function FromBinaryMessage
       (
          this : access ISmsTextMessageStatics_Interface;
-         binaryMessage : Windows.Devices.Sms.ISmsBinaryMessage;
-         RetVal : access Windows.Devices.Sms.ISmsTextMessage
+         binaryMessage : WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsTextMessage
       )
       return WinRt.Hresult is abstract;
 
       function FromBinaryData
       (
          this : access ISmsTextMessageStatics_Interface;
-         format : Windows.Devices.Sms.SmsDataFormat;
+         format : WinRt.Windows.Devices.Sms.SmsDataFormat;
          valueSize : WinRt.UInt32;
          value : WinRt.Byte_Ptr;
-         RetVal : access Windows.Devices.Sms.ISmsTextMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsTextMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1908,7 +1908,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsVoicemailMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1941,7 +1941,7 @@ package WinRt.Windows.Devices.Sms is
       function get_Timestamp
       (
          this : access ISmsWapMessage_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1976,7 +1976,7 @@ package WinRt.Windows.Devices.Sms is
       function get_BinaryBody
       (
          this : access ISmsWapMessage_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2005,7 +2005,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out DeleteSmsMessageOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    );
 
    function get_Completed
@@ -2059,7 +2059,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out DeleteSmsMessagesOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    );
 
    function get_Completed
@@ -2262,7 +2262,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out SendSmsMessageOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    );
 
    function get_Completed
@@ -2399,7 +2399,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsAppMessage;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    );
 
    function get_PortNumber
@@ -2447,7 +2447,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_BinaryBody
    (
       this : in out SmsAppMessage;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_MessageType
@@ -2503,7 +2503,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Format
    (
       this : in out SmsBinaryMessage;
-      value : Windows.Devices.Sms.SmsDataFormat
+      value : WinRt.Windows.Devices.Sms.SmsDataFormat
    );
 
    function GetData
@@ -2662,14 +2662,14 @@ package WinRt.Windows.Devices.Sms is
    function SendMessageAsync
    (
       this : in out SmsDevice;
-      message : Windows.Devices.Sms.ISmsMessage
+      message : WinRt.Windows.Devices.Sms.ISmsMessage
    )
    return WinRt.Windows.Devices.Sms.SendSmsMessageOperation'Class;
 
    function CalculateLength
    (
       this : in out SmsDevice;
-      message : Windows.Devices.Sms.SmsTextMessage'Class
+      message : WinRt.Windows.Devices.Sms.SmsTextMessage'Class
    )
    return WinRt.Windows.Devices.Sms.SmsEncodedLength;
 
@@ -2700,27 +2700,27 @@ package WinRt.Windows.Devices.Sms is
    function add_SmsMessageReceived
    (
       this : in out SmsDevice;
-      eventHandler : Windows.Devices.Sms.SmsMessageReceivedEventHandler
+      eventHandler : WinRt.Windows.Devices.Sms.SmsMessageReceivedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_SmsMessageReceived
    (
       this : in out SmsDevice;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SmsDeviceStatusChanged
    (
       this : in out SmsDevice;
-      eventHandler : Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler
+      eventHandler : WinRt.Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_SmsDeviceStatusChanged
    (
       this : in out SmsDevice;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2798,14 +2798,14 @@ package WinRt.Windows.Devices.Sms is
    function CalculateLength
    (
       this : in out SmsDevice2;
-      message : Windows.Devices.Sms.ISmsMessageBase
+      message : WinRt.Windows.Devices.Sms.ISmsMessageBase
    )
    return WinRt.Windows.Devices.Sms.SmsEncodedLength;
 
    function SendMessageAndGetResultAsync
    (
       this : in out SmsDevice2;
-      message : Windows.Devices.Sms.ISmsMessageBase
+      message : WinRt.Windows.Devices.Sms.ISmsMessageBase
    )
    return WinRt.Windows.Devices.Sms.SmsSendMessageResult'Class;
 
@@ -2819,7 +2819,7 @@ package WinRt.Windows.Devices.Sms is
    procedure remove_DeviceStatusChanged
    (
       this : in out SmsDevice2;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2840,7 +2840,7 @@ package WinRt.Windows.Devices.Sms is
    procedure DeleteMessagesAsync
    (
       this : in out SmsDeviceMessageStore;
-      messageFilter : Windows.Devices.Sms.SmsMessageFilter
+      messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter
    );
 
    function GetMessageAsync
@@ -2853,7 +2853,7 @@ package WinRt.Windows.Devices.Sms is
    function GetMessagesAsync
    (
       this : in out SmsDeviceMessageStore;
-      messageFilter : Windows.Devices.Sms.SmsMessageFilter
+      messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter
    )
    return WinRt.GenericObject;
 
@@ -2874,7 +2874,7 @@ package WinRt.Windows.Devices.Sms is
 
    function Constructor
    (
-      messageType : Windows.Devices.Sms.SmsMessageType
+      messageType : WinRt.Windows.Devices.Sms.SmsMessageType
    )
    return SmsFilterRule;
 
@@ -2926,7 +2926,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_CellularClass
    (
       this : in out SmsFilterRule;
-      value : Windows.Devices.Sms.CellularClass
+      value : WinRt.Windows.Devices.Sms.CellularClass
    );
 
    function get_ProtocolIds
@@ -2976,7 +2976,7 @@ package WinRt.Windows.Devices.Sms is
 
    function Constructor
    (
-      actionType : Windows.Devices.Sms.SmsFilterActionType
+      actionType : WinRt.Windows.Devices.Sms.SmsFilterActionType
    )
    return SmsFilterRules;
 
@@ -3092,7 +3092,7 @@ package WinRt.Windows.Devices.Sms is
    function Register
    (
       id : WinRt.WString;
-      filterRules : Windows.Devices.Sms.SmsFilterRules'Class
+      filterRules : WinRt.Windows.Devices.Sms.SmsFilterRules'Class
    )
    return WinRt.Windows.Devices.Sms.SmsMessageRegistration;
 
@@ -3120,7 +3120,7 @@ package WinRt.Windows.Devices.Sms is
    procedure remove_MessageReceived
    (
       this : in out SmsMessageRegistration;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3304,13 +3304,13 @@ package WinRt.Windows.Devices.Sms is
 
    function FromBinaryMessage
    (
-      binaryMessage : Windows.Devices.Sms.SmsBinaryMessage'Class
+      binaryMessage : WinRt.Windows.Devices.Sms.SmsBinaryMessage'Class
    )
    return WinRt.Windows.Devices.Sms.SmsTextMessage;
 
    function FromBinaryData
    (
-      format : Windows.Devices.Sms.SmsDataFormat;
+      format : WinRt.Windows.Devices.Sms.SmsDataFormat;
       value : WinRt.Byte_Array
    )
    return WinRt.Windows.Devices.Sms.SmsTextMessage;
@@ -3387,13 +3387,13 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsTextMessage;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    );
 
    function ToBinaryMessages
    (
       this : in out SmsTextMessage;
-      format : Windows.Devices.Sms.SmsDataFormat
+      format : WinRt.Windows.Devices.Sms.SmsDataFormat
    )
    return IVectorView_ISmsBinaryMessage.Kind;
 
@@ -3468,7 +3468,7 @@ package WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsTextMessage2;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    );
 
    function get_CallbackNumber

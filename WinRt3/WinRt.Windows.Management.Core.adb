@@ -65,7 +65,7 @@ package body WinRt.Windows.Management.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Management.Core.ApplicationDataManager");
       m_Factory        : access WinRt.Windows.Management.Core.IApplicationDataManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationData;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IApplicationData;
       HStr_packageFamilyName : constant WinRt.HString := To_HString (packageFamilyName);
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationData do
@@ -76,7 +76,7 @@ package body WinRt.Windows.Management.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
+            Retval.m_IApplicationData := new WinRt.Windows.Storage.IApplicationData;
             Retval.m_IApplicationData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

@@ -115,7 +115,7 @@ package WinRt.Windows.Media.Ocr is
       function RecognizeAsync
       (
          this : access IOcrEngine_Interface;
-         bitmap : Windows.Graphics.Imaging.ISoftwareBitmap;
+         bitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -123,7 +123,7 @@ package WinRt.Windows.Media.Ocr is
       function get_RecognizerLanguage
       (
          this : access IOcrEngine_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -149,7 +149,7 @@ package WinRt.Windows.Media.Ocr is
       function IsLanguageSupported
       (
          this : access IOcrEngineStatics_Interface;
-         language : Windows.Globalization.ILanguage;
+         language : WinRt.Windows.Globalization.ILanguage;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -157,15 +157,15 @@ package WinRt.Windows.Media.Ocr is
       function TryCreateFromLanguage
       (
          this : access IOcrEngineStatics_Interface;
-         language : Windows.Globalization.ILanguage;
-         RetVal : access Windows.Media.Ocr.IOcrEngine
+         language : WinRt.Windows.Globalization.ILanguage;
+         RetVal : access WinRt.Windows.Media.Ocr.IOcrEngine
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateFromUserProfileLanguages
       (
          this : access IOcrEngineStatics_Interface;
-         RetVal : access Windows.Media.Ocr.IOcrEngine
+         RetVal : access WinRt.Windows.Media.Ocr.IOcrEngine
       )
       return WinRt.Hresult is abstract;
 
@@ -222,7 +222,7 @@ package WinRt.Windows.Media.Ocr is
       function get_BoundingRect
       (
          this : access IOcrWord_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -256,13 +256,13 @@ package WinRt.Windows.Media.Ocr is
 
    function IsLanguageSupported
    (
-      language : Windows.Globalization.Language'Class
+      language : WinRt.Windows.Globalization.Language'Class
    )
    return WinRt.Boolean;
 
    function TryCreateFromLanguage
    (
-      language : Windows.Globalization.Language'Class
+      language : WinRt.Windows.Globalization.Language'Class
    )
    return WinRt.Windows.Media.Ocr.OcrEngine;
 
@@ -275,7 +275,7 @@ package WinRt.Windows.Media.Ocr is
    function RecognizeAsync
    (
       this : in out OcrEngine;
-      bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      bitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    )
    return WinRt.Windows.Media.Ocr.OcrResult'Class;
 

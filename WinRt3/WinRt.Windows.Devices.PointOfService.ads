@@ -1453,7 +1453,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access IBarcodeScanner_Interface;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeScannerCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -1467,7 +1467,7 @@ package WinRt.Windows.Devices.PointOfService is
       function CheckHealthAsync
       (
          this : access IBarcodeScanner_Interface;
-         level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
+         level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1514,14 +1514,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUpdated
       (
          this : access IBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1545,7 +1545,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PowerReportingType
       (
          this : access IBarcodeScannerCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosPowerReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -1602,7 +1602,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Report
       (
          this : access IBarcodeScannerDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeScannerReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1614,7 +1614,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PartialInputData
       (
          this : access IBarcodeScannerErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeScannerReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1628,7 +1628,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_ErrorData
       (
          this : access IBarcodeScannerErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IUnifiedPosErrorData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IUnifiedPosErrorData
       )
       return WinRt.Hresult is abstract;
 
@@ -1640,7 +1640,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Preview
       (
          this : access IBarcodeScannerImagePreviewReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,14 +1659,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_ScanData
       (
          this : access IBarcodeScannerReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ScanDataLabel
       (
          this : access IBarcodeScannerReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1679,9 +1679,9 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IBarcodeScannerReportFactory_Interface;
          scanDataType : WinRt.UInt32;
-         scanData : Windows.Storage.Streams.IBuffer;
-         scanDataLabel : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.PointOfService.IBarcodeScannerReport
+         scanData : WinRt.Windows.Storage.Streams.IBuffer;
+         scanDataLabel : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.PointOfService.IBarcodeScannerReport
       )
       return WinRt.Hresult is abstract;
 
@@ -1720,7 +1720,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access IBarcodeScannerStatics2_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1733,7 +1733,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access IBarcodeScannerStatusUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.BarcodeScannerStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.BarcodeScannerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2498,14 +2498,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_DecodeLengthKind
       (
          this : access IBarcodeSymbologyAttributes_Interface;
-         RetVal : access Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
+         RetVal : access WinRt.Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
       )
       return WinRt.Hresult is abstract;
 
       function put_DecodeLengthKind
       (
          this : access IBarcodeSymbologyAttributes_Interface;
-         value : Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
+         value : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2531,14 +2531,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access ICashDrawer_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawerCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawerCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access ICashDrawer_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawerStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2552,7 +2552,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_DrawerEventSource
       (
          this : access ICashDrawer_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawerEventSource
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawerEventSource
       )
       return WinRt.Hresult is abstract;
 
@@ -2566,7 +2566,7 @@ package WinRt.Windows.Devices.PointOfService is
       function CheckHealthAsync
       (
          this : access ICashDrawer_Interface;
-         level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
+         level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2583,14 +2583,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ICashDrawer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUpdated
       (
          this : access ICashDrawer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2602,7 +2602,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PowerReportingType
       (
          this : access ICashDrawerCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosPowerReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -2649,14 +2649,14 @@ package WinRt.Windows.Devices.PointOfService is
       function put_AlarmTimeout
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_AlarmTimeout
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2677,28 +2677,28 @@ package WinRt.Windows.Devices.PointOfService is
       function put_BeepDuration
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_BeepDuration
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_BeepDelay
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_BeepDelay
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2706,14 +2706,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ICashDrawerCloseAlarm_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AlarmTimeoutExpired
       (
          this : access ICashDrawerCloseAlarm_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2733,14 +2733,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ICashDrawerEventSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DrawerClosed
       (
          this : access ICashDrawerEventSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2748,14 +2748,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ICashDrawerEventSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DrawerOpened
       (
          this : access ICashDrawerEventSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2767,7 +2767,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CashDrawer
       (
          this : access ICashDrawerEventSourceEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawer
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawer
       )
       return WinRt.Hresult is abstract;
 
@@ -2806,7 +2806,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access ICashDrawerStatics2_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2819,7 +2819,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_StatusKind
       (
          this : access ICashDrawerStatus_Interface;
-         RetVal : access Windows.Devices.PointOfService.CashDrawerStatusKind
+         RetVal : access WinRt.Windows.Devices.PointOfService.CashDrawerStatusKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2838,7 +2838,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access ICashDrawerStatusUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawerStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2892,14 +2892,14 @@ package WinRt.Windows.Devices.PointOfService is
       function EnableAsync
       (
          this : access IClaimedBarcodeScanner_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DisableAsync
       (
          this : access IClaimedBarcodeScanner_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2913,7 +2913,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          symbologies : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2921,7 +2921,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          statisticsCategories : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2929,7 +2929,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          statistics : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2937,7 +2937,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          profile : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2945,14 +2945,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataReceived
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2960,14 +2960,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TriggerPressed
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2975,14 +2975,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TriggerReleased
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2990,14 +2990,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReleaseDeviceRequested
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3005,14 +3005,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImagePreviewReceived
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3020,14 +3020,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorOccurred
       (
          this : access IClaimedBarcodeScanner_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3039,14 +3039,14 @@ package WinRt.Windows.Devices.PointOfService is
       function StartSoftwareTriggerAsync
       (
          this : access IClaimedBarcodeScanner1_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopSoftwareTriggerAsync
       (
          this : access IClaimedBarcodeScanner1_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3067,7 +3067,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner2_Interface;
          barcodeSymbology : WinRt.UInt32;
-         attributes : Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
+         attributes : WinRt.Windows.Devices.PointOfService.IBarcodeSymbologyAttributes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3113,14 +3113,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedBarcodeScanner4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IClaimedBarcodeScanner4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3158,7 +3158,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CloseAlarm
       (
          this : access IClaimedCashDrawer_Interface;
-         RetVal : access Windows.Devices.PointOfService.ICashDrawerCloseAlarm
+         RetVal : access WinRt.Windows.Devices.PointOfService.ICashDrawerCloseAlarm
       )
       return WinRt.Hresult is abstract;
 
@@ -3210,14 +3210,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedCashDrawer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReleaseDeviceRequested
       (
          this : access IClaimedCashDrawer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3230,14 +3230,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedCashDrawer2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IClaimedCashDrawer2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3254,7 +3254,7 @@ package WinRt.Windows.Devices.PointOfService is
       function CreateJob
       (
          this : access IClaimedJournalPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IPosPrinterJob
+         RetVal : access WinRt.Windows.Devices.PointOfService.IPosPrinterJob
       )
       return WinRt.Hresult is abstract;
 
@@ -3273,7 +3273,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access IClaimedLineDisplay_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -3315,7 +3315,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_DefaultWindow
       (
          this : access IClaimedLineDisplay_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayWindow
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -3329,14 +3329,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedLineDisplay_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReleaseDeviceRequested
       (
          this : access IClaimedLineDisplay_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3356,7 +3356,7 @@ package WinRt.Windows.Devices.PointOfService is
       function CheckHealthAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
+         level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3372,14 +3372,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedLineDisplay2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUpdated
       (
          this : access IClaimedLineDisplay2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3393,7 +3393,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_MaxBitmapSizeInPixels
       (
          this : access IClaimedLineDisplay2_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -3407,21 +3407,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CustomGlyphs
       (
          this : access IClaimedLineDisplay2_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayCustomGlyphs
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayCustomGlyphs
       )
       return WinRt.Hresult is abstract;
 
       function GetAttributes
       (
          this : access IClaimedLineDisplay2_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayAttributes
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayAttributes
       )
       return WinRt.Hresult is abstract;
 
       function TryUpdateAttributesAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         attributes : Windows.Devices.PointOfService.ILineDisplayAttributes;
+         attributes : WinRt.Windows.Devices.PointOfService.ILineDisplayAttributes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3430,7 +3430,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedLineDisplay2_Interface;
          descriptor : WinRt.UInt32;
-         descriptorState : Windows.Devices.PointOfService.LineDisplayDescriptorState;
+         descriptorState : WinRt.Windows.Devices.PointOfService.LineDisplayDescriptorState;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3445,8 +3445,8 @@ package WinRt.Windows.Devices.PointOfService is
       function TryCreateWindowAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         viewport : Windows.Foundation.Rect;
-         windowSize : Windows.Foundation.Size;
+         viewport : WinRt.Windows.Foundation.Rect;
+         windowSize : WinRt.Windows.Foundation.Size;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3454,7 +3454,7 @@ package WinRt.Windows.Devices.PointOfService is
       function TryStoreStorageFileBitmapAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3462,9 +3462,9 @@ package WinRt.Windows.Devices.PointOfService is
       function TryStoreStorageFileBitmapAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-         verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+         verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3472,9 +3472,9 @@ package WinRt.Windows.Devices.PointOfService is
       function TryStoreStorageFileBitmapAsync
       (
          this : access IClaimedLineDisplay2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-         verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+         verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
          widthInPixels : WinRt.Int32;
          RetVal : access GenericObject
       )
@@ -3489,14 +3489,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedLineDisplay3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IClaimedLineDisplay3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3528,7 +3528,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access IClaimedLineDisplayStatics_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -3604,14 +3604,14 @@ package WinRt.Windows.Devices.PointOfService is
       function put_TracksToRead
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         value : Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
+         value : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
       )
       return WinRt.Hresult is abstract;
 
       function get_TracksToRead
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
       )
       return WinRt.Hresult is abstract;
 
@@ -3632,14 +3632,14 @@ package WinRt.Windows.Devices.PointOfService is
       function EnableAsync
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DisableAsync
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3652,7 +3652,7 @@ package WinRt.Windows.Devices.PointOfService is
       function SetErrorReportingType
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         value : Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
+         value : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -3668,7 +3668,7 @@ package WinRt.Windows.Devices.PointOfService is
          this : access IClaimedMagneticStripeReader_Interface;
          responseTokenSize : WinRt.UInt32;
          responseToken : WinRt.Byte_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3677,7 +3677,7 @@ package WinRt.Windows.Devices.PointOfService is
          this : access IClaimedMagneticStripeReader_Interface;
          responseTokenSize : WinRt.UInt32;
          responseToken : WinRt.Byte_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3686,7 +3686,7 @@ package WinRt.Windows.Devices.PointOfService is
          this : access IClaimedMagneticStripeReader_Interface;
          key : WinRt.HString;
          keyName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3694,7 +3694,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          statisticsCategories : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3702,7 +3702,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          statistics : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3710,14 +3710,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BankCardDataReceived
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3725,14 +3725,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AamvaCardDataReceived
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3740,14 +3740,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VendorSpecificDataReceived
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3755,14 +3755,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReleaseDeviceRequested
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3770,14 +3770,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorOccurred
       (
          this : access IClaimedMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3790,14 +3790,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedMagneticStripeReader2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IClaimedMagneticStripeReader2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3863,35 +3863,35 @@ package WinRt.Windows.Devices.PointOfService is
       function put_MapMode
       (
          this : access IClaimedPosPrinter_Interface;
-         value : Windows.Devices.PointOfService.PosPrinterMapMode
+         value : WinRt.Windows.Devices.PointOfService.PosPrinterMapMode
       )
       return WinRt.Hresult is abstract;
 
       function get_MapMode
       (
          this : access IClaimedPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterMapMode
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterMapMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Receipt
       (
          this : access IClaimedPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IClaimedReceiptPrinter
+         RetVal : access WinRt.Windows.Devices.PointOfService.IClaimedReceiptPrinter
       )
       return WinRt.Hresult is abstract;
 
       function get_Slip
       (
          this : access IClaimedPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IClaimedSlipPrinter
+         RetVal : access WinRt.Windows.Devices.PointOfService.IClaimedSlipPrinter
       )
       return WinRt.Hresult is abstract;
 
       function get_Journal
       (
          this : access IClaimedPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IClaimedJournalPrinter
+         RetVal : access WinRt.Windows.Devices.PointOfService.IClaimedJournalPrinter
       )
       return WinRt.Hresult is abstract;
 
@@ -3936,14 +3936,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedPosPrinter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ReleaseDeviceRequested
       (
          this : access IClaimedPosPrinter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3956,14 +3956,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IClaimedPosPrinter2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IClaimedPosPrinter2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4001,21 +4001,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PageSize
       (
          this : access IClaimedReceiptPrinter_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_PrintArea
       (
          this : access IClaimedReceiptPrinter_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function CreateJob
       (
          this : access IClaimedReceiptPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IReceiptPrintJob
+         RetVal : access WinRt.Windows.Devices.PointOfService.IReceiptPrintJob
       )
       return WinRt.Hresult is abstract;
 
@@ -4055,21 +4055,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PrintSide
       (
          this : access IClaimedSlipPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterPrintSide
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterPrintSide
       )
       return WinRt.Hresult is abstract;
 
       function get_PageSize
       (
          this : access IClaimedSlipPrinter_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_PrintArea
       (
          this : access IClaimedSlipPrinter_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -4088,7 +4088,7 @@ package WinRt.Windows.Devices.PointOfService is
       function InsertSlipAsync
       (
          this : access IClaimedSlipPrinter_Interface;
-         timeout : Windows.Foundation.TimeSpan;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4096,7 +4096,7 @@ package WinRt.Windows.Devices.PointOfService is
       function RemoveSlipAsync
       (
          this : access IClaimedSlipPrinter_Interface;
-         timeout : Windows.Foundation.TimeSpan;
+         timeout : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4104,14 +4104,14 @@ package WinRt.Windows.Devices.PointOfService is
       function ChangePrintSide
       (
          this : access IClaimedSlipPrinter_Interface;
-         printSide : Windows.Devices.PointOfService.PosPrinterPrintSide
+         printSide : WinRt.Windows.Devices.PointOfService.PosPrinterPrintSide
       )
       return WinRt.Hresult is abstract;
 
       function CreateJob
       (
          this : access IClaimedSlipPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IReceiptOrSlipJob
+         RetVal : access WinRt.Windows.Devices.PointOfService.IReceiptOrSlipJob
       )
       return WinRt.Hresult is abstract;
 
@@ -4193,14 +4193,14 @@ package WinRt.Windows.Devices.PointOfService is
       function put_ColorCartridge
       (
          this : access ICommonClaimedPosPrinterStation_Interface;
-         value : Windows.Devices.PointOfService.PosPrinterColorCartridge
+         value : WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorCartridge
       (
          this : access ICommonClaimedPosPrinterStation_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterColorCartridge
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge
       )
       return WinRt.Hresult is abstract;
 
@@ -4276,14 +4276,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_ColorCartridgeCapabilities
       (
          this : access ICommonPosPrintStationCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterColorCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterColorCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_CartridgeSensors
       (
          this : access ICommonPosPrintStationCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterCartridgeSensors
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterCartridgeSensors
       )
       return WinRt.Hresult is abstract;
 
@@ -4400,7 +4400,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_RuledLineCapabilities
       (
          this : access ICommonReceiptSlipCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterRuledLineCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -4427,7 +4427,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IJournalPrintJob_Interface;
          data : WinRt.HString;
-         printOptions : Windows.Devices.PointOfService.IPosPrinterPrintOptions
+         printOptions : WinRt.Windows.Devices.PointOfService.IPosPrinterPrintOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -4512,7 +4512,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access ILineDisplay_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -4606,28 +4606,28 @@ package WinRt.Windows.Devices.PointOfService is
       function get_BlinkRate
       (
          this : access ILineDisplayAttributes_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_BlinkRate
       (
          this : access ILineDisplayAttributes_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ScreenSizeInCharacters
       (
          this : access ILineDisplayAttributes_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_ScreenSizeInCharacters
       (
          this : access ILineDisplayAttributes_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -4662,14 +4662,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CurrentWindow
       (
          this : access ILineDisplayAttributes_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayWindow
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayWindow
       )
       return WinRt.Hresult is abstract;
 
       function put_CurrentWindow
       (
          this : access ILineDisplayAttributes_Interface;
-         value : Windows.Devices.PointOfService.ILineDisplayWindow
+         value : WinRt.Windows.Devices.PointOfService.ILineDisplayWindow
       )
       return WinRt.Hresult is abstract;
 
@@ -4695,7 +4695,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PowerReportingType
       (
          this : access ILineDisplayCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosPowerReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -4737,14 +4737,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CanReverse
       (
          this : access ILineDisplayCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity
+         RetVal : access WinRt.Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity
       )
       return WinRt.Hresult is abstract;
 
       function get_CanBlink
       (
          this : access ILineDisplayCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity
+         RetVal : access WinRt.Windows.Devices.PointOfService.LineDisplayTextAttributeGranularity
       )
       return WinRt.Hresult is abstract;
 
@@ -4861,14 +4861,14 @@ package WinRt.Windows.Devices.PointOfService is
       function GetAttributes
       (
          this : access ILineDisplayCursor_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayCursorAttributes
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayCursorAttributes
       )
       return WinRt.Hresult is abstract;
 
       function TryUpdateAttributesAsync
       (
          this : access ILineDisplayCursor_Interface;
-         attributes : Windows.Devices.PointOfService.ILineDisplayCursorAttributes;
+         attributes : WinRt.Windows.Devices.PointOfService.ILineDisplayCursorAttributes;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4895,14 +4895,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CursorType
       (
          this : access ILineDisplayCursorAttributes_Interface;
-         RetVal : access Windows.Devices.PointOfService.LineDisplayCursorType
+         RetVal : access WinRt.Windows.Devices.PointOfService.LineDisplayCursorType
       )
       return WinRt.Hresult is abstract;
 
       function put_CursorType
       (
          this : access ILineDisplayCursorAttributes_Interface;
-         value : Windows.Devices.PointOfService.LineDisplayCursorType
+         value : WinRt.Windows.Devices.PointOfService.LineDisplayCursorType
       )
       return WinRt.Hresult is abstract;
 
@@ -4923,14 +4923,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Position
       (
          this : access ILineDisplayCursorAttributes_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access ILineDisplayCursorAttributes_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -4942,7 +4942,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_SizeInPixels
       (
          this : access ILineDisplayCustomGlyphs_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -4957,7 +4957,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ILineDisplayCustomGlyphs_Interface;
          glyphCode : WinRt.UInt32;
-         glyphData : Windows.Storage.Streams.IBuffer;
+         glyphData : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4970,49 +4970,49 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Format
       (
          this : access ILineDisplayMarquee_Interface;
-         RetVal : access Windows.Devices.PointOfService.LineDisplayMarqueeFormat
+         RetVal : access WinRt.Windows.Devices.PointOfService.LineDisplayMarqueeFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access ILineDisplayMarquee_Interface;
-         value : Windows.Devices.PointOfService.LineDisplayMarqueeFormat
+         value : WinRt.Windows.Devices.PointOfService.LineDisplayMarqueeFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_RepeatWaitInterval
       (
          this : access ILineDisplayMarquee_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RepeatWaitInterval
       (
          this : access ILineDisplayMarquee_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ScrollWaitInterval
       (
          this : access ILineDisplayMarquee_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_ScrollWaitInterval
       (
          this : access ILineDisplayMarquee_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function TryStartScrollingAsync
       (
          this : access ILineDisplayMarquee_Interface;
-         direction : Windows.Devices.PointOfService.LineDisplayScrollDirection;
+         direction : WinRt.Windows.Devices.PointOfService.LineDisplayScrollDirection;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5054,7 +5054,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access ILineDisplayStatics_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -5067,7 +5067,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_StatisticsCategorySelector
       (
          this : access ILineDisplayStatics2_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayStatisticsCategorySelector
       )
       return WinRt.Hresult is abstract;
 
@@ -5105,7 +5105,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access ILineDisplayStatusUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.LineDisplayPowerStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.LineDisplayPowerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5136,21 +5136,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_SizeInCharacters
       (
          this : access ILineDisplayWindow_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_InterCharacterWaitInterval
       (
          this : access ILineDisplayWindow_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_InterCharacterWaitInterval
       (
          this : access ILineDisplayWindow_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -5165,7 +5165,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ILineDisplayWindow_Interface;
          text : WinRt.HString;
-         displayAttribute : Windows.Devices.PointOfService.LineDisplayTextAttribute;
+         displayAttribute : WinRt.Windows.Devices.PointOfService.LineDisplayTextAttribute;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5174,8 +5174,8 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ILineDisplayWindow_Interface;
          text : WinRt.HString;
-         displayAttribute : Windows.Devices.PointOfService.LineDisplayTextAttribute;
-         startPosition : Windows.Foundation.Point;
+         displayAttribute : WinRt.Windows.Devices.PointOfService.LineDisplayTextAttribute;
+         startPosition : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5191,7 +5191,7 @@ package WinRt.Windows.Devices.PointOfService is
       function TryScrollTextAsync
       (
          this : access ILineDisplayWindow_Interface;
-         direction : Windows.Devices.PointOfService.LineDisplayScrollDirection;
+         direction : WinRt.Windows.Devices.PointOfService.LineDisplayScrollDirection;
          numberOfColumnsOrRows : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -5212,14 +5212,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Cursor
       (
          this : access ILineDisplayWindow2_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayCursor
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayCursor
       )
       return WinRt.Hresult is abstract;
 
       function get_Marquee
       (
          this : access ILineDisplayWindow2_Interface;
-         RetVal : access Windows.Devices.PointOfService.ILineDisplayMarquee
+         RetVal : access WinRt.Windows.Devices.PointOfService.ILineDisplayMarquee
       )
       return WinRt.Hresult is abstract;
 
@@ -5233,7 +5233,7 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStoredBitmapAtCursorAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Devices.PointOfService.ILineDisplayStoredBitmap;
+         bitmap : WinRt.Windows.Devices.PointOfService.ILineDisplayStoredBitmap;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5241,7 +5241,7 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStorageFileBitmapAtCursorAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5249,9 +5249,9 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStorageFileBitmapAtCursorAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-         verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+         verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5259,9 +5259,9 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStorageFileBitmapAtCursorAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-         verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+         verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
          widthInPixels : WinRt.Int32;
          RetVal : access GenericObject
       )
@@ -5270,8 +5270,8 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStorageFileBitmapAtPointAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         offsetInPixels : Windows.Foundation.Point;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         offsetInPixels : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5279,8 +5279,8 @@ package WinRt.Windows.Devices.PointOfService is
       function TryDisplayStorageFileBitmapAtPointAsync
       (
          this : access ILineDisplayWindow2_Interface;
-         bitmap : Windows.Storage.IStorageFile;
-         offsetInPixels : Windows.Foundation.Point;
+         bitmap : WinRt.Windows.Storage.IStorageFile;
+         offsetInPixels : WinRt.Windows.Foundation.Point;
          widthInPixels : WinRt.Int32;
          RetVal : access GenericObject
       )
@@ -5301,7 +5301,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access IMagneticStripeReader_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -5316,14 +5316,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_DeviceAuthenticationProtocol
       (
          this : access IMagneticStripeReader_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationProtocol
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationProtocol
       )
       return WinRt.Hresult is abstract;
 
       function CheckHealthAsync
       (
          this : access IMagneticStripeReader_Interface;
-         level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
+         level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5346,7 +5346,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetErrorReportingType
       (
          this : access IMagneticStripeReader_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -5354,14 +5354,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IMagneticStripeReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUpdated
       (
          this : access IMagneticStripeReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5373,7 +5373,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Report
       (
          this : access IMagneticStripeReaderAamvaCardDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderReport
       )
       return WinRt.Hresult is abstract;
 
@@ -5511,7 +5511,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Report
       (
          this : access IMagneticStripeReaderBankCardDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderReport
       )
       return WinRt.Hresult is abstract;
 
@@ -5593,7 +5593,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_AuthenticationLevel
       (
          this : access IMagneticStripeReaderCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationLevel
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderAuthenticationLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -5621,7 +5621,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PowerReportingType
       (
          this : access IMagneticStripeReaderCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosPowerReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -5720,42 +5720,42 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Track1Status
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
       )
       return WinRt.Hresult is abstract;
 
       function get_Track2Status
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
       )
       return WinRt.Hresult is abstract;
 
       function get_Track3Status
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
       )
       return WinRt.Hresult is abstract;
 
       function get_Track4Status
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackErrorType
       )
       return WinRt.Hresult is abstract;
 
       function get_ErrorData
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IUnifiedPosErrorData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IUnifiedPosErrorData
       )
       return WinRt.Hresult is abstract;
 
       function get_PartialInputData
       (
          this : access IMagneticStripeReaderErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderReport
       )
       return WinRt.Hresult is abstract;
 
@@ -5774,28 +5774,28 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Track1
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
       )
       return WinRt.Hresult is abstract;
 
       function get_Track2
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
       )
       return WinRt.Hresult is abstract;
 
       function get_Track3
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
       )
       return WinRt.Hresult is abstract;
 
       function get_Track4
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderTrackData
       )
       return WinRt.Hresult is abstract;
 
@@ -5809,7 +5809,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_CardAuthenticationData
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -5823,7 +5823,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_AdditionalSecurityInformation
       (
          this : access IMagneticStripeReaderReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -5862,7 +5862,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access IMagneticStripeReaderStatics2_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -5875,7 +5875,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access IMagneticStripeReaderStatusUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.MagneticStripeReaderStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.MagneticStripeReaderStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5894,21 +5894,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Data
       (
          this : access IMagneticStripeReaderTrackData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_DiscretionaryData
       (
          this : access IMagneticStripeReaderTrackData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_EncryptedData
       (
          this : access IMagneticStripeReaderTrackData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -5920,7 +5920,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Report
       (
          this : access IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IMagneticStripeReaderReport
+         RetVal : access WinRt.Windows.Devices.PointOfService.IMagneticStripeReaderReport
       )
       return WinRt.Hresult is abstract;
 
@@ -5939,7 +5939,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Capabilities
       (
          this : access IPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IPosPrinterCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.IPosPrinterCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -5960,7 +5960,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access IPosPrinter_Interface;
-         RetVal : access Windows.Devices.PointOfService.IPosPrinterStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5974,7 +5974,7 @@ package WinRt.Windows.Devices.PointOfService is
       function CheckHealthAsync
       (
          this : access IPosPrinter_Interface;
-         level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
+         level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5991,14 +5991,14 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IPosPrinter_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusUpdated
       (
          this : access IPosPrinter_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -6018,7 +6018,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IPosPrinter2_Interface;
          typeface : WinRt.HString;
-         RetVal : access Windows.Devices.PointOfService.IPosPrinterFontProperty
+         RetVal : access WinRt.Windows.Devices.PointOfService.IPosPrinterFontProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -6030,7 +6030,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_PowerReportingType
       (
          this : access IPosPrinterCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosPowerReportingType
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosPowerReportingType
       )
       return WinRt.Hresult is abstract;
 
@@ -6079,21 +6079,21 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Receipt
       (
          this : access IPosPrinterCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.IReceiptPrinterCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.IReceiptPrinterCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_Slip
       (
          this : access IPosPrinterCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.ISlipPrinterCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.ISlipPrinterCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_Journal
       (
          this : access IPosPrinterCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.IJournalPrinterCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.IJournalPrinterCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -6343,14 +6343,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Alignment
       (
          this : access IPosPrinterPrintOptions_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterAlignment
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_Alignment
       (
          this : access IPosPrinterPrintOptions_Interface;
-         value : Windows.Devices.PointOfService.PosPrinterAlignment
+         value : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -6408,7 +6408,7 @@ package WinRt.Windows.Devices.PointOfService is
       function GetDeviceSelector
       (
          this : access IPosPrinterStatics2_Interface;
-         connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes;
+         connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -6421,7 +6421,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_StatusKind
       (
          this : access IPosPrinterStatus_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterStatusKind
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterStatusKind
       )
       return WinRt.Hresult is abstract;
 
@@ -6440,7 +6440,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Status
       (
          this : access IPosPrinterStatusUpdatedEventArgs_Interface;
-         RetVal : access Windows.Devices.PointOfService.IPosPrinterStatus
+         RetVal : access WinRt.Windows.Devices.PointOfService.IPosPrinterStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -6452,14 +6452,14 @@ package WinRt.Windows.Devices.PointOfService is
       function SetBarcodeRotation
       (
          this : access IReceiptOrSlipJob_Interface;
-         value : Windows.Devices.PointOfService.PosPrinterRotation
+         value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation
       )
       return WinRt.Hresult is abstract;
 
       function SetPrintRotation
       (
          this : access IReceiptOrSlipJob_Interface;
-         value : Windows.Devices.PointOfService.PosPrinterRotation;
+         value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation;
          includeBitmaps : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -6467,7 +6467,7 @@ package WinRt.Windows.Devices.PointOfService is
       function SetPrintArea
       (
          this : access IReceiptOrSlipJob_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -6475,8 +6475,8 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptOrSlipJob_Interface;
          bitmapNumber : WinRt.UInt32;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
-         alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
+         alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -6484,8 +6484,8 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptOrSlipJob_Interface;
          bitmapNumber : WinRt.UInt32;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
-         alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
+         alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
          width : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6494,7 +6494,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptOrSlipJob_Interface;
          bitmapNumber : WinRt.UInt32;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
          alignmentDistance : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6503,7 +6503,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptOrSlipJob_Interface;
          bitmapNumber : WinRt.UInt32;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
          alignmentDistance : WinRt.UInt32;
          width : WinRt.UInt32
       )
@@ -6520,9 +6520,9 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptOrSlipJob_Interface;
          positionList : WinRt.HString;
-         lineDirection : Windows.Devices.PointOfService.PosPrinterLineDirection;
+         lineDirection : WinRt.Windows.Devices.PointOfService.PosPrinterLineDirection;
          lineWidth : WinRt.UInt32;
-         lineStyle : Windows.Devices.PointOfService.PosPrinterLineStyle;
+         lineStyle : WinRt.Windows.Devices.PointOfService.PosPrinterLineStyle;
          lineColor : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6534,8 +6534,8 @@ package WinRt.Windows.Devices.PointOfService is
          symbology : WinRt.UInt32;
          height : WinRt.UInt32;
          width : WinRt.UInt32;
-         textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
-         alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+         textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+         alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -6546,7 +6546,7 @@ package WinRt.Windows.Devices.PointOfService is
          symbology : WinRt.UInt32;
          height : WinRt.UInt32;
          width : WinRt.UInt32;
-         textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+         textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
          alignmentDistance : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6554,16 +6554,16 @@ package WinRt.Windows.Devices.PointOfService is
       function PrintBitmap
       (
          this : access IReceiptOrSlipJob_Interface;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
-         alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
+         alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
       )
       return WinRt.Hresult is abstract;
 
       function PrintBitmap
       (
          this : access IReceiptOrSlipJob_Interface;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
-         alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
+         alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
          width : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6571,7 +6571,7 @@ package WinRt.Windows.Devices.PointOfService is
       function PrintCustomAlignedBitmap
       (
          this : access IReceiptOrSlipJob_Interface;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
          alignmentDistance : WinRt.UInt32
       )
       return WinRt.Hresult is abstract;
@@ -6579,7 +6579,7 @@ package WinRt.Windows.Devices.PointOfService is
       function PrintCustomAlignedBitmap
       (
          this : access IReceiptOrSlipJob_Interface;
-         bitmap : Windows.Graphics.Imaging.IBitmapFrame;
+         bitmap : WinRt.Windows.Graphics.Imaging.IBitmapFrame;
          alignmentDistance : WinRt.UInt32;
          width : WinRt.UInt32
       )
@@ -6593,7 +6593,7 @@ package WinRt.Windows.Devices.PointOfService is
       function MarkFeed
       (
          this : access IReceiptPrintJob_Interface;
-         kind : Windows.Devices.PointOfService.PosPrinterMarkFeedKind
+         kind : WinRt.Windows.Devices.PointOfService.PosPrinterMarkFeedKind
       )
       return WinRt.Hresult is abstract;
 
@@ -6625,7 +6625,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IReceiptPrintJob2_Interface;
          data : WinRt.HString;
-         printOptions : Windows.Devices.PointOfService.IPosPrinterPrintOptions
+         printOptions : WinRt.Windows.Devices.PointOfService.IPosPrinterPrintOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -6665,7 +6665,7 @@ package WinRt.Windows.Devices.PointOfService is
       function get_MarkFeedCapabilities
       (
          this : access IReceiptPrinterCapabilities_Interface;
-         RetVal : access Windows.Devices.PointOfService.PosPrinterMarkFeedCapabilities
+         RetVal : access WinRt.Windows.Devices.PointOfService.PosPrinterMarkFeedCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -6725,7 +6725,7 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access ISlipPrintJob_Interface;
          data : WinRt.HString;
-         printOptions : Windows.Devices.PointOfService.IPosPrinterPrintOptions
+         printOptions : WinRt.Windows.Devices.PointOfService.IPosPrinterPrintOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -6824,14 +6824,14 @@ package WinRt.Windows.Devices.PointOfService is
       function get_Severity
       (
          this : access IUnifiedPosErrorData_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosErrorSeverity
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
       function get_Reason
       (
          this : access IUnifiedPosErrorData_Interface;
-         RetVal : access Windows.Devices.PointOfService.UnifiedPosErrorReason
+         RetVal : access WinRt.Windows.Devices.PointOfService.UnifiedPosErrorReason
       )
       return WinRt.Hresult is abstract;
 
@@ -6851,10 +6851,10 @@ package WinRt.Windows.Devices.PointOfService is
       (
          this : access IUnifiedPosErrorDataFactory_Interface;
          message : WinRt.HString;
-         severity : Windows.Devices.PointOfService.UnifiedPosErrorSeverity;
-         reason : Windows.Devices.PointOfService.UnifiedPosErrorReason;
+         severity : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorSeverity;
+         reason : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorReason;
          extendedReason : WinRt.UInt32;
-         RetVal : access Windows.Devices.PointOfService.IUnifiedPosErrorData
+         RetVal : access WinRt.Windows.Devices.PointOfService.IUnifiedPosErrorData
       )
       return WinRt.Hresult is abstract;
 
@@ -6875,7 +6875,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -6915,7 +6915,7 @@ package WinRt.Windows.Devices.PointOfService is
    function CheckHealthAsync
    (
       this : in out BarcodeScanner;
-      level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
+      level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
    )
    return WinRt.WString;
 
@@ -6962,7 +6962,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_StatusUpdated
    (
       this : in out BarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_VideoDeviceId
@@ -7090,8 +7090,8 @@ package WinRt.Windows.Devices.PointOfService is
    function Constructor
    (
       scanDataType : WinRt.UInt32;
-      scanData : Windows.Storage.Streams.IBuffer;
-      scanDataLabel : Windows.Storage.Streams.IBuffer
+      scanData : WinRt.Windows.Storage.Streams.IBuffer;
+      scanDataLabel : WinRt.Windows.Storage.Streams.IBuffer
    )
    return BarcodeScannerReport;
 
@@ -7509,7 +7509,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_DecodeLengthKind
    (
       this : in out BarcodeSymbologyAttributes;
-      value : Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
+      value : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyDecodeLengthKind
    );
 
    function get_IsDecodeLengthSupported
@@ -7541,7 +7541,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector_CashDrawer
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -7587,7 +7587,7 @@ package WinRt.Windows.Devices.PointOfService is
    function CheckHealthAsync
    (
       this : in out CashDrawer;
-      level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
+      level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
    )
    return WinRt.WString;
 
@@ -7608,7 +7608,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_StatusUpdated
    (
       this : in out CashDrawer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -7673,7 +7673,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_AlarmTimeout
    (
       this : in out CashDrawerCloseAlarm;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_AlarmTimeout
@@ -7697,7 +7697,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_BeepDuration
    (
       this : in out CashDrawerCloseAlarm;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_BeepDuration
@@ -7709,7 +7709,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_BeepDelay
    (
       this : in out CashDrawerCloseAlarm;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_BeepDelay
@@ -7728,7 +7728,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_AlarmTimeoutExpired
    (
       this : in out CashDrawerCloseAlarm;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function StartAsync
@@ -7771,7 +7771,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_DrawerClosed
    (
       this : in out CashDrawerEventSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DrawerOpened
@@ -7784,7 +7784,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_DrawerOpened
    (
       this : in out CashDrawerEventSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7932,7 +7932,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_DataReceived
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TriggerPressed
@@ -7945,7 +7945,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_TriggerPressed
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TriggerReleased
@@ -7958,7 +7958,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_TriggerReleased
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ReleaseDeviceRequested
@@ -7971,7 +7971,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ReleaseDeviceRequested
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ImagePreviewReceived
@@ -7984,7 +7984,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ImagePreviewReceived
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ErrorOccurred
@@ -7997,7 +7997,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ErrorOccurred
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure StartSoftwareTriggerAsync
@@ -8021,7 +8021,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ClaimedBarcodeScanner;
       barcodeSymbology : WinRt.UInt32;
-      attributes : Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class
+      attributes : WinRt.Windows.Devices.PointOfService.BarcodeSymbologyAttributes'Class
    )
    return WinRt.Boolean;
 
@@ -8058,7 +8058,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_Closed
    (
       this : in out ClaimedBarcodeScanner;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -8156,7 +8156,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ReleaseDeviceRequested
    (
       this : in out ClaimedCashDrawer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -8169,7 +8169,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_Closed
    (
       this : in out ClaimedCashDrawer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -8264,7 +8264,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_ColorCartridge
    (
       this : in out ClaimedJournalPrinter;
-      value : Windows.Devices.PointOfService.PosPrinterColorCartridge
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge
    );
 
    function get_ColorCartridge
@@ -8336,7 +8336,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector_ClaimedLineDisplay
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -8406,7 +8406,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ReleaseDeviceRequested
    (
       this : in out ClaimedLineDisplay;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetStatisticsAsync
@@ -8419,7 +8419,7 @@ package WinRt.Windows.Devices.PointOfService is
    function CheckHealthAsync
    (
       this : in out ClaimedLineDisplay;
-      level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
+      level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
    )
    return WinRt.WString;
 
@@ -8439,7 +8439,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_StatusUpdated
    (
       this : in out ClaimedLineDisplay;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SupportedScreenSizesInCharacters
@@ -8475,7 +8475,7 @@ package WinRt.Windows.Devices.PointOfService is
    function TryUpdateAttributesAsync
    (
       this : in out ClaimedLineDisplay;
-      attributes : Windows.Devices.PointOfService.LineDisplayAttributes'Class
+      attributes : WinRt.Windows.Devices.PointOfService.LineDisplayAttributes'Class
    )
    return WinRt.Boolean;
 
@@ -8483,7 +8483,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ClaimedLineDisplay;
       descriptor : WinRt.UInt32;
-      descriptorState : Windows.Devices.PointOfService.LineDisplayDescriptorState
+      descriptorState : WinRt.Windows.Devices.PointOfService.LineDisplayDescriptorState
    )
    return WinRt.Boolean;
 
@@ -8496,33 +8496,33 @@ package WinRt.Windows.Devices.PointOfService is
    function TryCreateWindowAsync
    (
       this : in out ClaimedLineDisplay;
-      viewport : Windows.Foundation.Rect;
-      windowSize : Windows.Foundation.Size
+      viewport : WinRt.Windows.Foundation.Rect;
+      windowSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayWindow'Class;
 
    function TryStoreStorageFileBitmapAsync
    (
       this : in out ClaimedLineDisplay;
-      bitmap : Windows.Storage.StorageFile'Class
+      bitmap : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class;
 
    function TryStoreStorageFileBitmapAsync
    (
       this : in out ClaimedLineDisplay;
-      bitmap : Windows.Storage.StorageFile'Class;
-      horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-      verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+      verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class;
 
    function TryStoreStorageFileBitmapAsync
    (
       this : in out ClaimedLineDisplay;
-      bitmap : Windows.Storage.StorageFile'Class;
-      horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-      verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+      verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
       widthInPixels : WinRt.Int32
    )
    return WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class;
@@ -8537,7 +8537,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_Closed
    (
       this : in out ClaimedLineDisplay;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -8620,7 +8620,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_TracksToRead
    (
       this : in out ClaimedMagneticStripeReader;
-      value : Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
+      value : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderTrackIds
    );
 
    function get_TracksToRead
@@ -8659,7 +8659,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure SetErrorReportingType
    (
       this : in out ClaimedMagneticStripeReader;
-      value : Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
+      value : WinRt.Windows.Devices.PointOfService.MagneticStripeReaderErrorReportingType
    );
 
    function RetrieveDeviceAuthenticationDataAsync
@@ -8709,7 +8709,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_BankCardDataReceived
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AamvaCardDataReceived
@@ -8722,7 +8722,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_AamvaCardDataReceived
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VendorSpecificDataReceived
@@ -8735,7 +8735,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_VendorSpecificDataReceived
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ReleaseDeviceRequested
@@ -8748,7 +8748,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ReleaseDeviceRequested
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ErrorOccurred
@@ -8761,7 +8761,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ErrorOccurred
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -8774,7 +8774,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_Closed
    (
       this : in out ClaimedMagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -8845,7 +8845,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_MapMode
    (
       this : in out ClaimedPosPrinter;
-      value : Windows.Devices.PointOfService.PosPrinterMapMode
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterMapMode
    );
 
    function get_MapMode
@@ -8914,7 +8914,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_ReleaseDeviceRequested
    (
       this : in out ClaimedPosPrinter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -8927,7 +8927,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_Closed
    (
       this : in out ClaimedPosPrinter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -9052,7 +9052,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_ColorCartridge
    (
       this : in out ClaimedReceiptPrinter;
-      value : Windows.Devices.PointOfService.PosPrinterColorCartridge
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge
    );
 
    function get_ColorCartridge
@@ -9168,21 +9168,21 @@ package WinRt.Windows.Devices.PointOfService is
    function InsertSlipAsync
    (
       this : in out ClaimedSlipPrinter;
-      timeout : Windows.Foundation.TimeSpan
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean;
 
    function RemoveSlipAsync
    (
       this : in out ClaimedSlipPrinter;
-      timeout : Windows.Foundation.TimeSpan
+      timeout : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean;
 
    procedure ChangePrintSide
    (
       this : in out ClaimedSlipPrinter;
-      printSide : Windows.Devices.PointOfService.PosPrinterPrintSide
+      printSide : WinRt.Windows.Devices.PointOfService.PosPrinterPrintSide
    );
 
    function CreateJob
@@ -9254,7 +9254,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_ColorCartridge
    (
       this : in out ClaimedSlipPrinter;
-      value : Windows.Devices.PointOfService.PosPrinterColorCartridge
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterColorCartridge
    );
 
    function get_ColorCartridge
@@ -9319,7 +9319,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out JournalPrintJob;
       data : WinRt.WString;
-      printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
+      printOptions : WinRt.Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    );
 
    procedure FeedPaperByLine
@@ -9506,7 +9506,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector_LineDisplay
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -9614,7 +9614,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_BlinkRate
    (
       this : in out LineDisplayAttributes;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ScreenSizeInCharacters
@@ -9626,7 +9626,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_ScreenSizeInCharacters
    (
       this : in out LineDisplayAttributes;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_CharacterSet
@@ -9662,7 +9662,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_CurrentWindow
    (
       this : in out LineDisplayAttributes;
-      value : Windows.Devices.PointOfService.LineDisplayWindow'Class
+      value : WinRt.Windows.Devices.PointOfService.LineDisplayWindow'Class
    );
 
    -----------------------------------------------------------------------------
@@ -9842,7 +9842,7 @@ package WinRt.Windows.Devices.PointOfService is
    function TryUpdateAttributesAsync
    (
       this : in out LineDisplayCursor;
-      attributes : Windows.Devices.PointOfService.LineDisplayCursorAttributes'Class
+      attributes : WinRt.Windows.Devices.PointOfService.LineDisplayCursorAttributes'Class
    )
    return WinRt.Boolean;
 
@@ -9876,7 +9876,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_CursorType
    (
       this : in out LineDisplayCursorAttributes;
-      value : Windows.Devices.PointOfService.LineDisplayCursorType
+      value : WinRt.Windows.Devices.PointOfService.LineDisplayCursorType
    );
 
    function get_IsAutoAdvanceEnabled
@@ -9900,7 +9900,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_Position
    (
       this : in out LineDisplayCursorAttributes;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -9928,7 +9928,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out LineDisplayCustomGlyphs;
       glyphCode : WinRt.UInt32;
-      glyphData : Windows.Storage.Streams.IBuffer
+      glyphData : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Boolean;
 
@@ -9950,7 +9950,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_Format
    (
       this : in out LineDisplayMarquee;
-      value : Windows.Devices.PointOfService.LineDisplayMarqueeFormat
+      value : WinRt.Windows.Devices.PointOfService.LineDisplayMarqueeFormat
    );
 
    function get_RepeatWaitInterval
@@ -9962,7 +9962,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_RepeatWaitInterval
    (
       this : in out LineDisplayMarquee;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_ScrollWaitInterval
@@ -9974,13 +9974,13 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_ScrollWaitInterval
    (
       this : in out LineDisplayMarquee;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function TryStartScrollingAsync
    (
       this : in out LineDisplayMarquee;
-      direction : Windows.Devices.PointOfService.LineDisplayScrollDirection
+      direction : WinRt.Windows.Devices.PointOfService.LineDisplayScrollDirection
    )
    return WinRt.Boolean;
 
@@ -10077,7 +10077,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_InterCharacterWaitInterval
    (
       this : in out LineDisplayWindow;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function TryRefreshAsync
@@ -10090,7 +10090,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out LineDisplayWindow;
       text : WinRt.WString;
-      displayAttribute : Windows.Devices.PointOfService.LineDisplayTextAttribute
+      displayAttribute : WinRt.Windows.Devices.PointOfService.LineDisplayTextAttribute
    )
    return WinRt.Boolean;
 
@@ -10098,8 +10098,8 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out LineDisplayWindow;
       text : WinRt.WString;
-      displayAttribute : Windows.Devices.PointOfService.LineDisplayTextAttribute;
-      startPosition : Windows.Foundation.Point
+      displayAttribute : WinRt.Windows.Devices.PointOfService.LineDisplayTextAttribute;
+      startPosition : WinRt.Windows.Foundation.Point
    )
    return WinRt.Boolean;
 
@@ -10113,7 +10113,7 @@ package WinRt.Windows.Devices.PointOfService is
    function TryScrollTextAsync
    (
       this : in out LineDisplayWindow;
-      direction : Windows.Devices.PointOfService.LineDisplayScrollDirection;
+      direction : WinRt.Windows.Devices.PointOfService.LineDisplayScrollDirection;
       numberOfColumnsOrRows : WinRt.UInt32
    )
    return WinRt.Boolean;
@@ -10145,32 +10145,32 @@ package WinRt.Windows.Devices.PointOfService is
    function TryDisplayStoredBitmapAtCursorAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class
+      bitmap : WinRt.Windows.Devices.PointOfService.LineDisplayStoredBitmap'Class
    )
    return WinRt.Boolean;
 
    function TryDisplayStorageFileBitmapAtCursorAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Storage.StorageFile'Class
+      bitmap : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Boolean;
 
    function TryDisplayStorageFileBitmapAtCursorAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Storage.StorageFile'Class;
-      horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-      verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+      verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment
    )
    return WinRt.Boolean;
 
    function TryDisplayStorageFileBitmapAtCursorAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Storage.StorageFile'Class;
-      horizontalAlignment : Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
-      verticalAlignment : Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      horizontalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayHorizontalAlignment;
+      verticalAlignment : WinRt.Windows.Devices.PointOfService.LineDisplayVerticalAlignment;
       widthInPixels : WinRt.Int32
    )
    return WinRt.Boolean;
@@ -10178,16 +10178,16 @@ package WinRt.Windows.Devices.PointOfService is
    function TryDisplayStorageFileBitmapAtPointAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Storage.StorageFile'Class;
-      offsetInPixels : Windows.Foundation.Point
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      offsetInPixels : WinRt.Windows.Foundation.Point
    )
    return WinRt.Boolean;
 
    function TryDisplayStorageFileBitmapAtPointAsync
    (
       this : in out LineDisplayWindow;
-      bitmap : Windows.Storage.StorageFile'Class;
-      offsetInPixels : Windows.Foundation.Point;
+      bitmap : WinRt.Windows.Storage.StorageFile'Class;
+      offsetInPixels : WinRt.Windows.Foundation.Point;
       widthInPixels : WinRt.Int32
    )
    return WinRt.Boolean;
@@ -10220,7 +10220,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector_MagneticStripeReader
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -10254,7 +10254,7 @@ package WinRt.Windows.Devices.PointOfService is
    function CheckHealthAsync
    (
       this : in out MagneticStripeReader;
-      level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
+      level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
    )
    return WinRt.WString;
 
@@ -10287,7 +10287,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_StatusUpdated
    (
       this : in out MagneticStripeReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -10771,7 +10771,7 @@ package WinRt.Windows.Devices.PointOfService is
 
    function GetDeviceSelector_PosPrinter
    (
-      connectionTypes : Windows.Devices.PointOfService.PosConnectionTypes
+      connectionTypes : WinRt.Windows.Devices.PointOfService.PosConnectionTypes
    )
    return WinRt.WString;
 
@@ -10829,7 +10829,7 @@ package WinRt.Windows.Devices.PointOfService is
    function CheckHealthAsync
    (
       this : in out PosPrinter;
-      level : Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
+      level : WinRt.Windows.Devices.PointOfService.UnifiedPosHealthCheckLevel
    )
    return WinRt.WString;
 
@@ -10850,7 +10850,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure remove_StatusUpdated
    (
       this : in out PosPrinter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SupportedBarcodeSymbologies
@@ -11137,7 +11137,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure put_Alignment
    (
       this : in out PosPrinterPrintOptions;
-      value : Windows.Devices.PointOfService.PosPrinterAlignment
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    function get_CharacterSet
@@ -11209,7 +11209,7 @@ package WinRt.Windows.Devices.PointOfService is
    procedure MarkFeed
    (
       this : in out ReceiptPrintJob;
-      kind : Windows.Devices.PointOfService.PosPrinterMarkFeedKind
+      kind : WinRt.Windows.Devices.PointOfService.PosPrinterMarkFeedKind
    );
 
    procedure CutPaper
@@ -11232,7 +11232,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ReceiptPrintJob;
       data : WinRt.WString;
-      printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
+      printOptions : WinRt.Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    );
 
    procedure FeedPaperByLine
@@ -11250,36 +11250,36 @@ package WinRt.Windows.Devices.PointOfService is
    procedure SetBarcodeRotation
    (
       this : in out ReceiptPrintJob;
-      value : Windows.Devices.PointOfService.PosPrinterRotation
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation
    );
 
    procedure SetPrintRotation
    (
       this : in out ReceiptPrintJob;
-      value : Windows.Devices.PointOfService.PosPrinterRotation;
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation;
       includeBitmaps : WinRt.Boolean
    );
 
    procedure SetPrintArea
    (
       this : in out ReceiptPrintJob;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure SetBitmap
    (
       this : in out ReceiptPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure SetBitmap
    (
       this : in out ReceiptPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
       width : WinRt.UInt32
    );
 
@@ -11287,7 +11287,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ReceiptPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32
    );
 
@@ -11295,7 +11295,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ReceiptPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32;
       width : WinRt.UInt32
    );
@@ -11310,9 +11310,9 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out ReceiptPrintJob;
       positionList : WinRt.WString;
-      lineDirection : Windows.Devices.PointOfService.PosPrinterLineDirection;
+      lineDirection : WinRt.Windows.Devices.PointOfService.PosPrinterLineDirection;
       lineWidth : WinRt.UInt32;
-      lineStyle : Windows.Devices.PointOfService.PosPrinterLineStyle;
+      lineStyle : WinRt.Windows.Devices.PointOfService.PosPrinterLineStyle;
       lineColor : WinRt.UInt32
    );
 
@@ -11323,8 +11323,8 @@ package WinRt.Windows.Devices.PointOfService is
       symbology : WinRt.UInt32;
       height : WinRt.UInt32;
       width : WinRt.UInt32;
-      textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure PrintBarcodeCustomAlign
@@ -11334,36 +11334,36 @@ package WinRt.Windows.Devices.PointOfService is
       symbology : WinRt.UInt32;
       height : WinRt.UInt32;
       width : WinRt.UInt32;
-      textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+      textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
       alignmentDistance : WinRt.UInt32
    );
 
    procedure PrintBitmap
    (
       this : in out ReceiptPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure PrintBitmap
    (
       this : in out ReceiptPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
       width : WinRt.UInt32
    );
 
    procedure PrintCustomAlignedBitmap
    (
       this : in out ReceiptPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32
    );
 
    procedure PrintCustomAlignedBitmap
    (
       this : in out ReceiptPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32;
       width : WinRt.UInt32
    );
@@ -11599,7 +11599,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out SlipPrintJob;
       data : WinRt.WString;
-      printOptions : Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
+      printOptions : WinRt.Windows.Devices.PointOfService.PosPrinterPrintOptions'Class
    );
 
    procedure FeedPaperByLine
@@ -11617,36 +11617,36 @@ package WinRt.Windows.Devices.PointOfService is
    procedure SetBarcodeRotation
    (
       this : in out SlipPrintJob;
-      value : Windows.Devices.PointOfService.PosPrinterRotation
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation
    );
 
    procedure SetPrintRotation
    (
       this : in out SlipPrintJob;
-      value : Windows.Devices.PointOfService.PosPrinterRotation;
+      value : WinRt.Windows.Devices.PointOfService.PosPrinterRotation;
       includeBitmaps : WinRt.Boolean
    );
 
    procedure SetPrintArea
    (
       this : in out SlipPrintJob;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure SetBitmap
    (
       this : in out SlipPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure SetBitmap
    (
       this : in out SlipPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
       width : WinRt.UInt32
    );
 
@@ -11654,7 +11654,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out SlipPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32
    );
 
@@ -11662,7 +11662,7 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out SlipPrintJob;
       bitmapNumber : WinRt.UInt32;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32;
       width : WinRt.UInt32
    );
@@ -11677,9 +11677,9 @@ package WinRt.Windows.Devices.PointOfService is
    (
       this : in out SlipPrintJob;
       positionList : WinRt.WString;
-      lineDirection : Windows.Devices.PointOfService.PosPrinterLineDirection;
+      lineDirection : WinRt.Windows.Devices.PointOfService.PosPrinterLineDirection;
       lineWidth : WinRt.UInt32;
-      lineStyle : Windows.Devices.PointOfService.PosPrinterLineStyle;
+      lineStyle : WinRt.Windows.Devices.PointOfService.PosPrinterLineStyle;
       lineColor : WinRt.UInt32
    );
 
@@ -11690,8 +11690,8 @@ package WinRt.Windows.Devices.PointOfService is
       symbology : WinRt.UInt32;
       height : WinRt.UInt32;
       width : WinRt.UInt32;
-      textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure PrintBarcodeCustomAlign
@@ -11701,36 +11701,36 @@ package WinRt.Windows.Devices.PointOfService is
       symbology : WinRt.UInt32;
       height : WinRt.UInt32;
       width : WinRt.UInt32;
-      textPosition : Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
+      textPosition : WinRt.Windows.Devices.PointOfService.PosPrinterBarcodeTextPosition;
       alignmentDistance : WinRt.UInt32
    );
 
    procedure PrintBitmap
    (
       this : in out SlipPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment
    );
 
    procedure PrintBitmap
    (
       this : in out SlipPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
-      alignment : Windows.Devices.PointOfService.PosPrinterAlignment;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
+      alignment : WinRt.Windows.Devices.PointOfService.PosPrinterAlignment;
       width : WinRt.UInt32
    );
 
    procedure PrintCustomAlignedBitmap
    (
       this : in out SlipPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32
    );
 
    procedure PrintCustomAlignedBitmap
    (
       this : in out SlipPrintJob;
-      bitmap : Windows.Graphics.Imaging.BitmapFrame'Class;
+      bitmap : WinRt.Windows.Graphics.Imaging.BitmapFrame'Class;
       alignmentDistance : WinRt.UInt32;
       width : WinRt.UInt32
    );
@@ -11959,8 +11959,8 @@ package WinRt.Windows.Devices.PointOfService is
    function Constructor
    (
       message : WinRt.WString;
-      severity : Windows.Devices.PointOfService.UnifiedPosErrorSeverity;
-      reason : Windows.Devices.PointOfService.UnifiedPosErrorReason;
+      severity : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorSeverity;
+      reason : WinRt.Windows.Devices.PointOfService.UnifiedPosErrorReason;
       extendedReason : WinRt.UInt32
    )
    return UnifiedPosErrorData;

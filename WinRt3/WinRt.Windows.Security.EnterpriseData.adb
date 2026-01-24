@@ -97,7 +97,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IBufferProtectUnprotectResult.all.get_Buffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -114,14 +114,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IDataProtectionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
    begin
       return RetVal : WinRt.Windows.Security.EnterpriseData.DataProtectionInfo do
          Hr := this.m_IBufferProtectUnprotectResult.all.get_ProtectionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataProtectionInfo := new Windows.Security.EnterpriseData.IDataProtectionInfo;
+         Retval.m_IDataProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
          Retval.m_IDataProtectionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -157,7 +157,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.DataProtectionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.DataProtectionStatus;
    begin
       Hr := this.m_IDataProtectionInfo.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -192,7 +192,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function ProtectAsync
       (
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          identity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.BufferProtectUnprotectResult is
@@ -250,7 +250,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IBufferProtectUnprotectResult := new Windows.Security.EnterpriseData.IBufferProtectUnprotectResult;
+                        Retval.m_IBufferProtectUnprotectResult := new WinRt.Windows.Security.EnterpriseData.IBufferProtectUnprotectResult;
                         Retval.m_IBufferProtectUnprotectResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -268,7 +268,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function UnprotectAsync
       (
-         data : Windows.Storage.Streams.IBuffer
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.EnterpriseData.BufferProtectUnprotectResult is
          Hr               : WinRt.HResult := S_OK;
@@ -324,7 +324,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IBufferProtectUnprotectResult := new Windows.Security.EnterpriseData.IBufferProtectUnprotectResult;
+                        Retval.m_IBufferProtectUnprotectResult := new WinRt.Windows.Security.EnterpriseData.IBufferProtectUnprotectResult;
                         Retval.m_IBufferProtectUnprotectResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -341,9 +341,9 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function ProtectStreamAsync
       (
-         unprotectedStream : Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IInputStream;
          identity : WinRt.WString;
-         protectedStream : Windows.Storage.Streams.IOutputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -400,7 +400,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IDataProtectionInfo := new Windows.Security.EnterpriseData.IDataProtectionInfo;
+                        Retval.m_IDataProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
                         Retval.m_IDataProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -418,8 +418,8 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function UnprotectStreamAsync
       (
-         protectedStream : Windows.Storage.Streams.IInputStream;
-         unprotectedStream : Windows.Storage.Streams.IOutputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream;
+         unprotectedStream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -475,7 +475,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IDataProtectionInfo := new Windows.Security.EnterpriseData.IDataProtectionInfo;
+                        Retval.m_IDataProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
                         Retval.m_IDataProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -492,7 +492,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function GetProtectionInfoAsync
       (
-         protectedData : Windows.Storage.Streams.IBuffer
+         protectedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -548,7 +548,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IDataProtectionInfo := new Windows.Security.EnterpriseData.IDataProtectionInfo;
+                        Retval.m_IDataProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
                         Retval.m_IDataProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -565,7 +565,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function GetStreamProtectionInfoAsync
       (
-         protectedStream : Windows.Storage.Streams.IInputStream
+         protectedStream : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Windows.Security.EnterpriseData.DataProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -621,7 +621,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IDataProtectionInfo := new Windows.Security.EnterpriseData.IDataProtectionInfo;
+                        Retval.m_IDataProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IDataProtectionInfo;
                         Retval.m_IDataProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -669,7 +669,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.FileProtectionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.FileProtectionStatus;
    begin
       Hr := this.m_IFileProtectionInfo.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -742,7 +742,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function IsContainerAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -812,9 +812,9 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem;
-         collisionOption : Windows.Storage.NameCollisionOption
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem;
+         collisionOption : WinRt.Windows.Storage.NameCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult is
          Hr               : WinRt.HResult := S_OK;
@@ -870,7 +870,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedContainerImportResult := new Windows.Security.EnterpriseData.IProtectedContainerImportResult;
+                        Retval.m_IProtectedContainerImportResult := new WinRt.Windows.Security.EnterpriseData.IProtectedContainerImportResult;
                         Retval.m_IProtectedContainerImportResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -887,7 +887,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function SaveFileAsContainerAsync
       (
-         protectedFile : Windows.Storage.IStorageFile;
+         protectedFile : WinRt.Windows.Storage.IStorageFile;
          sharedWithIdentities : GenericObject
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult is
@@ -944,7 +944,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedContainerExportResult := new Windows.Security.EnterpriseData.IProtectedContainerExportResult;
+                        Retval.m_IProtectedContainerExportResult := new WinRt.Windows.Security.EnterpriseData.IProtectedContainerExportResult;
                         Retval.m_IProtectedContainerExportResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -961,7 +961,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function ProtectAsync
       (
-         target : Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem;
          identity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
@@ -1019,7 +1019,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
                         Retval.m_IFileProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1037,8 +1037,8 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function CopyProtectionAsync
       (
-         source : Windows.Storage.IStorageItem;
-         target : Windows.Storage.IStorageItem
+         source : WinRt.Windows.Storage.IStorageItem;
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1108,7 +1108,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function GetProtectionInfoAsync
       (
-         source : Windows.Storage.IStorageItem
+         source : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -1164,7 +1164,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
                         Retval.m_IFileProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1181,7 +1181,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function SaveFileAsContainerAsync
       (
-         protectedFile : Windows.Storage.IStorageFile
+         protectedFile : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerExportResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1237,7 +1237,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedContainerExportResult := new Windows.Security.EnterpriseData.IProtectedContainerExportResult;
+                        Retval.m_IProtectedContainerExportResult := new WinRt.Windows.Security.EnterpriseData.IProtectedContainerExportResult;
                         Retval.m_IProtectedContainerExportResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1254,7 +1254,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile
+         containerFile : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1310,7 +1310,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedContainerImportResult := new Windows.Security.EnterpriseData.IProtectedContainerImportResult;
+                        Retval.m_IProtectedContainerImportResult := new WinRt.Windows.Security.EnterpriseData.IProtectedContainerImportResult;
                         Retval.m_IProtectedContainerImportResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1327,8 +1327,8 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function LoadFileFromContainerAsync
       (
-         containerFile : Windows.Storage.IStorageFile;
-         target : Windows.Storage.IStorageItem
+         containerFile : WinRt.Windows.Storage.IStorageFile;
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedContainerImportResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1384,7 +1384,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedContainerImportResult := new Windows.Security.EnterpriseData.IProtectedContainerImportResult;
+                        Retval.m_IProtectedContainerImportResult := new WinRt.Windows.Security.EnterpriseData.IProtectedContainerImportResult;
                         Retval.m_IProtectedContainerImportResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1401,10 +1401,10 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function CreateProtectedAndOpenAsync
       (
-         parentFolder : Windows.Storage.IStorageFolder;
+         parentFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredName : WinRt.WString;
          identity : WinRt.WString;
-         collisionOption : Windows.Storage.CreationCollisionOption
+         collisionOption : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Security.EnterpriseData.ProtectedFileCreateResult is
          Hr               : WinRt.HResult := S_OK;
@@ -1462,7 +1462,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IProtectedFileCreateResult := new Windows.Security.EnterpriseData.IProtectedFileCreateResult;
+                        Retval.m_IProtectedFileCreateResult := new WinRt.Windows.Security.EnterpriseData.IProtectedFileCreateResult;
                         Retval.m_IProtectedFileCreateResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1481,7 +1481,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function UnprotectAsync
       (
-         target : Windows.Storage.IStorageItem
+         target : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -1537,7 +1537,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
                         Retval.m_IFileProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1554,8 +1554,8 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function UnprotectAsync
       (
-         target : Windows.Storage.IStorageItem;
-         options : Windows.Security.EnterpriseData.FileUnprotectOptions'Class
+         target : WinRt.Windows.Storage.IStorageItem;
+         options : WinRt.Windows.Security.EnterpriseData.FileUnprotectOptions'Class
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -1611,7 +1611,7 @@ package body WinRt.Windows.Security.EnterpriseData is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+                        Retval.m_IFileProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
                         Retval.m_IFileProtectionInfo.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1634,7 +1634,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function ProtectAsync_FileRevocationManager
       (
-         storageItem : Windows.Storage.IStorageItem;
+         storageItem : WinRt.Windows.Storage.IStorageItem;
          enterpriseIdentity : WinRt.WString
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionStatus is
@@ -1707,8 +1707,8 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function CopyProtectionAsync_FileRevocationManager
       (
-         sourceStorageItem : Windows.Storage.IStorageItem;
-         targetStorageItem : Windows.Storage.IStorageItem
+         sourceStorageItem : WinRt.Windows.Storage.IStorageItem;
+         targetStorageItem : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1801,7 +1801,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
       function GetStatusAsync
       (
-         storageItem : Windows.Storage.IStorageItem
+         storageItem : WinRt.Windows.Storage.IStorageItem
       )
       return WinRt.Windows.Security.EnterpriseData.FileProtectionStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -1901,16 +1901,16 @@ package body WinRt.Windows.Security.EnterpriseData is
    return FileUnprotectOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.FileUnprotectOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.IFileUnprotectOptions");
       m_Factory    : access IFileUnprotectOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.EnterpriseData.IFileUnprotectOptions;
+      m_ComRetVal  : aliased WinRt.Windows.Security.EnterpriseData.IFileUnprotectOptions;
    begin
       return RetVal : FileUnprotectOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IFileUnprotectOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audit, m_ComRetVal'Access);
-            Retval.m_IFileUnprotectOptions := new Windows.Security.EnterpriseData.IFileUnprotectOptions;
+            Retval.m_IFileUnprotectOptions := new WinRt.Windows.Security.EnterpriseData.IFileUnprotectOptions;
             Retval.m_IFileUnprotectOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1984,7 +1984,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IProtectedAccessResumedEventArgs.all.get_Identities (m_ComRetVal'Access);
@@ -2027,7 +2027,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IProtectedAccessSuspendingEventArgs.all.get_Identities (m_ComRetVal'Access);
@@ -2047,7 +2047,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IProtectedAccessSuspendingEventArgs.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2064,14 +2064,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IProtectedAccessSuspendingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2107,7 +2107,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectedImportExportStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectedImportExportStatus;
    begin
       Hr := this.m_IProtectedContainerExportResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2124,14 +2124,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IProtectedContainerExportResult.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -2167,7 +2167,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectedImportExportStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectedImportExportStatus;
    begin
       Hr := this.m_IProtectedContainerImportResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2184,14 +2184,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IProtectedContainerImportResult.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -2227,7 +2227,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IProtectedContentRevokedEventArgs.all.get_Identities (m_ComRetVal'Access);
@@ -2270,14 +2270,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IProtectedFileCreateResult.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -2290,7 +2290,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IProtectedFileCreateResult.all.get_Stream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2307,14 +2307,14 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IFileProtectionInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
    begin
       return RetVal : WinRt.Windows.Security.EnterpriseData.FileProtectionInfo do
          Hr := this.m_IProtectedFileCreateResult.all.get_ProtectionInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileProtectionInfo := new Windows.Security.EnterpriseData.IFileProtectionInfo;
+         Retval.m_IFileProtectionInfo := new WinRt.Windows.Security.EnterpriseData.IFileProtectionInfo;
          Retval.m_IFileProtectionInfo.all := m_ComRetVal;
       end return;
    end;
@@ -2344,7 +2344,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    function Constructor
    (
-      action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+      action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
       dataDescription : WinRt.WString;
       sourceDescription : WinRt.WString;
       targetDescription : WinRt.WString
@@ -2352,10 +2352,10 @@ package body WinRt.Windows.Security.EnterpriseData is
    return ProtectionPolicyAuditInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo");
       m_Factory    : access IProtectionPolicyAuditInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
       HStr_dataDescription : constant WinRt.HString := To_HString (dataDescription);
       HStr_sourceDescription : constant WinRt.HString := To_HString (sourceDescription);
       HStr_targetDescription : constant WinRt.HString := To_HString (targetDescription);
@@ -2364,7 +2364,7 @@ package body WinRt.Windows.Security.EnterpriseData is
          Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyAuditInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (action, HStr_dataDescription, HStr_sourceDescription, HStr_targetDescription, m_ComRetVal'Access);
-            Retval.m_IProtectionPolicyAuditInfo := new Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+            Retval.m_IProtectionPolicyAuditInfo := new WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
             Retval.m_IProtectionPolicyAuditInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2377,23 +2377,23 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    function Constructor
    (
-      action : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+      action : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
       dataDescription : WinRt.WString
    )
    return ProtectionPolicyAuditInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo");
       m_Factory    : access IProtectionPolicyAuditInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
       HStr_dataDescription : constant WinRt.HString := To_HString (dataDescription);
    begin
       return RetVal : ProtectionPolicyAuditInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyAuditInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithActionAndDataDescription (action, HStr_dataDescription, m_ComRetVal'Access);
-            Retval.m_IProtectionPolicyAuditInfo := new Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
+            Retval.m_IProtectionPolicyAuditInfo := new WinRt.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
             Retval.m_IProtectionPolicyAuditInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2408,7 +2408,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    procedure put_Action
    (
       this : in out ProtectionPolicyAuditInfo;
-      value : Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
+      value : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2428,7 +2428,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditAction;
    begin
       Hr := this.m_IProtectionPolicyAuditInfo.all.get_Action (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2601,9 +2601,9 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2681,9 +2681,9 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2761,7 +2761,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2835,9 +2835,9 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2913,7 +2913,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       processId : WinRt.UInt32;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2985,9 +2985,9 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceItemList : GenericObject;
       processId : WinRt.UInt32;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString;
-      behavior : Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
+      behavior : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyRequestAccessBehavior
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -3059,7 +3059,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    function IsFileProtectionRequiredAsync
    (
-      target : Windows.Storage.IStorageItem;
+      target : WinRt.Windows.Storage.IStorageItem;
       identity : WinRt.WString
    )
    return WinRt.Boolean is
@@ -3132,7 +3132,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    function IsFileProtectionRequiredForNewFileAsync
    (
-      parentFolder : Windows.Storage.IStorageFolder;
+      parentFolder : WinRt.Windows.Storage.IStorageFolder;
       identity : WinRt.WString;
       desiredName : WinRt.WString
    )
@@ -3262,7 +3262,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    function HasContentBeenRevokedSince
    (
       identity : WinRt.WString;
-      since : Windows.Foundation.DateTime
+      since : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3297,7 +3297,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
       HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
       HStr_appPackageFamilyName : constant WinRt.HString := To_HString (appPackageFamilyName);
    begin
@@ -3400,7 +3400,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.EnforcementLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.EnforcementLevel;
       HStr_identity : constant WinRt.HString := To_HString (identity);
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics2'Access , m_Factory'Address);
@@ -3478,7 +3478,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3494,7 +3494,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_PolicyChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3538,7 +3538,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -3614,7 +3614,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
@@ -3693,7 +3693,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
       Hr               : WinRt.HResult := S_OK;
@@ -3769,7 +3769,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       appPackageFamilyName : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class;
       messageFromApp : WinRt.WString
    )
    return WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult is
@@ -3848,7 +3848,7 @@ package body WinRt.Windows.Security.EnterpriseData is
    (
       sourceIdentity : WinRt.WString;
       targetIdentity : WinRt.WString;
-      auditInfo : Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
+      auditInfo : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3951,7 +3951,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IThreadNetworkContext;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.IThreadNetworkContext;
       HStr_identity : constant WinRt.HString := To_HString (identity);
    begin
       return RetVal : WinRt.Windows.Security.EnterpriseData.ThreadNetworkContext do
@@ -3962,7 +3962,7 @@ package body WinRt.Windows.Security.EnterpriseData is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IThreadNetworkContext := new Windows.Security.EnterpriseData.IThreadNetworkContext;
+            Retval.m_IThreadNetworkContext := new WinRt.Windows.Security.EnterpriseData.IThreadNetworkContext;
             Retval.m_IThreadNetworkContext.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3972,7 +3972,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    function GetPrimaryManagedIdentityForNetworkEndpointAsync
    (
-      endpointHost : Windows.Networking.HostName'Class
+      endpointHost : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -4073,7 +4073,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.IProtectionPolicyManager;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManager;
    begin
       return RetVal : WinRt.Windows.Security.EnterpriseData.ProtectionPolicyManager do
          Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
@@ -4083,7 +4083,7 @@ package body WinRt.Windows.Security.EnterpriseData is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProtectionPolicyManager := new Windows.Security.EnterpriseData.IProtectionPolicyManager;
+            Retval.m_IProtectionPolicyManager := new WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManager;
             Retval.m_IProtectionPolicyManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4100,7 +4100,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -4116,7 +4116,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedAccessSuspending
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4145,7 +4145,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -4161,7 +4161,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedAccessResumed
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4190,7 +4190,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProtectionPolicyManagerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -4206,7 +4206,7 @@ package body WinRt.Windows.Security.EnterpriseData is
 
    procedure remove_ProtectedContentRevoked
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4236,7 +4236,7 @@ package body WinRt.Windows.Security.EnterpriseData is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyManager");
       m_Factory        : access WinRt.Windows.Security.EnterpriseData.IProtectionPolicyManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult;
       HStr_sourceIdentity : constant WinRt.HString := To_HString (sourceIdentity);
       HStr_targetIdentity : constant WinRt.HString := To_HString (targetIdentity);
    begin

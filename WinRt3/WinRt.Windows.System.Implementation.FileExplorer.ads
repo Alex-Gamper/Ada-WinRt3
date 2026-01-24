@@ -92,7 +92,7 @@ package WinRt.Windows.System.Implementation.FileExplorer is
       (
          this : access ISysStorageProviderEventReceivedEventArgsFactory_Interface;
          json : WinRt.HString;
-         RetVal : access Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs
+         RetVal : access WinRt.Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -105,14 +105,14 @@ package WinRt.Windows.System.Implementation.FileExplorer is
       (
          this : access ISysStorageProviderEventSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EventReceived
       (
          this : access ISysStorageProviderEventSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -125,7 +125,7 @@ package WinRt.Windows.System.Implementation.FileExplorer is
       (
          this : access ISysStorageProviderHandlerFactory_Interface;
          syncRootId : WinRt.HString;
-         RetVal : access Windows.System.Implementation.FileExplorer.ISysStorageProviderHttpRequestProvider
+         RetVal : access WinRt.Windows.System.Implementation.FileExplorer.ISysStorageProviderHttpRequestProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -134,7 +134,7 @@ package WinRt.Windows.System.Implementation.FileExplorer is
          this : access ISysStorageProviderHandlerFactory_Interface;
          syncRootId : WinRt.HString;
          eventName : WinRt.HString;
-         RetVal : access Windows.System.Implementation.FileExplorer.ISysStorageProviderEventSource
+         RetVal : access WinRt.Windows.System.Implementation.FileExplorer.ISysStorageProviderEventSource
       )
       return WinRt.Hresult is abstract;
 
@@ -146,7 +146,7 @@ package WinRt.Windows.System.Implementation.FileExplorer is
       function SendRequestAsync
       (
          this : access ISysStorageProviderHttpRequestProvider_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;

@@ -267,30 +267,30 @@ package WinRt.Windows.UI.ApplicationSettings is
    -----------------------------------------------------------------------------
 
    IID_CredentialCommandCredentialDeletedHandler : aliased WinRt.IID := (1640030597, 2423, 18040, (180, 226, 152, 114, 122, 251, 238, 217 ));
-   type CredentialCommandCredentialDeletedHandler_Delegate (Callback : access procedure  (command : Windows.UI.ApplicationSettings.ICredentialCommand)) is new WinRt.IMulticastDelegate_Interface (IID_CredentialCommandCredentialDeletedHandler'Access) with null record;
+   type CredentialCommandCredentialDeletedHandler_Delegate (Callback : access procedure  (command : WinRt.Windows.UI.ApplicationSettings.ICredentialCommand)) is new WinRt.IMulticastDelegate_Interface (IID_CredentialCommandCredentialDeletedHandler'Access) with null record;
       function Invoke
       (
          this : access CredentialCommandCredentialDeletedHandler_Delegate;
-         command : Windows.UI.ApplicationSettings.ICredentialCommand
+         command : WinRt.Windows.UI.ApplicationSettings.ICredentialCommand
       )
       return WinRt.Hresult;
 
    IID_WebAccountCommandInvokedHandler : aliased WinRt.IID := (518448217, 5893, 19098, (181, 153, 160, 195, 214, 146, 25, 115 ));
-   type WebAccountCommandInvokedHandler_Delegate (Callback : access procedure  (command : Windows.UI.ApplicationSettings.IWebAccountCommand;args : Windows.UI.ApplicationSettings.IWebAccountInvokedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_WebAccountCommandInvokedHandler'Access) with null record;
+   type WebAccountCommandInvokedHandler_Delegate (Callback : access procedure  (command : WinRt.Windows.UI.ApplicationSettings.IWebAccountCommand;args : WinRt.Windows.UI.ApplicationSettings.IWebAccountInvokedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_WebAccountCommandInvokedHandler'Access) with null record;
       function Invoke
       (
          this : access WebAccountCommandInvokedHandler_Delegate;
-         command : Windows.UI.ApplicationSettings.IWebAccountCommand;
-         args : Windows.UI.ApplicationSettings.IWebAccountInvokedArgs
+         command : WinRt.Windows.UI.ApplicationSettings.IWebAccountCommand;
+         args : WinRt.Windows.UI.ApplicationSettings.IWebAccountInvokedArgs
       )
       return WinRt.Hresult;
 
    IID_WebAccountProviderCommandInvokedHandler : aliased WinRt.IID := (3084801319, 19599, 17117, (132, 218, 94, 196, 147, 171, 219, 154 ));
-   type WebAccountProviderCommandInvokedHandler_Delegate (Callback : access procedure  (command : Windows.UI.ApplicationSettings.IWebAccountProviderCommand)) is new WinRt.IMulticastDelegate_Interface (IID_WebAccountProviderCommandInvokedHandler'Access) with null record;
+   type WebAccountProviderCommandInvokedHandler_Delegate (Callback : access procedure  (command : WinRt.Windows.UI.ApplicationSettings.IWebAccountProviderCommand)) is new WinRt.IMulticastDelegate_Interface (IID_WebAccountProviderCommandInvokedHandler'Access) with null record;
       function Invoke
       (
          this : access WebAccountProviderCommandInvokedHandler_Delegate;
-         command : Windows.UI.ApplicationSettings.IWebAccountProviderCommand
+         command : WinRt.Windows.UI.ApplicationSettings.IWebAccountProviderCommand
       )
       return WinRt.Hresult;
 
@@ -321,14 +321,14 @@ package WinRt.Windows.UI.ApplicationSettings is
       (
          this : access IAccountsSettingsPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountCommandsRequested
       (
          this : access IAccountsSettingsPane_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -382,7 +382,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function GetDeferral
       (
          this : access IAccountsSettingsPaneCommandsRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.IAccountsSettingsPaneEventDeferral
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPaneEventDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_User
       (
          this : access IAccountsSettingsPaneCommandsRequestedEventArgs2_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -417,7 +417,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function GetForCurrentView
       (
          this : access IAccountsSettingsPaneStatics_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.IAccountsSettingsPane
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.IAccountsSettingsPane
       )
       return WinRt.Hresult is abstract;
 
@@ -435,14 +435,14 @@ package WinRt.Windows.UI.ApplicationSettings is
       function ShowManageAccountsAsync
       (
          this : access IAccountsSettingsPaneStatics2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowAddAccountAsync
       (
          this : access IAccountsSettingsPaneStatics2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -454,16 +454,16 @@ package WinRt.Windows.UI.ApplicationSettings is
       function ShowManageAccountsForUserAsync
       (
          this : access IAccountsSettingsPaneStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Foundation.IAsyncAction
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowAddAccountForUserAsync
       (
          this : access IAccountsSettingsPaneStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Foundation.IAsyncAction
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -475,14 +475,14 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_PasswordCredential
       (
          this : access ICredentialCommand_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_CredentialDeleted
       (
          this : access ICredentialCommand_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -494,17 +494,17 @@ package WinRt.Windows.UI.ApplicationSettings is
       function CreateCredentialCommand
       (
          this : access ICredentialCommandFactory_Interface;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
-         RetVal : access Windows.UI.ApplicationSettings.ICredentialCommand
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.ICredentialCommand
       )
       return WinRt.Hresult is abstract;
 
       function CreateCredentialCommandWithHandler
       (
          this : access ICredentialCommandFactory_Interface;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
-         deleted : Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler;
-         RetVal : access Windows.UI.ApplicationSettings.ICredentialCommand
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
+         deleted : WinRt.Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler;
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.ICredentialCommand
       )
       return WinRt.Hresult is abstract;
 
@@ -518,8 +518,8 @@ package WinRt.Windows.UI.ApplicationSettings is
          this : access ISettingsCommandFactory_Interface;
          settingsCommandId : WinRt.IInspectable;
          label : WinRt.HString;
-         handler : Windows.UI.Popups.UICommandInvokedHandler;
-         RetVal : access Windows.UI.Popups.IUICommand
+         handler : WinRt.Windows.UI.Popups.UICommandInvokedHandler;
+         RetVal : access WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -531,7 +531,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_AccountsCommand
       (
          this : access ISettingsCommandStatics_Interface;
-         RetVal : access Windows.UI.Popups.IUICommand
+         RetVal : access WinRt.Windows.UI.Popups.IUICommand
       )
       return WinRt.Hresult is abstract;
 
@@ -544,14 +544,14 @@ package WinRt.Windows.UI.ApplicationSettings is
       (
          this : access ISettingsPane_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommandsRequested
       (
          this : access ISettingsPane_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -575,7 +575,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_Request
       (
          this : access ISettingsPaneCommandsRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequest
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -587,7 +587,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function GetForCurrentView
       (
          this : access ISettingsPaneStatics_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.ISettingsPane
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.ISettingsPane
       )
       return WinRt.Hresult is abstract;
 
@@ -600,7 +600,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_Edge
       (
          this : access ISettingsPaneStatics_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.SettingsEdgeLocation
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.SettingsEdgeLocation
       )
       return WinRt.Hresult is abstract;
 
@@ -612,21 +612,21 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_WebAccount
       (
          this : access IWebAccountCommand_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
       function get_Invoked
       (
          this : access IWebAccountCommand_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
       function get_Actions
       (
          this : access IWebAccountCommand_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.SupportedWebAccountActions
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.SupportedWebAccountActions
       )
       return WinRt.Hresult is abstract;
 
@@ -638,10 +638,10 @@ package WinRt.Windows.UI.ApplicationSettings is
       function CreateWebAccountCommand
       (
          this : access IWebAccountCommandFactory_Interface;
-         webAccount : Windows.Security.Credentials.IWebAccount;
-         invoked : Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler;
-         actions : Windows.UI.ApplicationSettings.SupportedWebAccountActions;
-         RetVal : access Windows.UI.ApplicationSettings.IWebAccountCommand
+         webAccount : WinRt.Windows.Security.Credentials.IWebAccount;
+         invoked : WinRt.Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler;
+         actions : WinRt.Windows.UI.ApplicationSettings.SupportedWebAccountActions;
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.IWebAccountCommand
       )
       return WinRt.Hresult is abstract;
 
@@ -653,7 +653,7 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_Action
       (
          this : access IWebAccountInvokedArgs_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.WebAccountAction
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.WebAccountAction
       )
       return WinRt.Hresult is abstract;
 
@@ -665,14 +665,14 @@ package WinRt.Windows.UI.ApplicationSettings is
       function get_WebAccountProvider
       (
          this : access IWebAccountProviderCommand_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccountProvider
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccountProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_Invoked
       (
          this : access IWebAccountProviderCommand_Interface;
-         RetVal : access Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -684,9 +684,9 @@ package WinRt.Windows.UI.ApplicationSettings is
       function CreateWebAccountProviderCommand
       (
          this : access IWebAccountProviderCommandFactory_Interface;
-         webAccountProvider : Windows.Security.Credentials.IWebAccountProvider;
-         invoked : Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler;
-         RetVal : access Windows.UI.ApplicationSettings.IWebAccountProviderCommand
+         webAccountProvider : WinRt.Windows.Security.Credentials.IWebAccountProvider;
+         invoked : WinRt.Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler;
+         RetVal : access WinRt.Windows.UI.ApplicationSettings.IWebAccountProviderCommand
       )
       return WinRt.Hresult is abstract;
 
@@ -707,12 +707,12 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    procedure ShowManageAccountsForUserAsync
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    );
 
    procedure ShowAddAccountForUserAsync
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    );
 
    function GetForCurrentView
@@ -737,7 +737,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    procedure remove_AccountCommandsRequested
    (
       this : in out AccountsSettingsPane;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -822,14 +822,14 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    function Constructor
    (
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return CredentialCommand;
 
    function Constructor
    (
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class;
-      deleted : Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class;
+      deleted : WinRt.Windows.UI.ApplicationSettings.CredentialCommandCredentialDeletedHandler
    )
    return CredentialCommand;
 
@@ -861,7 +861,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    (
       settingsCommandId : WinRt.IInspectable;
       label : WinRt.WString;
-      handler : Windows.UI.Popups.UICommandInvokedHandler
+      handler : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    )
    return SettingsCommand;
 
@@ -895,7 +895,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    procedure put_Invoked
    (
       this : in out SettingsCommand;
-      value : Windows.UI.Popups.UICommandInvokedHandler
+      value : WinRt.Windows.UI.Popups.UICommandInvokedHandler
    );
 
    function get_Id
@@ -940,7 +940,7 @@ package WinRt.Windows.UI.ApplicationSettings is
    procedure remove_CommandsRequested
    (
       this : in out SettingsPane;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -984,9 +984,9 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    function Constructor
    (
-      webAccount : Windows.Security.Credentials.WebAccount'Class;
-      invoked : Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler;
-      actions : Windows.UI.ApplicationSettings.SupportedWebAccountActions
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class;
+      invoked : WinRt.Windows.UI.ApplicationSettings.WebAccountCommandInvokedHandler;
+      actions : WinRt.Windows.UI.ApplicationSettings.SupportedWebAccountActions
    )
    return WebAccountCommand;
 
@@ -1037,8 +1037,8 @@ package WinRt.Windows.UI.ApplicationSettings is
 
    function Constructor
    (
-      webAccountProvider : Windows.Security.Credentials.WebAccountProvider'Class;
-      invoked : Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler
+      webAccountProvider : WinRt.Windows.Security.Credentials.WebAccountProvider'Class;
+      invoked : WinRt.Windows.UI.ApplicationSettings.WebAccountProviderCommandInvokedHandler
    )
    return WebAccountProviderCommand;
 

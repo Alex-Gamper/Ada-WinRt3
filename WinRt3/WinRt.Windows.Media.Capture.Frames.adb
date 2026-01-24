@@ -91,14 +91,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IAudioMediaFrame.all.get_FrameReference (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -111,14 +111,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IAudioMediaFrame.all.get_AudioEncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -131,14 +131,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IAudioFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.AudioFrame do
          Hr := this.m_IAudioMediaFrame.all.GetAudioFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrame := new Windows.Media.IAudioFrame;
+         Retval.m_IAudioFrame := new WinRt.Windows.Media.IAudioFrame;
          Retval.m_IAudioFrame.all := m_ComRetVal;
       end return;
    end;
@@ -174,14 +174,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IBufferMediaFrame.all.get_FrameReference (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -194,7 +194,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IBufferMediaFrame.all.get_Buffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -234,14 +234,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IDepthMediaFrame.all.get_FrameReference (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -254,14 +254,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrame do
          Hr := this.m_IDepthMediaFrame.all.get_VideoMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrame := new Windows.Media.Capture.Frames.IVideoMediaFrame;
+         Retval.m_IVideoMediaFrame := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
          Retval.m_IVideoMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -274,14 +274,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.DepthMediaFrameFormat do
          Hr := this.m_IDepthMediaFrame.all.get_DepthFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDepthMediaFrameFormat := new Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
+         Retval.m_IDepthMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
          Retval.m_IDepthMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -289,21 +289,21 @@ package body WinRt.Windows.Media.Capture.Frames is
    function TryCreateCoordinateMapper
    (
       this : in out DepthMediaFrame;
-      cameraIntrinsics : Windows.Media.Devices.Core.CameraIntrinsics'Class;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      cameraIntrinsics : WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class;
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.Media.Devices.Core.DepthCorrelatedCoordinateMapper'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.DepthCorrelatedCoordinateMapper do
          Hr := this.m_IDepthMediaFrame.all.TryCreateCoordinateMapper (cameraIntrinsics.m_ICameraIntrinsics.all, coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDepthCorrelatedCoordinateMapper := new Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper;
+         Retval.m_IDepthCorrelatedCoordinateMapper := new WinRt.Windows.Media.Devices.Core.IDepthCorrelatedCoordinateMapper;
          Retval.m_IDepthCorrelatedCoordinateMapper.all := m_ComRetVal;
       end return;
    end;
@@ -381,14 +381,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrameFormat do
          Hr := this.m_IDepthMediaFrameFormat.all.get_VideoFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrameFormat := new Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+         Retval.m_IVideoMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
          Retval.m_IVideoMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -441,14 +441,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IInfraredMediaFrame.all.get_FrameReference (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -461,14 +461,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrame do
          Hr := this.m_IInfraredMediaFrame.all.get_VideoMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrame := new Windows.Media.Capture.Frames.IVideoMediaFrame;
+         Retval.m_IVideoMediaFrame := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
          Retval.m_IVideoMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -584,14 +584,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaRatio;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
          Hr := this.m_IMediaFrameFormat.all.get_FrameRate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
+         Retval.m_IMediaRatio := new WinRt.Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
    end;
@@ -604,7 +604,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IMediaFrameFormat.all.get_Properties (m_ComRetVal'Access);
@@ -624,14 +624,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrameFormat do
          Hr := this.m_IMediaFrameFormat.all.get_VideoFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrameFormat := new Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+         Retval.m_IVideoMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
          Retval.m_IVideoMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -645,7 +645,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat2, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameFormat2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -655,7 +655,7 @@ package body WinRt.Windows.Media.Capture.Frames is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -692,7 +692,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -704,7 +704,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure remove_FrameArrived
    (
       this : in out MediaFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -724,14 +724,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IMediaFrameReader.all.TryAcquireLatestFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -862,7 +862,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure put_AcquisitionMode
    (
       this : in out MediaFrameReader;
-      value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -887,7 +887,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameReader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameReader_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameReader2, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameReader2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaFrameReader.all);
@@ -930,7 +930,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.MediaFrameSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.MediaFrameSourceKind;
    begin
       Hr := this.m_IMediaFrameReference.all.get_SourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -947,14 +947,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat do
          Hr := this.m_IMediaFrameReference.all.get_Format (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameFormat := new Windows.Media.Capture.Frames.IMediaFrameFormat;
+         Retval.m_IMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
          Retval.m_IMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -967,7 +967,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaFrameReference.all.get_SystemRelativeTime (m_ComRetVal'Access);
@@ -987,7 +987,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaFrameReference.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1004,7 +1004,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IMediaFrameReference.all.get_Properties (m_ComRetVal'Access);
@@ -1024,14 +1024,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IBufferMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IBufferMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.BufferMediaFrame do
          Hr := this.m_IMediaFrameReference.all.get_BufferMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBufferMediaFrame := new Windows.Media.Capture.Frames.IBufferMediaFrame;
+         Retval.m_IBufferMediaFrame := new WinRt.Windows.Media.Capture.Frames.IBufferMediaFrame;
          Retval.m_IBufferMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -1044,14 +1044,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrame do
          Hr := this.m_IMediaFrameReference.all.get_VideoMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrame := new Windows.Media.Capture.Frames.IVideoMediaFrame;
+         Retval.m_IVideoMediaFrame := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrame;
          Retval.m_IVideoMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -1064,14 +1064,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_IMediaFrameReference.all.get_CoordinateSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         Retval.m_ISpatialCoordinateSystem := new WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
    end;
@@ -1103,7 +1103,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameReference2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IAudioMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IAudioMediaFrame;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameReference_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameReference2, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameReference2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.AudioMediaFrame do
@@ -1113,7 +1113,7 @@ package body WinRt.Windows.Media.Capture.Frames is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioMediaFrame := new Windows.Media.Capture.Frames.IAudioMediaFrame;
+         Retval.m_IAudioMediaFrame := new WinRt.Windows.Media.Capture.Frames.IAudioMediaFrame;
          Retval.m_IAudioMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -1149,14 +1149,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameSourceInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceInfo do
          Hr := this.m_IMediaFrameSource.all.get_Info (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameSourceInfo := new Windows.Media.Capture.Frames.IMediaFrameSourceInfo;
+         Retval.m_IMediaFrameSourceInfo := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo;
          Retval.m_IMediaFrameSourceInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1169,14 +1169,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameSourceController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceController do
          Hr := this.m_IMediaFrameSource.all.get_Controller (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameSourceController := new Windows.Media.Capture.Frames.IMediaFrameSourceController;
+         Retval.m_IMediaFrameSourceController := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController;
          Retval.m_IMediaFrameSourceController.all := m_ComRetVal;
       end return;
    end;
@@ -1189,7 +1189,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaFrameFormat.Kind;
    begin
       Hr := this.m_IMediaFrameSource.all.get_SupportedFormats (m_ComRetVal'Access);
@@ -1209,14 +1209,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat do
          Hr := this.m_IMediaFrameSource.all.get_CurrentFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameFormat := new Windows.Media.Capture.Frames.IMediaFrameFormat;
+         Retval.m_IMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
          Retval.m_IMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -1224,7 +1224,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure SetFormatAsync
    (
       this : in out MediaFrameSource;
-      format : Windows.Media.Capture.Frames.MediaFrameFormat'Class
+      format : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1273,7 +1273,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaFrameSource.all.add_FormatChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1285,7 +1285,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure remove_FormatChanged
    (
       this : in out MediaFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1300,20 +1300,20 @@ package body WinRt.Windows.Media.Capture.Frames is
    function TryGetCameraIntrinsics
    (
       this : in out MediaFrameSource;
-      format : Windows.Media.Capture.Frames.MediaFrameFormat'Class
+      format : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat'Class
    )
    return WinRt.Windows.Media.Devices.Core.CameraIntrinsics'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.CameraIntrinsics do
          Hr := this.m_IMediaFrameSource.all.TryGetCameraIntrinsics (format.m_IMediaFrameFormat.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
+         Retval.m_ICameraIntrinsics := new WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
          Retval.m_ICameraIntrinsics.all := m_ComRetVal;
       end return;
    end;
@@ -1396,7 +1396,7 @@ package body WinRt.Windows.Media.Capture.Frames is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaFrameSourceGetPropertyResult := new Windows.Media.Capture.Frames.IMediaFrameSourceGetPropertyResult;
+                  Retval.m_IMediaFrameSourceGetPropertyResult := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGetPropertyResult;
                   Retval.m_IMediaFrameSourceGetPropertyResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1485,14 +1485,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.IVideoDeviceController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.IVideoDeviceController;
    begin
       return RetVal : WinRt.Windows.Media.Devices.VideoDeviceController do
          Hr := this.m_IMediaFrameSourceController.all.get_VideoDeviceController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoDeviceController := new Windows.Media.Devices.IVideoDeviceController;
+         Retval.m_IVideoDeviceController := new WinRt.Windows.Media.Devices.IVideoDeviceController;
          Retval.m_IVideoDeviceController.all := m_ComRetVal;
       end return;
    end;
@@ -1557,7 +1557,7 @@ package body WinRt.Windows.Media.Capture.Frames is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaFrameSourceGetPropertyResult := new Windows.Media.Capture.Frames.IMediaFrameSourceGetPropertyResult;
+                  Retval.m_IMediaFrameSourceGetPropertyResult := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGetPropertyResult;
                   Retval.m_IMediaFrameSourceGetPropertyResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1650,7 +1650,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.IAudioDeviceController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.IAudioDeviceController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceController3, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameSourceController3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Devices.AudioDeviceController do
@@ -1660,7 +1660,7 @@ package body WinRt.Windows.Media.Capture.Frames is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioDeviceController := new Windows.Media.Devices.IAudioDeviceController;
+         Retval.m_IAudioDeviceController := new WinRt.Windows.Media.Devices.IAudioDeviceController;
          Retval.m_IAudioDeviceController.all := m_ComRetVal;
       end return;
    end;
@@ -1696,7 +1696,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.MediaFrameSourceGetPropertyStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGetPropertyStatus;
    begin
       Hr := this.m_IMediaFrameSourceGetPropertyResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1871,7 +1871,7 @@ package body WinRt.Windows.Media.Capture.Frames is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaFrameSourceGroup := new Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
+                     Retval.m_IMediaFrameSourceGroup := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
                      Retval.m_IMediaFrameSourceGroup.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaFrameSourceInfo.Kind;
    begin
       Hr := this.m_IMediaFrameSourceGroup.all.get_SourceInfos (m_ComRetVal'Access);
@@ -2025,7 +2025,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaStreamType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaStreamType;
    begin
       Hr := this.m_IMediaFrameSourceInfo.all.get_MediaStreamType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2042,7 +2042,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.MediaFrameSourceKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.MediaFrameSourceKind;
    begin
       Hr := this.m_IMediaFrameSourceInfo.all.get_SourceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2059,14 +2059,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGroup do
          Hr := this.m_IMediaFrameSourceInfo.all.get_SourceGroup (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameSourceGroup := new Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
+         Retval.m_IMediaFrameSourceGroup := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
          Retval.m_IMediaFrameSourceGroup.all := m_ComRetVal;
       end return;
    end;
@@ -2079,14 +2079,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IMediaFrameSourceInfo.all.get_DeviceInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -2099,7 +2099,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
    begin
       Hr := this.m_IMediaFrameSourceInfo.all.get_Properties (m_ComRetVal'Access);
@@ -2119,14 +2119,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialCoordinateSystem;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem do
          Hr := this.m_IMediaFrameSourceInfo.all.get_CoordinateSystem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialCoordinateSystem := new Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         Retval.m_ISpatialCoordinateSystem := new WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          Retval.m_ISpatialCoordinateSystem.all := m_ComRetVal;
       end return;
    end;
@@ -2164,7 +2164,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfileMediaDescription.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo2, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameSourceInfo2'Unchecked_Access);
    begin
@@ -2182,14 +2182,14 @@ package body WinRt.Windows.Media.Capture.Frames is
    function GetRelativePanel
    (
       this : in out MediaFrameSourceInfo;
-      displayRegion : Windows.UI.WindowManagement.DisplayRegion'Class
+      displayRegion : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    )
    return WinRt.Windows.Devices.Enumeration.Panel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.Panel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.Panel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo_Interface, WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceInfo3, WinRt.Windows.Media.Capture.Frames.IID_IMediaFrameSourceInfo3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaFrameSourceInfo.all);
@@ -2277,7 +2277,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMultiSourceMediaFrameReader.all.add_FrameArrived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2289,7 +2289,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure remove_FrameArrived
    (
       this : in out MultiSourceMediaFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2309,14 +2309,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MultiSourceMediaFrameReference do
          Hr := this.m_IMultiSourceMediaFrameReader.all.TryAcquireLatestFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMultiSourceMediaFrameReference := new Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference;
+         Retval.m_IMultiSourceMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReference;
          Retval.m_IMultiSourceMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -2447,7 +2447,7 @@ package body WinRt.Windows.Media.Capture.Frames is
    procedure put_AcquisitionMode
    (
       this : in out MultiSourceMediaFrameReader;
-      value : Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2472,7 +2472,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.MediaFrameReaderAcquisitionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader_Interface, WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader2, WinRt.Windows.Media.Capture.Frames.IID_IMultiSourceMediaFrameReader2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMultiSourceMediaFrameReader.all);
@@ -2516,7 +2516,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
       HStr_sourceId : constant WinRt.HString := To_HString (sourceId);
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
@@ -2524,7 +2524,7 @@ package body WinRt.Windows.Media.Capture.Frames is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_sourceId);
       end return;
@@ -2579,14 +2579,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameReference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameReference do
          Hr := this.m_IVideoMediaFrame.all.get_FrameReference (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameReference := new Windows.Media.Capture.Frames.IMediaFrameReference;
+         Retval.m_IMediaFrameReference := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReference;
          Retval.m_IMediaFrameReference.all := m_ComRetVal;
       end return;
    end;
@@ -2599,14 +2599,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.VideoMediaFrameFormat do
          Hr := this.m_IVideoMediaFrame.all.get_VideoFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoMediaFrameFormat := new Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
+         Retval.m_IVideoMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IVideoMediaFrameFormat;
          Retval.m_IVideoMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -2619,14 +2619,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
          Hr := this.m_IVideoMediaFrame.all.get_SoftwareBitmap (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
+         Retval.m_ISoftwareBitmap := new WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
          Retval.m_ISoftwareBitmap.all := m_ComRetVal;
       end return;
    end;
@@ -2639,7 +2639,7 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
    begin
       Hr := this.m_IVideoMediaFrame.all.get_Direct3DSurface (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2656,14 +2656,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.Core.ICameraIntrinsics;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
    begin
       return RetVal : WinRt.Windows.Media.Devices.Core.CameraIntrinsics do
          Hr := this.m_IVideoMediaFrame.all.get_CameraIntrinsics (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICameraIntrinsics := new Windows.Media.Devices.Core.ICameraIntrinsics;
+         Retval.m_ICameraIntrinsics := new WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
          Retval.m_ICameraIntrinsics.all := m_ComRetVal;
       end return;
    end;
@@ -2676,14 +2676,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IInfraredMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IInfraredMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.InfraredMediaFrame do
          Hr := this.m_IVideoMediaFrame.all.get_InfraredMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInfraredMediaFrame := new Windows.Media.Capture.Frames.IInfraredMediaFrame;
+         Retval.m_IInfraredMediaFrame := new WinRt.Windows.Media.Capture.Frames.IInfraredMediaFrame;
          Retval.m_IInfraredMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2696,14 +2696,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IDepthMediaFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IDepthMediaFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.DepthMediaFrame do
          Hr := this.m_IVideoMediaFrame.all.get_DepthMediaFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDepthMediaFrame := new Windows.Media.Capture.Frames.IDepthMediaFrame;
+         Retval.m_IDepthMediaFrame := new WinRt.Windows.Media.Capture.Frames.IDepthMediaFrame;
          Retval.m_IDepthMediaFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2716,14 +2716,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IVideoFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IVideoMediaFrame.all.GetVideoFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
+         Retval.m_IVideoFrame := new WinRt.Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2759,14 +2759,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameFormat do
          Hr := this.m_IVideoMediaFrameFormat.all.get_MediaFrameFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameFormat := new Windows.Media.Capture.Frames.IMediaFrameFormat;
+         Retval.m_IMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IMediaFrameFormat;
          Retval.m_IMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;
@@ -2779,14 +2779,14 @@ package body WinRt.Windows.Media.Capture.Frames is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.DepthMediaFrameFormat do
          Hr := this.m_IVideoMediaFrameFormat.all.get_DepthFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDepthMediaFrameFormat := new Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
+         Retval.m_IDepthMediaFrameFormat := new WinRt.Windows.Media.Capture.Frames.IDepthMediaFrameFormat;
          Retval.m_IDepthMediaFrameFormat.all := m_ComRetVal;
       end return;
    end;

@@ -56,21 +56,21 @@ package body WinRt.Windows.Devices.Gpio.Provider is
 
    function Constructor
    (
-      edge : Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
+      edge : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
    )
    return GpioPinProviderValueChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.GpioPinProviderValueChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs");
       m_Factory    : access IGpioPinProviderValueChangedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
    begin
       return RetVal : GpioPinProviderValueChangedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_IGpioPinProviderValueChangedEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (edge, m_ComRetVal'Access);
-            Retval.m_IGpioPinProviderValueChangedEventArgs := new Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
+            Retval.m_IGpioPinProviderValueChangedEventArgs := new WinRt.Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
             Retval.m_IGpioPinProviderValueChangedEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -89,7 +89,7 @@ package body WinRt.Windows.Devices.Gpio.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
    begin
       Hr := this.m_IGpioPinProviderValueChangedEventArgs.all.get_Edge (m_ComRetVal'Access);
       if Hr /= S_OK then

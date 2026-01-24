@@ -140,14 +140,14 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function get_Status
       (
          this : access IDnssdRegistrationResult_Interface;
-         RetVal : access Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus
+         RetVal : access WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_IPAddress
       (
          this : access IDnssdRegistrationResult_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -180,14 +180,14 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function get_HostName
       (
          this : access IDnssdServiceInstance_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_HostName
       (
          this : access IDnssdServiceInstance_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -243,7 +243,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function RegisterStreamSocketListenerAsync
       (
          this : access IDnssdServiceInstance_Interface;
-         socket : Windows.Networking.Sockets.IStreamSocketListener;
+         socket : WinRt.Windows.Networking.Sockets.IStreamSocketListener;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -251,8 +251,8 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function RegisterStreamSocketListenerAsync
       (
          this : access IDnssdServiceInstance_Interface;
-         socket : Windows.Networking.Sockets.IStreamSocketListener;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
+         socket : WinRt.Windows.Networking.Sockets.IStreamSocketListener;
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -260,7 +260,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function RegisterDatagramSocketAsync
       (
          this : access IDnssdServiceInstance_Interface;
-         socket : Windows.Networking.Sockets.IDatagramSocket;
+         socket : WinRt.Windows.Networking.Sockets.IDatagramSocket;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -268,8 +268,8 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       function RegisterDatagramSocketAsync
       (
          this : access IDnssdServiceInstance_Interface;
-         socket : Windows.Networking.Sockets.IDatagramSocket;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
+         socket : WinRt.Windows.Networking.Sockets.IDatagramSocket;
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -283,9 +283,9 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       (
          this : access IDnssdServiceInstanceFactory_Interface;
          dnssdServiceInstanceName : WinRt.HString;
-         hostName : Windows.Networking.IHostName;
+         hostName : WinRt.Windows.Networking.IHostName;
          port : WinRt.UInt16;
-         RetVal : access Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance
+         RetVal : access WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -298,14 +298,14 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       (
          this : access IDnssdServiceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IDnssdServiceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -313,14 +313,14 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       (
          this : access IDnssdServiceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IDnssdServiceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -328,21 +328,21 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
       (
          this : access IDnssdServiceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IDnssdServiceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IDnssdServiceWatcher_Interface;
-         RetVal : access Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus
+         RetVal : access WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -414,7 +414,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    function Constructor
    (
       dnssdServiceInstanceName : WinRt.WString;
-      hostName : Windows.Networking.HostName'Class;
+      hostName : WinRt.Windows.Networking.HostName'Class;
       port : WinRt.UInt16
    )
    return DnssdServiceInstance;
@@ -443,7 +443,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    procedure put_HostName
    (
       this : in out DnssdServiceInstance;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_Port
@@ -491,30 +491,30 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    function RegisterStreamSocketListenerAsync
    (
       this : in out DnssdServiceInstance;
-      socket : Windows.Networking.Sockets.StreamSocketListener'Class
+      socket : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class;
 
    function RegisterStreamSocketListenerAsync
    (
       this : in out DnssdServiceInstance;
-      socket : Windows.Networking.Sockets.StreamSocketListener'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      socket : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class;
 
    function RegisterDatagramSocketAsync
    (
       this : in out DnssdServiceInstance;
-      socket : Windows.Networking.Sockets.DatagramSocket'Class
+      socket : WinRt.Windows.Networking.Sockets.DatagramSocket'Class
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class;
 
    function RegisterDatagramSocketAsync
    (
       this : in out DnssdServiceInstance;
-      socket : Windows.Networking.Sockets.DatagramSocket'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      socket : WinRt.Windows.Networking.Sockets.DatagramSocket'Class;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult'Class;
 
@@ -550,7 +550,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    function IndexOf
    (
       this : in out DnssdServiceInstanceCollection;
-      value : Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance'Class;
+      value : WinRt.Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -559,7 +559,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    (
       this : in out DnssdServiceInstanceCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance_Array
+      items : WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance_Array
    )
    return WinRt.UInt32;
 
@@ -589,7 +589,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    procedure remove_Added
    (
       this : in out DnssdServiceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -602,7 +602,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    procedure remove_EnumerationCompleted
    (
       this : in out DnssdServiceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -615,7 +615,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    procedure remove_Stopped
    (
       this : in out DnssdServiceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status

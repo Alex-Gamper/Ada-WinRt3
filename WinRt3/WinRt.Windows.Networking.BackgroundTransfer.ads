@@ -391,28 +391,28 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateDownload
       (
          this : access IBackgroundDownloader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         resultFile : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Networking.BackgroundTransfer.IDownloadOperation
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         resultFile : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation
       )
       return WinRt.Hresult is abstract;
 
       function CreateDownload
       (
          this : access IBackgroundDownloader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         resultFile : Windows.Storage.IStorageFile;
-         requestBodyFile : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Networking.BackgroundTransfer.IDownloadOperation
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         resultFile : WinRt.Windows.Storage.IStorageFile;
+         requestBodyFile : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation
       )
       return WinRt.Hresult is abstract;
 
       function CreateDownloadAsync
       (
          this : access IBackgroundDownloader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         resultFile : Windows.Storage.IStorageFile;
-         requestBodyStream : Windows.Storage.Streams.IInputStream;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         resultFile : WinRt.Windows.Storage.IStorageFile;
+         requestBodyStream : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -425,70 +425,70 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_TransferGroup
       (
          this : access IBackgroundDownloader2_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_TransferGroup
       (
          this : access IBackgroundDownloader2_Interface;
-         value : Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         value : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
       function get_SuccessToastNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_SuccessToastNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         value : Windows.UI.Notifications.IToastNotification
+         value : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_FailureToastNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_FailureToastNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         value : Windows.UI.Notifications.IToastNotification
+         value : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_SuccessTileNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_SuccessTileNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         value : Windows.UI.Notifications.ITileNotification
+         value : WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_FailureTileNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_FailureTileNotification
       (
          this : access IBackgroundDownloader2_Interface;
-         value : Windows.UI.Notifications.ITileNotification
+         value : WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -500,7 +500,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_CompletionGroup
       (
          this : access IBackgroundDownloader3_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -512,8 +512,8 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateWithCompletionGroup
       (
          this : access IBackgroundDownloaderFactory_Interface;
-         completionGroup : Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundDownloader
+         completionGroup : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundDownloader
       )
       return WinRt.Hresult is abstract;
 
@@ -545,7 +545,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function GetCurrentDownloadsForTransferGroupAsync
       (
          this : access IBackgroundDownloaderStaticMethods2_Interface;
-         group : Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         group : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -579,28 +579,28 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_ServerCredential
       (
          this : access IBackgroundTransferBase_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ServerCredential
       (
          this : access IBackgroundTransferBase_Interface;
-         credential : Windows.Security.Credentials.IPasswordCredential
+         credential : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyCredential
       (
          this : access IBackgroundTransferBase_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_ProxyCredential
       (
          this : access IBackgroundTransferBase_Interface;
-         credential : Windows.Security.Credentials.IPasswordCredential
+         credential : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -635,14 +635,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_CostPolicy
       (
          this : access IBackgroundTransferBase_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_CostPolicy
       (
          this : access IBackgroundTransferBase_Interface;
-         value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+         value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -654,7 +654,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_Trigger
       (
          this : access IBackgroundTransferCompletionGroup_Interface;
-         RetVal : access Windows.ApplicationModel.Background.IBackgroundTrigger
+         RetVal : access WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger
       )
       return WinRt.Hresult is abstract;
 
@@ -713,7 +713,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function SetFile
       (
          this : access IBackgroundTransferContentPart_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -726,7 +726,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       (
          this : access IBackgroundTransferContentPartFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart
       )
       return WinRt.Hresult is abstract;
 
@@ -735,7 +735,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
          this : access IBackgroundTransferContentPartFactory_Interface;
          name : WinRt.HString;
          fileName : WinRt.HString;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart
       )
       return WinRt.Hresult is abstract;
 
@@ -748,7 +748,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       (
          this : access IBackgroundTransferErrorStaticMethods_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Web.WebErrorStatus
+         RetVal : access WinRt.Windows.Web.WebErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -767,14 +767,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_TransferBehavior
       (
          this : access IBackgroundTransferGroup_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_TransferBehavior
       (
          this : access IBackgroundTransferGroup_Interface;
-         value : Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
+         value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -787,7 +787,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       (
          this : access IBackgroundTransferGroupStatics_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -806,7 +806,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_RequestedUri
       (
          this : access IBackgroundTransferOperation_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -827,14 +827,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_CostPolicy
       (
          this : access IBackgroundTransferOperation_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_CostPolicy
       (
          this : access IBackgroundTransferOperation_Interface;
-         value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+         value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -842,14 +842,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       (
          this : access IBackgroundTransferOperation_Interface;
          position : WinRt.UInt64;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function GetResponseInformation
       (
          this : access IBackgroundTransferOperation_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IResponseInformation
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IResponseInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -861,14 +861,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_Priority
       (
          this : access IBackgroundTransferOperationPriority_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
       )
       return WinRt.Hresult is abstract;
 
       function put_Priority
       (
          this : access IBackgroundTransferOperationPriority_Interface;
-         value : Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+         value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -894,7 +894,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function GetDeferral
       (
          this : access IBackgroundTransferRangesDownloadedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -906,17 +906,17 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateUpload
       (
          this : access IBackgroundUploader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         sourceFile : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Networking.BackgroundTransfer.IUploadOperation
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         sourceFile : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IUploadOperation
       )
       return WinRt.Hresult is abstract;
 
       function CreateUploadFromStreamAsync
       (
          this : access IBackgroundUploader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         sourceStream : Windows.Storage.Streams.IInputStream;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         sourceStream : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -924,7 +924,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateUploadAsync
       (
          this : access IBackgroundUploader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          parts : GenericObject;
          RetVal : access GenericObject
       )
@@ -933,7 +933,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateUploadAsync
       (
          this : access IBackgroundUploader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          parts : GenericObject;
          subType_x : WinRt.HString;
          RetVal : access GenericObject
@@ -943,7 +943,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateUploadAsync
       (
          this : access IBackgroundUploader_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          parts : GenericObject;
          subType_x : WinRt.HString;
          boundary : WinRt.HString;
@@ -959,70 +959,70 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_TransferGroup
       (
          this : access IBackgroundUploader2_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_TransferGroup
       (
          this : access IBackgroundUploader2_Interface;
-         value : Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         value : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
       function get_SuccessToastNotification
       (
          this : access IBackgroundUploader2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_SuccessToastNotification
       (
          this : access IBackgroundUploader2_Interface;
-         value : Windows.UI.Notifications.IToastNotification
+         value : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_FailureToastNotification
       (
          this : access IBackgroundUploader2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_FailureToastNotification
       (
          this : access IBackgroundUploader2_Interface;
-         value : Windows.UI.Notifications.IToastNotification
+         value : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_SuccessTileNotification
       (
          this : access IBackgroundUploader2_Interface;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_SuccessTileNotification
       (
          this : access IBackgroundUploader2_Interface;
-         value : Windows.UI.Notifications.ITileNotification
+         value : WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_FailureTileNotification
       (
          this : access IBackgroundUploader2_Interface;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
       function put_FailureTileNotification
       (
          this : access IBackgroundUploader2_Interface;
-         value : Windows.UI.Notifications.ITileNotification
+         value : WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1034,7 +1034,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_CompletionGroup
       (
          this : access IBackgroundUploader3_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1046,8 +1046,8 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function CreateWithCompletionGroup
       (
          this : access IBackgroundUploaderFactory_Interface;
-         completionGroup : Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundUploader
+         completionGroup : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundUploader
       )
       return WinRt.Hresult is abstract;
 
@@ -1079,7 +1079,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function GetCurrentUploadsForTransferGroupAsync
       (
          this : access IBackgroundUploaderStaticMethods2_Interface;
-         group : Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
+         group : WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1112,14 +1112,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function put_IndirectContentUri
       (
          this : access IContentPrefetcher_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_IndirectContentUri
       (
          this : access IContentPrefetcher_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1143,14 +1143,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_ResultFile
       (
          this : access IDownloadOperation_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function get_Progress
       (
          this : access IDownloadOperation_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -1188,7 +1188,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_TransferGroup
       (
          this : access IDownloadOperation2_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1214,7 +1214,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function GetResultRandomAccessStreamReference
       (
          this : access IDownloadOperation3_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1229,21 +1229,21 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       (
          this : access IDownloadOperation3_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RangesDownloaded
       (
          this : access IDownloadOperation3_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestedUri
       (
          this : access IDownloadOperation3_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1307,7 +1307,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_ActualUri
       (
          this : access IResponseInformation_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1345,14 +1345,14 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_SourceFile
       (
          this : access IUploadOperation_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function get_Progress
       (
          this : access IUploadOperation_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.BackgroundUploadProgress
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.BackgroundUploadProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -1378,7 +1378,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
       function get_TransferGroup
       (
          this : access IUploadOperation2_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IBackgroundTransferGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1432,7 +1432,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    function Constructor
    (
-      completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
+      completionGroup : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
    )
    return BackgroundDownloader;
 
@@ -1450,7 +1450,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    function GetCurrentDownloadsForTransferGroupAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      group : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
    return WinRt.GenericObject;
 
@@ -1466,26 +1466,26 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    function CreateDownload
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class;
 
    function CreateDownload
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile;
-      requestBodyFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile;
+      requestBodyFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class;
 
    function CreateDownloadAsync
    (
       this : in out BackgroundDownloader;
-      uri : Windows.Foundation.Uri'Class;
-      resultFile : Windows.Storage.IStorageFile;
-      requestBodyStream : Windows.Storage.Streams.IInputStream
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      resultFile : WinRt.Windows.Storage.IStorageFile;
+      requestBodyStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class;
 
@@ -1505,7 +1505,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ServerCredential
    (
       this : in out BackgroundDownloader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -1517,7 +1517,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ProxyCredential
    (
       this : in out BackgroundDownloader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_Method
@@ -1553,7 +1553,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out BackgroundDownloader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    );
 
    function get_TransferGroup
@@ -1565,7 +1565,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferGroup
    (
       this : in out BackgroundDownloader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    );
 
    function get_SuccessToastNotification
@@ -1577,7 +1577,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessToastNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    function get_FailureToastNotification
@@ -1589,7 +1589,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureToastNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    function get_SuccessTileNotification
@@ -1601,7 +1601,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessTileNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    );
 
    function get_FailureTileNotification
@@ -1613,7 +1613,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureTileNotification
    (
       this : in out BackgroundDownloader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    );
 
    function get_CompletionGroup
@@ -1717,7 +1717,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure SetFile
    (
       this : in out BackgroundTransferContentPart;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    );
 
    -----------------------------------------------------------------------------
@@ -1765,7 +1765,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferBehavior
    (
       this : in out BackgroundTransferGroup;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior
    );
 
    -----------------------------------------------------------------------------
@@ -1806,7 +1806,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    function Constructor
    (
-      completionGroup : Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
+      completionGroup : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup'Class
    )
    return BackgroundUploader;
 
@@ -1832,7 +1832,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
    function GetCurrentUploadsForTransferGroupAsync
    (
-      group : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      group : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    )
    return WinRt.GenericObject;
 
@@ -1842,23 +1842,23 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUpload
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
-      sourceFile : Windows.Storage.IStorageFile
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      sourceFile : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class;
 
    function CreateUploadFromStreamAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
-      sourceStream : Windows.Storage.Streams.IInputStream
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      sourceStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class;
 
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject
    )
    return WinRt.Windows.Networking.BackgroundTransfer.UploadOperation'Class;
@@ -1866,7 +1866,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject;
       subType_x : WinRt.WString
    )
@@ -1875,7 +1875,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    function CreateUploadAsync
    (
       this : in out BackgroundUploader;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       parts : GenericObject;
       subType_x : WinRt.WString;
       boundary : WinRt.WString
@@ -1898,7 +1898,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ServerCredential
    (
       this : in out BackgroundUploader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_ProxyCredential
@@ -1910,7 +1910,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_ProxyCredential
    (
       this : in out BackgroundUploader;
-      credential : Windows.Security.Credentials.PasswordCredential'Class
+      credential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    function get_Method
@@ -1946,7 +1946,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out BackgroundUploader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    );
 
    function get_TransferGroup
@@ -1958,7 +1958,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_TransferGroup
    (
       this : in out BackgroundUploader;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferGroup'Class
    );
 
    function get_SuccessToastNotification
@@ -1970,7 +1970,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessToastNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    function get_FailureToastNotification
@@ -1982,7 +1982,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureToastNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.ToastNotification'Class
+      value : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    function get_SuccessTileNotification
@@ -1994,7 +1994,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_SuccessTileNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    );
 
    function get_FailureTileNotification
@@ -2006,7 +2006,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_FailureTileNotification
    (
       this : in out BackgroundUploader;
-      value : Windows.UI.Notifications.TileNotification'Class
+      value : WinRt.Windows.UI.Notifications.TileNotification'Class
    );
 
    function get_CompletionGroup
@@ -2027,7 +2027,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
 
       procedure put_IndirectContentUri
       (
-         value : Windows.Foundation.Uri'Class
+         value : WinRt.Windows.Foundation.Uri'Class
       );
 
       function get_IndirectContentUri
@@ -2111,7 +2111,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out DownloadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    );
 
    function GetResultStreamAt
@@ -2136,7 +2136,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_Priority
    (
       this : in out DownloadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
    );
 
    function get_TransferGroup
@@ -2179,13 +2179,13 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure remove_RangesDownloaded
    (
       this : in out DownloadOperation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_RequestedUri
    (
       this : in out DownloadOperation;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_RecoverableWebErrorStatuses
@@ -2332,7 +2332,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_CostPolicy
    (
       this : in out UploadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy
    );
 
    function GetResultStreamAt
@@ -2357,7 +2357,7 @@ package WinRt.Windows.Networking.BackgroundTransfer is
    procedure put_Priority
    (
       this : in out UploadOperation;
-      value : Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
+      value : WinRt.Windows.Networking.BackgroundTransfer.BackgroundTransferPriority
    );
 
    function get_TransferGroup

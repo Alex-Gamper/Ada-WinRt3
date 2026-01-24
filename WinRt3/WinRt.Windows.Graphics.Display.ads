@@ -357,35 +357,35 @@ package WinRt.Windows.Graphics.Display is
       function get_CurrentAdvancedColorKind
       (
          this : access IAdvancedColorInfo_Interface;
-         RetVal : access Windows.Graphics.Display.AdvancedColorKind
+         RetVal : access WinRt.Windows.Graphics.Display.AdvancedColorKind
       )
       return WinRt.Hresult is abstract;
 
       function get_RedPrimary
       (
          this : access IAdvancedColorInfo_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_GreenPrimary
       (
          this : access IAdvancedColorInfo_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_BluePrimary
       (
          this : access IAdvancedColorInfo_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_WhitePoint
       (
          this : access IAdvancedColorInfo_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -420,7 +420,7 @@ package WinRt.Windows.Graphics.Display is
       function IsHdrMetadataFormatCurrentlySupported
       (
          this : access IAdvancedColorInfo_Interface;
-         format : Windows.Graphics.Display.HdrMetadataFormat;
+         format : WinRt.Windows.Graphics.Display.HdrMetadataFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -428,7 +428,7 @@ package WinRt.Windows.Graphics.Display is
       function IsAdvancedColorKindAvailable
       (
          this : access IAdvancedColorInfo_Interface;
-         kind : Windows.Graphics.Display.AdvancedColorKind;
+         kind : WinRt.Windows.Graphics.Display.AdvancedColorKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -463,22 +463,22 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverride_Interface;
          brightnessLevel : WinRt.Double;
-         options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+         options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
       )
       return WinRt.Hresult is abstract;
 
       function SetBrightnessScenario
       (
          this : access IBrightnessOverride_Interface;
-         scenario : Windows.Graphics.Display.DisplayBrightnessScenario;
-         options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+         scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario;
+         options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
       )
       return WinRt.Hresult is abstract;
 
       function GetLevelForScenario
       (
          this : access IBrightnessOverride_Interface;
-         scenario : Windows.Graphics.Display.DisplayBrightnessScenario;
+         scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario;
          RetVal : access WinRt.Double
       )
       return WinRt.Hresult is abstract;
@@ -499,14 +499,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsSupportedChanged
       (
          this : access IBrightnessOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -514,14 +514,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsOverrideActiveChanged
       (
          this : access IBrightnessOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -529,14 +529,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BrightnessLevelChanged
       (
          this : access IBrightnessOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -568,7 +568,7 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverrideSettingsStatics_Interface;
          level : WinRt.Double;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverrideSettings
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -576,15 +576,15 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IBrightnessOverrideSettingsStatics_Interface;
          nits : WinRt.Single;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverrideSettings
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromDisplayBrightnessOverrideScenario
       (
          this : access IBrightnessOverrideSettingsStatics_Interface;
-         overrideScenario : Windows.Graphics.Display.DisplayBrightnessOverrideScenario;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverrideSettings
+         overrideScenario : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideScenario;
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -596,21 +596,21 @@ package WinRt.Windows.Graphics.Display is
       function GetDefaultForSystem
       (
          this : access IBrightnessOverrideStatics_Interface;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverride
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverride
       )
       return WinRt.Hresult is abstract;
 
       function GetForCurrentView
       (
          this : access IBrightnessOverrideStatics_Interface;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverride
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverride
       )
       return WinRt.Hresult is abstract;
 
       function SaveForSystemAsync
       (
          this : access IBrightnessOverrideStatics_Interface;
-         value : Windows.Graphics.Display.IBrightnessOverride;
+         value : WinRt.Windows.Graphics.Display.IBrightnessOverride;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -623,7 +623,7 @@ package WinRt.Windows.Graphics.Display is
       function get_DesiredDisplayColorOverrideScenario
       (
          this : access IColorOverrideSettings_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayColorOverrideScenario
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayColorOverrideScenario
       )
       return WinRt.Hresult is abstract;
 
@@ -635,8 +635,8 @@ package WinRt.Windows.Graphics.Display is
       function CreateFromDisplayColorOverrideScenario
       (
          this : access IColorOverrideSettingsStatics_Interface;
-         overrideScenario : Windows.Graphics.Display.DisplayColorOverrideScenario;
-         RetVal : access Windows.Graphics.Display.IColorOverrideSettings
+         overrideScenario : WinRt.Windows.Graphics.Display.DisplayColorOverrideScenario;
+         RetVal : access WinRt.Windows.Graphics.Display.IColorOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -648,28 +648,28 @@ package WinRt.Windows.Graphics.Display is
       function get_ColorOverrideSettings
       (
          this : access IDisplayEnhancementOverride_Interface;
-         RetVal : access Windows.Graphics.Display.IColorOverrideSettings
+         RetVal : access WinRt.Windows.Graphics.Display.IColorOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorOverrideSettings
       (
          this : access IDisplayEnhancementOverride_Interface;
-         value : Windows.Graphics.Display.IColorOverrideSettings
+         value : WinRt.Windows.Graphics.Display.IColorOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
       function get_BrightnessOverrideSettings
       (
          this : access IDisplayEnhancementOverride_Interface;
-         RetVal : access Windows.Graphics.Display.IBrightnessOverrideSettings
+         RetVal : access WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
       function put_BrightnessOverrideSettings
       (
          this : access IDisplayEnhancementOverride_Interface;
-         value : Windows.Graphics.Display.IBrightnessOverrideSettings
+         value : WinRt.Windows.Graphics.Display.IBrightnessOverrideSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -690,7 +690,7 @@ package WinRt.Windows.Graphics.Display is
       function GetCurrentDisplayEnhancementOverrideCapabilities
       (
          this : access IDisplayEnhancementOverride_Interface;
-         RetVal : access Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities
+         RetVal : access WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -710,14 +710,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayEnhancementOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CanOverrideChanged
       (
          this : access IDisplayEnhancementOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -725,14 +725,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayEnhancementOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsOverrideActiveChanged
       (
          this : access IDisplayEnhancementOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -740,14 +740,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayEnhancementOverride_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisplayEnhancementOverrideCapabilitiesChanged
       (
          this : access IDisplayEnhancementOverride_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -785,7 +785,7 @@ package WinRt.Windows.Graphics.Display is
       function get_Capabilities
       (
          this : access IDisplayEnhancementOverrideCapabilitiesChangedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities
+         RetVal : access WinRt.Windows.Graphics.Display.IDisplayEnhancementOverrideCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -797,7 +797,7 @@ package WinRt.Windows.Graphics.Display is
       function GetForCurrentView
       (
          this : access IDisplayEnhancementOverrideStatics_Interface;
-         RetVal : access Windows.Graphics.Display.IDisplayEnhancementOverride
+         RetVal : access WinRt.Windows.Graphics.Display.IDisplayEnhancementOverride
       )
       return WinRt.Hresult is abstract;
 
@@ -809,14 +809,14 @@ package WinRt.Windows.Graphics.Display is
       function get_CurrentOrientation
       (
          this : access IDisplayInformation_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_NativeOrientation
       (
          this : access IDisplayInformation_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -824,21 +824,21 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OrientationChanged
       (
          this : access IDisplayInformation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_ResolutionScale
       (
          this : access IDisplayInformation_Interface;
-         RetVal : access Windows.Graphics.Display.ResolutionScale
+         RetVal : access WinRt.Windows.Graphics.Display.ResolutionScale
       )
       return WinRt.Hresult is abstract;
 
@@ -867,14 +867,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DpiChanged
       (
          this : access IDisplayInformation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -889,14 +889,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StereoEnabledChanged
       (
          this : access IDisplayInformation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -911,14 +911,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ColorProfileChanged
       (
          this : access IDisplayInformation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -973,7 +973,7 @@ package WinRt.Windows.Graphics.Display is
       function GetAdvancedColorInfo
       (
          this : access IDisplayInformation5_Interface;
-         RetVal : access Windows.Graphics.Display.IAdvancedColorInfo
+         RetVal : access WinRt.Windows.Graphics.Display.IAdvancedColorInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -981,14 +981,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformation5_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AdvancedColorInfoChanged
       (
          this : access IDisplayInformation5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1000,21 +1000,21 @@ package WinRt.Windows.Graphics.Display is
       function GetForCurrentView
       (
          this : access IDisplayInformationStatics_Interface;
-         RetVal : access Windows.Graphics.Display.IDisplayInformation
+         RetVal : access WinRt.Windows.Graphics.Display.IDisplayInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoRotationPreferences
       (
          this : access IDisplayInformationStatics_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoRotationPreferences
       (
          this : access IDisplayInformationStatics_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
@@ -1022,14 +1022,14 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayInformationStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisplayContentsInvalidated
       (
          this : access IDisplayInformationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1041,50 +1041,50 @@ package WinRt.Windows.Graphics.Display is
       function get_CurrentOrientation
       (
          this : access IDisplayPropertiesStatics_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_NativeOrientation
       (
          this : access IDisplayPropertiesStatics_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function get_AutoRotationPreferences
       (
          this : access IDisplayPropertiesStatics_Interface;
-         RetVal : access Windows.Graphics.Display.DisplayOrientations
+         RetVal : access WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function put_AutoRotationPreferences
       (
          this : access IDisplayPropertiesStatics_Interface;
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       )
       return WinRt.Hresult is abstract;
 
       function add_OrientationChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OrientationChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_ResolutionScale
       (
          this : access IDisplayPropertiesStatics_Interface;
-         RetVal : access Windows.Graphics.Display.ResolutionScale
+         RetVal : access WinRt.Windows.Graphics.Display.ResolutionScale
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,15 +1098,15 @@ package WinRt.Windows.Graphics.Display is
       function add_LogicalDpiChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LogicalDpiChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1120,15 +1120,15 @@ package WinRt.Windows.Graphics.Display is
       function add_StereoEnabledChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StereoEnabledChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1142,30 +1142,30 @@ package WinRt.Windows.Graphics.Display is
       function add_ColorProfileChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ColorProfileChanged
       (
          this : access IDisplayPropertiesStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_DisplayContentsInvalidated
       (
          this : access IDisplayPropertiesStatics_Interface;
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisplayContentsInvalidated
       (
          this : access IDisplayPropertiesStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1183,7 +1183,7 @@ package WinRt.Windows.Graphics.Display is
       (
          this : access IDisplayServicesStatics_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.Graphics.DisplayId_Ptr
+         RetVal : access WinRt.Windows.Graphics.DisplayId_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1259,14 +1259,14 @@ package WinRt.Windows.Graphics.Display is
    function IsHdrMetadataFormatCurrentlySupported
    (
       this : in out AdvancedColorInfo;
-      format : Windows.Graphics.Display.HdrMetadataFormat
+      format : WinRt.Windows.Graphics.Display.HdrMetadataFormat
    )
    return WinRt.Boolean;
 
    function IsAdvancedColorKindAvailable
    (
       this : in out AdvancedColorInfo;
-      kind : Windows.Graphics.Display.AdvancedColorKind
+      kind : WinRt.Windows.Graphics.Display.AdvancedColorKind
    )
    return WinRt.Boolean;
 
@@ -1287,7 +1287,7 @@ package WinRt.Windows.Graphics.Display is
 
    function SaveForSystemAsync
    (
-      value : Windows.Graphics.Display.BrightnessOverride'Class
+      value : WinRt.Windows.Graphics.Display.BrightnessOverride'Class
    )
    return WinRt.Boolean;
 
@@ -1316,20 +1316,20 @@ package WinRt.Windows.Graphics.Display is
    (
       this : in out BrightnessOverride;
       brightnessLevel : WinRt.Double;
-      options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+      options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
    );
 
    procedure SetBrightnessScenario
    (
       this : in out BrightnessOverride;
-      scenario : Windows.Graphics.Display.DisplayBrightnessScenario;
-      options : Windows.Graphics.Display.DisplayBrightnessOverrideOptions
+      scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario;
+      options : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideOptions
    );
 
    function GetLevelForScenario
    (
       this : in out BrightnessOverride;
-      scenario : Windows.Graphics.Display.DisplayBrightnessScenario
+      scenario : WinRt.Windows.Graphics.Display.DisplayBrightnessScenario
    )
    return WinRt.Double;
 
@@ -1353,7 +1353,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_IsSupportedChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_IsOverrideActiveChanged
@@ -1366,7 +1366,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_IsOverrideActiveChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_BrightnessLevelChanged
@@ -1379,7 +1379,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_BrightnessLevelChanged
    (
       this : in out BrightnessOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1405,7 +1405,7 @@ package WinRt.Windows.Graphics.Display is
 
    function CreateFromDisplayBrightnessOverrideScenario
    (
-      overrideScenario : Windows.Graphics.Display.DisplayBrightnessOverrideScenario
+      overrideScenario : WinRt.Windows.Graphics.Display.DisplayBrightnessOverrideScenario
    )
    return WinRt.Windows.Graphics.Display.BrightnessOverrideSettings;
 
@@ -1435,7 +1435,7 @@ package WinRt.Windows.Graphics.Display is
 
    function CreateFromDisplayColorOverrideScenario
    (
-      overrideScenario : Windows.Graphics.Display.DisplayColorOverrideScenario
+      overrideScenario : WinRt.Windows.Graphics.Display.DisplayColorOverrideScenario
    )
    return WinRt.Windows.Graphics.Display.ColorOverrideSettings;
 
@@ -1472,7 +1472,7 @@ package WinRt.Windows.Graphics.Display is
    procedure put_ColorOverrideSettings
    (
       this : in out DisplayEnhancementOverride;
-      value : Windows.Graphics.Display.ColorOverrideSettings'Class
+      value : WinRt.Windows.Graphics.Display.ColorOverrideSettings'Class
    );
 
    function get_BrightnessOverrideSettings
@@ -1484,7 +1484,7 @@ package WinRt.Windows.Graphics.Display is
    procedure put_BrightnessOverrideSettings
    (
       this : in out DisplayEnhancementOverride;
-      value : Windows.Graphics.Display.BrightnessOverrideSettings'Class
+      value : WinRt.Windows.Graphics.Display.BrightnessOverrideSettings'Class
    );
 
    function get_CanOverride
@@ -1525,7 +1525,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_CanOverrideChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_IsOverrideActiveChanged
@@ -1538,7 +1538,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_IsOverrideActiveChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DisplayEnhancementOverrideCapabilitiesChanged
@@ -1551,7 +1551,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_DisplayEnhancementOverrideCapabilitiesChanged
    (
       this : in out DisplayEnhancementOverride;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1613,7 +1613,7 @@ package WinRt.Windows.Graphics.Display is
 
    procedure put_AutoRotationPreferences
    (
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    );
 
    function add_DisplayContentsInvalidated
@@ -1624,7 +1624,7 @@ package WinRt.Windows.Graphics.Display is
 
    procedure remove_DisplayContentsInvalidated
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1652,7 +1652,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_OrientationChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ResolutionScale
@@ -1689,7 +1689,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_DpiChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_StereoEnabled
@@ -1708,7 +1708,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_StereoEnabledChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetColorProfileAsync
@@ -1727,7 +1727,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_ColorProfileChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_RawPixelsPerViewPixel
@@ -1770,7 +1770,7 @@ package WinRt.Windows.Graphics.Display is
    procedure remove_AdvancedColorInfoChanged
    (
       this : in out DisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1788,18 +1788,18 @@ package WinRt.Windows.Graphics.Display is
 
       procedure put_AutoRotationPreferences_DisplayProperties
       (
-         value : Windows.Graphics.Display.DisplayOrientations
+         value : WinRt.Windows.Graphics.Display.DisplayOrientations
       );
 
       function add_OrientationChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_OrientationChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_ResolutionScale
@@ -1810,13 +1810,13 @@ package WinRt.Windows.Graphics.Display is
 
       function add_LogicalDpiChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_LogicalDpiChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_StereoEnabled
@@ -1824,13 +1824,13 @@ package WinRt.Windows.Graphics.Display is
 
       function add_StereoEnabledChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_StereoEnabledChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function GetColorProfileAsync
@@ -1838,24 +1838,24 @@ package WinRt.Windows.Graphics.Display is
 
       function add_ColorProfileChanged
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_ColorProfileChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_DisplayContentsInvalidated
       (
-         handler : Windows.Graphics.Display.DisplayPropertiesEventHandler
+         handler : WinRt.Windows.Graphics.Display.DisplayPropertiesEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_DisplayContentsInvalidated_DisplayProperties
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end DisplayProperties;

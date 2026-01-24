@@ -93,35 +93,35 @@ package WinRt.Windows.Devices is
       function get_AdcControllerProvider
       (
          this : access ILowLevelDevicesAggregateProvider_Interface;
-         RetVal : access Windows.Devices.Adc.Provider.IAdcControllerProvider
+         RetVal : access WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_PwmControllerProvider
       (
          this : access ILowLevelDevicesAggregateProvider_Interface;
-         RetVal : access Windows.Devices.Pwm.Provider.IPwmControllerProvider
+         RetVal : access WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_GpioControllerProvider
       (
          this : access ILowLevelDevicesAggregateProvider_Interface;
-         RetVal : access Windows.Devices.Gpio.Provider.IGpioControllerProvider
+         RetVal : access WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_I2cControllerProvider
       (
          this : access ILowLevelDevicesAggregateProvider_Interface;
-         RetVal : access Windows.Devices.I2c.Provider.II2cControllerProvider
+         RetVal : access WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_SpiControllerProvider
       (
          this : access ILowLevelDevicesAggregateProvider_Interface;
-         RetVal : access Windows.Devices.Spi.Provider.ISpiControllerProvider
+         RetVal : access WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -133,12 +133,12 @@ package WinRt.Windows.Devices is
       function Create
       (
          this : access ILowLevelDevicesAggregateProviderFactory_Interface;
-         adc : Windows.Devices.Adc.Provider.IAdcControllerProvider;
-         pwm : Windows.Devices.Pwm.Provider.IPwmControllerProvider;
-         gpio : Windows.Devices.Gpio.Provider.IGpioControllerProvider;
-         i2c : Windows.Devices.I2c.Provider.II2cControllerProvider;
-         spi : Windows.Devices.Spi.Provider.ISpiControllerProvider;
-         RetVal : access Windows.Devices.ILowLevelDevicesAggregateProvider
+         adc : WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider;
+         pwm : WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider;
+         gpio : WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider;
+         i2c : WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider;
+         spi : WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider;
+         RetVal : access WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -155,14 +155,14 @@ package WinRt.Windows.Devices is
       function get_DefaultProvider
       (
          this : access ILowLevelDevicesControllerStatics_Interface;
-         RetVal : access Windows.Devices.ILowLevelDevicesAggregateProvider
+         RetVal : access WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider
       )
       return WinRt.Hresult is abstract;
 
       function put_DefaultProvider
       (
          this : access ILowLevelDevicesControllerStatics_Interface;
-         value : Windows.Devices.ILowLevelDevicesAggregateProvider
+         value : WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -183,11 +183,11 @@ package WinRt.Windows.Devices is
 
    function Constructor
    (
-      adc : Windows.Devices.Adc.Provider.IAdcControllerProvider;
-      pwm : Windows.Devices.Pwm.Provider.IPwmControllerProvider;
-      gpio : Windows.Devices.Gpio.Provider.IGpioControllerProvider;
-      i2c : Windows.Devices.I2c.Provider.II2cControllerProvider;
-      spi : Windows.Devices.Spi.Provider.ISpiControllerProvider
+      adc : WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider;
+      pwm : WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider;
+      gpio : WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider;
+      i2c : WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider;
+      spi : WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider
    )
    return LowLevelDevicesAggregateProvider;
 
@@ -238,7 +238,7 @@ package WinRt.Windows.Devices is
 
    procedure put_DefaultProvider
    (
-      value : Windows.Devices.ILowLevelDevicesAggregateProvider
+      value : WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider
    );
 
    -----------------------------------------------------------------------------

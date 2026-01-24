@@ -127,7 +127,7 @@ package WinRt.Windows.Security.Authentication.Identity is
       function get_Current
       (
          this : access IEnterpriseKeyCredentialRegistrationManagerStatics_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager
       )
       return WinRt.Hresult is abstract;
 

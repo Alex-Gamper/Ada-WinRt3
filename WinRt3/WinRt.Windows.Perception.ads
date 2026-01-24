@@ -74,14 +74,14 @@ package WinRt.Windows.Perception is
       function get_TargetTime
       (
          this : access IPerceptionTimestamp_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_PredictionAmount
       (
          this : access IPerceptionTimestamp_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -93,7 +93,7 @@ package WinRt.Windows.Perception is
       function get_SystemRelativeTargetTime
       (
          this : access IPerceptionTimestamp2_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -105,8 +105,8 @@ package WinRt.Windows.Perception is
       function FromHistoricalTargetTime
       (
          this : access IPerceptionTimestampHelperStatics_Interface;
-         targetTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         targetTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
@@ -118,8 +118,8 @@ package WinRt.Windows.Perception is
       function FromSystemRelativeTargetTime
       (
          this : access IPerceptionTimestampHelperStatics2_Interface;
-         targetTime : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         targetTime : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
@@ -162,13 +162,13 @@ package WinRt.Windows.Perception is
 
       function FromSystemRelativeTargetTime
       (
-         targetTime : Windows.Foundation.TimeSpan
+         targetTime : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Windows.Perception.PerceptionTimestamp;
 
       function FromHistoricalTargetTime
       (
-         targetTime : Windows.Foundation.DateTime
+         targetTime : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Windows.Perception.PerceptionTimestamp;
 

@@ -100,14 +100,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IMusicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IMusicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.MusicProperties do
          Hr := this.m_IStorageItemInformation.all.get_MusicProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
+         Retval.m_IMusicProperties := new WinRt.Windows.Storage.FileProperties.IMusicProperties;
          Retval.m_IMusicProperties.all := m_ComRetVal;
       end return;
    end;
@@ -120,14 +120,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IVideoProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IVideoProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.VideoProperties do
          Hr := this.m_IStorageItemInformation.all.get_VideoProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
+         Retval.m_IVideoProperties := new WinRt.Windows.Storage.FileProperties.IVideoProperties;
          Retval.m_IVideoProperties.all := m_ComRetVal;
       end return;
    end;
@@ -140,14 +140,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IImageProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IImageProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.ImageProperties do
          Hr := this.m_IStorageItemInformation.all.get_ImageProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageProperties := new Windows.Storage.FileProperties.IImageProperties;
+         Retval.m_IImageProperties := new WinRt.Windows.Storage.FileProperties.IImageProperties;
          Retval.m_IImageProperties.all := m_ComRetVal;
       end return;
    end;
@@ -160,14 +160,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IDocumentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IDocumentProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.DocumentProperties do
          Hr := this.m_IStorageItemInformation.all.get_DocumentProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDocumentProperties := new Windows.Storage.FileProperties.IDocumentProperties;
+         Retval.m_IDocumentProperties := new WinRt.Windows.Storage.FileProperties.IDocumentProperties;
          Retval.m_IDocumentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -180,14 +180,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IBasicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IBasicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          Hr := this.m_IStorageItemInformation.all.get_BasicProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+         Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
          Retval.m_IBasicProperties.all := m_ComRetVal;
       end return;
    end;
@@ -200,8 +200,8 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
-      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_Wrapped        : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
@@ -222,7 +222,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_ThumbnailUpdated (changedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -234,7 +234,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure remove_ThumbnailUpdated
    (
       this : in out FileInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -255,7 +255,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_PropertiesUpdated (changedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -267,7 +267,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure remove_PropertiesUpdated
    (
       this : in out FileInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -330,7 +330,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function OpenAsync
    (
       this : in out FileInformation;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -452,7 +452,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                  Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -468,7 +468,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -523,7 +523,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -539,7 +539,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class is
@@ -596,7 +596,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -613,9 +613,9 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CopyAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -671,7 +671,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -688,7 +688,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure CopyAndReplaceAsync
    (
       this : in out FileInformation;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -735,7 +735,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -782,7 +782,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -832,9 +832,9 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure MoveAsync
    (
       this : in out FileInformation;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -883,7 +883,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure MoveAndReplaceAsync
    (
       this : in out FileInformation;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1114,7 +1114,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FileInformation;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1209,7 +1209,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure DeleteAsync
    (
       this : in out FileInformation;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1310,7 +1310,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+                  Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileAttributes;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
@@ -1401,7 +1401,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
@@ -1416,7 +1416,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsOfType
    (
       this : in out FileInformation;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1438,7 +1438,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1510,7 +1510,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -1583,9 +1583,9 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FileInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1735,7 +1735,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
@@ -1745,7 +1745,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
+         Retval.m_IStorageItemContentProperties := new WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1807,7 +1807,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1823,7 +1823,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsEqual
    (
       this : in out FileInformation;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1851,7 +1851,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
@@ -1861,7 +1861,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
+         Retval.m_IStorageProvider := new WinRt.Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;
    end;
@@ -1890,8 +1890,8 @@ package body WinRt.Windows.Storage.BulkAccess is
    function OpenAsync
    (
       this : in out FileInformation;
-      accessMode : Windows.Storage.FileAccessMode;
-      options : Windows.Storage.StorageOpenOptions
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -1959,7 +1959,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function OpenTransactedWriteAsync
    (
       this : in out FileInformation;
-      options : Windows.Storage.StorageOpenOptions
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2014,7 +2014,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                  Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2052,22 +2052,22 @@ package body WinRt.Windows.Storage.BulkAccess is
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
          Hr := RoGetActivationFactory (m_hString, IID_IFileInformationFactoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithMode (queryResult, mode, m_ComRetVal'Access);
-            Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
+            Retval.m_IFileInformationFactory := new WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2077,23 +2077,23 @@ package body WinRt.Windows.Storage.BulkAccess is
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
          Hr := RoGetActivationFactory (m_hString, IID_IFileInformationFactoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithModeAndSize (queryResult, mode, requestedThumbnailSize, m_ComRetVal'Access);
-            Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
+            Retval.m_IFileInformationFactory := new WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2103,24 +2103,24 @@ package body WinRt.Windows.Storage.BulkAccess is
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32;
-      thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions
+      thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
          Hr := RoGetActivationFactory (m_hString, IID_IFileInformationFactoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithModeAndSizeAndOptions (queryResult, mode, requestedThumbnailSize, thumbnailOptions, m_ComRetVal'Access);
-            Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
+            Retval.m_IFileInformationFactory := new WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2130,25 +2130,25 @@ package body WinRt.Windows.Storage.BulkAccess is
 
    function Constructor
    (
-      queryResult : Windows.Storage.Search.IStorageQueryResultBase;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      queryResult : WinRt.Windows.Storage.Search.IStorageQueryResultBase;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedThumbnailSize : WinRt.UInt32;
-      thumbnailOptions : Windows.Storage.FileProperties.ThumbnailOptions;
+      thumbnailOptions : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
       delayLoad : WinRt.Boolean
    )
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.BulkAccess.IFileInformationFactory;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
    begin
       return RetVal : FileInformationFactory do
          Hr := RoGetActivationFactory (m_hString, IID_IFileInformationFactoryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithModeAndSizeAndOptionsAndFlags (queryResult, mode, requestedThumbnailSize, thumbnailOptions, delayLoad, m_ComRetVal'Access);
-            Retval.m_IFileInformationFactory := new Windows.Storage.BulkAccess.IFileInformationFactory;
+            Retval.m_IFileInformationFactory := new WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
             Retval.m_IFileInformationFactory.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2625,14 +2625,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IMusicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IMusicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.MusicProperties do
          Hr := this.m_IStorageItemInformation.all.get_MusicProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMusicProperties := new Windows.Storage.FileProperties.IMusicProperties;
+         Retval.m_IMusicProperties := new WinRt.Windows.Storage.FileProperties.IMusicProperties;
          Retval.m_IMusicProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2645,14 +2645,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IVideoProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IVideoProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.VideoProperties do
          Hr := this.m_IStorageItemInformation.all.get_VideoProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoProperties := new Windows.Storage.FileProperties.IVideoProperties;
+         Retval.m_IVideoProperties := new WinRt.Windows.Storage.FileProperties.IVideoProperties;
          Retval.m_IVideoProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2665,14 +2665,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IImageProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IImageProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.ImageProperties do
          Hr := this.m_IStorageItemInformation.all.get_ImageProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageProperties := new Windows.Storage.FileProperties.IImageProperties;
+         Retval.m_IImageProperties := new WinRt.Windows.Storage.FileProperties.IImageProperties;
          Retval.m_IImageProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2685,14 +2685,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IDocumentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IDocumentProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.DocumentProperties do
          Hr := this.m_IStorageItemInformation.all.get_DocumentProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDocumentProperties := new Windows.Storage.FileProperties.IDocumentProperties;
+         Retval.m_IDocumentProperties := new WinRt.Windows.Storage.FileProperties.IDocumentProperties;
          Retval.m_IDocumentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2705,14 +2705,14 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IBasicProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IBasicProperties;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.BasicProperties do
          Hr := this.m_IStorageItemInformation.all.get_BasicProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+         Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
          Retval.m_IBasicProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2725,8 +2725,8 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
-      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_Wrapped        : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType_Ptr := new WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemThumbnail do
          Hr := this.m_IStorageItemInformation.all.get_Thumbnail (m_ComRetVal'Access);
@@ -2747,7 +2747,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_ThumbnailUpdated (changedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2759,7 +2759,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure remove_ThumbnailUpdated
    (
       this : in out FolderInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2780,7 +2780,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageItemInformation.all.add_PropertiesUpdated (changedHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2792,7 +2792,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure remove_PropertiesUpdated
    (
       this : in out FolderInformation;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2863,7 +2863,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2881,7 +2881,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2937,7 +2937,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3010,7 +3010,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3028,7 +3028,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3084,7 +3084,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3157,7 +3157,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3230,7 +3230,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3568,7 +3568,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    (
       this : in out FolderInformation;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3663,7 +3663,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    procedure DeleteAsync
    (
       this : in out FolderInformation;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3764,7 +3764,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+                  Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3834,7 +3834,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileAttributes;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
@@ -3855,7 +3855,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageItemInformation.all);
@@ -3870,7 +3870,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsOfType
    (
       this : in out FolderInformation;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3892,7 +3892,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3964,7 +3964,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -4037,9 +4037,9 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetThumbnailAsync
    (
       this : in out FolderInformation;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4189,7 +4189,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
@@ -4199,7 +4199,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
+         Retval.m_IStorageItemContentProperties := new WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -4280,7 +4280,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -4290,7 +4290,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4298,14 +4298,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CreateFileQuery
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -4315,7 +4315,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4323,14 +4323,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CreateFileQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -4340,7 +4340,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4354,7 +4354,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -4364,7 +4364,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4372,14 +4372,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CreateFolderQuery
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -4389,7 +4389,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4397,14 +4397,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CreateFolderQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -4414,7 +4414,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4428,7 +4428,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
@@ -4438,7 +4438,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
+         Retval.m_IStorageItemQueryResult := new WinRt.Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4446,14 +4446,14 @@ package body WinRt.Windows.Storage.BulkAccess is
    function CreateItemQueryWithOptions
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
@@ -4463,7 +4463,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
+         Retval.m_IStorageItemQueryResult := new WinRt.Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -4471,7 +4471,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetFilesAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -4541,7 +4541,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetFilesAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -4609,7 +4609,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetFoldersAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery;
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -4679,7 +4679,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function GetFoldersAsync
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -4816,7 +4816,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function AreQueryOptionsSupported
    (
       this : in out FolderInformation;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4838,7 +4838,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsCommonFolderQuerySupported
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4860,7 +4860,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsCommonFileQuerySupported
    (
       this : in out FolderInformation;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -4936,7 +4936,7 @@ package body WinRt.Windows.Storage.BulkAccess is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4952,7 +4952,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    function IsEqual
    (
       this : in out FolderInformation;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -5050,7 +5050,7 @@ package body WinRt.Windows.Storage.BulkAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.BulkAccess.IStorageItemInformation_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
@@ -5060,7 +5060,7 @@ package body WinRt.Windows.Storage.BulkAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
+         Retval.m_IStorageProvider := new WinRt.Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;
    end;

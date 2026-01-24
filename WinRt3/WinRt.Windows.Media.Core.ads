@@ -1458,7 +1458,7 @@ package WinRt.Windows.Media.Core is
       function get_EncodingProperties
       (
          this : access IAudioStreamDescriptor_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1503,7 +1503,7 @@ package WinRt.Windows.Media.Core is
       function Copy
       (
          this : access IAudioStreamDescriptor3_Interface;
-         RetVal : access Windows.Media.Core.IAudioStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IAudioStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1515,8 +1515,8 @@ package WinRt.Windows.Media.Core is
       function Create
       (
          this : access IAudioStreamDescriptorFactory_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IAudioEncodingProperties;
-         RetVal : access Windows.Media.Core.IAudioStreamDescriptor
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Core.IAudioStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1529,28 +1529,28 @@ package WinRt.Windows.Media.Core is
       (
          this : access IAudioTrack_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OpenFailed
       (
          this : access IAudioTrack_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetEncodingProperties
       (
          this : access IAudioTrack_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackItem
       (
          this : access IAudioTrack_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -1564,7 +1564,7 @@ package WinRt.Windows.Media.Core is
       function get_SupportInfo
       (
          this : access IAudioTrack_Interface;
-         RetVal : access Windows.Media.Core.IAudioTrackSupportInfo
+         RetVal : access WinRt.Windows.Media.Core.IAudioTrackSupportInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1576,7 +1576,7 @@ package WinRt.Windows.Media.Core is
       function get_ExtendedError
       (
          this : access IAudioTrackOpenFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1588,28 +1588,28 @@ package WinRt.Windows.Media.Core is
       function get_DecoderStatus
       (
          this : access IAudioTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.MediaDecoderStatus
+         RetVal : access WinRt.Windows.Media.Core.MediaDecoderStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Degradation
       (
          this : access IAudioTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.AudioDecoderDegradation
+         RetVal : access WinRt.Windows.Media.Core.AudioDecoderDegradation
       )
       return WinRt.Hresult is abstract;
 
       function get_DegradationReason
       (
          this : access IAudioTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.AudioDecoderDegradationReason
+         RetVal : access WinRt.Windows.Media.Core.AudioDecoderDegradationReason
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSourceStatus
       (
          this : access IAudioTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.MediaSourceStatus
+         RetVal : access WinRt.Windows.Media.Core.MediaSourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1640,14 +1640,14 @@ package WinRt.Windows.Media.Core is
       function get_Kind
       (
          this : access ICodecInfo_Interface;
-         RetVal : access Windows.Media.Core.CodecKind
+         RetVal : access WinRt.Windows.Media.Core.CodecKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Category
       (
          this : access ICodecInfo_Interface;
-         RetVal : access Windows.Media.Core.CodecCategory
+         RetVal : access WinRt.Windows.Media.Core.CodecCategory
       )
       return WinRt.Hresult is abstract;
 
@@ -1680,8 +1680,8 @@ package WinRt.Windows.Media.Core is
       function FindAllAsync
       (
          this : access ICodecQuery_Interface;
-         kind : Windows.Media.Core.CodecKind;
-         category : Windows.Media.Core.CodecCategory;
+         kind : WinRt.Windows.Media.Core.CodecKind;
+         category : WinRt.Windows.Media.Core.CodecCategory;
          subType_x : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2069,14 +2069,14 @@ package WinRt.Windows.Media.Core is
       function put_Data
       (
          this : access IDataCue_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Data
       (
          this : access IDataCue_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2088,7 +2088,7 @@ package WinRt.Windows.Media.Core is
       function get_Properties
       (
          this : access IDataCue2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -2100,7 +2100,7 @@ package WinRt.Windows.Media.Core is
       function get_ResultFrame
       (
          this : access IFaceDetectedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IFaceDetectionEffectFrame
+         RetVal : access WinRt.Windows.Media.Core.IFaceDetectionEffectFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -2126,14 +2126,14 @@ package WinRt.Windows.Media.Core is
       function put_DesiredDetectionInterval
       (
          this : access IFaceDetectionEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredDetectionInterval
       (
          this : access IFaceDetectionEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2141,14 +2141,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IFaceDetectionEffect_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FaceDetected
       (
          this : access IFaceDetectionEffect_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2160,14 +2160,14 @@ package WinRt.Windows.Media.Core is
       function put_DetectionMode
       (
          this : access IFaceDetectionEffectDefinition_Interface;
-         value : Windows.Media.Core.FaceDetectionMode
+         value : WinRt.Windows.Media.Core.FaceDetectionMode
       )
       return WinRt.Hresult is abstract;
 
       function get_DetectionMode
       (
          this : access IFaceDetectionEffectDefinition_Interface;
-         RetVal : access Windows.Media.Core.FaceDetectionMode
+         RetVal : access WinRt.Windows.Media.Core.FaceDetectionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2243,42 +2243,42 @@ package WinRt.Windows.Media.Core is
       function get_Position
       (
          this : access IImageCue_Interface;
-         RetVal : access Windows.Media.Core.TimedTextPoint
+         RetVal : access WinRt.Windows.Media.Core.TimedTextPoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IImageCue_Interface;
-         value : Windows.Media.Core.TimedTextPoint
+         value : WinRt.Windows.Media.Core.TimedTextPoint
       )
       return WinRt.Hresult is abstract;
 
       function get_Extent
       (
          this : access IImageCue_Interface;
-         RetVal : access Windows.Media.Core.TimedTextSize
+         RetVal : access WinRt.Windows.Media.Core.TimedTextSize
       )
       return WinRt.Hresult is abstract;
 
       function put_Extent
       (
          this : access IImageCue_Interface;
-         value : Windows.Media.Core.TimedTextSize
+         value : WinRt.Windows.Media.Core.TimedTextSize
       )
       return WinRt.Hresult is abstract;
 
       function put_SoftwareBitmap
       (
          this : access IImageCue_Interface;
-         value : Windows.Graphics.Imaging.ISoftwareBitmap
+         value : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function get_SoftwareBitmap
       (
          this : access IImageCue_Interface;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -2290,21 +2290,21 @@ package WinRt.Windows.Media.Core is
       function get_Source
       (
          this : access IInitializeMediaStreamSourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
       function get_RandomAccessStream
       (
          this : access IInitializeMediaStreamSourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IInitializeMediaStreamSourceRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2316,7 +2316,7 @@ package WinRt.Windows.Media.Core is
       function get_Frame
       (
          this : access ILowLightFusionResult_Interface;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -2356,14 +2356,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaBinder_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Binding
       (
          this : access IMediaBinder_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2384,7 +2384,7 @@ package WinRt.Windows.Media.Core is
       function get_Source
       (
          this : access IMediaBinder_Interface;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2397,42 +2397,42 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaBindingEventArgs_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Canceled
       (
          this : access IMediaBindingEventArgs_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaBinder
       (
          this : access IMediaBindingEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaBinder
+         RetVal : access WinRt.Windows.Media.Core.IMediaBinder
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaBindingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
       function SetUri
       (
          this : access IMediaBindingEventArgs_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function SetStream
       (
          this : access IMediaBindingEventArgs_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          contentType : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2440,7 +2440,7 @@ package WinRt.Windows.Media.Core is
       function SetStreamReference
       (
          this : access IMediaBindingEventArgs_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          contentType : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2453,14 +2453,14 @@ package WinRt.Windows.Media.Core is
       function SetAdaptiveMediaSource
       (
          this : access IMediaBindingEventArgs2_Interface;
-         mediaSource_p : Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
+         mediaSource_p : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function SetStorageFile
       (
          this : access IMediaBindingEventArgs2_Interface;
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -2472,7 +2472,7 @@ package WinRt.Windows.Media.Core is
       function SetDownloadOperation
       (
          this : access IMediaBindingEventArgs3_Interface;
-         downloadOperation : Windows.Networking.BackgroundTransfer.IDownloadOperation
+         downloadOperation : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -2484,28 +2484,28 @@ package WinRt.Windows.Media.Core is
       function put_StartTime
       (
          this : access IMediaCue_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StartTime
       (
          this : access IMediaCue_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IMediaCue_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IMediaCue_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2531,7 +2531,7 @@ package WinRt.Windows.Media.Core is
       function get_Cue
       (
          this : access IMediaCueEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaCue
+         RetVal : access WinRt.Windows.Media.Core.IMediaCue
       )
       return WinRt.Hresult is abstract;
 
@@ -2549,21 +2549,21 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaSource2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OpenOperationCompleted
       (
          this : access IMediaSource2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_CustomProperties
       (
          this : access IMediaSource2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -2604,21 +2604,21 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaSource3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IMediaSource3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IMediaSource3_Interface;
-         RetVal : access Windows.Media.Core.MediaSourceState
+         RetVal : access WinRt.Windows.Media.Core.MediaSourceState
       )
       return WinRt.Hresult is abstract;
 
@@ -2636,35 +2636,35 @@ package WinRt.Windows.Media.Core is
       function get_AdaptiveMediaSource
       (
          this : access IMediaSource4_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaStreamSource
       (
          this : access IMediaSource4_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
       function get_MseStreamSource
       (
          this : access IMediaSource4_Interface;
-         RetVal : access Windows.Media.Core.IMseStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMseStreamSource
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access IMediaSource4_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function OpenAsync
       (
          this : access IMediaSource4_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2676,7 +2676,7 @@ package WinRt.Windows.Media.Core is
       function get_DownloadOperation
       (
          this : access IMediaSource5_Interface;
-         RetVal : access Windows.Networking.BackgroundTransfer.IDownloadOperation
+         RetVal : access WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -2689,14 +2689,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaSourceAppServiceConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InitializeMediaStreamSourceRequested
       (
          this : access IMediaSourceAppServiceConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2714,8 +2714,8 @@ package WinRt.Windows.Media.Core is
       function Create
       (
          this : access IMediaSourceAppServiceConnectionFactory_Interface;
-         appServiceConnection : Windows.ApplicationModel.AppService.IAppServiceConnection;
-         RetVal : access Windows.Media.Core.IMediaSourceAppServiceConnection
+         appServiceConnection : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSourceAppServiceConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -2727,7 +2727,7 @@ package WinRt.Windows.Media.Core is
       function get_ExtendedError
       (
          this : access IMediaSourceError_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2739,7 +2739,7 @@ package WinRt.Windows.Media.Core is
       function get_Error
       (
          this : access IMediaSourceOpenOperationCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaSourceError
+         RetVal : access WinRt.Windows.Media.Core.IMediaSourceError
       )
       return WinRt.Hresult is abstract;
 
@@ -2751,14 +2751,14 @@ package WinRt.Windows.Media.Core is
       function get_OldState
       (
          this : access IMediaSourceStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.MediaSourceState
+         RetVal : access WinRt.Windows.Media.Core.MediaSourceState
       )
       return WinRt.Hresult is abstract;
 
       function get_NewState
       (
          this : access IMediaSourceStateChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.MediaSourceState
+         RetVal : access WinRt.Windows.Media.Core.MediaSourceState
       )
       return WinRt.Hresult is abstract;
 
@@ -2770,66 +2770,66 @@ package WinRt.Windows.Media.Core is
       function CreateFromAdaptiveMediaSource
       (
          this : access IMediaSourceStatics_Interface;
-         mediaSource_p : Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         mediaSource_p : WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromMediaStreamSource
       (
          this : access IMediaSourceStatics_Interface;
-         mediaSource_p : Windows.Media.Core.IMediaStreamSource;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         mediaSource_p : WinRt.Windows.Media.Core.IMediaStreamSource;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromMseStreamSource
       (
          this : access IMediaSourceStatics_Interface;
-         mediaSource_p : Windows.Media.Core.IMseStreamSource;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         mediaSource_p : WinRt.Windows.Media.Core.IMseStreamSource;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromIMediaSource
       (
          this : access IMediaSourceStatics_Interface;
-         mediaSource_p : Windows.Media.Core.IMediaSource;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         mediaSource_p : WinRt.Windows.Media.Core.IMediaSource;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStorageFile
       (
          this : access IMediaSourceStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStream
       (
          this : access IMediaSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          contentType : WinRt.HString;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStreamReference
       (
          this : access IMediaSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          contentType : WinRt.HString;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUri
       (
          this : access IMediaSourceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2841,8 +2841,8 @@ package WinRt.Windows.Media.Core is
       function CreateFromMediaBinder
       (
          this : access IMediaSourceStatics2_Interface;
-         binder : Windows.Media.Core.IMediaBinder;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         binder : WinRt.Windows.Media.Core.IMediaBinder;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2854,8 +2854,8 @@ package WinRt.Windows.Media.Core is
       function CreateFromMediaFrameSource
       (
          this : access IMediaSourceStatics3_Interface;
-         frameSource : Windows.Media.Capture.Frames.IMediaFrameSource;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         frameSource : WinRt.Windows.Media.Capture.Frames.IMediaFrameSource;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2867,8 +2867,8 @@ package WinRt.Windows.Media.Core is
       function CreateFromDownloadOperation
       (
          this : access IMediaSourceStatics4_Interface;
-         downloadOperation : Windows.Networking.BackgroundTransfer.IDownloadOperation;
-         RetVal : access Windows.Media.Core.IMediaSource2
+         downloadOperation : WinRt.Windows.Networking.BackgroundTransfer.IDownloadOperation;
+         RetVal : access WinRt.Windows.Media.Core.IMediaSource2
       )
       return WinRt.Hresult is abstract;
 
@@ -2940,28 +2940,28 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSample_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Processed
       (
          this : access IMediaStreamSample_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Buffer
       (
          this : access IMediaStreamSample_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Timestamp
       (
          this : access IMediaStreamSample_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -2975,35 +2975,35 @@ package WinRt.Windows.Media.Core is
       function get_Protection
       (
          this : access IMediaStreamSample_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSampleProtectionProperties
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSampleProtectionProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_DecodeTimestamp
       (
          this : access IMediaStreamSample_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DecodeTimestamp
       (
          this : access IMediaStreamSample_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IMediaStreamSample_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IMediaStreamSample_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3043,7 +3043,7 @@ package WinRt.Windows.Media.Core is
       function get_Direct3D11Surface
       (
          this : access IMediaStreamSample2_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -3108,18 +3108,18 @@ package WinRt.Windows.Media.Core is
       function CreateFromBuffer
       (
          this : access IMediaStreamSampleStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
-         timestamp : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Core.IMediaStreamSample
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         timestamp : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSample
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStreamAsync
       (
          this : access IMediaStreamSampleStatics_Interface;
-         stream : Windows.Storage.Streams.IInputStream;
+         stream : WinRt.Windows.Storage.Streams.IInputStream;
          count : WinRt.UInt32;
-         timestamp : Windows.Foundation.TimeSpan;
+         timestamp : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3132,9 +3132,9 @@ package WinRt.Windows.Media.Core is
       function CreateFromDirect3D11Surface
       (
          this : access IMediaStreamSampleStatics2_Interface;
-         surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         timestamp : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Core.IMediaStreamSample
+         surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         timestamp : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSample
       )
       return WinRt.Hresult is abstract;
 
@@ -3147,14 +3147,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IMediaStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3162,14 +3162,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Starting
       (
          this : access IMediaStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3177,14 +3177,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Paused
       (
          this : access IMediaStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3192,14 +3192,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SampleRequested
       (
          this : access IMediaStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3207,56 +3207,56 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SwitchStreamsRequested
       (
          this : access IMediaStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function NotifyError
       (
          this : access IMediaStreamSource_Interface;
-         errorStatus : Windows.Media.Core.MediaStreamSourceErrorStatus
+         errorStatus : WinRt.Windows.Media.Core.MediaStreamSourceErrorStatus
       )
       return WinRt.Hresult is abstract;
 
       function AddStreamDescriptor
       (
          this : access IMediaStreamSource_Interface;
-         descriptor : Windows.Media.Core.IMediaStreamDescriptor
+         descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function put_MediaProtectionManager
       (
          this : access IMediaStreamSource_Interface;
-         value : Windows.Media.Protection.IMediaProtectionManager
+         value : WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaProtectionManager
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Media.Protection.IMediaProtectionManager
+         RetVal : access WinRt.Windows.Media.Protection.IMediaProtectionManager
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IMediaStreamSource_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3277,57 +3277,57 @@ package WinRt.Windows.Media.Core is
       function put_BufferTime
       (
          this : access IMediaStreamSource_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_BufferTime
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetBufferedRange
       (
          this : access IMediaStreamSource_Interface;
-         startOffset : Windows.Foundation.TimeSpan;
-         endOffset : Windows.Foundation.TimeSpan
+         startOffset : WinRt.Windows.Foundation.TimeSpan;
+         endOffset : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_MusicProperties
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Storage.FileProperties.IMusicProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IMusicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_VideoProperties
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Storage.FileProperties.IVideoProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IVideoProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IMediaStreamSource_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access IMediaStreamSource_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function AddProtectionKey
       (
          this : access IMediaStreamSource_Interface;
-         streamDescriptor : Windows.Media.Core.IMediaStreamDescriptor;
+         streamDescriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
          keyIdentifierSize : WinRt.UInt32;
          keyIdentifier : WinRt.Byte_Ptr;
          licenseDataSize : WinRt.UInt32;
@@ -3344,14 +3344,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMediaStreamSource2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SampleRendered
       (
          this : access IMediaStreamSource2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3401,7 +3401,7 @@ package WinRt.Windows.Media.Core is
       function get_Request
       (
          this : access IMediaStreamSourceClosedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceClosedRequest
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceClosedRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -3413,7 +3413,7 @@ package WinRt.Windows.Media.Core is
       function get_Reason
       (
          this : access IMediaStreamSourceClosedRequest_Interface;
-         RetVal : access Windows.Media.Core.MediaStreamSourceClosedReason
+         RetVal : access WinRt.Windows.Media.Core.MediaStreamSourceClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -3425,17 +3425,17 @@ package WinRt.Windows.Media.Core is
       function CreateFromDescriptor
       (
          this : access IMediaStreamSourceFactory_Interface;
-         descriptor : Windows.Media.Core.IMediaStreamDescriptor;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromDescriptors
       (
          this : access IMediaStreamSourceFactory_Interface;
-         descriptor : Windows.Media.Core.IMediaStreamDescriptor;
-         descriptor2 : Windows.Media.Core.IMediaStreamDescriptor;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
+         descriptor2 : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
@@ -3447,7 +3447,7 @@ package WinRt.Windows.Media.Core is
       function get_SampleLag
       (
          this : access IMediaStreamSourceSampleRenderedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3459,28 +3459,28 @@ package WinRt.Windows.Media.Core is
       function get_StreamDescriptor
       (
          this : access IMediaStreamSourceSampleRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaStreamSourceSampleRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceSampleRequestDeferral
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceSampleRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
       function put_Sample
       (
          this : access IMediaStreamSourceSampleRequest_Interface;
-         value : Windows.Media.Core.IMediaStreamSample
+         value : WinRt.Windows.Media.Core.IMediaStreamSample
       )
       return WinRt.Hresult is abstract;
 
       function get_Sample
       (
          this : access IMediaStreamSourceSampleRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSample
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSample
       )
       return WinRt.Hresult is abstract;
 
@@ -3510,7 +3510,7 @@ package WinRt.Windows.Media.Core is
       function get_Request
       (
          this : access IMediaStreamSourceSampleRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceSampleRequest
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceSampleRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -3522,7 +3522,7 @@ package WinRt.Windows.Media.Core is
       function get_Request
       (
          this : access IMediaStreamSourceStartingEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceStartingRequest
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceStartingRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -3541,14 +3541,14 @@ package WinRt.Windows.Media.Core is
       function GetDeferral
       (
          this : access IMediaStreamSourceStartingRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceStartingRequestDeferral
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceStartingRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
       function SetActualStartPosition
       (
          this : access IMediaStreamSourceStartingRequest_Interface;
-         position : Windows.Foundation.TimeSpan
+         position : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3571,21 +3571,21 @@ package WinRt.Windows.Media.Core is
       function get_OldStreamDescriptor
       (
          this : access IMediaStreamSourceSwitchStreamsRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_NewStreamDescriptor
       (
          this : access IMediaStreamSourceSwitchStreamsRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaStreamSourceSwitchStreamsRequest_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequestDeferral
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -3608,7 +3608,7 @@ package WinRt.Windows.Media.Core is
       function get_Request
       (
          this : access IMediaStreamSourceSwitchStreamsRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequest
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSourceSwitchStreamsRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -3634,7 +3634,7 @@ package WinRt.Windows.Media.Core is
       function get_TrackKind
       (
          this : access IMediaTrack_Interface;
-         RetVal : access Windows.Media.Core.MediaTrackKind
+         RetVal : access WinRt.Windows.Media.Core.MediaTrackKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3661,14 +3661,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBuffer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UpdateStarting
       (
          this : access IMseSourceBuffer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3676,14 +3676,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBuffer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IMseSourceBuffer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3691,14 +3691,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBuffer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UpdateEnded
       (
          this : access IMseSourceBuffer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3706,14 +3706,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBuffer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorOccurred
       (
          this : access IMseSourceBuffer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3721,28 +3721,28 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBuffer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Aborted
       (
          this : access IMseSourceBuffer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Mode
       (
          this : access IMseSourceBuffer_Interface;
-         RetVal : access Windows.Media.Core.MseAppendMode
+         RetVal : access WinRt.Windows.Media.Core.MseAppendMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access IMseSourceBuffer_Interface;
-         value : Windows.Media.Core.MseAppendMode
+         value : WinRt.Windows.Media.Core.MseAppendMode
       )
       return WinRt.Hresult is abstract;
 
@@ -3763,28 +3763,28 @@ package WinRt.Windows.Media.Core is
       function get_TimestampOffset
       (
          this : access IMseSourceBuffer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TimestampOffset
       (
          this : access IMseSourceBuffer_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_AppendWindowStart
       (
          this : access IMseSourceBuffer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_AppendWindowStart
       (
          this : access IMseSourceBuffer_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3805,21 +3805,21 @@ package WinRt.Windows.Media.Core is
       function AppendBuffer
       (
          this : access IMseSourceBuffer_Interface;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function AppendStream
       (
          this : access IMseSourceBuffer_Interface;
-         stream : Windows.Storage.Streams.IInputStream
+         stream : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function AppendStream
       (
          this : access IMseSourceBuffer_Interface;
-         stream : Windows.Storage.Streams.IInputStream;
+         stream : WinRt.Windows.Storage.Streams.IInputStream;
          maxSize : WinRt.UInt64
       )
       return WinRt.Hresult is abstract;
@@ -3833,7 +3833,7 @@ package WinRt.Windows.Media.Core is
       function Remove
       (
          this : access IMseSourceBuffer_Interface;
-         start : Windows.Foundation.TimeSpan;
+         start : WinRt.Windows.Foundation.TimeSpan;
          end_x : GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3847,14 +3847,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBufferList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceBufferAdded
       (
          this : access IMseSourceBufferList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3862,14 +3862,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseSourceBufferList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceBufferRemoved
       (
          this : access IMseSourceBufferList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3889,14 +3889,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Opened
       (
          this : access IMseStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3904,14 +3904,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Ended
       (
          this : access IMseStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3919,35 +3919,35 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseStreamSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IMseStreamSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceBuffers
       (
          this : access IMseStreamSource_Interface;
-         RetVal : access Windows.Media.Core.IMseSourceBufferList
+         RetVal : access WinRt.Windows.Media.Core.IMseSourceBufferList
       )
       return WinRt.Hresult is abstract;
 
       function get_ActiveSourceBuffers
       (
          this : access IMseStreamSource_Interface;
-         RetVal : access Windows.Media.Core.IMseSourceBufferList
+         RetVal : access WinRt.Windows.Media.Core.IMseSourceBufferList
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadyState
       (
          this : access IMseStreamSource_Interface;
-         RetVal : access Windows.Media.Core.MseReadyState
+         RetVal : access WinRt.Windows.Media.Core.MseReadyState
       )
       return WinRt.Hresult is abstract;
 
@@ -3969,21 +3969,21 @@ package WinRt.Windows.Media.Core is
       (
          this : access IMseStreamSource_Interface;
          mimeType : WinRt.HString;
-         RetVal : access Windows.Media.Core.IMseSourceBuffer
+         RetVal : access WinRt.Windows.Media.Core.IMseSourceBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RemoveSourceBuffer
       (
          this : access IMseStreamSource_Interface;
-         buffer : Windows.Media.Core.IMseSourceBuffer
+         buffer : WinRt.Windows.Media.Core.IMseSourceBuffer
       )
       return WinRt.Hresult is abstract;
 
       function EndOfStream
       (
          this : access IMseStreamSource_Interface;
-         status : Windows.Media.Core.MseEndOfStreamStatus
+         status : WinRt.Windows.Media.Core.MseEndOfStreamStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4027,21 +4027,21 @@ package WinRt.Windows.Media.Core is
       function get_HighDynamicRangeAnalyzer
       (
          this : access ISceneAnalysisEffect_Interface;
-         RetVal : access Windows.Media.Core.IHighDynamicRangeControl
+         RetVal : access WinRt.Windows.Media.Core.IHighDynamicRangeControl
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredAnalysisInterval
       (
          this : access ISceneAnalysisEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DesiredAnalysisInterval
       (
          this : access ISceneAnalysisEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4049,14 +4049,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ISceneAnalysisEffect_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SceneAnalyzed
       (
          this : access ISceneAnalysisEffect_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4068,14 +4068,14 @@ package WinRt.Windows.Media.Core is
       function get_FrameControlValues
       (
          this : access ISceneAnalysisEffectFrame_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrameControlValues
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrameControlValues
       )
       return WinRt.Hresult is abstract;
 
       function get_HighDynamicRange
       (
          this : access ISceneAnalysisEffectFrame_Interface;
-         RetVal : access Windows.Media.Core.IHighDynamicRangeOutput
+         RetVal : access WinRt.Windows.Media.Core.IHighDynamicRangeOutput
       )
       return WinRt.Hresult is abstract;
 
@@ -4087,7 +4087,7 @@ package WinRt.Windows.Media.Core is
       function get_AnalysisRecommendation
       (
          this : access ISceneAnalysisEffectFrame2_Interface;
-         RetVal : access Windows.Media.Core.SceneAnalysisRecommendation
+         RetVal : access WinRt.Windows.Media.Core.SceneAnalysisRecommendation
       )
       return WinRt.Hresult is abstract;
 
@@ -4099,7 +4099,7 @@ package WinRt.Windows.Media.Core is
       function get_ResultFrame
       (
          this : access ISceneAnalyzedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.ISceneAnalysisEffectFrame
+         RetVal : access WinRt.Windows.Media.Core.ISceneAnalysisEffectFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -4112,14 +4112,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ISingleSelectMediaTrackList_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectedIndexChanged
       (
          this : access ISingleSelectMediaTrackList_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4192,14 +4192,14 @@ package WinRt.Windows.Media.Core is
       function get_EncodingProperties
       (
          this : access ITimedMetadataStreamDescriptor_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function Copy
       (
          this : access ITimedMetadataStreamDescriptor_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -4211,8 +4211,8 @@ package WinRt.Windows.Media.Core is
       function Create
       (
          this : access ITimedMetadataStreamDescriptorFactory_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-         RetVal : access Windows.Media.Core.IMediaStreamDescriptor
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -4225,14 +4225,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ITimedMetadataTrack_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CueEntered
       (
          this : access ITimedMetadataTrack_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4240,14 +4240,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ITimedMetadataTrack_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CueExited
       (
          this : access ITimedMetadataTrack_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4255,14 +4255,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ITimedMetadataTrack_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TrackFailed
       (
          this : access ITimedMetadataTrack_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4283,7 +4283,7 @@ package WinRt.Windows.Media.Core is
       function get_TimedMetadataKind
       (
          this : access ITimedMetadataTrack_Interface;
-         RetVal : access Windows.Media.Core.TimedMetadataKind
+         RetVal : access WinRt.Windows.Media.Core.TimedMetadataKind
       )
       return WinRt.Hresult is abstract;
 
@@ -4297,14 +4297,14 @@ package WinRt.Windows.Media.Core is
       function AddCue
       (
          this : access ITimedMetadataTrack_Interface;
-         cue : Windows.Media.Core.IMediaCue
+         cue : WinRt.Windows.Media.Core.IMediaCue
       )
       return WinRt.Hresult is abstract;
 
       function RemoveCue
       (
          this : access ITimedMetadataTrack_Interface;
-         cue : Windows.Media.Core.IMediaCue
+         cue : WinRt.Windows.Media.Core.IMediaCue
       )
       return WinRt.Hresult is abstract;
 
@@ -4316,7 +4316,7 @@ package WinRt.Windows.Media.Core is
       function get_PlaybackItem
       (
          this : access ITimedMetadataTrack2_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -4335,14 +4335,14 @@ package WinRt.Windows.Media.Core is
       function get_ErrorCode
       (
          this : access ITimedMetadataTrackError_Interface;
-         RetVal : access Windows.Media.Core.TimedMetadataTrackErrorCode
+         RetVal : access WinRt.Windows.Media.Core.TimedMetadataTrackErrorCode
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access ITimedMetadataTrackError_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -4356,8 +4356,8 @@ package WinRt.Windows.Media.Core is
          this : access ITimedMetadataTrackFactory_Interface;
          id : WinRt.HString;
          language : WinRt.HString;
-         kind : Windows.Media.Core.TimedMetadataKind;
-         RetVal : access Windows.Media.Core.ITimedMetadataTrack
+         kind : WinRt.Windows.Media.Core.TimedMetadataKind;
+         RetVal : access WinRt.Windows.Media.Core.ITimedMetadataTrack
       )
       return WinRt.Hresult is abstract;
 
@@ -4369,7 +4369,7 @@ package WinRt.Windows.Media.Core is
       function get_Error
       (
          this : access ITimedMetadataTrackFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.ITimedMetadataTrackError
+         RetVal : access WinRt.Windows.Media.Core.ITimedMetadataTrackError
       )
       return WinRt.Hresult is abstract;
 
@@ -4393,42 +4393,42 @@ package WinRt.Windows.Media.Core is
       function get_Type
       (
          this : access ITimedTextBouten_Interface;
-         RetVal : access Windows.Media.Core.TimedTextBoutenType
+         RetVal : access WinRt.Windows.Media.Core.TimedTextBoutenType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access ITimedTextBouten_Interface;
-         value : Windows.Media.Core.TimedTextBoutenType
+         value : WinRt.Windows.Media.Core.TimedTextBoutenType
       )
       return WinRt.Hresult is abstract;
 
       function get_Color
       (
          this : access ITimedTextBouten_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ITimedTextBouten_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access ITimedTextBouten_Interface;
-         RetVal : access Windows.Media.Core.TimedTextBoutenPosition
+         RetVal : access WinRt.Windows.Media.Core.TimedTextBoutenPosition
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access ITimedTextBouten_Interface;
-         value : Windows.Media.Core.TimedTextBoutenPosition
+         value : WinRt.Windows.Media.Core.TimedTextBoutenPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -4440,28 +4440,28 @@ package WinRt.Windows.Media.Core is
       function get_CueRegion
       (
          this : access ITimedTextCue_Interface;
-         RetVal : access Windows.Media.Core.ITimedTextRegion
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextRegion
       )
       return WinRt.Hresult is abstract;
 
       function put_CueRegion
       (
          this : access ITimedTextCue_Interface;
-         value : Windows.Media.Core.ITimedTextRegion
+         value : WinRt.Windows.Media.Core.ITimedTextRegion
       )
       return WinRt.Hresult is abstract;
 
       function get_CueStyle
       (
          this : access ITimedTextCue_Interface;
-         RetVal : access Windows.Media.Core.ITimedTextStyle
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_CueStyle
       (
          this : access ITimedTextCue_Interface;
-         value : Windows.Media.Core.ITimedTextStyle
+         value : WinRt.Windows.Media.Core.ITimedTextStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -4520,84 +4520,84 @@ package WinRt.Windows.Media.Core is
       function get_Position
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextPoint
+         RetVal : access WinRt.Windows.Media.Core.TimedTextPoint
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextPoint
+         value : WinRt.Windows.Media.Core.TimedTextPoint
       )
       return WinRt.Hresult is abstract;
 
       function get_Extent
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextSize
+         RetVal : access WinRt.Windows.Media.Core.TimedTextSize
       )
       return WinRt.Hresult is abstract;
 
       function put_Extent
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextSize
+         value : WinRt.Windows.Media.Core.TimedTextSize
       )
       return WinRt.Hresult is abstract;
 
       function get_Background
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Background
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_WritingMode
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextWritingMode
+         RetVal : access WinRt.Windows.Media.Core.TimedTextWritingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_WritingMode
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextWritingMode
+         value : WinRt.Windows.Media.Core.TimedTextWritingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_DisplayAlignment
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextDisplayAlignment
+         RetVal : access WinRt.Windows.Media.Core.TimedTextDisplayAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_DisplayAlignment
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextDisplayAlignment
+         value : WinRt.Windows.Media.Core.TimedTextDisplayAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_LineHeight
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextDouble
+         RetVal : access WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function put_LineHeight
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextDouble
+         value : WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -4618,28 +4618,28 @@ package WinRt.Windows.Media.Core is
       function get_Padding
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextPadding
+         RetVal : access WinRt.Windows.Media.Core.TimedTextPadding
       )
       return WinRt.Hresult is abstract;
 
       function put_Padding
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextPadding
+         value : WinRt.Windows.Media.Core.TimedTextPadding
       )
       return WinRt.Hresult is abstract;
 
       function get_TextWrapping
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextWrapping
+         RetVal : access WinRt.Windows.Media.Core.TimedTextWrapping
       )
       return WinRt.Hresult is abstract;
 
       function put_TextWrapping
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextWrapping
+         value : WinRt.Windows.Media.Core.TimedTextWrapping
       )
       return WinRt.Hresult is abstract;
 
@@ -4660,14 +4660,14 @@ package WinRt.Windows.Media.Core is
       function get_ScrollMode
       (
          this : access ITimedTextRegion_Interface;
-         RetVal : access Windows.Media.Core.TimedTextScrollMode
+         RetVal : access WinRt.Windows.Media.Core.TimedTextScrollMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ScrollMode
       (
          this : access ITimedTextRegion_Interface;
-         value : Windows.Media.Core.TimedTextScrollMode
+         value : WinRt.Windows.Media.Core.TimedTextScrollMode
       )
       return WinRt.Hresult is abstract;
 
@@ -4693,42 +4693,42 @@ package WinRt.Windows.Media.Core is
       function get_Position
       (
          this : access ITimedTextRuby_Interface;
-         RetVal : access Windows.Media.Core.TimedTextRubyPosition
+         RetVal : access WinRt.Windows.Media.Core.TimedTextRubyPosition
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access ITimedTextRuby_Interface;
-         value : Windows.Media.Core.TimedTextRubyPosition
+         value : WinRt.Windows.Media.Core.TimedTextRubyPosition
       )
       return WinRt.Hresult is abstract;
 
       function get_Align
       (
          this : access ITimedTextRuby_Interface;
-         RetVal : access Windows.Media.Core.TimedTextRubyAlign
+         RetVal : access WinRt.Windows.Media.Core.TimedTextRubyAlign
       )
       return WinRt.Hresult is abstract;
 
       function put_Align
       (
          this : access ITimedTextRuby_Interface;
-         value : Windows.Media.Core.TimedTextRubyAlign
+         value : WinRt.Windows.Media.Core.TimedTextRubyAlign
       )
       return WinRt.Hresult is abstract;
 
       function get_Reserve
       (
          this : access ITimedTextRuby_Interface;
-         RetVal : access Windows.Media.Core.TimedTextRubyReserve
+         RetVal : access WinRt.Windows.Media.Core.TimedTextRubyReserve
       )
       return WinRt.Hresult is abstract;
 
       function put_Reserve
       (
          this : access ITimedTextRuby_Interface;
-         value : Windows.Media.Core.TimedTextRubyReserve
+         value : WinRt.Windows.Media.Core.TimedTextRubyReserve
       )
       return WinRt.Hresult is abstract;
 
@@ -4741,14 +4741,14 @@ package WinRt.Windows.Media.Core is
       (
          this : access ITimedTextSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Resolved
       (
          this : access ITimedTextSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4760,7 +4760,7 @@ package WinRt.Windows.Media.Core is
       function get_Error
       (
          this : access ITimedTextSourceResolveResultEventArgs_Interface;
-         RetVal : access Windows.Media.Core.ITimedMetadataTrackError
+         RetVal : access WinRt.Windows.Media.Core.ITimedMetadataTrackError
       )
       return WinRt.Hresult is abstract;
 
@@ -4779,34 +4779,34 @@ package WinRt.Windows.Media.Core is
       function CreateFromStream
       (
          this : access ITimedTextSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUri
       (
          this : access ITimedTextSourceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStream
       (
          this : access ITimedTextSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          defaultLanguage : WinRt.HString;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUri
       (
          this : access ITimedTextSourceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          defaultLanguage : WinRt.HString;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
@@ -4818,38 +4818,38 @@ package WinRt.Windows.Media.Core is
       function CreateFromStreamWithIndex
       (
          this : access ITimedTextSourceStatics2_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         indexStream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         indexStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUriWithIndex
       (
          this : access ITimedTextSourceStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         indexUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         indexUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromStreamWithIndex
       (
          this : access ITimedTextSourceStatics2_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         indexStream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         indexStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          defaultLanguage : WinRt.HString;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromUriWithIndex
       (
          this : access ITimedTextSourceStatics2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         indexUri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         indexUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          defaultLanguage : WinRt.HString;
-         RetVal : access Windows.Media.Core.ITimedTextSource
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextSource
       )
       return WinRt.Hresult is abstract;
 
@@ -4889,56 +4889,56 @@ package WinRt.Windows.Media.Core is
       function get_FontSize
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextDouble
+         RetVal : access WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function put_FontSize
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextDouble
+         value : WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function get_FontWeight
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextWeight
+         RetVal : access WinRt.Windows.Media.Core.TimedTextWeight
       )
       return WinRt.Hresult is abstract;
 
       function put_FontWeight
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextWeight
+         value : WinRt.Windows.Media.Core.TimedTextWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Foreground
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Foreground
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Background
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Background
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4959,70 +4959,70 @@ package WinRt.Windows.Media.Core is
       function get_FlowDirection
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextFlowDirection
+         RetVal : access WinRt.Windows.Media.Core.TimedTextFlowDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_FlowDirection
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextFlowDirection
+         value : WinRt.Windows.Media.Core.TimedTextFlowDirection
       )
       return WinRt.Hresult is abstract;
 
       function get_LineAlignment
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextLineAlignment
+         RetVal : access WinRt.Windows.Media.Core.TimedTextLineAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_LineAlignment
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextLineAlignment
+         value : WinRt.Windows.Media.Core.TimedTextLineAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_OutlineColor
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_OutlineColor
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_OutlineThickness
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextDouble
+         RetVal : access WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function put_OutlineThickness
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextDouble
+         value : WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function get_OutlineRadius
       (
          this : access ITimedTextStyle_Interface;
-         RetVal : access Windows.Media.Core.TimedTextDouble
+         RetVal : access WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
       function put_OutlineRadius
       (
          this : access ITimedTextStyle_Interface;
-         value : Windows.Media.Core.TimedTextDouble
+         value : WinRt.Windows.Media.Core.TimedTextDouble
       )
       return WinRt.Hresult is abstract;
 
@@ -5034,14 +5034,14 @@ package WinRt.Windows.Media.Core is
       function get_FontStyle
       (
          this : access ITimedTextStyle2_Interface;
-         RetVal : access Windows.Media.Core.TimedTextFontStyle
+         RetVal : access WinRt.Windows.Media.Core.TimedTextFontStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_FontStyle
       (
          this : access ITimedTextStyle2_Interface;
-         value : Windows.Media.Core.TimedTextFontStyle
+         value : WinRt.Windows.Media.Core.TimedTextFontStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -5095,14 +5095,14 @@ package WinRt.Windows.Media.Core is
       function get_Ruby
       (
          this : access ITimedTextStyle3_Interface;
-         RetVal : access Windows.Media.Core.ITimedTextRuby
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextRuby
       )
       return WinRt.Hresult is abstract;
 
       function get_Bouten
       (
          this : access ITimedTextStyle3_Interface;
-         RetVal : access Windows.Media.Core.ITimedTextBouten
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextBouten
       )
       return WinRt.Hresult is abstract;
 
@@ -5170,14 +5170,14 @@ package WinRt.Windows.Media.Core is
       function get_SubformatStyle
       (
          this : access ITimedTextSubformat_Interface;
-         RetVal : access Windows.Media.Core.ITimedTextStyle
+         RetVal : access WinRt.Windows.Media.Core.ITimedTextStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_SubformatStyle
       (
          this : access ITimedTextSubformat_Interface;
-         value : Windows.Media.Core.ITimedTextStyle
+         value : WinRt.Windows.Media.Core.ITimedTextStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -5204,23 +5204,23 @@ package WinRt.Windows.Media.Core is
       (
          this : access IVideoStabilizationEffect_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnabledChanged
       (
          this : access IVideoStabilizationEffect_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetRecommendedStreamConfiguration
       (
          this : access IVideoStabilizationEffect_Interface;
-         controller : Windows.Media.Devices.IVideoDeviceController;
-         desiredProperties : Windows.Media.MediaProperties.IVideoEncodingProperties;
-         RetVal : access Windows.Media.Capture.IVideoStreamConfiguration
+         controller : WinRt.Windows.Media.Devices.IVideoDeviceController;
+         desiredProperties : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Capture.IVideoStreamConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -5232,7 +5232,7 @@ package WinRt.Windows.Media.Core is
       function get_Reason
       (
          this : access IVideoStabilizationEffectEnabledChangedEventArgs_Interface;
-         RetVal : access Windows.Media.Core.VideoStabilizationEffectEnabledChangedReason
+         RetVal : access WinRt.Windows.Media.Core.VideoStabilizationEffectEnabledChangedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -5244,7 +5244,7 @@ package WinRt.Windows.Media.Core is
       function get_EncodingProperties
       (
          this : access IVideoStreamDescriptor_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -5256,7 +5256,7 @@ package WinRt.Windows.Media.Core is
       function Copy
       (
          this : access IVideoStreamDescriptor2_Interface;
-         RetVal : access Windows.Media.Core.IVideoStreamDescriptor
+         RetVal : access WinRt.Windows.Media.Core.IVideoStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -5268,8 +5268,8 @@ package WinRt.Windows.Media.Core is
       function Create
       (
          this : access IVideoStreamDescriptorFactory_Interface;
-         encodingProperties : Windows.Media.MediaProperties.IVideoEncodingProperties;
-         RetVal : access Windows.Media.Core.IVideoStreamDescriptor
+         encodingProperties : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
+         RetVal : access WinRt.Windows.Media.Core.IVideoStreamDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -5282,28 +5282,28 @@ package WinRt.Windows.Media.Core is
       (
          this : access IVideoTrack_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OpenFailed
       (
          this : access IVideoTrack_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetEncodingProperties
       (
          this : access IVideoTrack_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_PlaybackItem
       (
          this : access IVideoTrack_Interface;
-         RetVal : access Windows.Media.Playback.IMediaPlaybackItem
+         RetVal : access WinRt.Windows.Media.Playback.IMediaPlaybackItem
       )
       return WinRt.Hresult is abstract;
 
@@ -5317,7 +5317,7 @@ package WinRt.Windows.Media.Core is
       function get_SupportInfo
       (
          this : access IVideoTrack_Interface;
-         RetVal : access Windows.Media.Core.IVideoTrackSupportInfo
+         RetVal : access WinRt.Windows.Media.Core.IVideoTrackSupportInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -5329,7 +5329,7 @@ package WinRt.Windows.Media.Core is
       function get_ExtendedError
       (
          this : access IVideoTrackOpenFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -5341,14 +5341,14 @@ package WinRt.Windows.Media.Core is
       function get_DecoderStatus
       (
          this : access IVideoTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.MediaDecoderStatus
+         RetVal : access WinRt.Windows.Media.Core.MediaDecoderStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSourceStatus
       (
          this : access IVideoTrackSupportInfo_Interface;
-         RetVal : access Windows.Media.Core.MediaSourceStatus
+         RetVal : access WinRt.Windows.Media.Core.MediaSourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5369,7 +5369,7 @@ package WinRt.Windows.Media.Core is
 
    function Constructor
    (
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return AudioStreamDescriptor;
 
@@ -5503,7 +5503,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_OpenFailed
    (
       this : in out AudioTrack;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetEncodingProperties
@@ -5607,7 +5607,7 @@ package WinRt.Windows.Media.Core is
    procedure put_StartTime
    (
       this : in out ChapterCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -5619,7 +5619,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out ChapterCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -5696,8 +5696,8 @@ package WinRt.Windows.Media.Core is
    function FindAllAsync
    (
       this : in out CodecQuery;
-      kind : Windows.Media.Core.CodecKind;
-      category : Windows.Media.Core.CodecCategory;
+      kind : WinRt.Windows.Media.Core.CodecKind;
+      category : WinRt.Windows.Media.Core.CodecCategory;
       subType_x : WinRt.WString
    )
    return WinRt.GenericObject;
@@ -5881,7 +5881,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Data
    (
       this : in out DataCue;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_Data
@@ -5893,7 +5893,7 @@ package WinRt.Windows.Media.Core is
    procedure put_StartTime
    (
       this : in out DataCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -5905,7 +5905,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out DataCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -5971,7 +5971,7 @@ package WinRt.Windows.Media.Core is
    procedure put_DesiredDetectionInterval
    (
       this : in out FaceDetectionEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DesiredDetectionInterval
@@ -5990,13 +5990,13 @@ package WinRt.Windows.Media.Core is
    procedure remove_FaceDetected
    (
       this : in out FaceDetectionEffect;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetProperties
    (
       this : in out FaceDetectionEffect;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    -----------------------------------------------------------------------------
@@ -6028,7 +6028,7 @@ package WinRt.Windows.Media.Core is
    procedure put_DetectionMode
    (
       this : in out FaceDetectionEffectDefinition;
-      value : Windows.Media.Core.FaceDetectionMode
+      value : WinRt.Windows.Media.Core.FaceDetectionMode
    );
 
    function get_DetectionMode
@@ -6200,7 +6200,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Position
    (
       this : in out ImageCue;
-      value : Windows.Media.Core.TimedTextPoint
+      value : WinRt.Windows.Media.Core.TimedTextPoint
    );
 
    function get_Extent
@@ -6212,13 +6212,13 @@ package WinRt.Windows.Media.Core is
    procedure put_Extent
    (
       this : in out ImageCue;
-      value : Windows.Media.Core.TimedTextSize
+      value : WinRt.Windows.Media.Core.TimedTextSize
    );
 
    procedure put_SoftwareBitmap
    (
       this : in out ImageCue;
-      value : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      value : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    function get_SoftwareBitmap
@@ -6230,7 +6230,7 @@ package WinRt.Windows.Media.Core is
    procedure put_StartTime
    (
       this : in out ImageCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -6242,7 +6242,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out ImageCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -6352,7 +6352,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Binding
    (
       this : in out MediaBinder;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Token
@@ -6392,7 +6392,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Canceled
    (
       this : in out MediaBindingEventArgs;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_MediaBinder
@@ -6410,39 +6410,39 @@ package WinRt.Windows.Media.Core is
    procedure SetUri
    (
       this : in out MediaBindingEventArgs;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure SetStream
    (
       this : in out MediaBindingEventArgs;
-      stream : Windows.Storage.Streams.IRandomAccessStream;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       contentType : WinRt.WString
    );
 
    procedure SetStreamReference
    (
       this : in out MediaBindingEventArgs;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       contentType : WinRt.WString
    );
 
    procedure SetAdaptiveMediaSource
    (
       this : in out MediaBindingEventArgs;
-      mediaSource_p : Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
+      mediaSource_p : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
    );
 
    procedure SetStorageFile
    (
       this : in out MediaBindingEventArgs;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure SetDownloadOperation
    (
       this : in out MediaBindingEventArgs;
-      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+      downloadOperation : WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6471,69 +6471,69 @@ package WinRt.Windows.Media.Core is
 
    function CreateFromAdaptiveMediaSource
    (
-      mediaSource_p : Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
+      mediaSource_p : WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromMediaStreamSource
    (
-      mediaSource_p : Windows.Media.Core.MediaStreamSource'Class
+      mediaSource_p : WinRt.Windows.Media.Core.MediaStreamSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromMseStreamSource
    (
-      mediaSource_p : Windows.Media.Core.MseStreamSource'Class
+      mediaSource_p : WinRt.Windows.Media.Core.MseStreamSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromIMediaSource
    (
-      mediaSource_p : Windows.Media.Core.IMediaSource
+      mediaSource_p : WinRt.Windows.Media.Core.IMediaSource
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromStorageFile
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       contentType : WinRt.WString
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromStreamReference
    (
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       contentType : WinRt.WString
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromDownloadOperation
    (
-      downloadOperation : Windows.Networking.BackgroundTransfer.DownloadOperation'Class
+      downloadOperation : WinRt.Windows.Networking.BackgroundTransfer.DownloadOperation'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromMediaBinder
    (
-      binder : Windows.Media.Core.MediaBinder'Class
+      binder : WinRt.Windows.Media.Core.MediaBinder'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
    function CreateFromMediaFrameSource
    (
-      frameSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
+      frameSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Core.MediaSource;
 
@@ -6550,7 +6550,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_OpenOperationCompleted
    (
       this : in out MediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_CustomProperties
@@ -6598,7 +6598,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_StateChanged
    (
       this : in out MediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_State
@@ -6658,7 +6658,7 @@ package WinRt.Windows.Media.Core is
 
    function Constructor
    (
-      appServiceConnection : Windows.ApplicationModel.AppService.AppServiceConnection'Class
+      appServiceConnection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class
    )
    return MediaSourceAppServiceConnection;
 
@@ -6675,7 +6675,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_InitializeMediaStreamSourceRequested
    (
       this : in out MediaSourceAppServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -6745,23 +6745,23 @@ package WinRt.Windows.Media.Core is
 
    function CreateFromDirect3D11Surface
    (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      timestamp : Windows.Foundation.TimeSpan
+      surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      timestamp : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Core.MediaStreamSample;
 
    function CreateFromBuffer
    (
-      buffer : Windows.Storage.Streams.IBuffer;
-      timestamp : Windows.Foundation.TimeSpan
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
+      timestamp : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Core.MediaStreamSample;
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IInputStream;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
       count : WinRt.UInt32;
-      timestamp : Windows.Foundation.TimeSpan
+      timestamp : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Core.MediaStreamSample;
 
@@ -6778,7 +6778,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Processed
    (
       this : in out MediaStreamSample;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Buffer
@@ -6808,7 +6808,7 @@ package WinRt.Windows.Media.Core is
    procedure put_DecodeTimestamp
    (
       this : in out MediaStreamSample;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DecodeTimestamp
@@ -6820,7 +6820,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out MediaStreamSample;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -6970,14 +6970,14 @@ package WinRt.Windows.Media.Core is
 
    function Constructor
    (
-      descriptor : Windows.Media.Core.IMediaStreamDescriptor
+      descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor
    )
    return MediaStreamSource;
 
    function Constructor
    (
-      descriptor : Windows.Media.Core.IMediaStreamDescriptor;
-      descriptor2 : Windows.Media.Core.IMediaStreamDescriptor
+      descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
+      descriptor2 : WinRt.Windows.Media.Core.IMediaStreamDescriptor
    )
    return MediaStreamSource;
 
@@ -6994,7 +6994,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Closed
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Starting
@@ -7007,7 +7007,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Starting
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Paused
@@ -7020,7 +7020,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Paused
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SampleRequested
@@ -7033,7 +7033,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_SampleRequested
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SwitchStreamsRequested
@@ -7046,25 +7046,25 @@ package WinRt.Windows.Media.Core is
    procedure remove_SwitchStreamsRequested
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure NotifyError
    (
       this : in out MediaStreamSource;
-      errorStatus : Windows.Media.Core.MediaStreamSourceErrorStatus
+      errorStatus : WinRt.Windows.Media.Core.MediaStreamSourceErrorStatus
    );
 
    procedure AddStreamDescriptor
    (
       this : in out MediaStreamSource;
-      descriptor : Windows.Media.Core.IMediaStreamDescriptor
+      descriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor
    );
 
    procedure put_MediaProtectionManager
    (
       this : in out MediaStreamSource;
-      value : Windows.Media.Protection.MediaProtectionManager'Class
+      value : WinRt.Windows.Media.Protection.MediaProtectionManager'Class
    );
 
    function get_MediaProtectionManager
@@ -7076,7 +7076,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out MediaStreamSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -7100,7 +7100,7 @@ package WinRt.Windows.Media.Core is
    procedure put_BufferTime
    (
       this : in out MediaStreamSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_BufferTime
@@ -7112,8 +7112,8 @@ package WinRt.Windows.Media.Core is
    procedure SetBufferedRange
    (
       this : in out MediaStreamSource;
-      startOffset : Windows.Foundation.TimeSpan;
-      endOffset : Windows.Foundation.TimeSpan
+      startOffset : WinRt.Windows.Foundation.TimeSpan;
+      endOffset : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_MusicProperties
@@ -7131,7 +7131,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Thumbnail
    (
       this : in out MediaStreamSource;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Thumbnail
@@ -7143,7 +7143,7 @@ package WinRt.Windows.Media.Core is
    procedure AddProtectionKey
    (
       this : in out MediaStreamSource;
-      streamDescriptor : Windows.Media.Core.IMediaStreamDescriptor;
+      streamDescriptor : WinRt.Windows.Media.Core.IMediaStreamDescriptor;
       keyIdentifier : WinRt.Byte_Array;
       licenseData : WinRt.Byte_Array
    );
@@ -7158,7 +7158,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_SampleRendered
    (
       this : in out MediaStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_MaxSupportedPlaybackRate
@@ -7254,7 +7254,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Sample
    (
       this : in out MediaStreamSourceSampleRequest;
-      value : Windows.Media.Core.MediaStreamSample'Class
+      value : WinRt.Windows.Media.Core.MediaStreamSample'Class
    );
 
    function get_Sample
@@ -7337,7 +7337,7 @@ package WinRt.Windows.Media.Core is
    procedure SetActualStartPosition
    (
       this : in out MediaStreamSourceStartingRequest;
-      position : Windows.Foundation.TimeSpan
+      position : WinRt.Windows.Foundation.TimeSpan
    );
 
    -----------------------------------------------------------------------------
@@ -7429,7 +7429,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_UpdateStarting
    (
       this : in out MseSourceBuffer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -7442,7 +7442,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Updated
    (
       this : in out MseSourceBuffer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UpdateEnded
@@ -7455,7 +7455,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_UpdateEnded
    (
       this : in out MseSourceBuffer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ErrorOccurred
@@ -7468,7 +7468,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_ErrorOccurred
    (
       this : in out MseSourceBuffer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Aborted
@@ -7481,7 +7481,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Aborted
    (
       this : in out MseSourceBuffer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Mode
@@ -7493,7 +7493,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Mode
    (
       this : in out MseSourceBuffer;
-      value : Windows.Media.Core.MseAppendMode
+      value : WinRt.Windows.Media.Core.MseAppendMode
    );
 
    function get_IsUpdating
@@ -7517,7 +7517,7 @@ package WinRt.Windows.Media.Core is
    procedure put_TimestampOffset
    (
       this : in out MseSourceBuffer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_AppendWindowStart
@@ -7529,7 +7529,7 @@ package WinRt.Windows.Media.Core is
    procedure put_AppendWindowStart
    (
       this : in out MseSourceBuffer;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_AppendWindowEnd
@@ -7547,19 +7547,19 @@ package WinRt.Windows.Media.Core is
    procedure AppendBuffer
    (
       this : in out MseSourceBuffer;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure AppendStream
    (
       this : in out MseSourceBuffer;
-      stream : Windows.Storage.Streams.IInputStream
+      stream : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    procedure AppendStream
    (
       this : in out MseSourceBuffer;
-      stream : Windows.Storage.Streams.IInputStream;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
       maxSize : WinRt.UInt64
    );
 
@@ -7571,7 +7571,7 @@ package WinRt.Windows.Media.Core is
    procedure Remove
    (
       this : in out MseSourceBuffer;
-      start : Windows.Foundation.TimeSpan;
+      start : WinRt.Windows.Foundation.TimeSpan;
       end_x : GenericObject
    );
 
@@ -7594,7 +7594,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_SourceBufferAdded
    (
       this : in out MseSourceBufferList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceBufferRemoved
@@ -7607,7 +7607,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_SourceBufferRemoved
    (
       this : in out MseSourceBufferList;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Buffers
@@ -7649,7 +7649,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Opened
    (
       this : in out MseStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Ended
@@ -7662,7 +7662,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Ended
    (
       this : in out MseStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -7675,7 +7675,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Closed
    (
       this : in out MseStreamSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SourceBuffers
@@ -7718,13 +7718,13 @@ package WinRt.Windows.Media.Core is
    procedure RemoveSourceBuffer
    (
       this : in out MseStreamSource;
-      buffer : Windows.Media.Core.MseSourceBuffer'Class
+      buffer : WinRt.Windows.Media.Core.MseSourceBuffer'Class
    );
 
    procedure EndOfStream
    (
       this : in out MseStreamSource;
-      status : Windows.Media.Core.MseEndOfStreamStatus
+      status : WinRt.Windows.Media.Core.MseEndOfStreamStatus
    );
 
    function get_LiveSeekableRange
@@ -7757,7 +7757,7 @@ package WinRt.Windows.Media.Core is
    procedure put_DesiredAnalysisInterval
    (
       this : in out SceneAnalysisEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DesiredAnalysisInterval
@@ -7776,13 +7776,13 @@ package WinRt.Windows.Media.Core is
    procedure remove_SceneAnalyzed
    (
       this : in out SceneAnalysisEffect;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SetProperties
    (
       this : in out SceneAnalysisEffect;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    -----------------------------------------------------------------------------
@@ -7977,7 +7977,7 @@ package WinRt.Windows.Media.Core is
    procedure put_StartTime
    (
       this : in out SpeechCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -7989,7 +7989,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out SpeechCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -8021,7 +8021,7 @@ package WinRt.Windows.Media.Core is
 
    function Constructor
    (
-      encodingProperties : Windows.Media.MediaProperties.TimedMetadataEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.TimedMetadataEncodingProperties'Class
    )
    return TimedMetadataStreamDescriptor;
 
@@ -8095,7 +8095,7 @@ package WinRt.Windows.Media.Core is
    (
       id : WinRt.WString;
       language : WinRt.WString;
-      kind : Windows.Media.Core.TimedMetadataKind
+      kind : WinRt.Windows.Media.Core.TimedMetadataKind
    )
    return TimedMetadataTrack;
 
@@ -8112,7 +8112,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_CueEntered
    (
       this : in out TimedMetadataTrack;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CueExited
@@ -8125,7 +8125,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_CueExited
    (
       this : in out TimedMetadataTrack;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TrackFailed
@@ -8138,7 +8138,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_TrackFailed
    (
       this : in out TimedMetadataTrack;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Cues
@@ -8168,13 +8168,13 @@ package WinRt.Windows.Media.Core is
    procedure AddCue
    (
       this : in out TimedMetadataTrack;
-      cue : Windows.Media.Core.IMediaCue
+      cue : WinRt.Windows.Media.Core.IMediaCue
    );
 
    procedure RemoveCue
    (
       this : in out TimedMetadataTrack;
-      cue : Windows.Media.Core.IMediaCue
+      cue : WinRt.Windows.Media.Core.IMediaCue
    );
 
    function get_Id
@@ -8273,7 +8273,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Type
    (
       this : in out TimedTextBouten;
-      value : Windows.Media.Core.TimedTextBoutenType
+      value : WinRt.Windows.Media.Core.TimedTextBoutenType
    );
 
    function get_Color
@@ -8285,7 +8285,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Color
    (
       this : in out TimedTextBouten;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Position
@@ -8297,7 +8297,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Position
    (
       this : in out TimedTextBouten;
-      value : Windows.Media.Core.TimedTextBoutenPosition
+      value : WinRt.Windows.Media.Core.TimedTextBoutenPosition
    );
 
    -----------------------------------------------------------------------------
@@ -8323,7 +8323,7 @@ package WinRt.Windows.Media.Core is
    procedure put_CueRegion
    (
       this : in out TimedTextCue;
-      value : Windows.Media.Core.TimedTextRegion'Class
+      value : WinRt.Windows.Media.Core.TimedTextRegion'Class
    );
 
    function get_CueStyle
@@ -8335,7 +8335,7 @@ package WinRt.Windows.Media.Core is
    procedure put_CueStyle
    (
       this : in out TimedTextCue;
-      value : Windows.Media.Core.TimedTextStyle'Class
+      value : WinRt.Windows.Media.Core.TimedTextStyle'Class
    );
 
    function get_Lines
@@ -8347,7 +8347,7 @@ package WinRt.Windows.Media.Core is
    procedure put_StartTime
    (
       this : in out TimedTextCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartTime
@@ -8359,7 +8359,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Duration
    (
       this : in out TimedTextCue;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Duration
@@ -8447,7 +8447,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Position
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextPoint
+      value : WinRt.Windows.Media.Core.TimedTextPoint
    );
 
    function get_Extent
@@ -8459,7 +8459,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Extent
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextSize
+      value : WinRt.Windows.Media.Core.TimedTextSize
    );
 
    function get_Background
@@ -8471,7 +8471,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Background
    (
       this : in out TimedTextRegion;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_WritingMode
@@ -8483,7 +8483,7 @@ package WinRt.Windows.Media.Core is
    procedure put_WritingMode
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextWritingMode
+      value : WinRt.Windows.Media.Core.TimedTextWritingMode
    );
 
    function get_DisplayAlignment
@@ -8495,7 +8495,7 @@ package WinRt.Windows.Media.Core is
    procedure put_DisplayAlignment
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextDisplayAlignment
+      value : WinRt.Windows.Media.Core.TimedTextDisplayAlignment
    );
 
    function get_LineHeight
@@ -8507,7 +8507,7 @@ package WinRt.Windows.Media.Core is
    procedure put_LineHeight
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextDouble
+      value : WinRt.Windows.Media.Core.TimedTextDouble
    );
 
    function get_IsOverflowClipped
@@ -8531,7 +8531,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Padding
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextPadding
+      value : WinRt.Windows.Media.Core.TimedTextPadding
    );
 
    function get_TextWrapping
@@ -8543,7 +8543,7 @@ package WinRt.Windows.Media.Core is
    procedure put_TextWrapping
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextWrapping
+      value : WinRt.Windows.Media.Core.TimedTextWrapping
    );
 
    function get_ZIndex
@@ -8567,7 +8567,7 @@ package WinRt.Windows.Media.Core is
    procedure put_ScrollMode
    (
       this : in out TimedTextRegion;
-      value : Windows.Media.Core.TimedTextScrollMode
+      value : WinRt.Windows.Media.Core.TimedTextScrollMode
    );
 
    -----------------------------------------------------------------------------
@@ -8600,7 +8600,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Position
    (
       this : in out TimedTextRuby;
-      value : Windows.Media.Core.TimedTextRubyPosition
+      value : WinRt.Windows.Media.Core.TimedTextRubyPosition
    );
 
    function get_Align
@@ -8612,7 +8612,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Align
    (
       this : in out TimedTextRuby;
-      value : Windows.Media.Core.TimedTextRubyAlign
+      value : WinRt.Windows.Media.Core.TimedTextRubyAlign
    );
 
    function get_Reserve
@@ -8624,7 +8624,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Reserve
    (
       this : in out TimedTextRuby;
-      value : Windows.Media.Core.TimedTextRubyReserve
+      value : WinRt.Windows.Media.Core.TimedTextRubyReserve
    );
 
    -----------------------------------------------------------------------------
@@ -8638,56 +8638,56 @@ package WinRt.Windows.Media.Core is
 
    function CreateFromStreamWithIndex
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
-      indexStream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      indexStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromUriWithIndex
    (
-      uri : Windows.Foundation.Uri'Class;
-      indexUri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      indexUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromStreamWithIndex
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
-      indexStream : Windows.Storage.Streams.IRandomAccessStream;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      indexStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       defaultLanguage : WinRt.WString
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromUriWithIndex
    (
-      uri : Windows.Foundation.Uri'Class;
-      indexUri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      indexUri : WinRt.Windows.Foundation.Uri'Class;
       defaultLanguage : WinRt.WString
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       defaultLanguage : WinRt.WString
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
 
    function CreateFromUri
    (
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       defaultLanguage : WinRt.WString
    )
    return WinRt.Windows.Media.Core.TimedTextSource;
@@ -8705,7 +8705,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_Resolved
    (
       this : in out TimedTextSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8776,7 +8776,7 @@ package WinRt.Windows.Media.Core is
    procedure put_FontSize
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextDouble
+      value : WinRt.Windows.Media.Core.TimedTextDouble
    );
 
    function get_FontWeight
@@ -8788,7 +8788,7 @@ package WinRt.Windows.Media.Core is
    procedure put_FontWeight
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextWeight
+      value : WinRt.Windows.Media.Core.TimedTextWeight
    );
 
    function get_Foreground
@@ -8800,7 +8800,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Foreground
    (
       this : in out TimedTextStyle;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Background
@@ -8812,7 +8812,7 @@ package WinRt.Windows.Media.Core is
    procedure put_Background
    (
       this : in out TimedTextStyle;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_IsBackgroundAlwaysShown
@@ -8836,7 +8836,7 @@ package WinRt.Windows.Media.Core is
    procedure put_FlowDirection
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextFlowDirection
+      value : WinRt.Windows.Media.Core.TimedTextFlowDirection
    );
 
    function get_LineAlignment
@@ -8848,7 +8848,7 @@ package WinRt.Windows.Media.Core is
    procedure put_LineAlignment
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextLineAlignment
+      value : WinRt.Windows.Media.Core.TimedTextLineAlignment
    );
 
    function get_OutlineColor
@@ -8860,7 +8860,7 @@ package WinRt.Windows.Media.Core is
    procedure put_OutlineColor
    (
       this : in out TimedTextStyle;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_OutlineThickness
@@ -8872,7 +8872,7 @@ package WinRt.Windows.Media.Core is
    procedure put_OutlineThickness
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextDouble
+      value : WinRt.Windows.Media.Core.TimedTextDouble
    );
 
    function get_OutlineRadius
@@ -8884,7 +8884,7 @@ package WinRt.Windows.Media.Core is
    procedure put_OutlineRadius
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextDouble
+      value : WinRt.Windows.Media.Core.TimedTextDouble
    );
 
    function get_FontStyle
@@ -8896,7 +8896,7 @@ package WinRt.Windows.Media.Core is
    procedure put_FontStyle
    (
       this : in out TimedTextStyle;
-      value : Windows.Media.Core.TimedTextFontStyle
+      value : WinRt.Windows.Media.Core.TimedTextFontStyle
    );
 
    function get_IsUnderlineEnabled
@@ -9018,7 +9018,7 @@ package WinRt.Windows.Media.Core is
    procedure put_SubformatStyle
    (
       this : in out TimedTextSubformat;
-      value : Windows.Media.Core.TimedTextStyle'Class
+      value : WinRt.Windows.Media.Core.TimedTextStyle'Class
    );
 
    -----------------------------------------------------------------------------
@@ -9052,21 +9052,21 @@ package WinRt.Windows.Media.Core is
    procedure remove_EnabledChanged
    (
       this : in out VideoStabilizationEffect;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetRecommendedStreamConfiguration
    (
       this : in out VideoStabilizationEffect;
-      controller : Windows.Media.Devices.VideoDeviceController'Class;
-      desiredProperties : Windows.Media.MediaProperties.VideoEncodingProperties'Class
+      controller : WinRt.Windows.Media.Devices.VideoDeviceController'Class;
+      desiredProperties : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.VideoStreamConfiguration'Class;
 
    procedure SetProperties
    (
       this : in out VideoStabilizationEffect;
-      configuration : Windows.Foundation.Collections.IPropertySet
+      configuration : WinRt.Windows.Foundation.Collections.IPropertySet
    );
 
    -----------------------------------------------------------------------------
@@ -9121,7 +9121,7 @@ package WinRt.Windows.Media.Core is
 
    function Constructor
    (
-      encodingProperties : Windows.Media.MediaProperties.VideoEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class
    )
    return VideoStreamDescriptor;
 
@@ -9231,7 +9231,7 @@ package WinRt.Windows.Media.Core is
    procedure remove_OpenFailed
    (
       this : in out VideoTrack;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetEncodingProperties

@@ -56,7 +56,7 @@ package body WinRt.Windows.UI.Shell is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.AdaptiveCardBuilder");
          m_Factory        : access WinRt.Windows.UI.Shell.IAdaptiveCardBuilderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Shell.IAdaptiveCard;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IAdaptiveCard;
          HStr_value : constant WinRt.HString := To_HString (value);
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IAdaptiveCardBuilderStatics'Access , m_Factory'Address);
@@ -161,7 +161,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.FocusSessionManager");
       m_Factory        : access WinRt.Windows.UI.Shell.IFocusSessionManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSessionManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IFocusSessionManager;
    begin
       return RetVal : WinRt.Windows.UI.Shell.FocusSessionManager do
          Hr := RoGetActivationFactory (m_hString, IID_IFocusSessionManagerStatics'Access , m_Factory'Address);
@@ -171,7 +171,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IFocusSessionManager := new Windows.UI.Shell.IFocusSessionManager;
+            Retval.m_IFocusSessionManager := new WinRt.Windows.UI.Shell.IFocusSessionManager;
             Retval.m_IFocusSessionManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -228,7 +228,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IFocusSession;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : WinRt.Windows.UI.Shell.FocusSession do
@@ -236,7 +236,7 @@ package body WinRt.Windows.UI.Shell is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession := new WinRt.Windows.UI.Shell.IFocusSession;
          Retval.m_IFocusSession.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_id);
       end return;
@@ -250,14 +250,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IFocusSession;
    begin
       return RetVal : WinRt.Windows.UI.Shell.FocusSession do
          Hr := this.m_IFocusSessionManager.all.TryStartFocusSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession := new WinRt.Windows.UI.Shell.IFocusSession;
          Retval.m_IFocusSession.all := m_ComRetVal;
       end return;
    end;
@@ -265,20 +265,20 @@ package body WinRt.Windows.UI.Shell is
    function TryStartFocusSession
    (
       this : in out FocusSessionManager;
-      endTime : Windows.Foundation.DateTime
+      endTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.UI.Shell.FocusSession'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IFocusSession;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IFocusSession;
    begin
       return RetVal : WinRt.Windows.UI.Shell.FocusSession do
          Hr := this.m_IFocusSessionManager.all.TryStartFocusSession (endTime, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFocusSession := new Windows.UI.Shell.IFocusSession;
+         Retval.m_IFocusSession := new WinRt.Windows.UI.Shell.IFocusSession;
          Retval.m_IFocusSession.all := m_ComRetVal;
       end return;
    end;
@@ -306,7 +306,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IFocusSessionManager.all.add_IsFocusActiveChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -318,7 +318,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_IsFocusActiveChanged
    (
       this : in out FocusSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -356,13 +356,13 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return SecurityAppManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.SecurityAppManager");
-      m_ComRetVal  : aliased Windows.UI.Shell.ISecurityAppManager;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.ISecurityAppManager");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Shell.ISecurityAppManager;
    begin
       return RetVal : SecurityAppManager do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISecurityAppManager := new Windows.UI.Shell.ISecurityAppManager;
+            Retval.m_ISecurityAppManager := new WinRt.Windows.UI.Shell.ISecurityAppManager;
             Retval.m_ISecurityAppManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -375,9 +375,9 @@ package body WinRt.Windows.UI.Shell is
    function Register
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       displayName : WinRt.WString;
-      detailsUri : Windows.Foundation.Uri'Class;
+      detailsUri : WinRt.Windows.Foundation.Uri'Class;
       registerPerUser : WinRt.Boolean
    )
    return WinRt.Guid is
@@ -398,7 +398,7 @@ package body WinRt.Windows.UI.Shell is
    procedure Unregister
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       guidRegistration : WinRt.Guid
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -414,11 +414,11 @@ package body WinRt.Windows.UI.Shell is
    procedure UpdateState
    (
       this : in out SecurityAppManager;
-      kind : Windows.UI.Shell.SecurityAppKind;
+      kind : WinRt.Windows.UI.Shell.SecurityAppKind;
       guidRegistration : WinRt.Guid;
-      state : Windows.UI.Shell.SecurityAppState;
-      substatus : Windows.UI.Shell.SecurityAppSubstatus;
-      detailsUri : Windows.Foundation.Uri'Class
+      state : WinRt.Windows.UI.Shell.SecurityAppState;
+      substatus : WinRt.Windows.UI.Shell.SecurityAppSubstatus;
+      detailsUri : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -461,7 +461,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowId;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowId;
    begin
       Hr := this.m_IShareWindowCommandEventArgs.all.get_WindowId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -478,7 +478,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.ShareWindowCommand;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.ShareWindowCommand;
    begin
       Hr := this.m_IShareWindowCommandEventArgs.all.get_Command (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -490,7 +490,7 @@ package body WinRt.Windows.UI.Shell is
    procedure put_Command
    (
       this : in out ShareWindowCommandEventArgs;
-      value : Windows.UI.Shell.ShareWindowCommand
+      value : WinRt.Windows.UI.Shell.ShareWindowCommand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -532,7 +532,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.ShareWindowCommandSource");
       m_Factory        : access WinRt.Windows.UI.Shell.IShareWindowCommandSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IShareWindowCommandSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IShareWindowCommandSource;
    begin
       return RetVal : WinRt.Windows.UI.Shell.ShareWindowCommandSource do
          Hr := RoGetActivationFactory (m_hString, IID_IShareWindowCommandSourceStatics'Access , m_Factory'Address);
@@ -542,7 +542,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IShareWindowCommandSource := new Windows.UI.Shell.IShareWindowCommandSource;
+            Retval.m_IShareWindowCommandSource := new WinRt.Windows.UI.Shell.IShareWindowCommandSource;
             Retval.m_IShareWindowCommandSource.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -603,7 +603,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IShareWindowCommandSource.all.add_CommandRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -615,7 +615,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_CommandRequested
    (
       this : in out ShareWindowCommandSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -636,7 +636,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IShareWindowCommandSource.all.add_CommandInvoked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -648,7 +648,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_CommandInvoked
    (
       this : in out ShareWindowCommandSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -690,7 +690,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.TaskbarManager");
       m_Factory        : access WinRt.Windows.UI.Shell.ITaskbarManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.ITaskbarManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.ITaskbarManager;
    begin
       return RetVal : WinRt.Windows.UI.Shell.TaskbarManager do
          Hr := RoGetActivationFactory (m_hString, IID_ITaskbarManagerStatics'Access , m_Factory'Address);
@@ -700,7 +700,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ITaskbarManager := new Windows.UI.Shell.ITaskbarManager;
+            Retval.m_ITaskbarManager := new WinRt.Windows.UI.Shell.ITaskbarManager;
             Retval.m_ITaskbarManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -810,7 +810,7 @@ package body WinRt.Windows.UI.Shell is
    function IsAppListEntryPinnedAsync
    (
       this : in out TaskbarManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -937,7 +937,7 @@ package body WinRt.Windows.UI.Shell is
    function RequestPinAppListEntryAsync
    (
       this : in out TaskbarManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1071,7 +1071,7 @@ package body WinRt.Windows.UI.Shell is
    function RequestPinSecondaryTileAsync
    (
       this : in out TaskbarManager;
-      secondaryTile : Windows.UI.StartScreen.SecondaryTile'Class
+      secondaryTile : WinRt.Windows.UI.StartScreen.SecondaryTile'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1232,13 +1232,13 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return WindowTab is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTab");
-      m_ComRetVal  : aliased Windows.UI.Shell.IWindowTab;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.IWindowTab");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WindowTab do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+            Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
             Retval.m_IWindowTab.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1325,14 +1325,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabIcon;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
          Hr := this.m_IWindowTab.all.get_Icon (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+         Retval.m_IWindowTabIcon := new WinRt.Windows.UI.Shell.IWindowTabIcon;
          Retval.m_IWindowTabIcon.all := m_ComRetVal;
       end return;
    end;
@@ -1340,7 +1340,7 @@ package body WinRt.Windows.UI.Shell is
    procedure put_Icon
    (
       this : in out WindowTab;
-      value : Windows.UI.Shell.WindowTabIcon'Class
+      value : WinRt.Windows.UI.Shell.WindowTabIcon'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1397,14 +1397,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabGroup;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabGroup;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabGroup do
          Hr := this.m_IWindowTab.all.get_Group (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTabGroup := new Windows.UI.Shell.IWindowTabGroup;
+         Retval.m_IWindowTabGroup := new WinRt.Windows.UI.Shell.IWindowTabGroup;
          Retval.m_IWindowTabGroup.all := m_ComRetVal;
       end return;
    end;
@@ -1412,7 +1412,7 @@ package body WinRt.Windows.UI.Shell is
    procedure put_Group
    (
       this : in out WindowTab;
-      value : Windows.UI.Shell.WindowTabGroup'Class
+      value : WinRt.Windows.UI.Shell.WindowTabGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1469,14 +1469,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTab do
          Hr := this.m_IWindowTabCloseRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -1507,7 +1507,7 @@ package body WinRt.Windows.UI.Shell is
    procedure MoveTab
    (
       this : in out WindowTabCollection;
-      tab : Windows.UI.Shell.WindowTab'Class;
+      tab : WinRt.Windows.UI.Shell.WindowTab'Class;
       index : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1531,7 +1531,7 @@ package body WinRt.Windows.UI.Shell is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IWindowTab.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
       m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1542,7 +1542,7 @@ package body WinRt.Windows.UI.Shell is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -1578,7 +1578,7 @@ package body WinRt.Windows.UI.Shell is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IWindowTab.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
       m_GenericIID     : aliased WinRt.IID := (3538845089, 1946, 21873, (172, 30, 224, 118, 27, 170, 146, 231 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IVector_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1589,7 +1589,7 @@ package body WinRt.Windows.UI.Shell is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -1597,7 +1597,7 @@ package body WinRt.Windows.UI.Shell is
    function IndexOf
    (
       this : in out WindowTabCollection;
-      value : Windows.UI.Shell.WindowTab'Class;
+      value : WinRt.Windows.UI.Shell.WindowTab'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1622,7 +1622,7 @@ package body WinRt.Windows.UI.Shell is
    (
       this : in out WindowTabCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1643,7 +1643,7 @@ package body WinRt.Windows.UI.Shell is
    (
       this : in out WindowTabCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1683,7 +1683,7 @@ package body WinRt.Windows.UI.Shell is
    procedure Append
    (
       this : in out WindowTabCollection;
-      value : Windows.UI.Shell.WindowTab'Class
+      value : WinRt.Windows.UI.Shell.WindowTab'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1742,7 +1742,7 @@ package body WinRt.Windows.UI.Shell is
    (
       this : in out WindowTabCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Shell.IWindowTab_Array
+      items : WinRt.Windows.UI.Shell.IWindowTab_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1766,7 +1766,7 @@ package body WinRt.Windows.UI.Shell is
    procedure ReplaceAll
    (
       this : in out WindowTabCollection;
-      items : Windows.UI.Shell.IWindowTab_Array
+      items : WinRt.Windows.UI.Shell.IWindowTab_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1794,7 +1794,7 @@ package body WinRt.Windows.UI.Shell is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IWindowTab.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
       m_GenericIID     : aliased WinRt.IID := (3478809970, 52304, 20918, (179, 77, 253, 215, 229, 157, 51, 235 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Shell.IWindowTabCollection_Interface, IIterable_IWindowTab.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1805,7 +1805,7 @@ package body WinRt.Windows.UI.Shell is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -1836,13 +1836,13 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return WindowTabGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabGroup");
-      m_ComRetVal  : aliased Windows.UI.Shell.IWindowTabGroup;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.IWindowTabGroup");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Shell.IWindowTabGroup;
    begin
       return RetVal : WindowTabGroup do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IWindowTabGroup := new Windows.UI.Shell.IWindowTabGroup;
+            Retval.m_IWindowTabGroup := new WinRt.Windows.UI.Shell.IWindowTabGroup;
             Retval.m_IWindowTabGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1897,14 +1897,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabIcon;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
          Hr := this.m_IWindowTabGroup.all.get_Icon (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+         Retval.m_IWindowTabIcon := new WinRt.Windows.UI.Shell.IWindowTabIcon;
          Retval.m_IWindowTabIcon.all := m_ComRetVal;
       end return;
    end;
@@ -1912,7 +1912,7 @@ package body WinRt.Windows.UI.Shell is
    procedure put_Icon
    (
       this : in out WindowTabGroup;
-      value : Windows.UI.Shell.WindowTabIcon'Class
+      value : WinRt.Windows.UI.Shell.WindowTabIcon'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1958,7 +1958,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
       m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabIcon;
       HStr_glyph : constant WinRt.HString := To_HString (glyph);
       HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
    begin
@@ -1970,7 +1970,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon := new WinRt.Windows.UI.Shell.IWindowTabIcon;
             Retval.m_IWindowTabIcon.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1983,7 +1983,7 @@ package body WinRt.Windows.UI.Shell is
    (
       glyph : WinRt.WString;
       fontFamily : WinRt.WString;
-      fontUri : Windows.Foundation.Uri'Class
+      fontUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Shell.WindowTabIcon is
       Hr               : WinRt.HResult := S_OK;
@@ -1991,7 +1991,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
       m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabIcon;
       HStr_glyph : constant WinRt.HString := To_HString (glyph);
       HStr_fontFamily : constant WinRt.HString := To_HString (fontFamily);
    begin
@@ -2003,7 +2003,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon := new WinRt.Windows.UI.Shell.IWindowTabIcon;
             Retval.m_IWindowTabIcon.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2014,7 +2014,7 @@ package body WinRt.Windows.UI.Shell is
 
    function CreateFromImage
    (
-      image : Windows.Storage.Streams.IRandomAccessStreamReference
+      image : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.UI.Shell.WindowTabIcon is
       Hr               : WinRt.HResult := S_OK;
@@ -2022,7 +2022,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabIcon");
       m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabIconStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabIcon;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabIcon;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabIcon do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowTabIconStatics'Access , m_Factory'Address);
@@ -2032,7 +2032,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IWindowTabIcon := new Windows.UI.Shell.IWindowTabIcon;
+            Retval.m_IWindowTabIcon := new WinRt.Windows.UI.Shell.IWindowTabIcon;
             Retval.m_IWindowTabIcon.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2067,7 +2067,7 @@ package body WinRt.Windows.UI.Shell is
 
    function GetForWindow
    (
-      id : Windows.UI.WindowId
+      id : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.UI.Shell.WindowTabManager is
       Hr               : WinRt.HResult := S_OK;
@@ -2075,7 +2075,7 @@ package body WinRt.Windows.UI.Shell is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabManager");
       m_Factory        : access WinRt.Windows.UI.Shell.IWindowTabManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabManager;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabManager do
          Hr := RoGetActivationFactory (m_hString, IID_IWindowTabManagerStatics'Access , m_Factory'Address);
@@ -2085,7 +2085,7 @@ package body WinRt.Windows.UI.Shell is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IWindowTabManager := new Windows.UI.Shell.IWindowTabManager;
+            Retval.m_IWindowTabManager := new WinRt.Windows.UI.Shell.IWindowTabManager;
             Retval.m_IWindowTabManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2145,14 +2145,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTabCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTabCollection;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTabCollection do
          Hr := this.m_IWindowTabManager.all.get_Tabs (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTabCollection := new Windows.UI.Shell.IWindowTabCollection;
+         Retval.m_IWindowTabCollection := new WinRt.Windows.UI.Shell.IWindowTabCollection;
          Retval.m_IWindowTabCollection.all := m_ComRetVal;
       end return;
    end;
@@ -2160,7 +2160,7 @@ package body WinRt.Windows.UI.Shell is
    procedure SetActiveTab
    (
       this : in out WindowTabManager;
-      tab : Windows.UI.Shell.WindowTab'Class
+      tab : WinRt.Windows.UI.Shell.WindowTab'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2181,7 +2181,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWindowTabManager.all.add_TabSwitchRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2193,7 +2193,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_TabSwitchRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2214,7 +2214,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWindowTabManager.all.add_TabCloseRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2226,7 +2226,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_TabCloseRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2247,7 +2247,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWindowTabManager.all.add_TabTearOutRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2259,7 +2259,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_TabTearOutRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2280,7 +2280,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWindowTabManager.all.add_TabThumbnailRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2292,7 +2292,7 @@ package body WinRt.Windows.UI.Shell is
    procedure remove_TabThumbnailRequested
    (
       this : in out WindowTabManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2335,14 +2335,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTab do
          Hr := this.m_IWindowTabSwitchRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -2378,14 +2378,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTab do
          Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -2430,14 +2430,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IWindowTabTearOutRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2473,14 +2473,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Shell.IWindowTab;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WinRt.Windows.UI.Shell.WindowTab do
          Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_Tab (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowTab := new Windows.UI.Shell.IWindowTab;
+         Retval.m_IWindowTab := new WinRt.Windows.UI.Shell.IWindowTab;
          Retval.m_IWindowTab.all := m_ComRetVal;
       end return;
    end;
@@ -2493,7 +2493,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_RequestedSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2510,7 +2510,7 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.get_Image (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2522,7 +2522,7 @@ package body WinRt.Windows.UI.Shell is
    procedure put_Image
    (
       this : in out WindowTabThumbnailRequestedEventArgs;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2542,14 +2542,14 @@ package body WinRt.Windows.UI.Shell is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IWindowTabThumbnailRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;

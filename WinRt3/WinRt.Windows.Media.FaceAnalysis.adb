@@ -75,7 +75,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapBounds;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapBounds;
    begin
       Hr := this.m_IDetectedFace.all.get_FaceBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -162,7 +162,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IFaceDetector := new Windows.Media.FaceAnalysis.IFaceDetector;
+                     Retval.m_IFaceDetector := new WinRt.Windows.Media.FaceAnalysis.IFaceDetector;
                      Retval.m_IFaceDetector.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -184,7 +184,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.FaceAnalysis.FaceDetector");
       m_Factory        : access WinRt.Windows.Media.FaceAnalysis.IFaceDetectorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFaceDetectorStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -200,7 +200,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
 
    function IsBitmapPixelFormatSupported
    (
-      bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat
+      bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -249,7 +249,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    function DetectFacesAsync
    (
       this : in out FaceDetector;
-      image : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      image : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -313,8 +313,8 @@ package body WinRt.Windows.Media.FaceAnalysis is
    function DetectFacesAsync
    (
       this : in out FaceDetector;
-      image : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      searchArea : Windows.Graphics.Imaging.BitmapBounds
+      image : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      searchArea : WinRt.Windows.Graphics.Imaging.BitmapBounds
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -383,7 +383,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_IFaceDetector.all.get_MinDetectableFaceSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -395,7 +395,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    procedure put_MinDetectableFaceSize
    (
       this : in out FaceDetector;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -415,7 +415,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_IFaceDetector.all.get_MaxDetectableFaceSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -427,7 +427,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    procedure put_MaxDetectableFaceSize
    (
       this : in out FaceDetector;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -517,7 +517,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IFaceTracker := new Windows.Media.FaceAnalysis.IFaceTracker;
+                     Retval.m_IFaceTracker := new WinRt.Windows.Media.FaceAnalysis.IFaceTracker;
                      Retval.m_IFaceTracker.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -539,7 +539,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.FaceAnalysis.FaceTracker");
       m_Factory        : access WinRt.Windows.Media.FaceAnalysis.IFaceTrackerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFaceTrackerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -555,7 +555,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
 
    function IsBitmapPixelFormatSupported_FaceTracker
    (
-      bitmapPixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat
+      bitmapPixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -604,7 +604,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    function ProcessNextFrameAsync
    (
       this : in out FaceTracker;
-      videoFrame : Windows.Media.VideoFrame'Class
+      videoFrame : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -673,7 +673,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_IFaceTracker.all.get_MinDetectableFaceSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -685,7 +685,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    procedure put_MinDetectableFaceSize
    (
       this : in out FaceTracker;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -705,7 +705,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapSize;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapSize;
    begin
       Hr := this.m_IFaceTracker.all.get_MaxDetectableFaceSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -717,7 +717,7 @@ package body WinRt.Windows.Media.FaceAnalysis is
    procedure put_MaxDetectableFaceSize
    (
       this : in out FaceTracker;
-      value : Windows.Graphics.Imaging.BitmapSize
+      value : WinRt.Windows.Graphics.Imaging.BitmapSize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

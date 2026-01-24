@@ -110,7 +110,7 @@ package WinRt.Windows.Globalization.Collation is
       (
          this : access ICharacterGroupingsFactory_Interface;
          language : WinRt.HString;
-         RetVal : access Windows.Globalization.Collation.ICharacterGroupings
+         RetVal : access WinRt.Windows.Globalization.Collation.ICharacterGroupings
       )
       return WinRt.Hresult is abstract;
 
@@ -185,7 +185,7 @@ package WinRt.Windows.Globalization.Collation is
    function IndexOf
    (
       this : in out CharacterGroupings;
-      value : Windows.Globalization.Collation.CharacterGrouping'Class;
+      value : WinRt.Windows.Globalization.Collation.CharacterGrouping'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -194,7 +194,7 @@ package WinRt.Windows.Globalization.Collation is
    (
       this : in out CharacterGroupings;
       startIndex : WinRt.UInt32;
-      items : Windows.Globalization.Collation.ICharacterGrouping_Array
+      items : WinRt.Windows.Globalization.Collation.ICharacterGrouping_Array
    )
    return WinRt.UInt32;
 

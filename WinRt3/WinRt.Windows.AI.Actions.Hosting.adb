@@ -97,7 +97,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IActionCatalog.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -109,7 +109,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
    procedure remove_Changed
    (
       this : in out ActionCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -124,7 +124,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
    function GetActionsForInputs
    (
       this : in out ActionCatalog;
-      inputEntities : Windows.AI.Actions.ActionEntity_Array
+      inputEntities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array is
       Hr               : WinRt.HResult := S_OK;
@@ -161,8 +161,8 @@ package body WinRt.Windows.AI.Actions.Hosting is
    function GetActionsForInputs
    (
       this : in out ActionCatalog;
-      inputEntities : Windows.AI.Actions.ActionEntity_Array;
-      invokerWindowId : Windows.UI.WindowId
+      inputEntities : WinRt.Windows.AI.Actions.ActionEntity_Array;
+      invokerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Actions.Hosting.ActionInstance_Array is
       Hr               : WinRt.HResult := S_OK;
@@ -556,7 +556,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
    function GetIconFullPath
    (
       this : in out ActionDefinition;
-      qualifierValues : Windows.Foundation.Collections.PropertySet'Class
+      qualifierValues : WinRt.Windows.Foundation.Collections.PropertySet'Class
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -664,7 +664,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityKind;
    begin
       Hr := this.m_IActionEntityRegistrationInfo.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -676,7 +676,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
    procedure put_Kind
    (
       this : in out ActionEntityRegistrationInfo;
-      value : Windows.AI.Actions.ActionEntityKind
+      value : WinRt.Windows.AI.Actions.ActionEntityKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -737,14 +737,14 @@ package body WinRt.Windows.AI.Actions.Hosting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo;
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionInstanceDisplayInfo do
          Hr := this.m_IActionInstance.all.get_DisplayInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInstanceDisplayInfo := new Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo;
+         Retval.m_IActionInstanceDisplayInfo := new WinRt.Windows.AI.Actions.Hosting.IActionInstanceDisplayInfo;
          Retval.m_IActionInstanceDisplayInfo.all := m_ComRetVal;
       end return;
    end;
@@ -757,14 +757,14 @@ package body WinRt.Windows.AI.Actions.Hosting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.Hosting.IActionDefinition;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.Hosting.IActionDefinition;
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionDefinition do
          Hr := this.m_IActionInstance.all.get_Definition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionDefinition := new Windows.AI.Actions.Hosting.IActionDefinition;
+         Retval.m_IActionDefinition := new WinRt.Windows.AI.Actions.Hosting.IActionDefinition;
          Retval.m_IActionDefinition.all := m_ComRetVal;
       end return;
    end;
@@ -777,14 +777,14 @@ package body WinRt.Windows.AI.Actions.Hosting is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionInvocationContext;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionInvocationContext;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionInvocationContext do
          Hr := this.m_IActionInstance.all.get_Context (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInvocationContext := new Windows.AI.Actions.IActionInvocationContext;
+         Retval.m_IActionInvocationContext := new WinRt.Windows.AI.Actions.IActionInvocationContext;
          Retval.m_IActionInvocationContext.all := m_ComRetVal;
       end return;
    end;
@@ -951,7 +951,7 @@ package body WinRt.Windows.AI.Actions.Hosting is
    procedure InvokeAsync
    (
       this : in out ActionOverload;
-      context : Windows.AI.Actions.ActionInvocationContext'Class
+      context : WinRt.Windows.AI.Actions.ActionInvocationContext'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -994,8 +994,8 @@ package body WinRt.Windows.AI.Actions.Hosting is
    procedure InvokeFeedbackAsync
    (
       this : in out ActionOverload;
-      context : Windows.AI.Actions.ActionInvocationContext'Class;
-      feedback : Windows.AI.Actions.ActionFeedback'Class
+      context : WinRt.Windows.AI.Actions.ActionInvocationContext'Class;
+      feedback : WinRt.Windows.AI.Actions.ActionFeedback'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

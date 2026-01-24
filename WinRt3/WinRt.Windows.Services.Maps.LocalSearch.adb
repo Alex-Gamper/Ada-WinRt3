@@ -267,14 +267,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.IMapAddress;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IMapAddress;
    begin
       return RetVal : WinRt.Windows.Services.Maps.MapAddress do
          Hr := this.m_ILocalLocation.all.get_Address (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMapAddress := new Windows.Services.Maps.IMapAddress;
+         Retval.m_IMapAddress := new WinRt.Windows.Services.Maps.IMapAddress;
          Retval.m_IMapAddress.all := m_ComRetVal;
       end return;
    end;
@@ -347,14 +347,14 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.IGeopoint;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.IGeopoint;
    begin
       return RetVal : WinRt.Windows.Devices.Geolocation.Geopoint do
          Hr := this.m_ILocalLocation.all.get_Point (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeopoint := new Windows.Devices.Geolocation.IGeopoint;
+         Retval.m_IGeopoint := new WinRt.Windows.Devices.Geolocation.IGeopoint;
          Retval.m_IGeopoint.all := m_ComRetVal;
       end return;
    end;
@@ -432,7 +432,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation_Interface, WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2, WinRt.Windows.Services.Maps.LocalSearch.IID_ILocalLocation2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Services.Maps.LocalSearch.LocalLocationRatingInfo do
@@ -442,7 +442,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILocalLocationRatingInfo := new Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
+         Retval.m_ILocalLocationRatingInfo := new WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo;
          Retval.m_ILocalLocationRatingInfo.all := m_ComRetVal;
       end return;
    end;
@@ -456,7 +456,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ILocalLocationHoursOfOperationItem.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation_Interface, WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation2, WinRt.Windows.Services.Maps.LocalSearch.IID_ILocalLocation2'Unchecked_Access);
    begin
@@ -478,7 +478,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       function FindLocalLocationsAsync
       (
          searchTerm : WinRt.WString;
-         searchArea : Windows.Devices.Geolocation.Geocircle'Class;
+         searchArea : WinRt.Windows.Devices.Geolocation.Geocircle'Class;
          localCategory : WinRt.WString;
          maxResults : WinRt.UInt32
       )
@@ -538,7 +538,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILocalLocationFinderResult := new Windows.Services.Maps.LocalSearch.ILocalLocationFinderResult;
+                        Retval.m_ILocalLocationFinderResult := new WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationFinderResult;
                         Retval.m_ILocalLocationFinderResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -588,7 +588,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ILocalLocation.Kind;
    begin
       Hr := this.m_ILocalLocationFinderResult.all.get_LocalLocations (m_ComRetVal'Access);
@@ -608,7 +608,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus;
    begin
       Hr := this.m_ILocalLocationFinderResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -648,7 +648,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.DayOfWeek;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.DayOfWeek;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Day (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -665,7 +665,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Start (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -682,7 +682,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILocalLocationHoursOfOperationItem.all.get_Span (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -722,7 +722,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_ILocalLocationRatingInfo.all.get_AggregateRating (m_ComRetVal'Access);
@@ -742,7 +742,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_ILocalLocationRatingInfo.all.get_RatingCount (m_ComRetVal'Access);
@@ -780,7 +780,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
 
       function CreateFromLocalLocation
       (
-         location : Windows.Services.Maps.LocalSearch.LocalLocation'Class
+         location : WinRt.Windows.Services.Maps.LocalSearch.LocalLocation'Class
       )
       return WinRt.Windows.Services.Maps.PlaceInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -788,7 +788,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Services.Maps.LocalSearch.PlaceInfoHelper");
          m_Factory        : access WinRt.Windows.Services.Maps.LocalSearch.IPlaceInfoHelperStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Services.Maps.IPlaceInfo;
+         m_ComRetVal      : aliased WinRt.Windows.Services.Maps.IPlaceInfo;
       begin
          return RetVal : WinRt.Windows.Services.Maps.PlaceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IPlaceInfoHelperStatics'Access , m_Factory'Address);
@@ -798,7 +798,7 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPlaceInfo := new Windows.Services.Maps.IPlaceInfo;
+               Retval.m_IPlaceInfo := new WinRt.Windows.Services.Maps.IPlaceInfo;
                Retval.m_IPlaceInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);

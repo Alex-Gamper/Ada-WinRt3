@@ -226,7 +226,7 @@ package body WinRt.Windows.Devices.WiFi is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IWiFiAdapter := new Windows.Devices.WiFi.IWiFiAdapter;
+                     Retval.m_IWiFiAdapter := new WinRt.Windows.Devices.WiFi.IWiFiAdapter;
                      Retval.m_IWiFiAdapter.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -320,14 +320,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkAdapter;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Connectivity.INetworkAdapter;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkAdapter do
          Hr := this.m_IWiFiAdapter.all.get_NetworkAdapter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INetworkAdapter := new Windows.Networking.Connectivity.INetworkAdapter;
+         Retval.m_INetworkAdapter := new WinRt.Windows.Networking.Connectivity.INetworkAdapter;
          Retval.m_INetworkAdapter.all := m_ComRetVal;
       end return;
    end;
@@ -382,14 +382,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiNetworkReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.IWiFiNetworkReport;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiNetworkReport do
          Hr := this.m_IWiFiAdapter.all.get_NetworkReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiNetworkReport := new Windows.Devices.WiFi.IWiFiNetworkReport;
+         Retval.m_IWiFiNetworkReport := new WinRt.Windows.Devices.WiFi.IWiFiNetworkReport;
          Retval.m_IWiFiNetworkReport.all := m_ComRetVal;
       end return;
    end;
@@ -403,7 +403,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWiFiAdapter.all.add_AvailableNetworksChanged (args, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -415,7 +415,7 @@ package body WinRt.Windows.Devices.WiFi is
    procedure remove_AvailableNetworksChanged
    (
       this : in out WiFiAdapter;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -430,8 +430,8 @@ package body WinRt.Windows.Devices.WiFi is
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -482,7 +482,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
+                  Retval.m_IWiFiConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -498,9 +498,9 @@ package body WinRt.Windows.Devices.WiFi is
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -551,7 +551,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
+                  Retval.m_IWiFiConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -567,9 +567,9 @@ package body WinRt.Windows.Devices.WiFi is
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class;
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class;
       ssid : WinRt.WString
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
@@ -622,7 +622,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
+                  Retval.m_IWiFiConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -653,7 +653,7 @@ package body WinRt.Windows.Devices.WiFi is
    function GetWpsConfigurationAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class
    )
    return WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -708,7 +708,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiWpsConfigurationResult := new Windows.Devices.WiFi.IWiFiWpsConfigurationResult;
+                  Retval.m_IWiFiWpsConfigurationResult := new WinRt.Windows.Devices.WiFi.IWiFiWpsConfigurationResult;
                   Retval.m_IWiFiWpsConfigurationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -724,11 +724,11 @@ package body WinRt.Windows.Devices.WiFi is
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class;
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class;
       ssid : WinRt.WString;
-      connectionMethod : Windows.Devices.WiFi.WiFiConnectionMethod
+      connectionMethod : WinRt.Windows.Devices.WiFi.WiFiConnectionMethod
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -784,7 +784,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiConnectionResult := new Windows.Devices.WiFi.IWiFiConnectionResult;
+                  Retval.m_IWiFiConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiConnectionResult;
                   Retval.m_IWiFiConnectionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -829,7 +829,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_Uptime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -937,7 +937,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiNetworkKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiNetworkKind;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_NetworkKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -954,7 +954,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiPhyKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiPhyKind;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_PhyKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -971,14 +971,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Connectivity.INetworkSecuritySettings;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Connectivity.INetworkSecuritySettings;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.NetworkSecuritySettings do
          Hr := this.m_IWiFiAvailableNetwork.all.get_SecuritySettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INetworkSecuritySettings := new Windows.Networking.Connectivity.INetworkSecuritySettings;
+         Retval.m_INetworkSecuritySettings := new WinRt.Windows.Networking.Connectivity.INetworkSecuritySettings;
          Retval.m_INetworkSecuritySettings.all := m_ComRetVal;
       end return;
    end;
@@ -991,7 +991,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IWiFiAvailableNetwork.all.get_BeaconInterval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1048,7 +1048,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiConnectionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiConnectionStatus;
    begin
       Hr := this.m_IWiFiConnectionResult.all.get_ConnectionStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1088,7 +1088,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IWiFiNetworkReport.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1105,7 +1105,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IWiFiAvailableNetwork.Kind;
    begin
       Hr := this.m_IWiFiNetworkReport.all.get_AvailableNetworks (m_ComRetVal'Access);
@@ -1148,14 +1148,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork do
          Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.get_RequestedNetwork (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiOnDemandHotspotNetwork := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+         Retval.m_IWiFiOnDemandHotspotNetwork := new WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
          Retval.m_IWiFiOnDemandHotspotNetwork.all := m_ComRetVal;
       end return;
    end;
@@ -1163,7 +1163,7 @@ package body WinRt.Windows.Devices.WiFi is
    procedure ReportError
    (
       this : in out WiFiOnDemandHotspotConnectTriggerDetails;
-      status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+      status : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1228,7 +1228,7 @@ package body WinRt.Windows.Devices.WiFi is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWiFiOnDemandHotspotConnectionResult := new Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+                  Retval.m_IWiFiOnDemandHotspotConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
                   Retval.m_IWiFiOnDemandHotspotConnectionResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1249,14 +1249,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectionResult do
          Hr := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.Connect (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiOnDemandHotspotConnectionResult := new Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
+         Retval.m_IWiFiOnDemandHotspotConnectionResult := new WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult;
          Retval.m_IWiFiOnDemandHotspotConnectionResult.all := m_ComRetVal;
       end return;
    end;
@@ -1292,7 +1292,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus;
    begin
       Hr := this.m_IWiFiOnDemandHotspotConnectionResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1334,7 +1334,7 @@ package body WinRt.Windows.Devices.WiFi is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork");
       m_Factory        : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetwork do
          Hr := RoGetActivationFactory (m_hString, IID_IWiFiOnDemandHotspotNetworkStatics'Access , m_Factory'Address);
@@ -1344,7 +1344,7 @@ package body WinRt.Windows.Devices.WiFi is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IWiFiOnDemandHotspotNetwork := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
+            Retval.m_IWiFiOnDemandHotspotNetwork := new WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork;
             Retval.m_IWiFiOnDemandHotspotNetwork.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1362,14 +1362,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
    begin
       return RetVal : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties do
          Hr := this.m_IWiFiOnDemandHotspotNetwork.all.GetProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWiFiOnDemandHotspotNetworkProperties := new Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
+         Retval.m_IWiFiOnDemandHotspotNetworkProperties := new WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties;
          Retval.m_IWiFiOnDemandHotspotNetworkProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1377,7 +1377,7 @@ package body WinRt.Windows.Devices.WiFi is
    procedure UpdateProperties
    (
       this : in out WiFiOnDemandHotspotNetwork;
-      newProperties : Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
+      newProperties : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1474,7 +1474,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability;
    begin
       Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_Availability (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1486,7 +1486,7 @@ package body WinRt.Windows.Devices.WiFi is
    procedure put_Availability
    (
       this : in out WiFiOnDemandHotspotNetworkProperties;
-      value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+      value : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1506,7 +1506,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_RemainingBatteryPercent (m_ComRetVal'Access);
@@ -1541,7 +1541,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_WiFiOnDemandHotspotCellularBars.Kind;
    begin
       Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_CellularBars (m_ComRetVal'Access);
@@ -1645,14 +1645,14 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IWiFiOnDemandHotspotNetworkProperties.all.get_Password (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -1660,7 +1660,7 @@ package body WinRt.Windows.Devices.WiFi is
    procedure put_Password
    (
       this : in out WiFiOnDemandHotspotNetworkProperties;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1703,7 +1703,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.WiFi.WiFiWpsConfigurationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationStatus;
    begin
       Hr := this.m_IWiFiWpsConfigurationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1720,7 +1720,7 @@ package body WinRt.Windows.Devices.WiFi is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_WiFiWpsKind.Kind;
    begin
       Hr := this.m_IWiFiWpsConfigurationResult.all.get_SupportedWpsKinds (m_ComRetVal'Access);

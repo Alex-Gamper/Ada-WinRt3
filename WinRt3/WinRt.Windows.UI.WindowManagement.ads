@@ -334,21 +334,21 @@ package WinRt.Windows.UI.WindowManagement is
       function get_Content
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.IUIContentRoot
+         RetVal : access WinRt.Windows.UI.IUIContentRoot
       )
       return WinRt.Hresult is abstract;
 
       function get_DispatcherQueue
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
       function get_Frame
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.WindowManagement.IAppWindowFrame
+         RetVal : access WinRt.Windows.UI.WindowManagement.IAppWindowFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -376,7 +376,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_Presenter
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.WindowManagement.IAppWindowPresenter
+         RetVal : access WinRt.Windows.UI.WindowManagement.IAppWindowPresenter
       )
       return WinRt.Hresult is abstract;
 
@@ -397,35 +397,35 @@ package WinRt.Windows.UI.WindowManagement is
       function get_TitleBar
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.WindowManagement.IAppWindowTitleBar
+         RetVal : access WinRt.Windows.UI.WindowManagement.IAppWindowTitleBar
       )
       return WinRt.Hresult is abstract;
 
       function get_UIContext
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.IUIContext
+         RetVal : access WinRt.Windows.UI.IUIContext
       )
       return WinRt.Hresult is abstract;
 
       function get_WindowingEnvironment
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.WindowManagement.IWindowingEnvironment
+         RetVal : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironment
       )
       return WinRt.Hresult is abstract;
 
       function CloseAsync
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetPlacement
       (
          this : access IAppWindow_Interface;
-         RetVal : access Windows.UI.WindowManagement.IAppWindowPlacement
+         RetVal : access WinRt.Windows.UI.WindowManagement.IAppWindowPlacement
       )
       return WinRt.Hresult is abstract;
 
@@ -439,7 +439,7 @@ package WinRt.Windows.UI.WindowManagement is
       function RequestMoveToDisplayRegion
       (
          this : access IAppWindow_Interface;
-         displayRegion_p : Windows.UI.WindowManagement.IDisplayRegion
+         displayRegion_p : WinRt.Windows.UI.WindowManagement.IDisplayRegion
       )
       return WinRt.Hresult is abstract;
 
@@ -452,37 +452,37 @@ package WinRt.Windows.UI.WindowManagement is
       function RequestMoveAdjacentToWindow
       (
          this : access IAppWindow_Interface;
-         anchorWindow : Windows.UI.WindowManagement.IAppWindow
+         anchorWindow : WinRt.Windows.UI.WindowManagement.IAppWindow
       )
       return WinRt.Hresult is abstract;
 
       function RequestMoveRelativeToWindowContent
       (
          this : access IAppWindow_Interface;
-         anchorWindow : Windows.UI.WindowManagement.IAppWindow;
-         contentOffset : Windows.Foundation.Point
+         anchorWindow : WinRt.Windows.UI.WindowManagement.IAppWindow;
+         contentOffset : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function RequestMoveRelativeToCurrentViewContent
       (
          this : access IAppWindow_Interface;
-         contentOffset : Windows.Foundation.Point
+         contentOffset : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function RequestMoveRelativeToDisplayRegion
       (
          this : access IAppWindow_Interface;
-         displayRegion_p : Windows.UI.WindowManagement.IDisplayRegion;
-         displayRegionOffset : Windows.Foundation.Point
+         displayRegion_p : WinRt.Windows.UI.WindowManagement.IDisplayRegion;
+         displayRegionOffset : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function RequestSize
       (
          this : access IAppWindow_Interface;
-         frameSize : Windows.Foundation.Size
+         frameSize : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -497,14 +497,14 @@ package WinRt.Windows.UI.WindowManagement is
       (
          this : access IAppWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IAppWindow_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -512,14 +512,14 @@ package WinRt.Windows.UI.WindowManagement is
       (
          this : access IAppWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IAppWindow_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -527,14 +527,14 @@ package WinRt.Windows.UI.WindowManagement is
       (
          this : access IAppWindow_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CloseRequested
       (
          this : access IAppWindow_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -621,7 +621,7 @@ package WinRt.Windows.UI.WindowManagement is
       function GetDeferral
       (
          this : access IAppWindowCloseRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -633,7 +633,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_Reason
       (
          this : access IAppWindowClosedEventArgs_Interface;
-         RetVal : access Windows.UI.WindowManagement.AppWindowClosedReason
+         RetVal : access WinRt.Windows.UI.WindowManagement.AppWindowClosedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -657,14 +657,14 @@ package WinRt.Windows.UI.WindowManagement is
       function GetFrameStyle
       (
          this : access IAppWindowFrameStyle_Interface;
-         RetVal : access Windows.UI.WindowManagement.AppWindowFrameStyle
+         RetVal : access WinRt.Windows.UI.WindowManagement.AppWindowFrameStyle
       )
       return WinRt.Hresult is abstract;
 
       function SetFrameStyle
       (
          this : access IAppWindowFrameStyle_Interface;
-         frameStyle : Windows.UI.WindowManagement.AppWindowFrameStyle
+         frameStyle : WinRt.Windows.UI.WindowManagement.AppWindowFrameStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -676,21 +676,21 @@ package WinRt.Windows.UI.WindowManagement is
       function get_DisplayRegion
       (
          this : access IAppWindowPlacement_Interface;
-         RetVal : access Windows.UI.WindowManagement.IDisplayRegion
+         RetVal : access WinRt.Windows.UI.WindowManagement.IDisplayRegion
       )
       return WinRt.Hresult is abstract;
 
       function get_Offset
       (
          this : access IAppWindowPlacement_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access IAppWindowPlacement_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -702,7 +702,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_Kind
       (
          this : access IAppWindowPresentationConfiguration_Interface;
-         RetVal : access Windows.UI.WindowManagement.AppWindowPresentationKind
+         RetVal : access WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -719,14 +719,14 @@ package WinRt.Windows.UI.WindowManagement is
       function GetConfiguration
       (
          this : access IAppWindowPresenter_Interface;
-         RetVal : access Windows.UI.WindowManagement.IAppWindowPresentationConfiguration
+         RetVal : access WinRt.Windows.UI.WindowManagement.IAppWindowPresentationConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function IsPresentationSupported
       (
          this : access IAppWindowPresenter_Interface;
-         presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind;
+         presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -734,7 +734,7 @@ package WinRt.Windows.UI.WindowManagement is
       function RequestPresentation
       (
          this : access IAppWindowPresenter_Interface;
-         configuration : Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
+         configuration : WinRt.Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -742,7 +742,7 @@ package WinRt.Windows.UI.WindowManagement is
       function RequestPresentation
       (
          this : access IAppWindowPresenter_Interface;
-         presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind;
+         presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -981,7 +981,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_OccludingRect
       (
          this : access IAppWindowTitleBarOcclusion_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -993,14 +993,14 @@ package WinRt.Windows.UI.WindowManagement is
       function GetPreferredVisibility
       (
          this : access IAppWindowTitleBarVisibility_Interface;
-         RetVal : access Windows.UI.WindowManagement.AppWindowTitleBarVisibility
+         RetVal : access WinRt.Windows.UI.WindowManagement.AppWindowTitleBarVisibility
       )
       return WinRt.Hresult is abstract;
 
       function SetPreferredVisibility
       (
          this : access IAppWindowTitleBarVisibility_Interface;
-         visibilityMode : Windows.UI.WindowManagement.AppWindowTitleBarVisibility
+         visibilityMode : WinRt.Windows.UI.WindowManagement.AppWindowTitleBarVisibility
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,21 +1036,21 @@ package WinRt.Windows.UI.WindowManagement is
       function get_WorkAreaOffset
       (
          this : access IDisplayRegion_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_WorkAreaSize
       (
          this : access IDisplayRegion_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_WindowingEnvironment
       (
          this : access IDisplayRegion_Interface;
-         RetVal : access Windows.UI.WindowManagement.IWindowingEnvironment
+         RetVal : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -1058,14 +1058,14 @@ package WinRt.Windows.UI.WindowManagement is
       (
          this : access IDisplayRegion_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IDisplayRegion_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,7 +1115,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_Kind
       (
          this : access IWindowingEnvironment_Interface;
-         RetVal : access Windows.UI.WindowManagement.WindowingEnvironmentKind
+         RetVal : access WinRt.Windows.UI.WindowManagement.WindowingEnvironmentKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1130,14 +1130,14 @@ package WinRt.Windows.UI.WindowManagement is
       (
          this : access IWindowingEnvironment_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IWindowingEnvironment_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1149,7 +1149,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_WindowingEnvironment
       (
          this : access IWindowingEnvironmentAddedEventArgs_Interface;
-         RetVal : access Windows.UI.WindowManagement.IWindowingEnvironment
+         RetVal : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -1166,7 +1166,7 @@ package WinRt.Windows.UI.WindowManagement is
       function get_WindowingEnvironment
       (
          this : access IWindowingEnvironmentRemovedEventArgs_Interface;
-         RetVal : access Windows.UI.WindowManagement.IWindowingEnvironment
+         RetVal : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -1185,7 +1185,7 @@ package WinRt.Windows.UI.WindowManagement is
       function FindAll
       (
          this : access IWindowingEnvironmentStatics_Interface;
-         kind : Windows.UI.WindowManagement.WindowingEnvironmentKind;
+         kind : WinRt.Windows.UI.WindowManagement.WindowingEnvironmentKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1310,7 +1310,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveToDisplayRegion
    (
       this : in out AppWindow;
-      displayRegion_p : Windows.UI.WindowManagement.DisplayRegion'Class
+      displayRegion_p : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    );
 
    procedure RequestMoveAdjacentToCurrentView
@@ -1321,33 +1321,33 @@ package WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveAdjacentToWindow
    (
       this : in out AppWindow;
-      anchorWindow : Windows.UI.WindowManagement.AppWindow'Class
+      anchorWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class
    );
 
    procedure RequestMoveRelativeToWindowContent
    (
       this : in out AppWindow;
-      anchorWindow : Windows.UI.WindowManagement.AppWindow'Class;
-      contentOffset : Windows.Foundation.Point
+      anchorWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class;
+      contentOffset : WinRt.Windows.Foundation.Point
    );
 
    procedure RequestMoveRelativeToCurrentViewContent
    (
       this : in out AppWindow;
-      contentOffset : Windows.Foundation.Point
+      contentOffset : WinRt.Windows.Foundation.Point
    );
 
    procedure RequestMoveRelativeToDisplayRegion
    (
       this : in out AppWindow;
-      displayRegion_p : Windows.UI.WindowManagement.DisplayRegion'Class;
-      displayRegionOffset : Windows.Foundation.Point
+      displayRegion_p : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class;
+      displayRegionOffset : WinRt.Windows.Foundation.Point
    );
 
    procedure RequestSize
    (
       this : in out AppWindow;
-      frameSize : Windows.Foundation.Size
+      frameSize : WinRt.Windows.Foundation.Size
    );
 
    function TryShowAsync
@@ -1366,7 +1366,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Closed
@@ -1379,7 +1379,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure remove_Closed
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CloseRequested
@@ -1392,7 +1392,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure remove_CloseRequested
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1512,7 +1512,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure SetFrameStyle
    (
       this : in out AppWindowFrame;
-      frameStyle : Windows.UI.WindowManagement.AppWindowFrameStyle
+      frameStyle : WinRt.Windows.UI.WindowManagement.AppWindowFrameStyle
    );
 
    function get_DragRegionVisuals
@@ -1584,21 +1584,21 @@ package WinRt.Windows.UI.WindowManagement is
    function IsPresentationSupported
    (
       this : in out AppWindowPresenter;
-      presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind
+      presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind
    )
    return WinRt.Boolean;
 
    function RequestPresentation
    (
       this : in out AppWindowPresenter;
-      configuration : Windows.UI.WindowManagement.AppWindowPresentationConfiguration'Class
+      configuration : WinRt.Windows.UI.WindowManagement.AppWindowPresentationConfiguration'Class
    )
    return WinRt.Boolean;
 
    function RequestPresentation
    (
       this : in out AppWindowPresenter;
-      presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind
+      presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind
    )
    return WinRt.Boolean;
 
@@ -1620,7 +1620,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure SetPreferredVisibility
    (
       this : in out AppWindowTitleBar;
-      visibilityMode : Windows.UI.WindowManagement.AppWindowTitleBarVisibility
+      visibilityMode : WinRt.Windows.UI.WindowManagement.AppWindowTitleBarVisibility
    );
 
    function get_BackgroundColor
@@ -1883,7 +1883,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out DisplayRegion;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1935,7 +1935,7 @@ package WinRt.Windows.UI.WindowManagement is
 
    function FindAll
    (
-      kind : Windows.UI.WindowManagement.WindowingEnvironmentKind
+      kind : WinRt.Windows.UI.WindowManagement.WindowingEnvironmentKind
    )
    return WinRt.GenericObject;
 
@@ -1970,7 +1970,7 @@ package WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out WindowingEnvironment;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

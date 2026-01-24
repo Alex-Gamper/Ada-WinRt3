@@ -74,23 +74,23 @@ package body WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      type_x : Windows.Networking.Vpn.VpnAppIdType;
+      type_x : WinRt.Windows.Networking.Vpn.VpnAppIdType;
       value : WinRt.WString
    )
    return VpnAppId is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnAppId");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnAppId");
       m_Factory    : access IVpnAppIdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnAppId;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnAppId;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : VpnAppId do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnAppIdFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (type_x, HStr_value, m_ComRetVal'Access);
-            Retval.m_IVpnAppId := new Windows.Networking.Vpn.IVpnAppId;
+            Retval.m_IVpnAppId := new WinRt.Windows.Networking.Vpn.IVpnAppId;
             Retval.m_IVpnAppId.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -110,7 +110,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnAppIdType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnAppIdType;
    begin
       Hr := this.m_IVpnAppId.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -122,7 +122,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_Type
    (
       this : in out VpnAppId;
-      value : Windows.Networking.Vpn.VpnAppIdType
+      value : WinRt.Windows.Networking.Vpn.VpnAppIdType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -240,9 +240,9 @@ package body WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      routeScope : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      namespaceScope : Windows.Networking.Vpn.VpnNamespaceAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      routeScope : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      namespaceScope : WinRt.Windows.Networking.Vpn.VpnNamespaceAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       optimizeForLowCostNetwork : WinRt.Boolean;
@@ -276,23 +276,23 @@ package body WinRt.Windows.Networking.Vpn is
    function RequestCredentials
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       isRetry : WinRt.Boolean;
       isSingleSignOnCredential : WinRt.Boolean;
-      certificate : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnPickedCredential'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPickedCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPickedCredential;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnPickedCredential do
          Hr := this.m_IVpnChannel.all.RequestCredentials (credType, isRetry, isSingleSignOnCredential, certificate.m_ICertificate.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPickedCredential := new Windows.Networking.Vpn.IVpnPickedCredential;
+         Retval.m_IVpnPickedCredential := new WinRt.Windows.Networking.Vpn.IVpnPickedCredential;
          Retval.m_IVpnPickedCredential.all := m_ComRetVal;
       end return;
    end;
@@ -300,8 +300,8 @@ package body WinRt.Windows.Networking.Vpn is
    procedure RequestVpnPacketBuffer
    (
       this : in out VpnChannel;
-      type_x : Windows.Networking.Vpn.VpnDataPathType;
-      vpnPacketBuffer_p : access Windows.Networking.Vpn.IVpnPacketBuffer
+      type_x : WinRt.Windows.Networking.Vpn.VpnDataPathType;
+      vpnPacketBuffer_p : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -355,14 +355,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnChannelConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnChannelConfiguration do
          Hr := this.m_IVpnChannel.all.get_Configuration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnChannelConfiguration := new Windows.Networking.Vpn.IVpnChannelConfiguration;
+         Retval.m_IVpnChannelConfiguration := new WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration;
          Retval.m_IVpnChannelConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -376,7 +376,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVpnChannel.all.add_ActivityChange (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -388,7 +388,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure remove_ActivityChange
    (
       this : in out VpnChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -440,14 +440,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnSystemHealth;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnSystemHealth;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnSystemHealth do
          Hr := this.m_IVpnChannel.all.get_SystemHealth (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnSystemHealth := new Windows.Networking.Vpn.IVpnSystemHealth;
+         Retval.m_IVpnSystemHealth := new WinRt.Windows.Networking.Vpn.IVpnSystemHealth;
          Retval.m_IVpnSystemHealth.all := m_ComRetVal;
       end return;
    end;
@@ -505,9 +505,9 @@ package body WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedDomainName : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedDomainName : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       Reserved : WinRt.Boolean;
@@ -532,9 +532,9 @@ package body WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedDomainName : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedDomainName : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       Reserved : WinRt.Boolean
@@ -563,7 +563,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel2, WinRt.Windows.Networking.Vpn.IID_IVpnChannel2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnChannel.all);
@@ -578,7 +578,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure remove_ActivityStateChange
    (
       this : in out VpnChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -603,7 +603,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel2, WinRt.Windows.Networking.Vpn.IID_IVpnChannel2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnPacketBuffer do
@@ -613,7 +613,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -627,7 +627,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel2, WinRt.Windows.Networking.Vpn.IID_IVpnChannel2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnPacketBuffer do
@@ -637,7 +637,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -692,9 +692,9 @@ package body WinRt.Windows.Networking.Vpn is
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       credOptions : WinRt.UInt32;
-      certificate : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -749,7 +749,7 @@ package body WinRt.Windows.Networking.Vpn is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVpnCredential := new Windows.Networking.Vpn.IVpnCredential;
+                  Retval.m_IVpnCredential := new WinRt.Windows.Networking.Vpn.IVpnCredential;
                   Retval.m_IVpnCredential.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -765,7 +765,7 @@ package body WinRt.Windows.Networking.Vpn is
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       credOptions : WinRt.UInt32
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class is
@@ -821,7 +821,7 @@ package body WinRt.Windows.Networking.Vpn is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVpnCredential := new Windows.Networking.Vpn.IVpnCredential;
+                  Retval.m_IVpnCredential := new WinRt.Windows.Networking.Vpn.IVpnCredential;
                   Retval.m_IVpnCredential.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -837,7 +837,7 @@ package body WinRt.Windows.Networking.Vpn is
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -892,7 +892,7 @@ package body WinRt.Windows.Networking.Vpn is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVpnCredential := new Windows.Networking.Vpn.IVpnCredential;
+                  Retval.m_IVpnCredential := new WinRt.Windows.Networking.Vpn.IVpnCredential;
                   Retval.m_IVpnCredential.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -931,15 +931,15 @@ package body WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIpv4List : GenericObject;
       assignedClientIpv6List : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedNamespace : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedNamespace : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       reserved : WinRt.Boolean;
       mainOuterTunnelTransport : WinRt.IInspectable;
       optionalOuterTunnelTransport : WinRt.IInspectable;
-      assignedTrafficFilters : Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
+      assignedTrafficFilters : WinRt.Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -980,14 +980,14 @@ package body WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIpv4Addresses : GenericObject;
       assignedClientIpv6Addresses : GenericObject;
-      vpninterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedNamespace : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpninterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedNamespace : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       reserved : WinRt.Boolean;
       transports : GenericObject;
-      assignedTrafficFilters : Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
+      assignedTrafficFilters : WinRt.Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1053,7 +1053,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Sockets.ControlChannelTriggerStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Sockets.ControlChannelTriggerStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel4, WinRt.Windows.Networking.Vpn.IID_IVpnChannel4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnChannel.all);
@@ -1089,7 +1089,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure AppendVpnReceivePacketBuffer
    (
       this : in out VpnChannel;
-      decapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      decapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1108,7 +1108,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure AppendVpnSendPacketBuffer
    (
       this : in out VpnChannel;
-      encapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      encapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1164,14 +1164,14 @@ package body WinRt.Windows.Networking.Vpn is
    (
       this : in out VpnChannel;
       packageRelativeAppId : WinRt.WString;
-      sharedContext : Windows.Foundation.Collections.ValueSet'Class
+      sharedContext : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannel6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       HStr_packageRelativeAppId : constant WinRt.HString := To_HString (packageRelativeAppId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannel_Interface, WinRt.Windows.Networking.Vpn.IVpnChannel6, WinRt.Windows.Networking.Vpn.IID_IVpnChannel6'Unchecked_Access);
    begin
@@ -1182,7 +1182,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_packageRelativeAppId);
       end return;
@@ -1219,7 +1219,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnChannelActivityEventType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnChannelActivityEventType;
    begin
       Hr := this.m_IVpnChannelActivityEventArgs.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1259,7 +1259,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnChannelActivityEventType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnChannelActivityEventType;
    begin
       Hr := this.m_IVpnChannelActivityStateChangedArgs.all.get_ActivityState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1319,7 +1319,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHostName.Kind;
    begin
       Hr := this.m_IVpnChannelConfiguration.all.get_ServerHostNameList (m_ComRetVal'Access);
@@ -1360,7 +1360,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration_Interface, WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration2, WinRt.Windows.Networking.Vpn.IID_IVpnChannelConfiguration2'Unchecked_Access);
    begin
@@ -1406,14 +1406,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IVpnCredential.all.get_PasskeyCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -1426,14 +1426,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IVpnCredential.all.get_CertificateCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
+         Retval.m_ICertificate := new WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
    end;
@@ -1466,14 +1466,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IVpnCredential.all.get_OldPasswordCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -1504,13 +1504,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomCheckBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomCheckBox");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomCheckBox;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomCheckBox");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomCheckBox;
    begin
       return RetVal : VpnCustomCheckBox do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomCheckBox := new Windows.Networking.Vpn.IVpnCustomCheckBox;
+            Retval.m_IVpnCustomCheckBox := new WinRt.Windows.Networking.Vpn.IVpnCustomCheckBox;
             Retval.m_IVpnCustomCheckBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1720,13 +1720,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomComboBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomComboBox");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomComboBox;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomComboBox");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomComboBox;
    begin
       return RetVal : VpnCustomComboBox do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomComboBox := new Windows.Networking.Vpn.IVpnCustomComboBox;
+            Retval.m_IVpnCustomComboBox := new WinRt.Windows.Networking.Vpn.IVpnCustomComboBox;
             Retval.m_IVpnCustomComboBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1759,7 +1759,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IVpnCustomComboBox.all.get_OptionsText (m_ComRetVal'Access);
@@ -1939,13 +1939,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomEditBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomEditBox");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomEditBox;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomEditBox");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomEditBox;
    begin
       return RetVal : VpnCustomEditBox do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomEditBox := new Windows.Networking.Vpn.IVpnCustomEditBox;
+            Retval.m_IVpnCustomEditBox := new WinRt.Windows.Networking.Vpn.IVpnCustomEditBox;
             Retval.m_IVpnCustomEditBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2195,13 +2195,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomErrorBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomErrorBox");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomErrorBox;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomErrorBox");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomErrorBox;
    begin
       return RetVal : VpnCustomErrorBox do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomErrorBox := new Windows.Networking.Vpn.IVpnCustomErrorBox;
+            Retval.m_IVpnCustomErrorBox := new WinRt.Windows.Networking.Vpn.IVpnCustomErrorBox;
             Retval.m_IVpnCustomErrorBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2362,13 +2362,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptBooleanInput is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptBooleanInput");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomPromptBooleanInput;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptBooleanInput");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptBooleanInput;
    begin
       return RetVal : VpnCustomPromptBooleanInput do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomPromptBooleanInput := new Windows.Networking.Vpn.IVpnCustomPromptBooleanInput;
+            Retval.m_IVpnCustomPromptBooleanInput := new WinRt.Windows.Networking.Vpn.IVpnCustomPromptBooleanInput;
             Retval.m_IVpnCustomPromptBooleanInput.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2578,13 +2578,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptOptionSelector is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptOptionSelector");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomPromptOptionSelector;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptOptionSelector");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptOptionSelector;
    begin
       return RetVal : VpnCustomPromptOptionSelector do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomPromptOptionSelector := new Windows.Networking.Vpn.IVpnCustomPromptOptionSelector;
+            Retval.m_IVpnCustomPromptOptionSelector := new WinRt.Windows.Networking.Vpn.IVpnCustomPromptOptionSelector;
             Retval.m_IVpnCustomPromptOptionSelector.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2602,7 +2602,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnCustomPromptOptionSelector.all.get_Options (m_ComRetVal'Access);
@@ -2782,13 +2782,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptText");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomPromptText;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptText");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptText;
    begin
       return RetVal : VpnCustomPromptText do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomPromptText := new Windows.Networking.Vpn.IVpnCustomPromptText;
+            Retval.m_IVpnCustomPromptText := new WinRt.Windows.Networking.Vpn.IVpnCustomPromptText;
             Retval.m_IVpnCustomPromptText.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2986,13 +2986,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptTextInput is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptTextInput");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomPromptTextInput;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptTextInput");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptTextInput;
    begin
       return RetVal : VpnCustomPromptTextInput do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomPromptTextInput := new Windows.Networking.Vpn.IVpnCustomPromptTextInput;
+            Retval.m_IVpnCustomPromptTextInput := new WinRt.Windows.Networking.Vpn.IVpnCustomPromptTextInput;
             Retval.m_IVpnCustomPromptTextInput.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3242,13 +3242,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomTextBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomTextBox");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnCustomTextBox;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomTextBox");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomTextBox;
    begin
       return RetVal : VpnCustomTextBox do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnCustomTextBox := new Windows.Networking.Vpn.IVpnCustomTextBox;
+            Retval.m_IVpnCustomTextBox := new WinRt.Windows.Networking.Vpn.IVpnCustomTextBox;
             Retval.m_IVpnCustomTextBox.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3446,13 +3446,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnDomainNameAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnDomainNameAssignment");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnDomainNameAssignment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnDomainNameAssignment");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
    begin
       return RetVal : VpnDomainNameAssignment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnDomainNameAssignment := new Windows.Networking.Vpn.IVpnDomainNameAssignment;
+            Retval.m_IVpnDomainNameAssignment := new WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
             Retval.m_IVpnDomainNameAssignment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3470,7 +3470,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnDomainNameInfo.Kind;
    begin
       Hr := this.m_IVpnDomainNameAssignment.all.get_DomainNameList (m_ComRetVal'Access);
@@ -3485,7 +3485,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_ProxyAutoConfigurationUri
    (
       this : in out VpnDomainNameAssignment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3505,14 +3505,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IVpnDomainNameAssignment.all.get_ProxyAutoConfigurationUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3543,24 +3543,24 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor
    (
       name : WinRt.WString;
-      nameType : Windows.Networking.Vpn.VpnDomainNameType;
+      nameType : WinRt.Windows.Networking.Vpn.VpnDomainNameType;
       dnsServerList : GenericObject;
       proxyServerList : GenericObject
    )
    return VpnDomainNameInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnDomainNameInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnDomainNameInfo");
       m_Factory    : access IVpnDomainNameInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnDomainNameInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : VpnDomainNameInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnDomainNameInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateVpnDomainNameInfo (HStr_name, nameType, dnsServerList, proxyServerList, m_ComRetVal'Access);
-            Retval.m_IVpnDomainNameInfo := new Windows.Networking.Vpn.IVpnDomainNameInfo;
+            Retval.m_IVpnDomainNameInfo := new WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo;
             Retval.m_IVpnDomainNameInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3575,7 +3575,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_DomainName
    (
       this : in out VpnDomainNameInfo;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3595,14 +3595,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IVpnDomainNameInfo.all.get_DomainName (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -3610,7 +3610,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_DomainNameType
    (
       this : in out VpnDomainNameInfo;
-      value : Windows.Networking.Vpn.VpnDomainNameType
+      value : WinRt.Windows.Networking.Vpn.VpnDomainNameType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3630,7 +3630,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnDomainNameType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnDomainNameType;
    begin
       Hr := this.m_IVpnDomainNameInfo.all.get_DomainNameType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3647,7 +3647,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHostName.Kind;
    begin
       Hr := this.m_IVpnDomainNameInfo.all.get_DnsServers (m_ComRetVal'Access);
@@ -3667,7 +3667,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHostName.Kind;
    begin
       Hr := this.m_IVpnDomainNameInfo.all.get_WebProxyServers (m_ComRetVal'Access);
@@ -3688,7 +3688,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo_Interface, WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo2, WinRt.Windows.Networking.Vpn.IID_IVpnDomainNameInfo2'Unchecked_Access);
    begin
@@ -3754,14 +3754,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IVpnForegroundActivatedEventArgs.all.get_SharedContext (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3774,14 +3774,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnForegroundActivationOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnForegroundActivationOperation;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnForegroundActivationOperation do
          Hr := this.m_IVpnForegroundActivatedEventArgs.all.get_ActivationOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnForegroundActivationOperation := new Windows.Networking.Vpn.IVpnForegroundActivationOperation;
+         Retval.m_IVpnForegroundActivationOperation := new WinRt.Windows.Networking.Vpn.IVpnForegroundActivationOperation;
          Retval.m_IVpnForegroundActivationOperation.all := m_ComRetVal;
       end return;
    end;
@@ -3795,7 +3795,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
@@ -3816,7 +3816,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnForegroundActivatedEventArgs.all);
@@ -3837,7 +3837,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3847,7 +3847,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3861,7 +3861,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnForegroundActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3871,7 +3871,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3902,7 +3902,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure Complete
    (
       this : in out VpnForegroundActivationOperation;
-      result : Windows.Foundation.Collections.ValueSet'Class
+      result : WinRt.Windows.Foundation.Collections.ValueSet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3944,17 +3944,17 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnInterfaceId is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnInterfaceId");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnInterfaceId");
       m_Factory    : access IVpnInterfaceIdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnInterfaceId;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
       function Convert_address_x is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : VpnInterfaceId do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnInterfaceIdFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateVpnInterfaceId (WinRt.UInt32(address_x'Length), Convert_address_x (address_x (address_x'First)'Address), m_ComRetVal'Access);
-            Retval.m_IVpnInterfaceId := new Windows.Networking.Vpn.IVpnInterfaceId;
+            Retval.m_IVpnInterfaceId := new WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
             Retval.m_IVpnInterfaceId.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4007,13 +4007,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnManagementAgent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnManagementAgent");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnManagementAgent;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnManagementAgent");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnManagementAgent;
    begin
       return RetVal : VpnManagementAgent do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnManagementAgent := new Windows.Networking.Vpn.IVpnManagementAgent;
+            Retval.m_IVpnManagementAgent := new WinRt.Windows.Networking.Vpn.IVpnManagementAgent;
             Retval.m_IVpnManagementAgent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4092,7 +4092,7 @@ package body WinRt.Windows.Networking.Vpn is
    function AddProfileFromObjectAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4222,7 +4222,7 @@ package body WinRt.Windows.Networking.Vpn is
    function UpdateProfileFromObjectAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4349,7 +4349,7 @@ package body WinRt.Windows.Networking.Vpn is
    function DeleteProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4413,7 +4413,7 @@ package body WinRt.Windows.Networking.Vpn is
    function ConnectProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4477,8 +4477,8 @@ package body WinRt.Windows.Networking.Vpn is
    function ConnectProfileWithPasswordCredentialAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4542,7 +4542,7 @@ package body WinRt.Windows.Networking.Vpn is
    function DisconnectProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -4629,13 +4629,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnNamespaceAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNamespaceAssignment");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnNamespaceAssignment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNamespaceAssignment");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNamespaceAssignment;
    begin
       return RetVal : VpnNamespaceAssignment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnNamespaceAssignment := new Windows.Networking.Vpn.IVpnNamespaceAssignment;
+            Retval.m_IVpnNamespaceAssignment := new WinRt.Windows.Networking.Vpn.IVpnNamespaceAssignment;
             Retval.m_IVpnNamespaceAssignment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4668,7 +4668,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnNamespaceInfo.Kind;
    begin
       Hr := this.m_IVpnNamespaceAssignment.all.get_NamespaceList (m_ComRetVal'Access);
@@ -4683,7 +4683,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_ProxyAutoConfigUri
    (
       this : in out VpnNamespaceAssignment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4703,14 +4703,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IVpnNamespaceAssignment.all.get_ProxyAutoConfigUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -4747,17 +4747,17 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnNamespaceInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNamespaceInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNamespaceInfo");
       m_Factory    : access IVpnNamespaceInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnNamespaceInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNamespaceInfo;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : VpnNamespaceInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnNamespaceInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateVpnNamespaceInfo (HStr_name, dnsServerList, proxyServerList, m_ComRetVal'Access);
-            Retval.m_IVpnNamespaceInfo := new Windows.Networking.Vpn.IVpnNamespaceInfo;
+            Retval.m_IVpnNamespaceInfo := new WinRt.Windows.Networking.Vpn.IVpnNamespaceInfo;
             Retval.m_IVpnNamespaceInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4829,7 +4829,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHostName.Kind;
    begin
       Hr := this.m_IVpnNamespaceInfo.all.get_DnsServers (m_ComRetVal'Access);
@@ -4864,7 +4864,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHostName.Kind;
    begin
       Hr := this.m_IVpnNamespaceInfo.all.get_WebProxyServers (m_ComRetVal'Access);
@@ -4902,13 +4902,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnNativeProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNativeProfile");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnNativeProfile;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNativeProfile");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNativeProfile;
    begin
       return RetVal : VpnNativeProfile do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnNativeProfile := new Windows.Networking.Vpn.IVpnNativeProfile;
+            Retval.m_IVpnNativeProfile := new WinRt.Windows.Networking.Vpn.IVpnNativeProfile;
             Retval.m_IVpnNativeProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4926,7 +4926,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnNativeProfile.all.get_Servers (m_ComRetVal'Access);
@@ -4946,7 +4946,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnRoutingPolicyType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType;
    begin
       Hr := this.m_IVpnNativeProfile.all.get_RoutingPolicyType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4958,7 +4958,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_RoutingPolicyType
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnRoutingPolicyType
+      value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4978,7 +4978,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnNativeProtocolType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnNativeProtocolType;
    begin
       Hr := this.m_IVpnNativeProfile.all.get_NativeProtocolType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4990,7 +4990,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_NativeProtocolType
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnNativeProtocolType
+      value : WinRt.Windows.Networking.Vpn.VpnNativeProtocolType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5010,7 +5010,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnAuthenticationMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod;
    begin
       Hr := this.m_IVpnNativeProfile.all.get_UserAuthenticationMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5022,7 +5022,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_UserAuthenticationMethod
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnAuthenticationMethod
+      value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5042,7 +5042,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnAuthenticationMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod;
    begin
       Hr := this.m_IVpnNativeProfile.all.get_TunnelAuthenticationMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5054,7 +5054,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_TunnelAuthenticationMethod
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnAuthenticationMethod
+      value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5157,7 +5157,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnAppId.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnNativeProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -5181,7 +5181,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnNativeProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -5205,7 +5205,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnDomainNameInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnNativeProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -5229,7 +5229,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnTrafficFilter.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnNativeProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -5373,7 +5373,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnNativeProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnManagementConnectionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnManagementConnectionStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnNativeProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnNativeProfile2, WinRt.Windows.Networking.Vpn.IID_IVpnNativeProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnNativeProfile.all);
@@ -5410,23 +5410,23 @@ package body WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      parentBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class;
+      parentBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class;
       offset : WinRt.UInt32;
       length : WinRt.UInt32
    )
    return VpnPacketBuffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnPacketBuffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnPacketBuffer");
       m_Factory    : access IVpnPacketBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
    begin
       return RetVal : VpnPacketBuffer do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnPacketBufferFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateVpnPacketBuffer (parentBuffer.m_IVpnPacketBuffer.all, offset, length, m_ComRetVal'Access);
-            Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+            Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
             Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5445,14 +5445,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.Buffer do
          Hr := this.m_IVpnPacketBuffer.all.get_Buffer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBuffer := new Windows.Storage.Streams.IBuffer;
+         Retval.m_IBuffer := new WinRt.Windows.Storage.Streams.IBuffer;
          Retval.m_IBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -5460,7 +5460,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_Status
    (
       this : in out VpnPacketBuffer;
-      value : Windows.Networking.Vpn.VpnPacketBufferStatus
+      value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5480,7 +5480,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnPacketBufferStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus;
    begin
       Hr := this.m_IVpnPacketBuffer.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5530,7 +5530,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnAppId;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnAppId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPacketBuffer_Interface, WinRt.Windows.Networking.Vpn.IVpnPacketBuffer2, WinRt.Windows.Networking.Vpn.IID_IVpnPacketBuffer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnAppId do
@@ -5540,7 +5540,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnAppId := new Windows.Networking.Vpn.IVpnAppId;
+         Retval.m_IVpnAppId := new WinRt.Windows.Networking.Vpn.IVpnAppId;
          Retval.m_IVpnAppId.all := m_ComRetVal;
       end return;
    end;
@@ -5611,7 +5611,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure Append
    (
       this : in out VpnPacketBufferList;
-      nextVpnPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5626,7 +5626,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure AddAtBegin
    (
       this : in out VpnPacketBufferList;
-      nextVpnPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5646,14 +5646,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnPacketBuffer do
          Hr := this.m_IVpnPacketBufferList.all.RemoveAtEnd (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -5666,14 +5666,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnPacketBuffer do
          Hr := this.m_IVpnPacketBufferList.all.RemoveAtBegin (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -5695,7 +5695,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_Status
    (
       this : in out VpnPacketBufferList;
-      value : Windows.Networking.Vpn.VpnPacketBufferStatus
+      value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5715,7 +5715,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnPacketBufferStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus;
    begin
       Hr := this.m_IVpnPacketBufferList.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5751,7 +5751,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVpnPacketBuffer.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnPacketBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
       m_GenericIID     : aliased WinRt.IID := (4204089198, 12503, 20704, (157, 67, 218, 219, 108, 83, 225, 150 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPacketBufferList_Interface, IIterable_IVpnPacketBuffer.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5762,7 +5762,7 @@ package body WinRt.Windows.Networking.Vpn is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnPacketBuffer := new Windows.Networking.Vpn.IVpnPacketBuffer;
+         Retval.m_IVpnPacketBuffer := new WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          Retval.m_IVpnPacketBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -5798,14 +5798,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IVpnPickedCredential.all.get_PasskeyCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -5838,14 +5838,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IVpnPickedCredential.all.get_OldPasswordCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -5876,13 +5876,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnPlugInProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnPlugInProfile");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnPlugInProfile;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnPlugInProfile");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnPlugInProfile;
    begin
       return RetVal : VpnPlugInProfile do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnPlugInProfile := new Windows.Networking.Vpn.IVpnPlugInProfile;
+            Retval.m_IVpnPlugInProfile := new WinRt.Windows.Networking.Vpn.IVpnPlugInProfile;
             Retval.m_IVpnPlugInProfile.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5900,7 +5900,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IUriRuntimeClass.Kind;
    begin
       Hr := this.m_IVpnPlugInProfile.all.get_ServerUris (m_ComRetVal'Access);
@@ -6040,7 +6040,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnAppId.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPlugInProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -6064,7 +6064,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPlugInProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -6088,7 +6088,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnDomainNameInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPlugInProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -6112,7 +6112,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnProfile := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnTrafficFilter.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPlugInProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnProfile, WinRt.Windows.Networking.Vpn.IID_IVpnProfile'Unchecked_Access);
    begin
@@ -6256,7 +6256,7 @@ package body WinRt.Windows.Networking.Vpn is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.Vpn.IVpnPlugInProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnManagementConnectionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnManagementConnectionStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.Vpn.IVpnPlugInProfile_Interface, WinRt.Windows.Networking.Vpn.IVpnPlugInProfile2, WinRt.Windows.Networking.Vpn.IID_IVpnPlugInProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVpnPlugInProfile.all);
@@ -6293,22 +6293,22 @@ package body WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      address_x : Windows.Networking.HostName'Class;
+      address_x : WinRt.Windows.Networking.HostName'Class;
       prefixSize : WinRt.Byte
    )
    return VpnRoute is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnRoute");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnRoute");
       m_Factory    : access IVpnRouteFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnRoute;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnRoute;
    begin
       return RetVal : VpnRoute do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnRouteFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateVpnRoute (address_x.m_IHostName.all, prefixSize, m_ComRetVal'Access);
-            Retval.m_IVpnRoute := new Windows.Networking.Vpn.IVpnRoute;
+            Retval.m_IVpnRoute := new WinRt.Windows.Networking.Vpn.IVpnRoute;
             Retval.m_IVpnRoute.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6322,7 +6322,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_Address
    (
       this : in out VpnRoute;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6342,14 +6342,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IVpnRoute.all.get_Address (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -6412,13 +6412,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnRouteAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnRouteAssignment");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnRouteAssignment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnRouteAssignment");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
    begin
       return RetVal : VpnRouteAssignment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnRouteAssignment := new Windows.Networking.Vpn.IVpnRouteAssignment;
+            Retval.m_IVpnRouteAssignment := new WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
             Retval.m_IVpnRouteAssignment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6466,7 +6466,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
    begin
       Hr := this.m_IVpnRouteAssignment.all.get_Ipv4InclusionRoutes (m_ComRetVal'Access);
@@ -6486,7 +6486,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
    begin
       Hr := this.m_IVpnRouteAssignment.all.get_Ipv6InclusionRoutes (m_ComRetVal'Access);
@@ -6536,7 +6536,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
    begin
       Hr := this.m_IVpnRouteAssignment.all.get_Ipv4ExclusionRoutes (m_ComRetVal'Access);
@@ -6556,7 +6556,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnRoute.Kind;
    begin
       Hr := this.m_IVpnRouteAssignment.all.get_Ipv6ExclusionRoutes (m_ComRetVal'Access);
@@ -6631,14 +6631,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.Buffer do
          Hr := this.m_IVpnSystemHealth.all.get_StatementOfHealth (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBuffer := new Windows.Storage.Streams.IBuffer;
+         Retval.m_IBuffer := new WinRt.Windows.Storage.Streams.IBuffer;
          Retval.m_IBuffer.all := m_ComRetVal;
       end return;
    end;
@@ -6668,21 +6668,21 @@ package body WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      appId : Windows.Networking.Vpn.VpnAppId'Class
+      appId : WinRt.Windows.Networking.Vpn.VpnAppId'Class
    )
    return VpnTrafficFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnTrafficFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnTrafficFilter");
       m_Factory    : access IVpnTrafficFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnTrafficFilter;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnTrafficFilter;
    begin
       return RetVal : VpnTrafficFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IVpnTrafficFilterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (appId.m_IVpnAppId.all, m_ComRetVal'Access);
-            Retval.m_IVpnTrafficFilter := new Windows.Networking.Vpn.IVpnTrafficFilter;
+            Retval.m_IVpnTrafficFilter := new WinRt.Windows.Networking.Vpn.IVpnTrafficFilter;
             Retval.m_IVpnTrafficFilter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6701,14 +6701,14 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.IVpnAppId;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.IVpnAppId;
    begin
       return RetVal : WinRt.Windows.Networking.Vpn.VpnAppId do
          Hr := this.m_IVpnTrafficFilter.all.get_AppId (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVpnAppId := new Windows.Networking.Vpn.IVpnAppId;
+         Retval.m_IVpnAppId := new WinRt.Windows.Networking.Vpn.IVpnAppId;
          Retval.m_IVpnAppId.all := m_ComRetVal;
       end return;
    end;
@@ -6716,7 +6716,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_AppId
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnAppId'Class
+      value : WinRt.Windows.Networking.Vpn.VpnAppId'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6736,7 +6736,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_AppClaims (m_ComRetVal'Access);
@@ -6756,7 +6756,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnIPProtocol;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnIPProtocol;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_Protocol (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6768,7 +6768,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_Protocol
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnIPProtocol
+      value : WinRt.Windows.Networking.Vpn.VpnIPProtocol
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6788,7 +6788,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_LocalPortRanges (m_ComRetVal'Access);
@@ -6808,7 +6808,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_RemotePortRanges (m_ComRetVal'Access);
@@ -6828,7 +6828,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_LocalAddressRanges (m_ComRetVal'Access);
@@ -6848,7 +6848,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_RemoteAddressRanges (m_ComRetVal'Access);
@@ -6868,7 +6868,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Vpn.VpnRoutingPolicyType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType;
    begin
       Hr := this.m_IVpnTrafficFilter.all.get_RoutingPolicyType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6880,7 +6880,7 @@ package body WinRt.Windows.Networking.Vpn is
    procedure put_RoutingPolicyType
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnRoutingPolicyType
+      value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6918,13 +6918,13 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnTrafficFilterAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnTrafficFilterAssignment");
-      m_ComRetVal  : aliased Windows.Networking.Vpn.IVpnTrafficFilterAssignment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnTrafficFilterAssignment");
+      m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnTrafficFilterAssignment;
    begin
       return RetVal : VpnTrafficFilterAssignment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IVpnTrafficFilterAssignment := new Windows.Networking.Vpn.IVpnTrafficFilterAssignment;
+            Retval.m_IVpnTrafficFilterAssignment := new WinRt.Windows.Networking.Vpn.IVpnTrafficFilterAssignment;
             Retval.m_IVpnTrafficFilterAssignment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6942,7 +6942,7 @@ package body WinRt.Windows.Networking.Vpn is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IVpnTrafficFilter.Kind;
    begin
       Hr := this.m_IVpnTrafficFilterAssignment.all.get_TrafficFilterList (m_ComRetVal'Access);

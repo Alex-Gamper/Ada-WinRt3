@@ -876,7 +876,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Kind
       (
          this : access IAdaptiveNotificationContent_Interface;
-         RetVal : access Windows.UI.Notifications.AdaptiveNotificationContentKind
+         RetVal : access WinRt.Windows.UI.Notifications.AdaptiveNotificationContentKind
       )
       return WinRt.Hresult is abstract;
 
@@ -928,7 +928,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access IBadgeNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -954,8 +954,8 @@ package WinRt.Windows.UI.Notifications is
       function CreateBadgeNotification
       (
          this : access IBadgeNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         RetVal : access Windows.UI.Notifications.IBadgeNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -967,7 +967,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateBadgeUpdaterForApplication
       (
          this : access IBadgeUpdateManagerForUser_Interface;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -975,7 +975,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IBadgeUpdateManagerForUser_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -983,14 +983,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IBadgeUpdateManagerForUser_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access IBadgeUpdateManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1002,7 +1002,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateBadgeUpdaterForApplication
       (
          this : access IBadgeUpdateManagerStatics_Interface;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1010,7 +1010,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IBadgeUpdateManagerStatics_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1018,15 +1018,15 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IBadgeUpdateManagerStatics_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdater
       )
       return WinRt.Hresult is abstract;
 
       function GetTemplateContent
       (
          this : access IBadgeUpdateManagerStatics_Interface;
-         type_x : Windows.UI.Notifications.BadgeTemplateType;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         type_x : WinRt.Windows.UI.Notifications.BadgeTemplateType;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1038,8 +1038,8 @@ package WinRt.Windows.UI.Notifications is
       function GetForUser
       (
          this : access IBadgeUpdateManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.UI.Notifications.IBadgeUpdateManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1051,7 +1051,7 @@ package WinRt.Windows.UI.Notifications is
       function Update
       (
          this : access IBadgeUpdater_Interface;
-         notification_p : Windows.UI.Notifications.IBadgeNotification
+         notification_p : WinRt.Windows.UI.Notifications.IBadgeNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1064,17 +1064,17 @@ package WinRt.Windows.UI.Notifications is
       function StartPeriodicUpdate
       (
          this : access IBadgeUpdater_Interface;
-         badgeContent : Windows.Foundation.IUriRuntimeClass;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         badgeContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function StartPeriodicUpdate
       (
          this : access IBadgeUpdater_Interface;
-         badgeContent : Windows.Foundation.IUriRuntimeClass;
-         startTime : Windows.Foundation.DateTime;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         badgeContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -1303,14 +1303,14 @@ package WinRt.Windows.UI.Notifications is
       function get_Visual
       (
          this : access INotification_Interface;
-         RetVal : access Windows.UI.Notifications.INotificationVisual
+         RetVal : access WinRt.Windows.UI.Notifications.INotificationVisual
       )
       return WinRt.Hresult is abstract;
 
       function put_Visual
       (
          this : access INotification_Interface;
-         value : Windows.UI.Notifications.INotificationVisual
+         value : WinRt.Windows.UI.Notifications.INotificationVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -1397,7 +1397,7 @@ package WinRt.Windows.UI.Notifications is
          this : access INotificationDataFactory_Interface;
          initialValues : GenericObject;
          sequenceNumber : WinRt.UInt32;
-         RetVal : access Windows.UI.Notifications.INotificationData
+         RetVal : access WinRt.Windows.UI.Notifications.INotificationData
       )
       return WinRt.Hresult is abstract;
 
@@ -1405,7 +1405,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access INotificationDataFactory_Interface;
          initialValues : GenericObject;
-         RetVal : access Windows.UI.Notifications.INotificationData
+         RetVal : access WinRt.Windows.UI.Notifications.INotificationData
       )
       return WinRt.Hresult is abstract;
 
@@ -1439,7 +1439,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access INotificationVisual_Interface;
          templateName : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.INotificationBinding
+         RetVal : access WinRt.Windows.UI.Notifications.INotificationBinding
       )
       return WinRt.Hresult is abstract;
 
@@ -1451,14 +1451,14 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access IScheduledTileNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function get_DeliveryTime
       (
          this : access IScheduledTileNotification_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1512,9 +1512,9 @@ package WinRt.Windows.UI.Notifications is
       function CreateScheduledTileNotification
       (
          this : access IScheduledTileNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         deliveryTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.UI.Notifications.IScheduledTileNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         deliveryTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.UI.Notifications.IScheduledTileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1526,14 +1526,14 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access IScheduledToastNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function get_DeliveryTime
       (
          this : access IScheduledToastNotification_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1620,14 +1620,14 @@ package WinRt.Windows.UI.Notifications is
       function get_NotificationMirroring
       (
          this : access IScheduledToastNotification3_Interface;
-         RetVal : access Windows.UI.Notifications.NotificationMirroring
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationMirroring
       )
       return WinRt.Hresult is abstract;
 
       function put_NotificationMirroring
       (
          this : access IScheduledToastNotification3_Interface;
-         value : Windows.UI.Notifications.NotificationMirroring
+         value : WinRt.Windows.UI.Notifications.NotificationMirroring
       )
       return WinRt.Hresult is abstract;
 
@@ -1672,20 +1672,20 @@ package WinRt.Windows.UI.Notifications is
       function CreateScheduledToastNotification
       (
          this : access IScheduledToastNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         deliveryTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.UI.Notifications.IScheduledToastNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         deliveryTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.UI.Notifications.IScheduledToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function CreateScheduledToastNotificationRecurring
       (
          this : access IScheduledToastNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         deliveryTime : Windows.Foundation.DateTime;
-         snoozeInterval : Windows.Foundation.TimeSpan;
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         deliveryTime : WinRt.Windows.Foundation.DateTime;
+         snoozeInterval : WinRt.Windows.Foundation.TimeSpan;
          maximumSnoozeCount : WinRt.UInt32;
-         RetVal : access Windows.UI.Notifications.IScheduledToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IScheduledToastNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1711,14 +1711,14 @@ package WinRt.Windows.UI.Notifications is
       function get_ScheduledToastNotification
       (
          this : access IScheduledToastNotificationShowingEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.IScheduledToastNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IScheduledToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IScheduledToastNotificationShowingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1742,7 +1742,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access ITileFlyoutNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1768,8 +1768,8 @@ package WinRt.Windows.UI.Notifications is
       function CreateTileFlyoutNotification
       (
          this : access ITileFlyoutNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         RetVal : access Windows.UI.Notifications.ITileFlyoutNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         RetVal : access WinRt.Windows.UI.Notifications.ITileFlyoutNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1781,7 +1781,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateTileFlyoutUpdaterForApplication
       (
          this : access ITileFlyoutUpdateManagerStatics_Interface;
-         RetVal : access Windows.UI.Notifications.ITileFlyoutUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1789,7 +1789,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileFlyoutUpdateManagerStatics_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileFlyoutUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1797,15 +1797,15 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileFlyoutUpdateManagerStatics_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileFlyoutUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdater
       )
       return WinRt.Hresult is abstract;
 
       function GetTemplateContent
       (
          this : access ITileFlyoutUpdateManagerStatics_Interface;
-         type_x : Windows.UI.Notifications.TileFlyoutTemplateType;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         type_x : WinRt.Windows.UI.Notifications.TileFlyoutTemplateType;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1817,7 +1817,7 @@ package WinRt.Windows.UI.Notifications is
       function Update
       (
          this : access ITileFlyoutUpdater_Interface;
-         notification_p : Windows.UI.Notifications.ITileFlyoutNotification
+         notification_p : WinRt.Windows.UI.Notifications.ITileFlyoutNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1830,17 +1830,17 @@ package WinRt.Windows.UI.Notifications is
       function StartPeriodicUpdate
       (
          this : access ITileFlyoutUpdater_Interface;
-         tileFlyoutContent : Windows.Foundation.IUriRuntimeClass;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         tileFlyoutContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function StartPeriodicUpdate
       (
          this : access ITileFlyoutUpdater_Interface;
-         tileFlyoutContent : Windows.Foundation.IUriRuntimeClass;
-         startTime : Windows.Foundation.DateTime;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         tileFlyoutContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -1853,7 +1853,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Setting
       (
          this : access ITileFlyoutUpdater_Interface;
-         RetVal : access Windows.UI.Notifications.NotificationSetting
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationSetting
       )
       return WinRt.Hresult is abstract;
 
@@ -1865,7 +1865,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access ITileNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1905,8 +1905,8 @@ package WinRt.Windows.UI.Notifications is
       function CreateTileNotification
       (
          this : access ITileNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         RetVal : access Windows.UI.Notifications.ITileNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         RetVal : access WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -1918,7 +1918,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateTileUpdaterForApplicationForUser
       (
          this : access ITileUpdateManagerForUser_Interface;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1926,7 +1926,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdateManagerForUser_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1934,14 +1934,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdateManagerForUser_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access ITileUpdateManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1953,7 +1953,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateTileUpdaterForApplication
       (
          this : access ITileUpdateManagerStatics_Interface;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1961,7 +1961,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdateManagerStatics_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
@@ -1969,15 +1969,15 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdateManagerStatics_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.ITileUpdater
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdater
       )
       return WinRt.Hresult is abstract;
 
       function GetTemplateContent
       (
          this : access ITileUpdateManagerStatics_Interface;
-         type_x : Windows.UI.Notifications.TileTemplateType;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         type_x : WinRt.Windows.UI.Notifications.TileTemplateType;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -1989,8 +1989,8 @@ package WinRt.Windows.UI.Notifications is
       function GetForUser
       (
          this : access ITileUpdateManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.UI.Notifications.ITileUpdateManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.UI.Notifications.ITileUpdateManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2002,7 +2002,7 @@ package WinRt.Windows.UI.Notifications is
       function Update
       (
          this : access ITileUpdater_Interface;
-         notification_p : Windows.UI.Notifications.ITileNotification
+         notification_p : WinRt.Windows.UI.Notifications.ITileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -2022,21 +2022,21 @@ package WinRt.Windows.UI.Notifications is
       function get_Setting
       (
          this : access ITileUpdater_Interface;
-         RetVal : access Windows.UI.Notifications.NotificationSetting
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationSetting
       )
       return WinRt.Hresult is abstract;
 
       function AddToSchedule
       (
          this : access ITileUpdater_Interface;
-         scheduledTile : Windows.UI.Notifications.IScheduledTileNotification
+         scheduledTile : WinRt.Windows.UI.Notifications.IScheduledTileNotification
       )
       return WinRt.Hresult is abstract;
 
       function RemoveFromSchedule
       (
          this : access ITileUpdater_Interface;
-         scheduledTile : Windows.UI.Notifications.IScheduledTileNotification
+         scheduledTile : WinRt.Windows.UI.Notifications.IScheduledTileNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -2050,17 +2050,17 @@ package WinRt.Windows.UI.Notifications is
       function StartPeriodicUpdate
       (
          this : access ITileUpdater_Interface;
-         tileContent : Windows.Foundation.IUriRuntimeClass;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         tileContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function StartPeriodicUpdate
       (
          this : access ITileUpdater_Interface;
-         tileContent : Windows.Foundation.IUriRuntimeClass;
-         startTime : Windows.Foundation.DateTime;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         tileContent : WinRt.Windows.Foundation.IUriRuntimeClass;
+         startTime : WinRt.Windows.Foundation.DateTime;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -2074,7 +2074,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdater_Interface;
          tileContents : GenericObject;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -2082,8 +2082,8 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access ITileUpdater_Interface;
          tileContents : GenericObject;
-         startTime : Windows.Foundation.DateTime;
-         requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+         startTime : WinRt.Windows.Foundation.DateTime;
+         requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -2133,7 +2133,7 @@ package WinRt.Windows.UI.Notifications is
       function get_UserInput
       (
          this : access IToastActivatedEventArgs2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -2180,14 +2180,14 @@ package WinRt.Windows.UI.Notifications is
       function get_Icon
       (
          this : access IToastCollection_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Icon
       (
          this : access IToastCollection_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2202,8 +2202,8 @@ package WinRt.Windows.UI.Notifications is
          collectionId : WinRt.HString;
          displayName : WinRt.HString;
          launchArgs : WinRt.HString;
-         iconUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.Notifications.IToastCollection
+         iconUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.Notifications.IToastCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2215,8 +2215,8 @@ package WinRt.Windows.UI.Notifications is
       function SaveToastCollectionAsync
       (
          this : access IToastCollectionManager_Interface;
-         collection : Windows.UI.Notifications.IToastCollection;
-         RetVal : access Windows.Foundation.IAsyncAction
+         collection : WinRt.Windows.UI.Notifications.IToastCollection;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2239,21 +2239,21 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastCollectionManager_Interface;
          collectionId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RemoveAllToastCollectionsAsync
       (
          this : access IToastCollectionManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access IToastCollectionManager_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2272,7 +2272,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Reason
       (
          this : access IToastDismissedEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.ToastDismissalReason
+         RetVal : access WinRt.Windows.UI.Notifications.ToastDismissalReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2284,7 +2284,7 @@ package WinRt.Windows.UI.Notifications is
       function get_ErrorCode
       (
          this : access IToastFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2296,7 +2296,7 @@ package WinRt.Windows.UI.Notifications is
       function get_Content
       (
          this : access IToastNotification_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -2318,14 +2318,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotification_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Dismissed
       (
          this : access IToastNotification_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2333,14 +2333,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotification_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Activated
       (
          this : access IToastNotification_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2348,14 +2348,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotification_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Failed
       (
          this : access IToastNotification_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2414,14 +2414,14 @@ package WinRt.Windows.UI.Notifications is
       function get_NotificationMirroring
       (
          this : access IToastNotification3_Interface;
-         RetVal : access Windows.UI.Notifications.NotificationMirroring
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationMirroring
       )
       return WinRt.Hresult is abstract;
 
       function put_NotificationMirroring
       (
          this : access IToastNotification3_Interface;
-         value : Windows.UI.Notifications.NotificationMirroring
+         value : WinRt.Windows.UI.Notifications.NotificationMirroring
       )
       return WinRt.Hresult is abstract;
 
@@ -2447,28 +2447,28 @@ package WinRt.Windows.UI.Notifications is
       function get_Data
       (
          this : access IToastNotification4_Interface;
-         RetVal : access Windows.UI.Notifications.INotificationData
+         RetVal : access WinRt.Windows.UI.Notifications.INotificationData
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IToastNotification4_Interface;
-         value : Windows.UI.Notifications.INotificationData
+         value : WinRt.Windows.UI.Notifications.INotificationData
       )
       return WinRt.Hresult is abstract;
 
       function get_Priority
       (
          this : access IToastNotification4_Interface;
-         RetVal : access Windows.UI.Notifications.ToastNotificationPriority
+         RetVal : access WinRt.Windows.UI.Notifications.ToastNotificationPriority
       )
       return WinRt.Hresult is abstract;
 
       function put_Priority
       (
          this : access IToastNotification4_Interface;
-         value : Windows.UI.Notifications.ToastNotificationPriority
+         value : WinRt.Windows.UI.Notifications.ToastNotificationPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -2506,7 +2506,7 @@ package WinRt.Windows.UI.Notifications is
       function get_UserInput
       (
          this : access IToastNotificationActionTriggerDetail_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -2518,8 +2518,8 @@ package WinRt.Windows.UI.Notifications is
       function CreateToastNotification
       (
          this : access IToastNotificationFactory_Interface;
-         content : Windows.Data.Xml.Dom.IXmlDocument;
-         RetVal : access Windows.UI.Notifications.IToastNotification
+         content : WinRt.Windows.Data.Xml.Dom.IXmlDocument;
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -2608,7 +2608,7 @@ package WinRt.Windows.UI.Notifications is
       function get_ChangeType
       (
          this : access IToastNotificationHistoryChangedTriggerDetail_Interface;
-         RetVal : access Windows.UI.Notifications.ToastHistoryChangedType
+         RetVal : access WinRt.Windows.UI.Notifications.ToastHistoryChangedType
       )
       return WinRt.Hresult is abstract;
 
@@ -2632,7 +2632,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateToastNotifier
       (
          this : access IToastNotificationManagerForUser_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotifier
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -2640,21 +2640,21 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotificationManagerForUser_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IToastNotifier
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotifier
       )
       return WinRt.Hresult is abstract;
 
       function get_History
       (
          this : access IToastNotificationManagerForUser_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotificationHistory
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotificationHistory
       )
       return WinRt.Hresult is abstract;
 
       function get_User
       (
          this : access IToastNotificationManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2682,7 +2682,7 @@ package WinRt.Windows.UI.Notifications is
       function GetToastCollectionManager
       (
          this : access IToastNotificationManagerForUser2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastCollectionManager
+         RetVal : access WinRt.Windows.UI.Notifications.IToastCollectionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2690,7 +2690,7 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotificationManagerForUser2_Interface;
          appId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IToastCollectionManager
+         RetVal : access WinRt.Windows.UI.Notifications.IToastCollectionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2702,7 +2702,7 @@ package WinRt.Windows.UI.Notifications is
       function get_NotificationMode
       (
          this : access IToastNotificationManagerForUser3_Interface;
-         RetVal : access Windows.UI.Notifications.ToastNotificationMode
+         RetVal : access WinRt.Windows.UI.Notifications.ToastNotificationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2710,14 +2710,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotificationManagerForUser3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NotificationModeChanged
       (
          this : access IToastNotificationManagerForUser3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2729,7 +2729,7 @@ package WinRt.Windows.UI.Notifications is
       function CreateToastNotifier
       (
          this : access IToastNotificationManagerStatics_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotifier
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotifier
       )
       return WinRt.Hresult is abstract;
 
@@ -2737,15 +2737,15 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotificationManagerStatics_Interface;
          applicationId : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.IToastNotifier
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotifier
       )
       return WinRt.Hresult is abstract;
 
       function GetTemplateContent
       (
          this : access IToastNotificationManagerStatics_Interface;
-         type_x : Windows.UI.Notifications.ToastTemplateType;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         type_x : WinRt.Windows.UI.Notifications.ToastTemplateType;
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -2757,7 +2757,7 @@ package WinRt.Windows.UI.Notifications is
       function get_History
       (
          this : access IToastNotificationManagerStatics2_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotificationHistory
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotificationHistory
       )
       return WinRt.Hresult is abstract;
 
@@ -2769,15 +2769,15 @@ package WinRt.Windows.UI.Notifications is
       function GetForUser
       (
          this : access IToastNotificationManagerStatics4_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.UI.Notifications.IToastNotificationManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser
       )
       return WinRt.Hresult is abstract;
 
       function ConfigureNotificationMirroring
       (
          this : access IToastNotificationManagerStatics4_Interface;
-         value : Windows.UI.Notifications.NotificationMirroring
+         value : WinRt.Windows.UI.Notifications.NotificationMirroring
       )
       return WinRt.Hresult is abstract;
 
@@ -2789,7 +2789,7 @@ package WinRt.Windows.UI.Notifications is
       function GetDefault
       (
          this : access IToastNotificationManagerStatics5_Interface;
-         RetVal : access Windows.UI.Notifications.IToastNotificationManagerForUser
+         RetVal : access WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2801,35 +2801,35 @@ package WinRt.Windows.UI.Notifications is
       function Show
       (
          this : access IToastNotifier_Interface;
-         notification_p : Windows.UI.Notifications.IToastNotification
+         notification_p : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function Hide
       (
          this : access IToastNotifier_Interface;
-         notification_p : Windows.UI.Notifications.IToastNotification
+         notification_p : WinRt.Windows.UI.Notifications.IToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function get_Setting
       (
          this : access IToastNotifier_Interface;
-         RetVal : access Windows.UI.Notifications.NotificationSetting
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationSetting
       )
       return WinRt.Hresult is abstract;
 
       function AddToSchedule
       (
          this : access IToastNotifier_Interface;
-         scheduledToast : Windows.UI.Notifications.IScheduledToastNotification
+         scheduledToast : WinRt.Windows.UI.Notifications.IScheduledToastNotification
       )
       return WinRt.Hresult is abstract;
 
       function RemoveFromSchedule
       (
          this : access IToastNotifier_Interface;
-         scheduledToast : Windows.UI.Notifications.IScheduledToastNotification
+         scheduledToast : WinRt.Windows.UI.Notifications.IScheduledToastNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -2848,19 +2848,19 @@ package WinRt.Windows.UI.Notifications is
       function Update
       (
          this : access IToastNotifier2_Interface;
-         data : Windows.UI.Notifications.INotificationData;
+         data : WinRt.Windows.UI.Notifications.INotificationData;
          tag : WinRt.HString;
          group : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.NotificationUpdateResult
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationUpdateResult
       )
       return WinRt.Hresult is abstract;
 
       function Update
       (
          this : access IToastNotifier2_Interface;
-         data : Windows.UI.Notifications.INotificationData;
+         data : WinRt.Windows.UI.Notifications.INotificationData;
          tag : WinRt.HString;
-         RetVal : access Windows.UI.Notifications.NotificationUpdateResult
+         RetVal : access WinRt.Windows.UI.Notifications.NotificationUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2873,14 +2873,14 @@ package WinRt.Windows.UI.Notifications is
       (
          this : access IToastNotifier3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScheduledToastNotificationShowing
       (
          this : access IToastNotifier3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2892,14 +2892,14 @@ package WinRt.Windows.UI.Notifications is
       function get_Notification
       (
          this : access IUserNotification_Interface;
-         RetVal : access Windows.UI.Notifications.INotification
+         RetVal : access WinRt.Windows.UI.Notifications.INotification
       )
       return WinRt.Hresult is abstract;
 
       function get_AppInfo
       (
          this : access IUserNotification_Interface;
-         RetVal : access Windows.ApplicationModel.IAppInfo
+         RetVal : access WinRt.Windows.ApplicationModel.IAppInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -2913,7 +2913,7 @@ package WinRt.Windows.UI.Notifications is
       function get_CreationTime
       (
          this : access IUserNotification_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2925,7 +2925,7 @@ package WinRt.Windows.UI.Notifications is
       function get_ChangeKind
       (
          this : access IUserNotificationChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Notifications.UserNotificationChangedKind
+         RetVal : access WinRt.Windows.UI.Notifications.UserNotificationChangedKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3003,7 +3003,7 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return BadgeNotification;
 
@@ -3049,13 +3049,13 @@ package WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.BadgeTemplateType
+         type_x : WinRt.Windows.UI.Notifications.BadgeTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser;
 
@@ -3108,7 +3108,7 @@ package WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out BadgeUpdater;
-      notification_p : Windows.UI.Notifications.BadgeNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.BadgeNotification'Class
    );
 
    procedure Clear
@@ -3119,16 +3119,16 @@ package WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out BadgeUpdater;
-      badgeContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      badgeContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StartPeriodicUpdate
    (
       this : in out BadgeUpdater;
-      badgeContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      badgeContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StopPeriodicUpdate
@@ -3267,7 +3267,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_Visual
    (
       this : in out Notification;
-      value : Windows.UI.Notifications.NotificationVisual'Class
+      value : WinRt.Windows.UI.Notifications.NotificationVisual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3405,8 +3405,8 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime
    )
    return ScheduledTileNotification;
 
@@ -3472,16 +3472,16 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime
    )
    return ScheduledToastNotification;
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime;
-      snoozeInterval : Windows.Foundation.TimeSpan;
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime;
+      snoozeInterval : WinRt.Windows.Foundation.TimeSpan;
       maximumSnoozeCount : WinRt.UInt32
    )
    return ScheduledToastNotification;
@@ -3570,7 +3570,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_NotificationMirroring
    (
       this : in out ScheduledToastNotification;
-      value : Windows.UI.Notifications.NotificationMirroring
+      value : WinRt.Windows.UI.Notifications.NotificationMirroring
    );
 
    function get_RemoteId
@@ -3656,7 +3656,7 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return TileFlyoutNotification;
 
@@ -3702,7 +3702,7 @@ package WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.TileFlyoutTemplateType
+         type_x : WinRt.Windows.UI.Notifications.TileFlyoutTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
@@ -3720,7 +3720,7 @@ package WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out TileFlyoutUpdater;
-      notification_p : Windows.UI.Notifications.TileFlyoutNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.TileFlyoutNotification'Class
    );
 
    procedure Clear
@@ -3731,16 +3731,16 @@ package WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileFlyoutUpdater;
-      tileFlyoutContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileFlyoutContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StartPeriodicUpdate
    (
       this : in out TileFlyoutUpdater;
-      tileFlyoutContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileFlyoutContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StopPeriodicUpdate
@@ -3765,7 +3765,7 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return TileNotification;
 
@@ -3823,13 +3823,13 @@ package WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.TileTemplateType
+         type_x : WinRt.Windows.UI.Notifications.TileTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.TileUpdateManagerForUser;
 
@@ -3882,7 +3882,7 @@ package WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out TileUpdater;
-      notification_p : Windows.UI.Notifications.TileNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.TileNotification'Class
    );
 
    procedure Clear
@@ -3905,13 +3905,13 @@ package WinRt.Windows.UI.Notifications is
    procedure AddToSchedule
    (
       this : in out TileUpdater;
-      scheduledTile : Windows.UI.Notifications.ScheduledTileNotification'Class
+      scheduledTile : WinRt.Windows.UI.Notifications.ScheduledTileNotification'Class
    );
 
    procedure RemoveFromSchedule
    (
       this : in out TileUpdater;
-      scheduledTile : Windows.UI.Notifications.ScheduledTileNotification'Class
+      scheduledTile : WinRt.Windows.UI.Notifications.ScheduledTileNotification'Class
    );
 
    function GetScheduledTileNotifications
@@ -3923,16 +3923,16 @@ package WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileUpdater;
-      tileContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StartPeriodicUpdate
    (
       this : in out TileUpdater;
-      tileContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StopPeriodicUpdate
@@ -3944,15 +3944,15 @@ package WinRt.Windows.UI.Notifications is
    (
       this : in out TileUpdater;
       tileContents : GenericObject;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure StartPeriodicUpdateBatch
    (
       this : in out TileUpdater;
       tileContents : GenericObject;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    );
 
    procedure EnableNotificationQueueForSquare150x150
@@ -4008,7 +4008,7 @@ package WinRt.Windows.UI.Notifications is
       collectionId : WinRt.WString;
       displayName : WinRt.WString;
       launchArgs : WinRt.WString;
-      iconUri : Windows.Foundation.Uri'Class
+      iconUri : WinRt.Windows.Foundation.Uri'Class
    )
    return ToastCollection;
 
@@ -4054,7 +4054,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_Icon
    (
       this : in out ToastCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4069,7 +4069,7 @@ package WinRt.Windows.UI.Notifications is
    procedure SaveToastCollectionAsync
    (
       this : in out ToastCollectionManager;
-      collection : Windows.UI.Notifications.ToastCollection'Class
+      collection : WinRt.Windows.UI.Notifications.ToastCollection'Class
    );
 
    function FindAllToastCollectionsAsync
@@ -4149,7 +4149,7 @@ package WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return ToastNotification;
 
@@ -4184,7 +4184,7 @@ package WinRt.Windows.UI.Notifications is
    procedure remove_Dismissed
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Activated
@@ -4197,7 +4197,7 @@ package WinRt.Windows.UI.Notifications is
    procedure remove_Activated
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Failed
@@ -4210,7 +4210,7 @@ package WinRt.Windows.UI.Notifications is
    procedure remove_Failed
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_Tag
@@ -4258,7 +4258,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_NotificationMirroring
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.NotificationMirroring
+      value : WinRt.Windows.UI.Notifications.NotificationMirroring
    );
 
    function get_RemoteId
@@ -4282,7 +4282,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_Data
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.NotificationData'Class
+      value : WinRt.Windows.UI.Notifications.NotificationData'Class
    );
 
    function get_Priority
@@ -4294,7 +4294,7 @@ package WinRt.Windows.UI.Notifications is
    procedure put_Priority
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.ToastNotificationPriority
+      value : WinRt.Windows.UI.Notifications.ToastNotificationPriority
    );
 
    function get_ExpiresOnReboot
@@ -4427,13 +4427,13 @@ package WinRt.Windows.UI.Notifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser;
 
       procedure ConfigureNotificationMirroring
       (
-         value : Windows.UI.Notifications.NotificationMirroring
+         value : WinRt.Windows.UI.Notifications.NotificationMirroring
       );
 
       function CreateToastNotifier
@@ -4447,7 +4447,7 @@ package WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.ToastTemplateType
+         type_x : WinRt.Windows.UI.Notifications.ToastTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument;
 
@@ -4533,7 +4533,7 @@ package WinRt.Windows.UI.Notifications is
    procedure remove_NotificationModeChanged
    (
       this : in out ToastNotificationManagerForUser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -4548,13 +4548,13 @@ package WinRt.Windows.UI.Notifications is
    procedure Show
    (
       this : in out ToastNotifier;
-      notification_p : Windows.UI.Notifications.ToastNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    procedure Hide
    (
       this : in out ToastNotifier;
-      notification_p : Windows.UI.Notifications.ToastNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.ToastNotification'Class
    );
 
    function get_Setting
@@ -4566,13 +4566,13 @@ package WinRt.Windows.UI.Notifications is
    procedure AddToSchedule
    (
       this : in out ToastNotifier;
-      scheduledToast : Windows.UI.Notifications.ScheduledToastNotification'Class
+      scheduledToast : WinRt.Windows.UI.Notifications.ScheduledToastNotification'Class
    );
 
    procedure RemoveFromSchedule
    (
       this : in out ToastNotifier;
-      scheduledToast : Windows.UI.Notifications.ScheduledToastNotification'Class
+      scheduledToast : WinRt.Windows.UI.Notifications.ScheduledToastNotification'Class
    );
 
    function GetScheduledToastNotifications
@@ -4584,7 +4584,7 @@ package WinRt.Windows.UI.Notifications is
    function Update
    (
       this : in out ToastNotifier;
-      data : Windows.UI.Notifications.NotificationData'Class;
+      data : WinRt.Windows.UI.Notifications.NotificationData'Class;
       tag : WinRt.WString;
       group : WinRt.WString
    )
@@ -4593,7 +4593,7 @@ package WinRt.Windows.UI.Notifications is
    function Update
    (
       this : in out ToastNotifier;
-      data : Windows.UI.Notifications.NotificationData'Class;
+      data : WinRt.Windows.UI.Notifications.NotificationData'Class;
       tag : WinRt.WString
    )
    return WinRt.Windows.UI.Notifications.NotificationUpdateResult;
@@ -4608,7 +4608,7 @@ package WinRt.Windows.UI.Notifications is
    procedure remove_ScheduledToastNotificationShowing
    (
       this : in out ToastNotifier;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

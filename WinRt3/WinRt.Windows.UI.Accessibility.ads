@@ -72,7 +72,7 @@ package WinRt.Windows.UI.Accessibility is
       function get_ScreenPositionInRawPixels
       (
          this : access IScreenReaderPositionChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -91,7 +91,7 @@ package WinRt.Windows.UI.Accessibility is
       function get_CurrentScreenReaderPosition
       (
          this : access IScreenReaderService_Interface;
-         RetVal : access Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs
+         RetVal : access WinRt.Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -99,14 +99,14 @@ package WinRt.Windows.UI.Accessibility is
       (
          this : access IScreenReaderService_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScreenReaderPositionChanged
       (
          this : access IScreenReaderService_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -167,7 +167,7 @@ package WinRt.Windows.UI.Accessibility is
    procedure remove_ScreenReaderPositionChanged
    (
       this : in out ScreenReaderService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.UI.Accessibility;

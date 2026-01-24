@@ -155,14 +155,14 @@ package WinRt.Windows.Devices.Display is
       function get_ConnectionKind
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Devices.Display.DisplayMonitorConnectionKind
+         RetVal : access WinRt.Windows.Devices.Display.DisplayMonitorConnectionKind
       )
       return WinRt.Hresult is abstract;
 
       function get_PhysicalConnector
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Devices.Display.DisplayMonitorPhysicalConnectorKind
+         RetVal : access WinRt.Windows.Devices.Display.DisplayMonitorPhysicalConnectorKind
       )
       return WinRt.Hresult is abstract;
 
@@ -176,7 +176,7 @@ package WinRt.Windows.Devices.Display is
       function get_DisplayAdapterId
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Graphics.DisplayAdapterId
+         RetVal : access WinRt.Windows.Graphics.DisplayAdapterId
       )
       return WinRt.Hresult is abstract;
 
@@ -190,14 +190,14 @@ package WinRt.Windows.Devices.Display is
       function get_UsageKind
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Devices.Display.DisplayMonitorUsageKind
+         RetVal : access WinRt.Windows.Devices.Display.DisplayMonitorUsageKind
       )
       return WinRt.Hresult is abstract;
 
       function get_NativeResolutionInRawPixels
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -225,28 +225,28 @@ package WinRt.Windows.Devices.Display is
       function get_RedPrimary
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_GreenPrimary
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_BluePrimary
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_WhitePoint
       (
          this : access IDisplayMonitor_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -274,7 +274,7 @@ package WinRt.Windows.Devices.Display is
       function GetDescriptor
       (
          this : access IDisplayMonitor_Interface;
-         descriptorKind : Windows.Devices.Display.DisplayMonitorDescriptorKind;
+         descriptorKind : WinRt.Windows.Devices.Display.DisplayMonitorDescriptorKind;
          RetValSize : access WinRt.UInt32;
          RetVal : access WinRt.Byte_Ptr
       )
@@ -470,7 +470,7 @@ package WinRt.Windows.Devices.Display is
    function GetDescriptor
    (
       this : in out DisplayMonitor;
-      descriptorKind : Windows.Devices.Display.DisplayMonitorDescriptorKind
+      descriptorKind : WinRt.Windows.Devices.Display.DisplayMonitorDescriptorKind
    )
    return WinRt.Byte_Array;
 

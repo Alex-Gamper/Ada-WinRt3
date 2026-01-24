@@ -73,16 +73,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return BitmapSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IBitmapSource");
       m_Factory    : access IBitmapSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IBitmapSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapSource;
    begin
       return RetVal : BitmapSource do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IBitmapSource := new Windows.UI.Xaml.Media.Imaging.IBitmapSource;
+            Retval.m_IBitmapSource := new WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapSource;
             Retval.m_IBitmapSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -100,7 +100,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapSourceStatics'Access , m_Factory'Address);
@@ -110,7 +110,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -124,7 +124,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapSourceStatics'Access , m_Factory'Address);
@@ -134,7 +134,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -181,7 +181,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure SetSource
    (
       this : in out BitmapSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -196,7 +196,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure SetSourceAsync
    (
       this : in out BitmapSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -262,13 +262,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function Constructor return BitmapImage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IBitmapImage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IBitmapImage");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage;
    begin
       return RetVal : BitmapImage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBitmapImage := new Windows.UI.Xaml.Media.Imaging.IBitmapImage;
+            Retval.m_IBitmapImage := new WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage;
             Retval.m_IBitmapImage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -277,21 +277,21 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
 
    function Constructor
    (
-      uriSource : Windows.Foundation.Uri'Class
+      uriSource : WinRt.Windows.Foundation.Uri'Class
    )
    return BitmapImage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IBitmapImage");
       m_Factory    : access IBitmapImageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IBitmapImage;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage;
    begin
       return RetVal : BitmapImage do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithUriSource (uriSource.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_IBitmapImage := new Windows.UI.Xaml.Media.Imaging.IBitmapImage;
+            Retval.m_IBitmapImage := new WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage;
             Retval.m_IBitmapImage.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -309,7 +309,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics2'Access , m_Factory'Address);
@@ -319,7 +319,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -333,7 +333,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics3'Access , m_Factory'Address);
@@ -343,7 +343,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -357,7 +357,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics3'Access , m_Factory'Address);
@@ -367,7 +367,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -381,7 +381,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics3'Access , m_Factory'Address);
@@ -391,7 +391,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -405,7 +405,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics'Access , m_Factory'Address);
@@ -415,7 +415,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -429,7 +429,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics'Access , m_Factory'Address);
@@ -439,7 +439,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -453,7 +453,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics'Access , m_Factory'Address);
@@ -463,7 +463,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -477,7 +477,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBitmapImageStatics'Access , m_Factory'Address);
@@ -487,7 +487,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -505,7 +505,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions;
    begin
       Hr := this.m_IBitmapImage.all.get_CreateOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -517,7 +517,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_CreateOptions
    (
       this : in out BitmapImage;
-      value : Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
+      value : WinRt.Windows.UI.Xaml.Media.Imaging.BitmapCreateOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -537,14 +537,14 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IBitmapImage.all.get_UriSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -552,7 +552,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_UriSource
    (
       this : in out BitmapImage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -631,13 +631,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function add_DownloadProgress
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler
+      handler : WinRt.Windows.UI.Xaml.Media.Imaging.DownloadProgressEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBitmapImage.all.add_DownloadProgress (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -649,7 +649,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_DownloadProgress
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -664,13 +664,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function add_ImageOpened
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBitmapImage.all.add_ImageOpened (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -682,7 +682,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_ImageOpened
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -697,13 +697,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function add_ImageFailed
    (
       this : in out BitmapImage;
-      handler : Windows.UI.Xaml.ExceptionRoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBitmapImage.all.add_ImageFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -715,7 +715,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_ImageFailed
    (
       this : in out BitmapImage;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -736,7 +736,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Imaging.DecodePixelType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Imaging.DecodePixelType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage_Interface, WinRt.Windows.UI.Xaml.Media.Imaging.IBitmapImage2, WinRt.Windows.UI.Xaml.Media.Imaging.IID_IBitmapImage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBitmapImage.all);
@@ -751,7 +751,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_DecodePixelType
    (
       this : in out BitmapImage;
-      value : Windows.UI.Xaml.Media.Imaging.DecodePixelType
+      value : WinRt.Windows.UI.Xaml.Media.Imaging.DecodePixelType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -947,7 +947,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    (
       this : access DownloadProgressEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs
+      e : WinRt.Windows.UI.Xaml.Media.Imaging.IDownloadProgressEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -982,13 +982,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function Constructor return RenderTargetBitmap is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.RenderTargetBitmap");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmap;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmap");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmap;
    begin
       return RetVal : RenderTargetBitmap do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRenderTargetBitmap := new Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmap;
+            Retval.m_IRenderTargetBitmap := new WinRt.Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmap;
             Retval.m_IRenderTargetBitmap.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1005,7 +1005,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.RenderTargetBitmap");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmapStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRenderTargetBitmapStatics'Access , m_Factory'Address);
@@ -1015,7 +1015,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1029,7 +1029,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.RenderTargetBitmap");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.IRenderTargetBitmapStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRenderTargetBitmapStatics'Access , m_Factory'Address);
@@ -1039,7 +1039,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1086,7 +1086,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure RenderAsync
    (
       this : in out RenderTargetBitmap;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1129,7 +1129,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure RenderAsync
    (
       this : in out RenderTargetBitmap;
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32
    ) is
@@ -1260,13 +1260,13 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function Constructor return SoftwareBitmapSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SoftwareBitmapSource");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.ISoftwareBitmapSource;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.ISoftwareBitmapSource");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.ISoftwareBitmapSource;
    begin
       return RetVal : SoftwareBitmapSource do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISoftwareBitmapSource := new Windows.UI.Xaml.Media.Imaging.ISoftwareBitmapSource;
+            Retval.m_ISoftwareBitmapSource := new WinRt.Windows.UI.Xaml.Media.Imaging.ISoftwareBitmapSource;
             Retval.m_ISoftwareBitmapSource.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1279,7 +1279,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure SetBitmapAsync
    (
       this : in out SoftwareBitmapSource;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1370,16 +1370,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return SurfaceImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SurfaceImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource");
       m_Factory    : access ISurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
    begin
       return RetVal : SurfaceImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_ISurfaceImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithDimensions (pixelWidth, pixelHeight, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISurfaceImageSource := new Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
+            Retval.m_ISurfaceImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
             Retval.m_ISurfaceImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1398,16 +1398,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return SurfaceImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SurfaceImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource");
       m_Factory    : access ISurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
    begin
       return RetVal : SurfaceImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_ISurfaceImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithDimensionsAndOpacity (pixelWidth, pixelHeight, isOpaque, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISurfaceImageSource := new Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
+            Retval.m_ISurfaceImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.ISurfaceImageSource;
             Retval.m_ISurfaceImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1449,16 +1449,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return SvgImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SvgImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.ISvgImageSource");
       m_Factory    : access ISvgImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
    begin
       return RetVal : SvgImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_ISvgImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISvgImageSource := new Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
+            Retval.m_ISvgImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
             Retval.m_ISvgImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1468,23 +1468,23 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
 
    function Constructor
    (
-      uriSource : Windows.Foundation.Uri'Class;
+      uriSource : WinRt.Windows.Foundation.Uri'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SvgImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SvgImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.ISvgImageSource");
       m_Factory    : access ISvgImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
    begin
       return RetVal : SvgImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_ISvgImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithUriSource (uriSource.m_IUriRuntimeClass.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISvgImageSource := new Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
+            Retval.m_ISvgImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSource;
             Retval.m_ISvgImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1502,7 +1502,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SvgImageSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISvgImageSourceStatics'Access , m_Factory'Address);
@@ -1512,7 +1512,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1526,7 +1526,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SvgImageSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISvgImageSourceStatics'Access , m_Factory'Address);
@@ -1536,7 +1536,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1550,7 +1550,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.SvgImageSource");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Imaging.ISvgImageSourceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISvgImageSourceStatics'Access , m_Factory'Address);
@@ -1560,7 +1560,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1578,14 +1578,14 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ISvgImageSource.all.get_UriSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1593,7 +1593,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure put_UriSource
    (
       this : in out SvgImageSource;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1678,7 +1678,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISvgImageSource.all.add_Opened (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1690,7 +1690,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_Opened
    (
       this : in out SvgImageSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1711,7 +1711,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISvgImageSource.all.add_OpenFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1723,7 +1723,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure remove_OpenFailed
    (
       this : in out SvgImageSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1738,7 +1738,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    function SetSourceAsync
    (
       this : in out SvgImageSource;
-      streamSource : Windows.Storage.Streams.IRandomAccessStream
+      streamSource : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus is
       Hr               : WinRt.HResult := S_OK;
@@ -1830,7 +1830,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Imaging.SvgImageSourceLoadStatus;
    begin
       Hr := this.m_ISvgImageSourceFailedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1893,16 +1893,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return VirtualSurfaceImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource");
       m_Factory    : access IVirtualSurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
    begin
       return RetVal : VirtualSurfaceImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_IVirtualSurfaceImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithDimensions (pixelWidth, pixelHeight, m_ComRetVal'Access);
-            Retval.m_IVirtualSurfaceImageSource := new Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
+            Retval.m_IVirtualSurfaceImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
             Retval.m_IVirtualSurfaceImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1919,16 +1919,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return VirtualSurfaceImageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource");
       m_Factory    : access IVirtualSurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
    begin
       return RetVal : VirtualSurfaceImageSource do
          Hr := RoGetActivationFactory (m_hString, IID_IVirtualSurfaceImageSourceFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithDimensionsAndOpacity (pixelWidth, pixelHeight, isOpaque, m_ComRetVal'Access);
-            Retval.m_IVirtualSurfaceImageSource := new Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
+            Retval.m_IVirtualSurfaceImageSource := new WinRt.Windows.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
             Retval.m_IVirtualSurfaceImageSource.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1970,16 +1970,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return WriteableBitmap is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.WriteableBitmap");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IWriteableBitmap");
       m_Factory    : access IWriteableBitmapFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IWriteableBitmap;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IWriteableBitmap;
    begin
       return RetVal : WriteableBitmap do
          Hr := RoGetActivationFactory (m_hString, IID_IWriteableBitmapFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithDimensions (pixelWidth, pixelHeight, m_ComRetVal'Access);
-            Retval.m_IWriteableBitmap := new Windows.UI.Xaml.Media.Imaging.IWriteableBitmap;
+            Retval.m_IWriteableBitmap := new WinRt.Windows.UI.Xaml.Media.Imaging.IWriteableBitmap;
             Retval.m_IWriteableBitmap.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1998,7 +1998,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IWriteableBitmap.all.get_PixelBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2052,16 +2052,16 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    return XamlRenderingBackgroundTask is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.XamlRenderingBackgroundTask");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask");
       m_Factory    : access IXamlRenderingBackgroundTaskFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask;
    begin
       return RetVal : XamlRenderingBackgroundTask do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlRenderingBackgroundTaskFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IXamlRenderingBackgroundTask := new Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask;
+            Retval.m_IXamlRenderingBackgroundTask := new WinRt.Windows.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask;
             Retval.m_IXamlRenderingBackgroundTask.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2075,7 +2075,7 @@ package body WinRt.Windows.UI.Xaml.Media.Imaging is
    procedure OnRun
    (
       this : in out XamlRenderingBackgroundTask;
-      taskInstance : Windows.ApplicationModel.Background.IBackgroundTaskInstance
+      taskInstance : WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

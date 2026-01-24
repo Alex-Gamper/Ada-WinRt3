@@ -81,9 +81,9 @@ package body WinRt.Windows.UI.Composition is
 
    procedure StartAnimationWithIAnimationObject
    (
-      target : Windows.UI.Composition.IAnimationObject;
+      target : WinRt.Windows.UI.Composition.IAnimationObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -106,8 +106,8 @@ package body WinRt.Windows.UI.Composition is
 
    procedure StartAnimationGroupWithIAnimationObject
    (
-      target : Windows.UI.Composition.IAnimationObject;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
+      target : WinRt.Windows.UI.Composition.IAnimationObject;
+      animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -137,14 +137,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositor;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositor;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Compositor do
          Hr := this.m_ICompositionObject.all.get_Compositor (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
+         Retval.m_ICompositor := new WinRt.Windows.UI.Composition.ICompositor;
          Retval.m_ICompositor.all := m_ComRetVal;
       end return;
    end;
@@ -157,14 +157,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.ICoreDispatcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.ICoreDispatcher;
    begin
       return RetVal : WinRt.Windows.UI.Core.CoreDispatcher do
          Hr := this.m_ICompositionObject.all.get_Dispatcher (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreDispatcher := new Windows.UI.Core.ICoreDispatcher;
+         Retval.m_ICoreDispatcher := new WinRt.Windows.UI.Core.ICoreDispatcher;
          Retval.m_ICoreDispatcher.all := m_ComRetVal;
       end return;
    end;
@@ -177,14 +177,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := this.m_ICompositionObject.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
+         Retval.m_ICompositionPropertySet := new WinRt.Windows.UI.Composition.ICompositionPropertySet;
          Retval.m_ICompositionPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -193,7 +193,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -278,7 +278,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IImplicitAnimationCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IImplicitAnimationCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject2, WinRt.Windows.UI.Composition.IID_ICompositionObject2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ImplicitAnimationCollection do
@@ -288,7 +288,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImplicitAnimationCollection := new Windows.UI.Composition.IImplicitAnimationCollection;
+         Retval.m_IImplicitAnimationCollection := new WinRt.Windows.UI.Composition.IImplicitAnimationCollection;
          Retval.m_IImplicitAnimationCollection.all := m_ComRetVal;
       end return;
    end;
@@ -296,7 +296,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ImplicitAnimations
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ImplicitAnimationCollection'Class
+      value : WinRt.Windows.UI.Composition.ImplicitAnimationCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -315,7 +315,7 @@ package body WinRt.Windows.UI.Composition is
    procedure StartAnimationGroup
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -334,7 +334,7 @@ package body WinRt.Windows.UI.Composition is
    procedure StopAnimationGroup
    (
       this : in out CompositionObject;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -359,7 +359,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject3, WinRt.Windows.UI.Composition.IID_ICompositionObject3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
@@ -369,7 +369,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
    end;
@@ -384,7 +384,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionObject4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IAnimationController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IAnimationController;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionObject_Interface, WinRt.Windows.UI.Composition.ICompositionObject4, WinRt.Windows.UI.Composition.IID_ICompositionObject4'Unchecked_Access);
    begin
@@ -395,7 +395,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAnimationController := new Windows.UI.Composition.IAnimationController;
+         Retval.m_IAnimationController := new WinRt.Windows.UI.Composition.IAnimationController;
          Retval.m_IAnimationController.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_propertyName);
       end return;
@@ -405,8 +405,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      animation : Windows.UI.Composition.CompositionAnimation'Class;
-      animationController_p : Windows.UI.Composition.AnimationController'Class
+      animation : WinRt.Windows.UI.Composition.CompositionAnimation'Class;
+      animationController_p : WinRt.Windows.UI.Composition.AnimationController'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -446,7 +446,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionObject;
       propertyName : WinRt.WString;
-      propertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      propertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -498,14 +498,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisualUnorderedCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisualUnorderedCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualUnorderedCollection do
          Hr := this.m_ICompositionLight.all.get_Targets (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisualUnorderedCollection := new Windows.UI.Composition.IVisualUnorderedCollection;
+         Retval.m_IVisualUnorderedCollection := new WinRt.Windows.UI.Composition.IVisualUnorderedCollection;
          Retval.m_IVisualUnorderedCollection.all := m_ComRetVal;
       end return;
    end;
@@ -519,7 +519,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionLight2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisualUnorderedCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisualUnorderedCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionLight_Interface, WinRt.Windows.UI.Composition.ICompositionLight2, WinRt.Windows.UI.Composition.IID_ICompositionLight2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualUnorderedCollection do
@@ -529,7 +529,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisualUnorderedCollection := new Windows.UI.Composition.IVisualUnorderedCollection;
+         Retval.m_IVisualUnorderedCollection := new WinRt.Windows.UI.Composition.IVisualUnorderedCollection;
          Retval.m_IVisualUnorderedCollection.all := m_ComRetVal;
       end return;
    end;
@@ -605,7 +605,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IAmbientLight.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -617,7 +617,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out AmbientLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -809,7 +809,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationControllerProgressBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior;
    begin
       Hr := this.m_IAnimationController.all.get_ProgressBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -821,7 +821,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ProgressBehavior
    (
       this : in out AnimationController;
-      value : Windows.UI.Composition.AnimationControllerProgressBehavior
+      value : WinRt.Windows.UI.Composition.AnimationControllerProgressBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -892,7 +892,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationPropertyAccessMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationPropertyAccessMode;
    begin
       Hr := this.m_IAnimationPropertyInfo.all.get_AccessMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -904,7 +904,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AccessMode
    (
       this : in out AnimationPropertyInfo;
-      value : Windows.UI.Composition.AnimationPropertyAccessMode
+      value : WinRt.Windows.UI.Composition.AnimationPropertyAccessMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -925,7 +925,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IAnimationPropertyInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IAnimationPropertyInfo_Interface, WinRt.Windows.UI.Composition.IAnimationPropertyInfo2, WinRt.Windows.UI.Composition.IID_IAnimationPropertyInfo2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionObject do
@@ -935,7 +935,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionObject := new Windows.UI.Composition.ICompositionObject;
+         Retval.m_ICompositionObject := new WinRt.Windows.UI.Composition.ICompositionObject;
          Retval.m_ICompositionObject.all := m_ComRetVal;
       end return;
    end;
@@ -992,9 +992,9 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateCubicBezierEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      controlPoint1 : Windows.Foundation.Numerics.Vector2;
-      controlPoint2 : Windows.Foundation.Numerics.Vector2
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.CubicBezierEasingFunction is
       Hr               : WinRt.HResult := S_OK;
@@ -1002,7 +1002,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICubicBezierEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICubicBezierEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CubicBezierEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1012,7 +1012,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICubicBezierEasingFunction := new Windows.UI.Composition.ICubicBezierEasingFunction;
+            Retval.m_ICubicBezierEasingFunction := new WinRt.Windows.UI.Composition.ICubicBezierEasingFunction;
             Retval.m_ICubicBezierEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1021,7 +1021,7 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateLinearEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class
+      owner : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.LinearEasingFunction is
       Hr               : WinRt.HResult := S_OK;
@@ -1029,7 +1029,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ILinearEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ILinearEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.LinearEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1039,7 +1039,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILinearEasingFunction := new Windows.UI.Composition.ILinearEasingFunction;
+            Retval.m_ILinearEasingFunction := new WinRt.Windows.UI.Composition.ILinearEasingFunction;
             Retval.m_ILinearEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1048,7 +1048,7 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateStepEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class
+      owner : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction is
       Hr               : WinRt.HResult := S_OK;
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IStepEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1066,7 +1066,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+            Retval.m_IStepEasingFunction := new WinRt.Windows.UI.Composition.IStepEasingFunction;
             Retval.m_IStepEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1075,7 +1075,7 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateStepEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
       stepCount : WinRt.Int32
    )
    return WinRt.Windows.UI.Composition.StepEasingFunction is
@@ -1084,7 +1084,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IStepEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1094,7 +1094,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+            Retval.m_IStepEasingFunction := new WinRt.Windows.UI.Composition.IStepEasingFunction;
             Retval.m_IStepEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1103,8 +1103,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateBackEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       amplitude : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.BackEasingFunction is
@@ -1113,7 +1113,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBackEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBackEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.BackEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1123,7 +1123,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBackEasingFunction := new Windows.UI.Composition.IBackEasingFunction;
+            Retval.m_IBackEasingFunction := new WinRt.Windows.UI.Composition.IBackEasingFunction;
             Retval.m_IBackEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1132,8 +1132,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateBounceEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       bounces : WinRt.Int32;
       bounciness : WinRt.Single
    )
@@ -1143,7 +1143,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBounceEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBounceEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1153,7 +1153,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBounceEasingFunction := new Windows.UI.Composition.IBounceEasingFunction;
+            Retval.m_IBounceEasingFunction := new WinRt.Windows.UI.Composition.IBounceEasingFunction;
             Retval.m_IBounceEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1162,8 +1162,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateCircleEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
    )
    return WinRt.Windows.UI.Composition.CircleEasingFunction is
       Hr               : WinRt.HResult := S_OK;
@@ -1171,7 +1171,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICircleEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICircleEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CircleEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1181,7 +1181,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICircleEasingFunction := new Windows.UI.Composition.ICircleEasingFunction;
+            Retval.m_ICircleEasingFunction := new WinRt.Windows.UI.Composition.ICircleEasingFunction;
             Retval.m_ICircleEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1190,8 +1190,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateElasticEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       oscillations : WinRt.Int32;
       springiness : WinRt.Single
    )
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IElasticEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IElasticEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ElasticEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1211,7 +1211,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IElasticEasingFunction := new Windows.UI.Composition.IElasticEasingFunction;
+            Retval.m_IElasticEasingFunction := new WinRt.Windows.UI.Composition.IElasticEasingFunction;
             Retval.m_IElasticEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1220,8 +1220,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateExponentialEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       exponent : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.ExponentialEasingFunction is
@@ -1230,7 +1230,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IExponentialEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IExponentialEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExponentialEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1240,7 +1240,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IExponentialEasingFunction := new Windows.UI.Composition.IExponentialEasingFunction;
+            Retval.m_IExponentialEasingFunction := new WinRt.Windows.UI.Composition.IExponentialEasingFunction;
             Retval.m_IExponentialEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1249,8 +1249,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreatePowerEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode;
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
       power : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.PowerEasingFunction is
@@ -1259,7 +1259,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IPowerEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IPowerEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.PowerEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1269,7 +1269,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPowerEasingFunction := new Windows.UI.Composition.IPowerEasingFunction;
+            Retval.m_IPowerEasingFunction := new WinRt.Windows.UI.Composition.IPowerEasingFunction;
             Retval.m_IPowerEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1278,8 +1278,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateSineEasingFunction
    (
-      owner : Windows.UI.Composition.Compositor'Class;
-      mode : Windows.UI.Composition.CompositionEasingFunctionMode
+      owner : WinRt.Windows.UI.Composition.Compositor'Class;
+      mode : WinRt.Windows.UI.Composition.CompositionEasingFunctionMode
    )
    return WinRt.Windows.UI.Composition.SineEasingFunction is
       Hr               : WinRt.HResult := S_OK;
@@ -1287,7 +1287,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEasingFunction");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionEasingFunctionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISineEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISineEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.SineEasingFunction do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEasingFunctionStatics'Access , m_Factory'Address);
@@ -1297,7 +1297,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISineEasingFunction := new Windows.UI.Composition.ISineEasingFunction;
+            Retval.m_ISineEasingFunction := new WinRt.Windows.UI.Composition.ISineEasingFunction;
             Retval.m_ISineEasingFunction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1338,7 +1338,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_IBackEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1425,7 +1425,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1443,7 +1443,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1461,7 +1461,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1479,7 +1479,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1497,7 +1497,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      compositionObject_p : Windows.UI.Composition.CompositionObject'Class
+      compositionObject_p : WinRt.Windows.UI.Composition.CompositionObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1533,7 +1533,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1551,7 +1551,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1569,7 +1569,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       key : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1659,7 +1659,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionAnimation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimation_Interface, WinRt.Windows.UI.Composition.ICompositionAnimation3, WinRt.Windows.UI.Composition.IID_ICompositionAnimation3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.InitialValueExpressionCollection do
@@ -1669,7 +1669,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -1678,7 +1678,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionAnimation;
       parameterName : WinRt.WString;
-      source : Windows.UI.Composition.IAnimationObject
+      source : WinRt.Windows.UI.Composition.IAnimationObject
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1730,7 +1730,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_DelayTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1742,7 +1742,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_DelayTime
    (
       this : in out KeyFrameAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1762,7 +1762,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1774,7 +1774,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Duration
    (
       this : in out KeyFrameAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1794,7 +1794,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationIterationBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationIterationBehavior;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_IterationBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1806,7 +1806,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_IterationBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationIterationBehavior
+      value : WinRt.Windows.UI.Composition.AnimationIterationBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1875,7 +1875,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationStopBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationStopBehavior;
    begin
       Hr := this.m_IKeyFrameAnimation.all.get_StopBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1887,7 +1887,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StopBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationStopBehavior
+      value : WinRt.Windows.UI.Composition.AnimationStopBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1922,7 +1922,7 @@ package body WinRt.Windows.UI.Composition is
       this : in out KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
       value : WinRt.WString;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1945,7 +1945,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationDirection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationDirection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation2, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
@@ -1960,7 +1960,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationDirection
+      value : WinRt.Windows.UI.Composition.AnimationDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1985,7 +1985,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IKeyFrameAnimation3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationDelayBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationDelayBehavior;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IKeyFrameAnimation_Interface, WinRt.Windows.UI.Composition.IKeyFrameAnimation3, WinRt.Windows.UI.Composition.IID_IKeyFrameAnimation3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyFrameAnimation.all);
@@ -2000,7 +2000,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_DelayBehavior
    (
       this : in out KeyFrameAnimation;
-      value : Windows.UI.Composition.AnimationDelayBehavior
+      value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2086,7 +2086,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_IBounceEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2163,7 +2163,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationDelayBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationDelayBehavior;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_DelayBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2175,7 +2175,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_DelayBehavior
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.UI.Composition.AnimationDelayBehavior
+      value : WinRt.Windows.UI.Composition.AnimationDelayBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2195,7 +2195,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_DelayTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2207,7 +2207,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_DelayTime
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2227,7 +2227,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.AnimationStopBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.AnimationStopBehavior;
    begin
       Hr := this.m_INaturalMotionAnimation.all.get_StopBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2239,7 +2239,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StopBehavior
    (
       this : in out NaturalMotionAnimation;
-      value : Windows.UI.Composition.AnimationStopBehavior
+      value : WinRt.Windows.UI.Composition.AnimationStopBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2285,7 +2285,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
@@ -2320,7 +2320,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScalarNaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
@@ -2500,7 +2500,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector2.Kind;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
@@ -2535,7 +2535,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector2.Kind;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
@@ -2570,7 +2570,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVector2NaturalMotionAnimation.all.get_InitialVelocity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2582,7 +2582,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_InitialVelocity
    (
       this : in out Vector2NaturalMotionAnimation;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2715,7 +2715,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_FinalValue (m_ComRetVal'Access);
@@ -2750,7 +2750,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Vector3.Kind;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_InitialValue (m_ComRetVal'Access);
@@ -2785,7 +2785,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVector3NaturalMotionAnimation.all.get_InitialVelocity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2797,7 +2797,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_InitialVelocity
    (
       this : in out Vector3NaturalMotionAnimation;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2927,7 +2927,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_ICircleEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2967,7 +2967,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionColorSpace;
    begin
       Hr := this.m_IColorKeyFrameAnimation.all.get_InterpolationColorSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2979,7 +2979,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_InterpolationColorSpace
    (
       this : in out ColorKeyFrameAnimation;
-      value : Windows.UI.Composition.CompositionColorSpace
+      value : WinRt.Windows.UI.Composition.CompositionColorSpace
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2995,7 +2995,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out ColorKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3011,8 +3011,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out ColorKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.UI.Color;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.UI.Color;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3067,7 +3067,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out CompositionAnimationGroup;
-      value : Windows.UI.Composition.CompositionAnimation'Class
+      value : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3082,7 +3082,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out CompositionAnimationGroup;
-      value : Windows.UI.Composition.CompositionAnimation'Class
+      value : WinRt.Windows.UI.Composition.CompositionAnimation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3118,7 +3118,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionAnimation.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionAnimation;
       m_GenericIID     : aliased WinRt.IID := (213227842, 50931, 22623, (154, 146, 180, 126, 141, 211, 142, 191 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionAnimationGroup_Interface, IIterable_ICompositionAnimation.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3129,7 +3129,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionAnimation := new Windows.UI.Composition.ICompositionAnimation;
+         Retval.m_ICompositionAnimation := new WinRt.Windows.UI.Composition.ICompositionAnimation;
          Retval.m_ICompositionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -3236,7 +3236,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionCapabilities");
       m_Factory        : access WinRt.Windows.UI.Composition.ICompositionCapabilitiesStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionCapabilities;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionCapabilities do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionCapabilitiesStatics'Access , m_Factory'Address);
@@ -3246,7 +3246,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICompositionCapabilities := new Windows.UI.Composition.ICompositionCapabilities;
+            Retval.m_ICompositionCapabilities := new WinRt.Windows.UI.Composition.ICompositionCapabilities;
             Retval.m_ICompositionCapabilities.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3299,7 +3299,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionCapabilities.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3311,7 +3311,7 @@ package body WinRt.Windows.UI.Composition is
    procedure remove_Changed
    (
       this : in out CompositionCapabilities;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3358,7 +3358,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
@@ -3373,7 +3373,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3398,7 +3398,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
@@ -3413,7 +3413,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3438,7 +3438,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
@@ -3453,7 +3453,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3558,7 +3558,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
@@ -3573,7 +3573,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3598,7 +3598,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionClip2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionClip_Interface, WinRt.Windows.UI.Composition.ICompositionClip2, WinRt.Windows.UI.Composition.IID_ICompositionClip2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionClip.all);
@@ -3613,7 +3613,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionClip;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3660,7 +3660,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ICompositionColorBrush.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3672,7 +3672,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out CompositionColorBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3715,7 +3715,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ICompositionColorGradientStop.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3727,7 +3727,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out CompositionColorGradientStop;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3804,7 +3804,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionColorGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (254606017, 52668, 23630, (167, 210, 163, 145, 79, 182, 52, 38 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IIterable_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3815,7 +3815,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop := new WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -3831,7 +3831,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3842,7 +3842,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop := new WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -3878,7 +3878,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionColorGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
       m_GenericIID     : aliased WinRt.IID := (3207467134, 62427, 22221, (145, 237, 193, 18, 148, 6, 213, 82 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection_Interface, IVector_ICompositionColorGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3889,7 +3889,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop := new WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -3897,7 +3897,7 @@ package body WinRt.Windows.UI.Composition is
    function IndexOf
    (
       this : in out CompositionColorGradientStopCollection;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class;
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -3922,7 +3922,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3943,7 +3943,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3983,7 +3983,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Append
    (
       this : in out CompositionColorGradientStopCollection;
-      value : Windows.UI.Composition.CompositionColorGradientStop'Class
+      value : WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4042,7 +4042,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionColorGradientStopCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.ICompositionColorGradientStop_Array
+      items : WinRt.Windows.UI.Composition.ICompositionColorGradientStop_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -4066,7 +4066,7 @@ package body WinRt.Windows.UI.Composition is
    procedure ReplaceAll
    (
       this : in out CompositionColorGradientStopCollection;
-      items : Windows.UI.Composition.ICompositionColorGradientStop_Array
+      items : WinRt.Windows.UI.Composition.ICompositionColorGradientStop_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4150,7 +4150,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionCommitBatch.all.add_Completed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4162,7 +4162,7 @@ package body WinRt.Windows.UI.Composition is
    procedure remove_Completed
    (
       this : in out CompositionCommitBatch;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4208,7 +4208,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_CenterPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4220,7 +4220,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4240,7 +4240,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4252,7 +4252,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4336,7 +4336,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionShape.all.get_Scale (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4348,7 +4348,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4368,7 +4368,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix3x2;
    begin
       Hr := this.m_ICompositionShape.all.get_TransformMatrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4380,7 +4380,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionShape;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4423,14 +4423,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShapeCollection do
          Hr := this.m_ICompositionContainerShape.all.get_Shapes (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -4469,7 +4469,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_AlphaMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4486,7 +4486,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_PixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4503,7 +4503,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ICompositionDrawingSurface.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4521,7 +4521,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionDrawingSurface2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.SizeInt32;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionDrawingSurface_Interface, WinRt.Windows.UI.Composition.ICompositionDrawingSurface2, WinRt.Windows.UI.Composition.IID_ICompositionDrawingSurface2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionDrawingSurface.all);
@@ -4536,7 +4536,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Resize
    (
       this : in out CompositionDrawingSurface;
-      sizePixels : Windows.Graphics.SizeInt32
+      sizePixels : WinRt.Windows.Graphics.SizeInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4555,7 +4555,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Scroll
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32
+      offset : WinRt.Windows.Graphics.PointInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4574,8 +4574,8 @@ package body WinRt.Windows.UI.Composition is
    procedure Scroll
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      scrollRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      scrollRect : WinRt.Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4594,8 +4594,8 @@ package body WinRt.Windows.UI.Composition is
    procedure ScrollWithClip
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      clipRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      clipRect : WinRt.Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4614,9 +4614,9 @@ package body WinRt.Windows.UI.Composition is
    procedure ScrollWithClip
    (
       this : in out CompositionDrawingSurface;
-      offset : Windows.Graphics.PointInt32;
-      clipRect : Windows.Graphics.RectInt32;
-      scrollRect : Windows.Graphics.RectInt32
+      offset : WinRt.Windows.Graphics.PointInt32;
+      clipRect : WinRt.Windows.Graphics.RectInt32;
+      scrollRect : WinRt.Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4664,7 +4664,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
@@ -4672,7 +4672,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
       end return;
@@ -4682,7 +4682,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionEffectBrush;
       name : WinRt.WString;
-      source : Windows.UI.Composition.CompositionBrush'Class
+      source : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4727,14 +4727,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionEffectBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectBrush do
          Hr := this.m_ICompositionEffectFactory.all.CreateBrush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionEffectBrush := new Windows.UI.Composition.ICompositionEffectBrush;
+         Retval.m_ICompositionEffectBrush := new WinRt.Windows.UI.Composition.ICompositionEffectBrush;
          Retval.m_ICompositionEffectBrush.all := m_ComRetVal;
       end return;
    end;
@@ -4747,7 +4747,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_ICompositionEffectFactory.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4764,7 +4764,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEffectFactoryLoadStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEffectFactoryLoadStatus;
    begin
       Hr := this.m_ICompositionEffectFactory.all.get_LoadStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4803,17 +4803,17 @@ package body WinRt.Windows.UI.Composition is
    return CompositionEffectSourceParameter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEffectSourceParameter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositionEffectSourceParameter");
       m_Factory    : access ICompositionEffectSourceParameterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Composition.ICompositionEffectSourceParameter;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositionEffectSourceParameter;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : CompositionEffectSourceParameter do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionEffectSourceParameterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_name, m_ComRetVal'Access);
-            Retval.m_ICompositionEffectSourceParameter := new Windows.UI.Composition.ICompositionEffectSourceParameter;
+            Retval.m_ICompositionEffectSourceParameter := new WinRt.Windows.UI.Composition.ICompositionEffectSourceParameter;
             Retval.m_ICompositionEffectSourceParameter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4998,7 +4998,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.get_Center (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5010,7 +5010,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Center
    (
       this : in out CompositionEllipseGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5030,7 +5030,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionEllipseGeometry.all.get_Radius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5042,7 +5042,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Radius
    (
       this : in out CompositionEllipseGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5085,14 +5085,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometry do
          Hr := this.m_ICompositionGeometricClip.all.get_Geometry (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionGeometry := new Windows.UI.Composition.ICompositionGeometry;
+         Retval.m_ICompositionGeometry := new WinRt.Windows.UI.Composition.ICompositionGeometry;
          Retval.m_ICompositionGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -5100,7 +5100,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Geometry
    (
       this : in out CompositionGeometricClip;
-      value : Windows.UI.Composition.CompositionGeometry'Class
+      value : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5120,14 +5120,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionViewBox;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
          Hr := this.m_ICompositionGeometricClip.all.get_ViewBox (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
+         Retval.m_ICompositionViewBox := new WinRt.Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
    end;
@@ -5135,7 +5135,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ViewBox
    (
       this : in out CompositionGeometricClip;
-      value : Windows.UI.Composition.CompositionViewBox'Class
+      value : WinRt.Windows.UI.Composition.CompositionViewBox'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5181,7 +5181,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_AnchorPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5193,7 +5193,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5213,7 +5213,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_CenterPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5225,7 +5225,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5245,14 +5245,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStopCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStopCollection do
          Hr := this.m_ICompositionGradientBrush.all.get_ColorStops (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStopCollection := new Windows.UI.Composition.ICompositionColorGradientStopCollection;
+         Retval.m_ICompositionColorGradientStopCollection := new WinRt.Windows.UI.Composition.ICompositionColorGradientStopCollection;
          Retval.m_ICompositionColorGradientStopCollection.all := m_ComRetVal;
       end return;
    end;
@@ -5265,7 +5265,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGradientExtendMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGradientExtendMode;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_ExtendMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5277,7 +5277,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ExtendMode
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionGradientExtendMode
+      value : WinRt.Windows.UI.Composition.CompositionGradientExtendMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5297,7 +5297,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionColorSpace;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_InterpolationSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5309,7 +5309,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_InterpolationSpace
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionColorSpace
+      value : WinRt.Windows.UI.Composition.CompositionColorSpace
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5329,7 +5329,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5341,7 +5341,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5425,7 +5425,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_Scale (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5437,7 +5437,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5457,7 +5457,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix3x2;
    begin
       Hr := this.m_ICompositionGradientBrush.all.get_TransformMatrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5469,7 +5469,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionGradientBrush;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5490,7 +5490,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGradientBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionMappingMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionMappingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGradientBrush_Interface, WinRt.Windows.UI.Composition.ICompositionGradientBrush2, WinRt.Windows.UI.Composition.IID_ICompositionGradientBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionGradientBrush.all);
@@ -5505,7 +5505,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_MappingMode
    (
       this : in out CompositionGradientBrush;
-      value : Windows.UI.Composition.CompositionMappingMode
+      value : WinRt.Windows.UI.Composition.CompositionMappingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5547,22 +5547,22 @@ package body WinRt.Windows.UI.Composition is
    function CreateDrawingSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Foundation.Size;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Foundation.Size;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
          Hr := this.m_ICompositionGraphicsDevice.all.CreateDrawingSurface (sizePixels, pixelFormat, alphaMode, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
+         Retval.m_ICompositionDrawingSurface := new WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
    end;
@@ -5576,7 +5576,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionGraphicsDevice.all.add_RenderingDeviceReplaced (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5588,7 +5588,7 @@ package body WinRt.Windows.UI.Composition is
    procedure remove_RenderingDeviceReplaced
    (
       this : in out CompositionGraphicsDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5603,16 +5603,16 @@ package body WinRt.Windows.UI.Composition is
    function CreateDrawingSurface2
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
@@ -5622,7 +5622,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
+         Retval.m_ICompositionDrawingSurface := new WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
    end;
@@ -5630,16 +5630,16 @@ package body WinRt.Windows.UI.Composition is
    function CreateVirtualDrawingSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionVirtualDrawingSurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionVirtualDrawingSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionVirtualDrawingSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice2, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionVirtualDrawingSurface do
@@ -5649,7 +5649,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionVirtualDrawingSurface := new Windows.UI.Composition.ICompositionVirtualDrawingSurface;
+         Retval.m_ICompositionVirtualDrawingSurface := new WinRt.Windows.UI.Composition.ICompositionVirtualDrawingSurface;
          Retval.m_ICompositionVirtualDrawingSurface.all := m_ComRetVal;
       end return;
    end;
@@ -5657,16 +5657,16 @@ package body WinRt.Windows.UI.Composition is
    function CreateMipmapSurface
    (
       this : in out CompositionGraphicsDevice;
-      sizePixels : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode
+      sizePixels : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    )
    return WinRt.Windows.UI.Composition.CompositionMipmapSurface'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionMipmapSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionMipmapSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionGraphicsDevice_Interface, WinRt.Windows.UI.Composition.ICompositionGraphicsDevice3, WinRt.Windows.UI.Composition.IID_ICompositionGraphicsDevice3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionMipmapSurface do
@@ -5676,7 +5676,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionMipmapSurface := new Windows.UI.Composition.ICompositionMipmapSurface;
+         Retval.m_ICompositionMipmapSurface := new WinRt.Windows.UI.Composition.ICompositionMipmapSurface;
          Retval.m_ICompositionMipmapSurface.all := m_ComRetVal;
       end return;
    end;
@@ -5702,10 +5702,10 @@ package body WinRt.Windows.UI.Composition is
    function CaptureAsync
    (
       this : in out CompositionGraphicsDevice;
-      captureVisual : Windows.UI.Composition.Visual'Class;
-      size : Windows.Graphics.SizeInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      alphaMode : Windows.Graphics.DirectX.DirectXAlphaMode;
+      captureVisual : WinRt.Windows.UI.Composition.Visual'Class;
+      size : WinRt.Windows.Graphics.SizeInt32;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
       sdrBoost : WinRt.Single
    )
    return WinRt.Windows.UI.Composition.ICompositionSurface is
@@ -5802,7 +5802,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLineGeometry.all.get_Start (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5814,7 +5814,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Start
    (
       this : in out CompositionLineGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5834,7 +5834,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLineGeometry.all.get_End (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5846,7 +5846,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_End
    (
       this : in out CompositionLineGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5889,7 +5889,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.get_EndPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5901,7 +5901,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_EndPoint
    (
       this : in out CompositionLinearGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5921,7 +5921,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionLinearGradientBrush.all.get_StartPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5933,7 +5933,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StartPoint
    (
       this : in out CompositionLinearGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5976,14 +5976,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionMaskBrush.all.get_Mask (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -5991,7 +5991,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Mask
    (
       this : in out CompositionMaskBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6011,14 +6011,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionMaskBrush.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -6026,7 +6026,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out CompositionMaskBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6086,7 +6086,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_AlphaMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6103,7 +6103,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_PixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6120,7 +6120,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_ICompositionMipmapSurface.all.get_SizeInt32 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6138,14 +6138,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionDrawingSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionDrawingSurface do
          Hr := this.m_ICompositionMipmapSurface.all.GetDrawingSurfaceForLevel (level, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionDrawingSurface := new Windows.UI.Composition.ICompositionDrawingSurface;
+         Retval.m_ICompositionDrawingSurface := new WinRt.Windows.UI.Composition.ICompositionDrawingSurface;
          Retval.m_ICompositionDrawingSurface.all := m_ComRetVal;
       end return;
    end;
@@ -6405,14 +6405,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionNineGridBrush.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -6420,7 +6420,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out CompositionNineGridBrush;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6587,21 +6587,21 @@ package body WinRt.Windows.UI.Composition is
 
    function Constructor
    (
-      source : Windows.Graphics.IGeometrySource2D
+      source : WinRt.Windows.Graphics.IGeometrySource2D
    )
    return CompositionPath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositionPath");
       m_Factory    : access ICompositionPathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Composition.ICompositionPath;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositionPath;
    begin
       return RetVal : CompositionPath do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositionPathFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (source, m_ComRetVal'Access);
-            Retval.m_ICompositionPath := new Windows.UI.Composition.ICompositionPath;
+            Retval.m_ICompositionPath := new WinRt.Windows.UI.Composition.ICompositionPath;
             Retval.m_ICompositionPath.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6643,14 +6643,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPath;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionPath;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPath do
          Hr := this.m_ICompositionPathGeometry.all.get_Path (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionPath := new Windows.UI.Composition.ICompositionPath;
+         Retval.m_ICompositionPath := new WinRt.Windows.UI.Composition.ICompositionPath;
          Retval.m_ICompositionPath.all := m_ComRetVal;
       end return;
    end;
@@ -6658,7 +6658,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Path
    (
       this : in out CompositionPathGeometry;
-      value : Windows.UI.Composition.CompositionPath'Class
+      value : WinRt.Windows.UI.Composition.CompositionPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6733,14 +6733,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowCasterCollection do
          Hr := this.m_ICompositionProjectedShadow.all.get_Casters (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowCasterCollection := new Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
+         Retval.m_ICompositionProjectedShadowCasterCollection := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection;
          Retval.m_ICompositionProjectedShadowCasterCollection.all := m_ComRetVal;
       end return;
    end;
@@ -6753,14 +6753,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionLight;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLight do
          Hr := this.m_ICompositionProjectedShadow.all.get_LightSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionLight := new Windows.UI.Composition.ICompositionLight;
+         Retval.m_ICompositionLight := new WinRt.Windows.UI.Composition.ICompositionLight;
          Retval.m_ICompositionLight.all := m_ComRetVal;
       end return;
    end;
@@ -6768,7 +6768,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_LightSource
    (
       this : in out CompositionProjectedShadow;
-      value : Windows.UI.Composition.CompositionLight'Class
+      value : WinRt.Windows.UI.Composition.CompositionLight'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6852,14 +6852,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiverUnorderedCollection do
          Hr := this.m_ICompositionProjectedShadow.all.get_Receivers (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowReceiverUnorderedCollection := new Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
+         Retval.m_ICompositionProjectedShadowReceiverUnorderedCollection := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection;
          Retval.m_ICompositionProjectedShadowReceiverUnorderedCollection.all := m_ComRetVal;
       end return;
    end;
@@ -6895,14 +6895,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionProjectedShadowCaster.all.get_Brush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -6910,7 +6910,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Brush
    (
       this : in out CompositionProjectedShadowCaster;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6930,14 +6930,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionProjectedShadowCaster.all.get_CastingVisual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -6945,7 +6945,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CastingVisual
    (
       this : in out CompositionProjectedShadowCaster;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7024,8 +7024,8 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAbove
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
-      reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
+      reference : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7040,7 +7040,7 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAtBottom
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7055,7 +7055,7 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAtTop
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7070,8 +7070,8 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertBelow
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      newCaster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
-      reference : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      newCaster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class;
+      reference : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7086,7 +7086,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out CompositionProjectedShadowCasterCollection;
-      caster : Windows.UI.Composition.CompositionProjectedShadowCaster'Class
+      caster : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7122,7 +7122,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowCaster.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCaster;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
       m_GenericIID     : aliased WinRt.IID := (3090160386, 17051, 23921, (171, 12, 141, 17, 65, 177, 42, 195 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowCasterCollection_Interface, IIterable_ICompositionProjectedShadowCaster.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7133,7 +7133,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowCaster := new Windows.UI.Composition.ICompositionProjectedShadowCaster;
+         Retval.m_ICompositionProjectedShadowCaster := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
          Retval.m_ICompositionProjectedShadowCaster.all := m_ComRetVal;
       end return;
    end;
@@ -7169,14 +7169,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionProjectedShadowReceiver.all.get_ReceivingVisual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -7184,7 +7184,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ReceivingVisual
    (
       this : in out CompositionProjectedShadowReceiver;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7222,7 +7222,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection;
-      value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
+      value : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7254,7 +7254,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out CompositionProjectedShadowReceiverUnorderedCollection;
-      value : Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
+      value : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7290,7 +7290,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionProjectedShadowReceiver.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiver;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver;
       m_GenericIID     : aliased WinRt.IID := (3799472680, 60488, 23736, (179, 82, 118, 247, 249, 129, 215, 164 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiverUnorderedCollection_Interface, IIterable_ICompositionProjectedShadowReceiver.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7301,7 +7301,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowReceiver := new Windows.UI.Composition.ICompositionProjectedShadowReceiver;
+         Retval.m_ICompositionProjectedShadowReceiver := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver;
          Retval.m_ICompositionProjectedShadowReceiver.all := m_ComRetVal;
       end return;
    end;
@@ -7333,7 +7333,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7351,7 +7351,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7369,7 +7369,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7387,7 +7387,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7423,7 +7423,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7441,7 +7441,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7459,7 +7459,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7477,13 +7477,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.UI.Color_Ptr
+      value : WinRt.Windows.UI.Color_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetColor (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7498,13 +7498,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix3x2_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetMatrix3x2 (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7519,13 +7519,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Matrix4x4_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetMatrix4x4 (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7540,13 +7540,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Quaternion_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Quaternion_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetQuaternion (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7567,7 +7567,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetScalar (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7582,13 +7582,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector2_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector2_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector2 (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7603,13 +7603,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector3_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector3_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector3 (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7624,13 +7624,13 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionPropertySet;
       propertyName : WinRt.WString;
-      value : Windows.Foundation.Numerics.Vector4_Ptr
+      value : WinRt.Windows.Foundation.Numerics.Vector4_Ptr
    )
    return WinRt.Windows.UI.Composition.CompositionGetValueStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
    begin
       Hr := this.m_ICompositionPropertySet.all.TryGetVector4 (HStr_propertyName, value, m_ComRetVal'Access);
@@ -7674,7 +7674,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionPropertySet2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionGetValueStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionGetValueStatus;
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionPropertySet_Interface, WinRt.Windows.UI.Composition.ICompositionPropertySet2, WinRt.Windows.UI.Composition.IID_ICompositionPropertySet2'Unchecked_Access);
    begin
@@ -7719,7 +7719,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_EllipseCenter (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7731,7 +7731,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_EllipseCenter
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7751,7 +7751,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_EllipseRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7763,7 +7763,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_EllipseRadius
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7783,7 +7783,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRadialGradientBrush.all.get_GradientOriginOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7795,7 +7795,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_GradientOriginOffset
    (
       this : in out CompositionRadialGradientBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7838,7 +7838,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7850,7 +7850,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7870,7 +7870,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRectangleGeometry.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7882,7 +7882,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7925,7 +7925,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_CornerRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7937,7 +7937,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CornerRadius
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7957,7 +7957,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7969,7 +7969,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7989,7 +7989,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionRoundedRectangleGeometry.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8001,7 +8001,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionRoundedRectangleGeometry;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8121,7 +8121,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompositionScopedBatch.all.add_Completed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8133,7 +8133,7 @@ package body WinRt.Windows.UI.Composition is
    procedure remove_Completed
    (
       this : in out CompositionScopedBatch;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8198,7 +8198,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8209,7 +8209,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
+         Retval.m_ICompositionShape := new WinRt.Windows.UI.Composition.ICompositionShape;
          Retval.m_ICompositionShape.all := m_ComRetVal;
       end return;
    end;
@@ -8245,7 +8245,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ICompositionShape.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (1121198490, 48667, 20625, (143, 30, 144, 39, 8, 64, 252, 45 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8256,7 +8256,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
+         Retval.m_ICompositionShape := new WinRt.Windows.UI.Composition.ICompositionShape;
          Retval.m_ICompositionShape.all := m_ComRetVal;
       end return;
    end;
@@ -8264,7 +8264,7 @@ package body WinRt.Windows.UI.Composition is
    function IndexOf
    (
       this : in out CompositionShapeCollection;
-      value : Windows.UI.Composition.CompositionShape'Class;
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -8289,7 +8289,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8310,7 +8310,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8350,7 +8350,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Append
    (
       this : in out CompositionShapeCollection;
-      value : Windows.UI.Composition.CompositionShape'Class
+      value : WinRt.Windows.UI.Composition.CompositionShape'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8409,7 +8409,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out CompositionShapeCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.ICompositionShape_Array
+      items : WinRt.Windows.UI.Composition.ICompositionShape_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -8433,7 +8433,7 @@ package body WinRt.Windows.UI.Composition is
    procedure ReplaceAll
    (
       this : in out CompositionShapeCollection;
-      items : Windows.UI.Composition.ICompositionShape_Array
+      items : WinRt.Windows.UI.Composition.ICompositionShape_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8461,7 +8461,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ICompositionShape.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionShape;
       m_GenericIID     : aliased WinRt.IID := (288730613, 56082, 21992, (174, 15, 189, 141, 145, 75, 211, 153 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ICompositionShape.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8472,7 +8472,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionShape := new Windows.UI.Composition.ICompositionShape;
+         Retval.m_ICompositionShape := new WinRt.Windows.UI.Composition.ICompositionShape;
          Retval.m_ICompositionShape.all := m_ComRetVal;
       end return;
    end;
@@ -8508,14 +8508,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionSpriteShape.all.get_FillBrush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -8523,7 +8523,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_FillBrush
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8543,14 +8543,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometry do
          Hr := this.m_ICompositionSpriteShape.all.get_Geometry (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionGeometry := new Windows.UI.Composition.ICompositionGeometry;
+         Retval.m_ICompositionGeometry := new WinRt.Windows.UI.Composition.ICompositionGeometry;
          Retval.m_ICompositionGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -8558,7 +8558,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Geometry
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionGeometry'Class
+      value : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8610,14 +8610,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ICompositionSpriteShape.all.get_StrokeBrush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -8625,7 +8625,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StrokeBrush
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8645,14 +8645,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionStrokeDashArray do
          Hr := this.m_ICompositionSpriteShape.all.get_StrokeDashArray (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -8665,7 +8665,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeDashCap (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8677,7 +8677,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StrokeDashCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8729,7 +8729,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeEndCap (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8741,7 +8741,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StrokeEndCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8761,7 +8761,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeLineJoin;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStrokeLineJoin;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeLineJoin (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8773,7 +8773,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StrokeLineJoin
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeLineJoin
+      value : WinRt.Windows.UI.Composition.CompositionStrokeLineJoin
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8825,7 +8825,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStrokeCap;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStrokeCap;
    begin
       Hr := this.m_ICompositionSpriteShape.all.get_StrokeStartCap (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8837,7 +8837,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_StrokeStartCap
    (
       this : in out CompositionSpriteShape;
-      value : Windows.UI.Composition.CompositionStrokeCap
+      value : WinRt.Windows.UI.Composition.CompositionStrokeCap
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8908,7 +8908,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Single;
+      m_ComRetVal      : aliased WinRt.Single;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8952,7 +8952,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Single.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Single;
+      m_ComRetVal      : aliased WinRt.Single;
       m_GenericIID     : aliased WinRt.IID := (1640982847, 56140, 22431, (185, 5, 93, 211, 210, 60, 253, 77 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -9165,7 +9165,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Single.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Single;
+      m_ComRetVal      : aliased WinRt.Single;
       m_GenericIID     : aliased WinRt.IID := (2954620497, 1594, 24538, (189, 114, 215, 102, 55, 187, 140, 184 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Single.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -9209,7 +9209,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionBitmapInterpolationMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_BitmapInterpolationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9221,7 +9221,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_BitmapInterpolationMode
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.CompositionBitmapInterpolationMode
+      value : WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9273,7 +9273,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStretch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStretch;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_Stretch (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9285,7 +9285,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Stretch
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.CompositionStretch
+      value : WinRt.Windows.UI.Composition.CompositionStretch
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9305,7 +9305,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSurface;
    begin
       Hr := this.m_ICompositionSurfaceBrush.all.get_Surface (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9317,7 +9317,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Surface
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.UI.Composition.ICompositionSurface
+      value : WinRt.Windows.UI.Composition.ICompositionSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9370,7 +9370,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
@@ -9385,7 +9385,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9410,7 +9410,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
@@ -9425,7 +9425,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9450,7 +9450,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
@@ -9465,7 +9465,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9570,7 +9570,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
@@ -9585,7 +9585,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9610,7 +9610,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix3x2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix3x2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositionSurfaceBrush_Interface, WinRt.Windows.UI.Composition.ICompositionSurfaceBrush2, WinRt.Windows.UI.Composition.IID_ICompositionSurfaceBrush2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompositionSurfaceBrush.all);
@@ -9625,7 +9625,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out CompositionSurfaceBrush;
-      value : Windows.Foundation.Numerics.Matrix3x2
+      value : WinRt.Windows.Foundation.Numerics.Matrix3x2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9715,14 +9715,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionTarget.all.get_Root (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -9730,7 +9730,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Root
    (
       this : in out CompositionTarget;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9776,7 +9776,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.RectInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.RectInt32;
    begin
       Hr := this.m_ICompositionTexture.all.get_SourceRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9788,7 +9788,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_SourceRect
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.RectInt32
+      value : WinRt.Windows.Graphics.RectInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9808,7 +9808,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXAlphaMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXAlphaMode;
    begin
       Hr := this.m_ICompositionTexture.all.get_AlphaMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9820,7 +9820,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AlphaMode
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.DirectX.DirectXAlphaMode
+      value : WinRt.Windows.Graphics.DirectX.DirectXAlphaMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9840,7 +9840,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXColorSpace;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
    begin
       Hr := this.m_ICompositionTexture.all.get_ColorSpace (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9852,7 +9852,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ColorSpace
    (
       this : in out CompositionTexture;
-      value : Windows.Graphics.DirectX.DirectXColorSpace
+      value : WinRt.Windows.Graphics.DirectX.DirectXColorSpace
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9953,7 +9953,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9965,7 +9965,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out CompositionViewBox;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9985,7 +9985,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9997,7 +9997,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out CompositionViewBox;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10017,7 +10017,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionStretch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionStretch;
    begin
       Hr := this.m_ICompositionViewBox.all.get_Stretch (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10029,7 +10029,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Stretch
    (
       this : in out CompositionViewBox;
-      value : Windows.UI.Composition.CompositionStretch
+      value : WinRt.Windows.UI.Composition.CompositionStretch
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10102,7 +10102,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Trim
    (
       this : in out CompositionVirtualDrawingSurface;
-      rects : Windows.Graphics.RectInt32_Array
+      rects : WinRt.Windows.Graphics.RectInt32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10146,14 +10146,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ICompositionVisualSurface.all.get_SourceVisual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -10161,7 +10161,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_SourceVisual
    (
       this : in out CompositionVisualSurface;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10181,7 +10181,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionVisualSurface.all.get_SourceOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10193,7 +10193,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_SourceOffset
    (
       this : in out CompositionVisualSurface;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10213,7 +10213,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICompositionVisualSurface.all.get_SourceSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10225,7 +10225,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_SourceSize
    (
       this : in out CompositionVisualSurface;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10263,13 +10263,13 @@ package body WinRt.Windows.UI.Composition is
    function Constructor return Compositor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
-      m_ComRetVal  : aliased Windows.UI.Composition.ICompositor;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositor");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositor;
    begin
       return RetVal : Compositor do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICompositor := new Windows.UI.Composition.ICompositor;
+            Retval.m_ICompositor := new WinRt.Windows.UI.Composition.ICompositor;
             Retval.m_ICompositor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10332,14 +10332,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IColorKeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IColorKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ColorKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateColorKeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IColorKeyFrameAnimation := new Windows.UI.Composition.IColorKeyFrameAnimation;
+         Retval.m_IColorKeyFrameAnimation := new WinRt.Windows.UI.Composition.IColorKeyFrameAnimation;
          Retval.m_IColorKeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10352,14 +10352,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorBrush do
          Hr := this.m_ICompositor.all.CreateColorBrush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorBrush := new Windows.UI.Composition.ICompositionColorBrush;
+         Retval.m_ICompositionColorBrush := new WinRt.Windows.UI.Composition.ICompositionColorBrush;
          Retval.m_ICompositionColorBrush.all := m_ComRetVal;
       end return;
    end;
@@ -10367,20 +10367,20 @@ package body WinRt.Windows.UI.Composition is
    function CreateColorBrush
    (
       this : in out Compositor;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Composition.CompositionColorBrush'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorBrush do
          Hr := this.m_ICompositor.all.CreateColorBrush (color, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorBrush := new Windows.UI.Composition.ICompositionColorBrush;
+         Retval.m_ICompositionColorBrush := new WinRt.Windows.UI.Composition.ICompositionColorBrush;
          Retval.m_ICompositionColorBrush.all := m_ComRetVal;
       end return;
    end;
@@ -10393,14 +10393,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IContainerVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IContainerVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ContainerVisual do
          Hr := this.m_ICompositor.all.CreateContainerVisual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContainerVisual := new Windows.UI.Composition.IContainerVisual;
+         Retval.m_IContainerVisual := new WinRt.Windows.UI.Composition.IContainerVisual;
          Retval.m_IContainerVisual.all := m_ComRetVal;
       end return;
    end;
@@ -10408,21 +10408,21 @@ package body WinRt.Windows.UI.Composition is
    function CreateCubicBezierEasingFunction
    (
       this : in out Compositor;
-      controlPoint1 : Windows.Foundation.Numerics.Vector2;
-      controlPoint2 : Windows.Foundation.Numerics.Vector2
+      controlPoint1 : WinRt.Windows.Foundation.Numerics.Vector2;
+      controlPoint2 : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.CubicBezierEasingFunction'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICubicBezierEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICubicBezierEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CubicBezierEasingFunction do
          Hr := this.m_ICompositor.all.CreateCubicBezierEasingFunction (controlPoint1, controlPoint2, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICubicBezierEasingFunction := new Windows.UI.Composition.ICubicBezierEasingFunction;
+         Retval.m_ICubicBezierEasingFunction := new WinRt.Windows.UI.Composition.ICubicBezierEasingFunction;
          Retval.m_ICubicBezierEasingFunction.all := m_ComRetVal;
       end return;
    end;
@@ -10430,20 +10430,20 @@ package body WinRt.Windows.UI.Composition is
    function CreateEffectFactory
    (
       this : in out Compositor;
-      graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect
+      graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectFactory;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionEffectFactory;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectFactory do
          Hr := this.m_ICompositor.all.CreateEffectFactory (graphicsEffect, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionEffectFactory := new Windows.UI.Composition.ICompositionEffectFactory;
+         Retval.m_ICompositionEffectFactory := new WinRt.Windows.UI.Composition.ICompositionEffectFactory;
          Retval.m_ICompositionEffectFactory.all := m_ComRetVal;
       end return;
    end;
@@ -10451,21 +10451,21 @@ package body WinRt.Windows.UI.Composition is
    function CreateEffectFactory
    (
       this : in out Compositor;
-      graphicsEffect : Windows.Graphics.Effects.IGraphicsEffect;
+      graphicsEffect : WinRt.Windows.Graphics.Effects.IGraphicsEffect;
       animatableProperties : GenericObject
    )
    return WinRt.Windows.UI.Composition.CompositionEffectFactory'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectFactory;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionEffectFactory;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectFactory do
          Hr := this.m_ICompositor.all.CreateEffectFactory (graphicsEffect, animatableProperties, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionEffectFactory := new Windows.UI.Composition.ICompositionEffectFactory;
+         Retval.m_ICompositionEffectFactory := new WinRt.Windows.UI.Composition.ICompositionEffectFactory;
          Retval.m_ICompositionEffectFactory.all := m_ComRetVal;
       end return;
    end;
@@ -10478,14 +10478,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IExpressionAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
          Hr := this.m_ICompositor.all.CreateExpressionAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
+         Retval.m_IExpressionAnimation := new WinRt.Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10499,7 +10499,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IExpressionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IExpressionAnimation;
       HStr_expression : constant WinRt.HString := To_HString (expression);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ExpressionAnimation do
@@ -10507,7 +10507,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IExpressionAnimation := new Windows.UI.Composition.IExpressionAnimation;
+         Retval.m_IExpressionAnimation := new WinRt.Windows.UI.Composition.IExpressionAnimation;
          Retval.m_IExpressionAnimation.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_expression);
       end return;
@@ -10521,14 +10521,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IInsetClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IInsetClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.InsetClip do
          Hr := this.m_ICompositor.all.CreateInsetClip (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInsetClip := new Windows.UI.Composition.IInsetClip;
+         Retval.m_IInsetClip := new WinRt.Windows.UI.Composition.IInsetClip;
          Retval.m_IInsetClip.all := m_ComRetVal;
       end return;
    end;
@@ -10545,14 +10545,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IInsetClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IInsetClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.InsetClip do
          Hr := this.m_ICompositor.all.CreateInsetClip (leftInset, topInset, rightInset, bottomInset, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInsetClip := new Windows.UI.Composition.IInsetClip;
+         Retval.m_IInsetClip := new WinRt.Windows.UI.Composition.IInsetClip;
          Retval.m_IInsetClip.all := m_ComRetVal;
       end return;
    end;
@@ -10565,14 +10565,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ILinearEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ILinearEasingFunction;
    begin
       return RetVal : WinRt.Windows.UI.Composition.LinearEasingFunction do
          Hr := this.m_ICompositor.all.CreateLinearEasingFunction (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILinearEasingFunction := new Windows.UI.Composition.ILinearEasingFunction;
+         Retval.m_ILinearEasingFunction := new WinRt.Windows.UI.Composition.ILinearEasingFunction;
          Retval.m_ILinearEasingFunction.all := m_ComRetVal;
       end return;
    end;
@@ -10585,14 +10585,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionPropertySet;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPropertySet do
          Hr := this.m_ICompositor.all.CreatePropertySet (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionPropertySet := new Windows.UI.Composition.ICompositionPropertySet;
+         Retval.m_ICompositionPropertySet := new WinRt.Windows.UI.Composition.ICompositionPropertySet;
          Retval.m_ICompositionPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -10605,14 +10605,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IQuaternionKeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IQuaternionKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.QuaternionKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateQuaternionKeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IQuaternionKeyFrameAnimation := new Windows.UI.Composition.IQuaternionKeyFrameAnimation;
+         Retval.m_IQuaternionKeyFrameAnimation := new WinRt.Windows.UI.Composition.IQuaternionKeyFrameAnimation;
          Retval.m_IQuaternionKeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10625,14 +10625,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IScalarKeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IScalarKeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ScalarKeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateScalarKeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IScalarKeyFrameAnimation := new Windows.UI.Composition.IScalarKeyFrameAnimation;
+         Retval.m_IScalarKeyFrameAnimation := new WinRt.Windows.UI.Composition.IScalarKeyFrameAnimation;
          Retval.m_IScalarKeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10640,20 +10640,20 @@ package body WinRt.Windows.UI.Composition is
    function CreateScopedBatch
    (
       this : in out Compositor;
-      batchType : Windows.UI.Composition.CompositionBatchTypes
+      batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes
    )
    return WinRt.Windows.UI.Composition.CompositionScopedBatch'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionScopedBatch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionScopedBatch;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionScopedBatch do
          Hr := this.m_ICompositor.all.CreateScopedBatch (batchType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionScopedBatch := new Windows.UI.Composition.ICompositionScopedBatch;
+         Retval.m_ICompositionScopedBatch := new WinRt.Windows.UI.Composition.ICompositionScopedBatch;
          Retval.m_ICompositionScopedBatch.all := m_ComRetVal;
       end return;
    end;
@@ -10666,14 +10666,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISpriteVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISpriteVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpriteVisual do
          Hr := this.m_ICompositor.all.CreateSpriteVisual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpriteVisual := new Windows.UI.Composition.ISpriteVisual;
+         Retval.m_ISpriteVisual := new WinRt.Windows.UI.Composition.ISpriteVisual;
          Retval.m_ISpriteVisual.all := m_ComRetVal;
       end return;
    end;
@@ -10686,14 +10686,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurfaceBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSurfaceBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSurfaceBrush do
          Hr := this.m_ICompositor.all.CreateSurfaceBrush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionSurfaceBrush := new Windows.UI.Composition.ICompositionSurfaceBrush;
+         Retval.m_ICompositionSurfaceBrush := new WinRt.Windows.UI.Composition.ICompositionSurfaceBrush;
          Retval.m_ICompositionSurfaceBrush.all := m_ComRetVal;
       end return;
    end;
@@ -10701,20 +10701,20 @@ package body WinRt.Windows.UI.Composition is
    function CreateSurfaceBrush
    (
       this : in out Compositor;
-      surface : Windows.UI.Composition.ICompositionSurface
+      surface : WinRt.Windows.UI.Composition.ICompositionSurface
    )
    return WinRt.Windows.UI.Composition.CompositionSurfaceBrush'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSurfaceBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSurfaceBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSurfaceBrush do
          Hr := this.m_ICompositor.all.CreateSurfaceBrush (surface, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionSurfaceBrush := new Windows.UI.Composition.ICompositionSurfaceBrush;
+         Retval.m_ICompositionSurfaceBrush := new WinRt.Windows.UI.Composition.ICompositionSurfaceBrush;
          Retval.m_ICompositionSurfaceBrush.all := m_ComRetVal;
       end return;
    end;
@@ -10727,14 +10727,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionTarget;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionTarget;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionTarget do
          Hr := this.m_ICompositor.all.CreateTargetForCurrentView (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionTarget := new Windows.UI.Composition.ICompositionTarget;
+         Retval.m_ICompositionTarget := new WinRt.Windows.UI.Composition.ICompositionTarget;
          Retval.m_ICompositionTarget.all := m_ComRetVal;
       end return;
    end;
@@ -10747,14 +10747,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVector2KeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVector2KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector2KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector2KeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVector2KeyFrameAnimation := new Windows.UI.Composition.IVector2KeyFrameAnimation;
+         Retval.m_IVector2KeyFrameAnimation := new WinRt.Windows.UI.Composition.IVector2KeyFrameAnimation;
          Retval.m_IVector2KeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10767,14 +10767,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVector3KeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVector3KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector3KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector3KeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVector3KeyFrameAnimation := new Windows.UI.Composition.IVector3KeyFrameAnimation;
+         Retval.m_IVector3KeyFrameAnimation := new WinRt.Windows.UI.Composition.IVector3KeyFrameAnimation;
          Retval.m_IVector3KeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10787,14 +10787,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVector4KeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVector4KeyFrameAnimation;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Vector4KeyFrameAnimation do
          Hr := this.m_ICompositor.all.CreateVector4KeyFrameAnimation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVector4KeyFrameAnimation := new Windows.UI.Composition.IVector4KeyFrameAnimation;
+         Retval.m_IVector4KeyFrameAnimation := new WinRt.Windows.UI.Composition.IVector4KeyFrameAnimation;
          Retval.m_IVector4KeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -10802,20 +10802,20 @@ package body WinRt.Windows.UI.Composition is
    function GetCommitBatch
    (
       this : in out Compositor;
-      batchType : Windows.UI.Composition.CompositionBatchTypes
+      batchType : WinRt.Windows.UI.Composition.CompositionBatchTypes
    )
    return WinRt.Windows.UI.Composition.CompositionCommitBatch'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionCommitBatch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionCommitBatch;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionCommitBatch do
          Hr := this.m_ICompositor.all.GetCommitBatch (batchType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionCommitBatch := new Windows.UI.Composition.ICompositionCommitBatch;
+         Retval.m_ICompositionCommitBatch := new WinRt.Windows.UI.Composition.ICompositionCommitBatch;
          Retval.m_ICompositionCommitBatch.all := m_ComRetVal;
       end return;
    end;
@@ -10829,7 +10829,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IAmbientLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IAmbientLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.AmbientLight do
@@ -10839,7 +10839,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAmbientLight := new Windows.UI.Composition.IAmbientLight;
+         Retval.m_IAmbientLight := new WinRt.Windows.UI.Composition.IAmbientLight;
          Retval.m_IAmbientLight.all := m_ComRetVal;
       end return;
    end;
@@ -10853,7 +10853,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimationGroup;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionAnimationGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionAnimationGroup do
@@ -10863,7 +10863,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionAnimationGroup := new Windows.UI.Composition.ICompositionAnimationGroup;
+         Retval.m_ICompositionAnimationGroup := new WinRt.Windows.UI.Composition.ICompositionAnimationGroup;
          Retval.m_ICompositionAnimationGroup.all := m_ComRetVal;
       end return;
    end;
@@ -10877,7 +10877,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
@@ -10887,7 +10887,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
+         Retval.m_ICompositionBackdropBrush := new WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
          Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
       end return;
    end;
@@ -10901,7 +10901,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IDistantLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IDistantLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.DistantLight do
@@ -10911,7 +10911,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDistantLight := new Windows.UI.Composition.IDistantLight;
+         Retval.m_IDistantLight := new WinRt.Windows.UI.Composition.IDistantLight;
          Retval.m_IDistantLight.all := m_ComRetVal;
       end return;
    end;
@@ -10925,7 +10925,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IDropShadow;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IDropShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.DropShadow do
@@ -10935,7 +10935,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDropShadow := new Windows.UI.Composition.IDropShadow;
+         Retval.m_IDropShadow := new WinRt.Windows.UI.Composition.IDropShadow;
          Retval.m_IDropShadow.all := m_ComRetVal;
       end return;
    end;
@@ -10949,7 +10949,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IImplicitAnimationCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IImplicitAnimationCollection;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ImplicitAnimationCollection do
@@ -10959,7 +10959,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImplicitAnimationCollection := new Windows.UI.Composition.IImplicitAnimationCollection;
+         Retval.m_IImplicitAnimationCollection := new WinRt.Windows.UI.Composition.IImplicitAnimationCollection;
          Retval.m_IImplicitAnimationCollection.all := m_ComRetVal;
       end return;
    end;
@@ -10973,7 +10973,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ILayerVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ILayerVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.LayerVisual do
@@ -10983,7 +10983,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILayerVisual := new Windows.UI.Composition.ILayerVisual;
+         Retval.m_ILayerVisual := new WinRt.Windows.UI.Composition.ILayerVisual;
          Retval.m_ILayerVisual.all := m_ComRetVal;
       end return;
    end;
@@ -10997,7 +10997,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionMaskBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionMaskBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionMaskBrush do
@@ -11007,7 +11007,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionMaskBrush := new Windows.UI.Composition.ICompositionMaskBrush;
+         Retval.m_ICompositionMaskBrush := new WinRt.Windows.UI.Composition.ICompositionMaskBrush;
          Retval.m_ICompositionMaskBrush.all := m_ComRetVal;
       end return;
    end;
@@ -11021,7 +11021,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionNineGridBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionNineGridBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionNineGridBrush do
@@ -11031,7 +11031,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionNineGridBrush := new Windows.UI.Composition.ICompositionNineGridBrush;
+         Retval.m_ICompositionNineGridBrush := new WinRt.Windows.UI.Composition.ICompositionNineGridBrush;
          Retval.m_ICompositionNineGridBrush.all := m_ComRetVal;
       end return;
    end;
@@ -11045,7 +11045,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IPointLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IPointLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.PointLight do
@@ -11055,7 +11055,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPointLight := new Windows.UI.Composition.IPointLight;
+         Retval.m_IPointLight := new WinRt.Windows.UI.Composition.IPointLight;
          Retval.m_IPointLight.all := m_ComRetVal;
       end return;
    end;
@@ -11069,7 +11069,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISpotLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISpotLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpotLight do
@@ -11079,7 +11079,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpotLight := new Windows.UI.Composition.ISpotLight;
+         Retval.m_ISpotLight := new WinRt.Windows.UI.Composition.ISpotLight;
          Retval.m_ISpotLight.all := m_ComRetVal;
       end return;
    end;
@@ -11093,7 +11093,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IStepEasingFunction;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
@@ -11103,7 +11103,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+         Retval.m_IStepEasingFunction := new WinRt.Windows.UI.Composition.IStepEasingFunction;
          Retval.m_IStepEasingFunction.all := m_ComRetVal;
       end return;
    end;
@@ -11118,7 +11118,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IStepEasingFunction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IStepEasingFunction;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor2, WinRt.Windows.UI.Composition.IID_ICompositor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.StepEasingFunction do
@@ -11128,7 +11128,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStepEasingFunction := new Windows.UI.Composition.IStepEasingFunction;
+         Retval.m_IStepEasingFunction := new WinRt.Windows.UI.Composition.IStepEasingFunction;
          Retval.m_IStepEasingFunction.all := m_ComRetVal;
       end return;
    end;
@@ -11142,7 +11142,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor3, WinRt.Windows.UI.Composition.IID_ICompositor3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
@@ -11152,7 +11152,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
+         Retval.m_ICompositionBackdropBrush := new WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
          Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
       end return;
    end;
@@ -11166,7 +11166,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
@@ -11176,7 +11176,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop := new WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -11185,14 +11185,14 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Compositor;
       offset : WinRt.Single;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Composition.CompositionColorGradientStop'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionColorGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionColorGradientStop do
@@ -11202,7 +11202,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionColorGradientStop := new Windows.UI.Composition.ICompositionColorGradientStop;
+         Retval.m_ICompositionColorGradientStop := new WinRt.Windows.UI.Composition.ICompositionColorGradientStop;
          Retval.m_ICompositionColorGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -11216,7 +11216,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLinearGradientBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionLinearGradientBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLinearGradientBrush do
@@ -11226,7 +11226,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionLinearGradientBrush := new Windows.UI.Composition.ICompositionLinearGradientBrush;
+         Retval.m_ICompositionLinearGradientBrush := new WinRt.Windows.UI.Composition.ICompositionLinearGradientBrush;
          Retval.m_ICompositionLinearGradientBrush.all := m_ComRetVal;
       end return;
    end;
@@ -11240,7 +11240,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringScalarNaturalMotionAnimation do
@@ -11250,7 +11250,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpringScalarNaturalMotionAnimation := new Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
+         Retval.m_ISpringScalarNaturalMotionAnimation := new WinRt.Windows.UI.Composition.ISpringScalarNaturalMotionAnimation;
          Retval.m_ISpringScalarNaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11264,7 +11264,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringVector2NaturalMotionAnimation do
@@ -11274,7 +11274,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpringVector2NaturalMotionAnimation := new Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
+         Retval.m_ISpringVector2NaturalMotionAnimation := new WinRt.Windows.UI.Composition.ISpringVector2NaturalMotionAnimation;
          Retval.m_ISpringVector2NaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11288,7 +11288,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor4, WinRt.Windows.UI.Composition.IID_ICompositor4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.SpringVector3NaturalMotionAnimation do
@@ -11298,7 +11298,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpringVector3NaturalMotionAnimation := new Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
+         Retval.m_ISpringVector3NaturalMotionAnimation := new WinRt.Windows.UI.Composition.ISpringVector3NaturalMotionAnimation;
          Retval.m_ISpringVector3NaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11397,7 +11397,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceScalarNaturalMotionAnimation do
@@ -11407,7 +11407,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBounceScalarNaturalMotionAnimation := new Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
+         Retval.m_IBounceScalarNaturalMotionAnimation := new WinRt.Windows.UI.Composition.IBounceScalarNaturalMotionAnimation;
          Retval.m_IBounceScalarNaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11421,7 +11421,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceVector2NaturalMotionAnimation do
@@ -11431,7 +11431,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBounceVector2NaturalMotionAnimation := new Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
+         Retval.m_IBounceVector2NaturalMotionAnimation := new WinRt.Windows.UI.Composition.IBounceVector2NaturalMotionAnimation;
          Retval.m_IBounceVector2NaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11445,7 +11445,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BounceVector3NaturalMotionAnimation do
@@ -11455,7 +11455,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBounceVector3NaturalMotionAnimation := new Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
+         Retval.m_IBounceVector3NaturalMotionAnimation := new WinRt.Windows.UI.Composition.IBounceVector3NaturalMotionAnimation;
          Retval.m_IBounceVector3NaturalMotionAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11469,7 +11469,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionContainerShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionContainerShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionContainerShape do
@@ -11479,7 +11479,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionContainerShape := new Windows.UI.Composition.ICompositionContainerShape;
+         Retval.m_ICompositionContainerShape := new WinRt.Windows.UI.Composition.ICompositionContainerShape;
          Retval.m_ICompositionContainerShape.all := m_ComRetVal;
       end return;
    end;
@@ -11493,7 +11493,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEllipseGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionEllipseGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEllipseGeometry do
@@ -11503,7 +11503,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionEllipseGeometry := new Windows.UI.Composition.ICompositionEllipseGeometry;
+         Retval.m_ICompositionEllipseGeometry := new WinRt.Windows.UI.Composition.ICompositionEllipseGeometry;
          Retval.m_ICompositionEllipseGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11517,7 +11517,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLineGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionLineGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLineGeometry do
@@ -11527,7 +11527,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionLineGeometry := new Windows.UI.Composition.ICompositionLineGeometry;
+         Retval.m_ICompositionLineGeometry := new WinRt.Windows.UI.Composition.ICompositionLineGeometry;
          Retval.m_ICompositionLineGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11541,7 +11541,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPathGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionPathGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPathGeometry do
@@ -11551,7 +11551,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionPathGeometry := new Windows.UI.Composition.ICompositionPathGeometry;
+         Retval.m_ICompositionPathGeometry := new WinRt.Windows.UI.Composition.ICompositionPathGeometry;
          Retval.m_ICompositionPathGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11559,14 +11559,14 @@ package body WinRt.Windows.UI.Composition is
    function CreatePathGeometry
    (
       this : in out Compositor;
-      path : Windows.UI.Composition.CompositionPath'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class
    )
    return WinRt.Windows.UI.Composition.CompositionPathGeometry'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionPathGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionPathGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionPathGeometry do
@@ -11576,7 +11576,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionPathGeometry := new Windows.UI.Composition.ICompositionPathGeometry;
+         Retval.m_ICompositionPathGeometry := new WinRt.Windows.UI.Composition.ICompositionPathGeometry;
          Retval.m_ICompositionPathGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11590,7 +11590,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IPathKeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IPathKeyFrameAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.PathKeyFrameAnimation do
@@ -11600,7 +11600,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathKeyFrameAnimation := new Windows.UI.Composition.IPathKeyFrameAnimation;
+         Retval.m_IPathKeyFrameAnimation := new WinRt.Windows.UI.Composition.IPathKeyFrameAnimation;
          Retval.m_IPathKeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11614,7 +11614,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRectangleGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionRectangleGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRectangleGeometry do
@@ -11624,7 +11624,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionRectangleGeometry := new Windows.UI.Composition.ICompositionRectangleGeometry;
+         Retval.m_ICompositionRectangleGeometry := new WinRt.Windows.UI.Composition.ICompositionRectangleGeometry;
          Retval.m_ICompositionRectangleGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11638,7 +11638,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRoundedRectangleGeometry do
@@ -11648,7 +11648,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionRoundedRectangleGeometry := new Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
+         Retval.m_ICompositionRoundedRectangleGeometry := new WinRt.Windows.UI.Composition.ICompositionRoundedRectangleGeometry;
          Retval.m_ICompositionRoundedRectangleGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -11662,7 +11662,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IShapeVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IShapeVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.ShapeVisual do
@@ -11672,7 +11672,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IShapeVisual := new Windows.UI.Composition.IShapeVisual;
+         Retval.m_IShapeVisual := new WinRt.Windows.UI.Composition.IShapeVisual;
          Retval.m_IShapeVisual.all := m_ComRetVal;
       end return;
    end;
@@ -11686,7 +11686,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSpriteShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSpriteShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSpriteShape do
@@ -11696,7 +11696,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionSpriteShape := new Windows.UI.Composition.ICompositionSpriteShape;
+         Retval.m_ICompositionSpriteShape := new WinRt.Windows.UI.Composition.ICompositionSpriteShape;
          Retval.m_ICompositionSpriteShape.all := m_ComRetVal;
       end return;
    end;
@@ -11704,14 +11704,14 @@ package body WinRt.Windows.UI.Composition is
    function CreateSpriteShape
    (
       this : in out Compositor;
-      geometry : Windows.UI.Composition.CompositionGeometry'Class
+      geometry : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    )
    return WinRt.Windows.UI.Composition.CompositionSpriteShape'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionSpriteShape;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionSpriteShape;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionSpriteShape do
@@ -11721,7 +11721,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionSpriteShape := new Windows.UI.Composition.ICompositionSpriteShape;
+         Retval.m_ICompositionSpriteShape := new WinRt.Windows.UI.Composition.ICompositionSpriteShape;
          Retval.m_ICompositionSpriteShape.all := m_ComRetVal;
       end return;
    end;
@@ -11735,7 +11735,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionViewBox;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor5, WinRt.Windows.UI.Composition.IID_ICompositor5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
@@ -11745,7 +11745,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
+         Retval.m_ICompositionViewBox := new WinRt.Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
    end;
@@ -11805,7 +11805,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometricClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionGeometricClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometricClip do
@@ -11815,7 +11815,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionGeometricClip := new Windows.UI.Composition.ICompositionGeometricClip;
+         Retval.m_ICompositionGeometricClip := new WinRt.Windows.UI.Composition.ICompositionGeometricClip;
          Retval.m_ICompositionGeometricClip.all := m_ComRetVal;
       end return;
    end;
@@ -11823,14 +11823,14 @@ package body WinRt.Windows.UI.Composition is
    function CreateGeometricClip
    (
       this : in out Compositor;
-      geometry : Windows.UI.Composition.CompositionGeometry'Class
+      geometry : WinRt.Windows.UI.Composition.CompositionGeometry'Class
    )
    return WinRt.Windows.UI.Composition.CompositionGeometricClip'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGeometricClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionGeometricClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGeometricClip do
@@ -11840,7 +11840,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionGeometricClip := new Windows.UI.Composition.ICompositionGeometricClip;
+         Retval.m_ICompositionGeometricClip := new WinRt.Windows.UI.Composition.ICompositionGeometricClip;
          Retval.m_ICompositionGeometricClip.all := m_ComRetVal;
       end return;
    end;
@@ -11854,7 +11854,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IRedirectVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IRedirectVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RedirectVisual do
@@ -11864,7 +11864,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRedirectVisual := new Windows.UI.Composition.IRedirectVisual;
+         Retval.m_IRedirectVisual := new WinRt.Windows.UI.Composition.IRedirectVisual;
          Retval.m_IRedirectVisual.all := m_ComRetVal;
       end return;
    end;
@@ -11872,14 +11872,14 @@ package body WinRt.Windows.UI.Composition is
    function CreateRedirectVisual
    (
       this : in out Compositor;
-      source : Windows.UI.Composition.Visual'Class
+      source : WinRt.Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.UI.Composition.RedirectVisual'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IRedirectVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IRedirectVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RedirectVisual do
@@ -11889,7 +11889,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRedirectVisual := new Windows.UI.Composition.IRedirectVisual;
+         Retval.m_IRedirectVisual := new WinRt.Windows.UI.Composition.IRedirectVisual;
          Retval.m_IRedirectVisual.all := m_ComRetVal;
       end return;
    end;
@@ -11903,7 +11903,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IBooleanKeyFrameAnimation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IBooleanKeyFrameAnimation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor6, WinRt.Windows.UI.Composition.IID_ICompositor6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.BooleanKeyFrameAnimation do
@@ -11913,7 +11913,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBooleanKeyFrameAnimation := new Windows.UI.Composition.IBooleanKeyFrameAnimation;
+         Retval.m_IBooleanKeyFrameAnimation := new WinRt.Windows.UI.Composition.IBooleanKeyFrameAnimation;
          Retval.m_IBooleanKeyFrameAnimation.all := m_ComRetVal;
       end return;
    end;
@@ -11927,7 +11927,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowCaster;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowCaster do
@@ -11937,7 +11937,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowCaster := new Windows.UI.Composition.ICompositionProjectedShadowCaster;
+         Retval.m_ICompositionProjectedShadowCaster := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowCaster;
          Retval.m_ICompositionProjectedShadowCaster.all := m_ComRetVal;
       end return;
    end;
@@ -11951,7 +11951,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadow;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadow do
@@ -11961,7 +11961,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadow := new Windows.UI.Composition.ICompositionProjectedShadow;
+         Retval.m_ICompositionProjectedShadow := new WinRt.Windows.UI.Composition.ICompositionProjectedShadow;
          Retval.m_ICompositionProjectedShadow.all := m_ComRetVal;
       end return;
    end;
@@ -11975,7 +11975,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionProjectedShadowReceiver;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithProjectedShadow, WinRt.Windows.UI.Composition.IID_ICompositorWithProjectedShadow'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionProjectedShadowReceiver do
@@ -11985,7 +11985,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionProjectedShadowReceiver := new Windows.UI.Composition.ICompositionProjectedShadowReceiver;
+         Retval.m_ICompositionProjectedShadowReceiver := new WinRt.Windows.UI.Composition.ICompositionProjectedShadowReceiver;
          Retval.m_ICompositionProjectedShadowReceiver.all := m_ComRetVal;
       end return;
    end;
@@ -11999,7 +11999,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithRadialGradient := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionRadialGradientBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionRadialGradientBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithRadialGradient, WinRt.Windows.UI.Composition.IID_ICompositorWithRadialGradient'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionRadialGradientBrush do
@@ -12009,7 +12009,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionRadialGradientBrush := new Windows.UI.Composition.ICompositionRadialGradientBrush;
+         Retval.m_ICompositionRadialGradientBrush := new WinRt.Windows.UI.Composition.ICompositionRadialGradientBrush;
          Retval.m_ICompositionRadialGradientBrush.all := m_ComRetVal;
       end return;
    end;
@@ -12023,7 +12023,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithVisualSurface := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionVisualSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionVisualSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithVisualSurface, WinRt.Windows.UI.Composition.IID_ICompositorWithVisualSurface'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionVisualSurface do
@@ -12033,7 +12033,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionVisualSurface := new Windows.UI.Composition.ICompositionVisualSurface;
+         Retval.m_ICompositionVisualSurface := new WinRt.Windows.UI.Composition.ICompositionVisualSurface;
          Retval.m_ICompositionVisualSurface.all := m_ComRetVal;
       end return;
    end;
@@ -12047,7 +12047,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
@@ -12057,7 +12057,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
    end;
@@ -12071,7 +12071,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IAnimationPropertyInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IAnimationPropertyInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.AnimationPropertyInfo do
@@ -12081,7 +12081,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAnimationPropertyInfo := new Windows.UI.Composition.IAnimationPropertyInfo;
+         Retval.m_IAnimationPropertyInfo := new WinRt.Windows.UI.Composition.IAnimationPropertyInfo;
          Retval.m_IAnimationPropertyInfo.all := m_ComRetVal;
       end return;
    end;
@@ -12095,7 +12095,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IRectangleClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
@@ -12105,7 +12105,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip := new WinRt.Windows.UI.Composition.IRectangleClip;
          Retval.m_IRectangleClip.all := m_ComRetVal;
       end return;
    end;
@@ -12123,7 +12123,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IRectangleClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
@@ -12133,7 +12133,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip := new WinRt.Windows.UI.Composition.IRectangleClip;
          Retval.m_IRectangleClip.all := m_ComRetVal;
       end return;
    end;
@@ -12145,17 +12145,17 @@ package body WinRt.Windows.UI.Composition is
       top : WinRt.Single;
       right : WinRt.Single;
       bottom : WinRt.Single;
-      topLeftRadius : Windows.Foundation.Numerics.Vector2;
-      topRightRadius : Windows.Foundation.Numerics.Vector2;
-      bottomRightRadius : Windows.Foundation.Numerics.Vector2;
-      bottomLeftRadius : Windows.Foundation.Numerics.Vector2
+      topLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      topRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      bottomRightRadius : WinRt.Windows.Foundation.Numerics.Vector2;
+      bottomLeftRadius : WinRt.Windows.Foundation.Numerics.Vector2
    )
    return WinRt.Windows.UI.Composition.RectangleClip'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IRectangleClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IRectangleClip;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor7, WinRt.Windows.UI.Composition.IID_ICompositor7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.RectangleClip do
@@ -12165,7 +12165,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRectangleClip := new Windows.UI.Composition.IRectangleClip;
+         Retval.m_IRectangleClip := new WinRt.Windows.UI.Composition.IRectangleClip;
          Retval.m_IRectangleClip.all := m_ComRetVal;
       end return;
    end;
@@ -12179,7 +12179,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositorWithBlurredWallpaperBackdropBrush := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBackdropBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositorWithBlurredWallpaperBackdropBrush, WinRt.Windows.UI.Composition.IID_ICompositorWithBlurredWallpaperBackdropBrush'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBackdropBrush do
@@ -12189,7 +12189,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBackdropBrush := new Windows.UI.Composition.ICompositionBackdropBrush;
+         Retval.m_ICompositionBackdropBrush := new WinRt.Windows.UI.Composition.ICompositionBackdropBrush;
          Retval.m_ICompositionBackdropBrush.all := m_ComRetVal;
       end return;
    end;
@@ -12203,7 +12203,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ICompositor8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IAnimationController;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IAnimationController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ICompositor_Interface, WinRt.Windows.UI.Composition.ICompositor8, WinRt.Windows.UI.Composition.IID_ICompositor8'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.AnimationController do
@@ -12213,7 +12213,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAnimationController := new Windows.UI.Composition.IAnimationController;
+         Retval.m_IAnimationController := new WinRt.Windows.UI.Composition.IAnimationController;
          Retval.m_IAnimationController.all := m_ComRetVal;
       end return;
    end;
@@ -12270,7 +12270,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVisual.all.get_AnchorPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12282,7 +12282,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_AnchorPoint
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12302,7 +12302,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionBackfaceVisibility;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionBackfaceVisibility;
    begin
       Hr := this.m_IVisual.all.get_BackfaceVisibility (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12314,7 +12314,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_BackfaceVisibility
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionBackfaceVisibility
+      value : WinRt.Windows.UI.Composition.CompositionBackfaceVisibility
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12334,7 +12334,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionBorderMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionBorderMode;
    begin
       Hr := this.m_IVisual.all.get_BorderMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12346,7 +12346,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_BorderMode
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionBorderMode
+      value : WinRt.Windows.UI.Composition.CompositionBorderMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12366,7 +12366,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_CenterPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12378,7 +12378,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CenterPoint
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12398,14 +12398,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionClip;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionClip;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionClip do
          Hr := this.m_IVisual.all.get_Clip (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionClip := new Windows.UI.Composition.ICompositionClip;
+         Retval.m_ICompositionClip := new WinRt.Windows.UI.Composition.ICompositionClip;
          Retval.m_ICompositionClip.all := m_ComRetVal;
       end return;
    end;
@@ -12413,7 +12413,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Clip
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionClip'Class
+      value : WinRt.Windows.UI.Composition.CompositionClip'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12433,7 +12433,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionCompositeMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionCompositeMode;
    begin
       Hr := this.m_IVisual.all.get_CompositeMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12445,7 +12445,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CompositeMode
    (
       this : in out Visual;
-      value : Windows.UI.Composition.CompositionCompositeMode
+      value : WinRt.Windows.UI.Composition.CompositionCompositeMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12497,7 +12497,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12509,7 +12509,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12561,7 +12561,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IVisual.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12573,7 +12573,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Orientation
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12593,14 +12593,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IContainerVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IContainerVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.ContainerVisual do
          Hr := this.m_IVisual.all.get_Parent (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContainerVisual := new Windows.UI.Composition.IContainerVisual;
+         Retval.m_IContainerVisual := new WinRt.Windows.UI.Composition.IContainerVisual;
          Retval.m_IContainerVisual.all := m_ComRetVal;
       end return;
    end;
@@ -12677,7 +12677,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_RotationAxis (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12689,7 +12689,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_RotationAxis
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12709,7 +12709,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IVisual.all.get_Scale (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12721,7 +12721,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Scale
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12741,7 +12741,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IVisual.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12753,7 +12753,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Size
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12773,7 +12773,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix4x4;
    begin
       Hr := this.m_IVisual.all.get_TransformMatrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -12785,7 +12785,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TransformMatrix
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12806,7 +12806,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
@@ -12816,7 +12816,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -12824,7 +12824,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ParentForTransform
    (
       this : in out Visual;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12849,7 +12849,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
@@ -12864,7 +12864,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_RelativeOffsetAdjustment
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12889,7 +12889,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IVisual2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisual_Interface, WinRt.Windows.UI.Composition.IVisual2, WinRt.Windows.UI.Composition.IID_IVisual2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVisual.all);
@@ -12904,7 +12904,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_RelativeSizeAdjustment
    (
       this : in out Visual;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13034,14 +13034,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisualCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisualCollection;
    begin
       return RetVal : WinRt.Windows.UI.Composition.VisualCollection do
          Hr := this.m_IContainerVisual.all.get_Children (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisualCollection := new Windows.UI.Composition.IVisualCollection;
+         Retval.m_IVisualCollection := new WinRt.Windows.UI.Composition.IVisualCollection;
          Retval.m_IVisualCollection.all := m_ComRetVal;
       end return;
    end;
@@ -13077,7 +13077,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICubicBezierEasingFunction.all.get_ControlPoint1 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13094,7 +13094,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_ICubicBezierEasingFunction.all.get_ControlPoint2 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13128,7 +13128,7 @@ package body WinRt.Windows.UI.Composition is
 
    function Create
    (
-      compositor_p : Windows.UI.Composition.Compositor'Class
+      compositor_p : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual is
       Hr               : WinRt.HResult := S_OK;
@@ -13136,7 +13136,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.DelegatedInkTrailVisual");
       m_Factory        : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisualStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IDelegatedInkTrailVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.DelegatedInkTrailVisual do
          Hr := RoGetActivationFactory (m_hString, IID_IDelegatedInkTrailVisualStatics'Access , m_Factory'Address);
@@ -13146,7 +13146,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDelegatedInkTrailVisual := new Windows.UI.Composition.IDelegatedInkTrailVisual;
+            Retval.m_IDelegatedInkTrailVisual := new WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual;
             Retval.m_IDelegatedInkTrailVisual.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -13155,8 +13155,8 @@ package body WinRt.Windows.UI.Composition is
 
    function CreateForSwapChain
    (
-      compositor_p : Windows.UI.Composition.Compositor'Class;
-      swapChain : Windows.UI.Composition.ICompositionSurface
+      compositor_p : WinRt.Windows.UI.Composition.Compositor'Class;
+      swapChain : WinRt.Windows.UI.Composition.ICompositionSurface
    )
    return WinRt.Windows.UI.Composition.DelegatedInkTrailVisual is
       Hr               : WinRt.HResult := S_OK;
@@ -13164,7 +13164,7 @@ package body WinRt.Windows.UI.Composition is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Composition.DelegatedInkTrailVisual");
       m_Factory        : access WinRt.Windows.UI.Composition.IDelegatedInkTrailVisualStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IDelegatedInkTrailVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.DelegatedInkTrailVisual do
          Hr := RoGetActivationFactory (m_hString, IID_IDelegatedInkTrailVisualStatics'Access , m_Factory'Address);
@@ -13174,7 +13174,7 @@ package body WinRt.Windows.UI.Composition is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDelegatedInkTrailVisual := new Windows.UI.Composition.IDelegatedInkTrailVisual;
+            Retval.m_IDelegatedInkTrailVisual := new WinRt.Windows.UI.Composition.IDelegatedInkTrailVisual;
             Retval.m_IDelegatedInkTrailVisual.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -13187,7 +13187,7 @@ package body WinRt.Windows.UI.Composition is
    function AddTrailPoints
    (
       this : in out DelegatedInkTrailVisual;
-      inkPoints : Windows.UI.Composition.InkTrailPoint_Array
+      inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -13206,8 +13206,8 @@ package body WinRt.Windows.UI.Composition is
    function AddTrailPointsWithPrediction
    (
       this : in out DelegatedInkTrailVisual;
-      inkPoints : Windows.UI.Composition.InkTrailPoint_Array;
-      predictedInkPoints : Windows.UI.Composition.InkTrailPoint_Array
+      inkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array;
+      predictedInkPoints : WinRt.Windows.UI.Composition.InkTrailPoint_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -13242,7 +13242,7 @@ package body WinRt.Windows.UI.Composition is
    procedure StartNewTrail
    (
       this : in out DelegatedInkTrailVisual;
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13285,7 +13285,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IDistantLight.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13297,7 +13297,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out DistantLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13317,14 +13317,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IDistantLight.all.get_CoordinateSpace (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -13332,7 +13332,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out DistantLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13352,7 +13352,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IDistantLight.all.get_Direction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13364,7 +13364,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out DistantLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13479,7 +13479,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IDropShadow.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13491,7 +13491,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out DropShadow;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13511,14 +13511,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_IDropShadow.all.get_Mask (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -13526,7 +13526,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Mask
    (
       this : in out DropShadow;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13546,7 +13546,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IDropShadow.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13558,7 +13558,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out DropShadow;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13611,7 +13611,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.IDropShadow2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionDropShadowSourcePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IDropShadow_Interface, WinRt.Windows.UI.Composition.IDropShadow2, WinRt.Windows.UI.Composition.IID_IDropShadow2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDropShadow.all);
@@ -13626,7 +13626,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_SourcePolicy
    (
       this : in out DropShadow;
-      value : Windows.UI.Composition.CompositionDropShadowSourcePolicy
+      value : WinRt.Windows.UI.Composition.CompositionDropShadowSourcePolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13673,7 +13673,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_IElasticEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13747,7 +13747,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_IExponentialEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13867,7 +13867,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionAnimationBase;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionAnimationBase;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
@@ -13938,7 +13938,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_ICompositionAnimationBase.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (1269410333, 22444, 21726, (168, 7, 181, 46, 104, 155, 252, 4 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IImplicitAnimationCollection_Interface, IMap_HString_ICompositionAnimationBase.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -13955,7 +13955,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out ImplicitAnimationCollection;
       key : WinRt.WString;
-      value : Windows.UI.Composition.ICompositionAnimationBase
+      value : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -14045,7 +14045,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
@@ -14119,7 +14119,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (4140955392, 18882, 21166, (129, 84, 130, 111, 153, 8, 119, 60 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IMap_HString_HString.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -14383,14 +14383,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionEffectBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionEffectBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionEffectBrush do
          Hr := this.m_ILayerVisual.all.get_Effect (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionEffectBrush := new Windows.UI.Composition.ICompositionEffectBrush;
+         Retval.m_ICompositionEffectBrush := new WinRt.Windows.UI.Composition.ICompositionEffectBrush;
          Retval.m_ICompositionEffectBrush.all := m_ComRetVal;
       end return;
    end;
@@ -14398,7 +14398,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Effect
    (
       this : in out LayerVisual;
-      value : Windows.UI.Composition.CompositionEffectBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionEffectBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14419,7 +14419,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ILayerVisual2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShadow;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ILayerVisual_Interface, WinRt.Windows.UI.Composition.ILayerVisual2, WinRt.Windows.UI.Composition.IID_ILayerVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShadow do
@@ -14429,7 +14429,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionShadow := new Windows.UI.Composition.ICompositionShadow;
+         Retval.m_ICompositionShadow := new WinRt.Windows.UI.Composition.ICompositionShadow;
          Retval.m_ICompositionShadow.all := m_ComRetVal;
       end return;
    end;
@@ -14437,7 +14437,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Shadow
    (
       this : in out LayerVisual;
-      value : Windows.UI.Composition.CompositionShadow'Class
+      value : WinRt.Windows.UI.Composition.CompositionShadow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14503,7 +14503,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out PathKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      path : Windows.UI.Composition.CompositionPath'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14519,8 +14519,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out PathKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      path : Windows.UI.Composition.CompositionPath'Class;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      path : WinRt.Windows.UI.Composition.CompositionPath'Class;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14563,7 +14563,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IPointLight.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14575,7 +14575,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Color
    (
       this : in out PointLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14627,14 +14627,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IPointLight.all.get_CoordinateSpace (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -14642,7 +14642,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out PointLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14694,7 +14694,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IPointLight.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14706,7 +14706,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out PointLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14901,7 +14901,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_IPowerEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14954,7 +14954,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out QuaternionKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14970,8 +14970,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out QuaternionKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Quaternion;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Quaternion;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15046,7 +15046,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IRectangleClip.all.get_BottomLeftRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15058,7 +15058,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_BottomLeftRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15078,7 +15078,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IRectangleClip.all.get_BottomRightRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15090,7 +15090,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_BottomRightRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15206,7 +15206,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IRectangleClip.all.get_TopLeftRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15218,7 +15218,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TopLeftRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15238,7 +15238,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2;
    begin
       Hr := this.m_IRectangleClip.all.get_TopRightRadius (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15250,7 +15250,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_TopRightRadius
    (
       this : in out RectangleClip;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15293,14 +15293,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_IRedirectVisual.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -15308,7 +15308,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Source
    (
       this : in out RedirectVisual;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15351,14 +15351,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionGraphicsDevice;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionGraphicsDevice;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionGraphicsDevice do
          Hr := this.m_IRenderingDeviceReplacedEventArgs.all.get_GraphicsDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionGraphicsDevice := new Windows.UI.Composition.ICompositionGraphicsDevice;
+         Retval.m_ICompositionGraphicsDevice := new WinRt.Windows.UI.Composition.ICompositionGraphicsDevice;
          Retval.m_ICompositionGraphicsDevice.all := m_ComRetVal;
       end return;
    end;
@@ -15407,7 +15407,7 @@ package body WinRt.Windows.UI.Composition is
       this : in out ScalarKeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
       value : WinRt.Single;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15450,14 +15450,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShapeCollection do
          Hr := this.m_IShapeVisual.all.get_Shapes (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -15470,14 +15470,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionViewBox;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionViewBox;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionViewBox do
          Hr := this.m_IShapeVisual.all.get_ViewBox (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionViewBox := new Windows.UI.Composition.ICompositionViewBox;
+         Retval.m_ICompositionViewBox := new WinRt.Windows.UI.Composition.ICompositionViewBox;
          Retval.m_ICompositionViewBox.all := m_ComRetVal;
       end return;
    end;
@@ -15485,7 +15485,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_ViewBox
    (
       this : in out ShapeVisual;
-      value : Windows.UI.Composition.CompositionViewBox'Class
+      value : WinRt.Windows.UI.Composition.CompositionViewBox'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15528,7 +15528,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.CompositionEasingFunctionMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.CompositionEasingFunctionMode;
    begin
       Hr := this.m_ISineEasingFunction.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15600,14 +15600,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
    begin
       return RetVal : WinRt.Windows.UI.Composition.Visual do
          Hr := this.m_ISpotLight.all.get_CoordinateSpace (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -15615,7 +15615,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_CoordinateSpace
    (
       this : in out SpotLight;
-      value : Windows.UI.Composition.Visual'Class
+      value : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15635,7 +15635,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpotLight.all.get_Direction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15647,7 +15647,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Direction
    (
       this : in out SpotLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15731,7 +15731,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ISpotLight.all.get_InnerConeColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15743,7 +15743,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_InnerConeColor
    (
       this : in out SpotLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15795,7 +15795,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ISpotLight.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15807,7 +15807,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Offset
    (
       this : in out SpotLight;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -15891,7 +15891,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ISpotLight.all.get_OuterConeColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15903,7 +15903,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_OuterConeColor
    (
       this : in out SpotLight;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16170,7 +16170,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringScalarNaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -16182,7 +16182,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringScalarNaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16257,7 +16257,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringVector2NaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -16269,7 +16269,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringVector2NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16344,7 +16344,7 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISpringVector3NaturalMotionAnimation.all.get_Period (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -16356,7 +16356,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Period
    (
       this : in out SpringVector3NaturalMotionAnimation;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16399,14 +16399,14 @@ package body WinRt.Windows.UI.Composition is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
          Hr := this.m_ISpriteVisual.all.get_Brush (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -16414,7 +16414,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Brush
    (
       this : in out SpriteVisual;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16435,7 +16435,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.ISpriteVisual2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionShadow;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionShadow;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.ISpriteVisual_Interface, WinRt.Windows.UI.Composition.ISpriteVisual2, WinRt.Windows.UI.Composition.IID_ISpriteVisual2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionShadow do
@@ -16445,7 +16445,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionShadow := new Windows.UI.Composition.ICompositionShadow;
+         Retval.m_ICompositionShadow := new WinRt.Windows.UI.Composition.ICompositionShadow;
          Retval.m_ICompositionShadow.all := m_ComRetVal;
       end return;
    end;
@@ -16453,7 +16453,7 @@ package body WinRt.Windows.UI.Composition is
    procedure put_Shadow
    (
       this : in out SpriteVisual;
-      value : Windows.UI.Composition.CompositionShadow'Class
+      value : WinRt.Windows.UI.Composition.CompositionShadow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16679,7 +16679,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector2KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16695,8 +16695,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector2KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector2;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector2;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16735,7 +16735,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector3KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16751,8 +16751,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector3KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector3;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector3;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16791,7 +16791,7 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector4KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16807,8 +16807,8 @@ package body WinRt.Windows.UI.Composition is
    (
       this : in out Vector4KeyFrameAnimation;
       normalizedProgressKey : WinRt.Single;
-      value : Windows.Foundation.Numerics.Vector4;
-      easingFunction : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.Foundation.Numerics.Vector4;
+      easingFunction : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16863,8 +16863,8 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAbove
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class;
-      sibling : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class;
+      sibling : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16879,7 +16879,7 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAtBottom
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16894,7 +16894,7 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertAtTop
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16909,8 +16909,8 @@ package body WinRt.Windows.UI.Composition is
    procedure InsertBelow
    (
       this : in out VisualCollection;
-      newChild : Windows.UI.Composition.Visual'Class;
-      sibling : Windows.UI.Composition.Visual'Class
+      newChild : WinRt.Windows.UI.Composition.Visual'Class;
+      sibling : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16925,7 +16925,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out VisualCollection;
-      child : Windows.UI.Composition.Visual'Class
+      child : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -16961,7 +16961,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -16972,7 +16972,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;
@@ -17020,7 +17020,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Add
    (
       this : in out VisualUnorderedCollection;
-      newVisual : Windows.UI.Composition.Visual'Class
+      newVisual : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -17035,7 +17035,7 @@ package body WinRt.Windows.UI.Composition is
    procedure Remove
    (
       this : in out VisualUnorderedCollection;
-      visual_p : Windows.UI.Composition.Visual'Class
+      visual_p : WinRt.Windows.UI.Composition.Visual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -17071,7 +17071,7 @@ package body WinRt.Windows.UI.Composition is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IVisual.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.IVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.IVisual;
       m_GenericIID     : aliased WinRt.IID := (1324187086, 58540, 22673, (155, 82, 121, 157, 112, 223, 71, 254 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.IVisualUnorderedCollection_Interface, IIterable_IVisual.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -17082,7 +17082,7 @@ package body WinRt.Windows.UI.Composition is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVisual := new Windows.UI.Composition.IVisual;
+         Retval.m_IVisual := new WinRt.Windows.UI.Composition.IVisual;
          Retval.m_IVisual.all := m_ComRetVal;
       end return;
    end;

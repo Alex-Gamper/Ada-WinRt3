@@ -38,7 +38,7 @@ package body WinRt.Windows.System.Threading is
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler
+         handler : WinRt.Windows.System.Threading.WorkItemHandler
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -87,8 +87,8 @@ package body WinRt.Windows.System.Threading is
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -137,9 +137,9 @@ package body WinRt.Windows.System.Threading is
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         options : Windows.System.Threading.WorkItemOptions
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         options : WinRt.Windows.System.Threading.WorkItemOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -213,8 +213,8 @@ package body WinRt.Windows.System.Threading is
 
    function CreatePeriodicTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      period : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      period : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer is
       Hr               : WinRt.HResult := S_OK;
@@ -222,7 +222,7 @@ package body WinRt.Windows.System.Threading is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.ThreadPoolTimer");
       m_Factory        : access WinRt.Windows.System.Threading.IThreadPoolTimerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.IThreadPoolTimer;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.IThreadPoolTimer;
    begin
       return RetVal : WinRt.Windows.System.Threading.ThreadPoolTimer do
          Hr := RoGetActivationFactory (m_hString, IID_IThreadPoolTimerStatics'Access , m_Factory'Address);
@@ -232,7 +232,7 @@ package body WinRt.Windows.System.Threading is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IThreadPoolTimer := new Windows.System.Threading.IThreadPoolTimer;
+            Retval.m_IThreadPoolTimer := new WinRt.Windows.System.Threading.IThreadPoolTimer;
             Retval.m_IThreadPoolTimer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -241,8 +241,8 @@ package body WinRt.Windows.System.Threading is
 
    function CreateTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      delay_x : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      delay_x : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer is
       Hr               : WinRt.HResult := S_OK;
@@ -250,7 +250,7 @@ package body WinRt.Windows.System.Threading is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.ThreadPoolTimer");
       m_Factory        : access WinRt.Windows.System.Threading.IThreadPoolTimerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.IThreadPoolTimer;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.IThreadPoolTimer;
    begin
       return RetVal : WinRt.Windows.System.Threading.ThreadPoolTimer do
          Hr := RoGetActivationFactory (m_hString, IID_IThreadPoolTimerStatics'Access , m_Factory'Address);
@@ -260,7 +260,7 @@ package body WinRt.Windows.System.Threading is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IThreadPoolTimer := new Windows.System.Threading.IThreadPoolTimer;
+            Retval.m_IThreadPoolTimer := new WinRt.Windows.System.Threading.IThreadPoolTimer;
             Retval.m_IThreadPoolTimer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -269,9 +269,9 @@ package body WinRt.Windows.System.Threading is
 
    function CreatePeriodicTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      period : Windows.Foundation.TimeSpan;
-      destroyed : Windows.System.Threading.TimerDestroyedHandler
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      period : WinRt.Windows.Foundation.TimeSpan;
+      destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer is
       Hr               : WinRt.HResult := S_OK;
@@ -279,7 +279,7 @@ package body WinRt.Windows.System.Threading is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.ThreadPoolTimer");
       m_Factory        : access WinRt.Windows.System.Threading.IThreadPoolTimerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.IThreadPoolTimer;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.IThreadPoolTimer;
    begin
       return RetVal : WinRt.Windows.System.Threading.ThreadPoolTimer do
          Hr := RoGetActivationFactory (m_hString, IID_IThreadPoolTimerStatics'Access , m_Factory'Address);
@@ -289,7 +289,7 @@ package body WinRt.Windows.System.Threading is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IThreadPoolTimer := new Windows.System.Threading.IThreadPoolTimer;
+            Retval.m_IThreadPoolTimer := new WinRt.Windows.System.Threading.IThreadPoolTimer;
             Retval.m_IThreadPoolTimer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -298,9 +298,9 @@ package body WinRt.Windows.System.Threading is
 
    function CreateTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      delay_x : Windows.Foundation.TimeSpan;
-      destroyed : Windows.System.Threading.TimerDestroyedHandler
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      delay_x : WinRt.Windows.Foundation.TimeSpan;
+      destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer is
       Hr               : WinRt.HResult := S_OK;
@@ -308,7 +308,7 @@ package body WinRt.Windows.System.Threading is
       m_hString        : constant WinRt.HString := To_HString ("Windows.System.Threading.ThreadPoolTimer");
       m_Factory        : access WinRt.Windows.System.Threading.IThreadPoolTimerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Threading.IThreadPoolTimer;
+      m_ComRetVal      : aliased WinRt.Windows.System.Threading.IThreadPoolTimer;
    begin
       return RetVal : WinRt.Windows.System.Threading.ThreadPoolTimer do
          Hr := RoGetActivationFactory (m_hString, IID_IThreadPoolTimerStatics'Access , m_Factory'Address);
@@ -318,7 +318,7 @@ package body WinRt.Windows.System.Threading is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IThreadPoolTimer := new Windows.System.Threading.IThreadPoolTimer;
+            Retval.m_IThreadPoolTimer := new WinRt.Windows.System.Threading.IThreadPoolTimer;
             Retval.m_IThreadPoolTimer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -336,7 +336,7 @@ package body WinRt.Windows.System.Threading is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IThreadPoolTimer.all.get_Period (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -353,7 +353,7 @@ package body WinRt.Windows.System.Threading is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IThreadPoolTimer.all.get_Delay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -382,7 +382,7 @@ package body WinRt.Windows.System.Threading is
    function Invoke
    (
       this : access TimerDestroyedHandler_Delegate;
-      timer : Windows.System.Threading.IThreadPoolTimer
+      timer : WinRt.Windows.System.Threading.IThreadPoolTimer
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -397,7 +397,7 @@ package body WinRt.Windows.System.Threading is
    function Invoke
    (
       this : access TimerElapsedHandler_Delegate;
-      timer : Windows.System.Threading.IThreadPoolTimer
+      timer : WinRt.Windows.System.Threading.IThreadPoolTimer
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -412,7 +412,7 @@ package body WinRt.Windows.System.Threading is
    function Invoke
    (
       this : access WorkItemHandler_Delegate;
-      operation : Windows.Foundation.IAsyncAction
+      operation : WinRt.Windows.Foundation.IAsyncAction
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;

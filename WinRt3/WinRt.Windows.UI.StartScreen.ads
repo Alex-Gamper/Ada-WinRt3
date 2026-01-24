@@ -295,21 +295,21 @@ package WinRt.Windows.UI.StartScreen is
       function get_SystemGroupKind
       (
          this : access IJumpList_Interface;
-         RetVal : access Windows.UI.StartScreen.JumpListSystemGroupKind
+         RetVal : access WinRt.Windows.UI.StartScreen.JumpListSystemGroupKind
       )
       return WinRt.Hresult is abstract;
 
       function put_SystemGroupKind
       (
          this : access IJumpList_Interface;
-         value : Windows.UI.StartScreen.JumpListSystemGroupKind
+         value : WinRt.Windows.UI.StartScreen.JumpListSystemGroupKind
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IJumpList_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -321,7 +321,7 @@ package WinRt.Windows.UI.StartScreen is
       function get_Kind
       (
          this : access IJumpListItem_Interface;
-         RetVal : access Windows.UI.StartScreen.JumpListItemKind
+         RetVal : access WinRt.Windows.UI.StartScreen.JumpListItemKind
       )
       return WinRt.Hresult is abstract;
 
@@ -384,14 +384,14 @@ package WinRt.Windows.UI.StartScreen is
       function get_Logo
       (
          this : access IJumpListItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Logo
       (
          this : access IJumpListItem_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -405,14 +405,14 @@ package WinRt.Windows.UI.StartScreen is
          this : access IJumpListItemStatics_Interface;
          arguments : WinRt.HString;
          displayName : WinRt.HString;
-         RetVal : access Windows.UI.StartScreen.IJumpListItem
+         RetVal : access WinRt.Windows.UI.StartScreen.IJumpListItem
       )
       return WinRt.Hresult is abstract;
 
       function CreateSeparator
       (
          this : access IJumpListItemStatics_Interface;
-         RetVal : access Windows.UI.StartScreen.IJumpListItem
+         RetVal : access WinRt.Windows.UI.StartScreen.IJumpListItem
       )
       return WinRt.Hresult is abstract;
 
@@ -499,56 +499,56 @@ package WinRt.Windows.UI.StartScreen is
       function put_Logo
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Logo
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_SmallLogo
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_SmallLogo
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_WideLogo
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_WideLogo
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_LockScreenBadgeLogo
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_LockScreenBadgeLogo
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -569,42 +569,42 @@ package WinRt.Windows.UI.StartScreen is
       function put_TileOptions
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.UI.StartScreen.TileOptions
+         value : WinRt.Windows.UI.StartScreen.TileOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_TileOptions
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.UI.StartScreen.TileOptions
+         RetVal : access WinRt.Windows.UI.StartScreen.TileOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_ForegroundText
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.UI.StartScreen.ForegroundText
+         value : WinRt.Windows.UI.StartScreen.ForegroundText
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundText
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.UI.StartScreen.ForegroundText
+         RetVal : access WinRt.Windows.UI.StartScreen.ForegroundText
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access ISecondaryTile_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access ISecondaryTile_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -618,7 +618,7 @@ package WinRt.Windows.UI.StartScreen is
       function RequestCreateAsync
       (
          this : access ISecondaryTile_Interface;
-         invocationPoint : Windows.Foundation.Point;
+         invocationPoint : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -626,7 +626,7 @@ package WinRt.Windows.UI.StartScreen is
       function RequestCreateForSelectionAsync
       (
          this : access ISecondaryTile_Interface;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -634,8 +634,8 @@ package WinRt.Windows.UI.StartScreen is
       function RequestCreateForSelectionAsync
       (
          this : access ISecondaryTile_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -650,7 +650,7 @@ package WinRt.Windows.UI.StartScreen is
       function RequestDeleteAsync
       (
          this : access ISecondaryTile_Interface;
-         invocationPoint : Windows.Foundation.Point;
+         invocationPoint : WinRt.Windows.Foundation.Point;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -658,7 +658,7 @@ package WinRt.Windows.UI.StartScreen is
       function RequestDeleteForSelectionAsync
       (
          this : access ISecondaryTile_Interface;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -666,8 +666,8 @@ package WinRt.Windows.UI.StartScreen is
       function RequestDeleteForSelectionAsync
       (
          this : access ISecondaryTile_Interface;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -701,7 +701,7 @@ package WinRt.Windows.UI.StartScreen is
       function get_VisualElements
       (
          this : access ISecondaryTile2_Interface;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTileVisualElements
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements
       )
       return WinRt.Hresult is abstract;
 
@@ -723,14 +723,14 @@ package WinRt.Windows.UI.StartScreen is
       (
          this : access ISecondaryTile2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VisualElementsRequested
       (
          this : access ISecondaryTile2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -746,9 +746,9 @@ package WinRt.Windows.UI.StartScreen is
          shortName : WinRt.HString;
          displayName : WinRt.HString;
          arguments : WinRt.HString;
-         tileOptions : Windows.UI.StartScreen.TileOptions;
-         logoReference : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTile
+         tileOptions : WinRt.Windows.UI.StartScreen.TileOptions;
+         logoReference : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTile
       )
       return WinRt.Hresult is abstract;
 
@@ -759,10 +759,10 @@ package WinRt.Windows.UI.StartScreen is
          shortName : WinRt.HString;
          displayName : WinRt.HString;
          arguments : WinRt.HString;
-         tileOptions : Windows.UI.StartScreen.TileOptions;
-         logoReference : Windows.Foundation.IUriRuntimeClass;
-         wideLogoReference : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTile
+         tileOptions : WinRt.Windows.UI.StartScreen.TileOptions;
+         logoReference : WinRt.Windows.Foundation.IUriRuntimeClass;
+         wideLogoReference : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTile
       )
       return WinRt.Hresult is abstract;
 
@@ -770,7 +770,7 @@ package WinRt.Windows.UI.StartScreen is
       (
          this : access ISecondaryTileFactory_Interface;
          tileId : WinRt.HString;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTile
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTile
       )
       return WinRt.Hresult is abstract;
 
@@ -785,9 +785,9 @@ package WinRt.Windows.UI.StartScreen is
          tileId : WinRt.HString;
          displayName : WinRt.HString;
          arguments : WinRt.HString;
-         square150x150Logo : Windows.Foundation.IUriRuntimeClass;
-         desiredSize : Windows.UI.StartScreen.TileSize;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTile
+         square150x150Logo : WinRt.Windows.Foundation.IUriRuntimeClass;
+         desiredSize : WinRt.Windows.UI.StartScreen.TileSize;
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTile
       )
       return WinRt.Hresult is abstract;
 
@@ -834,98 +834,98 @@ package WinRt.Windows.UI.StartScreen is
       function put_Square30x30Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square30x30Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Square70x70Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square70x70Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Square150x150Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square150x150Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Wide310x150Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Wide310x150Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Square310x310Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square310x310Logo
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ForegroundText
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.UI.StartScreen.ForegroundText
+         value : WinRt.Windows.UI.StartScreen.ForegroundText
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundText
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.UI.StartScreen.ForegroundText
+         RetVal : access WinRt.Windows.UI.StartScreen.ForegroundText
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access ISecondaryTileVisualElements_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access ISecondaryTileVisualElements_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -979,14 +979,14 @@ package WinRt.Windows.UI.StartScreen is
       function put_Square71x71Logo
       (
          this : access ISecondaryTileVisualElements2_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square71x71Logo
       (
          this : access ISecondaryTileVisualElements2_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -998,14 +998,14 @@ package WinRt.Windows.UI.StartScreen is
       function put_Square44x44Logo
       (
          this : access ISecondaryTileVisualElements3_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Square44x44Logo
       (
          this : access ISecondaryTileVisualElements3_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1017,7 +1017,7 @@ package WinRt.Windows.UI.StartScreen is
       function get_MixedRealityModel
       (
          this : access ISecondaryTileVisualElements4_Interface;
-         RetVal : access Windows.UI.StartScreen.ITileMixedRealityModel
+         RetVal : access WinRt.Windows.UI.StartScreen.ITileMixedRealityModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1029,14 +1029,14 @@ package WinRt.Windows.UI.StartScreen is
       function get_User
       (
          this : access IStartScreenManager_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function SupportsAppListEntry
       (
          this : access IStartScreenManager_Interface;
-         appListEntry : Windows.ApplicationModel.Core.IAppListEntry;
+         appListEntry : WinRt.Windows.ApplicationModel.Core.IAppListEntry;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1044,7 +1044,7 @@ package WinRt.Windows.UI.StartScreen is
       function ContainsAppListEntryAsync
       (
          this : access IStartScreenManager_Interface;
-         appListEntry : Windows.ApplicationModel.Core.IAppListEntry;
+         appListEntry : WinRt.Windows.ApplicationModel.Core.IAppListEntry;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1052,7 +1052,7 @@ package WinRt.Windows.UI.StartScreen is
       function RequestAddAppListEntryAsync
       (
          this : access IStartScreenManager_Interface;
-         appListEntry : Windows.ApplicationModel.Core.IAppListEntry;
+         appListEntry : WinRt.Windows.ApplicationModel.Core.IAppListEntry;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1086,15 +1086,15 @@ package WinRt.Windows.UI.StartScreen is
       function GetDefault
       (
          this : access IStartScreenManagerStatics_Interface;
-         RetVal : access Windows.UI.StartScreen.IStartScreenManager
+         RetVal : access WinRt.Windows.UI.StartScreen.IStartScreenManager
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IStartScreenManagerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.UI.StartScreen.IStartScreenManager
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.UI.StartScreen.IStartScreenManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1106,14 +1106,14 @@ package WinRt.Windows.UI.StartScreen is
       function put_Uri
       (
          this : access ITileMixedRealityModel_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access ITileMixedRealityModel_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1139,14 +1139,14 @@ package WinRt.Windows.UI.StartScreen is
       function put_ActivationBehavior
       (
          this : access ITileMixedRealityModel2_Interface;
-         value : Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
+         value : WinRt.Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_ActivationBehavior
       (
          this : access ITileMixedRealityModel2_Interface;
-         RetVal : access Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
+         RetVal : access WinRt.Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -1158,7 +1158,7 @@ package WinRt.Windows.UI.StartScreen is
       function get_VisualElements
       (
          this : access IVisualElementsRequest_Interface;
-         RetVal : access Windows.UI.StartScreen.ISecondaryTileVisualElements
+         RetVal : access WinRt.Windows.UI.StartScreen.ISecondaryTileVisualElements
       )
       return WinRt.Hresult is abstract;
 
@@ -1172,14 +1172,14 @@ package WinRt.Windows.UI.StartScreen is
       function get_Deadline
       (
          this : access IVisualElementsRequest_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IVisualElementsRequest_Interface;
-         RetVal : access Windows.UI.StartScreen.IVisualElementsRequestDeferral
+         RetVal : access WinRt.Windows.UI.StartScreen.IVisualElementsRequestDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1202,7 +1202,7 @@ package WinRt.Windows.UI.StartScreen is
       function get_Request
       (
          this : access IVisualElementsRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.StartScreen.IVisualElementsRequest
+         RetVal : access WinRt.Windows.UI.StartScreen.IVisualElementsRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1245,7 +1245,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_SystemGroupKind
    (
       this : in out JumpList;
-      value : Windows.UI.StartScreen.JumpListSystemGroupKind
+      value : WinRt.Windows.UI.StartScreen.JumpListSystemGroupKind
    );
 
    procedure SaveAsync
@@ -1338,7 +1338,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Logo
    (
       this : in out JumpListItem;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1357,8 +1357,8 @@ package WinRt.Windows.UI.StartScreen is
       tileId : WinRt.WString;
       displayName : WinRt.WString;
       arguments : WinRt.WString;
-      square150x150Logo : Windows.Foundation.Uri'Class;
-      desiredSize : Windows.UI.StartScreen.TileSize
+      square150x150Logo : WinRt.Windows.Foundation.Uri'Class;
+      desiredSize : WinRt.Windows.UI.StartScreen.TileSize
    )
    return SecondaryTile;
 
@@ -1368,8 +1368,8 @@ package WinRt.Windows.UI.StartScreen is
       shortName : WinRt.WString;
       displayName : WinRt.WString;
       arguments : WinRt.WString;
-      tileOptions : Windows.UI.StartScreen.TileOptions;
-      logoReference : Windows.Foundation.Uri'Class
+      tileOptions : WinRt.Windows.UI.StartScreen.TileOptions;
+      logoReference : WinRt.Windows.Foundation.Uri'Class
    )
    return SecondaryTile;
 
@@ -1379,9 +1379,9 @@ package WinRt.Windows.UI.StartScreen is
       shortName : WinRt.WString;
       displayName : WinRt.WString;
       arguments : WinRt.WString;
-      tileOptions : Windows.UI.StartScreen.TileOptions;
-      logoReference : Windows.Foundation.Uri'Class;
-      wideLogoReference : Windows.Foundation.Uri'Class
+      tileOptions : WinRt.Windows.UI.StartScreen.TileOptions;
+      logoReference : WinRt.Windows.Foundation.Uri'Class;
+      wideLogoReference : WinRt.Windows.Foundation.Uri'Class
    )
    return SecondaryTile;
 
@@ -1466,7 +1466,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Logo
    (
       this : in out SecondaryTile;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Logo
@@ -1478,7 +1478,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_SmallLogo
    (
       this : in out SecondaryTile;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_SmallLogo
@@ -1490,7 +1490,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_WideLogo
    (
       this : in out SecondaryTile;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_WideLogo
@@ -1502,7 +1502,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_LockScreenBadgeLogo
    (
       this : in out SecondaryTile;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_LockScreenBadgeLogo
@@ -1526,7 +1526,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_TileOptions
    (
       this : in out SecondaryTile;
-      value : Windows.UI.StartScreen.TileOptions
+      value : WinRt.Windows.UI.StartScreen.TileOptions
    );
 
    function get_TileOptions
@@ -1538,7 +1538,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_ForegroundText
    (
       this : in out SecondaryTile;
-      value : Windows.UI.StartScreen.ForegroundText
+      value : WinRt.Windows.UI.StartScreen.ForegroundText
    );
 
    function get_ForegroundText
@@ -1550,7 +1550,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_BackgroundColor
    (
       this : in out SecondaryTile;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_BackgroundColor
@@ -1568,22 +1568,22 @@ package WinRt.Windows.UI.StartScreen is
    function RequestCreateAsync
    (
       this : in out SecondaryTile;
-      invocationPoint : Windows.Foundation.Point
+      invocationPoint : WinRt.Windows.Foundation.Point
    )
    return WinRt.Boolean;
 
    function RequestCreateForSelectionAsync
    (
       this : in out SecondaryTile;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean;
 
    function RequestCreateForSelectionAsync
    (
       this : in out SecondaryTile;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Boolean;
 
@@ -1596,22 +1596,22 @@ package WinRt.Windows.UI.StartScreen is
    function RequestDeleteAsync
    (
       this : in out SecondaryTile;
-      invocationPoint : Windows.Foundation.Point
+      invocationPoint : WinRt.Windows.Foundation.Point
    )
    return WinRt.Boolean;
 
    function RequestDeleteForSelectionAsync
    (
       this : in out SecondaryTile;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean;
 
    function RequestDeleteForSelectionAsync
    (
       this : in out SecondaryTile;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Boolean;
 
@@ -1661,7 +1661,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure remove_VisualElementsRequested
    (
       this : in out SecondaryTile;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1676,7 +1676,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square30x30Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square30x30Logo
@@ -1688,7 +1688,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square70x70Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square70x70Logo
@@ -1700,7 +1700,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square150x150Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square150x150Logo
@@ -1712,7 +1712,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Wide310x150Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Wide310x150Logo
@@ -1724,7 +1724,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square310x310Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square310x310Logo
@@ -1736,7 +1736,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_ForegroundText
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.UI.StartScreen.ForegroundText
+      value : WinRt.Windows.UI.StartScreen.ForegroundText
    );
 
    function get_ForegroundText
@@ -1748,7 +1748,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_BackgroundColor
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_BackgroundColor
@@ -1796,7 +1796,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square71x71Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square71x71Logo
@@ -1808,7 +1808,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Square44x44Logo
    (
       this : in out SecondaryTileVisualElements;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Square44x44Logo
@@ -1837,7 +1837,7 @@ package WinRt.Windows.UI.StartScreen is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.UI.StartScreen.StartScreenManager;
 
@@ -1853,21 +1853,21 @@ package WinRt.Windows.UI.StartScreen is
    function SupportsAppListEntry
    (
       this : in out StartScreenManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean;
 
    function ContainsAppListEntryAsync
    (
       this : in out StartScreenManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean;
 
    function RequestAddAppListEntryAsync
    (
       this : in out StartScreenManager;
-      appListEntry : Windows.ApplicationModel.Core.AppListEntry'Class
+      appListEntry : WinRt.Windows.ApplicationModel.Core.AppListEntry'Class
    )
    return WinRt.Boolean;
 
@@ -1897,7 +1897,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_Uri
    (
       this : in out TileMixedRealityModel;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_Uri
@@ -1921,7 +1921,7 @@ package WinRt.Windows.UI.StartScreen is
    procedure put_ActivationBehavior
    (
       this : in out TileMixedRealityModel;
-      value : Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
+      value : WinRt.Windows.UI.StartScreen.TileMixedRealityModelActivationBehavior
    );
 
    function get_ActivationBehavior

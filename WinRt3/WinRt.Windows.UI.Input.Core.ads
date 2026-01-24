@@ -72,14 +72,14 @@ package WinRt.Windows.UI.Input.Core is
       function get_Controller
       (
          this : access IRadialControllerIndependentInputSource_Interface;
-         RetVal : access Windows.UI.Input.IRadialController
+         RetVal : access WinRt.Windows.UI.Input.IRadialController
       )
       return WinRt.Hresult is abstract;
 
       function get_Dispatcher
       (
          this : access IRadialControllerIndependentInputSource_Interface;
-         RetVal : access Windows.UI.Core.ICoreDispatcher
+         RetVal : access WinRt.Windows.UI.Core.ICoreDispatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -91,7 +91,7 @@ package WinRt.Windows.UI.Input.Core is
       function get_DispatcherQueue
       (
          this : access IRadialControllerIndependentInputSource2_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -103,8 +103,8 @@ package WinRt.Windows.UI.Input.Core is
       function CreateForView
       (
          this : access IRadialControllerIndependentInputSourceStatics_Interface;
-         view : Windows.ApplicationModel.Core.ICoreApplicationView;
-         RetVal : access Windows.UI.Input.Core.IRadialControllerIndependentInputSource
+         view : WinRt.Windows.ApplicationModel.Core.ICoreApplicationView;
+         RetVal : access WinRt.Windows.UI.Input.Core.IRadialControllerIndependentInputSource
       )
       return WinRt.Hresult is abstract;
 
@@ -125,7 +125,7 @@ package WinRt.Windows.UI.Input.Core is
 
    function CreateForView
    (
-      view : Windows.ApplicationModel.Core.CoreApplicationView'Class
+      view : WinRt.Windows.ApplicationModel.Core.CoreApplicationView'Class
    )
    return WinRt.Windows.UI.Input.Core.RadialControllerIndependentInputSource;
 

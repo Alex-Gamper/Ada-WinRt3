@@ -585,7 +585,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
       HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.AsymmetricKeyAlgorithmProvider do
@@ -596,7 +596,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAsymmetricKeyAlgorithmProvider := new Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
+            Retval.m_IAsymmetricKeyAlgorithmProvider := new WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider;
             Retval.m_IAsymmetricKeyAlgorithmProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -636,14 +636,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.CreateKeyPair (keySize, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -651,20 +651,20 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function ImportKeyPair
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportKeyPair (keyBlob, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -672,21 +672,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function ImportKeyPair
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportKeyPair (keyBlob, BlobType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -694,20 +694,20 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function ImportPublicKey
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportPublicKey (keyBlob, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -715,21 +715,21 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function ImportPublicKey
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IAsymmetricKeyAlgorithmProvider.all.ImportPublicKey (keyBlob, BlobType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -744,7 +744,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
       HStr_curveName : constant WinRt.HString := To_HString (curveName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IAsymmetricKeyAlgorithmProvider2'Unchecked_Access);
    begin
@@ -755,7 +755,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_curveName);
       end return;
@@ -771,7 +771,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IAsymmetricKeyAlgorithmProvider2'Unchecked_Access);
       function Convert_parameters is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
@@ -782,7 +782,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -793,9 +793,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function Encrypt
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -803,7 +803,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -819,9 +819,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function Decrypt
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -829,7 +829,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -845,10 +845,10 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function EncryptAndAuthenticate
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData is
          Hr               : WinRt.HResult := S_OK;
@@ -856,7 +856,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
+         m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData do
             Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
@@ -866,7 +866,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IEncryptedAndAuthenticatedData := new Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
+               Retval.m_IEncryptedAndAuthenticatedData := new WinRt.Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData;
                Retval.m_IEncryptedAndAuthenticatedData.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -875,11 +875,11 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function DecryptAndAuthenticate
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticationTag : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticationTag : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -887,7 +887,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -903,8 +903,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function Sign
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -912,7 +912,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -928,9 +928,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function VerifySignature
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -954,8 +954,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function DeriveKeyMaterial
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         parameters : Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         parameters : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
          desiredKeySize : WinRt.UInt32
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
@@ -964,7 +964,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -980,8 +980,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function SignHashedData
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -989,7 +989,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.CryptographicEngine");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ICryptographicEngineStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ICryptographicEngineStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1005,9 +1005,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function VerifySignatureWithHashInput
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Boolean is
          Hr               : WinRt.HResult := S_OK;
@@ -1031,9 +1031,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function DecryptAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -1103,8 +1103,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function SignAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -1174,8 +1174,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function SignHashedDataAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -1271,7 +1271,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
    procedure Append
    (
       this : in out CryptographicHash;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1291,7 +1291,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHashComputation.all.GetValueAndReset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1348,7 +1348,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.Export (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1360,13 +1360,13 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function Export
    (
       this : in out CryptographicKey;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.Export (BlobType, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1383,7 +1383,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.ExportPublicKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1395,13 +1395,13 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function ExportPublicKey
    (
       this : in out CryptographicKey;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ICryptographicKey.all.ExportPublicKey (BlobType, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2501,7 +2501,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.EccCurveNames");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IEccCurveNamesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IEccCurveNamesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2548,7 +2548,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IEncryptedAndAuthenticatedData.all.get_EncryptedData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2565,7 +2565,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IEncryptedAndAuthenticatedData.all.get_AuthenticationTag (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2733,7 +2733,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.HashAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
       HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.HashAlgorithmProvider do
@@ -2744,7 +2744,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHashAlgorithmProvider := new Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
+            Retval.m_IHashAlgorithmProvider := new WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmProvider;
             Retval.m_IHashAlgorithmProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2795,13 +2795,13 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function HashData
    (
       this : in out HashAlgorithmProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IHashAlgorithmProvider.all.HashData (data, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2818,14 +2818,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashComputation;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IHashComputation;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicHash do
          Hr := this.m_IHashAlgorithmProvider.all.CreateHash (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHashComputation := new Windows.Security.Cryptography.Core.IHashComputation;
+         Retval.m_IHashComputation := new WinRt.Windows.Security.Cryptography.Core.IHashComputation;
          Retval.m_IHashComputation.all := m_ComRetVal;
       end return;
    end;
@@ -3349,7 +3349,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
       HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationAlgorithmProvider do
@@ -3360,7 +3360,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyDerivationAlgorithmProvider := new Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
+            Retval.m_IKeyDerivationAlgorithmProvider := new WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider;
             Retval.m_IKeyDerivationAlgorithmProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3394,20 +3394,20 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function CreateKey
    (
       this : in out KeyDerivationAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IKeyDerivationAlgorithmProvider.all.CreateKey (keyMaterial, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -3437,7 +3437,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
    function BuildForCapi1Kdf
    (
-      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+      capi1KdfTargetAlgorithm : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
@@ -3445,7 +3445,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics2'Access , m_Factory'Address);
@@ -3455,7 +3455,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+            Retval.m_IKeyDerivationParameters := new WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3464,7 +3464,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
    function BuildForPbkdf2
    (
-      pbkdf2Salt : Windows.Storage.Streams.IBuffer;
+      pbkdf2Salt : WinRt.Windows.Storage.Streams.IBuffer;
       iterationCount : WinRt.UInt32
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
@@ -3473,7 +3473,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
@@ -3483,7 +3483,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+            Retval.m_IKeyDerivationParameters := new WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3492,8 +3492,8 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
    function BuildForSP800108
    (
-      label : Windows.Storage.Streams.IBuffer;
-      context : Windows.Storage.Streams.IBuffer
+      label : WinRt.Windows.Storage.Streams.IBuffer;
+      context : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
@@ -3501,7 +3501,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
@@ -3511,7 +3511,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+            Retval.m_IKeyDerivationParameters := new WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3520,11 +3520,11 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
    function BuildForSP80056a
    (
-      algorithmId : Windows.Storage.Streams.IBuffer;
-      partyUInfo : Windows.Storage.Streams.IBuffer;
-      partyVInfo : Windows.Storage.Streams.IBuffer;
-      suppPubInfo : Windows.Storage.Streams.IBuffer;
-      suppPrivInfo : Windows.Storage.Streams.IBuffer
+      algorithmId : WinRt.Windows.Storage.Streams.IBuffer;
+      partyUInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      partyVInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      suppPubInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      suppPrivInfo : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters is
       Hr               : WinRt.HResult := S_OK;
@@ -3532,7 +3532,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.KeyDerivationParameters");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParametersStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters do
          Hr := RoGetActivationFactory (m_hString, IID_IKeyDerivationParametersStatics'Access , m_Factory'Address);
@@ -3542,7 +3542,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IKeyDerivationParameters := new Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+            Retval.m_IKeyDerivationParameters := new WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
             Retval.m_IKeyDerivationParameters.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3560,7 +3560,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IKeyDerivationParameters.all.get_KdfGenericBinary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3572,7 +3572,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
    procedure put_KdfGenericBinary
    (
       this : in out KeyDerivationParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3610,7 +3610,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters_Interface, WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters2, WinRt.Windows.Security.Cryptography.Core.IID_IKeyDerivationParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IKeyDerivationParameters.all);
@@ -3625,7 +3625,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
    procedure put_Capi1KdfTargetAlgorithm
    (
       this : in out KeyDerivationParameters;
-      value : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+      value : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3824,7 +3824,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.MacAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
       HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.MacAlgorithmProvider do
@@ -3835,7 +3835,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMacAlgorithmProvider := new Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
+            Retval.m_IMacAlgorithmProvider := new WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider;
             Retval.m_IMacAlgorithmProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3886,20 +3886,20 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function CreateKey
    (
       this : in out MacAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_IMacAlgorithmProvider.all.CreateKey (keyMaterial, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;
@@ -3907,14 +3907,14 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function CreateHash
    (
       this : in out MacAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicHash'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.IHashComputation;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.IHashComputation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider_Interface, WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider2, WinRt.Windows.Security.Cryptography.Core.IID_IMacAlgorithmProvider2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicHash do
@@ -3924,7 +3924,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHashComputation := new Windows.Security.Cryptography.Core.IHashComputation;
+         Retval.m_IHashComputation := new WinRt.Windows.Security.Cryptography.Core.IHashComputation;
          Retval.m_IHashComputation.all := m_ComRetVal;
       end return;
    end;
@@ -3935,9 +3935,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function OpenKeyPairFromCertificateAsync
       (
-         certificate : Windows.Security.Cryptography.Certificates.Certificate'Class;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class;
          hashAlgorithmName : WinRt.WString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey is
          Hr               : WinRt.HResult := S_OK;
@@ -3994,7 +3994,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+                        Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
                         Retval.m_ICryptographicKey.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -4012,9 +4012,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
 
       function OpenPublicKeyFromCertificate
       (
-         certificate : Windows.Security.Cryptography.Certificates.Certificate'Class;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class;
          hashAlgorithmName : WinRt.WString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey is
          Hr               : WinRt.HResult := S_OK;
@@ -4022,7 +4022,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.PersistedKeyProvider");
          m_Factory        : access WinRt.Windows.Security.Cryptography.Core.IPersistedKeyProviderStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+         m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          HStr_hashAlgorithmName : constant WinRt.HString := To_HString (hashAlgorithmName);
       begin
          return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
@@ -4033,7 +4033,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+               Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
                Retval.m_ICryptographicKey.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -4538,7 +4538,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider");
       m_Factory        : access WinRt.Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProviderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
       HStr_algorithm : constant WinRt.HString := To_HString (algorithm);
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.SymmetricKeyAlgorithmProvider do
@@ -4549,7 +4549,7 @@ package body WinRt.Windows.Security.Cryptography.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISymmetricKeyAlgorithmProvider := new Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
+            Retval.m_ISymmetricKeyAlgorithmProvider := new WinRt.Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider;
             Retval.m_ISymmetricKeyAlgorithmProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4600,20 +4600,20 @@ package body WinRt.Windows.Security.Cryptography.Core is
    function CreateSymmetricKey
    (
       this : in out SymmetricKeyAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Core.ICryptographicKey;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Core.CryptographicKey do
          Hr := this.m_ISymmetricKeyAlgorithmProvider.all.CreateSymmetricKey (keyMaterial, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICryptographicKey := new Windows.Security.Cryptography.Core.ICryptographicKey;
+         Retval.m_ICryptographicKey := new WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
          Retval.m_ICryptographicKey.all := m_ComRetVal;
       end return;
    end;

@@ -62,13 +62,13 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    function Constructor return EasClientDeviceInformation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation");
-      m_ComRetVal  : aliased Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation");
+      m_ComRetVal  : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation;
    begin
       return RetVal : EasClientDeviceInformation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IEasClientDeviceInformation := new Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation;
+            Retval.m_IEasClientDeviceInformation := new WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation;
             Retval.m_IEasClientDeviceInformation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -269,13 +269,13 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    function Constructor return EasClientSecurityPolicy is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy");
-      m_ComRetVal  : aliased Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy");
+      m_ComRetVal  : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy;
    begin
       return RetVal : EasClientSecurityPolicy do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IEasClientSecurityPolicy := new Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy;
+            Retval.m_IEasClientSecurityPolicy := new WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy;
             Retval.m_IEasClientSecurityPolicy.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -421,7 +421,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IEasClientSecurityPolicy.all.get_PasswordExpiration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -433,7 +433,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    procedure put_PasswordExpiration
    (
       this : in out EasClientSecurityPolicy;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -517,7 +517,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IEasClientSecurityPolicy.all.get_MaxInactivityTimeLock (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -529,7 +529,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
    procedure put_MaxInactivityTimeLock
    (
       this : in out EasClientSecurityPolicy;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -549,14 +549,14 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
    begin
       return RetVal : WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasComplianceResults do
          Hr := this.m_IEasClientSecurityPolicy.all.CheckCompliance (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IEasComplianceResults := new Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
+         Retval.m_IEasComplianceResults := new WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
          Retval.m_IEasComplianceResults.all := m_ComRetVal;
       end return;
    end;
@@ -614,7 +614,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IEasComplianceResults := new Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
+                  Retval.m_IEasComplianceResults := new WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults;
                   Retval.m_IEasComplianceResults.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -675,7 +675,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasRequireEncryptionResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_RequireEncryptionResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -692,7 +692,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordLengthResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_MinPasswordLengthResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -709,7 +709,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasDisallowConvenienceLogonResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_DisallowConvenienceLogonResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -726,7 +726,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMinPasswordComplexCharactersResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_MinPasswordComplexCharactersResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -743,7 +743,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordExpirationResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_PasswordExpirationResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -760,7 +760,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasPasswordHistoryResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_PasswordHistoryResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -777,7 +777,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMaxPasswordFailedAttemptsResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_MaxPasswordFailedAttemptsResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -794,7 +794,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasMaxInactivityTimeLockResult;
    begin
       Hr := this.m_IEasComplianceResults.all.get_MaxInactivityTimeLockResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -812,7 +812,7 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType;
+      m_ComRetVal      : aliased WinRt.Windows.Security.ExchangeActiveSyncProvisioning.EasEncryptionProviderType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults_Interface, WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IEasComplianceResults2, WinRt.Windows.Security.ExchangeActiveSyncProvisioning.IID_IEasComplianceResults2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEasComplianceResults.all);

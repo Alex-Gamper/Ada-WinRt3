@@ -64,7 +64,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactDataProviderConnection.all.add_SyncRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -76,7 +76,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_SyncRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -97,7 +97,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IContactDataProviderConnection.all.add_ServerSearchReadBatchRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -109,7 +109,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_ServerSearchReadBatchRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -145,7 +145,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
@@ -160,7 +160,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_CreateOrUpdateContactRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -186,7 +186,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection_Interface, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection2, WinRt.Windows.ApplicationModel.Contacts.DataProvider.IID_IContactDataProviderConnection2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactDataProviderConnection.all);
@@ -201,7 +201,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_DeleteContactRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -248,14 +248,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactDataProviderConnection do
          Hr := this.m_IContactDataProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactDataProviderConnection := new Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
+         Retval.m_IContactDataProviderConnection := new WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection;
          Retval.m_IContactDataProviderConnection.all := m_ComRetVal;
       end return;
    end;
@@ -311,14 +311,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactListCreateOrUpdateContactRequest.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -326,7 +326,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out ContactListCreateOrUpdateContactRequest;
-      createdOrUpdatedContact : Windows.ApplicationModel.Contacts.Contact'Class
+      createdOrUpdatedContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -439,14 +439,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListCreateOrUpdateContactRequest do
          Hr := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactListCreateOrUpdateContactRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
+         Retval.m_IContactListCreateOrUpdateContactRequest := new WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest;
          Retval.m_IContactListCreateOrUpdateContactRequest.all := m_ComRetVal;
       end return;
    end;
@@ -459,14 +459,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -649,14 +649,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListDeleteContactRequest do
          Hr := this.m_IContactListDeleteContactRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactListDeleteContactRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
+         Retval.m_IContactListDeleteContactRequest := new WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest;
          Retval.m_IContactListDeleteContactRequest.all := m_ComRetVal;
       end return;
    end;
@@ -669,14 +669,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListDeleteContactRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -752,14 +752,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactQueryOptions;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactQueryOptions do
          Hr := this.m_IContactListServerSearchReadBatchRequest.all.get_Options (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactQueryOptions := new Windows.ApplicationModel.Contacts.IContactQueryOptions;
+         Retval.m_IContactQueryOptions := new WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
          Retval.m_IContactQueryOptions.all := m_ComRetVal;
       end return;
    end;
@@ -784,7 +784,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure SaveContactAsync
    (
       this : in out ContactListServerSearchReadBatchRequest;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -869,7 +869,7 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure ReportFailedAsync
    (
       this : in out ContactListServerSearchReadBatchRequest;
-      batchStatus : Windows.ApplicationModel.Contacts.ContactBatchStatus
+      batchStatus : WinRt.Windows.ApplicationModel.Contacts.ContactBatchStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -940,14 +940,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListServerSearchReadBatchRequest do
          Hr := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactListServerSearchReadBatchRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
+         Retval.m_IContactListServerSearchReadBatchRequest := new WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest;
          Retval.m_IContactListServerSearchReadBatchRequest.all := m_ComRetVal;
       end return;
    end;
@@ -960,14 +960,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1130,14 +1130,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.DataProvider.ContactListSyncManagerSyncRequest do
          Hr := this.m_IContactListSyncManagerSyncRequestEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactListSyncManagerSyncRequest := new Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
+         Retval.m_IContactListSyncManagerSyncRequest := new WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest;
          Retval.m_IContactListSyncManagerSyncRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1150,14 +1150,14 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IContactListSyncManagerSyncRequestEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;

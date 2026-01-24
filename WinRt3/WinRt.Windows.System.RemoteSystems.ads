@@ -812,7 +812,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Status
       (
          this : access IRemoteSystem_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemStatus
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -870,7 +870,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Platform
       (
          this : access IRemoteSystem4_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemPlatform
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemPlatform
       )
       return WinRt.Hresult is abstract;
 
@@ -894,7 +894,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_User
       (
          this : access IRemoteSystem6_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -906,7 +906,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystem
       (
          this : access IRemoteSystemAddedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystem
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -958,7 +958,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_User
       (
          this : access IRemoteSystemApp2_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -977,7 +977,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_User
       (
          this : access IRemoteSystemAppRegistration_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1003,15 +1003,15 @@ package WinRt.Windows.System.RemoteSystems is
       function GetDefault
       (
          this : access IRemoteSystemAppRegistrationStatics_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemAppRegistration
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IRemoteSystemAppRegistrationStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemAppRegistration
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemAppRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -1023,7 +1023,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystemAuthorizationKind
       (
          this : access IRemoteSystemAuthorizationKindFilter_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,8 +1035,8 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemAuthorizationKindFilterFactory_Interface;
-         remoteSystemAuthorizationKind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter
+         remoteSystemAuthorizationKind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -1060,8 +1060,8 @@ package WinRt.Windows.System.RemoteSystems is
       function TryCreateFromAppServiceConnection
       (
          this : access IRemoteSystemConnectionInfoStatics_Interface;
-         connection : Windows.ApplicationModel.AppService.IAppServiceConnection;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemConnectionInfo
+         connection : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1073,7 +1073,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystem
       (
          this : access IRemoteSystemConnectionRequest_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystem
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -1085,7 +1085,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystemApp
       (
          this : access IRemoteSystemConnectionRequest2_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemApp
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemApp
       )
       return WinRt.Hresult is abstract;
 
@@ -1109,8 +1109,8 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemConnectionRequestFactory_Interface;
-         remoteSystem_p : Windows.System.RemoteSystems.IRemoteSystem;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
+         remoteSystem_p : WinRt.Windows.System.RemoteSystems.IRemoteSystem;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1122,8 +1122,8 @@ package WinRt.Windows.System.RemoteSystems is
       function CreateForApp
       (
          this : access IRemoteSystemConnectionRequestStatics_Interface;
-         remoteSystemApp_p : Windows.System.RemoteSystems.IRemoteSystemApp;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
+         remoteSystemApp_p : WinRt.Windows.System.RemoteSystems.IRemoteSystemApp;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1136,16 +1136,16 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemConnectionRequestStatics2_Interface;
          connectionToken : WinRt.HString;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromConnectionTokenForUser
       (
          this : access IRemoteSystemConnectionRequestStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          connectionToken : WinRt.HString;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1157,7 +1157,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystemDiscoveryType
       (
          this : access IRemoteSystemDiscoveryTypeFilter_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemDiscoveryType
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemDiscoveryType
       )
       return WinRt.Hresult is abstract;
 
@@ -1169,8 +1169,8 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemDiscoveryTypeFilterFactory_Interface;
-         discoveryType : Windows.System.RemoteSystems.RemoteSystemDiscoveryType;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter
+         discoveryType : WinRt.Windows.System.RemoteSystems.RemoteSystemDiscoveryType;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -1205,7 +1205,7 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemKindFilterFactory_Interface;
          remoteSystemKinds_p : GenericObject;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemKindFilter
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemKindFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -1317,28 +1317,28 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Disconnected
       (
          this : access IRemoteSystemSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateParticipantWatcher
       (
          this : access IRemoteSystemSession_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipantWatcher
       )
       return WinRt.Hresult is abstract;
 
       function SendInvitationAsync
       (
          this : access IRemoteSystemSession_Interface;
-         invitee : Windows.System.RemoteSystems.IRemoteSystem;
+         invitee : WinRt.Windows.System.RemoteSystems.IRemoteSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1351,7 +1351,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_SessionInfo
       (
          this : access IRemoteSystemSessionAddedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionInfo
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1364,21 +1364,21 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_JoinRequested
       (
          this : access IRemoteSystemSessionController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function RemoveParticipantAsync
       (
          this : access IRemoteSystemSessionController_Interface;
-         pParticipant : Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         pParticipant : WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1399,7 +1399,7 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionControllerFactory_Interface;
          displayName : WinRt.HString;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionController
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController
       )
       return WinRt.Hresult is abstract;
 
@@ -1407,8 +1407,8 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionControllerFactory_Interface;
          displayName : WinRt.HString;
-         options : Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionController
+         options : WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionController
       )
       return WinRt.Hresult is abstract;
 
@@ -1420,14 +1420,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Status
       (
          this : access IRemoteSystemSessionCreationResult_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemSessionCreationStatus
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemSessionCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Session
       (
          this : access IRemoteSystemSessionCreationResult_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSession
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1439,7 +1439,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Reason
       (
          this : access IRemoteSystemSessionDisconnectedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemSessionDisconnectedReason
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemSessionDisconnectedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -1477,14 +1477,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Sender
       (
          this : access IRemoteSystemSessionInvitation_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystem
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystem
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionInfo
       (
          this : access IRemoteSystemSessionInvitation_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionInfo
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1497,14 +1497,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionInvitationListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InvitationReceived
       (
          this : access IRemoteSystemSessionInvitationListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1516,7 +1516,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Invitation
       (
          this : access IRemoteSystemSessionInvitationReceivedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionInvitation
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInvitation
       )
       return WinRt.Hresult is abstract;
 
@@ -1528,7 +1528,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Participant
       (
          this : access IRemoteSystemSessionJoinRequest_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
       )
       return WinRt.Hresult is abstract;
 
@@ -1546,14 +1546,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_JoinRequest
       (
          this : access IRemoteSystemSessionJoinRequestedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionJoinRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IRemoteSystemSessionJoinRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1565,14 +1565,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Status
       (
          this : access IRemoteSystemSessionJoinResult_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemSessionJoinStatus
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemSessionJoinStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Session
       (
          this : access IRemoteSystemSessionJoinResult_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSession
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1584,14 +1584,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Session
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSession
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSession
       )
       return WinRt.Hresult is abstract;
 
       function BroadcastValueSetAsync
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
-         messageData : Windows.Foundation.Collections.IPropertySet;
+         messageData : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1599,8 +1599,8 @@ package WinRt.Windows.System.RemoteSystems is
       function SendValueSetAsync
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
-         messageData : Windows.Foundation.Collections.IPropertySet;
-         participant : Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
+         messageData : WinRt.Windows.Foundation.Collections.IPropertySet;
+         participant : WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1608,7 +1608,7 @@ package WinRt.Windows.System.RemoteSystems is
       function SendValueSetToParticipantsAsync
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
-         messageData : Windows.Foundation.Collections.IPropertySet;
+         messageData : WinRt.Windows.Foundation.Collections.IPropertySet;
          participants : GenericObject;
          RetVal : access GenericObject
       )
@@ -1618,14 +1618,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ValueSetReceived
       (
          this : access IRemoteSystemSessionMessageChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1637,19 +1637,19 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemSessionMessageChannelFactory_Interface;
-         session : Windows.System.RemoteSystems.IRemoteSystemSession;
+         session : WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
          channelName : WinRt.HString;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel
       )
       return WinRt.Hresult is abstract;
 
       function Create
       (
          this : access IRemoteSystemSessionMessageChannelFactory_Interface;
-         session : Windows.System.RemoteSystems.IRemoteSystemSession;
+         session : WinRt.Windows.System.RemoteSystems.IRemoteSystemSession;
          channelName : WinRt.HString;
-         reliability : Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel
+         reliability : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -1680,7 +1680,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystem
       (
          this : access IRemoteSystemSessionParticipant_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystem
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -1699,7 +1699,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Participant
       (
          this : access IRemoteSystemSessionParticipantAddedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
       )
       return WinRt.Hresult is abstract;
 
@@ -1711,7 +1711,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Participant
       (
          this : access IRemoteSystemSessionParticipantRemovedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
       )
       return WinRt.Hresult is abstract;
 
@@ -1735,7 +1735,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Status
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemSessionParticipantWatcherStatus
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipantWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1743,14 +1743,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1758,14 +1758,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1773,14 +1773,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IRemoteSystemSessionParticipantWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1792,7 +1792,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_SessionInfo
       (
          this : access IRemoteSystemSessionRemovedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionInfo
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1804,7 +1804,7 @@ package WinRt.Windows.System.RemoteSystems is
       function CreateWatcher
       (
          this : access IRemoteSystemSessionStatics_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionWatcher
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1816,7 +1816,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_SessionInfo
       (
          this : access IRemoteSystemSessionUpdatedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionInfo
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1828,14 +1828,14 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Sender
       (
          this : access IRemoteSystemSessionValueSetReceivedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemSessionParticipant
       )
       return WinRt.Hresult is abstract;
 
       function get_Message
       (
          this : access IRemoteSystemSessionValueSetReceivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1859,7 +1859,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Status
       (
          this : access IRemoteSystemSessionWatcher_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemSessionWatcherStatus
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemSessionWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1867,14 +1867,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IRemoteSystemSessionWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1882,14 +1882,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IRemoteSystemSessionWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1897,14 +1897,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemSessionWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IRemoteSystemSessionWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1916,7 +1916,7 @@ package WinRt.Windows.System.RemoteSystems is
       function FindByHostNameAsync
       (
          this : access IRemoteSystemStatics_Interface;
-         hostName : Windows.Networking.IHostName;
+         hostName : WinRt.Windows.Networking.IHostName;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1924,7 +1924,7 @@ package WinRt.Windows.System.RemoteSystems is
       function CreateWatcher
       (
          this : access IRemoteSystemStatics_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemWatcher
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1932,7 +1932,7 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemStatics_Interface;
          filters : GenericObject;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemWatcher
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1951,7 +1951,7 @@ package WinRt.Windows.System.RemoteSystems is
       function IsAuthorizationKindEnabled
       (
          this : access IRemoteSystemStatics2_Interface;
-         kind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
+         kind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1964,17 +1964,17 @@ package WinRt.Windows.System.RemoteSystems is
       function CreateWatcherForUser
       (
          this : access IRemoteSystemStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemWatcher
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher
       )
       return WinRt.Hresult is abstract;
 
       function CreateWatcherForUser
       (
          this : access IRemoteSystemStatics3_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          filters : GenericObject;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemWatcher
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1986,7 +1986,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystemStatusType
       (
          this : access IRemoteSystemStatusTypeFilter_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemStatusType
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemStatusType
       )
       return WinRt.Hresult is abstract;
 
@@ -1998,8 +1998,8 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemStatusTypeFilterFactory_Interface;
-         remoteSystemStatusType : Windows.System.RemoteSystems.RemoteSystemStatusType;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter
+         remoteSystemStatusType : WinRt.Windows.System.RemoteSystems.RemoteSystemStatusType;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -2011,7 +2011,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_RemoteSystem
       (
          this : access IRemoteSystemUpdatedEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystem
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -2036,14 +2036,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemoteSystemAdded
       (
          this : access IRemoteSystemWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2051,14 +2051,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemoteSystemUpdated
       (
          this : access IRemoteSystemWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2066,14 +2066,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemoteSystemRemoved
       (
          this : access IRemoteSystemWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2086,14 +2086,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemWatcher2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IRemoteSystemWatcher2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2101,14 +2101,14 @@ package WinRt.Windows.System.RemoteSystems is
       (
          this : access IRemoteSystemWatcher2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorOccurred
       (
          this : access IRemoteSystemWatcher2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2120,7 +2120,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_User
       (
          this : access IRemoteSystemWatcher3_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2132,7 +2132,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Error
       (
          this : access IRemoteSystemWatcherErrorOccurredEventArgs_Interface;
-         RetVal : access Windows.System.RemoteSystems.RemoteSystemWatcherError
+         RetVal : access WinRt.Windows.System.RemoteSystems.RemoteSystemWatcherError
       )
       return WinRt.Hresult is abstract;
 
@@ -2144,7 +2144,7 @@ package WinRt.Windows.System.RemoteSystems is
       function get_Account
       (
          this : access IRemoteSystemWebAccountFilter_Interface;
-         RetVal : access Windows.Security.Credentials.IWebAccount
+         RetVal : access WinRt.Windows.Security.Credentials.IWebAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -2156,8 +2156,8 @@ package WinRt.Windows.System.RemoteSystems is
       function Create
       (
          this : access IRemoteSystemWebAccountFilterFactory_Interface;
-         account : Windows.Security.Credentials.IWebAccount;
-         RetVal : access Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter
+         account : WinRt.Windows.Security.Credentials.IWebAccount;
+         RetVal : access WinRt.Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -2196,7 +2196,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function FindByHostNameAsync
    (
-      hostName : Windows.Networking.HostName'Class
+      hostName : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystem;
 
@@ -2214,20 +2214,20 @@ package WinRt.Windows.System.RemoteSystems is
 
    function CreateWatcherForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher;
 
    function CreateWatcherForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filters : GenericObject
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemWatcher;
 
    function IsAuthorizationKindEnabled
    (
-      kind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+      kind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
    )
    return WinRt.Boolean;
 
@@ -2387,7 +2387,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemAppRegistration;
 
@@ -2423,7 +2423,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystemAuthorizationKind : Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
+      remoteSystemAuthorizationKind : WinRt.Windows.System.RemoteSystems.RemoteSystemAuthorizationKind
    )
    return RemoteSystemAuthorizationKindFilter;
 
@@ -2447,7 +2447,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function TryCreateFromAppServiceConnection
    (
-      connection : Windows.ApplicationModel.AppService.AppServiceConnection'Class
+      connection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionInfo;
 
@@ -2471,7 +2471,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystem_p : Windows.System.RemoteSystems.RemoteSystem'Class
+      remoteSystem_p : WinRt.Windows.System.RemoteSystems.RemoteSystem'Class
    )
    return RemoteSystemConnectionRequest;
 
@@ -2480,7 +2480,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function CreateForApp
    (
-      remoteSystemApp_p : Windows.System.RemoteSystems.RemoteSystemApp'Class
+      remoteSystemApp_p : WinRt.Windows.System.RemoteSystems.RemoteSystemApp'Class
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest;
 
@@ -2492,7 +2492,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function CreateFromConnectionTokenForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       connectionToken : WinRt.WString
    )
    return WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest;
@@ -2529,7 +2529,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      discoveryType : Windows.System.RemoteSystems.RemoteSystemDiscoveryType
+      discoveryType : WinRt.Windows.System.RemoteSystems.RemoteSystemDiscoveryType
    )
    return RemoteSystemDiscoveryTypeFilter;
 
@@ -2663,7 +2663,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Disconnected
    (
       this : in out RemoteSystemSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateParticipantWatcher
@@ -2675,7 +2675,7 @@ package WinRt.Windows.System.RemoteSystems is
    function SendInvitationAsync
    (
       this : in out RemoteSystemSession;
-      invitee : Windows.System.RemoteSystems.RemoteSystem'Class
+      invitee : WinRt.Windows.System.RemoteSystems.RemoteSystem'Class
    )
    return WinRt.Boolean;
 
@@ -2717,7 +2717,7 @@ package WinRt.Windows.System.RemoteSystems is
    function Constructor
    (
       displayName : WinRt.WString;
-      options : Windows.System.RemoteSystems.RemoteSystemSessionOptions'Class
+      options : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionOptions'Class
    )
    return RemoteSystemSessionController;
 
@@ -2734,13 +2734,13 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_JoinRequested
    (
       this : in out RemoteSystemSessionController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RemoveParticipantAsync
    (
       this : in out RemoteSystemSessionController;
-      pParticipant : Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
+      pParticipant : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
    )
    return WinRt.Boolean;
 
@@ -2858,7 +2858,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_InvitationReceived
    (
       this : in out RemoteSystemSessionInvitationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2949,16 +2949,16 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      session : Windows.System.RemoteSystems.RemoteSystemSession'Class;
+      session : WinRt.Windows.System.RemoteSystems.RemoteSystemSession'Class;
       channelName : WinRt.WString
    )
    return RemoteSystemSessionMessageChannel;
 
    function Constructor
    (
-      session : Windows.System.RemoteSystems.RemoteSystemSession'Class;
+      session : WinRt.Windows.System.RemoteSystems.RemoteSystemSession'Class;
       channelName : WinRt.WString;
-      reliability : Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability
+      reliability : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionMessageChannelReliability
    )
    return RemoteSystemSessionMessageChannel;
 
@@ -2974,22 +2974,22 @@ package WinRt.Windows.System.RemoteSystems is
    function BroadcastValueSetAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Boolean;
 
    function SendValueSetAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class;
-      participant : Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
+      participant : WinRt.Windows.System.RemoteSystems.RemoteSystemSessionParticipant'Class
    )
    return WinRt.Boolean;
 
    function SendValueSetToParticipantsAsync
    (
       this : in out RemoteSystemSessionMessageChannel;
-      messageData : Windows.Foundation.Collections.ValueSet'Class;
+      messageData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
       participants : GenericObject
    )
    return WinRt.Boolean;
@@ -3004,7 +3004,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_ValueSetReceived
    (
       this : in out RemoteSystemSessionMessageChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3119,7 +3119,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Added
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -3132,7 +3132,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Removed
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3145,7 +3145,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_EnumerationCompleted
    (
       this : in out RemoteSystemSessionParticipantWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3234,7 +3234,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Added
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -3247,7 +3247,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Updated
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -3260,7 +3260,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_Removed
    (
       this : in out RemoteSystemSessionWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3274,7 +3274,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      remoteSystemStatusType : Windows.System.RemoteSystems.RemoteSystemStatusType
+      remoteSystemStatusType : WinRt.Windows.System.RemoteSystems.RemoteSystemStatusType
    )
    return RemoteSystemStatusTypeFilter;
 
@@ -3331,7 +3331,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemAdded
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RemoteSystemUpdated
@@ -3344,7 +3344,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemUpdated
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RemoteSystemRemoved
@@ -3357,7 +3357,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_RemoteSystemRemoved
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3370,7 +3370,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_EnumerationCompleted
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ErrorOccurred
@@ -3383,7 +3383,7 @@ package WinRt.Windows.System.RemoteSystems is
    procedure remove_ErrorOccurred
    (
       this : in out RemoteSystemWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_User
@@ -3418,7 +3418,7 @@ package WinRt.Windows.System.RemoteSystems is
 
    function Constructor
    (
-      account : Windows.Security.Credentials.WebAccount'Class
+      account : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return RemoteSystemWebAccountFilter;
 

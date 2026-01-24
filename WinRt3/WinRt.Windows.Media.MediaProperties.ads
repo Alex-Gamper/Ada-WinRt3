@@ -471,7 +471,7 @@ package WinRt.Windows.Media.MediaProperties is
       function Copy
       (
          this : access IAudioEncodingProperties3_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -486,7 +486,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitrate : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -496,7 +496,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitrate : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -506,7 +506,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitrate : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -516,7 +516,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitsPerSample : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -526,7 +526,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitrate : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -541,7 +541,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitsPerSample : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -551,7 +551,7 @@ package WinRt.Windows.Media.MediaProperties is
          sampleRate : WinRt.UInt32;
          channelCount : WinRt.UInt32;
          bitsPerSample : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -678,7 +678,7 @@ package WinRt.Windows.Media.MediaProperties is
       function Copy
       (
          this : access IContainerEncodingProperties2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IContainerEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -957,7 +957,7 @@ package WinRt.Windows.Media.MediaProperties is
       function Copy
       (
          this : access IImageEncodingProperties2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -969,21 +969,21 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateJpeg
       (
          this : access IImageEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreatePng
       (
          this : access IImageEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreateJpegXR
       (
          this : access IImageEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -995,15 +995,15 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateUncompressed
       (
          this : access IImageEncodingPropertiesStatics2_Interface;
-         format : Windows.Media.MediaProperties.MediaPixelFormat;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         format : WinRt.Windows.Media.MediaProperties.MediaPixelFormat;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreateBmp
       (
          this : access IImageEncodingPropertiesStatics2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1015,7 +1015,7 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateHeif
       (
          this : access IImageEncodingPropertiesStatics3_Interface;
-         RetVal : access Windows.Media.MediaProperties.IImageEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IImageEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,42 +1027,42 @@ package WinRt.Windows.Media.MediaProperties is
       function put_Audio
       (
          this : access IMediaEncodingProfile_Interface;
-         value : Windows.Media.MediaProperties.IAudioEncodingProperties
+         value : WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Audio
       (
          this : access IMediaEncodingProfile_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_Video
       (
          this : access IMediaEncodingProfile_Interface;
-         value : Windows.Media.MediaProperties.IVideoEncodingProperties
+         value : WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Video
       (
          this : access IMediaEncodingProfile_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function put_Container
       (
          this : access IMediaEncodingProfile_Interface;
-         value : Windows.Media.MediaProperties.IContainerEncodingProperties
+         value : WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Container
       (
          this : access IMediaEncodingProfile_Interface;
-         RetVal : access Windows.Media.MediaProperties.IContainerEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1126,47 +1126,47 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateM4a
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateMp3
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateWma
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateMp4
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateWmv
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromFileAsync
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1174,7 +1174,7 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateFromStreamAsync
       (
          this : access IMediaEncodingProfileStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1187,16 +1187,16 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateWav
       (
          this : access IMediaEncodingProfileStatics2_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateAvi
       (
          this : access IMediaEncodingProfileStatics2_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -1208,24 +1208,24 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateAlac
       (
          this : access IMediaEncodingProfileStatics3_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateFlac
       (
          this : access IMediaEncodingProfileStatics3_Interface;
-         quality : Windows.Media.MediaProperties.AudioEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateHevc
       (
          this : access IMediaEncodingProfileStatics3_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -1237,16 +1237,16 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateVp9
       (
          this : access IMediaEncodingProfileStatics4_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function CreateAv1
       (
          this : access IMediaEncodingProfileStatics4_Interface;
-         quality : Windows.Media.MediaProperties.VideoEncodingQuality;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality;
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -1786,7 +1786,7 @@ package WinRt.Windows.Media.MediaProperties is
       function Copy
       (
          this : access ITimedMetadataEncodingProperties_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1798,14 +1798,14 @@ package WinRt.Windows.Media.MediaProperties is
       function CreatePgs
       (
          this : access ITimedMetadataEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreateSrt
       (
          this : access ITimedMetadataEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1814,7 +1814,7 @@ package WinRt.Windows.Media.MediaProperties is
          this : access ITimedMetadataEncodingPropertiesStatics_Interface;
          formatUserDataSize : WinRt.UInt32;
          formatUserData : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1823,7 +1823,7 @@ package WinRt.Windows.Media.MediaProperties is
          this : access ITimedMetadataEncodingPropertiesStatics_Interface;
          formatUserDataSize : WinRt.UInt32;
          formatUserData : WinRt.Byte_Ptr;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1877,14 +1877,14 @@ package WinRt.Windows.Media.MediaProperties is
       function get_FrameRate
       (
          this : access IVideoEncodingProperties_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelAspectRatio
       (
          this : access IVideoEncodingProperties_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaRatio
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaRatio
       )
       return WinRt.Hresult is abstract;
 
@@ -1931,7 +1931,7 @@ package WinRt.Windows.Media.MediaProperties is
       function get_StereoscopicVideoPackingMode
       (
          this : access IVideoEncodingProperties3_Interface;
-         RetVal : access Windows.Media.MediaProperties.StereoscopicVideoPackingMode
+         RetVal : access WinRt.Windows.Media.MediaProperties.StereoscopicVideoPackingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1943,7 +1943,7 @@ package WinRt.Windows.Media.MediaProperties is
       function get_SphericalVideoFrameFormat
       (
          this : access IVideoEncodingProperties4_Interface;
-         RetVal : access Windows.Media.MediaProperties.SphericalVideoFrameFormat
+         RetVal : access WinRt.Windows.Media.MediaProperties.SphericalVideoFrameFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1955,7 +1955,7 @@ package WinRt.Windows.Media.MediaProperties is
       function Copy
       (
          this : access IVideoEncodingProperties5_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1967,14 +1967,14 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateH264
       (
          this : access IVideoEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreateMpeg2
       (
          this : access IVideoEncodingPropertiesStatics_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1984,7 +1984,7 @@ package WinRt.Windows.Media.MediaProperties is
          subtype_x : WinRt.HString;
          width : WinRt.UInt32;
          height : WinRt.UInt32;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1996,7 +1996,7 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateHevc
       (
          this : access IVideoEncodingPropertiesStatics2_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -2008,14 +2008,14 @@ package WinRt.Windows.Media.MediaProperties is
       function CreateVp9
       (
          this : access IVideoEncodingPropertiesStatics3_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
       function CreateAv1
       (
          this : access IVideoEncodingPropertiesStatics3_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -2442,7 +2442,7 @@ package WinRt.Windows.Media.MediaProperties is
 
    function CreateUncompressed
    (
-      format : Windows.Media.MediaProperties.MediaPixelFormat
+      format : WinRt.Windows.Media.MediaProperties.MediaPixelFormat
    )
    return WinRt.Windows.Media.MediaProperties.ImageEncodingProperties;
 
@@ -2522,85 +2522,85 @@ package WinRt.Windows.Media.MediaProperties is
 
    function CreateAlac
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateFlac
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateHevc
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateWav
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateAvi
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateVp9
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateAv1
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateM4a
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateMp3
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateWma
    (
-      quality : Windows.Media.MediaProperties.AudioEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.AudioEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateMp4
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateWmv
    (
-      quality : Windows.Media.MediaProperties.VideoEncodingQuality
+      quality : WinRt.Windows.Media.MediaProperties.VideoEncodingQuality
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.MediaProperties.MediaEncodingProfile;
 
@@ -2610,7 +2610,7 @@ package WinRt.Windows.Media.MediaProperties is
    procedure put_Audio
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    );
 
    function get_Audio
@@ -2622,7 +2622,7 @@ package WinRt.Windows.Media.MediaProperties is
    procedure put_Video
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.VideoEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties'Class
    );
 
    function get_Video
@@ -2634,7 +2634,7 @@ package WinRt.Windows.Media.MediaProperties is
    procedure put_Container
    (
       this : in out MediaEncodingProfile;
-      value : Windows.Media.MediaProperties.ContainerEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.ContainerEncodingProperties'Class
    );
 
    function get_Container

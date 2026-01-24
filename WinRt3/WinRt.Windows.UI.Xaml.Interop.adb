@@ -37,7 +37,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
    function Invoke
    (
       this : access BindableVectorChangedEventHandler_Delegate;
-      vector : Windows.UI.Xaml.Interop.IBindableObservableVector;
+      vector : WinRt.Windows.UI.Xaml.Interop.IBindableObservableVector;
       e : WinRt.IInspectable
    )
    return WinRt.Hresult is
@@ -72,9 +72,9 @@ package body WinRt.Windows.UI.Xaml.Interop is
 
    function Constructor
    (
-      action : Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
-      newItems : Windows.UI.Xaml.Interop.IBindableVector;
-      oldItems : Windows.UI.Xaml.Interop.IBindableVector;
+      action : WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
+      newItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
+      oldItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
       newIndex : WinRt.Int32;
       oldIndex : WinRt.Int32;
       baseInterface : WinRt.IInspectable;
@@ -83,16 +83,16 @@ package body WinRt.Windows.UI.Xaml.Interop is
    return NotifyCollectionChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs");
       m_Factory    : access INotifyCollectionChangedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
    begin
       return RetVal : NotifyCollectionChangedEventArgs do
          Hr := RoGetActivationFactory (m_hString, IID_INotifyCollectionChangedEventArgsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithAllParameters (action, newItems, oldItems, newIndex, oldIndex, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_INotifyCollectionChangedEventArgs := new Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
+            Retval.m_INotifyCollectionChangedEventArgs := new WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
             Retval.m_INotifyCollectionChangedEventArgs.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -111,7 +111,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_Action (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -128,7 +128,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.IBindableVector;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.IBindableVector;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_NewItems (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -145,7 +145,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Interop.IBindableVector;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Interop.IBindableVector;
    begin
       Hr := this.m_INotifyCollectionChangedEventArgs.all.get_OldItems (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -195,7 +195,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
    (
       this : access NotifyCollectionChangedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
+      e : WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;

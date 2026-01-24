@@ -121,14 +121,14 @@ package WinRt.Windows.Foundation.Collections is
    --------------------------------------------------------------------------------
    package VectorChangedEventHandler is
 
-      type Kind_Delegate (Callback : access procedure  (sender : GenericObject;event : Windows.Foundation.Collections.IVectorChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_VectorChangedEventHandler'Access) with null record;
+      type Kind_Delegate (Callback : access procedure  (sender : GenericObject;event : WinRt.Windows.Foundation.Collections.IVectorChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_VectorChangedEventHandler'Access) with null record;
       type Kind is access all Kind_Delegate;
 
       function Invoke
       (
          this : access Kind_Delegate;
          sender : GenericObject;
-         event : Windows.Foundation.Collections.IVectorChangedEventArgs
+         event : WinRt.Windows.Foundation.Collections.IVectorChangedEventArgs
       )
       return WinRt.Hresult;
 
@@ -250,7 +250,7 @@ package WinRt.Windows.Foundation.Collections is
       function get_CollectionChange
       (
          this : access Kind_Interface;
-         RetVal : access Windows.Foundation.Collections.CollectionChange
+         RetVal : access WinRt.Windows.Foundation.Collections.CollectionChange
       )
       return WinRt.Hresult is abstract;
 
@@ -399,14 +399,14 @@ package WinRt.Windows.Foundation.Collections is
       (
          this : access Kind_Interface;
          vhnd : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MapChanged
       (
          this : access Kind_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -429,14 +429,14 @@ package WinRt.Windows.Foundation.Collections is
       (
          this : access Kind_Interface;
          vhnd : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VectorChanged
       (
          this : access Kind_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -455,7 +455,7 @@ package WinRt.Windows.Foundation.Collections is
       function get_CollectionChange
       (
          this : access IVectorChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.CollectionChange
+         RetVal : access WinRt.Windows.Foundation.Collections.CollectionChange
       )
       return WinRt.Hresult is abstract;
 
@@ -652,7 +652,7 @@ package WinRt.Windows.Foundation.Collections is
    procedure remove_MapChanged
    (
       this : in out PropertySet;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -772,7 +772,7 @@ package WinRt.Windows.Foundation.Collections is
    procedure remove_MapChanged
    (
       this : in out StringMap;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -800,7 +800,7 @@ package WinRt.Windows.Foundation.Collections is
    procedure remove_MapChanged
    (
       this : in out ValueSet;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>

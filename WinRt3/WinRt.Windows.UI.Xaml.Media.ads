@@ -1297,22 +1297,22 @@ package WinRt.Windows.UI.Xaml.Media is
    -----------------------------------------------------------------------------
 
    IID_RateChangedRoutedEventHandler : aliased WinRt.IID := (149529175, 44549, 18587, (136, 57, 40, 198, 34, 93, 35, 73 ));
-   type RateChangedRoutedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RateChangedRoutedEventHandler'Access) with null record;
+   type RateChangedRoutedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_RateChangedRoutedEventHandler'Access) with null record;
       function Invoke
       (
          this : access RateChangedRoutedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs
       )
       return WinRt.Hresult;
 
    IID_TimelineMarkerRoutedEventHandler : aliased WinRt.IID := (1927477916, 28138, 19646, (161, 89, 6, 206, 149, 251, 236, 237 ));
-   type TimelineMarkerRoutedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_TimelineMarkerRoutedEventHandler'Access) with null record;
+   type TimelineMarkerRoutedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_TimelineMarkerRoutedEventHandler'Access) with null record;
       function Invoke
       (
          this : access TimelineMarkerRoutedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs
+         e : WinRt.Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs
       )
       return WinRt.Hresult;
 
@@ -1334,28 +1334,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_BackgroundSource
       (
          this : access IAcrylicBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.AcrylicBackgroundSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.AcrylicBackgroundSource
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundSource
       (
          this : access IAcrylicBrush_Interface;
-         value : Windows.UI.Xaml.Media.AcrylicBackgroundSource
+         value : WinRt.Windows.UI.Xaml.Media.AcrylicBackgroundSource
       )
       return WinRt.Hresult is abstract;
 
       function get_TintColor
       (
          this : access IAcrylicBrush_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_TintColor
       (
          this : access IAcrylicBrush_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1376,14 +1376,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_TintTransitionDuration
       (
          this : access IAcrylicBrush_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TintTransitionDuration
       (
          this : access IAcrylicBrush_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1430,7 +1430,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IAcrylicBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IAcrylicBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -1442,35 +1442,35 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_BackgroundSourceProperty
       (
          this : access IAcrylicBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TintColorProperty
       (
          this : access IAcrylicBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TintOpacityProperty
       (
          this : access IAcrylicBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TintTransitionDurationProperty
       (
          this : access IAcrylicBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AlwaysUseFallbackProperty
       (
          this : access IAcrylicBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1482,7 +1482,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_TintLuminosityOpacityProperty
       (
          this : access IAcrylicBrushStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1494,28 +1494,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point
       (
          this : access IArcSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point
       (
          this : access IArcSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access IArcSegment_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function put_Size
       (
          this : access IArcSegment_Interface;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1550,14 +1550,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_SweepDirection
       (
          this : access IArcSegment_Interface;
-         RetVal : access Windows.UI.Xaml.Media.SweepDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Media.SweepDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_SweepDirection
       (
          this : access IArcSegment_Interface;
-         value : Windows.UI.Xaml.Media.SweepDirection
+         value : WinRt.Windows.UI.Xaml.Media.SweepDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -1569,35 +1569,35 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_PointProperty
       (
          this : access IArcSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SizeProperty
       (
          this : access IArcSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationAngleProperty
       (
          this : access IArcSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsLargeArcProperty
       (
          this : access IArcSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SweepDirectionProperty
       (
          this : access IArcSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,42 +1609,42 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point1
       (
          this : access IBezierSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point1
       (
          this : access IBezierSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Point2
       (
          this : access IBezierSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point2
       (
          this : access IBezierSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Point3
       (
          this : access IBezierSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point3
       (
          this : access IBezierSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1656,21 +1656,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point1Property
       (
          this : access IBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Point2Property
       (
          this : access IBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Point3Property
       (
          this : access IBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1701,28 +1701,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Transform
       (
          this : access IBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ITransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
       function put_Transform
       (
          this : access IBrush_Interface;
-         value : Windows.UI.Xaml.Media.ITransform
+         value : WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeTransform
       (
          this : access IBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ITransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
       function put_RelativeTransform
       (
          this : access IBrush_Interface;
-         value : Windows.UI.Xaml.Media.ITransform
+         value : WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
@@ -1736,7 +1736,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -1749,7 +1749,7 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access IBrushOverrides2_Interface;
          propertyName : WinRt.HString;
-         animationPropertyInfo : Windows.UI.Composition.IAnimationPropertyInfo
+         animationPropertyInfo : WinRt.Windows.UI.Composition.IAnimationPropertyInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1761,21 +1761,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_OpacityProperty
       (
          this : access IBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TransformProperty
       (
          this : access IBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RelativeTransformProperty
       (
          this : access IBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1794,7 +1794,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access ICacheModeFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.ICacheMode
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ICacheMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1937,63 +1937,63 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CenterXProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterYProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleXProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleYProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SkewXProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SkewYProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslateXProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TranslateYProperty
       (
          this : access ICompositeTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2011,14 +2011,14 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access ICompositionTargetStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Rendering
       (
          this : access ICompositionTargetStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2026,14 +2026,14 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access ICompositionTargetStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SurfaceContentsLost
       (
          this : access ICompositionTargetStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2046,14 +2046,14 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access ICompositionTargetStatics3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Rendered
       (
          this : access ICompositionTargetStatics3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2065,14 +2065,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Center
       (
          this : access IEllipseGeometry_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Center
       (
          this : access IEllipseGeometry_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2112,21 +2112,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CenterProperty
       (
          this : access IEllipseGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RadiusXProperty
       (
          this : access IEllipseGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RadiusYProperty
       (
          this : access IEllipseGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2153,7 +2153,7 @@ package WinRt.Windows.UI.Xaml.Media is
          familyName : WinRt.HString;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IFontFamily
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IFontFamily
       )
       return WinRt.Hresult is abstract;
 
@@ -2165,7 +2165,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_XamlAutoFontFamily
       (
          this : access IFontFamilyStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IFontFamily
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IFontFamily
       )
       return WinRt.Hresult is abstract;
 
@@ -2177,23 +2177,23 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Inverse
       (
          this : access IGeneralTransform_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IGeneralTransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGeneralTransform
       )
       return WinRt.Hresult is abstract;
 
       function TransformPoint
       (
          this : access IGeneralTransform_Interface;
-         point : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Point
+         point : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function TryTransform
       (
          this : access IGeneralTransform_Interface;
-         inPoint : Windows.Foundation.Point;
-         outPoint : Windows.Foundation.Point_Ptr;
+         inPoint : WinRt.Windows.Foundation.Point;
+         outPoint : WinRt.Windows.Foundation.Point_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2201,8 +2201,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function TransformBounds
       (
          this : access IGeneralTransform_Interface;
-         rect : Windows.Foundation.Rect;
-         RetVal : access Windows.Foundation.Rect
+         rect : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2216,7 +2216,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IGeneralTransformFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IGeneralTransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGeneralTransform
       )
       return WinRt.Hresult is abstract;
 
@@ -2228,15 +2228,15 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_InverseCore
       (
          this : access IGeneralTransformOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IGeneralTransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGeneralTransform
       )
       return WinRt.Hresult is abstract;
 
       function TryTransformCore
       (
          this : access IGeneralTransformOverrides_Interface;
-         inPoint : Windows.Foundation.Point;
-         outPoint : Windows.Foundation.Point_Ptr;
+         inPoint : WinRt.Windows.Foundation.Point;
+         outPoint : WinRt.Windows.Foundation.Point_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2244,8 +2244,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function TransformBoundsCore
       (
          this : access IGeneralTransformOverrides_Interface;
-         rect : Windows.Foundation.Rect;
-         RetVal : access Windows.Foundation.Rect
+         rect : WinRt.Windows.Foundation.Rect;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2257,21 +2257,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Transform
       (
          this : access IGeometry_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ITransform
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
       function put_Transform
       (
          this : access IGeometry_Interface;
-         value : Windows.UI.Xaml.Media.ITransform
+         value : WinRt.Windows.UI.Xaml.Media.ITransform
       )
       return WinRt.Hresult is abstract;
 
       function get_Bounds
       (
          this : access IGeometry_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2288,14 +2288,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FillRule
       (
          this : access IGeometryGroup_Interface;
-         RetVal : access Windows.UI.Xaml.Media.FillRule
+         RetVal : access WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
       function put_FillRule
       (
          this : access IGeometryGroup_Interface;
-         value : Windows.UI.Xaml.Media.FillRule
+         value : WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
@@ -2321,14 +2321,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FillRuleProperty
       (
          this : access IGeometryGroupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ChildrenProperty
       (
          this : access IGeometryGroupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2340,7 +2340,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Empty
       (
          this : access IGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IGeometry
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGeometry
       )
       return WinRt.Hresult is abstract;
 
@@ -2354,7 +2354,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_TransformProperty
       (
          this : access IGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2366,42 +2366,42 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_SpreadMethod
       (
          this : access IGradientBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.GradientSpreadMethod
+         RetVal : access WinRt.Windows.UI.Xaml.Media.GradientSpreadMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_SpreadMethod
       (
          this : access IGradientBrush_Interface;
-         value : Windows.UI.Xaml.Media.GradientSpreadMethod
+         value : WinRt.Windows.UI.Xaml.Media.GradientSpreadMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_MappingMode
       (
          this : access IGradientBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.BrushMappingMode
+         RetVal : access WinRt.Windows.UI.Xaml.Media.BrushMappingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_MappingMode
       (
          this : access IGradientBrush_Interface;
-         value : Windows.UI.Xaml.Media.BrushMappingMode
+         value : WinRt.Windows.UI.Xaml.Media.BrushMappingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorInterpolationMode
       (
          this : access IGradientBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ColorInterpolationMode
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ColorInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ColorInterpolationMode
       (
          this : access IGradientBrush_Interface;
-         value : Windows.UI.Xaml.Media.ColorInterpolationMode
+         value : WinRt.Windows.UI.Xaml.Media.ColorInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2429,7 +2429,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IGradientBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IGradientBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IGradientBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -2441,28 +2441,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_SpreadMethodProperty
       (
          this : access IGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MappingModeProperty
       (
          this : access IGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorInterpolationModeProperty
       (
          this : access IGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GradientStopsProperty
       (
          this : access IGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2474,14 +2474,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Color
       (
          this : access IGradientStop_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IGradientStop_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -2507,14 +2507,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ColorProperty
       (
          this : access IGradientStopStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OffsetProperty
       (
          this : access IGradientStopStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2526,44 +2526,44 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ImageSource
       (
          this : access IImageBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IImageSource
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IImageSource
       )
       return WinRt.Hresult is abstract;
 
       function put_ImageSource
       (
          this : access IImageBrush_Interface;
-         value : Windows.UI.Xaml.Media.IImageSource
+         value : WinRt.Windows.UI.Xaml.Media.IImageSource
       )
       return WinRt.Hresult is abstract;
 
       function add_ImageFailed
       (
          this : access IImageBrush_Interface;
-         handler : Windows.UI.Xaml.ExceptionRoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImageFailed
       (
          this : access IImageBrush_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_ImageOpened
       (
          this : access IImageBrush_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ImageOpened
       (
          this : access IImageBrush_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2575,7 +2575,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ImageSourceProperty
       (
          this : access IImageBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2597,28 +2597,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StartPoint
       (
          this : access ILineGeometry_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_StartPoint
       (
          this : access ILineGeometry_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_EndPoint
       (
          this : access ILineGeometry_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_EndPoint
       (
          this : access ILineGeometry_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2630,14 +2630,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StartPointProperty
       (
          this : access ILineGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EndPointProperty
       (
          this : access ILineGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2649,14 +2649,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point
       (
          this : access ILineSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point
       (
          this : access ILineSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2668,7 +2668,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_PointProperty
       (
          this : access ILineSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2680,28 +2680,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StartPoint
       (
          this : access ILinearGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_StartPoint
       (
          this : access ILinearGradientBrush_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_EndPoint
       (
          this : access ILinearGradientBrush_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_EndPoint
       (
          this : access ILinearGradientBrush_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2715,7 +2715,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access ILinearGradientBrushFactory_Interface;
          gradientStopCollection_p : GenericObject;
          angle : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Media.ILinearGradientBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ILinearGradientBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -2727,14 +2727,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StartPointProperty
       (
          this : access ILinearGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EndPointProperty
       (
          this : access ILinearGradientBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2746,7 +2746,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Status
       (
          this : access ILoadedImageSourceLoadCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Media.LoadedImageSourceLoadStatus
+         RetVal : access WinRt.Windows.UI.Xaml.Media.LoadedImageSourceLoadStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2758,21 +2758,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_DecodedPhysicalSize
       (
          this : access ILoadedImageSurface_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_DecodedSize
       (
          this : access ILoadedImageSurface_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function get_NaturalSize
       (
          this : access ILoadedImageSurface_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -2780,14 +2780,14 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access ILoadedImageSurface_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LoadCompleted
       (
          this : access ILoadedImageSurface_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2799,34 +2799,34 @@ package WinRt.Windows.UI.Xaml.Media is
       function StartLoadFromUri
       (
          this : access ILoadedImageSurfaceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         desiredMaxSize : Windows.Foundation.Size;
-         RetVal : access Windows.UI.Xaml.Media.ILoadedImageSurface
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         desiredMaxSize : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface
       )
       return WinRt.Hresult is abstract;
 
       function StartLoadFromUri
       (
          this : access ILoadedImageSurfaceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.UI.Xaml.Media.ILoadedImageSurface
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface
       )
       return WinRt.Hresult is abstract;
 
       function StartLoadFromStream
       (
          this : access ILoadedImageSurfaceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         desiredMaxSize : Windows.Foundation.Size;
-         RetVal : access Windows.UI.Xaml.Media.ILoadedImageSurface
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         desiredMaxSize : WinRt.Windows.Foundation.Size;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface
       )
       return WinRt.Hresult is abstract;
 
       function StartLoadFromStream
       (
          this : access ILoadedImageSurfaceStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.UI.Xaml.Media.ILoadedImageSurface
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface
       )
       return WinRt.Hresult is abstract;
 
@@ -2838,14 +2838,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ProjectionMatrix
       (
          this : access IMatrix3DProjection_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
       function put_ProjectionMatrix
       (
          this : access IMatrix3DProjection_Interface;
-         value : Windows.UI.Xaml.Media.Media3D.Matrix3D
+         value : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
@@ -2857,7 +2857,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ProjectionMatrixProperty
       (
          this : access IMatrix3DProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2874,7 +2874,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Identity
       (
          this : access IMatrixHelperStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Matrix
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Matrix
       )
       return WinRt.Hresult is abstract;
 
@@ -2887,14 +2887,14 @@ package WinRt.Windows.UI.Xaml.Media is
          m22 : WinRt.Double;
          offsetX : WinRt.Double;
          offsetY : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Media.Matrix
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Matrix
       )
       return WinRt.Hresult is abstract;
 
       function GetIsIdentity
       (
          this : access IMatrixHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Matrix;
+         target : WinRt.Windows.UI.Xaml.Media.Matrix;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2902,9 +2902,9 @@ package WinRt.Windows.UI.Xaml.Media is
       function Transform_x
       (
          this : access IMatrixHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Matrix;
-         point : Windows.Foundation.Point;
-         RetVal : access Windows.Foundation.Point
+         target : WinRt.Windows.UI.Xaml.Media.Matrix;
+         point : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2916,14 +2916,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Matrix
       (
          this : access IMatrixTransform_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Matrix
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Matrix
       )
       return WinRt.Hresult is abstract;
 
       function put_Matrix
       (
          this : access IMatrixTransform_Interface;
-         value : Windows.UI.Xaml.Media.Matrix
+         value : WinRt.Windows.UI.Xaml.Media.Matrix
       )
       return WinRt.Hresult is abstract;
 
@@ -2935,7 +2935,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_MatrixProperty
       (
          this : access IMatrixTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2947,14 +2947,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function SetThumbnailImage
       (
          this : access IMediaTransportControlsThumbnailRequestedEventArgs_Interface;
-         source : Windows.Storage.Streams.IInputStream
+         source : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IMediaTransportControlsThumbnailRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2966,7 +2966,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StreamKind
       (
          this : access IPartialMediaFailureDetectedEventArgs_Interface;
-         RetVal : access Windows.Media.Playback.FailedMediaStreamKind
+         RetVal : access WinRt.Windows.Media.Playback.FailedMediaStreamKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2978,7 +2978,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ExtendedError
       (
          this : access IPartialMediaFailureDetectedEventArgs2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -3004,14 +3004,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_StartPoint
       (
          this : access IPathFigure_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_StartPoint
       (
          this : access IPathFigure_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3051,28 +3051,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_SegmentsProperty
       (
          this : access IPathFigureStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StartPointProperty
       (
          this : access IPathFigureStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsClosedProperty
       (
          this : access IPathFigureStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsFilledProperty
       (
          this : access IPathFigureStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3084,14 +3084,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FillRule
       (
          this : access IPathGeometry_Interface;
-         RetVal : access Windows.UI.Xaml.Media.FillRule
+         RetVal : access WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
       function put_FillRule
       (
          this : access IPathGeometry_Interface;
-         value : Windows.UI.Xaml.Media.FillRule
+         value : WinRt.Windows.UI.Xaml.Media.FillRule
       )
       return WinRt.Hresult is abstract;
 
@@ -3117,14 +3117,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FillRuleProperty
       (
          this : access IPathGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FiguresProperty
       (
          this : access IPathGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3314,7 +3314,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ProjectionMatrix
       (
          this : access IPlaneProjection_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Media3D.Matrix3D
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
       )
       return WinRt.Hresult is abstract;
 
@@ -3326,91 +3326,91 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_LocalOffsetXProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalOffsetYProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalOffsetZProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationXProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationYProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RotationZProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterOfRotationXProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterOfRotationYProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterOfRotationZProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GlobalOffsetXProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GlobalOffsetYProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_GlobalOffsetZProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ProjectionMatrixProperty
       (
          this : access IPlaneProjectionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3441,7 +3441,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_PointsProperty
       (
          this : access IPolyBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3472,7 +3472,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_PointsProperty
       (
          this : access IPolyLineSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3503,7 +3503,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_PointsProperty
       (
          this : access IPolyQuadraticBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3522,7 +3522,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IProjectionFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IProjection
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IProjection
       )
       return WinRt.Hresult is abstract;
 
@@ -3534,28 +3534,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point1
       (
          this : access IQuadraticBezierSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point1
       (
          this : access IQuadraticBezierSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Point2
       (
          this : access IQuadraticBezierSegment_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Point2
       (
          this : access IQuadraticBezierSegment_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3567,14 +3567,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Point1Property
       (
          this : access IQuadraticBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Point2Property
       (
          this : access IQuadraticBezierSegmentStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3591,14 +3591,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Rect
       (
          this : access IRectangleGeometry_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_Rect
       (
          this : access IRectangleGeometry_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -3610,7 +3610,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_RectProperty
       (
          this : access IRectangleGeometryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3622,7 +3622,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FrameDuration
       (
          this : access IRenderedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3634,7 +3634,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_RenderingTime
       (
          this : access IRenderingEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3653,7 +3653,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IRevealBackgroundBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IRevealBackgroundBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IRevealBackgroundBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3672,7 +3672,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IRevealBorderBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IRevealBorderBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IRevealBorderBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3684,28 +3684,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Color
       (
          this : access IRevealBrush_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IRevealBrush_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetTheme
       (
          this : access IRevealBrush_Interface;
-         RetVal : access Windows.UI.Xaml.ApplicationTheme
+         RetVal : access WinRt.Windows.UI.Xaml.ApplicationTheme
       )
       return WinRt.Hresult is abstract;
 
       function put_TargetTheme
       (
          this : access IRevealBrush_Interface;
-         value : Windows.UI.Xaml.ApplicationTheme
+         value : WinRt.Windows.UI.Xaml.ApplicationTheme
       )
       return WinRt.Hresult is abstract;
 
@@ -3733,7 +3733,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IRevealBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IRevealBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IRevealBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -3745,44 +3745,44 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ColorProperty
       (
          this : access IRevealBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetThemeProperty
       (
          this : access IRevealBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AlwaysUseFallbackProperty
       (
          this : access IRevealBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StateProperty
       (
          this : access IRevealBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function SetState
       (
          this : access IRevealBrushStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         value : Windows.UI.Xaml.Media.RevealBrushState
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         value : WinRt.Windows.UI.Xaml.Media.RevealBrushState
       )
       return WinRt.Hresult is abstract;
 
       function GetState
       (
          this : access IRevealBrushStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Media.RevealBrushState
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.RevealBrushState
       )
       return WinRt.Hresult is abstract;
 
@@ -3841,21 +3841,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CenterXProperty
       (
          this : access IRotateTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterYProperty
       (
          this : access IRotateTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AngleProperty
       (
          this : access IRotateTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3928,28 +3928,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CenterXProperty
       (
          this : access IScaleTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterYProperty
       (
          this : access IScaleTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleXProperty
       (
          this : access IScaleTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ScaleYProperty
       (
          this : access IScaleTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4032,28 +4032,28 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CenterXProperty
       (
          this : access ISkewTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CenterYProperty
       (
          this : access ISkewTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AngleXProperty
       (
          this : access ISkewTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AngleYProperty
       (
          this : access ISkewTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4065,14 +4065,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Color
       (
          this : access ISolidColorBrush_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ISolidColorBrush_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4084,8 +4084,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function CreateInstanceWithColor
       (
          this : access ISolidColorBrushFactory_Interface;
-         color : Windows.UI.Color;
-         RetVal : access Windows.UI.Xaml.Media.ISolidColorBrush
+         color : WinRt.Windows.UI.Color;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ISolidColorBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4097,7 +4097,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ColorProperty
       (
          this : access ISolidColorBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4109,7 +4109,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Receivers
       (
          this : access IThemeShadow_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElementWeakCollection
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElementWeakCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -4123,7 +4123,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IThemeShadowFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IThemeShadow
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IThemeShadow
       )
       return WinRt.Hresult is abstract;
 
@@ -4135,42 +4135,42 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_AlignmentX
       (
          this : access ITileBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.AlignmentX
+         RetVal : access WinRt.Windows.UI.Xaml.Media.AlignmentX
       )
       return WinRt.Hresult is abstract;
 
       function put_AlignmentX
       (
          this : access ITileBrush_Interface;
-         value : Windows.UI.Xaml.Media.AlignmentX
+         value : WinRt.Windows.UI.Xaml.Media.AlignmentX
       )
       return WinRt.Hresult is abstract;
 
       function get_AlignmentY
       (
          this : access ITileBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.AlignmentY
+         RetVal : access WinRt.Windows.UI.Xaml.Media.AlignmentY
       )
       return WinRt.Hresult is abstract;
 
       function put_AlignmentY
       (
          this : access ITileBrush_Interface;
-         value : Windows.UI.Xaml.Media.AlignmentY
+         value : WinRt.Windows.UI.Xaml.Media.AlignmentY
       )
       return WinRt.Hresult is abstract;
 
       function get_Stretch
       (
          this : access ITileBrush_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Stretch
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Stretch
       )
       return WinRt.Hresult is abstract;
 
       function put_Stretch
       (
          this : access ITileBrush_Interface;
-         value : Windows.UI.Xaml.Media.Stretch
+         value : WinRt.Windows.UI.Xaml.Media.Stretch
       )
       return WinRt.Hresult is abstract;
 
@@ -4184,7 +4184,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access ITileBrushFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.ITileBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITileBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4196,21 +4196,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_AlignmentXProperty
       (
          this : access ITileBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AlignmentYProperty
       (
          this : access ITileBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StretchProperty
       (
          this : access ITileBrushStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4222,14 +4222,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Time
       (
          this : access ITimelineMarker_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Time
       (
          this : access ITimelineMarker_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4269,14 +4269,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Marker
       (
          this : access ITimelineMarkerRoutedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Media.ITimelineMarker
+         RetVal : access WinRt.Windows.UI.Xaml.Media.ITimelineMarker
       )
       return WinRt.Hresult is abstract;
 
       function put_Marker
       (
          this : access ITimelineMarkerRoutedEventArgs_Interface;
-         value : Windows.UI.Xaml.Media.ITimelineMarker
+         value : WinRt.Windows.UI.Xaml.Media.ITimelineMarker
       )
       return WinRt.Hresult is abstract;
 
@@ -4288,21 +4288,21 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_TimeProperty
       (
          this : access ITimelineMarkerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TypeProperty
       (
          this : access ITimelineMarkerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TextProperty
       (
          this : access ITimelineMarkerStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4338,7 +4338,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_Value
       (
          this : access ITransformGroup_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Matrix
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Matrix
       )
       return WinRt.Hresult is abstract;
 
@@ -4350,7 +4350,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_ChildrenProperty
       (
          this : access ITransformGroupStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4395,14 +4395,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_XProperty
       (
          this : access ITranslateTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_YProperty
       (
          this : access ITranslateTransformStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4419,8 +4419,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function FindElementsInHostCoordinates
       (
          this : access IVisualTreeHelperStatics_Interface;
-         intersectingPoint : Windows.Foundation.Point;
-         subtree : Windows.UI.Xaml.IUIElement;
+         intersectingPoint : WinRt.Windows.Foundation.Point;
+         subtree : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4428,8 +4428,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function FindElementsInHostCoordinates
       (
          this : access IVisualTreeHelperStatics_Interface;
-         intersectingRect : Windows.Foundation.Rect;
-         subtree : Windows.UI.Xaml.IUIElement;
+         intersectingRect : WinRt.Windows.Foundation.Rect;
+         subtree : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4437,8 +4437,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function FindElementsInHostCoordinates
       (
          this : access IVisualTreeHelperStatics_Interface;
-         intersectingPoint : Windows.Foundation.Point;
-         subtree : Windows.UI.Xaml.IUIElement;
+         intersectingPoint : WinRt.Windows.Foundation.Point;
+         subtree : WinRt.Windows.UI.Xaml.IUIElement;
          includeAllElements : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -4447,8 +4447,8 @@ package WinRt.Windows.UI.Xaml.Media is
       function FindElementsInHostCoordinates
       (
          this : access IVisualTreeHelperStatics_Interface;
-         intersectingRect : Windows.Foundation.Rect;
-         subtree : Windows.UI.Xaml.IUIElement;
+         intersectingRect : WinRt.Windows.Foundation.Rect;
+         subtree : WinRt.Windows.UI.Xaml.IUIElement;
          includeAllElements : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -4457,16 +4457,16 @@ package WinRt.Windows.UI.Xaml.Media is
       function GetChild
       (
          this : access IVisualTreeHelperStatics_Interface;
-         reference : Windows.UI.Xaml.IDependencyObject;
+         reference : WinRt.Windows.UI.Xaml.IDependencyObject;
          childIndex : WinRt.Int32;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function GetChildrenCount
       (
          this : access IVisualTreeHelperStatics_Interface;
-         reference : Windows.UI.Xaml.IDependencyObject;
+         reference : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -4474,15 +4474,15 @@ package WinRt.Windows.UI.Xaml.Media is
       function GetParent
       (
          this : access IVisualTreeHelperStatics_Interface;
-         reference : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         reference : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function DisconnectChildrenRecursive
       (
          this : access IVisualTreeHelperStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement
+         element : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -4494,7 +4494,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function GetOpenPopups
       (
          this : access IVisualTreeHelperStatics2_Interface;
-         window : Windows.UI.Xaml.IWindow;
+         window : WinRt.Windows.UI.Xaml.IWindow;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4507,7 +4507,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function GetOpenPopupsForXamlRoot
       (
          this : access IVisualTreeHelperStatics3_Interface;
-         xamlRoot : Windows.UI.Xaml.IXamlRoot;
+         xamlRoot : WinRt.Windows.UI.Xaml.IXamlRoot;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4520,14 +4520,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FallbackColor
       (
          this : access IXamlCompositionBrushBase_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_FallbackColor
       (
          this : access IXamlCompositionBrushBase_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -4541,7 +4541,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IXamlCompositionBrushBaseFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IXamlCompositionBrushBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBase
       )
       return WinRt.Hresult is abstract;
 
@@ -4570,14 +4570,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CompositionBrush
       (
          this : access IXamlCompositionBrushBaseProtected_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionBrush
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_CompositionBrush
       (
          this : access IXamlCompositionBrushBaseProtected_Interface;
-         value : Windows.UI.Composition.ICompositionBrush
+         value : WinRt.Windows.UI.Composition.ICompositionBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4589,7 +4589,7 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_FallbackColorProperty
       (
          this : access IXamlCompositionBrushBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4608,7 +4608,7 @@ package WinRt.Windows.UI.Xaml.Media is
          this : access IXamlLightFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.IXamlLight
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IXamlLight
       )
       return WinRt.Hresult is abstract;
 
@@ -4627,14 +4627,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function OnConnected
       (
          this : access IXamlLightOverrides_Interface;
-         newElement : Windows.UI.Xaml.IUIElement
+         newElement : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function OnDisconnected
       (
          this : access IXamlLightOverrides_Interface;
-         oldElement : Windows.UI.Xaml.IUIElement
+         oldElement : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -4646,14 +4646,14 @@ package WinRt.Windows.UI.Xaml.Media is
       function get_CompositionLight
       (
          this : access IXamlLightProtected_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionLight
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionLight
       )
       return WinRt.Hresult is abstract;
 
       function put_CompositionLight
       (
          this : access IXamlLightProtected_Interface;
-         value : Windows.UI.Composition.ICompositionLight
+         value : WinRt.Windows.UI.Composition.ICompositionLight
       )
       return WinRt.Hresult is abstract;
 
@@ -4666,7 +4666,7 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access IXamlLightStatics_Interface;
          lightId : WinRt.HString;
-         element : Windows.UI.Xaml.IUIElement
+         element : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -4674,7 +4674,7 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access IXamlLightStatics_Interface;
          lightId : WinRt.HString;
-         element : Windows.UI.Xaml.IUIElement
+         element : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -4682,7 +4682,7 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access IXamlLightStatics_Interface;
          lightId : WinRt.HString;
-         brush_p : Windows.UI.Xaml.Media.IBrush
+         brush_p : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4690,7 +4690,7 @@ package WinRt.Windows.UI.Xaml.Media is
       (
          this : access IXamlLightStatics_Interface;
          lightId : WinRt.HString;
-         brush_p : Windows.UI.Xaml.Media.IBrush
+         brush_p : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -4752,7 +4752,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Transform
    (
       this : in out Brush;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    function get_RelativeTransform
@@ -4764,21 +4764,21 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_RelativeTransform
    (
       this : in out Brush;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    procedure PopulatePropertyInfoOverride
    (
       this : in out Brush;
       propertyName : WinRt.WString;
-      animationPropertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      animationPropertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    );
 
    procedure PopulatePropertyInfo
    (
       this : in out Brush;
       propertyName : WinRt.WString;
-      propertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      propertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4821,7 +4821,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_AlignmentX
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.AlignmentX
+      value : WinRt.Windows.UI.Xaml.Media.AlignmentX
    );
 
    function get_AlignmentY
@@ -4833,7 +4833,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_AlignmentY
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.AlignmentY
+      value : WinRt.Windows.UI.Xaml.Media.AlignmentY
    );
 
    function get_Stretch
@@ -4845,7 +4845,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Stretch
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.Stretch
+      value : WinRt.Windows.UI.Xaml.Media.Stretch
    );
 
    -----------------------------------------------------------------------------
@@ -4882,7 +4882,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_FallbackColor
    (
       this : in out XamlCompositionBrushBase;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_CompositionBrush
@@ -4894,7 +4894,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_CompositionBrush
    (
       this : in out XamlCompositionBrushBase;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    );
 
    procedure OnConnected
@@ -4956,7 +4956,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_BackgroundSource
    (
       this : in out AcrylicBrush;
-      value : Windows.UI.Xaml.Media.AcrylicBackgroundSource
+      value : WinRt.Windows.UI.Xaml.Media.AcrylicBackgroundSource
    );
 
    function get_TintColor
@@ -4968,7 +4968,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_TintColor
    (
       this : in out AcrylicBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_TintOpacity
@@ -4992,7 +4992,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_TintTransitionDuration
    (
       this : in out AcrylicBrush;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_AlwaysUseFallback
@@ -5072,7 +5072,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point
    (
       this : in out ArcSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Size
@@ -5084,7 +5084,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Size
    (
       this : in out ArcSegment;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    function get_RotationAngle
@@ -5120,7 +5120,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_SweepDirection
    (
       this : in out ArcSegment;
-      value : Windows.UI.Xaml.Media.SweepDirection
+      value : WinRt.Windows.UI.Xaml.Media.SweepDirection
    );
 
    -----------------------------------------------------------------------------
@@ -5158,7 +5158,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point1
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Point2
@@ -5170,7 +5170,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point2
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Point3
@@ -5182,7 +5182,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point3
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -5255,7 +5255,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out BrushCollection;
-      value : Windows.UI.Xaml.Media.Brush'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5264,14 +5264,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    procedure InsertAt
    (
       this : in out BrushCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    procedure RemoveAt
@@ -5283,7 +5283,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out BrushCollection;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    procedure RemoveAtEnd
@@ -5300,14 +5300,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IBrush_Array
+      items : WinRt.Windows.UI.Xaml.Media.IBrush_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out BrushCollection;
-      items : Windows.UI.Xaml.Media.IBrush_Array
+      items : WinRt.Windows.UI.Xaml.Media.IBrush_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Brush>
@@ -5345,22 +5345,22 @@ package WinRt.Windows.UI.Xaml.Media is
    function TransformPoint
    (
       this : in out GeneralTransform;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point;
 
    function TryTransform
    (
       this : in out GeneralTransform;
-      inPoint : Windows.Foundation.Point;
-      outPoint : Windows.Foundation.Point_Ptr
+      inPoint : WinRt.Windows.Foundation.Point;
+      outPoint : WinRt.Windows.Foundation.Point_Ptr
    )
    return WinRt.Boolean;
 
    function TransformBounds
    (
       this : in out GeneralTransform;
-      rect : Windows.Foundation.Rect
+      rect : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -5373,15 +5373,15 @@ package WinRt.Windows.UI.Xaml.Media is
    function TryTransformCore
    (
       this : in out GeneralTransform;
-      inPoint : Windows.Foundation.Point;
-      outPoint : Windows.Foundation.Point_Ptr
+      inPoint : WinRt.Windows.Foundation.Point;
+      outPoint : WinRt.Windows.Foundation.Point_Ptr
    )
    return WinRt.Boolean;
 
    function TransformBoundsCore
    (
       this : in out GeneralTransform;
-      rect : Windows.Foundation.Rect
+      rect : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -5566,7 +5566,7 @@ package WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_Rendered
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Rendering
@@ -5577,7 +5577,7 @@ package WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_Rendering
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SurfaceContentsLost
@@ -5588,7 +5588,7 @@ package WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_SurfaceContentsLost
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5726,7 +5726,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Transform
    (
       this : in out Geometry;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    function get_Bounds
@@ -5770,7 +5770,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Center
    (
       this : in out EllipseGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_RadiusX
@@ -5866,7 +5866,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out GeometryCollection;
-      value : Windows.UI.Xaml.Media.Geometry'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5875,14 +5875,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    );
 
    procedure InsertAt
    (
       this : in out GeometryCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    );
 
    procedure RemoveAt
@@ -5894,7 +5894,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out GeometryCollection;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    );
 
    procedure RemoveAtEnd
@@ -5911,14 +5911,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IGeometry_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGeometry_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out GeometryCollection;
-      items : Windows.UI.Xaml.Media.IGeometry_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGeometry_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Geometry>
@@ -5960,7 +5960,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_FillRule
    (
       this : in out GeometryGroup;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    );
 
    function get_Children
@@ -5972,7 +5972,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Children
    (
       this : in out GeometryGroup;
-      value : Windows.UI.Xaml.Media.GeometryCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.GeometryCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6018,7 +6018,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_SpreadMethod
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.GradientSpreadMethod
+      value : WinRt.Windows.UI.Xaml.Media.GradientSpreadMethod
    );
 
    function get_MappingMode
@@ -6030,7 +6030,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_MappingMode
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.BrushMappingMode
+      value : WinRt.Windows.UI.Xaml.Media.BrushMappingMode
    );
 
    function get_ColorInterpolationMode
@@ -6042,7 +6042,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_ColorInterpolationMode
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.ColorInterpolationMode
+      value : WinRt.Windows.UI.Xaml.Media.ColorInterpolationMode
    );
 
    function get_GradientStops
@@ -6054,7 +6054,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_GradientStops
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.GradientStopCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStopCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6089,7 +6089,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out GradientStop;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Offset
@@ -6141,7 +6141,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out GradientStopCollection;
-      value : Windows.UI.Xaml.Media.GradientStop'Class;
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -6150,14 +6150,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    );
 
    procedure InsertAt
    (
       this : in out GradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    );
 
    procedure RemoveAt
@@ -6169,7 +6169,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out GradientStopCollection;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    );
 
    procedure RemoveAtEnd
@@ -6186,14 +6186,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IGradientStop_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGradientStop_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out GradientStopCollection;
-      items : Windows.UI.Xaml.Media.IGradientStop_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGradientStop_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.GradientStop>
@@ -6232,33 +6232,33 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_ImageSource
    (
       this : in out ImageBrush;
-      value : Windows.UI.Xaml.Media.ImageSource'Class
+      value : WinRt.Windows.UI.Xaml.Media.ImageSource'Class
    );
 
    function add_ImageFailed
    (
       this : in out ImageBrush;
-      handler : Windows.UI.Xaml.ExceptionRoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ImageFailed
    (
       this : in out ImageBrush;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ImageOpened
    (
       this : in out ImageBrush;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_ImageOpened
    (
       this : in out ImageBrush;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6305,7 +6305,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out LineGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_EndPoint
@@ -6317,7 +6317,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_EndPoint
    (
       this : in out LineGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -6349,7 +6349,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point
    (
       this : in out LineSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -6363,7 +6363,7 @@ package WinRt.Windows.UI.Xaml.Media is
 
    function Constructor
    (
-      gradientStopCollection_p : Windows.UI.Xaml.Media.GradientStopCollection'Class;
+      gradientStopCollection_p : WinRt.Windows.UI.Xaml.Media.GradientStopCollection'Class;
       angle : WinRt.Double
    )
    return LinearGradientBrush;
@@ -6391,7 +6391,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out LinearGradientBrush;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_EndPoint
@@ -6403,7 +6403,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_EndPoint
    (
       this : in out LinearGradientBrush;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -6432,27 +6432,27 @@ package WinRt.Windows.UI.Xaml.Media is
 
    function StartLoadFromUri
    (
-      uri : Windows.Foundation.Uri'Class;
-      desiredMaxSize : Windows.Foundation.Size
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      desiredMaxSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface;
 
    function StartLoadFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface;
 
    function StartLoadFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
-      desiredMaxSize : Windows.Foundation.Size
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      desiredMaxSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface;
 
    function StartLoadFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface;
 
@@ -6487,7 +6487,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure remove_LoadCompleted
    (
       this : in out LoadedImageSurface;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -6543,7 +6543,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_ProjectionMatrix
    (
       this : in out Matrix3DProjection;
-      value : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      value : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    );
 
    -----------------------------------------------------------------------------
@@ -6571,14 +6571,14 @@ package WinRt.Windows.UI.Xaml.Media is
 
    function GetIsIdentity
    (
-      target : Windows.UI.Xaml.Media.Matrix
+      target : WinRt.Windows.UI.Xaml.Media.Matrix
    )
    return WinRt.Boolean;
 
    function Transform_x
    (
-      target : Windows.UI.Xaml.Media.Matrix;
-      point : Windows.Foundation.Point
+      target : WinRt.Windows.UI.Xaml.Media.Matrix;
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point;
 
@@ -6614,7 +6614,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Matrix
    (
       this : in out MatrixTransform;
-      value : Windows.UI.Xaml.Media.Matrix
+      value : WinRt.Windows.UI.Xaml.Media.Matrix
    );
 
    -----------------------------------------------------------------------------
@@ -6629,7 +6629,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure SetThumbnailImage
    (
       this : in out MediaTransportControlsThumbnailRequestedEventArgs;
-      source : Windows.Storage.Streams.IInputStream
+      source : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function GetDeferral
@@ -6702,7 +6702,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Segments
    (
       this : in out PathFigure;
-      value : Windows.UI.Xaml.Media.PathSegmentCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegmentCollection'Class
    );
 
    function get_StartPoint
@@ -6714,7 +6714,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out PathFigure;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_IsClosed
@@ -6778,7 +6778,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PathFigureCollection;
-      value : Windows.UI.Xaml.Media.PathFigure'Class;
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -6787,14 +6787,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    );
 
    procedure InsertAt
    (
       this : in out PathFigureCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    );
 
    procedure RemoveAt
@@ -6806,7 +6806,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PathFigureCollection;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    );
 
    procedure RemoveAtEnd
@@ -6823,14 +6823,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IPathFigure_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathFigure_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out PathFigureCollection;
-      items : Windows.UI.Xaml.Media.IPathFigure_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathFigure_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.PathFigure>
@@ -6872,7 +6872,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_FillRule
    (
       this : in out PathGeometry;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    );
 
    function get_Figures
@@ -6884,7 +6884,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Figures
    (
       this : in out PathGeometry;
-      value : Windows.UI.Xaml.Media.PathFigureCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigureCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6924,7 +6924,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PathSegmentCollection;
-      value : Windows.UI.Xaml.Media.PathSegment'Class;
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -6933,14 +6933,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    );
 
    procedure InsertAt
    (
       this : in out PathSegmentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    );
 
    procedure RemoveAt
@@ -6952,7 +6952,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PathSegmentCollection;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    );
 
    procedure RemoveAtEnd
@@ -6969,14 +6969,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IPathSegment_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathSegment_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out PathSegmentCollection;
-      items : Windows.UI.Xaml.Media.IPathSegment_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathSegment_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.PathSegment>
@@ -7229,7 +7229,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PointCollection;
-      value : Windows.Foundation.Point;
+      value : WinRt.Windows.Foundation.Point;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -7238,14 +7238,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection;
       index : WinRt.UInt32;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    procedure InsertAt
    (
       this : in out PointCollection;
       index : WinRt.UInt32;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    procedure RemoveAt
@@ -7257,7 +7257,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PointCollection;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    procedure RemoveAtEnd
@@ -7274,14 +7274,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Foundation.Point_Array
+      items : WinRt.Windows.Foundation.Point_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out PointCollection;
-      items : Windows.Foundation.Point_Array
+      items : WinRt.Windows.Foundation.Point_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Point>
@@ -7320,7 +7320,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyBezierSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7352,7 +7352,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyLineSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7384,7 +7384,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyQuadraticBezierSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7419,7 +7419,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point1
    (
       this : in out QuadraticBezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_Point2
@@ -7431,7 +7431,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Point2
    (
       this : in out QuadraticBezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -7477,7 +7477,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Rect
    (
       this : in out RectangleGeometry;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    -----------------------------------------------------------------------------
@@ -7543,13 +7543,13 @@ package WinRt.Windows.UI.Xaml.Media is
 
    procedure SetState
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      value : Windows.UI.Xaml.Media.RevealBrushState
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      value : WinRt.Windows.UI.Xaml.Media.RevealBrushState
    );
 
    function GetState
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Media.RevealBrushState;
 
@@ -7565,7 +7565,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out RevealBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_TargetTheme
@@ -7577,7 +7577,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_TargetTheme
    (
       this : in out RevealBrush;
-      value : Windows.UI.Xaml.ApplicationTheme
+      value : WinRt.Windows.UI.Xaml.ApplicationTheme
    );
 
    function get_AlwaysUseFallback
@@ -7871,7 +7871,7 @@ package WinRt.Windows.UI.Xaml.Media is
 
    function Constructor
    (
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return SolidColorBrush;
 
@@ -7893,7 +7893,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out SolidColorBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    -----------------------------------------------------------------------------
@@ -7956,7 +7956,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Time
    (
       this : in out TimelineMarker;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Type
@@ -8020,7 +8020,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out TimelineMarkerCollection;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class;
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -8029,14 +8029,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    );
 
    procedure InsertAt
    (
       this : in out TimelineMarkerCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    );
 
    procedure RemoveAt
@@ -8048,7 +8048,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out TimelineMarkerCollection;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    );
 
    procedure RemoveAtEnd
@@ -8065,14 +8065,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.ITimelineMarker_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITimelineMarker_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out TimelineMarkerCollection;
-      items : Windows.UI.Xaml.Media.ITimelineMarker_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITimelineMarker_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.TimelineMarker>
@@ -8105,7 +8105,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Marker
    (
       this : in out TimelineMarkerRoutedEventArgs;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8145,7 +8145,7 @@ package WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out TransformCollection;
-      value : Windows.UI.Xaml.Media.Transform'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -8154,14 +8154,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    procedure InsertAt
    (
       this : in out TransformCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    procedure RemoveAt
@@ -8173,7 +8173,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out TransformCollection;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    );
 
    procedure RemoveAtEnd
@@ -8190,14 +8190,14 @@ package WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.ITransform_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITransform_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out TransformCollection;
-      items : Windows.UI.Xaml.Media.ITransform_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITransform_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Transform>
@@ -8236,7 +8236,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_Children
    (
       this : in out TransformGroup;
-      value : Windows.UI.Xaml.Media.TransformCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.TransformCollection'Class
    );
 
    function get_Value
@@ -8303,67 +8303,67 @@ package WinRt.Windows.UI.Xaml.Media is
 
    function FindElementsInHostCoordinates
    (
-      intersectingPoint : Windows.Foundation.Point;
-      subtree : Windows.UI.Xaml.UIElement'Class
+      intersectingPoint : WinRt.Windows.Foundation.Point;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.GenericObject;
 
    function FindElementsInHostCoordinates
    (
-      intersectingRect : Windows.Foundation.Rect;
-      subtree : Windows.UI.Xaml.UIElement'Class
+      intersectingRect : WinRt.Windows.Foundation.Rect;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.GenericObject;
 
    function FindElementsInHostCoordinates
    (
-      intersectingPoint : Windows.Foundation.Point;
-      subtree : Windows.UI.Xaml.UIElement'Class;
+      intersectingPoint : WinRt.Windows.Foundation.Point;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class;
       includeAllElements : WinRt.Boolean
    )
    return WinRt.GenericObject;
 
    function FindElementsInHostCoordinates
    (
-      intersectingRect : Windows.Foundation.Rect;
-      subtree : Windows.UI.Xaml.UIElement'Class;
+      intersectingRect : WinRt.Windows.Foundation.Rect;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class;
       includeAllElements : WinRt.Boolean
    )
    return WinRt.GenericObject;
 
    function GetChild
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class;
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       childIndex : WinRt.Int32
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    function GetChildrenCount
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    function GetParent
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.DependencyObject;
 
    procedure DisconnectChildrenRecursive
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    function GetOpenPopups
    (
-      window : Windows.UI.Xaml.Window'Class
+      window : WinRt.Windows.UI.Xaml.Window'Class
    )
    return WinRt.GenericObject;
 
    function GetOpenPopupsForXamlRoot
    (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+      xamlRoot : WinRt.Windows.UI.Xaml.XamlRoot'Class
    )
    return WinRt.GenericObject;
 
@@ -8392,25 +8392,25 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure AddTargetElement
    (
       lightId : WinRt.WString;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure RemoveTargetElement
    (
       lightId : WinRt.WString;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure AddTargetBrush
    (
       lightId : WinRt.WString;
-      brush_p : Windows.UI.Xaml.Media.Brush'Class
+      brush_p : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    procedure RemoveTargetBrush
    (
       lightId : WinRt.WString;
-      brush_p : Windows.UI.Xaml.Media.Brush'Class
+      brush_p : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8425,7 +8425,7 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure put_CompositionLight
    (
       this : in out XamlLight;
-      value : Windows.UI.Composition.CompositionLight'Class
+      value : WinRt.Windows.UI.Composition.CompositionLight'Class
    );
 
    function GetId
@@ -8437,13 +8437,13 @@ package WinRt.Windows.UI.Xaml.Media is
    procedure OnConnected
    (
       this : in out XamlLight;
-      newElement : Windows.UI.Xaml.UIElement'Class
+      newElement : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    procedure OnDisconnected
    (
       this : in out XamlLight;
-      oldElement : Windows.UI.Xaml.UIElement'Class
+      oldElement : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
 end WinRt.Windows.UI.Xaml.Media;

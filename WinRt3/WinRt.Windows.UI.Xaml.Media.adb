@@ -86,16 +86,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return Brush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Brush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IBrush");
       m_Factory    : access IBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IBrush;
    begin
       return RetVal : Brush do
          Hr := RoGetActivationFactory (m_hString, IID_IBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+            Retval.m_IBrush := new WinRt.Windows.UI.Xaml.Media.IBrush;
             Retval.m_IBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -113,7 +113,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Brush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBrushStatics'Access , m_Factory'Address);
@@ -123,7 +123,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -137,7 +137,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Brush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBrushStatics'Access , m_Factory'Address);
@@ -147,7 +147,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -161,7 +161,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Brush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBrushStatics'Access , m_Factory'Address);
@@ -171,7 +171,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -221,14 +221,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
          Hr := this.m_IBrush.all.get_Transform (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -236,7 +236,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Transform
    (
       this : in out Brush;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -256,14 +256,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
          Hr := this.m_IBrush.all.get_RelativeTransform (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -271,7 +271,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_RelativeTransform
    (
       this : in out Brush;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -287,7 +287,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out Brush;
       propertyName : WinRt.WString;
-      animationPropertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      animationPropertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -309,7 +309,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out Brush;
       propertyName : WinRt.WString;
-      propertyInfo : Windows.UI.Composition.AnimationPropertyInfo'Class
+      propertyInfo : WinRt.Windows.UI.Composition.AnimationPropertyInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -358,16 +358,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return TileBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TileBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ITileBrush");
       m_Factory    : access ITileBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ITileBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ITileBrush;
    begin
       return RetVal : TileBrush do
          Hr := RoGetActivationFactory (m_hString, IID_ITileBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITileBrush := new Windows.UI.Xaml.Media.ITileBrush;
+            Retval.m_ITileBrush := new WinRt.Windows.UI.Xaml.Media.ITileBrush;
             Retval.m_ITileBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -385,7 +385,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TileBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITileBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITileBrushStatics'Access , m_Factory'Address);
@@ -395,7 +395,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -409,7 +409,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TileBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITileBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITileBrushStatics'Access , m_Factory'Address);
@@ -419,7 +419,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -433,7 +433,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TileBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITileBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITileBrushStatics'Access , m_Factory'Address);
@@ -443,7 +443,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -461,7 +461,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.AlignmentX;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.AlignmentX;
    begin
       Hr := this.m_ITileBrush.all.get_AlignmentX (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -473,7 +473,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_AlignmentX
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.AlignmentX
+      value : WinRt.Windows.UI.Xaml.Media.AlignmentX
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -493,7 +493,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.AlignmentY;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.AlignmentY;
    begin
       Hr := this.m_ITileBrush.all.get_AlignmentY (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -505,7 +505,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_AlignmentY
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.AlignmentY
+      value : WinRt.Windows.UI.Xaml.Media.AlignmentY
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -525,7 +525,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Stretch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Stretch;
    begin
       Hr := this.m_ITileBrush.all.get_Stretch (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -537,7 +537,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Stretch
    (
       this : in out TileBrush;
-      value : Windows.UI.Xaml.Media.Stretch
+      value : WinRt.Windows.UI.Xaml.Media.Stretch
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -580,16 +580,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return XamlCompositionBrushBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.XamlCompositionBrushBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IXamlCompositionBrushBase");
       m_Factory    : access IXamlCompositionBrushBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IXamlCompositionBrushBase;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBase;
    begin
       return RetVal : XamlCompositionBrushBase do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlCompositionBrushBaseFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IXamlCompositionBrushBase := new Windows.UI.Xaml.Media.IXamlCompositionBrushBase;
+            Retval.m_IXamlCompositionBrushBase := new WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBase;
             Retval.m_IXamlCompositionBrushBase.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -607,7 +607,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.XamlCompositionBrushBase");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBaseStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlCompositionBrushBaseStatics'Access , m_Factory'Address);
@@ -617,7 +617,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -635,7 +635,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IXamlCompositionBrushBase.all.get_FallbackColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -647,7 +647,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_FallbackColor
    (
       this : in out XamlCompositionBrushBase;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -668,7 +668,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBaseProtected := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionBrush;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBase_Interface, WinRt.Windows.UI.Xaml.Media.IXamlCompositionBrushBaseProtected, WinRt.Windows.UI.Xaml.Media.IID_IXamlCompositionBrushBaseProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionBrush do
@@ -678,7 +678,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionBrush := new Windows.UI.Composition.ICompositionBrush;
+         Retval.m_ICompositionBrush := new WinRt.Windows.UI.Composition.ICompositionBrush;
          Retval.m_ICompositionBrush.all := m_ComRetVal;
       end return;
    end;
@@ -686,7 +686,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_CompositionBrush
    (
       this : in out XamlCompositionBrushBase;
-      value : Windows.UI.Composition.CompositionBrush'Class
+      value : WinRt.Windows.UI.Composition.CompositionBrush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -769,16 +769,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return AcrylicBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IAcrylicBrush");
       m_Factory    : access IAcrylicBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IAcrylicBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IAcrylicBrush;
    begin
       return RetVal : AcrylicBrush do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IAcrylicBrush := new Windows.UI.Xaml.Media.IAcrylicBrush;
+            Retval.m_IAcrylicBrush := new WinRt.Windows.UI.Xaml.Media.IAcrylicBrush;
             Retval.m_IAcrylicBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -796,7 +796,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics2'Access , m_Factory'Address);
@@ -806,7 +806,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -820,7 +820,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
@@ -830,7 +830,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -844,7 +844,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
@@ -854,7 +854,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -868,7 +868,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
@@ -878,7 +878,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -892,7 +892,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
@@ -902,7 +902,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -916,7 +916,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.AcrylicBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IAcrylicBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
@@ -926,7 +926,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -944,7 +944,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.AcrylicBackgroundSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.AcrylicBackgroundSource;
    begin
       Hr := this.m_IAcrylicBrush.all.get_BackgroundSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -956,7 +956,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_BackgroundSource
    (
       this : in out AcrylicBrush;
-      value : Windows.UI.Xaml.Media.AcrylicBackgroundSource
+      value : WinRt.Windows.UI.Xaml.Media.AcrylicBackgroundSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -976,7 +976,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IAcrylicBrush.all.get_TintColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -988,7 +988,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_TintColor
    (
       this : in out AcrylicBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1040,7 +1040,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAcrylicBrush.all.get_TintTransitionDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1052,7 +1052,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_TintTransitionDuration
    (
       this : in out AcrylicBrush;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1105,7 +1105,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IAcrylicBrush2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IAcrylicBrush_Interface, WinRt.Windows.UI.Xaml.Media.IAcrylicBrush2, WinRt.Windows.UI.Xaml.Media.IID_IAcrylicBrush2'Unchecked_Access);
    begin
@@ -1191,13 +1191,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return ArcSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IArcSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IArcSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IArcSegment;
    begin
       return RetVal : ArcSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IArcSegment := new Windows.UI.Xaml.Media.IArcSegment;
+            Retval.m_IArcSegment := new WinRt.Windows.UI.Xaml.Media.IArcSegment;
             Retval.m_IArcSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1214,7 +1214,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IArcSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IArcSegmentStatics'Access , m_Factory'Address);
@@ -1224,7 +1224,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1238,7 +1238,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IArcSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IArcSegmentStatics'Access , m_Factory'Address);
@@ -1248,7 +1248,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1262,7 +1262,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IArcSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IArcSegmentStatics'Access , m_Factory'Address);
@@ -1272,7 +1272,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1286,7 +1286,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IArcSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IArcSegmentStatics'Access , m_Factory'Address);
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1310,7 +1310,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ArcSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IArcSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IArcSegmentStatics'Access , m_Factory'Address);
@@ -1320,7 +1320,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1338,7 +1338,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IArcSegment.all.get_Point (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1350,7 +1350,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point
    (
       this : in out ArcSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1370,7 +1370,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IArcSegment.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1382,7 +1382,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Size
    (
       this : in out ArcSegment;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1466,7 +1466,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.SweepDirection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.SweepDirection;
    begin
       Hr := this.m_IArcSegment.all.get_SweepDirection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1478,7 +1478,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_SweepDirection
    (
       this : in out ArcSegment;
-      value : Windows.UI.Xaml.Media.SweepDirection
+      value : WinRt.Windows.UI.Xaml.Media.SweepDirection
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1516,13 +1516,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return BezierSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BezierSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IBezierSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IBezierSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IBezierSegment;
    begin
       return RetVal : BezierSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBezierSegment := new Windows.UI.Xaml.Media.IBezierSegment;
+            Retval.m_IBezierSegment := new WinRt.Windows.UI.Xaml.Media.IBezierSegment;
             Retval.m_IBezierSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1539,7 +1539,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBezierSegmentStatics'Access , m_Factory'Address);
@@ -1549,7 +1549,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1563,7 +1563,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBezierSegmentStatics'Access , m_Factory'Address);
@@ -1573,7 +1573,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1587,7 +1587,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IBezierSegmentStatics'Access , m_Factory'Address);
@@ -1597,7 +1597,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1615,7 +1615,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IBezierSegment.all.get_Point1 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1627,7 +1627,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point1
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1647,7 +1647,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IBezierSegment.all.get_Point2 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1659,7 +1659,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point2
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1679,7 +1679,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IBezierSegment.all.get_Point3 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1691,7 +1691,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point3
    (
       this : in out BezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1734,16 +1734,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return CacheMode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CacheMode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ICacheMode");
       m_Factory    : access ICacheModeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ICacheMode;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ICacheMode;
    begin
       return RetVal : CacheMode do
          Hr := RoGetActivationFactory (m_hString, IID_ICacheModeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICacheMode := new Windows.UI.Xaml.Media.ICacheMode;
+            Retval.m_ICacheMode := new WinRt.Windows.UI.Xaml.Media.ICacheMode;
             Retval.m_ICacheMode.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1780,13 +1780,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return BitmapCache is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BitmapCache");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IBitmapCache;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IBitmapCache");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IBitmapCache;
    begin
       return RetVal : BitmapCache do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IBitmapCache := new Windows.UI.Xaml.Media.IBitmapCache;
+            Retval.m_IBitmapCache := new WinRt.Windows.UI.Xaml.Media.IBitmapCache;
             Retval.m_IBitmapCache.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1815,13 +1815,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return BrushCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.BrushCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : BrushCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1842,7 +1842,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBrush.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IBrush;
       m_GenericIID     : aliased WinRt.IID := (2832041188, 16095, 20850, (143, 119, 16, 233, 16, 229, 220, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBrush.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1853,7 +1853,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush := new WinRt.Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
    end;
@@ -1889,7 +1889,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IBrush.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IBrush;
       m_GenericIID     : aliased WinRt.IID := (2832041188, 16095, 20850, (143, 119, 16, 233, 16, 229, 220, 93 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IBrush.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1900,7 +1900,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush := new WinRt.Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
    end;
@@ -1908,7 +1908,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out BrushCollection;
-      value : Windows.UI.Xaml.Media.Brush'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1933,7 +1933,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1954,7 +1954,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1994,7 +1994,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out BrushCollection;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2053,7 +2053,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out BrushCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IBrush_Array
+      items : WinRt.Windows.UI.Xaml.Media.IBrush_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2077,7 +2077,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out BrushCollection;
-      items : Windows.UI.Xaml.Media.IBrush_Array
+      items : WinRt.Windows.UI.Xaml.Media.IBrush_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2105,7 +2105,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IBrush.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IBrush;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IBrush;
       m_GenericIID     : aliased WinRt.IID := (2961085141, 1715, 24018, (141, 73, 52, 159, 251, 216, 70, 52 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IBrush.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2116,7 +2116,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBrush := new Windows.UI.Xaml.Media.IBrush;
+         Retval.m_IBrush := new WinRt.Windows.UI.Xaml.Media.IBrush;
          Retval.m_IBrush.all := m_ComRetVal;
       end return;
    end;
@@ -2152,16 +2152,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return GeneralTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GeneralTransform");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IGeneralTransform");
       m_Factory    : access IGeneralTransformFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IGeneralTransform;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
    begin
       return RetVal : GeneralTransform do
          Hr := RoGetActivationFactory (m_hString, IID_IGeneralTransformFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGeneralTransform := new Windows.UI.Xaml.Media.IGeneralTransform;
+            Retval.m_IGeneralTransform := new WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
             Retval.m_IGeneralTransform.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2180,14 +2180,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeneralTransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.GeneralTransform do
          Hr := this.m_IGeneralTransform.all.get_Inverse (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeneralTransform := new Windows.UI.Xaml.Media.IGeneralTransform;
+         Retval.m_IGeneralTransform := new WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
          Retval.m_IGeneralTransform.all := m_ComRetVal;
       end return;
    end;
@@ -2195,13 +2195,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function TransformPoint
    (
       this : in out GeneralTransform;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IGeneralTransform.all.TransformPoint (point, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2213,8 +2213,8 @@ package body WinRt.Windows.UI.Xaml.Media is
    function TryTransform
    (
       this : in out GeneralTransform;
-      inPoint : Windows.Foundation.Point;
-      outPoint : Windows.Foundation.Point_Ptr
+      inPoint : WinRt.Windows.Foundation.Point;
+      outPoint : WinRt.Windows.Foundation.Point_Ptr
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2232,13 +2232,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function TransformBounds
    (
       this : in out GeneralTransform;
-      rect : Windows.Foundation.Rect
+      rect : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IGeneralTransform.all.TransformBounds (rect, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2256,7 +2256,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IGeneralTransformOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeneralTransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IGeneralTransform_Interface, WinRt.Windows.UI.Xaml.Media.IGeneralTransformOverrides, WinRt.Windows.UI.Xaml.Media.IID_IGeneralTransformOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.GeneralTransform do
@@ -2266,7 +2266,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeneralTransform := new Windows.UI.Xaml.Media.IGeneralTransform;
+         Retval.m_IGeneralTransform := new WinRt.Windows.UI.Xaml.Media.IGeneralTransform;
          Retval.m_IGeneralTransform.all := m_ComRetVal;
       end return;
    end;
@@ -2274,8 +2274,8 @@ package body WinRt.Windows.UI.Xaml.Media is
    function TryTransformCore
    (
       this : in out GeneralTransform;
-      inPoint : Windows.Foundation.Point;
-      outPoint : Windows.Foundation.Point_Ptr
+      inPoint : WinRt.Windows.Foundation.Point;
+      outPoint : WinRt.Windows.Foundation.Point_Ptr
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -2297,14 +2297,14 @@ package body WinRt.Windows.UI.Xaml.Media is
    function TransformBoundsCore
    (
       this : in out GeneralTransform;
-      rect : Windows.Foundation.Rect
+      rect : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Windows.Foundation.Rect is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IGeneralTransformOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IGeneralTransform_Interface, WinRt.Windows.UI.Xaml.Media.IGeneralTransformOverrides, WinRt.Windows.UI.Xaml.Media.IID_IGeneralTransformOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGeneralTransform.all);
@@ -2368,13 +2368,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return CompositeTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ICompositeTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ICompositeTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ICompositeTransform;
    begin
       return RetVal : CompositeTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICompositeTransform := new Windows.UI.Xaml.Media.ICompositeTransform;
+            Retval.m_ICompositeTransform := new WinRt.Windows.UI.Xaml.Media.ICompositeTransform;
             Retval.m_ICompositeTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2391,7 +2391,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2401,7 +2401,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2415,7 +2415,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2425,7 +2425,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2439,7 +2439,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2449,7 +2449,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2473,7 +2473,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2487,7 +2487,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2497,7 +2497,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2511,7 +2511,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2521,7 +2521,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2535,7 +2535,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2545,7 +2545,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2559,7 +2559,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2569,7 +2569,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2583,7 +2583,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositeTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositeTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransformStatics'Access , m_Factory'Address);
@@ -2593,7 +2593,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2924,7 +2924,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2940,7 +2940,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_Rendered
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2969,7 +2969,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2985,7 +2985,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_Rendering
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3014,7 +3014,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.CompositionTarget");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ICompositionTargetStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ICompositionTargetStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3030,7 +3030,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    procedure remove_SurfaceContentsLost
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3071,13 +3071,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return DoubleCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.DoubleCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : DoubleCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3098,7 +3098,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Double.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Double;
+      m_ComRetVal      : aliased WinRt.Double;
       m_GenericIID     : aliased WinRt.IID := (4099068476, 48901, 24382, (136, 231, 209, 122, 103, 22, 185, 17 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Double.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3142,7 +3142,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Double.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Double;
+      m_ComRetVal      : aliased WinRt.Double;
       m_GenericIID     : aliased WinRt.IID := (4099068476, 48901, 24382, (136, 231, 209, 122, 103, 22, 185, 17 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Double.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3355,7 +3355,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Double.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Double;
+      m_ComRetVal      : aliased WinRt.Double;
       m_GenericIID     : aliased WinRt.IID := (3342374478, 40036, 23502, (181, 206, 97, 233, 162, 130, 236, 74 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Double.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3401,7 +3401,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Geometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeometry;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Geometry do
          Hr := RoGetActivationFactory (m_hString, IID_IGeometryStatics'Access , m_Factory'Address);
@@ -3411,7 +3411,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+            Retval.m_IGeometry := new WinRt.Windows.UI.Xaml.Media.IGeometry;
             Retval.m_IGeometry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3446,7 +3446,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Geometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGeometryStatics'Access , m_Factory'Address);
@@ -3456,7 +3456,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3474,14 +3474,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.Transform do
          Hr := this.m_IGeometry.all.get_Transform (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -3489,7 +3489,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Transform
    (
       this : in out Geometry;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3509,7 +3509,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IGeometry.all.get_Bounds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3544,13 +3544,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return EllipseGeometry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.EllipseGeometry");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IEllipseGeometry;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IEllipseGeometry");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IEllipseGeometry;
    begin
       return RetVal : EllipseGeometry do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IEllipseGeometry := new Windows.UI.Xaml.Media.IEllipseGeometry;
+            Retval.m_IEllipseGeometry := new WinRt.Windows.UI.Xaml.Media.IEllipseGeometry;
             Retval.m_IEllipseGeometry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3567,7 +3567,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.EllipseGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IEllipseGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEllipseGeometryStatics'Access , m_Factory'Address);
@@ -3577,7 +3577,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3591,7 +3591,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.EllipseGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IEllipseGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEllipseGeometryStatics'Access , m_Factory'Address);
@@ -3601,7 +3601,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3615,7 +3615,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.EllipseGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IEllipseGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IEllipseGeometryStatics'Access , m_Factory'Address);
@@ -3625,7 +3625,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3643,7 +3643,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IEllipseGeometry.all.get_Center (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3655,7 +3655,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Center
    (
       this : in out EllipseGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3763,17 +3763,17 @@ package body WinRt.Windows.UI.Xaml.Media is
    return FontFamily is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.FontFamily");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IFontFamily");
       m_Factory    : access IFontFamilyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IFontFamily;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IFontFamily;
       HStr_familyName : constant WinRt.HString := To_HString (familyName);
    begin
       return RetVal : FontFamily do
          Hr := RoGetActivationFactory (m_hString, IID_IFontFamilyFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithName (HStr_familyName, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFontFamily := new Windows.UI.Xaml.Media.IFontFamily;
+            Retval.m_IFontFamily := new WinRt.Windows.UI.Xaml.Media.IFontFamily;
             Retval.m_IFontFamily.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3792,7 +3792,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.FontFamily");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IFontFamilyStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IFontFamily;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IFontFamily;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.FontFamily do
          Hr := RoGetActivationFactory (m_hString, IID_IFontFamilyStatics2'Access , m_Factory'Address);
@@ -3802,7 +3802,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IFontFamily := new Windows.UI.Xaml.Media.IFontFamily;
+            Retval.m_IFontFamily := new WinRt.Windows.UI.Xaml.Media.IFontFamily;
             Retval.m_IFontFamily.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3851,13 +3851,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return GeometryCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GeometryCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : GeometryCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3878,7 +3878,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGeometry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeometry;
       m_GenericIID     : aliased WinRt.IID := (2227612730, 33287, 21913, (149, 131, 96, 106, 194, 19, 157, 221 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGeometry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3889,7 +3889,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+         Retval.m_IGeometry := new WinRt.Windows.UI.Xaml.Media.IGeometry;
          Retval.m_IGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -3925,7 +3925,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGeometry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeometry;
       m_GenericIID     : aliased WinRt.IID := (2227612730, 33287, 21913, (149, 131, 96, 106, 194, 19, 157, 221 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGeometry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -3936,7 +3936,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+         Retval.m_IGeometry := new WinRt.Windows.UI.Xaml.Media.IGeometry;
          Retval.m_IGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -3944,7 +3944,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out GeometryCollection;
-      value : Windows.UI.Xaml.Media.Geometry'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -3969,7 +3969,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3990,7 +3990,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4030,7 +4030,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out GeometryCollection;
-      value : Windows.UI.Xaml.Media.Geometry'Class
+      value : WinRt.Windows.UI.Xaml.Media.Geometry'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4089,7 +4089,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GeometryCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IGeometry_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGeometry_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -4113,7 +4113,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out GeometryCollection;
-      items : Windows.UI.Xaml.Media.IGeometry_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGeometry_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4141,7 +4141,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IGeometry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGeometry;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGeometry;
       m_GenericIID     : aliased WinRt.IID := (892600377, 3580, 21172, (135, 72, 13, 154, 117, 93, 184, 168 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IGeometry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4152,7 +4152,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGeometry := new Windows.UI.Xaml.Media.IGeometry;
+         Retval.m_IGeometry := new WinRt.Windows.UI.Xaml.Media.IGeometry;
          Retval.m_IGeometry.all := m_ComRetVal;
       end return;
    end;
@@ -4183,13 +4183,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return GeometryGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GeometryGroup");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IGeometryGroup;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IGeometryGroup");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IGeometryGroup;
    begin
       return RetVal : GeometryGroup do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGeometryGroup := new Windows.UI.Xaml.Media.IGeometryGroup;
+            Retval.m_IGeometryGroup := new WinRt.Windows.UI.Xaml.Media.IGeometryGroup;
             Retval.m_IGeometryGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4206,7 +4206,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GeometryGroup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGeometryGroupStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGeometryGroupStatics'Access , m_Factory'Address);
@@ -4216,7 +4216,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4230,7 +4230,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GeometryGroup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGeometryGroupStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGeometryGroupStatics'Access , m_Factory'Address);
@@ -4240,7 +4240,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4258,7 +4258,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.FillRule;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.FillRule;
    begin
       Hr := this.m_IGeometryGroup.all.get_FillRule (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4270,7 +4270,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_FillRule
    (
       this : in out GeometryGroup;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4290,14 +4290,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.GeometryCollection do
          Hr := this.m_IGeometryGroup.all.get_Children (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -4305,7 +4305,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Children
    (
       this : in out GeometryGroup;
-      value : Windows.UI.Xaml.Media.GeometryCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.GeometryCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4348,16 +4348,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return GradientBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IGradientBrush");
       m_Factory    : access IGradientBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IGradientBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IGradientBrush;
    begin
       return RetVal : GradientBrush do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGradientBrush := new Windows.UI.Xaml.Media.IGradientBrush;
+            Retval.m_IGradientBrush := new WinRt.Windows.UI.Xaml.Media.IGradientBrush;
             Retval.m_IGradientBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4375,7 +4375,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientBrushStatics'Access , m_Factory'Address);
@@ -4385,7 +4385,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4399,7 +4399,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientBrushStatics'Access , m_Factory'Address);
@@ -4409,7 +4409,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4423,7 +4423,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientBrushStatics'Access , m_Factory'Address);
@@ -4433,7 +4433,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4447,7 +4447,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientBrushStatics'Access , m_Factory'Address);
@@ -4457,7 +4457,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4475,7 +4475,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.GradientSpreadMethod;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.GradientSpreadMethod;
    begin
       Hr := this.m_IGradientBrush.all.get_SpreadMethod (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4487,7 +4487,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_SpreadMethod
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.GradientSpreadMethod
+      value : WinRt.Windows.UI.Xaml.Media.GradientSpreadMethod
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4507,7 +4507,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.BrushMappingMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.BrushMappingMode;
    begin
       Hr := this.m_IGradientBrush.all.get_MappingMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4519,7 +4519,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_MappingMode
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.BrushMappingMode
+      value : WinRt.Windows.UI.Xaml.Media.BrushMappingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4539,7 +4539,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ColorInterpolationMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ColorInterpolationMode;
    begin
       Hr := this.m_IGradientBrush.all.get_ColorInterpolationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4551,7 +4551,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_ColorInterpolationMode
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.ColorInterpolationMode
+      value : WinRt.Windows.UI.Xaml.Media.ColorInterpolationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4571,14 +4571,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.GradientStopCollection do
          Hr := this.m_IGradientBrush.all.get_GradientStops (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -4586,7 +4586,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_GradientStops
    (
       this : in out GradientBrush;
-      value : Windows.UI.Xaml.Media.GradientStopCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStopCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4624,13 +4624,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return GradientStop is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientStop");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IGradientStop;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IGradientStop");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IGradientStop;
    begin
       return RetVal : GradientStop do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+            Retval.m_IGradientStop := new WinRt.Windows.UI.Xaml.Media.IGradientStop;
             Retval.m_IGradientStop.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4647,7 +4647,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientStop");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientStopStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientStopStatics'Access , m_Factory'Address);
@@ -4657,7 +4657,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4671,7 +4671,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientStop");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IGradientStopStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IGradientStopStatics'Access , m_Factory'Address);
@@ -4681,7 +4681,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4699,7 +4699,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IGradientStop.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4711,7 +4711,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out GradientStop;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4774,13 +4774,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return GradientStopCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.GradientStopCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : GradientStopCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4801,7 +4801,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGradientStop;
       m_GenericIID     : aliased WinRt.IID := (859975076, 9459, 23378, (158, 141, 17, 221, 113, 240, 139, 177 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4812,7 +4812,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+         Retval.m_IGradientStop := new WinRt.Windows.UI.Xaml.Media.IGradientStop;
          Retval.m_IGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -4848,7 +4848,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGradientStop;
       m_GenericIID     : aliased WinRt.IID := (859975076, 9459, 23378, (158, 141, 17, 221, 113, 240, 139, 177 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -4859,7 +4859,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+         Retval.m_IGradientStop := new WinRt.Windows.UI.Xaml.Media.IGradientStop;
          Retval.m_IGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -4867,7 +4867,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out GradientStopCollection;
-      value : Windows.UI.Xaml.Media.GradientStop'Class;
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -4892,7 +4892,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4913,7 +4913,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4953,7 +4953,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out GradientStopCollection;
-      value : Windows.UI.Xaml.Media.GradientStop'Class
+      value : WinRt.Windows.UI.Xaml.Media.GradientStop'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5012,7 +5012,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out GradientStopCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IGradientStop_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGradientStop_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -5036,7 +5036,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out GradientStopCollection;
-      items : Windows.UI.Xaml.Media.IGradientStop_Array
+      items : WinRt.Windows.UI.Xaml.Media.IGradientStop_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5064,7 +5064,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IGradientStop.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IGradientStop;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IGradientStop;
       m_GenericIID     : aliased WinRt.IID := (2433072019, 44070, 23470, (140, 30, 223, 142, 207, 0, 222, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IGradientStop.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -5075,7 +5075,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGradientStop := new Windows.UI.Xaml.Media.IGradientStop;
+         Retval.m_IGradientStop := new WinRt.Windows.UI.Xaml.Media.IGradientStop;
          Retval.m_IGradientStop.all := m_ComRetVal;
       end return;
    end;
@@ -5106,13 +5106,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return ImageBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ImageBrush");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IImageBrush;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IImageBrush");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IImageBrush;
    begin
       return RetVal : ImageBrush do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IImageBrush := new Windows.UI.Xaml.Media.IImageBrush;
+            Retval.m_IImageBrush := new WinRt.Windows.UI.Xaml.Media.IImageBrush;
             Retval.m_IImageBrush.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5129,7 +5129,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ImageBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IImageBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IImageBrushStatics'Access , m_Factory'Address);
@@ -5139,7 +5139,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5157,14 +5157,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IImageSource;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IImageSource;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.ImageSource do
          Hr := this.m_IImageBrush.all.get_ImageSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IImageSource := new Windows.UI.Xaml.Media.IImageSource;
+         Retval.m_IImageSource := new WinRt.Windows.UI.Xaml.Media.IImageSource;
          Retval.m_IImageSource.all := m_ComRetVal;
       end return;
    end;
@@ -5172,7 +5172,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_ImageSource
    (
       this : in out ImageBrush;
-      value : Windows.UI.Xaml.Media.ImageSource'Class
+      value : WinRt.Windows.UI.Xaml.Media.ImageSource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5187,13 +5187,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function add_ImageFailed
    (
       this : in out ImageBrush;
-      handler : Windows.UI.Xaml.ExceptionRoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.ExceptionRoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IImageBrush.all.add_ImageFailed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5205,7 +5205,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure remove_ImageFailed
    (
       this : in out ImageBrush;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5220,13 +5220,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function add_ImageOpened
    (
       this : in out ImageBrush;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IImageBrush.all.add_ImageOpened (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5238,7 +5238,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure remove_ImageOpened
    (
       this : in out ImageBrush;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5302,13 +5302,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return LineGeometry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LineGeometry");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ILineGeometry;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ILineGeometry");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ILineGeometry;
    begin
       return RetVal : LineGeometry do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILineGeometry := new Windows.UI.Xaml.Media.ILineGeometry;
+            Retval.m_ILineGeometry := new WinRt.Windows.UI.Xaml.Media.ILineGeometry;
             Retval.m_ILineGeometry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5325,7 +5325,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LineGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILineGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineGeometryStatics'Access , m_Factory'Address);
@@ -5335,7 +5335,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5349,7 +5349,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LineGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILineGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineGeometryStatics'Access , m_Factory'Address);
@@ -5359,7 +5359,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5377,7 +5377,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ILineGeometry.all.get_StartPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5389,7 +5389,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out LineGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5409,7 +5409,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ILineGeometry.all.get_EndPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5421,7 +5421,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_EndPoint
    (
       this : in out LineGeometry;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5459,13 +5459,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return LineSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LineSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ILineSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ILineSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ILineSegment;
    begin
       return RetVal : LineSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILineSegment := new Windows.UI.Xaml.Media.ILineSegment;
+            Retval.m_ILineSegment := new WinRt.Windows.UI.Xaml.Media.ILineSegment;
             Retval.m_ILineSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5482,7 +5482,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LineSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILineSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILineSegmentStatics'Access , m_Factory'Address);
@@ -5492,7 +5492,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5510,7 +5510,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ILineSegment.all.get_Point (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5522,7 +5522,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point
    (
       this : in out LineSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5559,22 +5559,22 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function Constructor
    (
-      gradientStopCollection_p : Windows.UI.Xaml.Media.GradientStopCollection'Class;
+      gradientStopCollection_p : WinRt.Windows.UI.Xaml.Media.GradientStopCollection'Class;
       angle : WinRt.Double
    )
    return LinearGradientBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LinearGradientBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ILinearGradientBrush");
       m_Factory    : access ILinearGradientBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ILinearGradientBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ILinearGradientBrush;
    begin
       return RetVal : LinearGradientBrush do
          Hr := RoGetActivationFactory (m_hString, IID_ILinearGradientBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithGradientStopCollectionAndAngle (gradientStopCollection_p.m_GenericObject.all, angle, m_ComRetVal'Access);
-            Retval.m_ILinearGradientBrush := new Windows.UI.Xaml.Media.ILinearGradientBrush;
+            Retval.m_ILinearGradientBrush := new WinRt.Windows.UI.Xaml.Media.ILinearGradientBrush;
             Retval.m_ILinearGradientBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5585,13 +5585,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return LinearGradientBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LinearGradientBrush");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ILinearGradientBrush;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ILinearGradientBrush");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ILinearGradientBrush;
    begin
       return RetVal : LinearGradientBrush do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ILinearGradientBrush := new Windows.UI.Xaml.Media.ILinearGradientBrush;
+            Retval.m_ILinearGradientBrush := new WinRt.Windows.UI.Xaml.Media.ILinearGradientBrush;
             Retval.m_ILinearGradientBrush.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5608,7 +5608,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LinearGradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILinearGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILinearGradientBrushStatics'Access , m_Factory'Address);
@@ -5618,7 +5618,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5632,7 +5632,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LinearGradientBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILinearGradientBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ILinearGradientBrushStatics'Access , m_Factory'Address);
@@ -5642,7 +5642,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5660,7 +5660,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ILinearGradientBrush.all.get_StartPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5672,7 +5672,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out LinearGradientBrush;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5692,7 +5692,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ILinearGradientBrush.all.get_EndPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5704,7 +5704,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_EndPoint
    (
       this : in out LinearGradientBrush;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5747,7 +5747,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.LoadedImageSourceLoadStatus;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.LoadedImageSourceLoadStatus;
    begin
       Hr := this.m_ILoadedImageSourceLoadCompletedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5781,8 +5781,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function StartLoadFromUri
    (
-      uri : Windows.Foundation.Uri'Class;
-      desiredMaxSize : Windows.Foundation.Size
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      desiredMaxSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface is
       Hr               : WinRt.HResult := S_OK;
@@ -5790,7 +5790,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LoadedImageSurface");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurfaceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ILoadedImageSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.LoadedImageSurface do
          Hr := RoGetActivationFactory (m_hString, IID_ILoadedImageSurfaceStatics'Access , m_Factory'Address);
@@ -5800,7 +5800,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILoadedImageSurface := new Windows.UI.Xaml.Media.ILoadedImageSurface;
+            Retval.m_ILoadedImageSurface := new WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
             Retval.m_ILoadedImageSurface.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5809,7 +5809,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function StartLoadFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface is
       Hr               : WinRt.HResult := S_OK;
@@ -5817,7 +5817,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LoadedImageSurface");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurfaceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ILoadedImageSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.LoadedImageSurface do
          Hr := RoGetActivationFactory (m_hString, IID_ILoadedImageSurfaceStatics'Access , m_Factory'Address);
@@ -5827,7 +5827,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILoadedImageSurface := new Windows.UI.Xaml.Media.ILoadedImageSurface;
+            Retval.m_ILoadedImageSurface := new WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
             Retval.m_ILoadedImageSurface.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5836,8 +5836,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function StartLoadFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
-      desiredMaxSize : Windows.Foundation.Size
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      desiredMaxSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface is
       Hr               : WinRt.HResult := S_OK;
@@ -5845,7 +5845,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LoadedImageSurface");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurfaceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ILoadedImageSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.LoadedImageSurface do
          Hr := RoGetActivationFactory (m_hString, IID_ILoadedImageSurfaceStatics'Access , m_Factory'Address);
@@ -5855,7 +5855,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILoadedImageSurface := new Windows.UI.Xaml.Media.ILoadedImageSurface;
+            Retval.m_ILoadedImageSurface := new WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
             Retval.m_ILoadedImageSurface.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5864,7 +5864,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function StartLoadFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.UI.Xaml.Media.LoadedImageSurface is
       Hr               : WinRt.HResult := S_OK;
@@ -5872,7 +5872,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.LoadedImageSurface");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ILoadedImageSurfaceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ILoadedImageSurface;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.LoadedImageSurface do
          Hr := RoGetActivationFactory (m_hString, IID_ILoadedImageSurfaceStatics'Access , m_Factory'Address);
@@ -5882,7 +5882,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILoadedImageSurface := new Windows.UI.Xaml.Media.ILoadedImageSurface;
+            Retval.m_ILoadedImageSurface := new WinRt.Windows.UI.Xaml.Media.ILoadedImageSurface;
             Retval.m_ILoadedImageSurface.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5900,7 +5900,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ILoadedImageSurface.all.get_DecodedPhysicalSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5917,7 +5917,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ILoadedImageSurface.all.get_DecodedSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5934,7 +5934,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ILoadedImageSurface.all.get_NaturalSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5952,7 +5952,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILoadedImageSurface.all.add_LoadCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5964,7 +5964,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure remove_LoadCompleted
    (
       this : in out LoadedImageSurface;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6025,16 +6025,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return Projection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Projection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IProjection");
       m_Factory    : access IProjectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IProjection;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IProjection;
    begin
       return RetVal : Projection do
          Hr := RoGetActivationFactory (m_hString, IID_IProjectionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IProjection := new Windows.UI.Xaml.Media.IProjection;
+            Retval.m_IProjection := new WinRt.Windows.UI.Xaml.Media.IProjection;
             Retval.m_IProjection.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6071,13 +6071,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return Matrix3DProjection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Matrix3DProjection");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IMatrix3DProjection;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IMatrix3DProjection");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IMatrix3DProjection;
    begin
       return RetVal : Matrix3DProjection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMatrix3DProjection := new Windows.UI.Xaml.Media.IMatrix3DProjection;
+            Retval.m_IMatrix3DProjection := new WinRt.Windows.UI.Xaml.Media.IMatrix3DProjection;
             Retval.m_IMatrix3DProjection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6094,7 +6094,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Matrix3DProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IMatrix3DProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMatrix3DProjectionStatics'Access , m_Factory'Address);
@@ -6104,7 +6104,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6122,7 +6122,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := this.m_IMatrix3DProjection.all.get_ProjectionMatrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6134,7 +6134,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_ProjectionMatrix
    (
       this : in out Matrix3DProjection;
-      value : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      value : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6176,7 +6176,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.MatrixHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IMatrixHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Matrix;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Matrix;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrixHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -6205,7 +6205,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.MatrixHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IMatrixHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Matrix;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Matrix;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrixHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -6221,7 +6221,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetIsIdentity
    (
-      target : Windows.UI.Xaml.Media.Matrix
+      target : WinRt.Windows.UI.Xaml.Media.Matrix
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6245,8 +6245,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function Transform_x
    (
-      target : Windows.UI.Xaml.Media.Matrix;
-      point : Windows.Foundation.Point
+      target : WinRt.Windows.UI.Xaml.Media.Matrix;
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.Foundation.Point is
       Hr               : WinRt.HResult := S_OK;
@@ -6254,7 +6254,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.MatrixHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IMatrixHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrixHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -6297,13 +6297,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return MatrixTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.MatrixTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IMatrixTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IMatrixTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IMatrixTransform;
    begin
       return RetVal : MatrixTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMatrixTransform := new Windows.UI.Xaml.Media.IMatrixTransform;
+            Retval.m_IMatrixTransform := new WinRt.Windows.UI.Xaml.Media.IMatrixTransform;
             Retval.m_IMatrixTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6320,7 +6320,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.MatrixTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IMatrixTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IMatrixTransformStatics'Access , m_Factory'Address);
@@ -6330,7 +6330,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6348,7 +6348,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Matrix;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Matrix;
    begin
       Hr := this.m_IMatrixTransform.all.get_Matrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6360,7 +6360,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Matrix
    (
       this : in out MatrixTransform;
-      value : Windows.UI.Xaml.Media.Matrix
+      value : WinRt.Windows.UI.Xaml.Media.Matrix
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6398,7 +6398,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure SetThumbnailImage
    (
       this : in out MediaTransportControlsThumbnailRequestedEventArgs;
-      source : Windows.Storage.Streams.IInputStream
+      source : WinRt.Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6418,14 +6418,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IMediaTransportControlsThumbnailRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -6456,13 +6456,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PartialMediaFailureDetectedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PartialMediaFailureDetectedEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs;
    begin
       return RetVal : PartialMediaFailureDetectedEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPartialMediaFailureDetectedEventArgs := new Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs;
+            Retval.m_IPartialMediaFailureDetectedEventArgs := new WinRt.Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs;
             Retval.m_IPartialMediaFailureDetectedEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6480,7 +6480,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Playback.FailedMediaStreamKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Playback.FailedMediaStreamKind;
    begin
       Hr := this.m_IPartialMediaFailureDetectedEventArgs.all.get_StreamKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6498,7 +6498,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs_Interface, WinRt.Windows.UI.Xaml.Media.IPartialMediaFailureDetectedEventArgs2, WinRt.Windows.UI.Xaml.Media.IID_IPartialMediaFailureDetectedEventArgs2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPartialMediaFailureDetectedEventArgs.all);
@@ -6536,13 +6536,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PathFigure is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigure");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPathFigure;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPathFigure");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPathFigure;
    begin
       return RetVal : PathFigure do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+            Retval.m_IPathFigure := new WinRt.Windows.UI.Xaml.Media.IPathFigure;
             Retval.m_IPathFigure.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6559,7 +6559,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigure");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathFigureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathFigureStatics'Access , m_Factory'Address);
@@ -6569,7 +6569,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6583,7 +6583,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigure");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathFigureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathFigureStatics'Access , m_Factory'Address);
@@ -6593,7 +6593,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6607,7 +6607,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigure");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathFigureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathFigureStatics'Access , m_Factory'Address);
@@ -6617,7 +6617,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6631,7 +6631,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigure");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathFigureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathFigureStatics'Access , m_Factory'Address);
@@ -6641,7 +6641,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6659,14 +6659,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PathSegmentCollection do
          Hr := this.m_IPathFigure.all.get_Segments (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -6674,7 +6674,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Segments
    (
       this : in out PathFigure;
-      value : Windows.UI.Xaml.Media.PathSegmentCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegmentCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6694,7 +6694,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPathFigure.all.get_StartPoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6706,7 +6706,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_StartPoint
    (
       this : in out PathFigure;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6801,13 +6801,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PathFigureCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathFigureCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : PathFigureCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6828,7 +6828,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathFigure.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathFigure;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathFigure;
       m_GenericIID     : aliased WinRt.IID := (3727283205, 9949, 24178, (139, 203, 73, 81, 153, 212, 229, 181 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathFigure.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -6839,7 +6839,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+         Retval.m_IPathFigure := new WinRt.Windows.UI.Xaml.Media.IPathFigure;
          Retval.m_IPathFigure.all := m_ComRetVal;
       end return;
    end;
@@ -6875,7 +6875,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathFigure.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathFigure;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathFigure;
       m_GenericIID     : aliased WinRt.IID := (3727283205, 9949, 24178, (139, 203, 73, 81, 153, 212, 229, 181 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathFigure.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -6886,7 +6886,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+         Retval.m_IPathFigure := new WinRt.Windows.UI.Xaml.Media.IPathFigure;
          Retval.m_IPathFigure.all := m_ComRetVal;
       end return;
    end;
@@ -6894,7 +6894,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PathFigureCollection;
-      value : Windows.UI.Xaml.Media.PathFigure'Class;
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -6919,7 +6919,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6940,7 +6940,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6980,7 +6980,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PathFigureCollection;
-      value : Windows.UI.Xaml.Media.PathFigure'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigure'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7039,7 +7039,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathFigureCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IPathFigure_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathFigure_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -7063,7 +7063,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out PathFigureCollection;
-      items : Windows.UI.Xaml.Media.IPathFigure_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathFigure_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7091,7 +7091,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPathFigure.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathFigure;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathFigure;
       m_GenericIID     : aliased WinRt.IID := (3441280033, 55013, 23359, (168, 199, 153, 56, 242, 139, 41, 149 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPathFigure.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7102,7 +7102,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathFigure := new Windows.UI.Xaml.Media.IPathFigure;
+         Retval.m_IPathFigure := new WinRt.Windows.UI.Xaml.Media.IPathFigure;
          Retval.m_IPathFigure.all := m_ComRetVal;
       end return;
    end;
@@ -7133,13 +7133,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PathGeometry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathGeometry");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPathGeometry;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPathGeometry");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPathGeometry;
    begin
       return RetVal : PathGeometry do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPathGeometry := new Windows.UI.Xaml.Media.IPathGeometry;
+            Retval.m_IPathGeometry := new WinRt.Windows.UI.Xaml.Media.IPathGeometry;
             Retval.m_IPathGeometry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7156,7 +7156,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathGeometryStatics'Access , m_Factory'Address);
@@ -7166,7 +7166,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7180,7 +7180,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPathGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPathGeometryStatics'Access , m_Factory'Address);
@@ -7190,7 +7190,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7208,7 +7208,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.FillRule;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.FillRule;
    begin
       Hr := this.m_IPathGeometry.all.get_FillRule (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7220,7 +7220,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_FillRule
    (
       this : in out PathGeometry;
-      value : Windows.UI.Xaml.Media.FillRule
+      value : WinRt.Windows.UI.Xaml.Media.FillRule
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7240,14 +7240,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PathFigureCollection do
          Hr := this.m_IPathGeometry.all.get_Figures (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -7255,7 +7255,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Figures
    (
       this : in out PathGeometry;
-      value : Windows.UI.Xaml.Media.PathFigureCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathFigureCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7286,13 +7286,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PathSegmentCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PathSegmentCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : PathSegmentCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7313,7 +7313,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathSegment.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathSegment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathSegment;
       m_GenericIID     : aliased WinRt.IID := (301847814, 45597, 22093, (182, 168, 255, 153, 16, 87, 184, 243 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathSegment.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7324,7 +7324,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathSegment := new Windows.UI.Xaml.Media.IPathSegment;
+         Retval.m_IPathSegment := new WinRt.Windows.UI.Xaml.Media.IPathSegment;
          Retval.m_IPathSegment.all := m_ComRetVal;
       end return;
    end;
@@ -7360,7 +7360,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_IPathSegment.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathSegment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathSegment;
       m_GenericIID     : aliased WinRt.IID := (301847814, 45597, 22093, (182, 168, 255, 153, 16, 87, 184, 243 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_IPathSegment.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7371,7 +7371,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathSegment := new Windows.UI.Xaml.Media.IPathSegment;
+         Retval.m_IPathSegment := new WinRt.Windows.UI.Xaml.Media.IPathSegment;
          Retval.m_IPathSegment.all := m_ComRetVal;
       end return;
    end;
@@ -7379,7 +7379,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PathSegmentCollection;
-      value : Windows.UI.Xaml.Media.PathSegment'Class;
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -7404,7 +7404,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7425,7 +7425,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7465,7 +7465,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PathSegmentCollection;
-      value : Windows.UI.Xaml.Media.PathSegment'Class
+      value : WinRt.Windows.UI.Xaml.Media.PathSegment'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7524,7 +7524,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PathSegmentCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.IPathSegment_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathSegment_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -7548,7 +7548,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out PathSegmentCollection;
-      items : Windows.UI.Xaml.Media.IPathSegment_Array
+      items : WinRt.Windows.UI.Xaml.Media.IPathSegment_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7576,7 +7576,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IPathSegment.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.IPathSegment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.IPathSegment;
       m_GenericIID     : aliased WinRt.IID := (937610017, 47561, 20486, (190, 215, 76, 50, 137, 129, 181, 81 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IPathSegment.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -7587,7 +7587,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPathSegment := new Windows.UI.Xaml.Media.IPathSegment;
+         Retval.m_IPathSegment := new WinRt.Windows.UI.Xaml.Media.IPathSegment;
          Retval.m_IPathSegment.all := m_ComRetVal;
       end return;
    end;
@@ -7618,13 +7618,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PlaneProjection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPlaneProjection;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPlaneProjection");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPlaneProjection;
    begin
       return RetVal : PlaneProjection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPlaneProjection := new Windows.UI.Xaml.Media.IPlaneProjection;
+            Retval.m_IPlaneProjection := new WinRt.Windows.UI.Xaml.Media.IPlaneProjection;
             Retval.m_IPlaneProjection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7641,7 +7641,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7651,7 +7651,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7665,7 +7665,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7675,7 +7675,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7689,7 +7689,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7699,7 +7699,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7713,7 +7713,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7723,7 +7723,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7737,7 +7737,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7747,7 +7747,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7761,7 +7761,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7771,7 +7771,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7785,7 +7785,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7795,7 +7795,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7809,7 +7809,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7819,7 +7819,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7833,7 +7833,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7843,7 +7843,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7857,7 +7857,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7867,7 +7867,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7881,7 +7881,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7891,7 +7891,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7905,7 +7905,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7915,7 +7915,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7929,7 +7929,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PlaneProjection");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPlaneProjectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPlaneProjectionStatics'Access , m_Factory'Address);
@@ -7939,7 +7939,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8341,7 +8341,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := this.m_IPlaneProjection.all.get_ProjectionMatrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8369,13 +8369,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PointCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PointCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : PointCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8396,7 +8396,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Point.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       m_GenericIID     : aliased WinRt.IID := (3235189673, 60490, 23133, (182, 213, 183, 7, 222, 253, 185, 247 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Point.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8440,7 +8440,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_Point.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       m_GenericIID     : aliased WinRt.IID := (3235189673, 60490, 23133, (182, 213, 183, 7, 222, 253, 185, 247 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_Point.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8456,7 +8456,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out PointCollection;
-      value : Windows.Foundation.Point;
+      value : WinRt.Windows.Foundation.Point;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -8481,7 +8481,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection;
       index : WinRt.UInt32;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8502,7 +8502,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection;
       index : WinRt.UInt32;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8542,7 +8542,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out PointCollection;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8601,7 +8601,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out PointCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Foundation.Point_Array
+      items : WinRt.Windows.Foundation.Point_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -8625,7 +8625,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out PointCollection;
-      items : Windows.Foundation.Point_Array
+      items : WinRt.Windows.Foundation.Point_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8653,7 +8653,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_Point.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       m_GenericIID     : aliased WinRt.IID := (3247581197, 14857, 21539, (157, 197, 103, 184, 62, 189, 228, 29 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_Point.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -8692,13 +8692,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PolyBezierSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyBezierSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPolyBezierSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPolyBezierSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPolyBezierSegment;
    begin
       return RetVal : PolyBezierSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPolyBezierSegment := new Windows.UI.Xaml.Media.IPolyBezierSegment;
+            Retval.m_IPolyBezierSegment := new WinRt.Windows.UI.Xaml.Media.IPolyBezierSegment;
             Retval.m_IPolyBezierSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8715,7 +8715,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyBezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPolyBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolyBezierSegmentStatics'Access , m_Factory'Address);
@@ -8725,7 +8725,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8743,14 +8743,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PointCollection do
          Hr := this.m_IPolyBezierSegment.all.get_Points (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -8758,7 +8758,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyBezierSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8796,13 +8796,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PolyLineSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyLineSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPolyLineSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPolyLineSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPolyLineSegment;
    begin
       return RetVal : PolyLineSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPolyLineSegment := new Windows.UI.Xaml.Media.IPolyLineSegment;
+            Retval.m_IPolyLineSegment := new WinRt.Windows.UI.Xaml.Media.IPolyLineSegment;
             Retval.m_IPolyLineSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8819,7 +8819,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyLineSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPolyLineSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolyLineSegmentStatics'Access , m_Factory'Address);
@@ -8829,7 +8829,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8847,14 +8847,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PointCollection do
          Hr := this.m_IPolyLineSegment.all.get_Points (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -8862,7 +8862,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyLineSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8900,13 +8900,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return PolyQuadraticBezierSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyQuadraticBezierSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IPolyQuadraticBezierSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IPolyQuadraticBezierSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IPolyQuadraticBezierSegment;
    begin
       return RetVal : PolyQuadraticBezierSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPolyQuadraticBezierSegment := new Windows.UI.Xaml.Media.IPolyQuadraticBezierSegment;
+            Retval.m_IPolyQuadraticBezierSegment := new WinRt.Windows.UI.Xaml.Media.IPolyQuadraticBezierSegment;
             Retval.m_IPolyQuadraticBezierSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8923,7 +8923,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.PolyQuadraticBezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IPolyQuadraticBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPolyQuadraticBezierSegmentStatics'Access , m_Factory'Address);
@@ -8933,7 +8933,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8951,14 +8951,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.PointCollection do
          Hr := this.m_IPolyQuadraticBezierSegment.all.get_Points (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -8966,7 +8966,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Points
    (
       this : in out PolyQuadraticBezierSegment;
-      value : Windows.UI.Xaml.Media.PointCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.PointCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9004,13 +9004,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return QuadraticBezierSegment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.QuadraticBezierSegment");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IQuadraticBezierSegment;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IQuadraticBezierSegment");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IQuadraticBezierSegment;
    begin
       return RetVal : QuadraticBezierSegment do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IQuadraticBezierSegment := new Windows.UI.Xaml.Media.IQuadraticBezierSegment;
+            Retval.m_IQuadraticBezierSegment := new WinRt.Windows.UI.Xaml.Media.IQuadraticBezierSegment;
             Retval.m_IQuadraticBezierSegment.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9027,7 +9027,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.QuadraticBezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IQuadraticBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IQuadraticBezierSegmentStatics'Access , m_Factory'Address);
@@ -9037,7 +9037,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9051,7 +9051,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.QuadraticBezierSegment");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IQuadraticBezierSegmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IQuadraticBezierSegmentStatics'Access , m_Factory'Address);
@@ -9061,7 +9061,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9079,7 +9079,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IQuadraticBezierSegment.all.get_Point1 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9091,7 +9091,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point1
    (
       this : in out QuadraticBezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9111,7 +9111,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IQuadraticBezierSegment.all.get_Point2 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9123,7 +9123,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Point2
    (
       this : in out QuadraticBezierSegment;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9161,13 +9161,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return RateChangedRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RateChangedRoutedEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs;
    begin
       return RetVal : RateChangedRoutedEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRateChangedRoutedEventArgs := new Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs;
+            Retval.m_IRateChangedRoutedEventArgs := new WinRt.Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs;
             Retval.m_IRateChangedRoutedEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9184,7 +9184,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : access RateChangedRoutedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs
+      e : WinRt.Windows.UI.Xaml.Media.IRateChangedRoutedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -9219,13 +9219,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return RectangleGeometry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RectangleGeometry");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRectangleGeometry;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRectangleGeometry");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRectangleGeometry;
    begin
       return RetVal : RectangleGeometry do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRectangleGeometry := new Windows.UI.Xaml.Media.IRectangleGeometry;
+            Retval.m_IRectangleGeometry := new WinRt.Windows.UI.Xaml.Media.IRectangleGeometry;
             Retval.m_IRectangleGeometry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9242,7 +9242,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RectangleGeometry");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRectangleGeometryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRectangleGeometryStatics'Access , m_Factory'Address);
@@ -9252,7 +9252,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9270,7 +9270,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IRectangleGeometry.all.get_Rect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9282,7 +9282,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Rect
    (
       this : in out RectangleGeometry;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9325,7 +9325,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IRenderedEventArgs.all.get_FrameDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9365,7 +9365,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IRenderingEventArgs.all.get_RenderingTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9405,16 +9405,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return RevealBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRevealBrush");
       m_Factory    : access IRevealBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRevealBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRevealBrush;
    begin
       return RetVal : RevealBrush do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRevealBrush := new Windows.UI.Xaml.Media.IRevealBrush;
+            Retval.m_IRevealBrush := new WinRt.Windows.UI.Xaml.Media.IRevealBrush;
             Retval.m_IRevealBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9432,7 +9432,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRevealBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushStatics'Access , m_Factory'Address);
@@ -9442,7 +9442,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9456,7 +9456,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRevealBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushStatics'Access , m_Factory'Address);
@@ -9466,7 +9466,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9480,7 +9480,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRevealBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushStatics'Access , m_Factory'Address);
@@ -9490,7 +9490,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9504,7 +9504,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRevealBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushStatics'Access , m_Factory'Address);
@@ -9514,7 +9514,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9523,8 +9523,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    procedure SetState
    (
-      element : Windows.UI.Xaml.UIElement'Class;
-      value : Windows.UI.Xaml.Media.RevealBrushState
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
+      value : WinRt.Windows.UI.Xaml.Media.RevealBrushState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9545,7 +9545,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetState
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Media.RevealBrushState is
       Hr               : WinRt.HResult := S_OK;
@@ -9553,7 +9553,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRevealBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.RevealBrushState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.RevealBrushState;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IRevealBrushStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -9578,7 +9578,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IRevealBrush.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9590,7 +9590,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out RevealBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9610,7 +9610,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.ApplicationTheme;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.ApplicationTheme;
    begin
       Hr := this.m_IRevealBrush.all.get_TargetTheme (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9622,7 +9622,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_TargetTheme
    (
       this : in out RevealBrush;
-      value : Windows.UI.Xaml.ApplicationTheme
+      value : WinRt.Windows.UI.Xaml.ApplicationTheme
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9697,16 +9697,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return RevealBackgroundBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBackgroundBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRevealBackgroundBrush");
       m_Factory    : access IRevealBackgroundBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRevealBackgroundBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRevealBackgroundBrush;
    begin
       return RetVal : RevealBackgroundBrush do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBackgroundBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRevealBackgroundBrush := new Windows.UI.Xaml.Media.IRevealBackgroundBrush;
+            Retval.m_IRevealBackgroundBrush := new WinRt.Windows.UI.Xaml.Media.IRevealBackgroundBrush;
             Retval.m_IRevealBackgroundBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9748,16 +9748,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return RevealBorderBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RevealBorderBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRevealBorderBrush");
       m_Factory    : access IRevealBorderBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRevealBorderBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRevealBorderBrush;
    begin
       return RetVal : RevealBorderBrush do
          Hr := RoGetActivationFactory (m_hString, IID_IRevealBorderBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRevealBorderBrush := new Windows.UI.Xaml.Media.IRevealBorderBrush;
+            Retval.m_IRevealBorderBrush := new WinRt.Windows.UI.Xaml.Media.IRevealBorderBrush;
             Retval.m_IRevealBorderBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9794,13 +9794,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return RotateTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RotateTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IRotateTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IRotateTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IRotateTransform;
    begin
       return RetVal : RotateTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRotateTransform := new Windows.UI.Xaml.Media.IRotateTransform;
+            Retval.m_IRotateTransform := new WinRt.Windows.UI.Xaml.Media.IRotateTransform;
             Retval.m_IRotateTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9817,7 +9817,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RotateTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRotateTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRotateTransformStatics'Access , m_Factory'Address);
@@ -9827,7 +9827,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9841,7 +9841,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RotateTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRotateTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRotateTransformStatics'Access , m_Factory'Address);
@@ -9851,7 +9851,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9865,7 +9865,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.RotateTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IRotateTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IRotateTransformStatics'Access , m_Factory'Address);
@@ -9875,7 +9875,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10007,13 +10007,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return ScaleTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ScaleTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IScaleTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IScaleTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IScaleTransform;
    begin
       return RetVal : ScaleTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IScaleTransform := new Windows.UI.Xaml.Media.IScaleTransform;
+            Retval.m_IScaleTransform := new WinRt.Windows.UI.Xaml.Media.IScaleTransform;
             Retval.m_IScaleTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10030,7 +10030,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ScaleTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IScaleTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScaleTransformStatics'Access , m_Factory'Address);
@@ -10040,7 +10040,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10054,7 +10054,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ScaleTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IScaleTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScaleTransformStatics'Access , m_Factory'Address);
@@ -10064,7 +10064,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10078,7 +10078,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ScaleTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IScaleTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScaleTransformStatics'Access , m_Factory'Address);
@@ -10088,7 +10088,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10102,7 +10102,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ScaleTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IScaleTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IScaleTransformStatics'Access , m_Factory'Address);
@@ -10112,7 +10112,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10302,13 +10302,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return SkewTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SkewTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ISkewTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ISkewTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ISkewTransform;
    begin
       return RetVal : SkewTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISkewTransform := new Windows.UI.Xaml.Media.ISkewTransform;
+            Retval.m_ISkewTransform := new WinRt.Windows.UI.Xaml.Media.ISkewTransform;
             Retval.m_ISkewTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10325,7 +10325,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SkewTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ISkewTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISkewTransformStatics'Access , m_Factory'Address);
@@ -10335,7 +10335,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10349,7 +10349,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SkewTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ISkewTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISkewTransformStatics'Access , m_Factory'Address);
@@ -10359,7 +10359,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10373,7 +10373,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SkewTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ISkewTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISkewTransformStatics'Access , m_Factory'Address);
@@ -10383,7 +10383,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10397,7 +10397,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SkewTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ISkewTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISkewTransformStatics'Access , m_Factory'Address);
@@ -10407,7 +10407,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10571,13 +10571,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return SolidColorBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SolidColorBrush");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ISolidColorBrush;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ISolidColorBrush");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ISolidColorBrush;
    begin
       return RetVal : SolidColorBrush do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISolidColorBrush := new Windows.UI.Xaml.Media.ISolidColorBrush;
+            Retval.m_ISolidColorBrush := new WinRt.Windows.UI.Xaml.Media.ISolidColorBrush;
             Retval.m_ISolidColorBrush.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10586,21 +10586,21 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function Constructor
    (
-      color : Windows.UI.Color
+      color : WinRt.Windows.UI.Color
    )
    return SolidColorBrush is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SolidColorBrush");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ISolidColorBrush");
       m_Factory    : access ISolidColorBrushFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ISolidColorBrush;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ISolidColorBrush;
    begin
       return RetVal : SolidColorBrush do
          Hr := RoGetActivationFactory (m_hString, IID_ISolidColorBrushFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithColor (color, m_ComRetVal'Access);
-            Retval.m_ISolidColorBrush := new Windows.UI.Xaml.Media.ISolidColorBrush;
+            Retval.m_ISolidColorBrush := new WinRt.Windows.UI.Xaml.Media.ISolidColorBrush;
             Retval.m_ISolidColorBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -10618,7 +10618,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.SolidColorBrush");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ISolidColorBrushStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ISolidColorBrushStatics'Access , m_Factory'Address);
@@ -10628,7 +10628,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10646,7 +10646,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ISolidColorBrush.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10658,7 +10658,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Color
    (
       this : in out SolidColorBrush;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10701,16 +10701,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return ThemeShadow is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ThemeShadow");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IThemeShadow");
       m_Factory    : access IThemeShadowFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IThemeShadow;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IThemeShadow;
    begin
       return RetVal : ThemeShadow do
          Hr := RoGetActivationFactory (m_hString, IID_IThemeShadowFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IThemeShadow := new Windows.UI.Xaml.Media.IThemeShadow;
+            Retval.m_IThemeShadow := new WinRt.Windows.UI.Xaml.Media.IThemeShadow;
             Retval.m_IThemeShadow.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -10729,14 +10729,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElementWeakCollection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IUIElementWeakCollection;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElementWeakCollection do
          Hr := this.m_IThemeShadow.all.get_Receivers (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIElementWeakCollection := new Windows.UI.Xaml.IUIElementWeakCollection;
+         Retval.m_IUIElementWeakCollection := new WinRt.Windows.UI.Xaml.IUIElementWeakCollection;
          Retval.m_IUIElementWeakCollection.all := m_ComRetVal;
       end return;
    end;
@@ -10767,13 +10767,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TimelineMarker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarker");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ITimelineMarker;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ITimelineMarker");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
    begin
       return RetVal : TimelineMarker do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+            Retval.m_ITimelineMarker := new WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
             Retval.m_ITimelineMarker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10790,7 +10790,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarker");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITimelineMarkerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineMarkerStatics'Access , m_Factory'Address);
@@ -10800,7 +10800,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10814,7 +10814,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarker");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITimelineMarkerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineMarkerStatics'Access , m_Factory'Address);
@@ -10824,7 +10824,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10838,7 +10838,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarker");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITimelineMarkerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITimelineMarkerStatics'Access , m_Factory'Address);
@@ -10848,7 +10848,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10866,7 +10866,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ITimelineMarker.all.get_Time (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10878,7 +10878,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Time
    (
       this : in out TimelineMarker;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10983,13 +10983,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TimelineMarkerCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarkerCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : TimelineMarkerCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11010,7 +11010,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimelineMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
       m_GenericIID     : aliased WinRt.IID := (3000556980, 53944, 22832, (148, 45, 38, 17, 135, 86, 189, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimelineMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11021,7 +11021,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker := new WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
          Retval.m_ITimelineMarker.all := m_ComRetVal;
       end return;
    end;
@@ -11057,7 +11057,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITimelineMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
       m_GenericIID     : aliased WinRt.IID := (3000556980, 53944, 22832, (148, 45, 38, 17, 135, 86, 189, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITimelineMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11068,7 +11068,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker := new WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
          Retval.m_ITimelineMarker.all := m_ComRetVal;
       end return;
    end;
@@ -11076,7 +11076,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out TimelineMarkerCollection;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class;
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -11101,7 +11101,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11122,7 +11122,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11162,7 +11162,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out TimelineMarkerCollection;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11221,7 +11221,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TimelineMarkerCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.ITimelineMarker_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITimelineMarker_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -11245,7 +11245,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out TimelineMarkerCollection;
-      items : Windows.UI.Xaml.Media.ITimelineMarker_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITimelineMarker_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11273,7 +11273,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITimelineMarker.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
       m_GenericIID     : aliased WinRt.IID := (2490129141, 19465, 22404, (156, 242, 80, 105, 71, 55, 142, 142 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITimelineMarker.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11284,7 +11284,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker := new WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
          Retval.m_ITimelineMarker.all := m_ComRetVal;
       end return;
    end;
@@ -11315,13 +11315,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TimelineMarkerRoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TimelineMarkerRoutedEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs;
    begin
       return RetVal : TimelineMarkerRoutedEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ITimelineMarkerRoutedEventArgs := new Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs;
+            Retval.m_ITimelineMarkerRoutedEventArgs := new WinRt.Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs;
             Retval.m_ITimelineMarkerRoutedEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11339,14 +11339,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITimelineMarker;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.TimelineMarker do
          Hr := this.m_ITimelineMarkerRoutedEventArgs.all.get_Marker (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITimelineMarker := new Windows.UI.Xaml.Media.ITimelineMarker;
+         Retval.m_ITimelineMarker := new WinRt.Windows.UI.Xaml.Media.ITimelineMarker;
          Retval.m_ITimelineMarker.all := m_ComRetVal;
       end return;
    end;
@@ -11354,7 +11354,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Marker
    (
       this : in out TimelineMarkerRoutedEventArgs;
-      value : Windows.UI.Xaml.Media.TimelineMarker'Class
+      value : WinRt.Windows.UI.Xaml.Media.TimelineMarker'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11373,7 +11373,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : access TimelineMarkerRoutedEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs
+      e : WinRt.Windows.UI.Xaml.Media.ITimelineMarkerRoutedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -11401,13 +11401,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TransformCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TransformCollection");
-      m_ComRetVal  : aliased GenericObject;
+      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : TransformCollection do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_GenericObject := new GenericObject;
+            Retval.m_GenericObject := new WinRt.GenericObject;
             Retval.m_GenericObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11428,7 +11428,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransform.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
       m_GenericIID     : aliased WinRt.IID := (1658305473, 29173, 22033, (169, 132, 229, 113, 194, 222, 123, 170 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransform.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11439,7 +11439,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -11475,7 +11475,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_ITransform.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
       m_GenericIID     : aliased WinRt.IID := (1658305473, 29173, 22033, (169, 132, 229, 113, 194, 222, 123, 170 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_ITransform.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11486,7 +11486,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -11494,7 +11494,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    function IndexOf
    (
       this : in out TransformCollection;
-      value : Windows.UI.Xaml.Media.Transform'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -11519,7 +11519,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11540,7 +11540,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11580,7 +11580,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure Append
    (
       this : in out TransformCollection;
-      value : Windows.UI.Xaml.Media.Transform'Class
+      value : WinRt.Windows.UI.Xaml.Media.Transform'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11639,7 +11639,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    (
       this : in out TransformCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.ITransform_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITransform_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -11663,7 +11663,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure ReplaceAll
    (
       this : in out TransformCollection;
-      items : Windows.UI.Xaml.Media.ITransform_Array
+      items : WinRt.Windows.UI.Xaml.Media.ITransform_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11691,7 +11691,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_ITransform.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.ITransform;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.ITransform;
       m_GenericIID     : aliased WinRt.IID := (4220300476, 54252, 20920, (151, 120, 153, 237, 232, 70, 54, 17 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_ITransform.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -11702,7 +11702,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITransform := new Windows.UI.Xaml.Media.ITransform;
+         Retval.m_ITransform := new WinRt.Windows.UI.Xaml.Media.ITransform;
          Retval.m_ITransform.all := m_ComRetVal;
       end return;
    end;
@@ -11733,13 +11733,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TransformGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TransformGroup");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ITransformGroup;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ITransformGroup");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ITransformGroup;
    begin
       return RetVal : TransformGroup do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ITransformGroup := new Windows.UI.Xaml.Media.ITransformGroup;
+            Retval.m_ITransformGroup := new WinRt.Windows.UI.Xaml.Media.ITransformGroup;
             Retval.m_ITransformGroup.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11756,7 +11756,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TransformGroup");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITransformGroupStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITransformGroupStatics'Access , m_Factory'Address);
@@ -11766,7 +11766,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11784,14 +11784,14 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Media.TransformCollection do
          Hr := this.m_ITransformGroup.all.get_Children (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -11799,7 +11799,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_Children
    (
       this : in out TransformGroup;
-      value : Windows.UI.Xaml.Media.TransformCollection'Class
+      value : WinRt.Windows.UI.Xaml.Media.TransformCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11819,7 +11819,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Matrix;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Matrix;
    begin
       Hr := this.m_ITransformGroup.all.get_Value (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11854,13 +11854,13 @@ package body WinRt.Windows.UI.Xaml.Media is
    function Constructor return TranslateTransform is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TranslateTransform");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.ITranslateTransform;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.ITranslateTransform");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.ITranslateTransform;
    begin
       return RetVal : TranslateTransform do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ITranslateTransform := new Windows.UI.Xaml.Media.ITranslateTransform;
+            Retval.m_ITranslateTransform := new WinRt.Windows.UI.Xaml.Media.ITranslateTransform;
             Retval.m_ITranslateTransform.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11877,7 +11877,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TranslateTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITranslateTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITranslateTransformStatics'Access , m_Factory'Address);
@@ -11887,7 +11887,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11901,7 +11901,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.TranslateTransform");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.ITranslateTransformStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ITranslateTransformStatics'Access , m_Factory'Address);
@@ -11911,7 +11911,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12010,8 +12010,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function FindElementsInHostCoordinates
    (
-      intersectingPoint : Windows.Foundation.Point;
-      subtree : Windows.UI.Xaml.UIElement'Class
+      intersectingPoint : WinRt.Windows.Foundation.Point;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -12019,7 +12019,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12035,8 +12035,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function FindElementsInHostCoordinates
    (
-      intersectingRect : Windows.Foundation.Rect;
-      subtree : Windows.UI.Xaml.UIElement'Class
+      intersectingRect : WinRt.Windows.Foundation.Rect;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -12044,7 +12044,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12060,8 +12060,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function FindElementsInHostCoordinates
    (
-      intersectingPoint : Windows.Foundation.Point;
-      subtree : Windows.UI.Xaml.UIElement'Class;
+      intersectingPoint : WinRt.Windows.Foundation.Point;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class;
       includeAllElements : WinRt.Boolean
    )
    return WinRt.GenericObject is
@@ -12070,7 +12070,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12086,8 +12086,8 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function FindElementsInHostCoordinates
    (
-      intersectingRect : Windows.Foundation.Rect;
-      subtree : Windows.UI.Xaml.UIElement'Class;
+      intersectingRect : WinRt.Windows.Foundation.Rect;
+      subtree : WinRt.Windows.UI.Xaml.UIElement'Class;
       includeAllElements : WinRt.Boolean
    )
    return WinRt.GenericObject is
@@ -12096,7 +12096,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12112,7 +12112,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetChild
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class;
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       childIndex : WinRt.Int32
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
@@ -12121,7 +12121,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
@@ -12131,7 +12131,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject := new WinRt.Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12140,7 +12140,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetChildrenCount
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -12164,7 +12164,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetParent
    (
-      reference : Windows.UI.Xaml.DependencyObject'Class
+      reference : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.DependencyObject is
       Hr               : WinRt.HResult := S_OK;
@@ -12172,7 +12172,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyObject;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyObject;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyObject do
          Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics'Access , m_Factory'Address);
@@ -12182,7 +12182,7 @@ package body WinRt.Windows.UI.Xaml.Media is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyObject := new Windows.UI.Xaml.IDependencyObject;
+            Retval.m_IDependencyObject := new WinRt.Windows.UI.Xaml.IDependencyObject;
             Retval.m_IDependencyObject.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12191,7 +12191,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    procedure DisconnectChildrenRecursive
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12212,7 +12212,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetOpenPopups
    (
-      window : Windows.UI.Xaml.Window'Class
+      window : WinRt.Windows.UI.Xaml.Window'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -12220,7 +12220,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12236,7 +12236,7 @@ package body WinRt.Windows.UI.Xaml.Media is
 
    function GetOpenPopupsForXamlRoot
    (
-      xamlRoot : Windows.UI.Xaml.XamlRoot'Class
+      xamlRoot : WinRt.Windows.UI.Xaml.XamlRoot'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -12244,7 +12244,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.VisualTreeHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.IVisualTreeHelperStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IVisualTreeHelperStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -12292,16 +12292,16 @@ package body WinRt.Windows.UI.Xaml.Media is
    return XamlLight is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.XamlLight");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.IXamlLight");
       m_Factory    : access IXamlLightFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.IXamlLight;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.IXamlLight;
    begin
       return RetVal : XamlLight do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlLightFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IXamlLight := new Windows.UI.Xaml.Media.IXamlLight;
+            Retval.m_IXamlLight := new WinRt.Windows.UI.Xaml.Media.IXamlLight;
             Retval.m_IXamlLight.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -12315,7 +12315,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure AddTargetElement
    (
       lightId : WinRt.WString;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12339,7 +12339,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure RemoveTargetElement
    (
       lightId : WinRt.WString;
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12363,7 +12363,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure AddTargetBrush
    (
       lightId : WinRt.WString;
-      brush_p : Windows.UI.Xaml.Media.Brush'Class
+      brush_p : WinRt.Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12387,7 +12387,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure RemoveTargetBrush
    (
       lightId : WinRt.WString;
-      brush_p : Windows.UI.Xaml.Media.Brush'Class
+      brush_p : WinRt.Windows.UI.Xaml.Media.Brush'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12420,7 +12420,7 @@ package body WinRt.Windows.UI.Xaml.Media is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Media.IXamlLightProtected := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.ICompositionLight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.ICompositionLight;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Media.IXamlLight_Interface, WinRt.Windows.UI.Xaml.Media.IXamlLightProtected, WinRt.Windows.UI.Xaml.Media.IID_IXamlLightProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Composition.CompositionLight do
@@ -12430,7 +12430,7 @@ package body WinRt.Windows.UI.Xaml.Media is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompositionLight := new Windows.UI.Composition.ICompositionLight;
+         Retval.m_ICompositionLight := new WinRt.Windows.UI.Composition.ICompositionLight;
          Retval.m_ICompositionLight.all := m_ComRetVal;
       end return;
    end;
@@ -12438,7 +12438,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure put_CompositionLight
    (
       this : in out XamlLight;
-      value : Windows.UI.Composition.CompositionLight'Class
+      value : WinRt.Windows.UI.Composition.CompositionLight'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12481,7 +12481,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure OnConnected
    (
       this : in out XamlLight;
-      newElement : Windows.UI.Xaml.UIElement'Class
+      newElement : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12500,7 +12500,7 @@ package body WinRt.Windows.UI.Xaml.Media is
    procedure OnDisconnected
    (
       this : in out XamlLight;
-      oldElement : Windows.UI.Xaml.UIElement'Class
+      oldElement : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

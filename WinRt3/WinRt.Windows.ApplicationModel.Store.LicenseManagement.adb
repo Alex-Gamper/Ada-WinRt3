@@ -43,7 +43,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
 
       procedure RefreshLicensesAsync
       (
-         refreshOption : Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
+         refreshOption : WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -92,7 +92,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
 
       procedure AddLicenseAsync
       (
-         license : Windows.Storage.Streams.IBuffer
+         license : WinRt.Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -198,7 +198,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_ILicenseSatisfactionResult := new Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionResult;
+                        Retval.m_ILicenseSatisfactionResult := new WinRt.Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionResult;
                         Retval.m_ILicenseSatisfactionResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -388,7 +388,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ILicenseSatisfactionInfo.Kind;
    begin
       Hr := this.m_ILicenseSatisfactionResult.all.get_LicenseSatisfactionInfos (m_ComRetVal'Access);
@@ -408,7 +408,7 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_ILicenseSatisfactionResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then

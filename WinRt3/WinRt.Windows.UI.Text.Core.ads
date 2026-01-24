@@ -456,7 +456,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextCompositionCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -475,7 +475,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Range
       (
          this : access ICoreTextCompositionSegment_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -494,7 +494,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextCompositionStartedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -520,14 +520,14 @@ package WinRt.Windows.UI.Text.Core is
       function get_InputScope
       (
          this : access ICoreTextEditContext_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextInputScope
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextInputScope
       )
       return WinRt.Hresult is abstract;
 
       function put_InputScope
       (
          this : access ICoreTextEditContext_Interface;
-         value : Windows.UI.Text.Core.CoreTextInputScope
+         value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
       )
       return WinRt.Hresult is abstract;
 
@@ -548,14 +548,14 @@ package WinRt.Windows.UI.Text.Core is
       function get_InputPaneDisplayPolicy
       (
          this : access ICoreTextEditContext_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
       )
       return WinRt.Hresult is abstract;
 
       function put_InputPaneDisplayPolicy
       (
          this : access ICoreTextEditContext_Interface;
-         value : Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
+         value : WinRt.Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -563,14 +563,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TextRequested
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -578,14 +578,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectionRequested
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -593,14 +593,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LayoutRequested
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -608,14 +608,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TextUpdating
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -623,14 +623,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SelectionUpdating
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -638,14 +638,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FormatUpdating
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -653,14 +653,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CompositionStarted
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -668,14 +668,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CompositionCompleted
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -683,14 +683,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FocusRemoved
       (
          this : access ICoreTextEditContext_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -709,16 +709,16 @@ package WinRt.Windows.UI.Text.Core is
       function NotifyTextChanged
       (
          this : access ICoreTextEditContext_Interface;
-         modifiedRange : Windows.UI.Text.Core.CoreTextRange;
+         modifiedRange : WinRt.Windows.UI.Text.Core.CoreTextRange;
          newLength : WinRt.Int32;
-         newSelection : Windows.UI.Text.Core.CoreTextRange
+         newSelection : WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
       function NotifySelectionChanged
       (
          this : access ICoreTextEditContext_Interface;
-         selection : Windows.UI.Text.Core.CoreTextRange
+         selection : WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -737,14 +737,14 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextEditContext2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NotifyFocusLeaveCompleted
       (
          this : access ICoreTextEditContext2_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -756,7 +756,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Range
       (
          this : access ICoreTextFormatUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -791,21 +791,21 @@ package WinRt.Windows.UI.Text.Core is
       function get_Reason
       (
          this : access ICoreTextFormatUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextFormatUpdatingReason
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingReason
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access ICoreTextFormatUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextFormatUpdatingResult
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
       function put_Result
       (
          this : access ICoreTextFormatUpdatingEventArgs_Interface;
-         value : Windows.UI.Text.Core.CoreTextFormatUpdatingResult
+         value : WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
@@ -819,7 +819,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextFormatUpdatingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -831,28 +831,28 @@ package WinRt.Windows.UI.Text.Core is
       function get_TextBounds
       (
          this : access ICoreTextLayoutBounds_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_TextBounds
       (
          this : access ICoreTextLayoutBounds_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlBounds
       (
          this : access ICoreTextLayoutBounds_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_ControlBounds
       (
          this : access ICoreTextLayoutBounds_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -864,14 +864,14 @@ package WinRt.Windows.UI.Text.Core is
       function get_Range
       (
          this : access ICoreTextLayoutRequest_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
       function get_LayoutBounds
       (
          this : access ICoreTextLayoutRequest_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextLayoutBounds
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds
       )
       return WinRt.Hresult is abstract;
 
@@ -885,7 +885,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextLayoutRequest_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -897,7 +897,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_LayoutBoundsVisualPixels
       (
          this : access ICoreTextLayoutRequest2_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextLayoutBounds
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds
       )
       return WinRt.Hresult is abstract;
 
@@ -909,7 +909,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Request
       (
          this : access ICoreTextLayoutRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextLayoutRequest
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -921,14 +921,14 @@ package WinRt.Windows.UI.Text.Core is
       function get_Selection
       (
          this : access ICoreTextSelectionRequest_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
       function put_Selection
       (
          this : access ICoreTextSelectionRequest_Interface;
-         value : Windows.UI.Text.Core.CoreTextRange
+         value : WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -942,7 +942,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextSelectionRequest_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -954,7 +954,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Request
       (
          this : access ICoreTextSelectionRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextSelectionRequest
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextSelectionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -966,21 +966,21 @@ package WinRt.Windows.UI.Text.Core is
       function get_Selection
       (
          this : access ICoreTextSelectionUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access ICoreTextSelectionUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
       function put_Result
       (
          this : access ICoreTextSelectionUpdatingEventArgs_Interface;
-         value : Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
+         value : WinRt.Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
@@ -994,7 +994,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextSelectionUpdatingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1006,7 +1006,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_InputLanguage
       (
          this : access ICoreTextServicesManager_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
@@ -1014,21 +1014,21 @@ package WinRt.Windows.UI.Text.Core is
       (
          this : access ICoreTextServicesManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InputLanguageChanged
       (
          this : access ICoreTextServicesManager_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateEditContext
       (
          this : access ICoreTextServicesManager_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextEditContext
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextEditContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1040,7 +1040,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetForCurrentView
       (
          this : access ICoreTextServicesManagerStatics_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextServicesManager
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextServicesManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1064,7 +1064,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Range
       (
          this : access ICoreTextTextRequest_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1092,7 +1092,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextTextRequest_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1104,7 +1104,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Request
       (
          this : access ICoreTextTextRequestedEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.ICoreTextTextRequest
+         RetVal : access WinRt.Windows.UI.Text.Core.ICoreTextTextRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1116,7 +1116,7 @@ package WinRt.Windows.UI.Text.Core is
       function get_Range
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -1130,28 +1130,28 @@ package WinRt.Windows.UI.Text.Core is
       function get_NewSelection
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextRange
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextRange
       )
       return WinRt.Hresult is abstract;
 
       function get_InputLanguage
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         RetVal : access Windows.Globalization.ILanguage
+         RetVal : access WinRt.Windows.Globalization.ILanguage
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         RetVal : access Windows.UI.Text.Core.CoreTextTextUpdatingResult
+         RetVal : access WinRt.Windows.UI.Text.Core.CoreTextTextUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
       function put_Result
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         value : Windows.UI.Text.Core.CoreTextTextUpdatingResult
+         value : WinRt.Windows.UI.Text.Core.CoreTextTextUpdatingResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1165,7 +1165,7 @@ package WinRt.Windows.UI.Text.Core is
       function GetDeferral
       (
          this : access ICoreTextTextUpdatingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1274,7 +1274,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_InputScope
    (
       this : in out CoreTextEditContext;
-      value : Windows.UI.Text.Core.CoreTextInputScope
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
    );
 
    function get_IsReadOnly
@@ -1298,7 +1298,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_InputPaneDisplayPolicy
    (
       this : in out CoreTextEditContext;
-      value : Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
    );
 
    function add_TextRequested
@@ -1311,7 +1311,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_TextRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SelectionRequested
@@ -1324,7 +1324,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_SelectionRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LayoutRequested
@@ -1337,7 +1337,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_LayoutRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TextUpdating
@@ -1350,7 +1350,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_TextUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SelectionUpdating
@@ -1363,7 +1363,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_SelectionUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FormatUpdating
@@ -1376,7 +1376,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_FormatUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CompositionStarted
@@ -1389,7 +1389,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_CompositionStarted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CompositionCompleted
@@ -1402,7 +1402,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_CompositionCompleted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FocusRemoved
@@ -1415,7 +1415,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_FocusRemoved
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure NotifyFocusEnter
@@ -1431,15 +1431,15 @@ package WinRt.Windows.UI.Text.Core is
    procedure NotifyTextChanged
    (
       this : in out CoreTextEditContext;
-      modifiedRange : Windows.UI.Text.Core.CoreTextRange;
+      modifiedRange : WinRt.Windows.UI.Text.Core.CoreTextRange;
       newLength : WinRt.Int32;
-      newSelection : Windows.UI.Text.Core.CoreTextRange
+      newSelection : WinRt.Windows.UI.Text.Core.CoreTextRange
    );
 
    procedure NotifySelectionChanged
    (
       this : in out CoreTextEditContext;
-      selection : Windows.UI.Text.Core.CoreTextRange
+      selection : WinRt.Windows.UI.Text.Core.CoreTextRange
    );
 
    procedure NotifyLayoutChanged
@@ -1457,7 +1457,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_NotifyFocusLeaveCompleted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1514,7 +1514,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextFormatUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextFormatUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingResult
    );
 
    function get_IsCanceled
@@ -1547,7 +1547,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_TextBounds
    (
       this : in out CoreTextLayoutBounds;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    function get_ControlBounds
@@ -1559,7 +1559,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_ControlBounds
    (
       this : in out CoreTextLayoutBounds;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    -----------------------------------------------------------------------------
@@ -1634,7 +1634,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_Selection
    (
       this : in out CoreTextSelectionRequest;
-      value : Windows.UI.Text.Core.CoreTextRange
+      value : WinRt.Windows.UI.Text.Core.CoreTextRange
    );
 
    function get_IsCanceled
@@ -1688,7 +1688,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextSelectionUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
    );
 
    function get_IsCanceled
@@ -1743,7 +1743,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure remove_InputLanguageChanged
    (
       this : in out CoreTextServicesManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateEditContext
@@ -1848,7 +1848,7 @@ package WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextTextUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextTextUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextTextUpdatingResult
    );
 
    function get_IsCanceled

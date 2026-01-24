@@ -448,7 +448,7 @@ package WinRt.Windows.Devices.Usb is
       function get_Pipe
       (
          this : access IUsbBulkInEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkInPipe
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkInPipe
       )
       return WinRt.Hresult is abstract;
 
@@ -467,28 +467,28 @@ package WinRt.Windows.Devices.Usb is
       function get_EndpointDescriptor
       (
          this : access IUsbBulkInPipe_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkInEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function ClearStallAsync
       (
          this : access IUsbBulkInPipe_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function put_ReadOptions
       (
          this : access IUsbBulkInPipe_Interface;
-         value : Windows.Devices.Usb.UsbReadOptions
+         value : WinRt.Windows.Devices.Usb.UsbReadOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_ReadOptions
       (
          this : access IUsbBulkInPipe_Interface;
-         RetVal : access Windows.Devices.Usb.UsbReadOptions
+         RetVal : access WinRt.Windows.Devices.Usb.UsbReadOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -501,7 +501,7 @@ package WinRt.Windows.Devices.Usb is
       function get_InputStream
       (
          this : access IUsbBulkInPipe_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -527,7 +527,7 @@ package WinRt.Windows.Devices.Usb is
       function get_Pipe
       (
          this : access IUsbBulkOutEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkOutPipe
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkOutPipe
       )
       return WinRt.Hresult is abstract;
 
@@ -539,35 +539,35 @@ package WinRt.Windows.Devices.Usb is
       function get_EndpointDescriptor
       (
          this : access IUsbBulkOutPipe_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function ClearStallAsync
       (
          this : access IUsbBulkOutPipe_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteOptions
       (
          this : access IUsbBulkOutPipe_Interface;
-         value : Windows.Devices.Usb.UsbWriteOptions
+         value : WinRt.Windows.Devices.Usb.UsbWriteOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteOptions
       (
          this : access IUsbBulkOutPipe_Interface;
-         RetVal : access Windows.Devices.Usb.UsbWriteOptions
+         RetVal : access WinRt.Windows.Devices.Usb.UsbWriteOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IUsbBulkOutPipe_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -586,7 +586,7 @@ package WinRt.Windows.Devices.Usb is
       function get_ConfigurationDescriptor
       (
          this : access IUsbConfiguration_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbConfigurationDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -638,8 +638,8 @@ package WinRt.Windows.Devices.Usb is
       function TryParse
       (
          this : access IUsbConfigurationDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         parsed : access Windows.Devices.Usb.IUsbConfigurationDescriptor;
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         parsed : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -647,8 +647,8 @@ package WinRt.Windows.Devices.Usb is
       function Parse
       (
          this : access IUsbConfigurationDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         RetVal : access Windows.Devices.Usb.IUsbConfigurationDescriptor
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -660,42 +660,42 @@ package WinRt.Windows.Devices.Usb is
       function get_Direction
       (
          this : access IUsbControlRequestType_Interface;
-         RetVal : access Windows.Devices.Usb.UsbTransferDirection
+         RetVal : access WinRt.Windows.Devices.Usb.UsbTransferDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access IUsbControlRequestType_Interface;
-         value : Windows.Devices.Usb.UsbTransferDirection
+         value : WinRt.Windows.Devices.Usb.UsbTransferDirection
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlTransferType
       (
          this : access IUsbControlRequestType_Interface;
-         RetVal : access Windows.Devices.Usb.UsbControlTransferType
+         RetVal : access WinRt.Windows.Devices.Usb.UsbControlTransferType
       )
       return WinRt.Hresult is abstract;
 
       function put_ControlTransferType
       (
          this : access IUsbControlRequestType_Interface;
-         value : Windows.Devices.Usb.UsbControlTransferType
+         value : WinRt.Windows.Devices.Usb.UsbControlTransferType
       )
       return WinRt.Hresult is abstract;
 
       function get_Recipient
       (
          this : access IUsbControlRequestType_Interface;
-         RetVal : access Windows.Devices.Usb.UsbControlRecipient
+         RetVal : access WinRt.Windows.Devices.Usb.UsbControlRecipient
       )
       return WinRt.Hresult is abstract;
 
       function put_Recipient
       (
          this : access IUsbControlRequestType_Interface;
-         value : Windows.Devices.Usb.UsbControlRecipient
+         value : WinRt.Windows.Devices.Usb.UsbControlRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -735,7 +735,7 @@ package WinRt.Windows.Devices.Usb is
       function ReadDescriptorBuffer
       (
          this : access IUsbDescriptor_Interface;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -747,8 +747,8 @@ package WinRt.Windows.Devices.Usb is
       function SendControlOutTransferAsync
       (
          this : access IUsbDevice_Interface;
-         setupPacket : Windows.Devices.Usb.IUsbSetupPacket;
-         buffer : Windows.Storage.Streams.IBuffer;
+         setupPacket : WinRt.Windows.Devices.Usb.IUsbSetupPacket;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -756,7 +756,7 @@ package WinRt.Windows.Devices.Usb is
       function SendControlOutTransferAsync
       (
          this : access IUsbDevice_Interface;
-         setupPacket : Windows.Devices.Usb.IUsbSetupPacket;
+         setupPacket : WinRt.Windows.Devices.Usb.IUsbSetupPacket;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -764,8 +764,8 @@ package WinRt.Windows.Devices.Usb is
       function SendControlInTransferAsync
       (
          this : access IUsbDevice_Interface;
-         setupPacket : Windows.Devices.Usb.IUsbSetupPacket;
-         buffer : Windows.Storage.Streams.IBuffer;
+         setupPacket : WinRt.Windows.Devices.Usb.IUsbSetupPacket;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -773,7 +773,7 @@ package WinRt.Windows.Devices.Usb is
       function SendControlInTransferAsync
       (
          this : access IUsbDevice_Interface;
-         setupPacket : Windows.Devices.Usb.IUsbSetupPacket;
+         setupPacket : WinRt.Windows.Devices.Usb.IUsbSetupPacket;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -781,21 +781,21 @@ package WinRt.Windows.Devices.Usb is
       function get_DefaultInterface
       (
          this : access IUsbDevice_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterface
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterface
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceDescriptor
       (
          this : access IUsbDevice_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_Configuration
       (
          this : access IUsbDevice_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbConfiguration
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -859,63 +859,63 @@ package WinRt.Windows.Devices.Usb is
       function get_CdcControl
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Physical
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_PersonalHealthcare
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ActiveSync
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_PalmSync
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceFirmwareUpdate
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Irda
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_Measurement
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
       function get_VendorSpecific
       (
          this : access IUsbDeviceClassesStatics_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbDeviceClass
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbDeviceClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1001,7 +1001,7 @@ package WinRt.Windows.Devices.Usb is
       function GetDeviceClassSelector
       (
          this : access IUsbDeviceStatics_Interface;
-         usbClass : Windows.Devices.Usb.IUsbDeviceClass;
+         usbClass : WinRt.Windows.Devices.Usb.IUsbDeviceClass;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1029,42 +1029,42 @@ package WinRt.Windows.Devices.Usb is
       function get_Direction
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.UsbTransferDirection
+         RetVal : access WinRt.Windows.Devices.Usb.UsbTransferDirection
       )
       return WinRt.Hresult is abstract;
 
       function get_EndpointType
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.UsbEndpointType
+         RetVal : access WinRt.Windows.Devices.Usb.UsbEndpointType
       )
       return WinRt.Hresult is abstract;
 
       function get_AsBulkInEndpointDescriptor
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkInEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkInEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_AsInterruptInEndpointDescriptor
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_AsBulkOutEndpointDescriptor
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbBulkOutEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function get_AsInterruptOutEndpointDescriptor
       (
          this : access IUsbEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1076,8 +1076,8 @@ package WinRt.Windows.Devices.Usb is
       function TryParse
       (
          this : access IUsbEndpointDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         parsed : access Windows.Devices.Usb.IUsbEndpointDescriptor;
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         parsed : access WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1085,8 +1085,8 @@ package WinRt.Windows.Devices.Usb is
       function Parse
       (
          this : access IUsbEndpointDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         RetVal : access Windows.Devices.Usb.IUsbEndpointDescriptor
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1192,8 +1192,8 @@ package WinRt.Windows.Devices.Usb is
       function TryParse
       (
          this : access IUsbInterfaceDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         parsed : access Windows.Devices.Usb.IUsbInterfaceDescriptor;
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         parsed : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1201,8 +1201,8 @@ package WinRt.Windows.Devices.Usb is
       function Parse
       (
          this : access IUsbInterfaceDescriptorStatics_Interface;
-         descriptor : Windows.Devices.Usb.IUsbDescriptor;
-         RetVal : access Windows.Devices.Usb.IUsbInterfaceDescriptor
+         descriptor : WinRt.Windows.Devices.Usb.IUsbDescriptor;
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1249,14 +1249,14 @@ package WinRt.Windows.Devices.Usb is
       function SelectSettingAsync
       (
          this : access IUsbInterfaceSetting_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_InterfaceDescriptor
       (
          this : access IUsbInterfaceSetting_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterfaceDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor
       )
       return WinRt.Hresult is abstract;
 
@@ -1289,14 +1289,14 @@ package WinRt.Windows.Devices.Usb is
       function get_Interval
       (
          this : access IUsbInterruptInEndpointDescriptor_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Pipe
       (
          this : access IUsbInterruptInEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptInPipe
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptInPipe
       )
       return WinRt.Hresult is abstract;
 
@@ -1308,7 +1308,7 @@ package WinRt.Windows.Devices.Usb is
       function get_InterruptData
       (
          this : access IUsbInterruptInEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1320,14 +1320,14 @@ package WinRt.Windows.Devices.Usb is
       function get_EndpointDescriptor
       (
          this : access IUsbInterruptInPipe_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptInEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function ClearStallAsync
       (
          this : access IUsbInterruptInPipe_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1335,14 +1335,14 @@ package WinRt.Windows.Devices.Usb is
       (
          this : access IUsbInterruptInPipe_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataReceived
       (
          this : access IUsbInterruptInPipe_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1368,14 +1368,14 @@ package WinRt.Windows.Devices.Usb is
       function get_Interval
       (
          this : access IUsbInterruptOutEndpointDescriptor_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Pipe
       (
          this : access IUsbInterruptOutEndpointDescriptor_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptOutPipe
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptOutPipe
       )
       return WinRt.Hresult is abstract;
 
@@ -1387,35 +1387,35 @@ package WinRt.Windows.Devices.Usb is
       function get_EndpointDescriptor
       (
          this : access IUsbInterruptOutPipe_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbInterruptOutEndpointDescriptor
       )
       return WinRt.Hresult is abstract;
 
       function ClearStallAsync
       (
          this : access IUsbInterruptOutPipe_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteOptions
       (
          this : access IUsbInterruptOutPipe_Interface;
-         value : Windows.Devices.Usb.UsbWriteOptions
+         value : WinRt.Windows.Devices.Usb.UsbWriteOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteOptions
       (
          this : access IUsbInterruptOutPipe_Interface;
-         RetVal : access Windows.Devices.Usb.UsbWriteOptions
+         RetVal : access WinRt.Windows.Devices.Usb.UsbWriteOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access IUsbInterruptOutPipe_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1427,14 +1427,14 @@ package WinRt.Windows.Devices.Usb is
       function get_RequestType
       (
          this : access IUsbSetupPacket_Interface;
-         RetVal : access Windows.Devices.Usb.IUsbControlRequestType
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbControlRequestType
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestType
       (
          this : access IUsbSetupPacket_Interface;
-         value : Windows.Devices.Usb.IUsbControlRequestType
+         value : WinRt.Windows.Devices.Usb.IUsbControlRequestType
       )
       return WinRt.Hresult is abstract;
 
@@ -1502,8 +1502,8 @@ package WinRt.Windows.Devices.Usb is
       function CreateWithEightByteBuffer
       (
          this : access IUsbSetupPacketFactory_Interface;
-         eightByteBuffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Usb.IUsbSetupPacket
+         eightByteBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Usb.IUsbSetupPacket
       )
       return WinRt.Hresult is abstract;
 
@@ -1569,7 +1569,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_ReadOptions
    (
       this : in out UsbBulkInPipe;
-      value : Windows.Devices.Usb.UsbReadOptions
+      value : WinRt.Windows.Devices.Usb.UsbReadOptions
    );
 
    function get_ReadOptions
@@ -1639,7 +1639,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_WriteOptions
    (
       this : in out UsbBulkOutPipe;
-      value : Windows.Devices.Usb.UsbWriteOptions
+      value : WinRt.Windows.Devices.Usb.UsbWriteOptions
    );
 
    function get_WriteOptions
@@ -1692,14 +1692,14 @@ package WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbConfigurationDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbConfigurationDescriptor
    )
    return WinRt.Boolean;
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbConfigurationDescriptor;
 
@@ -1753,7 +1753,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_Direction
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbTransferDirection
+      value : WinRt.Windows.Devices.Usb.UsbTransferDirection
    );
 
    function get_ControlTransferType
@@ -1765,7 +1765,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_ControlTransferType
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbControlTransferType
+      value : WinRt.Windows.Devices.Usb.UsbControlTransferType
    );
 
    function get_Recipient
@@ -1777,7 +1777,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_Recipient
    (
       this : in out UsbControlRequestType;
-      value : Windows.Devices.Usb.UsbControlRecipient
+      value : WinRt.Windows.Devices.Usb.UsbControlRecipient
    );
 
    function get_AsByte
@@ -1816,7 +1816,7 @@ package WinRt.Windows.Devices.Usb is
    procedure ReadDescriptorBuffer
    (
       this : in out UsbDescriptor;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    -----------------------------------------------------------------------------
@@ -1851,7 +1851,7 @@ package WinRt.Windows.Devices.Usb is
 
    function GetDeviceClassSelector
    (
-      usbClass : Windows.Devices.Usb.UsbDeviceClass'Class
+      usbClass : WinRt.Windows.Devices.Usb.UsbDeviceClass'Class
    )
    return WinRt.WString;
 
@@ -1867,30 +1867,30 @@ package WinRt.Windows.Devices.Usb is
    function SendControlOutTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class;
-      buffer : Windows.Storage.Streams.IBuffer
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
    function SendControlOutTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class
    )
    return WinRt.UInt32;
 
    function SendControlInTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class;
-      buffer : Windows.Storage.Streams.IBuffer
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    function SendControlInTransferAsync
    (
       this : in out UsbDevice;
-      setupPacket : Windows.Devices.Usb.UsbSetupPacket'Class
+      setupPacket : WinRt.Windows.Devices.Usb.UsbSetupPacket'Class
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2062,14 +2062,14 @@ package WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbEndpointDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbEndpointDescriptor
    )
    return WinRt.Boolean;
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbEndpointDescriptor;
 
@@ -2180,14 +2180,14 @@ package WinRt.Windows.Devices.Usb is
 
    function TryParse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class;
-      parsed : access Windows.Devices.Usb.IUsbInterfaceDescriptor
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class;
+      parsed : access WinRt.Windows.Devices.Usb.IUsbInterfaceDescriptor
    )
    return WinRt.Boolean;
 
    function Parse
    (
-      descriptor : Windows.Devices.Usb.UsbDescriptor'Class
+      descriptor : WinRt.Windows.Devices.Usb.UsbDescriptor'Class
    )
    return WinRt.Windows.Devices.Usb.UsbInterfaceDescriptor;
 
@@ -2358,7 +2358,7 @@ package WinRt.Windows.Devices.Usb is
    procedure remove_DataReceived
    (
       this : in out UsbInterruptInPipe;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2417,7 +2417,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_WriteOptions
    (
       this : in out UsbInterruptOutPipe;
-      value : Windows.Devices.Usb.UsbWriteOptions
+      value : WinRt.Windows.Devices.Usb.UsbWriteOptions
    );
 
    function get_WriteOptions
@@ -2445,7 +2445,7 @@ package WinRt.Windows.Devices.Usb is
 
    function Constructor
    (
-      eightByteBuffer : Windows.Storage.Streams.IBuffer
+      eightByteBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return UsbSetupPacket;
 
@@ -2461,7 +2461,7 @@ package WinRt.Windows.Devices.Usb is
    procedure put_RequestType
    (
       this : in out UsbSetupPacket;
-      value : Windows.Devices.Usb.UsbControlRequestType'Class
+      value : WinRt.Windows.Devices.Usb.UsbControlRequestType'Class
    );
 
    function get_Request

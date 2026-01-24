@@ -90,7 +90,7 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPushNotificationChannel.all.get_ExpirationTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -122,7 +122,7 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPushNotificationChannel.all.add_PushNotificationReceived (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -134,7 +134,7 @@ package body WinRt.Windows.Networking.PushNotifications is
    procedure remove_PushNotificationReceived
    (
       this : in out PushNotificationChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -205,7 +205,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                        Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                         Retval.m_IPushNotificationChannel.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -279,7 +279,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                        Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                         Retval.m_IPushNotificationChannel.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -354,7 +354,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                        Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                         Retval.m_IPushNotificationChannel.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -372,7 +372,7 @@ package body WinRt.Windows.Networking.PushNotifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -380,7 +380,7 @@ package body WinRt.Windows.Networking.PushNotifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.PushNotifications.PushNotificationChannelManager");
          m_Factory        : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
       begin
          return RetVal : WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics2'Access , m_Factory'Address);
@@ -390,7 +390,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPushNotificationChannelManagerForUser := new Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+               Retval.m_IPushNotificationChannelManagerForUser := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
                Retval.m_IPushNotificationChannelManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -407,7 +407,7 @@ package body WinRt.Windows.Networking.PushNotifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.PushNotifications.PushNotificationChannelManager");
          m_Factory        : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerStatics4_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics4'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -423,7 +423,7 @@ package body WinRt.Windows.Networking.PushNotifications is
 
       procedure remove_ChannelsRevoked
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -449,7 +449,7 @@ package body WinRt.Windows.Networking.PushNotifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Networking.PushNotifications.PushNotificationChannelManager");
          m_Factory        : access WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerStatics3_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
       begin
          return RetVal : WinRt.Windows.Networking.PushNotifications.PushNotificationChannelManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IPushNotificationChannelManagerStatics3'Access , m_Factory'Address);
@@ -459,7 +459,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IPushNotificationChannelManagerForUser := new Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
+               Retval.m_IPushNotificationChannelManagerForUser := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannelManagerForUser;
                Retval.m_IPushNotificationChannelManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -544,7 +544,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                  Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                   Retval.m_IPushNotificationChannel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -612,7 +612,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                  Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                   Retval.m_IPushNotificationChannel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -681,7 +681,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                  Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                   Retval.m_IPushNotificationChannel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -703,14 +703,14 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IPushNotificationChannelManagerForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -718,7 +718,7 @@ package body WinRt.Windows.Networking.PushNotifications is
    function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
    (
       this : in out PushNotificationChannelManagerForUser;
-      appServerKey : Windows.Storage.Streams.IBuffer;
+      appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
       channelId : WinRt.WString
    )
    return WinRt.Windows.Networking.PushNotifications.PushNotificationChannel'Class is
@@ -775,7 +775,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                  Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                   Retval.m_IPushNotificationChannel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -792,7 +792,7 @@ package body WinRt.Windows.Networking.PushNotifications is
    function CreateRawPushNotificationChannelWithAlternateKeyForApplicationAsync
    (
       this : in out PushNotificationChannelManagerForUser;
-      appServerKey : Windows.Storage.Streams.IBuffer;
+      appServerKey : WinRt.Windows.Storage.Streams.IBuffer;
       channelId : WinRt.WString;
       appId : WinRt.WString
    )
@@ -851,7 +851,7 @@ package body WinRt.Windows.Networking.PushNotifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPushNotificationChannel := new Windows.Networking.PushNotifications.IPushNotificationChannel;
+                  Retval.m_IPushNotificationChannel := new WinRt.Windows.Networking.PushNotifications.IPushNotificationChannel;
                   Retval.m_IPushNotificationChannel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -952,7 +952,7 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.PushNotifications.PushNotificationType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.PushNotifications.PushNotificationType;
    begin
       Hr := this.m_IPushNotificationReceivedEventArgs.all.get_NotificationType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -969,14 +969,14 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotification do
          Hr := this.m_IPushNotificationReceivedEventArgs.all.get_ToastNotification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+         Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
          Retval.m_IToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -989,14 +989,14 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileNotification do
          Hr := this.m_IPushNotificationReceivedEventArgs.all.get_TileNotification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+         Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
          Retval.m_ITileNotification.all := m_ComRetVal;
       end return;
    end;
@@ -1009,14 +1009,14 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeNotification do
          Hr := this.m_IPushNotificationReceivedEventArgs.all.get_BadgeNotification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBadgeNotification := new Windows.UI.Notifications.IBadgeNotification;
+         Retval.m_IBadgeNotification := new WinRt.Windows.UI.Notifications.IBadgeNotification;
          Retval.m_IBadgeNotification.all := m_ComRetVal;
       end return;
    end;
@@ -1029,14 +1029,14 @@ package body WinRt.Windows.Networking.PushNotifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.PushNotifications.IRawNotification;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.PushNotifications.IRawNotification;
    begin
       return RetVal : WinRt.Windows.Networking.PushNotifications.RawNotification do
          Hr := this.m_IPushNotificationReceivedEventArgs.all.get_RawNotification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRawNotification := new Windows.Networking.PushNotifications.IRawNotification;
+         Retval.m_IRawNotification := new WinRt.Windows.Networking.PushNotifications.IRawNotification;
          Retval.m_IRawNotification.all := m_ComRetVal;
       end return;
    end;
@@ -1093,7 +1093,7 @@ package body WinRt.Windows.Networking.PushNotifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.PushNotifications.IRawNotification2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.PushNotifications.IRawNotification_Interface, WinRt.Windows.Networking.PushNotifications.IRawNotification2, WinRt.Windows.Networking.PushNotifications.IID_IRawNotification2'Unchecked_Access);
    begin
@@ -1141,7 +1141,7 @@ package body WinRt.Windows.Networking.PushNotifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Networking.PushNotifications.IRawNotification3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Networking.PushNotifications.IRawNotification_Interface, WinRt.Windows.Networking.PushNotifications.IRawNotification3, WinRt.Windows.Networking.PushNotifications.IID_IRawNotification3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRawNotification.all);

@@ -256,7 +256,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_ControlDescription
       (
          this : access IHidBooleanControl_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -282,7 +282,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_ReportType
       (
          this : access IHidBooleanControlDescription_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.HidReportType
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType
       )
       return WinRt.Hresult is abstract;
 
@@ -334,7 +334,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_Type
       (
          this : access IHidCollection_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.HidCollectionType
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.HidCollectionType
       )
       return WinRt.Hresult is abstract;
 
@@ -425,7 +425,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function CreateOutputReport
       (
          this : access IHidDevice_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidOutputReport
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport
       )
       return WinRt.Hresult is abstract;
 
@@ -433,14 +433,14 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       (
          this : access IHidDevice_Interface;
          reportId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidOutputReport
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport
       )
       return WinRt.Hresult is abstract;
 
       function CreateFeatureReport
       (
          this : access IHidDevice_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidFeatureReport
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport
       )
       return WinRt.Hresult is abstract;
 
@@ -448,14 +448,14 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       (
          this : access IHidDevice_Interface;
          reportId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidFeatureReport
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport
       )
       return WinRt.Hresult is abstract;
 
       function SendOutputReportAsync
       (
          this : access IHidDevice_Interface;
-         outputReport : Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
+         outputReport : WinRt.Windows.Devices.HumanInterfaceDevice.IHidOutputReport;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -463,7 +463,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function SendFeatureReportAsync
       (
          this : access IHidDevice_Interface;
-         featureReport : Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
+         featureReport : WinRt.Windows.Devices.HumanInterfaceDevice.IHidFeatureReport;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -471,7 +471,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function GetBooleanControlDescriptions
       (
          this : access IHidDevice_Interface;
-         reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+         reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
          RetVal : access GenericObject
@@ -481,7 +481,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function GetNumericControlDescriptions
       (
          this : access IHidDevice_Interface;
-         reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+         reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
          RetVal : access GenericObject
@@ -492,14 +492,14 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       (
          this : access IHidDevice_Interface;
          reportHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InputReportReceived
       (
          this : access IHidDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -532,7 +532,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       (
          this : access IHidDeviceStatics_Interface;
          deviceId : WinRt.HString;
-         accessMode : Windows.Storage.FileAccessMode;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -552,14 +552,14 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_Data
       (
          this : access IHidFeatureReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IHidFeatureReport_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -568,15 +568,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidFeatureReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
       function GetBooleanControlByDescription
       (
          this : access IHidFeatureReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
@@ -585,15 +585,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidFeatureReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
       function GetNumericControlByDescription
       (
          this : access IHidFeatureReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
@@ -612,7 +612,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_Data
       (
          this : access IHidInputReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -635,15 +635,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidInputReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
       function GetBooleanControlByDescription
       (
          this : access IHidInputReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
@@ -652,15 +652,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidInputReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
       function GetNumericControlByDescription
       (
          this : access IHidInputReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
@@ -672,7 +672,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_Report
       (
          this : access IHidInputReportReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidInputReport
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidInputReport
       )
       return WinRt.Hresult is abstract;
 
@@ -740,7 +740,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_ControlDescription
       (
          this : access IHidNumericControl_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -766,7 +766,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_ReportType
       (
          this : access IHidNumericControlDescription_Interface;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.HidReportType
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType
       )
       return WinRt.Hresult is abstract;
 
@@ -876,14 +876,14 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
       function get_Data
       (
          this : access IHidOutputReport_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IHidOutputReport_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -892,15 +892,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidOutputReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
       function GetBooleanControlByDescription
       (
          this : access IHidOutputReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidBooleanControl
       )
       return WinRt.Hresult is abstract;
 
@@ -909,15 +909,15 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
          this : access IHidOutputReport_Interface;
          usagePage : WinRt.UInt16;
          usageId : WinRt.UInt16;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
       function GetNumericControlByDescription
       (
          this : access IHidOutputReport_Interface;
-         controlDescription : Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
-         RetVal : access Windows.Devices.HumanInterfaceDevice.IHidNumericControl
+         controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription;
+         RetVal : access WinRt.Windows.Devices.HumanInterfaceDevice.IHidNumericControl
       )
       return WinRt.Hresult is abstract;
 
@@ -1084,7 +1084,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidDevice;
 
@@ -1176,21 +1176,21 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function SendOutputReportAsync
    (
       this : in out HidDevice;
-      outputReport : Windows.Devices.HumanInterfaceDevice.HidOutputReport'Class
+      outputReport : WinRt.Windows.Devices.HumanInterfaceDevice.HidOutputReport'Class
    )
    return WinRt.UInt32;
 
    function SendFeatureReportAsync
    (
       this : in out HidDevice;
-      featureReport : Windows.Devices.HumanInterfaceDevice.HidFeatureReport'Class
+      featureReport : WinRt.Windows.Devices.HumanInterfaceDevice.HidFeatureReport'Class
    )
    return WinRt.UInt32;
 
    function GetBooleanControlDescriptions
    (
       this : in out HidDevice;
-      reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+      reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
       usagePage : WinRt.UInt16;
       usageId : WinRt.UInt16
    )
@@ -1199,7 +1199,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlDescriptions
    (
       this : in out HidDevice;
-      reportType : Windows.Devices.HumanInterfaceDevice.HidReportType;
+      reportType : WinRt.Windows.Devices.HumanInterfaceDevice.HidReportType;
       usagePage : WinRt.UInt16;
       usageId : WinRt.UInt16
    )
@@ -1215,7 +1215,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure remove_InputReportReceived
    (
       this : in out HidDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -1247,7 +1247,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure put_Data
    (
       this : in out HidFeatureReport;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function GetBooleanControl
@@ -1261,7 +1261,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidFeatureReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class;
 
@@ -1276,7 +1276,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidFeatureReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class;
 
@@ -1324,7 +1324,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidInputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class;
 
@@ -1339,7 +1339,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidInputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class;
 
@@ -1550,7 +1550,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    procedure put_Data
    (
       this : in out HidOutputReport;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function GetBooleanControl
@@ -1564,7 +1564,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetBooleanControlByDescription
    (
       this : in out HidOutputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidBooleanControl'Class;
 
@@ -1579,7 +1579,7 @@ package WinRt.Windows.Devices.HumanInterfaceDevice is
    function GetNumericControlByDescription
    (
       this : in out HidOutputReport;
-      controlDescription : Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
+      controlDescription : WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription'Class
    )
    return WinRt.Windows.Devices.HumanInterfaceDevice.HidNumericControl'Class;
 

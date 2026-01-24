@@ -110,7 +110,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       function get_Reason
       (
          this : access IExtendedExecutionForegroundRevokedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason
+         RetVal : access WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundRevokedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -137,14 +137,14 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       (
          this : access IExtendedExecutionForegroundSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Revoked
       (
          this : access IExtendedExecutionForegroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -158,14 +158,14 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       function get_Reason
       (
          this : access IExtendedExecutionForegroundSession_Interface;
-         RetVal : access Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
+         RetVal : access WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
       )
       return WinRt.Hresult is abstract;
 
       function put_Reason
       (
          this : access IExtendedExecutionForegroundSession_Interface;
-         value : Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
+         value : WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
       )
       return WinRt.Hresult is abstract;
 
@@ -226,7 +226,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    procedure remove_Revoked
    (
       this : in out ExtendedExecutionForegroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function RequestExtensionAsync
@@ -244,7 +244,7 @@ package WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    procedure put_Reason
    (
       this : in out ExtendedExecutionForegroundSession;
-      value : Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
+      value : WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundReason
    );
 
    procedure Close

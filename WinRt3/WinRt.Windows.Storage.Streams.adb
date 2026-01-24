@@ -85,16 +85,16 @@ package body WinRt.Windows.Storage.Streams is
    return Buffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.Buffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IBuffer");
       m_Factory    : access IBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       return RetVal : Buffer do
          Hr := RoGetActivationFactory (m_hString, IID_IBufferFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (capacity, m_ComRetVal'Access);
-            Retval.m_IBuffer := new Windows.Storage.Streams.IBuffer;
+            Retval.m_IBuffer := new WinRt.Windows.Storage.Streams.IBuffer;
             Retval.m_IBuffer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -107,7 +107,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function CreateCopyFromMemoryBuffer
    (
-      input : Windows.Foundation.IMemoryBuffer
+      input : WinRt.Windows.Foundation.IMemoryBuffer
    )
    return WinRt.Windows.Storage.Streams.Buffer is
       Hr               : WinRt.HResult := S_OK;
@@ -115,7 +115,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.Buffer");
       m_Factory        : access WinRt.Windows.Storage.Streams.IBufferStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.Buffer do
          Hr := RoGetActivationFactory (m_hString, IID_IBufferStatics'Access , m_Factory'Address);
@@ -125,7 +125,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBuffer := new Windows.Storage.Streams.IBuffer;
+            Retval.m_IBuffer := new WinRt.Windows.Storage.Streams.IBuffer;
             Retval.m_IBuffer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -134,7 +134,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function CreateMemoryBufferOverIBuffer
    (
-      input : Windows.Storage.Streams.IBuffer
+      input : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Foundation.MemoryBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -142,7 +142,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.Buffer");
       m_Factory        : access WinRt.Windows.Storage.Streams.IBufferStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IMemoryBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IMemoryBuffer;
    begin
       return RetVal : WinRt.Windows.Foundation.MemoryBuffer do
          Hr := RoGetActivationFactory (m_hString, IID_IBufferStatics'Access , m_Factory'Address);
@@ -152,7 +152,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMemoryBuffer := new Windows.Foundation.IMemoryBuffer;
+            Retval.m_IMemoryBuffer := new WinRt.Windows.Foundation.IMemoryBuffer;
             Retval.m_IMemoryBuffer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -236,21 +236,21 @@ package body WinRt.Windows.Storage.Streams is
 
    function Constructor
    (
-      inputStream : Windows.Storage.Streams.IInputStream
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return DataReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataReader");
       m_Factory    : access IDataReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Streams.IDataReader;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataReader;
    begin
       return RetVal : DataReader do
          Hr := RoGetActivationFactory (m_hString, IID_IDataReaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDataReader (inputStream, m_ComRetVal'Access);
-            Retval.m_IDataReader := new Windows.Storage.Streams.IDataReader;
+            Retval.m_IDataReader := new WinRt.Windows.Storage.Streams.IDataReader;
             Retval.m_IDataReader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -263,7 +263,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function FromBuffer
    (
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.DataReader is
       Hr               : WinRt.HResult := S_OK;
@@ -271,7 +271,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataReader");
       m_Factory        : access WinRt.Windows.Storage.Streams.IDataReaderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IDataReader;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IDataReader;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.DataReader do
          Hr := RoGetActivationFactory (m_hString, IID_IDataReaderStatics'Access , m_Factory'Address);
@@ -281,7 +281,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDataReader := new Windows.Storage.Streams.IDataReader;
+            Retval.m_IDataReader := new WinRt.Windows.Storage.Streams.IDataReader;
             Retval.m_IDataReader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -316,7 +316,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.UnicodeEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.UnicodeEncoding;
    begin
       Hr := this.m_IDataReader.all.get_UnicodeEncoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -328,7 +328,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure put_UnicodeEncoding
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.UnicodeEncoding
+      value : WinRt.Windows.Storage.Streams.UnicodeEncoding
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -348,7 +348,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.ByteOrder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.ByteOrder;
    begin
       Hr := this.m_IDataReader.all.get_ByteOrder (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -360,7 +360,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure put_ByteOrder
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.ByteOrder
+      value : WinRt.Windows.Storage.Streams.ByteOrder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -380,7 +380,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.InputStreamOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.InputStreamOptions;
    begin
       Hr := this.m_IDataReader.all.get_InputStreamOptions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -392,7 +392,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure put_InputStreamOptions
    (
       this : in out DataReader;
-      value : Windows.Storage.Streams.InputStreamOptions
+      value : WinRt.Windows.Storage.Streams.InputStreamOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -446,7 +446,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IDataReader.all.ReadBuffer (length, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -654,7 +654,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IDataReader.all.ReadDateTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -671,7 +671,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IDataReader.all.ReadTimeSpan (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -689,14 +689,14 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.DataReaderLoadOperation do
          Hr := this.m_IDataReader.all.LoadAsync (count, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -709,7 +709,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IDataReader.all.DetachBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -726,7 +726,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IDataReader.all.DetachStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -799,7 +799,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased UInt32;
+      m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -821,7 +821,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased UInt32;
+      m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -864,7 +864,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -885,7 +885,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -958,21 +958,21 @@ package body WinRt.Windows.Storage.Streams is
 
    function Constructor
    (
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return DataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataWriter");
       m_Factory    : access IDataWriterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Streams.IDataWriter;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataWriter;
    begin
       return RetVal : DataWriter do
          Hr := RoGetActivationFactory (m_hString, IID_IDataWriterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDataWriter (outputStream, m_ComRetVal'Access);
-            Retval.m_IDataWriter := new Windows.Storage.Streams.IDataWriter;
+            Retval.m_IDataWriter := new WinRt.Windows.Storage.Streams.IDataWriter;
             Retval.m_IDataWriter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -983,13 +983,13 @@ package body WinRt.Windows.Storage.Streams is
    function Constructor return DataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
-      m_ComRetVal  : aliased Windows.Storage.Streams.IDataWriter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataWriter");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataWriter;
    begin
       return RetVal : DataWriter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDataWriter := new Windows.Storage.Streams.IDataWriter;
+            Retval.m_IDataWriter := new WinRt.Windows.Storage.Streams.IDataWriter;
             Retval.m_IDataWriter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1024,7 +1024,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.UnicodeEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.UnicodeEncoding;
    begin
       Hr := this.m_IDataWriter.all.get_UnicodeEncoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1036,7 +1036,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure put_UnicodeEncoding
    (
       this : in out DataWriter;
-      value : Windows.Storage.Streams.UnicodeEncoding
+      value : WinRt.Windows.Storage.Streams.UnicodeEncoding
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1056,7 +1056,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.ByteOrder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.ByteOrder;
    begin
       Hr := this.m_IDataWriter.all.get_ByteOrder (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1068,7 +1068,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure put_ByteOrder
    (
       this : in out DataWriter;
-      value : Windows.Storage.Streams.ByteOrder
+      value : WinRt.Windows.Storage.Streams.ByteOrder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1114,7 +1114,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure WriteBuffer
    (
       this : in out DataWriter;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1129,7 +1129,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure WriteBuffer
    (
       this : in out DataWriter;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       start : WinRt.UInt32;
       count : WinRt.UInt32
    ) is
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure WriteDateTime
    (
       this : in out DataWriter;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1311,7 +1311,7 @@ package body WinRt.Windows.Storage.Streams is
    procedure WriteTimeSpan
    (
       this : in out DataWriter;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1371,14 +1371,14 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.DataWriterStoreOperation do
          Hr := this.m_IDataWriter.all.StoreAsync (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -1454,7 +1454,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IDataWriter.all.DetachBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1471,7 +1471,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IDataWriter.all.DetachStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1544,7 +1544,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased UInt32;
+      m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1566,7 +1566,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_UInt32.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased UInt32;
+      m_ComRetVal      : aliased WinRt.UInt32;
       m_GenericIID     : aliased WinRt.IID := (4016060511, 48760, 22603, (170, 239, 120, 41, 173, 162, 176, 222 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_UInt32.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1609,7 +1609,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -1630,7 +1630,7 @@ package body WinRt.Windows.Storage.Streams is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -1704,9 +1704,9 @@ package body WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out FileInputStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -1811,7 +1811,7 @@ package body WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out FileOutputStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1979,7 +1979,7 @@ package body WinRt.Windows.Storage.Streams is
    function OpenAsync
    (
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -2052,9 +2052,9 @@ package body WinRt.Windows.Storage.Streams is
    function OpenAsync
    (
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode;
-      sharingOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -2183,7 +2183,7 @@ package body WinRt.Windows.Storage.Streams is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                     Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                      Retval.m_IStorageStreamTransaction.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2202,8 +2202,8 @@ package body WinRt.Windows.Storage.Streams is
    function OpenTransactedWriteAsync
    (
       filePath : WinRt.WString;
-      openOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.StorageStreamTransaction is
       Hr               : WinRt.HResult := S_OK;
@@ -2260,7 +2260,7 @@ package body WinRt.Windows.Storage.Streams is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                     Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                      Retval.m_IStorageStreamTransaction.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2278,9 +2278,9 @@ package body WinRt.Windows.Storage.Streams is
 
    function OpenForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -2352,11 +2352,11 @@ package body WinRt.Windows.Storage.Streams is
 
    function OpenForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      accessMode : Windows.Storage.FileAccessMode;
-      sharingOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      sharingOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -2428,7 +2428,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function OpenTransactedWriteForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageStreamTransaction is
@@ -2486,7 +2486,7 @@ package body WinRt.Windows.Storage.Streams is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                     Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                      Retval.m_IStorageStreamTransaction.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2504,10 +2504,10 @@ package body WinRt.Windows.Storage.Streams is
 
    function OpenTransactedWriteForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       filePath : WinRt.WString;
-      openOptions : Windows.Storage.StorageOpenOptions;
-      openDisposition : Windows.Storage.Streams.FileOpenDisposition
+      openOptions : WinRt.Windows.Storage.StorageOpenOptions;
+      openDisposition : WinRt.Windows.Storage.Streams.FileOpenDisposition
    )
    return WinRt.Windows.Storage.StorageStreamTransaction is
       Hr               : WinRt.HResult := S_OK;
@@ -2564,7 +2564,7 @@ package body WinRt.Windows.Storage.Streams is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                     Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                      Retval.m_IStorageStreamTransaction.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2624,7 +2624,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetInputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2642,7 +2642,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetOutputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2691,7 +2691,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IRandomAccessStream.all.CloneStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2737,7 +2737,7 @@ package body WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out FileRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2890,9 +2890,9 @@ package body WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out FileRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -2983,13 +2983,13 @@ package body WinRt.Windows.Storage.Streams is
    function Constructor return InMemoryRandomAccessStream is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.InMemoryRandomAccessStream");
-      m_ComRetVal  : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IRandomAccessStream");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       return RetVal : InMemoryRandomAccessStream do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IRandomAccessStream := new Windows.Storage.Streams.IRandomAccessStream;
+            Retval.m_IRandomAccessStream := new WinRt.Windows.Storage.Streams.IRandomAccessStream;
             Retval.m_IRandomAccessStream.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3040,7 +3040,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetInputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3058,7 +3058,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetOutputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3107,7 +3107,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IRandomAccessStream.all.CloneStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3153,7 +3153,7 @@ package body WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out InMemoryRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -3306,9 +3306,9 @@ package body WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out InMemoryRandomAccessStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -3399,9 +3399,9 @@ package body WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out InputStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -3506,7 +3506,7 @@ package body WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out OutputStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -3654,8 +3654,8 @@ package body WinRt.Windows.Storage.Streams is
 
       function CopyAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.UInt64 is
          Hr               : WinRt.HResult := S_OK;
@@ -3725,8 +3725,8 @@ package body WinRt.Windows.Storage.Streams is
 
       function CopyAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream;
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream;
          bytesToCopy : WinRt.UInt64
       )
       return WinRt.UInt64 is
@@ -3797,8 +3797,8 @@ package body WinRt.Windows.Storage.Streams is
 
       function CopyAndCloseAsync
       (
-         source : Windows.Storage.Streams.IInputStream;
-         destination : Windows.Storage.Streams.IOutputStream
+         source : WinRt.Windows.Storage.Streams.IInputStream;
+         destination : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.UInt64 is
          Hr               : WinRt.HResult := S_OK;
@@ -3932,7 +3932,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetInputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3950,7 +3950,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_IRandomAccessStream.all.GetOutputStreamAt (position, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3999,7 +3999,7 @@ package body WinRt.Windows.Storage.Streams is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IRandomAccessStream.all.CloneStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4045,7 +4045,7 @@ package body WinRt.Windows.Storage.Streams is
    function WriteAsync
    (
       this : in out RandomAccessStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -4198,9 +4198,9 @@ package body WinRt.Windows.Storage.Streams is
    function ReadAsync
    (
       this : in out RandomAccessStreamOverStream;
-      buffer_p : Windows.Storage.Streams.IBuffer;
+      buffer_p : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -4290,7 +4290,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function CreateFromFile
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
@@ -4298,7 +4298,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.RandomAccessStreamReference");
       m_Factory        : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReferenceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := RoGetActivationFactory (m_hString, IID_IRandomAccessStreamReferenceStatics'Access , m_Factory'Address);
@@ -4308,7 +4308,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+            Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
             Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4317,7 +4317,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function CreateFromUri
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
@@ -4325,7 +4325,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.RandomAccessStreamReference");
       m_Factory        : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReferenceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := RoGetActivationFactory (m_hString, IID_IRandomAccessStreamReferenceStatics'Access , m_Factory'Address);
@@ -4335,7 +4335,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+            Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
             Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4344,7 +4344,7 @@ package body WinRt.Windows.Storage.Streams is
 
    function CreateFromStream
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference is
       Hr               : WinRt.HResult := S_OK;
@@ -4352,7 +4352,7 @@ package body WinRt.Windows.Storage.Streams is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Streams.RandomAccessStreamReference");
       m_Factory        : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReferenceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := RoGetActivationFactory (m_hString, IID_IRandomAccessStreamReferenceStatics'Access , m_Factory'Address);
@@ -4362,7 +4362,7 @@ package body WinRt.Windows.Storage.Streams is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+            Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
             Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

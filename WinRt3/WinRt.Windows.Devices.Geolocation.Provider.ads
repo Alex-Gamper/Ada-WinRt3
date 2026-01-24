@@ -87,10 +87,10 @@ package WinRt.Windows.Devices.Geolocation.Provider is
       function SetOverridePosition
       (
          this : access IGeolocationProvider_Interface;
-         newPosition : Windows.Devices.Geolocation.BasicGeoposition;
-         positionSource : Windows.Devices.Geolocation.PositionSource;
+         newPosition : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+         positionSource : WinRt.Windows.Devices.Geolocation.PositionSource;
          accuracyInMeters : WinRt.Double;
-         RetVal : access Windows.Devices.Geolocation.Provider.LocationOverrideStatus
+         RetVal : access WinRt.Windows.Devices.Geolocation.Provider.LocationOverrideStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -104,14 +104,14 @@ package WinRt.Windows.Devices.Geolocation.Provider is
       (
          this : access IGeolocationProvider_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsOverriddenChanged
       (
          this : access IGeolocationProvider_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -144,8 +144,8 @@ package WinRt.Windows.Devices.Geolocation.Provider is
    function SetOverridePosition
    (
       this : in out GeolocationProvider;
-      newPosition : Windows.Devices.Geolocation.BasicGeoposition;
-      positionSource : Windows.Devices.Geolocation.PositionSource;
+      newPosition : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      positionSource : WinRt.Windows.Devices.Geolocation.PositionSource;
       accuracyInMeters : WinRt.Double
    )
    return WinRt.Windows.Devices.Geolocation.Provider.LocationOverrideStatus;
@@ -165,7 +165,7 @@ package WinRt.Windows.Devices.Geolocation.Provider is
    procedure remove_IsOverriddenChanged
    (
       this : in out GeolocationProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
 end WinRt.Windows.Devices.Geolocation.Provider;

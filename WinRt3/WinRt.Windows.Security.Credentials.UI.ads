@@ -208,14 +208,14 @@ package WinRt.Windows.Security.Credentials.UI is
       function put_AuthenticationProtocol
       (
          this : access ICredentialPickerOptions_Interface;
-         value : Windows.Security.Credentials.UI.AuthenticationProtocol
+         value : WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationProtocol
       (
          this : access ICredentialPickerOptions_Interface;
-         RetVal : access Windows.Security.Credentials.UI.AuthenticationProtocol
+         RetVal : access WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol
       )
       return WinRt.Hresult is abstract;
 
@@ -236,14 +236,14 @@ package WinRt.Windows.Security.Credentials.UI is
       function put_PreviousCredential
       (
          this : access ICredentialPickerOptions_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_PreviousCredential
       (
          this : access ICredentialPickerOptions_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -278,14 +278,14 @@ package WinRt.Windows.Security.Credentials.UI is
       function put_CredentialSaveOption
       (
          this : access ICredentialPickerOptions_Interface;
-         value : Windows.Security.Credentials.UI.CredentialSaveOption
+         value : WinRt.Windows.Security.Credentials.UI.CredentialSaveOption
       )
       return WinRt.Hresult is abstract;
 
       function get_CredentialSaveOption
       (
          this : access ICredentialPickerOptions_Interface;
-         RetVal : access Windows.Security.Credentials.UI.CredentialSaveOption
+         RetVal : access WinRt.Windows.Security.Credentials.UI.CredentialSaveOption
       )
       return WinRt.Hresult is abstract;
 
@@ -304,7 +304,7 @@ package WinRt.Windows.Security.Credentials.UI is
       function get_CredentialSaveOption
       (
          this : access ICredentialPickerResults_Interface;
-         RetVal : access Windows.Security.Credentials.UI.CredentialSaveOption
+         RetVal : access WinRt.Windows.Security.Credentials.UI.CredentialSaveOption
       )
       return WinRt.Hresult is abstract;
 
@@ -318,7 +318,7 @@ package WinRt.Windows.Security.Credentials.UI is
       function get_Credential
       (
          this : access ICredentialPickerResults_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -351,7 +351,7 @@ package WinRt.Windows.Security.Credentials.UI is
       function PickAsync
       (
          this : access ICredentialPickerStatics_Interface;
-         options : Windows.Security.Credentials.UI.ICredentialPickerOptions;
+         options : WinRt.Windows.Security.Credentials.UI.ICredentialPickerOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -407,7 +407,7 @@ package WinRt.Windows.Security.Credentials.UI is
 
       function PickAsync
       (
-         options : Windows.Security.Credentials.UI.CredentialPickerOptions'Class
+         options : WinRt.Windows.Security.Credentials.UI.CredentialPickerOptions'Class
       )
       return WinRt.Windows.Security.Credentials.UI.CredentialPickerResults;
 
@@ -493,7 +493,7 @@ package WinRt.Windows.Security.Credentials.UI is
    procedure put_AuthenticationProtocol
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Security.Credentials.UI.AuthenticationProtocol
+      value : WinRt.Windows.Security.Credentials.UI.AuthenticationProtocol
    );
 
    function get_AuthenticationProtocol
@@ -517,7 +517,7 @@ package WinRt.Windows.Security.Credentials.UI is
    procedure put_PreviousCredential
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_PreviousCredential
@@ -553,7 +553,7 @@ package WinRt.Windows.Security.Credentials.UI is
    procedure put_CredentialSaveOption
    (
       this : in out CredentialPickerOptions;
-      value : Windows.Security.Credentials.UI.CredentialSaveOption
+      value : WinRt.Windows.Security.Credentials.UI.CredentialSaveOption
    );
 
    function get_CredentialSaveOption

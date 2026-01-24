@@ -618,21 +618,21 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_MajorClass
       (
          this : access IBluetoothClassOfDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothMajorClass
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothMajorClass
       )
       return WinRt.Hresult is abstract;
 
       function get_MinorClass
       (
          this : access IBluetoothClassOfDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothMinorClass
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothMinorClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceCapabilities
       (
          this : access IBluetoothClassOfDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
       )
       return WinRt.Hresult is abstract;
 
@@ -645,17 +645,17 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothClassOfDeviceStatics_Interface;
          rawValue : WinRt.UInt32;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothClassOfDevice
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothClassOfDevice
       )
       return WinRt.Hresult is abstract;
 
       function FromParts
       (
          this : access IBluetoothClassOfDeviceStatics_Interface;
-         majorClass : Windows.Devices.Bluetooth.BluetoothMajorClass;
-         minorClass : Windows.Devices.Bluetooth.BluetoothMinorClass;
-         serviceCapabilities : Windows.Devices.Bluetooth.BluetoothServiceCapabilities;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothClassOfDevice
+         majorClass : WinRt.Windows.Devices.Bluetooth.BluetoothMajorClass;
+         minorClass : WinRt.Windows.Devices.Bluetooth.BluetoothMinorClass;
+         serviceCapabilities : WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothClassOfDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -674,7 +674,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_HostName
       (
          this : access IBluetoothDevice_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -688,7 +688,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_ClassOfDevice
       (
          this : access IBluetoothDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothClassOfDevice
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothClassOfDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -709,7 +709,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_ConnectionStatus
       (
          this : access IBluetoothDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothConnectionStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -724,14 +724,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NameChanged
       (
          this : access IBluetoothDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -739,14 +739,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SdpRecordsChanged
       (
          this : access IBluetoothDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -754,14 +754,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionStatusChanged
       (
          this : access IBluetoothDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -773,7 +773,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_DeviceInformation
       (
          this : access IBluetoothDevice2_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -785,7 +785,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_DeviceAccessInformation
       (
          this : access IBluetoothDevice3_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -806,7 +806,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetRfcommServicesAsync
       (
          this : access IBluetoothDevice3_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -814,7 +814,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetRfcommServicesForIdAsync
       (
          this : access IBluetoothDevice3_Interface;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -822,8 +822,8 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetRfcommServicesForIdAsync
       (
          this : access IBluetoothDevice3_Interface;
-         serviceId : Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -836,7 +836,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_BluetoothDeviceId
       (
          this : access IBluetoothDevice4_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDeviceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId
       )
       return WinRt.Hresult is abstract;
 
@@ -887,7 +887,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothDeviceIdStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDeviceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId
       )
       return WinRt.Hresult is abstract;
 
@@ -907,7 +907,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function FromHostNameAsync
       (
          this : access IBluetoothDeviceStatics_Interface;
-         hostName : Windows.Networking.IHostName;
+         hostName : WinRt.Windows.Networking.IHostName;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -943,7 +943,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetDeviceSelectorFromConnectionStatus
       (
          this : access IBluetoothDeviceStatics2_Interface;
-         connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus;
+         connectionStatus : WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -967,7 +967,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetDeviceSelectorFromClassOfDevice
       (
          this : access IBluetoothDeviceStatics2_Interface;
-         classOfDevice : Windows.Devices.Bluetooth.IBluetoothClassOfDevice;
+         classOfDevice : WinRt.Windows.Devices.Bluetooth.IBluetoothClassOfDevice;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEAppearanceStatics_Interface;
          rawValue : WinRt.UInt16;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEAppearance
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEAppearance
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,7 +1175,7 @@ package WinRt.Windows.Devices.Bluetooth is
          this : access IBluetoothLEAppearanceStatics_Interface;
          appearanceCategory : WinRt.UInt16;
          appearanceSubCategory : WinRt.UInt16;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEAppearance
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEAppearance
       )
       return WinRt.Hresult is abstract;
 
@@ -1414,14 +1414,14 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_TransmitInfo
       (
          this : access IBluetoothLEConnectionPhy_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ReceiveInfo
       (
          this : access IBluetoothLEConnectionPhy_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEConnectionPhyInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1480,7 +1480,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_ConnectionStatus
       (
          this : access IBluetoothLEDevice_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothConnectionStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1495,7 +1495,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice_Interface;
          serviceUuid : WinRt.Guid;
-         RetVal : access Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService
+         RetVal : access WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattDeviceService
       )
       return WinRt.Hresult is abstract;
 
@@ -1503,14 +1503,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NameChanged
       (
          this : access IBluetoothLEDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1518,14 +1518,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GattServicesChanged
       (
          this : access IBluetoothLEDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1533,14 +1533,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionStatusChanged
       (
          this : access IBluetoothLEDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1552,21 +1552,21 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_DeviceInformation
       (
          this : access IBluetoothLEDevice2_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_Appearance
       (
          this : access IBluetoothLEDevice2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEAppearance
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEAppearance
       )
       return WinRt.Hresult is abstract;
 
       function get_BluetoothAddressType
       (
          this : access IBluetoothLEDevice2_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothAddressType
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothAddressType
       )
       return WinRt.Hresult is abstract;
 
@@ -1578,7 +1578,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_DeviceAccessInformation
       (
          this : access IBluetoothLEDevice3_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceAccessInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceAccessInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1599,7 +1599,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetGattServicesAsync
       (
          this : access IBluetoothLEDevice3_Interface;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1616,7 +1616,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice3_Interface;
          serviceUuid : WinRt.Guid;
-         cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode;
+         cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1629,7 +1629,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_BluetoothDeviceId
       (
          this : access IBluetoothLEDevice4_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothDeviceId
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothDeviceId
       )
       return WinRt.Hresult is abstract;
 
@@ -1653,22 +1653,22 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetConnectionParameters
       (
          this : access IBluetoothLEDevice6_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEConnectionParameters
       )
       return WinRt.Hresult is abstract;
 
       function GetConnectionPhy
       (
          this : access IBluetoothLEDevice6_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEConnectionPhy
       )
       return WinRt.Hresult is abstract;
 
       function RequestPreferredConnectionParameters
       (
          this : access IBluetoothLEDevice6_Interface;
-         preferredConnectionParameters : Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest
+         preferredConnectionParameters : WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters;
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParametersRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -1676,14 +1676,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionParametersChanged
       (
          this : access IBluetoothLEDevice6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1691,14 +1691,14 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDevice6_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionPhyChanged
       (
          this : access IBluetoothLEDevice6_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1746,7 +1746,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetDeviceSelectorFromConnectionStatus
       (
          this : access IBluetoothLEDeviceStatics2_Interface;
-         connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus;
+         connectionStatus : WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1771,7 +1771,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDeviceStatics2_Interface;
          bluetoothAddress : WinRt.UInt64;
-         bluetoothAddressType : Windows.Devices.Bluetooth.BluetoothAddressType;
+         bluetoothAddressType : WinRt.Windows.Devices.Bluetooth.BluetoothAddressType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1779,7 +1779,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function GetDeviceSelectorFromAppearance
       (
          this : access IBluetoothLEDeviceStatics2_Interface;
-         appearance : Windows.Devices.Bluetooth.IBluetoothLEAppearance;
+         appearance : WinRt.Windows.Devices.Bluetooth.IBluetoothLEAppearance;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1788,7 +1788,7 @@ package WinRt.Windows.Devices.Bluetooth is
       (
          this : access IBluetoothLEDeviceStatics2_Interface;
          bluetoothAddress : WinRt.UInt64;
-         bluetoothAddressType : Windows.Devices.Bluetooth.BluetoothAddressType;
+         bluetoothAddressType : WinRt.Windows.Devices.Bluetooth.BluetoothAddressType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1834,7 +1834,7 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_Status
       (
          this : access IBluetoothLEPreferredConnectionParametersRequest_Interface;
-         RetVal : access Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus
+         RetVal : access WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequestStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1846,21 +1846,21 @@ package WinRt.Windows.Devices.Bluetooth is
       function get_Balanced
       (
          this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_ThroughputOptimized
       (
          this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
       )
       return WinRt.Hresult is abstract;
 
       function get_PowerOptimized
       (
          this : access IBluetoothLEPreferredConnectionParametersStatics_Interface;
-         RetVal : access Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
+         RetVal : access WinRt.Windows.Devices.Bluetooth.IBluetoothLEPreferredConnectionParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -2077,9 +2077,9 @@ package WinRt.Windows.Devices.Bluetooth is
 
    function FromParts
    (
-      majorClass : Windows.Devices.Bluetooth.BluetoothMajorClass;
-      minorClass : Windows.Devices.Bluetooth.BluetoothMinorClass;
-      serviceCapabilities : Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+      majorClass : WinRt.Windows.Devices.Bluetooth.BluetoothMajorClass;
+      minorClass : WinRt.Windows.Devices.Bluetooth.BluetoothMinorClass;
+      serviceCapabilities : WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothClassOfDevice;
 
@@ -2127,7 +2127,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    function FromHostNameAsync
    (
-      hostName : Windows.Networking.HostName'Class
+      hostName : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothDevice;
 
@@ -2148,7 +2148,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    function GetDeviceSelectorFromConnectionStatus
    (
-      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
+      connectionStatus : WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus
    )
    return WinRt.WString;
 
@@ -2166,7 +2166,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    function GetDeviceSelectorFromClassOfDevice
    (
-      classOfDevice : Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
+      classOfDevice : WinRt.Windows.Devices.Bluetooth.BluetoothClassOfDevice'Class
    )
    return WinRt.WString;
 
@@ -2231,7 +2231,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_NameChanged
    (
       this : in out BluetoothDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SdpRecordsChanged
@@ -2244,7 +2244,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_SdpRecordsChanged
    (
       this : in out BluetoothDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ConnectionStatusChanged
@@ -2257,7 +2257,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_ConnectionStatusChanged
    (
       this : in out BluetoothDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceInformation
@@ -2287,22 +2287,22 @@ package WinRt.Windows.Devices.Bluetooth is
    function GetRfcommServicesAsync
    (
       this : in out BluetoothDevice;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceServicesResult'Class;
 
    function GetRfcommServicesForIdAsync
    (
       this : in out BluetoothDevice;
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceServicesResult'Class;
 
    function GetRfcommServicesForIdAsync
    (
       this : in out BluetoothDevice;
-      serviceId : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      serviceId : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class;
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceServicesResult'Class;
 
@@ -2671,7 +2671,7 @@ package WinRt.Windows.Devices.Bluetooth is
 
    function GetDeviceSelectorFromConnectionStatus_BluetoothLEDevice
    (
-      connectionStatus : Windows.Devices.Bluetooth.BluetoothConnectionStatus
+      connectionStatus : WinRt.Windows.Devices.Bluetooth.BluetoothConnectionStatus
    )
    return WinRt.WString;
 
@@ -2690,20 +2690,20 @@ package WinRt.Windows.Devices.Bluetooth is
    function GetDeviceSelectorFromBluetoothAddress
    (
       bluetoothAddress : WinRt.UInt64;
-      bluetoothAddressType : Windows.Devices.Bluetooth.BluetoothAddressType
+      bluetoothAddressType : WinRt.Windows.Devices.Bluetooth.BluetoothAddressType
    )
    return WinRt.WString;
 
    function GetDeviceSelectorFromAppearance
    (
-      appearance : Windows.Devices.Bluetooth.BluetoothLEAppearance'Class
+      appearance : WinRt.Windows.Devices.Bluetooth.BluetoothLEAppearance'Class
    )
    return WinRt.WString;
 
    function FromBluetoothAddressAsync
    (
       bluetoothAddress : WinRt.UInt64;
-      bluetoothAddressType : Windows.Devices.Bluetooth.BluetoothAddressType
+      bluetoothAddressType : WinRt.Windows.Devices.Bluetooth.BluetoothAddressType
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothLEDevice;
 
@@ -2757,7 +2757,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_NameChanged
    (
       this : in out BluetoothLEDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GattServicesChanged
@@ -2770,7 +2770,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_GattServicesChanged
    (
       this : in out BluetoothLEDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ConnectionStatusChanged
@@ -2783,7 +2783,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_ConnectionStatusChanged
    (
       this : in out BluetoothLEDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_DeviceInformation
@@ -2825,7 +2825,7 @@ package WinRt.Windows.Devices.Bluetooth is
    function GetGattServicesAsync
    (
       this : in out BluetoothLEDevice;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class;
 
@@ -2840,7 +2840,7 @@ package WinRt.Windows.Devices.Bluetooth is
    (
       this : in out BluetoothLEDevice;
       serviceUuid : WinRt.Guid;
-      cacheMode : Windows.Devices.Bluetooth.BluetoothCacheMode
+      cacheMode : WinRt.Windows.Devices.Bluetooth.BluetoothCacheMode
    )
    return WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattDeviceServicesResult'Class;
 
@@ -2871,7 +2871,7 @@ package WinRt.Windows.Devices.Bluetooth is
    function RequestPreferredConnectionParameters
    (
       this : in out BluetoothLEDevice;
-      preferredConnectionParameters : Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters'Class
+      preferredConnectionParameters : WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParameters'Class
    )
    return WinRt.Windows.Devices.Bluetooth.BluetoothLEPreferredConnectionParametersRequest'Class;
 
@@ -2885,7 +2885,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_ConnectionParametersChanged
    (
       this : in out BluetoothLEDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ConnectionPhyChanged
@@ -2898,7 +2898,7 @@ package WinRt.Windows.Devices.Bluetooth is
    procedure remove_ConnectionPhyChanged
    (
       this : in out BluetoothLEDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close

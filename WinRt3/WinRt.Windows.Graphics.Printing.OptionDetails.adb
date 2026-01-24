@@ -84,7 +84,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -133,7 +133,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintBindingOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -153,7 +153,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -206,7 +206,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -362,7 +362,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -411,7 +411,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintBorderingOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -431,7 +431,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -484,7 +484,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -640,7 +640,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -689,7 +689,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCollationOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -709,7 +709,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -762,7 +762,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -918,7 +918,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -967,7 +967,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintColorModeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -987,7 +987,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1040,7 +1040,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -1196,7 +1196,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1245,7 +1245,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCopiesOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1265,7 +1265,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1572,7 +1572,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1621,7 +1621,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomItemListOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1641,7 +1641,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1739,7 +1739,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -1784,7 +1784,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       itemId : WinRt.WString;
       displayName : WinRt.WString;
       description : WinRt.WString;
-      icon : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      icon : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1947,7 +1947,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1996,7 +1996,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomTextOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2016,7 +2016,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2286,7 +2286,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2335,7 +2335,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintCustomToggleOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2355,7 +2355,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2585,7 +2585,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2634,7 +2634,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintDuplexOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2654,7 +2654,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2707,7 +2707,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -2863,7 +2863,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2912,7 +2912,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintHolePunchOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2932,7 +2932,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2985,7 +2985,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -3141,7 +3141,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3190,7 +3190,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintMediaSizeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3210,7 +3210,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3263,7 +3263,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -3419,7 +3419,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3468,7 +3468,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintMediaTypeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3488,7 +3488,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3541,7 +3541,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -3697,7 +3697,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3746,7 +3746,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintOrientationOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3766,7 +3766,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3819,7 +3819,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -3975,7 +3975,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4024,7 +4024,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintPageRangeOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4044,7 +4044,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4229,7 +4229,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4278,7 +4278,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintQualityOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4298,7 +4298,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4351,7 +4351,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -4507,7 +4507,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionType;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_OptionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4556,7 +4556,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure put_State
    (
       this : in out PrintStapleOptionDetails;
-      value : Windows.Graphics.Printing.OptionDetails.PrintOptionStates
+      value : WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4576,7 +4576,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.PrintOptionStates;
    begin
       Hr := this.m_IPrintOptionDetails.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4629,7 +4629,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintItemListOptionDetails'Unchecked_Access);
    begin
@@ -4799,7 +4799,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
 
    function GetFromPrintTaskOptions
    (
-      printTaskOptions : Windows.Graphics.Printing.PrintTaskOptions'Class
+      printTaskOptions : WinRt.Windows.Graphics.Printing.PrintTaskOptions'Class
    )
    return WinRt.Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails is
       Hr               : WinRt.HResult := S_OK;
@@ -4807,7 +4807,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails");
       m_Factory        : access WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetailsStatic_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.OptionDetails.PrintTaskOptionDetails do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintTaskOptionDetailsStatic'Access , m_Factory'Address);
@@ -4817,7 +4817,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPrintTaskOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
+            Retval.m_IPrintTaskOptionDetails := new WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails;
             Retval.m_IPrintTaskOptionDetails.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4835,7 +4835,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IPrintOptionDetails.Kind;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.get_Options (m_ComRetVal'Access);
@@ -4857,7 +4857,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
       HStr_optionId : constant WinRt.HString := To_HString (optionId);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
@@ -4866,7 +4866,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+         Retval.m_IPrintOptionDetails := new WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_optionId);
          tmp := WindowsDeleteString (HStr_displayName);
@@ -4883,7 +4883,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
       HStr_optionId : constant WinRt.HString := To_HString (optionId);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
@@ -4892,7 +4892,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+         Retval.m_IPrintOptionDetails := new WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_optionId);
          tmp := WindowsDeleteString (HStr_displayName);
@@ -4908,7 +4908,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.add_OptionChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4920,7 +4920,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure remove_OptionChanged
    (
       this : in out PrintTaskOptionDetails;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4941,7 +4941,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintTaskOptionDetails.all.add_BeginValidation (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4953,7 +4953,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
    procedure remove_BeginValidation
    (
       this : in out PrintTaskOptionDetails;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4975,7 +4975,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintPageDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintPageDescription;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCore'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskOptionDetails.all);
@@ -4996,7 +4996,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCoreUIConfiguration, WinRt.Windows.Graphics.Printing.IID_IPrintTaskOptionsCoreUIConfiguration'Unchecked_Access);
    begin
@@ -5022,7 +5022,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
       HStr_optionId : constant WinRt.HString := To_HString (optionId);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails_Interface, WinRt.Windows.Graphics.Printing.OptionDetails.IPrintTaskOptionDetails2, WinRt.Windows.Graphics.Printing.OptionDetails.IID_IPrintTaskOptionDetails2'Unchecked_Access);
@@ -5034,7 +5034,7 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintOptionDetails := new Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
+         Retval.m_IPrintOptionDetails := new WinRt.Windows.Graphics.Printing.OptionDetails.IPrintOptionDetails;
          Retval.m_IPrintOptionDetails.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_optionId);
          tmp := WindowsDeleteString (HStr_displayName);

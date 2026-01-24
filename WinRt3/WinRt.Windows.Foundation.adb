@@ -41,8 +41,8 @@ package body WinRt.Windows.Foundation is
    function Invoke
    (
       this : access AsyncActionCompletedHandler_Delegate;
-      asyncInfo : Windows.Foundation.IAsyncAction;
-      asyncStatus : Windows.Foundation.AsyncStatus
+      asyncInfo : WinRt.Windows.Foundation.IAsyncAction;
+      asyncStatus : WinRt.Windows.Foundation.AsyncStatus
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -76,7 +76,7 @@ package body WinRt.Windows.Foundation is
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
          Hr : constant WinRt.HResult := S_OK;
@@ -94,7 +94,7 @@ package body WinRt.Windows.Foundation is
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
          Hr : constant WinRt.HResult := S_OK;
@@ -130,7 +130,7 @@ package body WinRt.Windows.Foundation is
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is
          Hr : constant WinRt.HResult := S_OK;
@@ -166,21 +166,21 @@ package body WinRt.Windows.Foundation is
 
    function Constructor
    (
-      handler : Windows.Foundation.DeferralCompletedHandler
+      handler : WinRt.Windows.Foundation.DeferralCompletedHandler
    )
    return Deferral is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Deferral");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IDeferral");
       m_Factory    : access IDeferralFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : Deferral do
          Hr := RoGetActivationFactory (m_hString, IID_IDeferralFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (handler, m_ComRetVal'Access);
-            Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+            Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
             Retval.m_IDeferral.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -358,16 +358,16 @@ package body WinRt.Windows.Foundation is
    return MemoryBuffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.MemoryBuffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IMemoryBuffer");
       m_Factory    : access IMemoryBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.IMemoryBuffer;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.IMemoryBuffer;
    begin
       return RetVal : MemoryBuffer do
          Hr := RoGetActivationFactory (m_hString, IID_IMemoryBufferFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (capacity, m_ComRetVal'Access);
-            Retval.m_IMemoryBuffer := new Windows.Foundation.IMemoryBuffer;
+            Retval.m_IMemoryBuffer := new WinRt.Windows.Foundation.IMemoryBuffer;
             Retval.m_IMemoryBuffer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -386,7 +386,7 @@ package body WinRt.Windows.Foundation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IMemoryBufferReference;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IMemoryBufferReference;
    begin
       Hr := this.m_IMemoryBuffer.all.CreateReference (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -778,7 +778,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateDateTime
       (
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -802,7 +802,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateTimeSpan
       (
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -826,7 +826,7 @@ package body WinRt.Windows.Foundation is
 
       function CreatePoint
       (
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -850,7 +850,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateSize
       (
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -874,7 +874,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateRect
       (
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1248,7 +1248,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateDateTimeArray
       (
-         value : Windows.Foundation.DateTime_Array
+         value : WinRt.Windows.Foundation.DateTime_Array
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1273,7 +1273,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateTimeSpanArray
       (
-         value : Windows.Foundation.TimeSpan_Array
+         value : WinRt.Windows.Foundation.TimeSpan_Array
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1298,7 +1298,7 @@ package body WinRt.Windows.Foundation is
 
       function CreatePointArray
       (
-         value : Windows.Foundation.Point_Array
+         value : WinRt.Windows.Foundation.Point_Array
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1323,7 +1323,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateSizeArray
       (
-         value : Windows.Foundation.Size_Array
+         value : WinRt.Windows.Foundation.Size_Array
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1348,7 +1348,7 @@ package body WinRt.Windows.Foundation is
 
       function CreateRectArray
       (
-         value : Windows.Foundation.Rect_Array
+         value : WinRt.Windows.Foundation.Rect_Array
       )
       return WinRt.IInspectable is
          Hr               : WinRt.HResult := S_OK;
@@ -1421,17 +1421,17 @@ package body WinRt.Windows.Foundation is
    return Uri is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       HStr_uri_p : constant WinRt.HString := To_HString (uri_p);
    begin
       return RetVal : Uri do
          Hr := RoGetActivationFactory (m_hString, IID_IUriRuntimeClassFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateUri (HStr_uri_p, m_ComRetVal'Access);
-            Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+            Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
             Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1448,10 +1448,10 @@ package body WinRt.Windows.Foundation is
    return Uri is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       HStr_baseUri : constant WinRt.HString := To_HString (baseUri);
       HStr_relativeUri : constant WinRt.HString := To_HString (relativeUri);
    begin
@@ -1459,7 +1459,7 @@ package body WinRt.Windows.Foundation is
          Hr := RoGetActivationFactory (m_hString, IID_IUriRuntimeClassFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithRelativeUri (HStr_baseUri, HStr_relativeUri, m_ComRetVal'Access);
-            Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+            Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
             Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1721,14 +1721,14 @@ package body WinRt.Windows.Foundation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.WwwFormUrlDecoder do
          Hr := this.m_IUriRuntimeClass.all.get_QueryParsed (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWwwFormUrlDecoderRuntimeClass := new Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
+         Retval.m_IWwwFormUrlDecoderRuntimeClass := new WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
          Retval.m_IWwwFormUrlDecoderRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1830,7 +1830,7 @@ package body WinRt.Windows.Foundation is
    function Equals
    (
       this : in out Uri;
-      pUri : Windows.Foundation.Uri'Class
+      pUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1854,7 +1854,7 @@ package body WinRt.Windows.Foundation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       HStr_relativeUri : constant WinRt.HString := To_HString (relativeUri);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1862,7 +1862,7 @@ package body WinRt.Windows.Foundation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_relativeUri);
       end return;
@@ -1970,17 +1970,17 @@ package body WinRt.Windows.Foundation is
    return WwwFormUrlDecoder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.WwwFormUrlDecoder");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IWwwFormUrlDecoderRuntimeClass");
       m_Factory    : access IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
       HStr_query : constant WinRt.HString := To_HString (query);
    begin
       return RetVal : WwwFormUrlDecoder do
          Hr := RoGetActivationFactory (m_hString, IID_IWwwFormUrlDecoderRuntimeClassFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWwwFormUrlDecoder (HStr_query, m_ComRetVal'Access);
-            Retval.m_IWwwFormUrlDecoderRuntimeClass := new Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
+            Retval.m_IWwwFormUrlDecoderRuntimeClass := new WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;
             Retval.m_IWwwFormUrlDecoderRuntimeClass.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Foundation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IWwwFormUrlDecoderEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderEntry;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry;
       m_GenericIID     : aliased WinRt.IID := (2985299259, 7942, 20759, (147, 234, 42, 13, 121, 17, 103, 1 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IVectorView_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -2064,7 +2064,7 @@ package body WinRt.Windows.Foundation is
    function IndexOf
    (
       this : in out WwwFormUrlDecoder;
-      value : Windows.Foundation.IWwwFormUrlDecoderEntry;
+      value : WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -2089,7 +2089,7 @@ package body WinRt.Windows.Foundation is
    (
       this : in out WwwFormUrlDecoder;
       startIndex : WinRt.UInt32;
-      items : Windows.Foundation.IWwwFormUrlDecoderEntry_Array
+      items : WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -2120,7 +2120,7 @@ package body WinRt.Windows.Foundation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IWwwFormUrlDecoderEntry.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IWwwFormUrlDecoderEntry;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry;
       m_GenericIID     : aliased WinRt.IID := (2271995963, 29208, 23547, (161, 105, 131, 21, 46, 247, 225, 70 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass_Interface, IIterable_IWwwFormUrlDecoderEntry.Kind, m_GenericIID'Unchecked_Access);
    begin

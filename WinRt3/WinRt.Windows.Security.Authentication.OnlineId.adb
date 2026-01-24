@@ -64,13 +64,13 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    function Constructor return OnlineIdAuthenticator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator");
-      m_ComRetVal  : aliased Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator");
+      m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator;
    begin
       return RetVal : OnlineIdAuthenticator do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IOnlineIdAuthenticator := new Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator;
+            Retval.m_IOnlineIdAuthenticator := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator;
             Retval.m_IOnlineIdAuthenticator.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -83,20 +83,20 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    function AuthenticateUserAsync
    (
       this : in out OnlineIdAuthenticator;
-      request : Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
+      request : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
    )
    return WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation do
          Hr := this.m_IOnlineIdAuthenticator.all.AuthenticateUserAsync (request.m_IOnlineIdServiceTicketRequest.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -105,20 +105,20 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    (
       this : in out OnlineIdAuthenticator;
       requests : GenericObject;
-      credentialPromptType : Windows.Security.Authentication.OnlineId.CredentialPromptType
+      credentialPromptType : WinRt.Windows.Security.Authentication.OnlineId.CredentialPromptType
    )
    return WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.UserAuthenticationOperation do
          Hr := this.m_IOnlineIdAuthenticator.all.AuthenticateUserAsync (requests, credentialPromptType, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -131,8 +131,8 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IAsyncAction;
-      m_Wrapped        : aliased Windows.Foundation.IAsyncAction_Ptr := new Windows.Foundation.IAsyncAction;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction;
+      m_Wrapped        : aliased WinRt.Windows.Foundation.IAsyncAction_Ptr := new WinRt.Windows.Foundation.IAsyncAction;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.SignOutUserOperation do
          Hr := this.m_IOnlineIdAuthenticator.all.SignOutUserAsync (m_ComRetVal'Access);
@@ -264,14 +264,14 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest do
          Hr := this.m_IOnlineIdServiceTicket.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOnlineIdServiceTicketRequest := new Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+         Retval.m_IOnlineIdServiceTicketRequest := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
          Retval.m_IOnlineIdServiceTicketRequest.all := m_ComRetVal;
       end return;
    end;
@@ -324,10 +324,10 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    return OnlineIdServiceTicketRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest");
       m_Factory    : access IOnlineIdServiceTicketRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+      m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
       HStr_service : constant WinRt.HString := To_HString (service);
       HStr_policy : constant WinRt.HString := To_HString (policy);
    begin
@@ -335,7 +335,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
          Hr := RoGetActivationFactory (m_hString, IID_IOnlineIdServiceTicketRequestFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateOnlineIdServiceTicketRequest (HStr_service, HStr_policy, m_ComRetVal'Access);
-            Retval.m_IOnlineIdServiceTicketRequest := new Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+            Retval.m_IOnlineIdServiceTicketRequest := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
             Retval.m_IOnlineIdServiceTicketRequest.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -352,17 +352,17 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    return OnlineIdServiceTicketRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest");
       m_Factory    : access IOnlineIdServiceTicketRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+      m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
       HStr_service : constant WinRt.HString := To_HString (service);
    begin
       return RetVal : OnlineIdServiceTicketRequest do
          Hr := RoGetActivationFactory (m_hString, IID_IOnlineIdServiceTicketRequestFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateOnlineIdServiceTicketRequestAdvanced (HStr_service, m_ComRetVal'Access);
-            Retval.m_IOnlineIdServiceTicketRequest := new Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
+            Retval.m_IOnlineIdServiceTicketRequest := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
             Retval.m_IOnlineIdServiceTicketRequest.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -425,7 +425,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticator");
          m_Factory        : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
+         m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
       begin
          return RetVal : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticatorForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IOnlineIdSystemAuthenticatorStatics'Access , m_Factory'Address);
@@ -435,7 +435,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IOnlineIdSystemAuthenticatorForUser := new Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
+               Retval.m_IOnlineIdSystemAuthenticatorForUser := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
                Retval.m_IOnlineIdSystemAuthenticatorForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -444,7 +444,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticatorForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -452,7 +452,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticator");
          m_Factory        : access WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
+         m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
       begin
          return RetVal : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemAuthenticatorForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IOnlineIdSystemAuthenticatorStatics'Access , m_Factory'Address);
@@ -462,7 +462,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IOnlineIdSystemAuthenticatorForUser := new Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
+               Retval.m_IOnlineIdSystemAuthenticatorForUser := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemAuthenticatorForUser;
                Retval.m_IOnlineIdSystemAuthenticatorForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -497,7 +497,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    function GetTicketAsync
    (
       this : in out OnlineIdSystemAuthenticatorForUser;
-      request : Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
+      request : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest'Class
    )
    return WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -548,7 +548,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IOnlineIdSystemTicketResult := new Windows.Security.Authentication.OnlineId.IOnlineIdSystemTicketResult;
+                  Retval.m_IOnlineIdSystemTicketResult := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemTicketResult;
                   Retval.m_IOnlineIdSystemTicketResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -601,14 +601,14 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IOnlineIdSystemAuthenticatorForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -644,14 +644,14 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdServiceTicket do
          Hr := this.m_IOnlineIdSystemIdentity.all.get_Ticket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOnlineIdServiceTicket := new Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket;
+         Retval.m_IOnlineIdServiceTicket := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicket;
          Retval.m_IOnlineIdServiceTicket.all := m_ComRetVal;
       end return;
    end;
@@ -707,14 +707,14 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemIdentity do
          Hr := this.m_IOnlineIdSystemTicketResult.all.get_Identity (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOnlineIdSystemIdentity := new Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity;
+         Retval.m_IOnlineIdSystemIdentity := new WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdSystemIdentity;
          Retval.m_IOnlineIdSystemIdentity.all := m_ComRetVal;
       end return;
    end;
@@ -727,7 +727,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.OnlineIdSystemTicketStatus;
    begin
       Hr := this.m_IOnlineIdSystemTicketResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -744,7 +744,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IOnlineIdSystemTicketResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -779,7 +779,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    procedure put_Completed
    (
       this : in out SignOutUserOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -799,7 +799,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncActionCompletedHandler;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncActionCompletedHandler;
    begin
       Hr := this.m_IAsyncAction.all.get_Completed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -852,7 +852,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -873,7 +873,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -967,7 +967,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_IUserIdentity.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IUserIdentity;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IUserIdentity;
       m_GenericIID     : aliased WinRt.IID := (3100386785, 16543, 22516, (187, 228, 59, 149, 183, 75, 134, 200 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_IUserIdentity.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -978,7 +978,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserIdentity := new Windows.Security.Authentication.OnlineId.IUserIdentity;
+         Retval.m_IUserIdentity := new WinRt.Windows.Security.Authentication.OnlineId.IUserIdentity;
          Retval.m_IUserIdentity.all := m_ComRetVal;
       end return;
    end;
@@ -992,7 +992,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_IUserIdentity.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.OnlineId.IUserIdentity;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.OnlineId.IUserIdentity;
       m_GenericIID     : aliased WinRt.IID := (3100386785, 16543, 22516, (187, 228, 59, 149, 183, 75, 134, 200 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_IUserIdentity.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1003,7 +1003,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUserIdentity := new Windows.Security.Authentication.OnlineId.IUserIdentity;
+         Retval.m_IUserIdentity := new WinRt.Windows.Security.Authentication.OnlineId.IUserIdentity;
          Retval.m_IUserIdentity.all := m_ComRetVal;
       end return;
    end;
@@ -1038,7 +1038,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -1059,7 +1059,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -1138,7 +1138,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IOnlineIdServiceTicket.Kind;
    begin
       Hr := this.m_IUserIdentity.all.get_Tickets (m_ComRetVal'Access);

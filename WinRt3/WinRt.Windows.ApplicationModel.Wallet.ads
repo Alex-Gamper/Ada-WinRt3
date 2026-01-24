@@ -301,7 +301,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_Symbology
       (
          this : access IWalletBarcode_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.WalletBarcodeSymbology
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.WalletBarcodeSymbology
       )
       return WinRt.Hresult is abstract;
 
@@ -327,17 +327,17 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function CreateWalletBarcode
       (
          this : access IWalletBarcodeFactory_Interface;
-         symbology : Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
+         symbology : WinRt.Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
          value : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletBarcode
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode
       )
       return WinRt.Hresult is abstract;
 
       function CreateCustomWalletBarcode
       (
          this : access IWalletBarcodeFactory_Interface;
-         streamToBarcodeImage : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletBarcode
+         streamToBarcodeImage : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode
       )
       return WinRt.Hresult is abstract;
 
@@ -412,21 +412,21 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_Kind
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.WalletItemKind
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.WalletItemKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Barcode
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletBarcode
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode
       )
       return WinRt.Hresult is abstract;
 
       function put_Barcode
       (
          this : access IWalletItem_Interface;
-         value : Windows.ApplicationModel.Wallet.IWalletBarcode
+         value : WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode
       )
       return WinRt.Hresult is abstract;
 
@@ -447,42 +447,42 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_Logo159x159
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Logo159x159
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_Logo336x336
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Logo336x336
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_Logo99x99
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Logo99x99
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -531,112 +531,112 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_HeaderColor
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_HeaderColor
       (
          this : access IWalletItem_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BodyColor
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BodyColor
       (
          this : access IWalletItem_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_HeaderFontColor
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_HeaderFontColor
       (
          this : access IWalletItem_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_BodyFontColor
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BodyFontColor
       (
          this : access IWalletItem_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_HeaderBackgroundImage
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_HeaderBackgroundImage
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_BodyBackgroundImage
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_BodyBackgroundImage
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_LogoImage
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_LogoImage
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_PromotionalImage
       (
          this : access IWalletItem_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_PromotionalImage
       (
          this : access IWalletItem_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -760,28 +760,28 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_DetailViewPosition
       (
          this : access IWalletItemCustomProperty_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.WalletDetailViewPosition
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.WalletDetailViewPosition
       )
       return WinRt.Hresult is abstract;
 
       function put_DetailViewPosition
       (
          this : access IWalletItemCustomProperty_Interface;
-         value : Windows.ApplicationModel.Wallet.WalletDetailViewPosition
+         value : WinRt.Windows.ApplicationModel.Wallet.WalletDetailViewPosition
       )
       return WinRt.Hresult is abstract;
 
       function get_SummaryViewPosition
       (
          this : access IWalletItemCustomProperty_Interface;
-         RetVal : access Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
       )
       return WinRt.Hresult is abstract;
 
       function put_SummaryViewPosition
       (
          this : access IWalletItemCustomProperty_Interface;
-         value : Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
+         value : WinRt.Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -795,7 +795,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
          this : access IWalletItemCustomPropertyFactory_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletItemCustomProperty
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletItemCustomProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -807,9 +807,9 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function CreateWalletItem
       (
          this : access IWalletItemFactory_Interface;
-         kind : Windows.ApplicationModel.Wallet.WalletItemKind;
+         kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind;
          displayName : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletItem
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletItem
       )
       return WinRt.Hresult is abstract;
 
@@ -822,15 +822,15 @@ package WinRt.Windows.ApplicationModel.Wallet is
       (
          this : access IWalletItemStore_Interface;
          id : WinRt.HString;
-         item : Windows.ApplicationModel.Wallet.IWalletItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         item : WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearAsync
       (
          this : access IWalletItemStore_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -852,7 +852,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function GetItemsAsync
       (
          this : access IWalletItemStore_Interface;
-         kind : Windows.ApplicationModel.Wallet.WalletItemKind;
+         kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -860,7 +860,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function ImportItemAsync
       (
          this : access IWalletItemStore_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStreamReference;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -869,14 +869,14 @@ package WinRt.Windows.ApplicationModel.Wallet is
       (
          this : access IWalletItemStore_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowAsync
       (
          this : access IWalletItemStore_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -884,15 +884,15 @@ package WinRt.Windows.ApplicationModel.Wallet is
       (
          this : access IWalletItemStore_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UpdateAsync
       (
          this : access IWalletItemStore_Interface;
-         item : Windows.ApplicationModel.Wallet.IWalletItem;
-         RetVal : access Windows.Foundation.IAsyncAction
+         item : WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -905,14 +905,14 @@ package WinRt.Windows.ApplicationModel.Wallet is
       (
          this : access IWalletItemStore2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ItemsChanged
       (
          this : access IWalletItemStore2_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -936,14 +936,14 @@ package WinRt.Windows.ApplicationModel.Wallet is
       function get_Position
       (
          this : access IWalletRelevantLocation_Interface;
-         RetVal : access Windows.Devices.Geolocation.BasicGeoposition
+         RetVal : access WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IWalletRelevantLocation_Interface;
-         value : Windows.Devices.Geolocation.BasicGeoposition
+         value : WinRt.Windows.Devices.Geolocation.BasicGeoposition
       )
       return WinRt.Hresult is abstract;
 
@@ -1078,7 +1078,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
       (
          this : access IWalletVerbFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Wallet.IWalletVerb
+         RetVal : access WinRt.Windows.ApplicationModel.Wallet.IWalletVerb
       )
       return WinRt.Hresult is abstract;
 
@@ -1099,14 +1099,14 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    function Constructor
    (
-      symbology : Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
+      symbology : WinRt.Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
       value : WinRt.WString
    )
    return WalletBarcode;
 
    function Constructor
    (
-      streamToBarcodeImage : Windows.Storage.Streams.IRandomAccessStreamReference
+      streamToBarcodeImage : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WalletBarcode;
 
@@ -1142,7 +1142,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
 
    function Constructor
    (
-      kind : Windows.ApplicationModel.Wallet.WalletItemKind;
+      kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind;
       displayName : WinRt.WString
    )
    return WalletItem;
@@ -1219,7 +1219,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Barcode
    (
       this : in out WalletItem;
-      value : Windows.ApplicationModel.Wallet.WalletBarcode'Class
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletBarcode'Class
    );
 
    function get_ExpirationDate
@@ -1243,7 +1243,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo159x159
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Logo336x336
@@ -1255,7 +1255,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo336x336
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Logo99x99
@@ -1267,7 +1267,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo99x99
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_DisplayMessage
@@ -1315,7 +1315,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_BodyColor
@@ -1327,7 +1327,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_HeaderFontColor
@@ -1339,7 +1339,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderFontColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_BodyFontColor
@@ -1351,7 +1351,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyFontColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_HeaderBackgroundImage
@@ -1363,7 +1363,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderBackgroundImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_BodyBackgroundImage
@@ -1375,7 +1375,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyBackgroundImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_LogoImage
@@ -1387,7 +1387,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_LogoImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_PromotionalImage
@@ -1399,7 +1399,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_PromotionalImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_RelevantDate
@@ -1526,7 +1526,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_DetailViewPosition
    (
       this : in out WalletItemCustomProperty;
-      value : Windows.ApplicationModel.Wallet.WalletDetailViewPosition
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletDetailViewPosition
    );
 
    function get_SummaryViewPosition
@@ -1538,7 +1538,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_SummaryViewPosition
    (
       this : in out WalletItemCustomProperty;
-      value : Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
    );
 
    -----------------------------------------------------------------------------
@@ -1554,7 +1554,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    (
       this : in out WalletItemStore;
       id : WinRt.WString;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    );
 
    procedure ClearAsync
@@ -1578,14 +1578,14 @@ package WinRt.Windows.ApplicationModel.Wallet is
    function GetItemsAsync
    (
       this : in out WalletItemStore;
-      kind : Windows.ApplicationModel.Wallet.WalletItemKind
+      kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind
    )
    return WinRt.GenericObject;
 
    function ImportItemAsync
    (
       this : in out WalletItemStore;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class;
 
@@ -1609,7 +1609,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure UpdateAsync
    (
       this : in out WalletItemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1644,7 +1644,7 @@ package WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Position
    (
       this : in out WalletRelevantLocation;
-      value : Windows.Devices.Geolocation.BasicGeoposition
+      value : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    );
 
    function get_DisplayMessage

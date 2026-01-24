@@ -680,7 +680,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpChallengeHeaderValueFactory_Interface;
          scheme : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -689,7 +689,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpChallengeHeaderValueFactory_Interface;
          scheme : WinRt.HString;
          token : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -702,7 +702,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpChallengeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -710,7 +710,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpChallengeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         challengeHeaderValue : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
+         challengeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -756,7 +756,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpConnectionOptionHeaderValueFactory_Interface;
          token : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -769,7 +769,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpConnectionOptionHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -777,7 +777,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpConnectionOptionHeaderValueStatics_Interface;
          input : WinRt.HString;
-         connectionOptionHeaderValue : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
+         connectionOptionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -823,7 +823,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingHeaderValueFactory_Interface;
          contentCoding : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -836,7 +836,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -844,7 +844,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingHeaderValueStatics_Interface;
          input : WinRt.HString;
-         contentCodingHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
+         contentCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -897,7 +897,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingWithQualityHeaderValueFactory_Interface;
          contentCoding : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -906,7 +906,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpContentCodingWithQualityHeaderValueFactory_Interface;
          contentCoding : WinRt.HString;
          quality : WinRt.Double;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -919,7 +919,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -927,7 +927,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentCodingWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         contentCodingWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
+         contentCodingWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1023,7 +1023,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentDispositionHeaderValueFactory_Interface;
          dispositionType : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,7 +1036,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentDispositionHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1044,7 +1044,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentDispositionHeaderValueStatics_Interface;
          input : WinRt.HString;
-         contentDispositionHeaderValue : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
+         contentDispositionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1057,28 +1057,28 @@ package WinRt.Windows.Web.Http.Headers is
       function get_ContentDisposition
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentDisposition
       (
          this : access IHttpContentHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentEncoding
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentLanguage
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpLanguageHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -1099,56 +1099,56 @@ package WinRt.Windows.Web.Http.Headers is
       function get_ContentLocation
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentLocation
       (
          this : access IHttpContentHeaderCollection_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentMD5
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentMD5
       (
          this : access IHttpContentHeaderCollection_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentRange
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentRange
       (
          this : access IHttpContentHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentType
       (
          this : access IHttpContentHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentType
       (
          this : access IHttpContentHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1246,7 +1246,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentRangeHeaderValueFactory_Interface;
          length : WinRt.UInt64;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1255,7 +1255,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpContentRangeHeaderValueFactory_Interface;
          from : WinRt.UInt64;
          to : WinRt.UInt64;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1265,7 +1265,7 @@ package WinRt.Windows.Web.Http.Headers is
          from : WinRt.UInt64;
          to : WinRt.UInt64;
          length : WinRt.UInt64;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentRangeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1286,7 +1286,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpContentRangeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         contentRangeHeaderValue : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
+         contentRangeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1346,7 +1346,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCookiePairHeaderValueFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1355,7 +1355,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpCookiePairHeaderValueFactory_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1368,7 +1368,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCookiePairHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1376,7 +1376,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCookiePairHeaderValueStatics_Interface;
          input : WinRt.HString;
-         cookiePairHeaderValue : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
+         cookiePairHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1416,7 +1416,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCredentialsHeaderValueFactory_Interface;
          scheme : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1425,7 +1425,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpCredentialsHeaderValueFactory_Interface;
          scheme : WinRt.HString;
          token : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1438,7 +1438,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCredentialsHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1446,7 +1446,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpCredentialsHeaderValueStatics_Interface;
          input : WinRt.HString;
-         credentialsHeaderValue : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
+         credentialsHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1479,7 +1479,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpDateOrDeltaHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1487,7 +1487,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpDateOrDeltaHeaderValueStatics_Interface;
          input : WinRt.HString;
-         dateOrDeltaHeaderValue : access Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
+         dateOrDeltaHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1554,7 +1554,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpExpectationHeaderValueFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1563,7 +1563,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpExpectationHeaderValueFactory_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1576,7 +1576,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpExpectationHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1584,7 +1584,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpExpectationHeaderValueStatics_Interface;
          input : WinRt.HString;
-         expectationHeaderValue : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
+         expectationHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1657,7 +1657,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface;
          languageRange : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1666,7 +1666,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface;
          languageRange : WinRt.HString;
          quality : WinRt.Double;
-         RetVal : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1679,7 +1679,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpLanguageRangeWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1687,7 +1687,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpLanguageRangeWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         languageRangeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
+         languageRangeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1741,7 +1741,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeHeaderValueFactory_Interface;
          mediaType : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1754,7 +1754,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1762,7 +1762,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeHeaderValueStatics_Interface;
          input : WinRt.HString;
-         mediaTypeHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
+         mediaTypeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1850,7 +1850,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface;
          mediaType : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1859,7 +1859,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface;
          mediaType : WinRt.HString;
          quality : WinRt.Double;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1872,7 +1872,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1880,7 +1880,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpMediaTypeWithQualityHeaderValueStatics_Interface;
          input : WinRt.HString;
-         mediaTypeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
+         mediaTypeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1940,7 +1940,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpNameValueHeaderValueFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1949,7 +1949,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpNameValueHeaderValueFactory_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1962,7 +1962,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpNameValueHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1970,7 +1970,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpNameValueHeaderValueStatics_Interface;
          input : WinRt.HString;
-         nameValueHeaderValue : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
+         nameValueHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2003,7 +2003,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductHeaderValueFactory_Interface;
          productName : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2012,7 +2012,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpProductHeaderValueFactory_Interface;
          productName : WinRt.HString;
          productVersion : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2025,7 +2025,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2033,7 +2033,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductHeaderValueStatics_Interface;
          input : WinRt.HString;
-         productHeaderValue : access Windows.Web.Http.Headers.IHttpProductHeaderValue;
+         productHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2046,7 +2046,7 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Product
       (
          this : access IHttpProductInfoHeaderValue_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2086,7 +2086,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductInfoHeaderValueFactory_Interface;
          productComment : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2095,7 +2095,7 @@ package WinRt.Windows.Web.Http.Headers is
          this : access IHttpProductInfoHeaderValueFactory_Interface;
          productName : WinRt.HString;
          productVersion : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2108,7 +2108,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductInfoHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2116,7 +2116,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpProductInfoHeaderValueStatics_Interface;
          input : WinRt.HString;
-         productInfoHeaderValue : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
+         productInfoHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2129,56 +2129,56 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Accept
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_AcceptEncoding
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_AcceptLanguage
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Authorization
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_Authorization
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function get_CacheControl
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Connection
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Cookie
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2199,7 +2199,7 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Expect
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2220,14 +2220,14 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Host
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_Host
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -2276,42 +2276,42 @@ package WinRt.Windows.Web.Http.Headers is
       function get_ProxyAuthorization
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_ProxyAuthorization
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function get_Referer
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Referer
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_TransferEncoding
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_UserAgent
       (
          this : access IHttpRequestHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2354,21 +2354,21 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Allow
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpMethodHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_CacheControl
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpCacheDirectiveHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Connection
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2389,49 +2389,49 @@ package WinRt.Windows.Web.Http.Headers is
       function get_Location
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Location
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyAuthenticate
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_RetryAfter
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function put_RetryAfter
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         value : Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
+         value : WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
       )
       return WinRt.Hresult is abstract;
 
       function get_TransferEncoding
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_WwwAuthenticate
       (
          this : access IHttpResponseHeaderCollection_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValueCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -2500,7 +2500,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpTransferCodingHeaderValueFactory_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2513,7 +2513,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpTransferCodingHeaderValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
       )
       return WinRt.Hresult is abstract;
 
@@ -2521,7 +2521,7 @@ package WinRt.Windows.Web.Http.Headers is
       (
          this : access IHttpTransferCodingHeaderValueStatics_Interface;
          input : WinRt.HString;
-         transferCodingHeaderValue : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
+         transferCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2625,7 +2625,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -2634,14 +2634,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -2653,7 +2653,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpNameValueHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -2670,14 +2670,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpCacheDirectiveHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpNameValueHeaderValue>
@@ -2727,7 +2727,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      challengeHeaderValue : access Windows.Web.Http.Headers.IHttpChallengeHeaderValue
+      challengeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue
    )
    return WinRt.Boolean;
 
@@ -2803,7 +2803,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpChallengeHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -2812,14 +2812,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpChallengeHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -2831,7 +2831,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpChallengeHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpChallengeHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -2848,14 +2848,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpChallengeHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpChallengeHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpChallengeHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpChallengeHeaderValue>
@@ -2898,7 +2898,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      connectionOptionHeaderValue : access Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
+      connectionOptionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue
    )
    return WinRt.Boolean;
 
@@ -2962,7 +2962,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -2971,14 +2971,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -2990,7 +2990,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -3007,14 +3007,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpConnectionOptionHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue>
@@ -3057,7 +3057,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentCodingHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
+      contentCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue
    )
    return WinRt.Boolean;
 
@@ -3121,7 +3121,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -3130,14 +3130,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpContentCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -3149,7 +3149,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -3166,14 +3166,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpContentCodingHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpContentCodingHeaderValue>
@@ -3223,7 +3223,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentCodingWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
+      contentCodingWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue
    )
    return WinRt.Boolean;
 
@@ -3293,7 +3293,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -3302,14 +3302,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -3321,7 +3321,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -3338,14 +3338,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpContentCodingWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue>
@@ -3388,7 +3388,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentDispositionHeaderValue : access Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
+      contentDispositionHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue
    )
    return WinRt.Boolean;
 
@@ -3490,7 +3490,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ContentDisposition
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpContentDispositionHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentDispositionHeaderValue'Class
    );
 
    function get_ContentEncoding
@@ -3526,7 +3526,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ContentLocation
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ContentMD5
@@ -3538,7 +3538,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ContentMD5
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ContentRange
@@ -3550,7 +3550,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ContentRange
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpContentRangeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpContentRangeHeaderValue'Class
    );
 
    function get_ContentType
@@ -3562,7 +3562,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ContentType
    (
       this : in out HttpContentHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeHeaderValue'Class
    );
 
    function get_Expires
@@ -3698,7 +3698,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      contentRangeHeaderValue : access Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
+      contentRangeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue
    )
    return WinRt.Boolean;
 
@@ -3775,7 +3775,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      cookiePairHeaderValue : access Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
+      cookiePairHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue
    )
    return WinRt.Boolean;
 
@@ -3851,7 +3851,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -3860,14 +3860,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpCookiePairHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -3879,7 +3879,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCookiePairHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -3896,14 +3896,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpCookiePairHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpCookiePairHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpCookiePairHeaderValue>
@@ -3953,7 +3953,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      credentialsHeaderValue : access Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
+      credentialsHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4002,7 +4002,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      dateOrDeltaHeaderValue : access Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
+      dateOrDeltaHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpDateOrDeltaHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4061,7 +4061,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      expectationHeaderValue : access Windows.Web.Http.Headers.IHttpExpectationHeaderValue
+      expectationHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4143,7 +4143,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpExpectationHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4152,14 +4152,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpExpectationHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -4171,7 +4171,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpExpectationHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpExpectationHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -4188,14 +4188,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpExpectationHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpExpectationHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpExpectationHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpExpectationHeaderValue>
@@ -4256,7 +4256,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpLanguageHeaderValueCollection;
-      value : Windows.Globalization.Language'Class;
+      value : WinRt.Windows.Globalization.Language'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4265,14 +4265,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpLanguageHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    );
 
    procedure RemoveAt
@@ -4284,7 +4284,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpLanguageHeaderValueCollection;
-      value : Windows.Globalization.Language'Class
+      value : WinRt.Windows.Globalization.Language'Class
    );
 
    procedure RemoveAtEnd
@@ -4301,14 +4301,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Globalization.ILanguage_Array
+      items : WinRt.Windows.Globalization.ILanguage_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpLanguageHeaderValueCollection;
-      items : Windows.Globalization.ILanguage_Array
+      items : WinRt.Windows.Globalization.ILanguage_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Globalization.Language>
@@ -4358,7 +4358,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      languageRangeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
+      languageRangeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4428,7 +4428,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4437,14 +4437,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -4456,7 +4456,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -4473,14 +4473,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpLanguageRangeWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue>
@@ -4523,7 +4523,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      mediaTypeHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
+      mediaTypeHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4600,7 +4600,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      mediaTypeWithQualityHeaderValue : access Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
+      mediaTypeWithQualityHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4700,7 +4700,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4709,14 +4709,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -4728,7 +4728,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -4745,14 +4745,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpMediaTypeWithQualityHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue>
@@ -4813,7 +4813,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpMethodHeaderValueCollection;
-      value : Windows.Web.Http.HttpMethod'Class;
+      value : WinRt.Windows.Web.Http.HttpMethod'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4822,14 +4822,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpMethodHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    );
 
    procedure RemoveAt
@@ -4841,7 +4841,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpMethodHeaderValueCollection;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    );
 
    procedure RemoveAtEnd
@@ -4858,14 +4858,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpMethodHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.IHttpMethod_Array
+      items : WinRt.Windows.Web.Http.IHttpMethod_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpMethodHeaderValueCollection;
-      items : Windows.Web.Http.IHttpMethod_Array
+      items : WinRt.Windows.Web.Http.IHttpMethod_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.HttpMethod>
@@ -4915,7 +4915,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      nameValueHeaderValue : access Windows.Web.Http.Headers.IHttpNameValueHeaderValue
+      nameValueHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpNameValueHeaderValue
    )
    return WinRt.Boolean;
 
@@ -4980,7 +4980,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      productHeaderValue : access Windows.Web.Http.Headers.IHttpProductHeaderValue
+      productHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductHeaderValue
    )
    return WinRt.Boolean;
 
@@ -5039,7 +5039,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      productInfoHeaderValue : access Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
+      productInfoHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue
    )
    return WinRt.Boolean;
 
@@ -5109,7 +5109,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5118,14 +5118,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpProductInfoHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -5137,7 +5137,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpProductInfoHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -5154,14 +5154,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpProductInfoHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpProductInfoHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpProductInfoHeaderValue>
@@ -5213,7 +5213,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_Authorization
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
    );
 
    function get_CacheControl
@@ -5273,7 +5273,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_Host
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_IfModifiedSince
@@ -5321,7 +5321,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_ProxyAuthorization
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
    );
 
    function get_Referer
@@ -5333,7 +5333,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_Referer
    (
       this : in out HttpRequestHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_TransferEncoding
@@ -5475,7 +5475,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_Location
    (
       this : in out HttpResponseHeaderCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ProxyAuthenticate
@@ -5493,7 +5493,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure put_RetryAfter
    (
       this : in out HttpResponseHeaderCollection;
-      value : Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpDateOrDeltaHeaderValue'Class
    );
 
    function get_TransferEncoding
@@ -5602,7 +5602,7 @@ package WinRt.Windows.Web.Http.Headers is
    function TryParse
    (
       input : WinRt.WString;
-      transferCodingHeaderValue : access Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
+      transferCodingHeaderValue : access WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue
    )
    return WinRt.Boolean;
 
@@ -5672,7 +5672,7 @@ package WinRt.Windows.Web.Http.Headers is
    function IndexOf
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5681,14 +5681,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    );
 
    procedure InsertAt
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       index : WinRt.UInt32;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    );
 
    procedure RemoveAt
@@ -5700,7 +5700,7 @@ package WinRt.Windows.Web.Http.Headers is
    procedure Append
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      value : Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
+      value : WinRt.Windows.Web.Http.Headers.HttpTransferCodingHeaderValue'Class
    );
 
    procedure RemoveAtEnd
@@ -5717,14 +5717,14 @@ package WinRt.Windows.Web.Http.Headers is
    (
       this : in out HttpTransferCodingHeaderValueCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out HttpTransferCodingHeaderValueCollection;
-      items : Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
+      items : WinRt.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Web.Http.Headers.HttpTransferCodingHeaderValue>

@@ -86,7 +86,7 @@ package WinRt.Windows.Devices.Background is
       function get_ExpectedDuration
       (
          this : access IDeviceServicingDetails_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 

@@ -202,42 +202,42 @@ package WinRt.Windows.Media.Editing is
       function get_TrimTimeFromStart
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TrimTimeFromStart
       (
          this : access IBackgroundAudioTrack_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimTimeFromEnd
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TrimTimeFromEnd
       (
          this : access IBackgroundAudioTrack_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_OriginalDuration
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimmedDuration
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -251,14 +251,14 @@ package WinRt.Windows.Media.Editing is
       function put_Delay
       (
          this : access IBackgroundAudioTrack_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Delay
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -279,14 +279,14 @@ package WinRt.Windows.Media.Editing is
       function Clone
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Media.Editing.IBackgroundAudioTrack
+         RetVal : access WinRt.Windows.Media.Editing.IBackgroundAudioTrack
       )
       return WinRt.Hresult is abstract;
 
       function GetAudioEncodingProperties
       (
          this : access IBackgroundAudioTrack_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -305,15 +305,15 @@ package WinRt.Windows.Media.Editing is
       function CreateFromEmbeddedAudioTrack
       (
          this : access IBackgroundAudioTrackStatics_Interface;
-         embeddedAudioTrack_p : Windows.Media.Editing.IEmbeddedAudioTrack;
-         RetVal : access Windows.Media.Editing.IBackgroundAudioTrack
+         embeddedAudioTrack_p : WinRt.Windows.Media.Editing.IEmbeddedAudioTrack;
+         RetVal : access WinRt.Windows.Media.Editing.IBackgroundAudioTrack
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromFileAsync
       (
          this : access IBackgroundAudioTrackStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -326,7 +326,7 @@ package WinRt.Windows.Media.Editing is
       function GetAudioEncodingProperties
       (
          this : access IEmbeddedAudioTrack_Interface;
-         RetVal : access Windows.Media.MediaProperties.IAudioEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -338,42 +338,42 @@ package WinRt.Windows.Media.Editing is
       function get_TrimTimeFromStart
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TrimTimeFromStart
       (
          this : access IMediaClip_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimTimeFromEnd
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_TrimTimeFromEnd
       (
          this : access IMediaClip_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_OriginalDuration
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_TrimmedDuration
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -387,21 +387,21 @@ package WinRt.Windows.Media.Editing is
       function Clone
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Media.Editing.IMediaClip
+         RetVal : access WinRt.Windows.Media.Editing.IMediaClip
       )
       return WinRt.Hresult is abstract;
 
       function get_StartTimeInComposition
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_EndTimeInComposition
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -443,7 +443,7 @@ package WinRt.Windows.Media.Editing is
       function GetVideoEncodingProperties
       (
          this : access IMediaClip_Interface;
-         RetVal : access Windows.Media.MediaProperties.IVideoEncodingProperties
+         RetVal : access WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -469,16 +469,16 @@ package WinRt.Windows.Media.Editing is
       function CreateFromColor
       (
          this : access IMediaClipStatics_Interface;
-         color : Windows.UI.Color;
-         originalDuration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Editing.IMediaClip
+         color : WinRt.Windows.UI.Color;
+         originalDuration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Editing.IMediaClip
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromFileAsync
       (
          this : access IMediaClipStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -486,8 +486,8 @@ package WinRt.Windows.Media.Editing is
       function CreateFromImageFileAsync
       (
          this : access IMediaClipStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         originalDuration : Windows.Foundation.TimeSpan;
+         file : WinRt.Windows.Storage.IStorageFile;
+         originalDuration : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -500,9 +500,9 @@ package WinRt.Windows.Media.Editing is
       function CreateFromSurface
       (
          this : access IMediaClipStatics2_Interface;
-         surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         originalDuration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Media.Editing.IMediaClip
+         surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         originalDuration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Media.Editing.IMediaClip
       )
       return WinRt.Hresult is abstract;
 
@@ -514,7 +514,7 @@ package WinRt.Windows.Media.Editing is
       function get_Duration
       (
          this : access IMediaComposition_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -542,25 +542,25 @@ package WinRt.Windows.Media.Editing is
       function Clone
       (
          this : access IMediaComposition_Interface;
-         RetVal : access Windows.Media.Editing.IMediaComposition
+         RetVal : access WinRt.Windows.Media.Editing.IMediaComposition
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IMediaComposition_Interface;
-         file : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         file : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetThumbnailAsync
       (
          this : access IMediaComposition_Interface;
-         timeFromStart : Windows.Foundation.TimeSpan;
+         timeFromStart : WinRt.Windows.Foundation.TimeSpan;
          scaledWidth : WinRt.Int32;
          scaledHeight : WinRt.Int32;
-         framePrecision : Windows.Media.Editing.VideoFramePrecision;
+         framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -571,7 +571,7 @@ package WinRt.Windows.Media.Editing is
          timesFromStart : GenericObject;
          scaledWidth : WinRt.Int32;
          scaledHeight : WinRt.Int32;
-         framePrecision : Windows.Media.Editing.VideoFramePrecision;
+         framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -579,7 +579,7 @@ package WinRt.Windows.Media.Editing is
       function RenderToFileAsync
       (
          this : access IMediaComposition_Interface;
-         destination : Windows.Storage.IStorageFile;
+         destination : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -587,8 +587,8 @@ package WinRt.Windows.Media.Editing is
       function RenderToFileAsync
       (
          this : access IMediaComposition_Interface;
-         destination : Windows.Storage.IStorageFile;
-         trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference;
+         destination : WinRt.Windows.Storage.IStorageFile;
+         trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -596,9 +596,9 @@ package WinRt.Windows.Media.Editing is
       function RenderToFileAsync
       (
          this : access IMediaComposition_Interface;
-         destination : Windows.Storage.IStorageFile;
-         trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
+         destination : WinRt.Windows.Storage.IStorageFile;
+         trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference;
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -606,22 +606,22 @@ package WinRt.Windows.Media.Editing is
       function CreateDefaultEncodingProfile
       (
          this : access IMediaComposition_Interface;
-         RetVal : access Windows.Media.MediaProperties.IMediaEncodingProfile
+         RetVal : access WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile
       )
       return WinRt.Hresult is abstract;
 
       function GenerateMediaStreamSource
       (
          this : access IMediaComposition_Interface;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
       function GenerateMediaStreamSource
       (
          this : access IMediaComposition_Interface;
-         encodingProfile : Windows.Media.MediaProperties.IMediaEncodingProfile;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         encodingProfile : WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
@@ -630,7 +630,7 @@ package WinRt.Windows.Media.Editing is
          this : access IMediaComposition_Interface;
          scaledWidth : WinRt.Int32;
          scaledHeight : WinRt.Int32;
-         RetVal : access Windows.Media.Core.IMediaStreamSource
+         RetVal : access WinRt.Windows.Media.Core.IMediaStreamSource
       )
       return WinRt.Hresult is abstract;
 
@@ -654,7 +654,7 @@ package WinRt.Windows.Media.Editing is
       function LoadAsync
       (
          this : access IMediaCompositionStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -667,28 +667,28 @@ package WinRt.Windows.Media.Editing is
       function get_Position
       (
          this : access IMediaOverlay_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_Position
       (
          this : access IMediaOverlay_Interface;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function put_Delay
       (
          this : access IMediaOverlay_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Delay
       (
          this : access IMediaOverlay_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -709,14 +709,14 @@ package WinRt.Windows.Media.Editing is
       function Clone
       (
          this : access IMediaOverlay_Interface;
-         RetVal : access Windows.Media.Editing.IMediaOverlay
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlay
       )
       return WinRt.Hresult is abstract;
 
       function get_Clip
       (
          this : access IMediaOverlay_Interface;
-         RetVal : access Windows.Media.Editing.IMediaClip
+         RetVal : access WinRt.Windows.Media.Editing.IMediaClip
       )
       return WinRt.Hresult is abstract;
 
@@ -742,18 +742,18 @@ package WinRt.Windows.Media.Editing is
       function Create
       (
          this : access IMediaOverlayFactory_Interface;
-         clip : Windows.Media.Editing.IMediaClip;
-         RetVal : access Windows.Media.Editing.IMediaOverlay
+         clip : WinRt.Windows.Media.Editing.IMediaClip;
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlay
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithPositionAndOpacity
       (
          this : access IMediaOverlayFactory_Interface;
-         clip : Windows.Media.Editing.IMediaClip;
-         position : Windows.Foundation.Rect;
+         clip : WinRt.Windows.Media.Editing.IMediaClip;
+         position : WinRt.Windows.Foundation.Rect;
          opacity : WinRt.Double;
-         RetVal : access Windows.Media.Editing.IMediaOverlay
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlay
       )
       return WinRt.Hresult is abstract;
 
@@ -765,7 +765,7 @@ package WinRt.Windows.Media.Editing is
       function Clone
       (
          this : access IMediaOverlayLayer_Interface;
-         RetVal : access Windows.Media.Editing.IMediaOverlayLayer
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlayLayer
       )
       return WinRt.Hresult is abstract;
 
@@ -779,7 +779,7 @@ package WinRt.Windows.Media.Editing is
       function get_CustomCompositorDefinition
       (
          this : access IMediaOverlayLayer_Interface;
-         RetVal : access Windows.Media.Effects.IVideoCompositorDefinition
+         RetVal : access WinRt.Windows.Media.Effects.IVideoCompositorDefinition
       )
       return WinRt.Hresult is abstract;
 
@@ -791,8 +791,8 @@ package WinRt.Windows.Media.Editing is
       function CreateWithCompositorDefinition
       (
          this : access IMediaOverlayLayerFactory_Interface;
-         compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition;
-         RetVal : access Windows.Media.Editing.IMediaOverlayLayer
+         compositorDefinition : WinRt.Windows.Media.Effects.IVideoCompositorDefinition;
+         RetVal : access WinRt.Windows.Media.Editing.IMediaOverlayLayer
       )
       return WinRt.Hresult is abstract;
 
@@ -813,13 +813,13 @@ package WinRt.Windows.Media.Editing is
 
    function CreateFromEmbeddedAudioTrack
    (
-      embeddedAudioTrack_p : Windows.Media.Editing.EmbeddedAudioTrack'Class
+      embeddedAudioTrack_p : WinRt.Windows.Media.Editing.EmbeddedAudioTrack'Class
    )
    return WinRt.Windows.Media.Editing.BackgroundAudioTrack;
 
    function CreateFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Editing.BackgroundAudioTrack;
 
@@ -835,7 +835,7 @@ package WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromStart
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TrimTimeFromEnd
@@ -847,7 +847,7 @@ package WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromEnd
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_OriginalDuration
@@ -871,7 +871,7 @@ package WinRt.Windows.Media.Editing is
    procedure put_Delay
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Delay
@@ -936,28 +936,28 @@ package WinRt.Windows.Media.Editing is
 
    function CreateFromColor
    (
-      color : Windows.UI.Color;
-      originalDuration : Windows.Foundation.TimeSpan
+      color : WinRt.Windows.UI.Color;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip;
 
    function CreateFromFileAsync_MediaClip
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Editing.MediaClip;
 
    function CreateFromImageFileAsync
    (
-      file : Windows.Storage.IStorageFile;
-      originalDuration : Windows.Foundation.TimeSpan
+      file : WinRt.Windows.Storage.IStorageFile;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip;
 
    function CreateFromSurface
    (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      originalDuration : Windows.Foundation.TimeSpan
+      surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip;
 
@@ -973,7 +973,7 @@ package WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromStart
    (
       this : in out MediaClip;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_TrimTimeFromEnd
@@ -985,7 +985,7 @@ package WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromEnd
    (
       this : in out MediaClip;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_OriginalDuration
@@ -1088,7 +1088,7 @@ package WinRt.Windows.Media.Editing is
 
    function LoadAsync
    (
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.Editing.MediaComposition;
 
@@ -1128,16 +1128,16 @@ package WinRt.Windows.Media.Editing is
    procedure SaveAsync
    (
       this : in out MediaComposition;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    );
 
    function GetThumbnailAsync
    (
       this : in out MediaComposition;
-      timeFromStart : Windows.Foundation.TimeSpan;
+      timeFromStart : WinRt.Windows.Foundation.TimeSpan;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32;
-      framePrecision : Windows.Media.Editing.VideoFramePrecision
+      framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision
    )
    return WinRt.Windows.Graphics.Imaging.ImageStream'Class;
 
@@ -1147,31 +1147,31 @@ package WinRt.Windows.Media.Editing is
       timesFromStart : GenericObject;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32;
-      framePrecision : Windows.Media.Editing.VideoFramePrecision
+      framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision
    )
    return WinRt.GenericObject;
 
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile
+      destination : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason;
 
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile;
-      trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference
+      destination : WinRt.Windows.Storage.IStorageFile;
+      trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason;
 
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile;
-      trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      destination : WinRt.Windows.Storage.IStorageFile;
+      trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason;
 
@@ -1190,7 +1190,7 @@ package WinRt.Windows.Media.Editing is
    function GenerateMediaStreamSource
    (
       this : in out MediaComposition;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Core.MediaStreamSource'Class;
 
@@ -1219,14 +1219,14 @@ package WinRt.Windows.Media.Editing is
 
    function Constructor
    (
-      clip : Windows.Media.Editing.MediaClip'Class
+      clip : WinRt.Windows.Media.Editing.MediaClip'Class
    )
    return MediaOverlay;
 
    function Constructor
    (
-      clip : Windows.Media.Editing.MediaClip'Class;
-      position : Windows.Foundation.Rect;
+      clip : WinRt.Windows.Media.Editing.MediaClip'Class;
+      position : WinRt.Windows.Foundation.Rect;
       opacity : WinRt.Double
    )
    return MediaOverlay;
@@ -1243,13 +1243,13 @@ package WinRt.Windows.Media.Editing is
    procedure put_Position
    (
       this : in out MediaOverlay;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure put_Delay
    (
       this : in out MediaOverlay;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Delay
@@ -1307,7 +1307,7 @@ package WinRt.Windows.Media.Editing is
 
    function Constructor
    (
-      compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition
+      compositorDefinition : WinRt.Windows.Media.Effects.IVideoCompositorDefinition
    )
    return MediaOverlayLayer;
 

@@ -351,36 +351,36 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_ServiceAuthenticationHmac
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionNonce
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceNonce
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceConfigurationData
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function FinishAuthenticationAsync
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
-         deviceHmac : Windows.Storage.Streams.IBuffer;
-         sessionHmac : Windows.Storage.Streams.IBuffer;
+         deviceHmac : WinRt.Windows.Storage.Streams.IBuffer;
+         sessionHmac : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -389,7 +389,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorAuthentication_Interface;
          errorLogMessage : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -401,14 +401,14 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_Status
       (
          this : access ISecondaryAuthenticationFactorAuthenticationResult_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Authentication
       (
          this : access ISecondaryAuthenticationFactorAuthenticationResult_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthentication
       )
       return WinRt.Hresult is abstract;
 
@@ -420,7 +420,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_StageInfo
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorAuthenticationStageInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -432,14 +432,14 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_Stage
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStageInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStage
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationStage
       )
       return WinRt.Hresult is abstract;
 
       function get_Scenario
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStageInfo_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationScenario
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationScenario
       )
       return WinRt.Hresult is abstract;
 
@@ -459,8 +459,8 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStatics_Interface;
          deviceName : WinRt.HString;
-         message : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -468,7 +468,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStatics_Interface;
          deviceId : WinRt.HString;
-         serviceAuthenticationNonce : Windows.Storage.Streams.IBuffer;
+         serviceAuthenticationNonce : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -477,14 +477,14 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AuthenticationStageChanged
       (
          this : access ISecondaryAuthenticationFactorAuthenticationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -505,7 +505,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
          this : access ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface;
          deviceId : WinRt.HString;
          deviceInstancePath : WinRt.HString;
-         monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+         monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -515,10 +515,10 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
          this : access ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface;
          deviceId : WinRt.HString;
          deviceInstancePath : WinRt.HString;
-         monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+         monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
          deviceFriendlyName : WinRt.HString;
          deviceModelNumber : WinRt.HString;
-         deviceConfigurationData : Windows.Storage.Streams.IBuffer;
+         deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -527,7 +527,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -567,7 +567,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_DeviceConfigurationData
       (
          this : access ISecondaryAuthenticationFactorInfo_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -579,15 +579,15 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_PresenceMonitoringMode
       (
          this : access ISecondaryAuthenticationFactorInfo2_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
       )
       return WinRt.Hresult is abstract;
 
       function UpdateDevicePresenceAsync
       (
          this : access ISecondaryAuthenticationFactorInfo2_Interface;
-         presenceState : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence;
-         RetVal : access Windows.Foundation.IAsyncAction
+         presenceState : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -606,8 +606,8 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function FinishRegisteringDeviceAsync
       (
          this : access ISecondaryAuthenticationFactorRegistration_Interface;
-         deviceConfigurationData : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -615,7 +615,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorRegistration_Interface;
          errorLogMessage : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -627,14 +627,14 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function get_Status
       (
          this : access ISecondaryAuthenticationFactorRegistrationResult_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Registration
       (
          this : access ISecondaryAuthenticationFactorRegistrationResult_Interface;
-         RetVal : access Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration
+         RetVal : access WinRt.Windows.Security.Authentication.Identity.Provider.ISecondaryAuthenticationFactorRegistration
       )
       return WinRt.Hresult is abstract;
 
@@ -647,11 +647,11 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorRegistrationStatics_Interface;
          deviceId : WinRt.HString;
-         capabilities : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
+         capabilities : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
          deviceFriendlyName : WinRt.HString;
          deviceModelNumber : WinRt.HString;
-         deviceKey : Windows.Storage.Streams.IBuffer;
-         mutualAuthenticationKey : Windows.Storage.Streams.IBuffer;
+         deviceKey : WinRt.Windows.Storage.Streams.IBuffer;
+         mutualAuthenticationKey : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -659,7 +659,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       function FindAllRegisteredDeviceInfoAsync
       (
          this : access ISecondaryAuthenticationFactorRegistrationStatics_Interface;
-         queryType : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope;
+         queryType : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -668,7 +668,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorRegistrationStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -676,8 +676,8 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
       (
          this : access ISecondaryAuthenticationFactorRegistrationStatics_Interface;
          deviceId : WinRt.HString;
-         deviceConfigurationData : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -699,13 +699,13 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure ShowNotificationMessageAsync
    (
       deviceName : WinRt.WString;
-      message : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage
+      message : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationMessage
    );
 
    function StartAuthenticationAsync
    (
       deviceId : WinRt.WString;
-      serviceAuthenticationNonce : Windows.Storage.Streams.IBuffer
+      serviceAuthenticationNonce : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorAuthenticationResult;
 
@@ -717,7 +717,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
 
    procedure remove_AuthenticationStageChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetAuthenticationStageInfoAsync
@@ -753,8 +753,8 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    function FinishAuthenticationAsync
    (
       this : in out SecondaryAuthenticationFactorAuthentication;
-      deviceHmac : Windows.Storage.Streams.IBuffer;
-      sessionHmac : Windows.Storage.Streams.IBuffer
+      deviceHmac : WinRt.Windows.Storage.Streams.IBuffer;
+      sessionHmac : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorFinishAuthenticationStatus;
 
@@ -869,7 +869,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure UpdateDevicePresenceAsync
    (
       this : in out SecondaryAuthenticationFactorInfo;
-      presenceState : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence
+      presenceState : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresence
    );
 
    function get_IsAuthenticationSupported
@@ -890,17 +890,17 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    function RequestStartRegisteringDeviceAsync
    (
       deviceId : WinRt.WString;
-      capabilities : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
+      capabilities : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities;
       deviceFriendlyName : WinRt.WString;
       deviceModelNumber : WinRt.WString;
-      deviceKey : Windows.Storage.Streams.IBuffer;
-      mutualAuthenticationKey : Windows.Storage.Streams.IBuffer
+      deviceKey : WinRt.Windows.Storage.Streams.IBuffer;
+      mutualAuthenticationKey : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorRegistrationResult;
 
    function FindAllRegisteredDeviceInfoAsync
    (
-      queryType : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope
+      queryType : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceFindScope
    )
    return WinRt.GenericObject;
 
@@ -912,14 +912,14 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure UpdateDeviceConfigurationDataAsync
    (
       deviceId : WinRt.WString;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function RegisterDevicePresenceMonitoringAsync
    (
       deviceId : WinRt.WString;
       deviceInstancePath : WinRt.WString;
-      monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
+      monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus;
 
@@ -927,10 +927,10 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    (
       deviceId : WinRt.WString;
       deviceInstancePath : WinRt.WString;
-      monitoringMode : Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
+      monitoringMode : WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringMode;
       deviceFriendlyName : WinRt.WString;
       deviceModelNumber : WinRt.WString;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDevicePresenceMonitoringRegistrationStatus;
 
@@ -948,7 +948,7 @@ package WinRt.Windows.Security.Authentication.Identity.Provider is
    procedure FinishRegisteringDeviceAsync
    (
       this : in out SecondaryAuthenticationFactorRegistration;
-      deviceConfigurationData : Windows.Storage.Streams.IBuffer
+      deviceConfigurationData : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure AbortRegisteringDeviceAsync

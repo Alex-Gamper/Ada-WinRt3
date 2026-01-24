@@ -170,7 +170,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAccelerometer := new Windows.Devices.Sensors.IAccelerometer;
+                     Retval.m_IAccelerometer := new WinRt.Windows.Devices.Sensors.IAccelerometer;
                      Retval.m_IAccelerometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -188,7 +188,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+      readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -215,7 +215,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      readingType : Windows.Devices.Sensors.AccelerometerReadingType
+      readingType : WinRt.Windows.Devices.Sensors.AccelerometerReadingType
    )
    return WinRt.Windows.Devices.Sensors.Accelerometer is
       Hr               : WinRt.HResult := S_OK;
@@ -223,7 +223,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Accelerometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IAccelerometerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAccelerometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Accelerometer do
          Hr := RoGetActivationFactory (m_hString, IID_IAccelerometerStatics2'Access , m_Factory'Address);
@@ -233,7 +233,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAccelerometer := new Windows.Devices.Sensors.IAccelerometer;
+            Retval.m_IAccelerometer := new WinRt.Windows.Devices.Sensors.IAccelerometer;
             Retval.m_IAccelerometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -247,7 +247,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Accelerometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IAccelerometerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAccelerometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Accelerometer do
          Hr := RoGetActivationFactory (m_hString, IID_IAccelerometerStatics'Access , m_Factory'Address);
@@ -257,7 +257,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAccelerometer := new Windows.Devices.Sensors.IAccelerometer;
+            Retval.m_IAccelerometer := new WinRt.Windows.Devices.Sensors.IAccelerometer;
             Retval.m_IAccelerometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -275,14 +275,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAccelerometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AccelerometerReading do
          Hr := this.m_IAccelerometer.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAccelerometerReading := new Windows.Devices.Sensors.IAccelerometerReading;
+         Retval.m_IAccelerometerReading := new WinRt.Windows.Devices.Sensors.IAccelerometerReading;
          Retval.m_IAccelerometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -345,7 +345,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAccelerometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -357,7 +357,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Accelerometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -378,7 +378,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAccelerometer.all.add_Shaken (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -390,7 +390,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_Shaken
    (
       this : in out Accelerometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -429,7 +429,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Accelerometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -454,7 +454,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAccelerometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAccelerometer_Interface, WinRt.Windows.Devices.Sensors.IAccelerometer2, WinRt.Windows.Devices.Sensors.IID_IAccelerometer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAccelerometer.all);
@@ -536,7 +536,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAccelerometer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.AccelerometerReadingType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.AccelerometerReadingType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAccelerometer_Interface, WinRt.Windows.Devices.Sensors.IAccelerometer4, WinRt.Windows.Devices.Sensors.IID_IAccelerometer4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAccelerometer.all);
@@ -557,7 +557,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAccelerometer5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometerDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAccelerometerDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAccelerometer_Interface, WinRt.Windows.Devices.Sensors.IAccelerometer5, WinRt.Windows.Devices.Sensors.IID_IAccelerometer5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AccelerometerDataThreshold do
@@ -567,7 +567,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAccelerometerDataThreshold := new Windows.Devices.Sensors.IAccelerometerDataThreshold;
+         Retval.m_IAccelerometerDataThreshold := new WinRt.Windows.Devices.Sensors.IAccelerometerDataThreshold;
          Retval.m_IAccelerometerDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -722,7 +722,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAccelerometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -791,7 +791,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAccelerometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAccelerometerReading_Interface, WinRt.Windows.Devices.Sensors.IAccelerometerReading2, WinRt.Windows.Devices.Sensors.IID_IAccelerometerReading2'Unchecked_Access);
    begin
@@ -815,7 +815,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAccelerometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAccelerometerReading_Interface, WinRt.Windows.Devices.Sensors.IAccelerometerReading2, WinRt.Windows.Devices.Sensors.IID_IAccelerometerReading2'Unchecked_Access);
    begin
@@ -861,14 +861,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAccelerometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAccelerometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AccelerometerReading do
          Hr := this.m_IAccelerometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAccelerometerReading := new Windows.Devices.Sensors.IAccelerometerReading;
+         Retval.m_IAccelerometerReading := new WinRt.Windows.Devices.Sensors.IAccelerometerReading;
          Retval.m_IAccelerometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -904,7 +904,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAccelerometerShakenEventArgs.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -991,7 +991,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IActivitySensor := new Windows.Devices.Sensors.IActivitySensor;
+                     Retval.m_IActivitySensor := new WinRt.Windows.Devices.Sensors.IActivitySensor;
                      Retval.m_IActivitySensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1089,7 +1089,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IActivitySensor := new Windows.Devices.Sensors.IActivitySensor;
+                     Retval.m_IActivitySensor := new WinRt.Windows.Devices.Sensors.IActivitySensor;
                      Retval.m_IActivitySensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1107,7 +1107,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync
    (
-      fromTime : Windows.Foundation.DateTime
+      fromTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1177,8 +1177,8 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync
    (
-      fromTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      fromTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1302,7 +1302,7 @@ package body WinRt.Windows.Devices.Sensors is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IActivitySensorReading := new Windows.Devices.Sensors.IActivitySensorReading;
+                  Retval.m_IActivitySensorReading := new WinRt.Windows.Devices.Sensors.IActivitySensorReading;
                   Retval.m_IActivitySensorReading.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1323,7 +1323,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ActivityType.Kind;
    begin
       Hr := this.m_IActivitySensor.all.get_SubscribedActivities (m_ComRetVal'Access);
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ActivityType.Kind;
    begin
       Hr := this.m_IActivitySensor.all.get_SupportedActivities (m_ComRetVal'Access);
@@ -1418,7 +1418,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IActivitySensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1430,7 +1430,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out ActivitySensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1473,7 +1473,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IActivitySensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1490,7 +1490,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ActivityType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ActivityType;
    begin
       Hr := this.m_IActivitySensorReading.all.get_Activity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1507,7 +1507,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ActivitySensorReadingConfidence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ActivitySensorReadingConfidence;
    begin
       Hr := this.m_IActivitySensorReading.all.get_Confidence (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1547,14 +1547,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IActivitySensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IActivitySensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ActivitySensorReading do
          Hr := this.m_IActivitySensorReadingChangeReport.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivitySensorReading := new Windows.Devices.Sensors.IActivitySensorReading;
+         Retval.m_IActivitySensorReading := new WinRt.Windows.Devices.Sensors.IActivitySensorReading;
          Retval.m_IActivitySensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -1590,14 +1590,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IActivitySensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IActivitySensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ActivitySensorReading do
          Hr := this.m_IActivitySensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivitySensorReading := new Windows.Devices.Sensors.IActivitySensorReading;
+         Retval.m_IActivitySensorReading := new WinRt.Windows.Devices.Sensors.IActivitySensorReading;
          Retval.m_IActivitySensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -1633,7 +1633,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IActivitySensorReadingChangeReport.Kind;
    begin
       Hr := this.m_IActivitySensorTriggerDetails.all.ReadReports (m_ComRetVal'Access);
@@ -1730,7 +1730,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Altimeter");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IAltimeterStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAltimeter;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAltimeter;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Altimeter do
          Hr := RoGetActivationFactory (m_hString, IID_IAltimeterStatics'Access , m_Factory'Address);
@@ -1740,7 +1740,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAltimeter := new Windows.Devices.Sensors.IAltimeter;
+            Retval.m_IAltimeter := new WinRt.Windows.Devices.Sensors.IAltimeter;
             Retval.m_IAltimeter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1758,14 +1758,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAltimeterReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAltimeterReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AltimeterReading do
          Hr := this.m_IAltimeter.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAltimeterReading := new Windows.Devices.Sensors.IAltimeterReading;
+         Retval.m_IAltimeterReading := new WinRt.Windows.Devices.Sensors.IAltimeterReading;
          Retval.m_IAltimeterReading.all := m_ComRetVal;
       end return;
    end;
@@ -1848,7 +1848,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAltimeter.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1860,7 +1860,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Altimeter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1964,7 +1964,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAltimeterReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1999,7 +1999,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAltimeterReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAltimeterReading_Interface, WinRt.Windows.Devices.Sensors.IAltimeterReading2, WinRt.Windows.Devices.Sensors.IID_IAltimeterReading2'Unchecked_Access);
    begin
@@ -2023,7 +2023,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IAltimeterReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IAltimeterReading_Interface, WinRt.Windows.Devices.Sensors.IAltimeterReading2, WinRt.Windows.Devices.Sensors.IID_IAltimeterReading2'Unchecked_Access);
    begin
@@ -2069,14 +2069,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAltimeterReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAltimeterReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AltimeterReading do
          Hr := this.m_IAltimeterReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAltimeterReading := new Windows.Devices.Sensors.IAltimeterReading;
+         Retval.m_IAltimeterReading := new WinRt.Windows.Devices.Sensors.IAltimeterReading;
          Retval.m_IAltimeterReading.all := m_ComRetVal;
       end return;
    end;
@@ -2111,7 +2111,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Barometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IBarometerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IBarometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IBarometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Barometer do
          Hr := RoGetActivationFactory (m_hString, IID_IBarometerStatics'Access , m_Factory'Address);
@@ -2121,7 +2121,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBarometer := new Windows.Devices.Sensors.IBarometer;
+            Retval.m_IBarometer := new WinRt.Windows.Devices.Sensors.IBarometer;
             Retval.m_IBarometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2187,7 +2187,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IBarometer := new Windows.Devices.Sensors.IBarometer;
+                     Retval.m_IBarometer := new WinRt.Windows.Devices.Sensors.IBarometer;
                      Retval.m_IBarometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2238,14 +2238,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IBarometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IBarometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.BarometerReading do
          Hr := this.m_IBarometer.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBarometerReading := new Windows.Devices.Sensors.IBarometerReading;
+         Retval.m_IBarometerReading := new WinRt.Windows.Devices.Sensors.IBarometerReading;
          Retval.m_IBarometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -2328,7 +2328,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBarometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2340,7 +2340,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Barometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2422,7 +2422,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IBarometer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IBarometerDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IBarometerDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IBarometer_Interface, WinRt.Windows.Devices.Sensors.IBarometer3, WinRt.Windows.Devices.Sensors.IID_IBarometer3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.BarometerDataThreshold do
@@ -2432,7 +2432,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBarometerDataThreshold := new Windows.Devices.Sensors.IBarometerDataThreshold;
+         Retval.m_IBarometerDataThreshold := new WinRt.Windows.Devices.Sensors.IBarometerDataThreshold;
          Retval.m_IBarometerDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -2523,7 +2523,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IBarometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2558,7 +2558,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IBarometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IBarometerReading_Interface, WinRt.Windows.Devices.Sensors.IBarometerReading2, WinRt.Windows.Devices.Sensors.IID_IBarometerReading2'Unchecked_Access);
    begin
@@ -2582,7 +2582,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IBarometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IBarometerReading_Interface, WinRt.Windows.Devices.Sensors.IBarometerReading2, WinRt.Windows.Devices.Sensors.IID_IBarometerReading2'Unchecked_Access);
    begin
@@ -2628,14 +2628,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IBarometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IBarometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.BarometerReading do
          Hr := this.m_IBarometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBarometerReading := new Windows.Devices.Sensors.IBarometerReading;
+         Retval.m_IBarometerReading := new WinRt.Windows.Devices.Sensors.IBarometerReading;
          Retval.m_IBarometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -2746,7 +2746,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ICompass := new Windows.Devices.Sensors.ICompass;
+                     Retval.m_ICompass := new WinRt.Windows.Devices.Sensors.ICompass;
                      Retval.m_ICompass.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2769,7 +2769,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Compass");
       m_Factory        : access WinRt.Windows.Devices.Sensors.ICompassStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ICompass;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Compass do
          Hr := RoGetActivationFactory (m_hString, IID_ICompassStatics'Access , m_Factory'Address);
@@ -2779,7 +2779,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICompass := new Windows.Devices.Sensors.ICompass;
+            Retval.m_ICompass := new WinRt.Windows.Devices.Sensors.ICompass;
             Retval.m_ICompass.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2797,14 +2797,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompassReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ICompassReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.CompassReading do
          Hr := this.m_ICompass.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompassReading := new Windows.Devices.Sensors.ICompassReading;
+         Retval.m_ICompassReading := new WinRt.Windows.Devices.Sensors.ICompassReading;
          Retval.m_ICompassReading.all := m_ComRetVal;
       end return;
    end;
@@ -2867,7 +2867,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICompass.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2879,7 +2879,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Compass;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2918,7 +2918,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Compass;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2943,7 +2943,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ICompass2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ICompass_Interface, WinRt.Windows.Devices.Sensors.ICompass2, WinRt.Windows.Devices.Sensors.IID_ICompass2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompass.all);
@@ -3025,7 +3025,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ICompass4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompassDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ICompassDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ICompass_Interface, WinRt.Windows.Devices.Sensors.ICompass4, WinRt.Windows.Devices.Sensors.IID_ICompass4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.CompassDataThreshold do
@@ -3035,7 +3035,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompassDataThreshold := new Windows.Devices.Sensors.ICompassDataThreshold;
+         Retval.m_ICompassDataThreshold := new WinRt.Windows.Devices.Sensors.ICompassDataThreshold;
          Retval.m_ICompassDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -3126,7 +3126,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICompassReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3160,7 +3160,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_ICompassReading.all.get_HeadingTrueNorth (m_ComRetVal'Access);
@@ -3181,7 +3181,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ICompassReadingHeadingAccuracy := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.MagnetometerAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.MagnetometerAccuracy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ICompassReading_Interface, WinRt.Windows.Devices.Sensors.ICompassReadingHeadingAccuracy, WinRt.Windows.Devices.Sensors.IID_ICompassReadingHeadingAccuracy'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICompassReading.all);
@@ -3202,7 +3202,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ICompassReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ICompassReading_Interface, WinRt.Windows.Devices.Sensors.ICompassReading2, WinRt.Windows.Devices.Sensors.IID_ICompassReading2'Unchecked_Access);
    begin
@@ -3226,7 +3226,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ICompassReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ICompassReading_Interface, WinRt.Windows.Devices.Sensors.ICompassReading2, WinRt.Windows.Devices.Sensors.IID_ICompassReading2'Unchecked_Access);
    begin
@@ -3272,14 +3272,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ICompassReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ICompassReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.CompassReading do
          Hr := this.m_ICompassReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICompassReading := new Windows.Devices.Sensors.ICompassReading;
+         Retval.m_ICompassReading := new WinRt.Windows.Devices.Sensors.ICompassReading;
          Retval.m_ICompassReading.all := m_ComRetVal;
       end return;
    end;
@@ -3315,7 +3315,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanEngagement;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.HumanEngagement;
    begin
       Hr := this.m_IDetectedPerson.all.get_Engagement (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3332,7 +3332,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IDetectedPerson.all.get_DistanceInMillimeters (m_ComRetVal'Access);
@@ -3352,14 +3352,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHeadOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHeadOrientation;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HeadOrientation do
          Hr := this.m_IDetectedPerson.all.get_HeadOrientation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHeadOrientation := new Windows.Devices.Sensors.IHeadOrientation;
+         Retval.m_IHeadOrientation := new WinRt.Windows.Devices.Sensors.IHeadOrientation;
          Retval.m_IHeadOrientation.all := m_ComRetVal;
       end return;
    end;
@@ -3372,14 +3372,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHeadPosition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHeadPosition;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HeadPosition do
          Hr := this.m_IDetectedPerson.all.get_HeadPosition (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHeadPosition := new Windows.Devices.Sensors.IHeadPosition;
+         Retval.m_IHeadPosition := new WinRt.Windows.Devices.Sensors.IHeadPosition;
          Retval.m_IHeadPosition.all := m_ComRetVal;
       end return;
    end;
@@ -3392,7 +3392,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IDetectedPerson.all.get_PersonId (m_ComRetVal'Access);
@@ -3510,7 +3510,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
+                     Retval.m_IGyrometer := new WinRt.Windows.Devices.Sensors.IGyrometer;
                      Retval.m_IGyrometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -3533,7 +3533,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Gyrometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IGyrometerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IGyrometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Gyrometer do
          Hr := RoGetActivationFactory (m_hString, IID_IGyrometerStatics'Access , m_Factory'Address);
@@ -3543,7 +3543,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGyrometer := new Windows.Devices.Sensors.IGyrometer;
+            Retval.m_IGyrometer := new WinRt.Windows.Devices.Sensors.IGyrometer;
             Retval.m_IGyrometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3561,14 +3561,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IGyrometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.GyrometerReading do
          Hr := this.m_IGyrometer.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGyrometerReading := new Windows.Devices.Sensors.IGyrometerReading;
+         Retval.m_IGyrometerReading := new WinRt.Windows.Devices.Sensors.IGyrometerReading;
          Retval.m_IGyrometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -3631,7 +3631,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGyrometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3643,7 +3643,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Gyrometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3682,7 +3682,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Gyrometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3707,7 +3707,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IGyrometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IGyrometer_Interface, WinRt.Windows.Devices.Sensors.IGyrometer2, WinRt.Windows.Devices.Sensors.IID_IGyrometer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGyrometer.all);
@@ -3789,7 +3789,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IGyrometer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometerDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IGyrometerDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IGyrometer_Interface, WinRt.Windows.Devices.Sensors.IGyrometer4, WinRt.Windows.Devices.Sensors.IID_IGyrometer4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.GyrometerDataThreshold do
@@ -3799,7 +3799,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGyrometerDataThreshold := new Windows.Devices.Sensors.IGyrometerDataThreshold;
+         Retval.m_IGyrometerDataThreshold := new WinRt.Windows.Devices.Sensors.IGyrometerDataThreshold;
          Retval.m_IGyrometerDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -3954,7 +3954,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGyrometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4023,7 +4023,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IGyrometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IGyrometerReading_Interface, WinRt.Windows.Devices.Sensors.IGyrometerReading2, WinRt.Windows.Devices.Sensors.IID_IGyrometerReading2'Unchecked_Access);
    begin
@@ -4047,7 +4047,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IGyrometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IGyrometerReading_Interface, WinRt.Windows.Devices.Sensors.IGyrometerReading2, WinRt.Windows.Devices.Sensors.IID_IGyrometerReading2'Unchecked_Access);
    begin
@@ -4093,14 +4093,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IGyrometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IGyrometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.GyrometerReading do
          Hr := this.m_IGyrometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGyrometerReading := new Windows.Devices.Sensors.IGyrometerReading;
+         Retval.m_IGyrometerReading := new WinRt.Windows.Devices.Sensors.IGyrometerReading;
          Retval.m_IGyrometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -4136,7 +4136,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHeadOrientation.all.get_RollInDegrees (m_ComRetVal'Access);
@@ -4156,7 +4156,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHeadOrientation.all.get_PitchInDegrees (m_ComRetVal'Access);
@@ -4176,7 +4176,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHeadOrientation.all.get_YawInDegrees (m_ComRetVal'Access);
@@ -4219,7 +4219,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHeadPosition.all.get_AzimuthInDegrees (m_ComRetVal'Access);
@@ -4239,7 +4239,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IHeadPosition.all.get_AltitudeInDegrees (m_ComRetVal'Access);
@@ -4282,7 +4282,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IHingeAngleReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4316,7 +4316,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IHingeAngleReading.all.get_Properties (m_ComRetVal'Access);
@@ -4430,7 +4430,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHingeAngleSensor := new Windows.Devices.Sensors.IHingeAngleSensor;
+                     Retval.m_IHingeAngleSensor := new WinRt.Windows.Devices.Sensors.IHingeAngleSensor;
                      Retval.m_IHingeAngleSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4506,7 +4506,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHingeAngleSensor := new Windows.Devices.Sensors.IHingeAngleSensor;
+                     Retval.m_IHingeAngleSensor := new WinRt.Windows.Devices.Sensors.IHingeAngleSensor;
                      Retval.m_IHingeAngleSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4582,7 +4582,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHingeAngleSensor := new Windows.Devices.Sensors.IHingeAngleSensor;
+                     Retval.m_IHingeAngleSensor := new WinRt.Windows.Devices.Sensors.IHingeAngleSensor;
                      Retval.m_IHingeAngleSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4654,7 +4654,7 @@ package body WinRt.Windows.Devices.Sensors is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHingeAngleReading := new Windows.Devices.Sensors.IHingeAngleReading;
+                  Retval.m_IHingeAngleReading := new WinRt.Windows.Devices.Sensors.IHingeAngleReading;
                   Retval.m_IHingeAngleReading.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4745,7 +4745,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHingeAngleSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4757,7 +4757,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out HingeAngleSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4800,14 +4800,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHingeAngleReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHingeAngleReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HingeAngleReading do
          Hr := this.m_IHingeAngleSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHingeAngleReading := new Windows.Devices.Sensors.IHingeAngleReading;
+         Retval.m_IHingeAngleReading := new WinRt.Windows.Devices.Sensors.IHingeAngleReading;
          Retval.m_IHingeAngleReading.all := m_ComRetVal;
       end return;
    end;
@@ -4863,7 +4863,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceFeatures.all.get_SupportedWakeOrLockDistancesInMillimeters (m_ComRetVal'Access);
@@ -5001,7 +5001,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
       HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
@@ -5012,7 +5012,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+            Retval.m_IHumanPresenceSensor := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
             Retval.m_IHumanPresenceSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5027,7 +5027,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSensorStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensor do
          Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSensorStatics2'Access , m_Factory'Address);
@@ -5037,7 +5037,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+            Retval.m_IHumanPresenceSensor := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
             Retval.m_IHumanPresenceSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5127,7 +5127,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+                     Retval.m_IHumanPresenceSensor := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
                      Retval.m_IHumanPresenceSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5198,7 +5198,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHumanPresenceSensor := new Windows.Devices.Sensors.IHumanPresenceSensor;
+                     Retval.m_IHumanPresenceSensor := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensor;
                      Retval.m_IHumanPresenceSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5244,7 +5244,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSensor.all.get_MaxDetectableDistanceInMillimeters (m_ComRetVal'Access);
@@ -5264,7 +5264,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSensor.all.get_MinDetectableDistanceInMillimeters (m_ComRetVal'Access);
@@ -5284,14 +5284,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading do
          Hr := this.m_IHumanPresenceSensor.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHumanPresenceSensorReading := new Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         Retval.m_IHumanPresenceSensorReading := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading;
          Retval.m_IHumanPresenceSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -5305,7 +5305,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHumanPresenceSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5317,7 +5317,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out HumanPresenceSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5401,7 +5401,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
    begin
@@ -5425,7 +5425,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
    begin
@@ -5449,7 +5449,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
    begin
@@ -5473,7 +5473,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensor_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensor3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensor3'Unchecked_Access);
    begin
@@ -5519,7 +5519,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IHumanPresenceSensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5536,7 +5536,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanPresence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.HumanPresence;
    begin
       Hr := this.m_IHumanPresenceSensorReading.all.get_Presence (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5553,7 +5553,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanEngagement;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.HumanEngagement;
    begin
       Hr := this.m_IHumanPresenceSensorReading.all.get_Engagement (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5570,7 +5570,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSensorReading.all.get_DistanceInMillimeters (m_ComRetVal'Access);
@@ -5591,7 +5591,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading2'Unchecked_Access);
    begin
@@ -5615,7 +5615,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.HumanPresence;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.HumanPresence;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHumanPresenceSensorReading.all);
@@ -5636,7 +5636,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDetectedPerson.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReading3'Unchecked_Access);
    begin
@@ -5682,14 +5682,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSensorReading do
          Hr := this.m_IHumanPresenceSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHumanPresenceSensorReading := new Windows.Devices.Sensors.IHumanPresenceSensorReading;
+         Retval.m_IHumanPresenceSensorReading := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReading;
          Retval.m_IHumanPresenceSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -5720,13 +5720,13 @@ package body WinRt.Windows.Devices.Sensors is
    function Constructor return HumanPresenceSensorReadingUpdate is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensorReadingUpdate");
-      m_ComRetVal  : aliased Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
    begin
       return RetVal : HumanPresenceSensorReadingUpdate do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IHumanPresenceSensorReadingUpdate := new Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
+            Retval.m_IHumanPresenceSensorReadingUpdate := new WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
             Retval.m_IHumanPresenceSensorReadingUpdate.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5744,7 +5744,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Timestamp (m_ComRetVal'Access);
@@ -5779,7 +5779,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_HumanPresence.Kind;
    begin
       Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Presence (m_ComRetVal'Access);
@@ -5814,7 +5814,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_HumanEngagement.Kind;
    begin
       Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_Engagement (m_ComRetVal'Access);
@@ -5849,7 +5849,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSensorReadingUpdate.all.get_DistanceInMillimeters (m_ComRetVal'Access);
@@ -5885,7 +5885,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_HumanPresence.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSensorReadingUpdate2'Unchecked_Access);
    begin
@@ -5997,7 +5997,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHumanPresenceSettings := new Windows.Devices.Sensors.IHumanPresenceSettings;
+                     Retval.m_IHumanPresenceSettings := new WinRt.Windows.Devices.Sensors.IHumanPresenceSettings;
                      Retval.m_IHumanPresenceSettings.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -6019,7 +6019,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceSettings;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
@@ -6029,7 +6029,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHumanPresenceSettings := new Windows.Devices.Sensors.IHumanPresenceSettings;
+            Retval.m_IHumanPresenceSettings := new WinRt.Windows.Devices.Sensors.IHumanPresenceSettings;
             Retval.m_IHumanPresenceSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6038,7 +6038,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    procedure UpdateSettingsAsync
    (
-      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+      settings : WinRt.Windows.Devices.Sensors.HumanPresenceSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6087,7 +6087,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    procedure UpdateSettings
    (
-      settings : Windows.Devices.Sensors.HumanPresenceSettings'Class
+      settings : WinRt.Windows.Devices.Sensors.HumanPresenceSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6165,7 +6165,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IHumanPresenceFeatures := new Windows.Devices.Sensors.IHumanPresenceFeatures;
+                     Retval.m_IHumanPresenceFeatures := new WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures;
                      Retval.m_IHumanPresenceFeatures.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -6191,7 +6191,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IHumanPresenceFeatures;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures;
       HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.HumanPresenceFeatures do
@@ -6202,7 +6202,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHumanPresenceFeatures := new Windows.Devices.Sensors.IHumanPresenceFeatures;
+            Retval.m_IHumanPresenceFeatures := new WinRt.Windows.Devices.Sensors.IHumanPresenceFeatures;
             Retval.m_IHumanPresenceFeatures.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6217,7 +6217,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -6241,7 +6241,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSettings");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IHumanPresenceSettingsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IHumanPresenceSettingsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -6257,7 +6257,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    procedure remove_SettingsChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6356,7 +6356,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSettings.all.get_WakeOnApproachDistanceInMillimeters (m_ComRetVal'Access);
@@ -6423,7 +6423,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IHumanPresenceSettings.all.get_LockOnLeaveDistanceInMillimeters (m_ComRetVal'Access);
@@ -6458,7 +6458,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHumanPresenceSettings.all.get_LockOnLeaveTimeout (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6470,7 +6470,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_LockOnLeaveTimeout
    (
       this : in out HumanPresenceSettings;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6563,7 +6563,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IWakeOnApproachOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IWakeOnApproachOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.WakeOnApproachOptions do
@@ -6573,7 +6573,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWakeOnApproachOptions := new Windows.Devices.Sensors.IWakeOnApproachOptions;
+         Retval.m_IWakeOnApproachOptions := new WinRt.Windows.Devices.Sensors.IWakeOnApproachOptions;
          Retval.m_IWakeOnApproachOptions.all := m_ComRetVal;
       end return;
    end;
@@ -6587,7 +6587,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IAdaptiveDimmingOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IAdaptiveDimmingOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.AdaptiveDimmingOptions do
@@ -6597,7 +6597,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAdaptiveDimmingOptions := new Windows.Devices.Sensors.IAdaptiveDimmingOptions;
+         Retval.m_IAdaptiveDimmingOptions := new WinRt.Windows.Devices.Sensors.IAdaptiveDimmingOptions;
          Retval.m_IAdaptiveDimmingOptions.all := m_ComRetVal;
       end return;
    end;
@@ -6611,7 +6611,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILockOnLeaveOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ILockOnLeaveOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings2, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.LockOnLeaveOptions do
@@ -6621,7 +6621,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILockOnLeaveOptions := new Windows.Devices.Sensors.ILockOnLeaveOptions;
+         Retval.m_ILockOnLeaveOptions := new WinRt.Windows.Devices.Sensors.ILockOnLeaveOptions;
          Retval.m_ILockOnLeaveOptions.all := m_ComRetVal;
       end return;
    end;
@@ -6675,7 +6675,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOnlookerDetectionOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOnlookerDetectionOptions;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IHumanPresenceSettings_Interface, WinRt.Windows.Devices.Sensors.IHumanPresenceSettings3, WinRt.Windows.Devices.Sensors.IID_IHumanPresenceSettings3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OnlookerDetectionOptions do
@@ -6685,7 +6685,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOnlookerDetectionOptions := new Windows.Devices.Sensors.IOnlookerDetectionOptions;
+         Retval.m_IOnlookerDetectionOptions := new WinRt.Windows.Devices.Sensors.IOnlookerDetectionOptions;
          Retval.m_IOnlookerDetectionOptions.all := m_ComRetVal;
       end return;
    end;
@@ -6720,7 +6720,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
          Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics'Access , m_Factory'Address);
@@ -6730,7 +6730,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer := new WinRt.Windows.Devices.Sensors.IInclinometer;
             Retval.m_IInclinometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6739,7 +6739,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+      sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.Windows.Devices.Sensors.Inclinometer is
       Hr               : WinRt.HResult := S_OK;
@@ -6747,7 +6747,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
          Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics3'Access , m_Factory'Address);
@@ -6757,7 +6757,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer := new WinRt.Windows.Devices.Sensors.IInclinometer;
             Retval.m_IInclinometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6766,7 +6766,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -6850,7 +6850,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+                     Retval.m_IInclinometer := new WinRt.Windows.Devices.Sensors.IInclinometer;
                      Retval.m_IInclinometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -6873,7 +6873,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Inclinometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IInclinometerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Inclinometer do
          Hr := RoGetActivationFactory (m_hString, IID_IInclinometerStatics2'Access , m_Factory'Address);
@@ -6883,7 +6883,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IInclinometer := new Windows.Devices.Sensors.IInclinometer;
+            Retval.m_IInclinometer := new WinRt.Windows.Devices.Sensors.IInclinometer;
             Retval.m_IInclinometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6901,14 +6901,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.InclinometerReading do
          Hr := this.m_IInclinometer.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInclinometerReading := new Windows.Devices.Sensors.IInclinometerReading;
+         Retval.m_IInclinometerReading := new WinRt.Windows.Devices.Sensors.IInclinometerReading;
          Retval.m_IInclinometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -6971,7 +6971,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IInclinometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6983,7 +6983,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Inclinometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7022,7 +7022,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Inclinometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7047,7 +7047,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometer_Interface, WinRt.Windows.Devices.Sensors.IInclinometer2, WinRt.Windows.Devices.Sensors.IID_IInclinometer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInclinometer.all);
@@ -7068,7 +7068,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.SensorReadingType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.SensorReadingType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometer_Interface, WinRt.Windows.Devices.Sensors.IInclinometer2, WinRt.Windows.Devices.Sensors.IID_IInclinometer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInclinometer.all);
@@ -7150,7 +7150,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometerDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometerDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometer_Interface, WinRt.Windows.Devices.Sensors.IInclinometer4, WinRt.Windows.Devices.Sensors.IID_IInclinometer4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.InclinometerDataThreshold do
@@ -7160,7 +7160,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInclinometerDataThreshold := new Windows.Devices.Sensors.IInclinometerDataThreshold;
+         Retval.m_IInclinometerDataThreshold := new WinRt.Windows.Devices.Sensors.IInclinometerDataThreshold;
          Retval.m_IInclinometerDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -7315,7 +7315,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IInclinometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7384,7 +7384,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometerReadingYawAccuracy := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.MagnetometerAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.MagnetometerAccuracy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometerReading_Interface, WinRt.Windows.Devices.Sensors.IInclinometerReadingYawAccuracy, WinRt.Windows.Devices.Sensors.IID_IInclinometerReadingYawAccuracy'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IInclinometerReading.all);
@@ -7405,7 +7405,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometerReading_Interface, WinRt.Windows.Devices.Sensors.IInclinometerReading2, WinRt.Windows.Devices.Sensors.IID_IInclinometerReading2'Unchecked_Access);
    begin
@@ -7429,7 +7429,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IInclinometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IInclinometerReading_Interface, WinRt.Windows.Devices.Sensors.IInclinometerReading2, WinRt.Windows.Devices.Sensors.IID_IInclinometerReading2'Unchecked_Access);
    begin
@@ -7475,14 +7475,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IInclinometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IInclinometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.InclinometerReading do
          Hr := this.m_IInclinometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IInclinometerReading := new Windows.Devices.Sensors.IInclinometerReading;
+         Retval.m_IInclinometerReading := new WinRt.Windows.Devices.Sensors.IInclinometerReading;
          Retval.m_IInclinometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -7517,7 +7517,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.LightSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.ILightSensorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ILightSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.LightSensor do
          Hr := RoGetActivationFactory (m_hString, IID_ILightSensorStatics'Access , m_Factory'Address);
@@ -7527,7 +7527,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ILightSensor := new Windows.Devices.Sensors.ILightSensor;
+            Retval.m_ILightSensor := new WinRt.Windows.Devices.Sensors.ILightSensor;
             Retval.m_ILightSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7617,7 +7617,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ILightSensor := new Windows.Devices.Sensors.ILightSensor;
+                     Retval.m_ILightSensor := new WinRt.Windows.Devices.Sensors.ILightSensor;
                      Retval.m_ILightSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -7644,14 +7644,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ILightSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.LightSensorReading do
          Hr := this.m_ILightSensor.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILightSensorReading := new Windows.Devices.Sensors.ILightSensorReading;
+         Retval.m_ILightSensorReading := new WinRt.Windows.Devices.Sensors.ILightSensorReading;
          Retval.m_ILightSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -7714,7 +7714,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILightSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7726,7 +7726,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out LightSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7832,7 +7832,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensor3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensorDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensor_Interface, WinRt.Windows.Devices.Sensors.ILightSensor3, WinRt.Windows.Devices.Sensors.IID_ILightSensor3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.LightSensorDataThreshold do
@@ -7842,7 +7842,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILightSensorDataThreshold := new Windows.Devices.Sensors.ILightSensorDataThreshold;
+         Retval.m_ILightSensorDataThreshold := new WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold;
          Retval.m_ILightSensorDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -7964,7 +7964,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.LightSensorChromaticity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.LightSensorChromaticity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold_Interface, WinRt.Windows.Devices.Sensors.ILightSensorDataThreshold2, WinRt.Windows.Devices.Sensors.IID_ILightSensorDataThreshold2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILightSensorDataThreshold.all);
@@ -7979,7 +7979,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_Chromaticity
    (
       this : in out LightSensorDataThreshold;
-      value : Windows.Devices.Sensors.LightSensorChromaticity
+      value : WinRt.Windows.Devices.Sensors.LightSensorChromaticity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8026,7 +8026,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ILightSensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8061,7 +8061,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorReading_Interface, WinRt.Windows.Devices.Sensors.ILightSensorReading2, WinRt.Windows.Devices.Sensors.IID_ILightSensorReading2'Unchecked_Access);
    begin
@@ -8085,7 +8085,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorReading_Interface, WinRt.Windows.Devices.Sensors.ILightSensorReading2, WinRt.Windows.Devices.Sensors.IID_ILightSensorReading2'Unchecked_Access);
    begin
@@ -8109,7 +8109,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ILightSensorReading3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.LightSensorChromaticity;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.LightSensorChromaticity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ILightSensorReading_Interface, WinRt.Windows.Devices.Sensors.ILightSensorReading3, WinRt.Windows.Devices.Sensors.IID_ILightSensorReading3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILightSensorReading.all);
@@ -8152,14 +8152,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ILightSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ILightSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.LightSensorReading do
          Hr := this.m_ILightSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILightSensorReading := new Windows.Devices.Sensors.ILightSensorReading;
+         Retval.m_ILightSensorReading := new WinRt.Windows.Devices.Sensors.ILightSensorReading;
          Retval.m_ILightSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -8249,7 +8249,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Magnetometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IMagnetometerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometer;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IMagnetometer;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Magnetometer do
          Hr := RoGetActivationFactory (m_hString, IID_IMagnetometerStatics'Access , m_Factory'Address);
@@ -8259,7 +8259,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMagnetometer := new Windows.Devices.Sensors.IMagnetometer;
+            Retval.m_IMagnetometer := new WinRt.Windows.Devices.Sensors.IMagnetometer;
             Retval.m_IMagnetometer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -8349,7 +8349,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMagnetometer := new Windows.Devices.Sensors.IMagnetometer;
+                     Retval.m_IMagnetometer := new WinRt.Windows.Devices.Sensors.IMagnetometer;
                      Retval.m_IMagnetometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -8376,14 +8376,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IMagnetometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.MagnetometerReading do
          Hr := this.m_IMagnetometer.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMagnetometerReading := new Windows.Devices.Sensors.IMagnetometerReading;
+         Retval.m_IMagnetometerReading := new WinRt.Windows.Devices.Sensors.IMagnetometerReading;
          Retval.m_IMagnetometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -8446,7 +8446,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMagnetometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8458,7 +8458,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Magnetometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8497,7 +8497,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out Magnetometer;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8522,7 +8522,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IMagnetometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IMagnetometer_Interface, WinRt.Windows.Devices.Sensors.IMagnetometer2, WinRt.Windows.Devices.Sensors.IID_IMagnetometer2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMagnetometer.all);
@@ -8604,7 +8604,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IMagnetometer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometerDataThreshold;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IMagnetometerDataThreshold;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IMagnetometer_Interface, WinRt.Windows.Devices.Sensors.IMagnetometer4, WinRt.Windows.Devices.Sensors.IID_IMagnetometer4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.MagnetometerDataThreshold do
@@ -8614,7 +8614,7 @@ package body WinRt.Windows.Devices.Sensors is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMagnetometerDataThreshold := new Windows.Devices.Sensors.IMagnetometerDataThreshold;
+         Retval.m_IMagnetometerDataThreshold := new WinRt.Windows.Devices.Sensors.IMagnetometerDataThreshold;
          Retval.m_IMagnetometerDataThreshold.all := m_ComRetVal;
       end return;
    end;
@@ -8769,7 +8769,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IMagnetometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8837,7 +8837,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.MagnetometerAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.MagnetometerAccuracy;
    begin
       Hr := this.m_IMagnetometerReading.all.get_DirectionalAccuracy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8855,7 +8855,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IMagnetometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IMagnetometerReading_Interface, WinRt.Windows.Devices.Sensors.IMagnetometerReading2, WinRt.Windows.Devices.Sensors.IID_IMagnetometerReading2'Unchecked_Access);
    begin
@@ -8879,7 +8879,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IMagnetometerReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IMagnetometerReading_Interface, WinRt.Windows.Devices.Sensors.IMagnetometerReading2, WinRt.Windows.Devices.Sensors.IID_IMagnetometerReading2'Unchecked_Access);
    begin
@@ -8925,14 +8925,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IMagnetometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IMagnetometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.MagnetometerReading do
          Hr := this.m_IMagnetometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMagnetometerReading := new Windows.Devices.Sensors.IMagnetometerReading;
+         Retval.m_IMagnetometerReading := new WinRt.Windows.Devices.Sensors.IMagnetometerReading;
          Retval.m_IMagnetometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -8968,7 +8968,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.OnlookerDetectionAction;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.OnlookerDetectionAction;
    begin
       Hr := this.m_IOnlookerDetectionOptions.all.get_Action (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8980,7 +8980,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_Action
    (
       this : in out OnlookerDetectionOptions;
-      value : Windows.Devices.Sensors.OnlookerDetectionAction
+      value : WinRt.Windows.Devices.Sensors.OnlookerDetectionAction
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9000,7 +9000,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.OnlookerDetectionBackOnMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode;
    begin
       Hr := this.m_IOnlookerDetectionOptions.all.get_BackOnMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9012,7 +9012,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_BackOnMode
    (
       this : in out OnlookerDetectionOptions;
-      value : Windows.Devices.Sensors.OnlookerDetectionBackOnMode
+      value : WinRt.Windows.Devices.Sensors.OnlookerDetectionBackOnMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9049,7 +9049,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      sensorReadingtype : Windows.Devices.Sensors.SensorReadingType
+      sensorReadingtype : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.Windows.Devices.Sensors.OrientationSensor is
       Hr               : WinRt.HResult := S_OK;
@@ -9057,7 +9057,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
          Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
@@ -9067,7 +9067,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor := new WinRt.Windows.Devices.Sensors.IOrientationSensor;
             Retval.m_IOrientationSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9076,8 +9076,8 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDefault
    (
-      sensorReadingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+      sensorReadingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal
    )
    return WinRt.Windows.Devices.Sensors.OrientationSensor is
       Hr               : WinRt.HResult := S_OK;
@@ -9085,7 +9085,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
          Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics3'Access , m_Factory'Address);
@@ -9095,7 +9095,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor := new WinRt.Windows.Devices.Sensors.IOrientationSensor;
             Retval.m_IOrientationSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9109,7 +9109,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
          Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics'Access , m_Factory'Address);
@@ -9119,7 +9119,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor := new WinRt.Windows.Devices.Sensors.IOrientationSensor;
             Retval.m_IOrientationSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9133,7 +9133,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.OrientationSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IOrientationSensorStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensor do
          Hr := RoGetActivationFactory (m_hString, IID_IOrientationSensorStatics2'Access , m_Factory'Address);
@@ -9143,7 +9143,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+            Retval.m_IOrientationSensor := new WinRt.Windows.Devices.Sensors.IOrientationSensor;
             Retval.m_IOrientationSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9152,7 +9152,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector_OrientationSensor
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -9179,8 +9179,8 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetDeviceSelector
    (
-      readingType : Windows.Devices.Sensors.SensorReadingType;
-      optimizationGoal : Windows.Devices.Sensors.SensorOptimizationGoal
+      readingType : WinRt.Windows.Devices.Sensors.SensorReadingType;
+      optimizationGoal : WinRt.Windows.Devices.Sensors.SensorOptimizationGoal
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -9264,7 +9264,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IOrientationSensor := new Windows.Devices.Sensors.IOrientationSensor;
+                     Retval.m_IOrientationSensor := new WinRt.Windows.Devices.Sensors.IOrientationSensor;
                      Retval.m_IOrientationSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -9291,14 +9291,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensorReading do
          Hr := this.m_IOrientationSensor.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOrientationSensorReading := new Windows.Devices.Sensors.IOrientationSensorReading;
+         Retval.m_IOrientationSensorReading := new WinRt.Windows.Devices.Sensors.IOrientationSensorReading;
          Retval.m_IOrientationSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -9361,7 +9361,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IOrientationSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9373,7 +9373,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out OrientationSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9412,7 +9412,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out OrientationSensor;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9437,7 +9437,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IOrientationSensor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IOrientationSensor_Interface, WinRt.Windows.Devices.Sensors.IOrientationSensor2, WinRt.Windows.Devices.Sensors.IID_IOrientationSensor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientationSensor.all);
@@ -9458,7 +9458,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IOrientationSensor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.SensorReadingType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.SensorReadingType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IOrientationSensor_Interface, WinRt.Windows.Devices.Sensors.IOrientationSensor2, WinRt.Windows.Devices.Sensors.IID_IOrientationSensor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientationSensor.all);
@@ -9562,7 +9562,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IOrientationSensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9579,14 +9579,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ISensorRotationMatrix;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ISensorRotationMatrix;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.SensorRotationMatrix do
          Hr := this.m_IOrientationSensorReading.all.get_RotationMatrix (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISensorRotationMatrix := new Windows.Devices.Sensors.ISensorRotationMatrix;
+         Retval.m_ISensorRotationMatrix := new WinRt.Windows.Devices.Sensors.ISensorRotationMatrix;
          Retval.m_ISensorRotationMatrix.all := m_ComRetVal;
       end return;
    end;
@@ -9599,14 +9599,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ISensorQuaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ISensorQuaternion;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.SensorQuaternion do
          Hr := this.m_IOrientationSensorReading.all.get_Quaternion (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISensorQuaternion := new Windows.Devices.Sensors.ISensorQuaternion;
+         Retval.m_ISensorQuaternion := new WinRt.Windows.Devices.Sensors.ISensorQuaternion;
          Retval.m_ISensorQuaternion.all := m_ComRetVal;
       end return;
    end;
@@ -9620,7 +9620,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IOrientationSensorReadingYawAccuracy := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.MagnetometerAccuracy;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.MagnetometerAccuracy;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IOrientationSensorReading_Interface, WinRt.Windows.Devices.Sensors.IOrientationSensorReadingYawAccuracy, WinRt.Windows.Devices.Sensors.IID_IOrientationSensorReadingYawAccuracy'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOrientationSensorReading.all);
@@ -9641,7 +9641,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IOrientationSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IOrientationSensorReading_Interface, WinRt.Windows.Devices.Sensors.IOrientationSensorReading2, WinRt.Windows.Devices.Sensors.IID_IOrientationSensorReading2'Unchecked_Access);
    begin
@@ -9665,7 +9665,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IOrientationSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IOrientationSensorReading_Interface, WinRt.Windows.Devices.Sensors.IOrientationSensorReading2, WinRt.Windows.Devices.Sensors.IID_IOrientationSensorReading2'Unchecked_Access);
    begin
@@ -9711,14 +9711,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IOrientationSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IOrientationSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.OrientationSensorReading do
          Hr := this.m_IOrientationSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IOrientationSensorReading := new Windows.Devices.Sensors.IOrientationSensorReading;
+         Retval.m_IOrientationSensorReading := new WinRt.Windows.Devices.Sensors.IOrientationSensorReading;
          Retval.m_IOrientationSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -9748,7 +9748,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetReadingsFromTriggerDetails
    (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+      triggerDetails : WinRt.Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -9756,7 +9756,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.Pedometer");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IPedometerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPedometerStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -9829,7 +9829,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPedometer := new Windows.Devices.Sensors.IPedometer;
+                     Retval.m_IPedometer := new WinRt.Windows.Devices.Sensors.IPedometer;
                      Retval.m_IPedometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -9900,7 +9900,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPedometer := new Windows.Devices.Sensors.IPedometer;
+                     Retval.m_IPedometer := new WinRt.Windows.Devices.Sensors.IPedometer;
                      Retval.m_IPedometer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -9941,7 +9941,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync_Pedometer
    (
-      fromTime : Windows.Foundation.DateTime
+      fromTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -10011,8 +10011,8 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetSystemHistoryAsync_Pedometer
    (
-      fromTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      fromTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -10178,7 +10178,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPedometer.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10190,7 +10190,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out Pedometer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10211,7 +10211,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.IPedometer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_PedometerStepKind_IPedometerReading.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.IPedometer_Interface, WinRt.Windows.Devices.Sensors.IPedometer2, WinRt.Windows.Devices.Sensors.IID_IPedometer2'Unchecked_Access);
    begin
@@ -10251,22 +10251,22 @@ package body WinRt.Windows.Devices.Sensors is
 
    function Constructor
    (
-      sensor : Windows.Devices.Sensors.Pedometer'Class;
+      sensor : WinRt.Windows.Devices.Sensors.Pedometer'Class;
       stepGoal : WinRt.Int32
    )
    return PedometerDataThreshold is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.PedometerDataThreshold");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ISensorDataThreshold");
       m_Factory    : access IPedometerDataThresholdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Sensors.ISensorDataThreshold;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sensors.ISensorDataThreshold;
    begin
       return RetVal : PedometerDataThreshold do
          Hr := RoGetActivationFactory (m_hString, IID_IPedometerDataThresholdFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (sensor.m_IPedometer.all, stepGoal, m_ComRetVal'Access);
-            Retval.m_ISensorDataThreshold := new Windows.Devices.Sensors.ISensorDataThreshold;
+            Retval.m_ISensorDataThreshold := new WinRt.Windows.Devices.Sensors.ISensorDataThreshold;
             Retval.m_ISensorDataThreshold.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -10308,7 +10308,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.PedometerStepKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.PedometerStepKind;
    begin
       Hr := this.m_IPedometerReading.all.get_StepKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10342,7 +10342,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPedometerReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10359,7 +10359,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPedometerReading.all.get_CumulativeStepsDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10399,14 +10399,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IPedometerReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IPedometerReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.PedometerReading do
          Hr := this.m_IPedometerReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPedometerReading := new Windows.Devices.Sensors.IPedometerReading;
+         Retval.m_IPedometerReading := new WinRt.Windows.Devices.Sensors.IPedometerReading;
          Retval.m_IPedometerReading.all := m_ComRetVal;
       end return;
    end;
@@ -10468,7 +10468,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IProximitySensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IProximitySensor;
       HStr_sensorId : constant WinRt.HString := To_HString (sensorId);
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ProximitySensor do
@@ -10479,7 +10479,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IProximitySensor := new Windows.Devices.Sensors.IProximitySensor;
+            Retval.m_IProximitySensor := new WinRt.Windows.Devices.Sensors.IProximitySensor;
             Retval.m_IProximitySensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10489,7 +10489,7 @@ package body WinRt.Windows.Devices.Sensors is
 
    function GetReadingsFromTriggerDetails_ProximitySensor
    (
-      triggerDetails : Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
+      triggerDetails : WinRt.Windows.Devices.Sensors.SensorDataThresholdTriggerDetails'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -10497,7 +10497,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.IProximitySensorStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -10542,7 +10542,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IProximitySensor.all.get_MaxDistanceInMillimeters (m_ComRetVal'Access);
@@ -10562,7 +10562,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IProximitySensor.all.get_MinDistanceInMillimeters (m_ComRetVal'Access);
@@ -10582,14 +10582,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IProximitySensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IProximitySensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ProximitySensorReading do
          Hr := this.m_IProximitySensor.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProximitySensorReading := new Windows.Devices.Sensors.IProximitySensorReading;
+         Retval.m_IProximitySensorReading := new WinRt.Windows.Devices.Sensors.IProximitySensorReading;
          Retval.m_IProximitySensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -10603,7 +10603,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IProximitySensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10615,7 +10615,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_ReadingChanged
    (
       this : in out ProximitySensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10635,8 +10635,8 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IClosable;
-      m_Wrapped        : aliased Windows.Foundation.IClosable_Ptr := new Windows.Foundation.IClosable;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IClosable;
+      m_Wrapped        : aliased WinRt.Windows.Foundation.IClosable_Ptr := new WinRt.Windows.Foundation.IClosable;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ProximitySensorDisplayOnOffController do
          Hr := this.m_IProximitySensor.all.CreateDisplayOnOffController (m_ComRetVal'Access);
@@ -10673,21 +10673,21 @@ package body WinRt.Windows.Devices.Sensors is
 
    function Constructor
    (
-      sensor : Windows.Devices.Sensors.ProximitySensor'Class
+      sensor : WinRt.Windows.Devices.Sensors.ProximitySensor'Class
    )
    return ProximitySensorDataThreshold is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ProximitySensorDataThreshold");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.ISensorDataThreshold");
       m_Factory    : access IProximitySensorDataThresholdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Sensors.ISensorDataThreshold;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sensors.ISensorDataThreshold;
    begin
       return RetVal : ProximitySensorDataThreshold do
          Hr := RoGetActivationFactory (m_hString, IID_IProximitySensorDataThresholdFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (sensor.m_IProximitySensor.all, m_ComRetVal'Access);
-            Retval.m_ISensorDataThreshold := new Windows.Devices.Sensors.ISensorDataThreshold;
+            Retval.m_ISensorDataThreshold := new WinRt.Windows.Devices.Sensors.ISensorDataThreshold;
             Retval.m_ISensorDataThreshold.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -10766,7 +10766,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IProximitySensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10800,7 +10800,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IProximitySensorReading.all.get_DistanceInMillimeters (m_ComRetVal'Access);
@@ -10843,14 +10843,14 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.IProximitySensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.IProximitySensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.ProximitySensorReading do
          Hr := this.m_IProximitySensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProximitySensorReading := new Windows.Devices.Sensors.IProximitySensorReading;
+         Retval.m_IProximitySensorReading := new WinRt.Windows.Devices.Sensors.IProximitySensorReading;
          Retval.m_IProximitySensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -10906,7 +10906,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.SensorType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.SensorType;
    begin
       Hr := this.m_ISensorDataThresholdTriggerDetails.all.get_SensorType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11288,7 +11288,7 @@ package body WinRt.Windows.Devices.Sensors is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
+                     Retval.m_ISimpleOrientationSensor := new WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor;
                      Retval.m_ISimpleOrientationSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -11311,7 +11311,7 @@ package body WinRt.Windows.Devices.Sensors is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sensors.SimpleOrientationSensor");
       m_Factory        : access WinRt.Windows.Devices.Sensors.ISimpleOrientationSensorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.ISimpleOrientationSensor;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.SimpleOrientationSensor do
          Hr := RoGetActivationFactory (m_hString, IID_ISimpleOrientationSensorStatics'Access , m_Factory'Address);
@@ -11321,7 +11321,7 @@ package body WinRt.Windows.Devices.Sensors is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISimpleOrientationSensor := new Windows.Devices.Sensors.ISimpleOrientationSensor;
+            Retval.m_ISimpleOrientationSensor := new WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor;
             Retval.m_ISimpleOrientationSensor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11339,7 +11339,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.SimpleOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.SimpleOrientation;
    begin
       Hr := this.m_ISimpleOrientationSensor.all.GetCurrentOrientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11357,7 +11357,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISimpleOrientationSensor.all.add_OrientationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11369,7 +11369,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure remove_OrientationChanged
    (
       this : in out SimpleOrientationSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11408,7 +11408,7 @@ package body WinRt.Windows.Devices.Sensors is
    procedure put_ReadingTransform
    (
       this : in out SimpleOrientationSensor;
-      value : Windows.Graphics.Display.DisplayOrientations
+      value : WinRt.Windows.Graphics.Display.DisplayOrientations
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11433,7 +11433,7 @@ package body WinRt.Windows.Devices.Sensors is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Display.DisplayOrientations;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Display.DisplayOrientations;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor_Interface, WinRt.Windows.Devices.Sensors.ISimpleOrientationSensor2, WinRt.Windows.Devices.Sensors.IID_ISimpleOrientationSensor2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISimpleOrientationSensor.all);
@@ -11476,7 +11476,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISimpleOrientationSensorOrientationChangedEventArgs.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11493,7 +11493,7 @@ package body WinRt.Windows.Devices.Sensors is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.SimpleOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.SimpleOrientation;
    begin
       Hr := this.m_ISimpleOrientationSensorOrientationChangedEventArgs.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then

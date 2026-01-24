@@ -189,14 +189,14 @@ package WinRt.Windows.Devices.Spi is
       function get_Mode
       (
          this : access ISpiConnectionSettings_Interface;
-         RetVal : access Windows.Devices.Spi.SpiMode
+         RetVal : access WinRt.Windows.Devices.Spi.SpiMode
       )
       return WinRt.Hresult is abstract;
 
       function put_Mode
       (
          this : access ISpiConnectionSettings_Interface;
-         value : Windows.Devices.Spi.SpiMode
+         value : WinRt.Windows.Devices.Spi.SpiMode
       )
       return WinRt.Hresult is abstract;
 
@@ -231,14 +231,14 @@ package WinRt.Windows.Devices.Spi is
       function get_SharingMode
       (
          this : access ISpiConnectionSettings_Interface;
-         RetVal : access Windows.Devices.Spi.SpiSharingMode
+         RetVal : access WinRt.Windows.Devices.Spi.SpiSharingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_SharingMode
       (
          this : access ISpiConnectionSettings_Interface;
-         value : Windows.Devices.Spi.SpiSharingMode
+         value : WinRt.Windows.Devices.Spi.SpiSharingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -251,7 +251,7 @@ package WinRt.Windows.Devices.Spi is
       (
          this : access ISpiConnectionSettingsFactory_Interface;
          chipSelectLine : WinRt.Int32;
-         RetVal : access Windows.Devices.Spi.ISpiConnectionSettings
+         RetVal : access WinRt.Windows.Devices.Spi.ISpiConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -263,8 +263,8 @@ package WinRt.Windows.Devices.Spi is
       function GetDevice
       (
          this : access ISpiController_Interface;
-         settings : Windows.Devices.Spi.ISpiConnectionSettings;
-         RetVal : access Windows.Devices.Spi.ISpiDevice
+         settings : WinRt.Windows.Devices.Spi.ISpiConnectionSettings;
+         RetVal : access WinRt.Windows.Devices.Spi.ISpiDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -283,7 +283,7 @@ package WinRt.Windows.Devices.Spi is
       function GetControllersAsync
       (
          this : access ISpiControllerStatics_Interface;
-         provider : Windows.Devices.Spi.Provider.ISpiProvider;
+         provider : WinRt.Windows.Devices.Spi.Provider.ISpiProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -303,7 +303,7 @@ package WinRt.Windows.Devices.Spi is
       function get_ConnectionSettings
       (
          this : access ISpiDevice_Interface;
-         RetVal : access Windows.Devices.Spi.ISpiConnectionSettings
+         RetVal : access WinRt.Windows.Devices.Spi.ISpiConnectionSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -367,7 +367,7 @@ package WinRt.Windows.Devices.Spi is
       (
          this : access ISpiDeviceStatics_Interface;
          busId : WinRt.HString;
-         RetVal : access Windows.Devices.Spi.ISpiBusInfo
+         RetVal : access WinRt.Windows.Devices.Spi.ISpiBusInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -375,7 +375,7 @@ package WinRt.Windows.Devices.Spi is
       (
          this : access ISpiDeviceStatics_Interface;
          busId : WinRt.HString;
-         settings : Windows.Devices.Spi.ISpiConnectionSettings;
+         settings : WinRt.Windows.Devices.Spi.ISpiConnectionSettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -458,7 +458,7 @@ package WinRt.Windows.Devices.Spi is
    procedure put_Mode
    (
       this : in out SpiConnectionSettings;
-      value : Windows.Devices.Spi.SpiMode
+      value : WinRt.Windows.Devices.Spi.SpiMode
    );
 
    function get_DataBitLength
@@ -494,7 +494,7 @@ package WinRt.Windows.Devices.Spi is
    procedure put_SharingMode
    (
       this : in out SpiConnectionSettings;
-      value : Windows.Devices.Spi.SpiSharingMode
+      value : WinRt.Windows.Devices.Spi.SpiSharingMode
    );
 
    -----------------------------------------------------------------------------
@@ -511,7 +511,7 @@ package WinRt.Windows.Devices.Spi is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Spi.Provider.ISpiProvider
+      provider : WinRt.Windows.Devices.Spi.Provider.ISpiProvider
    )
    return WinRt.GenericObject;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.Devices.Spi is
    function GetDevice
    (
       this : in out SpiController;
-      settings : Windows.Devices.Spi.SpiConnectionSettings'Class
+      settings : WinRt.Windows.Devices.Spi.SpiConnectionSettings'Class
    )
    return WinRt.Windows.Devices.Spi.SpiDevice'Class;
 
@@ -552,7 +552,7 @@ package WinRt.Windows.Devices.Spi is
    function FromIdAsync
    (
       busId : WinRt.WString;
-      settings : Windows.Devices.Spi.SpiConnectionSettings'Class
+      settings : WinRt.Windows.Devices.Spi.SpiConnectionSettings'Class
    )
    return WinRt.Windows.Devices.Spi.SpiDevice;
 

@@ -65,16 +65,16 @@ package body WinRt.Windows.UI.Xaml.Markup is
    return MarkupExtension is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.MarkupExtension");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.IMarkupExtension");
       m_Factory    : access IMarkupExtensionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Markup.IMarkupExtension;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Markup.IMarkupExtension;
    begin
       return RetVal : MarkupExtension do
          Hr := RoGetActivationFactory (m_hString, IID_IMarkupExtensionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMarkupExtension := new Windows.UI.Xaml.Markup.IMarkupExtension;
+            Retval.m_IMarkupExtension := new WinRt.Windows.UI.Xaml.Markup.IMarkupExtension;
             Retval.m_IMarkupExtension.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -133,7 +133,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    (
       inputStreams : GenericObject;
       outputStreams : GenericObject;
-      xamlMetadataProvider : Windows.UI.Xaml.Markup.IXamlMetadataProvider
+      xamlMetadataProvider : WinRt.Windows.UI.Xaml.Markup.IXamlMetadataProvider
    )
    return WinRt.Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation is
       Hr               : WinRt.HResult := S_OK;
@@ -141,7 +141,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBinaryWriter");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBinaryWriterStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBinaryWriterStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -188,7 +188,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
@@ -198,7 +198,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -207,7 +207,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    function GetDataTemplateComponent
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent is
       Hr               : WinRt.HResult := S_OK;
@@ -215,7 +215,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Markup.XamlBindingHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Markup.IXamlBindingHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Markup.IDataTemplateComponent;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IXamlBindingHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -231,8 +231,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    procedure SetDataTemplateComponent
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.Markup.IDataTemplateComponent
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.Markup.IDataTemplateComponent
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -253,7 +253,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    procedure SuspendRendering
    (
-      target : Windows.UI.Xaml.UIElement'Class
+      target : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -274,7 +274,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    procedure ResumeRendering
    (
-      target : Windows.UI.Xaml.UIElement'Class
+      target : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -295,7 +295,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    function ConvertValue
    (
-      type_x : Windows.UI.Xaml.Interop.TypeName;
+      type_x : WinRt.Windows.UI.Xaml.Interop.TypeName;
       value : WinRt.IInspectable
    )
    return WinRt.IInspectable is
@@ -321,7 +321,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromString
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -346,7 +346,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromBoolean
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -369,7 +369,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromChar16
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Wide_Char
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -392,8 +392,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromDateTime
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.DateTime
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -415,7 +415,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromDouble
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -438,7 +438,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromInt32
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Int32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -461,7 +461,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromUInt32
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -484,7 +484,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromInt64
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Int64
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -507,7 +507,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromUInt64
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.UInt64
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -530,7 +530,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromSingle
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Single
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -553,8 +553,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromPoint
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Point
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -576,8 +576,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromRect
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Rect
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -599,8 +599,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromSize
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Size
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -622,8 +622,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromTimeSpan
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.TimeSpan
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -645,7 +645,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromByte
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.Byte
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -668,8 +668,8 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromUri
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
-      value : Windows.Foundation.Uri'Class
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -691,7 +691,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
    procedure SetPropertyFromObject
    (
       dependencyObject : WinRt.IInspectable;
-      propertyToSet : Windows.UI.Xaml.DependencyProperty'Class;
+      propertyToSet : WinRt.Windows.UI.Xaml.DependencyProperty'Class;
       value : WinRt.IInspectable
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -739,7 +739,7 @@ package body WinRt.Windows.UI.Xaml.Markup is
 
    procedure UnloadObject
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

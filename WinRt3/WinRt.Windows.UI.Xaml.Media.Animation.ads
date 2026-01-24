@@ -1340,7 +1340,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_AmplitudeProperty
       (
          this : access IBackEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1359,7 +1359,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IBasicConnectedAnimationConfigurationFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1371,14 +1371,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Storyboard
       (
          this : access IBeginStoryboard_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IStoryboard
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IStoryboard
       )
       return WinRt.Hresult is abstract;
 
       function put_Storyboard
       (
          this : access IBeginStoryboard_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IStoryboard
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IStoryboard
       )
       return WinRt.Hresult is abstract;
 
@@ -1390,7 +1390,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_StoryboardProperty
       (
          this : access IBeginStoryboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1435,14 +1435,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_BouncesProperty
       (
          this : access IBounceEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_BouncinessProperty
       (
          this : access IBounceEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1501,14 +1501,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IColorAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IColorAnimation_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,35 +1534,35 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FromProperty
       (
          this : access IColorAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToProperty
       (
          this : access IColorAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ByProperty
       (
          this : access IColorAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EasingFunctionProperty
       (
          this : access IColorAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EnableDependentAnimationProperty
       (
          this : access IColorAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1600,7 +1600,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EnableDependentAnimationProperty
       (
          this : access IColorAnimationUsingKeyFramesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1612,28 +1612,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Value
       (
          this : access IColorKeyFrame_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Value
       (
          this : access IColorKeyFrame_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTime
       (
          this : access IColorKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.KeyTime
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyTime
       (
          this : access IColorKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.KeyTime
+         value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1647,7 +1647,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IColorKeyFrameFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IColorKeyFrame
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,14 +1659,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ValueProperty
       (
          this : access IColorKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTimeProperty
       (
          this : access IColorKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1697,21 +1697,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_IsStaggeringEnabledProperty
       (
          this : access ICommonNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsStaggerElementProperty
       (
          this : access ICommonNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsStaggerElement
       (
          this : access ICommonNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1719,7 +1719,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetIsStaggerElement
       (
          this : access ICommonNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1733,21 +1733,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       (
          this : access IConnectedAnimation_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IConnectedAnimation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryStart
       (
          this : access IConnectedAnimation_Interface;
-         destination : Windows.UI.Xaml.IUIElement;
+         destination : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1780,7 +1780,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function TryStart
       (
          this : access IConnectedAnimation2_Interface;
-         destination : Windows.UI.Xaml.IUIElement;
+         destination : WinRt.Windows.UI.Xaml.IUIElement;
          coordinatedElements : GenericObject;
          RetVal : access WinRt.Boolean
       )
@@ -1789,8 +1789,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetAnimationComponent
       (
          this : access IConnectedAnimation2_Interface;
-         component : Windows.UI.Xaml.Media.Animation.ConnectedAnimationComponent;
-         animation : Windows.UI.Composition.ICompositionAnimationBase
+         component : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationComponent;
+         animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
       )
       return WinRt.Hresult is abstract;
 
@@ -1802,14 +1802,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Configuration
       (
          this : access IConnectedAnimation3_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function put_Configuration
       (
          this : access IConnectedAnimation3_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -1831,28 +1831,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_DefaultDuration
       (
          this : access IConnectedAnimationService_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DefaultDuration
       (
          this : access IConnectedAnimationService_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DefaultEasingFunction
       (
          this : access IConnectedAnimationService_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionEasingFunction
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
       function put_DefaultEasingFunction
       (
          this : access IConnectedAnimationService_Interface;
-         value : Windows.UI.Composition.ICompositionEasingFunction
+         value : WinRt.Windows.UI.Composition.ICompositionEasingFunction
       )
       return WinRt.Hresult is abstract;
 
@@ -1860,8 +1860,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       (
          this : access IConnectedAnimationService_Interface;
          key : WinRt.HString;
-         source : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IConnectedAnimation
+         source : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -1869,7 +1869,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       (
          this : access IConnectedAnimationService_Interface;
          key : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IConnectedAnimation
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimation
       )
       return WinRt.Hresult is abstract;
 
@@ -1881,7 +1881,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function GetForCurrentView
       (
          this : access IConnectedAnimationServiceStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IConnectedAnimationService
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IConnectedAnimationService
       )
       return WinRt.Hresult is abstract;
 
@@ -1926,14 +1926,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_HorizontalOffsetProperty
       (
          this : access IContentThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_VerticalOffsetProperty
       (
          this : access IContentThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1945,14 +1945,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExitElement
       (
          this : access IContinuumNavigationTransitionInfo_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_ExitElement
       (
          this : access IContinuumNavigationTransitionInfo_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -1964,21 +1964,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExitElementProperty
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsEntranceElementProperty
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsEntranceElement
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1986,7 +1986,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetIsEntranceElement
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1994,14 +1994,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_IsExitElementProperty
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsExitElement
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2009,7 +2009,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetIsExitElement
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2017,14 +2017,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExitElementContainerProperty
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetExitElementContainer
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.Controls.IListViewBase;
+         element : WinRt.Windows.UI.Xaml.Controls.IListViewBase;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2032,7 +2032,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetExitElementContainer
       (
          this : access IContinuumNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.Controls.IListViewBase;
+         element : WinRt.Windows.UI.Xaml.Controls.IListViewBase;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2057,7 +2057,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IDirectConnectedAnimationConfigurationFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -2131,14 +2131,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IDoubleAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IDoubleAnimation_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -2164,35 +2164,35 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FromProperty
       (
          this : access IDoubleAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToProperty
       (
          this : access IDoubleAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ByProperty
       (
          this : access IDoubleAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EasingFunctionProperty
       (
          this : access IDoubleAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EnableDependentAnimationProperty
       (
          this : access IDoubleAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2230,7 +2230,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EnableDependentAnimationProperty
       (
          this : access IDoubleAnimationUsingKeyFramesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2256,14 +2256,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeyTime
       (
          this : access IDoubleKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.KeyTime
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyTime
       (
          this : access IDoubleKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.KeyTime
+         value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2277,7 +2277,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IDoubleKeyFrameFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -2289,14 +2289,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ValueProperty
       (
          this : access IDoubleKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTimeProperty
       (
          this : access IDoubleKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2327,7 +2327,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IDragItemThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2367,14 +2367,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Direction
       (
          this : access IDragOverThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_Direction
       (
          this : access IDragOverThemeAnimation_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2386,21 +2386,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IDragOverThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToOffsetProperty
       (
          this : access IDragOverThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DirectionProperty
       (
          this : access IDragOverThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2431,14 +2431,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EntranceTarget
       (
          this : access IDrillInThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_EntranceTarget
       (
          this : access IDrillInThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2459,14 +2459,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExitTarget
       (
          this : access IDrillInThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ExitTarget
       (
          this : access IDrillInThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2478,28 +2478,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EntranceTargetNameProperty
       (
          this : access IDrillInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EntranceTargetProperty
       (
          this : access IDrillInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ExitTargetNameProperty
       (
          this : access IDrillInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ExitTargetProperty
       (
          this : access IDrillInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2525,14 +2525,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EntranceTarget
       (
          this : access IDrillOutThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_EntranceTarget
       (
          this : access IDrillOutThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2553,14 +2553,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExitTarget
       (
          this : access IDrillOutThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ExitTarget
       (
          this : access IDrillOutThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -2572,28 +2572,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EntranceTargetNameProperty
       (
          this : access IDrillOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EntranceTargetProperty
       (
          this : access IDrillOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ExitTargetNameProperty
       (
          this : access IDrillOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ExitTargetProperty
       (
          this : access IDrillOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2624,7 +2624,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IDropTargetItemThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2636,14 +2636,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IEasingColorKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IEasingColorKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -2655,7 +2655,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunctionProperty
       (
          this : access IEasingColorKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2667,14 +2667,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IEasingDoubleKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IEasingDoubleKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -2686,7 +2686,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunctionProperty
       (
          this : access IEasingDoubleKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2698,14 +2698,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingMode
       (
          this : access IEasingFunctionBase_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.EasingMode
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.EasingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingMode
       (
          this : access IEasingFunctionBase_Interface;
-         value : Windows.UI.Xaml.Media.Animation.EasingMode
+         value : WinRt.Windows.UI.Xaml.Media.Animation.EasingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2730,7 +2730,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingModeProperty
       (
          this : access IEasingFunctionBaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2742,14 +2742,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IEasingPointKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IEasingPointKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -2761,7 +2761,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunctionProperty
       (
          this : access IEasingPointKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2773,14 +2773,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Edge
       (
          this : access IEdgeUIThemeTransition_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
       )
       return WinRt.Hresult is abstract;
 
       function put_Edge
       (
          this : access IEdgeUIThemeTransition_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
       )
       return WinRt.Hresult is abstract;
 
@@ -2792,7 +2792,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EdgeProperty
       (
          this : access IEdgeUIThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2837,14 +2837,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_OscillationsProperty
       (
          this : access IElasticEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SpringinessProperty
       (
          this : access IElasticEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2861,14 +2861,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_IsTargetElementProperty
       (
          this : access IEntranceNavigationTransitionInfoStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetIsTargetElement
       (
          this : access IEntranceNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2876,7 +2876,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetIsTargetElement
       (
          this : access IEntranceNavigationTransitionInfoStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
+         element : WinRt.Windows.UI.Xaml.IUIElement;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2936,21 +2936,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FromHorizontalOffsetProperty
       (
          this : access IEntranceThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromVerticalOffsetProperty
       (
          this : access IEntranceThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsStaggeringEnabledProperty
       (
          this : access IEntranceThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2981,7 +2981,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ExponentProperty
       (
          this : access IExponentialEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3012,7 +3012,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IFadeInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3043,7 +3043,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IFadeOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3081,7 +3081,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IGravityConnectedAnimationConfigurationFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -3093,28 +3093,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ControlPoint1
       (
          this : access IKeySpline_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_ControlPoint1
       (
          this : access IKeySpline_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_ControlPoint2
       (
          this : access IKeySpline_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_ControlPoint2
       (
          this : access IKeySpline_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -3131,8 +3131,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function FromTimeSpan
       (
          this : access IKeyTimeHelperStatics_Interface;
-         timeSpan : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.UI.Xaml.Media.Animation.KeyTime
+         timeSpan : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3159,14 +3159,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_DefaultNavigationTransitionInfo
       (
          this : access INavigationThemeTransition_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_DefaultNavigationTransitionInfo
       (
          this : access INavigationThemeTransition_Interface;
-         value : Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         value : WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -3178,7 +3178,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_DefaultNavigationTransitionInfoProperty
       (
          this : access INavigationThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3197,7 +3197,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access INavigationTransitionInfoFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -3254,7 +3254,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EnableDependentAnimationProperty
       (
          this : access IObjectAnimationUsingKeyFramesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3280,14 +3280,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeyTime
       (
          this : access IObjectKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.KeyTime
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyTime
       (
          this : access IObjectKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.KeyTime
+         value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3301,7 +3301,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IObjectKeyFrameFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IObjectKeyFrame
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -3313,14 +3313,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ValueProperty
       (
          this : access IObjectKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTimeProperty
       (
          this : access IObjectKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3332,14 +3332,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Edge
       (
          this : access IPaneThemeTransition_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
       )
       return WinRt.Hresult is abstract;
 
       function put_Edge
       (
          this : access IPaneThemeTransition_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
       )
       return WinRt.Hresult is abstract;
 
@@ -3351,7 +3351,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EdgeProperty
       (
          this : access IPaneThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3405,14 +3405,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EasingFunction
       (
          this : access IPointAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
       function put_EasingFunction
       (
          this : access IPointAnimation_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IEasingFunctionBase
       )
       return WinRt.Hresult is abstract;
 
@@ -3438,35 +3438,35 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FromProperty
       (
          this : access IPointAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToProperty
       (
          this : access IPointAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ByProperty
       (
          this : access IPointAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EasingFunctionProperty
       (
          this : access IPointAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_EnableDependentAnimationProperty
       (
          this : access IPointAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3504,7 +3504,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EnableDependentAnimationProperty
       (
          this : access IPointAnimationUsingKeyFramesStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3516,28 +3516,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Value
       (
          this : access IPointKeyFrame_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function put_Value
       (
          this : access IPointKeyFrame_Interface;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTime
       (
          this : access IPointKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.KeyTime
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyTime
       (
          this : access IPointKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.KeyTime
+         value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3551,7 +3551,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access IPointKeyFrameFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IPointKeyFrame
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -3563,14 +3563,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ValueProperty
       (
          this : access IPointKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTimeProperty
       (
          this : access IPointKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3601,7 +3601,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IPointerDownThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3632,7 +3632,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IPointerUpThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3691,21 +3691,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IPopInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromHorizontalOffsetProperty
       (
          this : access IPopInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromVerticalOffsetProperty
       (
          this : access IPopInThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3736,7 +3736,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IPopOutThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3781,14 +3781,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FromHorizontalOffsetProperty
       (
          this : access IPopupThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromVerticalOffsetProperty
       (
          this : access IPopupThemeTransitionStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3819,7 +3819,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_PowerProperty
       (
          this : access IPowerEaseStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -3856,7 +3856,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Forever
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.RepeatBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -3864,22 +3864,22 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
          count : WinRt.Double;
-         RetVal : access Windows.UI.Xaml.Media.Animation.RepeatBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
       )
       return WinRt.Hresult is abstract;
 
       function FromDuration
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
-         duration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.UI.Xaml.Media.Animation.RepeatBehavior
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
       )
       return WinRt.Hresult is abstract;
 
       function GetHasCount
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Animation.RepeatBehavior;
+         target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3887,7 +3887,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function GetHasDuration
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Animation.RepeatBehavior;
+         target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3895,8 +3895,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function Equals
       (
          this : access IRepeatBehaviorHelperStatics_Interface;
-         target : Windows.UI.Xaml.Media.Animation.RepeatBehavior;
-         value : Windows.UI.Xaml.Media.Animation.RepeatBehavior;
+         target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
+         value : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3956,21 +3956,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IRepositionThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromHorizontalOffsetProperty
       (
          this : access IRepositionThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromVerticalOffsetProperty
       (
          this : access IRepositionThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4006,7 +4006,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_IsStaggeringEnabledProperty
       (
          this : access IRepositionThemeTransitionStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4028,14 +4028,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Effect
       (
          this : access ISlideNavigationTransitionInfo2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Effect
       (
          this : access ISlideNavigationTransitionInfo2_Interface;
-         value : Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
+         value : WinRt.Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -4047,7 +4047,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_EffectProperty
       (
          this : access ISlideNavigationTransitionInfoStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4059,14 +4059,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySpline
       (
          this : access ISplineColorKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IKeySpline
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
       function put_KeySpline
       (
          this : access ISplineColorKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IKeySpline
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
@@ -4078,7 +4078,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySplineProperty
       (
          this : access ISplineColorKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4090,14 +4090,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySpline
       (
          this : access ISplineDoubleKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IKeySpline
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
       function put_KeySpline
       (
          this : access ISplineDoubleKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IKeySpline
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
@@ -4109,7 +4109,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySplineProperty
       (
          this : access ISplineDoubleKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4121,14 +4121,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySpline
       (
          this : access ISplinePointKeyFrame_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.IKeySpline
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
       function put_KeySpline
       (
          this : access ISplinePointKeyFrame_Interface;
-         value : Windows.UI.Xaml.Media.Animation.IKeySpline
+         value : WinRt.Windows.UI.Xaml.Media.Animation.IKeySpline
       )
       return WinRt.Hresult is abstract;
 
@@ -4140,7 +4140,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_KeySplineProperty
       (
          this : access ISplinePointKeyFrameStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4166,14 +4166,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_OpenedTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_OpenedTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4194,14 +4194,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ClosedTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ClosedTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4222,14 +4222,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ContentTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentTarget
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4278,14 +4278,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ContentTranslationDirection
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentTranslationDirection
       (
          this : access ISplitCloseThemeAnimation_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -4311,77 +4311,77 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_OpenedTargetNameProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OpenedTargetProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedTargetNameProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedTargetProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTargetNameProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTargetProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OpenedLengthProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedLengthProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OffsetFromCenterProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTranslationDirectionProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTranslationOffsetProperty
       (
          this : access ISplitCloseThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4407,14 +4407,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_OpenedTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_OpenedTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4435,14 +4435,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ClosedTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ClosedTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4463,14 +4463,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ContentTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentTarget
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4519,14 +4519,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_ContentTranslationDirection
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         RetVal : access Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentTranslationDirection
       (
          this : access ISplitOpenThemeAnimation_Interface;
-         value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+         value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -4552,77 +4552,77 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_OpenedTargetNameProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OpenedTargetProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedTargetNameProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedTargetProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTargetNameProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTargetProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OpenedLengthProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ClosedLengthProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OffsetFromCenterProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTranslationDirectionProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentTranslationOffsetProperty
       (
          this : access ISplitOpenThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4641,7 +4641,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function Seek
       (
          this : access IStoryboard_Interface;
-         offset : Windows.Foundation.TimeSpan
+         offset : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4672,21 +4672,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function GetCurrentState
       (
          this : access IStoryboard_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.ClockState
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.ClockState
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentTime
       (
          this : access IStoryboard_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SeekAlignedToLastTick
       (
          this : access IStoryboard_Interface;
-         offset : Windows.Foundation.TimeSpan
+         offset : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4704,14 +4704,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetPropertyProperty
       (
          this : access IStoryboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetTargetProperty
       (
          this : access IStoryboardStatics_Interface;
-         element : Windows.UI.Xaml.Media.Animation.ITimeline;
+         element : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4719,7 +4719,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetTargetProperty
       (
          this : access IStoryboardStatics_Interface;
-         element : Windows.UI.Xaml.Media.Animation.ITimeline;
+         element : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline;
          path : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4727,14 +4727,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access IStoryboardStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetTargetName
       (
          this : access IStoryboardStatics_Interface;
-         element : Windows.UI.Xaml.Media.Animation.ITimeline;
+         element : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4742,7 +4742,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetTargetName
       (
          this : access IStoryboardStatics_Interface;
-         element : Windows.UI.Xaml.Media.Animation.ITimeline;
+         element : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline;
          name : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -4750,8 +4750,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function SetTarget
       (
          this : access IStoryboardStatics_Interface;
-         timeline_p : Windows.UI.Xaml.Media.Animation.ITimeline;
-         target : Windows.UI.Xaml.IDependencyObject
+         timeline_p : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline;
+         target : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
@@ -4815,21 +4815,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access ISwipeBackThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromHorizontalOffsetProperty
       (
          this : access ISwipeBackThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FromVerticalOffsetProperty
       (
          this : access ISwipeBackThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4888,21 +4888,21 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_TargetNameProperty
       (
          this : access ISwipeHintThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToHorizontalOffsetProperty
       (
          this : access ISwipeHintThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ToVerticalOffsetProperty
       (
          this : access ISwipeHintThemeAnimationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -4942,14 +4942,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_Duration
       (
          this : access ITimeline_Interface;
-         RetVal : access Windows.UI.Xaml.Duration
+         RetVal : access WinRt.Windows.UI.Xaml.Duration
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access ITimeline_Interface;
-         value : Windows.UI.Xaml.Duration
+         value : WinRt.Windows.UI.Xaml.Duration
       )
       return WinRt.Hresult is abstract;
 
@@ -4970,28 +4970,28 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_FillBehavior
       (
          this : access ITimeline_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.FillBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.FillBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_FillBehavior
       (
          this : access ITimeline_Interface;
-         value : Windows.UI.Xaml.Media.Animation.FillBehavior
+         value : WinRt.Windows.UI.Xaml.Media.Animation.FillBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_RepeatBehavior
       (
          this : access ITimeline_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.RepeatBehavior
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_RepeatBehavior
       (
          this : access ITimeline_Interface;
-         value : Windows.UI.Xaml.Media.Animation.RepeatBehavior
+         value : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -4999,14 +4999,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       (
          this : access ITimeline_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access ITimeline_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -5020,7 +5020,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
          this : access ITimelineFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Media.Animation.ITimeline
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.ITimeline
       )
       return WinRt.Hresult is abstract;
 
@@ -5046,42 +5046,42 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
       function get_AutoReverseProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_BeginTimeProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_DurationProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_SpeedRatioProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FillBehaviorProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_RepeatBehaviorProperty
       (
          this : access ITimelineStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -5154,7 +5154,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingMode
    (
       this : in out EasingFunctionBase;
-      value : Windows.UI.Xaml.Media.Animation.EasingMode
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingMode
    );
 
    function Ease
@@ -5256,7 +5256,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Storyboard
    (
       this : in out BeginStoryboard;
-      value : Windows.UI.Xaml.Media.Animation.Storyboard'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Storyboard'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5401,7 +5401,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Duration
    (
       this : in out Timeline;
-      value : Windows.UI.Xaml.Duration
+      value : WinRt.Windows.UI.Xaml.Duration
    );
 
    function get_SpeedRatio
@@ -5425,7 +5425,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_FillBehavior
    (
       this : in out Timeline;
-      value : Windows.UI.Xaml.Media.Animation.FillBehavior
+      value : WinRt.Windows.UI.Xaml.Media.Animation.FillBehavior
    );
 
    function get_RepeatBehavior
@@ -5437,7 +5437,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_RepeatBehavior
    (
       this : in out Timeline;
-      value : Windows.UI.Xaml.Media.Animation.RepeatBehavior
+      value : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
    );
 
    function add_Completed
@@ -5450,7 +5450,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure remove_Completed
    (
       this : in out Timeline;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -5530,7 +5530,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out ColorAnimation;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    function get_EnableDependentAnimation
@@ -5620,7 +5620,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Value
    (
       this : in out ColorKeyFrame;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_KeyTime
@@ -5632,7 +5632,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeyTime
    (
       this : in out ColorKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeyTime
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
    );
 
    -----------------------------------------------------------------------------
@@ -5672,7 +5672,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out ColorKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5681,14 +5681,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    );
 
    procedure InsertAt
    (
       this : in out ColorKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    );
 
    procedure RemoveAt
@@ -5700,7 +5700,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out ColorKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ColorKeyFrame'Class
    );
 
    procedure RemoveAtEnd
@@ -5717,14 +5717,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ColorKeyFrameCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.IColorKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrame_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out ColorKeyFrameCollection;
-      items : Windows.UI.Xaml.Media.Animation.IColorKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IColorKeyFrame_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.ColorKeyFrame>
@@ -5787,13 +5787,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetIsStaggerElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsStaggerElement
    (
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       value : WinRt.Boolean
    );
 
@@ -5831,13 +5831,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure remove_Completed
    (
       this : in out ConnectedAnimation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryStart
    (
       this : in out ConnectedAnimation;
-      destination : Windows.UI.Xaml.UIElement'Class
+      destination : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Boolean;
 
@@ -5861,7 +5861,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function TryStart
    (
       this : in out ConnectedAnimation;
-      destination : Windows.UI.Xaml.UIElement'Class;
+      destination : WinRt.Windows.UI.Xaml.UIElement'Class;
       coordinatedElements : GenericObject
    )
    return WinRt.Boolean;
@@ -5869,8 +5869,8 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure SetAnimationComponent
    (
       this : in out ConnectedAnimation;
-      component : Windows.UI.Xaml.Media.Animation.ConnectedAnimationComponent;
-      animation : Windows.UI.Composition.ICompositionAnimationBase
+      component : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationComponent;
+      animation : WinRt.Windows.UI.Composition.ICompositionAnimationBase
    );
 
    function get_Configuration
@@ -5882,7 +5882,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Configuration
    (
       this : in out ConnectedAnimation;
-      value : Windows.UI.Xaml.Media.Animation.ConnectedAnimationConfiguration'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimationConfiguration'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5909,7 +5909,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_DefaultDuration
    (
       this : in out ConnectedAnimationService;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DefaultEasingFunction
@@ -5921,14 +5921,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_DefaultEasingFunction
    (
       this : in out ConnectedAnimationService;
-      value : Windows.UI.Composition.CompositionEasingFunction'Class
+      value : WinRt.Windows.UI.Composition.CompositionEasingFunction'Class
    );
 
    function PrepareToAnimate
    (
       this : in out ConnectedAnimationService;
       key : WinRt.WString;
-      source : Windows.UI.Xaml.UIElement'Class
+      source : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.ConnectedAnimation'Class;
 
@@ -6008,13 +6008,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetIsEntranceElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsEntranceElement
    (
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       value : WinRt.Boolean
    );
 
@@ -6023,13 +6023,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetIsExitElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsExitElement
    (
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       value : WinRt.Boolean
    );
 
@@ -6038,13 +6038,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetExitElementContainer
    (
-      element : Windows.UI.Xaml.Controls.ListViewBase'Class
+      element : WinRt.Windows.UI.Xaml.Controls.ListViewBase'Class
    )
    return WinRt.Boolean;
 
    procedure SetExitElementContainer
    (
-      element : Windows.UI.Xaml.Controls.ListViewBase'Class;
+      element : WinRt.Windows.UI.Xaml.Controls.ListViewBase'Class;
       value : WinRt.Boolean
    );
 
@@ -6060,7 +6060,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ExitElement
    (
       this : in out ContinuumNavigationTransitionInfo;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6159,7 +6159,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeyTime
    (
       this : in out DoubleKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeyTime
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
    );
 
    -----------------------------------------------------------------------------
@@ -6225,7 +6225,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeyTime
    (
       this : in out ObjectKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeyTime
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
    );
 
    -----------------------------------------------------------------------------
@@ -6279,7 +6279,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Value
    (
       this : in out PointKeyFrame;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_KeyTime
@@ -6291,7 +6291,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeyTime
    (
       this : in out PointKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeyTime
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeyTime
    );
 
    -----------------------------------------------------------------------------
@@ -6385,7 +6385,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out DoubleAnimation;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    function get_EnableDependentAnimation
@@ -6475,7 +6475,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out DoubleKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -6484,14 +6484,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    );
 
    procedure InsertAt
    (
       this : in out DoubleKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    );
 
    procedure RemoveAt
@@ -6503,7 +6503,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out DoubleKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.DoubleKeyFrame'Class
    );
 
    procedure RemoveAtEnd
@@ -6520,14 +6520,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out DoubleKeyFrameCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out DoubleKeyFrameCollection;
-      items : Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IDoubleKeyFrame_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.DoubleKeyFrame>
@@ -6628,7 +6628,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Direction
    (
       this : in out DragOverThemeAnimation;
-      value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    );
 
    -----------------------------------------------------------------------------
@@ -6695,7 +6695,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EntranceTarget
    (
       this : in out DrillInThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ExitTargetName
@@ -6719,7 +6719,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ExitTarget
    (
       this : in out DrillInThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6772,7 +6772,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EntranceTarget
    (
       this : in out DrillOutThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ExitTargetName
@@ -6796,7 +6796,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ExitTarget
    (
       this : in out DrillOutThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6860,7 +6860,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out EasingColorKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6892,7 +6892,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out EasingDoubleKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6924,7 +6924,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out EasingPointKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6956,7 +6956,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Edge
    (
       this : in out EdgeUIThemeTransition;
-      value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
    );
 
    -----------------------------------------------------------------------------
@@ -7025,13 +7025,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetIsTargetElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Boolean;
 
    procedure SetIsTargetElement
    (
-      element : Windows.UI.Xaml.UIElement'Class;
+      element : WinRt.Windows.UI.Xaml.UIElement'Class;
       value : WinRt.Boolean
    );
 
@@ -7250,7 +7250,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ControlPoint1
    (
       this : in out KeySpline;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    function get_ControlPoint2
@@ -7262,7 +7262,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ControlPoint2
    (
       this : in out KeySpline;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    -----------------------------------------------------------------------------
@@ -7276,7 +7276,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function FromTimeSpan
    (
-      timeSpan : Windows.Foundation.TimeSpan
+      timeSpan : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.KeyTime;
 
@@ -7354,7 +7354,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_DefaultNavigationTransitionInfo
    (
       this : in out NavigationThemeTransition;
-      value : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    );
 
    -----------------------------------------------------------------------------
@@ -7432,7 +7432,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out ObjectKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -7441,14 +7441,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    );
 
    procedure InsertAt
    (
       this : in out ObjectKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    );
 
    procedure RemoveAt
@@ -7460,7 +7460,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out ObjectKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.ObjectKeyFrame'Class
    );
 
    procedure RemoveAtEnd
@@ -7477,14 +7477,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out ObjectKeyFrameCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.IObjectKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrame_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out ObjectKeyFrameCollection;
-      items : Windows.UI.Xaml.Media.Animation.IObjectKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IObjectKeyFrame_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.ObjectKeyFrame>
@@ -7523,7 +7523,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Edge
    (
       this : in out PaneThemeTransition;
-      value : Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.EdgeTransitionLocation
    );
 
    -----------------------------------------------------------------------------
@@ -7603,7 +7603,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_EasingFunction
    (
       this : in out PointAnimation;
-      value : Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.EasingFunctionBase'Class
    );
 
    function get_EnableDependentAnimation
@@ -7693,7 +7693,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out PointKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -7702,14 +7702,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    );
 
    procedure InsertAt
    (
       this : in out PointKeyFrameCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    );
 
    procedure RemoveAt
@@ -7721,7 +7721,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out PointKeyFrameCollection;
-      value : Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.PointKeyFrame'Class
    );
 
    procedure RemoveAtEnd
@@ -7738,14 +7738,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out PointKeyFrameCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.IPointKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrame_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out PointKeyFrameCollection;
-      items : Windows.UI.Xaml.Media.Animation.IPointKeyFrame_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.IPointKeyFrame_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.PointKeyFrame>
@@ -8068,26 +8068,26 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function FromDuration
    (
-      duration : Windows.Foundation.TimeSpan
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
 
    function GetHasCount
    (
-      target : Windows.UI.Xaml.Media.Animation.RepeatBehavior
+      target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
    )
    return WinRt.Boolean;
 
    function GetHasDuration
    (
-      target : Windows.UI.Xaml.Media.Animation.RepeatBehavior
+      target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
    )
    return WinRt.Boolean;
 
    function Equals
    (
-      target : Windows.UI.Xaml.Media.Animation.RepeatBehavior;
-      value : Windows.UI.Xaml.Media.Animation.RepeatBehavior
+      target : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.RepeatBehavior
    )
    return WinRt.Boolean;
 
@@ -8231,7 +8231,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_Effect
    (
       this : in out SlideNavigationTransitionInfo;
-      value : Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
+      value : WinRt.Windows.UI.Xaml.Media.Animation.SlideNavigationTransitionEffect
    );
 
    -----------------------------------------------------------------------------
@@ -8263,7 +8263,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeySpline
    (
       this : in out SplineColorKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8295,7 +8295,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeySpline
    (
       this : in out SplineDoubleKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8327,7 +8327,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_KeySpline
    (
       this : in out SplinePointKeyFrame;
-      value : Windows.UI.Xaml.Media.Animation.KeySpline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.KeySpline'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8401,7 +8401,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_OpenedTarget
    (
       this : in out SplitCloseThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ClosedTargetName
@@ -8425,7 +8425,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ClosedTarget
    (
       this : in out SplitCloseThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ContentTargetName
@@ -8449,7 +8449,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ContentTarget
    (
       this : in out SplitCloseThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_OpenedLength
@@ -8497,7 +8497,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ContentTranslationDirection
    (
       this : in out SplitCloseThemeAnimation;
-      value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    );
 
    function get_ContentTranslationOffset
@@ -8583,7 +8583,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_OpenedTarget
    (
       this : in out SplitOpenThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ClosedTargetName
@@ -8607,7 +8607,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ClosedTarget
    (
       this : in out SplitOpenThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ContentTargetName
@@ -8631,7 +8631,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ContentTarget
    (
       this : in out SplitOpenThemeAnimation;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_OpenedLength
@@ -8679,7 +8679,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure put_ContentTranslationDirection
    (
       this : in out SplitOpenThemeAnimation;
-      value : Windows.UI.Xaml.Controls.Primitives.AnimationDirection
+      value : WinRt.Windows.UI.Xaml.Controls.Primitives.AnimationDirection
    );
 
    function get_ContentTranslationOffset
@@ -8713,13 +8713,13 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetTargetProperty
    (
-      element : Windows.UI.Xaml.Media.Animation.Timeline'Class
+      element : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class
    )
    return WinRt.WString;
 
    procedure SetTargetProperty
    (
-      element : Windows.UI.Xaml.Media.Animation.Timeline'Class;
+      element : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
       path : WinRt.WString
    );
 
@@ -8728,20 +8728,20 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
 
    function GetTargetName
    (
-      element : Windows.UI.Xaml.Media.Animation.Timeline'Class
+      element : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class
    )
    return WinRt.WString;
 
    procedure SetTargetName
    (
-      element : Windows.UI.Xaml.Media.Animation.Timeline'Class;
+      element : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
       name : WinRt.WString
    );
 
    procedure SetTarget
    (
-      timeline_p : Windows.UI.Xaml.Media.Animation.Timeline'Class;
-      target : Windows.UI.Xaml.DependencyObject'Class
+      timeline_p : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
+      target : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    -----------------------------------------------------------------------------
@@ -8756,7 +8756,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Seek
    (
       this : in out Storyboard;
-      offset : Windows.Foundation.TimeSpan
+      offset : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure Stop
@@ -8794,7 +8794,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure SeekAlignedToLastTick
    (
       this : in out Storyboard;
-      offset : Windows.Foundation.TimeSpan
+      offset : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure SkipToFill
@@ -8977,7 +8977,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out TimelineCollection;
-      value : Windows.UI.Xaml.Media.Animation.Timeline'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -8986,14 +8986,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.Timeline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class
    );
 
    procedure InsertAt
    (
       this : in out TimelineCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.Timeline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class
    );
 
    procedure RemoveAt
@@ -9005,7 +9005,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out TimelineCollection;
-      value : Windows.UI.Xaml.Media.Animation.Timeline'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Timeline'Class
    );
 
    procedure RemoveAtEnd
@@ -9022,14 +9022,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TimelineCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.ITimeline_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out TimelineCollection;
-      items : Windows.UI.Xaml.Media.Animation.ITimeline_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.ITimeline_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.Timeline>
@@ -9076,7 +9076,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    function IndexOf
    (
       this : in out TransitionCollection;
-      value : Windows.UI.Xaml.Media.Animation.Transition'Class;
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -9085,14 +9085,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.Transition'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class
    );
 
    procedure InsertAt
    (
       this : in out TransitionCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Media.Animation.Transition'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class
    );
 
    procedure RemoveAt
@@ -9104,7 +9104,7 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    procedure Append
    (
       this : in out TransitionCollection;
-      value : Windows.UI.Xaml.Media.Animation.Transition'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.Transition'Class
    );
 
    procedure RemoveAtEnd
@@ -9121,14 +9121,14 @@ package WinRt.Windows.UI.Xaml.Media.Animation is
    (
       this : in out TransitionCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Media.Animation.ITransition_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.ITransition_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out TransitionCollection;
-      items : Windows.UI.Xaml.Media.Animation.ITransition_Array
+      items : WinRt.Windows.UI.Xaml.Media.Animation.ITransition_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Media.Animation.Transition>

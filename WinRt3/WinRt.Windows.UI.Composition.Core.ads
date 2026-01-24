@@ -62,7 +62,7 @@ package WinRt.Windows.UI.Composition.Core is
       function get_Compositor
       (
          this : access ICompositorController_Interface;
-         RetVal : access Windows.UI.Composition.ICompositor
+         RetVal : access WinRt.Windows.UI.Composition.ICompositor
       )
       return WinRt.Hresult is abstract;
 
@@ -75,7 +75,7 @@ package WinRt.Windows.UI.Composition.Core is
       function EnsurePreviousCommitCompletedAsync
       (
          this : access ICompositorController_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -83,14 +83,14 @@ package WinRt.Windows.UI.Composition.Core is
       (
          this : access ICompositorController_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommitNeeded
       (
          this : access ICompositorController_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -140,7 +140,7 @@ package WinRt.Windows.UI.Composition.Core is
    procedure remove_CommitNeeded
    (
       this : in out CompositorController;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close

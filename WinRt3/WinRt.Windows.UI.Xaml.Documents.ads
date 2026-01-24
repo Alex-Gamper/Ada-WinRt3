@@ -498,14 +498,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_TextAlignment
       (
          this : access IBlock_Interface;
-         RetVal : access Windows.UI.Xaml.TextAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.TextAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_TextAlignment
       (
          this : access IBlock_Interface;
-         value : Windows.UI.Xaml.TextAlignment
+         value : WinRt.Windows.UI.Xaml.TextAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -526,28 +526,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_LineStackingStrategy
       (
          this : access IBlock_Interface;
-         RetVal : access Windows.UI.Xaml.LineStackingStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.LineStackingStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_LineStackingStrategy
       (
          this : access IBlock_Interface;
-         value : Windows.UI.Xaml.LineStackingStrategy
+         value : WinRt.Windows.UI.Xaml.LineStackingStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_Margin
       (
          this : access IBlock_Interface;
-         RetVal : access Windows.UI.Xaml.Thickness
+         RetVal : access WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
       function put_Margin
       (
          this : access IBlock_Interface;
-         value : Windows.UI.Xaml.Thickness
+         value : WinRt.Windows.UI.Xaml.Thickness
       )
       return WinRt.Hresult is abstract;
 
@@ -559,14 +559,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_HorizontalTextAlignment
       (
          this : access IBlock2_Interface;
-         RetVal : access Windows.UI.Xaml.TextAlignment
+         RetVal : access WinRt.Windows.UI.Xaml.TextAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_HorizontalTextAlignment
       (
          this : access IBlock2_Interface;
-         value : Windows.UI.Xaml.TextAlignment
+         value : WinRt.Windows.UI.Xaml.TextAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -580,7 +580,7 @@ package WinRt.Windows.UI.Xaml.Documents is
          this : access IBlockFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Documents.IBlock
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.IBlock
       )
       return WinRt.Hresult is abstract;
 
@@ -592,28 +592,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_TextAlignmentProperty
       (
          this : access IBlockStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LineHeightProperty
       (
          this : access IBlockStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LineStackingStrategyProperty
       (
          this : access IBlockStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_MarginProperty
       (
          this : access IBlockStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -625,7 +625,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_HorizontalTextAlignmentProperty
       (
          this : access IBlockStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -647,175 +647,175 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Info
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Text.IContentLinkInfo
+         RetVal : access WinRt.Windows.UI.Text.IContentLinkInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_Info
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Text.IContentLinkInfo
+         value : WinRt.Windows.UI.Text.IContentLinkInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_Background
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Background
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Cursor
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Core.CoreCursorType
+         RetVal : access WinRt.Windows.UI.Core.CoreCursorType
       )
       return WinRt.Hresult is abstract;
 
       function put_Cursor
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Core.CoreCursorType
+         value : WinRt.Windows.UI.Core.CoreCursorType
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeft
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusLeft
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRight
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusRight
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUp
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusUp
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDown
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusDown
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementSoundMode
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.ElementSoundMode
+         RetVal : access WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ElementSoundMode
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.ElementSoundMode
+         value : WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusState
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.FocusState
+         RetVal : access WinRt.Windows.UI.Xaml.FocusState
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpNavigationStrategy
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusUpNavigationStrategy
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownNavigationStrategy
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusDownNavigationStrategy
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeftNavigationStrategy
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusLeftNavigationStrategy
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightNavigationStrategy
       (
          this : access IContentLink_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusRightNavigationStrategy
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
@@ -851,51 +851,51 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access IContentLink_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Invoked
       (
          this : access IContentLink_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_GotFocus
       (
          this : access IContentLink_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access IContentLink_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_LostFocus
       (
          this : access IContentLink_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LostFocus
       (
          this : access IContentLink_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function Focus
       (
          this : access IContentLink_Interface;
-         value : Windows.UI.Xaml.FocusState;
+         value : WinRt.Windows.UI.Xaml.FocusState;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -908,7 +908,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ContentLinkInfo
       (
          this : access IContentLinkInvokedEventArgs_Interface;
-         RetVal : access Windows.UI.Text.IContentLinkInfo
+         RetVal : access WinRt.Windows.UI.Text.IContentLinkInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -946,7 +946,7 @@ package WinRt.Windows.UI.Xaml.Documents is
          this : access IContentLinkProviderFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Documents.IContentLinkProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.IContentLinkProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -958,98 +958,98 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_BackgroundProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CursorProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeftProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementSoundModeProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FocusStateProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpNavigationStrategyProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownNavigationStrategyProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeftNavigationStrategyProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightNavigationStrategyProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsTabStopProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TabIndexProperty
       (
          this : access IContentLinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1089,28 +1089,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FontUri
       (
          this : access IGlyphs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_FontUri
       (
          this : access IGlyphs_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleSimulations
       (
          this : access IGlyphs_Interface;
-         RetVal : access Windows.UI.Xaml.Media.StyleSimulations
+         RetVal : access WinRt.Windows.UI.Xaml.Media.StyleSimulations
       )
       return WinRt.Hresult is abstract;
 
       function put_StyleSimulations
       (
          this : access IGlyphs_Interface;
-         value : Windows.UI.Xaml.Media.StyleSimulations
+         value : WinRt.Windows.UI.Xaml.Media.StyleSimulations
       )
       return WinRt.Hresult is abstract;
 
@@ -1159,14 +1159,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Fill
       (
          this : access IGlyphs_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Fill
       (
          this : access IGlyphs_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -1211,56 +1211,56 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_UnicodeStringProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IndicesProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontUriProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_StyleSimulationsProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontRenderingEmSizeProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OriginXProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_OriginYProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FillProperty
       (
          this : access IGlyphsStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1272,14 +1272,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_IsColorFontEnabledProperty
       (
          this : access IGlyphsStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorFontPaletteIndexProperty
       (
          this : access IGlyphsStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1291,14 +1291,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_NavigateUri
       (
          this : access IHyperlink_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_NavigateUri
       (
          this : access IHyperlink_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1306,14 +1306,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access IHyperlink_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Click
       (
          this : access IHyperlink_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1325,14 +1325,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_UnderlineStyle
       (
          this : access IHyperlink2_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.UnderlineStyle
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.UnderlineStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_UnderlineStyle
       (
          this : access IHyperlink2_Interface;
-         value : Windows.UI.Xaml.Documents.UnderlineStyle
+         value : WinRt.Windows.UI.Xaml.Documents.UnderlineStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -1344,70 +1344,70 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_XYFocusLeft
       (
          this : access IHyperlink3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusLeft
       (
          this : access IHyperlink3_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRight
       (
          this : access IHyperlink3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusRight
       (
          this : access IHyperlink3_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUp
       (
          this : access IHyperlink3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusUp
       (
          this : access IHyperlink3_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDown
       (
          this : access IHyperlink3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusDown
       (
          this : access IHyperlink3_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementSoundMode
       (
          this : access IHyperlink3_Interface;
-         RetVal : access Windows.UI.Xaml.ElementSoundMode
+         RetVal : access WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ElementSoundMode
       (
          this : access IHyperlink3_Interface;
-         value : Windows.UI.Xaml.ElementSoundMode
+         value : WinRt.Windows.UI.Xaml.ElementSoundMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1419,100 +1419,100 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FocusState
       (
          this : access IHyperlink4_Interface;
-         RetVal : access Windows.UI.Xaml.FocusState
+         RetVal : access WinRt.Windows.UI.Xaml.FocusState
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusUpNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusDownNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeftNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusLeftNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         RetVal : access Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         RetVal : access WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function put_XYFocusRightNavigationStrategy
       (
          this : access IHyperlink4_Interface;
-         value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+         value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
       )
       return WinRt.Hresult is abstract;
 
       function add_GotFocus
       (
          this : access IHyperlink4_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_GotFocus
       (
          this : access IHyperlink4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_LostFocus
       (
          this : access IHyperlink4_Interface;
-         handler : Windows.UI.Xaml.RoutedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.RoutedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LostFocus
       (
          this : access IHyperlink4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function Focus
       (
          this : access IHyperlink4_Interface;
-         value : Windows.UI.Xaml.FocusState;
+         value : WinRt.Windows.UI.Xaml.FocusState;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1563,7 +1563,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_NavigateUriProperty
       (
          this : access IHyperlinkStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1575,7 +1575,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_UnderlineStyleProperty
       (
          this : access IHyperlinkStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1587,35 +1587,35 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_XYFocusLeftProperty
       (
          this : access IHyperlinkStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightProperty
       (
          this : access IHyperlinkStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpProperty
       (
          this : access IHyperlinkStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownProperty
       (
          this : access IHyperlinkStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementSoundModeProperty
       (
          this : access IHyperlinkStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1627,35 +1627,35 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FocusStateProperty
       (
          this : access IHyperlinkStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusUpNavigationStrategyProperty
       (
          this : access IHyperlinkStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusDownNavigationStrategyProperty
       (
          this : access IHyperlinkStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusLeftNavigationStrategyProperty
       (
          this : access IHyperlinkStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_XYFocusRightNavigationStrategyProperty
       (
          this : access IHyperlinkStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1667,14 +1667,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_IsTabStopProperty
       (
          this : access IHyperlinkStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_TabIndexProperty
       (
          this : access IHyperlinkStatics5_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1693,7 +1693,7 @@ package WinRt.Windows.UI.Xaml.Documents is
          this : access IInlineFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Documents.IInline
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.IInline
       )
       return WinRt.Hresult is abstract;
 
@@ -1705,14 +1705,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Child
       (
          this : access IInlineUIContainer_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
       function put_Child
       (
          this : access IInlineUIContainer_Interface;
-         value : Windows.UI.Xaml.IUIElement
+         value : WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -1760,7 +1760,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_TextIndentProperty
       (
          this : access IParagraphStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1791,14 +1791,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FlowDirection
       (
          this : access IRun_Interface;
-         RetVal : access Windows.UI.Xaml.FlowDirection
+         RetVal : access WinRt.Windows.UI.Xaml.FlowDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_FlowDirection
       (
          this : access IRun_Interface;
-         value : Windows.UI.Xaml.FlowDirection
+         value : WinRt.Windows.UI.Xaml.FlowDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -1810,7 +1810,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FlowDirectionProperty
       (
          this : access IRunStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -1843,7 +1843,7 @@ package WinRt.Windows.UI.Xaml.Documents is
          this : access ISpanFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Documents.ISpan
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ISpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1876,56 +1876,56 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FontFamily
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IFontFamily
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IFontFamily
       )
       return WinRt.Hresult is abstract;
 
       function put_FontFamily
       (
          this : access ITextElement_Interface;
-         value : Windows.UI.Xaml.Media.IFontFamily
+         value : WinRt.Windows.UI.Xaml.Media.IFontFamily
       )
       return WinRt.Hresult is abstract;
 
       function get_FontWeight
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function put_FontWeight
       (
          this : access ITextElement_Interface;
-         value : Windows.UI.Text.FontWeight
+         value : WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStyle
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Text.FontStyle
+         RetVal : access WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_FontStyle
       (
          this : access ITextElement_Interface;
-         value : Windows.UI.Text.FontStyle
+         value : WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStretch
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Text.FontStretch
+         RetVal : access WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
       function put_FontStretch
       (
          this : access ITextElement_Interface;
-         value : Windows.UI.Text.FontStretch
+         value : WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
@@ -1946,14 +1946,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Foreground
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Foreground
       (
          this : access ITextElement_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -1974,28 +1974,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ContentStart
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.ITextPointer
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextPointer
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentEnd
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.ITextPointer
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextPointer
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementStart
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.ITextPointer
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextPointer
       )
       return WinRt.Hresult is abstract;
 
       function get_ElementEnd
       (
          this : access ITextElement_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.ITextPointer
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextPointer
       )
       return WinRt.Hresult is abstract;
 
@@ -2081,14 +2081,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_TextDecorations
       (
          this : access ITextElement4_Interface;
-         RetVal : access Windows.UI.Text.TextDecorations
+         RetVal : access WinRt.Windows.UI.Text.TextDecorations
       )
       return WinRt.Hresult is abstract;
 
       function put_TextDecorations
       (
          this : access ITextElement4_Interface;
-         value : Windows.UI.Text.TextDecorations
+         value : WinRt.Windows.UI.Text.TextDecorations
       )
       return WinRt.Hresult is abstract;
 
@@ -2109,28 +2109,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_AccessKeyScopeOwner
       (
          this : access ITextElement4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function put_AccessKeyScopeOwner
       (
          this : access ITextElement4_Interface;
-         value : Windows.UI.Xaml.IDependencyObject
+         value : WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTipPlacementMode
       (
          this : access ITextElement4_Interface;
-         RetVal : access Windows.UI.Xaml.Input.KeyTipPlacementMode
+         RetVal : access WinRt.Windows.UI.Xaml.Input.KeyTipPlacementMode
       )
       return WinRt.Hresult is abstract;
 
       function put_KeyTipPlacementMode
       (
          this : access ITextElement4_Interface;
-         value : Windows.UI.Xaml.Input.KeyTipPlacementMode
+         value : WinRt.Windows.UI.Xaml.Input.KeyTipPlacementMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2166,14 +2166,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access ITextElement4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccessKeyDisplayRequested
       (
          this : access ITextElement4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2181,14 +2181,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access ITextElement4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccessKeyDisplayDismissed
       (
          this : access ITextElement4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2196,14 +2196,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access ITextElement4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccessKeyInvoked
       (
          this : access ITextElement4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2215,14 +2215,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_XamlRoot
       (
          this : access ITextElement5_Interface;
-         RetVal : access Windows.UI.Xaml.IXamlRoot
+         RetVal : access WinRt.Windows.UI.Xaml.IXamlRoot
       )
       return WinRt.Hresult is abstract;
 
       function put_XamlRoot
       (
          this : access ITextElement5_Interface;
-         value : Windows.UI.Xaml.IXamlRoot
+         value : WinRt.Windows.UI.Xaml.IXamlRoot
       )
       return WinRt.Hresult is abstract;
 
@@ -2250,56 +2250,56 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FontSizeProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontFamilyProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontWeightProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStyleProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStretchProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_CharacterSpacingProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_LanguageProperty
       (
          this : access ITextElementStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2311,7 +2311,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_IsTextScaleFactorEnabledProperty
       (
          this : access ITextElementStatics2_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2323,21 +2323,21 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_AllowFocusOnInteractionProperty
       (
          this : access ITextElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AccessKeyProperty
       (
          this : access ITextElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_ExitDisplayModeOnAccessKeyInvokedProperty
       (
          this : access ITextElementStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2349,42 +2349,42 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_TextDecorationsProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_IsAccessKeyScopeProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_AccessKeyScopeOwnerProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTipPlacementModeProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTipHorizontalOffsetProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_KeyTipVerticalOffsetProperty
       (
          this : access ITextElementStatics4_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2403,28 +2403,28 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Foreground
       (
          this : access ITextHighlighter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Foreground
       (
          this : access ITextHighlighter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function get_Background
       (
          this : access ITextHighlighter_Interface;
-         RetVal : access Windows.UI.Xaml.Media.IBrush
+         RetVal : access WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
       function put_Background
       (
          this : access ITextHighlighter_Interface;
-         value : Windows.UI.Xaml.Media.IBrush
+         value : WinRt.Windows.UI.Xaml.Media.IBrush
       )
       return WinRt.Hresult is abstract;
 
@@ -2448,7 +2448,7 @@ package WinRt.Windows.UI.Xaml.Documents is
          this : access ITextHighlighterFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Documents.ITextHighlighter
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextHighlighter
       )
       return WinRt.Hresult is abstract;
 
@@ -2460,14 +2460,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ForegroundProperty
       (
          this : access ITextHighlighterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundProperty
       (
          this : access ITextHighlighterStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2479,21 +2479,21 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_Parent
       (
          this : access ITextPointer_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyObject
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyObject
       )
       return WinRt.Hresult is abstract;
 
       function get_VisualParent
       (
          this : access ITextPointer_Interface;
-         RetVal : access Windows.UI.Xaml.IFrameworkElement
+         RetVal : access WinRt.Windows.UI.Xaml.IFrameworkElement
       )
       return WinRt.Hresult is abstract;
 
       function get_LogicalDirection
       (
          this : access ITextPointer_Interface;
-         RetVal : access Windows.UI.Xaml.Documents.LogicalDirection
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.LogicalDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -2507,8 +2507,8 @@ package WinRt.Windows.UI.Xaml.Documents is
       function GetCharacterRect
       (
          this : access ITextPointer_Interface;
-         direction : Windows.UI.Xaml.Documents.LogicalDirection;
-         RetVal : access Windows.Foundation.Rect
+         direction : WinRt.Windows.UI.Xaml.Documents.LogicalDirection;
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2516,8 +2516,8 @@ package WinRt.Windows.UI.Xaml.Documents is
       (
          this : access ITextPointer_Interface;
          offset : WinRt.Int32;
-         direction : Windows.UI.Xaml.Documents.LogicalDirection;
-         RetVal : access Windows.UI.Xaml.Documents.ITextPointer
+         direction : WinRt.Windows.UI.Xaml.Documents.LogicalDirection;
+         RetVal : access WinRt.Windows.UI.Xaml.Documents.ITextPointer
       )
       return WinRt.Hresult is abstract;
 
@@ -2534,14 +2534,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_AnnotationAlternatesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetAnnotationAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2549,7 +2549,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetAnnotationAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2557,14 +2557,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_EastAsianExpertFormsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetEastAsianExpertForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2572,7 +2572,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetEastAsianExpertForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2580,60 +2580,60 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_EastAsianLanguageProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetEastAsianLanguage
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontEastAsianLanguage
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontEastAsianLanguage
       )
       return WinRt.Hresult is abstract;
 
       function SetEastAsianLanguage
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontEastAsianLanguage
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontEastAsianLanguage
       )
       return WinRt.Hresult is abstract;
 
       function get_EastAsianWidthsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetEastAsianWidths
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontEastAsianWidths
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontEastAsianWidths
       )
       return WinRt.Hresult is abstract;
 
       function SetEastAsianWidths
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontEastAsianWidths
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontEastAsianWidths
       )
       return WinRt.Hresult is abstract;
 
       function get_StandardLigaturesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStandardLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2641,7 +2641,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStandardLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2649,14 +2649,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ContextualLigaturesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetContextualLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2664,7 +2664,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetContextualLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2672,14 +2672,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_DiscretionaryLigaturesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetDiscretionaryLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2687,7 +2687,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetDiscretionaryLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2695,14 +2695,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_HistoricalLigaturesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetHistoricalLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2710,7 +2710,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetHistoricalLigatures
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2718,14 +2718,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StandardSwashesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStandardSwashes
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2733,7 +2733,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStandardSwashes
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2741,14 +2741,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ContextualSwashesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetContextualSwashes
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2756,7 +2756,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetContextualSwashes
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2764,14 +2764,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_ContextualAlternatesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetContextualAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2779,7 +2779,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetContextualAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2787,14 +2787,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticAlternatesProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2802,7 +2802,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticAlternates
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2810,14 +2810,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet1Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet1
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2825,7 +2825,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet1
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2833,14 +2833,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet2Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet2
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2848,7 +2848,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet2
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2856,14 +2856,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet3Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet3
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2871,7 +2871,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet3
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2879,14 +2879,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet4Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet4
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2894,7 +2894,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet4
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2902,14 +2902,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet5Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet5
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2917,7 +2917,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet5
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2925,14 +2925,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet6Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet6
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2940,7 +2940,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet6
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2948,14 +2948,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet7Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet7
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2963,7 +2963,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet7
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2971,14 +2971,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet8Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet8
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2986,7 +2986,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet8
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2994,14 +2994,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet9Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet9
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3009,7 +3009,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet9
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3017,14 +3017,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet10Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet10
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3032,7 +3032,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet10
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3040,14 +3040,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet11Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet11
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3055,7 +3055,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet11
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3063,14 +3063,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet12Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet12
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3078,7 +3078,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet12
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3086,14 +3086,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet13Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet13
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3101,7 +3101,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet13
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3109,14 +3109,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet14Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet14
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3124,7 +3124,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet14
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3132,14 +3132,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet15Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet15
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3147,7 +3147,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet15
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3155,14 +3155,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet16Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet16
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3170,7 +3170,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet16
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3178,14 +3178,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet17Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet17
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3193,7 +3193,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet17
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3201,14 +3201,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet18Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet18
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3216,7 +3216,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet18
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3224,14 +3224,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet19Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet19
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3239,7 +3239,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet19
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3247,14 +3247,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_StylisticSet20Property
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetStylisticSet20
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3262,7 +3262,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetStylisticSet20
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3270,37 +3270,37 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_CapitalsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetCapitals
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontCapitals
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontCapitals
       )
       return WinRt.Hresult is abstract;
 
       function SetCapitals
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontCapitals
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontCapitals
       )
       return WinRt.Hresult is abstract;
 
       function get_CapitalSpacingProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetCapitalSpacing
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3308,7 +3308,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetCapitalSpacing
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3316,14 +3316,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_KerningProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetKerning
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3331,7 +3331,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetKerning
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3339,14 +3339,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_CaseSensitiveFormsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetCaseSensitiveForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3354,7 +3354,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetCaseSensitiveForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3362,14 +3362,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_HistoricalFormsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetHistoricalForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3377,7 +3377,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetHistoricalForms
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3385,83 +3385,83 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_FractionProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetFraction
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontFraction
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontFraction
       )
       return WinRt.Hresult is abstract;
 
       function SetFraction
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontFraction
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontFraction
       )
       return WinRt.Hresult is abstract;
 
       function get_NumeralStyleProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetNumeralStyle
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontNumeralStyle
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontNumeralStyle
       )
       return WinRt.Hresult is abstract;
 
       function SetNumeralStyle
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontNumeralStyle
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontNumeralStyle
       )
       return WinRt.Hresult is abstract;
 
       function get_NumeralAlignmentProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetNumeralAlignment
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontNumeralAlignment
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontNumeralAlignment
       )
       return WinRt.Hresult is abstract;
 
       function SetNumeralAlignment
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontNumeralAlignment
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontNumeralAlignment
       )
       return WinRt.Hresult is abstract;
 
       function get_SlashedZeroProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetSlashedZero
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3469,7 +3469,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetSlashedZero
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3477,14 +3477,14 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_MathematicalGreekProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetMathematicalGreek
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3492,7 +3492,7 @@ package WinRt.Windows.UI.Xaml.Documents is
       function SetMathematicalGreek
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
          value : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -3500,23 +3500,23 @@ package WinRt.Windows.UI.Xaml.Documents is
       function get_VariantsProperty
       (
          this : access ITypographyStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function GetVariants
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         RetVal : access Windows.UI.Xaml.FontVariants
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         RetVal : access WinRt.Windows.UI.Xaml.FontVariants
       )
       return WinRt.Hresult is abstract;
 
       function SetVariants
       (
          this : access ITypographyStatics_Interface;
-         element : Windows.UI.Xaml.IDependencyObject;
-         value : Windows.UI.Xaml.FontVariants
+         element : WinRt.Windows.UI.Xaml.IDependencyObject;
+         value : WinRt.Windows.UI.Xaml.FontVariants
       )
       return WinRt.Hresult is abstract;
 
@@ -3627,7 +3627,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FontFamily
    (
       this : in out TextElement;
-      value : Windows.UI.Xaml.Media.FontFamily'Class
+      value : WinRt.Windows.UI.Xaml.Media.FontFamily'Class
    );
 
    function get_FontWeight
@@ -3639,7 +3639,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FontWeight
    (
       this : in out TextElement;
-      value : Windows.UI.Text.FontWeight
+      value : WinRt.Windows.UI.Text.FontWeight
    );
 
    function get_FontStyle
@@ -3651,7 +3651,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FontStyle
    (
       this : in out TextElement;
-      value : Windows.UI.Text.FontStyle
+      value : WinRt.Windows.UI.Text.FontStyle
    );
 
    function get_FontStretch
@@ -3663,7 +3663,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FontStretch
    (
       this : in out TextElement;
-      value : Windows.UI.Text.FontStretch
+      value : WinRt.Windows.UI.Text.FontStretch
    );
 
    function get_CharacterSpacing
@@ -3687,7 +3687,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Foreground
    (
       this : in out TextElement;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Language
@@ -3790,7 +3790,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_TextDecorations
    (
       this : in out TextElement;
-      value : Windows.UI.Text.TextDecorations
+      value : WinRt.Windows.UI.Text.TextDecorations
    );
 
    function get_IsAccessKeyScope
@@ -3814,7 +3814,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_AccessKeyScopeOwner
    (
       this : in out TextElement;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_KeyTipPlacementMode
@@ -3826,7 +3826,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_KeyTipPlacementMode
    (
       this : in out TextElement;
-      value : Windows.UI.Xaml.Input.KeyTipPlacementMode
+      value : WinRt.Windows.UI.Xaml.Input.KeyTipPlacementMode
    );
 
    function get_KeyTipHorizontalOffset
@@ -3863,7 +3863,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure remove_AccessKeyDisplayRequested
    (
       this : in out TextElement;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AccessKeyDisplayDismissed
@@ -3876,7 +3876,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure remove_AccessKeyDisplayDismissed
    (
       this : in out TextElement;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AccessKeyInvoked
@@ -3889,7 +3889,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure remove_AccessKeyInvoked
    (
       this : in out TextElement;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_XamlRoot
@@ -3901,7 +3901,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XamlRoot
    (
       this : in out TextElement;
-      value : Windows.UI.Xaml.XamlRoot'Class
+      value : WinRt.Windows.UI.Xaml.XamlRoot'Class
    );
 
    procedure OnDisconnectVisualChildren
@@ -3955,7 +3955,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_TextAlignment
    (
       this : in out Block;
-      value : Windows.UI.Xaml.TextAlignment
+      value : WinRt.Windows.UI.Xaml.TextAlignment
    );
 
    function get_LineHeight
@@ -3979,7 +3979,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_LineStackingStrategy
    (
       this : in out Block;
-      value : Windows.UI.Xaml.LineStackingStrategy
+      value : WinRt.Windows.UI.Xaml.LineStackingStrategy
    );
 
    function get_Margin
@@ -3991,7 +3991,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Margin
    (
       this : in out Block;
-      value : Windows.UI.Xaml.Thickness
+      value : WinRt.Windows.UI.Xaml.Thickness
    );
 
    function get_HorizontalTextAlignment
@@ -4003,7 +4003,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_HorizontalTextAlignment
    (
       this : in out Block;
-      value : Windows.UI.Xaml.TextAlignment
+      value : WinRt.Windows.UI.Xaml.TextAlignment
    );
 
    -----------------------------------------------------------------------------
@@ -4038,7 +4038,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    function IndexOf
    (
       this : in out BlockCollection;
-      value : Windows.UI.Xaml.Documents.Block'Class;
+      value : WinRt.Windows.UI.Xaml.Documents.Block'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4047,14 +4047,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.Block'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Block'Class
    );
 
    procedure InsertAt
    (
       this : in out BlockCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.Block'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Block'Class
    );
 
    procedure RemoveAt
@@ -4066,7 +4066,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure Append
    (
       this : in out BlockCollection;
-      value : Windows.UI.Xaml.Documents.Block'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Block'Class
    );
 
    procedure RemoveAtEnd
@@ -4083,14 +4083,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out BlockCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Documents.IBlock_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IBlock_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out BlockCollection;
-      items : Windows.UI.Xaml.Documents.IBlock_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IBlock_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.Block>
@@ -4147,7 +4147,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Inlines
    (
       this : in out Span;
-      value : Windows.UI.Xaml.Documents.InlineCollection'Class
+      value : WinRt.Windows.UI.Xaml.Documents.InlineCollection'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4265,7 +4265,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Info
    (
       this : in out ContentLink;
-      value : Windows.UI.Text.ContentLinkInfo'Class
+      value : WinRt.Windows.UI.Text.ContentLinkInfo'Class
    );
 
    function get_Background
@@ -4277,7 +4277,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Background
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Cursor
@@ -4289,7 +4289,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Cursor
    (
       this : in out ContentLink;
-      value : Windows.UI.Core.CoreCursorType
+      value : WinRt.Windows.UI.Core.CoreCursorType
    );
 
    function get_XYFocusLeft
@@ -4301,7 +4301,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusLeft
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusRight
@@ -4313,7 +4313,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusRight
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusUp
@@ -4325,7 +4325,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusUp
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusDown
@@ -4337,7 +4337,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusDown
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ElementSoundMode
@@ -4349,7 +4349,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_ElementSoundMode
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.ElementSoundMode
+      value : WinRt.Windows.UI.Xaml.ElementSoundMode
    );
 
    function get_FocusState
@@ -4367,7 +4367,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusUpNavigationStrategy
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusDownNavigationStrategy
@@ -4379,7 +4379,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusDownNavigationStrategy
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusLeftNavigationStrategy
@@ -4391,7 +4391,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusLeftNavigationStrategy
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusRightNavigationStrategy
@@ -4403,7 +4403,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusRightNavigationStrategy
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_IsTabStop
@@ -4440,39 +4440,39 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure remove_Invoked
    (
       this : in out ContentLink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_GotFocus
    (
       this : in out ContentLink;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_GotFocus
    (
       this : in out ContentLink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LostFocus
    (
       this : in out ContentLink;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_LostFocus
    (
       this : in out ContentLink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function Focus
    (
       this : in out ContentLink;
-      value : Windows.UI.Xaml.FocusState
+      value : WinRt.Windows.UI.Xaml.FocusState
    )
    return WinRt.Boolean;
 
@@ -4540,7 +4540,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    function IndexOf
    (
       this : in out ContentLinkProviderCollection;
-      value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class;
+      value : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -4549,14 +4549,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
+      value : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    );
 
    procedure InsertAt
    (
       this : in out ContentLinkProviderCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
+      value : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    );
 
    procedure RemoveAt
@@ -4568,7 +4568,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure Append
    (
       this : in out ContentLinkProviderCollection;
-      value : Windows.UI.Xaml.Documents.ContentLinkProvider'Class
+      value : WinRt.Windows.UI.Xaml.Documents.ContentLinkProvider'Class
    );
 
    procedure RemoveAtEnd
@@ -4585,14 +4585,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out ContentLinkProviderCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Documents.IContentLinkProvider_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IContentLinkProvider_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out ContentLinkProviderCollection;
-      items : Windows.UI.Xaml.Documents.IContentLinkProvider_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IContentLinkProvider_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.ContentLinkProvider>
@@ -4682,7 +4682,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FontUri
    (
       this : in out Glyphs;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_StyleSimulations
@@ -4694,7 +4694,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_StyleSimulations
    (
       this : in out Glyphs;
-      value : Windows.UI.Xaml.Media.StyleSimulations
+      value : WinRt.Windows.UI.Xaml.Media.StyleSimulations
    );
 
    function get_FontRenderingEmSize
@@ -4742,7 +4742,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Fill
    (
       this : in out Glyphs;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_IsColorFontEnabled
@@ -4837,7 +4837,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_NavigateUri
    (
       this : in out Hyperlink;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function add_Click
@@ -4850,7 +4850,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure remove_Click
    (
       this : in out Hyperlink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_UnderlineStyle
@@ -4862,7 +4862,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_UnderlineStyle
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.Documents.UnderlineStyle
+      value : WinRt.Windows.UI.Xaml.Documents.UnderlineStyle
    );
 
    function get_XYFocusLeft
@@ -4874,7 +4874,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusLeft
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusRight
@@ -4886,7 +4886,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusRight
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusUp
@@ -4898,7 +4898,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusUp
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_XYFocusDown
@@ -4910,7 +4910,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusDown
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.DependencyObject'Class
+      value : WinRt.Windows.UI.Xaml.DependencyObject'Class
    );
 
    function get_ElementSoundMode
@@ -4922,7 +4922,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_ElementSoundMode
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.ElementSoundMode
+      value : WinRt.Windows.UI.Xaml.ElementSoundMode
    );
 
    function get_FocusState
@@ -4940,7 +4940,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusUpNavigationStrategy
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusDownNavigationStrategy
@@ -4952,7 +4952,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusDownNavigationStrategy
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusLeftNavigationStrategy
@@ -4964,7 +4964,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusLeftNavigationStrategy
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function get_XYFocusRightNavigationStrategy
@@ -4976,39 +4976,39 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_XYFocusRightNavigationStrategy
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.Input.XYFocusNavigationStrategy
+      value : WinRt.Windows.UI.Xaml.Input.XYFocusNavigationStrategy
    );
 
    function add_GotFocus
    (
       this : in out Hyperlink;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_GotFocus
    (
       this : in out Hyperlink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LostFocus
    (
       this : in out Hyperlink;
-      handler : Windows.UI.Xaml.RoutedEventHandler
+      handler : WinRt.Windows.UI.Xaml.RoutedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_LostFocus
    (
       this : in out Hyperlink;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function Focus
    (
       this : in out Hyperlink;
-      value : Windows.UI.Xaml.FocusState
+      value : WinRt.Windows.UI.Xaml.FocusState
    )
    return WinRt.Boolean;
 
@@ -5077,7 +5077,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    function IndexOf
    (
       this : in out InlineCollection;
-      value : Windows.UI.Xaml.Documents.Inline'Class;
+      value : WinRt.Windows.UI.Xaml.Documents.Inline'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -5086,14 +5086,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.Inline'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Inline'Class
    );
 
    procedure InsertAt
    (
       this : in out InlineCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Xaml.Documents.Inline'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Inline'Class
    );
 
    procedure RemoveAt
@@ -5105,7 +5105,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure Append
    (
       this : in out InlineCollection;
-      value : Windows.UI.Xaml.Documents.Inline'Class
+      value : WinRt.Windows.UI.Xaml.Documents.Inline'Class
    );
 
    procedure RemoveAtEnd
@@ -5122,14 +5122,14 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out InlineCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Xaml.Documents.IInline_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IInline_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out InlineCollection;
-      items : Windows.UI.Xaml.Documents.IInline_Array
+      items : WinRt.Windows.UI.Xaml.Documents.IInline_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Xaml.Documents.Inline>
@@ -5162,7 +5162,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Child
    (
       this : in out InlineUIContainer;
-      value : Windows.UI.Xaml.UIElement'Class
+      value : WinRt.Windows.UI.Xaml.UIElement'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5286,7 +5286,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_FlowDirection
    (
       this : in out Run;
-      value : Windows.UI.Xaml.FlowDirection
+      value : WinRt.Windows.UI.Xaml.FlowDirection
    );
 
    -----------------------------------------------------------------------------
@@ -5332,7 +5332,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Foreground
    (
       this : in out TextHighlighter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    function get_Background
@@ -5344,7 +5344,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    procedure put_Background
    (
       this : in out TextHighlighter;
-      value : Windows.UI.Xaml.Media.Brush'Class
+      value : WinRt.Windows.UI.Xaml.Media.Brush'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5395,7 +5395,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    function GetCharacterRect
    (
       this : in out TextPointer;
-      direction : Windows.UI.Xaml.Documents.LogicalDirection
+      direction : WinRt.Windows.UI.Xaml.Documents.LogicalDirection
    )
    return WinRt.Windows.Foundation.Rect;
 
@@ -5403,7 +5403,7 @@ package WinRt.Windows.UI.Xaml.Documents is
    (
       this : in out TextPointer;
       offset : WinRt.Int32;
-      direction : Windows.UI.Xaml.Documents.LogicalDirection
+      direction : WinRt.Windows.UI.Xaml.Documents.LogicalDirection
    )
    return WinRt.Windows.UI.Xaml.Documents.TextPointer'Class;
 
@@ -5421,13 +5421,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetAnnotationAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetAnnotationAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -5436,13 +5436,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetEastAsianExpertForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetEastAsianExpertForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5451,14 +5451,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetEastAsianLanguage
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontEastAsianLanguage;
 
    procedure SetEastAsianLanguage
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontEastAsianLanguage
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontEastAsianLanguage
    );
 
    function get_EastAsianWidthsProperty
@@ -5466,14 +5466,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetEastAsianWidths
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontEastAsianWidths;
 
    procedure SetEastAsianWidths
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontEastAsianWidths
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontEastAsianWidths
    );
 
    function get_StandardLigaturesProperty
@@ -5481,13 +5481,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStandardLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStandardLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5496,13 +5496,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetContextualLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetContextualLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5511,13 +5511,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetDiscretionaryLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetDiscretionaryLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5526,13 +5526,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetHistoricalLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetHistoricalLigatures
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5541,13 +5541,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStandardSwashes
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetStandardSwashes
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -5556,13 +5556,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetContextualSwashes
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetContextualSwashes
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -5571,13 +5571,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetContextualAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetContextualAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5586,13 +5586,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Int32;
 
    procedure SetStylisticAlternates
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Int32
    );
 
@@ -5601,13 +5601,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet1
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet1
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5616,13 +5616,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet2
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet2
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5631,13 +5631,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet3
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet3
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5646,13 +5646,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet4
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet4
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5661,13 +5661,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet5
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet5
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5676,13 +5676,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet6
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet6
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5691,13 +5691,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet7
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet7
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5706,13 +5706,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet8
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet8
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5721,13 +5721,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet9
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet9
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5736,13 +5736,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet10
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet10
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5751,13 +5751,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet11
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet11
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5766,13 +5766,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet12
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet12
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5781,13 +5781,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet13
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet13
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5796,13 +5796,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet14
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet14
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5811,13 +5811,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet15
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet15
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5826,13 +5826,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet16
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet16
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5841,13 +5841,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet17
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet17
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5856,13 +5856,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet18
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet18
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5871,13 +5871,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet19
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet19
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5886,13 +5886,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetStylisticSet20
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetStylisticSet20
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5901,14 +5901,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetCapitals
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontCapitals;
 
    procedure SetCapitals
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontCapitals
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontCapitals
    );
 
    function get_CapitalSpacingProperty
@@ -5916,13 +5916,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetCapitalSpacing
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetCapitalSpacing
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5931,13 +5931,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetKerning
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetKerning
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5946,13 +5946,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetCaseSensitiveForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetCaseSensitiveForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5961,13 +5961,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetHistoricalForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetHistoricalForms
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -5976,14 +5976,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetFraction
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontFraction;
 
    procedure SetFraction
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontFraction
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontFraction
    );
 
    function get_NumeralStyleProperty
@@ -5991,14 +5991,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetNumeralStyle
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontNumeralStyle;
 
    procedure SetNumeralStyle
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontNumeralStyle
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontNumeralStyle
    );
 
    function get_NumeralAlignmentProperty
@@ -6006,14 +6006,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetNumeralAlignment
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontNumeralAlignment;
 
    procedure SetNumeralAlignment
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontNumeralAlignment
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontNumeralAlignment
    );
 
    function get_SlashedZeroProperty
@@ -6021,13 +6021,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetSlashedZero
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetSlashedZero
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -6036,13 +6036,13 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetMathematicalGreek
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Boolean;
 
    procedure SetMathematicalGreek
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
       value : WinRt.Boolean
    );
 
@@ -6051,14 +6051,14 @@ package WinRt.Windows.UI.Xaml.Documents is
 
    function GetVariants
    (
-      element : Windows.UI.Xaml.DependencyObject'Class
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class
    )
    return WinRt.Windows.UI.Xaml.FontVariants;
 
    procedure SetVariants
    (
-      element : Windows.UI.Xaml.DependencyObject'Class;
-      value : Windows.UI.Xaml.FontVariants
+      element : WinRt.Windows.UI.Xaml.DependencyObject'Class;
+      value : WinRt.Windows.UI.Xaml.FontVariants
    );
 
    -----------------------------------------------------------------------------

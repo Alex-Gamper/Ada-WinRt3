@@ -198,49 +198,49 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_Duration
       (
          this : access ILampArrayBitmapEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access ILampArrayBitmapEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StartDelay
       (
          this : access ILampArrayBitmapEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_StartDelay
       (
          this : access ILampArrayBitmapEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateInterval
       (
          this : access ILampArrayBitmapEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_UpdateInterval
       (
          this : access ILampArrayBitmapEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SuggestedBitmapSize
       (
          this : access ILampArrayBitmapEffect_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -248,14 +248,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       (
          this : access ILampArrayBitmapEffect_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BitmapRequested
       (
          this : access ILampArrayBitmapEffect_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -267,10 +267,10 @@ package WinRt.Windows.Devices.Lights.Effects is
       function CreateInstance
       (
          this : access ILampArrayBitmapEffectFactory_Interface;
-         lampArray : Windows.Devices.Lights.ILampArray;
+         lampArray : WinRt.Windows.Devices.Lights.ILampArray;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr;
-         RetVal : access Windows.Devices.Lights.Effects.ILampArrayBitmapEffect
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.ILampArrayBitmapEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -282,14 +282,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_SinceStarted
       (
          this : access ILampArrayBitmapRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function UpdateBitmap
       (
          this : access ILampArrayBitmapRequestedEventArgs_Interface;
-         bitmap : Windows.Graphics.Imaging.ISoftwareBitmap
+         bitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -301,84 +301,84 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_Color
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_AttackDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_AttackDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_SustainDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_SustainDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_DecayDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DecayDuration
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_RepetitionDelay
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RepetitionDelay
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StartDelay
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_StartDelay
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -399,14 +399,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_RepetitionMode
       (
          this : access ILampArrayBlinkEffect_Interface;
-         RetVal : access Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_RepetitionMode
       (
          this : access ILampArrayBlinkEffect_Interface;
-         value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+         value : WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -418,10 +418,10 @@ package WinRt.Windows.Devices.Lights.Effects is
       function CreateInstance
       (
          this : access ILampArrayBlinkEffectFactory_Interface;
-         lampArray : Windows.Devices.Lights.ILampArray;
+         lampArray : WinRt.Windows.Devices.Lights.ILampArray;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr;
-         RetVal : access Windows.Devices.Lights.Effects.ILampArrayBlinkEffect
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.ILampArrayBlinkEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -433,56 +433,56 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_Color
       (
          this : access ILampArrayColorRampEffect_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ILampArrayColorRampEffect_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_RampDuration
       (
          this : access ILampArrayColorRampEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_RampDuration
       (
          this : access ILampArrayColorRampEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StartDelay
       (
          this : access ILampArrayColorRampEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_StartDelay
       (
          this : access ILampArrayColorRampEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_CompletionBehavior
       (
          this : access ILampArrayColorRampEffect_Interface;
-         RetVal : access Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_CompletionBehavior
       (
          this : access ILampArrayColorRampEffect_Interface;
-         value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+         value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -494,10 +494,10 @@ package WinRt.Windows.Devices.Lights.Effects is
       function CreateInstance
       (
          this : access ILampArrayColorRampEffectFactory_Interface;
-         lampArray : Windows.Devices.Lights.ILampArray;
+         lampArray : WinRt.Windows.Devices.Lights.ILampArray;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr;
-         RetVal : access Windows.Devices.Lights.Effects.ILampArrayColorRampEffect
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.ILampArrayColorRampEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -509,28 +509,28 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_Duration
       (
          this : access ILampArrayCustomEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access ILampArrayCustomEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateInterval
       (
          this : access ILampArrayCustomEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_UpdateInterval
       (
          this : access ILampArrayCustomEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -538,14 +538,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       (
          this : access ILampArrayCustomEffect_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_UpdateRequested
       (
          this : access ILampArrayCustomEffect_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -557,10 +557,10 @@ package WinRt.Windows.Devices.Lights.Effects is
       function CreateInstance
       (
          this : access ILampArrayCustomEffectFactory_Interface;
-         lampArray : Windows.Devices.Lights.ILampArray;
+         lampArray : WinRt.Windows.Devices.Lights.ILampArray;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr;
-         RetVal : access Windows.Devices.Lights.Effects.ILampArrayCustomEffect
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.ILampArrayCustomEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -591,7 +591,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       function Append
       (
          this : access ILampArrayEffectPlaylist_Interface;
-         effect : Windows.Devices.Lights.Effects.ILampArrayEffect
+         effect : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -623,14 +623,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_EffectStartMode
       (
          this : access ILampArrayEffectPlaylist_Interface;
-         RetVal : access Windows.Devices.Lights.Effects.LampArrayEffectStartMode
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.LampArrayEffectStartMode
       )
       return WinRt.Hresult is abstract;
 
       function put_EffectStartMode
       (
          this : access ILampArrayEffectPlaylist_Interface;
-         value : Windows.Devices.Lights.Effects.LampArrayEffectStartMode
+         value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectStartMode
       )
       return WinRt.Hresult is abstract;
 
@@ -651,14 +651,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_RepetitionMode
       (
          this : access ILampArrayEffectPlaylist_Interface;
-         RetVal : access Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_RepetitionMode
       (
          this : access ILampArrayEffectPlaylist_Interface;
-         value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+         value : WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -696,56 +696,56 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_Color
       (
          this : access ILampArraySolidEffect_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access ILampArraySolidEffect_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access ILampArraySolidEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access ILampArraySolidEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StartDelay
       (
          this : access ILampArraySolidEffect_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_StartDelay
       (
          this : access ILampArraySolidEffect_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_CompletionBehavior
       (
          this : access ILampArraySolidEffect_Interface;
-         RetVal : access Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_CompletionBehavior
       (
          this : access ILampArraySolidEffect_Interface;
-         value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+         value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -757,10 +757,10 @@ package WinRt.Windows.Devices.Lights.Effects is
       function CreateInstance
       (
          this : access ILampArraySolidEffectFactory_Interface;
-         lampArray : Windows.Devices.Lights.ILampArray;
+         lampArray : WinRt.Windows.Devices.Lights.ILampArray;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr;
-         RetVal : access Windows.Devices.Lights.Effects.ILampArraySolidEffect
+         RetVal : access WinRt.Windows.Devices.Lights.Effects.ILampArraySolidEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -772,14 +772,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       function get_SinceStarted
       (
          this : access ILampArrayUpdateRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function SetColor
       (
          this : access ILampArrayUpdateRequestedEventArgs_Interface;
-         desiredColor : Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -787,14 +787,14 @@ package WinRt.Windows.Devices.Lights.Effects is
       (
          this : access ILampArrayUpdateRequestedEventArgs_Interface;
          lampIndex : WinRt.Int32;
-         desiredColor : Windows.UI.Color
+         desiredColor : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function SetSingleColorForIndices
       (
          this : access ILampArrayUpdateRequestedEventArgs_Interface;
-         desiredColor : Windows.UI.Color;
+         desiredColor : WinRt.Windows.UI.Color;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr
       )
@@ -804,7 +804,7 @@ package WinRt.Windows.Devices.Lights.Effects is
       (
          this : access ILampArrayUpdateRequestedEventArgs_Interface;
          desiredColorsSize : WinRt.UInt32;
-         desiredColors : Windows.UI.Color_Ptr;
+         desiredColors : WinRt.Windows.UI.Color_Ptr;
          lampIndexesSize : WinRt.UInt32;
          lampIndexes : WinRt.Int32_Ptr
       )
@@ -827,7 +827,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor
    (
-      lampArray : Windows.Devices.Lights.LampArray'Class;
+      lampArray : WinRt.Windows.Devices.Lights.LampArray'Class;
       lampIndexes : WinRt.Int32_Array
    )
    return LampArrayBitmapEffect;
@@ -844,7 +844,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Duration
    (
       this : in out LampArrayBitmapEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartDelay
@@ -856,7 +856,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_StartDelay
    (
       this : in out LampArrayBitmapEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_UpdateInterval
@@ -868,7 +868,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_UpdateInterval
    (
       this : in out LampArrayBitmapEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_SuggestedBitmapSize
@@ -887,7 +887,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure remove_BitmapRequested
    (
       this : in out LampArrayBitmapEffect;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ZIndex
@@ -920,7 +920,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure UpdateBitmap
    (
       this : in out LampArrayBitmapRequestedEventArgs;
-      bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      bitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    -----------------------------------------------------------------------------
@@ -934,7 +934,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor
    (
-      lampArray : Windows.Devices.Lights.LampArray'Class;
+      lampArray : WinRt.Windows.Devices.Lights.LampArray'Class;
       lampIndexes : WinRt.Int32_Array
    )
    return LampArrayBlinkEffect;
@@ -951,7 +951,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Color
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_AttackDuration
@@ -963,7 +963,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_AttackDuration
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_SustainDuration
@@ -975,7 +975,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_SustainDuration
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_DecayDuration
@@ -987,7 +987,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_DecayDuration
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_RepetitionDelay
@@ -999,7 +999,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_RepetitionDelay
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartDelay
@@ -1011,7 +1011,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_StartDelay
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Occurrences
@@ -1035,7 +1035,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_RepetitionMode
    (
       this : in out LampArrayBlinkEffect;
-      value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+      value : WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
    );
 
    function get_ZIndex
@@ -1061,7 +1061,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor
    (
-      lampArray : Windows.Devices.Lights.LampArray'Class;
+      lampArray : WinRt.Windows.Devices.Lights.LampArray'Class;
       lampIndexes : WinRt.Int32_Array
    )
    return LampArrayColorRampEffect;
@@ -1078,7 +1078,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Color
    (
       this : in out LampArrayColorRampEffect;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_RampDuration
@@ -1090,7 +1090,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_RampDuration
    (
       this : in out LampArrayColorRampEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartDelay
@@ -1102,7 +1102,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_StartDelay
    (
       this : in out LampArrayColorRampEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_CompletionBehavior
@@ -1114,7 +1114,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_CompletionBehavior
    (
       this : in out LampArrayColorRampEffect;
-      value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+      value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
    );
 
    function get_ZIndex
@@ -1140,7 +1140,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor
    (
-      lampArray : Windows.Devices.Lights.LampArray'Class;
+      lampArray : WinRt.Windows.Devices.Lights.LampArray'Class;
       lampIndexes : WinRt.Int32_Array
    )
    return LampArrayCustomEffect;
@@ -1157,7 +1157,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Duration
    (
       this : in out LampArrayCustomEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_UpdateInterval
@@ -1169,7 +1169,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_UpdateInterval
    (
       this : in out LampArrayCustomEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function add_UpdateRequested
@@ -1182,7 +1182,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure remove_UpdateRequested
    (
       this : in out LampArrayCustomEffect;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ZIndex
@@ -1232,7 +1232,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure Append
    (
       this : in out LampArrayEffectPlaylist;
-      effect : Windows.Devices.Lights.Effects.ILampArrayEffect
+      effect : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect
    );
 
    procedure OverrideZIndex
@@ -1265,7 +1265,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_EffectStartMode
    (
       this : in out LampArrayEffectPlaylist;
-      value : Windows.Devices.Lights.Effects.LampArrayEffectStartMode
+      value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectStartMode
    );
 
    function get_Occurrences
@@ -1289,7 +1289,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_RepetitionMode
    (
       this : in out LampArrayEffectPlaylist;
-      value : Windows.Devices.Lights.Effects.LampArrayRepetitionMode
+      value : WinRt.Windows.Devices.Lights.Effects.LampArrayRepetitionMode
    );
 
    -- Generic Interface Windows.Foundation.Collections.IVectorView`1<Windows.Devices.Lights.Effects.ILampArrayEffect>
@@ -1309,7 +1309,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    function IndexOf
    (
       this : in out LampArrayEffectPlaylist;
-      value : Windows.Devices.Lights.Effects.ILampArrayEffect;
+      value : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1318,7 +1318,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    (
       this : in out LampArrayEffectPlaylist;
       startIndex : WinRt.UInt32;
-      items : Windows.Devices.Lights.Effects.ILampArrayEffect_Array
+      items : WinRt.Windows.Devices.Lights.Effects.ILampArrayEffect_Array
    )
    return WinRt.UInt32;
 
@@ -1340,7 +1340,7 @@ package WinRt.Windows.Devices.Lights.Effects is
 
    function Constructor
    (
-      lampArray : Windows.Devices.Lights.LampArray'Class;
+      lampArray : WinRt.Windows.Devices.Lights.LampArray'Class;
       lampIndexes : WinRt.Int32_Array
    )
    return LampArraySolidEffect;
@@ -1357,7 +1357,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Color
    (
       this : in out LampArraySolidEffect;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_Duration
@@ -1369,7 +1369,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_Duration
    (
       this : in out LampArraySolidEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StartDelay
@@ -1381,7 +1381,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_StartDelay
    (
       this : in out LampArraySolidEffect;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_CompletionBehavior
@@ -1393,7 +1393,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure put_CompletionBehavior
    (
       this : in out LampArraySolidEffect;
-      value : Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
+      value : WinRt.Windows.Devices.Lights.Effects.LampArrayEffectCompletionBehavior
    );
 
    function get_ZIndex
@@ -1426,27 +1426,27 @@ package WinRt.Windows.Devices.Lights.Effects is
    procedure SetColor
    (
       this : in out LampArrayUpdateRequestedEventArgs;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    );
 
    procedure SetColorForIndex
    (
       this : in out LampArrayUpdateRequestedEventArgs;
       lampIndex : WinRt.Int32;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    );
 
    procedure SetSingleColorForIndices
    (
       this : in out LampArrayUpdateRequestedEventArgs;
-      desiredColor : Windows.UI.Color;
+      desiredColor : WinRt.Windows.UI.Color;
       lampIndexes : WinRt.Int32_Array
    );
 
    procedure SetColorsForIndices
    (
       this : in out LampArrayUpdateRequestedEventArgs;
-      desiredColors : Windows.UI.Color_Array;
+      desiredColors : WinRt.Windows.UI.Color_Array;
       lampIndexes : WinRt.Int32_Array
    );
 

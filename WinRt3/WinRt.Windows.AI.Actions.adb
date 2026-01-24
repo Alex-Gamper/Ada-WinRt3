@@ -71,7 +71,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityKind;
    begin
       Hr := this.m_IActionEntity.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -88,14 +88,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionEntityDisplayInfo;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionEntityDisplayInfo;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionEntityDisplayInfo do
          Hr := this.m_IActionEntity.all.get_DisplayInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionEntityDisplayInfo := new Windows.AI.Actions.IActionEntityDisplayInfo;
+         Retval.m_IActionEntityDisplayInfo := new WinRt.Windows.AI.Actions.IActionEntityDisplayInfo;
          Retval.m_IActionEntityDisplayInfo.all := m_ComRetVal;
       end return;
    end;
@@ -238,7 +238,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IFileActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IFileActionEntity;
       HStr_path : constant WinRt.HString := To_HString (path);
    begin
       return RetVal : WinRt.Windows.AI.Actions.FileActionEntity do
@@ -246,7 +246,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileActionEntity := new Windows.AI.Actions.IFileActionEntity;
+         Retval.m_IFileActionEntity := new WinRt.Windows.AI.Actions.IFileActionEntity;
          Retval.m_IFileActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_path);
       end return;
@@ -261,7 +261,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IDocumentActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IDocumentActionEntity;
       HStr_path : constant WinRt.HString := To_HString (path);
    begin
       return RetVal : WinRt.Windows.AI.Actions.DocumentActionEntity do
@@ -269,7 +269,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDocumentActionEntity := new Windows.AI.Actions.IDocumentActionEntity;
+         Retval.m_IDocumentActionEntity := new WinRt.Windows.AI.Actions.IDocumentActionEntity;
          Retval.m_IDocumentActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_path);
       end return;
@@ -284,7 +284,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IPhotoActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IPhotoActionEntity;
       HStr_path : constant WinRt.HString := To_HString (path);
    begin
       return RetVal : WinRt.Windows.AI.Actions.PhotoActionEntity do
@@ -292,7 +292,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoActionEntity := new Windows.AI.Actions.IPhotoActionEntity;
+         Retval.m_IPhotoActionEntity := new WinRt.Windows.AI.Actions.IPhotoActionEntity;
          Retval.m_IPhotoActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_path);
       end return;
@@ -307,7 +307,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ITextActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ITextActionEntity;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : WinRt.Windows.AI.Actions.TextActionEntity do
@@ -315,7 +315,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITextActionEntity := new Windows.AI.Actions.ITextActionEntity;
+         Retval.m_ITextActionEntity := new WinRt.Windows.AI.Actions.ITextActionEntity;
          Retval.m_ITextActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_text);
       end return;
@@ -325,8 +325,8 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       sourceId : WinRt.WString;
-      fileKind : Windows.AI.Actions.RemoteFileKind;
-      sourceUri : Windows.Foundation.Uri'Class;
+      fileKind : WinRt.Windows.AI.Actions.RemoteFileKind;
+      sourceUri : WinRt.Windows.Foundation.Uri'Class;
       fileId : WinRt.WString;
       contentType : WinRt.WString;
       driveId : WinRt.WString;
@@ -338,7 +338,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IRemoteFileActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IRemoteFileActionEntity;
       HStr_sourceId : constant WinRt.HString := To_HString (sourceId);
       HStr_fileId : constant WinRt.HString := To_HString (fileId);
       HStr_contentType : constant WinRt.HString := To_HString (contentType);
@@ -354,7 +354,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoteFileActionEntity := new Windows.AI.Actions.IRemoteFileActionEntity;
+         Retval.m_IRemoteFileActionEntity := new WinRt.Windows.AI.Actions.IRemoteFileActionEntity;
          Retval.m_IRemoteFileActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_sourceId);
          tmp := WindowsDeleteString (HStr_fileId);
@@ -369,14 +369,14 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       text : WinRt.WString;
-      textFormat : Windows.AI.Actions.ActionEntityTextFormat
+      textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat
    )
    return WinRt.Windows.AI.Actions.TextActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ITextActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ITextActionEntity;
       HStr_text : constant WinRt.HString := To_HString (text);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory3, WinRt.Windows.AI.Actions.IID_IActionEntityFactory3'Unchecked_Access);
    begin
@@ -387,7 +387,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITextActionEntity := new Windows.AI.Actions.ITextActionEntity;
+         Retval.m_ITextActionEntity := new WinRt.Windows.AI.Actions.ITextActionEntity;
          Retval.m_ITextActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_text);
       end return;
@@ -396,14 +396,14 @@ package body WinRt.Windows.AI.Actions is
    function CreateStreamingTextActionEntityWriter
    (
       this : in out ActionEntityFactory;
-      textFormat : Windows.AI.Actions.ActionEntityTextFormat
+      textFormat : WinRt.Windows.AI.Actions.ActionEntityTextFormat
    )
    return WinRt.Windows.AI.Actions.StreamingTextActionEntityWriter'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IStreamingTextActionEntityWriter;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IStreamingTextActionEntityWriter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory3, WinRt.Windows.AI.Actions.IID_IActionEntityFactory3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.StreamingTextActionEntityWriter do
@@ -413,7 +413,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStreamingTextActionEntityWriter := new Windows.AI.Actions.IStreamingTextActionEntityWriter;
+         Retval.m_IStreamingTextActionEntityWriter := new WinRt.Windows.AI.Actions.IStreamingTextActionEntityWriter;
          Retval.m_IStreamingTextActionEntityWriter.all := m_ComRetVal;
       end return;
    end;
@@ -429,7 +429,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ITableActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ITableActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory4, WinRt.Windows.AI.Actions.IID_IActionEntityFactory4'Unchecked_Access);
       function Convert_data is new Ada.Unchecked_Conversion (Address, WinRt.HString_Ptr);
    begin
@@ -440,7 +440,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITableActionEntity := new Windows.AI.Actions.ITableActionEntity;
+         Retval.m_ITableActionEntity := new WinRt.Windows.AI.Actions.ITableActionEntity;
          Retval.m_ITableActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -448,14 +448,14 @@ package body WinRt.Windows.AI.Actions is
    function CreateContactEntity
    (
       this : in out ActionEntityFactory;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    )
    return WinRt.Windows.AI.Actions.ContactActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IContactActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IContactActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory4, WinRt.Windows.AI.Actions.IID_IActionEntityFactory4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.ContactActionEntity do
@@ -465,7 +465,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactActionEntity := new Windows.AI.Actions.IContactActionEntity;
+         Retval.m_IContactActionEntity := new WinRt.Windows.AI.Actions.IContactActionEntity;
          Retval.m_IContactActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -473,14 +473,14 @@ package body WinRt.Windows.AI.Actions is
    function CreateUriEntity
    (
       this : in out ActionEntityFactory;
-      Uri : Windows.Foundation.Uri'Class
+      Uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.AI.Actions.UriActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IUriActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IUriActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory5, WinRt.Windows.AI.Actions.IID_IActionEntityFactory5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.UriActionEntity do
@@ -490,7 +490,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriActionEntity := new Windows.AI.Actions.IUriActionEntity;
+         Retval.m_IUriActionEntity := new WinRt.Windows.AI.Actions.IUriActionEntity;
          Retval.m_IUriActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -498,15 +498,15 @@ package body WinRt.Windows.AI.Actions is
    function CreateArrayEntity
    (
       this : in out ActionEntityFactory;
-      kind : Windows.AI.Actions.ActionEntityKind;
-      entities : Windows.AI.Actions.ActionEntity_Array
+      kind : WinRt.Windows.AI.Actions.ActionEntityKind;
+      entities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.ArrayActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IArrayActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IArrayActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory5, WinRt.Windows.AI.Actions.IID_IActionEntityFactory5'Unchecked_Access);
       function Convert_entities is new Ada.Unchecked_Conversion (Address, WinRt.Windows.AI.Actions.IActionEntity_Ptr);
    begin
@@ -517,7 +517,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IArrayActionEntity := new Windows.AI.Actions.IArrayActionEntity;
+         Retval.m_IArrayActionEntity := new WinRt.Windows.AI.Actions.IArrayActionEntity;
          Retval.m_IArrayActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -525,14 +525,14 @@ package body WinRt.Windows.AI.Actions is
    function CreateDateTimeEntity
    (
       this : in out ActionEntityFactory;
-      dateTime : Windows.Foundation.DateTime
+      dateTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.AI.Actions.DateTimeActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IDateTimeActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IDateTimeActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory6, WinRt.Windows.AI.Actions.IID_IActionEntityFactory6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.DateTimeActionEntity do
@@ -542,7 +542,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDateTimeActionEntity := new Windows.AI.Actions.IDateTimeActionEntity;
+         Retval.m_IDateTimeActionEntity := new WinRt.Windows.AI.Actions.IDateTimeActionEntity;
          Retval.m_IDateTimeActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -551,15 +551,15 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionEntityFactory;
       sourceId : WinRt.WString;
-      appointment : Windows.ApplicationModel.Appointments.Appointment'Class;
-      attendees : Windows.AI.Actions.ContactActionEntity_Array
+      appointment : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      attendees : WinRt.Windows.AI.Actions.ContactActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.AppointmentActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IAppointmentActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IAppointmentActionEntity;
       HStr_sourceId : constant WinRt.HString := To_HString (sourceId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory6, WinRt.Windows.AI.Actions.IID_IActionEntityFactory6'Unchecked_Access);
       function Convert_attendees is new Ada.Unchecked_Conversion (Address, WinRt.Windows.AI.Actions.IContactActionEntity_Ptr);
@@ -571,7 +571,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointmentActionEntity := new Windows.AI.Actions.IAppointmentActionEntity;
+         Retval.m_IAppointmentActionEntity := new WinRt.Windows.AI.Actions.IAppointmentActionEntity;
          Retval.m_IAppointmentActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_sourceId);
       end return;
@@ -589,7 +589,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ICustomTextActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ICustomTextActionEntity;
       HStr_kind : constant WinRt.HString := To_HString (kind);
       HStr_keyPhrase : constant WinRt.HString := To_HString (keyPhrase);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory7, WinRt.Windows.AI.Actions.IID_IActionEntityFactory7'Unchecked_Access);
@@ -601,7 +601,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICustomTextActionEntity := new Windows.AI.Actions.ICustomTextActionEntity;
+         Retval.m_ICustomTextActionEntity := new WinRt.Windows.AI.Actions.ICustomTextActionEntity;
          Retval.m_ICustomTextActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_kind);
          tmp := WindowsDeleteString (HStr_keyPhrase);
@@ -611,16 +611,16 @@ package body WinRt.Windows.AI.Actions is
    function CreateArrayEntityWithCustomKind
    (
       this : in out ActionEntityFactory;
-      elementKind : Windows.AI.Actions.ActionEntityKind;
+      elementKind : WinRt.Windows.AI.Actions.ActionEntityKind;
       customKind : WinRt.WString;
-      entities : Windows.AI.Actions.ActionEntity_Array
+      entities : WinRt.Windows.AI.Actions.ActionEntity_Array
    )
    return WinRt.Windows.AI.Actions.ArrayActionEntity'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionEntityFactory7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IArrayActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IArrayActionEntity;
       HStr_customKind : constant WinRt.HString := To_HString (customKind);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionEntityFactory2_Interface, WinRt.Windows.AI.Actions.IActionEntityFactory7, WinRt.Windows.AI.Actions.IID_IActionEntityFactory7'Unchecked_Access);
       function Convert_entities is new Ada.Unchecked_Conversion (Address, WinRt.Windows.AI.Actions.IActionEntity_Ptr);
@@ -632,7 +632,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IArrayActionEntity := new Windows.AI.Actions.IArrayActionEntity;
+         Retval.m_IArrayActionEntity := new WinRt.Windows.AI.Actions.IArrayActionEntity;
          Retval.m_IArrayActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_customKind);
       end return;
@@ -687,7 +687,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionFeedbackKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionFeedbackKind;
    begin
       Hr := this.m_IActionFeedback.all.get_FeedbackKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -745,14 +745,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionEntityFactory2;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionEntityFactory2;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionEntityFactory do
          Hr := this.m_IActionInvocationContext.all.get_EntityFactory (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionEntityFactory2 := new Windows.AI.Actions.IActionEntityFactory2;
+         Retval.m_IActionEntityFactory2 := new WinRt.Windows.AI.Actions.IActionEntityFactory2;
          Retval.m_IActionEntityFactory2.all := m_ComRetVal;
       end return;
    end;
@@ -761,7 +761,7 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext;
       inputName : WinRt.WString;
-      inputValue : Windows.AI.Actions.ActionEntity'Class
+      inputValue : WinRt.Windows.AI.Actions.ActionEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -810,7 +810,7 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionInvocationContext;
       outputName : WinRt.WString;
-      outputValue : Windows.AI.Actions.ActionEntity'Class
+      outputValue : WinRt.Windows.AI.Actions.ActionEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -863,7 +863,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionInvocationResult;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionInvocationResult;
    begin
       Hr := this.m_IActionInvocationContext.all.get_Result (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -875,7 +875,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_Result
    (
       this : in out ActionInvocationContext;
-      value : Windows.AI.Actions.ActionInvocationResult
+      value : WinRt.Windows.AI.Actions.ActionInvocationResult
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -895,7 +895,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IActionInvocationContext.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -907,7 +907,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_ExtendedError
    (
       this : in out ActionInvocationContext;
-      value : Windows.Foundation.HResult
+      value : WinRt.Windows.Foundation.HResult
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -928,7 +928,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionInvocationContext2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowId;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionInvocationContext_Interface, WinRt.Windows.AI.Actions.IActionInvocationContext2, WinRt.Windows.AI.Actions.IID_IActionInvocationContext2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IActionInvocationContext.all);
@@ -949,7 +949,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionInvocationContext2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionInvocationHelpDetails;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionInvocationHelpDetails;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionInvocationContext_Interface, WinRt.Windows.AI.Actions.IActionInvocationContext2, WinRt.Windows.AI.Actions.IID_IActionInvocationContext2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionInvocationHelpDetails do
@@ -959,7 +959,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInvocationHelpDetails := new Windows.AI.Actions.IActionInvocationHelpDetails;
+         Retval.m_IActionInvocationHelpDetails := new WinRt.Windows.AI.Actions.IActionInvocationHelpDetails;
          Retval.m_IActionInvocationHelpDetails.all := m_ComRetVal;
       end return;
    end;
@@ -1061,7 +1061,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionInvocationHelpKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionInvocationHelpKind;
    begin
       Hr := this.m_IActionInvocationHelpDetails.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1073,7 +1073,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_Kind
    (
       this : in out ActionInvocationHelpDetails;
-      value : Windows.AI.Actions.ActionInvocationHelpKind
+      value : WinRt.Windows.AI.Actions.ActionInvocationHelpKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1167,14 +1167,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IActionInvocationHelpDetails.all.get_HelpUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1182,7 +1182,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_HelpUri
    (
       this : in out ActionInvocationHelpDetails;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionInvocationHelpDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionInvocationHelpDetails_Interface, WinRt.Windows.AI.Actions.IActionInvocationHelpDetails2, WinRt.Windows.AI.Actions.IID_IActionInvocationHelpDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IActionInvocationHelpDetails.all);
@@ -1256,7 +1256,7 @@ package body WinRt.Windows.AI.Actions is
    procedure remove_Changed
    (
       this : in out ActionInvocationHelpDetails;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1323,7 +1323,7 @@ package body WinRt.Windows.AI.Actions is
       m_hString        : constant WinRt.HString := To_HString ("Windows.AI.Actions.ActionRuntime");
       m_Factory        : access WinRt.Windows.AI.Actions.IActionRuntimeStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionRuntime;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionRuntime;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionRuntime do
          Hr := RoGetActivationFactory (m_hString, IID_IActionRuntimeStatics'Access , m_Factory'Address);
@@ -1333,7 +1333,7 @@ package body WinRt.Windows.AI.Actions is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IActionRuntime := new Windows.AI.Actions.IActionRuntime;
+            Retval.m_IActionRuntime := new WinRt.Windows.AI.Actions.IActionRuntime;
             Retval.m_IActionRuntime.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1351,14 +1351,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.Hosting.IActionCatalog;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.Hosting.IActionCatalog;
    begin
       return RetVal : WinRt.Windows.AI.Actions.Hosting.ActionCatalog do
          Hr := this.m_IActionRuntime.all.get_ActionCatalog (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionCatalog := new Windows.AI.Actions.Hosting.IActionCatalog;
+         Retval.m_IActionCatalog := new WinRt.Windows.AI.Actions.Hosting.IActionCatalog;
          Retval.m_IActionCatalog.all := m_ComRetVal;
       end return;
    end;
@@ -1371,14 +1371,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionEntityFactory2;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionEntityFactory2;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionEntityFactory do
          Hr := this.m_IActionRuntime.all.get_EntityFactory (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionEntityFactory2 := new Windows.AI.Actions.IActionEntityFactory2;
+         Retval.m_IActionEntityFactory2 := new WinRt.Windows.AI.Actions.IActionEntityFactory2;
          Retval.m_IActionEntityFactory2.all := m_ComRetVal;
       end return;
    end;
@@ -1392,7 +1392,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionInvocationContext;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionInvocationContext;
       HStr_actionId : constant WinRt.HString := To_HString (actionId);
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionInvocationContext do
@@ -1400,7 +1400,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInvocationContext := new Windows.AI.Actions.IActionInvocationContext;
+         Retval.m_IActionInvocationContext := new WinRt.Windows.AI.Actions.IActionInvocationContext;
          Retval.m_IActionInvocationContext.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_actionId);
       end return;
@@ -1409,14 +1409,14 @@ package body WinRt.Windows.AI.Actions is
    function CreateActionFeedback
    (
       this : in out ActionRuntime;
-      feedbackKind : Windows.AI.Actions.ActionFeedbackKind
+      feedbackKind : WinRt.Windows.AI.Actions.ActionFeedbackKind
    )
    return WinRt.Windows.AI.Actions.ActionFeedback'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionRuntime2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionFeedback;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionFeedback;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionRuntime_Interface, WinRt.Windows.AI.Actions.IActionRuntime2, WinRt.Windows.AI.Actions.IID_IActionRuntime2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionFeedback do
@@ -1426,7 +1426,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionFeedback := new Windows.AI.Actions.IActionFeedback;
+         Retval.m_IActionFeedback := new WinRt.Windows.AI.Actions.IActionFeedback;
          Retval.m_IActionFeedback.all := m_ComRetVal;
       end return;
    end;
@@ -1481,14 +1481,14 @@ package body WinRt.Windows.AI.Actions is
    (
       this : in out ActionRuntime;
       actionId : WinRt.WString;
-      invokerWindowId : Windows.UI.WindowId
+      invokerWindowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.AI.Actions.ActionInvocationContext'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionRuntime3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionInvocationContext;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionInvocationContext;
       HStr_actionId : constant WinRt.HString := To_HString (actionId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionRuntime_Interface, WinRt.Windows.AI.Actions.IActionRuntime3, WinRt.Windows.AI.Actions.IID_IActionRuntime3'Unchecked_Access);
    begin
@@ -1499,7 +1499,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInvocationContext := new Windows.AI.Actions.IActionInvocationContext;
+         Retval.m_IActionInvocationContext := new WinRt.Windows.AI.Actions.IActionInvocationContext;
          Retval.m_IActionInvocationContext.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_actionId);
       end return;
@@ -1515,7 +1515,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionRuntime3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionEntity;
       HStr_entityId : constant WinRt.HString := To_HString (entityId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionRuntime_Interface, WinRt.Windows.AI.Actions.IActionRuntime3, WinRt.Windows.AI.Actions.IID_IActionRuntime3'Unchecked_Access);
    begin
@@ -1526,7 +1526,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionEntity := new Windows.AI.Actions.IActionEntity;
+         Retval.m_IActionEntity := new WinRt.Windows.AI.Actions.IActionEntity;
          Retval.m_IActionEntity.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_entityId);
       end return;
@@ -1563,7 +1563,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionRuntime4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionInvocationContext;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionInvocationContext;
       HStr_token : constant WinRt.HString := To_HString (token);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionRuntime_Interface, WinRt.Windows.AI.Actions.IActionRuntime4, WinRt.Windows.AI.Actions.IID_IActionRuntime4'Unchecked_Access);
    begin
@@ -1574,7 +1574,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionInvocationContext := new Windows.AI.Actions.IActionInvocationContext;
+         Retval.m_IActionInvocationContext := new WinRt.Windows.AI.Actions.IActionInvocationContext;
          Retval.m_IActionInvocationContext.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_token);
       end return;
@@ -1589,7 +1589,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IActionRuntime5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ICustomActionEntityStore;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ICustomActionEntityStore;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IActionRuntime_Interface, WinRt.Windows.AI.Actions.IActionRuntime5, WinRt.Windows.AI.Actions.IID_IActionRuntime5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.CustomActionEntityStore do
@@ -1599,7 +1599,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICustomActionEntityStore := new Windows.AI.Actions.ICustomActionEntityStore;
+         Retval.m_ICustomActionEntityStore := new WinRt.Windows.AI.Actions.ICustomActionEntityStore;
          Retval.m_ICustomActionEntityStore.all := m_ComRetVal;
       end return;
    end;
@@ -1673,14 +1673,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.IAppointment;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.Appointment do
          Hr := this.m_IAppointmentActionEntity.all.get_Appointment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppointment := new Windows.ApplicationModel.Appointments.IAppointment;
+         Retval.m_IAppointment := new WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          Retval.m_IAppointment.all := m_ComRetVal;
       end return;
    end;
@@ -1750,7 +1750,7 @@ package body WinRt.Windows.AI.Actions is
    procedure SetPresentedFiles
    (
       this : in out AppointmentActionEntity;
-      files : Windows.AI.Actions.RemoteFileActionEntity_Array
+      files : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1797,7 +1797,7 @@ package body WinRt.Windows.AI.Actions is
    procedure SetSharedFiles
    (
       this : in out AppointmentActionEntity;
-      files : Windows.AI.Actions.RemoteFileActionEntity_Array
+      files : WinRt.Windows.AI.Actions.RemoteFileActionEntity_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1841,7 +1841,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityKind;
    begin
       Hr := this.m_IArrayActionEntity.all.get_ElementKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1936,14 +1936,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactActionEntity.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -1983,7 +1983,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       HStr_kind : constant WinRt.HString := To_HString (kind);
    begin
       Hr := this.m_ICustomActionEntityStore.all.GetLastModifiedTime (HStr_kind, m_ComRetVal'Access);
@@ -1997,7 +1997,7 @@ package body WinRt.Windows.AI.Actions is
    procedure Insert
    (
       this : in out CustomActionEntityStore;
-      entity : Windows.AI.Actions.CustomTextActionEntity'Class
+      entity : WinRt.Windows.AI.Actions.CustomTextActionEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2012,7 +2012,7 @@ package body WinRt.Windows.AI.Actions is
    procedure InsertMany
    (
       this : in out CustomActionEntityStore;
-      entities : Windows.AI.Actions.CustomTextActionEntity_Array
+      entities : WinRt.Windows.AI.Actions.CustomTextActionEntity_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2131,7 +2131,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_ICustomTextActionEntity.all.get_Properties (m_ComRetVal'Access);
@@ -2174,7 +2174,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IDateTimeActionEntity.all.get_DateTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2337,14 +2337,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IActionEntity;
    begin
       return RetVal : WinRt.Windows.AI.Actions.ActionEntity do
          Hr := this.m_INamedActionEntity.all.get_Entity (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActionEntity := new Windows.AI.Actions.IActionEntity;
+         Retval.m_IActionEntity := new WinRt.Windows.AI.Actions.IActionEntity;
          Retval.m_IActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -2352,7 +2352,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_Entity
    (
       this : in out NamedActionEntity;
-      value : Windows.AI.Actions.ActionEntity'Class
+      value : WinRt.Windows.AI.Actions.ActionEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2476,7 +2476,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.RemoteFileKind;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.RemoteFileKind;
    begin
       Hr := this.m_IRemoteFileActionEntity.all.get_FileKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2493,14 +2493,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IRemoteFileActionEntity.all.get_SourceUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2659,7 +2659,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IRemoteFileActionEntity2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IContactActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IContactActionEntity;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Interface, WinRt.Windows.AI.Actions.IRemoteFileActionEntity2, WinRt.Windows.AI.Actions.IID_IRemoteFileActionEntity2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.AI.Actions.ContactActionEntity do
@@ -2669,7 +2669,7 @@ package body WinRt.Windows.AI.Actions is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactActionEntity := new Windows.AI.Actions.IContactActionEntity;
+         Retval.m_IContactActionEntity := new WinRt.Windows.AI.Actions.IContactActionEntity;
          Retval.m_IContactActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -2677,7 +2677,7 @@ package body WinRt.Windows.AI.Actions is
    procedure put_Creator
    (
       this : in out RemoteFileActionEntity;
-      value : Windows.AI.Actions.ContactActionEntity'Class
+      value : WinRt.Windows.AI.Actions.ContactActionEntity'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2702,7 +2702,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.IRemoteFileActionEntity2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.IRemoteFileActionEntity_Interface, WinRt.Windows.AI.Actions.IRemoteFileActionEntity2, WinRt.Windows.AI.Actions.IID_IRemoteFileActionEntity2'Unchecked_Access);
    begin
@@ -2739,7 +2739,7 @@ package body WinRt.Windows.AI.Actions is
    procedure SetContributors
    (
       this : in out RemoteFileActionEntity;
-      contributors : Windows.AI.Actions.ContactActionEntity_Array
+      contributors : WinRt.Windows.AI.Actions.ContactActionEntity_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2859,7 +2859,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityTextFormat;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityTextFormat;
    begin
       Hr := this.m_IStreamingTextActionEntity.all.get_TextFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2877,7 +2877,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStreamingTextActionEntity.all.add_TextChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2889,7 +2889,7 @@ package body WinRt.Windows.AI.Actions is
    procedure remove_TextChanged
    (
       this : in out StreamingTextActionEntity;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2992,14 +2992,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.IStreamingTextActionEntity;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.IStreamingTextActionEntity;
    begin
       return RetVal : WinRt.Windows.AI.Actions.StreamingTextActionEntity do
          Hr := this.m_IStreamingTextActionEntityWriter.all.get_ReaderEntity (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStreamingTextActionEntity := new Windows.AI.Actions.IStreamingTextActionEntity;
+         Retval.m_IStreamingTextActionEntity := new WinRt.Windows.AI.Actions.IStreamingTextActionEntity;
          Retval.m_IStreamingTextActionEntity.all := m_ComRetVal;
       end return;
    end;
@@ -3012,7 +3012,7 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityTextFormat;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityTextFormat;
    begin
       Hr := this.m_IStreamingTextActionEntityWriter.all.get_TextFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3193,7 +3193,7 @@ package body WinRt.Windows.AI.Actions is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.AI.Actions.ITextActionEntity2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.AI.Actions.ActionEntityTextFormat;
+      m_ComRetVal      : aliased WinRt.Windows.AI.Actions.ActionEntityTextFormat;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.AI.Actions.ITextActionEntity_Interface, WinRt.Windows.AI.Actions.ITextActionEntity2, WinRt.Windows.AI.Actions.IID_ITextActionEntity2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextActionEntity.all);
@@ -3236,14 +3236,14 @@ package body WinRt.Windows.AI.Actions is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IUriActionEntity.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;

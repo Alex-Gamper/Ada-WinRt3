@@ -89,7 +89,7 @@ package WinRt.Windows.UI.Notifications.Management is
       function GetAccessStatus
       (
          this : access IUserNotificationListener_Interface;
-         RetVal : access Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus
+         RetVal : access WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -97,21 +97,21 @@ package WinRt.Windows.UI.Notifications.Management is
       (
          this : access IUserNotificationListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NotificationChanged
       (
          this : access IUserNotificationListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetNotificationsAsync
       (
          this : access IUserNotificationListener_Interface;
-         kinds : Windows.UI.Notifications.NotificationKinds;
+         kinds : WinRt.Windows.UI.Notifications.NotificationKinds;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -120,7 +120,7 @@ package WinRt.Windows.UI.Notifications.Management is
       (
          this : access IUserNotificationListener_Interface;
          notificationId : WinRt.UInt32;
-         RetVal : access Windows.UI.Notifications.IUserNotification
+         RetVal : access WinRt.Windows.UI.Notifications.IUserNotification
       )
       return WinRt.Hresult is abstract;
 
@@ -145,7 +145,7 @@ package WinRt.Windows.UI.Notifications.Management is
       function get_Current
       (
          this : access IUserNotificationListenerStatics_Interface;
-         RetVal : access Windows.UI.Notifications.Management.IUserNotificationListener
+         RetVal : access WinRt.Windows.UI.Notifications.Management.IUserNotificationListener
       )
       return WinRt.Hresult is abstract;
 
@@ -192,13 +192,13 @@ package WinRt.Windows.UI.Notifications.Management is
    procedure remove_NotificationChanged
    (
       this : in out UserNotificationListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetNotificationsAsync
    (
       this : in out UserNotificationListener;
-      kinds : Windows.UI.Notifications.NotificationKinds
+      kinds : WinRt.Windows.UI.Notifications.NotificationKinds
    )
    return WinRt.GenericObject;
 

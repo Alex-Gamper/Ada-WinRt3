@@ -104,16 +104,16 @@ package WinRt.Windows.Media.Playlists is
       function SaveAsync
       (
          this : access IPlaylist_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsAsync
       (
          this : access IPlaylist_Interface;
-         saveLocation : Windows.Storage.IStorageFolder;
+         saveLocation : WinRt.Windows.Storage.IStorageFolder;
          desiredName : WinRt.HString;
-         option : Windows.Storage.NameCollisionOption;
+         option : WinRt.Windows.Storage.NameCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -121,10 +121,10 @@ package WinRt.Windows.Media.Playlists is
       function SaveAsAsync
       (
          this : access IPlaylist_Interface;
-         saveLocation : Windows.Storage.IStorageFolder;
+         saveLocation : WinRt.Windows.Storage.IStorageFolder;
          desiredName : WinRt.HString;
-         option : Windows.Storage.NameCollisionOption;
-         playlistFormat : Windows.Media.Playlists.PlaylistFormat;
+         option : WinRt.Windows.Storage.NameCollisionOption;
+         playlistFormat : WinRt.Windows.Media.Playlists.PlaylistFormat;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -137,7 +137,7 @@ package WinRt.Windows.Media.Playlists is
       function LoadAsync
       (
          this : access IPlaylistStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -164,7 +164,7 @@ package WinRt.Windows.Media.Playlists is
 
    function LoadAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Playlists.Playlist;
 
@@ -185,19 +185,19 @@ package WinRt.Windows.Media.Playlists is
    function SaveAsAsync
    (
       this : in out Playlist;
-      saveLocation : Windows.Storage.IStorageFolder;
+      saveLocation : WinRt.Windows.Storage.IStorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
    function SaveAsAsync
    (
       this : in out Playlist;
-      saveLocation : Windows.Storage.IStorageFolder;
+      saveLocation : WinRt.Windows.Storage.IStorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption;
-      playlistFormat : Windows.Media.Playlists.PlaylistFormat
+      option : WinRt.Windows.Storage.NameCollisionOption;
+      playlistFormat : WinRt.Windows.Media.Playlists.PlaylistFormat
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 

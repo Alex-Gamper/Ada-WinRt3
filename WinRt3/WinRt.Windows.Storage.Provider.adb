@@ -40,11 +40,11 @@ package body WinRt.Windows.Storage.Provider is
 
       procedure SetUpdateInformation
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contentId : WinRt.WString;
-         readMode : Windows.Storage.Provider.ReadActivationMode;
-         writeMode : Windows.Storage.Provider.WriteActivationMode;
-         options : Windows.Storage.Provider.CachedFileOptions
+         readMode : WinRt.Windows.Storage.Provider.ReadActivationMode;
+         writeMode : WinRt.Windows.Storage.Provider.WriteActivationMode;
+         options : WinRt.Windows.Storage.Provider.CachedFileOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -135,7 +135,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.CachedFileTarget;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.CachedFileTarget;
    begin
       Hr := this.m_ICachedFileUpdaterUI.all.get_UpdateTarget (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -153,7 +153,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICachedFileUpdaterUI.all.add_FileUpdateRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -165,7 +165,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure remove_FileUpdateRequested
    (
       this : in out CachedFileUpdaterUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -186,7 +186,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICachedFileUpdaterUI.all.add_UIRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -198,7 +198,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure remove_UIRequested
    (
       this : in out CachedFileUpdaterUI;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -218,7 +218,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.UIStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.UIStatus;
    begin
       Hr := this.m_ICachedFileUpdaterUI.all.get_UIStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -236,7 +236,7 @@ package body WinRt.Windows.Storage.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IFileUpdateRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IFileUpdateRequest;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI_Interface, WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI2, WinRt.Windows.Storage.Provider.IID_ICachedFileUpdaterUI2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Provider.FileUpdateRequest do
@@ -246,7 +246,7 @@ package body WinRt.Windows.Storage.Provider is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileUpdateRequest := new Windows.Storage.Provider.IFileUpdateRequest;
+         Retval.m_IFileUpdateRequest := new WinRt.Windows.Storage.Provider.IFileUpdateRequest;
          Retval.m_IFileUpdateRequest.all := m_ComRetVal;
       end return;
    end;
@@ -260,7 +260,7 @@ package body WinRt.Windows.Storage.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IFileUpdateRequestDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI_Interface, WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI2, WinRt.Windows.Storage.Provider.IID_ICachedFileUpdaterUI2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Provider.FileUpdateRequestDeferral do
@@ -270,7 +270,7 @@ package body WinRt.Windows.Storage.Provider is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileUpdateRequestDeferral := new Windows.Storage.Provider.IFileUpdateRequestDeferral;
+         Retval.m_IFileUpdateRequestDeferral := new WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral;
          Retval.m_IFileUpdateRequestDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -326,14 +326,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IFileUpdateRequest.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -346,7 +346,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.FileUpdateStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.FileUpdateStatus;
    begin
       Hr := this.m_IFileUpdateRequest.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -358,7 +358,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out FileUpdateRequest;
-      value : Windows.Storage.Provider.FileUpdateStatus
+      value : WinRt.Windows.Storage.Provider.FileUpdateStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -378,14 +378,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IFileUpdateRequestDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.FileUpdateRequestDeferral do
          Hr := this.m_IFileUpdateRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileUpdateRequestDeferral := new Windows.Storage.Provider.IFileUpdateRequestDeferral;
+         Retval.m_IFileUpdateRequestDeferral := new WinRt.Windows.Storage.Provider.IFileUpdateRequestDeferral;
          Retval.m_IFileUpdateRequestDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -393,7 +393,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure UpdateLocalFile
    (
       this : in out FileUpdateRequest;
-      value : Windows.Storage.IStorageFile
+      value : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -518,14 +518,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IFileUpdateRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IFileUpdateRequest;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.FileUpdateRequest do
          Hr := this.m_IFileUpdateRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileUpdateRequest := new Windows.Storage.Provider.IFileUpdateRequest;
+         Retval.m_IFileUpdateRequest := new WinRt.Windows.Storage.Provider.IFileUpdateRequest;
          Retval.m_IFileUpdateRequest.all := m_ComRetVal;
       end return;
    end;
@@ -561,10 +561,10 @@ package body WinRt.Windows.Storage.Provider is
    return StorageProviderFileTypeInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderFileTypeInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderFileTypeInfo");
       m_Factory    : access IStorageProviderFileTypeInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderFileTypeInfo;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderFileTypeInfo;
       HStr_fileExtension : constant WinRt.HString := To_HString (fileExtension);
       HStr_iconResource : constant WinRt.HString := To_HString (iconResource);
    begin
@@ -572,7 +572,7 @@ package body WinRt.Windows.Storage.Provider is
          Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderFileTypeInfoFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_fileExtension, HStr_iconResource, m_ComRetVal'Access);
-            Retval.m_IStorageProviderFileTypeInfo := new Windows.Storage.Provider.IStorageProviderFileTypeInfo;
+            Retval.m_IStorageProviderFileTypeInfo := new WinRt.Windows.Storage.Provider.IStorageProviderFileTypeInfo;
             Retval.m_IStorageProviderFileTypeInfo.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -651,13 +651,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderGetContentInfoForPathResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderGetContentInfoForPathResult");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult;
    begin
       return RetVal : StorageProviderGetContentInfoForPathResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderGetContentInfoForPathResult := new Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult;
+            Retval.m_IStorageProviderGetContentInfoForPathResult := new WinRt.Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult;
             Retval.m_IStorageProviderGetContentInfoForPathResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -675,7 +675,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderUriSourceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus;
    begin
       Hr := this.m_IStorageProviderGetContentInfoForPathResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -687,7 +687,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderGetContentInfoForPathResult;
-      value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -799,13 +799,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderGetPathForContentUriResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderGetPathForContentUriResult");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult;
    begin
       return RetVal : StorageProviderGetPathForContentUriResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderGetPathForContentUriResult := new Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult;
+            Retval.m_IStorageProviderGetPathForContentUriResult := new WinRt.Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult;
             Retval.m_IStorageProviderGetPathForContentUriResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -823,7 +823,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderUriSourceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus;
    begin
       Hr := this.m_IStorageProviderGetPathForContentUriResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -835,7 +835,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderGetPathForContentUriResult;
-      value : Windows.Storage.Provider.StorageProviderUriSourceStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderUriSourceStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -890,7 +890,7 @@ package body WinRt.Windows.Storage.Provider is
 
       procedure SetAsync
       (
-         item : Windows.Storage.IStorageItem;
+         item : WinRt.Windows.Storage.IStorageItem;
          itemProperties : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -966,13 +966,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderItemProperty is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderItemProperty");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderItemProperty;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderItemProperty");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderItemProperty;
    begin
       return RetVal : StorageProviderItemProperty do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderItemProperty := new Windows.Storage.Provider.IStorageProviderItemProperty;
+            Retval.m_IStorageProviderItemProperty := new WinRt.Windows.Storage.Provider.IStorageProviderItemProperty;
             Retval.m_IStorageProviderItemProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1114,13 +1114,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderItemPropertyDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderItemPropertyDefinition");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderItemPropertyDefinition");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
    begin
       return RetVal : StorageProviderItemPropertyDefinition do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderItemPropertyDefinition := new Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
+            Retval.m_IStorageProviderItemPropertyDefinition := new WinRt.Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
             Retval.m_IStorageProviderItemPropertyDefinition.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1225,13 +1225,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderKnownFolderEntry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderEntry");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderKnownFolderEntry");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
    begin
       return RetVal : StorageProviderKnownFolderEntry do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderKnownFolderEntry := new Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
+            Retval.m_IStorageProviderKnownFolderEntry := new WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
             Retval.m_IStorageProviderKnownFolderEntry.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1281,7 +1281,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus;
    begin
       Hr := this.m_IStorageProviderKnownFolderEntry.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1293,7 +1293,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderKnownFolderEntry;
-      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1331,13 +1331,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderKnownFolderSyncInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderSyncInfo");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
    begin
       return RetVal : StorageProviderKnownFolderSyncInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderKnownFolderSyncInfo := new Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
+            Retval.m_IStorageProviderKnownFolderSyncInfo := new WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
             Retval.m_IStorageProviderKnownFolderSyncInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1392,7 +1392,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IStorageProviderKnownFolderEntry.Kind;
    begin
       Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.get_KnownFolderEntries (m_ComRetVal'Access);
@@ -1412,7 +1412,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler;
    begin
       Hr := this.m_IStorageProviderKnownFolderSyncInfo.all.get_SyncRequested (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1424,7 +1424,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_SyncRequested
    (
       this : in out StorageProviderKnownFolderSyncInfo;
-      value : Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
+      value : WinRt.Windows.Storage.Provider.StorageProviderKnownFolderSyncRequestedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1467,7 +1467,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_Guid.Kind;
    begin
       Hr := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.get_KnownFolders (m_ComRetVal'Access);
@@ -1487,14 +1487,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -1505,7 +1505,7 @@ package body WinRt.Windows.Storage.Provider is
    function Invoke
    (
       this : access StorageProviderKnownFolderSyncRequestedHandler_Delegate;
-      args : Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
+      args : WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncRequestArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1540,13 +1540,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderMoreInfoUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderMoreInfoUI");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderMoreInfoUI");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI;
    begin
       return RetVal : StorageProviderMoreInfoUI do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderMoreInfoUI := new Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+            Retval.m_IStorageProviderMoreInfoUI := new WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI;
             Retval.m_IStorageProviderMoreInfoUI.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1601,7 +1601,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
    begin
       Hr := this.m_IStorageProviderMoreInfoUI.all.get_Command (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1613,7 +1613,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Command
    (
       this : in out StorageProviderMoreInfoUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1650,22 +1650,22 @@ package body WinRt.Windows.Storage.Provider is
 
    function Constructor
    (
-      results : Windows.Storage.Provider.IStorageProviderQueryResult_Array
+      results : WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Array
    )
    return StorageProviderQueryResultSet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderQueryResultSet");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQueryResultSet");
       m_Factory    : access IStorageProviderQueryResultSetFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderQueryResultSet;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet;
       function Convert_results is new Ada.Unchecked_Conversion (Address, WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Ptr);
    begin
       return RetVal : StorageProviderQueryResultSet do
          Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderQueryResultSetFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (WinRt.UInt32(results'Length), Convert_results (results (results'First)'Address), m_ComRetVal'Access);
-            Retval.m_IStorageProviderQueryResultSet := new Windows.Storage.Provider.IStorageProviderQueryResultSet;
+            Retval.m_IStorageProviderQueryResultSet := new WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet;
             Retval.m_IStorageProviderQueryResultSet.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1684,7 +1684,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderQueryResult_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderQueryResult_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IStorageProviderQueryResultSet.all.GetResults (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -1747,7 +1747,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderSearchQueryStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus;
    begin
       Hr := this.m_IStorageProviderQueryResultSet.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1759,7 +1759,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Status
    (
       this : in out StorageProviderQueryResultSet;
-      value : Windows.Storage.Provider.StorageProviderSearchQueryStatus
+      value : WinRt.Windows.Storage.Provider.StorageProviderSearchQueryStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1797,13 +1797,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderQuotaUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderQuotaUI");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderQuotaUI;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQuotaUI");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI;
    begin
       return RetVal : StorageProviderQuotaUI do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderQuotaUI := new Windows.Storage.Provider.IStorageProviderQuotaUI;
+            Retval.m_IStorageProviderQuotaUI := new WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI;
             Retval.m_IStorageProviderQuotaUI.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1922,7 +1922,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IStorageProviderQuotaUI.all.get_QuotaUsedColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2017,7 +2017,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IStorageProviderSearchQueryOptions.all.get_SortOrder (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2111,7 +2111,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IStorageProviderSearchQueryOptions.all.get_PropertiesToFetch (m_ComRetVal'Access);
@@ -2149,13 +2149,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSearchResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSearchResult");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderSearchResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderSearchResult");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderSearchResult;
    begin
       return RetVal : StorageProviderSearchResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderSearchResult := new Windows.Storage.Provider.IStorageProviderSearchResult;
+            Retval.m_IStorageProviderSearchResult := new WinRt.Windows.Storage.Provider.IStorageProviderSearchResult;
             Retval.m_IStorageProviderSearchResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2205,7 +2205,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderSearchMatchKind;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind;
    begin
       Hr := this.m_IStorageProviderSearchResult.all.get_MatchKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2217,7 +2217,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_MatchKind
    (
       this : in out StorageProviderSearchResult;
-      value : Windows.Storage.Provider.StorageProviderSearchMatchKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderSearchMatchKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2275,7 +2275,7 @@ package body WinRt.Windows.Storage.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Provider.IStorageProviderQueryResult := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderResultKind;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderResultKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Provider.IStorageProviderSearchResult_Interface, WinRt.Windows.Storage.Provider.IStorageProviderQueryResult, WinRt.Windows.Storage.Provider.IID_IStorageProviderQueryResult'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageProviderSearchResult.all);
@@ -2290,7 +2290,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Kind
    (
       this : in out StorageProviderSearchResult;
-      value : Windows.Storage.Provider.StorageProviderResultKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderResultKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2450,7 +2450,7 @@ package body WinRt.Windows.Storage.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Provider.IStorageProviderQueryResult := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Provider.IStorageProviderSearchResult_Interface, WinRt.Windows.Storage.Provider.IStorageProviderQueryResult, WinRt.Windows.Storage.Provider.IID_IStorageProviderQueryResult'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.PropertySet do
@@ -2460,7 +2460,7 @@ package body WinRt.Windows.Storage.Provider is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -2491,13 +2491,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderStatusUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderStatusUI");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderStatusUI;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderStatusUI");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderStatusUI;
    begin
       return RetVal : StorageProviderStatusUI do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderStatusUI := new Windows.Storage.Provider.IStorageProviderStatusUI;
+            Retval.m_IStorageProviderStatusUI := new WinRt.Windows.Storage.Provider.IStorageProviderStatusUI;
             Retval.m_IStorageProviderStatusUI.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2515,7 +2515,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderState;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderState;
    begin
       Hr := this.m_IStorageProviderStatusUI.all.get_ProviderState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2527,7 +2527,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_ProviderState
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderState
+      value : WinRt.Windows.Storage.Provider.StorageProviderState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2584,14 +2584,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IStorageProviderStatusUI.all.get_ProviderStateIcon (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2599,7 +2599,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_ProviderStateIcon
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2619,7 +2619,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
    begin
       Hr := this.m_IStorageProviderStatusUI.all.get_SyncStatusCommand (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2631,7 +2631,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_SyncStatusCommand
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2651,14 +2651,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderQuotaUI;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.StorageProviderQuotaUI do
          Hr := this.m_IStorageProviderStatusUI.all.get_QuotaUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProviderQuotaUI := new Windows.Storage.Provider.IStorageProviderQuotaUI;
+         Retval.m_IStorageProviderQuotaUI := new WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI;
          Retval.m_IStorageProviderQuotaUI.all := m_ComRetVal;
       end return;
    end;
@@ -2666,7 +2666,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_QuotaUI
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderQuotaUI'Class
+      value : WinRt.Windows.Storage.Provider.StorageProviderQuotaUI'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2686,14 +2686,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI do
          Hr := this.m_IStorageProviderStatusUI.all.get_MoreInfoUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProviderMoreInfoUI := new Windows.Storage.Provider.IStorageProviderMoreInfoUI;
+         Retval.m_IStorageProviderMoreInfoUI := new WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI;
          Retval.m_IStorageProviderMoreInfoUI.all := m_ComRetVal;
       end return;
    end;
@@ -2701,7 +2701,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_MoreInfoUI
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
+      value : WinRt.Windows.Storage.Provider.StorageProviderMoreInfoUI'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2721,7 +2721,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderUICommand;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderUICommand;
    begin
       Hr := this.m_IStorageProviderStatusUI.all.get_ProviderPrimaryCommand (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2733,7 +2733,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_ProviderPrimaryCommand
    (
       this : in out StorageProviderStatusUI;
-      value : Windows.Storage.Provider.IStorageProviderUICommand
+      value : WinRt.Windows.Storage.Provider.IStorageProviderUICommand
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2753,7 +2753,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IStorageProviderUICommand.Kind;
    begin
       Hr := this.m_IStorageProviderStatusUI.all.get_ProviderSecondaryCommands (m_ComRetVal'Access);
@@ -2806,13 +2806,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSuggestionResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSuggestionResult");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderQueryResult;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQueryResult");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQueryResult;
    begin
       return RetVal : StorageProviderSuggestionResult do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderQueryResult := new Windows.Storage.Provider.IStorageProviderQueryResult;
+            Retval.m_IStorageProviderQueryResult := new WinRt.Windows.Storage.Provider.IStorageProviderQueryResult;
             Retval.m_IStorageProviderQueryResult.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2830,7 +2830,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderResultKind;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderResultKind;
    begin
       Hr := this.m_IStorageProviderQueryResult.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2842,7 +2842,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Kind
    (
       this : in out StorageProviderSuggestionResult;
-      value : Windows.Storage.Provider.StorageProviderResultKind
+      value : WinRt.Windows.Storage.Provider.StorageProviderResultKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2973,14 +2973,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.PropertySet do
          Hr := this.m_IStorageProviderQueryResult.all.get_RequestedProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3016,7 +3016,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderResultKind;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderResultKind;
    begin
       Hr := this.m_IStorageProviderSuggestionsQueryOptions.all.get_SuggestionsKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3090,7 +3090,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IStorageProviderSuggestionsQueryOptions.all.get_PropertiesToFetch (m_ComRetVal'Access);
@@ -3128,13 +3128,13 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSyncRootInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootInfo");
-      m_ComRetVal  : aliased Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderSyncRootInfo");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
    begin
       return RetVal : StorageProviderSyncRootInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageProviderSyncRootInfo := new Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+            Retval.m_IStorageProviderSyncRootInfo := new WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
             Retval.m_IStorageProviderSyncRootInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3189,7 +3189,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_Context (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3201,7 +3201,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Context
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3221,7 +3221,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_Path (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3233,7 +3233,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_Path
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.IStorageFolder
+      value : WinRt.Windows.Storage.IStorageFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3327,7 +3327,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderHydrationPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicy;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_HydrationPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3339,7 +3339,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_HydrationPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHydrationPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3359,7 +3359,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderHydrationPolicyModifier;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicyModifier;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_HydrationPolicyModifier (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3371,7 +3371,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_HydrationPolicyModifier
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
+      value : WinRt.Windows.Storage.Provider.StorageProviderHydrationPolicyModifier
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3391,7 +3391,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderPopulationPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderPopulationPolicy;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_PopulationPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3403,7 +3403,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_PopulationPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderPopulationPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderPopulationPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3423,7 +3423,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderInSyncPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderInSyncPolicy;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_InSyncPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3435,7 +3435,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_InSyncPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderInSyncPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderInSyncPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3455,7 +3455,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderHardlinkPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderHardlinkPolicy;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_HardlinkPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3467,7 +3467,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_HardlinkPolicy
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderHardlinkPolicy
+      value : WinRt.Windows.Storage.Provider.StorageProviderHardlinkPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3556,7 +3556,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.StorageProviderProtectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.StorageProviderProtectionMode;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_ProtectionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3568,7 +3568,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_ProtectionMode
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Storage.Provider.StorageProviderProtectionMode
+      value : WinRt.Windows.Storage.Provider.StorageProviderProtectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3620,7 +3620,7 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IStorageProviderItemPropertyDefinition.Kind;
    begin
       Hr := this.m_IStorageProviderSyncRootInfo.all.get_StorageProviderItemPropertyDefinitions (m_ComRetVal'Access);
@@ -3640,14 +3640,14 @@ package body WinRt.Windows.Storage.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IStorageProviderSyncRootInfo.all.get_RecycleBinUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3655,7 +3655,7 @@ package body WinRt.Windows.Storage.Provider is
    procedure put_RecycleBinUri
    (
       this : in out StorageProviderSyncRootInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3716,7 +3716,7 @@ package body WinRt.Windows.Storage.Provider is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IStorageProviderFileTypeInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo_Interface, WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo3, WinRt.Windows.Storage.Provider.IID_IStorageProviderSyncRootInfo3'Unchecked_Access);
    begin
@@ -3737,7 +3737,7 @@ package body WinRt.Windows.Storage.Provider is
 
       procedure Register
       (
-         syncRootInformation : Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
+         syncRootInformation : WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3781,7 +3781,7 @@ package body WinRt.Windows.Storage.Provider is
 
       function GetSyncRootInformationForFolder
       (
-         folder : Windows.Storage.IStorageFolder
+         folder : WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo is
          Hr               : WinRt.HResult := S_OK;
@@ -3789,7 +3789,7 @@ package body WinRt.Windows.Storage.Provider is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootManager");
          m_Factory        : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
       begin
          return RetVal : WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo do
             Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderSyncRootManagerStatics'Access , m_Factory'Address);
@@ -3799,7 +3799,7 @@ package body WinRt.Windows.Storage.Provider is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageProviderSyncRootInfo := new Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+               Retval.m_IStorageProviderSyncRootInfo := new WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
                Retval.m_IStorageProviderSyncRootInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3816,7 +3816,7 @@ package body WinRt.Windows.Storage.Provider is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootManager");
          m_Factory        : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
          HStr_id : constant WinRt.HString := To_HString (id);
       begin
          return RetVal : WinRt.Windows.Storage.Provider.StorageProviderSyncRootInfo do
@@ -3827,7 +3827,7 @@ package body WinRt.Windows.Storage.Provider is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageProviderSyncRootInfo := new Windows.Storage.Provider.IStorageProviderSyncRootInfo;
+               Retval.m_IStorageProviderSyncRootInfo := new WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
                Retval.m_IStorageProviderSyncRootInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3842,7 +3842,7 @@ package body WinRt.Windows.Storage.Provider is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootManager");
          m_Factory        : access WinRt.Windows.Storage.Provider.IStorageProviderSyncRootManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IStorageProviderSyncRootManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then

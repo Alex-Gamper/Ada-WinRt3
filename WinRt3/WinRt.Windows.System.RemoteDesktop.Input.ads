@@ -167,7 +167,7 @@ package WinRt.Windows.System.RemoteDesktop.Input is
       (
          this : access IRemoteTextConnection2_Interface;
          scanCode : WinRt.UInt16;
-         attributes : Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
+         attributes : WinRt.Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
       )
       return WinRt.Hresult is abstract;
 
@@ -180,8 +180,8 @@ package WinRt.Windows.System.RemoteDesktop.Input is
       (
          this : access IRemoteTextConnectionFactory_Interface;
          connectionId : WinRt.Guid;
-         pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
-         RetVal : access Windows.System.RemoteDesktop.Input.IRemoteTextConnection
+         pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -194,9 +194,9 @@ package WinRt.Windows.System.RemoteDesktop.Input is
       (
          this : access IRemoteTextConnectionFactory2_Interface;
          connectionId : WinRt.Guid;
-         pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
-         options : Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions;
-         RetVal : access Windows.System.RemoteDesktop.Input.IRemoteTextConnection
+         pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
+         options : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions;
+         RetVal : access WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -218,15 +218,15 @@ package WinRt.Windows.System.RemoteDesktop.Input is
    function Constructor
    (
       connectionId : WinRt.Guid;
-      pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler
+      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler
    )
    return RemoteTextConnection;
 
    function Constructor
    (
       connectionId : WinRt.Guid;
-      pduForwarder : Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
-      options : Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions
+      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
+      options : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions
    )
    return RemoteTextConnection;
 
@@ -267,7 +267,7 @@ package WinRt.Windows.System.RemoteDesktop.Input is
    (
       this : in out RemoteTextConnection;
       scanCode : WinRt.UInt16;
-      attributes : Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
+      attributes : WinRt.Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
    );
 
    procedure Close

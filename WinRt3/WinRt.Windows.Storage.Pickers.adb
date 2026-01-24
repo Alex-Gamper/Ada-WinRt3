@@ -73,7 +73,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (2562305217, 19286, 21294, (172, 115, 3, 213, 41, 28, 202, 144 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_HString.Kind, m_GenericIID'Unchecked_Access);
@@ -120,7 +120,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVector_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (2562305217, 19286, 21294, (172, 115, 3, 213, 41, 28, 202, 144 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVector_HString.Kind, m_GenericIID'Unchecked_Access);
@@ -344,7 +344,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_HString.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased HString;
+      m_ComRetVal      : aliased WinRt.HString;
       AdaRetval        : WString;
       m_GenericIID     : aliased WinRt.IID := (3808217025, 15356, 23051, (178, 176, 114, 231, 105, 209, 203, 126 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_HString.Kind, m_GenericIID'Unchecked_Access);
@@ -386,13 +386,13 @@ package body WinRt.Windows.Storage.Pickers is
    function Constructor return FileOpenPicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileOpenPicker");
-      m_ComRetVal  : aliased Windows.Storage.Pickers.IFileOpenPicker;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.IFileOpenPicker");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Pickers.IFileOpenPicker;
    begin
       return RetVal : FileOpenPicker do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFileOpenPicker := new Windows.Storage.Pickers.IFileOpenPicker;
+            Retval.m_IFileOpenPicker := new WinRt.Windows.Storage.Pickers.IFileOpenPicker;
             Retval.m_IFileOpenPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -457,7 +457,7 @@ package body WinRt.Windows.Storage.Pickers is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -474,7 +474,7 @@ package body WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FileOpenPicker is
       Hr               : WinRt.HResult := S_OK;
@@ -482,7 +482,7 @@ package body WinRt.Windows.Storage.Pickers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileOpenPicker");
       m_Factory        : access WinRt.Windows.Storage.Pickers.IFileOpenPickerStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.IFileOpenPicker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.IFileOpenPicker;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.FileOpenPicker do
          Hr := RoGetActivationFactory (m_hString, IID_IFileOpenPickerStatics2'Access , m_Factory'Address);
@@ -492,7 +492,7 @@ package body WinRt.Windows.Storage.Pickers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IFileOpenPicker := new Windows.Storage.Pickers.IFileOpenPicker;
+            Retval.m_IFileOpenPicker := new WinRt.Windows.Storage.Pickers.IFileOpenPicker;
             Retval.m_IFileOpenPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -511,7 +511,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFileOpenPicker2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFileOpenPicker_Interface, WinRt.Windows.Storage.Pickers.IFileOpenPicker2, WinRt.Windows.Storage.Pickers.IID_IFileOpenPicker2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -521,7 +521,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -621,7 +621,7 @@ package body WinRt.Windows.Storage.Pickers is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -643,7 +643,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.PickerViewMode;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.PickerViewMode;
    begin
       Hr := this.m_IFileOpenPicker.all.get_ViewMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -655,7 +655,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_ViewMode
    (
       this : in out FileOpenPicker;
-      value : Windows.Storage.Pickers.PickerViewMode
+      value : WinRt.Windows.Storage.Pickers.PickerViewMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -712,7 +712,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.PickerLocationId;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.PickerLocationId;
    begin
       Hr := this.m_IFileOpenPicker.all.get_SuggestedStartLocation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -724,7 +724,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FileOpenPicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -781,7 +781,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFileOpenPicker.all.get_FileTypeFilter (m_ComRetVal'Access);
@@ -846,7 +846,7 @@ package body WinRt.Windows.Storage.Pickers is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -931,7 +931,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFileOpenPicker3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFileOpenPicker_Interface, WinRt.Windows.Storage.Pickers.IFileOpenPicker3, WinRt.Windows.Storage.Pickers.IID_IFileOpenPicker3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -941,7 +941,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -989,7 +989,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IVectorView_IStorageFile.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
       m_GenericIID     : aliased WinRt.IID := (2154063129, 24106, 22877, (168, 205, 42, 36, 180, 6, 127, 27 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IVectorView_IStorageFile.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1000,7 +1000,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -1030,7 +1030,7 @@ package body WinRt.Windows.Storage.Pickers is
    function IndexOf
    (
       this : in out FilePickerSelectedFilesArray;
-      value : Windows.Storage.StorageFile'Class;
+      value : WinRt.Windows.Storage.StorageFile'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean is
@@ -1055,7 +1055,7 @@ package body WinRt.Windows.Storage.Pickers is
    (
       this : in out FilePickerSelectedFilesArray;
       startIndex : WinRt.UInt32;
-      items : Windows.Storage.IStorageFile_Array
+      items : WinRt.Windows.Storage.IStorageFile_Array
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1086,7 +1086,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IIterable_IStorageFile.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
       m_GenericIID     : aliased WinRt.IID := (2596274948, 33770, 22152, (135, 182, 174, 56, 170, 182, 93, 11 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IIterable_IStorageFile.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1097,7 +1097,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -1128,13 +1128,13 @@ package body WinRt.Windows.Storage.Pickers is
    function Constructor return FileSavePicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileSavePicker");
-      m_ComRetVal  : aliased Windows.Storage.Pickers.IFileSavePicker;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.IFileSavePicker");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Pickers.IFileSavePicker;
    begin
       return RetVal : FileSavePicker do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFileSavePicker := new Windows.Storage.Pickers.IFileSavePicker;
+            Retval.m_IFileSavePicker := new WinRt.Windows.Storage.Pickers.IFileSavePicker;
             Retval.m_IFileSavePicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1146,7 +1146,7 @@ package body WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FileSavePicker is
       Hr               : WinRt.HResult := S_OK;
@@ -1154,7 +1154,7 @@ package body WinRt.Windows.Storage.Pickers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FileSavePicker");
       m_Factory        : access WinRt.Windows.Storage.Pickers.IFileSavePickerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.IFileSavePicker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.IFileSavePicker;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.FileSavePicker do
          Hr := RoGetActivationFactory (m_hString, IID_IFileSavePickerStatics'Access , m_Factory'Address);
@@ -1164,7 +1164,7 @@ package body WinRt.Windows.Storage.Pickers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IFileSavePicker := new Windows.Storage.Pickers.IFileSavePicker;
+            Retval.m_IFileSavePicker := new WinRt.Windows.Storage.Pickers.IFileSavePicker;
             Retval.m_IFileSavePicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1183,7 +1183,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFileSavePicker2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFileSavePicker_Interface, WinRt.Windows.Storage.Pickers.IFileSavePicker2, WinRt.Windows.Storage.Pickers.IID_IFileSavePicker2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -1193,7 +1193,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -1306,7 +1306,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.PickerLocationId;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.PickerLocationId;
    begin
       Hr := this.m_IFileSavePicker.all.get_SuggestedStartLocation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1318,7 +1318,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FileSavePicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1375,7 +1375,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IFileSavePicker.all.get_FileTypeChoices (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1429,14 +1429,14 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IFileSavePicker.all.get_SuggestedSaveFile (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -1444,7 +1444,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedSaveFile
    (
       this : in out FileSavePicker;
-      value : Windows.Storage.StorageFile'Class
+      value : WinRt.Windows.Storage.StorageFile'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1546,7 +1546,7 @@ package body WinRt.Windows.Storage.Pickers is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1568,7 +1568,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFileSavePicker4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFileSavePicker_Interface, WinRt.Windows.Storage.Pickers.IFileSavePicker4, WinRt.Windows.Storage.Pickers.IID_IFileSavePicker4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1578,7 +1578,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1609,13 +1609,13 @@ package body WinRt.Windows.Storage.Pickers is
    function Constructor return FolderPicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FolderPicker");
-      m_ComRetVal  : aliased Windows.Storage.Pickers.IFolderPicker;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.IFolderPicker");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Pickers.IFolderPicker;
    begin
       return RetVal : FolderPicker do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFolderPicker := new Windows.Storage.Pickers.IFolderPicker;
+            Retval.m_IFolderPicker := new WinRt.Windows.Storage.Pickers.IFolderPicker;
             Retval.m_IFolderPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1627,7 +1627,7 @@ package body WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FolderPicker is
       Hr               : WinRt.HResult := S_OK;
@@ -1635,7 +1635,7 @@ package body WinRt.Windows.Storage.Pickers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.Pickers.FolderPicker");
       m_Factory        : access WinRt.Windows.Storage.Pickers.IFolderPickerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.IFolderPicker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.IFolderPicker;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.FolderPicker do
          Hr := RoGetActivationFactory (m_hString, IID_IFolderPickerStatics'Access , m_Factory'Address);
@@ -1645,7 +1645,7 @@ package body WinRt.Windows.Storage.Pickers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IFolderPicker := new Windows.Storage.Pickers.IFolderPicker;
+            Retval.m_IFolderPicker := new WinRt.Windows.Storage.Pickers.IFolderPicker;
             Retval.m_IFolderPicker.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1664,7 +1664,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFolderPicker2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFolderPicker_Interface, WinRt.Windows.Storage.Pickers.IFolderPicker2, WinRt.Windows.Storage.Pickers.IID_IFolderPicker2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -1674,7 +1674,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.PickerViewMode;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.PickerViewMode;
    begin
       Hr := this.m_IFolderPicker.all.get_ViewMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1717,7 +1717,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_ViewMode
    (
       this : in out FolderPicker;
-      value : Windows.Storage.Pickers.PickerViewMode
+      value : WinRt.Windows.Storage.Pickers.PickerViewMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1774,7 +1774,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.PickerLocationId;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.PickerLocationId;
    begin
       Hr := this.m_IFolderPicker.all.get_SuggestedStartLocation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1786,7 +1786,7 @@ package body WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FolderPicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1843,7 +1843,7 @@ package body WinRt.Windows.Storage.Pickers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IFolderPicker.all.get_FileTypeFilter (m_ComRetVal'Access);
@@ -1908,7 +1908,7 @@ package body WinRt.Windows.Storage.Pickers is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1930,7 +1930,7 @@ package body WinRt.Windows.Storage.Pickers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Pickers.IFolderPicker3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.Pickers.IFolderPicker_Interface, WinRt.Windows.Storage.Pickers.IFolderPicker3, WinRt.Windows.Storage.Pickers.IID_IFolderPicker3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1940,7 +1940,7 @@ package body WinRt.Windows.Storage.Pickers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;

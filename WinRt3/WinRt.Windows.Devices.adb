@@ -61,25 +61,25 @@ package body WinRt.Windows.Devices is
 
    function Constructor
    (
-      adc : Windows.Devices.Adc.Provider.IAdcControllerProvider;
-      pwm : Windows.Devices.Pwm.Provider.IPwmControllerProvider;
-      gpio : Windows.Devices.Gpio.Provider.IGpioControllerProvider;
-      i2c : Windows.Devices.I2c.Provider.II2cControllerProvider;
-      spi : Windows.Devices.Spi.Provider.ISpiControllerProvider
+      adc : WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider;
+      pwm : WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider;
+      gpio : WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider;
+      i2c : WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider;
+      spi : WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider
    )
    return LowLevelDevicesAggregateProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesAggregateProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.ILowLevelDevicesAggregateProvider");
       m_Factory    : access ILowLevelDevicesAggregateProviderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.ILowLevelDevicesAggregateProvider;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider;
    begin
       return RetVal : LowLevelDevicesAggregateProvider do
          Hr := RoGetActivationFactory (m_hString, IID_ILowLevelDevicesAggregateProviderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (adc, pwm, gpio, i2c, spi, m_ComRetVal'Access);
-            Retval.m_ILowLevelDevicesAggregateProvider := new Windows.Devices.ILowLevelDevicesAggregateProvider;
+            Retval.m_ILowLevelDevicesAggregateProvider := new WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider;
             Retval.m_ILowLevelDevicesAggregateProvider.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -98,7 +98,7 @@ package body WinRt.Windows.Devices is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Adc.Provider.IAdcControllerProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Adc.Provider.IAdcControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_AdcControllerProvider (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -115,7 +115,7 @@ package body WinRt.Windows.Devices is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Pwm.Provider.IPwmControllerProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Pwm.Provider.IPwmControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_PwmControllerProvider (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -132,7 +132,7 @@ package body WinRt.Windows.Devices is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Gpio.Provider.IGpioControllerProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Gpio.Provider.IGpioControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_GpioControllerProvider (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -149,7 +149,7 @@ package body WinRt.Windows.Devices is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.I2c.Provider.II2cControllerProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.I2c.Provider.II2cControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_I2cControllerProvider (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -166,7 +166,7 @@ package body WinRt.Windows.Devices is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Spi.Provider.ISpiControllerProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Spi.Provider.ISpiControllerProvider;
    begin
       Hr := this.m_ILowLevelDevicesAggregateProvider.all.get_SpiControllerProvider (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -205,7 +205,7 @@ package body WinRt.Windows.Devices is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesController");
       m_Factory        : access WinRt.Windows.Devices.ILowLevelDevicesControllerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.ILowLevelDevicesAggregateProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ILowLevelDevicesControllerStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -221,7 +221,7 @@ package body WinRt.Windows.Devices is
 
    procedure put_DefaultProvider
    (
-      value : Windows.Devices.ILowLevelDevicesAggregateProvider
+      value : WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

@@ -83,14 +83,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.AddAppointmentOperation do
          Hr := this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all.get_AddAppointmentOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAddAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
+         Retval.m_IAddAppointmentOperation := new WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IAddAppointmentOperation;
          Retval.m_IAddAppointmentOperation.all := m_ComRetVal;
       end return;
    end;
@@ -128,7 +128,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
@@ -149,7 +149,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all);
@@ -170,7 +170,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -180,7 +180,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -194,7 +194,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderAddAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -204,7 +204,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -240,14 +240,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.RemoveAppointmentOperation do
          Hr := this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all.get_RemoveAppointmentOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRemoveAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
+         Retval.m_IRemoveAppointmentOperation := new WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IRemoveAppointmentOperation;
          Retval.m_IRemoveAppointmentOperation.all := m_ComRetVal;
       end return;
    end;
@@ -285,7 +285,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
@@ -306,7 +306,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all);
@@ -327,7 +327,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -337,7 +337,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -351,7 +351,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderRemoveAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -361,7 +361,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -397,14 +397,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.ReplaceAppointmentOperation do
          Hr := this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all.get_ReplaceAppointmentOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IReplaceAppointmentOperation := new Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
+         Retval.m_IReplaceAppointmentOperation := new WinRt.Windows.ApplicationModel.Appointments.AppointmentsProvider.IReplaceAppointmentOperation;
          Retval.m_IReplaceAppointmentOperation.all := m_ComRetVal;
       end return;
    end;
@@ -442,7 +442,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
@@ -463,7 +463,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all);
@@ -484,7 +484,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -494,7 +494,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -508,7 +508,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderReplaceAppointmentActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -518,7 +518,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -554,7 +554,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.get_InstanceStartDate (m_ComRetVal'Access);
@@ -639,7 +639,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
@@ -660,7 +660,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all);
@@ -681,7 +681,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -691,7 +691,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -705,7 +705,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -715,7 +715,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -751,7 +751,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.get_TimeToShow (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -768,7 +768,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -810,7 +810,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
@@ -831,7 +831,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all);
@@ -852,7 +852,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -862,7 +862,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -876,7 +876,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IAppointmentsProviderShowTimeFrameActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -886,7 +886,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -922,7 +922,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Background.IBackgroundTaskInstance;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTaskInstance;
    begin
       Hr := this.m_IBackgroundActivatedEventArgs.all.get_TaskInstance (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -983,7 +983,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
@@ -1004,7 +1004,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IBarcodeScannerPreviewActivatedEventArgs.all);
@@ -1025,7 +1025,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1035,7 +1035,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1049,7 +1049,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IBarcodeScannerPreviewActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1059,7 +1059,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1095,14 +1095,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Provider.ICachedFileUpdaterUI;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI;
    begin
       return RetVal : WinRt.Windows.Storage.Provider.CachedFileUpdaterUI do
          Hr := this.m_ICachedFileUpdaterActivatedEventArgs.all.get_CachedFileUpdaterUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICachedFileUpdaterUI := new Windows.Storage.Provider.ICachedFileUpdaterUI;
+         Retval.m_ICachedFileUpdaterUI := new WinRt.Windows.Storage.Provider.ICachedFileUpdaterUI;
          Retval.m_ICachedFileUpdaterUI.all := m_ComRetVal;
       end return;
    end;
@@ -1116,7 +1116,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
@@ -1137,7 +1137,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICachedFileUpdaterActivatedEventArgs.all);
@@ -1158,7 +1158,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1168,7 +1168,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1182,7 +1182,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICachedFileUpdaterActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1192,7 +1192,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1263,7 +1263,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
@@ -1284,7 +1284,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICameraSettingsActivatedEventArgs.all);
@@ -1305,7 +1305,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICameraSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1315,7 +1315,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1351,14 +1351,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.CommandLineActivationOperation do
          Hr := this.m_ICommandLineActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICommandLineActivationOperation := new Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
+         Retval.m_ICommandLineActivationOperation := new WinRt.Windows.ApplicationModel.Activation.ICommandLineActivationOperation;
          Retval.m_ICommandLineActivationOperation.all := m_ComRetVal;
       end return;
    end;
@@ -1372,7 +1372,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
@@ -1393,7 +1393,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICommandLineActivatedEventArgs.all);
@@ -1414,7 +1414,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1424,7 +1424,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1438,7 +1438,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ICommandLineActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -1448,7 +1448,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -1556,14 +1556,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICommandLineActivationOperation.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1639,14 +1639,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactCallActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -1684,7 +1684,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactCallActivatedEventArgs.all);
@@ -1726,7 +1726,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1736,7 +1736,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1772,14 +1772,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactAddress;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContactAddress;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactAddress do
          Hr := this.m_IContactMapActivatedEventArgs.all.get_Address (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactAddress := new Windows.ApplicationModel.Contacts.IContactAddress;
+         Retval.m_IContactAddress := new WinRt.Windows.ApplicationModel.Contacts.IContactAddress;
          Retval.m_IContactAddress.all := m_ComRetVal;
       end return;
    end;
@@ -1792,14 +1792,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactMapActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -1837,7 +1837,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
@@ -1858,7 +1858,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMapActivatedEventArgs.all);
@@ -1879,7 +1879,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMapActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -1889,7 +1889,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -1965,14 +1965,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactMessageActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -2010,7 +2010,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
@@ -2031,7 +2031,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactMessageActivatedEventArgs.all);
@@ -2052,7 +2052,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactMessageActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2062,7 +2062,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2098,14 +2098,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContactPanel;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContactPanel;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.ContactPanel do
          Hr := this.m_IContactPanelActivatedEventArgs.all.get_ContactPanel (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactPanel := new Windows.ApplicationModel.Contacts.IContactPanel;
+         Retval.m_IContactPanel := new WinRt.Windows.ApplicationModel.Contacts.IContactPanel;
          Retval.m_IContactPanel.all := m_ComRetVal;
       end return;
    end;
@@ -2118,14 +2118,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactPanelActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -2139,7 +2139,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
@@ -2160,7 +2160,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPanelActivatedEventArgs.all);
@@ -2181,7 +2181,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2191,7 +2191,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2205,7 +2205,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPanelActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -2215,7 +2215,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -2251,14 +2251,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Provider.ContactPickerUI do
          Hr := this.m_IContactPickerActivatedEventArgs.all.get_ContactPickerUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContactPickerUI := new Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
+         Retval.m_IContactPickerUI := new WinRt.Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
          Retval.m_IContactPickerUI.all := m_ComRetVal;
       end return;
    end;
@@ -2272,7 +2272,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
@@ -2293,7 +2293,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPickerActivatedEventArgs.all);
@@ -2314,7 +2314,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2324,7 +2324,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2400,14 +2400,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactPostActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -2445,7 +2445,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
@@ -2466,7 +2466,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactPostActivatedEventArgs.all);
@@ -2487,7 +2487,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactPostActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2497,7 +2497,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2573,14 +2573,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Contacts.IContact;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Contacts.Contact do
          Hr := this.m_IContactVideoCallActivatedEventArgs.all.get_Contact (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContact := new Windows.ApplicationModel.Contacts.IContact;
+         Retval.m_IContact := new WinRt.Windows.ApplicationModel.Contacts.IContact;
          Retval.m_IContact.all := m_ComRetVal;
       end return;
    end;
@@ -2618,7 +2618,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
@@ -2639,7 +2639,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IContactVideoCallActivatedEventArgs.all);
@@ -2660,7 +2660,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IContactVideoCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2670,7 +2670,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2747,7 +2747,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
@@ -2768,7 +2768,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceActivatedEventArgs.all);
@@ -2789,7 +2789,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2799,7 +2799,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2834,7 +2834,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -2844,7 +2844,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -2858,7 +2858,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDeviceActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -2868,7 +2868,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -2904,14 +2904,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IDevicePairingActivatedEventArgs.all.get_DeviceInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -2925,7 +2925,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
@@ -2946,7 +2946,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDevicePairingActivatedEventArgs.all);
@@ -2967,7 +2967,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -2977,7 +2977,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -2991,7 +2991,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDevicePairingActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3001,7 +3001,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3106,7 +3106,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
@@ -3127,7 +3127,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDialReceiverActivatedEventArgs.all);
@@ -3148,7 +3148,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3158,7 +3158,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3193,7 +3193,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -3203,7 +3203,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -3217,7 +3217,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IDialReceiverActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3227,7 +3227,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3263,7 +3263,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IFileActivatedEventArgs.all.get_Files (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3301,7 +3301,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
@@ -3322,7 +3322,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileActivatedEventArgs.all);
@@ -3343,7 +3343,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3353,7 +3353,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3367,7 +3367,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgsWithNeighboringFiles := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgsWithNeighboringFiles, WinRt.Windows.ApplicationModel.Activation.IID_IFileActivatedEventArgsWithNeighboringFiles'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -3377,7 +3377,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -3436,7 +3436,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -3446,7 +3446,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -3460,7 +3460,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3470,7 +3470,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3506,14 +3506,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.FileOpenPickerUI do
          Hr := this.m_IFileOpenPickerActivatedEventArgs.all.get_FileOpenPickerUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileOpenPickerUI := new Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
+         Retval.m_IFileOpenPickerUI := new WinRt.Windows.Storage.Pickers.Provider.IFileOpenPickerUI;
          Retval.m_IFileOpenPickerUI.all := m_ComRetVal;
       end return;
    end;
@@ -3527,7 +3527,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
@@ -3548,7 +3548,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerActivatedEventArgs.all);
@@ -3569,7 +3569,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3579,7 +3579,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3617,7 +3617,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3627,7 +3627,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3663,7 +3663,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IFileOpenPickerContinuationEventArgs.all.get_Files (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3681,7 +3681,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -3691,7 +3691,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3705,7 +3705,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
@@ -3726,7 +3726,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileOpenPickerContinuationEventArgs.all);
@@ -3747,7 +3747,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3757,7 +3757,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3771,7 +3771,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileOpenPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3781,7 +3781,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3817,14 +3817,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Pickers.Provider.IFileSavePickerUI;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Pickers.Provider.IFileSavePickerUI;
    begin
       return RetVal : WinRt.Windows.Storage.Pickers.Provider.FileSavePickerUI do
          Hr := this.m_IFileSavePickerActivatedEventArgs.all.get_FileSavePickerUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IFileSavePickerUI := new Windows.Storage.Pickers.Provider.IFileSavePickerUI;
+         Retval.m_IFileSavePickerUI := new WinRt.Windows.Storage.Pickers.Provider.IFileSavePickerUI;
          Retval.m_IFileSavePickerUI.all := m_ComRetVal;
       end return;
    end;
@@ -3838,7 +3838,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
@@ -3859,7 +3859,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerActivatedEventArgs.all);
@@ -3880,7 +3880,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -3890,7 +3890,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -3952,7 +3952,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -3962,7 +3962,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3998,14 +3998,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IFileSavePickerContinuationEventArgs.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -4019,7 +4019,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -4029,7 +4029,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -4043,7 +4043,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
@@ -4064,7 +4064,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFileSavePickerContinuationEventArgs.all);
@@ -4085,7 +4085,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -4095,7 +4095,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4109,7 +4109,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFileSavePickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -4119,7 +4119,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4155,14 +4155,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IFolderPickerContinuationEventArgs.all.get_Folder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -4176,7 +4176,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -4186,7 +4186,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -4200,7 +4200,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
@@ -4221,7 +4221,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IFolderPickerContinuationEventArgs.all);
@@ -4242,7 +4242,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -4252,7 +4252,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4266,7 +4266,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IFolderPickerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -4276,7 +4276,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4353,7 +4353,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
@@ -4374,7 +4374,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILaunchActivatedEventArgs.all);
@@ -4395,7 +4395,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -4405,7 +4405,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4461,7 +4461,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -4471,7 +4471,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -4485,7 +4485,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ITileActivatedInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ITileActivatedInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs2, WinRt.Windows.ApplicationModel.Activation.IID_ILaunchActivatedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.TileActivatedInfo do
@@ -4495,7 +4495,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileActivatedInfo := new Windows.ApplicationModel.Activation.ITileActivatedInfo;
+         Retval.m_ITileActivatedInfo := new WinRt.Windows.ApplicationModel.Activation.ITileActivatedInfo;
          Retval.m_ITileActivatedInfo.all := m_ComRetVal;
       end return;
    end;
@@ -4509,7 +4509,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -4519,7 +4519,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4573,7 +4573,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
@@ -4594,7 +4594,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenActivatedEventArgs.all);
@@ -4615,7 +4615,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -4625,7 +4625,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4639,7 +4639,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -4649,7 +4649,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4685,14 +4685,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Calls.ILockScreenCallUI;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Calls.ILockScreenCallUI;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Calls.LockScreenCallUI do
          Hr := this.m_ILockScreenCallActivatedEventArgs.all.get_CallUI (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILockScreenCallUI := new Windows.ApplicationModel.Calls.ILockScreenCallUI;
+         Retval.m_ILockScreenCallUI := new WinRt.Windows.ApplicationModel.Calls.ILockScreenCallUI;
          Retval.m_ILockScreenCallUI.all := m_ComRetVal;
       end return;
    end;
@@ -4754,7 +4754,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
@@ -4775,7 +4775,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILockScreenCallActivatedEventArgs.all);
@@ -4796,7 +4796,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -4806,7 +4806,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4841,7 +4841,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ILockScreenCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -4851,7 +4851,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -4887,7 +4887,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4904,7 +4904,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
    begin
       Hr := this.m_IActivatedEventArgs.all.get_PreviousExecutionState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4921,14 +4921,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
          Hr := this.m_IActivatedEventArgs.all.get_SplashScreen (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -4982,7 +4982,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
@@ -5003,7 +5003,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhoneCallActivatedEventArgs.all);
@@ -5024,7 +5024,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5034,7 +5034,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5048,7 +5048,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPhoneCallActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -5058,7 +5058,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -5115,7 +5115,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPickerReturnedActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPickerReturnedActivatedEventArgs.all);
@@ -5136,7 +5136,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPickerReturnedActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPickerReturnedActivatedEventArgs.all);
@@ -5157,7 +5157,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPickerReturnedActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5167,7 +5167,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5203,14 +5203,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.Print3DWorkflow do
          Hr := this.m_IPrint3DWorkflowActivatedEventArgs.all.get_Workflow (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrint3DWorkflow := new Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
+         Retval.m_IPrint3DWorkflow := new WinRt.Windows.Devices.Printers.Extensions.IPrint3DWorkflow;
          Retval.m_IPrint3DWorkflow.all := m_ComRetVal;
       end return;
    end;
@@ -5224,7 +5224,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
@@ -5245,7 +5245,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrint3DWorkflowActivatedEventArgs.all);
@@ -5266,7 +5266,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrint3DWorkflowActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5276,7 +5276,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5312,14 +5312,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
    begin
       return RetVal : WinRt.Windows.Devices.Printers.Extensions.PrintTaskConfiguration do
          Hr := this.m_IPrintTaskSettingsActivatedEventArgs.all.get_Configuration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTaskConfiguration := new Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
+         Retval.m_IPrintTaskConfiguration := new WinRt.Windows.Devices.Printers.Extensions.IPrintTaskConfiguration;
          Retval.m_IPrintTaskConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -5333,7 +5333,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
@@ -5354,7 +5354,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrintTaskSettingsActivatedEventArgs.all);
@@ -5375,7 +5375,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IPrintTaskSettingsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5385,7 +5385,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5421,14 +5421,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IProtocolActivatedEventArgs.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -5442,7 +5442,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
@@ -5463,7 +5463,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolActivatedEventArgs.all);
@@ -5484,7 +5484,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5494,7 +5494,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5532,7 +5532,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -5542,7 +5542,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -5577,7 +5577,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -5587,7 +5587,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -5601,7 +5601,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -5611,7 +5611,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -5647,14 +5647,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IProtocolForResultsOperation;
+      m_ComRetVal      : aliased WinRt.Windows.System.IProtocolForResultsOperation;
    begin
       return RetVal : WinRt.Windows.System.ProtocolForResultsOperation do
          Hr := this.m_IProtocolForResultsActivatedEventArgs.all.get_ProtocolForResultsOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IProtocolForResultsOperation := new Windows.System.IProtocolForResultsOperation;
+         Retval.m_IProtocolForResultsOperation := new WinRt.Windows.System.IProtocolForResultsOperation;
          Retval.m_IProtocolForResultsOperation.all := m_ComRetVal;
       end return;
    end;
@@ -5668,7 +5668,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
@@ -5689,7 +5689,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IProtocolForResultsActivatedEventArgs.all);
@@ -5710,7 +5710,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5720,7 +5720,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5734,7 +5734,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -5744,7 +5744,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -5782,7 +5782,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData, WinRt.Windows.ApplicationModel.Activation.IID_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -5792,7 +5792,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -5827,7 +5827,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -5837,7 +5837,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -5851,7 +5851,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IProtocolForResultsActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -5861,7 +5861,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -5915,7 +5915,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
@@ -5936,7 +5936,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IRestrictedLaunchActivatedEventArgs.all);
@@ -5957,7 +5957,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -5967,7 +5967,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -5981,7 +5981,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IRestrictedLaunchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -5991,7 +5991,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -6068,7 +6068,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
@@ -6089,7 +6089,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISearchActivatedEventArgs.all);
@@ -6110,7 +6110,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6120,7 +6120,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6155,7 +6155,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgsWithLinguisticDetails := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgsWithLinguisticDetails, WinRt.Windows.ApplicationModel.Activation.IID_ISearchActivatedEventArgsWithLinguisticDetails'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Search.SearchPaneQueryLinguisticDetails do
@@ -6165,7 +6165,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISearchPaneQueryLinguisticDetails := new Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
+         Retval.m_ISearchPaneQueryLinguisticDetails := new WinRt.Windows.ApplicationModel.Search.ISearchPaneQueryLinguisticDetails;
          Retval.m_ISearchPaneQueryLinguisticDetails.all := m_ComRetVal;
       end return;
    end;
@@ -6179,7 +6179,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.ViewManagement.IActivationViewSwitcher;
+      m_ComRetVal      : aliased WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IViewSwitcherProvider, WinRt.Windows.ApplicationModel.Activation.IID_IViewSwitcherProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.ViewManagement.ActivationViewSwitcher do
@@ -6189,7 +6189,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IActivationViewSwitcher := new Windows.UI.ViewManagement.IActivationViewSwitcher;
+         Retval.m_IActivationViewSwitcher := new WinRt.Windows.UI.ViewManagement.IActivationViewSwitcher;
          Retval.m_IActivationViewSwitcher.all := m_ComRetVal;
       end return;
    end;
@@ -6203,7 +6203,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.ISearchActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -6213,7 +6213,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -6249,14 +6249,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation do
          Hr := this.m_IShareTargetActivatedEventArgs.all.get_ShareOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IShareOperation := new Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
+         Retval.m_IShareOperation := new WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
          Retval.m_IShareOperation.all := m_ComRetVal;
       end return;
    end;
@@ -6270,7 +6270,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
@@ -6291,7 +6291,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IShareTargetActivatedEventArgs.all);
@@ -6312,7 +6312,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6322,7 +6322,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6336,7 +6336,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IShareTargetActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -6346,7 +6346,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -6382,7 +6382,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_ISplashScreen.all.get_ImageLocation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6400,7 +6400,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISplashScreen.all.add_Dismissed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6412,7 +6412,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
    procedure remove_Dismissed
    (
       this : in out SplashScreen;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6476,7 +6476,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
@@ -6497,7 +6497,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStartupTaskActivatedEventArgs.all);
@@ -6518,7 +6518,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6528,7 +6528,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6542,7 +6542,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IStartupTaskActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -6552,7 +6552,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -6588,7 +6588,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ITileActivatedInfo.all.get_RecentlyShownNotifications (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6648,14 +6648,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IToastNotificationActivatedEventArgs.all.get_UserInput (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -6669,7 +6669,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
@@ -6690,7 +6690,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationActivatedEventArgs.all);
@@ -6711,7 +6711,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6721,7 +6721,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6735,7 +6735,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IToastNotificationActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -6745,7 +6745,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -6802,7 +6802,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderOperation;
    begin
       Hr := this.m_IUserDataAccountProviderActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6820,7 +6820,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
@@ -6841,7 +6841,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IUserDataAccountProviderActivatedEventArgs.all);
@@ -6862,7 +6862,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IUserDataAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6872,7 +6872,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6908,14 +6908,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
+      m_ComRetVal      : aliased WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
    begin
       return RetVal : WinRt.Windows.Media.SpeechRecognition.SpeechRecognitionResult do
          Hr := this.m_IVoiceCommandActivatedEventArgs.all.get_Result (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpeechRecognitionResult := new Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
+         Retval.m_ISpeechRecognitionResult := new WinRt.Windows.Media.SpeechRecognition.ISpeechRecognitionResult;
          Retval.m_ISpeechRecognitionResult.all := m_ComRetVal;
       end return;
    end;
@@ -6929,7 +6929,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
@@ -6950,7 +6950,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IVoiceCommandActivatedEventArgs.all);
@@ -6971,7 +6971,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -6981,7 +6981,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -6995,7 +6995,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IVoiceCommandActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -7005,7 +7005,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -7061,7 +7061,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletActionKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.WalletActionKind;
    begin
       Hr := this.m_IWalletActionActivatedEventArgs.all.get_ActionKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7099,7 +7099,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
@@ -7120,7 +7120,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWalletActionActivatedEventArgs.all);
@@ -7141,7 +7141,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWalletActionActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -7151,7 +7151,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -7187,7 +7187,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Web.Provider.IWebAccountProviderOperation;
    begin
       Hr := this.m_IWebAccountProviderActivatedEventArgs.all.get_Operation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7205,7 +7205,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
@@ -7226,7 +7226,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAccountProviderActivatedEventArgs.all);
@@ -7247,7 +7247,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -7257,7 +7257,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;
@@ -7271,7 +7271,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAccountProviderActivatedEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgsWithUser, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgsWithUser'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -7281,7 +7281,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -7317,14 +7317,14 @@ package body WinRt.Windows.ApplicationModel.Activation is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Web.IWebAuthenticationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult do
          Hr := this.m_IWebAuthenticationBrokerContinuationEventArgs.all.get_WebAuthenticationResult (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+         Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
          Retval.m_IWebAuthenticationResult.all := m_ComRetVal;
       end return;
    end;
@@ -7338,7 +7338,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IContinuationActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IContinuationActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -7348,7 +7348,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -7362,7 +7362,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ActivationKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ActivationKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
@@ -7383,7 +7383,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ApplicationExecutionState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ApplicationExecutionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWebAuthenticationBrokerContinuationEventArgs.all);
@@ -7404,7 +7404,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.ISplashScreen;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Activation.IWebAuthenticationBrokerContinuationEventArgs_Interface, WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs, WinRt.Windows.ApplicationModel.Activation.IID_IActivatedEventArgs'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Activation.SplashScreen do
@@ -7414,7 +7414,7 @@ package body WinRt.Windows.ApplicationModel.Activation is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISplashScreen := new Windows.ApplicationModel.Activation.ISplashScreen;
+         Retval.m_ISplashScreen := new WinRt.Windows.ApplicationModel.Activation.ISplashScreen;
          Retval.m_ISplashScreen.all := m_ComRetVal;
       end return;
    end;

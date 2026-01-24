@@ -100,14 +100,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IAudioDeviceInputNode.all.get_Device (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -121,7 +121,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioGraphConnection.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode, WinRt.Windows.Media.Audio.IID_IAudioInputNode'Unchecked_Access);
    begin
@@ -139,7 +139,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -158,7 +158,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -178,7 +178,7 @@ package body WinRt.Windows.Media.Audio is
    procedure RemoveOutgoingConnection
    (
       this : in out AudioDeviceInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -203,7 +203,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioDeviceInputNode.all);
@@ -264,7 +264,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -274,7 +274,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -376,7 +376,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioDeviceInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -395,7 +395,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioDeviceInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -438,7 +438,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode2, WinRt.Windows.Media.Audio.IID_IAudioInputNode2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitter do
@@ -448,7 +448,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+         Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
       end return;
    end;
@@ -484,14 +484,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IAudioDeviceOutputNode.all.get_Device (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -505,7 +505,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioDeviceOutputNode.all);
@@ -566,7 +566,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -576,7 +576,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -678,7 +678,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioDeviceOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -697,7 +697,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioDeviceOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -734,7 +734,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_Listener
    (
       this : in out AudioDeviceOutputNode;
-      value : Windows.Media.Audio.AudioNodeListener'Class
+      value : WinRt.Windows.Media.Audio.AudioNodeListener'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -759,7 +759,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNodeWithListener := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeListener;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeListener;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioDeviceOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNodeWithListener, WinRt.Windows.Media.Audio.IID_IAudioNodeWithListener'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeListener do
@@ -769,7 +769,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeListener := new Windows.Media.Audio.IAudioNodeListener;
+         Retval.m_IAudioNodeListener := new WinRt.Windows.Media.Audio.IAudioNodeListener;
          Retval.m_IAudioNodeListener.all := m_ComRetVal;
       end return;
    end;
@@ -808,7 +808,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioEffectsPackConfiguration");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioEffectsPackConfigurationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioEffectsPackConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioEffectsPackConfiguration;
       HStr_effectsPackId : constant WinRt.HString := To_HString (effectsPackId);
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
@@ -820,7 +820,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioEffectsPackConfiguration := new Windows.Media.Audio.IAudioEffectsPackConfiguration;
+            Retval.m_IAudioEffectsPackConfiguration := new WinRt.Windows.Media.Audio.IAudioEffectsPackConfiguration;
             Retval.m_IAudioEffectsPackConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -909,7 +909,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioEffectsPackStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioEffectsPackStatus;
    begin
       Hr := this.m_IAudioEffectsPackConfiguration.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -927,7 +927,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioEffectsPackConfiguration.all.add_StatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -939,7 +939,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_StatusChanged
    (
       this : in out AudioEffectsPackConfiguration;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1014,7 +1014,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAudioFileInputNode.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1026,7 +1026,7 @@ package body WinRt.Windows.Media.Audio is
    procedure Seek
    (
       this : in out AudioFileInputNode;
-      position : Windows.Foundation.TimeSpan
+      position : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1046,7 +1046,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAudioFileInputNode.all.get_StartTime (m_ComRetVal'Access);
@@ -1081,7 +1081,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAudioFileInputNode.all.get_EndTime (m_ComRetVal'Access);
@@ -1116,7 +1116,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IAudioFileInputNode.all.get_LoopCount (m_ComRetVal'Access);
@@ -1151,7 +1151,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAudioFileInputNode.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1168,14 +1168,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IAudioFileInputNode.all.get_SourceFile (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -1189,7 +1189,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioFileInputNode.all.add_FileCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_FileCompleted
    (
       this : in out AudioFileInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1222,7 +1222,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioGraphConnection.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode, WinRt.Windows.Media.Audio.IID_IAudioInputNode'Unchecked_Access);
    begin
@@ -1240,7 +1240,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1259,7 +1259,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1279,7 +1279,7 @@ package body WinRt.Windows.Media.Audio is
    procedure RemoveOutgoingConnection
    (
       this : in out AudioFileInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1304,7 +1304,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioFileInputNode.all);
@@ -1365,7 +1365,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -1375,7 +1375,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1477,7 +1477,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFileInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1496,7 +1496,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFileInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1539,7 +1539,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode2, WinRt.Windows.Media.Audio.IID_IAudioInputNode2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitter do
@@ -1549,7 +1549,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+         Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
       end return;
    end;
@@ -1585,7 +1585,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       Hr := this.m_IAudioFileOutputNode.all.get_File (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1602,14 +1602,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := this.m_IAudioFileOutputNode.all.get_FileEncodingProfile (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+         Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
       end return;
    end;
@@ -1686,7 +1686,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioFileOutputNode.all);
@@ -1747,7 +1747,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFileOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -1757,7 +1757,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -1859,7 +1859,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFileOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1878,7 +1878,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFileOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1943,14 +1943,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IAudioFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.AudioFrame do
          Hr := this.m_IAudioFrameCompletedEventArgs.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrame := new Windows.Media.IAudioFrame;
+         Retval.m_IAudioFrame := new WinRt.Windows.Media.IAudioFrame;
          Retval.m_IAudioFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2013,7 +2013,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddFrame
    (
       this : in out AudioFrameInputNode;
-      frame : Windows.Media.AudioFrame'Class
+      frame : WinRt.Windows.Media.AudioFrame'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2065,7 +2065,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioFrameInputNode.all.add_AudioFrameCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2077,7 +2077,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_AudioFrameCompleted
    (
       this : in out AudioFrameInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2098,7 +2098,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioFrameInputNode.all.add_QuantumStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2110,7 +2110,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_QuantumStarted
    (
       this : in out AudioFrameInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2131,7 +2131,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioGraphConnection.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode, WinRt.Windows.Media.Audio.IID_IAudioInputNode'Unchecked_Access);
    begin
@@ -2149,7 +2149,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2168,7 +2168,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2188,7 +2188,7 @@ package body WinRt.Windows.Media.Audio is
    procedure RemoveOutgoingConnection
    (
       this : in out AudioFrameInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2213,7 +2213,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioFrameInputNode.all);
@@ -2274,7 +2274,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -2284,7 +2284,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2386,7 +2386,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFrameInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2405,7 +2405,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFrameInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2448,7 +2448,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode2, WinRt.Windows.Media.Audio.IID_IAudioInputNode2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitter do
@@ -2458,7 +2458,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+         Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
       end return;
    end;
@@ -2494,14 +2494,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IAudioFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.AudioFrame do
          Hr := this.m_IAudioFrameOutputNode.all.GetFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrame := new Windows.Media.IAudioFrame;
+         Retval.m_IAudioFrame := new WinRt.Windows.Media.IAudioFrame;
          Retval.m_IAudioFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2515,7 +2515,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioFrameOutputNode.all);
@@ -2576,7 +2576,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioFrameOutputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -2586,7 +2586,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -2688,7 +2688,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioFrameOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2707,7 +2707,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioFrameOutputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2766,7 +2766,7 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateAsync
    (
-      settings : Windows.Media.Audio.AudioGraphSettings'Class
+      settings : WinRt.Windows.Media.Audio.AudioGraphSettings'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioGraphResult is
       Hr               : WinRt.HResult := S_OK;
@@ -2822,7 +2822,7 @@ package body WinRt.Windows.Media.Audio is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ICreateAudioGraphResult := new Windows.Media.Audio.ICreateAudioGraphResult;
+                     Retval.m_ICreateAudioGraphResult := new WinRt.Windows.Media.Audio.ICreateAudioGraphResult;
                      Retval.m_ICreateAudioGraphResult.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2848,14 +2848,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFrameInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFrameInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFrameInputNode do
          Hr := this.m_IAudioGraph.all.CreateFrameInputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrameInputNode := new Windows.Media.Audio.IAudioFrameInputNode;
+         Retval.m_IAudioFrameInputNode := new WinRt.Windows.Media.Audio.IAudioFrameInputNode;
          Retval.m_IAudioFrameInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -2863,20 +2863,20 @@ package body WinRt.Windows.Media.Audio is
    function CreateFrameInputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameInputNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFrameInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFrameInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFrameInputNode do
          Hr := this.m_IAudioGraph.all.CreateFrameInputNode (encodingProperties.m_IAudioEncodingProperties.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrameInputNode := new Windows.Media.Audio.IAudioFrameInputNode;
+         Retval.m_IAudioFrameInputNode := new WinRt.Windows.Media.Audio.IAudioFrameInputNode;
          Retval.m_IAudioFrameInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -2884,7 +2884,7 @@ package body WinRt.Windows.Media.Audio is
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory
+      category : WinRt.Windows.Media.Capture.MediaCategory
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2935,7 +2935,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioDeviceInputNodeResult := new Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
+                  Retval.m_ICreateAudioDeviceInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
                   Retval.m_ICreateAudioDeviceInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2951,8 +2951,8 @@ package body WinRt.Windows.Media.Audio is
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3003,7 +3003,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioDeviceInputNodeResult := new Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
+                  Retval.m_ICreateAudioDeviceInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
                   Retval.m_ICreateAudioDeviceInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3019,9 +3019,9 @@ package body WinRt.Windows.Media.Audio is
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3072,7 +3072,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioDeviceInputNodeResult := new Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
+                  Retval.m_ICreateAudioDeviceInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
                   Retval.m_ICreateAudioDeviceInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3093,14 +3093,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFrameOutputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFrameOutputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFrameOutputNode do
          Hr := this.m_IAudioGraph.all.CreateFrameOutputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrameOutputNode := new Windows.Media.Audio.IAudioFrameOutputNode;
+         Retval.m_IAudioFrameOutputNode := new WinRt.Windows.Media.Audio.IAudioFrameOutputNode;
          Retval.m_IAudioFrameOutputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3108,20 +3108,20 @@ package body WinRt.Windows.Media.Audio is
    function CreateFrameOutputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameOutputNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFrameOutputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFrameOutputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFrameOutputNode do
          Hr := this.m_IAudioGraph.all.CreateFrameOutputNode (encodingProperties.m_IAudioEncodingProperties.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrameOutputNode := new Windows.Media.Audio.IAudioFrameOutputNode;
+         Retval.m_IAudioFrameOutputNode := new WinRt.Windows.Media.Audio.IAudioFrameOutputNode;
          Retval.m_IAudioFrameOutputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3179,7 +3179,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioDeviceOutputNodeResult := new Windows.Media.Audio.ICreateAudioDeviceOutputNodeResult;
+                  Retval.m_ICreateAudioDeviceOutputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioDeviceOutputNodeResult;
                   Retval.m_ICreateAudioDeviceOutputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3195,7 +3195,7 @@ package body WinRt.Windows.Media.Audio is
    function CreateFileInputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3246,7 +3246,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioFileInputNodeResult := new Windows.Media.Audio.ICreateAudioFileInputNodeResult;
+                  Retval.m_ICreateAudioFileInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioFileInputNodeResult;
                   Retval.m_ICreateAudioFileInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3262,7 +3262,7 @@ package body WinRt.Windows.Media.Audio is
    function CreateFileOutputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileOutputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3313,7 +3313,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioFileOutputNodeResult := new Windows.Media.Audio.ICreateAudioFileOutputNodeResult;
+                  Retval.m_ICreateAudioFileOutputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioFileOutputNodeResult;
                   Retval.m_ICreateAudioFileOutputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3329,8 +3329,8 @@ package body WinRt.Windows.Media.Audio is
    function CreateFileOutputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile;
-      fileEncodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      file : WinRt.Windows.Storage.IStorageFile;
+      fileEncodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileOutputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3381,7 +3381,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioFileOutputNodeResult := new Windows.Media.Audio.ICreateAudioFileOutputNodeResult;
+                  Retval.m_ICreateAudioFileOutputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioFileOutputNodeResult;
                   Retval.m_ICreateAudioFileOutputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3402,14 +3402,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioSubmixNode do
          Hr := this.m_IAudioGraph.all.CreateSubmixNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioInputNode := new Windows.Media.Audio.IAudioInputNode;
+         Retval.m_IAudioInputNode := new WinRt.Windows.Media.Audio.IAudioInputNode;
          Retval.m_IAudioInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3417,20 +3417,20 @@ package body WinRt.Windows.Media.Audio is
    function CreateSubmixNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    )
    return WinRt.Windows.Media.Audio.AudioSubmixNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioSubmixNode do
          Hr := this.m_IAudioGraph.all.CreateSubmixNode (encodingProperties.m_IAudioEncodingProperties.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioInputNode := new Windows.Media.Audio.IAudioInputNode;
+         Retval.m_IAudioInputNode := new WinRt.Windows.Media.Audio.IAudioInputNode;
          Retval.m_IAudioInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3486,7 +3486,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioGraph.all.add_QuantumStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3498,7 +3498,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_QuantumStarted
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3519,7 +3519,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioGraph.all.add_QuantumProcessed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3531,7 +3531,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_QuantumProcessed
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3552,7 +3552,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioGraph.all.add_UnrecoverableErrorOccurred (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3564,7 +3564,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_UnrecoverableErrorOccurred
    (
       this : in out AudioGraph;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3601,14 +3601,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IAudioGraph.all.get_EncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -3638,14 +3638,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IAudioGraph.all.get_PrimaryRenderDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -3658,7 +3658,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AudioProcessing;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AudioProcessing;
    begin
       Hr := this.m_IAudioGraph.all.get_RenderDeviceAudioProcessing (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3705,15 +3705,15 @@ package body WinRt.Windows.Media.Audio is
    function CreateFrameInputNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.AudioFrameInputNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioGraph2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFrameInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFrameInputNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioGraph_Interface, WinRt.Windows.Media.Audio.IAudioGraph2, WinRt.Windows.Media.Audio.IID_IAudioGraph2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFrameInputNode do
@@ -3723,7 +3723,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFrameInputNode := new Windows.Media.Audio.IAudioFrameInputNode;
+         Retval.m_IAudioFrameInputNode := new WinRt.Windows.Media.Audio.IAudioFrameInputNode;
          Retval.m_IAudioFrameInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3731,10 +3731,10 @@ package body WinRt.Windows.Media.Audio is
    function CreateDeviceInputNodeAsync
    (
       this : in out AudioGraph;
-      category : Windows.Media.Capture.MediaCategory;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      device : Windows.Devices.Enumeration.DeviceInformation'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      device : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioDeviceInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3789,7 +3789,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioDeviceInputNodeResult := new Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
+                  Retval.m_ICreateAudioDeviceInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult;
                   Retval.m_ICreateAudioDeviceInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3805,8 +3805,8 @@ package body WinRt.Windows.Media.Audio is
    function CreateFileInputNodeAsync
    (
       this : in out AudioGraph;
-      file : Windows.Storage.IStorageFile;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      file : WinRt.Windows.Storage.IStorageFile;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateAudioFileInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3861,7 +3861,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateAudioFileInputNodeResult := new Windows.Media.Audio.ICreateAudioFileInputNodeResult;
+                  Retval.m_ICreateAudioFileInputNodeResult := new WinRt.Windows.Media.Audio.ICreateAudioFileInputNodeResult;
                   Retval.m_ICreateAudioFileInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3877,15 +3877,15 @@ package body WinRt.Windows.Media.Audio is
    function CreateSubmixNode
    (
       this : in out AudioGraph;
-      encodingProperties : Windows.Media.MediaProperties.AudioEncodingProperties'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.AudioSubmixNode'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioGraph2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioInputNode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioGraph_Interface, WinRt.Windows.Media.Audio.IAudioGraph2, WinRt.Windows.Media.Audio.IID_IAudioGraph2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioSubmixNode do
@@ -3895,7 +3895,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioInputNode := new Windows.Media.Audio.IAudioInputNode;
+         Retval.m_IAudioInputNode := new WinRt.Windows.Media.Audio.IAudioInputNode;
          Retval.m_IAudioInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -3909,8 +3909,8 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioGraph2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IClosable;
-      m_Wrapped        : aliased Windows.Foundation.IClosable_Ptr := new Windows.Foundation.IClosable;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IClosable;
+      m_Wrapped        : aliased WinRt.Windows.Foundation.IClosable_Ptr := new WinRt.Windows.Foundation.IClosable;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioGraph_Interface, WinRt.Windows.Media.Audio.IAudioGraph2, WinRt.Windows.Media.Audio.IID_IAudioGraph2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioGraphBatchUpdater do
@@ -3928,7 +3928,7 @@ package body WinRt.Windows.Media.Audio is
    function CreateMediaSourceAudioInputNodeAsync
    (
       this : in out AudioGraph;
-      mediaSource : Windows.Media.Core.MediaSource'Class
+      mediaSource : WinRt.Windows.Media.Core.MediaSource'Class
    )
    return WinRt.Windows.Media.Audio.CreateMediaSourceAudioInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3983,7 +3983,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateMediaSourceAudioInputNodeResult := new Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult;
+                  Retval.m_ICreateMediaSourceAudioInputNodeResult := new WinRt.Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult;
                   Retval.m_ICreateMediaSourceAudioInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3999,8 +3999,8 @@ package body WinRt.Windows.Media.Audio is
    function CreateMediaSourceAudioInputNodeAsync
    (
       this : in out AudioGraph;
-      mediaSource : Windows.Media.Core.MediaSource'Class;
-      emitter : Windows.Media.Audio.AudioNodeEmitter'Class
+      mediaSource : WinRt.Windows.Media.Core.MediaSource'Class;
+      emitter : WinRt.Windows.Media.Audio.AudioNodeEmitter'Class
    )
    return WinRt.Windows.Media.Audio.CreateMediaSourceAudioInputNodeResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4055,7 +4055,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICreateMediaSourceAudioInputNodeResult := new Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult;
+                  Retval.m_ICreateMediaSourceAudioInputNodeResult := new WinRt.Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult;
                   Retval.m_ICreateMediaSourceAudioInputNodeResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4136,7 +4136,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNode;
    begin
       Hr := this.m_IAudioGraphConnection.all.get_Destination (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4202,21 +4202,21 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioRenderCategory : Windows.Media.Render.AudioRenderCategory
+      audioRenderCategory : WinRt.Windows.Media.Render.AudioRenderCategory
    )
    return AudioGraphSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioGraphSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IAudioGraphSettings");
       m_Factory    : access IAudioGraphSettingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.IAudioGraphSettings;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IAudioGraphSettings;
    begin
       return RetVal : AudioGraphSettings do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioGraphSettingsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audioRenderCategory, m_ComRetVal'Access);
-            Retval.m_IAudioGraphSettings := new Windows.Media.Audio.IAudioGraphSettings;
+            Retval.m_IAudioGraphSettings := new WinRt.Windows.Media.Audio.IAudioGraphSettings;
             Retval.m_IAudioGraphSettings.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4235,14 +4235,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IAudioGraphSettings.all.get_EncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -4250,7 +4250,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_EncodingProperties
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.MediaProperties.AudioEncodingProperties'Class
+      value : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4270,14 +4270,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.IDeviceInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.IDeviceInformation;
    begin
       return RetVal : WinRt.Windows.Devices.Enumeration.DeviceInformation do
          Hr := this.m_IAudioGraphSettings.all.get_PrimaryRenderDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeviceInformation := new Windows.Devices.Enumeration.IDeviceInformation;
+         Retval.m_IDeviceInformation := new WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          Retval.m_IDeviceInformation.all := m_ComRetVal;
       end return;
    end;
@@ -4285,7 +4285,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_PrimaryRenderDevice
    (
       this : in out AudioGraphSettings;
-      value : Windows.Devices.Enumeration.DeviceInformation'Class
+      value : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4305,7 +4305,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.QuantumSizeSelectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.QuantumSizeSelectionMode;
    begin
       Hr := this.m_IAudioGraphSettings.all.get_QuantumSizeSelectionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4317,7 +4317,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_QuantumSizeSelectionMode
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.Audio.QuantumSizeSelectionMode
+      value : WinRt.Windows.Media.Audio.QuantumSizeSelectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4369,7 +4369,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Render.AudioRenderCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Render.AudioRenderCategory;
    begin
       Hr := this.m_IAudioGraphSettings.all.get_AudioRenderCategory (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4381,7 +4381,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_AudioRenderCategory
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.Render.AudioRenderCategory
+      value : WinRt.Windows.Media.Render.AudioRenderCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4401,7 +4401,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AudioProcessing;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AudioProcessing;
    begin
       Hr := this.m_IAudioGraphSettings.all.get_DesiredRenderDeviceAudioProcessing (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4413,7 +4413,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_DesiredRenderDeviceAudioProcessing
    (
       this : in out AudioGraphSettings;
-      value : Windows.Media.AudioProcessing
+      value : WinRt.Windows.Media.AudioProcessing
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4496,7 +4496,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioGraphUnrecoverableError;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioGraphUnrecoverableError;
    begin
       Hr := this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4531,13 +4531,13 @@ package body WinRt.Windows.Media.Audio is
    function Constructor return AudioNodeEmitter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
-      m_ComRetVal  : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IAudioNodeEmitter");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
    begin
       return RetVal : AudioNodeEmitter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+            Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
             Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4546,23 +4546,23 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      shape : Windows.Media.Audio.AudioNodeEmitterShape'Class;
-      decayModel : Windows.Media.Audio.AudioNodeEmitterDecayModel'Class;
-      settings : Windows.Media.Audio.AudioNodeEmitterSettings
+      shape : WinRt.Windows.Media.Audio.AudioNodeEmitterShape'Class;
+      decayModel : WinRt.Windows.Media.Audio.AudioNodeEmitterDecayModel'Class;
+      settings : WinRt.Windows.Media.Audio.AudioNodeEmitterSettings
    )
    return AudioNodeEmitter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IAudioNodeEmitter");
       m_Factory    : access IAudioNodeEmitterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
    begin
       return RetVal : AudioNodeEmitter do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioNodeEmitterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAudioNodeEmitter (shape.m_IAudioNodeEmitterShape.all, decayModel.m_IAudioNodeEmitterDecayModel.all, settings, m_ComRetVal'Access);
-            Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+            Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
             Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4581,7 +4581,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IAudioNodeEmitter.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4593,7 +4593,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_Position
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4613,7 +4613,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IAudioNodeEmitter.all.get_Direction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4625,7 +4625,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_Direction
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4645,14 +4645,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterShape;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterShape do
          Hr := this.m_IAudioNodeEmitter.all.get_Shape (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitterShape := new Windows.Media.Audio.IAudioNodeEmitterShape;
+         Retval.m_IAudioNodeEmitterShape := new WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
          Retval.m_IAudioNodeEmitterShape.all := m_ComRetVal;
       end return;
    end;
@@ -4665,14 +4665,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterDecayModel do
          Hr := this.m_IAudioNodeEmitter.all.get_DecayModel (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitterDecayModel := new Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+         Retval.m_IAudioNodeEmitterDecayModel := new WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
          Retval.m_IAudioNodeEmitterDecayModel.all := m_ComRetVal;
       end return;
    end;
@@ -4781,7 +4781,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IAudioNodeEmitter.all.get_DopplerVelocity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4793,7 +4793,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_DopplerVelocity
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4831,7 +4831,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNodeEmitter2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.SpatialAudioModel;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.SpatialAudioModel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioNodeEmitter_Interface, WinRt.Windows.Media.Audio.IAudioNodeEmitter2, WinRt.Windows.Media.Audio.IID_IAudioNodeEmitter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioNodeEmitter.all);
@@ -4846,7 +4846,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_SpatialAudioModel
    (
       this : in out AudioNodeEmitter;
-      value : Windows.Media.Audio.SpatialAudioModel
+      value : WinRt.Windows.Media.Audio.SpatialAudioModel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4972,7 +4972,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitterDecayModel");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModelStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterDecayModel do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioNodeEmitterDecayModelStatics'Access , m_Factory'Address);
@@ -4982,7 +4982,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioNodeEmitterDecayModel := new Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+            Retval.m_IAudioNodeEmitterDecayModel := new WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
             Retval.m_IAudioNodeEmitterDecayModel.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5000,7 +5000,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitterDecayModel");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModelStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterDecayModel do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioNodeEmitterDecayModelStatics'Access , m_Factory'Address);
@@ -5010,7 +5010,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioNodeEmitterDecayModel := new Windows.Media.Audio.IAudioNodeEmitterDecayModel;
+            Retval.m_IAudioNodeEmitterDecayModel := new WinRt.Windows.Media.Audio.IAudioNodeEmitterDecayModel;
             Retval.m_IAudioNodeEmitterDecayModel.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5028,7 +5028,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioNodeEmitterDecayKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioNodeEmitterDecayKind;
    begin
       Hr := this.m_IAudioNodeEmitterDecayModel.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5079,14 +5079,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterNaturalDecayModelProperties do
          Hr := this.m_IAudioNodeEmitterDecayModel.all.get_NaturalProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitterNaturalDecayModelProperties := new Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties;
+         Retval.m_IAudioNodeEmitterNaturalDecayModelProperties := new WinRt.Windows.Media.Audio.IAudioNodeEmitterNaturalDecayModelProperties;
          Retval.m_IAudioNodeEmitterNaturalDecayModelProperties.all := m_ComRetVal;
       end return;
    end;
@@ -5183,7 +5183,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitterShape");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioNodeEmitterShapeStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterShape;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterShape do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioNodeEmitterShapeStatics'Access , m_Factory'Address);
@@ -5193,7 +5193,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioNodeEmitterShape := new Windows.Media.Audio.IAudioNodeEmitterShape;
+            Retval.m_IAudioNodeEmitterShape := new WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
             Retval.m_IAudioNodeEmitterShape.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5207,7 +5207,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitterShape");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioNodeEmitterShapeStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterShape;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterShape do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioNodeEmitterShapeStatics'Access , m_Factory'Address);
@@ -5217,7 +5217,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioNodeEmitterShape := new Windows.Media.Audio.IAudioNodeEmitterShape;
+            Retval.m_IAudioNodeEmitterShape := new WinRt.Windows.Media.Audio.IAudioNodeEmitterShape;
             Retval.m_IAudioNodeEmitterShape.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5235,7 +5235,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioNodeEmitterShapeKind;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioNodeEmitterShapeKind;
    begin
       Hr := this.m_IAudioNodeEmitterShape.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5252,14 +5252,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitterConeProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitterConeProperties;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitterConeProperties do
          Hr := this.m_IAudioNodeEmitterShape.all.get_ConeProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitterConeProperties := new Windows.Media.Audio.IAudioNodeEmitterConeProperties;
+         Retval.m_IAudioNodeEmitterConeProperties := new WinRt.Windows.Media.Audio.IAudioNodeEmitterConeProperties;
          Retval.m_IAudioNodeEmitterConeProperties.all := m_ComRetVal;
       end return;
    end;
@@ -5290,13 +5290,13 @@ package body WinRt.Windows.Media.Audio is
    function Constructor return AudioNodeListener is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioNodeListener");
-      m_ComRetVal  : aliased Windows.Media.Audio.IAudioNodeListener;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IAudioNodeListener");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IAudioNodeListener;
    begin
       return RetVal : AudioNodeListener do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAudioNodeListener := new Windows.Media.Audio.IAudioNodeListener;
+            Retval.m_IAudioNodeListener := new WinRt.Windows.Media.Audio.IAudioNodeListener;
             Retval.m_IAudioNodeListener.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5314,7 +5314,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IAudioNodeListener.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5326,7 +5326,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_Position
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5346,7 +5346,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IAudioNodeListener.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5358,7 +5358,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_Orientation
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5410,7 +5410,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IAudioNodeListener.all.get_DopplerVelocity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5422,7 +5422,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_DopplerVelocity
    (
       this : in out AudioNodeListener;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5491,7 +5491,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioPlaybackConnection");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioPlaybackConnectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioPlaybackConnection;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioPlaybackConnection;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioPlaybackConnection do
@@ -5502,7 +5502,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioPlaybackConnection := new Windows.Media.Audio.IAudioPlaybackConnection;
+            Retval.m_IAudioPlaybackConnection := new WinRt.Windows.Media.Audio.IAudioPlaybackConnection;
             Retval.m_IAudioPlaybackConnection.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5597,7 +5597,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioPlaybackConnectionState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioPlaybackConnectionState;
    begin
       Hr := this.m_IAudioPlaybackConnection.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5614,14 +5614,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioPlaybackConnectionOpenResult do
          Hr := this.m_IAudioPlaybackConnection.all.Open (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioPlaybackConnectionOpenResult := new Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
+         Retval.m_IAudioPlaybackConnectionOpenResult := new WinRt.Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
          Retval.m_IAudioPlaybackConnectionOpenResult.all := m_ComRetVal;
       end return;
    end;
@@ -5679,7 +5679,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAudioPlaybackConnectionOpenResult := new Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
+                  Retval.m_IAudioPlaybackConnectionOpenResult := new WinRt.Windows.Media.Audio.IAudioPlaybackConnectionOpenResult;
                   Retval.m_IAudioPlaybackConnectionOpenResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5701,7 +5701,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioPlaybackConnection.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5713,7 +5713,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_StateChanged
    (
       this : in out AudioPlaybackConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5774,7 +5774,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioPlaybackConnectionOpenResultStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioPlaybackConnectionOpenResultStatus;
    begin
       Hr := this.m_IAudioPlaybackConnectionOpenResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5791,7 +5791,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAudioPlaybackConnectionOpenResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5830,7 +5830,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -5840,7 +5840,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5849,7 +5849,7 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForRenderMonitoring
    (
-      category : Windows.Media.Render.AudioRenderCategory
+      category : WinRt.Windows.Media.Render.AudioRenderCategory
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
       Hr               : WinRt.HResult := S_OK;
@@ -5857,7 +5857,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -5867,7 +5867,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5876,8 +5876,8 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForRenderMonitoring
    (
-      category : Windows.Media.Render.AudioRenderCategory;
-      role : Windows.Media.Devices.AudioDeviceRole
+      category : WinRt.Windows.Media.Render.AudioRenderCategory;
+      role : WinRt.Windows.Media.Devices.AudioDeviceRole
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
       Hr               : WinRt.HResult := S_OK;
@@ -5885,7 +5885,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -5895,7 +5895,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5904,7 +5904,7 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForRenderMonitoringWithCategoryAndDeviceId
    (
-      category : Windows.Media.Render.AudioRenderCategory;
+      category : WinRt.Windows.Media.Render.AudioRenderCategory;
       deviceId : WinRt.WString
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
@@ -5913,7 +5913,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
@@ -5924,7 +5924,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5939,7 +5939,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -5949,7 +5949,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5958,7 +5958,7 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForCaptureMonitoring
    (
-      category : Windows.Media.Capture.MediaCategory
+      category : WinRt.Windows.Media.Capture.MediaCategory
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
       Hr               : WinRt.HResult := S_OK;
@@ -5966,7 +5966,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -5976,7 +5976,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5985,8 +5985,8 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForCaptureMonitoring
    (
-      category : Windows.Media.Capture.MediaCategory;
-      role : Windows.Media.Devices.AudioDeviceRole
+      category : WinRt.Windows.Media.Capture.MediaCategory;
+      role : WinRt.Windows.Media.Devices.AudioDeviceRole
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
       Hr               : WinRt.HResult := S_OK;
@@ -5994,7 +5994,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
          Hr := RoGetActivationFactory (m_hString, IID_IAudioStateMonitorStatics'Access , m_Factory'Address);
@@ -6004,7 +6004,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6013,7 +6013,7 @@ package body WinRt.Windows.Media.Audio is
 
    function CreateForCaptureMonitoringWithCategoryAndDeviceId
    (
-      category : Windows.Media.Capture.MediaCategory;
+      category : WinRt.Windows.Media.Capture.MediaCategory;
       deviceId : WinRt.WString
    )
    return WinRt.Windows.Media.Audio.AudioStateMonitor is
@@ -6022,7 +6022,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.AudioStateMonitor");
       m_Factory        : access WinRt.Windows.Media.Audio.IAudioStateMonitorStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioStateMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioStateMonitor;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioStateMonitor do
@@ -6033,7 +6033,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAudioStateMonitor := new Windows.Media.Audio.IAudioStateMonitor;
+            Retval.m_IAudioStateMonitor := new WinRt.Windows.Media.Audio.IAudioStateMonitor;
             Retval.m_IAudioStateMonitor.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -6053,7 +6053,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAudioStateMonitor.all.add_SoundLevelChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6065,7 +6065,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_SoundLevelChanged
    (
       this : in out AudioStateMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6085,7 +6085,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.SoundLevel;
+      m_ComRetVal      : aliased WinRt.Windows.Media.SoundLevel;
    begin
       Hr := this.m_IAudioStateMonitor.all.get_SoundLevel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6125,7 +6125,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioGraphConnection.Kind;
    begin
       Hr := this.m_IAudioInputNode.all.get_OutgoingConnections (m_ComRetVal'Access);
@@ -6140,7 +6140,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6155,7 +6155,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -6171,7 +6171,7 @@ package body WinRt.Windows.Media.Audio is
    procedure RemoveOutgoingConnection
    (
       this : in out AudioSubmixNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6192,7 +6192,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAudioInputNode.all);
@@ -6253,7 +6253,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -6263,7 +6263,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -6365,7 +6365,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out AudioSubmixNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6384,7 +6384,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out AudioSubmixNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6427,7 +6427,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode2, WinRt.Windows.Media.Audio.IID_IAudioInputNode2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitter do
@@ -6437,7 +6437,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+         Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
       end return;
    end;
@@ -6473,7 +6473,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioDeviceNodeCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioDeviceNodeCreationStatus;
    begin
       Hr := this.m_ICreateAudioDeviceInputNodeResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6490,14 +6490,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioDeviceInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioDeviceInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioDeviceInputNode do
          Hr := this.m_ICreateAudioDeviceInputNodeResult.all.get_DeviceInputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioDeviceInputNode := new Windows.Media.Audio.IAudioDeviceInputNode;
+         Retval.m_IAudioDeviceInputNode := new WinRt.Windows.Media.Audio.IAudioDeviceInputNode;
          Retval.m_IAudioDeviceInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -6511,7 +6511,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult_Interface, WinRt.Windows.Media.Audio.ICreateAudioDeviceInputNodeResult2, WinRt.Windows.Media.Audio.IID_ICreateAudioDeviceInputNodeResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateAudioDeviceInputNodeResult.all);
@@ -6554,7 +6554,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioDeviceNodeCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioDeviceNodeCreationStatus;
    begin
       Hr := this.m_ICreateAudioDeviceOutputNodeResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6571,14 +6571,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioDeviceOutputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioDeviceOutputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioDeviceOutputNode do
          Hr := this.m_ICreateAudioDeviceOutputNodeResult.all.get_DeviceOutputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioDeviceOutputNode := new Windows.Media.Audio.IAudioDeviceOutputNode;
+         Retval.m_IAudioDeviceOutputNode := new WinRt.Windows.Media.Audio.IAudioDeviceOutputNode;
          Retval.m_IAudioDeviceOutputNode.all := m_ComRetVal;
       end return;
    end;
@@ -6592,7 +6592,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateAudioDeviceOutputNodeResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateAudioDeviceOutputNodeResult_Interface, WinRt.Windows.Media.Audio.ICreateAudioDeviceOutputNodeResult2, WinRt.Windows.Media.Audio.IID_ICreateAudioDeviceOutputNodeResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateAudioDeviceOutputNodeResult.all);
@@ -6635,7 +6635,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioFileNodeCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioFileNodeCreationStatus;
    begin
       Hr := this.m_ICreateAudioFileInputNodeResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6652,14 +6652,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFileInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFileInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFileInputNode do
          Hr := this.m_ICreateAudioFileInputNodeResult.all.get_FileInputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFileInputNode := new Windows.Media.Audio.IAudioFileInputNode;
+         Retval.m_IAudioFileInputNode := new WinRt.Windows.Media.Audio.IAudioFileInputNode;
          Retval.m_IAudioFileInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -6673,7 +6673,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateAudioFileInputNodeResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateAudioFileInputNodeResult_Interface, WinRt.Windows.Media.Audio.ICreateAudioFileInputNodeResult2, WinRt.Windows.Media.Audio.IID_ICreateAudioFileInputNodeResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateAudioFileInputNodeResult.all);
@@ -6716,7 +6716,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioFileNodeCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioFileNodeCreationStatus;
    begin
       Hr := this.m_ICreateAudioFileOutputNodeResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6733,14 +6733,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioFileOutputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioFileOutputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioFileOutputNode do
          Hr := this.m_ICreateAudioFileOutputNodeResult.all.get_FileOutputNode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioFileOutputNode := new Windows.Media.Audio.IAudioFileOutputNode;
+         Retval.m_IAudioFileOutputNode := new WinRt.Windows.Media.Audio.IAudioFileOutputNode;
          Retval.m_IAudioFileOutputNode.all := m_ComRetVal;
       end return;
    end;
@@ -6754,7 +6754,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateAudioFileOutputNodeResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateAudioFileOutputNodeResult_Interface, WinRt.Windows.Media.Audio.ICreateAudioFileOutputNodeResult2, WinRt.Windows.Media.Audio.IID_ICreateAudioFileOutputNodeResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateAudioFileOutputNodeResult.all);
@@ -6797,7 +6797,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.AudioGraphCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.AudioGraphCreationStatus;
    begin
       Hr := this.m_ICreateAudioGraphResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6814,14 +6814,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioGraph;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioGraph;
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioGraph do
          Hr := this.m_ICreateAudioGraphResult.all.get_Graph (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioGraph := new Windows.Media.Audio.IAudioGraph;
+         Retval.m_IAudioGraph := new WinRt.Windows.Media.Audio.IAudioGraph;
          Retval.m_IAudioGraph.all := m_ComRetVal;
       end return;
    end;
@@ -6835,7 +6835,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateAudioGraphResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateAudioGraphResult_Interface, WinRt.Windows.Media.Audio.ICreateAudioGraphResult2, WinRt.Windows.Media.Audio.IID_ICreateAudioGraphResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateAudioGraphResult.all);
@@ -6878,7 +6878,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.MediaSourceAudioInputNodeCreationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.MediaSourceAudioInputNodeCreationStatus;
    begin
       Hr := this.m_ICreateMediaSourceAudioInputNodeResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6895,14 +6895,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IMediaSourceAudioInputNode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode;
    begin
       return RetVal : WinRt.Windows.Media.Audio.MediaSourceAudioInputNode do
          Hr := this.m_ICreateMediaSourceAudioInputNodeResult.all.get_Node (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaSourceAudioInputNode := new Windows.Media.Audio.IMediaSourceAudioInputNode;
+         Retval.m_IMediaSourceAudioInputNode := new WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode;
          Retval.m_IMediaSourceAudioInputNode.all := m_ComRetVal;
       end return;
    end;
@@ -6916,7 +6916,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult_Interface, WinRt.Windows.Media.Audio.ICreateMediaSourceAudioInputNodeResult2, WinRt.Windows.Media.Audio.IID_ICreateMediaSourceAudioInputNodeResult2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICreateMediaSourceAudioInputNodeResult.all);
@@ -6953,21 +6953,21 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return EchoEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.EchoEffectDefinition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IEchoEffectDefinition");
       m_Factory    : access IEchoEffectDefinitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.IEchoEffectDefinition;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IEchoEffectDefinition;
    begin
       return RetVal : EchoEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IEchoEffectDefinitionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audioGraph_p.m_IAudioGraph.all, m_ComRetVal'Access);
-            Retval.m_IEchoEffectDefinition := new Windows.Media.Audio.IEchoEffectDefinition;
+            Retval.m_IEchoEffectDefinition := new WinRt.Windows.Media.Audio.IEchoEffectDefinition;
             Retval.m_IEchoEffectDefinition.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7107,7 +7107,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioEffectDefinition := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IEchoEffectDefinition_Interface, WinRt.Windows.Media.Effects.IAudioEffectDefinition, WinRt.Windows.Media.Effects.IID_IAudioEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEchoEffectDefinition.all);
@@ -7263,21 +7263,21 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return EqualizerEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.EqualizerEffectDefinition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IEqualizerEffectDefinition");
       m_Factory    : access IEqualizerEffectDefinitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.IEqualizerEffectDefinition;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IEqualizerEffectDefinition;
    begin
       return RetVal : EqualizerEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IEqualizerEffectDefinitionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audioGraph_p.m_IAudioGraph.all, m_ComRetVal'Access);
-            Retval.m_IEqualizerEffectDefinition := new Windows.Media.Audio.IEqualizerEffectDefinition;
+            Retval.m_IEqualizerEffectDefinition := new WinRt.Windows.Media.Audio.IEqualizerEffectDefinition;
             Retval.m_IEqualizerEffectDefinition.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7296,7 +7296,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IEqualizerBand.Kind;
    begin
       Hr := this.m_IEqualizerEffectDefinition.all.get_Bands (m_ComRetVal'Access);
@@ -7341,7 +7341,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioEffectDefinition := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IEqualizerEffectDefinition_Interface, WinRt.Windows.Media.Effects.IAudioEffectDefinition, WinRt.Windows.Media.Effects.IID_IAudioEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IEqualizerEffectDefinition.all);
@@ -7418,21 +7418,21 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return LimiterEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.LimiterEffectDefinition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.ILimiterEffectDefinition");
       m_Factory    : access ILimiterEffectDefinitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.ILimiterEffectDefinition;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.ILimiterEffectDefinition;
    begin
       return RetVal : LimiterEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_ILimiterEffectDefinitionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audioGraph_p.m_IAudioGraph.all, m_ComRetVal'Access);
-            Retval.m_ILimiterEffectDefinition := new Windows.Media.Audio.ILimiterEffectDefinition;
+            Retval.m_ILimiterEffectDefinition := new WinRt.Windows.Media.Audio.ILimiterEffectDefinition;
             Retval.m_ILimiterEffectDefinition.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7540,7 +7540,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioEffectDefinition := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.ILimiterEffectDefinition_Interface, WinRt.Windows.Media.Effects.IAudioEffectDefinition, WinRt.Windows.Media.Effects.IID_IAudioEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILimiterEffectDefinition.all);
@@ -7615,7 +7615,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7627,7 +7627,7 @@ package body WinRt.Windows.Media.Audio is
    procedure Seek
    (
       this : in out MediaSourceAudioInputNode;
-      position : Windows.Foundation.TimeSpan
+      position : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7647,7 +7647,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.get_StartTime (m_ComRetVal'Access);
@@ -7682,7 +7682,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.get_EndTime (m_ComRetVal'Access);
@@ -7717,7 +7717,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.get_LoopCount (m_ComRetVal'Access);
@@ -7752,7 +7752,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7769,14 +7769,14 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource2;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaSource2;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaSource do
          Hr := this.m_IMediaSourceAudioInputNode.all.get_MediaSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaSource2 := new Windows.Media.Core.IMediaSource2;
+         Retval.m_IMediaSource2 := new WinRt.Windows.Media.Core.IMediaSource2;
          Retval.m_IMediaSource2.all := m_ComRetVal;
       end return;
    end;
@@ -7790,7 +7790,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaSourceAudioInputNode.all.add_MediaSourceCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7802,7 +7802,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_MediaSourceCompleted
    (
       this : in out MediaSourceAudioInputNode;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7823,7 +7823,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.IAudioNodeEmitter;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.IAudioNodeEmitter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode2, WinRt.Windows.Media.Audio.IID_IAudioInputNode2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Audio.AudioNodeEmitter do
@@ -7833,7 +7833,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioNodeEmitter := new Windows.Media.Audio.IAudioNodeEmitter;
+         Retval.m_IAudioNodeEmitter := new WinRt.Windows.Media.Audio.IAudioNodeEmitter;
          Retval.m_IAudioNodeEmitter.all := m_ComRetVal;
       end return;
    end;
@@ -7847,7 +7847,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioInputNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAudioGraphConnection.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioInputNode, WinRt.Windows.Media.Audio.IID_IAudioInputNode'Unchecked_Access);
    begin
@@ -7865,7 +7865,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7884,7 +7884,7 @@ package body WinRt.Windows.Media.Audio is
    procedure AddOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode;
+      destination : WinRt.Windows.Media.Audio.IAudioNode;
       gain : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -7904,7 +7904,7 @@ package body WinRt.Windows.Media.Audio is
    procedure RemoveOutgoingConnection
    (
       this : in out MediaSourceAudioInputNode;
-      destination : Windows.Media.Audio.IAudioNode
+      destination : WinRt.Windows.Media.Audio.IAudioNode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7929,7 +7929,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaSourceAudioInputNode.all);
@@ -7990,7 +7990,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Audio.IAudioNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IMediaSourceAudioInputNode_Interface, WinRt.Windows.Media.Audio.IAudioNode, WinRt.Windows.Media.Audio.IID_IAudioNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
@@ -8000,7 +8000,7 @@ package body WinRt.Windows.Media.Audio is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -8102,7 +8102,7 @@ package body WinRt.Windows.Media.Audio is
    procedure DisableEffectsByDefinition
    (
       this : in out MediaSourceAudioInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8121,7 +8121,7 @@ package body WinRt.Windows.Media.Audio is
    procedure EnableEffectsByDefinition
    (
       this : in out MediaSourceAudioInputNode;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8180,21 +8180,21 @@ package body WinRt.Windows.Media.Audio is
 
    function Constructor
    (
-      audioGraph_p : Windows.Media.Audio.AudioGraph'Class
+      audioGraph_p : WinRt.Windows.Media.Audio.AudioGraph'Class
    )
    return ReverbEffectDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.ReverbEffectDefinition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Audio.IReverbEffectDefinition");
       m_Factory    : access IReverbEffectDefinitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Audio.IReverbEffectDefinition;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Audio.IReverbEffectDefinition;
    begin
       return RetVal : ReverbEffectDefinition do
          Hr := RoGetActivationFactory (m_hString, IID_IReverbEffectDefinitionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (audioGraph_p.m_IAudioGraph.all, m_ComRetVal'Access);
-            Retval.m_IReverbEffectDefinition := new Windows.Media.Audio.IReverbEffectDefinition;
+            Retval.m_IReverbEffectDefinition := new WinRt.Windows.Media.Audio.IReverbEffectDefinition;
             Retval.m_IReverbEffectDefinition.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8974,7 +8974,7 @@ package body WinRt.Windows.Media.Audio is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Effects.IAudioEffectDefinition := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Audio.IReverbEffectDefinition_Interface, WinRt.Windows.Media.Effects.IAudioEffectDefinition, WinRt.Windows.Media.Effects.IID_IAudioEffectDefinition'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IReverbEffectDefinition.all);
@@ -9017,7 +9017,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.SetDefaultSpatialAudioFormatStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.SetDefaultSpatialAudioFormatStatus;
    begin
       Hr := this.m_ISetDefaultSpatialAudioFormatResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9059,7 +9059,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.SpatialAudioDeviceConfiguration");
       m_Factory        : access WinRt.Windows.Media.Audio.ISpatialAudioDeviceConfigurationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.ISpatialAudioDeviceConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.ISpatialAudioDeviceConfiguration;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Media.Audio.SpatialAudioDeviceConfiguration do
@@ -9070,7 +9070,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISpatialAudioDeviceConfiguration := new Windows.Media.Audio.ISpatialAudioDeviceConfiguration;
+            Retval.m_ISpatialAudioDeviceConfiguration := new WinRt.Windows.Media.Audio.ISpatialAudioDeviceConfiguration;
             Retval.m_ISpatialAudioDeviceConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9233,7 +9233,7 @@ package body WinRt.Windows.Media.Audio is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISetDefaultSpatialAudioFormatResult := new Windows.Media.Audio.ISetDefaultSpatialAudioFormatResult;
+                  Retval.m_ISetDefaultSpatialAudioFormatResult := new WinRt.Windows.Media.Audio.ISetDefaultSpatialAudioFormatResult;
                   Retval.m_ISetDefaultSpatialAudioFormatResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9256,7 +9256,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISpatialAudioDeviceConfiguration.all.add_ConfigurationChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9268,7 +9268,7 @@ package body WinRt.Windows.Media.Audio is
    procedure remove_ConfigurationChanged
    (
       this : in out SpatialAudioDeviceConfiguration;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9310,7 +9310,7 @@ package body WinRt.Windows.Media.Audio is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Audio.SpatialAudioFormatConfiguration");
       m_Factory        : access WinRt.Windows.Media.Audio.ISpatialAudioFormatConfigurationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.ISpatialAudioFormatConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.ISpatialAudioFormatConfiguration;
    begin
       return RetVal : WinRt.Windows.Media.Audio.SpatialAudioFormatConfiguration do
          Hr := RoGetActivationFactory (m_hString, IID_ISpatialAudioFormatConfigurationStatics'Access , m_Factory'Address);
@@ -9320,7 +9320,7 @@ package body WinRt.Windows.Media.Audio is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISpatialAudioFormatConfiguration := new Windows.Media.Audio.ISpatialAudioFormatConfiguration;
+            Retval.m_ISpatialAudioFormatConfiguration := new WinRt.Windows.Media.Audio.ISpatialAudioFormatConfiguration;
             Retval.m_ISpatialAudioFormatConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9428,7 +9428,7 @@ package body WinRt.Windows.Media.Audio is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy;
    begin
       Hr := this.m_ISpatialAudioFormatConfiguration.all.get_MixedRealityExclusiveModePolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9440,7 +9440,7 @@ package body WinRt.Windows.Media.Audio is
    procedure put_MixedRealityExclusiveModePolicy
    (
       this : in out SpatialAudioFormatConfiguration;
-      value : Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
+      value : WinRt.Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

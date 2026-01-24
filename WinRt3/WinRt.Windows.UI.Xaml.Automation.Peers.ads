@@ -1785,10 +1785,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IAppBarAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IAppBar;
+         owner : WinRt.Windows.UI.Xaml.Controls.IAppBar;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -1805,10 +1805,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IAppBarButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IAppBarButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.IAppBarButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -1825,10 +1825,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IAppBarToggleButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IAppBarToggleButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.IAppBarToggleButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -1845,8 +1845,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IAutoSuggestBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IAutoSuggestBox;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer
+         owner : WinRt.Windows.UI.Xaml.Controls.IAutoSuggestBox;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -1858,21 +1858,21 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function get_EventsSource
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function put_EventsSource
       (
          this : access IAutomationPeer_Interface;
-         value : Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function GetPattern
       (
          this : access IAutomationPeer_Interface;
-         patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface;
+         patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1880,14 +1880,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function RaiseAutomationEvent
       (
          this : access IAutomationPeer_Interface;
-         eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
+         eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents
       )
       return WinRt.Hresult is abstract;
 
       function RaisePropertyChangedEvent
       (
          this : access IAutomationPeer_Interface;
-         automationProperty : Windows.UI.Xaml.Automation.IAutomationProperty;
+         automationProperty : WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
          oldValue : WinRt.IInspectable;
          newValue : WinRt.IInspectable
       )
@@ -1910,7 +1910,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetAutomationControlType
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationControlType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
       )
       return WinRt.Hresult is abstract;
 
@@ -1924,7 +1924,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetBoundingRectangle
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1945,7 +1945,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetClickablePoint
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1973,7 +1973,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetLabeledBy
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -1994,7 +1994,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetOrientation
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationOrientation
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -2063,7 +2063,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetParent
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2076,15 +2076,15 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetPeerFromPoint
       (
          this : access IAutomationPeer_Interface;
-         point : Windows.Foundation.Point;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         point : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function GetLiveSetting
       (
          this : access IAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
       )
       return WinRt.Hresult is abstract;
 
@@ -2101,7 +2101,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function Navigate
       (
          this : access IAutomationPeer3_Interface;
-         direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
+         direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2109,7 +2109,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetElementFromPoint
       (
          this : access IAutomationPeer3_Interface;
-         pointInWindowCoordinates : Windows.Foundation.Point;
+         pointInWindowCoordinates : WinRt.Windows.Foundation.Point;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2144,14 +2144,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function SetParent
       (
          this : access IAutomationPeer3_Interface;
-         peer : Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         peer : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function RaiseTextEditTextChangedEvent
       (
          this : access IAutomationPeer3_Interface;
-         automationTextEditChangeType : Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
+         automationTextEditChangeType : WinRt.Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
          changedData : GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2180,8 +2180,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function RaiseStructureChangedEvent
       (
          this : access IAutomationPeer3_Interface;
-         structureChangeType : Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
-         child : Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         structureChangeType : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
+         child : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2193,7 +2193,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetLandmarkType
       (
          this : access IAutomationPeer4_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
       )
       return WinRt.Hresult is abstract;
 
@@ -2250,8 +2250,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function RaiseNotificationEvent
       (
          this : access IAutomationPeer7_Interface;
-         notificationKind : Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
-         notificationProcessing : Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
+         notificationKind : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
+         notificationProcessing : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
          displayString : WinRt.HString;
          activityId : WinRt.HString
       )
@@ -2265,7 +2265,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetHeadingLevel
       (
          this : access IAutomationPeer8_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2289,28 +2289,28 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function get_Type
       (
          this : access IAutomationPeerAnnotation_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.AnnotationType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.AnnotationType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IAutomationPeerAnnotation_Interface;
-         value : Windows.UI.Xaml.Automation.AnnotationType
+         value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
       )
       return WinRt.Hresult is abstract;
 
       function get_Peer
       (
          this : access IAutomationPeerAnnotation_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function put_Peer
       (
          this : access IAutomationPeerAnnotation_Interface;
-         value : Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         value : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2322,17 +2322,17 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstance
       (
          this : access IAutomationPeerAnnotationFactory_Interface;
-         type_x : Windows.UI.Xaml.Automation.AnnotationType;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation
+         type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithPeerParameter
       (
          this : access IAutomationPeerAnnotationFactory_Interface;
-         type_x : Windows.UI.Xaml.Automation.AnnotationType;
-         peer : Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation
+         type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+         peer : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation
       )
       return WinRt.Hresult is abstract;
 
@@ -2344,14 +2344,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function get_TypeProperty
       (
          this : access IAutomationPeerAnnotationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_PeerProperty
       (
          this : access IAutomationPeerAnnotationStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -2365,7 +2365,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
          this : access IAutomationPeerFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2377,7 +2377,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetPatternCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface;
+         patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2399,7 +2399,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetAutomationControlTypeCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationControlType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType
       )
       return WinRt.Hresult is abstract;
 
@@ -2413,7 +2413,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetBoundingRectangleCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -2434,7 +2434,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetClickablePointCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -2462,7 +2462,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetLabeledByCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2483,7 +2483,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetOrientationCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationOrientation
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation
       )
       return WinRt.Hresult is abstract;
 
@@ -2552,15 +2552,15 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetPeerFromPointCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         point : Windows.Foundation.Point;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         point : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function GetLiveSettingCore
       (
          this : access IAutomationPeerOverrides_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting
       )
       return WinRt.Hresult is abstract;
 
@@ -2590,7 +2590,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function NavigateCore
       (
          this : access IAutomationPeerOverrides3_Interface;
-         direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
+         direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2598,7 +2598,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetElementFromPointCore
       (
          this : access IAutomationPeerOverrides3_Interface;
-         pointInWindowCoordinates : Windows.Foundation.Point;
+         pointInWindowCoordinates : WinRt.Windows.Foundation.Point;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2646,7 +2646,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetLandmarkTypeCore
       (
          this : access IAutomationPeerOverrides4_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType
       )
       return WinRt.Hresult is abstract;
 
@@ -2724,7 +2724,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GetHeadingLevelCore
       (
          this : access IAutomationPeerOverrides8_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2748,16 +2748,16 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function PeerFromProvider
       (
          this : access IAutomationPeerProtected_Interface;
-         provider : Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         provider : WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function ProviderFromPeer
       (
          this : access IAutomationPeerProtected_Interface;
-         peer : Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         peer : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -2769,7 +2769,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function ListenerExists
       (
          this : access IAutomationPeerStatics_Interface;
-         eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents;
+         eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2782,7 +2782,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function GenerateRawElementProviderRuntimeId
       (
          this : access IAutomationPeerStatics3_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId
       )
       return WinRt.Hresult is abstract;
 
@@ -2799,10 +2799,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.IButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2819,10 +2819,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IButtonBaseAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IButtonBase;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBase;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2839,10 +2839,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ICalendarDatePickerAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ICalendarDatePicker;
+         owner : WinRt.Windows.UI.Xaml.Controls.ICalendarDatePicker;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2859,10 +2859,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ICaptureElementAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ICaptureElement;
+         owner : WinRt.Windows.UI.Xaml.Controls.ICaptureElement;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2879,10 +2879,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ICheckBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ICheckBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.ICheckBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2899,10 +2899,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IColorPickerSliderAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2919,10 +2919,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IColorSpectrumAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IColorSpectrum;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrum;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2939,10 +2939,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IComboBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IComboBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.IComboBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2959,10 +2959,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IComboBoxItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IComboBoxItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IComboBoxItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -2980,10 +2980,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IComboBoxItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3000,10 +3000,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IDatePickerAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IDatePicker;
+         owner : WinRt.Windows.UI.Xaml.Controls.IDatePicker;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3025,10 +3025,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IFlipViewAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IFlipView;
+         owner : WinRt.Windows.UI.Xaml.Controls.IFlipView;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3045,10 +3045,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IFlipViewItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IFlipViewItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IFlipViewItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3066,10 +3066,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IFlipViewItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3086,10 +3086,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IFlyoutPresenterAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IFlyoutPresenter;
+         owner : WinRt.Windows.UI.Xaml.Controls.IFlyoutPresenter;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3101,7 +3101,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function get_Owner
       (
          this : access IFrameworkElementAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.IUIElement
+         RetVal : access WinRt.Windows.UI.Xaml.IUIElement
       )
       return WinRt.Hresult is abstract;
 
@@ -3113,10 +3113,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IFrameworkElementAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.IFrameworkElement;
+         owner : WinRt.Windows.UI.Xaml.IFrameworkElement;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3128,16 +3128,16 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function FromElement
       (
          this : access IFrameworkElementAutomationPeerStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
       function CreatePeerForElement
       (
          this : access IFrameworkElementAutomationPeerStatics_Interface;
-         element : Windows.UI.Xaml.IUIElement;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IAutomationPeer
+         element : WinRt.Windows.UI.Xaml.IUIElement;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3154,10 +3154,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IGridViewAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IGridView;
+         owner : WinRt.Windows.UI.Xaml.Controls.IGridView;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3174,10 +3174,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IGridViewHeaderItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IGridViewHeaderItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IGridViewHeaderItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3194,10 +3194,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IGridViewItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IGridViewItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IGridViewItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3215,10 +3215,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IGridViewItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3235,10 +3235,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IGroupItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IGroupItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IGroupItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3255,10 +3255,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IHubAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IHub;
+         owner : WinRt.Windows.UI.Xaml.Controls.IHub;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3275,10 +3275,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IHubSectionAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IHubSection;
+         owner : WinRt.Windows.UI.Xaml.Controls.IHubSection;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3295,10 +3295,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IHyperlinkButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IHyperlinkButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.IHyperlinkButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3315,10 +3315,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IImageAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IImage;
+         owner : WinRt.Windows.UI.Xaml.Controls.IImage;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3342,7 +3342,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function get_ItemsControlAutomationPeer
       (
          this : access IItemAutomationPeer_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3355,10 +3355,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IItemAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3376,7 +3376,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IItemsControlAutomationPeer2_Interface;
          item : WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3388,10 +3388,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IItemsControlAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IItemsControl;
+         owner : WinRt.Windows.UI.Xaml.Controls.IItemsControl;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3404,7 +3404,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IItemsControlAutomationPeerOverrides2_Interface;
          item : WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3421,10 +3421,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3441,10 +3441,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListBoxItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListBoxItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListBoxItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3462,10 +3462,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IListBoxItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3487,10 +3487,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListViewAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListView;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListView;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3507,10 +3507,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListViewBaseAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListViewBase;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListViewBase;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3527,10 +3527,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListViewBaseHeaderItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListViewBaseHeaderItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListViewBaseHeaderItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3547,10 +3547,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListViewHeaderItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListViewHeaderItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListViewHeaderItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3567,10 +3567,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IListViewItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IListViewItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IListViewItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3588,10 +3588,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IListViewItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3628,10 +3628,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IMediaElementAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMediaElement;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMediaElement;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3648,10 +3648,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IMediaPlayerElementAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMediaPlayerElement;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMediaPlayerElement;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3668,10 +3668,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IMediaTransportControlsAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMediaTransportControls;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMediaTransportControls;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3688,10 +3688,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstance
       (
          this : access IMenuBarAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMenuBar;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMenuBar;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3708,10 +3708,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstance
       (
          this : access IMenuBarItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMenuBarItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMenuBarItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3728,10 +3728,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IMenuFlyoutItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMenuFlyoutItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMenuFlyoutItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3748,10 +3748,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IMenuFlyoutPresenterAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IMenuFlyoutPresenter;
+         owner : WinRt.Windows.UI.Xaml.Controls.IMenuFlyoutPresenter;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3768,10 +3768,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access INavigationViewItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.INavigationViewItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.INavigationViewItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3788,10 +3788,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IPasswordBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IPasswordBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.IPasswordBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3808,10 +3808,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IPersonPictureAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IPersonPicture;
+         owner : WinRt.Windows.UI.Xaml.Controls.IPersonPicture;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3833,8 +3833,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IPivotAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IPivot;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer
+         owner : WinRt.Windows.UI.Xaml.Controls.IPivot;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3851,8 +3851,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IPivotItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IPivotItem;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer
+         owner : WinRt.Windows.UI.Xaml.Controls.IPivotItem;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3870,8 +3870,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access IPivotItemDataAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3888,10 +3888,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IProgressBarAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IProgressBar;
+         owner : WinRt.Windows.UI.Xaml.Controls.IProgressBar;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3908,10 +3908,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IProgressRingAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IProgressRing;
+         owner : WinRt.Windows.UI.Xaml.Controls.IProgressRing;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3928,10 +3928,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRadioButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IRadioButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.IRadioButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3948,10 +3948,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRangeBaseAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IRangeBase;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3968,10 +3968,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRatingControlAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IRatingControl;
+         owner : WinRt.Windows.UI.Xaml.Controls.IRatingControl;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -3988,10 +3988,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRepeatButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IRepeatButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IRepeatButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4008,10 +4008,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRichEditBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IRichEditBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.IRichEditBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4028,10 +4028,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRichTextBlockAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IRichTextBlock;
+         owner : WinRt.Windows.UI.Xaml.Controls.IRichTextBlock;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4048,10 +4048,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IRichTextBlockOverflowAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IRichTextBlockOverflow;
+         owner : WinRt.Windows.UI.Xaml.Controls.IRichTextBlockOverflow;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4068,10 +4068,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IScrollBarAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IScrollBar;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollBar;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4088,10 +4088,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IScrollViewerAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IScrollViewer;
+         owner : WinRt.Windows.UI.Xaml.Controls.IScrollViewer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4108,10 +4108,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ISearchBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ISearchBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.ISearchBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4128,10 +4128,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ISelectorAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.ISelector;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ISelector;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4149,10 +4149,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       (
          this : access ISelectorItemAutomationPeerFactory_Interface;
          item : WinRt.IInspectable;
-         parent : Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
+         parent : WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4169,10 +4169,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ISemanticZoomAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ISemanticZoom;
+         owner : WinRt.Windows.UI.Xaml.Controls.ISemanticZoom;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4189,10 +4189,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ISettingsFlyoutAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ISettingsFlyout;
+         owner : WinRt.Windows.UI.Xaml.Controls.ISettingsFlyout;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4209,10 +4209,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ISliderAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ISlider;
+         owner : WinRt.Windows.UI.Xaml.Controls.ISlider;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4229,10 +4229,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ITextBlockAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ITextBlock;
+         owner : WinRt.Windows.UI.Xaml.Controls.ITextBlock;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4249,10 +4249,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ITextBoxAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ITextBox;
+         owner : WinRt.Windows.UI.Xaml.Controls.ITextBox;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4269,10 +4269,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IThumbAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IThumb;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IThumb;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4289,10 +4289,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ITimePickerAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ITimePicker;
+         owner : WinRt.Windows.UI.Xaml.Controls.ITimePicker;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4314,10 +4314,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IToggleButtonAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.Primitives.IToggleButton;
+         owner : WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButton;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4334,10 +4334,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IToggleMenuFlyoutItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IToggleMenuFlyoutItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.IToggleMenuFlyoutItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4354,10 +4354,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access IToggleSwitchAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.IToggleSwitch;
+         owner : WinRt.Windows.UI.Xaml.Controls.IToggleSwitch;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4374,10 +4374,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ITreeViewItemAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ITreeViewItem;
+         owner : WinRt.Windows.UI.Xaml.Controls.ITreeViewItem;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4394,10 +4394,10 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
       function CreateInstanceWithOwner
       (
          this : access ITreeViewListAutomationPeerFactory_Interface;
-         owner : Windows.UI.Xaml.Controls.ITreeViewList;
+         owner : WinRt.Windows.UI.Xaml.Controls.ITreeViewList;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer
       )
       return WinRt.Hresult is abstract;
 
@@ -4431,7 +4431,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function ListenerExists
    (
-      eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
+      eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents
    )
    return WinRt.Boolean;
 
@@ -4447,26 +4447,26 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_EventsSource
    (
       this : in out AutomationPeer;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    );
 
    function GetPattern
    (
       this : in out AutomationPeer;
-      patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface
+      patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface
    )
    return WinRt.IInspectable;
 
    procedure RaiseAutomationEvent
    (
       this : in out AutomationPeer;
-      eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
+      eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents
    );
 
    procedure RaisePropertyChangedEvent
    (
       this : in out AutomationPeer;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       oldValue : WinRt.IInspectable;
       newValue : WinRt.IInspectable
    );
@@ -4628,7 +4628,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPeerFromPoint
    (
       this : in out AutomationPeer;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class;
 
@@ -4641,14 +4641,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Navigate
    (
       this : in out AutomationPeer;
-      direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
+      direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
    )
    return WinRt.IInspectable;
 
    function GetElementFromPoint
    (
       this : in out AutomationPeer;
-      pointInWindowCoordinates : Windows.Foundation.Point
+      pointInWindowCoordinates : WinRt.Windows.Foundation.Point
    )
    return WinRt.IInspectable;
 
@@ -4678,13 +4678,13 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetParent
    (
       this : in out AutomationPeer;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    );
 
    procedure RaiseTextEditTextChangedEvent
    (
       this : in out AutomationPeer;
-      automationTextEditChangeType : Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
+      automationTextEditChangeType : WinRt.Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
       changedData : GenericObject
    );
 
@@ -4709,8 +4709,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseStructureChangedEvent
    (
       this : in out AutomationPeer;
-      structureChangeType : Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
-      child : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      structureChangeType : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
+      child : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    );
 
    function GetLandmarkType
@@ -4752,8 +4752,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseNotificationEvent
    (
       this : in out AutomationPeer;
-      notificationKind : Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
-      notificationProcessing : Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
+      notificationKind : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
+      notificationProcessing : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
       displayString : WinRt.WString;
       activityId : WinRt.WString
    );
@@ -4773,21 +4773,21 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function PeerFromProvider
    (
       this : in out AutomationPeer;
-      provider : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class
+      provider : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class;
 
    function ProviderFromPeer
    (
       this : in out AutomationPeer;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
 
    function GetPatternCore
    (
       this : in out AutomationPeer;
-      patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface
+      patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface
    )
    return WinRt.IInspectable;
 
@@ -4937,7 +4937,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPeerFromPointCore
    (
       this : in out AutomationPeer;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class;
 
@@ -4961,14 +4961,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function NavigateCore
    (
       this : in out AutomationPeer;
-      direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
+      direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
    )
    return WinRt.IInspectable;
 
    function GetElementFromPointCore
    (
       this : in out AutomationPeer;
-      pointInWindowCoordinates : Windows.Foundation.Point
+      pointInWindowCoordinates : WinRt.Windows.Foundation.Point
    )
    return WinRt.IInspectable;
 
@@ -5079,7 +5079,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.FrameworkElement'Class;
+      owner : WinRt.Windows.UI.Xaml.FrameworkElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5090,13 +5090,13 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function FromElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer;
 
    function CreatePeerForElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer;
 
@@ -5120,7 +5120,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5200,7 +5200,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetVisualState
    (
       this : in out AppBarAutomationPeer;
-      state : Windows.UI.Xaml.Automation.WindowVisualState
+      state : WinRt.Windows.UI.Xaml.Automation.WindowVisualState
    );
 
    function WaitForInputIdle
@@ -5221,7 +5221,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ButtonBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ButtonBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5241,7 +5241,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Button'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Button'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5266,7 +5266,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBarButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBarButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5302,7 +5302,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ToggleButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ToggleButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5333,7 +5333,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBarToggleButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBarToggleButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5353,7 +5353,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AutoSuggestBox'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.AutoSuggestBox'Class
    )
    return AutoSuggestBoxAutomationPeer;
 
@@ -5378,14 +5378,14 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    )
    return AutomationPeerAnnotation;
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    )
    return AutomationPeerAnnotation;
 
@@ -5410,7 +5410,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_Type
    (
       this : in out AutomationPeerAnnotation;
-      value : Windows.UI.Xaml.Automation.AnnotationType
+      value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    );
 
    function get_Peer
@@ -5422,7 +5422,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_Peer
    (
       this : in out AutomationPeerAnnotation;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    );
 
    -----------------------------------------------------------------------------
@@ -5436,7 +5436,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CalendarDatePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CalendarDatePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5479,7 +5479,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CaptureElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CaptureElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5499,7 +5499,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CheckBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CheckBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5519,7 +5519,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.RangeBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.RangeBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5581,7 +5581,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Slider'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Slider'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5601,7 +5601,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5621,7 +5621,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5641,7 +5641,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ItemsControl'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ItemsControl'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5667,8 +5667,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function FindItemByProperty
    (
       this : in out ItemsControlAutomationPeer;
-      startAfter : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      startAfter : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       value : WinRt.IInspectable
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
@@ -5684,7 +5684,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.Selector'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.Selector'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5721,7 +5721,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ComboBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ComboBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5808,7 +5808,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetVisualState
    (
       this : in out ComboBoxAutomationPeer;
-      state : Windows.UI.Xaml.Automation.WindowVisualState
+      state : WinRt.Windows.UI.Xaml.Automation.WindowVisualState
    );
 
    function WaitForInputIdle
@@ -5829,7 +5829,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ComboBoxItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ComboBoxItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5850,7 +5850,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5888,7 +5888,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5936,7 +5936,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5961,7 +5961,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.DatePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.DatePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -5990,7 +5990,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlipView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlipView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6010,7 +6010,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlipViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlipViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6031,7 +6031,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6056,7 +6056,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlyoutPresenter'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlyoutPresenter'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6076,7 +6076,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6108,7 +6108,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6128,7 +6128,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewBaseHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewBaseHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6148,7 +6148,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridViewHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridViewHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6168,7 +6168,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6189,7 +6189,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6214,7 +6214,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GroupItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GroupItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6234,7 +6234,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Hub'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Hub'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6254,7 +6254,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.HubSection'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.HubSection'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6279,7 +6279,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.HyperlinkButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.HyperlinkButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6304,7 +6304,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Image'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Image'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6333,7 +6333,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6353,7 +6353,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListBoxItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListBoxItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6374,7 +6374,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6408,7 +6408,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6428,7 +6428,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6448,7 +6448,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6469,7 +6469,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6512,8 +6512,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function FindItemByProperty
    (
       this : in out LoopingSelectorAutomationPeer;
-      startAfter : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      startAfter : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       value : WinRt.IInspectable
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
@@ -6573,8 +6573,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out LoopingSelectorAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    );
 
    procedure SetScrollPercent
@@ -6687,8 +6687,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out MapControlAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    );
 
    procedure SetScrollPercent
@@ -6731,7 +6731,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure ZoomByUnit
    (
       this : in out MapControlAutomationPeer;
-      zoomUnit : Windows.UI.Xaml.Automation.ZoomUnit
+      zoomUnit : WinRt.Windows.UI.Xaml.Automation.ZoomUnit
    );
 
    function get_CanMove
@@ -6783,7 +6783,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6803,7 +6803,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaPlayerElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaPlayerElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6823,7 +6823,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaTransportControls'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaTransportControls'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6843,7 +6843,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6863,7 +6863,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuBarItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuBarItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6904,7 +6904,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuFlyoutItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuFlyoutItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6929,7 +6929,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuFlyoutPresenter'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuFlyoutPresenter'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6949,7 +6949,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.NavigationViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.NavigationViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6969,7 +6969,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PasswordBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.PasswordBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -6989,7 +6989,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PersonPicture'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.PersonPicture'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7018,7 +7018,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Pivot'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.Pivot'Class
    )
    return PivotAutomationPeer;
 
@@ -7081,8 +7081,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out PivotAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    );
 
    procedure SetScrollPercent
@@ -7103,7 +7103,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PivotItem'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.PivotItem'Class
    )
    return PivotItemAutomationPeer;
 
@@ -7122,7 +7122,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer'Class
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer'Class
    )
    return PivotItemDataAutomationPeer;
 
@@ -7177,7 +7177,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ProgressBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ProgressBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7197,7 +7197,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ProgressRing'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ProgressRing'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7217,7 +7217,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RadioButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RadioButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7264,7 +7264,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RatingControl'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RatingControl'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7284,7 +7284,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.RepeatButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.RepeatButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7309,7 +7309,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichEditBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichEditBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7329,7 +7329,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichTextBlock'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichTextBlock'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7349,7 +7349,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichTextBlockOverflow'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichTextBlockOverflow'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7369,7 +7369,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ScrollBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7389,7 +7389,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ScrollViewer'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ScrollViewer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7437,8 +7437,8 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out ScrollViewerAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    );
 
    procedure SetScrollPercent
@@ -7459,7 +7459,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SearchBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SearchBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7479,7 +7479,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SemanticZoom'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SemanticZoom'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7510,7 +7510,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SettingsFlyout'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SettingsFlyout'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7530,7 +7530,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TextBlock'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TextBlock'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7550,7 +7550,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TextBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TextBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7570,7 +7570,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.Thumb'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.Thumb'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7590,7 +7590,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TimePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TimePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7619,7 +7619,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7650,7 +7650,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ToggleSwitch'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ToggleSwitch'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7681,7 +7681,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TreeViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TreeViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
@@ -7717,7 +7717,7 @@ package WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TreeViewList'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TreeViewList'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )

@@ -71,7 +71,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_IAlternateWordForm.all.get_SourceTextSegment (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -108,7 +108,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.AlternateNormalizationFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.AlternateNormalizationFormat;
    begin
       Hr := this.m_IAlternateWordForm.all.get_NormalizationFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -168,7 +168,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_ISelectableWordSegment.all.get_SourceTextSegment (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -223,17 +223,17 @@ package body WinRt.Windows.Data.Text is
    return SelectableWordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SelectableWordsSegmenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISelectableWordsSegmenter");
       m_Factory    : access ISelectableWordsSegmenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ISelectableWordsSegmenter;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISelectableWordsSegmenter;
       HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : SelectableWordsSegmenter do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectableWordsSegmenterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithLanguage (HStr_language, m_ComRetVal'Access);
-            Retval.m_ISelectableWordsSegmenter := new Windows.Data.Text.ISelectableWordsSegmenter;
+            Retval.m_ISelectableWordsSegmenter := new WinRt.Windows.Data.Text.ISelectableWordsSegmenter;
             Retval.m_ISelectableWordsSegmenter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -275,7 +275,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.ISelectableWordSegment;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.ISelectableWordSegment;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : WinRt.Windows.Data.Text.SelectableWordSegment do
@@ -283,7 +283,7 @@ package body WinRt.Windows.Data.Text is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISelectableWordSegment := new Windows.Data.Text.ISelectableWordSegment;
+         Retval.m_ISelectableWordSegment := new WinRt.Windows.Data.Text.ISelectableWordSegment;
          Retval.m_ISelectableWordSegment.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_text);
       end return;
@@ -298,7 +298,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISelectableWordSegment.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
@@ -317,7 +317,7 @@ package body WinRt.Windows.Data.Text is
       this : in out SelectableWordsSegmenter;
       text : WinRt.WString;
       startIndex : WinRt.UInt32;
-      handler : Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
+      handler : WinRt.Windows.Data.Text.SelectableWordSegmentsTokenizingHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -361,17 +361,17 @@ package body WinRt.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ISemanticTextQuery;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISemanticTextQuery;
       HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
    begin
       return RetVal : SemanticTextQuery do
          Hr := RoGetActivationFactory (m_hString, IID_ISemanticTextQueryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_aqsFilter, m_ComRetVal'Access);
-            Retval.m_ISemanticTextQuery := new Windows.Data.Text.ISemanticTextQuery;
+            Retval.m_ISemanticTextQuery := new WinRt.Windows.Data.Text.ISemanticTextQuery;
             Retval.m_ISemanticTextQuery.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -388,10 +388,10 @@ package body WinRt.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ISemanticTextQuery;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISemanticTextQuery;
       HStr_aqsFilter : constant WinRt.HString := To_HString (aqsFilter);
       HStr_filterLanguage : constant WinRt.HString := To_HString (filterLanguage);
    begin
@@ -399,7 +399,7 @@ package body WinRt.Windows.Data.Text is
          Hr := RoGetActivationFactory (m_hString, IID_ISemanticTextQueryFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithLanguage (HStr_aqsFilter, HStr_filterLanguage, m_ComRetVal'Access);
-            Retval.m_ISemanticTextQuery := new Windows.Data.Text.ISemanticTextQuery;
+            Retval.m_ISemanticTextQuery := new WinRt.Windows.Data.Text.ISemanticTextQuery;
             Retval.m_ISemanticTextQuery.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -421,7 +421,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_TextSegment.Kind;
       HStr_content : constant WinRt.HString := To_HString (content);
    begin
@@ -445,7 +445,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_TextSegment.Kind;
       HStr_propertyContent : constant WinRt.HString := To_HString (propertyContent);
       HStr_propertyName : constant WinRt.HString := To_HString (propertyName);
@@ -491,17 +491,17 @@ package body WinRt.Windows.Data.Text is
    return TextConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextConversionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextConversionGenerator");
       m_Factory    : access ITextConversionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ITextConversionGenerator;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextConversionGenerator;
       HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextConversionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextConversionGeneratorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
-            Retval.m_ITextConversionGenerator := new Windows.Data.Text.ITextConversionGenerator;
+            Retval.m_ITextConversionGenerator := new WinRt.Windows.Data.Text.ITextConversionGenerator;
             Retval.m_ITextConversionGenerator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -776,17 +776,17 @@ package body WinRt.Windows.Data.Text is
    return TextPredictionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextPredictionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextPredictionGenerator");
       m_Factory    : access ITextPredictionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ITextPredictionGenerator;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextPredictionGenerator;
       HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextPredictionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextPredictionGeneratorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
-            Retval.m_ITextPredictionGenerator := new Windows.Data.Text.ITextPredictionGenerator;
+            Retval.m_ITextPredictionGenerator := new WinRt.Windows.Data.Text.ITextPredictionGenerator;
             Retval.m_ITextPredictionGenerator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -973,7 +973,7 @@ package body WinRt.Windows.Data.Text is
       this : in out TextPredictionGenerator;
       input : WinRt.WString;
       maxCandidates : WinRt.UInt32;
-      predictionOptions : Windows.Data.Text.TextPredictionOptions;
+      predictionOptions : WinRt.Windows.Data.Text.TextPredictionOptions;
       previousStrings : GenericObject
    )
    return WinRt.GenericObject is
@@ -1119,7 +1119,7 @@ package body WinRt.Windows.Data.Text is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Text.ITextPredictionGenerator2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextInputScope;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextInputScope;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Text.ITextPredictionGenerator_Interface, WinRt.Windows.Data.Text.ITextPredictionGenerator2, WinRt.Windows.Data.Text.IID_ITextPredictionGenerator2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITextPredictionGenerator.all);
@@ -1134,7 +1134,7 @@ package body WinRt.Windows.Data.Text is
    procedure put_InputScope
    (
       this : in out TextPredictionGenerator;
-      value : Windows.UI.Text.Core.CoreTextInputScope
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1180,17 +1180,17 @@ package body WinRt.Windows.Data.Text is
    return TextReverseConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextReverseConversionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextReverseConversionGenerator");
       m_Factory    : access ITextReverseConversionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.ITextReverseConversionGenerator;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextReverseConversionGenerator;
       HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : TextReverseConversionGenerator do
          Hr := RoGetActivationFactory (m_hString, IID_ITextReverseConversionGeneratorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_languageTag, m_ComRetVal'Access);
-            Retval.m_ITextReverseConversionGenerator := new Windows.Data.Text.ITextReverseConversionGenerator;
+            Retval.m_ITextReverseConversionGenerator := new WinRt.Windows.Data.Text.ITextReverseConversionGenerator;
             Retval.m_ITextReverseConversionGenerator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1752,7 +1752,7 @@ package body WinRt.Windows.Data.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Text.UnicodeNumericType;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Text.UnicodeNumericType;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1776,7 +1776,7 @@ package body WinRt.Windows.Data.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Data.Text.UnicodeCharacters");
          m_Factory        : access WinRt.Windows.Data.Text.IUnicodeCharactersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Text.UnicodeGeneralCategory;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Text.UnicodeGeneralCategory;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IUnicodeCharactersStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1843,7 +1843,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.TextSegment;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.TextSegment;
    begin
       Hr := this.m_IWordSegment.all.get_SourceTextSegment (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1860,7 +1860,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAlternateWordForm.Kind;
    begin
       Hr := this.m_IWordSegment.all.get_AlternateForms (m_ComRetVal'Access);
@@ -1918,17 +1918,17 @@ package body WinRt.Windows.Data.Text is
    return WordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.WordsSegmenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.IWordsSegmenter");
       m_Factory    : access IWordsSegmenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Text.IWordsSegmenter;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Text.IWordsSegmenter;
       HStr_language : constant WinRt.HString := To_HString (language);
    begin
       return RetVal : WordsSegmenter do
          Hr := RoGetActivationFactory (m_hString, IID_IWordsSegmenterFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithLanguage (HStr_language, m_ComRetVal'Access);
-            Retval.m_IWordsSegmenter := new Windows.Data.Text.IWordsSegmenter;
+            Retval.m_IWordsSegmenter := new WinRt.Windows.Data.Text.IWordsSegmenter;
             Retval.m_IWordsSegmenter.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1970,7 +1970,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Text.IWordSegment;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Text.IWordSegment;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
       return RetVal : WinRt.Windows.Data.Text.WordSegment do
@@ -1978,7 +1978,7 @@ package body WinRt.Windows.Data.Text is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWordSegment := new Windows.Data.Text.IWordSegment;
+         Retval.m_IWordSegment := new WinRt.Windows.Data.Text.IWordSegment;
          Retval.m_IWordSegment.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_text);
       end return;
@@ -1993,7 +1993,7 @@ package body WinRt.Windows.Data.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IWordSegment.Kind;
       HStr_text : constant WinRt.HString := To_HString (text);
    begin
@@ -2012,7 +2012,7 @@ package body WinRt.Windows.Data.Text is
       this : in out WordsSegmenter;
       text : WinRt.WString;
       startIndex : WinRt.UInt32;
-      handler : Windows.Data.Text.WordSegmentsTokenizingHandler
+      handler : WinRt.Windows.Data.Text.WordSegmentsTokenizingHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

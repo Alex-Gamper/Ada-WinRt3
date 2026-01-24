@@ -139,14 +139,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ITargetedContentAvailabilityChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -182,14 +182,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ITargetedContentChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -257,7 +257,7 @@ package body WinRt.Windows.Services.TargetedContent is
    procedure ReportInteraction
    (
       this : in out TargetedContentCollection;
-      interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+      interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -314,7 +314,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ITargetedContentValue.Kind;
    begin
       Hr := this.m_ITargetedContentCollection.all.get_Properties (m_ComRetVal'Access);
@@ -334,7 +334,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ITargetedContentCollection.Kind;
    begin
       Hr := this.m_ITargetedContentCollection.all.get_Collections (m_ComRetVal'Access);
@@ -354,7 +354,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ITargetedContentItem.Kind;
    begin
       Hr := this.m_ITargetedContentCollection.all.get_Items (m_ComRetVal'Access);
@@ -448,7 +448,7 @@ package body WinRt.Windows.Services.TargetedContent is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ITargetedContentContainer := new Windows.Services.TargetedContent.ITargetedContentContainer;
+                     Retval.m_ITargetedContentContainer := new WinRt.Windows.Services.TargetedContent.ITargetedContentContainer;
                      Retval.m_ITargetedContentContainer.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -495,7 +495,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ITargetedContentContainer.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -512,7 +512,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.TargetedContentAvailability;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.TargetedContentAvailability;
    begin
       Hr := this.m_ITargetedContentContainer.all.get_Availability (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -529,14 +529,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentCollection;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentCollection do
          Hr := this.m_ITargetedContentContainer.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentCollection := new Windows.Services.TargetedContent.ITargetedContentCollection;
+         Retval.m_ITargetedContentCollection := new WinRt.Windows.Services.TargetedContent.ITargetedContentCollection;
          Retval.m_ITargetedContentCollection.all := m_ComRetVal;
       end return;
    end;
@@ -550,7 +550,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentObject;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentObject;
       HStr_path : constant WinRt.HString := To_HString (path);
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentObject do
@@ -558,7 +558,7 @@ package body WinRt.Windows.Services.TargetedContent is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentObject := new Windows.Services.TargetedContent.ITargetedContentObject;
+         Retval.m_ITargetedContentObject := new WinRt.Windows.Services.TargetedContent.ITargetedContentObject;
          Retval.m_ITargetedContentObject.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_path);
       end return;
@@ -821,7 +821,7 @@ package body WinRt.Windows.Services.TargetedContent is
    procedure ReportInteraction
    (
       this : in out TargetedContentItem;
-      interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+      interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -858,14 +858,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentItemState;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentItemState;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentItemState do
          Hr := this.m_ITargetedContentItem.all.get_State (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentItemState := new Windows.Services.TargetedContent.ITargetedContentItemState;
+         Retval.m_ITargetedContentItemState := new WinRt.Windows.Services.TargetedContent.ITargetedContentItemState;
          Retval.m_ITargetedContentItemState.all := m_ComRetVal;
       end return;
    end;
@@ -878,7 +878,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ITargetedContentValue.Kind;
    begin
       Hr := this.m_ITargetedContentItem.all.get_Properties (m_ComRetVal'Access);
@@ -898,7 +898,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ITargetedContentCollection.Kind;
    begin
       Hr := this.m_ITargetedContentItem.all.get_Collections (m_ComRetVal'Access);
@@ -958,7 +958,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.TargetedContentAppInstallationState;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.TargetedContentAppInstallationState;
    begin
       Hr := this.m_ITargetedContentItemState.all.get_AppInstallationState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -998,7 +998,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.TargetedContentObjectKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.TargetedContentObjectKind;
    begin
       Hr := this.m_ITargetedContentObject.all.get_ObjectKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1015,14 +1015,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentCollection;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentCollection;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentCollection do
          Hr := this.m_ITargetedContentObject.all.get_Collection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentCollection := new Windows.Services.TargetedContent.ITargetedContentCollection;
+         Retval.m_ITargetedContentCollection := new WinRt.Windows.Services.TargetedContent.ITargetedContentCollection;
          Retval.m_ITargetedContentCollection.all := m_ComRetVal;
       end return;
    end;
@@ -1035,14 +1035,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentItem;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentItem;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentItem do
          Hr := this.m_ITargetedContentObject.all.get_Item (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentItem := new Windows.Services.TargetedContent.ITargetedContentItem;
+         Retval.m_ITargetedContentItem := new WinRt.Windows.Services.TargetedContent.ITargetedContentItem;
          Retval.m_ITargetedContentItem.all := m_ComRetVal;
       end return;
    end;
@@ -1055,14 +1055,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentValue;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentValue;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentValue do
          Hr := this.m_ITargetedContentObject.all.get_Value (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentValue := new Windows.Services.TargetedContent.ITargetedContentValue;
+         Retval.m_ITargetedContentValue := new WinRt.Windows.Services.TargetedContent.ITargetedContentValue;
          Retval.m_ITargetedContentValue.all := m_ComRetVal;
       end return;
    end;
@@ -1098,14 +1098,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ITargetedContentStateChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1192,7 +1192,7 @@ package body WinRt.Windows.Services.TargetedContent is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ITargetedContentSubscription := new Windows.Services.TargetedContent.ITargetedContentSubscription;
+                     Retval.m_ITargetedContentSubscription := new WinRt.Windows.Services.TargetedContent.ITargetedContentSubscription;
                      Retval.m_ITargetedContentSubscription.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1218,7 +1218,7 @@ package body WinRt.Windows.Services.TargetedContent is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Services.TargetedContent.TargetedContentSubscription");
       m_Factory        : access WinRt.Windows.Services.TargetedContent.ITargetedContentSubscriptionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions;
       HStr_subscriptionId : constant WinRt.HString := To_HString (subscriptionId);
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentSubscriptionOptions do
@@ -1229,7 +1229,7 @@ package body WinRt.Windows.Services.TargetedContent is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ITargetedContentSubscriptionOptions := new Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions;
+            Retval.m_ITargetedContentSubscriptionOptions := new WinRt.Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions;
             Retval.m_ITargetedContentSubscriptionOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1313,7 +1313,7 @@ package body WinRt.Windows.Services.TargetedContent is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ITargetedContentContainer := new Windows.Services.TargetedContent.ITargetedContentContainer;
+                  Retval.m_ITargetedContentContainer := new WinRt.Windows.Services.TargetedContent.ITargetedContentContainer;
                   Retval.m_ITargetedContentContainer.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1335,7 +1335,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITargetedContentSubscription.all.add_ContentChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1347,7 +1347,7 @@ package body WinRt.Windows.Services.TargetedContent is
    procedure remove_ContentChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1368,7 +1368,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITargetedContentSubscription.all.add_AvailabilityChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1380,7 +1380,7 @@ package body WinRt.Windows.Services.TargetedContent is
    procedure remove_AvailabilityChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1401,7 +1401,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ITargetedContentSubscription.all.add_StateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1413,7 +1413,7 @@ package body WinRt.Windows.Services.TargetedContent is
    procedure remove_StateChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1508,7 +1508,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_ITargetedContentSubscriptionOptions.all.get_CloudQueryParameters (m_ComRetVal'Access);
@@ -1528,7 +1528,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ITargetedContentSubscriptionOptions.all.get_LocalFilters (m_ComRetVal'Access);
@@ -1585,7 +1585,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.TargetedContentValueKind;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.TargetedContentValueKind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_ValueKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1642,14 +1642,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_ITargetedContentValue.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1696,8 +1696,8 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
-      m_Wrapped        : aliased Windows.Storage.Streams.IRandomAccessStreamReference_Ptr := new Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_Wrapped        : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference_Ptr := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentFile do
          Hr := this.m_ITargetedContentValue.all.get_File (m_ComRetVal'Access);
@@ -1717,14 +1717,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentImage;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentImage;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentImage do
          Hr := this.m_ITargetedContentValue.all.get_ImageFile (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentImage := new Windows.Services.TargetedContent.ITargetedContentImage;
+         Retval.m_ITargetedContentImage := new WinRt.Windows.Services.TargetedContent.ITargetedContentImage;
          Retval.m_ITargetedContentImage.all := m_ComRetVal;
       end return;
    end;
@@ -1737,14 +1737,14 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Services.TargetedContent.ITargetedContentAction;
+      m_ComRetVal      : aliased WinRt.Windows.Services.TargetedContent.ITargetedContentAction;
    begin
       return RetVal : WinRt.Windows.Services.TargetedContent.TargetedContentAction do
          Hr := this.m_ITargetedContentValue.all.get_Action (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITargetedContentAction := new Windows.Services.TargetedContent.ITargetedContentAction;
+         Retval.m_ITargetedContentAction := new WinRt.Windows.Services.TargetedContent.ITargetedContentAction;
          Retval.m_ITargetedContentAction.all := m_ComRetVal;
       end return;
    end;
@@ -1757,7 +1757,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Strings (m_ComRetVal'Access);
@@ -1777,7 +1777,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Uris (m_ComRetVal'Access);
@@ -1797,7 +1797,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_Double.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Numbers (m_ComRetVal'Access);
@@ -1817,7 +1817,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_Boolean.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Booleans (m_ComRetVal'Access);
@@ -1837,7 +1837,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Files (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1854,7 +1854,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ITargetedContentImage.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_ImageFiles (m_ComRetVal'Access);
@@ -1874,7 +1874,7 @@ package body WinRt.Windows.Services.TargetedContent is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ITargetedContentAction.Kind;
    begin
       Hr := this.m_ITargetedContentValue.all.get_Actions (m_ComRetVal'Access);

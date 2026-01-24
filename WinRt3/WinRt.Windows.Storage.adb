@@ -122,7 +122,7 @@ package body WinRt.Windows.Storage is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.AppDataPaths is
       Hr               : WinRt.HResult := S_OK;
@@ -130,7 +130,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.AppDataPaths");
       m_Factory        : access WinRt.Windows.Storage.IAppDataPathsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IAppDataPaths;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IAppDataPaths;
    begin
       return RetVal : WinRt.Windows.Storage.AppDataPaths do
          Hr := RoGetActivationFactory (m_hString, IID_IAppDataPathsStatics'Access , m_Factory'Address);
@@ -140,7 +140,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppDataPaths := new Windows.Storage.IAppDataPaths;
+            Retval.m_IAppDataPaths := new WinRt.Windows.Storage.IAppDataPaths;
             Retval.m_IAppDataPaths.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -154,7 +154,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.AppDataPaths");
       m_Factory        : access WinRt.Windows.Storage.IAppDataPathsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IAppDataPaths;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IAppDataPaths;
    begin
       return RetVal : WinRt.Windows.Storage.AppDataPaths do
          Hr := RoGetActivationFactory (m_hString, IID_IAppDataPathsStatics'Access , m_Factory'Address);
@@ -164,7 +164,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppDataPaths := new Windows.Storage.IAppDataPaths;
+            Retval.m_IAppDataPaths := new WinRt.Windows.Storage.IAppDataPaths;
             Retval.m_IAppDataPaths.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -384,7 +384,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationData");
       m_Factory        : access WinRt.Windows.Storage.IApplicationDataStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationData;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IApplicationData;
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationData do
          Hr := RoGetActivationFactory (m_hString, IID_IApplicationDataStatics'Access , m_Factory'Address);
@@ -394,7 +394,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
+            Retval.m_IApplicationData := new WinRt.Windows.Storage.IApplicationData;
             Retval.m_IApplicationData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -403,7 +403,7 @@ package body WinRt.Windows.Storage is
 
    function GetForUserAsync
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.ApplicationData is
       Hr               : WinRt.HResult := S_OK;
@@ -459,7 +459,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IApplicationData := new Windows.Storage.IApplicationData;
+                     Retval.m_IApplicationData := new WinRt.Windows.Storage.IApplicationData;
                      Retval.m_IApplicationData.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -498,7 +498,7 @@ package body WinRt.Windows.Storage is
    (
       this : in out ApplicationData;
       desiredVersion : WinRt.UInt32;
-      handler : Windows.Storage.ApplicationDataSetVersionHandler
+      handler : WinRt.Windows.Storage.ApplicationDataSetVersionHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -583,7 +583,7 @@ package body WinRt.Windows.Storage is
    procedure ClearAsync
    (
       this : in out ApplicationData;
-      locality : Windows.Storage.ApplicationDataLocality
+      locality : WinRt.Windows.Storage.ApplicationDataLocality
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -631,14 +631,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationDataContainer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IApplicationDataContainer;
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationDataContainer do
          Hr := this.m_IApplicationData.all.get_LocalSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IApplicationDataContainer := new Windows.Storage.IApplicationDataContainer;
+         Retval.m_IApplicationDataContainer := new WinRt.Windows.Storage.IApplicationDataContainer;
          Retval.m_IApplicationDataContainer.all := m_ComRetVal;
       end return;
    end;
@@ -651,14 +651,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationDataContainer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IApplicationDataContainer;
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationDataContainer do
          Hr := this.m_IApplicationData.all.get_RoamingSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IApplicationDataContainer := new Windows.Storage.IApplicationDataContainer;
+         Retval.m_IApplicationDataContainer := new WinRt.Windows.Storage.IApplicationDataContainer;
          Retval.m_IApplicationDataContainer.all := m_ComRetVal;
       end return;
    end;
@@ -671,14 +671,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IApplicationData.all.get_LocalFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -691,14 +691,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IApplicationData.all.get_RoamingFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -711,14 +711,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IApplicationData.all.get_TemporaryFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -732,7 +732,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IApplicationData.all.add_DataChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -744,7 +744,7 @@ package body WinRt.Windows.Storage is
    procedure remove_DataChanged
    (
       this : in out ApplicationData;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -796,7 +796,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IApplicationData2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IApplicationData_Interface, WinRt.Windows.Storage.IApplicationData2, WinRt.Windows.Storage.IID_IApplicationData2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -806,7 +806,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -821,7 +821,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IApplicationData3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       HStr_folderName : constant WinRt.HString := To_HString (folderName);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IApplicationData_Interface, WinRt.Windows.Storage.IApplicationData3, WinRt.Windows.Storage.IID_IApplicationData3'Unchecked_Access);
    begin
@@ -832,7 +832,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_folderName);
       end return;
@@ -896,7 +896,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IApplicationData3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IApplicationData_Interface, WinRt.Windows.Storage.IApplicationData3, WinRt.Windows.Storage.IID_IApplicationData3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -906,7 +906,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -956,9 +956,9 @@ package body WinRt.Windows.Storage is
    function Constructor return ApplicationDataCompositeValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationDataCompositeValue");
-      m_ComRetVal  : aliased Windows.Foundation.Collections.IPropertySet;
-      m_Wrapped    : Windows.Foundation.Collections.IPropertySet_Ptr := new Windows.Foundation.Collections.IPropertySet;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_ComRetVal  : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
+      m_Wrapped    : WinRt.Windows.Foundation.Collections.IPropertySet_Ptr := new WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : ApplicationDataCompositeValue do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
@@ -984,7 +984,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1000,7 +1000,7 @@ package body WinRt.Windows.Storage is
    procedure remove_MapChanged
    (
       this : in out ApplicationDataCompositeValue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1028,7 +1028,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased IInspectable;
+      m_ComRetVal      : aliased WinRt.IInspectable;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
@@ -1099,7 +1099,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1230,7 +1230,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.ApplicationDataLocality;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.ApplicationDataLocality;
    begin
       Hr := this.m_IApplicationDataContainer.all.get_Locality (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1247,7 +1247,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IApplicationDataContainer.all.get_Values (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1264,7 +1264,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IApplicationDataContainer.Kind;
    begin
       Hr := this.m_IApplicationDataContainer.all.get_Containers (m_ComRetVal'Access);
@@ -1280,13 +1280,13 @@ package body WinRt.Windows.Storage is
    (
       this : in out ApplicationDataContainer;
       name : WinRt.WString;
-      disposition : Windows.Storage.ApplicationDataCreateDisposition
+      disposition : WinRt.Windows.Storage.ApplicationDataCreateDisposition
    )
    return WinRt.Windows.Storage.ApplicationDataContainer'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IApplicationDataContainer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IApplicationDataContainer;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WinRt.Windows.Storage.ApplicationDataContainer do
@@ -1294,7 +1294,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IApplicationDataContainer := new Windows.Storage.IApplicationDataContainer;
+         Retval.m_IApplicationDataContainer := new WinRt.Windows.Storage.IApplicationDataContainer;
          Retval.m_IApplicationDataContainer.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
       end return;
@@ -1370,7 +1370,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IObservableMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       m_GenericIID     : aliased WinRt.IID := (594193565, 64274, 23629, (164, 28, 158, 68, 95, 180, 215, 236 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IObservableMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1386,7 +1386,7 @@ package body WinRt.Windows.Storage is
    procedure remove_MapChanged
    (
       this : in out ApplicationDataContainerSettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1414,7 +1414,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased IInspectable;
+      m_ComRetVal      : aliased WinRt.IInspectable;
       HStr_key : constant WinRt.HString := To_HString (key);
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
@@ -1485,7 +1485,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IMap_HString_IInspectable.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericIID     : aliased WinRt.IID := (453850480, 2167, 24258, (138, 44, 59, 149, 57, 80, 106, 202 ));
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.Collections.IPropertySet_Interface, IMap_HString_IInspectable.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -1571,7 +1571,7 @@ package body WinRt.Windows.Storage is
    function Invoke
    (
       this : access ApplicationDataSetVersionHandler_Delegate;
-      setVersionRequest_p : Windows.Storage.ISetVersionRequest
+      setVersionRequest_p : WinRt.Windows.Storage.ISetVersionRequest
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1586,7 +1586,7 @@ package body WinRt.Windows.Storage is
 
       procedure DeferUpdates
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1607,7 +1607,7 @@ package body WinRt.Windows.Storage is
 
       function CompleteUpdatesAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Storage.Provider.FileUpdateStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -1683,7 +1683,7 @@ package body WinRt.Windows.Storage is
 
       function CreateFileForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString
       )
       return WinRt.Windows.Storage.StorageFile is
@@ -1741,7 +1741,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                        Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                         Retval.m_IStorageFile.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1759,7 +1759,7 @@ package body WinRt.Windows.Storage is
 
       function CreateFolderForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString
       )
       return WinRt.Windows.Storage.StorageFolder is
@@ -1817,7 +1817,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1835,9 +1835,9 @@ package body WinRt.Windows.Storage is
 
       function CreateFileForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFile is
          Hr               : WinRt.HResult := S_OK;
@@ -1894,7 +1894,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                        Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                         Retval.m_IStorageFile.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1912,9 +1912,9 @@ package body WinRt.Windows.Storage is
 
       function CreateFolderForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFolder is
          Hr               : WinRt.HResult := S_OK;
@@ -1971,7 +1971,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2046,7 +2046,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                        Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                         Retval.m_IStorageFile.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2121,7 +2121,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2140,7 +2140,7 @@ package body WinRt.Windows.Storage is
       function CreateFileAsync
       (
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFile is
          Hr               : WinRt.HResult := S_OK;
@@ -2197,7 +2197,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                        Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                         Retval.m_IStorageFile.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2216,7 +2216,7 @@ package body WinRt.Windows.Storage is
       function CreateFolderAsync
       (
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFolder is
          Hr               : WinRt.HResult := S_OK;
@@ -2273,7 +2273,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2297,7 +2297,7 @@ package body WinRt.Windows.Storage is
 
       function ReadTextAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2370,8 +2370,8 @@ package body WinRt.Windows.Storage is
 
       function ReadTextAsync
       (
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2444,7 +2444,7 @@ package body WinRt.Windows.Storage is
 
       procedure WriteTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -2496,9 +2496,9 @@ package body WinRt.Windows.Storage is
 
       procedure WriteTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2549,7 +2549,7 @@ package body WinRt.Windows.Storage is
 
       procedure AppendTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -2601,9 +2601,9 @@ package body WinRt.Windows.Storage is
 
       procedure AppendTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2654,7 +2654,7 @@ package body WinRt.Windows.Storage is
 
       function ReadLinesAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -2724,8 +2724,8 @@ package body WinRt.Windows.Storage is
 
       function ReadLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -2795,7 +2795,7 @@ package body WinRt.Windows.Storage is
 
       procedure WriteLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -2845,9 +2845,9 @@ package body WinRt.Windows.Storage is
 
       procedure WriteLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2896,7 +2896,7 @@ package body WinRt.Windows.Storage is
 
       procedure AppendLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -2946,9 +2946,9 @@ package body WinRt.Windows.Storage is
 
       procedure AppendLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2997,7 +2997,7 @@ package body WinRt.Windows.Storage is
 
       function ReadBufferAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Storage.Streams.IBuffer is
          Hr               : WinRt.HResult := S_OK;
@@ -3067,8 +3067,8 @@ package body WinRt.Windows.Storage is
 
       procedure WriteBufferAsync
       (
-         file : Windows.Storage.IStorageFile;
-         buffer : Windows.Storage.Streams.IBuffer
+         file : WinRt.Windows.Storage.IStorageFile;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3117,7 +3117,7 @@ package body WinRt.Windows.Storage is
 
       procedure WriteBytesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          buffer : WinRt.Byte_Array
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -3179,7 +3179,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersPlaylistsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersPlaylistsStatics'Access , m_Factory'Address);
@@ -3189,7 +3189,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3198,8 +3198,8 @@ package body WinRt.Windows.Storage is
 
       function GetFolderForUserAsync
       (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
+         user : WinRt.Windows.System.User'Class;
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.StorageFolder is
          Hr               : WinRt.HResult := S_OK;
@@ -3255,7 +3255,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3277,7 +3277,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
@@ -3287,7 +3287,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3301,7 +3301,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
@@ -3311,7 +3311,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3325,7 +3325,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics2'Access , m_Factory'Address);
@@ -3335,7 +3335,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3349,7 +3349,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3359,7 +3359,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3373,7 +3373,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3383,7 +3383,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3397,7 +3397,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3407,7 +3407,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3421,7 +3421,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3431,7 +3431,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3445,7 +3445,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3455,7 +3455,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3469,7 +3469,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3479,7 +3479,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3493,7 +3493,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersStatics'Access , m_Factory'Address);
@@ -3503,7 +3503,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3517,7 +3517,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersSavedPicturesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersSavedPicturesStatics'Access , m_Factory'Address);
@@ -3527,7 +3527,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3536,7 +3536,7 @@ package body WinRt.Windows.Storage is
 
       function RequestAccessAsync
       (
-         folderId : Windows.Storage.KnownFolderId
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.KnownFoldersAccessStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -3606,8 +3606,8 @@ package body WinRt.Windows.Storage is
 
       function RequestAccessForUserAsync
       (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
+         user : WinRt.Windows.System.User'Class;
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.KnownFoldersAccessStatus is
          Hr               : WinRt.HResult := S_OK;
@@ -3677,7 +3677,7 @@ package body WinRt.Windows.Storage is
 
       function GetFolderAsync
       (
-         folderId : Windows.Storage.KnownFolderId
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.StorageFolder is
          Hr               : WinRt.HResult := S_OK;
@@ -3733,7 +3733,7 @@ package body WinRt.Windows.Storage is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                        Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                         Retval.m_IStorageFolder.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3755,7 +3755,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.KnownFolders");
          m_Factory        : access WinRt.Windows.Storage.IKnownFoldersCameraRollStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       begin
          return RetVal : WinRt.Windows.Storage.StorageFolder do
             Hr := RoGetActivationFactory (m_hString, IID_IKnownFoldersCameraRollStatics'Access , m_Factory'Address);
@@ -3765,7 +3765,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+               Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                Retval.m_IStorageFolder.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3856,7 +3856,7 @@ package body WinRt.Windows.Storage is
       function ReadTextAsync
       (
          absolutePath : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -3987,7 +3987,7 @@ package body WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4096,7 +4096,7 @@ package body WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4222,7 +4222,7 @@ package body WinRt.Windows.Storage is
       function ReadLinesAsync
       (
          absolutePath : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.GenericObject is
          Hr               : WinRt.HResult := S_OK;
@@ -4348,7 +4348,7 @@ package body WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4453,7 +4453,7 @@ package body WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4577,7 +4577,7 @@ package body WinRt.Windows.Storage is
       procedure WriteBufferAsync
       (
          absolutePath : WinRt.WString;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -4783,14 +4783,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.ISetVersionDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.ISetVersionDeferral;
    begin
       return RetVal : WinRt.Windows.Storage.SetVersionDeferral do
          Hr := this.m_ISetVersionRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISetVersionDeferral := new Windows.Storage.ISetVersionDeferral;
+         Retval.m_ISetVersionDeferral := new WinRt.Windows.Storage.ISetVersionDeferral;
          Retval.m_ISetVersionDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -4877,7 +4877,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4895,7 +4895,7 @@ package body WinRt.Windows.Storage is
 
    function GetFileFromApplicationUriAsync
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -4951,7 +4951,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -4969,8 +4969,8 @@ package body WinRt.Windows.Storage is
    function CreateStreamedFileAsync
    (
       displayNameWithExtension : WinRt.WString;
-      dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -5027,7 +5027,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5045,9 +5045,9 @@ package body WinRt.Windows.Storage is
 
    function ReplaceWithStreamedFileAsync
    (
-      fileToReplace : Windows.Storage.IStorageFile;
-      dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      fileToReplace : WinRt.Windows.Storage.IStorageFile;
+      dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -5103,7 +5103,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5121,8 +5121,8 @@ package body WinRt.Windows.Storage is
    function CreateStreamedFileFromUriAsync
    (
       displayNameWithExtension : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -5179,7 +5179,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5197,9 +5197,9 @@ package body WinRt.Windows.Storage is
 
    function ReplaceWithStreamedFileFromUriAsync
    (
-      fileToReplace : Windows.Storage.IStorageFile;
-      uri : Windows.Foundation.Uri'Class;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      fileToReplace : WinRt.Windows.Storage.IStorageFile;
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile is
       Hr               : WinRt.HResult := S_OK;
@@ -5255,7 +5255,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5272,7 +5272,7 @@ package body WinRt.Windows.Storage is
 
    function GetFileFromPathForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile is
@@ -5330,7 +5330,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                     Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                      Retval.m_IStorageFile.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5392,7 +5392,7 @@ package body WinRt.Windows.Storage is
    function OpenAsync
    (
       this : in out StorageFile;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -5506,7 +5506,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                  Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5522,7 +5522,7 @@ package body WinRt.Windows.Storage is
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5573,7 +5573,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5589,7 +5589,7 @@ package body WinRt.Windows.Storage is
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class is
@@ -5642,7 +5642,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5659,9 +5659,9 @@ package body WinRt.Windows.Storage is
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -5713,7 +5713,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5730,7 +5730,7 @@ package body WinRt.Windows.Storage is
    procedure CopyAndReplaceAsync
    (
       this : in out StorageFile;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5773,7 +5773,7 @@ package body WinRt.Windows.Storage is
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5816,7 +5816,7 @@ package body WinRt.Windows.Storage is
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -5862,9 +5862,9 @@ package body WinRt.Windows.Storage is
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5909,7 +5909,7 @@ package body WinRt.Windows.Storage is
    procedure MoveAndReplaceAsync
    (
       this : in out StorageFile;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6136,7 +6136,7 @@ package body WinRt.Windows.Storage is
    (
       this : in out StorageFile;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6231,7 +6231,7 @@ package body WinRt.Windows.Storage is
    procedure DeleteAsync
    (
       this : in out StorageFile;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6332,7 +6332,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+                  Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -6402,7 +6402,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileAttributes;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFile_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFile.all);
@@ -6423,7 +6423,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFile_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFile.all);
@@ -6438,7 +6438,7 @@ package body WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageFile;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6460,7 +6460,7 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6532,7 +6532,7 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -6605,9 +6605,9 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6757,7 +6757,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFile_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
@@ -6767,7 +6767,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
+         Retval.m_IStorageItemContentProperties := new WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -6775,7 +6775,7 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -6847,7 +6847,7 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -6920,9 +6920,9 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7048,7 +7048,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7064,7 +7064,7 @@ package body WinRt.Windows.Storage is
    function IsEqual
    (
       this : in out StorageFile;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7092,7 +7092,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFile_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
@@ -7102,7 +7102,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
+         Retval.m_IStorageProvider := new WinRt.Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;
    end;
@@ -7131,8 +7131,8 @@ package body WinRt.Windows.Storage is
    function OpenAsync
    (
       this : in out StorageFile;
-      accessMode : Windows.Storage.FileAccessMode;
-      options : Windows.Storage.StorageOpenOptions
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream is
       Hr               : WinRt.HResult := S_OK;
@@ -7200,7 +7200,7 @@ package body WinRt.Windows.Storage is
    function OpenTransactedWriteAsync
    (
       this : in out StorageFile;
-      options : Windows.Storage.StorageOpenOptions
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7255,7 +7255,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageStreamTransaction := new Windows.Storage.IStorageStreamTransaction;
+                  Retval.m_IStorageStreamTransaction := new WinRt.Windows.Storage.IStorageStreamTransaction;
                   Retval.m_IStorageStreamTransaction.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7350,7 +7350,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                     Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                      Retval.m_IStorageFolder.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -7368,7 +7368,7 @@ package body WinRt.Windows.Storage is
 
    function GetFolderFromPathForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFolder is
@@ -7426,7 +7426,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                     Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                      Retval.m_IStorageFolder.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -7500,7 +7500,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7518,7 +7518,7 @@ package body WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7570,7 +7570,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7639,7 +7639,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7657,7 +7657,7 @@ package body WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFolder'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7709,7 +7709,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7778,7 +7778,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7847,7 +7847,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8169,7 +8169,7 @@ package body WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8264,7 +8264,7 @@ package body WinRt.Windows.Storage is
    procedure DeleteAsync
    (
       this : in out StorageFolder;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8365,7 +8365,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IBasicProperties := new Windows.Storage.FileProperties.IBasicProperties;
+                  Retval.m_IBasicProperties := new WinRt.Windows.Storage.FileProperties.IBasicProperties;
                   Retval.m_IBasicProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -8435,7 +8435,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileAttributes;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileAttributes;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFolder.all);
@@ -8456,7 +8456,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.IStorageItem, WinRt.Windows.Storage.IID_IStorageItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IStorageFolder.all);
@@ -8471,7 +8471,7 @@ package body WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageFolder;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -8566,7 +8566,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -8576,7 +8576,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8584,14 +8584,14 @@ package body WinRt.Windows.Storage is
    function CreateFileQuery
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -8601,7 +8601,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8609,14 +8609,14 @@ package body WinRt.Windows.Storage is
    function CreateFileQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFileQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFileQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFileQueryResult do
@@ -8626,7 +8626,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFileQueryResult := new Windows.Storage.Search.IStorageFileQueryResult;
+         Retval.m_IStorageFileQueryResult := new WinRt.Windows.Storage.Search.IStorageFileQueryResult;
          Retval.m_IStorageFileQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8640,7 +8640,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -8650,7 +8650,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8658,14 +8658,14 @@ package body WinRt.Windows.Storage is
    function CreateFolderQuery
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -8675,7 +8675,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8683,14 +8683,14 @@ package body WinRt.Windows.Storage is
    function CreateFolderQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageFolderQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageFolderQueryResult do
@@ -8700,7 +8700,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolderQueryResult := new Windows.Storage.Search.IStorageFolderQueryResult;
+         Retval.m_IStorageFolderQueryResult := new WinRt.Windows.Storage.Search.IStorageFolderQueryResult;
          Retval.m_IStorageFolderQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8714,7 +8714,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
@@ -8724,7 +8724,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
+         Retval.m_IStorageItemQueryResult := new WinRt.Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8732,14 +8732,14 @@ package body WinRt.Windows.Storage is
    function CreateItemQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Search.IStorageFolderQueryOperations := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Search.IStorageItemQueryResult;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Search.IStorageItemQueryResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.Search.IStorageFolderQueryOperations, WinRt.Windows.Storage.Search.IID_IStorageFolderQueryOperations'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Search.StorageItemQueryResult do
@@ -8749,7 +8749,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemQueryResult := new Windows.Storage.Search.IStorageItemQueryResult;
+         Retval.m_IStorageItemQueryResult := new WinRt.Windows.Storage.Search.IStorageItemQueryResult;
          Retval.m_IStorageItemQueryResult.all := m_ComRetVal;
       end return;
    end;
@@ -8757,7 +8757,7 @@ package body WinRt.Windows.Storage is
    function GetFilesAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -8827,7 +8827,7 @@ package body WinRt.Windows.Storage is
    function GetFilesAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -8895,7 +8895,7 @@ package body WinRt.Windows.Storage is
    function GetFoldersAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery;
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -8965,7 +8965,7 @@ package body WinRt.Windows.Storage is
    function GetFoldersAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -9102,7 +9102,7 @@ package body WinRt.Windows.Storage is
    function AreQueryOptionsSupported
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -9124,7 +9124,7 @@ package body WinRt.Windows.Storage is
    function IsCommonFolderQuerySupported
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -9146,7 +9146,7 @@ package body WinRt.Windows.Storage is
    function IsCommonFileQuerySupported
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -9168,7 +9168,7 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -9240,7 +9240,7 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -9313,9 +9313,9 @@ package body WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -9465,7 +9465,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemProperties := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.FileProperties.IStorageItemContentProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.IStorageItemProperties, WinRt.Windows.Storage.IID_IStorageItemProperties'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.FileProperties.StorageItemContentProperties do
@@ -9475,7 +9475,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageItemContentProperties := new Windows.Storage.FileProperties.IStorageItemContentProperties;
+         Retval.m_IStorageItemContentProperties := new WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties;
          Retval.m_IStorageItemContentProperties.all := m_ComRetVal;
       end return;
    end;
@@ -9483,7 +9483,7 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -9555,7 +9555,7 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
@@ -9628,9 +9628,9 @@ package body WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -9756,7 +9756,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9772,7 +9772,7 @@ package body WinRt.Windows.Storage is
    function IsEqual
    (
       this : in out StorageFolder;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -9870,7 +9870,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageItemPropertiesWithProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageProvider;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageProvider;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.IStorageItemPropertiesWithProvider, WinRt.Windows.Storage.IID_IStorageItemPropertiesWithProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageProvider do
@@ -9880,7 +9880,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageProvider := new Windows.Storage.IStorageProvider;
+         Retval.m_IStorageProvider := new WinRt.Windows.Storage.IStorageProvider;
          Retval.m_IStorageProvider.all := m_ComRetVal;
       end return;
    end;
@@ -9894,7 +9894,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageFolder3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageLibraryChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageLibraryChangeTracker;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageFolder_Interface, WinRt.Windows.Storage.IStorageFolder3, WinRt.Windows.Storage.IID_IStorageFolder3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageLibraryChangeTracker do
@@ -9904,7 +9904,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageLibraryChangeTracker := new Windows.Storage.IStorageLibraryChangeTracker;
+         Retval.m_IStorageLibraryChangeTracker := new WinRt.Windows.Storage.IStorageLibraryChangeTracker;
          Retval.m_IStorageLibraryChangeTracker.all := m_ComRetVal;
       end return;
    end;
@@ -9934,7 +9934,7 @@ package body WinRt.Windows.Storage is
 
    function GetLibraryAsync
    (
-      libraryId : Windows.Storage.KnownLibraryId
+      libraryId : WinRt.Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary is
       Hr               : WinRt.HResult := S_OK;
@@ -9990,7 +9990,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageLibrary := new Windows.Storage.IStorageLibrary;
+                     Retval.m_IStorageLibrary := new WinRt.Windows.Storage.IStorageLibrary;
                      Retval.m_IStorageLibrary.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -10007,8 +10007,8 @@ package body WinRt.Windows.Storage is
 
    function GetLibraryForUserAsync
    (
-      user : Windows.System.User'Class;
-      libraryId : Windows.Storage.KnownLibraryId
+      user : WinRt.Windows.System.User'Class;
+      libraryId : WinRt.Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary is
       Hr               : WinRt.HResult := S_OK;
@@ -10064,7 +10064,7 @@ package body WinRt.Windows.Storage is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStorageLibrary := new Windows.Storage.IStorageLibrary;
+                     Retval.m_IStorageLibrary := new WinRt.Windows.Storage.IStorageLibrary;
                      Retval.m_IStorageLibrary.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -10135,7 +10135,7 @@ package body WinRt.Windows.Storage is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+                  Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
                   Retval.m_IStorageFolder.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10151,7 +10151,7 @@ package body WinRt.Windows.Storage is
    function RequestRemoveFolderAsync
    (
       this : in out StorageLibrary;
-      folder : Windows.Storage.StorageFolder'Class
+      folder : WinRt.Windows.Storage.StorageFolder'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10220,7 +10220,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IObservableVector_IStorageFolder.Kind;
    begin
       Hr := this.m_IStorageLibrary.all.get_Folders (m_ComRetVal'Access);
@@ -10240,14 +10240,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IStorageLibrary.all.get_SaveFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -10261,7 +10261,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IStorageLibrary.all.add_DefinitionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10273,7 +10273,7 @@ package body WinRt.Windows.Storage is
    procedure remove_DefinitionChanged
    (
       this : in out StorageLibrary;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10294,7 +10294,7 @@ package body WinRt.Windows.Storage is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.IStorageLibrary2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageLibraryChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageLibraryChangeTracker;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Storage.IStorageLibrary_Interface, WinRt.Windows.Storage.IStorageLibrary2, WinRt.Windows.Storage.IID_IStorageLibrary2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageLibraryChangeTracker do
@@ -10304,7 +10304,7 @@ package body WinRt.Windows.Storage is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageLibraryChangeTracker := new Windows.Storage.IStorageLibraryChangeTracker;
+         Retval.m_IStorageLibraryChangeTracker := new WinRt.Windows.Storage.IStorageLibraryChangeTracker;
          Retval.m_IStorageLibraryChangeTracker.all := m_ComRetVal;
       end return;
    end;
@@ -10407,7 +10407,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.StorageLibraryChangeType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.StorageLibraryChangeType;
    begin
       Hr := this.m_IStorageLibraryChange.all.get_ChangeType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10459,7 +10459,7 @@ package body WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageLibraryChange;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -10717,14 +10717,14 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageLibraryChangeReader;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageLibraryChangeReader;
    begin
       return RetVal : WinRt.Windows.Storage.StorageLibraryChangeReader do
          Hr := this.m_IStorageLibraryChangeTracker.all.GetChangeReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageLibraryChangeReader := new Windows.Storage.IStorageLibraryChangeReader;
+         Retval.m_IStorageLibraryChangeReader := new WinRt.Windows.Storage.IStorageLibraryChangeReader;
          Retval.m_IStorageLibraryChangeReader.all := m_ComRetVal;
       end return;
    end;
@@ -10760,7 +10760,7 @@ package body WinRt.Windows.Storage is
    procedure Enable
    (
       this : in out StorageLibraryChangeTracker;
-      options : Windows.Storage.StorageLibraryChangeTrackerOptions'Class
+      options : WinRt.Windows.Storage.StorageLibraryChangeTrackerOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10820,13 +10820,13 @@ package body WinRt.Windows.Storage is
    function Constructor return StorageLibraryChangeTrackerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.StorageLibraryChangeTrackerOptions");
-      m_ComRetVal  : aliased Windows.Storage.IStorageLibraryChangeTrackerOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.IStorageLibraryChangeTrackerOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Storage.IStorageLibraryChangeTrackerOptions;
    begin
       return RetVal : StorageLibraryChangeTrackerOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IStorageLibraryChangeTrackerOptions := new Windows.Storage.IStorageLibraryChangeTrackerOptions;
+            Retval.m_IStorageLibraryChangeTrackerOptions := new WinRt.Windows.Storage.IStorageLibraryChangeTrackerOptions;
             Retval.m_IStorageLibraryChangeTrackerOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -11079,7 +11079,7 @@ package body WinRt.Windows.Storage is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IStorageStreamTransaction.all.get_Stream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11175,7 +11175,7 @@ package body WinRt.Windows.Storage is
    function WriteAsync
    (
       this : in out StreamedFileDataRequest;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -11320,7 +11320,7 @@ package body WinRt.Windows.Storage is
    procedure FailAndClose
    (
       this : in out StreamedFileDataRequest;
-      failureMode : Windows.Storage.StreamedFileFailureMode
+      failureMode : WinRt.Windows.Storage.StreamedFileFailureMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11342,7 +11342,7 @@ package body WinRt.Windows.Storage is
    function Invoke
    (
       this : access StreamedFileDataRequestedHandler_Delegate;
-      stream : Windows.Storage.Streams.IOutputStream
+      stream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -11424,7 +11424,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemDataPaths");
       m_Factory        : access WinRt.Windows.Storage.ISystemDataPathsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.ISystemDataPaths;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemDataPaths;
    begin
       return RetVal : WinRt.Windows.Storage.SystemDataPaths do
          Hr := RoGetActivationFactory (m_hString, IID_ISystemDataPathsStatics'Access , m_Factory'Address);
@@ -11434,7 +11434,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISystemDataPaths := new Windows.Storage.ISystemDataPaths;
+            Retval.m_ISystemDataPaths := new WinRt.Windows.Storage.ISystemDataPaths;
             Retval.m_ISystemDataPaths.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12494,7 +12494,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemAudioProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemAudioProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemAudioProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12504,7 +12504,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemAudioProperties := new Windows.Storage.ISystemAudioProperties;
+               Retval.m_ISystemAudioProperties := new WinRt.Windows.Storage.ISystemAudioProperties;
                Retval.m_ISystemAudioProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12518,7 +12518,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemGPSProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemGPSProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemGPSProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12528,7 +12528,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemGPSProperties := new Windows.Storage.ISystemGPSProperties;
+               Retval.m_ISystemGPSProperties := new WinRt.Windows.Storage.ISystemGPSProperties;
                Retval.m_ISystemGPSProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12542,7 +12542,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemMediaProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemMediaProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemMediaProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12552,7 +12552,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemMediaProperties := new Windows.Storage.ISystemMediaProperties;
+               Retval.m_ISystemMediaProperties := new WinRt.Windows.Storage.ISystemMediaProperties;
                Retval.m_ISystemMediaProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12566,7 +12566,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemMusicProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemMusicProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemMusicProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12576,7 +12576,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemMusicProperties := new Windows.Storage.ISystemMusicProperties;
+               Retval.m_ISystemMusicProperties := new WinRt.Windows.Storage.ISystemMusicProperties;
                Retval.m_ISystemMusicProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12590,7 +12590,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemPhotoProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemPhotoProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemPhotoProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12600,7 +12600,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemPhotoProperties := new Windows.Storage.ISystemPhotoProperties;
+               Retval.m_ISystemPhotoProperties := new WinRt.Windows.Storage.ISystemPhotoProperties;
                Retval.m_ISystemPhotoProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12614,7 +12614,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemVideoProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemVideoProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemVideoProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12624,7 +12624,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemVideoProperties := new Windows.Storage.ISystemVideoProperties;
+               Retval.m_ISystemVideoProperties := new WinRt.Windows.Storage.ISystemVideoProperties;
                Retval.m_ISystemVideoProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12638,7 +12638,7 @@ package body WinRt.Windows.Storage is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.SystemProperties");
          m_Factory        : access WinRt.Windows.Storage.ISystemProperties_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Storage.ISystemImageProperties;
+         m_ComRetVal      : aliased WinRt.Windows.Storage.ISystemImageProperties;
       begin
          return RetVal : WinRt.Windows.Storage.SystemImageProperties do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemProperties'Access , m_Factory'Address);
@@ -12648,7 +12648,7 @@ package body WinRt.Windows.Storage is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemImageProperties := new Windows.Storage.ISystemImageProperties;
+               Retval.m_ISystemImageProperties := new WinRt.Windows.Storage.ISystemImageProperties;
                Retval.m_ISystemImageProperties.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -12805,7 +12805,7 @@ package body WinRt.Windows.Storage is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.UserDataPaths is
       Hr               : WinRt.HResult := S_OK;
@@ -12813,7 +12813,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.UserDataPaths");
       m_Factory        : access WinRt.Windows.Storage.IUserDataPathsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IUserDataPaths;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IUserDataPaths;
    begin
       return RetVal : WinRt.Windows.Storage.UserDataPaths do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataPathsStatics'Access , m_Factory'Address);
@@ -12823,7 +12823,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataPaths := new Windows.Storage.IUserDataPaths;
+            Retval.m_IUserDataPaths := new WinRt.Windows.Storage.IUserDataPaths;
             Retval.m_IUserDataPaths.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -12837,7 +12837,7 @@ package body WinRt.Windows.Storage is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Storage.UserDataPaths");
       m_Factory        : access WinRt.Windows.Storage.IUserDataPathsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IUserDataPaths;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IUserDataPaths;
    begin
       return RetVal : WinRt.Windows.Storage.UserDataPaths do
          Hr := RoGetActivationFactory (m_hString, IID_IUserDataPathsStatics'Access , m_Factory'Address);
@@ -12847,7 +12847,7 @@ package body WinRt.Windows.Storage is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IUserDataPaths := new Windows.Storage.IUserDataPaths;
+            Retval.m_IUserDataPaths := new WinRt.Windows.Storage.IUserDataPaths;
             Retval.m_IUserDataPaths.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

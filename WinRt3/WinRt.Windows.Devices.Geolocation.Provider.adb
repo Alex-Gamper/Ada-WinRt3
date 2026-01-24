@@ -58,13 +58,13 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
    function Constructor return GeolocationProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Provider.GeolocationProvider");
-      m_ComRetVal  : aliased Windows.Devices.Geolocation.Provider.IGeolocationProvider;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Provider.IGeolocationProvider");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Provider.IGeolocationProvider;
    begin
       return RetVal : GeolocationProvider do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGeolocationProvider := new Windows.Devices.Geolocation.Provider.IGeolocationProvider;
+            Retval.m_IGeolocationProvider := new WinRt.Windows.Devices.Geolocation.Provider.IGeolocationProvider;
             Retval.m_IGeolocationProvider.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -94,15 +94,15 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
    function SetOverridePosition
    (
       this : in out GeolocationProvider;
-      newPosition : Windows.Devices.Geolocation.BasicGeoposition;
-      positionSource : Windows.Devices.Geolocation.PositionSource;
+      newPosition : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
+      positionSource : WinRt.Windows.Devices.Geolocation.PositionSource;
       accuracyInMeters : WinRt.Double
    )
    return WinRt.Windows.Devices.Geolocation.Provider.LocationOverrideStatus is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.Provider.LocationOverrideStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.Provider.LocationOverrideStatus;
    begin
       Hr := this.m_IGeolocationProvider.all.SetOverridePosition (newPosition, positionSource, accuracyInMeters, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -134,7 +134,7 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGeolocationProvider.all.add_IsOverriddenChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -146,7 +146,7 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
    procedure remove_IsOverriddenChanged
    (
       this : in out GeolocationProvider;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

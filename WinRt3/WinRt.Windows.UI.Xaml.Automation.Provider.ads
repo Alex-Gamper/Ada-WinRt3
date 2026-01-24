@@ -234,7 +234,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_Target
       (
          this : access IAnnotationProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -246,7 +246,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function NavigateCustom
       (
          this : access ICustomNavigationProvider_Interface;
-         direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
+         direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -259,14 +259,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_DockPosition
       (
          this : access IDockProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.DockPosition
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.DockPosition
       )
       return WinRt.Hresult is abstract;
 
       function SetDockPosition
       (
          this : access IDockProvider_Interface;
-         dockPosition : Windows.UI.Xaml.Automation.DockPosition
+         dockPosition : WinRt.Windows.UI.Xaml.Automation.DockPosition
       )
       return WinRt.Hresult is abstract;
 
@@ -301,7 +301,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access IDragProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -333,7 +333,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_ExpandCollapseState
       (
          this : access IExpandCollapseProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.ExpandCollapseState
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState
       )
       return WinRt.Hresult is abstract;
 
@@ -371,7 +371,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_ContainingGrid
       (
          this : access IGridItemProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -413,7 +413,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
          this : access IGridProvider_Interface;
          row : WinRt.Int32;
          column : WinRt.Int32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -441,10 +441,10 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function FindItemByProperty
       (
          this : access IItemContainerProvider_Interface;
-         startAfter : Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
-         automationProperty : Windows.UI.Xaml.Automation.IAutomationProperty;
+         startAfter : WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         automationProperty : WinRt.Windows.UI.Xaml.Automation.IAutomationProperty;
          value : WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -610,8 +610,8 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function Scroll
       (
          this : access IScrollProvider_Interface;
-         horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-         verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+         horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+         verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
       )
       return WinRt.Hresult is abstract;
 
@@ -638,7 +638,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_SelectionContainer
       (
          this : access ISelectionItemProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -683,7 +683,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISelectionProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -703,7 +703,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISpreadsheetItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -711,7 +711,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISpreadsheetItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.AnnotationType_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.AnnotationType_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -724,7 +724,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ISpreadsheetProvider_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -743,14 +743,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_FillColor
       (
          this : access IStylesProvider_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_FillPatternColor
       (
          this : access IStylesProvider_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function StartListening
       (
          this : access ISynchronizedInputProvider_Interface;
-         inputType : Windows.UI.Xaml.Automation.SynchronizedInputType
+         inputType : WinRt.Windows.UI.Xaml.Automation.SynchronizedInputType
       )
       return WinRt.Hresult is abstract;
 
@@ -809,7 +809,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableItemProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -829,7 +829,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_RowOrColumnMajor
       (
          this : access ITableProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.RowOrColumnMajor
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.RowOrColumnMajor
       )
       return WinRt.Hresult is abstract;
 
@@ -837,7 +837,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITableProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -857,14 +857,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_TextContainer
       (
          this : access ITextChildProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
       function get_TextRange
       (
          this : access ITextChildProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -876,14 +876,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function GetActiveComposition
       (
          this : access ITextEditProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
       function GetConversionTarget
       (
          this : access ITextEditProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -895,14 +895,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_DocumentRange
       (
          this : access ITextProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportedTextSelection
       (
          this : access ITextProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.SupportedTextSelection
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.SupportedTextSelection
       )
       return WinRt.Hresult is abstract;
 
@@ -910,7 +910,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -918,23 +918,23 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function RangeFromChild
       (
          this : access ITextProvider_Interface;
-         childElement : Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         childElement : WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
       function RangeFromPoint
       (
          this : access ITextProvider_Interface;
-         screenLocation : Windows.Foundation.Point;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         screenLocation : WinRt.Windows.Foundation.Point;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -946,8 +946,8 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function RangeFromAnnotation
       (
          this : access ITextProvider2_Interface;
-         annotationElement : Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         annotationElement : WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -955,7 +955,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextProvider2_Interface;
          isActive : WinRt.Boolean_Ptr;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -967,14 +967,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function Clone
       (
          this : access ITextRangeProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
       function Compare
       (
          this : access ITextRangeProvider_Interface;
-         textRangeProvider : Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
+         textRangeProvider : WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -982,9 +982,9 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function CompareEndpoints
       (
          this : access ITextRangeProvider_Interface;
-         endpoint : Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
-         textRangeProvider : Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
-         targetEndpoint : Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
+         endpoint : WinRt.Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
+         textRangeProvider : WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
+         targetEndpoint : WinRt.Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -992,7 +992,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function ExpandToEnclosingUnit
       (
          this : access ITextRangeProvider_Interface;
-         unit : Windows.UI.Xaml.Automation.Text.TextUnit
+         unit : WinRt.Windows.UI.Xaml.Automation.Text.TextUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1002,7 +1002,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
          attributeId : WinRt.Int32;
          value : WinRt.IInspectable;
          backward : WinRt.Boolean;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,7 +1012,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
          text : WinRt.HString;
          backward : WinRt.Boolean;
          ignoreCase : WinRt.Boolean;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,7 +1035,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function GetEnclosingElement
       (
          this : access ITextRangeProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple
       )
       return WinRt.Hresult is abstract;
 
@@ -1050,7 +1050,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function Move
       (
          this : access ITextRangeProvider_Interface;
-         unit : Windows.UI.Xaml.Automation.Text.TextUnit;
+         unit : WinRt.Windows.UI.Xaml.Automation.Text.TextUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -1059,8 +1059,8 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function MoveEndpointByUnit
       (
          this : access ITextRangeProvider_Interface;
-         endpoint : Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
-         unit : Windows.UI.Xaml.Automation.Text.TextUnit;
+         endpoint : WinRt.Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
+         unit : WinRt.Windows.UI.Xaml.Automation.Text.TextUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -1069,9 +1069,9 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function MoveEndpointByRange
       (
          this : access ITextRangeProvider_Interface;
-         endpoint : Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
-         textRangeProvider : Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
-         targetEndpoint : Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint
+         endpoint : WinRt.Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint;
+         textRangeProvider : WinRt.Windows.UI.Xaml.Automation.Provider.ITextRangeProvider;
+         targetEndpoint : WinRt.Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint
       )
       return WinRt.Hresult is abstract;
 
@@ -1104,7 +1104,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       (
          this : access ITextRangeProvider_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1127,7 +1127,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_ToggleState
       (
          this : access IToggleProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.ToggleState
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.ToggleState
       )
       return WinRt.Hresult is abstract;
 
@@ -1229,7 +1229,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function ZoomByUnit
       (
          this : access ITransformProvider2_Interface;
-         zoomUnit : Windows.UI.Xaml.Automation.ZoomUnit
+         zoomUnit : WinRt.Windows.UI.Xaml.Automation.ZoomUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1306,14 +1306,14 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function get_InteractionState
       (
          this : access IWindowProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.WindowInteractionState
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.WindowInteractionState
       )
       return WinRt.Hresult is abstract;
 
       function get_VisualState
       (
          this : access IWindowProvider_Interface;
-         RetVal : access Windows.UI.Xaml.Automation.WindowVisualState
+         RetVal : access WinRt.Windows.UI.Xaml.Automation.WindowVisualState
       )
       return WinRt.Hresult is abstract;
 
@@ -1326,7 +1326,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       function SetVisualState
       (
          this : access IWindowProvider_Interface;
-         state : Windows.UI.Xaml.Automation.WindowVisualState
+         state : WinRt.Windows.UI.Xaml.Automation.WindowVisualState
       )
       return WinRt.Hresult is abstract;
 

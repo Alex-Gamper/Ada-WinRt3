@@ -653,14 +653,14 @@ package WinRt.Windows.Services.Store is
       function get_StorePackageLicense
       (
          this : access IStoreAcquireLicenseResult_Interface;
-         RetVal : access Windows.Services.Store.IStorePackageLicense
+         RetVal : access WinRt.Windows.Services.Store.IStorePackageLicense
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IStoreAcquireLicenseResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -693,7 +693,7 @@ package WinRt.Windows.Services.Store is
       function get_ExpirationDate
       (
          this : access IStoreAppLicense_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -714,7 +714,7 @@ package WinRt.Windows.Services.Store is
       function get_TrialTimeRemaining
       (
          this : access IStoreAppLicense_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -759,14 +759,14 @@ package WinRt.Windows.Services.Store is
       function get_EndDate
       (
          this : access IStoreAvailability_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Price
       (
          this : access IStoreAvailability_Interface;
-         RetVal : access Windows.Services.Store.IStorePrice
+         RetVal : access WinRt.Windows.Services.Store.IStorePrice
       )
       return WinRt.Hresult is abstract;
 
@@ -787,7 +787,7 @@ package WinRt.Windows.Services.Store is
       function RequestPurchaseAsync
       (
          this : access IStoreAvailability_Interface;
-         storePurchaseProperties_p : Windows.Services.Store.IStorePurchaseProperties;
+         storePurchaseProperties_p : WinRt.Windows.Services.Store.IStorePurchaseProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -800,7 +800,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreCanAcquireLicenseResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -814,7 +814,7 @@ package WinRt.Windows.Services.Store is
       function get_Status
       (
          this : access IStoreCanAcquireLicenseResult_Interface;
-         RetVal : access Windows.Services.Store.StoreCanLicenseStatus
+         RetVal : access WinRt.Windows.Services.Store.StoreCanLicenseStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -847,28 +847,28 @@ package WinRt.Windows.Services.Store is
       function get_AcquiredDate
       (
          this : access IStoreCollectionData_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_StartDate
       (
          this : access IStoreCollectionData_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_EndDate
       (
          this : access IStoreCollectionData_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_TrialTimeRemaining
       (
          this : access IStoreCollectionData_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -887,7 +887,7 @@ package WinRt.Windows.Services.Store is
       function get_Status
       (
          this : access IStoreConsumableResult_Interface;
-         RetVal : access Windows.Services.Store.StoreConsumableStatus
+         RetVal : access WinRt.Windows.Services.Store.StoreConsumableStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -908,7 +908,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreConsumableResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -920,7 +920,7 @@ package WinRt.Windows.Services.Store is
       function get_User
       (
          this : access IStoreContext_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -928,14 +928,14 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreContext_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OfflineLicensesChanged
       (
          this : access IStoreContext_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,7 +1035,7 @@ package WinRt.Windows.Services.Store is
       function AcquireStoreLicenseForOptionalPackageAsync
       (
          this : access IStoreContext_Interface;
-         optionalPackage : Windows.ApplicationModel.IPackage;
+         optionalPackage : WinRt.Windows.ApplicationModel.IPackage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1052,7 +1052,7 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreContext_Interface;
          storeId : WinRt.HString;
-         storePurchaseProperties_p : Windows.Services.Store.IStorePurchaseProperties;
+         storePurchaseProperties_p : WinRt.Windows.Services.Store.IStorePurchaseProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1097,7 +1097,7 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreContext2_Interface;
          productKinds : GenericObject;
-         package_x : Windows.ApplicationModel.IPackage;
+         package_x : WinRt.Windows.ApplicationModel.IPackage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1133,7 +1133,7 @@ package WinRt.Windows.Services.Store is
       function CanAcquireStoreLicenseForOptionalPackageAsync
       (
          this : access IStoreContext3_Interface;
-         optionalPackage : Windows.ApplicationModel.IPackage;
+         optionalPackage : WinRt.Windows.ApplicationModel.IPackage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1151,7 +1151,7 @@ package WinRt.Windows.Services.Store is
          this : access IStoreContext3_Interface;
          productKinds : GenericObject;
          storeIds : GenericObject;
-         storeProductOptions_p : Windows.Services.Store.IStoreProductOptions;
+         storeProductOptions_p : WinRt.Windows.Services.Store.IStoreProductOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1175,7 +1175,7 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreContext3_Interface;
          storeIds : GenericObject;
-         storePackageInstallOptions_p : Windows.Services.Store.IStorePackageInstallOptions;
+         storePackageInstallOptions_p : WinRt.Windows.Services.Store.IStorePackageInstallOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1191,7 +1191,7 @@ package WinRt.Windows.Services.Store is
       function RequestUninstallStorePackageAsync
       (
          this : access IStoreContext3_Interface;
-         package_x : Windows.ApplicationModel.IPackage;
+         package_x : WinRt.Windows.ApplicationModel.IPackage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1207,7 +1207,7 @@ package WinRt.Windows.Services.Store is
       function UninstallStorePackageAsync
       (
          this : access IStoreContext3_Interface;
-         package_x : Windows.ApplicationModel.IPackage;
+         package_x : WinRt.Windows.ApplicationModel.IPackage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1277,15 +1277,15 @@ package WinRt.Windows.Services.Store is
       function GetDefault
       (
          this : access IStoreContextStatics_Interface;
-         RetVal : access Windows.Services.Store.IStoreContext
+         RetVal : access WinRt.Windows.Services.Store.IStoreContext
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IStoreContextStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Services.Store.IStoreContext
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Services.Store.IStoreContext
       )
       return WinRt.Hresult is abstract;
 
@@ -1297,7 +1297,7 @@ package WinRt.Windows.Services.Store is
       function get_Uri
       (
          this : access IStoreImage_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1351,7 +1351,7 @@ package WinRt.Windows.Services.Store is
       function get_ExpirationDate
       (
          this : access IStoreLicense_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1397,21 +1397,21 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStorePackageLicense_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LicenseLost
       (
          this : access IStorePackageLicense_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Package
       (
          this : access IStorePackageLicense_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1436,7 +1436,7 @@ package WinRt.Windows.Services.Store is
       function get_Package
       (
          this : access IStorePackageUpdate_Interface;
-         RetVal : access Windows.ApplicationModel.IPackage
+         RetVal : access WinRt.Windows.ApplicationModel.IPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1455,7 +1455,7 @@ package WinRt.Windows.Services.Store is
       function get_OverallState
       (
          this : access IStorePackageUpdateResult_Interface;
-         RetVal : access Windows.Services.Store.StorePackageUpdateState
+         RetVal : access WinRt.Windows.Services.Store.StorePackageUpdateState
       )
       return WinRt.Hresult is abstract;
 
@@ -1507,7 +1507,7 @@ package WinRt.Windows.Services.Store is
       function get_SaleEndDate
       (
          this : access IStorePrice_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1636,7 +1636,7 @@ package WinRt.Windows.Services.Store is
       function get_Price
       (
          this : access IStoreProduct_Interface;
-         RetVal : access Windows.Services.Store.IStorePrice
+         RetVal : access WinRt.Windows.Services.Store.IStorePrice
       )
       return WinRt.Hresult is abstract;
 
@@ -1650,7 +1650,7 @@ package WinRt.Windows.Services.Store is
       function get_LinkUri
       (
          this : access IStoreProduct_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1671,7 +1671,7 @@ package WinRt.Windows.Services.Store is
       function RequestPurchaseAsync
       (
          this : access IStoreProduct_Interface;
-         storePurchaseProperties_p : Windows.Services.Store.IStorePurchaseProperties;
+         storePurchaseProperties_p : WinRt.Windows.Services.Store.IStorePurchaseProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1717,7 +1717,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreProductPagedQueryResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1743,7 +1743,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreProductQueryResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1755,14 +1755,14 @@ package WinRt.Windows.Services.Store is
       function get_Product
       (
          this : access IStoreProductResult_Interface;
-         RetVal : access Windows.Services.Store.IStoreProduct
+         RetVal : access WinRt.Windows.Services.Store.IStoreProduct
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IStoreProductResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1808,7 +1808,7 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStorePurchasePropertiesFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Services.Store.IStorePurchaseProperties
+         RetVal : access WinRt.Windows.Services.Store.IStorePurchaseProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1820,14 +1820,14 @@ package WinRt.Windows.Services.Store is
       function get_Status
       (
          this : access IStorePurchaseResult_Interface;
-         RetVal : access Windows.Services.Store.StorePurchaseStatus
+         RetVal : access WinRt.Windows.Services.Store.StorePurchaseStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IStorePurchaseResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1853,14 +1853,14 @@ package WinRt.Windows.Services.Store is
       function get_InstallKind
       (
          this : access IStoreQueueItem_Interface;
-         RetVal : access Windows.Services.Store.StoreQueueItemKind
+         RetVal : access WinRt.Windows.Services.Store.StoreQueueItemKind
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentStatus
       (
          this : access IStoreQueueItem_Interface;
-         RetVal : access Windows.Services.Store.IStoreQueueItemStatus
+         RetVal : access WinRt.Windows.Services.Store.IStoreQueueItemStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1868,14 +1868,14 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreQueueItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IStoreQueueItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1883,14 +1883,14 @@ package WinRt.Windows.Services.Store is
       (
          this : access IStoreQueueItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IStoreQueueItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1902,21 +1902,21 @@ package WinRt.Windows.Services.Store is
       function CancelInstallAsync
       (
          this : access IStoreQueueItem2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function PauseInstallAsync
       (
          this : access IStoreQueueItem2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ResumeInstallAsync
       (
          this : access IStoreQueueItem2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1928,7 +1928,7 @@ package WinRt.Windows.Services.Store is
       function get_Status
       (
          this : access IStoreQueueItemCompletedEventArgs_Interface;
-         RetVal : access Windows.Services.Store.IStoreQueueItemStatus
+         RetVal : access WinRt.Windows.Services.Store.IStoreQueueItemStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1940,28 +1940,28 @@ package WinRt.Windows.Services.Store is
       function get_PackageInstallState
       (
          this : access IStoreQueueItemStatus_Interface;
-         RetVal : access Windows.Services.Store.StoreQueueItemState
+         RetVal : access WinRt.Windows.Services.Store.StoreQueueItemState
       )
       return WinRt.Hresult is abstract;
 
       function get_PackageInstallExtendedState
       (
          this : access IStoreQueueItemStatus_Interface;
-         RetVal : access Windows.Services.Store.StoreQueueItemExtendedState
+         RetVal : access WinRt.Windows.Services.Store.StoreQueueItemExtendedState
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateStatus
       (
          this : access IStoreQueueItemStatus_Interface;
-         RetVal : access Windows.Services.Store.StorePackageUpdateStatus
+         RetVal : access WinRt.Windows.Services.Store.StorePackageUpdateStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IStoreQueueItemStatus_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1973,7 +1973,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreRateAndReviewResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1994,7 +1994,7 @@ package WinRt.Windows.Services.Store is
       function get_Status
       (
          this : access IStoreRateAndReviewResult_Interface;
-         RetVal : access Windows.Services.Store.StoreRateAndReviewStatus
+         RetVal : access WinRt.Windows.Services.Store.StoreRateAndReviewStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2006,7 +2006,7 @@ package WinRt.Windows.Services.Store is
       function SendRequestAsync
       (
          this : access IStoreRequestHelperStatics_Interface;
-         context : Windows.Services.Store.IStoreContext;
+         context : WinRt.Windows.Services.Store.IStoreContext;
          requestKind : WinRt.UInt32;
          parametersAsJson : WinRt.HString;
          RetVal : access GenericObject
@@ -2028,7 +2028,7 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreSendRequestResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2040,7 +2040,7 @@ package WinRt.Windows.Services.Store is
       function get_HttpStatusCode
       (
          this : access IStoreSendRequestResult2_Interface;
-         RetVal : access Windows.Web.Http.HttpStatusCode
+         RetVal : access WinRt.Windows.Web.Http.HttpStatusCode
       )
       return WinRt.Hresult is abstract;
 
@@ -2115,7 +2115,7 @@ package WinRt.Windows.Services.Store is
       function get_Price
       (
          this : access IStoreSku_Interface;
-         RetVal : access Windows.Services.Store.IStorePrice
+         RetVal : access WinRt.Windows.Services.Store.IStorePrice
       )
       return WinRt.Hresult is abstract;
 
@@ -2143,7 +2143,7 @@ package WinRt.Windows.Services.Store is
       function get_CollectionData
       (
          this : access IStoreSku_Interface;
-         RetVal : access Windows.Services.Store.IStoreCollectionData
+         RetVal : access WinRt.Windows.Services.Store.IStoreCollectionData
       )
       return WinRt.Hresult is abstract;
 
@@ -2164,7 +2164,7 @@ package WinRt.Windows.Services.Store is
       function RequestPurchaseAsync
       (
          this : access IStoreSku_Interface;
-         storePurchaseProperties_p : Windows.Services.Store.IStorePurchaseProperties;
+         storePurchaseProperties_p : WinRt.Windows.Services.Store.IStorePurchaseProperties;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2179,7 +2179,7 @@ package WinRt.Windows.Services.Store is
       function get_SubscriptionInfo
       (
          this : access IStoreSku_Interface;
-         RetVal : access Windows.Services.Store.IStoreSubscriptionInfo
+         RetVal : access WinRt.Windows.Services.Store.IStoreSubscriptionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -2198,7 +2198,7 @@ package WinRt.Windows.Services.Store is
       function get_BillingPeriodUnit
       (
          this : access IStoreSubscriptionInfo_Interface;
-         RetVal : access Windows.Services.Store.StoreDurationUnit
+         RetVal : access WinRt.Windows.Services.Store.StoreDurationUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -2219,7 +2219,7 @@ package WinRt.Windows.Services.Store is
       function get_TrialPeriodUnit
       (
          this : access IStoreSubscriptionInfo_Interface;
-         RetVal : access Windows.Services.Store.StoreDurationUnit
+         RetVal : access WinRt.Windows.Services.Store.StoreDurationUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -2231,14 +2231,14 @@ package WinRt.Windows.Services.Store is
       function get_ExtendedError
       (
          this : access IStoreUninstallStorePackageResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IStoreUninstallStorePackageResult_Interface;
-         RetVal : access Windows.Services.Store.StoreUninstallStorePackageStatus
+         RetVal : access WinRt.Windows.Services.Store.StoreUninstallStorePackageStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2250,7 +2250,7 @@ package WinRt.Windows.Services.Store is
       function get_Uri
       (
          this : access IStoreVideo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2285,7 +2285,7 @@ package WinRt.Windows.Services.Store is
       function get_PreviewImage
       (
          this : access IStoreVideo_Interface;
-         RetVal : access Windows.Services.Store.IStoreImage
+         RetVal : access WinRt.Windows.Services.Store.IStoreImage
       )
       return WinRt.Hresult is abstract;
 
@@ -2427,7 +2427,7 @@ package WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreAvailability;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class;
 
@@ -2562,7 +2562,7 @@ package WinRt.Windows.Services.Store is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Services.Store.StoreContext;
 
@@ -2585,7 +2585,7 @@ package WinRt.Windows.Services.Store is
    procedure remove_OfflineLicensesChanged
    (
       this : in out StoreContext;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCustomerPurchaseIdAsync
@@ -2673,7 +2673,7 @@ package WinRt.Windows.Services.Store is
    function AcquireStoreLicenseForOptionalPackageAsync
    (
       this : in out StoreContext;
-      optionalPackage : Windows.ApplicationModel.Package_x'Class
+      optionalPackage : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreAcquireLicenseResult'Class;
 
@@ -2688,7 +2688,7 @@ package WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       storeId : WinRt.WString;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class;
 
@@ -2723,7 +2723,7 @@ package WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       productKinds : GenericObject;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreProductResult'Class;
 
@@ -2750,7 +2750,7 @@ package WinRt.Windows.Services.Store is
    function CanAcquireStoreLicenseForOptionalPackageAsync
    (
       this : in out StoreContext;
-      optionalPackage : Windows.ApplicationModel.Package_x'Class
+      optionalPackage : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreCanAcquireLicenseResult'Class;
 
@@ -2766,7 +2766,7 @@ package WinRt.Windows.Services.Store is
       this : in out StoreContext;
       productKinds : GenericObject;
       storeIds : GenericObject;
-      storeProductOptions_p : Windows.Services.Store.StoreProductOptions'Class
+      storeProductOptions_p : WinRt.Windows.Services.Store.StoreProductOptions'Class
    )
    return WinRt.Windows.Services.Store.StoreProductQueryResult'Class;
 
@@ -2787,7 +2787,7 @@ package WinRt.Windows.Services.Store is
    (
       this : in out StoreContext;
       storeIds : GenericObject;
-      storePackageInstallOptions_p : Windows.Services.Store.StorePackageInstallOptions'Class
+      storePackageInstallOptions_p : WinRt.Windows.Services.Store.StorePackageInstallOptions'Class
    )
    return WinRt.Windows.Services.Store.StorePackageUpdateResult'Class;
 
@@ -2801,7 +2801,7 @@ package WinRt.Windows.Services.Store is
    function RequestUninstallStorePackageAsync
    (
       this : in out StoreContext;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreUninstallStorePackageResult'Class;
 
@@ -2815,7 +2815,7 @@ package WinRt.Windows.Services.Store is
    function UninstallStorePackageAsync
    (
       this : in out StoreContext;
-      package_x : Windows.ApplicationModel.Package_x'Class
+      package_x : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.Services.Store.StoreUninstallStorePackageResult'Class;
 
@@ -2983,7 +2983,7 @@ package WinRt.Windows.Services.Store is
    procedure remove_LicenseLost
    (
       this : in out StorePackageLicense;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Package
@@ -3227,7 +3227,7 @@ package WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreProduct;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class;
 
@@ -3440,7 +3440,7 @@ package WinRt.Windows.Services.Store is
    procedure remove_Completed
    (
       this : in out StoreQueueItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StatusChanged
@@ -3453,7 +3453,7 @@ package WinRt.Windows.Services.Store is
    procedure remove_StatusChanged
    (
       this : in out StoreQueueItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure CancelInstallAsync
@@ -3558,7 +3558,7 @@ package WinRt.Windows.Services.Store is
 
       function SendRequestAsync
       (
-         context : Windows.Services.Store.StoreContext'Class;
+         context : WinRt.Windows.Services.Store.StoreContext'Class;
          requestKind : WinRt.UInt32;
          parametersAsJson : WinRt.WString
       )
@@ -3701,7 +3701,7 @@ package WinRt.Windows.Services.Store is
    function RequestPurchaseAsync
    (
       this : in out StoreSku;
-      storePurchaseProperties_p : Windows.Services.Store.StorePurchaseProperties'Class
+      storePurchaseProperties_p : WinRt.Windows.Services.Store.StorePurchaseProperties'Class
    )
    return WinRt.Windows.Services.Store.StorePurchaseResult'Class;
 

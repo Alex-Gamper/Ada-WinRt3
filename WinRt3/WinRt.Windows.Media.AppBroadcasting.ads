@@ -114,14 +114,14 @@ package WinRt.Windows.Media.AppBroadcasting is
       (
          this : access IAppBroadcastingMonitor_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsCurrentAppBroadcastingChanged
       (
          this : access IAppBroadcastingMonitor_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -140,7 +140,7 @@ package WinRt.Windows.Media.AppBroadcasting is
       function get_Details
       (
          this : access IAppBroadcastingStatus_Interface;
-         RetVal : access Windows.Media.AppBroadcasting.IAppBroadcastingStatusDetails
+         RetVal : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingStatusDetails
       )
       return WinRt.Hresult is abstract;
 
@@ -213,7 +213,7 @@ package WinRt.Windows.Media.AppBroadcasting is
       function GetStatus
       (
          this : access IAppBroadcastingUI_Interface;
-         RetVal : access Windows.Media.AppBroadcasting.IAppBroadcastingStatus
+         RetVal : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -231,15 +231,15 @@ package WinRt.Windows.Media.AppBroadcasting is
       function GetDefault
       (
          this : access IAppBroadcastingUIStatics_Interface;
-         RetVal : access Windows.Media.AppBroadcasting.IAppBroadcastingUI
+         RetVal : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingUI
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IAppBroadcastingUIStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Media.AppBroadcasting.IAppBroadcastingUI
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Media.AppBroadcasting.IAppBroadcastingUI
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.Media.AppBroadcasting is
    procedure remove_IsCurrentAppBroadcastingChanged
    (
       this : in out AppBroadcastingMonitor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -374,7 +374,7 @@ package WinRt.Windows.Media.AppBroadcasting is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Media.AppBroadcasting.AppBroadcastingUI;
 

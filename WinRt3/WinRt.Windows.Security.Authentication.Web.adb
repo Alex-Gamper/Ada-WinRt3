@@ -42,7 +42,7 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -63,8 +63,8 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -85,10 +85,10 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class;
-         continuationData : Windows.Foundation.Collections.ValueSet'Class;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class;
+         continuationData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -109,7 +109,7 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       function AuthenticateSilentlyAsync
       (
-         requestUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -165,7 +165,7 @@ package body WinRt.Windows.Security.Authentication.Web is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+                        Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
                         Retval.m_IWebAuthenticationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -182,8 +182,8 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       function AuthenticateSilentlyAsync
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -239,7 +239,7 @@ package body WinRt.Windows.Security.Authentication.Web is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+                        Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
                         Retval.m_IWebAuthenticationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -256,9 +256,9 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       function AuthenticateAsync
       (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -314,7 +314,7 @@ package body WinRt.Windows.Security.Authentication.Web is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+                        Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
                         Retval.m_IWebAuthenticationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -331,8 +331,8 @@ package body WinRt.Windows.Security.Authentication.Web is
 
       function AuthenticateAsync
       (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult is
          Hr               : WinRt.HResult := S_OK;
@@ -388,7 +388,7 @@ package body WinRt.Windows.Security.Authentication.Web is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+                        Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
                         Retval.m_IWebAuthenticationResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -410,7 +410,7 @@ package body WinRt.Windows.Security.Authentication.Web is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.WebAuthenticationBroker");
          m_Factory        : access WinRt.Windows.Security.Authentication.Web.IWebAuthenticationBrokerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       begin
          return RetVal : WinRt.Windows.Foundation.Uri do
             Hr := RoGetActivationFactory (m_hString, IID_IWebAuthenticationBrokerStatics'Access , m_Factory'Address);
@@ -420,7 +420,7 @@ package body WinRt.Windows.Security.Authentication.Web is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+               Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
                Retval.m_IUriRuntimeClass.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -480,7 +480,7 @@ package body WinRt.Windows.Security.Authentication.Web is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Web.WebAuthenticationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Web.WebAuthenticationStatus;
    begin
       Hr := this.m_IWebAuthenticationResult.all.get_ResponseStatus (m_ComRetVal'Access);
       if Hr /= S_OK then

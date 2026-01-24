@@ -136,20 +136,20 @@ package body WinRt.Windows.ApplicationModel is
    function GetLogo
    (
       this : in out AppDisplayInfo;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
          Hr := this.m_IAppDisplayInfo.all.GetLogo (size, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;
@@ -184,7 +184,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInfo");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := RoGetActivationFactory (m_hString, IID_IAppInfoStatics'Access , m_Factory'Address);
@@ -194,7 +194,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+            Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
             Retval.m_IAppInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -211,7 +211,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInfo");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
       HStr_appUserModelId : constant WinRt.HString := To_HString (appUserModelId);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
@@ -222,7 +222,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+            Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
             Retval.m_IAppInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -232,7 +232,7 @@ package body WinRt.Windows.ApplicationModel is
 
    function GetFromAppUserModelIdForUser
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       appUserModelId : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.AppInfo is
@@ -241,7 +241,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInfo");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInfoStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
       HStr_appUserModelId : constant WinRt.HString := To_HString (appUserModelId);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
@@ -252,7 +252,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+            Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
             Retval.m_IAppInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -311,14 +311,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppDisplayInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppDisplayInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppDisplayInfo do
          Hr := this.m_IAppInfo.all.get_DisplayInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppDisplayInfo := new Windows.ApplicationModel.IAppDisplayInfo;
+         Retval.m_IAppDisplayInfo := new WinRt.Windows.ApplicationModel.IAppDisplayInfo;
          Retval.m_IAppDisplayInfo.all := m_ComRetVal;
       end return;
    end;
@@ -352,7 +352,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInfo_Interface, WinRt.Windows.ApplicationModel.IAppInfo2, WinRt.Windows.ApplicationModel.IID_IAppInfo2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
@@ -362,7 +362,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -376,7 +376,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInfo3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppExecutionContext;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppExecutionContext;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInfo_Interface, WinRt.Windows.ApplicationModel.IAppInfo3, WinRt.Windows.ApplicationModel.IID_IAppInfo3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInfo.all);
@@ -451,14 +451,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppInstallerInfo.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -619,7 +619,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageVersion;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageVersion;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallerInfo.all);
@@ -640,7 +640,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallerInfo.all);
@@ -661,7 +661,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
@@ -685,7 +685,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
@@ -709,7 +709,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
@@ -733,7 +733,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
@@ -757,7 +757,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IUriRuntimeClass.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
@@ -781,7 +781,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IAppInstallerInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.AppInstallerPolicySource;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.AppInstallerPolicySource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IAppInstallerInfo_Interface, WinRt.Windows.ApplicationModel.IAppInstallerInfo2, WinRt.Windows.ApplicationModel.IID_IAppInstallerInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppInstallerInfo.all);
@@ -823,7 +823,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInstance");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInstanceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInstance;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInstance;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInstance do
          Hr := RoGetActivationFactory (m_hString, IID_IAppInstanceStatics'Access , m_Factory'Address);
@@ -833,7 +833,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppInstance := new Windows.ApplicationModel.IAppInstance;
+            Retval.m_IAppInstance := new WinRt.Windows.ApplicationModel.IAppInstance;
             Retval.m_IAppInstance.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -847,7 +847,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInstance");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInstanceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Activation.IActivatedEventArgs;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAppInstanceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -871,7 +871,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInstance");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInstanceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInstance;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInstance;
       HStr_key : constant WinRt.HString := To_HString (key);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInstance do
@@ -882,7 +882,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppInstance := new Windows.ApplicationModel.IAppInstance;
+            Retval.m_IAppInstance := new WinRt.Windows.ApplicationModel.IAppInstance;
             Retval.m_IAppInstance.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -915,7 +915,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppInstance");
       m_Factory        : access WinRt.Windows.ApplicationModel.IAppInstanceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAppInstanceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1062,14 +1062,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IEnteredBackgroundEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1099,21 +1099,21 @@ package body WinRt.Windows.ApplicationModel is
 
    function Constructor
    (
-      Relationship : Windows.ApplicationModel.PackageRelationship
+      Relationship : WinRt.Windows.ApplicationModel.PackageRelationship
    )
    return FindRelatedPackagesOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.FindRelatedPackagesOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.IFindRelatedPackagesOptions");
       m_Factory    : access IFindRelatedPackagesOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.IFindRelatedPackagesOptions;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.IFindRelatedPackagesOptions;
    begin
       return RetVal : FindRelatedPackagesOptions do
          Hr := RoGetActivationFactory (m_hString, IID_IFindRelatedPackagesOptionsFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (Relationship, m_ComRetVal'Access);
-            Retval.m_IFindRelatedPackagesOptions := new Windows.ApplicationModel.IFindRelatedPackagesOptions;
+            Retval.m_IFindRelatedPackagesOptions := new WinRt.Windows.ApplicationModel.IFindRelatedPackagesOptions;
             Retval.m_IFindRelatedPackagesOptions.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1132,7 +1132,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageRelationship;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageRelationship;
    begin
       Hr := this.m_IFindRelatedPackagesOptions.all.get_Relationship (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1144,7 +1144,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure put_Relationship
    (
       this : in out FindRelatedPackagesOptions;
-      value : Windows.ApplicationModel.PackageRelationship
+      value : WinRt.Windows.ApplicationModel.PackageRelationship
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1315,7 +1315,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.FullTrustLaunchResult;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.FullTrustLaunchResult;
    begin
       Hr := this.m_IFullTrustProcessLaunchResult.all.get_LaunchResult (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1332,7 +1332,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IFullTrustProcessLaunchResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1606,7 +1606,7 @@ package body WinRt.Windows.ApplicationModel is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFullTrustProcessLaunchResult := new Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+                        Retval.m_IFullTrustProcessLaunchResult := new WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult;
                         Retval.m_IFullTrustProcessLaunchResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1683,7 +1683,7 @@ package body WinRt.Windows.ApplicationModel is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IFullTrustProcessLaunchResult := new Windows.ApplicationModel.IFullTrustProcessLaunchResult;
+                        Retval.m_IFullTrustProcessLaunchResult := new WinRt.Windows.ApplicationModel.IFullTrustProcessLaunchResult;
                         Retval.m_IFullTrustProcessLaunchResult.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -1733,14 +1733,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ILeavingBackgroundEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1796,7 +1796,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.LimitedAccessFeatureStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.LimitedAccessFeatureStatus;
    begin
       Hr := this.m_ILimitedAccessFeatureRequestResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1813,7 +1813,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_ILimitedAccessFeatureRequestResult.all.get_EstimatedRemovalDate (m_ComRetVal'Access);
@@ -1841,7 +1841,7 @@ package body WinRt.Windows.ApplicationModel is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.LimitedAccessFeatures");
          m_Factory        : access WinRt.Windows.ApplicationModel.ILimitedAccessFeaturesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.ILimitedAccessFeatureRequestResult;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ILimitedAccessFeatureRequestResult;
          HStr_featureId : constant WinRt.HString := To_HString (featureId);
          HStr_token : constant WinRt.HString := To_HString (token);
          HStr_attestation : constant WinRt.HString := To_HString (attestation);
@@ -1854,7 +1854,7 @@ package body WinRt.Windows.ApplicationModel is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ILimitedAccessFeatureRequestResult := new Windows.ApplicationModel.ILimitedAccessFeatureRequestResult;
+               Retval.m_ILimitedAccessFeatureRequestResult := new WinRt.Windows.ApplicationModel.ILimitedAccessFeatureRequestResult;
                Retval.m_ILimitedAccessFeatureRequestResult.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -1896,7 +1896,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Package");
       m_Factory        : access WinRt.Windows.ApplicationModel.IPackageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := RoGetActivationFactory (m_hString, IID_IPackageStatics'Access , m_Factory'Address);
@@ -1906,7 +1906,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+            Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
             Retval.m_IPackage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1924,14 +1924,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageId;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackageId;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageId do
          Hr := this.m_IPackage.all.get_Id (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackageId := new Windows.ApplicationModel.IPackageId;
+         Retval.m_IPackageId := new WinRt.Windows.ApplicationModel.IPackageId;
          Retval.m_IPackageId.all := m_ComRetVal;
       end return;
    end;
@@ -1944,14 +1944,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IPackage.all.get_InstalledLocation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -1981,7 +1981,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackage.Kind;
    begin
       Hr := this.m_IPackage.all.get_Dependencies (m_ComRetVal'Access);
@@ -2074,7 +2074,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage2, WinRt.Windows.ApplicationModel.IID_IPackage2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -2084,7 +2084,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -2161,7 +2161,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackageStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage3, WinRt.Windows.ApplicationModel.IID_IPackage3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageStatus do
@@ -2171,7 +2171,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackageStatus := new Windows.ApplicationModel.IPackageStatus;
+         Retval.m_IPackageStatus := new WinRt.Windows.ApplicationModel.IPackageStatus;
          Retval.m_IPackageStatus.all := m_ComRetVal;
       end return;
    end;
@@ -2185,7 +2185,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage3, WinRt.Windows.ApplicationModel.IID_IPackage3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackage.all);
@@ -2273,7 +2273,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackageWithMetadata := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackageWithMetadata, WinRt.Windows.ApplicationModel.IID_IPackageWithMetadata'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackage.all);
@@ -2339,7 +2339,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageSignatureKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageSignatureKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage4, WinRt.Windows.ApplicationModel.IID_IPackage4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackage.all);
@@ -2565,7 +2565,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageContentGroup := new Windows.ApplicationModel.IPackageContentGroup;
+                  Retval.m_IPackageContentGroup := new WinRt.Windows.ApplicationModel.IPackageContentGroup;
                   Retval.m_IPackageContentGroup.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2793,7 +2793,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInstallerInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInstallerInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage6, WinRt.Windows.ApplicationModel.IID_IPackage6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInstallerInfo do
@@ -2803,7 +2803,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInstallerInfo := new Windows.ApplicationModel.IAppInstallerInfo;
+         Retval.m_IAppInstallerInfo := new WinRt.Windows.ApplicationModel.IAppInstallerInfo;
          Retval.m_IAppInstallerInfo.all := m_ComRetVal;
       end return;
    end;
@@ -2865,7 +2865,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageUpdateAvailabilityResult := new Windows.ApplicationModel.IPackageUpdateAvailabilityResult;
+                  Retval.m_IPackageUpdateAvailabilityResult := new WinRt.Windows.ApplicationModel.IPackageUpdateAvailabilityResult;
                   Retval.m_IPackageUpdateAvailabilityResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2887,7 +2887,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage7, WinRt.Windows.ApplicationModel.IID_IPackage7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2897,7 +2897,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2911,7 +2911,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage7, WinRt.Windows.ApplicationModel.IID_IPackage7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2921,7 +2921,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2935,7 +2935,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage8, WinRt.Windows.ApplicationModel.IID_IPackage8'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2945,7 +2945,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2959,7 +2959,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage8, WinRt.Windows.ApplicationModel.IID_IPackage8'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2969,7 +2969,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -2983,7 +2983,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage8, WinRt.Windows.ApplicationModel.IID_IPackage8'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
@@ -2993,7 +2993,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -3145,14 +3145,14 @@ package body WinRt.Windows.ApplicationModel is
    function GetLogoAsRandomAccessStreamReference
    (
       this : in out Package_x;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage8, WinRt.Windows.ApplicationModel.IID_IPackage8'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Storage.Streams.RandomAccessStreamReference do
@@ -3162,7 +3162,7 @@ package body WinRt.Windows.ApplicationModel is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRandomAccessStreamReference := new Windows.Storage.Streams.IRandomAccessStreamReference;
+         Retval.m_IRandomAccessStreamReference := new WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          Retval.m_IRandomAccessStreamReference.all := m_ComRetVal;
       end return;
    end;
@@ -3176,7 +3176,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage8, WinRt.Windows.ApplicationModel.IID_IPackage8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackage.all);
@@ -3212,14 +3212,14 @@ package body WinRt.Windows.ApplicationModel is
    function FindRelatedPackages
    (
       this : in out Package_x;
-      options : Windows.ApplicationModel.FindRelatedPackagesOptions'Class
+      options : WinRt.Windows.ApplicationModel.FindRelatedPackagesOptions'Class
    )
    return IVector_IPackage.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackage9 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPackage.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackage_Interface, WinRt.Windows.ApplicationModel.IPackage9, WinRt.Windows.ApplicationModel.IID_IPackage9'Unchecked_Access);
    begin
@@ -3288,7 +3288,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.PackageCatalog");
       m_Factory        : access WinRt.Windows.ApplicationModel.IPackageCatalogStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageCatalog;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackageCatalog;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageCatalog do
          Hr := RoGetActivationFactory (m_hString, IID_IPackageCatalogStatics'Access , m_Factory'Address);
@@ -3298,7 +3298,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPackageCatalog := new Windows.ApplicationModel.IPackageCatalog;
+            Retval.m_IPackageCatalog := new WinRt.Windows.ApplicationModel.IPackageCatalog;
             Retval.m_IPackageCatalog.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3312,7 +3312,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.PackageCatalog");
       m_Factory        : access WinRt.Windows.ApplicationModel.IPackageCatalogStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageCatalog;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackageCatalog;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageCatalog do
          Hr := RoGetActivationFactory (m_hString, IID_IPackageCatalogStatics'Access , m_Factory'Address);
@@ -3322,7 +3322,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPackageCatalog := new Windows.ApplicationModel.IPackageCatalog;
+            Retval.m_IPackageCatalog := new WinRt.Windows.ApplicationModel.IPackageCatalog;
             Retval.m_IPackageCatalog.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3331,7 +3331,7 @@ package body WinRt.Windows.ApplicationModel is
 
    function OpenForPackage
    (
-      package_x_p : Windows.ApplicationModel.Package_x'Class
+      package_x_p : WinRt.Windows.ApplicationModel.Package_x'Class
    )
    return WinRt.Windows.ApplicationModel.PackageCatalog is
       Hr               : WinRt.HResult := S_OK;
@@ -3339,7 +3339,7 @@ package body WinRt.Windows.ApplicationModel is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.PackageCatalog");
       m_Factory        : access WinRt.Windows.ApplicationModel.IPackageCatalogStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackageCatalog;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackageCatalog;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.PackageCatalog do
          Hr := RoGetActivationFactory (m_hString, IID_IPackageCatalogStatics2'Access , m_Factory'Address);
@@ -3349,7 +3349,7 @@ package body WinRt.Windows.ApplicationModel is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPackageCatalog := new Windows.ApplicationModel.IPackageCatalog;
+            Retval.m_IPackageCatalog := new WinRt.Windows.ApplicationModel.IPackageCatalog;
             Retval.m_IPackageCatalog.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3368,7 +3368,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageCatalog.all.add_PackageStaging (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3380,7 +3380,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageStaging
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3401,7 +3401,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageCatalog.all.add_PackageInstalling (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3413,7 +3413,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageInstalling
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3434,7 +3434,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageCatalog.all.add_PackageUpdating (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3446,7 +3446,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageUpdating
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3467,7 +3467,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageCatalog.all.add_PackageUninstalling (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3479,7 +3479,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageUninstalling
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3500,7 +3500,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPackageCatalog.all.add_PackageStatusChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3512,7 +3512,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageStatusChanged
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3534,7 +3534,7 @@ package body WinRt.Windows.ApplicationModel is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.IPackageCatalog2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.IPackageCatalog_Interface, WinRt.Windows.ApplicationModel.IPackageCatalog2, WinRt.Windows.ApplicationModel.IID_IPackageCatalog2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPackageCatalog.all);
@@ -3549,7 +3549,7 @@ package body WinRt.Windows.ApplicationModel is
    procedure remove_PackageContentGroupStaging
    (
       this : in out PackageCatalog;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3624,7 +3624,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageCatalogAddOptionalPackageResult := new Windows.ApplicationModel.IPackageCatalogAddOptionalPackageResult;
+                  Retval.m_IPackageCatalogAddOptionalPackageResult := new WinRt.Windows.ApplicationModel.IPackageCatalogAddOptionalPackageResult;
                   Retval.m_IPackageCatalogAddOptionalPackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3696,7 +3696,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageCatalogRemoveOptionalPackagesResult := new Windows.ApplicationModel.IPackageCatalogRemoveOptionalPackagesResult;
+                  Retval.m_IPackageCatalogRemoveOptionalPackagesResult := new WinRt.Windows.ApplicationModel.IPackageCatalogRemoveOptionalPackagesResult;
                   Retval.m_IPackageCatalogRemoveOptionalPackagesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3714,7 +3714,7 @@ package body WinRt.Windows.ApplicationModel is
       this : in out PackageCatalog;
       resourcePackageFamilyName : WinRt.WString;
       resourceID : WinRt.WString;
-      options : Windows.ApplicationModel.AddResourcePackageOptions
+      options : WinRt.Windows.ApplicationModel.AddResourcePackageOptions
    )
    return WinRt.Windows.ApplicationModel.PackageCatalogAddResourcePackageResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -3771,7 +3771,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageCatalogAddResourcePackageResult := new Windows.ApplicationModel.IPackageCatalogAddResourcePackageResult;
+                  Retval.m_IPackageCatalogAddResourcePackageResult := new WinRt.Windows.ApplicationModel.IPackageCatalogAddResourcePackageResult;
                   Retval.m_IPackageCatalogAddResourcePackageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3844,7 +3844,7 @@ package body WinRt.Windows.ApplicationModel is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPackageCatalogRemoveResourcePackagesResult := new Windows.ApplicationModel.IPackageCatalogRemoveResourcePackagesResult;
+                  Retval.m_IPackageCatalogRemoveResourcePackagesResult := new WinRt.Windows.ApplicationModel.IPackageCatalogRemoveResourcePackagesResult;
                   Retval.m_IPackageCatalogRemoveResourcePackagesResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3888,14 +3888,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageCatalogAddOptionalPackageResult.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -3908,7 +3908,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageCatalogAddOptionalPackageResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3948,14 +3948,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageCatalogAddResourcePackageResult.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -3985,7 +3985,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageCatalogAddResourcePackageResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4025,7 +4025,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackage.Kind;
    begin
       Hr := this.m_IPackageCatalogRemoveOptionalPackagesResult.all.get_PackagesRemoved (m_ComRetVal'Access);
@@ -4045,7 +4045,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageCatalogRemoveOptionalPackagesResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4085,7 +4085,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPackage.Kind;
    begin
       Hr := this.m_IPackageCatalogRemoveResourcePackagesResult.all.get_PackagesRemoved (m_ComRetVal'Access);
@@ -4105,7 +4105,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageCatalogRemoveResourcePackagesResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4172,14 +4172,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageContentGroup.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4212,7 +4212,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageContentGroupState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageContentGroupState;
    begin
       Hr := this.m_IPackageContentGroup.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4286,14 +4286,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageContentGroupStagingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4340,7 +4340,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageContentGroupStagingEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4437,7 +4437,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageVersion;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageVersion;
    begin
       Hr := this.m_IPackageId.all.get_Version (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4454,7 +4454,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.ProcessorArchitecture;
+      m_ComRetVal      : aliased WinRt.Windows.System.ProcessorArchitecture;
    begin
       Hr := this.m_IPackageId.all.get_Architecture (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4659,14 +4659,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageInstallingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4713,7 +4713,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageInstallingEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4770,14 +4770,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageStagingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -4824,7 +4824,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageStagingEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5112,14 +5112,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageStatusChangedEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -5172,14 +5172,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageUninstallingEventArgs.all.get_Package (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -5226,7 +5226,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageUninstallingEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5266,7 +5266,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.PackageUpdateAvailability;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.PackageUpdateAvailability;
    begin
       Hr := this.m_IPackageUpdateAvailabilityResult.all.get_Availability (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5283,7 +5283,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageUpdateAvailabilityResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5340,14 +5340,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageUpdatingEventArgs.all.get_SourcePackage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -5360,14 +5360,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Package_x do
          Hr := this.m_IPackageUpdatingEventArgs.all.get_TargetPackage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPackage := new Windows.ApplicationModel.IPackage;
+         Retval.m_IPackage := new WinRt.Windows.ApplicationModel.IPackage;
          Retval.m_IPackage.all := m_ComRetVal;
       end return;
    end;
@@ -5414,7 +5414,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IPackageUpdatingEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5572,7 +5572,7 @@ package body WinRt.Windows.ApplicationModel is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IStartupTask := new Windows.ApplicationModel.IStartupTask;
+                     Retval.m_IStartupTask := new WinRt.Windows.ApplicationModel.IStartupTask;
                      Retval.m_IStartupTask.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -5676,7 +5676,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.StartupTaskState;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.StartupTaskState;
    begin
       Hr := this.m_IStartupTask.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5773,14 +5773,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ISuspendingOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ISuspendingOperation;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SuspendingOperation do
          Hr := this.m_ISuspendingEventArgs.all.get_SuspendingOperation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISuspendingOperation := new Windows.ApplicationModel.ISuspendingOperation;
+         Retval.m_ISuspendingOperation := new WinRt.Windows.ApplicationModel.ISuspendingOperation;
          Retval.m_ISuspendingOperation.all := m_ComRetVal;
       end return;
    end;
@@ -5816,14 +5816,14 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.ISuspendingDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.ISuspendingDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.SuspendingDeferral do
          Hr := this.m_ISuspendingOperation.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISuspendingDeferral := new Windows.ApplicationModel.ISuspendingDeferral;
+         Retval.m_ISuspendingDeferral := new WinRt.Windows.ApplicationModel.ISuspendingDeferral;
          Retval.m_ISuspendingDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -5836,7 +5836,7 @@ package body WinRt.Windows.ApplicationModel is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISuspendingOperation.all.get_Deadline (m_ComRetVal'Access);
       if Hr /= S_OK then

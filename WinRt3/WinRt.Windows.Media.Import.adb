@@ -84,14 +84,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSession;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSession do
          Hr := this.m_IPhotoImportDeleteImportedItemsFromSourceResult.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSession := new Windows.Media.Import.IPhotoImportSession;
+         Retval.m_IPhotoImportSession := new WinRt.Windows.Media.Import.IPhotoImportSession;
          Retval.m_IPhotoImportSession.all := m_ComRetVal;
       end return;
    end;
@@ -121,7 +121,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportItem.Kind;
    begin
       Hr := this.m_IPhotoImportDeleteImportedItemsFromSourceResult.all.get_DeletedItems (m_ComRetVal'Access);
@@ -334,14 +334,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSession;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSession do
          Hr := this.m_IPhotoImportFindItemsResult.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSession := new Windows.Media.Import.IPhotoImportSession;
+         Retval.m_IPhotoImportSession := new WinRt.Windows.Media.Import.IPhotoImportSession;
          Retval.m_IPhotoImportSession.all := m_ComRetVal;
       end return;
    end;
@@ -371,7 +371,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportItem.Kind;
    begin
       Hr := this.m_IPhotoImportFindItemsResult.all.get_FoundItems (m_ComRetVal'Access);
@@ -626,7 +626,7 @@ package body WinRt.Windows.Media.Import is
    procedure SetImportMode
    (
       this : in out PhotoImportFindItemsResult;
-      value : Windows.Media.Import.PhotoImportImportMode
+      value : WinRt.Windows.Media.Import.PhotoImportImportMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -646,7 +646,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportImportMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportImportMode;
    begin
       Hr := this.m_IPhotoImportFindItemsResult.all.get_ImportMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -834,7 +834,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhotoImportFindItemsResult.all.add_SelectionChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -846,7 +846,7 @@ package body WinRt.Windows.Media.Import is
    procedure remove_SelectionChanged
    (
       this : in out PhotoImportFindItemsResult;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -911,7 +911,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportImportItemsResult := new Windows.Media.Import.IPhotoImportImportItemsResult;
+                  Retval.m_IPhotoImportImportItemsResult := new WinRt.Windows.Media.Import.IPhotoImportImportItemsResult;
                   Retval.m_IPhotoImportImportItemsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -933,7 +933,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPhotoImportFindItemsResult.all.add_ItemImported (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -945,7 +945,7 @@ package body WinRt.Windows.Media.Import is
    procedure remove_ItemImported
    (
       this : in out PhotoImportFindItemsResult;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -960,8 +960,8 @@ package body WinRt.Windows.Media.Import is
    procedure AddItemsInDateRangeToSelection
    (
       this : in out PhotoImportFindItemsResult;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1008,14 +1008,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSession;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSession do
          Hr := this.m_IPhotoImportImportItemsResult.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSession := new Windows.Media.Import.IPhotoImportSession;
+         Retval.m_IPhotoImportSession := new WinRt.Windows.Media.Import.IPhotoImportSession;
          Retval.m_IPhotoImportSession.all := m_ComRetVal;
       end return;
    end;
@@ -1045,7 +1045,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportItem.Kind;
    begin
       Hr := this.m_IPhotoImportImportItemsResult.all.get_ImportedItems (m_ComRetVal'Access);
@@ -1280,7 +1280,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult := new Windows.Media.Import.IPhotoImportDeleteImportedItemsFromSourceResult;
+                  Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult := new WinRt.Windows.Media.Import.IPhotoImportDeleteImportedItemsFromSourceResult;
                   Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1361,7 +1361,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportContentType;
    begin
       Hr := this.m_IPhotoImportItem.all.get_ContentType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1395,7 +1395,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhotoImportItem.all.get_Date (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1412,14 +1412,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSidecar;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSidecar;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSidecar do
          Hr := this.m_IPhotoImportItem.all.get_Sibling (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSidecar := new Windows.Media.Import.IPhotoImportSidecar;
+         Retval.m_IPhotoImportSidecar := new WinRt.Windows.Media.Import.IPhotoImportSidecar;
          Retval.m_IPhotoImportSidecar.all := m_ComRetVal;
       end return;
    end;
@@ -1432,7 +1432,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportSidecar.Kind;
    begin
       Hr := this.m_IPhotoImportItem.all.get_Sidecars (m_ComRetVal'Access);
@@ -1452,7 +1452,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportVideoSegment.Kind;
    begin
       Hr := this.m_IPhotoImportItem.all.get_VideoSegments (m_ComRetVal'Access);
@@ -1504,7 +1504,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IPhotoImportItem.all.get_Thumbnail (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1521,7 +1521,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPhotoImportItem.all.get_ImportedFileNames (m_ComRetVal'Access);
@@ -1541,7 +1541,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPhotoImportItem.all.get_DeletedFileNames (m_ComRetVal'Access);
@@ -1608,14 +1608,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportItem;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportItem;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportItem do
          Hr := this.m_IPhotoImportItemImportedEventArgs.all.get_ImportedItem (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportItem := new Windows.Media.Import.IPhotoImportItem;
+         Retval.m_IPhotoImportItem := new WinRt.Windows.Media.Import.IPhotoImportItem;
          Retval.m_IPhotoImportItem.all := m_ComRetVal;
       end return;
    end;
@@ -1765,7 +1765,7 @@ package body WinRt.Windows.Media.Import is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Import.PhotoImportManager");
          m_Factory        : access WinRt.Windows.Media.Import.IPhotoImportManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IPhotoImportManagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -1812,7 +1812,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportStage;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportStage;
    begin
       Hr := this.m_IPhotoImportOperation.all.get_Stage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1829,14 +1829,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSession;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSession do
          Hr := this.m_IPhotoImportOperation.all.get_Session (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSession := new Windows.Media.Import.IPhotoImportSession;
+         Retval.m_IPhotoImportSession := new WinRt.Windows.Media.Import.IPhotoImportSession;
          Retval.m_IPhotoImportSession.all := m_ComRetVal;
       end return;
    end;
@@ -1894,7 +1894,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportFindItemsResult := new Windows.Media.Import.IPhotoImportFindItemsResult;
+                  Retval.m_IPhotoImportFindItemsResult := new WinRt.Windows.Media.Import.IPhotoImportFindItemsResult;
                   Retval.m_IPhotoImportFindItemsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1960,7 +1960,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportImportItemsResult := new Windows.Media.Import.IPhotoImportImportItemsResult;
+                  Retval.m_IPhotoImportImportItemsResult := new WinRt.Windows.Media.Import.IPhotoImportImportItemsResult;
                   Retval.m_IPhotoImportImportItemsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult := new Windows.Media.Import.IPhotoImportDeleteImportedItemsFromSourceResult;
+                  Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult := new WinRt.Windows.Media.Import.IPhotoImportDeleteImportedItemsFromSourceResult;
                   Retval.m_IPhotoImportDeleteImportedItemsFromSourceResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2110,14 +2110,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSource;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSource do
          Hr := this.m_IPhotoImportSession.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSource := new Windows.Media.Import.IPhotoImportSource;
+         Retval.m_IPhotoImportSource := new WinRt.Windows.Media.Import.IPhotoImportSource;
          Retval.m_IPhotoImportSource.all := m_ComRetVal;
       end return;
    end;
@@ -2142,7 +2142,7 @@ package body WinRt.Windows.Media.Import is
    procedure put_DestinationFolder
    (
       this : in out PhotoImportSession;
-      value : Windows.Storage.IStorageFolder
+      value : WinRt.Windows.Storage.IStorageFolder
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2162,7 +2162,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       Hr := this.m_IPhotoImportSession.all.get_DestinationFolder (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2206,7 +2206,7 @@ package body WinRt.Windows.Media.Import is
    procedure put_SubfolderCreationMode
    (
       this : in out PhotoImportSession;
-      value : Windows.Media.Import.PhotoImportSubfolderCreationMode
+      value : WinRt.Windows.Media.Import.PhotoImportSubfolderCreationMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2226,7 +2226,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportSubfolderCreationMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportSubfolderCreationMode;
    begin
       Hr := this.m_IPhotoImportSession.all.get_SubfolderCreationMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2275,8 +2275,8 @@ package body WinRt.Windows.Media.Import is
    function FindItemsAsync
    (
       this : in out PhotoImportSession;
-      contentTypeFilter : Windows.Media.Import.PhotoImportContentTypeFilter;
-      itemSelectionMode : Windows.Media.Import.PhotoImportItemSelectionMode
+      contentTypeFilter : WinRt.Windows.Media.Import.PhotoImportContentTypeFilter;
+      itemSelectionMode : WinRt.Windows.Media.Import.PhotoImportItemSelectionMode
    )
    return WinRt.Windows.Media.Import.PhotoImportFindItemsResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2327,7 +2327,7 @@ package body WinRt.Windows.Media.Import is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPhotoImportFindItemsResult := new Windows.Media.Import.IPhotoImportFindItemsResult;
+                  Retval.m_IPhotoImportFindItemsResult := new WinRt.Windows.Media.Import.IPhotoImportFindItemsResult;
                   Retval.m_IPhotoImportFindItemsResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2361,7 +2361,7 @@ package body WinRt.Windows.Media.Import is
    procedure put_SubfolderDateFormat
    (
       this : in out PhotoImportSession;
-      value : Windows.Media.Import.PhotoImportSubfolderDateFormat
+      value : WinRt.Windows.Media.Import.PhotoImportSubfolderDateFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2386,7 +2386,7 @@ package body WinRt.Windows.Media.Import is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Import.IPhotoImportSession2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportSubfolderDateFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportSubfolderDateFormat;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Import.IPhotoImportSession_Interface, WinRt.Windows.Media.Import.IPhotoImportSession2, WinRt.Windows.Media.Import.IID_IPhotoImportSession2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPhotoImportSession.all);
@@ -2506,7 +2506,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhotoImportSidecar.all.get_Date (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2597,7 +2597,7 @@ package body WinRt.Windows.Media.Import is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPhotoImportSource := new Windows.Media.Import.IPhotoImportSource;
+                     Retval.m_IPhotoImportSource := new WinRt.Windows.Media.Import.IPhotoImportSource;
                      Retval.m_IPhotoImportSource.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2615,7 +2615,7 @@ package body WinRt.Windows.Media.Import is
 
    function FromFolderAsync
    (
-      sourceRootFolder : Windows.Storage.IStorageFolder
+      sourceRootFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Media.Import.PhotoImportSource is
       Hr               : WinRt.HResult := S_OK;
@@ -2671,7 +2671,7 @@ package body WinRt.Windows.Media.Import is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPhotoImportSource := new Windows.Media.Import.IPhotoImportSource;
+                     Retval.m_IPhotoImportSource := new WinRt.Windows.Media.Import.IPhotoImportSource;
                      Retval.m_IPhotoImportSource.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2837,7 +2837,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportConnectionTransport;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportConnectionTransport;
    begin
       Hr := this.m_IPhotoImportSource.all.get_ConnectionTransport (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2854,7 +2854,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportSourceType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportSourceType;
    begin
       Hr := this.m_IPhotoImportSource.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2871,7 +2871,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportPowerSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportPowerSource;
    begin
       Hr := this.m_IPhotoImportSource.all.get_PowerSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2888,7 +2888,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IPhotoImportSource.all.get_BatteryLevelPercent (m_ComRetVal'Access);
@@ -2908,7 +2908,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IPhotoImportSource.all.get_DateTime (m_ComRetVal'Access);
@@ -2928,7 +2928,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportStorageMedium.Kind;
    begin
       Hr := this.m_IPhotoImportSource.all.get_StorageMedia (m_ComRetVal'Access);
@@ -2948,7 +2948,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IPhotoImportSource.all.get_IsLocked (m_ComRetVal'Access);
@@ -2985,7 +2985,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IPhotoImportSource.all.get_Thumbnail (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3002,14 +3002,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSession;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSession do
          Hr := this.m_IPhotoImportSource.all.CreateImportSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSession := new Windows.Media.Import.IPhotoImportSession;
+         Retval.m_IPhotoImportSession := new WinRt.Windows.Media.Import.IPhotoImportSession;
          Retval.m_IPhotoImportSession.all := m_ComRetVal;
       end return;
    end;
@@ -3105,7 +3105,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportStorageMediumType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportStorageMediumType;
    begin
       Hr := this.m_IPhotoImportStorageMedium.all.get_StorageMediumType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3122,7 +3122,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.PhotoImportAccessMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.PhotoImportAccessMode;
    begin
       Hr := this.m_IPhotoImportStorageMedium.all.get_SupportedAccessMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3247,7 +3247,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPhotoImportVideoSegment.all.get_Date (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3264,14 +3264,14 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Import.IPhotoImportSidecar;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Import.IPhotoImportSidecar;
    begin
       return RetVal : WinRt.Windows.Media.Import.PhotoImportSidecar do
          Hr := this.m_IPhotoImportVideoSegment.all.get_Sibling (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPhotoImportSidecar := new Windows.Media.Import.IPhotoImportSidecar;
+         Retval.m_IPhotoImportSidecar := new WinRt.Windows.Media.Import.IPhotoImportSidecar;
          Retval.m_IPhotoImportSidecar.all := m_ComRetVal;
       end return;
    end;
@@ -3284,7 +3284,7 @@ package body WinRt.Windows.Media.Import is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPhotoImportSidecar.Kind;
    begin
       Hr := this.m_IPhotoImportVideoSegment.all.get_Sidecars (m_ComRetVal'Access);

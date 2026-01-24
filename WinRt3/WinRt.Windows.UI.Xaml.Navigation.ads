@@ -168,52 +168,52 @@ package WinRt.Windows.UI.Xaml.Navigation is
    -----------------------------------------------------------------------------
 
    IID_LoadCompletedEventHandler : aliased WinRt.IID := (2931488645, 17404, 20012, (149, 195, 151, 174, 132, 234, 188, 142 ));
-   type LoadCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_LoadCompletedEventHandler'Access) with null record;
+   type LoadCompletedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_LoadCompletedEventHandler'Access) with null record;
       function Invoke
       (
          this : access LoadCompletedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+         e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
       )
       return WinRt.Hresult;
 
    IID_NavigatedEventHandler : aliased WinRt.IID := (2077347668, 9167, 19662, (178, 245, 76, 231, 141, 150, 137, 110 ));
-   type NavigatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatedEventHandler'Access) with null record;
+   type NavigatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatedEventHandler'Access) with null record;
       function Invoke
       (
          this : access NavigatedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+         e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
       )
       return WinRt.Hresult;
 
    IID_NavigatingCancelEventHandler : aliased WinRt.IID := (1977001871, 41730, 17545, (152, 152, 36, 234, 73, 24, 41, 16 ));
-   type NavigatingCancelEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatingCancelEventHandler'Access) with null record;
+   type NavigatingCancelEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatingCancelEventHandler'Access) with null record;
       function Invoke
       (
          this : access NavigatingCancelEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs
+         e : WinRt.Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs
       )
       return WinRt.Hresult;
 
    IID_NavigationFailedEventHandler : aliased WinRt.IID := (1303070321, 4786, 17351, (184, 146, 155, 226, 220, 211, 232, 141 ));
-   type NavigationFailedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Navigation.INavigationFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigationFailedEventHandler'Access) with null record;
+   type NavigationFailedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Navigation.INavigationFailedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigationFailedEventHandler'Access) with null record;
       function Invoke
       (
          this : access NavigationFailedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Navigation.INavigationFailedEventArgs
+         e : WinRt.Windows.UI.Xaml.Navigation.INavigationFailedEventArgs
       )
       return WinRt.Hresult;
 
    IID_NavigationStoppedEventHandler : aliased WinRt.IID := (4027678171, 4858, 19853, (139, 38, 179, 131, 208, 156, 43, 60 ));
-   type NavigationStoppedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigationStoppedEventHandler'Access) with null record;
+   type NavigationStoppedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigationStoppedEventHandler'Access) with null record;
       function Invoke
       (
          this : access NavigationStoppedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Navigation.INavigationEventArgs
+         e : WinRt.Windows.UI.Xaml.Navigation.INavigationEventArgs
       )
       return WinRt.Hresult;
 
@@ -241,14 +241,14 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_TransitionInfoOverride
       (
          this : access IFrameNavigationOptions_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_TransitionInfoOverride
       (
          this : access IFrameNavigationOptions_Interface;
-         value : Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         value : WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -262,7 +262,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
          this : access IFrameNavigationOptionsFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Navigation.IFrameNavigationOptions
+         RetVal : access WinRt.Windows.UI.Xaml.Navigation.IFrameNavigationOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -288,14 +288,14 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_NavigationMode
       (
          this : access INavigatingCancelEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Navigation.NavigationMode
+         RetVal : access WinRt.Windows.UI.Xaml.Navigation.NavigationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_SourcePageType
       (
          this : access INavigatingCancelEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -314,7 +314,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_NavigationTransitionInfo
       (
          this : access INavigatingCancelEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -340,28 +340,28 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_SourcePageType
       (
          this : access INavigationEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
       function get_NavigationMode
       (
          this : access INavigationEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Navigation.NavigationMode
+         RetVal : access WinRt.Windows.UI.Xaml.Navigation.NavigationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access INavigationEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access INavigationEventArgs_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -373,7 +373,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_NavigationTransitionInfo
       (
          this : access INavigationEventArgs2_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -385,7 +385,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_Exception
       (
          this : access INavigationFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -406,7 +406,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_SourcePageType
       (
          this : access INavigationFailedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -418,7 +418,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_SourcePageType
       (
          this : access IPageStackEntry_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.TypeName
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.TypeName
       )
       return WinRt.Hresult is abstract;
 
@@ -432,7 +432,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_NavigationTransitionInfo
       (
          this : access IPageStackEntry_Interface;
-         RetVal : access Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
+         RetVal : access WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -444,10 +444,10 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function CreateInstance
       (
          this : access IPageStackEntryFactory_Interface;
-         sourcePageType : Windows.UI.Xaml.Interop.TypeName;
+         sourcePageType : WinRt.Windows.UI.Xaml.Interop.TypeName;
          parameter : WinRt.IInspectable;
-         navigationTransitionInfo : Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
-         RetVal : access Windows.UI.Xaml.Navigation.IPageStackEntry
+         navigationTransitionInfo : WinRt.Windows.UI.Xaml.Media.Animation.INavigationTransitionInfo;
+         RetVal : access WinRt.Windows.UI.Xaml.Navigation.IPageStackEntry
       )
       return WinRt.Hresult is abstract;
 
@@ -459,7 +459,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
       function get_SourcePageTypeProperty
       (
          this : access IPageStackEntryStatics_Interface;
-         RetVal : access Windows.UI.Xaml.IDependencyProperty
+         RetVal : access WinRt.Windows.UI.Xaml.IDependencyProperty
       )
       return WinRt.Hresult is abstract;
 
@@ -509,7 +509,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
    procedure put_TransitionInfoOverride
    (
       this : in out FrameNavigationOptions;
-      value : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
+      value : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    );
 
    -----------------------------------------------------------------------------
@@ -599,7 +599,7 @@ package WinRt.Windows.UI.Xaml.Navigation is
    procedure put_Uri
    (
       this : in out NavigationEventArgs;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_NavigationTransitionInfo
@@ -652,9 +652,9 @@ package WinRt.Windows.UI.Xaml.Navigation is
 
    function Constructor
    (
-      sourcePageType : Windows.UI.Xaml.Interop.TypeName;
+      sourcePageType : WinRt.Windows.UI.Xaml.Interop.TypeName;
       parameter : WinRt.IInspectable;
-      navigationTransitionInfo : Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
+      navigationTransitionInfo : WinRt.Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo'Class
    )
    return PageStackEntry;
 

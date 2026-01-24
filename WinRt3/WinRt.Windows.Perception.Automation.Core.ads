@@ -60,7 +60,7 @@ package WinRt.Windows.Perception.Automation.Core is
       function SetActivationFactoryProvider
       (
          this : access ICorePerceptionAutomationStatics_Interface;
-         provider : Windows.Foundation.IGetActivationFactory
+         provider : WinRt.Windows.Foundation.IGetActivationFactory
       )
       return WinRt.Hresult is abstract;
 

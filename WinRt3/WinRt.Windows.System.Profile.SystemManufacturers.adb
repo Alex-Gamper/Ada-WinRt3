@@ -63,14 +63,14 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IOemSupportInfo.all.get_SupportLink (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -83,14 +83,14 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IOemSupportInfo.all.get_SupportAppLink (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -343,7 +343,7 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.OemSupportInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics'Access , m_Factory'Address);
@@ -353,7 +353,7 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IOemSupportInfo := new Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
+               Retval.m_IOemSupportInfo := new WinRt.Windows.System.Profile.SystemManufacturers.IOemSupportInfo;
                Retval.m_IOemSupportInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -367,7 +367,7 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
          m_hString        : constant WinRt.HString := To_HString ("Windows.System.Profile.SystemManufacturers.SystemSupportInfo");
          m_Factory        : access WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportInfoStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
+         m_ComRetVal      : aliased WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
       begin
          return RetVal : WinRt.Windows.System.Profile.SystemManufacturers.SystemSupportDeviceInfo do
             Hr := RoGetActivationFactory (m_hString, IID_ISystemSupportInfoStatics2'Access , m_Factory'Address);
@@ -377,7 +377,7 @@ package body WinRt.Windows.System.Profile.SystemManufacturers is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ISystemSupportDeviceInfo := new Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
+               Retval.m_ISystemSupportDeviceInfo := new WinRt.Windows.System.Profile.SystemManufacturers.ISystemSupportDeviceInfo;
                Retval.m_ISystemSupportDeviceInfo.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);

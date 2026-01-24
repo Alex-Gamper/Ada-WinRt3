@@ -423,7 +423,7 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapBuffer_Interface;
          index : WinRt.Int32;
-         RetVal : access Windows.Graphics.Imaging.BitmapPlaneDescription
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPlaneDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -468,14 +468,14 @@ package WinRt.Windows.Graphics.Imaging is
       function get_BitmapContainerProperties
       (
          this : access IBitmapDecoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapPropertiesView
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapPropertiesView
       )
       return WinRt.Hresult is abstract;
 
       function get_DecoderInformation
       (
          this : access IBitmapDecoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapCodecInformation
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapCodecInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -565,7 +565,7 @@ package WinRt.Windows.Graphics.Imaging is
       function CreateAsync
       (
          this : access IBitmapDecoderStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -574,7 +574,7 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapDecoderStatics_Interface;
          decoderId : WinRt.Guid;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -606,21 +606,21 @@ package WinRt.Windows.Graphics.Imaging is
       function get_EncoderInformation
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapCodecInformation
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapCodecInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapProperties
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapProperties
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapContainerProperties
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapProperties
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -669,15 +669,15 @@ package WinRt.Windows.Graphics.Imaging is
       function get_BitmapTransform
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapTransform
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapTransform
       )
       return WinRt.Hresult is abstract;
 
       function SetPixelData
       (
          this : access IBitmapEncoder_Interface;
-         pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-         alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
+         pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
          width : WinRt.UInt32;
          height : WinRt.UInt32;
          dpiX : WinRt.Double;
@@ -690,7 +690,7 @@ package WinRt.Windows.Graphics.Imaging is
       function GoToNextFrameAsync
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -698,14 +698,14 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapEncoder_Interface;
          encodingOptions : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function FlushAsync
       (
          this : access IBitmapEncoder_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -767,7 +767,7 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapEncoderStatics_Interface;
          encoderId : WinRt.Guid;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -776,7 +776,7 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapEncoderStatics_Interface;
          encoderId : WinRt.Guid;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          encodingOptions : GenericObject;
          RetVal : access GenericObject
       )
@@ -785,8 +785,8 @@ package WinRt.Windows.Graphics.Imaging is
       function CreateForTranscodingAsync
       (
          this : access IBitmapEncoderStatics_Interface;
-         stream : Windows.Storage.Streams.IRandomAccessStream;
-         bitmapDecoder_p : Windows.Graphics.Imaging.IBitmapDecoder;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         bitmapDecoder_p : WinRt.Windows.Graphics.Imaging.IBitmapDecoder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -794,7 +794,7 @@ package WinRt.Windows.Graphics.Imaging is
       function CreateForInPlacePropertyEncodingAsync
       (
          this : access IBitmapEncoderStatics_Interface;
-         bitmapDecoder_p : Windows.Graphics.Imaging.IBitmapDecoder;
+         bitmapDecoder_p : WinRt.Windows.Graphics.Imaging.IBitmapDecoder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -819,7 +819,7 @@ package WinRt.Windows.Graphics.Imaging is
       function SetSoftwareBitmap
       (
          this : access IBitmapEncoderWithSoftwareBitmap_Interface;
-         bitmap : Windows.Graphics.Imaging.ISoftwareBitmap
+         bitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -838,21 +838,21 @@ package WinRt.Windows.Graphics.Imaging is
       function get_BitmapProperties
       (
          this : access IBitmapFrame_Interface;
-         RetVal : access Windows.Graphics.Imaging.IBitmapPropertiesView
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapPropertiesView
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapPixelFormat
       (
          this : access IBitmapFrame_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapAlphaMode
       (
          this : access IBitmapFrame_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapAlphaMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
       )
       return WinRt.Hresult is abstract;
 
@@ -908,11 +908,11 @@ package WinRt.Windows.Graphics.Imaging is
       function GetPixelDataAsync
       (
          this : access IBitmapFrame_Interface;
-         pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-         alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-         transform : Windows.Graphics.Imaging.IBitmapTransform;
-         exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-         colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode;
+         pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         transform : WinRt.Windows.Graphics.Imaging.IBitmapTransform;
+         exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+         colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -932,8 +932,8 @@ package WinRt.Windows.Graphics.Imaging is
       function GetSoftwareBitmapAsync
       (
          this : access IBitmapFrameWithSoftwareBitmap_Interface;
-         pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-         alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
+         pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -941,11 +941,11 @@ package WinRt.Windows.Graphics.Imaging is
       function GetSoftwareBitmapAsync
       (
          this : access IBitmapFrameWithSoftwareBitmap_Interface;
-         pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-         alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-         transform : Windows.Graphics.Imaging.IBitmapTransform;
-         exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-         colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode;
+         pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         transform : WinRt.Windows.Graphics.Imaging.IBitmapTransform;
+         exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+         colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -959,7 +959,7 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapProperties_Interface;
          propertiesToSet : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,56 +1012,56 @@ package WinRt.Windows.Graphics.Imaging is
       function get_InterpolationMode
       (
          this : access IBitmapTransform_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapInterpolationMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_InterpolationMode
       (
          this : access IBitmapTransform_Interface;
-         value : Windows.Graphics.Imaging.BitmapInterpolationMode
+         value : WinRt.Windows.Graphics.Imaging.BitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Flip
       (
          this : access IBitmapTransform_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapFlip
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapFlip
       )
       return WinRt.Hresult is abstract;
 
       function put_Flip
       (
          this : access IBitmapTransform_Interface;
-         value : Windows.Graphics.Imaging.BitmapFlip
+         value : WinRt.Windows.Graphics.Imaging.BitmapFlip
       )
       return WinRt.Hresult is abstract;
 
       function get_Rotation
       (
          this : access IBitmapTransform_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapRotation
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapRotation
       )
       return WinRt.Hresult is abstract;
 
       function put_Rotation
       (
          this : access IBitmapTransform_Interface;
-         value : Windows.Graphics.Imaging.BitmapRotation
+         value : WinRt.Windows.Graphics.Imaging.BitmapRotation
       )
       return WinRt.Hresult is abstract;
 
       function get_Bounds
       (
          this : access IBitmapTransform_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapBounds
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapBounds
       )
       return WinRt.Hresult is abstract;
 
       function put_Bounds
       (
          this : access IBitmapTransform_Interface;
-         value : Windows.Graphics.Imaging.BitmapBounds
+         value : WinRt.Windows.Graphics.Imaging.BitmapBounds
       )
       return WinRt.Hresult is abstract;
 
@@ -1080,7 +1080,7 @@ package WinRt.Windows.Graphics.Imaging is
       function get_Type
       (
          this : access IBitmapTypedValue_Interface;
-         RetVal : access Windows.Foundation.PropertyType
+         RetVal : access WinRt.Windows.Foundation.PropertyType
       )
       return WinRt.Hresult is abstract;
 
@@ -1093,8 +1093,8 @@ package WinRt.Windows.Graphics.Imaging is
       (
          this : access IBitmapTypedValueFactory_Interface;
          value : WinRt.IInspectable;
-         type_x : Windows.Foundation.PropertyType;
-         RetVal : access Windows.Graphics.Imaging.IBitmapTypedValue
+         type_x : WinRt.Windows.Foundation.PropertyType;
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapTypedValue
       )
       return WinRt.Hresult is abstract;
 
@@ -1119,14 +1119,14 @@ package WinRt.Windows.Graphics.Imaging is
       function get_BitmapPixelFormat
       (
          this : access ISoftwareBitmap_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapAlphaMode
       (
          this : access ISoftwareBitmap_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapAlphaMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1182,36 +1182,36 @@ package WinRt.Windows.Graphics.Imaging is
       function LockBuffer
       (
          this : access ISoftwareBitmap_Interface;
-         mode : Windows.Graphics.Imaging.BitmapBufferAccessMode;
-         RetVal : access Windows.Graphics.Imaging.IBitmapBuffer
+         mode : WinRt.Windows.Graphics.Imaging.BitmapBufferAccessMode;
+         RetVal : access WinRt.Windows.Graphics.Imaging.IBitmapBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CopyTo
       (
          this : access ISoftwareBitmap_Interface;
-         bitmap : Windows.Graphics.Imaging.ISoftwareBitmap
+         bitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function CopyFromBuffer
       (
          this : access ISoftwareBitmap_Interface;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CopyToBuffer
       (
          this : access ISoftwareBitmap_Interface;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function GetReadOnlyView
       (
          this : access ISoftwareBitmap_Interface;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -1223,21 +1223,21 @@ package WinRt.Windows.Graphics.Imaging is
       function Create
       (
          this : access ISoftwareBitmapFactory_Interface;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function CreateWithAlpha
       (
          this : access ISoftwareBitmapFactory_Interface;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         alpha : Windows.Graphics.Imaging.BitmapAlphaMode;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
@@ -1249,57 +1249,57 @@ package WinRt.Windows.Graphics.Imaging is
       function Copy
       (
          this : access ISoftwareBitmapStatics_Interface;
-         source : Windows.Graphics.Imaging.ISoftwareBitmap;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         source : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function Convert
       (
          this : access ISoftwareBitmapStatics_Interface;
-         source : Windows.Graphics.Imaging.ISoftwareBitmap;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         source : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function Convert
       (
          this : access ISoftwareBitmapStatics_Interface;
-         source : Windows.Graphics.Imaging.ISoftwareBitmap;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
-         alpha : Windows.Graphics.Imaging.BitmapAlphaMode;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         source : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+         alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function CreateCopyFromBuffer
       (
          this : access ISoftwareBitmapStatics_Interface;
-         source : Windows.Storage.Streams.IBuffer;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
+         source : WinRt.Windows.Storage.Streams.IBuffer;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function CreateCopyFromBuffer
       (
          this : access ISoftwareBitmapStatics_Interface;
-         source : Windows.Storage.Streams.IBuffer;
-         format : Windows.Graphics.Imaging.BitmapPixelFormat;
+         source : WinRt.Windows.Storage.Streams.IBuffer;
+         format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
          width : WinRt.Int32;
          height : WinRt.Int32;
-         alpha : Windows.Graphics.Imaging.BitmapAlphaMode;
-         RetVal : access Windows.Graphics.Imaging.ISoftwareBitmap
+         alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+         RetVal : access WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function CreateCopyFromSurfaceAsync
       (
          this : access ISoftwareBitmapStatics_Interface;
-         surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1307,8 +1307,8 @@ package WinRt.Windows.Graphics.Imaging is
       function CreateCopyFromSurfaceAsync
       (
          this : access ISoftwareBitmapStatics_Interface;
-         surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-         alpha : Windows.Graphics.Imaging.BitmapAlphaMode;
+         surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+         alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1426,14 +1426,14 @@ package WinRt.Windows.Graphics.Imaging is
 
    function CreateAsync
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Imaging.BitmapDecoder;
 
    function CreateAsync
    (
       decoderId : WinRt.Guid;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Imaging.BitmapDecoder;
 
@@ -1540,11 +1540,11 @@ package WinRt.Windows.Graphics.Imaging is
    function GetPixelDataAsync
    (
       this : in out BitmapDecoder;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-      transform : Windows.Graphics.Imaging.BitmapTransform'Class;
-      exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-      colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+      transform : WinRt.Windows.Graphics.Imaging.BitmapTransform'Class;
+      exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+      colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class;
 
@@ -1557,19 +1557,19 @@ package WinRt.Windows.Graphics.Imaging is
    function GetSoftwareBitmapAsync
    (
       this : in out BitmapDecoder;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
 
    function GetSoftwareBitmapAsync
    (
       this : in out BitmapDecoder;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-      transform : Windows.Graphics.Imaging.BitmapTransform'Class;
-      exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-      colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+      transform : WinRt.Windows.Graphics.Imaging.BitmapTransform'Class;
+      exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+      colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
 
@@ -1606,28 +1606,28 @@ package WinRt.Windows.Graphics.Imaging is
    function CreateAsync_BitmapEncoder
    (
       encoderId : WinRt.Guid;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
 
    function CreateAsync
    (
       encoderId : WinRt.Guid;
-      stream : Windows.Storage.Streams.IRandomAccessStream;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       encodingOptions : GenericObject
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
 
    function CreateForTranscodingAsync
    (
-      stream : Windows.Storage.Streams.IRandomAccessStream;
-      bitmapDecoder_p : Windows.Graphics.Imaging.BitmapDecoder'Class
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      bitmapDecoder_p : WinRt.Windows.Graphics.Imaging.BitmapDecoder'Class
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
 
    function CreateForInPlacePropertyEncodingAsync
    (
-      bitmapDecoder_p : Windows.Graphics.Imaging.BitmapDecoder'Class
+      bitmapDecoder_p : WinRt.Windows.Graphics.Imaging.BitmapDecoder'Class
    )
    return WinRt.Windows.Graphics.Imaging.BitmapEncoder;
 
@@ -1700,8 +1700,8 @@ package WinRt.Windows.Graphics.Imaging is
    procedure SetPixelData
    (
       this : in out BitmapEncoder;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
       width : WinRt.UInt32;
       height : WinRt.UInt32;
       dpiX : WinRt.Double;
@@ -1728,7 +1728,7 @@ package WinRt.Windows.Graphics.Imaging is
    procedure SetSoftwareBitmap
    (
       this : in out BitmapEncoder;
-      bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      bitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1809,11 +1809,11 @@ package WinRt.Windows.Graphics.Imaging is
    function GetPixelDataAsync
    (
       this : in out BitmapFrame;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-      transform : Windows.Graphics.Imaging.BitmapTransform'Class;
-      exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-      colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+      transform : WinRt.Windows.Graphics.Imaging.BitmapTransform'Class;
+      exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+      colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode
    )
    return WinRt.Windows.Graphics.Imaging.PixelDataProvider'Class;
 
@@ -1826,19 +1826,19 @@ package WinRt.Windows.Graphics.Imaging is
    function GetSoftwareBitmapAsync
    (
       this : in out BitmapFrame;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
 
    function GetSoftwareBitmapAsync
    (
       this : in out BitmapFrame;
-      pixelFormat : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alphaMode : Windows.Graphics.Imaging.BitmapAlphaMode;
-      transform : Windows.Graphics.Imaging.BitmapTransform'Class;
-      exifOrientationMode : Windows.Graphics.Imaging.ExifOrientationMode;
-      colorManagementMode : Windows.Graphics.Imaging.ColorManagementMode
+      pixelFormat : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alphaMode : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
+      transform : WinRt.Windows.Graphics.Imaging.BitmapTransform'Class;
+      exifOrientationMode : WinRt.Windows.Graphics.Imaging.ExifOrientationMode;
+      colorManagementMode : WinRt.Windows.Graphics.Imaging.ColorManagementMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
 
@@ -1925,7 +1925,7 @@ package WinRt.Windows.Graphics.Imaging is
    (
       this : in out BitmapPropertySet;
       key : WinRt.WString;
-      value : Windows.Graphics.Imaging.BitmapTypedValue'Class
+      value : WinRt.Windows.Graphics.Imaging.BitmapTypedValue'Class
    )
    return WinRt.Boolean;
 
@@ -1987,7 +1987,7 @@ package WinRt.Windows.Graphics.Imaging is
    procedure put_InterpolationMode
    (
       this : in out BitmapTransform;
-      value : Windows.Graphics.Imaging.BitmapInterpolationMode
+      value : WinRt.Windows.Graphics.Imaging.BitmapInterpolationMode
    );
 
    function get_Flip
@@ -1999,7 +1999,7 @@ package WinRt.Windows.Graphics.Imaging is
    procedure put_Flip
    (
       this : in out BitmapTransform;
-      value : Windows.Graphics.Imaging.BitmapFlip
+      value : WinRt.Windows.Graphics.Imaging.BitmapFlip
    );
 
    function get_Rotation
@@ -2011,7 +2011,7 @@ package WinRt.Windows.Graphics.Imaging is
    procedure put_Rotation
    (
       this : in out BitmapTransform;
-      value : Windows.Graphics.Imaging.BitmapRotation
+      value : WinRt.Windows.Graphics.Imaging.BitmapRotation
    );
 
    function get_Bounds
@@ -2023,7 +2023,7 @@ package WinRt.Windows.Graphics.Imaging is
    procedure put_Bounds
    (
       this : in out BitmapTransform;
-      value : Windows.Graphics.Imaging.BitmapBounds
+      value : WinRt.Windows.Graphics.Imaging.BitmapBounds
    );
 
    -----------------------------------------------------------------------------
@@ -2038,7 +2038,7 @@ package WinRt.Windows.Graphics.Imaging is
    function Constructor
    (
       value : WinRt.IInspectable;
-      type_x : Windows.Foundation.PropertyType
+      type_x : WinRt.Windows.Foundation.PropertyType
    )
    return BitmapTypedValue;
 
@@ -2131,7 +2131,7 @@ package WinRt.Windows.Graphics.Imaging is
    function WriteAsync
    (
       this : in out ImageStream;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -2149,9 +2149,9 @@ package WinRt.Windows.Graphics.Imaging is
    function ReadAsync
    (
       this : in out ImageStream;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2181,7 +2181,7 @@ package WinRt.Windows.Graphics.Imaging is
 
    function Constructor
    (
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
       width : WinRt.Int32;
       height : WinRt.Int32
    )
@@ -2189,10 +2189,10 @@ package WinRt.Windows.Graphics.Imaging is
 
    function Constructor
    (
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
       width : WinRt.Int32;
       height : WinRt.Int32;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return SoftwareBitmap;
 
@@ -2201,29 +2201,29 @@ package WinRt.Windows.Graphics.Imaging is
 
    function Copy
    (
-      source : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      source : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
    function Convert
    (
-      source : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat
+      source : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
    function Convert
    (
-      source : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      source : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
    function CreateCopyFromBuffer
    (
-      source : Windows.Storage.Streams.IBuffer;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
+      source : WinRt.Windows.Storage.Streams.IBuffer;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
       width : WinRt.Int32;
       height : WinRt.Int32
    )
@@ -2231,24 +2231,24 @@ package WinRt.Windows.Graphics.Imaging is
 
    function CreateCopyFromBuffer
    (
-      source : Windows.Storage.Streams.IBuffer;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
+      source : WinRt.Windows.Storage.Streams.IBuffer;
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
       width : WinRt.Int32;
       height : WinRt.Int32;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
    function CreateCopyFromSurfaceAsync
    (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
    function CreateCopyFromSurfaceAsync
    (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return WinRt.Windows.Graphics.Imaging.SoftwareBitmap;
 
@@ -2312,26 +2312,26 @@ package WinRt.Windows.Graphics.Imaging is
    function LockBuffer
    (
       this : in out SoftwareBitmap;
-      mode : Windows.Graphics.Imaging.BitmapBufferAccessMode
+      mode : WinRt.Windows.Graphics.Imaging.BitmapBufferAccessMode
    )
    return WinRt.Windows.Graphics.Imaging.BitmapBuffer'Class;
 
    procedure CopyTo
    (
       this : in out SoftwareBitmap;
-      bitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      bitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    procedure CopyFromBuffer
    (
       this : in out SoftwareBitmap;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure CopyToBuffer
    (
       this : in out SoftwareBitmap;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function GetReadOnlyView

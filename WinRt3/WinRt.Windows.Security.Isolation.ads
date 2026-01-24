@@ -571,7 +571,7 @@ package WinRt.Windows.Security.Isolation is
          this : access IIsolatedWindowsEnvironment_Interface;
          hostExePath : WinRt.HString;
          arguments : WinRt.HString;
-         activator : Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
+         activator : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -581,8 +581,8 @@ package WinRt.Windows.Security.Isolation is
          this : access IIsolatedWindowsEnvironment_Interface;
          hostExePath : WinRt.HString;
          arguments : WinRt.HString;
-         activator : Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         activator : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -591,7 +591,7 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironment_Interface;
          hostFolder : WinRt.HString;
-         requestOptions : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
+         requestOptions : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -600,8 +600,8 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironment_Interface;
          hostFolder : WinRt.HString;
-         requestOptions : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         requestOptions : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -622,7 +622,7 @@ package WinRt.Windows.Security.Isolation is
          appExePath : WinRt.HString;
          argumentsTemplate : WinRt.HString;
          filePath : WinRt.HString;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -630,15 +630,15 @@ package WinRt.Windows.Security.Isolation is
       function TerminateAsync
       (
          this : access IIsolatedWindowsEnvironment_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function TerminateAsync
       (
          this : access IIsolatedWindowsEnvironment_Interface;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
-         RetVal : access Windows.Foundation.IAsyncAction
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -646,7 +646,7 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironment_Interface;
          receiverId : WinRt.Guid;
-         messageReceivedCallback : Windows.Security.Isolation.MessageReceivedCallback
+         messageReceivedCallback : WinRt.Windows.Security.Isolation.MessageReceivedCallback
       )
       return WinRt.Hresult is abstract;
 
@@ -676,7 +676,7 @@ package WinRt.Windows.Security.Isolation is
          this : access IIsolatedWindowsEnvironment2_Interface;
          receiverId : WinRt.Guid;
          message : GenericObject;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -689,7 +689,7 @@ package WinRt.Windows.Security.Isolation is
       function GetUserInfo
       (
          this : access IIsolatedWindowsEnvironment3_Interface;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentUserInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -697,7 +697,7 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironment3_Interface;
          filePath : WinRt.HString;
-         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+         options : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -706,8 +706,8 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironment3_Interface;
          filePath : WinRt.HString;
-         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         options : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -720,7 +720,7 @@ package WinRt.Windows.Security.Isolation is
       function ChangePriority
       (
          this : access IIsolatedWindowsEnvironment4_Interface;
-         Priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+         Priority : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -732,21 +732,21 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentCreateResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentCreateResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Environment
       (
          this : access IIsolatedWindowsEnvironmentCreateResult_Interface;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironment
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -758,7 +758,7 @@ package WinRt.Windows.Security.Isolation is
       function ChangeCreationPriority
       (
          this : access IIsolatedWindowsEnvironmentCreateResult2_Interface;
-         priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+         priority : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -770,7 +770,7 @@ package WinRt.Windows.Security.Isolation is
       function CreateAsync
       (
          this : access IIsolatedWindowsEnvironmentFactory_Interface;
-         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
+         options : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -778,8 +778,8 @@ package WinRt.Windows.Security.Isolation is
       function CreateAsync
       (
          this : access IIsolatedWindowsEnvironmentFactory_Interface;
-         options : Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
-         telemetryParameters : Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
+         options : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
+         telemetryParameters : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -788,7 +788,7 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironmentFactory_Interface;
          environmentId : WinRt.HString;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironment
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironment
       )
       return WinRt.Hresult is abstract;
 
@@ -871,21 +871,21 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentLaunchFileResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentLaunchFileResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_File
       (
          this : access IIsolatedWindowsEnvironmentLaunchFileResult_Interface;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile
       )
       return WinRt.Hresult is abstract;
 
@@ -911,42 +911,42 @@ package WinRt.Windows.Security.Isolation is
       function get_AllowedClipboardFormats
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function put_AllowedClipboardFormats
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function get_ClipboardCopyPasteDirections
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
       )
       return WinRt.Hresult is abstract;
 
       function put_ClipboardCopyPasteDirections
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
       )
       return WinRt.Hresult is abstract;
 
       function get_AvailablePrinters
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
       )
       return WinRt.Hresult is abstract;
 
       function put_AvailablePrinters
       (
          this : access IIsolatedWindowsEnvironmentOptions_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
       )
       return WinRt.Hresult is abstract;
 
@@ -1041,42 +1041,42 @@ package WinRt.Windows.Security.Isolation is
       function get_AllowedClipboardFormatsToEnvironment
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function put_AllowedClipboardFormatsToEnvironment
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function get_AllowedClipboardFormatsToHost
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function put_AllowedClipboardFormatsToHost
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
       )
       return WinRt.Hresult is abstract;
 
       function get_CreationPriority
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
       )
       return WinRt.Hresult is abstract;
 
       function put_CreationPriority
       (
          this : access IIsolatedWindowsEnvironmentOptions3_Interface;
-         value : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+         value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
       )
       return WinRt.Hresult is abstract;
 
@@ -1121,14 +1121,14 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentOwnerRegistrationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1141,8 +1141,8 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsEnvironmentOwnerRegistrationStatics_Interface;
          ownerName : WinRt.HString;
-         ownerRegistrationData : Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationResult
+         ownerRegistrationData : WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData;
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1161,14 +1161,14 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentPostMessageResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentPostMessageResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1180,7 +1180,7 @@ package WinRt.Windows.Security.Isolation is
       function get_State
       (
          this : access IIsolatedWindowsEnvironmentProcess_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentProcessState
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentProcessState
       )
       return WinRt.Hresult is abstract;
 
@@ -1207,7 +1207,7 @@ package WinRt.Windows.Security.Isolation is
       function WaitForExitAsync
       (
          this : access IIsolatedWindowsEnvironmentProcess_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1238,21 +1238,21 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_File
       (
          this : access IIsolatedWindowsEnvironmentShareFileResult_Interface;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentFile
       )
       return WinRt.Hresult is abstract;
 
@@ -1283,14 +1283,14 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentShareFolderResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentShareFolderResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1302,21 +1302,21 @@ package WinRt.Windows.Security.Isolation is
       function get_Status
       (
          this : access IIsolatedWindowsEnvironmentStartProcessResult_Interface;
-         RetVal : access Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessStatus
+         RetVal : access WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IIsolatedWindowsEnvironmentStartProcessResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Process
       (
          this : access IIsolatedWindowsEnvironmentStartProcessResult_Interface;
-         RetVal : access Windows.Security.Isolation.IIsolatedWindowsEnvironmentProcess
+         RetVal : access WinRt.Windows.Security.Isolation.IIsolatedWindowsEnvironmentProcess
       )
       return WinRt.Hresult is abstract;
 
@@ -1407,7 +1407,7 @@ package WinRt.Windows.Security.Isolation is
       (
          this : access IIsolatedWindowsHostMessengerStatics2_Interface;
          receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+         hostMessageReceivedCallback : WinRt.Windows.Security.Isolation.HostMessageReceivedCallback
       )
       return WinRt.Hresult is abstract;
 
@@ -1435,14 +1435,14 @@ package WinRt.Windows.Security.Isolation is
 
    function CreateAsync
    (
-      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions'Class
+      options : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateResult;
 
    function CreateAsync
    (
-      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions'Class;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      options : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions'Class;
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreateResult;
 
@@ -1472,7 +1472,7 @@ package WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironment;
       hostExePath : WinRt.WString;
       arguments : WinRt.WString;
-      activator : Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator
+      activator : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessResult'Class;
 
@@ -1481,8 +1481,8 @@ package WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironment;
       hostExePath : WinRt.WString;
       arguments : WinRt.WString;
-      activator : Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      activator : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentActivator;
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentStartProcessResult'Class;
 
@@ -1490,7 +1490,7 @@ package WinRt.Windows.Security.Isolation is
    (
       this : in out IsolatedWindowsEnvironment;
       hostFolder : WinRt.WString;
-      requestOptions : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions'Class
+      requestOptions : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderResult'Class;
 
@@ -1498,8 +1498,8 @@ package WinRt.Windows.Security.Isolation is
    (
       this : in out IsolatedWindowsEnvironment;
       hostFolder : WinRt.WString;
-      requestOptions : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions'Class;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      requestOptions : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions'Class;
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderResult'Class;
 
@@ -1518,7 +1518,7 @@ package WinRt.Windows.Security.Isolation is
       appExePath : WinRt.WString;
       argumentsTemplate : WinRt.WString;
       filePath : WinRt.WString;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentLaunchFileResult'Class;
 
@@ -1530,14 +1530,14 @@ package WinRt.Windows.Security.Isolation is
    procedure TerminateAsync
    (
       this : in out IsolatedWindowsEnvironment;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    );
 
    procedure RegisterMessageReceiver
    (
       this : in out IsolatedWindowsEnvironment;
       receiverId : WinRt.Guid;
-      messageReceivedCallback : Windows.Security.Isolation.MessageReceivedCallback
+      messageReceivedCallback : WinRt.Windows.Security.Isolation.MessageReceivedCallback
    );
 
    procedure UnregisterMessageReceiver
@@ -1559,7 +1559,7 @@ package WinRt.Windows.Security.Isolation is
       this : in out IsolatedWindowsEnvironment;
       receiverId : WinRt.Guid;
       message : GenericObject;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentPostMessageResult'Class;
 
@@ -1573,7 +1573,7 @@ package WinRt.Windows.Security.Isolation is
    (
       this : in out IsolatedWindowsEnvironment;
       filePath : WinRt.WString;
-      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class
+      options : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class;
 
@@ -1581,15 +1581,15 @@ package WinRt.Windows.Security.Isolation is
    (
       this : in out IsolatedWindowsEnvironment;
       filePath : WinRt.WString;
-      options : Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class;
-      telemetryParameters : Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
+      options : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions'Class;
+      telemetryParameters : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters'Class
    )
    return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileResult'Class;
 
    procedure ChangePriority
    (
       this : in out IsolatedWindowsEnvironment;
-      Priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      Priority : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
    );
 
    -----------------------------------------------------------------------------
@@ -1622,7 +1622,7 @@ package WinRt.Windows.Security.Isolation is
    procedure ChangeCreationPriority
    (
       this : in out IsolatedWindowsEnvironmentCreateResult;
-      priority : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      priority : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
    );
 
    -----------------------------------------------------------------------------
@@ -1737,7 +1737,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_AllowedClipboardFormats
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
    );
 
    function get_ClipboardCopyPasteDirections
@@ -1749,7 +1749,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_ClipboardCopyPasteDirections
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentClipboardCopyPasteDirections
    );
 
    function get_AvailablePrinters
@@ -1761,7 +1761,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_AvailablePrinters
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAvailablePrinters
    );
 
    function get_SharedHostFolderPath
@@ -1840,7 +1840,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_AllowedClipboardFormatsToEnvironment
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
    );
 
    function get_AllowedClipboardFormatsToHost
@@ -1852,7 +1852,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_AllowedClipboardFormatsToHost
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentAllowedClipboardFormats
    );
 
    function get_CreationPriority
@@ -1864,7 +1864,7 @@ package WinRt.Windows.Security.Isolation is
    procedure put_CreationPriority
    (
       this : in out IsolatedWindowsEnvironmentOptions;
-      value : Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
+      value : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentCreationPriority
    );
 
    -----------------------------------------------------------------------------
@@ -1874,7 +1874,7 @@ package WinRt.Windows.Security.Isolation is
       function Register
       (
          ownerName : WinRt.WString;
-         ownerRegistrationData : Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationData'Class
+         ownerRegistrationData : WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationData'Class
       )
       return WinRt.Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationResult;
 
@@ -2195,7 +2195,7 @@ package WinRt.Windows.Security.Isolation is
       procedure RegisterHostMessageReceiver
       (
          receiverId : WinRt.Guid;
-         hostMessageReceivedCallback : Windows.Security.Isolation.HostMessageReceivedCallback
+         hostMessageReceivedCallback : WinRt.Windows.Security.Isolation.HostMessageReceivedCallback
       );
 
       procedure UnregisterHostMessageReceiver

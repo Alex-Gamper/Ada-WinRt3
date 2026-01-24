@@ -67,7 +67,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Management.IndexedResourceType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceType;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -84,14 +84,14 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IIndexedResourceCandidate.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -104,7 +104,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_HString.Kind;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Metadata (m_ComRetVal'Access);
@@ -124,7 +124,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IIndexedResourceQualifier.Kind;
    begin
       Hr := this.m_IIndexedResourceCandidate.all.get_Qualifiers (m_ComRetVal'Access);
@@ -267,22 +267,22 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class;
-      extensionDllPath : Windows.Foundation.Uri'Class
+      projectRoot : WinRt.Windows.Foundation.Uri'Class;
+      extensionDllPath : WinRt.Windows.Foundation.Uri'Class
    )
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.IResourceIndexer");
       m_Factory    : access IResourceIndexerFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;
    begin
       return RetVal : ResourceIndexer do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceIndexerFactory2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResourceIndexerWithExtension (projectRoot.m_IUriRuntimeClass.all, extensionDllPath.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+            Retval.m_IResourceIndexer := new WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;
             Retval.m_IResourceIndexer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -292,21 +292,21 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
 
    function Constructor
    (
-      projectRoot : Windows.Foundation.Uri'Class
+      projectRoot : WinRt.Windows.Foundation.Uri'Class
    )
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.IResourceIndexer");
       m_Factory    : access IResourceIndexerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;
    begin
       return RetVal : ResourceIndexer do
          Hr := RoGetActivationFactory (m_hString, IID_IResourceIndexerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateResourceIndexer (projectRoot.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_IResourceIndexer := new Windows.ApplicationModel.Resources.Management.IResourceIndexer;
+            Retval.m_IResourceIndexer := new WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;
             Retval.m_IResourceIndexer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -320,20 +320,20 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    function IndexFilePath
    (
       this : in out ResourceIndexer;
-      filePath : Windows.Foundation.Uri'Class
+      filePath : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate do
          Hr := this.m_IResourceIndexer.all.IndexFilePath (filePath.m_IUriRuntimeClass.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIndexedResourceCandidate := new Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
+         Retval.m_IIndexedResourceCandidate := new WinRt.Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
          Retval.m_IIndexedResourceCandidate.all := m_ComRetVal;
       end return;
    end;
@@ -341,7 +341,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    function IndexFileContentsAsync
    (
       this : in out ResourceIndexer;
-      file : Windows.Foundation.Uri'Class
+      file : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;

@@ -62,16 +62,16 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
    return Transform3D is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Transform3D");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.ITransform3D");
       m_Factory    : access ITransform3DFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Media3D.ITransform3D;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Media3D.ITransform3D;
    begin
       return RetVal : Transform3D do
          Hr := RoGetActivationFactory (m_hString, IID_ITransform3DFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITransform3D := new Windows.UI.Xaml.Media.Media3D.ITransform3D;
+            Retval.m_ITransform3D := new WinRt.Windows.UI.Xaml.Media.Media3D.ITransform3D;
             Retval.m_ITransform3D.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -108,13 +108,13 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
    function Constructor return CompositeTransform3D is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D;
    begin
       return RetVal : CompositeTransform3D do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICompositeTransform3D := new Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D;
+            Retval.m_ICompositeTransform3D := new WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D;
             Retval.m_ICompositeTransform3D.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -131,7 +131,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -141,7 +141,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -155,7 +155,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -165,7 +165,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -179,7 +179,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -189,7 +189,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -203,7 +203,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -213,7 +213,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -227,7 +227,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -237,7 +237,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -251,7 +251,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -261,7 +261,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -275,7 +275,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -285,7 +285,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -299,7 +299,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -309,7 +309,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -323,7 +323,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -333,7 +333,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -347,7 +347,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -357,7 +357,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -371,7 +371,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -381,7 +381,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -395,7 +395,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_ICompositeTransform3DStatics'Access , m_Factory'Address);
@@ -405,7 +405,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -829,7 +829,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Matrix3DHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IMatrix3DHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrix3DHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -845,8 +845,8 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function Multiply
    (
-      matrix1 : Windows.UI.Xaml.Media.Media3D.Matrix3D;
-      matrix2 : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      matrix1 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      matrix2 : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D is
       Hr               : WinRt.HResult := S_OK;
@@ -854,7 +854,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Matrix3DHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IMatrix3DHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrix3DHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -893,7 +893,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Matrix3DHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IMatrix3DHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrix3DHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -909,7 +909,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function GetHasInverse
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -933,7 +933,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function GetIsIdentity
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -957,7 +957,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
 
    function Invert
    (
-      target : Windows.UI.Xaml.Media.Media3D.Matrix3D
+      target : WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D
    )
    return WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D is
       Hr               : WinRt.HResult := S_OK;
@@ -965,7 +965,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Matrix3DHelper");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IMatrix3DHelperStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Media.Media3D.Matrix3D;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Media.Media3D.Matrix3D;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IMatrix3DHelperStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -1008,13 +1008,13 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
    function Constructor return PerspectiveTransform3D is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.PerspectiveTransform3D");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D;
    begin
       return RetVal : PerspectiveTransform3D do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPerspectiveTransform3D := new Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D;
+            Retval.m_IPerspectiveTransform3D := new WinRt.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D;
             Retval.m_IPerspectiveTransform3D.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1031,7 +1031,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.PerspectiveTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPerspectiveTransform3DStatics'Access , m_Factory'Address);
@@ -1041,7 +1041,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1055,7 +1055,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.PerspectiveTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPerspectiveTransform3DStatics'Access , m_Factory'Address);
@@ -1065,7 +1065,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1079,7 +1079,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.PerspectiveTransform3D");
       m_Factory        : access WinRt.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3DStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPerspectiveTransform3DStatics'Access , m_Factory'Address);
@@ -1089,7 +1089,7 @@ package body WinRt.Windows.UI.Xaml.Media.Media3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

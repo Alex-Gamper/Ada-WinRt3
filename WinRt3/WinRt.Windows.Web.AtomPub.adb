@@ -75,13 +75,13 @@ package body WinRt.Windows.Web.AtomPub is
    function Constructor return AtomPubClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
-      m_ComRetVal  : aliased Windows.Web.AtomPub.IAtomPubClient;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
+      m_ComRetVal  : aliased WinRt.Windows.Web.AtomPub.IAtomPubClient;
    begin
       return RetVal : AtomPubClient do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAtomPubClient := new Windows.Web.AtomPub.IAtomPubClient;
+            Retval.m_IAtomPubClient := new WinRt.Windows.Web.AtomPub.IAtomPubClient;
             Retval.m_IAtomPubClient.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -90,21 +90,21 @@ package body WinRt.Windows.Web.AtomPub is
 
    function Constructor
    (
-      serverCredential : Windows.Security.Credentials.PasswordCredential'Class
+      serverCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return AtomPubClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
       m_Factory    : access IAtomPubClientFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Web.AtomPub.IAtomPubClient;
+      m_ComRetVal  : aliased WinRt.Windows.Web.AtomPub.IAtomPubClient;
    begin
       return RetVal : AtomPubClient do
          Hr := RoGetActivationFactory (m_hString, IID_IAtomPubClientFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateAtomPubClientWithCredentials (serverCredential.m_IPasswordCredential.all, m_ComRetVal'Access);
-            Retval.m_IAtomPubClient := new Windows.Web.AtomPub.IAtomPubClient;
+            Retval.m_IAtomPubClient := new WinRt.Windows.Web.AtomPub.IAtomPubClient;
             Retval.m_IAtomPubClient.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -118,7 +118,7 @@ package body WinRt.Windows.Web.AtomPub is
    function RetrieveServiceDocumentAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.AtomPub.ServiceDocument'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -169,7 +169,7 @@ package body WinRt.Windows.Web.AtomPub is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IServiceDocument := new Windows.Web.AtomPub.IServiceDocument;
+                  Retval.m_IServiceDocument := new WinRt.Windows.Web.AtomPub.IServiceDocument;
                   Retval.m_IServiceDocument.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -185,7 +185,7 @@ package body WinRt.Windows.Web.AtomPub is
    function RetrieveMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.IInputStream is
       Hr               : WinRt.HResult := S_OK;
@@ -249,7 +249,7 @@ package body WinRt.Windows.Web.AtomPub is
    function RetrieveResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -300,7 +300,7 @@ package body WinRt.Windows.Web.AtomPub is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISyndicationItem := new Windows.Web.Syndication.ISyndicationItem;
+                  Retval.m_ISyndicationItem := new WinRt.Windows.Web.Syndication.ISyndicationItem;
                   Retval.m_ISyndicationItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -316,9 +316,9 @@ package body WinRt.Windows.Web.AtomPub is
    function CreateResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       description : WinRt.WString;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -370,7 +370,7 @@ package body WinRt.Windows.Web.AtomPub is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISyndicationItem := new Windows.Web.Syndication.ISyndicationItem;
+                  Retval.m_ISyndicationItem := new WinRt.Windows.Web.Syndication.ISyndicationItem;
                   Retval.m_ISyndicationItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -387,10 +387,10 @@ package body WinRt.Windows.Web.AtomPub is
    function CreateMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       mediaType : WinRt.WString;
       description : WinRt.WString;
-      mediaStream : Windows.Storage.Streams.IInputStream
+      mediaStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Web.Syndication.SyndicationItem'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -443,7 +443,7 @@ package body WinRt.Windows.Web.AtomPub is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISyndicationItem := new Windows.Web.Syndication.ISyndicationItem;
+                  Retval.m_ISyndicationItem := new WinRt.Windows.Web.Syndication.ISyndicationItem;
                   Retval.m_ISyndicationItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -461,9 +461,9 @@ package body WinRt.Windows.Web.AtomPub is
    procedure UpdateMediaResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       mediaType : WinRt.WString;
-      mediaStream : Windows.Storage.Streams.IInputStream
+      mediaStream : WinRt.Windows.Storage.Streams.IInputStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -508,8 +508,8 @@ package body WinRt.Windows.Web.AtomPub is
    procedure UpdateResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -552,7 +552,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure UpdateResourceItemAsync
    (
       this : in out AtomPubClient;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -595,7 +595,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure DeleteResourceAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -638,7 +638,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure DeleteResourceItemAsync
    (
       this : in out AtomPubClient;
-      item : Windows.Web.Syndication.SyndicationItem'Class
+      item : WinRt.Windows.Web.Syndication.SyndicationItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -701,7 +701,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationClient := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IAtomPubClient_Interface, WinRt.Windows.Web.Syndication.ISyndicationClient, WinRt.Windows.Web.Syndication.IID_ISyndicationClient'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -711,7 +711,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -719,7 +719,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure put_ServerCredential
    (
       this : in out AtomPubClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -744,7 +744,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationClient := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IAtomPubClient_Interface, WinRt.Windows.Web.Syndication.ISyndicationClient, WinRt.Windows.Web.Syndication.IID_ISyndicationClient'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -754,7 +754,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -762,7 +762,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure put_ProxyCredential
    (
       this : in out AtomPubClient;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -925,7 +925,7 @@ package body WinRt.Windows.Web.AtomPub is
    function RetrieveFeedAsync
    (
       this : in out AtomPubClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Syndication.SyndicationFeed'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -980,7 +980,7 @@ package body WinRt.Windows.Web.AtomPub is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISyndicationFeed := new Windows.Web.Syndication.ISyndicationFeed;
+                  Retval.m_ISyndicationFeed := new WinRt.Windows.Web.Syndication.ISyndicationFeed;
                   Retval.m_ISyndicationFeed.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1024,7 +1024,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_IResourceCollection.all.get_Title (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1041,14 +1041,14 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IResourceCollection.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1061,7 +1061,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IResourceCollection.all.get_Categories (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1078,7 +1078,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IResourceCollection.all.get_Accepts (m_ComRetVal'Access);
@@ -1279,7 +1279,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IResourceCollection_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1289,7 +1289,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1297,7 +1297,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out ResourceCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1322,7 +1322,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IResourceCollection_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceCollection.all);
@@ -1343,7 +1343,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IResourceCollection_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IResourceCollection.all);
@@ -1358,14 +1358,14 @@ package body WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out ResourceCollection;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IResourceCollection_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -1375,7 +1375,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1411,7 +1411,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IWorkspace.Kind;
    begin
       Hr := this.m_IServiceDocument.all.get_Workspaces (m_ComRetVal'Access);
@@ -1612,7 +1612,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IServiceDocument_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1622,7 +1622,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1630,7 +1630,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out ServiceDocument;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1655,7 +1655,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IServiceDocument_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IServiceDocument.all);
@@ -1676,7 +1676,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IServiceDocument_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IServiceDocument.all);
@@ -1691,14 +1691,14 @@ package body WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out ServiceDocument;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IServiceDocument_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -1708,7 +1708,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1744,7 +1744,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Syndication.ISyndicationText;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Syndication.ISyndicationText;
    begin
       Hr := this.m_IWorkspace.all.get_Title (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1761,7 +1761,7 @@ package body WinRt.Windows.Web.AtomPub is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IResourceCollection.Kind;
    begin
       Hr := this.m_IWorkspace.all.get_Collections (m_ComRetVal'Access);
@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IWorkspace_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1972,7 +1972,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1980,7 +1980,7 @@ package body WinRt.Windows.Web.AtomPub is
    procedure put_BaseUri
    (
       this : in out Workspace;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2005,7 +2005,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IWorkspace_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWorkspace.all);
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Web.AtomPub is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IWorkspace_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IWorkspace.all);
@@ -2041,14 +2041,14 @@ package body WinRt.Windows.Web.AtomPub is
    function GetXmlDocument
    (
       this : in out Workspace;
-      format : Windows.Web.Syndication.SyndicationFormat
+      format : WinRt.Windows.Web.Syndication.SyndicationFormat
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Syndication.ISyndicationNode := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.AtomPub.IWorkspace_Interface, WinRt.Windows.Web.Syndication.ISyndicationNode, WinRt.Windows.Web.Syndication.IID_ISyndicationNode'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -2058,7 +2058,7 @@ package body WinRt.Windows.Web.AtomPub is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;

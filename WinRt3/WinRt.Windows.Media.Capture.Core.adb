@@ -63,14 +63,14 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -83,7 +83,7 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_CaptureTimeOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -100,7 +100,7 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_UsedFrameControllerIndex (m_ComRetVal'Access);
@@ -120,14 +120,14 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrameControlValues;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrameControlValues;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrameControlValues do
          Hr := this.m_IVariablePhotoCapturedEventArgs.all.get_CapturedFrameControlValues (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrameControlValues := new Windows.Media.Capture.ICapturedFrameControlValues;
+         Retval.m_ICapturedFrameControlValues := new WinRt.Windows.Media.Capture.ICapturedFrameControlValues;
          Retval.m_ICapturedFrameControlValues.all := m_ComRetVal;
       end return;
    end;
@@ -290,7 +290,7 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.add_PhotoCaptured (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -302,7 +302,7 @@ package body WinRt.Windows.Media.Capture.Core is
    procedure remove_PhotoCaptured
    (
       this : in out VariablePhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -323,7 +323,7 @@ package body WinRt.Windows.Media.Capture.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IVariablePhotoSequenceCapture.all.add_Stopped (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -335,7 +335,7 @@ package body WinRt.Windows.Media.Capture.Core is
    procedure remove_Stopped
    (
       this : in out VariablePhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

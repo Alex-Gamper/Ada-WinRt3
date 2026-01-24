@@ -59,13 +59,13 @@ package body WinRt.Windows.UI.Text is
    function Constructor return ContentLinkInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Text.ContentLinkInfo");
-      m_ComRetVal  : aliased Windows.UI.Text.IContentLinkInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Text.IContentLinkInfo");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Text.IContentLinkInfo;
    begin
       return RetVal : ContentLinkInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IContentLinkInfo := new Windows.UI.Text.IContentLinkInfo;
+            Retval.m_IContentLinkInfo := new WinRt.Windows.UI.Text.IContentLinkInfo;
             Retval.m_IContentLinkInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -189,14 +189,14 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IContentLinkInfo.all.get_Uri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -204,7 +204,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_Uri
    (
       this : in out ContentLinkInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -283,7 +283,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -304,7 +304,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -325,7 +325,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -346,7 +346,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -367,7 +367,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -388,7 +388,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -409,7 +409,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -430,7 +430,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -451,7 +451,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -472,7 +472,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -493,7 +493,7 @@ package body WinRt.Windows.UI.Text is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.FontWeights");
       m_Factory        : access WinRt.Windows.UI.Text.IFontWeightsStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IFontWeightsStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -674,7 +674,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetMathMode
    (
       this : in out RichEditTextDocument;
-      mode : Windows.UI.Text.RichEditMathMode
+      mode : WinRt.Windows.UI.Text.RichEditMathMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -698,7 +698,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.CaretType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.CaretType;
    begin
       Hr := this.m_ITextDocument.all.get_CaretType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -710,7 +710,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_CaretType
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.CaretType
+      value : WinRt.Windows.UI.Text.CaretType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -762,7 +762,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextSelection;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextSelection;
    begin
       Hr := this.m_ITextDocument.all.get_Selection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -941,7 +941,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextCharacterFormat;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextCharacterFormat;
    begin
       Hr := this.m_ITextDocument.all.GetDefaultCharacterFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -958,7 +958,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextParagraphFormat;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextParagraphFormat;
    begin
       Hr := this.m_ITextDocument.all.GetDefaultParagraphFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -977,7 +977,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextRange;
    begin
       Hr := this.m_ITextDocument.all.GetRange (startPosition, endPosition, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -989,14 +989,14 @@ package body WinRt.Windows.UI.Text is
    function GetRangeFromPoint
    (
       this : in out RichEditTextDocument;
-      point : Windows.Foundation.Point;
-      options : Windows.UI.Text.PointOptions
+      point : WinRt.Windows.Foundation.Point;
+      options : WinRt.Windows.UI.Text.PointOptions
    )
    return WinRt.Windows.UI.Text.ITextRange is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextRange;
    begin
       Hr := this.m_ITextDocument.all.GetRangeFromPoint (point, options, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1008,7 +1008,7 @@ package body WinRt.Windows.UI.Text is
    procedure GetText
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextGetOptions;
+      options : WinRt.Windows.UI.Text.TextGetOptions;
       value : WinRt.HString_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1024,8 +1024,8 @@ package body WinRt.Windows.UI.Text is
    procedure LoadFromStream
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextSetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextSetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1054,8 +1054,8 @@ package body WinRt.Windows.UI.Text is
    procedure SaveToStream
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextGetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextGetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1070,7 +1070,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetDefaultCharacterFormat
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.ITextCharacterFormat
+      value : WinRt.Windows.UI.Text.ITextCharacterFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1085,7 +1085,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetDefaultParagraphFormat
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.ITextParagraphFormat
+      value : WinRt.Windows.UI.Text.ITextParagraphFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1100,7 +1100,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetText
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextSetOptions;
+      options : WinRt.Windows.UI.Text.TextSetOptions;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1161,7 +1161,7 @@ package body WinRt.Windows.UI.Text is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Text.IRichEditTextRange := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.IContentLinkInfo;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.IContentLinkInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Text.ITextRange_Interface, WinRt.Windows.UI.Text.IRichEditTextRange, WinRt.Windows.UI.Text.IID_IRichEditTextRange'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Text.ContentLinkInfo do
@@ -1171,7 +1171,7 @@ package body WinRt.Windows.UI.Text is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IContentLinkInfo := new Windows.UI.Text.IContentLinkInfo;
+         Retval.m_IContentLinkInfo := new WinRt.Windows.UI.Text.IContentLinkInfo;
          Retval.m_IContentLinkInfo.all := m_ComRetVal;
       end return;
    end;
@@ -1179,7 +1179,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_ContentLinkInfo
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ContentLinkInfo'Class
+      value : WinRt.Windows.UI.Text.ContentLinkInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1235,7 +1235,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextCharacterFormat;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextCharacterFormat;
    begin
       Hr := this.m_ITextRange.all.get_CharacterFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1247,7 +1247,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_CharacterFormat
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextCharacterFormat
+      value : WinRt.Windows.UI.Text.ITextCharacterFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1267,7 +1267,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextRange;
    begin
       Hr := this.m_ITextRange.all.get_FormattedText (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1279,7 +1279,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_FormattedText
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextRange
+      value : WinRt.Windows.UI.Text.ITextRange
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1331,7 +1331,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.RangeGravity;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.RangeGravity;
    begin
       Hr := this.m_ITextRange.all.get_Gravity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1343,7 +1343,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_Gravity
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.RangeGravity
+      value : WinRt.Windows.UI.Text.RangeGravity
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1417,7 +1417,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextParagraphFormat;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextParagraphFormat;
    begin
       Hr := this.m_ITextRange.all.get_ParagraphFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1429,7 +1429,7 @@ package body WinRt.Windows.UI.Text is
    procedure put_ParagraphFormat
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextParagraphFormat
+      value : WinRt.Windows.UI.Text.ITextParagraphFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1548,7 +1548,7 @@ package body WinRt.Windows.UI.Text is
    procedure ChangeCase
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.LetterCase
+      value : WinRt.Windows.UI.Text.LetterCase
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1606,7 +1606,7 @@ package body WinRt.Windows.UI.Text is
    function Delete
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32 is
@@ -1625,7 +1625,7 @@ package body WinRt.Windows.UI.Text is
    function EndOf
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       extend : WinRt.Boolean
    )
    return WinRt.Int32 is
@@ -1644,7 +1644,7 @@ package body WinRt.Windows.UI.Text is
    function Expand
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit
+      unit : WinRt.Windows.UI.Text.TextRangeUnit
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1664,7 +1664,7 @@ package body WinRt.Windows.UI.Text is
       this : in out RichEditTextRange;
       value : WinRt.WString;
       scanLength : WinRt.Int32;
-      options : Windows.UI.Text.FindOptions
+      options : WinRt.Windows.UI.Text.FindOptions
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.UI.Text is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.ITextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.ITextRange;
    begin
       Hr := this.m_ITextRange.all.GetClone (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1717,7 +1717,7 @@ package body WinRt.Windows.UI.Text is
    function GetIndex
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit
+      unit : WinRt.Windows.UI.Text.TextRangeUnit
    )
    return WinRt.Int32 is
       Hr               : WinRt.HResult := S_OK;
@@ -1735,10 +1735,10 @@ package body WinRt.Windows.UI.Text is
    procedure GetPoint
    (
       this : in out RichEditTextRange;
-      horizontalAlign : Windows.UI.Text.HorizontalCharacterAlignment;
-      verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
-      options : Windows.UI.Text.PointOptions;
-      point : Windows.Foundation.Point_Ptr
+      horizontalAlign : WinRt.Windows.UI.Text.HorizontalCharacterAlignment;
+      verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
+      options : WinRt.Windows.UI.Text.PointOptions;
+      point : WinRt.Windows.Foundation.Point_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1753,8 +1753,8 @@ package body WinRt.Windows.UI.Text is
    procedure GetRect
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.PointOptions;
-      rect : Windows.Foundation.Rect_Ptr;
+      options : WinRt.Windows.UI.Text.PointOptions;
+      rect : WinRt.Windows.Foundation.Rect_Ptr;
       hit : WinRt.Int32_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1770,7 +1770,7 @@ package body WinRt.Windows.UI.Text is
    procedure GetText
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextGetOptions;
+      options : WinRt.Windows.UI.Text.TextGetOptions;
       value : WinRt.HString_Ptr
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -1786,8 +1786,8 @@ package body WinRt.Windows.UI.Text is
    procedure GetTextViaStream
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextGetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextGetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1802,7 +1802,7 @@ package body WinRt.Windows.UI.Text is
    function InRange
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1823,9 +1823,9 @@ package body WinRt.Windows.UI.Text is
       width : WinRt.Int32;
       height : WinRt.Int32;
       ascent : WinRt.Int32;
-      verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
+      verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
       alternateText : WinRt.WString;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1842,7 +1842,7 @@ package body WinRt.Windows.UI.Text is
    function InStory
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1860,7 +1860,7 @@ package body WinRt.Windows.UI.Text is
    function IsEqual
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1878,7 +1878,7 @@ package body WinRt.Windows.UI.Text is
    function Move
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32 is
@@ -1897,7 +1897,7 @@ package body WinRt.Windows.UI.Text is
    function MoveEnd
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32 is
@@ -1916,7 +1916,7 @@ package body WinRt.Windows.UI.Text is
    function MoveStart
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32 is
@@ -1950,7 +1950,7 @@ package body WinRt.Windows.UI.Text is
    procedure ScrollIntoView
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.PointOptions
+      value : WinRt.Windows.UI.Text.PointOptions
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1979,7 +1979,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetIndex
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       index : WinRt.Int32;
       extend : WinRt.Boolean
    ) is
@@ -1996,8 +1996,8 @@ package body WinRt.Windows.UI.Text is
    procedure SetPoint
    (
       this : in out RichEditTextRange;
-      point : Windows.Foundation.Point;
-      options : Windows.UI.Text.PointOptions;
+      point : WinRt.Windows.Foundation.Point;
+      options : WinRt.Windows.UI.Text.PointOptions;
       extend : WinRt.Boolean
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2029,7 +2029,7 @@ package body WinRt.Windows.UI.Text is
    procedure SetText
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextSetOptions;
+      options : WinRt.Windows.UI.Text.TextSetOptions;
       value : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -2047,8 +2047,8 @@ package body WinRt.Windows.UI.Text is
    procedure SetTextViaStream
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextSetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextSetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2063,7 +2063,7 @@ package body WinRt.Windows.UI.Text is
    function StartOf
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       extend : WinRt.Boolean
    )
    return WinRt.Int32 is
@@ -2090,7 +2090,7 @@ package body WinRt.Windows.UI.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.TextConstants");
          m_Factory        : access WinRt.Windows.UI.Text.ITextConstantsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Color;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ITextConstantsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2153,7 +2153,7 @@ package body WinRt.Windows.UI.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.TextConstants");
          m_Factory        : access WinRt.Windows.UI.Text.ITextConstantsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Color;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ITextConstantsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2216,7 +2216,7 @@ package body WinRt.Windows.UI.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.TextConstants");
          m_Factory        : access WinRt.Windows.UI.Text.ITextConstantsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Text.FontStretch;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontStretch;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ITextConstantsStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2237,7 +2237,7 @@ package body WinRt.Windows.UI.Text is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.TextConstants");
          m_Factory        : access WinRt.Windows.UI.Text.ITextConstantsStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Text.FontStyle;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontStyle;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_ITextConstantsStatics'Access , m_Factory'Address);
          if Hr = S_OK then

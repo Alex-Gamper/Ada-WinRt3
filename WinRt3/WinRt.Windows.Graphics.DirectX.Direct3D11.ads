@@ -127,7 +127,7 @@ package WinRt.Windows.Graphics.DirectX.Direct3D11 is
       function get_Description
       (
          this : access IDirect3DSurface_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DSurfaceDescription
       )
       return WinRt.Hresult is abstract;
 

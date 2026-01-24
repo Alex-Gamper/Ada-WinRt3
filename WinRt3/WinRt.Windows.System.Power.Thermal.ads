@@ -164,7 +164,7 @@ package WinRt.Windows.System.Power.Thermal is
       function get_Id
       (
          this : access IPowerThermalChannelConfiguration_Interface;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelId
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelId
       )
       return WinRt.Hresult is abstract;
 
@@ -192,7 +192,7 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -219,21 +219,21 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ChannelDataReceived
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_BackEndStatus
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalBackEndStatus
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalBackEndStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -241,14 +241,14 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackEndStatusChanged
       (
          this : access IPowerThermalChannelDataConsumer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -261,8 +261,8 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataConsumerFactory_Interface;
          channelIdsSize : WinRt.UInt32;
-         channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
-         RetVal : access Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer
+         channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+         RetVal : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer
       )
       return WinRt.Hresult is abstract;
 
@@ -275,7 +275,7 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataProducer_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -289,7 +289,7 @@ package WinRt.Windows.System.Power.Thermal is
       function DisableChannel
       (
          this : access IPowerThermalChannelDataProducer_Interface;
-         channelId : Windows.System.Power.Thermal.PowerThermalChannelId
+         channelId : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId
       )
       return WinRt.Hresult is abstract;
 
@@ -309,14 +309,14 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataProducer_Interface;
          dataSize : WinRt.UInt32;
-         data : Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
+         data : WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function get_BackEndStatus
       (
          this : access IPowerThermalChannelDataProducer_Interface;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalBackEndStatus
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalBackEndStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -324,14 +324,14 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataProducer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackEndStatusChanged
       (
          this : access IPowerThermalChannelDataProducer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -344,8 +344,8 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataProducerFactory_Interface;
          channelIdsSize : WinRt.UInt32;
-         channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
-         RetVal : access Windows.System.Power.Thermal.IPowerThermalChannelDataProducer
+         channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+         RetVal : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataProducer
       )
       return WinRt.Hresult is abstract;
 
@@ -358,7 +358,7 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDataReceivedEventArgs_Interface;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -375,7 +375,7 @@ package WinRt.Windows.System.Power.Thermal is
       function get_Current
       (
          this : access IPowerThermalChannelDiagnosticsStatics_Interface;
-         RetVal : access Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics
+         RetVal : access WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDiagnostics
       )
       return WinRt.Hresult is abstract;
 
@@ -383,9 +383,9 @@ package WinRt.Windows.System.Power.Thermal is
       (
          this : access IPowerThermalChannelDiagnosticsStatics_Interface;
          channelIdsSize : WinRt.UInt32;
-         channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
+         channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -399,7 +399,7 @@ package WinRt.Windows.System.Power.Thermal is
          this : access IPowerThermalChannelFinderStatics_Interface;
          channelInterfaceType : WinRt.Guid;
          RetValSize : access WinRt.UInt32;
-         RetVal : access Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
+         RetVal : access WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -447,7 +447,7 @@ package WinRt.Windows.System.Power.Thermal is
 
    function Constructor
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return PowerThermalChannelDataConsumer;
 
@@ -486,7 +486,7 @@ package WinRt.Windows.System.Power.Thermal is
    procedure remove_ChannelDataReceived
    (
       this : in out PowerThermalChannelDataConsumer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_BackEndStatus
@@ -505,7 +505,7 @@ package WinRt.Windows.System.Power.Thermal is
    procedure remove_BackEndStatusChanged
    (
       this : in out PowerThermalChannelDataConsumer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -524,7 +524,7 @@ package WinRt.Windows.System.Power.Thermal is
 
    function Constructor
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return PowerThermalChannelDataProducer;
 
@@ -546,7 +546,7 @@ package WinRt.Windows.System.Power.Thermal is
    procedure DisableChannel
    (
       this : in out PowerThermalChannelDataProducer;
-      channelId : Windows.System.Power.Thermal.PowerThermalChannelId
+      channelId : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId
    );
 
    procedure Start
@@ -562,7 +562,7 @@ package WinRt.Windows.System.Power.Thermal is
    procedure PublishInputChannelData
    (
       this : in out PowerThermalChannelDataProducer;
-      data : Windows.System.Power.Thermal.PowerThermalChannelData_Array
+      data : WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Array
    );
 
    function get_BackEndStatus
@@ -581,7 +581,7 @@ package WinRt.Windows.System.Power.Thermal is
    procedure remove_BackEndStatusChanged
    (
       this : in out PowerThermalChannelDataProducer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -618,7 +618,7 @@ package WinRt.Windows.System.Power.Thermal is
 
    function GetDataForChannels
    (
-      channelIds : Windows.System.Power.Thermal.PowerThermalChannelId_Array
+      channelIds : WinRt.Windows.System.Power.Thermal.PowerThermalChannelId_Array
    )
    return WinRt.Windows.System.Power.Thermal.PowerThermalChannelData_Array;
 

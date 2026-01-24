@@ -160,7 +160,7 @@ package WinRt.Windows.System.Update is
       function get_State
       (
          this : access ISystemUpdateItem_Interface;
-         RetVal : access Windows.System.Update.SystemUpdateItemState
+         RetVal : access WinRt.Windows.System.Update.SystemUpdateItemState
       )
       return WinRt.Hresult is abstract;
 
@@ -209,7 +209,7 @@ package WinRt.Windows.System.Update is
       function get_ExtendedError
       (
          this : access ISystemUpdateItem_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -221,14 +221,14 @@ package WinRt.Windows.System.Update is
       function get_State
       (
          this : access ISystemUpdateLastErrorInfo_Interface;
-         RetVal : access Windows.System.Update.SystemUpdateManagerState
+         RetVal : access WinRt.Windows.System.Update.SystemUpdateManagerState
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access ISystemUpdateLastErrorInfo_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -254,7 +254,7 @@ package WinRt.Windows.System.Update is
       function get_State
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.System.Update.SystemUpdateManagerState
+         RetVal : access WinRt.Windows.System.Update.SystemUpdateManagerState
       )
       return WinRt.Hresult is abstract;
 
@@ -262,14 +262,14 @@ package WinRt.Windows.System.Update is
       (
          this : access ISystemUpdateManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -290,14 +290,14 @@ package WinRt.Windows.System.Update is
       function get_UserActiveHoursStart
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_UserActiveHoursEnd
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -311,8 +311,8 @@ package WinRt.Windows.System.Update is
       function TrySetUserActiveHours
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         start : Windows.Foundation.TimeSpan;
-         end_x : Windows.Foundation.TimeSpan;
+         start : WinRt.Windows.Foundation.TimeSpan;
+         end_x : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -320,21 +320,21 @@ package WinRt.Windows.System.Update is
       function get_LastUpdateCheckTime
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastUpdateInstallTime
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastErrorInfo
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.System.Update.ISystemUpdateLastErrorInfo
+         RetVal : access WinRt.Windows.System.Update.ISystemUpdateLastErrorInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -364,7 +364,7 @@ package WinRt.Windows.System.Update is
       function get_ExtendedError
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -378,7 +378,7 @@ package WinRt.Windows.System.Update is
       function get_AttentionRequiredReason
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         RetVal : access Windows.System.Update.SystemUpdateAttentionRequiredReason
+         RetVal : access WinRt.Windows.System.Update.SystemUpdateAttentionRequiredReason
       )
       return WinRt.Hresult is abstract;
 
@@ -400,7 +400,7 @@ package WinRt.Windows.System.Update is
       function StartInstall
       (
          this : access ISystemUpdateManagerStatics_Interface;
-         action : Windows.System.Update.SystemUpdateStartInstallAction
+         action : WinRt.Windows.System.Update.SystemUpdateStartInstallAction
       )
       return WinRt.Hresult is abstract;
 
@@ -524,7 +524,7 @@ package WinRt.Windows.System.Update is
 
       procedure remove_StateChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function get_DownloadProgress
@@ -544,8 +544,8 @@ package WinRt.Windows.System.Update is
 
       function TrySetUserActiveHours
       (
-         start : Windows.Foundation.TimeSpan;
-         end_x : Windows.Foundation.TimeSpan
+         start : WinRt.Windows.Foundation.TimeSpan;
+         end_x : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Boolean;
 
@@ -593,7 +593,7 @@ package WinRt.Windows.System.Update is
 
       procedure StartInstall
       (
-         action : Windows.System.Update.SystemUpdateStartInstallAction
+         action : WinRt.Windows.System.Update.SystemUpdateStartInstallAction
       );
 
       procedure RebootToCompleteInstall;

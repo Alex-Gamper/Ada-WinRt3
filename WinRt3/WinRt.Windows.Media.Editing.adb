@@ -85,7 +85,7 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromEmbeddedAudioTrack
    (
-      embeddedAudioTrack_p : Windows.Media.Editing.EmbeddedAudioTrack'Class
+      embeddedAudioTrack_p : WinRt.Windows.Media.Editing.EmbeddedAudioTrack'Class
    )
    return WinRt.Windows.Media.Editing.BackgroundAudioTrack is
       Hr               : WinRt.HResult := S_OK;
@@ -93,7 +93,7 @@ package body WinRt.Windows.Media.Editing is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Editing.BackgroundAudioTrack");
       m_Factory        : access WinRt.Windows.Media.Editing.IBackgroundAudioTrackStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IBackgroundAudioTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IBackgroundAudioTrack;
    begin
       return RetVal : WinRt.Windows.Media.Editing.BackgroundAudioTrack do
          Hr := RoGetActivationFactory (m_hString, IID_IBackgroundAudioTrackStatics'Access , m_Factory'Address);
@@ -103,7 +103,7 @@ package body WinRt.Windows.Media.Editing is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBackgroundAudioTrack := new Windows.Media.Editing.IBackgroundAudioTrack;
+            Retval.m_IBackgroundAudioTrack := new WinRt.Windows.Media.Editing.IBackgroundAudioTrack;
             Retval.m_IBackgroundAudioTrack.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -112,7 +112,7 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Editing.BackgroundAudioTrack is
       Hr               : WinRt.HResult := S_OK;
@@ -168,7 +168,7 @@ package body WinRt.Windows.Media.Editing is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IBackgroundAudioTrack := new Windows.Media.Editing.IBackgroundAudioTrack;
+                     Retval.m_IBackgroundAudioTrack := new WinRt.Windows.Media.Editing.IBackgroundAudioTrack;
                      Retval.m_IBackgroundAudioTrack.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -194,7 +194,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_TrimTimeFromStart (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -206,7 +206,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromStart
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -226,7 +226,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_TrimTimeFromEnd (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -238,7 +238,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromEnd
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -258,7 +258,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_OriginalDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -275,7 +275,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_TrimmedDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -292,7 +292,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_UserData (m_ComRetVal'Access);
@@ -307,7 +307,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_Delay
    (
       this : in out BackgroundAudioTrack;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -327,7 +327,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_Delay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -376,14 +376,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IBackgroundAudioTrack;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IBackgroundAudioTrack;
    begin
       return RetVal : WinRt.Windows.Media.Editing.BackgroundAudioTrack do
          Hr := this.m_IBackgroundAudioTrack.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBackgroundAudioTrack := new Windows.Media.Editing.IBackgroundAudioTrack;
+         Retval.m_IBackgroundAudioTrack := new WinRt.Windows.Media.Editing.IBackgroundAudioTrack;
          Retval.m_IBackgroundAudioTrack.all := m_ComRetVal;
       end return;
    end;
@@ -396,14 +396,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IBackgroundAudioTrack.all.GetAudioEncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -416,7 +416,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IBackgroundAudioTrack.all.get_AudioEffectDefinitions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -456,14 +456,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IAudioEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.AudioEncodingProperties do
          Hr := this.m_IEmbeddedAudioTrack.all.GetAudioEncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioEncodingProperties := new Windows.Media.MediaProperties.IAudioEncodingProperties;
+         Retval.m_IAudioEncodingProperties := new WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
          Retval.m_IAudioEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -493,8 +493,8 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromColor
    (
-      color : Windows.UI.Color;
-      originalDuration : Windows.Foundation.TimeSpan
+      color : WinRt.Windows.UI.Color;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip is
       Hr               : WinRt.HResult := S_OK;
@@ -502,7 +502,7 @@ package body WinRt.Windows.Media.Editing is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaClip");
       m_Factory        : access WinRt.Windows.Media.Editing.IMediaClipStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaClip;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaClip;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaClip do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaClipStatics'Access , m_Factory'Address);
@@ -512,7 +512,7 @@ package body WinRt.Windows.Media.Editing is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+            Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
             Retval.m_IMediaClip.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -521,7 +521,7 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromFileAsync_MediaClip
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Editing.MediaClip is
       Hr               : WinRt.HResult := S_OK;
@@ -577,7 +577,7 @@ package body WinRt.Windows.Media.Editing is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+                     Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
                      Retval.m_IMediaClip.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -594,8 +594,8 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromImageFileAsync
    (
-      file : Windows.Storage.IStorageFile;
-      originalDuration : Windows.Foundation.TimeSpan
+      file : WinRt.Windows.Storage.IStorageFile;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip is
       Hr               : WinRt.HResult := S_OK;
@@ -651,7 +651,7 @@ package body WinRt.Windows.Media.Editing is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+                     Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
                      Retval.m_IMediaClip.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -668,8 +668,8 @@ package body WinRt.Windows.Media.Editing is
 
    function CreateFromSurface
    (
-      surface : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
-      originalDuration : Windows.Foundation.TimeSpan
+      surface : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      originalDuration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Editing.MediaClip is
       Hr               : WinRt.HResult := S_OK;
@@ -677,7 +677,7 @@ package body WinRt.Windows.Media.Editing is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaClip");
       m_Factory        : access WinRt.Windows.Media.Editing.IMediaClipStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaClip;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaClip;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaClip do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaClipStatics2'Access , m_Factory'Address);
@@ -687,7 +687,7 @@ package body WinRt.Windows.Media.Editing is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+            Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
             Retval.m_IMediaClip.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -705,7 +705,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_TrimTimeFromStart (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -717,7 +717,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromStart
    (
       this : in out MediaClip;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -737,7 +737,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_TrimTimeFromEnd (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -749,7 +749,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_TrimTimeFromEnd
    (
       this : in out MediaClip;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -769,7 +769,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_OriginalDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -786,7 +786,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_TrimmedDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -803,7 +803,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IMediaClip.all.get_UserData (m_ComRetVal'Access);
@@ -823,14 +823,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaClip;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaClip;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaClip do
          Hr := this.m_IMediaClip.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+         Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
          Retval.m_IMediaClip.all := m_ComRetVal;
       end return;
    end;
@@ -843,7 +843,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_StartTimeInComposition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -860,7 +860,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaClip.all.get_EndTimeInComposition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -877,7 +877,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IEmbeddedAudioTrack.Kind;
    begin
       Hr := this.m_IMediaClip.all.get_EmbeddedAudioTracks (m_ComRetVal'Access);
@@ -961,14 +961,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := this.m_IMediaClip.all.GetVideoEncodingProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+         Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -981,7 +981,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IMediaClip.all.get_AudioEffectDefinitions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -998,7 +998,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IMediaClip.all.get_VideoEffectDefinitions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1033,13 +1033,13 @@ package body WinRt.Windows.Media.Editing is
    function Constructor return MediaComposition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaComposition");
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaComposition;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaComposition");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaComposition;
    begin
       return RetVal : MediaComposition do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaComposition := new Windows.Media.Editing.IMediaComposition;
+            Retval.m_IMediaComposition := new WinRt.Windows.Media.Editing.IMediaComposition;
             Retval.m_IMediaComposition.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1051,7 +1051,7 @@ package body WinRt.Windows.Media.Editing is
 
    function LoadAsync
    (
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.Editing.MediaComposition is
       Hr               : WinRt.HResult := S_OK;
@@ -1107,7 +1107,7 @@ package body WinRt.Windows.Media.Editing is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IMediaComposition := new Windows.Media.Editing.IMediaComposition;
+                     Retval.m_IMediaComposition := new WinRt.Windows.Media.Editing.IMediaComposition;
                      Retval.m_IMediaComposition.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1133,7 +1133,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaComposition.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1150,7 +1150,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IMediaClip.Kind;
    begin
       Hr := this.m_IMediaComposition.all.get_Clips (m_ComRetVal'Access);
@@ -1170,7 +1170,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IBackgroundAudioTrack.Kind;
    begin
       Hr := this.m_IMediaComposition.all.get_BackgroundAudioTracks (m_ComRetVal'Access);
@@ -1190,7 +1190,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IMediaComposition.all.get_UserData (m_ComRetVal'Access);
@@ -1210,14 +1210,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaComposition;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaComposition;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaComposition do
          Hr := this.m_IMediaComposition.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaComposition := new Windows.Media.Editing.IMediaComposition;
+         Retval.m_IMediaComposition := new WinRt.Windows.Media.Editing.IMediaComposition;
          Retval.m_IMediaComposition.all := m_ComRetVal;
       end return;
    end;
@@ -1225,7 +1225,7 @@ package body WinRt.Windows.Media.Editing is
    procedure SaveAsync
    (
       this : in out MediaComposition;
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1268,10 +1268,10 @@ package body WinRt.Windows.Media.Editing is
    function GetThumbnailAsync
    (
       this : in out MediaComposition;
-      timeFromStart : Windows.Foundation.TimeSpan;
+      timeFromStart : WinRt.Windows.Foundation.TimeSpan;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32;
-      framePrecision : Windows.Media.Editing.VideoFramePrecision
+      framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision
    )
    return WinRt.Windows.Graphics.Imaging.ImageStream'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1342,7 +1342,7 @@ package body WinRt.Windows.Media.Editing is
       timesFromStart : GenericObject;
       scaledWidth : WinRt.Int32;
       scaledHeight : WinRt.Int32;
-      framePrecision : Windows.Media.Editing.VideoFramePrecision
+      framePrecision : WinRt.Windows.Media.Editing.VideoFramePrecision
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1406,7 +1406,7 @@ package body WinRt.Windows.Media.Editing is
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile
+      destination : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason is
       Hr               : WinRt.HResult := S_OK;
@@ -1470,8 +1470,8 @@ package body WinRt.Windows.Media.Editing is
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile;
-      trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference
+      destination : WinRt.Windows.Storage.IStorageFile;
+      trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason is
       Hr               : WinRt.HResult := S_OK;
@@ -1535,9 +1535,9 @@ package body WinRt.Windows.Media.Editing is
    function RenderToFileAsync
    (
       this : in out MediaComposition;
-      destination : Windows.Storage.IStorageFile;
-      trimmingPreference : Windows.Media.Editing.MediaTrimmingPreference;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      destination : WinRt.Windows.Storage.IStorageFile;
+      trimmingPreference : WinRt.Windows.Media.Editing.MediaTrimmingPreference;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Transcoding.TranscodeFailureReason is
       Hr               : WinRt.HResult := S_OK;
@@ -1606,14 +1606,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := this.m_IMediaComposition.all.CreateDefaultEncodingProfile (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+         Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
       end return;
    end;
@@ -1626,14 +1626,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSource do
          Hr := this.m_IMediaComposition.all.GenerateMediaStreamSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
+         Retval.m_IMediaStreamSource := new WinRt.Windows.Media.Core.IMediaStreamSource;
          Retval.m_IMediaStreamSource.all := m_ComRetVal;
       end return;
    end;
@@ -1641,20 +1641,20 @@ package body WinRt.Windows.Media.Editing is
    function GenerateMediaStreamSource
    (
       this : in out MediaComposition;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class
    )
    return WinRt.Windows.Media.Core.MediaStreamSource'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSource do
          Hr := this.m_IMediaComposition.all.GenerateMediaStreamSource (encodingProfile.m_IMediaEncodingProfile.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
+         Retval.m_IMediaStreamSource := new WinRt.Windows.Media.Core.IMediaStreamSource;
          Retval.m_IMediaStreamSource.all := m_ComRetVal;
       end return;
    end;
@@ -1669,14 +1669,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaStreamSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaStreamSource;
    begin
       return RetVal : WinRt.Windows.Media.Core.MediaStreamSource do
          Hr := this.m_IMediaComposition.all.GeneratePreviewMediaStreamSource (scaledWidth, scaledHeight, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaStreamSource := new Windows.Media.Core.IMediaStreamSource;
+         Retval.m_IMediaStreamSource := new WinRt.Windows.Media.Core.IMediaStreamSource;
          Retval.m_IMediaStreamSource.all := m_ComRetVal;
       end return;
    end;
@@ -1690,7 +1690,7 @@ package body WinRt.Windows.Media.Editing is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Editing.IMediaComposition2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IMediaOverlayLayer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Editing.IMediaComposition_Interface, WinRt.Windows.Media.Editing.IMediaComposition2, WinRt.Windows.Media.Editing.IID_IMediaComposition2'Unchecked_Access);
    begin
@@ -1730,21 +1730,21 @@ package body WinRt.Windows.Media.Editing is
 
    function Constructor
    (
-      clip : Windows.Media.Editing.MediaClip'Class
+      clip : WinRt.Windows.Media.Editing.MediaClip'Class
    )
    return MediaOverlay is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlay");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlay");
       m_Factory    : access IMediaOverlayFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlay;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlay;
    begin
       return RetVal : MediaOverlay do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaOverlayFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (clip.m_IMediaClip.all, m_ComRetVal'Access);
-            Retval.m_IMediaOverlay := new Windows.Media.Editing.IMediaOverlay;
+            Retval.m_IMediaOverlay := new WinRt.Windows.Media.Editing.IMediaOverlay;
             Retval.m_IMediaOverlay.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1754,23 +1754,23 @@ package body WinRt.Windows.Media.Editing is
 
    function Constructor
    (
-      clip : Windows.Media.Editing.MediaClip'Class;
-      position : Windows.Foundation.Rect;
+      clip : WinRt.Windows.Media.Editing.MediaClip'Class;
+      position : WinRt.Windows.Foundation.Rect;
       opacity : WinRt.Double
    )
    return MediaOverlay is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlay");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlay");
       m_Factory    : access IMediaOverlayFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlay;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlay;
    begin
       return RetVal : MediaOverlay do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaOverlayFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithPositionAndOpacity (clip.m_IMediaClip.all, position, opacity, m_ComRetVal'Access);
-            Retval.m_IMediaOverlay := new Windows.Media.Editing.IMediaOverlay;
+            Retval.m_IMediaOverlay := new WinRt.Windows.Media.Editing.IMediaOverlay;
             Retval.m_IMediaOverlay.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1789,7 +1789,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IMediaOverlay.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1801,7 +1801,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_Position
    (
       this : in out MediaOverlay;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1816,7 +1816,7 @@ package body WinRt.Windows.Media.Editing is
    procedure put_Delay
    (
       this : in out MediaOverlay;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1836,7 +1836,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaOverlay.all.get_Delay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1885,14 +1885,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaOverlay;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaOverlay;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaOverlay do
          Hr := this.m_IMediaOverlay.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaOverlay := new Windows.Media.Editing.IMediaOverlay;
+         Retval.m_IMediaOverlay := new WinRt.Windows.Media.Editing.IMediaOverlay;
          Retval.m_IMediaOverlay.all := m_ComRetVal;
       end return;
    end;
@@ -1905,14 +1905,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaClip;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaClip;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaClip do
          Hr := this.m_IMediaOverlay.all.get_Clip (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaClip := new Windows.Media.Editing.IMediaClip;
+         Retval.m_IMediaClip := new WinRt.Windows.Media.Editing.IMediaClip;
          Retval.m_IMediaClip.all := m_ComRetVal;
       end return;
    end;
@@ -1975,13 +1975,13 @@ package body WinRt.Windows.Media.Editing is
    function Constructor return MediaOverlayLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlayLayer;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlayLayer");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlayLayer;
    begin
       return RetVal : MediaOverlayLayer do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
+            Retval.m_IMediaOverlayLayer := new WinRt.Windows.Media.Editing.IMediaOverlayLayer;
             Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1990,21 +1990,21 @@ package body WinRt.Windows.Media.Editing is
 
    function Constructor
    (
-      compositorDefinition : Windows.Media.Effects.IVideoCompositorDefinition
+      compositorDefinition : WinRt.Windows.Media.Effects.IVideoCompositorDefinition
    )
    return MediaOverlayLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlayLayer");
       m_Factory    : access IMediaOverlayLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Media.Editing.IMediaOverlayLayer;
+      m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlayLayer;
    begin
       return RetVal : MediaOverlayLayer do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaOverlayLayerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithCompositorDefinition (compositorDefinition, m_ComRetVal'Access);
-            Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
+            Retval.m_IMediaOverlayLayer := new WinRt.Windows.Media.Editing.IMediaOverlayLayer;
             Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2023,14 +2023,14 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Editing.IMediaOverlayLayer;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Editing.IMediaOverlayLayer;
    begin
       return RetVal : WinRt.Windows.Media.Editing.MediaOverlayLayer do
          Hr := this.m_IMediaOverlayLayer.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaOverlayLayer := new Windows.Media.Editing.IMediaOverlayLayer;
+         Retval.m_IMediaOverlayLayer := new WinRt.Windows.Media.Editing.IMediaOverlayLayer;
          Retval.m_IMediaOverlayLayer.all := m_ComRetVal;
       end return;
    end;
@@ -2043,7 +2043,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IMediaOverlay.Kind;
    begin
       Hr := this.m_IMediaOverlayLayer.all.get_Overlays (m_ComRetVal'Access);
@@ -2063,7 +2063,7 @@ package body WinRt.Windows.Media.Editing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Effects.IVideoCompositorDefinition;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Effects.IVideoCompositorDefinition;
    begin
       Hr := this.m_IMediaOverlayLayer.all.get_CustomCompositorDefinition (m_ComRetVal'Access);
       if Hr /= S_OK then

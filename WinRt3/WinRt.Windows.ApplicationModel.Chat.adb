@@ -240,7 +240,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatCapabilities := new Windows.ApplicationModel.Chat.IChatCapabilities;
+                        Retval.m_IChatCapabilities := new WinRt.Windows.ApplicationModel.Chat.IChatCapabilities;
                         Retval.m_IChatCapabilities.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -315,7 +315,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatCapabilities := new Windows.ApplicationModel.Chat.IChatCapabilities;
+                        Retval.m_IChatCapabilities := new WinRt.Windows.ApplicationModel.Chat.IChatCapabilities;
                         Retval.m_IChatCapabilities.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -392,7 +392,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatCapabilities := new Windows.ApplicationModel.Chat.IChatCapabilities;
+                        Retval.m_IChatCapabilities := new WinRt.Windows.ApplicationModel.Chat.IChatCapabilities;
                         Retval.m_IChatCapabilities.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -470,7 +470,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatCapabilities := new Windows.ApplicationModel.Chat.IChatCapabilities;
+                        Retval.m_IChatCapabilities := new WinRt.Windows.ApplicationModel.Chat.IChatCapabilities;
                         Retval.m_IChatCapabilities.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -646,7 +646,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IChatConversation.all.get_Participants (m_ComRetVal'Access);
@@ -666,14 +666,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo do
          Hr := this.m_IChatConversation.all.get_ThreadingInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatConversationThreadingInfo := new Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+         Retval.m_IChatConversationThreadingInfo := new WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
          Retval.m_IChatConversationThreadingInfo.all := m_ComRetVal;
       end return;
    end;
@@ -728,14 +728,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageReader do
          Hr := this.m_IChatConversation.all.GetMessageReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageReader := new Windows.ApplicationModel.Chat.IChatMessageReader;
+         Retval.m_IChatMessageReader := new WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
          Retval.m_IChatMessageReader.all := m_ComRetVal;
       end return;
    end;
@@ -785,7 +785,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure MarkMessagesAsReadAsync
    (
       this : in out ChatConversation;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -918,7 +918,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IChatConversation.all.add_RemoteParticipantComposingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -930,7 +930,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure remove_RemoteParticipantComposingChanged
    (
       this : in out ChatConversation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -991,7 +991,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatItemKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatItemKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatConversation_Interface, WinRt.Windows.ApplicationModel.Chat.IChatItem, WinRt.Windows.ApplicationModel.Chat.IID_IChatItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatConversation.all);
@@ -1179,13 +1179,13 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatConversationThreadingInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatConversationThreadingInfo");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatConversationThreadingInfo");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
    begin
       return RetVal : ChatConversationThreadingInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IChatConversationThreadingInfo := new Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+            Retval.m_IChatConversationThreadingInfo := new WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
             Retval.m_IChatConversationThreadingInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1314,7 +1314,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IChatConversationThreadingInfo.all.get_Participants (m_ComRetVal'Access);
@@ -1334,7 +1334,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatConversationThreadingKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingKind;
    begin
       Hr := this.m_IChatConversationThreadingInfo.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1346,7 +1346,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_Kind
    (
       this : in out ChatConversationThreadingInfo;
-      value : Windows.ApplicationModel.Chat.ChatConversationThreadingKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1384,13 +1384,13 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatMessage");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Chat.IChatMessage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatMessage");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessage;
    begin
       return RetVal : ChatMessage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+            Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
             Retval.m_IChatMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1408,7 +1408,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IChatMessageAttachment.Kind;
    begin
       Hr := this.m_IChatMessage.all.get_Attachments (m_ComRetVal'Access);
@@ -1556,7 +1556,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IChatMessage.all.get_LocalTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1573,7 +1573,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IChatMessage.all.get_NetworkTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1590,7 +1590,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IChatMessage.all.get_Recipients (m_ComRetVal'Access);
@@ -1610,7 +1610,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_ChatMessageStatus.Kind;
    begin
       Hr := this.m_IChatMessage.all.get_RecipientSendStatuses (m_ComRetVal'Access);
@@ -1630,7 +1630,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus;
    begin
       Hr := this.m_IChatMessage.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1959,7 +1959,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_LocalTimestamp
    (
       this : in out ChatMessage;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1984,7 +1984,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessage_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessage2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessage.all);
@@ -1999,7 +1999,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_MessageKind
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2024,7 +2024,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageOperatorKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageOperatorKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessage_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessage2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessage.all);
@@ -2039,7 +2039,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_MessageOperatorKind
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageOperatorKind
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageOperatorKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2058,7 +2058,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_NetworkTimestamp
    (
       this : in out ChatMessage;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2138,7 +2138,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_Status
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatMessageStatus
+      value : WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2224,7 +2224,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessage_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessage2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessage2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo do
@@ -2234,7 +2234,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatConversationThreadingInfo := new Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
+         Retval.m_IChatConversationThreadingInfo := new WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
          Retval.m_IChatConversationThreadingInfo.all := m_ComRetVal;
       end return;
    end;
@@ -2242,7 +2242,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_ThreadingInfo
    (
       this : in out ChatMessage;
-      value : Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
+      value : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2267,7 +2267,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IChatRecipientDeliveryInfo.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessage_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessage2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessage2'Unchecked_Access);
    begin
@@ -2360,7 +2360,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatItem := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatItemKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatItemKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessage_Interface, WinRt.Windows.ApplicationModel.Chat.IChatItem, WinRt.Windows.ApplicationModel.Chat.IID_IChatItem'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessage.all);
@@ -2398,22 +2398,22 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor
    (
       mimeType : WinRt.WString;
-      dataStreamReference : Windows.Storage.Streams.IRandomAccessStreamReference
+      dataStreamReference : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return ChatMessageAttachment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatMessageAttachment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatMessageAttachment");
       m_Factory    : access IChatMessageAttachmentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Chat.IChatMessageAttachment;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment;
       HStr_mimeType : constant WinRt.HString := To_HString (mimeType);
    begin
       return RetVal : ChatMessageAttachment do
          Hr := RoGetActivationFactory (m_hString, IID_IChatMessageAttachmentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateChatMessageAttachment (HStr_mimeType, dataStreamReference, m_ComRetVal'Access);
-            Retval.m_IChatMessageAttachment := new Windows.ApplicationModel.Chat.IChatMessageAttachment;
+            Retval.m_IChatMessageAttachment := new WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment;
             Retval.m_IChatMessageAttachment.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2433,7 +2433,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IChatMessageAttachment.all.get_DataStreamReference (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2445,7 +2445,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_DataStreamReference
    (
       this : in out ChatMessageAttachment;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2572,7 +2572,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageAttachment2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessageAttachment.all);
@@ -2587,7 +2587,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_Thumbnail
    (
       this : in out ChatMessageAttachment;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2777,7 +2777,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageChangeType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageChangeType;
    begin
       Hr := this.m_IChatMessageChange.all.get_ChangeType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2794,14 +2794,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessage do
          Hr := this.m_IChatMessageChange.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+         Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
          Retval.m_IChatMessage.all := m_ComRetVal;
       end return;
    end;
@@ -2846,7 +2846,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure AcceptChangesThrough
    (
       this : in out ChatMessageChangeReader;
-      lastChangeToAcknowledge : Windows.ApplicationModel.Chat.ChatMessageChange'Class
+      lastChangeToAcknowledge : WinRt.Windows.ApplicationModel.Chat.ChatMessageChange'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2966,14 +2966,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageChangeReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageChangeReader do
          Hr := this.m_IChatMessageChangeTracker.all.GetChangeReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageChangeReader := new Windows.ApplicationModel.Chat.IChatMessageChangeReader;
+         Retval.m_IChatMessageChangeReader := new WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeReader;
          Retval.m_IChatMessageChangeReader.all := m_ComRetVal;
       end return;
    end;
@@ -3060,14 +3060,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageChangedDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageChangedDeferral;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageChangedDeferral do
          Hr := this.m_IChatMessageChangedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageChangedDeferral := new Windows.ApplicationModel.Chat.IChatMessageChangedDeferral;
+         Retval.m_IChatMessageChangedDeferral := new WinRt.Windows.ApplicationModel.Chat.IChatMessageChangedDeferral;
          Retval.m_IChatMessageChangedDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -3198,7 +3198,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatMessageStore := new Windows.ApplicationModel.Chat.IChatMessageStore;
+                        Retval.m_IChatMessageStore := new WinRt.Windows.ApplicationModel.Chat.IChatMessageStore;
                         Retval.m_IChatMessageStore.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3215,7 +3215,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
 
       procedure ShowComposeSmsMessageAsync
       (
-         message : Windows.ApplicationModel.Chat.ChatMessage'Class
+         message : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -3335,7 +3335,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatSyncManager := new Windows.ApplicationModel.Chat.IChatSyncManager;
+                        Retval.m_IChatSyncManager := new WinRt.Windows.ApplicationModel.Chat.IChatSyncManager;
                         Retval.m_IChatSyncManager.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3479,7 +3479,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IChatMessageTransport := new Windows.ApplicationModel.Chat.IChatMessageTransport;
+                        Retval.m_IChatMessageTransport := new WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport;
                         Retval.m_IChatMessageTransport.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -3528,14 +3528,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessage do
          Hr := this.m_IChatMessageNotificationTriggerDetails.all.get_ChatMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+         Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
          Retval.m_IChatMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3809,14 +3809,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageChangeTracker;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeTracker;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageChangeTracker do
          Hr := this.m_IChatMessageStore.all.get_ChangeTracker (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageChangeTracker := new Windows.ApplicationModel.Chat.IChatMessageChangeTracker;
+         Retval.m_IChatMessageChangeTracker := new WinRt.Windows.ApplicationModel.Chat.IChatMessageChangeTracker;
          Retval.m_IChatMessageChangeTracker.all := m_ComRetVal;
       end return;
    end;
@@ -3966,7 +3966,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+                  Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
                   Retval.m_IChatMessage.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -3988,14 +3988,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageReader do
          Hr := this.m_IChatMessageStore.all.GetMessageReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageReader := new Windows.ApplicationModel.Chat.IChatMessageReader;
+         Retval.m_IChatMessageReader := new WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
          Retval.m_IChatMessageReader.all := m_ComRetVal;
       end return;
    end;
@@ -4003,20 +4003,20 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function GetMessageReader
    (
       this : in out ChatMessageStore;
-      recentTimeLimit : Windows.Foundation.TimeSpan
+      recentTimeLimit : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatMessageReader'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageReader do
          Hr := this.m_IChatMessageStore.all.GetMessageReader (recentTimeLimit, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageReader := new Windows.ApplicationModel.Chat.IChatMessageReader;
+         Retval.m_IChatMessageReader := new WinRt.Windows.ApplicationModel.Chat.IChatMessageReader;
          Retval.m_IChatMessageReader.all := m_ComRetVal;
       end return;
    end;
@@ -4114,7 +4114,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure SendMessageAsync
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4157,20 +4157,20 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function ValidateMessage
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatMessageValidationResult'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageValidationResult;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageValidationResult;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageValidationResult do
          Hr := this.m_IChatMessageStore.all.ValidateMessage (chatMessage_p.m_IChatMessage.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageValidationResult := new Windows.ApplicationModel.Chat.IChatMessageValidationResult;
+         Retval.m_IChatMessageValidationResult := new WinRt.Windows.ApplicationModel.Chat.IChatMessageValidationResult;
          Retval.m_IChatMessageValidationResult.all := m_ComRetVal;
       end return;
    end;
@@ -4184,7 +4184,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IChatMessageStore.all.add_MessageChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4196,7 +4196,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure remove_MessageChanged
    (
       this : in out ChatMessageStore;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4268,7 +4268,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+                  Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
                   Retval.m_IChatMessage.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4341,7 +4341,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatConversation := new Windows.ApplicationModel.Chat.IChatConversation;
+                  Retval.m_IChatConversation := new WinRt.Windows.ApplicationModel.Chat.IChatConversation;
                   Retval.m_IChatConversation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4415,7 +4415,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatConversation := new Windows.ApplicationModel.Chat.IChatConversation;
+                  Retval.m_IChatConversation := new WinRt.Windows.ApplicationModel.Chat.IChatConversation;
                   Retval.m_IChatConversation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4432,7 +4432,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function GetConversationFromThreadingInfoAsync
    (
       this : in out ChatMessageStore;
-      threadingInfo : Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
+      threadingInfo : WinRt.Windows.ApplicationModel.Chat.ChatConversationThreadingInfo'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatConversation'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -4487,7 +4487,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatConversation := new Windows.ApplicationModel.Chat.IChatConversation;
+                  Retval.m_IChatConversation := new WinRt.Windows.ApplicationModel.Chat.IChatConversation;
                   Retval.m_IChatConversation.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4509,7 +4509,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatConversationReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationReader;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageStore_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageStore2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatConversationReader do
@@ -4519,7 +4519,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatConversationReader := new Windows.ApplicationModel.Chat.IChatConversationReader;
+         Retval.m_IChatConversationReader := new WinRt.Windows.ApplicationModel.Chat.IChatConversationReader;
          Retval.m_IChatConversationReader.all := m_ComRetVal;
       end return;
    end;
@@ -4534,7 +4534,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatConversationReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationReader;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageStore_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageStore2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatConversationReader do
@@ -4544,7 +4544,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatConversationReader := new Windows.ApplicationModel.Chat.IChatConversationReader;
+         Retval.m_IChatConversationReader := new WinRt.Windows.ApplicationModel.Chat.IChatConversationReader;
          Retval.m_IChatConversationReader.all := m_ComRetVal;
       end return;
    end;
@@ -4610,7 +4610,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+                  Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
                   Retval.m_IChatMessage.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4856,14 +4856,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function GetSearchReader
    (
       this : in out ChatMessageStore;
-      value : Windows.ApplicationModel.Chat.ChatQueryOptions'Class
+      value : WinRt.Windows.ApplicationModel.Chat.ChatQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Chat.ChatSearchReader'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatSearchReader;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatSearchReader;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageStore_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageStore2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatSearchReader do
@@ -4873,7 +4873,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatSearchReader := new Windows.ApplicationModel.Chat.IChatSearchReader;
+         Retval.m_IChatSearchReader := new WinRt.Windows.ApplicationModel.Chat.IChatSearchReader;
          Retval.m_IChatSearchReader.all := m_ComRetVal;
       end return;
    end;
@@ -4881,7 +4881,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure SaveMessageAsync
    (
       this : in out ChatMessageStore;
-      chatMessage_p : Windows.ApplicationModel.Chat.ChatMessage'Class
+      chatMessage_p : WinRt.Windows.ApplicationModel.Chat.ChatMessage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5075,7 +5075,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageStore_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageStore2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageStore2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessageStore.all);
@@ -5090,7 +5090,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure remove_StoreChanged
    (
       this : in out ChatMessageStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5165,7 +5165,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IChatMessage := new Windows.ApplicationModel.Chat.IChatMessage;
+                  Retval.m_IChatMessage := new WinRt.Windows.ApplicationModel.Chat.IChatMessage;
                   Retval.m_IChatMessage.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5230,7 +5230,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatStoreChangedEventKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatStoreChangedEventKind;
    begin
       Hr := this.m_IChatMessageStoreChangedEventArgs.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5387,7 +5387,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageTransport2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatMessageTransportConfiguration do
@@ -5397,7 +5397,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatMessageTransportConfiguration := new Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration;
+         Retval.m_IChatMessageTransportConfiguration := new WinRt.Windows.ApplicationModel.Chat.IChatMessageTransportConfiguration;
          Retval.m_IChatMessageTransportConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -5411,7 +5411,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageTransportKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageTransportKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport_Interface, WinRt.Windows.ApplicationModel.Chat.IChatMessageTransport2, WinRt.Windows.ApplicationModel.Chat.IID_IChatMessageTransport2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IChatMessageTransport.all);
@@ -5505,14 +5505,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaEncodingProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile do
          Hr := this.m_IChatMessageTransportConfiguration.all.get_SupportedVideoFormat (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaEncodingProfile := new Windows.Media.MediaProperties.IMediaEncodingProfile;
+         Retval.m_IMediaEncodingProfile := new WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
          Retval.m_IMediaEncodingProfile.all := m_ComRetVal;
       end return;
    end;
@@ -5525,7 +5525,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IChatMessageTransportConfiguration.all.get_ExtendedProperties (m_ComRetVal'Access);
@@ -5568,7 +5568,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IChatMessageValidationResult.all.get_MaxPartCount (m_ComRetVal'Access);
@@ -5588,7 +5588,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IChatMessageValidationResult.all.get_PartCount (m_ComRetVal'Access);
@@ -5608,7 +5608,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IChatMessageValidationResult.all.get_RemainingCharacterCountInPart (m_ComRetVal'Access);
@@ -5628,7 +5628,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageValidationStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageValidationStatus;
    begin
       Hr := this.m_IChatMessageValidationResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5663,13 +5663,13 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatQueryOptions");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Chat.IChatQueryOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatQueryOptions");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatQueryOptions;
    begin
       return RetVal : ChatQueryOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IChatQueryOptions := new Windows.ApplicationModel.Chat.IChatQueryOptions;
+            Retval.m_IChatQueryOptions := new WinRt.Windows.ApplicationModel.Chat.IChatQueryOptions;
             Retval.m_IChatQueryOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5742,13 +5742,13 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatRecipientDeliveryInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatRecipientDeliveryInfo");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo;
    begin
       return RetVal : ChatRecipientDeliveryInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IChatRecipientDeliveryInfo := new Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo;
+            Retval.m_IChatRecipientDeliveryInfo := new WinRt.Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo;
             Retval.m_IChatRecipientDeliveryInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5803,7 +5803,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IChatRecipientDeliveryInfo.all.get_DeliveryTime (m_ComRetVal'Access);
@@ -5838,7 +5838,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IChatRecipientDeliveryInfo.all.get_ReadTime (m_ComRetVal'Access);
@@ -5873,7 +5873,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatTransportErrorCodeCategory;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatTransportErrorCodeCategory;
    begin
       Hr := this.m_IChatRecipientDeliveryInfo.all.get_TransportErrorCodeCategory (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5890,7 +5890,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatTransportInterpretedErrorCode;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatTransportInterpretedErrorCode;
    begin
       Hr := this.m_IChatRecipientDeliveryInfo.all.get_TransportInterpretedErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5941,7 +5941,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatMessageStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatMessageStatus;
    begin
       Hr := this.m_IChatRecipientDeliveryInfo.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6163,7 +6163,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.ChatRestoreHistorySpan;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.ChatRestoreHistorySpan;
    begin
       Hr := this.m_IChatSyncConfiguration.all.get_RestoreHistorySpan (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6175,7 +6175,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure put_RestoreHistorySpan
    (
       this : in out ChatSyncConfiguration;
-      value : Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
+      value : WinRt.Windows.ApplicationModel.Chat.ChatRestoreHistorySpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6218,14 +6218,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IChatSyncConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IChatSyncConfiguration;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.ChatSyncConfiguration do
          Hr := this.m_IChatSyncManager.all.get_Configuration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IChatSyncConfiguration := new Windows.ApplicationModel.Chat.IChatSyncConfiguration;
+         Retval.m_IChatSyncConfiguration := new WinRt.Windows.ApplicationModel.Chat.IChatSyncConfiguration;
          Retval.m_IChatSyncConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -6233,7 +6233,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure AssociateAccountAsync
    (
       this : in out ChatSyncManager;
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6318,7 +6318,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function IsAccountAssociated
    (
       this : in out ChatSyncManager;
-      webAccount : Windows.Security.Credentials.WebAccount'Class
+      webAccount : WinRt.Windows.Security.Credentials.WebAccount'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -6350,7 +6350,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure SetConfigurationAsync
    (
       this : in out ChatSyncManager;
-      configuration : Windows.ApplicationModel.Chat.ChatSyncConfiguration'Class
+      configuration : WinRt.Windows.ApplicationModel.Chat.ChatSyncConfiguration'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6498,7 +6498,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IRcsEndUserMessageAction.Kind;
    begin
       Hr := this.m_IRcsEndUserMessage.all.get_Actions (m_ComRetVal'Access);
@@ -6513,7 +6513,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure SendResponseAsync
    (
       this : in out RcsEndUserMessage;
-      action : Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class
+      action : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6556,7 +6556,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure SendResponseWithPinAsync
    (
       this : in out RcsEndUserMessage;
-      action : Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class;
+      action : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageAction'Class;
       pin : WinRt.WString
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -6690,14 +6690,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IRcsEndUserMessage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessage do
          Hr := this.m_IRcsEndUserMessageAvailableEventArgs.all.get_Message (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRcsEndUserMessage := new Windows.ApplicationModel.Chat.IRcsEndUserMessage;
+         Retval.m_IRcsEndUserMessage := new WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessage;
          Retval.m_IRcsEndUserMessage.all := m_ComRetVal;
       end return;
    end;
@@ -6797,7 +6797,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRcsEndUserMessageManager.all.add_MessageAvailableChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6809,7 +6809,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure remove_MessageAvailableChanged
    (
       this : in out RcsEndUserMessageManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6835,7 +6835,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.RcsManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Chat.IRcsManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+         m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IRcsManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -6851,7 +6851,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
 
       procedure remove_TransportListChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -6877,7 +6877,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
          m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.RcsManager");
          m_Factory        : access WinRt.Windows.ApplicationModel.Chat.IRcsManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IRcsEndUserMessageManager;
+         m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageManager;
       begin
          return RetVal : WinRt.Windows.ApplicationModel.Chat.RcsEndUserMessageManager do
             Hr := RoGetActivationFactory (m_hString, IID_IRcsManagerStatics'Access , m_Factory'Address);
@@ -6887,7 +6887,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IRcsEndUserMessageManager := new Windows.ApplicationModel.Chat.IRcsEndUserMessageManager;
+               Retval.m_IRcsEndUserMessageManager := new WinRt.Windows.ApplicationModel.Chat.IRcsEndUserMessageManager;
                Retval.m_IRcsEndUserMessageManager.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -7020,7 +7020,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IRcsTransport := new Windows.ApplicationModel.Chat.IRcsTransport;
+                        Retval.m_IRcsTransport := new WinRt.Windows.ApplicationModel.Chat.IRcsTransport;
                         Retval.m_IRcsTransport.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -7038,7 +7038,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
 
       procedure LeaveConversationAsync
       (
-         conversation : Windows.ApplicationModel.Chat.ChatConversation'Class
+         conversation : WinRt.Windows.ApplicationModel.Chat.ChatConversation'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -7118,7 +7118,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.RcsServiceKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.RcsServiceKind;
    begin
       Hr := this.m_IRcsServiceKindSupportedChangedEventArgs.all.get_ServiceKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7158,7 +7158,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_IRcsTransport.all.get_ExtendedProperties (m_ComRetVal'Access);
@@ -7235,14 +7235,14 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Chat.IRcsTransportConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Chat.IRcsTransportConfiguration;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Chat.RcsTransportConfiguration do
          Hr := this.m_IRcsTransport.all.get_Configuration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRcsTransportConfiguration := new Windows.ApplicationModel.Chat.IRcsTransportConfiguration;
+         Retval.m_IRcsTransportConfiguration := new WinRt.Windows.ApplicationModel.Chat.IRcsTransportConfiguration;
          Retval.m_IRcsTransportConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -7250,7 +7250,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function IsStoreAndForwardEnabled
    (
       this : in out RcsTransport;
-      serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind
+      serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7268,7 +7268,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function IsServiceKindSupported
    (
       this : in out RcsTransport;
-      serviceKind : Windows.ApplicationModel.Chat.RcsServiceKind
+      serviceKind : WinRt.Windows.ApplicationModel.Chat.RcsServiceKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -7292,7 +7292,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IRcsTransport.all.add_ServiceKindSupportedChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7304,7 +7304,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    procedure remove_ServiceKindSupportedChanged
    (
       this : in out RcsTransport;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

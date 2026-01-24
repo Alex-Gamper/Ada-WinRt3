@@ -104,29 +104,29 @@ package WinRt.Windows.System.Threading is
    -----------------------------------------------------------------------------
 
    IID_TimerDestroyedHandler : aliased WinRt.IID := (887953914, 33668, 20153, (130, 9, 251, 80, 148, 238, 236, 53 ));
-   type TimerDestroyedHandler_Delegate (Callback : access procedure  (timer : Windows.System.Threading.IThreadPoolTimer)) is new WinRt.IMulticastDelegate_Interface (IID_TimerDestroyedHandler'Access) with null record;
+   type TimerDestroyedHandler_Delegate (Callback : access procedure  (timer : WinRt.Windows.System.Threading.IThreadPoolTimer)) is new WinRt.IMulticastDelegate_Interface (IID_TimerDestroyedHandler'Access) with null record;
       function Invoke
       (
          this : access TimerDestroyedHandler_Delegate;
-         timer : Windows.System.Threading.IThreadPoolTimer
+         timer : WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult;
 
    IID_TimerElapsedHandler : aliased WinRt.IID := (4205749863, 64491, 18891, (173, 178, 113, 24, 76, 85, 110, 67 ));
-   type TimerElapsedHandler_Delegate (Callback : access procedure  (timer : Windows.System.Threading.IThreadPoolTimer)) is new WinRt.IMulticastDelegate_Interface (IID_TimerElapsedHandler'Access) with null record;
+   type TimerElapsedHandler_Delegate (Callback : access procedure  (timer : WinRt.Windows.System.Threading.IThreadPoolTimer)) is new WinRt.IMulticastDelegate_Interface (IID_TimerElapsedHandler'Access) with null record;
       function Invoke
       (
          this : access TimerElapsedHandler_Delegate;
-         timer : Windows.System.Threading.IThreadPoolTimer
+         timer : WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult;
 
    IID_WorkItemHandler : aliased WinRt.IID := (488278923, 64102, 16719, (156, 189, 182, 95, 201, 157, 23, 250 ));
-   type WorkItemHandler_Delegate (Callback : access procedure  (operation : Windows.Foundation.IAsyncAction)) is new WinRt.IMulticastDelegate_Interface (IID_WorkItemHandler'Access) with null record;
+   type WorkItemHandler_Delegate (Callback : access procedure  (operation : WinRt.Windows.Foundation.IAsyncAction)) is new WinRt.IMulticastDelegate_Interface (IID_WorkItemHandler'Access) with null record;
       function Invoke
       (
          this : access WorkItemHandler_Delegate;
-         operation : Windows.Foundation.IAsyncAction
+         operation : WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult;
 
@@ -140,27 +140,27 @@ package WinRt.Windows.System.Threading is
       function RunAsync
       (
          this : access IThreadPoolStatics_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         RetVal : access Windows.Foundation.IAsyncAction
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RunAsync
       (
          this : access IThreadPoolStatics_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         RetVal : access Windows.Foundation.IAsyncAction
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RunAsync
       (
          this : access IThreadPoolStatics_Interface;
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         options : Windows.System.Threading.WorkItemOptions;
-         RetVal : access Windows.Foundation.IAsyncAction
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         options : WinRt.Windows.System.Threading.WorkItemOptions;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -172,14 +172,14 @@ package WinRt.Windows.System.Threading is
       function get_Period
       (
          this : access IThreadPoolTimer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Delay
       (
          this : access IThreadPoolTimer_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -197,38 +197,38 @@ package WinRt.Windows.System.Threading is
       function CreatePeriodicTimer
       (
          this : access IThreadPoolTimerStatics_Interface;
-         handler : Windows.System.Threading.TimerElapsedHandler;
-         period : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.System.Threading.IThreadPoolTimer
+         handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+         period : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult is abstract;
 
       function CreateTimer
       (
          this : access IThreadPoolTimerStatics_Interface;
-         handler : Windows.System.Threading.TimerElapsedHandler;
-         delay_x : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.System.Threading.IThreadPoolTimer
+         handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+         delay_x : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult is abstract;
 
       function CreatePeriodicTimer
       (
          this : access IThreadPoolTimerStatics_Interface;
-         handler : Windows.System.Threading.TimerElapsedHandler;
-         period : Windows.Foundation.TimeSpan;
-         destroyed : Windows.System.Threading.TimerDestroyedHandler;
-         RetVal : access Windows.System.Threading.IThreadPoolTimer
+         handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+         period : WinRt.Windows.Foundation.TimeSpan;
+         destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler;
+         RetVal : access WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult is abstract;
 
       function CreateTimer
       (
          this : access IThreadPoolTimerStatics_Interface;
-         handler : Windows.System.Threading.TimerElapsedHandler;
-         delay_x : Windows.Foundation.TimeSpan;
-         destroyed : Windows.System.Threading.TimerDestroyedHandler;
-         RetVal : access Windows.System.Threading.IThreadPoolTimer
+         handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+         delay_x : WinRt.Windows.Foundation.TimeSpan;
+         destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler;
+         RetVal : access WinRt.Windows.System.Threading.IThreadPoolTimer
       )
       return WinRt.Hresult is abstract;
 
@@ -244,20 +244,20 @@ package WinRt.Windows.System.Threading is
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler
+         handler : WinRt.Windows.System.Threading.WorkItemHandler
       );
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority
       );
 
       procedure RunAsync
       (
-         handler : Windows.System.Threading.WorkItemHandler;
-         priority : Windows.System.Threading.WorkItemPriority;
-         options : Windows.System.Threading.WorkItemOptions
+         handler : WinRt.Windows.System.Threading.WorkItemHandler;
+         priority : WinRt.Windows.System.Threading.WorkItemPriority;
+         options : WinRt.Windows.System.Threading.WorkItemOptions
       );
 
    end ThreadPool;
@@ -273,31 +273,31 @@ package WinRt.Windows.System.Threading is
 
    function CreatePeriodicTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      period : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      period : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer;
 
    function CreateTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      delay_x : Windows.Foundation.TimeSpan
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      delay_x : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer;
 
    function CreatePeriodicTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      period : Windows.Foundation.TimeSpan;
-      destroyed : Windows.System.Threading.TimerDestroyedHandler
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      period : WinRt.Windows.Foundation.TimeSpan;
+      destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer;
 
    function CreateTimer
    (
-      handler : Windows.System.Threading.TimerElapsedHandler;
-      delay_x : Windows.Foundation.TimeSpan;
-      destroyed : Windows.System.Threading.TimerDestroyedHandler
+      handler : WinRt.Windows.System.Threading.TimerElapsedHandler;
+      delay_x : WinRt.Windows.Foundation.TimeSpan;
+      destroyed : WinRt.Windows.System.Threading.TimerDestroyedHandler
    )
    return WinRt.Windows.System.Threading.ThreadPoolTimer;
 

@@ -103,29 +103,29 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       function Hide
       (
          this : access ICompositionDebugHeatMaps_Interface;
-         subtree : Windows.UI.Composition.IVisual
+         subtree : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function ShowMemoryUsage
       (
          this : access ICompositionDebugHeatMaps_Interface;
-         subtree : Windows.UI.Composition.IVisual
+         subtree : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
       function ShowOverdraw
       (
          this : access ICompositionDebugHeatMaps_Interface;
-         subtree : Windows.UI.Composition.IVisual;
-         contentKinds : Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
+         subtree : WinRt.Windows.UI.Composition.IVisual;
+         contentKinds : WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
       )
       return WinRt.Hresult is abstract;
 
       function ShowRedraw
       (
          this : access ICompositionDebugHeatMaps_Interface;
-         subtree : Windows.UI.Composition.IVisual
+         subtree : WinRt.Windows.UI.Composition.IVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -137,7 +137,7 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       function get_HeatMaps
       (
          this : access ICompositionDebugSettings_Interface;
-         RetVal : access Windows.UI.Composition.Diagnostics.ICompositionDebugHeatMaps
+         RetVal : access WinRt.Windows.UI.Composition.Diagnostics.ICompositionDebugHeatMaps
       )
       return WinRt.Hresult is abstract;
 
@@ -149,8 +149,8 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       function TryGetSettings
       (
          this : access ICompositionDebugSettingsStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Diagnostics.ICompositionDebugSettings
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Diagnostics.ICompositionDebugSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -172,26 +172,26 @@ package WinRt.Windows.UI.Composition.Diagnostics is
    procedure Hide
    (
       this : in out CompositionDebugHeatMaps;
-      subtree : Windows.UI.Composition.Visual'Class
+      subtree : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure ShowMemoryUsage
    (
       this : in out CompositionDebugHeatMaps;
-      subtree : Windows.UI.Composition.Visual'Class
+      subtree : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    procedure ShowOverdraw
    (
       this : in out CompositionDebugHeatMaps;
-      subtree : Windows.UI.Composition.Visual'Class;
-      contentKinds : Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
+      subtree : WinRt.Windows.UI.Composition.Visual'Class;
+      contentKinds : WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
    );
 
    procedure ShowRedraw
    (
       this : in out CompositionDebugHeatMaps;
-      subtree : Windows.UI.Composition.Visual'Class
+      subtree : WinRt.Windows.UI.Composition.Visual'Class
    );
 
    -----------------------------------------------------------------------------
@@ -205,7 +205,7 @@ package WinRt.Windows.UI.Composition.Diagnostics is
 
    function TryGetSettings
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugSettings;
 

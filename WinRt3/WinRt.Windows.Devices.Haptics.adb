@@ -414,7 +414,7 @@ package body WinRt.Windows.Devices.Haptics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISimpleHapticsControllerFeedback.Kind;
    begin
       Hr := this.m_ISimpleHapticsController.all.get_SupportedFeedback (m_ComRetVal'Access);
@@ -511,7 +511,7 @@ package body WinRt.Windows.Devices.Haptics is
    procedure SendHapticFeedback
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -526,7 +526,7 @@ package body WinRt.Windows.Devices.Haptics is
    procedure SendHapticFeedback
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -542,9 +542,9 @@ package body WinRt.Windows.Devices.Haptics is
    procedure SendHapticFeedbackForDuration
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double;
-      playDuration : Windows.Foundation.TimeSpan
+      playDuration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -559,10 +559,10 @@ package body WinRt.Windows.Devices.Haptics is
    procedure SendHapticFeedbackForPlayCount
    (
       this : in out SimpleHapticsController;
-      feedback : Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
+      feedback : WinRt.Windows.Devices.Haptics.SimpleHapticsControllerFeedback'Class;
       intensity : WinRt.Double;
       playCount : WinRt.Int32;
-      replayPauseInterval : Windows.Foundation.TimeSpan
+      replayPauseInterval : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -622,7 +622,7 @@ package body WinRt.Windows.Devices.Haptics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ISimpleHapticsControllerFeedback.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -804,7 +804,7 @@ package body WinRt.Windows.Devices.Haptics is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IVibrationDevice := new Windows.Devices.Haptics.IVibrationDevice;
+                     Retval.m_IVibrationDevice := new WinRt.Windows.Devices.Haptics.IVibrationDevice;
                      Retval.m_IVibrationDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -875,7 +875,7 @@ package body WinRt.Windows.Devices.Haptics is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IVibrationDevice := new Windows.Devices.Haptics.IVibrationDevice;
+                     Retval.m_IVibrationDevice := new WinRt.Windows.Devices.Haptics.IVibrationDevice;
                      Retval.m_IVibrationDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -988,14 +988,14 @@ package body WinRt.Windows.Devices.Haptics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
          Hr := this.m_IVibrationDevice.all.get_SimpleHapticsController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;

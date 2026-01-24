@@ -84,14 +84,14 @@ package WinRt.Windows.Media.Capture.Core is
       function get_Frame
       (
          this : access IVariablePhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrame
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrame
       )
       return WinRt.Hresult is abstract;
 
       function get_CaptureTimeOffset
       (
          this : access IVariablePhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -105,7 +105,7 @@ package WinRt.Windows.Media.Capture.Core is
       function get_CapturedFrameControlValues
       (
          this : access IVariablePhotoCapturedEventArgs_Interface;
-         RetVal : access Windows.Media.Capture.ICapturedFrameControlValues
+         RetVal : access WinRt.Windows.Media.Capture.ICapturedFrameControlValues
       )
       return WinRt.Hresult is abstract;
 
@@ -117,21 +117,21 @@ package WinRt.Windows.Media.Capture.Core is
       function StartAsync
       (
          this : access IVariablePhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function StopAsync
       (
          this : access IVariablePhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function FinishAsync
       (
          this : access IVariablePhotoSequenceCapture_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -139,14 +139,14 @@ package WinRt.Windows.Media.Capture.Core is
       (
          this : access IVariablePhotoSequenceCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PhotoCaptured
       (
          this : access IVariablePhotoSequenceCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -154,14 +154,14 @@ package WinRt.Windows.Media.Capture.Core is
       (
          this : access IVariablePhotoSequenceCapture_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IVariablePhotoSequenceCapture_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -173,7 +173,7 @@ package WinRt.Windows.Media.Capture.Core is
       function UpdateSettingsAsync
       (
          this : access IVariablePhotoSequenceCapture2_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -250,7 +250,7 @@ package WinRt.Windows.Media.Capture.Core is
    procedure remove_PhotoCaptured
    (
       this : in out VariablePhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -263,7 +263,7 @@ package WinRt.Windows.Media.Capture.Core is
    procedure remove_Stopped
    (
       this : in out VariablePhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure UpdateSettingsAsync

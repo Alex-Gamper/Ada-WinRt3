@@ -284,7 +284,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_Status
       (
          this : access IAppServiceClosedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.AppServiceClosedStatus
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.AppServiceClosedStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -331,7 +331,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       function SendMessageAsync
       (
          this : access IAppServiceConnection_Interface;
-         message : Windows.Foundation.Collections.IPropertySet;
+         message : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -340,14 +340,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       (
          this : access IAppServiceConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RequestReceived
       (
          this : access IAppServiceConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -355,14 +355,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       (
          this : access IAppServiceConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServiceClosed
       (
          this : access IAppServiceConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -374,7 +374,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       function OpenRemoteAsync
       (
          this : access IAppServiceConnection2_Interface;
-         remoteSystemConnectionRequest : Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+         remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -382,14 +382,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_User
       (
          this : access IAppServiceConnection2_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
       function put_User
       (
          this : access IAppServiceConnection2_Interface;
-         value : Windows.System.IUser
+         value : WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -401,9 +401,9 @@ package WinRt.Windows.ApplicationModel.AppService is
       function SendStatelessMessageAsync
       (
          this : access IAppServiceConnectionStatics_Interface;
-         connection : Windows.ApplicationModel.AppService.IAppServiceConnection;
-         connectionRequest : Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
-         message : Windows.Foundation.Collections.IPropertySet;
+         connection : WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
+         connectionRequest : WinRt.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
+         message : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -427,14 +427,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_Message
       (
          this : access IAppServiceRequest_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function SendResponseAsync
       (
          this : access IAppServiceRequest_Interface;
-         message : Windows.Foundation.Collections.IPropertySet;
+         message : WinRt.Windows.Foundation.Collections.IPropertySet;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -447,14 +447,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_Request
       (
          this : access IAppServiceRequestReceivedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.IAppServiceRequest
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.IAppServiceRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAppServiceRequestReceivedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.IAppServiceDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.IAppServiceDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -466,14 +466,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_Message
       (
          this : access IAppServiceResponse_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IAppServiceResponse_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.AppServiceResponseStatus
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -499,7 +499,7 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_AppServiceConnection
       (
          this : access IAppServiceTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.IAppServiceConnection
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -548,14 +548,14 @@ package WinRt.Windows.ApplicationModel.AppService is
       function get_Message
       (
          this : access IStatelessAppServiceResponse_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IStatelessAppServiceResponse_Interface;
-         RetVal : access Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus
+         RetVal : access WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponseStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -608,9 +608,9 @@ package WinRt.Windows.ApplicationModel.AppService is
 
    function SendStatelessMessageAsync
    (
-      connection : Windows.ApplicationModel.AppService.AppServiceConnection'Class;
-      connectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      connection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class;
+      connectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class;
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.StatelessAppServiceResponse;
 
@@ -650,7 +650,7 @@ package WinRt.Windows.ApplicationModel.AppService is
    function SendMessageAsync
    (
       this : in out AppServiceConnection;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponse'Class;
 
@@ -664,7 +664,7 @@ package WinRt.Windows.ApplicationModel.AppService is
    procedure remove_RequestReceived
    (
       this : in out AppServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ServiceClosed
@@ -677,13 +677,13 @@ package WinRt.Windows.ApplicationModel.AppService is
    procedure remove_ServiceClosed
    (
       this : in out AppServiceConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function OpenRemoteAsync
    (
       this : in out AppServiceConnection;
-      remoteSystemConnectionRequest : Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class
+      remoteSystemConnectionRequest : WinRt.Windows.System.RemoteSystems.RemoteSystemConnectionRequest'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceConnectionStatus;
 
@@ -696,7 +696,7 @@ package WinRt.Windows.ApplicationModel.AppService is
    procedure put_User
    (
       this : in out AppServiceConnection;
-      value : Windows.System.User'Class
+      value : WinRt.Windows.System.User'Class
    );
 
    procedure Close
@@ -736,7 +736,7 @@ package WinRt.Windows.ApplicationModel.AppService is
    function SendResponseAsync
    (
       this : in out AppServiceRequest;
-      message : Windows.Foundation.Collections.ValueSet'Class
+      message : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.ApplicationModel.AppService.AppServiceResponseStatus;
 

@@ -992,14 +992,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Data
       (
          this : access IEmailAttachment_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_Data
       (
          this : access IEmailAttachment_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -1046,14 +1046,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_DownloadState
       (
          this : access IEmailAttachment2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailAttachmentDownloadState
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailAttachmentDownloadState
       )
       return WinRt.Hresult is abstract;
 
       function put_DownloadState
       (
          this : access IEmailAttachment2_Interface;
-         value : Windows.ApplicationModel.Email.EmailAttachmentDownloadState
+         value : WinRt.Windows.ApplicationModel.Email.EmailAttachmentDownloadState
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,8 +1115,8 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailAttachmentFactory_Interface;
          fileName : WinRt.HString;
-         data : Windows.Storage.Streams.IRandomAccessStreamReference;
-         RetVal : access Windows.ApplicationModel.Email.IEmailAttachment
+         data : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailAttachment
       )
       return WinRt.Hresult is abstract;
 
@@ -1129,9 +1129,9 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailAttachmentFactory2_Interface;
          fileName : WinRt.HString;
-         data : Windows.Storage.Streams.IRandomAccessStreamReference;
+         data : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          mimeType : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailAttachment
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailAttachment
       )
       return WinRt.Hresult is abstract;
 
@@ -1157,7 +1157,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_FlagState
       (
          this : access IEmailConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailFlagState
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailFlagState
       )
       return WinRt.Hresult is abstract;
 
@@ -1171,14 +1171,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Importance
       (
          this : access IEmailConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailImportance
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailImportance
       )
       return WinRt.Hresult is abstract;
 
       function get_LastEmailResponseKind
       (
          this : access IEmailConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMessageResponseKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1199,7 +1199,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_MostRecentMessageTime
       (
          this : access IEmailConversation_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1213,7 +1213,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_LatestSender
       (
          this : access IEmailConversation_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailRecipient
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -1261,7 +1261,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Status
       (
          this : access IEmailConversationBatch_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailBatchStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailBatchStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1348,21 +1348,21 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_LastSuccessfulSyncTime
       (
          this : access IEmailFolder_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastSuccessfulSyncTime
       (
          this : access IEmailFolder_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IEmailFolder_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailSpecialFolderKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailSpecialFolderKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1377,7 +1377,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function DeleteAsync
       (
          this : access IEmailFolder_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1391,15 +1391,15 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetConversationReader
       (
          this : access IEmailFolder_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
       function GetConversationReader
       (
          this : access IEmailFolder_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1414,15 +1414,15 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetMessageReader
       (
          this : access IEmailFolder_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IEmailFolder_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1436,7 +1436,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryMoveAsync
       (
          this : access IEmailFolder_Interface;
-         newParentFolder : Windows.ApplicationModel.Email.IEmailFolder;
+         newParentFolder : WinRt.Windows.ApplicationModel.Email.IEmailFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1444,7 +1444,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryMoveAsync
       (
          this : access IEmailFolder_Interface;
-         newParentFolder : Windows.ApplicationModel.Email.IEmailFolder;
+         newParentFolder : WinRt.Windows.ApplicationModel.Email.IEmailFolder;
          newFolderName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1460,8 +1460,8 @@ package WinRt.Windows.ApplicationModel.Email is
       function SaveMessageAsync
       (
          this : access IEmailFolder_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1585,14 +1585,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_ExpirationDate
       (
          this : access IEmailIrmInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_ExpirationDate
       (
          this : access IEmailIrmInfo_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1627,14 +1627,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Template
       (
          this : access IEmailIrmInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailIrmTemplate
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailIrmTemplate
       )
       return WinRt.Hresult is abstract;
 
       function put_Template
       (
          this : access IEmailIrmInfo_Interface;
-         value : Windows.ApplicationModel.Email.IEmailIrmTemplate
+         value : WinRt.Windows.ApplicationModel.Email.IEmailIrmTemplate
       )
       return WinRt.Hresult is abstract;
 
@@ -1646,9 +1646,9 @@ package WinRt.Windows.ApplicationModel.Email is
       function Create
       (
          this : access IEmailIrmInfoFactory_Interface;
-         expiration : Windows.Foundation.DateTime;
-         irmTemplate : Windows.ApplicationModel.Email.IEmailIrmTemplate;
-         RetVal : access Windows.ApplicationModel.Email.IEmailIrmInfo
+         expiration : WinRt.Windows.Foundation.DateTime;
+         irmTemplate : WinRt.Windows.ApplicationModel.Email.IEmailIrmTemplate;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailIrmInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1710,7 +1710,7 @@ package WinRt.Windows.ApplicationModel.Email is
          id : WinRt.HString;
          name : WinRt.HString;
          description : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailIrmTemplate
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailIrmTemplate
       )
       return WinRt.Hresult is abstract;
 
@@ -1755,14 +1755,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Capabilities
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxCapabilities
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxCapabilities
       )
       return WinRt.Hresult is abstract;
 
       function get_ChangeTracker
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -1825,35 +1825,35 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_OtherAppReadAccess
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IEmailMailbox_Interface;
-         value : Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_OtherAppWriteAccess
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppWriteAccess
       (
          this : access IEmailMailbox_Interface;
-         value : Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
+         value : WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_Policies
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxPolicies
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxPolicies
       )
       return WinRt.Hresult is abstract;
 
@@ -1867,7 +1867,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_SyncManager
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxSyncManager
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxSyncManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1881,37 +1881,37 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetConversationReader
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
       function GetConversationReader
       (
          this : access IEmailMailbox_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IEmailMailbox_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1942,7 +1942,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetSpecialFolderAsync
       (
          this : access IEmailMailbox_Interface;
-         folderType : Windows.ApplicationModel.Email.EmailSpecialFolderKind;
+         folderType : WinRt.Windows.ApplicationModel.Email.EmailSpecialFolderKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1950,7 +1950,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function SaveAsync
       (
          this : access IEmailMailbox_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1958,7 +1958,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1966,7 +1966,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          folderId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1975,7 +1975,7 @@ package WinRt.Windows.ApplicationModel.Email is
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
          isRead : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1983,8 +1983,8 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
-         flagState : Windows.ApplicationModel.Email.EmailFlagState;
-         RetVal : access Windows.Foundation.IAsyncAction
+         flagState : WinRt.Windows.ApplicationModel.Email.EmailFlagState;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2020,7 +2020,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2029,23 +2029,23 @@ package WinRt.Windows.ApplicationModel.Email is
          this : access IEmailMailbox_Interface;
          folderId : WinRt.HString;
          isSyncEnabled : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageAsync
       (
          this : access IEmailMailbox_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveDraftAsync
       (
          this : access IEmailMailbox_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2053,7 +2053,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2061,7 +2061,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          attachmentId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2069,9 +2069,9 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          messageId : WinRt.HString;
-         responseType : Windows.ApplicationModel.Email.EmailMessageResponseKind;
+         responseType : WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind;
          subject : WinRt.HString;
-         responseHeaderType : Windows.ApplicationModel.Email.EmailMessageBodyKind;
+         responseHeaderType : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
          responseHeader : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2080,8 +2080,8 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryUpdateMeetingResponseAsync
       (
          this : access IEmailMailbox_Interface;
-         meeting : Windows.ApplicationModel.Email.IEmailMessage;
-         response : Windows.ApplicationModel.Email.EmailMeetingResponseType;
+         meeting : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         response : WinRt.Windows.ApplicationModel.Email.EmailMeetingResponseType;
          subject : WinRt.HString;
          comment : WinRt.HString;
          sendUpdate : WinRt.Boolean;
@@ -2092,10 +2092,10 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryForwardMeetingAsync
       (
          this : access IEmailMailbox_Interface;
-         meeting : Windows.ApplicationModel.Email.IEmailMessage;
+         meeting : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
          recipients : GenericObject;
          subject : WinRt.HString;
-         forwardHeaderType : Windows.ApplicationModel.Email.EmailMessageBodyKind;
+         forwardHeaderType : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
          forwardHeader : WinRt.HString;
          comment : WinRt.HString;
          RetVal : access GenericObject
@@ -2105,9 +2105,9 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryProposeNewTimeForMeetingAsync
       (
          this : access IEmailMailbox_Interface;
-         meeting : Windows.ApplicationModel.Email.IEmailMessage;
-         newStartTime : Windows.Foundation.DateTime;
-         newDuration : Windows.Foundation.TimeSpan;
+         meeting : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         newStartTime : WinRt.Windows.Foundation.DateTime;
+         newDuration : WinRt.Windows.Foundation.TimeSpan;
          subject : WinRt.HString;
          comment : WinRt.HString;
          RetVal : access GenericObject
@@ -2118,30 +2118,30 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox_Interface;
          pHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MailboxChanged
       (
          this : access IEmailMailbox_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function SendMessageAsync
       (
          this : access IEmailMailbox_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
          smartSend : WinRt.Boolean;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function TrySetAutoReplySettingsAsync
       (
          this : access IEmailMailbox_Interface;
-         autoReplySettings : Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
+         autoReplySettings : WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2149,7 +2149,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function TryGetAutoReplySettingsAsync
       (
          this : access IEmailMailbox_Interface;
-         requestedFormat : Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind;
+         requestedFormat : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2234,7 +2234,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function RegisterSyncManagerAsync
       (
          this : access IEmailMailbox4_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2247,7 +2247,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailbox5_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -2259,7 +2259,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Kind
       (
          this : access IEmailMailboxAction_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxActionKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxActionKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2325,14 +2325,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_ResponseKind
       (
          this : access IEmailMailboxAutoReplySettings_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
       function put_ResponseKind
       (
          this : access IEmailMailboxAutoReplySettings_Interface;
-         value : Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
+         value : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
@@ -2367,21 +2367,21 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_InternalReply
       (
          this : access IEmailMailboxAutoReplySettings_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxAutoReply
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReply
       )
       return WinRt.Hresult is abstract;
 
       function get_KnownExternalReply
       (
          this : access IEmailMailboxAutoReplySettings_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxAutoReply
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReply
       )
       return WinRt.Hresult is abstract;
 
       function get_UnknownExternalReply
       (
          this : access IEmailMailboxAutoReplySettings_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxAutoReply
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxAutoReply
       )
       return WinRt.Hresult is abstract;
 
@@ -2604,7 +2604,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_ChangeType
       (
          this : access IEmailMailboxChange_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxChangeType
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxChangeType
       )
       return WinRt.Hresult is abstract;
 
@@ -2618,14 +2618,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Message
       (
          this : access IEmailMailboxChange_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessage
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_Folder
       (
          this : access IEmailMailboxChange_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailFolder
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -2643,7 +2643,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function AcceptChangesThrough
       (
          this : access IEmailMailboxChangeReader_Interface;
-         lastChangeToAcknowledge : Windows.ApplicationModel.Email.IEmailMailboxChange
+         lastChangeToAcknowledge : WinRt.Windows.ApplicationModel.Email.IEmailMailboxChange
       )
       return WinRt.Hresult is abstract;
 
@@ -2675,7 +2675,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetChangeReader
       (
          this : access IEmailMailboxChangeTracker_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxChangeReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2704,7 +2704,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetDeferral
       (
          this : access IEmailMailboxChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMailboxChangedDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMailboxChangedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2716,14 +2716,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Status
       (
          this : access IEmailMailboxCreateFolderResult_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxCreateFolderStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Folder
       (
          this : access IEmailMailboxCreateFolderResult_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailFolder
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -2735,7 +2735,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_AllowedSmimeEncryptionAlgorithmNegotiation
       (
          this : access IEmailMailboxPolicies_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
       )
       return WinRt.Hresult is abstract;
 
@@ -2787,7 +2787,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function put_AllowedSmimeEncryptionAlgorithmNegotiation
       (
          this : access IEmailMailboxPolicies3_Interface;
-         value : Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
+         value : WinRt.Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
       )
       return WinRt.Hresult is abstract;
 
@@ -2834,21 +2834,21 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Status
       (
          this : access IEmailMailboxSyncManager_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMailboxSyncStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_LastSuccessfulSyncTime
       (
          this : access IEmailMailboxSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastAttemptedSyncTime
       (
          this : access IEmailMailboxSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2863,14 +2863,14 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailMailboxSyncManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncStatusChanged
       (
          this : access IEmailMailboxSyncManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2882,21 +2882,21 @@ package WinRt.Windows.ApplicationModel.Email is
       function put_Status
       (
          this : access IEmailMailboxSyncManager2_Interface;
-         value : Windows.ApplicationModel.Email.EmailMailboxSyncStatus
+         value : WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_LastSuccessfulSyncTime
       (
          this : access IEmailMailboxSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastAttemptedSyncTime
       (
          this : access IEmailMailboxSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2908,15 +2908,15 @@ package WinRt.Windows.ApplicationModel.Email is
       function ShowComposeNewEmailAsync
       (
          this : access IEmailManagerForUser_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RequestStoreAsync
       (
          this : access IEmailManagerForUser_Interface;
-         accessType : Windows.ApplicationModel.Email.EmailStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Email.EmailStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2924,7 +2924,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_User
       (
          this : access IEmailManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2936,8 +2936,8 @@ package WinRt.Windows.ApplicationModel.Email is
       function ShowComposeNewEmailAsync
       (
          this : access IEmailManagerStatics_Interface;
-         message : Windows.ApplicationModel.Email.IEmailMessage;
-         RetVal : access Windows.Foundation.IAsyncAction
+         message : WinRt.Windows.ApplicationModel.Email.IEmailMessage;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2949,7 +2949,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function RequestStoreAsync
       (
          this : access IEmailManagerStatics2_Interface;
-         accessType : Windows.ApplicationModel.Email.EmailStoreAccessType;
+         accessType : WinRt.Windows.ApplicationModel.Email.EmailStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2962,8 +2962,8 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetForUser
       (
          this : access IEmailManagerStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Email.IEmailManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -3017,14 +3017,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Duration
       (
          this : access IEmailMeetingInfo_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IEmailMeetingInfo_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -3115,14 +3115,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Recurrence
       (
          this : access IEmailMeetingInfo_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentRecurrence
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function put_Recurrence
       (
          this : access IEmailMeetingInfo_Interface;
-         value : Windows.ApplicationModel.Appointments.IAppointmentRecurrence
+         value : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence
       )
       return WinRt.Hresult is abstract;
 
@@ -3143,14 +3143,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_StartTime
       (
          this : access IEmailMeetingInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_StartTime
       (
          this : access IEmailMeetingInfo_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -3298,14 +3298,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_DownloadState
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMessageDownloadState
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMessageDownloadState
       )
       return WinRt.Hresult is abstract;
 
       function put_DownloadState
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.EmailMessageDownloadState
+         value : WinRt.Windows.ApplicationModel.Email.EmailMessageDownloadState
       )
       return WinRt.Hresult is abstract;
 
@@ -3326,14 +3326,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_FlagState
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailFlagState
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailFlagState
       )
       return WinRt.Hresult is abstract;
 
       function put_FlagState
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.EmailFlagState
+         value : WinRt.Windows.ApplicationModel.Email.EmailFlagState
       )
       return WinRt.Hresult is abstract;
 
@@ -3347,14 +3347,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Importance
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailImportance
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailImportance
       )
       return WinRt.Hresult is abstract;
 
       function put_Importance
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.EmailImportance
+         value : WinRt.Windows.ApplicationModel.Email.EmailImportance
       )
       return WinRt.Hresult is abstract;
 
@@ -3368,14 +3368,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_IrmInfo
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailIrmInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailIrmInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_IrmInfo
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.IEmailIrmInfo
+         value : WinRt.Windows.ApplicationModel.Email.IEmailIrmInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -3480,28 +3480,28 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_LastResponseKind
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMessageResponseKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
       function put_LastResponseKind
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.EmailMessageResponseKind
+         value : WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Sender
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailRecipient
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
       function put_Sender
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.IEmailRecipient
+         value : WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -3522,30 +3522,30 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_MeetingInfo
       (
          this : access IEmailMessage2_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMeetingInfo
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMeetingInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_MeetingInfo
       (
          this : access IEmailMessage2_Interface;
-         value : Windows.ApplicationModel.Email.IEmailMeetingInfo
+         value : WinRt.Windows.ApplicationModel.Email.IEmailMeetingInfo
       )
       return WinRt.Hresult is abstract;
 
       function GetBodyStream
       (
          this : access IEmailMessage2_Interface;
-         type_x : Windows.ApplicationModel.Email.EmailMessageBodyKind;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         type_x : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function SetBodyStream
       (
          this : access IEmailMessage2_Interface;
-         type_x : Windows.ApplicationModel.Email.EmailMessageBodyKind;
-         stream : Windows.Storage.Streams.IRandomAccessStreamReference
+         type_x : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
+         stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -3557,28 +3557,28 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_SmimeData
       (
          this : access IEmailMessage3_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function put_SmimeData
       (
          this : access IEmailMessage3_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamReference
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_SmimeKind
       (
          this : access IEmailMessage3_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailMessageSmimeKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailMessageSmimeKind
       )
       return WinRt.Hresult is abstract;
 
       function put_SmimeKind
       (
          this : access IEmailMessage3_Interface;
-         value : Windows.ApplicationModel.Email.EmailMessageSmimeKind
+         value : WinRt.Windows.ApplicationModel.Email.EmailMessageSmimeKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3597,14 +3597,14 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_SentRepresenting
       (
          this : access IEmailMessage4_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailRecipient
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
       function put_SentRepresenting
       (
          this : access IEmailMessage4_Interface;
-         value : Windows.ApplicationModel.Email.IEmailRecipient
+         value : WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -3623,7 +3623,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Status
       (
          this : access IEmailMessageBatch_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailBatchStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailBatchStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3647,49 +3647,49 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_TextSearch
       (
          this : access IEmailQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailQueryTextSearch
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailQueryTextSearch
       )
       return WinRt.Hresult is abstract;
 
       function get_SortDirection
       (
          this : access IEmailQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailQuerySortDirection
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailQuerySortDirection
       )
       return WinRt.Hresult is abstract;
 
       function put_SortDirection
       (
          this : access IEmailQueryOptions_Interface;
-         value : Windows.ApplicationModel.Email.EmailQuerySortDirection
+         value : WinRt.Windows.ApplicationModel.Email.EmailQuerySortDirection
       )
       return WinRt.Hresult is abstract;
 
       function get_SortProperty
       (
          this : access IEmailQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailQuerySortProperty
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailQuerySortProperty
       )
       return WinRt.Hresult is abstract;
 
       function put_SortProperty
       (
          this : access IEmailQueryOptions_Interface;
-         value : Windows.ApplicationModel.Email.EmailQuerySortProperty
+         value : WinRt.Windows.ApplicationModel.Email.EmailQuerySortProperty
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IEmailQueryOptions_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailQueryKind
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailQueryKind
       )
       return WinRt.Hresult is abstract;
 
       function put_Kind
       (
          this : access IEmailQueryOptions_Interface;
-         value : Windows.ApplicationModel.Email.EmailQueryKind
+         value : WinRt.Windows.ApplicationModel.Email.EmailQueryKind
       )
       return WinRt.Hresult is abstract;
 
@@ -3709,7 +3709,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailQueryOptionsFactory_Interface;
          text : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailQueryOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3717,8 +3717,8 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailQueryOptionsFactory_Interface;
          text : WinRt.HString;
-         fields : Windows.ApplicationModel.Email.EmailQuerySearchFields;
-         RetVal : access Windows.ApplicationModel.Email.IEmailQueryOptions
+         fields : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -3730,28 +3730,28 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Fields
       (
          this : access IEmailQueryTextSearch_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailQuerySearchFields
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields
       )
       return WinRt.Hresult is abstract;
 
       function put_Fields
       (
          this : access IEmailQueryTextSearch_Interface;
-         value : Windows.ApplicationModel.Email.EmailQuerySearchFields
+         value : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields
       )
       return WinRt.Hresult is abstract;
 
       function get_SearchScope
       (
          this : access IEmailQueryTextSearch_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailQuerySearchScope
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailQuerySearchScope
       )
       return WinRt.Hresult is abstract;
 
       function put_SearchScope
       (
          this : access IEmailQueryTextSearch_Interface;
-         value : Windows.ApplicationModel.Email.EmailQuerySearchScope
+         value : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchScope
       )
       return WinRt.Hresult is abstract;
 
@@ -3811,7 +3811,7 @@ package WinRt.Windows.ApplicationModel.Email is
       (
          this : access IEmailRecipientFactory_Interface;
          address_x : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailRecipient
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -3820,7 +3820,7 @@ package WinRt.Windows.ApplicationModel.Email is
          this : access IEmailRecipientFactory_Interface;
          address_x : WinRt.HString;
          name : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Email.IEmailRecipient
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailRecipient
       )
       return WinRt.Hresult is abstract;
 
@@ -3832,7 +3832,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function get_Status
       (
          this : access IEmailRecipientResolutionResult_Interface;
-         RetVal : access Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3851,7 +3851,7 @@ package WinRt.Windows.ApplicationModel.Email is
       function put_Status
       (
          this : access IEmailRecipientResolutionResult2_Interface;
-         value : Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
+         value : WinRt.Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3877,30 +3877,30 @@ package WinRt.Windows.ApplicationModel.Email is
       function GetConversationReader
       (
          this : access IEmailStore_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
       function GetConversationReader
       (
          this : access IEmailStore_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailConversationReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailConversationReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IEmailStore_Interface;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
       function GetMessageReader
       (
          this : access IEmailStore_Interface;
-         options : Windows.ApplicationModel.Email.IEmailQueryOptions;
-         RetVal : access Windows.ApplicationModel.Email.IEmailMessageReader
+         options : WinRt.Windows.ApplicationModel.Email.IEmailQueryOptions;
+         RetVal : access WinRt.Windows.ApplicationModel.Email.IEmailMessageReader
       )
       return WinRt.Hresult is abstract;
 
@@ -3978,7 +3978,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function Constructor
    (
       fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference;
+      data : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
       mimeType : WinRt.WString
    )
    return EmailAttachment;
@@ -3988,7 +3988,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function Constructor
    (
       fileName : WinRt.WString;
-      data : Windows.Storage.Streams.IRandomAccessStreamReference
+      data : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return EmailAttachment;
 
@@ -4016,7 +4016,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Data
    (
       this : in out EmailAttachment;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_Id
@@ -4058,7 +4058,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_DownloadState
    (
       this : in out EmailAttachment;
-      value : Windows.ApplicationModel.Email.EmailAttachmentDownloadState
+      value : WinRt.Windows.ApplicationModel.Email.EmailAttachmentDownloadState
    );
 
    function get_EstimatedDownloadSizeInBytes
@@ -4311,7 +4311,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_LastSuccessfulSyncTime
    (
       this : in out EmailFolder;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Kind
@@ -4347,7 +4347,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetConversationReader
    (
       this : in out EmailFolder;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class;
 
@@ -4367,7 +4367,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetMessageReader
    (
       this : in out EmailFolder;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class;
 
@@ -4380,14 +4380,14 @@ package WinRt.Windows.ApplicationModel.Email is
    function TryMoveAsync
    (
       this : in out EmailFolder;
-      newParentFolder : Windows.ApplicationModel.Email.EmailFolder'Class
+      newParentFolder : WinRt.Windows.ApplicationModel.Email.EmailFolder'Class
    )
    return WinRt.Boolean;
 
    function TryMoveAsync
    (
       this : in out EmailFolder;
-      newParentFolder : Windows.ApplicationModel.Email.EmailFolder'Class;
+      newParentFolder : WinRt.Windows.ApplicationModel.Email.EmailFolder'Class;
       newFolderName : WinRt.WString
    )
    return WinRt.Boolean;
@@ -4401,7 +4401,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure SaveMessageAsync
    (
       this : in out EmailFolder;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4417,8 +4417,8 @@ package WinRt.Windows.ApplicationModel.Email is
 
    function Constructor
    (
-      expiration : Windows.Foundation.DateTime;
-      irmTemplate : Windows.ApplicationModel.Email.EmailIrmTemplate'Class
+      expiration : WinRt.Windows.Foundation.DateTime;
+      irmTemplate : WinRt.Windows.ApplicationModel.Email.EmailIrmTemplate'Class
    )
    return EmailIrmInfo;
 
@@ -4530,7 +4530,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_ExpirationDate
    (
       this : in out EmailIrmInfo;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_IsIrmOriginator
@@ -4566,7 +4566,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Template
    (
       this : in out EmailIrmInfo;
-      value : Windows.ApplicationModel.Email.EmailIrmTemplate'Class
+      value : WinRt.Windows.ApplicationModel.Email.EmailIrmTemplate'Class
    );
 
    -----------------------------------------------------------------------------
@@ -4738,7 +4738,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_OtherAppReadAccess
    (
       this : in out EmailMailbox;
-      value : Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppReadAccess
    );
 
    function get_OtherAppWriteAccess
@@ -4750,7 +4750,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_OtherAppWriteAccess
    (
       this : in out EmailMailbox;
-      value : Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.Email.EmailMailboxOtherAppWriteAccess
    );
 
    function get_Policies
@@ -4786,7 +4786,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetConversationReader
    (
       this : in out EmailMailbox;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class;
 
@@ -4799,7 +4799,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetMessageReader
    (
       this : in out EmailMailbox;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class;
 
@@ -4832,7 +4832,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetSpecialFolderAsync
    (
       this : in out EmailMailbox;
-      folderType : Windows.ApplicationModel.Email.EmailSpecialFolderKind
+      folderType : WinRt.Windows.ApplicationModel.Email.EmailSpecialFolderKind
    )
    return WinRt.Windows.ApplicationModel.Email.EmailFolder'Class;
 
@@ -4864,7 +4864,7 @@ package WinRt.Windows.ApplicationModel.Email is
    (
       this : in out EmailMailbox;
       messageId : WinRt.WString;
-      flagState : Windows.ApplicationModel.Email.EmailFlagState
+      flagState : WinRt.Windows.ApplicationModel.Email.EmailFlagState
    );
 
    function TryMoveMessageAsync
@@ -4908,13 +4908,13 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure SendMessageAsync
    (
       this : in out EmailMailbox;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
    );
 
    procedure SaveDraftAsync
    (
       this : in out EmailMailbox;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
    );
 
    procedure DownloadMessageAsync
@@ -4933,9 +4933,9 @@ package WinRt.Windows.ApplicationModel.Email is
    (
       this : in out EmailMailbox;
       messageId : WinRt.WString;
-      responseType : Windows.ApplicationModel.Email.EmailMessageResponseKind;
+      responseType : WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind;
       subject : WinRt.WString;
-      responseHeaderType : Windows.ApplicationModel.Email.EmailMessageBodyKind;
+      responseHeaderType : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
       responseHeader : WinRt.WString
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessage'Class;
@@ -4943,8 +4943,8 @@ package WinRt.Windows.ApplicationModel.Email is
    function TryUpdateMeetingResponseAsync
    (
       this : in out EmailMailbox;
-      meeting : Windows.ApplicationModel.Email.EmailMessage'Class;
-      response : Windows.ApplicationModel.Email.EmailMeetingResponseType;
+      meeting : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class;
+      response : WinRt.Windows.ApplicationModel.Email.EmailMeetingResponseType;
       subject : WinRt.WString;
       comment : WinRt.WString;
       sendUpdate : WinRt.Boolean
@@ -4954,10 +4954,10 @@ package WinRt.Windows.ApplicationModel.Email is
    function TryForwardMeetingAsync
    (
       this : in out EmailMailbox;
-      meeting : Windows.ApplicationModel.Email.EmailMessage'Class;
+      meeting : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class;
       recipients : GenericObject;
       subject : WinRt.WString;
-      forwardHeaderType : Windows.ApplicationModel.Email.EmailMessageBodyKind;
+      forwardHeaderType : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
       forwardHeader : WinRt.WString;
       comment : WinRt.WString
    )
@@ -4966,9 +4966,9 @@ package WinRt.Windows.ApplicationModel.Email is
    function TryProposeNewTimeForMeetingAsync
    (
       this : in out EmailMailbox;
-      meeting : Windows.ApplicationModel.Email.EmailMessage'Class;
-      newStartTime : Windows.Foundation.DateTime;
-      newDuration : Windows.Foundation.TimeSpan;
+      meeting : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class;
+      newStartTime : WinRt.Windows.Foundation.DateTime;
+      newDuration : WinRt.Windows.Foundation.TimeSpan;
       subject : WinRt.WString;
       comment : WinRt.WString
    )
@@ -4984,27 +4984,27 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure remove_MailboxChanged
    (
       this : in out EmailMailbox;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SendMessageAsync
    (
       this : in out EmailMailbox;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class;
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class;
       smartSend : WinRt.Boolean
    );
 
    function TrySetAutoReplySettingsAsync
    (
       this : in out EmailMailbox;
-      autoReplySettings : Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class
+      autoReplySettings : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class
    )
    return WinRt.Boolean;
 
    function TryGetAutoReplySettingsAsync
    (
       this : in out EmailMailbox;
-      requestedFormat : Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
+      requestedFormat : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings'Class;
 
@@ -5163,7 +5163,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_ResponseKind
    (
       this : in out EmailMailboxAutoReplySettings;
-      value : Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
+      value : WinRt.Windows.ApplicationModel.Email.EmailMailboxAutoReplyMessageResponseKind
    );
 
    function get_StartTime
@@ -5435,7 +5435,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure AcceptChangesThrough
    (
       this : in out EmailMailboxChangeReader;
-      lastChangeToAcknowledge : Windows.ApplicationModel.Email.EmailMailboxChange'Class
+      lastChangeToAcknowledge : WinRt.Windows.ApplicationModel.Email.EmailMailboxChange'Class
    );
 
    function ReadBatchAsync
@@ -5573,7 +5573,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_AllowedSmimeEncryptionAlgorithmNegotiation
    (
       this : in out EmailMailboxPolicies;
-      value : Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
+      value : WinRt.Windows.ApplicationModel.Email.EmailMailboxAllowedSmimeEncryptionAlgorithmNegotiation
    );
 
    procedure put_AllowSmimeSoftCertificates
@@ -5649,25 +5649,25 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure remove_SyncStatusChanged
    (
       this : in out EmailMailboxSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_Status
    (
       this : in out EmailMailboxSyncManager;
-      value : Windows.ApplicationModel.Email.EmailMailboxSyncStatus
+      value : WinRt.Windows.ApplicationModel.Email.EmailMailboxSyncStatus
    );
 
    procedure put_LastSuccessfulSyncTime
    (
       this : in out EmailMailboxSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure put_LastAttemptedSyncTime
    (
       this : in out EmailMailboxSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    -----------------------------------------------------------------------------
@@ -5676,19 +5676,19 @@ package WinRt.Windows.ApplicationModel.Email is
 
       function RequestStoreAsync
       (
-         accessType : Windows.ApplicationModel.Email.EmailStoreAccessType
+         accessType : WinRt.Windows.ApplicationModel.Email.EmailStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Email.EmailStore;
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Email.EmailManagerForUser;
 
       procedure ShowComposeNewEmailAsync
       (
-         message : Windows.ApplicationModel.Email.EmailMessage'Class
+         message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
       );
 
    end EmailManager;
@@ -5705,13 +5705,13 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure ShowComposeNewEmailAsync
    (
       this : in out EmailManagerForUser;
-      message : Windows.ApplicationModel.Email.EmailMessage'Class
+      message : WinRt.Windows.ApplicationModel.Email.EmailMessage'Class
    );
 
    function RequestStoreAsync
    (
       this : in out EmailManagerForUser;
-      accessType : Windows.ApplicationModel.Email.EmailStoreAccessType
+      accessType : WinRt.Windows.ApplicationModel.Email.EmailStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Email.EmailStore'Class;
 
@@ -5780,7 +5780,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Duration
    (
       this : in out EmailMeetingInfo;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_IsAllDay
@@ -5864,7 +5864,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Recurrence
    (
       this : in out EmailMeetingInfo;
-      value : Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
    );
 
    function get_RemoteChangeNumber
@@ -5888,7 +5888,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_StartTime
    (
       this : in out EmailMeetingInfo;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_IsReportedOutOfDateByServer
@@ -6022,7 +6022,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_DownloadState
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailMessageDownloadState
+      value : WinRt.Windows.ApplicationModel.Email.EmailMessageDownloadState
    );
 
    function get_EstimatedDownloadSizeInBytes
@@ -6046,7 +6046,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_FlagState
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailFlagState
+      value : WinRt.Windows.ApplicationModel.Email.EmailFlagState
    );
 
    function get_HasPartialBodies
@@ -6064,7 +6064,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Importance
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailImportance
+      value : WinRt.Windows.ApplicationModel.Email.EmailImportance
    );
 
    function get_InResponseToMessageId
@@ -6082,7 +6082,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_IrmInfo
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailIrmInfo'Class
+      value : WinRt.Windows.ApplicationModel.Email.EmailIrmInfo'Class
    );
 
    function get_IsDraftMessage
@@ -6178,7 +6178,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_LastResponseKind
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailMessageResponseKind
+      value : WinRt.Windows.ApplicationModel.Email.EmailMessageResponseKind
    );
 
    function get_Sender
@@ -6190,7 +6190,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Sender
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailRecipient'Class
+      value : WinRt.Windows.ApplicationModel.Email.EmailRecipient'Class
    );
 
    function get_SentTime
@@ -6214,21 +6214,21 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_MeetingInfo
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailMeetingInfo'Class
+      value : WinRt.Windows.ApplicationModel.Email.EmailMeetingInfo'Class
    );
 
    function GetBodyStream
    (
       this : in out EmailMessage;
-      type_x : Windows.ApplicationModel.Email.EmailMessageBodyKind
+      type_x : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
 
    procedure SetBodyStream
    (
       this : in out EmailMessage;
-      type_x : Windows.ApplicationModel.Email.EmailMessageBodyKind;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference
+      type_x : WinRt.Windows.ApplicationModel.Email.EmailMessageBodyKind;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_SmimeData
@@ -6240,7 +6240,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SmimeData
    (
       this : in out EmailMessage;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    );
 
    function get_SmimeKind
@@ -6252,7 +6252,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SmimeKind
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailMessageSmimeKind
+      value : WinRt.Windows.ApplicationModel.Email.EmailMessageSmimeKind
    );
 
    function get_ReplyTo
@@ -6270,7 +6270,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SentRepresenting
    (
       this : in out EmailMessage;
-      value : Windows.ApplicationModel.Email.EmailRecipient'Class
+      value : WinRt.Windows.ApplicationModel.Email.EmailRecipient'Class
    );
 
    -----------------------------------------------------------------------------
@@ -6329,7 +6329,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function Constructor
    (
       text : WinRt.WString;
-      fields : Windows.ApplicationModel.Email.EmailQuerySearchFields
+      fields : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields
    )
    return EmailQueryOptions;
 
@@ -6351,7 +6351,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SortDirection
    (
       this : in out EmailQueryOptions;
-      value : Windows.ApplicationModel.Email.EmailQuerySortDirection
+      value : WinRt.Windows.ApplicationModel.Email.EmailQuerySortDirection
    );
 
    function get_SortProperty
@@ -6363,7 +6363,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SortProperty
    (
       this : in out EmailQueryOptions;
-      value : Windows.ApplicationModel.Email.EmailQuerySortProperty
+      value : WinRt.Windows.ApplicationModel.Email.EmailQuerySortProperty
    );
 
    function get_Kind
@@ -6375,7 +6375,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Kind
    (
       this : in out EmailQueryOptions;
-      value : Windows.ApplicationModel.Email.EmailQueryKind
+      value : WinRt.Windows.ApplicationModel.Email.EmailQueryKind
    );
 
    function get_FolderIds
@@ -6402,7 +6402,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Fields
    (
       this : in out EmailQueryTextSearch;
-      value : Windows.ApplicationModel.Email.EmailQuerySearchFields
+      value : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchFields
    );
 
    function get_SearchScope
@@ -6414,7 +6414,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_SearchScope
    (
       this : in out EmailQueryTextSearch;
-      value : Windows.ApplicationModel.Email.EmailQuerySearchScope
+      value : WinRt.Windows.ApplicationModel.Email.EmailQuerySearchScope
    );
 
    function get_Text
@@ -6509,7 +6509,7 @@ package WinRt.Windows.ApplicationModel.Email is
    procedure put_Status
    (
       this : in out EmailRecipientResolutionResult;
-      value : Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
+      value : WinRt.Windows.ApplicationModel.Email.EmailRecipientResolutionStatus
    );
 
    procedure SetPublicKeys
@@ -6542,7 +6542,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetConversationReader
    (
       this : in out EmailStore;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailConversationReader'Class;
 
@@ -6555,7 +6555,7 @@ package WinRt.Windows.ApplicationModel.Email is
    function GetMessageReader
    (
       this : in out EmailStore;
-      options : Windows.ApplicationModel.Email.EmailQueryOptions'Class
+      options : WinRt.Windows.ApplicationModel.Email.EmailQueryOptions'Class
    )
    return WinRt.Windows.ApplicationModel.Email.EmailMessageReader'Class;
 

@@ -270,7 +270,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_RemoteServiceInfo
       (
          this : access IWiFiDirectService_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -298,21 +298,21 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_SessionInfo
       (
          this : access IWiFiDirectService_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_SessionInfo
       (
          this : access IWiFiDirectService_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceError
       (
          this : access IWiFiDirectService_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError
       )
       return WinRt.Hresult is abstract;
 
@@ -320,21 +320,21 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectService_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionDeferred
       (
          this : access IWiFiDirectService_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetProvisioningInfoAsync
       (
          this : access IWiFiDirectService_Interface;
-         selectedConfigurationMethod : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod;
+         selectedConfigurationMethod : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -376,14 +376,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_ServiceInfo
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_ServiceInfo
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -425,14 +425,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_ServiceStatus
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_ServiceStatus
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         value : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
+         value : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -453,28 +453,28 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_DeferredSessionInfo
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_DeferredSessionInfo
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_AdvertisementStatus
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertisementStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertisementStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ServiceError
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceError
       )
       return WinRt.Hresult is abstract;
 
@@ -482,14 +482,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionRequested
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -497,14 +497,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AutoAcceptSessionConnected
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -512,21 +512,21 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AdvertisementStatusChanged
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         deviceInfo : Windows.Devices.Enumeration.IDeviceInformation;
+         deviceInfo : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -534,7 +534,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function ConnectAsync
       (
          this : access IWiFiDirectServiceAdvertiser_Interface;
-         deviceInfo : Windows.Devices.Enumeration.IDeviceInformation;
+         deviceInfo : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          pin : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -561,7 +561,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceAdvertiserFactory_Interface;
          serviceName : WinRt.HString;
-         RetVal : access Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser
       )
       return WinRt.Hresult is abstract;
 
@@ -573,14 +573,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_Session
       (
          this : access IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSession
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionInfo
       (
          this : access IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -592,7 +592,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_SelectedConfigurationMethod
       (
          this : access IWiFiDirectServiceProvisioningInfo_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -618,7 +618,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_Protocol
       (
          this : access IWiFiDirectServiceRemotePortAddedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceIPProtocol
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceIPProtocol
       )
       return WinRt.Hresult is abstract;
 
@@ -637,14 +637,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_Status
       (
          this : access IWiFiDirectServiceSession_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ErrorStatus
       (
          this : access IWiFiDirectServiceSession_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionErrorStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -687,30 +687,30 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SessionStatusChanged
       (
          this : access IWiFiDirectServiceSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function AddStreamSocketListenerAsync
       (
          this : access IWiFiDirectServiceSession_Interface;
-         value : Windows.Networking.Sockets.IStreamSocketListener;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Networking.Sockets.IStreamSocketListener;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AddDatagramSocketAsync
       (
          this : access IWiFiDirectServiceSession_Interface;
-         value : Windows.Networking.Sockets.IDatagramSocket;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Networking.Sockets.IDatagramSocket;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -718,14 +718,14 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RemotePortAdded
       (
          this : access IWiFiDirectServiceSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -737,7 +737,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_DeferredSessionInfo
       (
          this : access IWiFiDirectServiceSessionDeferredEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -749,21 +749,21 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function get_DeviceInformation
       (
          this : access IWiFiDirectServiceSessionRequest_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
       function get_ProvisioningInfo
       (
          this : access IWiFiDirectServiceSessionRequest_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceProvisioningInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_SessionInfo
       (
          this : access IWiFiDirectServiceSessionRequest_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -775,7 +775,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       function GetSessionRequest
       (
          this : access IWiFiDirectServiceSessionRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceSessionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
       (
          this : access IWiFiDirectServiceStatics_Interface;
          serviceName : WinRt.HString;
-         serviceInfoFilter : Windows.Storage.Streams.IBuffer;
+         serviceInfoFilter : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -833,7 +833,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    function GetSelector
    (
       serviceName : WinRt.WString;
-      serviceInfoFilter : Windows.Storage.Streams.IBuffer
+      serviceInfoFilter : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.WString;
 
@@ -879,7 +879,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_SessionInfo
    (
       this : in out WiFiDirectService;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ServiceError
@@ -898,13 +898,13 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionDeferred
    (
       this : in out WiFiDirectService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetProvisioningInfoAsync
    (
       this : in out WiFiDirectService;
-      selectedConfigurationMethod : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
+      selectedConfigurationMethod : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceConfigurationMethod
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceProvisioningInfo'Class;
 
@@ -960,7 +960,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_ServiceInfo
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_AutoAcceptSession
@@ -1002,7 +1002,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_ServiceStatus
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
+      value : WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceStatus
    );
 
    function get_CustomServiceStatusCode
@@ -1026,7 +1026,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure put_DeferredSessionInfo
    (
       this : in out WiFiDirectServiceAdvertiser;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_AdvertisementStatus
@@ -1051,7 +1051,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionRequested
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AutoAcceptSessionConnected
@@ -1064,7 +1064,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_AutoAcceptSessionConnected
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AdvertisementStatusChanged
@@ -1077,20 +1077,20 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_AdvertisementStatusChanged
    (
       this : in out WiFiDirectServiceAdvertiser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function ConnectAsync
    (
       this : in out WiFiDirectServiceAdvertiser;
-      deviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class
+      deviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSession'Class;
 
    function ConnectAsync
    (
       this : in out WiFiDirectServiceAdvertiser;
-      deviceInfo : Windows.Devices.Enumeration.DeviceInformation'Class;
+      deviceInfo : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class;
       pin : WinRt.WString
    )
    return WinRt.Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSession'Class;
@@ -1235,19 +1235,19 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_SessionStatusChanged
    (
       this : in out WiFiDirectServiceSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddStreamSocketListenerAsync
    (
       this : in out WiFiDirectServiceSession;
-      value : Windows.Networking.Sockets.StreamSocketListener'Class
+      value : WinRt.Windows.Networking.Sockets.StreamSocketListener'Class
    );
 
    procedure AddDatagramSocketAsync
    (
       this : in out WiFiDirectServiceSession;
-      value : Windows.Networking.Sockets.DatagramSocket'Class
+      value : WinRt.Windows.Networking.Sockets.DatagramSocket'Class
    );
 
    function add_RemotePortAdded
@@ -1260,7 +1260,7 @@ package WinRt.Windows.Devices.WiFiDirect.Services is
    procedure remove_RemotePortAdded
    (
       this : in out WiFiDirectServiceSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close

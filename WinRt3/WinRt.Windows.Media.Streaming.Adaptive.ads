@@ -381,14 +381,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_DesiredLiveOffset
       (
          this : access IAdaptiveMediaSource_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_DesiredLiveOffset
       (
          this : access IAdaptiveMediaSource_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -472,14 +472,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_InboundBitsPerSecondWindow
       (
          this : access IAdaptiveMediaSource_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_InboundBitsPerSecondWindow
       (
          this : access IAdaptiveMediaSource_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -487,14 +487,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadBitrateChanged
       (
          this : access IAdaptiveMediaSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -502,14 +502,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PlaybackBitrateChanged
       (
          this : access IAdaptiveMediaSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -517,14 +517,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadRequested
       (
          this : access IAdaptiveMediaSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -532,14 +532,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadCompleted
       (
          this : access IAdaptiveMediaSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -547,14 +547,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DownloadFailed
       (
          this : access IAdaptiveMediaSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -566,7 +566,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_AdvancedSettings
       (
          this : access IAdaptiveMediaSource2_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceAdvancedSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -606,14 +606,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_Diagnostics
       (
          this : access IAdaptiveMediaSource3_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDiagnostics
       )
       return WinRt.Hresult is abstract;
 
       function GetCorrelatedTimes
       (
          this : access IAdaptiveMediaSource3_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceCorrelatedTimes
       )
       return WinRt.Hresult is abstract;
 
@@ -698,21 +698,21 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_Status
       (
          this : access IAdaptiveMediaSourceCreationResult_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaSource
       (
          this : access IAdaptiveMediaSourceCreationResult_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSource
       )
       return WinRt.Hresult is abstract;
 
       function get_HttpResponseMessage
       (
          this : access IAdaptiveMediaSourceCreationResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -724,7 +724,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ExtendedError
       (
          this : access IAdaptiveMediaSourceCreationResult2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -736,7 +736,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_DiagnosticType
       (
          this : access IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDiagnosticType
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDiagnosticType
       )
       return WinRt.Hresult is abstract;
 
@@ -771,7 +771,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ResourceUri
       (
          this : access IAdaptiveMediaSourceDiagnosticAvailableEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -804,7 +804,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ExtendedError
       (
          this : access IAdaptiveMediaSourceDiagnosticAvailableEventArgs2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -836,14 +836,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       (
          this : access IAdaptiveMediaSourceDiagnostics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DiagnosticAvailable
       (
          this : access IAdaptiveMediaSourceDiagnostics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -874,7 +874,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_Reason
       (
          this : access IAdaptiveMediaSourceDownloadBitrateChangedEventArgs2_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedReason
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceDownloadBitrateChangedReason
       )
       return WinRt.Hresult is abstract;
 
@@ -886,14 +886,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ResourceType
       (
          this : access IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
       )
       return WinRt.Hresult is abstract;
 
       function get_ResourceUri
       (
          this : access IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -914,7 +914,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_HttpResponseMessage
       (
          this : access IAdaptiveMediaSourceDownloadCompletedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -933,7 +933,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_Statistics
       (
          this : access IAdaptiveMediaSourceDownloadCompletedEventArgs2_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics
       )
       return WinRt.Hresult is abstract;
 
@@ -971,14 +971,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ResourceType
       (
          this : access IAdaptiveMediaSourceDownloadFailedEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
       )
       return WinRt.Hresult is abstract;
 
       function get_ResourceUri
       (
          this : access IAdaptiveMediaSourceDownloadFailedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -999,7 +999,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_HttpResponseMessage
       (
          this : access IAdaptiveMediaSourceDownloadFailedEventArgs_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1018,14 +1018,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ExtendedError
       (
          this : access IAdaptiveMediaSourceDownloadFailedEventArgs2_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_Statistics
       (
          this : access IAdaptiveMediaSourceDownloadFailedEventArgs2_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadStatistics
       )
       return WinRt.Hresult is abstract;
 
@@ -1074,14 +1074,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ResourceType
       (
          this : access IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceResourceType
       )
       return WinRt.Hresult is abstract;
 
       function get_ResourceUri
       (
          this : access IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1102,14 +1102,14 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_Result
       (
          this : access IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadResult
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IAdaptiveMediaSourceDownloadRequestedEventArgs_Interface;
-         RetVal : access Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral
+         RetVal : access WinRt.Windows.Media.Streaming.Adaptive.IAdaptiveMediaSourceDownloadRequestedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1159,42 +1159,42 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function get_ResourceUri
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_ResourceUri
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStream
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function put_InputStream
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         value : Windows.Storage.Streams.IInputStream
+         value : WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_Buffer
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Buffer
       (
          this : access IAdaptiveMediaSourceDownloadResult_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1334,7 +1334,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function CreateFromUriAsync
       (
          this : access IAdaptiveMediaSourceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1342,8 +1342,8 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function CreateFromUriAsync
       (
          this : access IAdaptiveMediaSourceStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         httpClient : Windows.Web.Http.IHttpClient;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         httpClient : WinRt.Windows.Web.Http.IHttpClient;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1351,8 +1351,8 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function CreateFromStreamAsync
       (
          this : access IAdaptiveMediaSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IInputStream;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         stream : WinRt.Windows.Storage.Streams.IInputStream;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          contentType : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1361,10 +1361,10 @@ package WinRt.Windows.Media.Streaming.Adaptive is
       function CreateFromStreamAsync
       (
          this : access IAdaptiveMediaSourceStatics_Interface;
-         stream : Windows.Storage.Streams.IInputStream;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         stream : WinRt.Windows.Storage.Streams.IInputStream;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          contentType : WinRt.HString;
-         httpClient : Windows.Web.Http.IHttpClient;
+         httpClient : WinRt.Windows.Web.Http.IHttpClient;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1392,31 +1392,31 @@ package WinRt.Windows.Media.Streaming.Adaptive is
 
    function CreateFromUriAsync
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult;
 
    function CreateFromUriAsync
    (
-      uri : Windows.Foundation.Uri'Class;
-      httpClient : Windows.Web.Http.HttpClient'Class
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      httpClient : WinRt.Windows.Web.Http.HttpClient'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult;
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IInputStream;
-      uri : Windows.Foundation.Uri'Class;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       contentType : WinRt.WString
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult;
 
    function CreateFromStreamAsync
    (
-      stream : Windows.Storage.Streams.IInputStream;
-      uri : Windows.Foundation.Uri'Class;
+      stream : WinRt.Windows.Storage.Streams.IInputStream;
+      uri : WinRt.Windows.Foundation.Uri'Class;
       contentType : WinRt.WString;
-      httpClient : Windows.Web.Http.HttpClient'Class
+      httpClient : WinRt.Windows.Web.Http.HttpClient'Class
    )
    return WinRt.Windows.Media.Streaming.Adaptive.AdaptiveMediaSourceCreationResult;
 
@@ -1438,7 +1438,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_DesiredLiveOffset
    (
       this : in out AdaptiveMediaSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_InitialBitrate
@@ -1516,7 +1516,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_InboundBitsPerSecondWindow
    (
       this : in out AdaptiveMediaSource;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function add_DownloadBitrateChanged
@@ -1529,7 +1529,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadBitrateChanged
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PlaybackBitrateChanged
@@ -1542,7 +1542,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_PlaybackBitrateChanged
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadRequested
@@ -1555,7 +1555,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadRequested
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadCompleted
@@ -1568,7 +1568,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadCompleted
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DownloadFailed
@@ -1581,7 +1581,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DownloadFailed
    (
       this : in out AdaptiveMediaSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AdvancedSettings
@@ -1836,7 +1836,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure remove_DiagnosticAvailable
    (
       this : in out AdaptiveMediaSourceDiagnostics;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2111,7 +2111,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_ResourceUri
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_InputStream
@@ -2123,7 +2123,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_InputStream
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Storage.Streams.IInputStream
+      value : WinRt.Windows.Storage.Streams.IInputStream
    );
 
    function get_Buffer
@@ -2135,7 +2135,7 @@ package WinRt.Windows.Media.Streaming.Adaptive is
    procedure put_Buffer
    (
       this : in out AdaptiveMediaSourceDownloadResult;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_ContentType

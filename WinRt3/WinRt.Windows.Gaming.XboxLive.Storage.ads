@@ -224,7 +224,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Status
       (
          this : access IGameSaveBlobGetResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -262,7 +262,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Status
       (
          this : access IGameSaveBlobInfoGetResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -316,7 +316,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Provider
       (
          this : access IGameSaveContainer_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveProvider
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -349,7 +349,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function SubmitPropertySetUpdatesAsync
       (
          this : access IGameSaveContainer_Interface;
-         blobsToWrite : Windows.Foundation.Collections.IPropertySet;
+         blobsToWrite : WinRt.Windows.Foundation.Collections.IPropertySet;
          blobsToDelete : GenericObject;
          displayName : WinRt.HString;
          RetVal : access GenericObject
@@ -360,7 +360,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       (
          this : access IGameSaveContainer_Interface;
          blobNamePrefix : WinRt.HString;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveBlobInfoQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -393,7 +393,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_LastModifiedTime
       (
          this : access IGameSaveContainerInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -412,7 +412,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Status
       (
          this : access IGameSaveContainerInfoGetResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -459,7 +459,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Status
       (
          this : access IGameSaveOperationResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -471,7 +471,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_User
       (
          this : access IGameSaveProvider_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -479,7 +479,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       (
          this : access IGameSaveProvider_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveContainer
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainer
       )
       return WinRt.Hresult is abstract;
 
@@ -494,7 +494,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function CreateContainerInfoQuery
       (
          this : access IGameSaveProvider_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -502,7 +502,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       (
          this : access IGameSaveProvider_Interface;
          containerNamePrefix : WinRt.HString;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveContainerInfoQuery
       )
       return WinRt.Hresult is abstract;
 
@@ -528,14 +528,14 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function get_Status
       (
          this : access IGameSaveProviderGetResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.GameSaveErrorStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IGameSaveProviderGetResult_Interface;
-         RetVal : access Windows.Gaming.XboxLive.Storage.IGameSaveProvider
+         RetVal : access WinRt.Windows.Gaming.XboxLive.Storage.IGameSaveProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -547,7 +547,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function GetForUserAsync
       (
          this : access IGameSaveProviderStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          serviceConfigId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -556,7 +556,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
       function GetSyncOnDemandForUserAsync
       (
          this : access IGameSaveProviderStatics_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          serviceConfigId : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -707,7 +707,7 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
    function SubmitPropertySetUpdatesAsync
    (
       this : in out GameSaveContainer;
-      blobsToWrite : Windows.Foundation.Collections.IPropertySet;
+      blobsToWrite : WinRt.Windows.Foundation.Collections.IPropertySet;
       blobsToDelete : GenericObject;
       displayName : WinRt.WString
    )
@@ -835,14 +835,14 @@ package WinRt.Windows.Gaming.XboxLive.Storage is
 
    function GetForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       serviceConfigId : WinRt.WString
    )
    return WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProviderGetResult;
 
    function GetSyncOnDemandForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       serviceConfigId : WinRt.WString
    )
    return WinRt.Windows.Gaming.XboxLive.Storage.GameSaveProviderGetResult;

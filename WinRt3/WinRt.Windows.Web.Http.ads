@@ -498,18 +498,18 @@ package WinRt.Windows.Web.Http is
       function CreateFromBuffer
       (
          this : access IHttpBufferContentFactory_Interface;
-         content : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Web.Http.IHttpContent
+         content : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromBufferWithOffset
       (
          this : access IHttpBufferContentFactory_Interface;
-         content : Windows.Storage.Streams.IBuffer;
+         content : WinRt.Windows.Storage.Streams.IBuffer;
          offset : WinRt.UInt32;
          count : WinRt.UInt32;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.Web.Http is
       function DeleteAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -529,7 +529,7 @@ package WinRt.Windows.Web.Http is
       function GetAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -537,8 +537,8 @@ package WinRt.Windows.Web.Http is
       function GetAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         completionOption : Windows.Web.Http.HttpCompletionOption;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         completionOption : WinRt.Windows.Web.Http.HttpCompletionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -546,7 +546,7 @@ package WinRt.Windows.Web.Http is
       function GetBufferAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -554,7 +554,7 @@ package WinRt.Windows.Web.Http is
       function GetInputStreamAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -562,7 +562,7 @@ package WinRt.Windows.Web.Http is
       function GetStringAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -570,8 +570,8 @@ package WinRt.Windows.Web.Http is
       function PostAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         content : Windows.Web.Http.IHttpContent;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -579,8 +579,8 @@ package WinRt.Windows.Web.Http is
       function PutAsync
       (
          this : access IHttpClient_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         content : Windows.Web.Http.IHttpContent;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -588,7 +588,7 @@ package WinRt.Windows.Web.Http is
       function SendRequestAsync
       (
          this : access IHttpClient_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -596,8 +596,8 @@ package WinRt.Windows.Web.Http is
       function SendRequestAsync
       (
          this : access IHttpClient_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         completionOption : Windows.Web.Http.HttpCompletionOption;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         completionOption : WinRt.Windows.Web.Http.HttpCompletionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -605,7 +605,7 @@ package WinRt.Windows.Web.Http is
       function get_DefaultRequestHeaders
       (
          this : access IHttpClient_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpRequestHeaderCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpRequestHeaderCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -617,7 +617,7 @@ package WinRt.Windows.Web.Http is
       function TryDeleteAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -625,7 +625,7 @@ package WinRt.Windows.Web.Http is
       function TryGetAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -633,8 +633,8 @@ package WinRt.Windows.Web.Http is
       function TryGetAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         completionOption : Windows.Web.Http.HttpCompletionOption;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         completionOption : WinRt.Windows.Web.Http.HttpCompletionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -642,7 +642,7 @@ package WinRt.Windows.Web.Http is
       function TryGetBufferAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -650,7 +650,7 @@ package WinRt.Windows.Web.Http is
       function TryGetInputStreamAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -658,7 +658,7 @@ package WinRt.Windows.Web.Http is
       function TryGetStringAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -666,8 +666,8 @@ package WinRt.Windows.Web.Http is
       function TryPostAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         content : Windows.Web.Http.IHttpContent;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -675,8 +675,8 @@ package WinRt.Windows.Web.Http is
       function TryPutAsync
       (
          this : access IHttpClient2_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         content : Windows.Web.Http.IHttpContent;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -684,7 +684,7 @@ package WinRt.Windows.Web.Http is
       function TrySendRequestAsync
       (
          this : access IHttpClient2_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -692,8 +692,8 @@ package WinRt.Windows.Web.Http is
       function TrySendRequestAsync
       (
          this : access IHttpClient2_Interface;
-         request : Windows.Web.Http.IHttpRequestMessage;
-         completionOption : Windows.Web.Http.HttpCompletionOption;
+         request : WinRt.Windows.Web.Http.IHttpRequestMessage;
+         completionOption : WinRt.Windows.Web.Http.HttpCompletionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -725,8 +725,8 @@ package WinRt.Windows.Web.Http is
       function Create
       (
          this : access IHttpClientFactory_Interface;
-         filter : Windows.Web.Http.Filters.IHttpFilter;
-         RetVal : access Windows.Web.Http.IHttpClient
+         filter : WinRt.Windows.Web.Http.Filters.IHttpFilter;
+         RetVal : access WinRt.Windows.Web.Http.IHttpClient
       )
       return WinRt.Hresult is abstract;
 
@@ -738,7 +738,7 @@ package WinRt.Windows.Web.Http is
       function get_Headers
       (
          this : access IHttpContent_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpContentHeaderCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpContentHeaderCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -781,7 +781,7 @@ package WinRt.Windows.Web.Http is
       function WriteToStreamAsync
       (
          this : access IHttpContent_Interface;
-         outputStream : Windows.Storage.Streams.IOutputStream;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -879,7 +879,7 @@ package WinRt.Windows.Web.Http is
          name : WinRt.HString;
          domain : WinRt.HString;
          path : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpCookie
+         RetVal : access WinRt.Windows.Web.Http.IHttpCookie
       )
       return WinRt.Hresult is abstract;
 
@@ -891,7 +891,7 @@ package WinRt.Windows.Web.Http is
       function SetCookie
       (
          this : access IHttpCookieManager_Interface;
-         cookie : Windows.Web.Http.IHttpCookie;
+         cookie : WinRt.Windows.Web.Http.IHttpCookie;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -899,7 +899,7 @@ package WinRt.Windows.Web.Http is
       function SetCookie
       (
          this : access IHttpCookieManager_Interface;
-         cookie : Windows.Web.Http.IHttpCookie;
+         cookie : WinRt.Windows.Web.Http.IHttpCookie;
          thirdParty : WinRt.Boolean;
          RetVal : access WinRt.Boolean
       )
@@ -908,14 +908,14 @@ package WinRt.Windows.Web.Http is
       function DeleteCookie
       (
          this : access IHttpCookieManager_Interface;
-         cookie : Windows.Web.Http.IHttpCookie
+         cookie : WinRt.Windows.Web.Http.IHttpCookie
       )
       return WinRt.Hresult is abstract;
 
       function GetCookies
       (
          this : access IHttpCookieManager_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -929,7 +929,7 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpFormUrlEncodedContentFactory_Interface;
          content : GenericObject;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -941,21 +941,21 @@ package WinRt.Windows.Web.Http is
       function get_ExtendedError
       (
          this : access IHttpGetBufferResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestMessage
       (
          this : access IHttpGetBufferResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseMessage
       (
          this : access IHttpGetBufferResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -969,7 +969,7 @@ package WinRt.Windows.Web.Http is
       function get_Value
       (
          this : access IHttpGetBufferResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -981,21 +981,21 @@ package WinRt.Windows.Web.Http is
       function get_ExtendedError
       (
          this : access IHttpGetInputStreamResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestMessage
       (
          this : access IHttpGetInputStreamResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseMessage
       (
          this : access IHttpGetInputStreamResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1009,7 +1009,7 @@ package WinRt.Windows.Web.Http is
       function get_Value
       (
          this : access IHttpGetInputStreamResult_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1021,21 +1021,21 @@ package WinRt.Windows.Web.Http is
       function get_ExtendedError
       (
          this : access IHttpGetStringResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestMessage
       (
          this : access IHttpGetStringResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseMessage
       (
          this : access IHttpGetStringResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1074,7 +1074,7 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpMethodFactory_Interface;
          method : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -1086,49 +1086,49 @@ package WinRt.Windows.Web.Http is
       function get_Delete
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Get
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Head
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Options
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Patch
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Post
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_Put
       (
          this : access IHttpMethodStatics_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -1140,7 +1140,7 @@ package WinRt.Windows.Web.Http is
       function Add
       (
          this : access IHttpMultipartContent_Interface;
-         content : Windows.Web.Http.IHttpContent
+         content : WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1153,7 +1153,7 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpMultipartContentFactory_Interface;
          subtype_x : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1162,7 +1162,7 @@ package WinRt.Windows.Web.Http is
          this : access IHttpMultipartContentFactory_Interface;
          subtype_x : WinRt.HString;
          boundary : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1174,14 +1174,14 @@ package WinRt.Windows.Web.Http is
       function Add
       (
          this : access IHttpMultipartFormDataContent_Interface;
-         content : Windows.Web.Http.IHttpContent
+         content : WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function Add
       (
          this : access IHttpMultipartFormDataContent_Interface;
-         content : Windows.Web.Http.IHttpContent;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          name : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1189,7 +1189,7 @@ package WinRt.Windows.Web.Http is
       function Add
       (
          this : access IHttpMultipartFormDataContent_Interface;
-         content : Windows.Web.Http.IHttpContent;
+         content : WinRt.Windows.Web.Http.IHttpContent;
          name : WinRt.HString;
          fileName : WinRt.HString
       )
@@ -1204,7 +1204,7 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpMultipartFormDataContentFactory_Interface;
          boundary : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1216,35 +1216,35 @@ package WinRt.Windows.Web.Http is
       function get_Content
       (
          this : access IHttpRequestMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access IHttpRequestMessage_Interface;
-         value : Windows.Web.Http.IHttpContent
+         value : WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Headers
       (
          this : access IHttpRequestMessage_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpRequestHeaderCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpRequestHeaderCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Method
       (
          this : access IHttpRequestMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpMethod
+         RetVal : access WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_Method
       (
          this : access IHttpRequestMessage_Interface;
-         value : Windows.Web.Http.IHttpMethod
+         value : WinRt.Windows.Web.Http.IHttpMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -1258,21 +1258,21 @@ package WinRt.Windows.Web.Http is
       function get_RequestUri
       (
          this : access IHttpRequestMessage_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestUri
       (
          this : access IHttpRequestMessage_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_TransportInformation
       (
          this : access IHttpRequestMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpTransportInformation
+         RetVal : access WinRt.Windows.Web.Http.IHttpTransportInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -1303,9 +1303,9 @@ package WinRt.Windows.Web.Http is
       function Create
       (
          this : access IHttpRequestMessageFactory_Interface;
-         method : Windows.Web.Http.IHttpMethod;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         method : WinRt.Windows.Web.Http.IHttpMethod;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1317,21 +1317,21 @@ package WinRt.Windows.Web.Http is
       function get_ExtendedError
       (
          this : access IHttpRequestResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_RequestMessage
       (
          this : access IHttpRequestResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_ResponseMessage
       (
          this : access IHttpRequestResult_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1350,21 +1350,21 @@ package WinRt.Windows.Web.Http is
       function get_Content
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access IHttpResponseMessage_Interface;
-         value : Windows.Web.Http.IHttpContent
+         value : WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
       function get_Headers
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.Headers.IHttpResponseHeaderCollection
+         RetVal : access WinRt.Windows.Web.Http.Headers.IHttpResponseHeaderCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -1392,63 +1392,63 @@ package WinRt.Windows.Web.Http is
       function get_RequestMessage
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpRequestMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function put_RequestMessage
       (
          this : access IHttpResponseMessage_Interface;
-         value : Windows.Web.Http.IHttpRequestMessage
+         value : WinRt.Windows.Web.Http.IHttpRequestMessage
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.HttpResponseMessageSource
+         RetVal : access WinRt.Windows.Web.Http.HttpResponseMessageSource
       )
       return WinRt.Hresult is abstract;
 
       function put_Source
       (
          this : access IHttpResponseMessage_Interface;
-         value : Windows.Web.Http.HttpResponseMessageSource
+         value : WinRt.Windows.Web.Http.HttpResponseMessageSource
       )
       return WinRt.Hresult is abstract;
 
       function get_StatusCode
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.HttpStatusCode
+         RetVal : access WinRt.Windows.Web.Http.HttpStatusCode
       )
       return WinRt.Hresult is abstract;
 
       function put_StatusCode
       (
          this : access IHttpResponseMessage_Interface;
-         value : Windows.Web.Http.HttpStatusCode
+         value : WinRt.Windows.Web.Http.HttpStatusCode
       )
       return WinRt.Hresult is abstract;
 
       function get_Version
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.HttpVersion
+         RetVal : access WinRt.Windows.Web.Http.HttpVersion
       )
       return WinRt.Hresult is abstract;
 
       function put_Version
       (
          this : access IHttpResponseMessage_Interface;
-         value : Windows.Web.Http.HttpVersion
+         value : WinRt.Windows.Web.Http.HttpVersion
       )
       return WinRt.Hresult is abstract;
 
       function EnsureSuccessStatusCode
       (
          this : access IHttpResponseMessage_Interface;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1460,8 +1460,8 @@ package WinRt.Windows.Web.Http is
       function Create
       (
          this : access IHttpResponseMessageFactory_Interface;
-         statusCode : Windows.Web.Http.HttpStatusCode;
-         RetVal : access Windows.Web.Http.IHttpResponseMessage
+         statusCode : WinRt.Windows.Web.Http.HttpStatusCode;
+         RetVal : access WinRt.Windows.Web.Http.IHttpResponseMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -1473,8 +1473,8 @@ package WinRt.Windows.Web.Http is
       function CreateFromInputStream
       (
          this : access IHttpStreamContentFactory_Interface;
-         content : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Web.Http.IHttpContent
+         content : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1487,7 +1487,7 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpStringContentFactory_Interface;
          content : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1495,8 +1495,8 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpStringContentFactory_Interface;
          content : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Web.Http.IHttpContent
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1504,9 +1504,9 @@ package WinRt.Windows.Web.Http is
       (
          this : access IHttpStringContentFactory_Interface;
          content : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
          mediaType : WinRt.HString;
-         RetVal : access Windows.Web.Http.IHttpContent
+         RetVal : access WinRt.Windows.Web.Http.IHttpContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1518,14 +1518,14 @@ package WinRt.Windows.Web.Http is
       function get_ServerCertificate
       (
          this : access IHttpTransportInformation_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
       function get_ServerCertificateErrorSeverity
       (
          this : access IHttpTransportInformation_Interface;
-         RetVal : access Windows.Networking.Sockets.SocketSslErrorSeverity
+         RetVal : access WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity
       )
       return WinRt.Hresult is abstract;
 
@@ -1560,13 +1560,13 @@ package WinRt.Windows.Web.Http is
 
    function Constructor
    (
-      content : Windows.Storage.Streams.IBuffer
+      content : WinRt.Windows.Storage.Streams.IBuffer
    )
    return HttpBufferContent;
 
    function Constructor
    (
-      content : Windows.Storage.Streams.IBuffer;
+      content : WinRt.Windows.Storage.Streams.IBuffer;
       offset : WinRt.UInt32;
       count : WinRt.UInt32
    )
@@ -1615,7 +1615,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpBufferContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 
@@ -1641,7 +1641,7 @@ package WinRt.Windows.Web.Http is
 
    function Constructor
    (
-      filter : Windows.Web.Http.Filters.IHttpFilter
+      filter : WinRt.Windows.Web.Http.Filters.IHttpFilter
    )
    return HttpClient;
 
@@ -1653,74 +1653,74 @@ package WinRt.Windows.Web.Http is
    function DeleteAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function GetAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function GetAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      completionOption : Windows.Web.Http.HttpCompletionOption
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      completionOption : WinRt.Windows.Web.Http.HttpCompletionOption
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function GetBufferAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    function GetInputStreamAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.Streams.IInputStream;
 
    function GetStringAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.WString;
 
    function PostAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      content : Windows.Web.Http.IHttpContent
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      content : WinRt.Windows.Web.Http.IHttpContent
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function PutAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      content : Windows.Web.Http.IHttpContent
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      content : WinRt.Windows.Web.Http.IHttpContent
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function SendRequestAsync
    (
       this : in out HttpClient;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
    function SendRequestAsync
    (
       this : in out HttpClient;
-      request : Windows.Web.Http.HttpRequestMessage'Class;
-      completionOption : Windows.Web.Http.HttpCompletionOption
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
+      completionOption : WinRt.Windows.Web.Http.HttpCompletionOption
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
 
@@ -1733,74 +1733,74 @@ package WinRt.Windows.Web.Http is
    function TryDeleteAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TryGetAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TryGetAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      completionOption : Windows.Web.Http.HttpCompletionOption
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      completionOption : WinRt.Windows.Web.Http.HttpCompletionOption
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TryGetBufferAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpGetBufferResult'Class;
 
    function TryGetInputStreamAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpGetInputStreamResult'Class;
 
    function TryGetStringAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpGetStringResult'Class;
 
    function TryPostAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      content : Windows.Web.Http.IHttpContent
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      content : WinRt.Windows.Web.Http.IHttpContent
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TryPutAsync
    (
       this : in out HttpClient;
-      uri : Windows.Foundation.Uri'Class;
-      content : Windows.Web.Http.IHttpContent
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      content : WinRt.Windows.Web.Http.IHttpContent
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TrySendRequestAsync
    (
       this : in out HttpClient;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
    function TrySendRequestAsync
    (
       this : in out HttpClient;
-      request : Windows.Web.Http.HttpRequestMessage'Class;
-      completionOption : Windows.Web.Http.HttpCompletionOption
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
+      completionOption : WinRt.Windows.Web.Http.HttpCompletionOption
    )
    return WinRt.Windows.Web.Http.HttpRequestResult'Class;
 
@@ -1945,7 +1945,7 @@ package WinRt.Windows.Web.Http is
    function IndexOf
    (
       this : in out HttpCookieCollection;
-      value : Windows.Web.Http.HttpCookie'Class;
+      value : WinRt.Windows.Web.Http.HttpCookie'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1954,7 +1954,7 @@ package WinRt.Windows.Web.Http is
    (
       this : in out HttpCookieCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.Web.Http.IHttpCookie_Array
+      items : WinRt.Windows.Web.Http.IHttpCookie_Array
    )
    return WinRt.UInt32;
 
@@ -1977,14 +1977,14 @@ package WinRt.Windows.Web.Http is
    function SetCookie
    (
       this : in out HttpCookieManager;
-      cookie : Windows.Web.Http.HttpCookie'Class
+      cookie : WinRt.Windows.Web.Http.HttpCookie'Class
    )
    return WinRt.Boolean;
 
    function SetCookie
    (
       this : in out HttpCookieManager;
-      cookie : Windows.Web.Http.HttpCookie'Class;
+      cookie : WinRt.Windows.Web.Http.HttpCookie'Class;
       thirdParty : WinRt.Boolean
    )
    return WinRt.Boolean;
@@ -1992,13 +1992,13 @@ package WinRt.Windows.Web.Http is
    procedure DeleteCookie
    (
       this : in out HttpCookieManager;
-      cookie : Windows.Web.Http.HttpCookie'Class
+      cookie : WinRt.Windows.Web.Http.HttpCookie'Class
    );
 
    function GetCookies
    (
       this : in out HttpCookieManager;
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Web.Http.HttpCookieCollection'Class;
 
@@ -2060,7 +2060,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpFormUrlEncodedContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 
@@ -2309,7 +2309,7 @@ package WinRt.Windows.Web.Http is
    procedure Add
    (
       this : in out HttpMultipartContent;
-      content : Windows.Web.Http.IHttpContent
+      content : WinRt.Windows.Web.Http.IHttpContent
    );
 
    function get_Headers
@@ -2352,7 +2352,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpMultipartContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 
@@ -2397,20 +2397,20 @@ package WinRt.Windows.Web.Http is
    procedure Add
    (
       this : in out HttpMultipartFormDataContent;
-      content : Windows.Web.Http.IHttpContent
+      content : WinRt.Windows.Web.Http.IHttpContent
    );
 
    procedure Add
    (
       this : in out HttpMultipartFormDataContent;
-      content : Windows.Web.Http.IHttpContent;
+      content : WinRt.Windows.Web.Http.IHttpContent;
       name : WinRt.WString
    );
 
    procedure Add
    (
       this : in out HttpMultipartFormDataContent;
-      content : Windows.Web.Http.IHttpContent;
+      content : WinRt.Windows.Web.Http.IHttpContent;
       name : WinRt.WString;
       fileName : WinRt.WString
    );
@@ -2455,7 +2455,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpMultipartFormDataContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 
@@ -2488,8 +2488,8 @@ package WinRt.Windows.Web.Http is
 
    function Constructor
    (
-      method : Windows.Web.Http.HttpMethod'Class;
-      uri : Windows.Foundation.Uri'Class
+      method : WinRt.Windows.Web.Http.HttpMethod'Class;
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return HttpRequestMessage;
 
@@ -2507,7 +2507,7 @@ package WinRt.Windows.Web.Http is
    procedure put_Content
    (
       this : in out HttpRequestMessage;
-      value : Windows.Web.Http.IHttpContent
+      value : WinRt.Windows.Web.Http.IHttpContent
    );
 
    function get_Headers
@@ -2525,7 +2525,7 @@ package WinRt.Windows.Web.Http is
    procedure put_Method
    (
       this : in out HttpRequestMessage;
-      value : Windows.Web.Http.HttpMethod'Class
+      value : WinRt.Windows.Web.Http.HttpMethod'Class
    );
 
    function get_Properties
@@ -2543,7 +2543,7 @@ package WinRt.Windows.Web.Http is
    procedure put_RequestUri
    (
       this : in out HttpRequestMessage;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_TransportInformation
@@ -2632,7 +2632,7 @@ package WinRt.Windows.Web.Http is
 
    function Constructor
    (
-      statusCode : Windows.Web.Http.HttpStatusCode
+      statusCode : WinRt.Windows.Web.Http.HttpStatusCode
    )
    return HttpResponseMessage;
 
@@ -2648,7 +2648,7 @@ package WinRt.Windows.Web.Http is
    procedure put_Content
    (
       this : in out HttpResponseMessage;
-      value : Windows.Web.Http.IHttpContent
+      value : WinRt.Windows.Web.Http.IHttpContent
    );
 
    function get_Headers
@@ -2684,7 +2684,7 @@ package WinRt.Windows.Web.Http is
    procedure put_RequestMessage
    (
       this : in out HttpResponseMessage;
-      value : Windows.Web.Http.HttpRequestMessage'Class
+      value : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    );
 
    function get_Source
@@ -2696,7 +2696,7 @@ package WinRt.Windows.Web.Http is
    procedure put_Source
    (
       this : in out HttpResponseMessage;
-      value : Windows.Web.Http.HttpResponseMessageSource
+      value : WinRt.Windows.Web.Http.HttpResponseMessageSource
    );
 
    function get_StatusCode
@@ -2708,7 +2708,7 @@ package WinRt.Windows.Web.Http is
    procedure put_StatusCode
    (
       this : in out HttpResponseMessage;
-      value : Windows.Web.Http.HttpStatusCode
+      value : WinRt.Windows.Web.Http.HttpStatusCode
    );
 
    function get_Version
@@ -2720,7 +2720,7 @@ package WinRt.Windows.Web.Http is
    procedure put_Version
    (
       this : in out HttpResponseMessage;
-      value : Windows.Web.Http.HttpVersion
+      value : WinRt.Windows.Web.Http.HttpVersion
    );
 
    function EnsureSuccessStatusCode
@@ -2751,7 +2751,7 @@ package WinRt.Windows.Web.Http is
 
    function Constructor
    (
-      content : Windows.Storage.Streams.IInputStream
+      content : WinRt.Windows.Storage.Streams.IInputStream
    )
    return HttpStreamContent;
 
@@ -2798,7 +2798,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpStreamContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 
@@ -2831,14 +2831,14 @@ package WinRt.Windows.Web.Http is
    function Constructor
    (
       content : WinRt.WString;
-      encoding : Windows.Storage.Streams.UnicodeEncoding
+      encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
    )
    return HttpStringContent;
 
    function Constructor
    (
       content : WinRt.WString;
-      encoding : Windows.Storage.Streams.UnicodeEncoding;
+      encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
       mediaType : WinRt.WString
    )
    return HttpStringContent;
@@ -2886,7 +2886,7 @@ package WinRt.Windows.Web.Http is
    function WriteToStreamAsync
    (
       this : in out HttpStringContent;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return WinRt.UInt64;
 

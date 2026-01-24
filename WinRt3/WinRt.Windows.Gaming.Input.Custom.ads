@@ -208,7 +208,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function CreateGameController
       (
          this : access ICustomGameControllerFactory_Interface;
-         provider : Windows.Gaming.Input.Custom.IGameControllerProvider;
+         provider : WinRt.Windows.Gaming.Input.Custom.IGameControllerProvider;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -216,14 +216,14 @@ package WinRt.Windows.Gaming.Input.Custom is
       function OnGameControllerAdded
       (
          this : access ICustomGameControllerFactory_Interface;
-         value : Windows.Gaming.Input.IGameController
+         value : WinRt.Windows.Gaming.Input.IGameController
       )
       return WinRt.Hresult is abstract;
 
       function OnGameControllerRemoved
       (
          this : access ICustomGameControllerFactory_Interface;
-         value : Windows.Gaming.Input.IGameController
+         value : WinRt.Windows.Gaming.Input.IGameController
       )
       return WinRt.Hresult is abstract;
 
@@ -235,7 +235,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function RegisterCustomFactoryForGipInterface
       (
          this : access IGameControllerFactoryManagerStatics_Interface;
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          interfaceId : WinRt.Guid
       )
       return WinRt.Hresult is abstract;
@@ -243,7 +243,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function RegisterCustomFactoryForHardwareId
       (
          this : access IGameControllerFactoryManagerStatics_Interface;
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          hardwareVendorId : WinRt.UInt16;
          hardwareProductId : WinRt.UInt16
       )
@@ -252,9 +252,9 @@ package WinRt.Windows.Gaming.Input.Custom is
       function RegisterCustomFactoryForXusbType
       (
          this : access IGameControllerFactoryManagerStatics_Interface;
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         xusbType : Windows.Gaming.Input.Custom.XusbDeviceType;
-         xusbSubtype : Windows.Gaming.Input.Custom.XusbDeviceSubtype
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         xusbType : WinRt.Windows.Gaming.Input.Custom.XusbDeviceType;
+         xusbSubtype : WinRt.Windows.Gaming.Input.Custom.XusbDeviceSubtype
       )
       return WinRt.Hresult is abstract;
 
@@ -266,9 +266,9 @@ package WinRt.Windows.Gaming.Input.Custom is
       function TryGetFactoryControllerFromGameController
       (
          this : access IGameControllerFactoryManagerStatics2_Interface;
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController;
-         RetVal : access Windows.Gaming.Input.IGameController
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : WinRt.Windows.Gaming.Input.IGameController;
+         RetVal : access WinRt.Windows.Gaming.Input.IGameController
       )
       return WinRt.Hresult is abstract;
 
@@ -299,7 +299,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function get_FirmwareVersionInfo
       (
          this : access IGameControllerProvider_Interface;
-         RetVal : access Windows.Gaming.Input.Custom.GameControllerVersionInfo
+         RetVal : access WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -320,7 +320,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function get_HardwareVersionInfo
       (
          this : access IGameControllerProvider_Interface;
-         RetVal : access Windows.Gaming.Input.Custom.GameControllerVersionInfo
+         RetVal : access WinRt.Windows.Gaming.Input.Custom.GameControllerVersionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -353,7 +353,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function get_Status
       (
          this : access IGipFirmwareUpdateResult_Interface;
-         RetVal : access Windows.Gaming.Input.Custom.GipFirmwareUpdateStatus
+         RetVal : access WinRt.Windows.Gaming.Input.Custom.GipFirmwareUpdateStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -375,7 +375,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       (
          this : access IGipGameControllerInputSink_Interface;
          timestamp : WinRt.UInt64;
-         messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+         messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
          messageId : WinRt.Byte;
          sequenceId : WinRt.Byte;
          messageBufferSize : WinRt.UInt32;
@@ -391,7 +391,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function SendMessage
       (
          this : access IGipGameControllerProvider_Interface;
-         messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+         messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
          messageId : WinRt.Byte;
          messageBufferSize : WinRt.UInt32;
          messageBuffer : WinRt.Byte_Ptr
@@ -401,7 +401,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function SendReceiveMessage
       (
          this : access IGipGameControllerProvider_Interface;
-         messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+         messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
          messageId : WinRt.Byte;
          requestMessageBufferSize : WinRt.UInt32;
          requestMessageBuffer : WinRt.Byte_Ptr;
@@ -413,7 +413,7 @@ package WinRt.Windows.Gaming.Input.Custom is
       function UpdateFirmwareAsync
       (
          this : access IGipGameControllerProvider_Interface;
-         firmwareImage : Windows.Storage.Streams.IInputStream;
+         firmwareImage : WinRt.Windows.Storage.Streams.IInputStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -519,29 +519,29 @@ package WinRt.Windows.Gaming.Input.Custom is
 
       function TryGetFactoryControllerFromGameController
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         gameController : Windows.Gaming.Input.IGameController
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         gameController : WinRt.Windows.Gaming.Input.IGameController
       )
       return WinRt.Windows.Gaming.Input.IGameController;
 
       procedure RegisterCustomFactoryForGipInterface
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          interfaceId : WinRt.Guid
       );
 
       procedure RegisterCustomFactoryForHardwareId
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
          hardwareVendorId : WinRt.UInt16;
          hardwareProductId : WinRt.UInt16
       );
 
       procedure RegisterCustomFactoryForXusbType
       (
-         factory : Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
-         xusbType : Windows.Gaming.Input.Custom.XusbDeviceType;
-         xusbSubtype : Windows.Gaming.Input.Custom.XusbDeviceSubtype
+         factory : WinRt.Windows.Gaming.Input.Custom.ICustomGameControllerFactory;
+         xusbType : WinRt.Windows.Gaming.Input.Custom.XusbDeviceType;
+         xusbSubtype : WinRt.Windows.Gaming.Input.Custom.XusbDeviceSubtype
       );
 
    end GameControllerFactoryManager;
@@ -585,7 +585,7 @@ package WinRt.Windows.Gaming.Input.Custom is
    procedure SendMessage
    (
       this : in out GipGameControllerProvider;
-      messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+      messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
       messageId : WinRt.Byte;
       messageBuffer : WinRt.Byte_Array
    );
@@ -593,7 +593,7 @@ package WinRt.Windows.Gaming.Input.Custom is
    procedure SendReceiveMessage
    (
       this : in out GipGameControllerProvider;
-      messageClass : Windows.Gaming.Input.Custom.GipMessageClass;
+      messageClass : WinRt.Windows.Gaming.Input.Custom.GipMessageClass;
       messageId : WinRt.Byte;
       requestMessageBuffer : WinRt.Byte_Array;
       responseMessageBuffer : WinRt.Byte_Array
@@ -602,7 +602,7 @@ package WinRt.Windows.Gaming.Input.Custom is
    function UpdateFirmwareAsync
    (
       this : in out GipGameControllerProvider;
-      firmwareImage : Windows.Storage.Streams.IInputStream
+      firmwareImage : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WinRt.Windows.Gaming.Input.Custom.GipFirmwareUpdateResult'Class;
 

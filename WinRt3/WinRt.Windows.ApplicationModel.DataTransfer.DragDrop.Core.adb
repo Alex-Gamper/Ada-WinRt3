@@ -67,7 +67,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragDropManager do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreDragDropManagerStatics'Access , m_Factory'Address);
@@ -77,7 +77,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICoreDragDropManager := new Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager;
+            Retval.m_ICoreDragDropManager := new WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager;
             Retval.m_ICoreDragDropManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -96,7 +96,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreDragDropManager.all.add_TargetRequested (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -108,7 +108,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure remove_TargetRequested
    (
       this : in out CoreDragDropManager;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -183,14 +183,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackageView;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView do
          Hr := this.m_ICoreDragInfo.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackageView := new Windows.ApplicationModel.DataTransfer.IDataPackageView;
+         Retval.m_IDataPackageView := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView;
          Retval.m_IDataPackageView.all := m_ComRetVal;
       end return;
    end;
@@ -203,7 +203,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers;
    begin
       Hr := this.m_ICoreDragInfo.all.get_Modifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -220,7 +220,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_ICoreDragInfo.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -238,7 +238,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DataPackageOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo_Interface, WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo2, WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.IID_ICoreDragInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDragInfo.all);
@@ -276,13 +276,13 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    function Constructor return CoreDragOperation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation");
-      m_ComRetVal  : aliased Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
    begin
       return RetVal : CoreDragOperation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICoreDragOperation := new Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
+            Retval.m_ICoreDragOperation := new WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
             Retval.m_ICoreDragOperation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -300,14 +300,14 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.IDataPackage;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.DataTransfer.DataPackage do
          Hr := this.m_ICoreDragOperation.all.get_Data (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDataPackage := new Windows.ApplicationModel.DataTransfer.IDataPackage;
+         Retval.m_IDataPackage := new WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage;
          Retval.m_IDataPackage.all := m_ComRetVal;
       end return;
    end;
@@ -330,7 +330,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetDragUIContentFromSoftwareBitmap
    (
       this : in out CoreDragOperation;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -345,8 +345,8 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetDragUIContentFromSoftwareBitmap
    (
       this : in out CoreDragOperation;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      anchorPoint : Windows.Foundation.Point
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      anchorPoint : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -366,7 +366,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode;
    begin
       Hr := this.m_ICoreDragOperation.all.get_DragUIContentMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -378,7 +378,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure put_DragUIContentMode
    (
       this : in out CoreDragOperation;
-      value : Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -462,7 +462,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.DataTransfer.DataPackageOperation;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation_Interface, WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation2, WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.IID_ICoreDragOperation2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreDragOperation.all);
@@ -477,7 +477,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure put_AllowedOperations
    (
       this : in out CoreDragOperation;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -519,7 +519,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetContentFromSoftwareBitmap
    (
       this : in out CoreDragUIOverride;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -534,8 +534,8 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetContentFromSoftwareBitmap
    (
       this : in out CoreDragUIOverride;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      anchorPoint : Windows.Foundation.Point
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      anchorPoint : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -720,7 +720,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetTarget
    (
       this : in out CoreDropOperationTargetRequestedEventArgs;
-      target : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
+      target : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

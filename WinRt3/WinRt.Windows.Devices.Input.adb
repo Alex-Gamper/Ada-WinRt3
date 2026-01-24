@@ -59,13 +59,13 @@ package body WinRt.Windows.Devices.Input is
    function Constructor return KeyboardCapabilities is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.KeyboardCapabilities");
-      m_ComRetVal  : aliased Windows.Devices.Input.IKeyboardCapabilities;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.IKeyboardCapabilities");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Input.IKeyboardCapabilities;
    begin
       return RetVal : KeyboardCapabilities do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IKeyboardCapabilities := new Windows.Devices.Input.IKeyboardCapabilities;
+            Retval.m_IKeyboardCapabilities := new WinRt.Windows.Devices.Input.IKeyboardCapabilities;
             Retval.m_IKeyboardCapabilities.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -118,13 +118,13 @@ package body WinRt.Windows.Devices.Input is
    function Constructor return MouseCapabilities is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.MouseCapabilities");
-      m_ComRetVal  : aliased Windows.Devices.Input.IMouseCapabilities;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.IMouseCapabilities");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Input.IMouseCapabilities;
    begin
       return RetVal : MouseCapabilities do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMouseCapabilities := new Windows.Devices.Input.IMouseCapabilities;
+            Retval.m_IMouseCapabilities := new WinRt.Windows.Devices.Input.IMouseCapabilities;
             Retval.m_IMouseCapabilities.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -249,7 +249,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.MouseDevice");
       m_Factory        : access WinRt.Windows.Devices.Input.IMouseDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IMouseDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IMouseDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Input.MouseDevice do
          Hr := RoGetActivationFactory (m_hString, IID_IMouseDeviceStatics'Access , m_Factory'Address);
@@ -259,7 +259,7 @@ package body WinRt.Windows.Devices.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IMouseDevice := new Windows.Devices.Input.IMouseDevice;
+            Retval.m_IMouseDevice := new WinRt.Windows.Devices.Input.IMouseDevice;
             Retval.m_IMouseDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -278,7 +278,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMouseDevice.all.add_MouseMoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -290,7 +290,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_MouseMoved
    (
       this : in out MouseDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -333,7 +333,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.MouseDelta;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.MouseDelta;
    begin
       Hr := this.m_IMouseEventArgs.all.get_MouseDelta (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -372,7 +372,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.PenButtonListener");
       m_Factory        : access WinRt.Windows.Devices.Input.IPenButtonListenerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPenButtonListener;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPenButtonListener;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PenButtonListener do
          Hr := RoGetActivationFactory (m_hString, IID_IPenButtonListenerStatics'Access , m_Factory'Address);
@@ -382,7 +382,7 @@ package body WinRt.Windows.Devices.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPenButtonListener := new Windows.Devices.Input.IPenButtonListener;
+            Retval.m_IPenButtonListener := new WinRt.Windows.Devices.Input.IPenButtonListener;
             Retval.m_IPenButtonListener.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -418,7 +418,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenButtonListener.all.add_IsSupportedChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -430,7 +430,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_IsSupportedChanged
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -451,7 +451,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenButtonListener.all.add_TailButtonClicked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -463,7 +463,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_TailButtonClicked
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -484,7 +484,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenButtonListener.all.add_TailButtonDoubleClicked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -496,7 +496,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_TailButtonDoubleClicked
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -517,7 +517,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenButtonListener.all.add_TailButtonLongPressed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -529,7 +529,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_TailButtonLongPressed
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -574,7 +574,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.PenDevice");
       m_Factory        : access WinRt.Windows.Devices.Input.IPenDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPenDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPenDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PenDevice do
          Hr := RoGetActivationFactory (m_hString, IID_IPenDeviceStatics'Access , m_Factory'Address);
@@ -584,7 +584,7 @@ package body WinRt.Windows.Devices.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPenDevice := new Windows.Devices.Input.IPenDevice;
+            Retval.m_IPenDevice := new WinRt.Windows.Devices.Input.IPenDevice;
             Retval.m_IPenDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -620,7 +620,7 @@ package body WinRt.Windows.Devices.Input is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Input.IPenDevice2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Haptics.ISimpleHapticsController;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Input.IPenDevice_Interface, WinRt.Windows.Devices.Input.IPenDevice2, WinRt.Windows.Devices.Input.IID_IPenDevice2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Haptics.SimpleHapticsController do
@@ -630,7 +630,7 @@ package body WinRt.Windows.Devices.Input is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISimpleHapticsController := new Windows.Devices.Haptics.ISimpleHapticsController;
+         Retval.m_ISimpleHapticsController := new WinRt.Windows.Devices.Haptics.ISimpleHapticsController;
          Retval.m_ISimpleHapticsController.all := m_ComRetVal;
       end return;
    end;
@@ -665,7 +665,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.PenDockListener");
       m_Factory        : access WinRt.Windows.Devices.Input.IPenDockListenerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPenDockListener;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPenDockListener;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PenDockListener do
          Hr := RoGetActivationFactory (m_hString, IID_IPenDockListenerStatics'Access , m_Factory'Address);
@@ -675,7 +675,7 @@ package body WinRt.Windows.Devices.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPenDockListener := new Windows.Devices.Input.IPenDockListener;
+            Retval.m_IPenDockListener := new WinRt.Windows.Devices.Input.IPenDockListener;
             Retval.m_IPenDockListener.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -711,7 +711,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenDockListener.all.add_IsSupportedChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -723,7 +723,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_IsSupportedChanged
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -744,7 +744,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenDockListener.all.add_Docked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -756,7 +756,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_Docked
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -777,7 +777,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPenDockListener.all.add_Undocked (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -789,7 +789,7 @@ package body WinRt.Windows.Devices.Input is
    procedure remove_Undocked
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -949,7 +949,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.PointerDevice");
       m_Factory        : access WinRt.Windows.Devices.Input.IPointerDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.IPointerDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.IPointerDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Input.PointerDevice do
          Hr := RoGetActivationFactory (m_hString, IID_IPointerDeviceStatics'Access , m_Factory'Address);
@@ -959,7 +959,7 @@ package body WinRt.Windows.Devices.Input is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPointerDevice := new Windows.Devices.Input.IPointerDevice;
+            Retval.m_IPointerDevice := new WinRt.Windows.Devices.Input.IPointerDevice;
             Retval.m_IPointerDevice.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -973,7 +973,7 @@ package body WinRt.Windows.Devices.Input is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Input.PointerDevice");
       m_Factory        : access WinRt.Windows.Devices.Input.IPointerDeviceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPointerDeviceStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -998,7 +998,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Input.PointerDeviceType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Input.PointerDeviceType;
    begin
       Hr := this.m_IPointerDevice.all.get_PointerDeviceType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1049,7 +1049,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPointerDevice.all.get_PhysicalDeviceRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1066,7 +1066,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPointerDevice.all.get_ScreenRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1083,7 +1083,7 @@ package body WinRt.Windows.Devices.Input is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_PointerDeviceUsage.Kind;
    begin
       Hr := this.m_IPointerDevice.all.get_SupportedUsages (m_ComRetVal'Access);
@@ -1142,13 +1142,13 @@ package body WinRt.Windows.Devices.Input is
    function Constructor return TouchCapabilities is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.TouchCapabilities");
-      m_ComRetVal  : aliased Windows.Devices.Input.ITouchCapabilities;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Input.ITouchCapabilities");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Input.ITouchCapabilities;
    begin
       return RetVal : TouchCapabilities do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ITouchCapabilities := new Windows.Devices.Input.ITouchCapabilities;
+            Retval.m_ITouchCapabilities := new WinRt.Windows.Devices.Input.ITouchCapabilities;
             Retval.m_ITouchCapabilities.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);

@@ -142,16 +142,16 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionControlGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionControlGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionControlGroup");
       m_Factory    : access IPerceptionControlGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionControlGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup;
    begin
       return RetVal : PerceptionControlGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionControlGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (ids, m_ComRetVal'Access);
-            Retval.m_IPerceptionControlGroup := new Windows.Devices.Perception.Provider.IPerceptionControlGroup;
+            Retval.m_IPerceptionControlGroup := new WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup;
             Retval.m_IPerceptionControlGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -170,7 +170,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPerceptionControlGroup.all.get_FrameProviderIds (m_ComRetVal'Access);
@@ -208,23 +208,23 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       targetId : WinRt.WString;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    )
    return PerceptionCorrelation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionCorrelation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionCorrelation");
       m_Factory    : access IPerceptionCorrelationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionCorrelation;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelation;
       HStr_targetId : constant WinRt.HString := To_HString (targetId);
    begin
       return RetVal : PerceptionCorrelation do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionCorrelationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (HStr_targetId, position, orientation, m_ComRetVal'Access);
-            Retval.m_IPerceptionCorrelation := new Windows.Devices.Perception.Provider.IPerceptionCorrelation;
+            Retval.m_IPerceptionCorrelation := new WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelation;
             Retval.m_IPerceptionCorrelation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -264,7 +264,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_IPerceptionCorrelation.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -281,7 +281,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Quaternion;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Quaternion;
    begin
       Hr := this.m_IPerceptionCorrelation.all.get_Orientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -320,16 +320,16 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionCorrelationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionCorrelationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup");
       m_Factory    : access IPerceptionCorrelationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup;
    begin
       return RetVal : PerceptionCorrelationGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionCorrelationGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (relativeLocations, m_ComRetVal'Access);
-            Retval.m_IPerceptionCorrelationGroup := new Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup;
+            Retval.m_IPerceptionCorrelationGroup := new WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup;
             Retval.m_IPerceptionCorrelationGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -348,7 +348,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPerceptionCorrelation.Kind;
    begin
       Hr := this.m_IPerceptionCorrelationGroup.all.get_RelativeLocations (m_ComRetVal'Access);
@@ -386,22 +386,22 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       ids : GenericObject;
-      startHandler : Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
-      stopHandler : Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler
+      startHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStartFaceAuthenticationHandler;
+      stopHandler : WinRt.Windows.Devices.Perception.Provider.PerceptionStopFaceAuthenticationHandler
    )
    return PerceptionFaceAuthenticationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup");
       m_Factory    : access IPerceptionFaceAuthenticationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup;
    begin
       return RetVal : PerceptionFaceAuthenticationGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionFaceAuthenticationGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (ids, startHandler, stopHandler, m_ComRetVal'Access);
-            Retval.m_IPerceptionFaceAuthenticationGroup := new Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup;
+            Retval.m_IPerceptionFaceAuthenticationGroup := new WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup;
             Retval.m_IPerceptionFaceAuthenticationGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -420,7 +420,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IPerceptionFaceAuthenticationGroup.all.get_FrameProviderIds (m_ComRetVal'Access);
@@ -463,7 +463,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPerceptionFrame.all.get_RelativeTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -475,7 +475,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    procedure put_RelativeTime
    (
       this : in out PerceptionFrame;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -495,14 +495,14 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IPerceptionFrame.all.get_Properties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -515,7 +515,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IMemoryBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IMemoryBuffer;
    begin
       Hr := this.m_IPerceptionFrame.all.get_FrameData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -550,13 +550,13 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Constructor return PerceptionFrameProviderInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo");
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
    begin
       return RetVal : PerceptionFrameProviderInfo do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPerceptionFrameProviderInfo := new Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
+            Retval.m_IPerceptionFrameProviderInfo := new WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
             Retval.m_IPerceptionFrameProviderInfo.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -752,8 +752,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure RegisterFrameProviderInfo
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -774,8 +774,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure UnregisterFrameProviderInfo
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         frameProviderInfo : Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         frameProviderInfo : WinRt.Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -796,8 +796,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure RegisterFaceAuthenticationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -818,8 +818,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure UnregisterFaceAuthenticationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         faceAuthenticationGroup : Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         faceAuthenticationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -840,8 +840,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure RegisterControlGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -862,8 +862,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure UnregisterControlGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         controlGroup : Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         controlGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionControlGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -884,8 +884,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure RegisterCorrelationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -906,8 +906,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure UnregisterCorrelationGroup
       (
-         manager : Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
-         correlationGroup : Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
+         manager : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderManager;
+         correlationGroup : WinRt.Windows.Devices.Perception.Provider.PerceptionCorrelationGroup'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -928,7 +928,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure UpdateAvailabilityForProvider
       (
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
          available : WinRt.Boolean
       ) is
          Hr               : WinRt.HResult := S_OK;
@@ -950,8 +950,8 @@ package body WinRt.Windows.Devices.Perception.Provider is
 
       procedure PublishFrameForProvider
       (
-         provider : Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
-         frame : Windows.Devices.Perception.Provider.PerceptionFrame'Class
+         provider : WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProvider;
+         frame : WinRt.Windows.Devices.Perception.Provider.PerceptionFrame'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -1040,7 +1040,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus;
    begin
       Hr := this.m_IPerceptionPropertyChangeRequest.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1052,7 +1052,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    procedure put_Status
    (
       this : in out PerceptionPropertyChangeRequest;
-      value : Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
+      value : WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1072,14 +1072,14 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IPerceptionPropertyChangeRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1090,7 +1090,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Invoke
    (
       this : access PerceptionStartFaceAuthenticationHandler_Delegate;
-      sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+      sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1105,7 +1105,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Invoke
    (
       this : access PerceptionStopFaceAuthenticationHandler_Delegate;
-      sender : Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
+      sender : WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -1140,23 +1140,23 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Constructor
    (
       maxOutstandingFrameCountForWrite : WinRt.UInt32;
-      format : Windows.Graphics.Imaging.BitmapPixelFormat;
-      resolution : Windows.Foundation.Size;
-      alpha : Windows.Graphics.Imaging.BitmapAlphaMode
+      format : WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
+      resolution : WinRt.Windows.Foundation.Size;
+      alpha : WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
    )
    return PerceptionVideoFrameAllocator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator");
       m_Factory    : access IPerceptionVideoFrameAllocatorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator;
    begin
       return RetVal : PerceptionVideoFrameAllocator do
          Hr := RoGetActivationFactory (m_hString, IID_IPerceptionVideoFrameAllocatorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (maxOutstandingFrameCountForWrite, format, resolution, alpha, m_ComRetVal'Access);
-            Retval.m_IPerceptionVideoFrameAllocator := new Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator;
+            Retval.m_IPerceptionVideoFrameAllocator := new WinRt.Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator;
             Retval.m_IPerceptionVideoFrameAllocator.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1175,14 +1175,14 @@ package body WinRt.Windows.Devices.Perception.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Perception.Provider.IPerceptionFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.Provider.PerceptionFrame do
          Hr := this.m_IPerceptionVideoFrameAllocator.all.AllocateFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionFrame := new Windows.Devices.Perception.Provider.IPerceptionFrame;
+         Retval.m_IPerceptionFrame := new WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame;
          Retval.m_IPerceptionFrame.all := m_ComRetVal;
       end return;
    end;
@@ -1190,20 +1190,20 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function CopyFromVideoFrame
    (
       this : in out PerceptionVideoFrameAllocator;
-      frame : Windows.Media.VideoFrame'Class
+      frame : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.Windows.Devices.Perception.Provider.PerceptionFrame'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Perception.Provider.IPerceptionFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame;
    begin
       return RetVal : WinRt.Windows.Devices.Perception.Provider.PerceptionFrame do
          Hr := this.m_IPerceptionVideoFrameAllocator.all.CopyFromVideoFrame (frame.m_IVideoFrame.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionFrame := new Windows.Devices.Perception.Provider.IPerceptionFrame;
+         Retval.m_IPerceptionFrame := new WinRt.Windows.Devices.Perception.Provider.IPerceptionFrame;
          Retval.m_IPerceptionFrame.all := m_ComRetVal;
       end return;
    end;

@@ -323,14 +323,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IMouseDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_MouseMoved
       (
          this : access IMouseDevice_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -342,7 +342,7 @@ package WinRt.Windows.Devices.Input is
       function GetForCurrentView
       (
          this : access IMouseDeviceStatics_Interface;
-         RetVal : access Windows.Devices.Input.IMouseDevice
+         RetVal : access WinRt.Windows.Devices.Input.IMouseDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -354,7 +354,7 @@ package WinRt.Windows.Devices.Input is
       function get_MouseDelta
       (
          this : access IMouseEventArgs_Interface;
-         RetVal : access Windows.Devices.Input.MouseDelta
+         RetVal : access WinRt.Windows.Devices.Input.MouseDelta
       )
       return WinRt.Hresult is abstract;
 
@@ -374,14 +374,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenButtonListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsSupportedChanged
       (
          this : access IPenButtonListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -389,14 +389,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenButtonListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TailButtonClicked
       (
          this : access IPenButtonListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -404,14 +404,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenButtonListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TailButtonDoubleClicked
       (
          this : access IPenButtonListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -419,14 +419,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenButtonListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TailButtonLongPressed
       (
          this : access IPenButtonListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -438,7 +438,7 @@ package WinRt.Windows.Devices.Input is
       function GetDefault
       (
          this : access IPenButtonListenerStatics_Interface;
-         RetVal : access Windows.Devices.Input.IPenButtonListener
+         RetVal : access WinRt.Windows.Devices.Input.IPenButtonListener
       )
       return WinRt.Hresult is abstract;
 
@@ -462,7 +462,7 @@ package WinRt.Windows.Devices.Input is
       function get_SimpleHapticsController
       (
          this : access IPenDevice2_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -475,7 +475,7 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenDeviceStatics_Interface;
          pointerId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Input.IPenDevice
+         RetVal : access WinRt.Windows.Devices.Input.IPenDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -495,14 +495,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenDockListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsSupportedChanged
       (
          this : access IPenDockListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -510,14 +510,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenDockListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Docked
       (
          this : access IPenDockListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -525,14 +525,14 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPenDockListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Undocked
       (
          this : access IPenDockListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -544,7 +544,7 @@ package WinRt.Windows.Devices.Input is
       function GetDefault
       (
          this : access IPenDockListenerStatics_Interface;
-         RetVal : access Windows.Devices.Input.IPenDockListener
+         RetVal : access WinRt.Windows.Devices.Input.IPenDockListener
       )
       return WinRt.Hresult is abstract;
 
@@ -581,7 +581,7 @@ package WinRt.Windows.Devices.Input is
       function get_PointerDeviceType
       (
          this : access IPointerDevice_Interface;
-         RetVal : access Windows.Devices.Input.PointerDeviceType
+         RetVal : access WinRt.Windows.Devices.Input.PointerDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -602,14 +602,14 @@ package WinRt.Windows.Devices.Input is
       function get_PhysicalDeviceRect
       (
          this : access IPointerDevice_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_ScreenRect
       (
          this : access IPointerDevice_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -641,7 +641,7 @@ package WinRt.Windows.Devices.Input is
       (
          this : access IPointerDeviceStatics_Interface;
          pointerId : WinRt.UInt32;
-         RetVal : access Windows.Devices.Input.IPointerDevice
+         RetVal : access WinRt.Windows.Devices.Input.IPointerDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -766,7 +766,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_MouseMoved
    (
       this : in out MouseDevice;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -815,7 +815,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_IsSupportedChanged
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TailButtonClicked
@@ -828,7 +828,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_TailButtonClicked
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TailButtonDoubleClicked
@@ -841,7 +841,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_TailButtonDoubleClicked
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_TailButtonLongPressed
@@ -854,7 +854,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_TailButtonLongPressed
    (
       this : in out PenButtonListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -918,7 +918,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_IsSupportedChanged
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Docked
@@ -931,7 +931,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_Docked
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Undocked
@@ -944,7 +944,7 @@ package WinRt.Windows.Devices.Input is
    procedure remove_Undocked
    (
       this : in out PenDockListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

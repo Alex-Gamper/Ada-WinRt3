@@ -115,9 +115,9 @@ package WinRt.Windows.Security.Authentication.Web is
       function AuthenticateAsync
       (
          this : access IWebAuthenticationBrokerStatics_Interface;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
-         callbackUri : Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         callbackUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -125,8 +125,8 @@ package WinRt.Windows.Security.Authentication.Web is
       function AuthenticateAsync
       (
          this : access IWebAuthenticationBrokerStatics_Interface;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -134,7 +134,7 @@ package WinRt.Windows.Security.Authentication.Web is
       function GetCurrentApplicationCallbackUri
       (
          this : access IWebAuthenticationBrokerStatics_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -146,32 +146,32 @@ package WinRt.Windows.Security.Authentication.Web is
       function AuthenticateAndContinue
       (
          this : access IWebAuthenticationBrokerStatics2_Interface;
-         requestUri : Windows.Foundation.IUriRuntimeClass
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function AuthenticateAndContinue
       (
          this : access IWebAuthenticationBrokerStatics2_Interface;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
-         callbackUri : Windows.Foundation.IUriRuntimeClass
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         callbackUri : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function AuthenticateAndContinue
       (
          this : access IWebAuthenticationBrokerStatics2_Interface;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
-         callbackUri : Windows.Foundation.IUriRuntimeClass;
-         continuationData : Windows.Foundation.Collections.IPropertySet;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         callbackUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         continuationData : WinRt.Windows.Foundation.Collections.IPropertySet;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions
       )
       return WinRt.Hresult is abstract;
 
       function AuthenticateSilentlyAsync
       (
          this : access IWebAuthenticationBrokerStatics2_Interface;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -179,8 +179,8 @@ package WinRt.Windows.Security.Authentication.Web is
       function AuthenticateSilentlyAsync
       (
          this : access IWebAuthenticationBrokerStatics2_Interface;
-         requestUri : Windows.Foundation.IUriRuntimeClass;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -200,7 +200,7 @@ package WinRt.Windows.Security.Authentication.Web is
       function get_ResponseStatus
       (
          this : access IWebAuthenticationResult_Interface;
-         RetVal : access Windows.Security.Authentication.Web.WebAuthenticationStatus
+         RetVal : access WinRt.Windows.Security.Authentication.Web.WebAuthenticationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -223,48 +223,48 @@ package WinRt.Windows.Security.Authentication.Web is
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       );
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class
       );
 
       procedure AuthenticateAndContinue
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class;
-         continuationData : Windows.Foundation.Collections.ValueSet'Class;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class;
+         continuationData : WinRt.Windows.Foundation.Collections.ValueSet'Class;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions
       );
 
       function AuthenticateSilentlyAsync
       (
-         requestUri : Windows.Foundation.Uri'Class
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
 
       function AuthenticateSilentlyAsync
       (
-         requestUri : Windows.Foundation.Uri'Class;
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
 
       function AuthenticateAsync
       (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class;
-         callbackUri : Windows.Foundation.Uri'Class
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.Uri'Class;
+         callbackUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
 
       function AuthenticateAsync
       (
-         options : Windows.Security.Authentication.Web.WebAuthenticationOptions;
-         requestUri : Windows.Foundation.Uri'Class
+         options : WinRt.Windows.Security.Authentication.Web.WebAuthenticationOptions;
+         requestUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult;
 

@@ -162,21 +162,21 @@ package WinRt.Windows.Graphics.Display.Core is
       function GetCurrentDisplayMode
       (
          this : access IHdmiDisplayInformation_Interface;
-         RetVal : access Windows.Graphics.Display.Core.IHdmiDisplayMode
+         RetVal : access WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode
       )
       return WinRt.Hresult is abstract;
 
       function SetDefaultDisplayModeAsync
       (
          this : access IHdmiDisplayInformation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RequestSetCurrentDisplayModeAsync
       (
          this : access IHdmiDisplayInformation_Interface;
-         mode : Windows.Graphics.Display.Core.IHdmiDisplayMode;
+         mode : WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -184,8 +184,8 @@ package WinRt.Windows.Graphics.Display.Core is
       function RequestSetCurrentDisplayModeAsync
       (
          this : access IHdmiDisplayInformation_Interface;
-         mode : Windows.Graphics.Display.Core.IHdmiDisplayMode;
-         hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
+         mode : WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
+         hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -193,9 +193,9 @@ package WinRt.Windows.Graphics.Display.Core is
       function RequestSetCurrentDisplayModeAsync
       (
          this : access IHdmiDisplayInformation_Interface;
-         mode : Windows.Graphics.Display.Core.IHdmiDisplayMode;
-         hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
-         hdrMetadata : Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata;
+         mode : WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
+         hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
+         hdrMetadata : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -204,14 +204,14 @@ package WinRt.Windows.Graphics.Display.Core is
       (
          this : access IHdmiDisplayInformation_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DisplayModesChanged
       (
          this : access IHdmiDisplayInformation_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -223,7 +223,7 @@ package WinRt.Windows.Graphics.Display.Core is
       function GetForCurrentView
       (
          this : access IHdmiDisplayInformationStatics_Interface;
-         RetVal : access Windows.Graphics.Display.Core.IHdmiDisplayInformation
+         RetVal : access WinRt.Windows.Graphics.Display.Core.IHdmiDisplayInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -270,7 +270,7 @@ package WinRt.Windows.Graphics.Display.Core is
       function IsEqual
       (
          this : access IHdmiDisplayMode_Interface;
-         mode : Windows.Graphics.Display.Core.IHdmiDisplayMode;
+         mode : WinRt.Windows.Graphics.Display.Core.IHdmiDisplayMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -278,14 +278,14 @@ package WinRt.Windows.Graphics.Display.Core is
       function get_ColorSpace
       (
          this : access IHdmiDisplayMode_Interface;
-         RetVal : access Windows.Graphics.Display.Core.HdmiDisplayColorSpace
+         RetVal : access WinRt.Windows.Graphics.Display.Core.HdmiDisplayColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function get_PixelEncoding
       (
          this : access IHdmiDisplayMode_Interface;
-         RetVal : access Windows.Graphics.Display.Core.HdmiDisplayPixelEncoding
+         RetVal : access WinRt.Windows.Graphics.Display.Core.HdmiDisplayPixelEncoding
       )
       return WinRt.Hresult is abstract;
 
@@ -363,24 +363,24 @@ package WinRt.Windows.Graphics.Display.Core is
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class
    )
    return WinRt.Boolean;
 
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
-      hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
+      hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption
    )
    return WinRt.Boolean;
 
    function RequestSetCurrentDisplayModeAsync
    (
       this : in out HdmiDisplayInformation;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
-      hdrOption : Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
-      hdrMetadata : Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class;
+      hdrOption : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdrOption;
+      hdrMetadata : WinRt.Windows.Graphics.Display.Core.HdmiDisplayHdr2086Metadata
    )
    return WinRt.Boolean;
 
@@ -394,7 +394,7 @@ package WinRt.Windows.Graphics.Display.Core is
    procedure remove_DisplayModesChanged
    (
       this : in out HdmiDisplayInformation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -439,7 +439,7 @@ package WinRt.Windows.Graphics.Display.Core is
    function IsEqual
    (
       this : in out HdmiDisplayMode;
-      mode : Windows.Graphics.Display.Core.HdmiDisplayMode'Class
+      mode : WinRt.Windows.Graphics.Display.Core.HdmiDisplayMode'Class
    )
    return WinRt.Boolean;
 

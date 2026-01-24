@@ -290,14 +290,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_ListenStateDiscoverability
       (
          this : access IWiFiDirectAdvertisement_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
       )
       return WinRt.Hresult is abstract;
 
       function put_ListenStateDiscoverability
       (
          this : access IWiFiDirectAdvertisement_Interface;
-         value : Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
+         value : WinRt.Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
       )
       return WinRt.Hresult is abstract;
 
@@ -318,7 +318,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_LegacySettings
       (
          this : access IWiFiDirectAdvertisement_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.IWiFiDirectLegacySettings
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.IWiFiDirectLegacySettings
       )
       return WinRt.Hresult is abstract;
 
@@ -342,14 +342,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_Advertisement
       (
          this : access IWiFiDirectAdvertisementPublisher_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.IWiFiDirectAdvertisement
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.IWiFiDirectAdvertisement
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IWiFiDirectAdvertisementPublisher_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisherStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -357,14 +357,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       (
          this : access IWiFiDirectAdvertisementPublisher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IWiFiDirectAdvertisementPublisher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -388,14 +388,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_Status
       (
          this : access IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisherStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisherStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Error
       (
          this : access IWiFiDirectAdvertisementPublisherStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectError
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectError
       )
       return WinRt.Hresult is abstract;
 
@@ -408,14 +408,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       (
          this : access IWiFiDirectConnectionListener_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionRequested
       (
          this : access IWiFiDirectConnectionListener_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -453,14 +453,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_PreferredPairingProcedure
       (
          this : access IWiFiDirectConnectionParameters2_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
       )
       return WinRt.Hresult is abstract;
 
       function put_PreferredPairingProcedure
       (
          this : access IWiFiDirectConnectionParameters2_Interface;
-         value : Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
+         value : WinRt.Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
       )
       return WinRt.Hresult is abstract;
 
@@ -472,8 +472,8 @@ package WinRt.Windows.Devices.WiFiDirect is
       function GetDevicePairingKinds
       (
          this : access IWiFiDirectConnectionParametersStatics_Interface;
-         configurationMethod : Windows.Devices.WiFiDirect.WiFiDirectConfigurationMethod;
-         RetVal : access Windows.Devices.Enumeration.DevicePairingKinds
+         configurationMethod : WinRt.Windows.Devices.WiFiDirect.WiFiDirectConfigurationMethod;
+         RetVal : access WinRt.Windows.Devices.Enumeration.DevicePairingKinds
       )
       return WinRt.Hresult is abstract;
 
@@ -485,7 +485,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_DeviceInformation
       (
          this : access IWiFiDirectConnectionRequest_Interface;
-         RetVal : access Windows.Devices.Enumeration.IDeviceInformation
+         RetVal : access WinRt.Windows.Devices.Enumeration.IDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -497,7 +497,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function GetConnectionRequest
       (
          this : access IWiFiDirectConnectionRequestedEventArgs_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.IWiFiDirectConnectionRequest
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.IWiFiDirectConnectionRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -509,7 +509,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_ConnectionStatus
       (
          this : access IWiFiDirectDevice_Interface;
-         RetVal : access Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus
+         RetVal : access WinRt.Windows.Devices.WiFiDirect.WiFiDirectConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -524,14 +524,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       (
          this : access IWiFiDirectDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ConnectionStatusChanged
       (
          this : access IWiFiDirectDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -570,7 +570,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function GetDeviceSelector
       (
          this : access IWiFiDirectDeviceStatics2_Interface;
-         type_x : Windows.Devices.WiFiDirect.WiFiDirectDeviceSelectorType;
+         type_x : WinRt.Windows.Devices.WiFiDirect.WiFiDirectDeviceSelectorType;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -579,7 +579,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       (
          this : access IWiFiDirectDeviceStatics2_Interface;
          deviceId : WinRt.HString;
-         connectionParameters : Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters;
+         connectionParameters : WinRt.Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -592,14 +592,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_Oui
       (
          this : access IWiFiDirectInformationElement_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Oui
       (
          this : access IWiFiDirectInformationElement_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -620,14 +620,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_Value
       (
          this : access IWiFiDirectInformationElement_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Value
       (
          this : access IWiFiDirectInformationElement_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -639,7 +639,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function CreateFromBuffer
       (
          this : access IWiFiDirectInformationElementStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -647,7 +647,7 @@ package WinRt.Windows.Devices.WiFiDirect is
       function CreateFromDeviceInformation
       (
          this : access IWiFiDirectInformationElementStatics_Interface;
-         deviceInformation : Windows.Devices.Enumeration.IDeviceInformation;
+         deviceInformation : WinRt.Windows.Devices.Enumeration.IDeviceInformation;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -688,14 +688,14 @@ package WinRt.Windows.Devices.WiFiDirect is
       function get_Passphrase
       (
          this : access IWiFiDirectLegacySettings_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_Passphrase
       (
          this : access IWiFiDirectLegacySettings_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -735,7 +735,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure put_ListenStateDiscoverability
    (
       this : in out WiFiDirectAdvertisement;
-      value : Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
+      value : WinRt.Windows.Devices.WiFiDirect.WiFiDirectAdvertisementListenStateDiscoverability
    );
 
    function get_IsAutonomousGroupOwnerEnabled
@@ -798,7 +798,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure remove_StatusChanged
    (
       this : in out WiFiDirectAdvertisementPublisher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -856,7 +856,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure remove_ConnectionRequested
    (
       this : in out WiFiDirectConnectionListener;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -875,7 +875,7 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    function GetDevicePairingKinds
    (
-      configurationMethod : Windows.Devices.WiFiDirect.WiFiDirectConfigurationMethod
+      configurationMethod : WinRt.Windows.Devices.WiFiDirect.WiFiDirectConfigurationMethod
    )
    return WinRt.Windows.Devices.Enumeration.DevicePairingKinds;
 
@@ -909,7 +909,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure put_PreferredPairingProcedure
    (
       this : in out WiFiDirectConnectionParameters;
-      value : Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
+      value : WinRt.Windows.Devices.WiFiDirect.WiFiDirectPairingProcedure
    );
 
    -----------------------------------------------------------------------------
@@ -967,14 +967,14 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    function GetDeviceSelector
    (
-      type_x : Windows.Devices.WiFiDirect.WiFiDirectDeviceSelectorType
+      type_x : WinRt.Windows.Devices.WiFiDirect.WiFiDirectDeviceSelectorType
    )
    return WinRt.WString;
 
    function FromIdAsync
    (
       deviceId : WinRt.WString;
-      connectionParameters : Windows.Devices.WiFiDirect.WiFiDirectConnectionParameters'Class
+      connectionParameters : WinRt.Windows.Devices.WiFiDirect.WiFiDirectConnectionParameters'Class
    )
    return WinRt.Windows.Devices.WiFiDirect.WiFiDirectDevice;
 
@@ -1003,7 +1003,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure remove_ConnectionStatusChanged
    (
       this : in out WiFiDirectDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetConnectionEndpointPairs
@@ -1033,13 +1033,13 @@ package WinRt.Windows.Devices.WiFiDirect is
 
    function CreateFromBuffer
    (
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return IVector_IWiFiDirectInformationElement.Kind;
 
    function CreateFromDeviceInformation
    (
-      deviceInformation : Windows.Devices.Enumeration.DeviceInformation'Class
+      deviceInformation : WinRt.Windows.Devices.Enumeration.DeviceInformation'Class
    )
    return IVector_IWiFiDirectInformationElement.Kind;
 
@@ -1055,7 +1055,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure put_Oui
    (
       this : in out WiFiDirectInformationElement;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_OuiType
@@ -1079,7 +1079,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure put_Value
    (
       this : in out WiFiDirectInformationElement;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    -----------------------------------------------------------------------------
@@ -1124,7 +1124,7 @@ package WinRt.Windows.Devices.WiFiDirect is
    procedure put_Passphrase
    (
       this : in out WiFiDirectLegacySettings;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
 end WinRt.Windows.Devices.WiFiDirect;

@@ -62,16 +62,16 @@ package body WinRt.Windows.UI.Xaml.Resources is
    return CustomXamlResourceLoader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.ICustomXamlResourceLoader");
       m_Factory    : access ICustomXamlResourceLoaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
    begin
       return RetVal : CustomXamlResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_ICustomXamlResourceLoaderFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICustomXamlResourceLoader := new Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
+            Retval.m_ICustomXamlResourceLoader := new WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
             Retval.m_ICustomXamlResourceLoader.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -89,7 +89,7 @@ package body WinRt.Windows.UI.Xaml.Resources is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Resources.CustomXamlResourceLoader");
       m_Factory        : access WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoaderStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader do
          Hr := RoGetActivationFactory (m_hString, IID_ICustomXamlResourceLoaderStatics'Access , m_Factory'Address);
@@ -99,7 +99,7 @@ package body WinRt.Windows.UI.Xaml.Resources is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICustomXamlResourceLoader := new Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
+            Retval.m_ICustomXamlResourceLoader := new WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
             Retval.m_ICustomXamlResourceLoader.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -108,7 +108,7 @@ package body WinRt.Windows.UI.Xaml.Resources is
 
    procedure put_Current
    (
-      value : Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
+      value : WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

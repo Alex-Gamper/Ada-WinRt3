@@ -896,14 +896,14 @@ package WinRt.Windows.UI.Text is
       function get_Uri
       (
          this : access IContentLinkInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IContentLinkInfo_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -934,77 +934,77 @@ package WinRt.Windows.UI.Text is
       function get_Black
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Bold
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtraBlack
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtraBold
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtraLight
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Light
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Medium
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Normal
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_SemiBold
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_SemiLight
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_Thin
       (
          this : access IFontWeightsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
@@ -1016,14 +1016,14 @@ package WinRt.Windows.UI.Text is
       function get_ContentLinkInfo
       (
          this : access IRichEditTextRange_Interface;
-         RetVal : access Windows.UI.Text.IContentLinkInfo
+         RetVal : access WinRt.Windows.UI.Text.IContentLinkInfo
       )
       return WinRt.Hresult is abstract;
 
       function put_ContentLinkInfo
       (
          this : access IRichEditTextRange_Interface;
-         value : Windows.UI.Text.IContentLinkInfo
+         value : WinRt.Windows.UI.Text.IContentLinkInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,112 +1035,112 @@ package WinRt.Windows.UI.Text is
       function get_AllCaps
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_AllCaps
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_BackgroundColor
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_BackgroundColor
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Bold
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Bold
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStretch
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FontStretch
+         RetVal : access WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
       function put_FontStretch
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FontStretch
+         value : WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStyle
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FontStyle
+         RetVal : access WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_FontStyle
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FontStyle
+         value : WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
       function get_ForegroundColor
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_ForegroundColor
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function get_Hidden
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Hidden
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_Italic
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Italic
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1175,7 +1175,7 @@ package WinRt.Windows.UI.Text is
       function get_LinkType
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.LinkType
+         RetVal : access WinRt.Windows.UI.Text.LinkType
       )
       return WinRt.Hresult is abstract;
 
@@ -1196,14 +1196,14 @@ package WinRt.Windows.UI.Text is
       function get_Outline
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Outline
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1224,14 +1224,14 @@ package WinRt.Windows.UI.Text is
       function get_ProtectedText
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_ProtectedText
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1252,14 +1252,14 @@ package WinRt.Windows.UI.Text is
       function get_SmallCaps
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_SmallCaps
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1280,70 +1280,70 @@ package WinRt.Windows.UI.Text is
       function get_Strikethrough
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Strikethrough
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_Subscript
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Subscript
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_Superscript
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_Superscript
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_TextScript
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.TextScript
+         RetVal : access WinRt.Windows.UI.Text.TextScript
       )
       return WinRt.Hresult is abstract;
 
       function put_TextScript
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.TextScript
+         value : WinRt.Windows.UI.Text.TextScript
       )
       return WinRt.Hresult is abstract;
 
       function get_Underline
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.UnderlineType
+         RetVal : access WinRt.Windows.UI.Text.UnderlineType
       )
       return WinRt.Hresult is abstract;
 
       function put_Underline
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.UnderlineType
+         value : WinRt.Windows.UI.Text.UnderlineType
       )
       return WinRt.Hresult is abstract;
 
@@ -1364,21 +1364,21 @@ package WinRt.Windows.UI.Text is
       function SetClone
       (
          this : access ITextCharacterFormat_Interface;
-         value : Windows.UI.Text.ITextCharacterFormat
+         value : WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function GetClone
       (
          this : access ITextCharacterFormat_Interface;
-         RetVal : access Windows.UI.Text.ITextCharacterFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function IsEqual
       (
          this : access ITextCharacterFormat_Interface;
-         format : Windows.UI.Text.ITextCharacterFormat;
+         format : WinRt.Windows.UI.Text.ITextCharacterFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1391,7 +1391,7 @@ package WinRt.Windows.UI.Text is
       function get_AutoColor
       (
          this : access ITextConstantsStatics_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1412,7 +1412,7 @@ package WinRt.Windows.UI.Text is
       function get_UndefinedColor
       (
          this : access ITextConstantsStatics_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1433,14 +1433,14 @@ package WinRt.Windows.UI.Text is
       function get_UndefinedFontStretch
       (
          this : access ITextConstantsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontStretch
+         RetVal : access WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
       function get_UndefinedFontStyle
       (
          this : access ITextConstantsStatics_Interface;
-         RetVal : access Windows.UI.Text.FontStyle
+         RetVal : access WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -1452,14 +1452,14 @@ package WinRt.Windows.UI.Text is
       function get_CaretType
       (
          this : access ITextDocument_Interface;
-         RetVal : access Windows.UI.Text.CaretType
+         RetVal : access WinRt.Windows.UI.Text.CaretType
       )
       return WinRt.Hresult is abstract;
 
       function put_CaretType
       (
          this : access ITextDocument_Interface;
-         value : Windows.UI.Text.CaretType
+         value : WinRt.Windows.UI.Text.CaretType
       )
       return WinRt.Hresult is abstract;
 
@@ -1480,7 +1480,7 @@ package WinRt.Windows.UI.Text is
       function get_Selection
       (
          this : access ITextDocument_Interface;
-         RetVal : access Windows.UI.Text.ITextSelection
+         RetVal : access WinRt.Windows.UI.Text.ITextSelection
       )
       return WinRt.Hresult is abstract;
 
@@ -1555,14 +1555,14 @@ package WinRt.Windows.UI.Text is
       function GetDefaultCharacterFormat
       (
          this : access ITextDocument_Interface;
-         RetVal : access Windows.UI.Text.ITextCharacterFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function GetDefaultParagraphFormat
       (
          this : access ITextDocument_Interface;
-         RetVal : access Windows.UI.Text.ITextParagraphFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1571,23 +1571,23 @@ package WinRt.Windows.UI.Text is
          this : access ITextDocument_Interface;
          startPosition : WinRt.Int32;
          endPosition : WinRt.Int32;
-         RetVal : access Windows.UI.Text.ITextRange
+         RetVal : access WinRt.Windows.UI.Text.ITextRange
       )
       return WinRt.Hresult is abstract;
 
       function GetRangeFromPoint
       (
          this : access ITextDocument_Interface;
-         point : Windows.Foundation.Point;
-         options : Windows.UI.Text.PointOptions;
-         RetVal : access Windows.UI.Text.ITextRange
+         point : WinRt.Windows.Foundation.Point;
+         options : WinRt.Windows.UI.Text.PointOptions;
+         RetVal : access WinRt.Windows.UI.Text.ITextRange
       )
       return WinRt.Hresult is abstract;
 
       function GetText
       (
          this : access ITextDocument_Interface;
-         options : Windows.UI.Text.TextGetOptions;
+         options : WinRt.Windows.UI.Text.TextGetOptions;
          value : WinRt.HString_Ptr
       )
       return WinRt.Hresult is abstract;
@@ -1595,8 +1595,8 @@ package WinRt.Windows.UI.Text is
       function LoadFromStream
       (
          this : access ITextDocument_Interface;
-         options : Windows.UI.Text.TextSetOptions;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         options : WinRt.Windows.UI.Text.TextSetOptions;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,29 +1609,29 @@ package WinRt.Windows.UI.Text is
       function SaveToStream
       (
          this : access ITextDocument_Interface;
-         options : Windows.UI.Text.TextGetOptions;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         options : WinRt.Windows.UI.Text.TextGetOptions;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function SetDefaultCharacterFormat
       (
          this : access ITextDocument_Interface;
-         value : Windows.UI.Text.ITextCharacterFormat
+         value : WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function SetDefaultParagraphFormat
       (
          this : access ITextDocument_Interface;
-         value : Windows.UI.Text.ITextParagraphFormat
+         value : WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
       function SetText
       (
          this : access ITextDocument_Interface;
-         options : Windows.UI.Text.TextSetOptions;
+         options : WinRt.Windows.UI.Text.TextSetOptions;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -1708,7 +1708,7 @@ package WinRt.Windows.UI.Text is
       function SetMathMode
       (
          this : access ITextDocument4_Interface;
-         mode : Windows.UI.Text.RichEditMathMode
+         mode : WinRt.Windows.UI.Text.RichEditMathMode
       )
       return WinRt.Hresult is abstract;
 
@@ -1720,14 +1720,14 @@ package WinRt.Windows.UI.Text is
       function get_Alignment
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.ParagraphAlignment
+         RetVal : access WinRt.Windows.UI.Text.ParagraphAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_Alignment
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.ParagraphAlignment
+         value : WinRt.Windows.UI.Text.ParagraphAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -1741,28 +1741,28 @@ package WinRt.Windows.UI.Text is
       function get_KeepTogether
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_KeepTogether
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_KeepWithNext
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_KeepWithNext
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1783,21 +1783,21 @@ package WinRt.Windows.UI.Text is
       function get_LineSpacingRule
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.LineSpacingRule
+         RetVal : access WinRt.Windows.UI.Text.LineSpacingRule
       )
       return WinRt.Hresult is abstract;
 
       function get_ListAlignment
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.MarkerAlignment
+         RetVal : access WinRt.Windows.UI.Text.MarkerAlignment
       )
       return WinRt.Hresult is abstract;
 
       function put_ListAlignment
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.MarkerAlignment
+         value : WinRt.Windows.UI.Text.MarkerAlignment
       )
       return WinRt.Hresult is abstract;
 
@@ -1832,14 +1832,14 @@ package WinRt.Windows.UI.Text is
       function get_ListStyle
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.MarkerStyle
+         RetVal : access WinRt.Windows.UI.Text.MarkerStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_ListStyle
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.MarkerStyle
+         value : WinRt.Windows.UI.Text.MarkerStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -1860,42 +1860,42 @@ package WinRt.Windows.UI.Text is
       function get_ListType
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.MarkerType
+         RetVal : access WinRt.Windows.UI.Text.MarkerType
       )
       return WinRt.Hresult is abstract;
 
       function put_ListType
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.MarkerType
+         value : WinRt.Windows.UI.Text.MarkerType
       )
       return WinRt.Hresult is abstract;
 
       function get_NoLineNumber
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_NoLineNumber
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_PageBreakBefore
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_PageBreakBefore
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1916,28 +1916,28 @@ package WinRt.Windows.UI.Text is
       function get_RightToLeft
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_RightToLeft
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function get_Style
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.ParagraphStyle
+         RetVal : access WinRt.Windows.UI.Text.ParagraphStyle
       )
       return WinRt.Hresult is abstract;
 
       function put_Style
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.ParagraphStyle
+         value : WinRt.Windows.UI.Text.ParagraphStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -1972,14 +1972,14 @@ package WinRt.Windows.UI.Text is
       function get_WidowControl
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.FormatEffect
+         RetVal : access WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
       function put_WidowControl
       (
          this : access ITextParagraphFormat_Interface;
-         value : Windows.UI.Text.FormatEffect
+         value : WinRt.Windows.UI.Text.FormatEffect
       )
       return WinRt.Hresult is abstract;
 
@@ -1994,8 +1994,8 @@ package WinRt.Windows.UI.Text is
       (
          this : access ITextParagraphFormat_Interface;
          position : WinRt.Single;
-         align : Windows.UI.Text.TabAlignment;
-         leader : Windows.UI.Text.TabLeader
+         align : WinRt.Windows.UI.Text.TabAlignment;
+         leader : WinRt.Windows.UI.Text.TabLeader
       )
       return WinRt.Hresult is abstract;
 
@@ -2015,7 +2015,7 @@ package WinRt.Windows.UI.Text is
       function GetClone
       (
          this : access ITextParagraphFormat_Interface;
-         RetVal : access Windows.UI.Text.ITextParagraphFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2024,15 +2024,15 @@ package WinRt.Windows.UI.Text is
          this : access ITextParagraphFormat_Interface;
          index : WinRt.Int32;
          position : WinRt.Single_Ptr;
-         align : Windows.UI.Text.TabAlignment_Ptr;
-         leader : Windows.UI.Text.TabLeader_Ptr
+         align : WinRt.Windows.UI.Text.TabAlignment_Ptr;
+         leader : WinRt.Windows.UI.Text.TabLeader_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function IsEqual
       (
          this : access ITextParagraphFormat_Interface;
-         format : Windows.UI.Text.ITextParagraphFormat;
+         format : WinRt.Windows.UI.Text.ITextParagraphFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2040,7 +2040,7 @@ package WinRt.Windows.UI.Text is
       function SetClone
       (
          this : access ITextParagraphFormat_Interface;
-         format : Windows.UI.Text.ITextParagraphFormat
+         format : WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2056,7 +2056,7 @@ package WinRt.Windows.UI.Text is
       function SetLineSpacing
       (
          this : access ITextParagraphFormat_Interface;
-         rule : Windows.UI.Text.LineSpacingRule;
+         rule : WinRt.Windows.UI.Text.LineSpacingRule;
          spacing : WinRt.Single
       )
       return WinRt.Hresult is abstract;
@@ -2083,28 +2083,28 @@ package WinRt.Windows.UI.Text is
       function get_CharacterFormat
       (
          this : access ITextRange_Interface;
-         RetVal : access Windows.UI.Text.ITextCharacterFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_CharacterFormat
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.ITextCharacterFormat
+         value : WinRt.Windows.UI.Text.ITextCharacterFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_FormattedText
       (
          this : access ITextRange_Interface;
-         RetVal : access Windows.UI.Text.ITextRange
+         RetVal : access WinRt.Windows.UI.Text.ITextRange
       )
       return WinRt.Hresult is abstract;
 
       function put_FormattedText
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.ITextRange
+         value : WinRt.Windows.UI.Text.ITextRange
       )
       return WinRt.Hresult is abstract;
 
@@ -2125,14 +2125,14 @@ package WinRt.Windows.UI.Text is
       function get_Gravity
       (
          this : access ITextRange_Interface;
-         RetVal : access Windows.UI.Text.RangeGravity
+         RetVal : access WinRt.Windows.UI.Text.RangeGravity
       )
       return WinRt.Hresult is abstract;
 
       function put_Gravity
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.RangeGravity
+         value : WinRt.Windows.UI.Text.RangeGravity
       )
       return WinRt.Hresult is abstract;
 
@@ -2160,14 +2160,14 @@ package WinRt.Windows.UI.Text is
       function get_ParagraphFormat
       (
          this : access ITextRange_Interface;
-         RetVal : access Windows.UI.Text.ITextParagraphFormat
+         RetVal : access WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_ParagraphFormat
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.ITextParagraphFormat
+         value : WinRt.Windows.UI.Text.ITextParagraphFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2217,7 +2217,7 @@ package WinRt.Windows.UI.Text is
       function ChangeCase
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.LetterCase
+         value : WinRt.Windows.UI.Text.LetterCase
       )
       return WinRt.Hresult is abstract;
 
@@ -2243,7 +2243,7 @@ package WinRt.Windows.UI.Text is
       function Delete
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -2252,7 +2252,7 @@ package WinRt.Windows.UI.Text is
       function EndOf
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
       )
@@ -2261,7 +2261,7 @@ package WinRt.Windows.UI.Text is
       function Expand
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2271,7 +2271,7 @@ package WinRt.Windows.UI.Text is
          this : access ITextRange_Interface;
          value : WinRt.HString;
          scanLength : WinRt.Int32;
-         options : Windows.UI.Text.FindOptions;
+         options : WinRt.Windows.UI.Text.FindOptions;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2287,14 +2287,14 @@ package WinRt.Windows.UI.Text is
       function GetClone
       (
          this : access ITextRange_Interface;
-         RetVal : access Windows.UI.Text.ITextRange
+         RetVal : access WinRt.Windows.UI.Text.ITextRange
       )
       return WinRt.Hresult is abstract;
 
       function GetIndex
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -2302,18 +2302,18 @@ package WinRt.Windows.UI.Text is
       function GetPoint
       (
          this : access ITextRange_Interface;
-         horizontalAlign : Windows.UI.Text.HorizontalCharacterAlignment;
-         verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
-         options : Windows.UI.Text.PointOptions;
-         point : Windows.Foundation.Point_Ptr
+         horizontalAlign : WinRt.Windows.UI.Text.HorizontalCharacterAlignment;
+         verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
+         options : WinRt.Windows.UI.Text.PointOptions;
+         point : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function GetRect
       (
          this : access ITextRange_Interface;
-         options : Windows.UI.Text.PointOptions;
-         rect : Windows.Foundation.Rect_Ptr;
+         options : WinRt.Windows.UI.Text.PointOptions;
+         rect : WinRt.Windows.Foundation.Rect_Ptr;
          hit : WinRt.Int32_Ptr
       )
       return WinRt.Hresult is abstract;
@@ -2321,7 +2321,7 @@ package WinRt.Windows.UI.Text is
       function GetText
       (
          this : access ITextRange_Interface;
-         options : Windows.UI.Text.TextGetOptions;
+         options : WinRt.Windows.UI.Text.TextGetOptions;
          value : WinRt.HString_Ptr
       )
       return WinRt.Hresult is abstract;
@@ -2329,15 +2329,15 @@ package WinRt.Windows.UI.Text is
       function GetTextViaStream
       (
          this : access ITextRange_Interface;
-         options : Windows.UI.Text.TextGetOptions;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         options : WinRt.Windows.UI.Text.TextGetOptions;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function InRange
       (
          this : access ITextRange_Interface;
-         range_x : Windows.UI.Text.ITextRange;
+         range_x : WinRt.Windows.UI.Text.ITextRange;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2348,16 +2348,16 @@ package WinRt.Windows.UI.Text is
          width : WinRt.Int32;
          height : WinRt.Int32;
          ascent : WinRt.Int32;
-         verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
+         verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
          alternateText : WinRt.HString;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function InStory
       (
          this : access ITextRange_Interface;
-         range_x : Windows.UI.Text.ITextRange;
+         range_x : WinRt.Windows.UI.Text.ITextRange;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2365,7 +2365,7 @@ package WinRt.Windows.UI.Text is
       function IsEqual
       (
          this : access ITextRange_Interface;
-         range_x : Windows.UI.Text.ITextRange;
+         range_x : WinRt.Windows.UI.Text.ITextRange;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2373,7 +2373,7 @@ package WinRt.Windows.UI.Text is
       function Move
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -2382,7 +2382,7 @@ package WinRt.Windows.UI.Text is
       function MoveEnd
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -2391,7 +2391,7 @@ package WinRt.Windows.UI.Text is
       function MoveStart
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          RetVal : access WinRt.Int32
       )
@@ -2407,7 +2407,7 @@ package WinRt.Windows.UI.Text is
       function ScrollIntoView
       (
          this : access ITextRange_Interface;
-         value : Windows.UI.Text.PointOptions
+         value : WinRt.Windows.UI.Text.PointOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2420,7 +2420,7 @@ package WinRt.Windows.UI.Text is
       function SetIndex
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          index : WinRt.Int32;
          extend : WinRt.Boolean
       )
@@ -2429,8 +2429,8 @@ package WinRt.Windows.UI.Text is
       function SetPoint
       (
          this : access ITextRange_Interface;
-         point : Windows.Foundation.Point;
-         options : Windows.UI.Text.PointOptions;
+         point : WinRt.Windows.Foundation.Point;
+         options : WinRt.Windows.UI.Text.PointOptions;
          extend : WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2446,7 +2446,7 @@ package WinRt.Windows.UI.Text is
       function SetText
       (
          this : access ITextRange_Interface;
-         options : Windows.UI.Text.TextSetOptions;
+         options : WinRt.Windows.UI.Text.TextSetOptions;
          value : WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2454,15 +2454,15 @@ package WinRt.Windows.UI.Text is
       function SetTextViaStream
       (
          this : access ITextRange_Interface;
-         options : Windows.UI.Text.TextSetOptions;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         options : WinRt.Windows.UI.Text.TextSetOptions;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function StartOf
       (
          this : access ITextRange_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
       )
@@ -2476,28 +2476,28 @@ package WinRt.Windows.UI.Text is
       function get_Options
       (
          this : access ITextSelection_Interface;
-         RetVal : access Windows.UI.Text.SelectionOptions
+         RetVal : access WinRt.Windows.UI.Text.SelectionOptions
       )
       return WinRt.Hresult is abstract;
 
       function put_Options
       (
          this : access ITextSelection_Interface;
-         value : Windows.UI.Text.SelectionOptions
+         value : WinRt.Windows.UI.Text.SelectionOptions
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access ITextSelection_Interface;
-         RetVal : access Windows.UI.Text.SelectionType
+         RetVal : access WinRt.Windows.UI.Text.SelectionType
       )
       return WinRt.Hresult is abstract;
 
       function EndKey
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
       )
@@ -2506,7 +2506,7 @@ package WinRt.Windows.UI.Text is
       function HomeKey
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
       )
@@ -2515,7 +2515,7 @@ package WinRt.Windows.UI.Text is
       function MoveDown
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
@@ -2525,7 +2525,7 @@ package WinRt.Windows.UI.Text is
       function MoveLeft
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
@@ -2535,7 +2535,7 @@ package WinRt.Windows.UI.Text is
       function MoveRight
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
@@ -2545,7 +2545,7 @@ package WinRt.Windows.UI.Text is
       function MoveUp
       (
          this : access ITextSelection_Interface;
-         unit : Windows.UI.Text.TextRangeUnit;
+         unit : WinRt.Windows.UI.Text.TextRangeUnit;
          count : WinRt.Int32;
          extend : WinRt.Boolean;
          RetVal : access WinRt.Int32
@@ -2624,7 +2624,7 @@ package WinRt.Windows.UI.Text is
    procedure put_Uri
    (
       this : in out ContentLinkInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_LinkContentKind
@@ -2737,7 +2737,7 @@ package WinRt.Windows.UI.Text is
    procedure SetMathMode
    (
       this : in out RichEditTextDocument;
-      mode : Windows.UI.Text.RichEditMathMode
+      mode : WinRt.Windows.UI.Text.RichEditMathMode
    );
 
    function get_CaretType
@@ -2749,7 +2749,7 @@ package WinRt.Windows.UI.Text is
    procedure put_CaretType
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.CaretType
+      value : WinRt.Windows.UI.Text.CaretType
    );
 
    function get_DefaultTabStop
@@ -2851,23 +2851,23 @@ package WinRt.Windows.UI.Text is
    function GetRangeFromPoint
    (
       this : in out RichEditTextDocument;
-      point : Windows.Foundation.Point;
-      options : Windows.UI.Text.PointOptions
+      point : WinRt.Windows.Foundation.Point;
+      options : WinRt.Windows.UI.Text.PointOptions
    )
    return WinRt.Windows.UI.Text.ITextRange;
 
    procedure GetText
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextGetOptions;
+      options : WinRt.Windows.UI.Text.TextGetOptions;
       value : WinRt.HString_Ptr
    );
 
    procedure LoadFromStream
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextSetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextSetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure Redo
@@ -2878,26 +2878,26 @@ package WinRt.Windows.UI.Text is
    procedure SaveToStream
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextGetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextGetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    procedure SetDefaultCharacterFormat
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.ITextCharacterFormat
+      value : WinRt.Windows.UI.Text.ITextCharacterFormat
    );
 
    procedure SetDefaultParagraphFormat
    (
       this : in out RichEditTextDocument;
-      value : Windows.UI.Text.ITextParagraphFormat
+      value : WinRt.Windows.UI.Text.ITextParagraphFormat
    );
 
    procedure SetText
    (
       this : in out RichEditTextDocument;
-      options : Windows.UI.Text.TextSetOptions;
+      options : WinRt.Windows.UI.Text.TextSetOptions;
       value : WinRt.WString
    );
 
@@ -2924,7 +2924,7 @@ package WinRt.Windows.UI.Text is
    procedure put_ContentLinkInfo
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ContentLinkInfo'Class
+      value : WinRt.Windows.UI.Text.ContentLinkInfo'Class
    );
 
    function get_Character
@@ -2948,7 +2948,7 @@ package WinRt.Windows.UI.Text is
    procedure put_CharacterFormat
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextCharacterFormat
+      value : WinRt.Windows.UI.Text.ITextCharacterFormat
    );
 
    function get_FormattedText
@@ -2960,7 +2960,7 @@ package WinRt.Windows.UI.Text is
    procedure put_FormattedText
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextRange
+      value : WinRt.Windows.UI.Text.ITextRange
    );
 
    function get_EndPosition
@@ -2984,7 +2984,7 @@ package WinRt.Windows.UI.Text is
    procedure put_Gravity
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.RangeGravity
+      value : WinRt.Windows.UI.Text.RangeGravity
    );
 
    function get_Length
@@ -3014,7 +3014,7 @@ package WinRt.Windows.UI.Text is
    procedure put_ParagraphFormat
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.ITextParagraphFormat
+      value : WinRt.Windows.UI.Text.ITextParagraphFormat
    );
 
    function get_StartPosition
@@ -3057,7 +3057,7 @@ package WinRt.Windows.UI.Text is
    procedure ChangeCase
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.LetterCase
+      value : WinRt.Windows.UI.Text.LetterCase
    );
 
    procedure Collapse
@@ -3079,7 +3079,7 @@ package WinRt.Windows.UI.Text is
    function Delete
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32;
@@ -3087,7 +3087,7 @@ package WinRt.Windows.UI.Text is
    function EndOf
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       extend : WinRt.Boolean
    )
    return WinRt.Int32;
@@ -3095,7 +3095,7 @@ package WinRt.Windows.UI.Text is
    function Expand
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit
+      unit : WinRt.Windows.UI.Text.TextRangeUnit
    )
    return WinRt.Int32;
 
@@ -3104,7 +3104,7 @@ package WinRt.Windows.UI.Text is
       this : in out RichEditTextRange;
       value : WinRt.WString;
       scanLength : WinRt.Int32;
-      options : Windows.UI.Text.FindOptions
+      options : WinRt.Windows.UI.Text.FindOptions
    )
    return WinRt.Int32;
 
@@ -3124,45 +3124,45 @@ package WinRt.Windows.UI.Text is
    function GetIndex
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit
+      unit : WinRt.Windows.UI.Text.TextRangeUnit
    )
    return WinRt.Int32;
 
    procedure GetPoint
    (
       this : in out RichEditTextRange;
-      horizontalAlign : Windows.UI.Text.HorizontalCharacterAlignment;
-      verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
-      options : Windows.UI.Text.PointOptions;
-      point : Windows.Foundation.Point_Ptr
+      horizontalAlign : WinRt.Windows.UI.Text.HorizontalCharacterAlignment;
+      verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
+      options : WinRt.Windows.UI.Text.PointOptions;
+      point : WinRt.Windows.Foundation.Point_Ptr
    );
 
    procedure GetRect
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.PointOptions;
-      rect : Windows.Foundation.Rect_Ptr;
+      options : WinRt.Windows.UI.Text.PointOptions;
+      rect : WinRt.Windows.Foundation.Rect_Ptr;
       hit : WinRt.Int32_Ptr
    );
 
    procedure GetText
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextGetOptions;
+      options : WinRt.Windows.UI.Text.TextGetOptions;
       value : WinRt.HString_Ptr
    );
 
    procedure GetTextViaStream
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextGetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextGetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function InRange
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean;
 
@@ -3172,29 +3172,29 @@ package WinRt.Windows.UI.Text is
       width : WinRt.Int32;
       height : WinRt.Int32;
       ascent : WinRt.Int32;
-      verticalAlign : Windows.UI.Text.VerticalCharacterAlignment;
+      verticalAlign : WinRt.Windows.UI.Text.VerticalCharacterAlignment;
       alternateText : WinRt.WString;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function InStory
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean;
 
    function IsEqual
    (
       this : in out RichEditTextRange;
-      range_x : Windows.UI.Text.ITextRange
+      range_x : WinRt.Windows.UI.Text.ITextRange
    )
    return WinRt.Boolean;
 
    function Move
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32;
@@ -3202,7 +3202,7 @@ package WinRt.Windows.UI.Text is
    function MoveEnd
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32;
@@ -3210,7 +3210,7 @@ package WinRt.Windows.UI.Text is
    function MoveStart
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       count : WinRt.Int32
    )
    return WinRt.Int32;
@@ -3224,7 +3224,7 @@ package WinRt.Windows.UI.Text is
    procedure ScrollIntoView
    (
       this : in out RichEditTextRange;
-      value : Windows.UI.Text.PointOptions
+      value : WinRt.Windows.UI.Text.PointOptions
    );
 
    procedure MatchSelection
@@ -3235,7 +3235,7 @@ package WinRt.Windows.UI.Text is
    procedure SetIndex
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       index : WinRt.Int32;
       extend : WinRt.Boolean
    );
@@ -3243,8 +3243,8 @@ package WinRt.Windows.UI.Text is
    procedure SetPoint
    (
       this : in out RichEditTextRange;
-      point : Windows.Foundation.Point;
-      options : Windows.UI.Text.PointOptions;
+      point : WinRt.Windows.Foundation.Point;
+      options : WinRt.Windows.UI.Text.PointOptions;
       extend : WinRt.Boolean
    );
 
@@ -3258,21 +3258,21 @@ package WinRt.Windows.UI.Text is
    procedure SetText
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextSetOptions;
+      options : WinRt.Windows.UI.Text.TextSetOptions;
       value : WinRt.WString
    );
 
    procedure SetTextViaStream
    (
       this : in out RichEditTextRange;
-      options : Windows.UI.Text.TextSetOptions;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      options : WinRt.Windows.UI.Text.TextSetOptions;
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function StartOf
    (
       this : in out RichEditTextRange;
-      unit : Windows.UI.Text.TextRangeUnit;
+      unit : WinRt.Windows.UI.Text.TextRangeUnit;
       extend : WinRt.Boolean
    )
    return WinRt.Int32;

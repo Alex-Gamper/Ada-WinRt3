@@ -137,22 +137,22 @@ package WinRt.Windows.UI.Xaml.Interop is
    -----------------------------------------------------------------------------
 
    IID_BindableVectorChangedEventHandler : aliased WinRt.IID := (1649202401, 53255, 17329, (156, 3, 175, 77, 62, 98, 88, 196 ));
-   type BindableVectorChangedEventHandler_Delegate (Callback : access procedure  (vector : Windows.UI.Xaml.Interop.IBindableObservableVector;e : WinRt.IInspectable)) is new WinRt.IMulticastDelegate_Interface (IID_BindableVectorChangedEventHandler'Access) with null record;
+   type BindableVectorChangedEventHandler_Delegate (Callback : access procedure  (vector : WinRt.Windows.UI.Xaml.Interop.IBindableObservableVector;e : WinRt.IInspectable)) is new WinRt.IMulticastDelegate_Interface (IID_BindableVectorChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access BindableVectorChangedEventHandler_Delegate;
-         vector : Windows.UI.Xaml.Interop.IBindableObservableVector;
+         vector : WinRt.Windows.UI.Xaml.Interop.IBindableObservableVector;
          e : WinRt.IInspectable
       )
       return WinRt.Hresult;
 
    IID_NotifyCollectionChangedEventHandler : aliased WinRt.IID := (3390092156, 62338, 17809, (133, 87, 94, 36, 150, 82, 121, 176 ));
-   type NotifyCollectionChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NotifyCollectionChangedEventHandler'Access) with null record;
+   type NotifyCollectionChangedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NotifyCollectionChangedEventHandler'Access) with null record;
       function Invoke
       (
          this : access NotifyCollectionChangedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
+         e : WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
       )
       return WinRt.Hresult;
 
@@ -166,7 +166,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       function First
       (
          this : access IBindableIterable_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.IBindableIterator
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.IBindableIterator
       )
       return WinRt.Hresult is abstract;
 
@@ -204,15 +204,15 @@ package WinRt.Windows.UI.Xaml.Interop is
       function add_VectorChanged
       (
          this : access IBindableObservableVector_Interface;
-         handler : Windows.UI.Xaml.Interop.BindableVectorChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Interop.BindableVectorChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VectorChanged
       (
          this : access IBindableObservableVector_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -239,7 +239,7 @@ package WinRt.Windows.UI.Xaml.Interop is
       function GetView
       (
          this : access IBindableVector_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.IBindableVectorView
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.IBindableVectorView
       )
       return WinRt.Hresult is abstract;
 
@@ -331,15 +331,15 @@ package WinRt.Windows.UI.Xaml.Interop is
       function add_CollectionChanged
       (
          this : access INotifyCollectionChanged_Interface;
-         handler : Windows.UI.Xaml.Interop.NotifyCollectionChangedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CollectionChanged
       (
          this : access INotifyCollectionChanged_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -351,21 +351,21 @@ package WinRt.Windows.UI.Xaml.Interop is
       function get_Action
       (
          this : access INotifyCollectionChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.NotifyCollectionChangedAction
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction
       )
       return WinRt.Hresult is abstract;
 
       function get_NewItems
       (
          this : access INotifyCollectionChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.IBindableVector
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.IBindableVector
       )
       return WinRt.Hresult is abstract;
 
       function get_OldItems
       (
          this : access INotifyCollectionChangedEventArgs_Interface;
-         RetVal : access Windows.UI.Xaml.Interop.IBindableVector
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.IBindableVector
       )
       return WinRt.Hresult is abstract;
 
@@ -391,14 +391,14 @@ package WinRt.Windows.UI.Xaml.Interop is
       function CreateInstanceWithAllParameters
       (
          this : access INotifyCollectionChangedEventArgsFactory_Interface;
-         action : Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
-         newItems : Windows.UI.Xaml.Interop.IBindableVector;
-         oldItems : Windows.UI.Xaml.Interop.IBindableVector;
+         action : WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
+         newItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
+         oldItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
          newIndex : WinRt.Int32;
          oldIndex : WinRt.Int32;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
+         RetVal : access WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -419,9 +419,9 @@ package WinRt.Windows.UI.Xaml.Interop is
 
    function Constructor
    (
-      action : Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
-      newItems : Windows.UI.Xaml.Interop.IBindableVector;
-      oldItems : Windows.UI.Xaml.Interop.IBindableVector;
+      action : WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
+      newItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
+      oldItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
       newIndex : WinRt.Int32;
       oldIndex : WinRt.Int32;
       baseInterface : WinRt.IInspectable;

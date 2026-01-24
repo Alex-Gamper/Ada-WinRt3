@@ -381,21 +381,21 @@ package WinRt.Windows.Devices.WiFi is
       function get_NetworkAdapter
       (
          this : access IWiFiAdapter_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkAdapter
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkAdapter
       )
       return WinRt.Hresult is abstract;
 
       function ScanAsync
       (
          this : access IWiFiAdapter_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkReport
       (
          this : access IWiFiAdapter_Interface;
-         RetVal : access Windows.Devices.WiFi.IWiFiNetworkReport
+         RetVal : access WinRt.Windows.Devices.WiFi.IWiFiNetworkReport
       )
       return WinRt.Hresult is abstract;
 
@@ -403,22 +403,22 @@ package WinRt.Windows.Devices.WiFi is
       (
          this : access IWiFiAdapter_Interface;
          args : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailableNetworksChanged
       (
          this : access IWiFiAdapter_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function ConnectAsync
       (
          this : access IWiFiAdapter_Interface;
-         availableNetwork : Windows.Devices.WiFi.IWiFiAvailableNetwork;
-         reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
+         availableNetwork : WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork;
+         reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -426,9 +426,9 @@ package WinRt.Windows.Devices.WiFi is
       function ConnectAsync
       (
          this : access IWiFiAdapter_Interface;
-         availableNetwork : Windows.Devices.WiFi.IWiFiAvailableNetwork;
-         reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
+         availableNetwork : WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork;
+         reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -436,9 +436,9 @@ package WinRt.Windows.Devices.WiFi is
       function ConnectAsync
       (
          this : access IWiFiAdapter_Interface;
-         availableNetwork : Windows.Devices.WiFi.IWiFiAvailableNetwork;
-         reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
+         availableNetwork : WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork;
+         reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
          ssid : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -458,7 +458,7 @@ package WinRt.Windows.Devices.WiFi is
       function GetWpsConfigurationAsync
       (
          this : access IWiFiAdapter2_Interface;
-         availableNetwork : Windows.Devices.WiFi.IWiFiAvailableNetwork;
+         availableNetwork : WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -466,11 +466,11 @@ package WinRt.Windows.Devices.WiFi is
       function ConnectAsync
       (
          this : access IWiFiAdapter2_Interface;
-         availableNetwork : Windows.Devices.WiFi.IWiFiAvailableNetwork;
-         reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
+         availableNetwork : WinRt.Windows.Devices.WiFi.IWiFiAvailableNetwork;
+         reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
          ssid : WinRt.HString;
-         connectionMethod : Windows.Devices.WiFi.WiFiConnectionMethod;
+         connectionMethod : WinRt.Windows.Devices.WiFi.WiFiConnectionMethod;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -517,7 +517,7 @@ package WinRt.Windows.Devices.WiFi is
       function get_Uptime
       (
          this : access IWiFiAvailableNetwork_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -559,28 +559,28 @@ package WinRt.Windows.Devices.WiFi is
       function get_NetworkKind
       (
          this : access IWiFiAvailableNetwork_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiNetworkKind
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiNetworkKind
       )
       return WinRt.Hresult is abstract;
 
       function get_PhyKind
       (
          this : access IWiFiAvailableNetwork_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiPhyKind
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiPhyKind
       )
       return WinRt.Hresult is abstract;
 
       function get_SecuritySettings
       (
          this : access IWiFiAvailableNetwork_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkSecuritySettings
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkSecuritySettings
       )
       return WinRt.Hresult is abstract;
 
       function get_BeaconInterval
       (
          this : access IWiFiAvailableNetwork_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -599,7 +599,7 @@ package WinRt.Windows.Devices.WiFi is
       function get_ConnectionStatus
       (
          this : access IWiFiConnectionResult_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiConnectionStatus
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Devices.WiFi is
       function get_Timestamp
       (
          this : access IWiFiNetworkReport_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -630,14 +630,14 @@ package WinRt.Windows.Devices.WiFi is
       function get_RequestedNetwork
       (
          this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
-         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
+         RetVal : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
       )
       return WinRt.Hresult is abstract;
 
       function ReportError
       (
          this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
-         status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+         status : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -651,7 +651,7 @@ package WinRt.Windows.Devices.WiFi is
       function Connect
       (
          this : access IWiFiOnDemandHotspotConnectTriggerDetails_Interface;
-         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult
+         RetVal : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotConnectionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -663,7 +663,7 @@ package WinRt.Windows.Devices.WiFi is
       function get_Status
       (
          this : access IWiFiOnDemandHotspotConnectionResult_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -675,14 +675,14 @@ package WinRt.Windows.Devices.WiFi is
       function GetProperties
       (
          this : access IWiFiOnDemandHotspotNetwork_Interface;
-         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
+         RetVal : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
       )
       return WinRt.Hresult is abstract;
 
       function UpdateProperties
       (
          this : access IWiFiOnDemandHotspotNetwork_Interface;
-         newProperties : Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
+         newProperties : WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetworkProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -715,14 +715,14 @@ package WinRt.Windows.Devices.WiFi is
       function get_Availability
       (
          this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
       )
       return WinRt.Hresult is abstract;
 
       function put_Availability
       (
          this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
-         value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+         value : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
       )
       return WinRt.Hresult is abstract;
 
@@ -785,14 +785,14 @@ package WinRt.Windows.Devices.WiFi is
       function get_Password
       (
          this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function put_Password
       (
          this : access IWiFiOnDemandHotspotNetworkProperties_Interface;
-         value : Windows.Security.Credentials.IPasswordCredential
+         value : WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -805,7 +805,7 @@ package WinRt.Windows.Devices.WiFi is
       (
          this : access IWiFiOnDemandHotspotNetworkStatics_Interface;
          networkId : WinRt.Guid;
-         RetVal : access Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
+         RetVal : access WinRt.Windows.Devices.WiFi.IWiFiOnDemandHotspotNetwork
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.Devices.WiFi is
       function get_Status
       (
          this : access IWiFiWpsConfigurationResult_Interface;
-         RetVal : access Windows.Devices.WiFi.WiFiWpsConfigurationStatus
+         RetVal : access WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -888,32 +888,32 @@ package WinRt.Windows.Devices.WiFi is
    procedure remove_AvailableNetworksChanged
    (
       this : in out WiFiAdapter;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class;
 
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class;
 
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class;
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class;
       ssid : WinRt.WString
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class;
@@ -926,18 +926,18 @@ package WinRt.Windows.Devices.WiFi is
    function GetWpsConfigurationAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class
    )
    return WinRt.Windows.Devices.WiFi.WiFiWpsConfigurationResult'Class;
 
    function ConnectAsync
    (
       this : in out WiFiAdapter;
-      availableNetwork : Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
-      reconnectionKind : Windows.Devices.WiFi.WiFiReconnectionKind;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class;
+      availableNetwork : WinRt.Windows.Devices.WiFi.WiFiAvailableNetwork'Class;
+      reconnectionKind : WinRt.Windows.Devices.WiFi.WiFiReconnectionKind;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class;
       ssid : WinRt.WString;
-      connectionMethod : Windows.Devices.WiFi.WiFiConnectionMethod
+      connectionMethod : WinRt.Windows.Devices.WiFi.WiFiConnectionMethod
    )
    return WinRt.Windows.Devices.WiFi.WiFiConnectionResult'Class;
 
@@ -1070,7 +1070,7 @@ package WinRt.Windows.Devices.WiFi is
    procedure ReportError
    (
       this : in out WiFiOnDemandHotspotConnectTriggerDetails;
-      status : Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
+      status : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotConnectStatus
    );
 
    function ConnectAsync
@@ -1127,7 +1127,7 @@ package WinRt.Windows.Devices.WiFi is
    procedure UpdateProperties
    (
       this : in out WiFiOnDemandHotspotNetwork;
-      newProperties : Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
+      newProperties : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotNetworkProperties'Class
    );
 
    function get_Id
@@ -1166,7 +1166,7 @@ package WinRt.Windows.Devices.WiFi is
    procedure put_Availability
    (
       this : in out WiFiOnDemandHotspotNetworkProperties;
-      value : Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
+      value : WinRt.Windows.Devices.WiFi.WiFiOnDemandHotspotAvailability
    );
 
    function get_RemainingBatteryPercent
@@ -1226,7 +1226,7 @@ package WinRt.Windows.Devices.WiFi is
    procedure put_Password
    (
       this : in out WiFiOnDemandHotspotNetworkProperties;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    );
 
    -----------------------------------------------------------------------------

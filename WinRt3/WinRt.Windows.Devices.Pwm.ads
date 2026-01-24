@@ -136,7 +136,7 @@ package WinRt.Windows.Devices.Pwm is
       (
          this : access IPwmController_Interface;
          pinNumber : WinRt.Int32;
-         RetVal : access Windows.Devices.Pwm.IPwmPin
+         RetVal : access WinRt.Windows.Devices.Pwm.IPwmPin
       )
       return WinRt.Hresult is abstract;
 
@@ -148,7 +148,7 @@ package WinRt.Windows.Devices.Pwm is
       function GetControllersAsync
       (
          this : access IPwmControllerStatics_Interface;
-         provider : Windows.Devices.Pwm.Provider.IPwmProvider;
+         provider : WinRt.Windows.Devices.Pwm.Provider.IPwmProvider;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -201,7 +201,7 @@ package WinRt.Windows.Devices.Pwm is
       function get_Controller
       (
          this : access IPwmPin_Interface;
-         RetVal : access Windows.Devices.Pwm.IPwmController
+         RetVal : access WinRt.Windows.Devices.Pwm.IPwmController
       )
       return WinRt.Hresult is abstract;
 
@@ -222,14 +222,14 @@ package WinRt.Windows.Devices.Pwm is
       function get_Polarity
       (
          this : access IPwmPin_Interface;
-         RetVal : access Windows.Devices.Pwm.PwmPulsePolarity
+         RetVal : access WinRt.Windows.Devices.Pwm.PwmPulsePolarity
       )
       return WinRt.Hresult is abstract;
 
       function put_Polarity
       (
          this : access IPwmPin_Interface;
-         value : Windows.Devices.Pwm.PwmPulsePolarity
+         value : WinRt.Windows.Devices.Pwm.PwmPulsePolarity
       )
       return WinRt.Hresult is abstract;
 
@@ -287,7 +287,7 @@ package WinRt.Windows.Devices.Pwm is
 
    function GetControllersAsync
    (
-      provider : Windows.Devices.Pwm.Provider.IPwmProvider
+      provider : WinRt.Windows.Devices.Pwm.Provider.IPwmProvider
    )
    return WinRt.GenericObject;
 
@@ -368,7 +368,7 @@ package WinRt.Windows.Devices.Pwm is
    procedure put_Polarity
    (
       this : in out PwmPin;
-      value : Windows.Devices.Pwm.PwmPulsePolarity
+      value : WinRt.Windows.Devices.Pwm.PwmPulsePolarity
    );
 
    procedure Start

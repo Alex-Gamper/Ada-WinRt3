@@ -69,7 +69,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicCamera.all.get_RenderTargetSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -183,7 +183,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCamera2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCamera_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCamera2, WinRt.Windows.Graphics.Holographic.IID_IHolographicCamera2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCameraViewportParameters do
@@ -193,7 +193,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCameraViewportParameters := new Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
+         Retval.m_IHolographicCameraViewportParameters := new WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
          Retval.m_IHolographicCameraViewportParameters.all := m_ComRetVal;
       end return;
    end;
@@ -207,7 +207,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCamera2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCamera_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCamera2, WinRt.Windows.Graphics.Holographic.IID_IHolographicCamera2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCameraViewportParameters do
@@ -217,7 +217,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCameraViewportParameters := new Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
+         Retval.m_IHolographicCameraViewportParameters := new WinRt.Windows.Graphics.Holographic.IHolographicCameraViewportParameters;
          Retval.m_IHolographicCameraViewportParameters.all := m_ComRetVal;
       end return;
    end;
@@ -231,7 +231,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCamera2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicDisplay;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCamera_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCamera2, WinRt.Windows.Graphics.Holographic.IID_IHolographicCamera2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicDisplay do
@@ -241,7 +241,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicDisplay := new Windows.Graphics.Holographic.IHolographicDisplay;
+         Retval.m_IHolographicDisplay := new WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
          Retval.m_IHolographicDisplay.all := m_ComRetVal;
       end return;
    end;
@@ -316,7 +316,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCamera3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHolographicQuadLayer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCamera_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCamera3, WinRt.Windows.Graphics.Holographic.IID_IHolographicCamera3'Unchecked_Access);
    begin
@@ -422,7 +422,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCamera6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicViewConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCamera_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCamera6, WinRt.Windows.Graphics.Holographic.IID_IHolographicCamera6'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicViewConfiguration do
@@ -432,7 +432,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicViewConfiguration := new Windows.Graphics.Holographic.IHolographicViewConfiguration;
+         Retval.m_IHolographicViewConfiguration := new WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration;
          Retval.m_IHolographicViewConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -468,14 +468,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCamera;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCamera;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCamera do
          Hr := this.m_IHolographicCameraPose.all.get_HolographicCamera (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCamera := new Windows.Graphics.Holographic.IHolographicCamera;
+         Retval.m_IHolographicCamera := new WinRt.Windows.Graphics.Holographic.IHolographicCamera;
          Retval.m_IHolographicCamera.all := m_ComRetVal;
       end return;
    end;
@@ -488,7 +488,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IHolographicCameraPose.all.get_Viewport (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -500,13 +500,13 @@ package body WinRt.Windows.Graphics.Holographic is
    function TryGetViewTransform
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_HolographicStereoTransform.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_HolographicStereoTransform.Kind;
    begin
       Hr := this.m_IHolographicCameraPose.all.TryGetViewTransform (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
@@ -526,7 +526,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicStereoTransform;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicStereoTransform;
    begin
       Hr := this.m_IHolographicCameraPose.all.get_ProjectionTransform (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -538,13 +538,13 @@ package body WinRt.Windows.Graphics.Holographic is
    function TryGetCullingFrustum
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHolographicCameraPose.all.TryGetCullingFrustum (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -556,13 +556,13 @@ package body WinRt.Windows.Graphics.Holographic is
    function TryGetVisibleFrustum
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHolographicCameraPose.all.TryGetVisibleFrustum (coordinateSystem.m_ISpatialCoordinateSystem.all, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -608,8 +608,8 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure OverrideViewTransform
    (
       this : in out HolographicCameraPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      coordinateSystemToViewTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      coordinateSystemToViewTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -628,7 +628,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure OverrideProjectionTransform
    (
       this : in out HolographicCameraPose;
-      projectionTransform : Windows.Graphics.Holographic.HolographicStereoTransform
+      projectionTransform : WinRt.Windows.Graphics.Holographic.HolographicStereoTransform
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -647,8 +647,8 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure OverrideViewport
    (
       this : in out HolographicCameraPose;
-      leftViewport : Windows.Foundation.Rect;
-      rightViewport : Windows.Foundation.Rect
+      leftViewport : WinRt.Windows.Foundation.Rect;
+      rightViewport : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -690,8 +690,8 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -706,9 +706,9 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      normal : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      normal : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -723,10 +723,10 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure SetFocusPoint
    (
       this : in out HolographicCameraRenderingParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      normal : Windows.Foundation.Numerics.Vector3;
-      linearVelocity : Windows.Foundation.Numerics.Vector3
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      normal : WinRt.Windows.Foundation.Numerics.Vector3;
+      linearVelocity : WinRt.Windows.Foundation.Numerics.Vector3
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -746,7 +746,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
    begin
       Hr := this.m_IHolographicCameraRenderingParameters.all.get_Direct3D11Device (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -763,7 +763,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
    begin
       Hr := this.m_IHolographicCameraRenderingParameters.all.get_Direct3D11BackBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -781,7 +781,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicReprojectionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicReprojectionMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters2, WinRt.Windows.Graphics.Holographic.IID_IHolographicCameraRenderingParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicCameraRenderingParameters.all);
@@ -796,7 +796,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure put_ReprojectionMode
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.Holographic.HolographicReprojectionMode
+      value : WinRt.Windows.Graphics.Holographic.HolographicReprojectionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -815,7 +815,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure CommitDirect3D11DepthBuffer
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+      value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -880,7 +880,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicDepthReprojectionMethod;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters_Interface, WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters4, WinRt.Windows.Graphics.Holographic.IID_IHolographicCameraRenderingParameters4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicCameraRenderingParameters.all);
@@ -895,7 +895,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure put_DepthReprojectionMethod
    (
       this : in out HolographicCameraRenderingParameters;
-      value : Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
+      value : WinRt.Windows.Graphics.Holographic.HolographicDepthReprojectionMethod
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -942,7 +942,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHolographicCameraViewportParameters.all.get_HiddenAreaMesh (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -968,7 +968,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector2_Ptr;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector2_Ptr;
       m_ComRetValSize  : aliased WinRt.UInt32 := 0;
    begin
       Hr := this.m_IHolographicCameraViewportParameters.all.get_VisibleAreaMesh (m_ComRetValSize'Access, m_ComRetVal'Access);
@@ -1016,7 +1016,7 @@ package body WinRt.Windows.Graphics.Holographic is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicDisplay");
       m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicDisplayStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicDisplay;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicDisplay do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicDisplayStatics'Access , m_Factory'Address);
@@ -1026,7 +1026,7 @@ package body WinRt.Windows.Graphics.Holographic is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHolographicDisplay := new Windows.Graphics.Holographic.IHolographicDisplay;
+            Retval.m_IHolographicDisplay := new WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
             Retval.m_IHolographicDisplay.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicDisplay.all.get_MaxViewportSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1115,7 +1115,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicAdapterId;
    begin
       Hr := this.m_IHolographicDisplay.all.get_AdapterId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1132,14 +1132,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.Spatial.ISpatialLocator;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.Spatial.ISpatialLocator;
    begin
       return RetVal : WinRt.Windows.Perception.Spatial.SpatialLocator do
          Hr := this.m_IHolographicDisplay.all.get_SpatialLocator (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISpatialLocator := new Windows.Perception.Spatial.ISpatialLocator;
+         Retval.m_ISpatialLocator := new WinRt.Windows.Perception.Spatial.ISpatialLocator;
          Retval.m_ISpatialLocator.all := m_ComRetVal;
       end return;
    end;
@@ -1168,14 +1168,14 @@ package body WinRt.Windows.Graphics.Holographic is
    function TryGetViewConfiguration
    (
       this : in out HolographicDisplay;
-      kind : Windows.Graphics.Holographic.HolographicViewConfigurationKind
+      kind : WinRt.Windows.Graphics.Holographic.HolographicViewConfigurationKind
    )
    return WinRt.Windows.Graphics.Holographic.HolographicViewConfiguration'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicDisplay3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicViewConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicDisplay_Interface, WinRt.Windows.Graphics.Holographic.IHolographicDisplay3, WinRt.Windows.Graphics.Holographic.IID_IHolographicDisplay3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicViewConfiguration do
@@ -1185,7 +1185,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicViewConfiguration := new Windows.Graphics.Holographic.IHolographicViewConfiguration;
+         Retval.m_IHolographicViewConfiguration := new WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration;
          Retval.m_IHolographicViewConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -1221,7 +1221,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHolographicCamera.Kind;
    begin
       Hr := this.m_IHolographicFrame.all.get_AddedCameras (m_ComRetVal'Access);
@@ -1241,7 +1241,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHolographicCamera.Kind;
    begin
       Hr := this.m_IHolographicFrame.all.get_RemovedCameras (m_ComRetVal'Access);
@@ -1256,20 +1256,20 @@ package body WinRt.Windows.Graphics.Holographic is
    function GetRenderingParameters
    (
       this : in out HolographicFrame;
-      cameraPose : Windows.Graphics.Holographic.HolographicCameraPose'Class
+      cameraPose : WinRt.Windows.Graphics.Holographic.HolographicCameraPose'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicCameraRenderingParameters'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCameraRenderingParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCameraRenderingParameters do
          Hr := this.m_IHolographicFrame.all.GetRenderingParameters (cameraPose.m_IHolographicCameraPose.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCameraRenderingParameters := new Windows.Graphics.Holographic.IHolographicCameraRenderingParameters;
+         Retval.m_IHolographicCameraRenderingParameters := new WinRt.Windows.Graphics.Holographic.IHolographicCameraRenderingParameters;
          Retval.m_IHolographicCameraRenderingParameters.all := m_ComRetVal;
       end return;
    end;
@@ -1282,7 +1282,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrame.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1299,14 +1299,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicFramePrediction;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicFramePrediction;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicFramePrediction do
          Hr := this.m_IHolographicFrame.all.get_CurrentPrediction (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicFramePrediction := new Windows.Graphics.Holographic.IHolographicFramePrediction;
+         Retval.m_IHolographicFramePrediction := new WinRt.Windows.Graphics.Holographic.IHolographicFramePrediction;
          Retval.m_IHolographicFramePrediction.all := m_ComRetVal;
       end return;
    end;
@@ -1333,7 +1333,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicFramePresentResult;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult;
    begin
       Hr := this.m_IHolographicFrame.all.PresentUsingCurrentPrediction (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1345,13 +1345,13 @@ package body WinRt.Windows.Graphics.Holographic is
    function PresentUsingCurrentPrediction
    (
       this : in out HolographicFrame;
-      waitBehavior : Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior
+      waitBehavior : WinRt.Windows.Graphics.Holographic.HolographicFramePresentWaitBehavior
    )
    return WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicFramePresentResult;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicFramePresentResult;
    begin
       Hr := this.m_IHolographicFrame.all.PresentUsingCurrentPrediction (waitBehavior, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1377,14 +1377,14 @@ package body WinRt.Windows.Graphics.Holographic is
    function GetQuadLayerUpdateParameters
    (
       this : in out HolographicFrame;
-      layer : Windows.Graphics.Holographic.HolographicQuadLayer'Class
+      layer : WinRt.Windows.Graphics.Holographic.HolographicQuadLayer'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicQuadLayerUpdateParameters'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicFrame2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicFrame_Interface, WinRt.Windows.Graphics.Holographic.IHolographicFrame2, WinRt.Windows.Graphics.Holographic.IID_IHolographicFrame2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicQuadLayerUpdateParameters do
@@ -1394,7 +1394,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicQuadLayerUpdateParameters := new Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters;
+         Retval.m_IHolographicQuadLayerUpdateParameters := new WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters;
          Retval.m_IHolographicQuadLayerUpdateParameters.all := m_ComRetVal;
       end return;
    end;
@@ -1408,7 +1408,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicFrame3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicFrameId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicFrameId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicFrame_Interface, WinRt.Windows.Graphics.Holographic.IHolographicFrame3, WinRt.Windows.Graphics.Holographic.IID_IHolographicFrame3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicFrame.all);
@@ -1451,7 +1451,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHolographicCameraPose.Kind;
    begin
       Hr := this.m_IHolographicFramePrediction.all.get_CameraPoses (m_ComRetVal'Access);
@@ -1471,14 +1471,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Perception.IPerceptionTimestamp;
+      m_ComRetVal      : aliased WinRt.Windows.Perception.IPerceptionTimestamp;
    begin
       return RetVal : WinRt.Windows.Perception.PerceptionTimestamp do
          Hr := this.m_IHolographicFramePrediction.all.get_Timestamp (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPerceptionTimestamp := new Windows.Perception.IPerceptionTimestamp;
+         Retval.m_IPerceptionTimestamp := new WinRt.Windows.Perception.IPerceptionTimestamp;
          Retval.m_IPerceptionTimestamp.all := m_ComRetVal;
       end return;
    end;
@@ -1514,7 +1514,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IHolographicFramePresentationReport.Kind;
    begin
       Hr := this.m_IHolographicFramePresentationMonitor.all.ReadReports (m_ComRetVal'Access);
@@ -1575,7 +1575,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFramePresentationReport.all.get_CompositorGpuDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1592,7 +1592,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFramePresentationReport.all.get_AppGpuDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1609,7 +1609,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFramePresentationReport.all.get_AppGpuOverrun (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1683,7 +1683,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicFrameId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicFrameId;
    begin
       Hr := this.m_IHolographicFrameRenderingReport.all.get_FrameId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1717,7 +1717,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameRenderingReport.all.get_SystemRelativeFrameReadyTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1734,7 +1734,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameRenderingReport.all.get_SystemRelativeActualGpuFinishTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1751,7 +1751,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameRenderingReport.all.get_SystemRelativeTargetLatchTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1791,7 +1791,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IHolographicFrameScanoutReport.Kind;
    begin
       Hr := this.m_IHolographicFrameScanoutMonitor.all.ReadReports (m_ComRetVal'Access);
@@ -1852,14 +1852,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicFrameRenderingReport;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicFrameRenderingReport;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicFrameRenderingReport do
          Hr := this.m_IHolographicFrameScanoutReport.all.get_RenderingReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicFrameRenderingReport := new Windows.Graphics.Holographic.IHolographicFrameRenderingReport;
+         Retval.m_IHolographicFrameRenderingReport := new WinRt.Windows.Graphics.Holographic.IHolographicFrameRenderingReport;
          Retval.m_IHolographicFrameRenderingReport.all := m_ComRetVal;
       end return;
    end;
@@ -1889,7 +1889,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameScanoutReport.all.get_SystemRelativeLatchTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1906,7 +1906,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameScanoutReport.all.get_SystemRelativeScanoutStartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1923,7 +1923,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IHolographicFrameScanoutReport.all.get_SystemRelativePhotonTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1957,21 +1957,21 @@ package body WinRt.Windows.Graphics.Holographic is
 
    function Constructor
    (
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return HolographicQuadLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicQuadLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.IHolographicQuadLayer");
       m_Factory    : access IHolographicQuadLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Holographic.IHolographicQuadLayer;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
    begin
       return RetVal : HolographicQuadLayer do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicQuadLayerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (size, m_ComRetVal'Access);
-            Retval.m_IHolographicQuadLayer := new Windows.Graphics.Holographic.IHolographicQuadLayer;
+            Retval.m_IHolographicQuadLayer := new WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
             Retval.m_IHolographicQuadLayer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1981,22 +1981,22 @@ package body WinRt.Windows.Graphics.Holographic is
 
    function Constructor
    (
-      size : Windows.Foundation.Size;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat
+      size : WinRt.Windows.Foundation.Size;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    )
    return HolographicQuadLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicQuadLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.IHolographicQuadLayer");
       m_Factory    : access IHolographicQuadLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Holographic.IHolographicQuadLayer;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
    begin
       return RetVal : HolographicQuadLayer do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicQuadLayerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithPixelFormat (size, pixelFormat, m_ComRetVal'Access);
-            Retval.m_IHolographicQuadLayer := new Windows.Graphics.Holographic.IHolographicQuadLayer;
+            Retval.m_IHolographicQuadLayer := new WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
             Retval.m_IHolographicQuadLayer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2033,7 +2033,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_IHolographicQuadLayer.all.get_PixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2050,7 +2050,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicQuadLayer.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2090,7 +2090,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
    begin
       Hr := this.m_IHolographicQuadLayerUpdateParameters.all.AcquireBufferToUpdateContent (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2102,7 +2102,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure UpdateViewport
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2132,7 +2132,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure UpdateExtents
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      value : Windows.Foundation.Numerics.Vector2
+      value : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2147,9 +2147,9 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure UpdateLocationWithStationaryMode
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2164,8 +2164,8 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure UpdateLocationWithDisplayRelativeMode
    (
       this : in out HolographicQuadLayerUpdateParameters;
-      position : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      position : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2207,7 +2207,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters_Interface, WinRt.Windows.Graphics.Holographic.IHolographicQuadLayerUpdateParameters2, WinRt.Windows.Graphics.Holographic.IID_IHolographicQuadLayerUpdateParameters2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicQuadLayerUpdateParameters.all);
@@ -2294,7 +2294,7 @@ package body WinRt.Windows.Graphics.Holographic is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
       m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics2_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics2'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2310,7 +2310,7 @@ package body WinRt.Windows.Graphics.Holographic is
 
    procedure remove_IsAvailableChanged
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2331,7 +2331,7 @@ package body WinRt.Windows.Graphics.Holographic is
 
    function CreateForCoreWindow
    (
-      window : Windows.UI.Core.CoreWindow'Class
+      window : WinRt.Windows.UI.Core.CoreWindow'Class
    )
    return WinRt.Windows.Graphics.Holographic.HolographicSpace is
       Hr               : WinRt.HResult := S_OK;
@@ -2339,7 +2339,7 @@ package body WinRt.Windows.Graphics.Holographic is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicSpace");
       m_Factory        : access WinRt.Windows.Graphics.Holographic.IHolographicSpaceStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicSpace;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicSpace;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicSpace do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicSpaceStatics'Access , m_Factory'Address);
@@ -2349,7 +2349,7 @@ package body WinRt.Windows.Graphics.Holographic is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHolographicSpace := new Windows.Graphics.Holographic.IHolographicSpace;
+            Retval.m_IHolographicSpace := new WinRt.Windows.Graphics.Holographic.IHolographicSpace;
             Retval.m_IHolographicSpace.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2388,7 +2388,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicAdapterId;
    begin
       Hr := this.m_IHolographicSpace.all.get_PrimaryAdapterId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2400,7 +2400,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure SetDirect3D11Device
    (
       this : in out HolographicSpace;
-      value : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
+      value : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2421,7 +2421,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHolographicSpace.all.add_CameraAdded (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2433,7 +2433,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure remove_CameraAdded
    (
       this : in out HolographicSpace;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2454,7 +2454,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IHolographicSpace.all.add_CameraRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2466,7 +2466,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure remove_CameraRemoved
    (
       this : in out HolographicSpace;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2486,14 +2486,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicFrame;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicFrame do
          Hr := this.m_IHolographicSpace.all.CreateNextFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicFrame := new Windows.Graphics.Holographic.IHolographicFrame;
+         Retval.m_IHolographicFrame := new WinRt.Windows.Graphics.Holographic.IHolographicFrame;
          Retval.m_IHolographicFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2507,7 +2507,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicSpace2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicSpaceUserPresence;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicSpaceUserPresence;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicSpace_Interface, WinRt.Windows.Graphics.Holographic.IHolographicSpace2, WinRt.Windows.Graphics.Holographic.IID_IHolographicSpace2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicSpace.all);
@@ -2529,7 +2529,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicSpace2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicSpace_Interface, WinRt.Windows.Graphics.Holographic.IHolographicSpace2, WinRt.Windows.Graphics.Holographic.IID_IHolographicSpace2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHolographicSpace.all);
@@ -2544,7 +2544,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure remove_UserPresenceChanged
    (
       this : in out HolographicSpace;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2581,7 +2581,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure WaitForNextFrameReadyWithHeadStart
    (
       this : in out HolographicSpace;
-      requestedHeadStartDuration : Windows.Foundation.TimeSpan
+      requestedHeadStartDuration : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2607,7 +2607,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicSpace2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicFramePresentationMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicFramePresentationMonitor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicSpace_Interface, WinRt.Windows.Graphics.Holographic.IHolographicSpace2, WinRt.Windows.Graphics.Holographic.IID_IHolographicSpace2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicFramePresentationMonitor do
@@ -2617,7 +2617,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicFramePresentationMonitor := new Windows.Graphics.Holographic.IHolographicFramePresentationMonitor;
+         Retval.m_IHolographicFramePresentationMonitor := new WinRt.Windows.Graphics.Holographic.IHolographicFramePresentationMonitor;
          Retval.m_IHolographicFramePresentationMonitor.all := m_ComRetVal;
       end return;
    end;
@@ -2632,7 +2632,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicSpace3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicSpace_Interface, WinRt.Windows.Graphics.Holographic.IHolographicSpace3, WinRt.Windows.Graphics.Holographic.IID_IHolographicSpace3'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicFrameScanoutMonitor do
@@ -2642,7 +2642,7 @@ package body WinRt.Windows.Graphics.Holographic is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicFrameScanoutMonitor := new Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor;
+         Retval.m_IHolographicFrameScanoutMonitor := new WinRt.Windows.Graphics.Holographic.IHolographicFrameScanoutMonitor;
          Retval.m_IHolographicFrameScanoutMonitor.all := m_ComRetVal;
       end return;
    end;
@@ -2678,14 +2678,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCamera;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCamera;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCamera do
          Hr := this.m_IHolographicSpaceCameraAddedEventArgs.all.get_Camera (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCamera := new Windows.Graphics.Holographic.IHolographicCamera;
+         Retval.m_IHolographicCamera := new WinRt.Windows.Graphics.Holographic.IHolographicCamera;
          Retval.m_IHolographicCamera.all := m_ComRetVal;
       end return;
    end;
@@ -2698,14 +2698,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IHolographicSpaceCameraAddedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2741,14 +2741,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicCamera;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicCamera;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicCamera do
          Hr := this.m_IHolographicSpaceCameraRemovedEventArgs.all.get_Camera (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicCamera := new Windows.Graphics.Holographic.IHolographicCamera;
+         Retval.m_IHolographicCamera := new WinRt.Windows.Graphics.Holographic.IHolographicCamera;
          Retval.m_IHolographicCamera.all := m_ComRetVal;
       end return;
    end;
@@ -2784,7 +2784,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.get_NativeRenderTargetSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2801,7 +2801,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.get_RenderTargetSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2813,13 +2813,13 @@ package body WinRt.Windows.Graphics.Holographic is
    function RequestRenderTargetSize
    (
       this : in out HolographicViewConfiguration;
-      size : Windows.Foundation.Size
+      size : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Foundation.Size is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.RequestRenderTargetSize (size, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2836,7 +2836,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.get_SupportedPixelFormats (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2853,7 +2853,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.DirectXPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.get_PixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2865,7 +2865,7 @@ package body WinRt.Windows.Graphics.Holographic is
    procedure put_PixelFormat
    (
       this : in out HolographicViewConfiguration;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2919,7 +2919,7 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.HolographicViewConfigurationKind;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.HolographicViewConfigurationKind;
    begin
       Hr := this.m_IHolographicViewConfiguration.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2936,14 +2936,14 @@ package body WinRt.Windows.Graphics.Holographic is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Holographic.IHolographicDisplay;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
    begin
       return RetVal : WinRt.Windows.Graphics.Holographic.HolographicDisplay do
          Hr := this.m_IHolographicViewConfiguration.all.get_Display (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHolographicDisplay := new Windows.Graphics.Holographic.IHolographicDisplay;
+         Retval.m_IHolographicDisplay := new WinRt.Windows.Graphics.Holographic.IHolographicDisplay;
          Retval.m_IHolographicDisplay.all := m_ComRetVal;
       end return;
    end;
@@ -2989,7 +2989,7 @@ package body WinRt.Windows.Graphics.Holographic is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HolographicDepthReprojectionMethod.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration_Interface, WinRt.Windows.Graphics.Holographic.IHolographicViewConfiguration2, WinRt.Windows.Graphics.Holographic.IID_IHolographicViewConfiguration2'Unchecked_Access);
    begin

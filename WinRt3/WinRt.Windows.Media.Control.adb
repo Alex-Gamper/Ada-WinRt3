@@ -162,7 +162,7 @@ package body WinRt.Windows.Media.Control is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IGlobalSystemMediaTransportControlsSessionMediaProperties := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionMediaProperties;
+                  Retval.m_IGlobalSystemMediaTransportControlsSessionMediaProperties := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionMediaProperties;
                   Retval.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -183,14 +183,14 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties;
    begin
       return RetVal : WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSessionTimelineProperties do
          Hr := this.m_IGlobalSystemMediaTransportControlsSession.all.GetTimelineProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties;
+         Retval.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionTimelineProperties;
          Retval.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all := m_ComRetVal;
       end return;
    end;
@@ -203,14 +203,14 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo;
    begin
       return RetVal : WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackInfo do
          Hr := this.m_IGlobalSystemMediaTransportControlsSession.all.GetPlaybackInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo;
+         Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackInfo;
          Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all := m_ComRetVal;
       end return;
    end;
@@ -911,7 +911,7 @@ package body WinRt.Windows.Media.Control is
    function TryChangeAutoRepeatModeAsync
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      requestedAutoRepeatMode : Windows.Media.MediaPlaybackAutoRepeatMode
+      requestedAutoRepeatMode : WinRt.Windows.Media.MediaPlaybackAutoRepeatMode
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1173,7 +1173,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSession.all.add_TimelinePropertiesChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1185,7 +1185,7 @@ package body WinRt.Windows.Media.Control is
    procedure remove_TimelinePropertiesChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1206,7 +1206,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSession.all.add_PlaybackInfoChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1218,7 +1218,7 @@ package body WinRt.Windows.Media.Control is
    procedure remove_PlaybackInfoChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1239,7 +1239,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSession.all.add_MediaPropertiesChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1251,7 +1251,7 @@ package body WinRt.Windows.Media.Control is
    procedure remove_MediaPropertiesChanged
    (
       this : in out GlobalSystemMediaTransportControlsSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1341,7 +1341,7 @@ package body WinRt.Windows.Media.Control is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IGlobalSystemMediaTransportControlsSessionManager := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionManager;
+                     Retval.m_IGlobalSystemMediaTransportControlsSessionManager := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionManager;
                      Retval.m_IGlobalSystemMediaTransportControlsSessionManager.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -1367,14 +1367,14 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Control.IGlobalSystemMediaTransportControlsSession;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSession;
    begin
       return RetVal : WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSession do
          Hr := this.m_IGlobalSystemMediaTransportControlsSessionManager.all.GetCurrentSession (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGlobalSystemMediaTransportControlsSession := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSession;
+         Retval.m_IGlobalSystemMediaTransportControlsSession := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSession;
          Retval.m_IGlobalSystemMediaTransportControlsSession.all := m_ComRetVal;
       end return;
    end;
@@ -1387,7 +1387,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IGlobalSystemMediaTransportControlsSession.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionManager.all.GetSessions (m_ComRetVal'Access);
@@ -1408,7 +1408,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionManager.all.add_CurrentSessionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.Media.Control is
    procedure remove_CurrentSessionChanged
    (
       this : in out GlobalSystemMediaTransportControlsSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1441,7 +1441,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionManager.all.add_SessionsChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1453,7 +1453,7 @@ package body WinRt.Windows.Media.Control is
    procedure remove_SessionsChanged
    (
       this : in out GlobalSystemMediaTransportControlsSessionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1613,7 +1613,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all.get_Genres (m_ComRetVal'Access);
@@ -1650,7 +1650,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_MediaPlaybackType.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all.get_PlaybackType (m_ComRetVal'Access);
@@ -1670,7 +1670,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all.get_Thumbnail (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1988,14 +1988,14 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls;
    begin
       return RetVal : WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackControls do
          Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_Controls (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls := new Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls;
+         Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls := new WinRt.Windows.Media.Control.IGlobalSystemMediaTransportControlsSessionPlaybackControls;
          Retval.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls.all := m_ComRetVal;
       end return;
    end;
@@ -2008,7 +2008,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Control.GlobalSystemMediaTransportControlsSessionPlaybackStatus;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_PlaybackStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2025,7 +2025,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_MediaPlaybackType.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_PlaybackType (m_ComRetVal'Access);
@@ -2045,7 +2045,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_MediaPlaybackAutoRepeatMode.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_AutoRepeatMode (m_ComRetVal'Access);
@@ -2065,7 +2065,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_PlaybackRate (m_ComRetVal'Access);
@@ -2085,7 +2085,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.get_IsShuffleActive (m_ComRetVal'Access);
@@ -2128,7 +2128,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_StartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2145,7 +2145,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_EndTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2162,7 +2162,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_MinSeekTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2179,7 +2179,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_MaxSeekTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2196,7 +2196,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2213,7 +2213,7 @@ package body WinRt.Windows.Media.Control is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.get_LastUpdatedTime (m_ComRetVal'Access);
       if Hr /= S_OK then

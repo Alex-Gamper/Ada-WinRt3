@@ -73,14 +73,14 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentRequest do
          Hr := this.m_IPaymentAppCanMakePaymentTriggerDetails.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
+         Retval.m_IPaymentRequest := new WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
          Retval.m_IPaymentRequest.all := m_ComRetVal;
       end return;
    end;
@@ -88,7 +88,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
    procedure ReportCanMakePaymentResult
    (
       this : in out PaymentAppCanMakePaymentTriggerDetails;
-      value : Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class
+      value : WinRt.Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -130,7 +130,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.Provider.PaymentAppManager");
       m_Factory        : access WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentAppManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Payments.Provider.IPaymentAppManager;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentAppManager;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.Provider.PaymentAppManager do
          Hr := RoGetActivationFactory (m_hString, IID_IPaymentAppManagerStatics'Access , m_Factory'Address);
@@ -140,7 +140,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPaymentAppManager := new Windows.ApplicationModel.Payments.Provider.IPaymentAppManager;
+            Retval.m_IPaymentAppManager := new WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentAppManager;
             Retval.m_IPaymentAppManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -317,7 +317,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPaymentTransaction := new Windows.ApplicationModel.Payments.Provider.IPaymentTransaction;
+                     Retval.m_IPaymentTransaction := new WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentTransaction;
                      Retval.m_IPaymentTransaction.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -344,14 +344,14 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Payments.IPaymentRequest;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Payments.PaymentRequest do
          Hr := this.m_IPaymentTransaction.all.get_PaymentRequest (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPaymentRequest := new Windows.ApplicationModel.Payments.IPaymentRequest;
+         Retval.m_IPaymentRequest := new WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
          Retval.m_IPaymentRequest.all := m_ComRetVal;
       end return;
    end;
@@ -470,7 +470,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
    function UpdateShippingAddressAsync
    (
       this : in out PaymentTransaction;
-      shippingAddress : Windows.ApplicationModel.Payments.PaymentAddress'Class
+      shippingAddress : WinRt.Windows.ApplicationModel.Payments.PaymentAddress'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -521,7 +521,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPaymentRequestChangedResult := new Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
+                  Retval.m_IPaymentRequestChangedResult := new WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
                   Retval.m_IPaymentRequestChangedResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -537,7 +537,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
    function UpdateSelectedShippingOptionAsync
    (
       this : in out PaymentTransaction;
-      selectedShippingOption : Windows.ApplicationModel.Payments.PaymentShippingOption'Class
+      selectedShippingOption : WinRt.Windows.ApplicationModel.Payments.PaymentShippingOption'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.PaymentRequestChangedResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -588,7 +588,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPaymentRequestChangedResult := new Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
+                  Retval.m_IPaymentRequestChangedResult := new WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
                   Retval.m_IPaymentRequestChangedResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -604,7 +604,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
    function AcceptAsync
    (
       this : in out PaymentTransaction;
-      paymentToken : Windows.ApplicationModel.Payments.PaymentToken'Class
+      paymentToken : WinRt.Windows.ApplicationModel.Payments.PaymentToken'Class
    )
    return WinRt.Windows.ApplicationModel.Payments.Provider.PaymentTransactionAcceptResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -655,7 +655,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPaymentTransactionAcceptResult := new Windows.ApplicationModel.Payments.Provider.IPaymentTransactionAcceptResult;
+                  Retval.m_IPaymentTransactionAcceptResult := new WinRt.Windows.ApplicationModel.Payments.Provider.IPaymentTransactionAcceptResult;
                   Retval.m_IPaymentTransactionAcceptResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -713,7 +713,7 @@ package body WinRt.Windows.ApplicationModel.Payments.Provider is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Payments.PaymentRequestCompletionStatus;
    begin
       Hr := this.m_IPaymentTransactionAcceptResult.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then

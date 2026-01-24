@@ -66,13 +66,13 @@ package body WinRt.Windows.Web.Http.Filters is
    function Constructor return HttpBaseProtocolFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Filters.HttpBaseProtocolFilter");
-      m_ComRetVal  : aliased Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Filters.IHttpBaseProtocolFilter");
+      m_ComRetVal  : aliased WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
    begin
       return RetVal : HttpBaseProtocolFilter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IHttpBaseProtocolFilter := new Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
+            Retval.m_IHttpBaseProtocolFilter := new WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
             Retval.m_IHttpBaseProtocolFilter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -84,7 +84,7 @@ package body WinRt.Windows.Web.Http.Filters is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Web.Http.Filters.HttpBaseProtocolFilter is
       Hr               : WinRt.HResult := S_OK;
@@ -92,7 +92,7 @@ package body WinRt.Windows.Web.Http.Filters is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Web.Http.Filters.HttpBaseProtocolFilter");
       m_Factory        : access WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilterStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
    begin
       return RetVal : WinRt.Windows.Web.Http.Filters.HttpBaseProtocolFilter do
          Hr := RoGetActivationFactory (m_hString, IID_IHttpBaseProtocolFilterStatics'Access , m_Factory'Address);
@@ -102,7 +102,7 @@ package body WinRt.Windows.Web.Http.Filters is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHttpBaseProtocolFilter := new Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
+            Retval.m_IHttpBaseProtocolFilter := new WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
             Retval.m_IHttpBaseProtocolFilter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -216,14 +216,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Filters.IHttpCacheControl;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Filters.IHttpCacheControl;
    begin
       return RetVal : WinRt.Windows.Web.Http.Filters.HttpCacheControl do
          Hr := this.m_IHttpBaseProtocolFilter.all.get_CacheControl (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCacheControl := new Windows.Web.Http.Filters.IHttpCacheControl;
+         Retval.m_IHttpCacheControl := new WinRt.Windows.Web.Http.Filters.IHttpCacheControl;
          Retval.m_IHttpCacheControl.all := m_ComRetVal;
       end return;
    end;
@@ -236,14 +236,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpCookieManager;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpCookieManager;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpCookieManager do
          Hr := this.m_IHttpBaseProtocolFilter.all.get_CookieManager (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpCookieManager := new Windows.Web.Http.IHttpCookieManager;
+         Retval.m_IHttpCookieManager := new WinRt.Windows.Web.Http.IHttpCookieManager;
          Retval.m_IHttpCookieManager.all := m_ComRetVal;
       end return;
    end;
@@ -256,14 +256,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IHttpBaseProtocolFilter.all.get_ClientCertificate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
+         Retval.m_ICertificate := new WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
    end;
@@ -271,7 +271,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_ClientCertificate
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Cryptography.Certificates.Certificate'Class
+      value : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -291,7 +291,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHttpBaseProtocolFilter.all.get_IgnorableServerCertificateErrors (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -340,14 +340,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IHttpBaseProtocolFilter.all.get_ProxyCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -355,7 +355,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_ProxyCredential
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -375,14 +375,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
          Hr := this.m_IHttpBaseProtocolFilter.all.get_ServerCredential (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -390,7 +390,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_ServerCredential
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -443,7 +443,7 @@ package body WinRt.Windows.Web.Http.Filters is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.HttpVersion;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.HttpVersion;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter_Interface, WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter2, WinRt.Windows.Web.Http.Filters.IID_IHttpBaseProtocolFilter2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpBaseProtocolFilter.all);
@@ -458,7 +458,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_MaxVersion
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Web.Http.HttpVersion
+      value : WinRt.Windows.Web.Http.HttpVersion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -483,7 +483,7 @@ package body WinRt.Windows.Web.Http.Filters is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Filters.HttpCookieUsageBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Filters.HttpCookieUsageBehavior;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter_Interface, WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter3, WinRt.Windows.Web.Http.Filters.IID_IHttpBaseProtocolFilter3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpBaseProtocolFilter.all);
@@ -498,7 +498,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_CookieUsageBehavior
    (
       this : in out HttpBaseProtocolFilter;
-      value : Windows.Web.Http.Filters.HttpCookieUsageBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCookieUsageBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -524,7 +524,7 @@ package body WinRt.Windows.Web.Http.Filters is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter_Interface, WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter4, WinRt.Windows.Web.Http.Filters.IID_IHttpBaseProtocolFilter4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IHttpBaseProtocolFilter.all);
@@ -539,7 +539,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure remove_ServerCustomValidationRequested
    (
       this : in out HttpBaseProtocolFilter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -582,7 +582,7 @@ package body WinRt.Windows.Web.Http.Filters is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter_Interface, WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter5, WinRt.Windows.Web.Http.Filters.IID_IHttpBaseProtocolFilter5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.System.User do
@@ -592,7 +592,7 @@ package body WinRt.Windows.Web.Http.Filters is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -600,7 +600,7 @@ package body WinRt.Windows.Web.Http.Filters is
    function SendRequestAsync
    (
       this : in out HttpBaseProtocolFilter;
-      request : Windows.Web.Http.HttpRequestMessage'Class
+      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    )
    return WinRt.Windows.Web.Http.HttpResponseMessage'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -655,7 +655,7 @@ package body WinRt.Windows.Web.Http.Filters is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IHttpResponseMessage := new Windows.Web.Http.IHttpResponseMessage;
+                  Retval.m_IHttpResponseMessage := new WinRt.Windows.Web.Http.IHttpResponseMessage;
                   Retval.m_IHttpResponseMessage.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -717,7 +717,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Filters.HttpCacheReadBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Filters.HttpCacheReadBehavior;
    begin
       Hr := this.m_IHttpCacheControl.all.get_ReadBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -729,7 +729,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_ReadBehavior
    (
       this : in out HttpCacheControl;
-      value : Windows.Web.Http.Filters.HttpCacheReadBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCacheReadBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -749,7 +749,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.Filters.HttpCacheWriteBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.Filters.HttpCacheWriteBehavior;
    begin
       Hr := this.m_IHttpCacheControl.all.get_WriteBehavior (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -761,7 +761,7 @@ package body WinRt.Windows.Web.Http.Filters is
    procedure put_WriteBehavior
    (
       this : in out HttpCacheControl;
-      value : Windows.Web.Http.Filters.HttpCacheWriteBehavior
+      value : WinRt.Windows.Web.Http.Filters.HttpCacheWriteBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -804,14 +804,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Web.Http.IHttpRequestMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : WinRt.Windows.Web.Http.HttpRequestMessage do
          Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.get_RequestMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHttpRequestMessage := new Windows.Web.Http.IHttpRequestMessage;
+         Retval.m_IHttpRequestMessage := new WinRt.Windows.Web.Http.IHttpRequestMessage;
          Retval.m_IHttpRequestMessage.all := m_ComRetVal;
       end return;
    end;
@@ -824,14 +824,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Cryptography.Certificates.ICertificate;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
    begin
       return RetVal : WinRt.Windows.Security.Cryptography.Certificates.Certificate do
          Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.get_ServerCertificate (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICertificate := new Windows.Security.Cryptography.Certificates.ICertificate;
+         Retval.m_ICertificate := new WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          Retval.m_ICertificate.all := m_ComRetVal;
       end return;
    end;
@@ -844,7 +844,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Sockets.SocketSslErrorSeverity;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Sockets.SocketSslErrorSeverity;
    begin
       Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.get_ServerCertificateErrorSeverity (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -861,7 +861,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.get_ServerCertificateErrors (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -878,7 +878,7 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.get_ServerIntermediateCertificates (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -909,14 +909,14 @@ package body WinRt.Windows.Web.Http.Filters is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IHttpServerCustomValidationRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;

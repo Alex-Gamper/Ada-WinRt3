@@ -696,7 +696,7 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoFrame
       (
          this : access IPerceptionColorFrame_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -708,14 +708,14 @@ package WinRt.Windows.Devices.Perception is
       function get_RelativeTime
       (
          this : access IPerceptionColorFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function TryOpenFrame
       (
          this : access IPerceptionColorFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -728,21 +728,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IPerceptionColorFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IPerceptionColorFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -763,7 +763,7 @@ package WinRt.Windows.Devices.Perception is
       function TryReadLatestFrame
       (
          this : access IPerceptionColorFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -776,14 +776,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailableChanged
       (
          this : access IPerceptionColorFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -791,14 +791,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActiveChanged
       (
          this : access IPerceptionColorFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -806,14 +806,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertiesChanged
       (
          this : access IPerceptionColorFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -821,14 +821,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoProfileChanged
       (
          this : access IPerceptionColorFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -836,14 +836,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraIntrinsicsChanged
       (
          this : access IPerceptionColorFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -913,21 +913,21 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoProfile
       (
          this : access IPerceptionColorFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionVideoProfile
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionVideoProfile
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraIntrinsics
       (
          this : access IPerceptionColorFrameSource_Interface;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
       function AcquireControlSession
       (
          this : access IPerceptionColorFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionControlSession
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionControlSession
       )
       return WinRt.Hresult is abstract;
 
@@ -951,7 +951,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          targetId : WinRt.HString;
-         result : Windows.Foundation.Numerics.Matrix4x4_Ptr;
+         result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -959,7 +959,7 @@ package WinRt.Windows.Devices.Perception is
       function TryGetDepthCorrelatedCameraIntrinsicsAsync
       (
          this : access IPerceptionColorFrameSource_Interface;
-         correlatedDepthFrameSource : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         correlatedDepthFrameSource : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -968,7 +968,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSource_Interface;
          targetSourceId : WinRt.HString;
-         correlatedDepthFrameSource : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         correlatedDepthFrameSource : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -976,8 +976,8 @@ package WinRt.Windows.Devices.Perception is
       function TrySetVideoProfileAsync
       (
          this : access IPerceptionColorFrameSource_Interface;
-         controlSession : Windows.Devices.Perception.IPerceptionControlSession;
-         profile : Windows.Devices.Perception.IPerceptionVideoProfile;
+         controlSession : WinRt.Windows.Devices.Perception.IPerceptionControlSession;
+         profile : WinRt.Windows.Devices.Perception.IPerceptionVideoProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -985,7 +985,7 @@ package WinRt.Windows.Devices.Perception is
       function OpenReader
       (
          this : access IPerceptionColorFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrameReader
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1009,7 +1009,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionColorFrameSourceAddedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1021,7 +1021,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionColorFrameSourceRemovedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1033,7 +1033,7 @@ package WinRt.Windows.Devices.Perception is
       function CreateWatcher
       (
          this : access IPerceptionColorFrameSourceStatics_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionColorFrameSourceWatcher
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionColorFrameSourceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,14 +1068,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceAdded
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1083,14 +1083,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceRemoved
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1098,14 +1098,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1113,21 +1113,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPerceptionColorFrameSourceWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1152,14 +1152,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionControlSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ControlLost
       (
          this : access IPerceptionControlSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1180,9 +1180,9 @@ package WinRt.Windows.Devices.Perception is
       function UnprojectPixelAtCorrelatedDepth
       (
          this : access IPerceptionDepthCorrelatedCameraIntrinsics_Interface;
-         pixelCoordinate : Windows.Foundation.Point;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         pixelCoordinate : WinRt.Windows.Foundation.Point;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1190,31 +1190,31 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthCorrelatedCameraIntrinsics_Interface;
          sourceCoordinatesSize : WinRt.UInt32;
-         sourceCoordinates : Windows.Foundation.Point_Ptr;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         sourceCoordinates : WinRt.Windows.Foundation.Point_Ptr;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Numerics.Vector3_Ptr
+         results : WinRt.Windows.Foundation.Numerics.Vector3_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function UnprojectRegionPixelsAtCorrelatedDepthAsync
       (
          this : access IPerceptionDepthCorrelatedCameraIntrinsics_Interface;
-         region : Windows.Foundation.Rect;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         region : WinRt.Windows.Foundation.Rect;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Numerics.Vector3_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         results : WinRt.Windows.Foundation.Numerics.Vector3_Ptr;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UnprojectAllPixelsAtCorrelatedDepthAsync
       (
          this : access IPerceptionDepthCorrelatedCameraIntrinsics_Interface;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Numerics.Vector3_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         results : WinRt.Windows.Foundation.Numerics.Vector3_Ptr;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1226,9 +1226,9 @@ package WinRt.Windows.Devices.Perception is
       function MapPixelToTarget
       (
          this : access IPerceptionDepthCorrelatedCoordinateMapper_Interface;
-         sourcePixelCoordinate : Windows.Foundation.Point;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
-         RetVal : access Windows.Foundation.Point
+         sourcePixelCoordinate : WinRt.Windows.Foundation.Point;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1236,31 +1236,31 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthCorrelatedCoordinateMapper_Interface;
          sourceCoordinatesSize : WinRt.UInt32;
-         sourceCoordinates : Windows.Foundation.Point_Ptr;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         sourceCoordinates : WinRt.Windows.Foundation.Point_Ptr;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          resultsSize : WinRt.UInt32;
-         results : Windows.Foundation.Point_Ptr
+         results : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function MapRegionOfPixelsToTargetAsync
       (
          this : access IPerceptionDepthCorrelatedCoordinateMapper_Interface;
-         region : Windows.Foundation.Rect;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         region : WinRt.Windows.Foundation.Rect;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          targetCoordinatesSize : WinRt.UInt32;
-         targetCoordinates : Windows.Foundation.Point_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         targetCoordinates : WinRt.Windows.Foundation.Point_Ptr;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MapAllPixelsToTargetAsync
       (
          this : access IPerceptionDepthCorrelatedCoordinateMapper_Interface;
-         depthFrame : Windows.Devices.Perception.IPerceptionDepthFrame;
+         depthFrame : WinRt.Windows.Devices.Perception.IPerceptionDepthFrame;
          targetCoordinatesSize : WinRt.UInt32;
-         targetCoordinates : Windows.Foundation.Point_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         targetCoordinates : WinRt.Windows.Foundation.Point_Ptr;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1272,7 +1272,7 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoFrame
       (
          this : access IPerceptionDepthFrame_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1284,14 +1284,14 @@ package WinRt.Windows.Devices.Perception is
       function get_RelativeTime
       (
          this : access IPerceptionDepthFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function TryOpenFrame
       (
          this : access IPerceptionDepthFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1304,21 +1304,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IPerceptionDepthFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IPerceptionDepthFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,7 +1339,7 @@ package WinRt.Windows.Devices.Perception is
       function TryReadLatestFrame
       (
          this : access IPerceptionDepthFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1352,14 +1352,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailableChanged
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1367,14 +1367,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActiveChanged
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1382,14 +1382,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertiesChanged
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1397,14 +1397,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoProfileChanged
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1412,14 +1412,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraIntrinsicsChanged
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1489,21 +1489,21 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoProfile
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionVideoProfile
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionVideoProfile
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraIntrinsics
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
       function AcquireControlSession
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionControlSession
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionControlSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1527,7 +1527,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          targetId : WinRt.HString;
-         result : Windows.Foundation.Numerics.Matrix4x4_Ptr;
+         result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1535,7 +1535,7 @@ package WinRt.Windows.Devices.Perception is
       function TryGetDepthCorrelatedCameraIntrinsicsAsync
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         target : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         target : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1544,7 +1544,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSource_Interface;
          targetId : WinRt.HString;
-         depthFrameSourceToMapWith : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         depthFrameSourceToMapWith : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1552,8 +1552,8 @@ package WinRt.Windows.Devices.Perception is
       function TrySetVideoProfileAsync
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         controlSession : Windows.Devices.Perception.IPerceptionControlSession;
-         profile : Windows.Devices.Perception.IPerceptionVideoProfile;
+         controlSession : WinRt.Windows.Devices.Perception.IPerceptionControlSession;
+         profile : WinRt.Windows.Devices.Perception.IPerceptionVideoProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1561,7 +1561,7 @@ package WinRt.Windows.Devices.Perception is
       function OpenReader
       (
          this : access IPerceptionDepthFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrameReader
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameReader
       )
       return WinRt.Hresult is abstract;
 
@@ -1585,7 +1585,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionDepthFrameSourceAddedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1597,7 +1597,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionDepthFrameSourceRemovedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,7 +1609,7 @@ package WinRt.Windows.Devices.Perception is
       function CreateWatcher
       (
          this : access IPerceptionDepthFrameSourceStatics_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionDepthFrameSourceWatcher
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSourceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -1644,14 +1644,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceAdded
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1659,14 +1659,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceRemoved
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1674,14 +1674,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1689,21 +1689,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPerceptionDepthFrameSourceWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1727,7 +1727,7 @@ package WinRt.Windows.Devices.Perception is
       function get_CollectionChange
       (
          this : access IPerceptionFrameSourcePropertiesChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.CollectionChange
+         RetVal : access WinRt.Windows.Foundation.Collections.CollectionChange
       )
       return WinRt.Hresult is abstract;
 
@@ -1746,7 +1746,7 @@ package WinRt.Windows.Devices.Perception is
       function get_Status
       (
          this : access IPerceptionFrameSourcePropertyChangeResult_Interface;
-         RetVal : access Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
+         RetVal : access WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1765,7 +1765,7 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoFrame
       (
          this : access IPerceptionInfraredFrame_Interface;
-         RetVal : access Windows.Media.IVideoFrame
+         RetVal : access WinRt.Windows.Media.IVideoFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1777,14 +1777,14 @@ package WinRt.Windows.Devices.Perception is
       function get_RelativeTime
       (
          this : access IPerceptionInfraredFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function TryOpenFrame
       (
          this : access IPerceptionInfraredFrameArrivedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1797,21 +1797,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameReader_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IPerceptionInfraredFrameReader_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Source
       (
          this : access IPerceptionInfraredFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -1832,7 +1832,7 @@ package WinRt.Windows.Devices.Perception is
       function TryReadLatestFrame
       (
          this : access IPerceptionInfraredFrameReader_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrame
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -1845,14 +1845,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailableChanged
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1860,14 +1860,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActiveChanged
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1875,14 +1875,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PropertiesChanged
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1890,14 +1890,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VideoProfileChanged
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1905,14 +1905,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CameraIntrinsicsChanged
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1982,21 +1982,21 @@ package WinRt.Windows.Devices.Perception is
       function get_VideoProfile
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionVideoProfile
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionVideoProfile
       )
       return WinRt.Hresult is abstract;
 
       function get_CameraIntrinsics
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         RetVal : access Windows.Media.Devices.Core.ICameraIntrinsics
+         RetVal : access WinRt.Windows.Media.Devices.Core.ICameraIntrinsics
       )
       return WinRt.Hresult is abstract;
 
       function AcquireControlSession
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionControlSession
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionControlSession
       )
       return WinRt.Hresult is abstract;
 
@@ -2020,7 +2020,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          targetId : WinRt.HString;
-         result : Windows.Foundation.Numerics.Matrix4x4_Ptr;
+         result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2028,7 +2028,7 @@ package WinRt.Windows.Devices.Perception is
       function TryGetDepthCorrelatedCameraIntrinsicsAsync
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         target : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         target : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2037,7 +2037,7 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSource_Interface;
          targetId : WinRt.HString;
-         depthFrameSourceToMapWith : Windows.Devices.Perception.IPerceptionDepthFrameSource;
+         depthFrameSourceToMapWith : WinRt.Windows.Devices.Perception.IPerceptionDepthFrameSource;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2045,8 +2045,8 @@ package WinRt.Windows.Devices.Perception is
       function TrySetVideoProfileAsync
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         controlSession : Windows.Devices.Perception.IPerceptionControlSession;
-         profile : Windows.Devices.Perception.IPerceptionVideoProfile;
+         controlSession : WinRt.Windows.Devices.Perception.IPerceptionControlSession;
+         profile : WinRt.Windows.Devices.Perception.IPerceptionVideoProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2054,7 +2054,7 @@ package WinRt.Windows.Devices.Perception is
       function OpenReader
       (
          this : access IPerceptionInfraredFrameSource_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrameReader
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2078,7 +2078,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionInfraredFrameSourceAddedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -2090,7 +2090,7 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameSource
       (
          this : access IPerceptionInfraredFrameSourceRemovedEventArgs_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrameSource
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSource
       )
       return WinRt.Hresult is abstract;
 
@@ -2102,7 +2102,7 @@ package WinRt.Windows.Devices.Perception is
       function CreateWatcher
       (
          this : access IPerceptionInfraredFrameSourceStatics_Interface;
-         RetVal : access Windows.Devices.Perception.IPerceptionInfraredFrameSourceWatcher
+         RetVal : access WinRt.Windows.Devices.Perception.IPerceptionInfraredFrameSourceWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -2137,14 +2137,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceAdded
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2152,14 +2152,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceRemoved
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2167,14 +2167,14 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2182,21 +2182,21 @@ package WinRt.Windows.Devices.Perception is
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPerceptionInfraredFrameSourceWatcher_Interface;
-         RetVal : access Windows.Devices.Enumeration.DeviceWatcherStatus
+         RetVal : access WinRt.Windows.Devices.Enumeration.DeviceWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2220,14 +2220,14 @@ package WinRt.Windows.Devices.Perception is
       function get_BitmapPixelFormat
       (
          this : access IPerceptionVideoProfile_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapPixelFormat
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_BitmapAlphaMode
       (
          this : access IPerceptionVideoProfile_Interface;
-         RetVal : access Windows.Graphics.Imaging.BitmapAlphaMode
+         RetVal : access WinRt.Windows.Graphics.Imaging.BitmapAlphaMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2248,14 +2248,14 @@ package WinRt.Windows.Devices.Perception is
       function get_FrameDuration
       (
          this : access IPerceptionVideoProfile_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function IsEqual
       (
          this : access IPerceptionVideoProfile_Interface;
-         other : Windows.Devices.Perception.IPerceptionVideoProfile;
+         other : WinRt.Windows.Devices.Perception.IPerceptionVideoProfile;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2464,7 +2464,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_FrameArrived
    (
       this : in out PerceptionColorFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Source
@@ -2533,7 +2533,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_AvailableChanged
    (
       this : in out PerceptionColorFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActiveChanged
@@ -2546,7 +2546,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_ActiveChanged
    (
       this : in out PerceptionColorFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PropertiesChanged
@@ -2559,7 +2559,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_PropertiesChanged
    (
       this : in out PerceptionColorFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoProfileChanged
@@ -2572,7 +2572,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_VideoProfileChanged
    (
       this : in out PerceptionColorFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CameraIntrinsicsChanged
@@ -2585,7 +2585,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_CameraIntrinsicsChanged
    (
       this : in out PerceptionColorFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Id
@@ -2678,14 +2678,14 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionColorFrameSource;
       targetId : WinRt.WString;
-      result : Windows.Foundation.Numerics.Matrix4x4_Ptr
+      result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr
    )
    return WinRt.Boolean;
 
    function TryGetDepthCorrelatedCameraIntrinsicsAsync
    (
       this : in out PerceptionColorFrameSource;
-      correlatedDepthFrameSource : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      correlatedDepthFrameSource : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class;
 
@@ -2693,15 +2693,15 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionColorFrameSource;
       targetSourceId : WinRt.WString;
-      correlatedDepthFrameSource : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      correlatedDepthFrameSource : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class;
 
    function TrySetVideoProfileAsync
    (
       this : in out PerceptionColorFrameSource;
-      controlSession : Windows.Devices.Perception.PerceptionControlSession'Class;
-      profile : Windows.Devices.Perception.PerceptionVideoProfile'Class
+      controlSession : WinRt.Windows.Devices.Perception.PerceptionControlSession'Class;
+      profile : WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class;
 
@@ -2766,7 +2766,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceAdded
    (
       this : in out PerceptionColorFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceRemoved
@@ -2779,7 +2779,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceRemoved
    (
       this : in out PerceptionColorFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -2792,7 +2792,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_Stopped
    (
       this : in out PerceptionColorFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -2805,7 +2805,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_EnumerationCompleted
    (
       this : in out PerceptionColorFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -2843,7 +2843,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_ControlLost
    (
       this : in out PerceptionControlSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TrySetPropertyAsync
@@ -2871,32 +2871,32 @@ package WinRt.Windows.Devices.Perception is
    function UnprojectPixelAtCorrelatedDepth
    (
       this : in out PerceptionDepthCorrelatedCameraIntrinsics;
-      pixelCoordinate : Windows.Foundation.Point;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class
+      pixelCoordinate : WinRt.Windows.Foundation.Point;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class
    )
    return WinRt.Windows.Foundation.Numerics.Vector3;
 
    procedure UnprojectPixelsAtCorrelatedDepth
    (
       this : in out PerceptionDepthCorrelatedCameraIntrinsics;
-      sourceCoordinates : Windows.Foundation.Point_Array;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      results : Windows.Foundation.Numerics.Vector3_Array
+      sourceCoordinates : WinRt.Windows.Foundation.Point_Array;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      results : WinRt.Windows.Foundation.Numerics.Vector3_Array
    );
 
    procedure UnprojectRegionPixelsAtCorrelatedDepthAsync
    (
       this : in out PerceptionDepthCorrelatedCameraIntrinsics;
-      region : Windows.Foundation.Rect;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      results : Windows.Foundation.Numerics.Vector3_Array
+      region : WinRt.Windows.Foundation.Rect;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      results : WinRt.Windows.Foundation.Numerics.Vector3_Array
    );
 
    procedure UnprojectAllPixelsAtCorrelatedDepthAsync
    (
       this : in out PerceptionDepthCorrelatedCameraIntrinsics;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      results : Windows.Foundation.Numerics.Vector3_Array
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      results : WinRt.Windows.Foundation.Numerics.Vector3_Array
    );
 
    -----------------------------------------------------------------------------
@@ -2911,32 +2911,32 @@ package WinRt.Windows.Devices.Perception is
    function MapPixelToTarget
    (
       this : in out PerceptionDepthCorrelatedCoordinateMapper;
-      sourcePixelCoordinate : Windows.Foundation.Point;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class
+      sourcePixelCoordinate : WinRt.Windows.Foundation.Point;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class
    )
    return WinRt.Windows.Foundation.Point;
 
    procedure MapPixelsToTarget
    (
       this : in out PerceptionDepthCorrelatedCoordinateMapper;
-      sourceCoordinates : Windows.Foundation.Point_Array;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      results : Windows.Foundation.Point_Array
+      sourceCoordinates : WinRt.Windows.Foundation.Point_Array;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      results : WinRt.Windows.Foundation.Point_Array
    );
 
    procedure MapRegionOfPixelsToTargetAsync
    (
       this : in out PerceptionDepthCorrelatedCoordinateMapper;
-      region : Windows.Foundation.Rect;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      targetCoordinates : Windows.Foundation.Point_Array
+      region : WinRt.Windows.Foundation.Rect;
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      targetCoordinates : WinRt.Windows.Foundation.Point_Array
    );
 
    procedure MapAllPixelsToTargetAsync
    (
       this : in out PerceptionDepthCorrelatedCoordinateMapper;
-      depthFrame : Windows.Devices.Perception.PerceptionDepthFrame'Class;
-      targetCoordinates : Windows.Foundation.Point_Array
+      depthFrame : WinRt.Windows.Devices.Perception.PerceptionDepthFrame'Class;
+      targetCoordinates : WinRt.Windows.Foundation.Point_Array
    );
 
    -----------------------------------------------------------------------------
@@ -2999,7 +2999,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_FrameArrived
    (
       this : in out PerceptionDepthFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Source
@@ -3068,7 +3068,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_AvailableChanged
    (
       this : in out PerceptionDepthFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActiveChanged
@@ -3081,7 +3081,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_ActiveChanged
    (
       this : in out PerceptionDepthFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PropertiesChanged
@@ -3094,7 +3094,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_PropertiesChanged
    (
       this : in out PerceptionDepthFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoProfileChanged
@@ -3107,7 +3107,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_VideoProfileChanged
    (
       this : in out PerceptionDepthFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CameraIntrinsicsChanged
@@ -3120,7 +3120,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_CameraIntrinsicsChanged
    (
       this : in out PerceptionDepthFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Id
@@ -3213,14 +3213,14 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionDepthFrameSource;
       targetId : WinRt.WString;
-      result : Windows.Foundation.Numerics.Matrix4x4_Ptr
+      result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr
    )
    return WinRt.Boolean;
 
    function TryGetDepthCorrelatedCameraIntrinsicsAsync
    (
       this : in out PerceptionDepthFrameSource;
-      target : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      target : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class;
 
@@ -3228,15 +3228,15 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionDepthFrameSource;
       targetId : WinRt.WString;
-      depthFrameSourceToMapWith : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      depthFrameSourceToMapWith : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class;
 
    function TrySetVideoProfileAsync
    (
       this : in out PerceptionDepthFrameSource;
-      controlSession : Windows.Devices.Perception.PerceptionControlSession'Class;
-      profile : Windows.Devices.Perception.PerceptionVideoProfile'Class
+      controlSession : WinRt.Windows.Devices.Perception.PerceptionControlSession'Class;
+      profile : WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class;
 
@@ -3301,7 +3301,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceAdded
    (
       this : in out PerceptionDepthFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceRemoved
@@ -3314,7 +3314,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceRemoved
    (
       this : in out PerceptionDepthFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -3327,7 +3327,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_Stopped
    (
       this : in out PerceptionDepthFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3340,7 +3340,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_EnumerationCompleted
    (
       this : in out PerceptionDepthFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -3461,7 +3461,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_FrameArrived
    (
       this : in out PerceptionInfraredFrameReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Source
@@ -3530,7 +3530,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_AvailableChanged
    (
       this : in out PerceptionInfraredFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActiveChanged
@@ -3543,7 +3543,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_ActiveChanged
    (
       this : in out PerceptionInfraredFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PropertiesChanged
@@ -3556,7 +3556,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_PropertiesChanged
    (
       this : in out PerceptionInfraredFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_VideoProfileChanged
@@ -3569,7 +3569,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_VideoProfileChanged
    (
       this : in out PerceptionInfraredFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CameraIntrinsicsChanged
@@ -3582,7 +3582,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_CameraIntrinsicsChanged
    (
       this : in out PerceptionInfraredFrameSource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Id
@@ -3675,14 +3675,14 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionInfraredFrameSource;
       targetId : WinRt.WString;
-      result : Windows.Foundation.Numerics.Matrix4x4_Ptr
+      result : WinRt.Windows.Foundation.Numerics.Matrix4x4_Ptr
    )
    return WinRt.Boolean;
 
    function TryGetDepthCorrelatedCameraIntrinsicsAsync
    (
       this : in out PerceptionInfraredFrameSource;
-      target : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      target : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCameraIntrinsics'Class;
 
@@ -3690,15 +3690,15 @@ package WinRt.Windows.Devices.Perception is
    (
       this : in out PerceptionInfraredFrameSource;
       targetId : WinRt.WString;
-      depthFrameSourceToMapWith : Windows.Devices.Perception.PerceptionDepthFrameSource'Class
+      depthFrameSourceToMapWith : WinRt.Windows.Devices.Perception.PerceptionDepthFrameSource'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionDepthCorrelatedCoordinateMapper'Class;
 
    function TrySetVideoProfileAsync
    (
       this : in out PerceptionInfraredFrameSource;
-      controlSession : Windows.Devices.Perception.PerceptionControlSession'Class;
-      profile : Windows.Devices.Perception.PerceptionVideoProfile'Class
+      controlSession : WinRt.Windows.Devices.Perception.PerceptionControlSession'Class;
+      profile : WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class
    )
    return WinRt.Windows.Devices.Perception.PerceptionFrameSourcePropertyChangeResult'Class;
 
@@ -3763,7 +3763,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceAdded
    (
       this : in out PerceptionInfraredFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceRemoved
@@ -3776,7 +3776,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_SourceRemoved
    (
       this : in out PerceptionInfraredFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -3789,7 +3789,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_Stopped
    (
       this : in out PerceptionInfraredFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -3802,7 +3802,7 @@ package WinRt.Windows.Devices.Perception is
    procedure remove_EnumerationCompleted
    (
       this : in out PerceptionInfraredFrameSourceWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -3863,7 +3863,7 @@ package WinRt.Windows.Devices.Perception is
    function IsEqual
    (
       this : in out PerceptionVideoProfile;
-      other : Windows.Devices.Perception.PerceptionVideoProfile'Class
+      other : WinRt.Windows.Devices.Perception.PerceptionVideoProfile'Class
    )
    return WinRt.Boolean;
 

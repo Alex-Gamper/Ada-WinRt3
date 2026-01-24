@@ -72,7 +72,7 @@ package WinRt.Windows.Management.Core is
       (
          this : access IApplicationDataManagerStatics_Interface;
          packageFamilyName : WinRt.HString;
-         RetVal : access Windows.Storage.IApplicationData
+         RetVal : access WinRt.Windows.Storage.IApplicationData
       )
       return WinRt.Hresult is abstract;
 

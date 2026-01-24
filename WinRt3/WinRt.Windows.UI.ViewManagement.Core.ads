@@ -256,14 +256,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreFrameworkInputView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrimaryViewAnimationStarting
       (
          this : access ICoreFrameworkInputView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -271,14 +271,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreFrameworkInputView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OcclusionsChanged
       (
          this : access ICoreFrameworkInputView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -304,7 +304,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function get_AnimationDuration
       (
          this : access ICoreFrameworkInputViewAnimationStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -335,15 +335,15 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function GetForUIContext
       (
          this : access ICoreFrameworkInputViewStatics_Interface;
-         context : Windows.UI.IUIContext;
-         RetVal : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
+         context : WinRt.Windows.UI.IUIContext;
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
       )
       return WinRt.Hresult is abstract;
 
       function GetForCurrentView
       (
          this : access ICoreFrameworkInputViewStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.ICoreFrameworkInputView
       )
       return WinRt.Hresult is abstract;
 
@@ -356,14 +356,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_OcclusionsChanged
       (
          this : access ICoreInputView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -397,14 +397,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_XYFocusTransferringFromPrimaryView
       (
          this : access ICoreInputView2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -412,22 +412,22 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_XYFocusTransferredToPrimaryView
       (
          this : access ICoreInputView2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function TryTransferXYFocusToPrimaryView
       (
          this : access ICoreInputView2_Interface;
-         origin : Windows.Foundation.Rect;
-         direction : Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection;
+         origin : WinRt.Windows.Foundation.Rect;
+         direction : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -447,7 +447,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function TryShow
       (
          this : access ICoreInputView3_Interface;
-         type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind;
+         type_x : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -468,14 +468,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrimaryViewShowing
       (
          this : access ICoreInputView4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -483,14 +483,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrimaryViewHiding
       (
          this : access ICoreInputView4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -502,7 +502,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function IsKindSupported
       (
          this : access ICoreInputView5_Interface;
-         type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind;
+         type_x : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -511,14 +511,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView5_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SupportedKindsChanged
       (
          this : access ICoreInputView5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -526,14 +526,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       (
          this : access ICoreInputView5_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PrimaryViewAnimationStarting
       (
          this : access ICoreInputView5_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -566,7 +566,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function get_AnimationDuration
       (
          this : access ICoreInputViewAnimationStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -590,14 +590,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function get_OccludingRect
       (
          this : access ICoreInputViewOcclusion_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_OcclusionKind
       (
          this : access ICoreInputViewOcclusion_Interface;
-         RetVal : access Windows.UI.ViewManagement.Core.CoreInputViewOcclusionKind
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.CoreInputViewOcclusionKind
       )
       return WinRt.Hresult is abstract;
 
@@ -647,7 +647,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function GetForCurrentView
       (
          this : access ICoreInputViewStatics_Interface;
-         RetVal : access Windows.UI.ViewManagement.Core.ICoreInputView
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputView
       )
       return WinRt.Hresult is abstract;
 
@@ -659,8 +659,8 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function GetForUIContext
       (
          this : access ICoreInputViewStatics2_Interface;
-         context : Windows.UI.IUIContext;
-         RetVal : access Windows.UI.ViewManagement.Core.ICoreInputView
+         context : WinRt.Windows.UI.IUIContext;
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.ICoreInputView
       )
       return WinRt.Hresult is abstract;
 
@@ -672,14 +672,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
       function get_Origin
       (
          this : access ICoreInputViewTransferringXYFocusEventArgs_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
       function get_Direction
       (
          this : access ICoreInputViewTransferringXYFocusEventArgs_Interface;
-         RetVal : access Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection
+         RetVal : access WinRt.Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection
       )
       return WinRt.Hresult is abstract;
 
@@ -780,7 +780,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.UI.ViewManagement.Core.CoreFrameworkInputView;
 
@@ -800,7 +800,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_PrimaryViewAnimationStarting
    (
       this : in out CoreFrameworkInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_OcclusionsChanged
@@ -813,7 +813,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_OcclusionsChanged
    (
       this : in out CoreFrameworkInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -875,7 +875,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
 
    function GetForUIContext
    (
-      context : Windows.UI.UIContext'Class
+      context : WinRt.Windows.UI.UIContext'Class
    )
    return WinRt.Windows.UI.ViewManagement.Core.CoreInputView;
 
@@ -895,7 +895,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_OcclusionsChanged
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetCoreInputViewOcclusions
@@ -926,7 +926,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_XYFocusTransferringFromPrimaryView
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_XYFocusTransferredToPrimaryView
@@ -939,14 +939,14 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_XYFocusTransferredToPrimaryView
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function TryTransferXYFocusToPrimaryView
    (
       this : in out CoreInputView;
-      origin : Windows.Foundation.Rect;
-      direction : Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection
+      origin : WinRt.Windows.Foundation.Rect;
+      direction : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewXYFocusTransferDirection
    )
    return WinRt.Boolean;
 
@@ -959,7 +959,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    function TryShow
    (
       this : in out CoreInputView;
-      type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind
+      type_x : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewKind
    )
    return WinRt.Boolean;
 
@@ -979,7 +979,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_PrimaryViewShowing
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PrimaryViewHiding
@@ -992,13 +992,13 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_PrimaryViewHiding
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function IsKindSupported
    (
       this : in out CoreInputView;
-      type_x : Windows.UI.ViewManagement.Core.CoreInputViewKind
+      type_x : WinRt.Windows.UI.ViewManagement.Core.CoreInputViewKind
    )
    return WinRt.Boolean;
 
@@ -1012,7 +1012,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_SupportedKindsChanged
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PrimaryViewAnimationStarting
@@ -1025,7 +1025,7 @@ package WinRt.Windows.UI.ViewManagement.Core is
    procedure remove_PrimaryViewAnimationStarting
    (
       this : in out CoreInputView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

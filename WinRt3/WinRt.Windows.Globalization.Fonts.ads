@@ -83,21 +83,21 @@ package WinRt.Windows.Globalization.Fonts is
       function get_FontWeight
       (
          this : access ILanguageFont_Interface;
-         RetVal : access Windows.UI.Text.FontWeight
+         RetVal : access WinRt.Windows.UI.Text.FontWeight
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStretch
       (
          this : access ILanguageFont_Interface;
-         RetVal : access Windows.UI.Text.FontStretch
+         RetVal : access WinRt.Windows.UI.Text.FontStretch
       )
       return WinRt.Hresult is abstract;
 
       function get_FontStyle
       (
          this : access ILanguageFont_Interface;
-         RetVal : access Windows.UI.Text.FontStyle
+         RetVal : access WinRt.Windows.UI.Text.FontStyle
       )
       return WinRt.Hresult is abstract;
 
@@ -116,77 +116,77 @@ package WinRt.Windows.Globalization.Fonts is
       function get_UITextFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_UIHeadingFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_UITitleFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_UICaptionFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_UINotificationHeadingFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_TraditionalDocumentFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_ModernDocumentFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentHeadingFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_FixedWidthTextFont
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentAlternate1Font
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentAlternate2Font
       (
          this : access ILanguageFontGroup_Interface;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFont
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFont
       )
       return WinRt.Hresult is abstract;
 
@@ -199,7 +199,7 @@ package WinRt.Windows.Globalization.Fonts is
       (
          this : access ILanguageFontGroupFactory_Interface;
          languageTag : WinRt.HString;
-         RetVal : access Windows.Globalization.Fonts.ILanguageFontGroup
+         RetVal : access WinRt.Windows.Globalization.Fonts.ILanguageFontGroup
       )
       return WinRt.Hresult is abstract;
 

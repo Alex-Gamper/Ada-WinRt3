@@ -80,7 +80,7 @@ package WinRt.Windows.UI.Xaml.Resources is
          this : access ICustomXamlResourceLoaderFactory_Interface;
          baseInterface : WinRt.IInspectable;
          innerInterface : access WinRt.IInspectable;
-         RetVal : access Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
+         RetVal : access WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -108,14 +108,14 @@ package WinRt.Windows.UI.Xaml.Resources is
       function get_Current
       (
          this : access ICustomXamlResourceLoaderStatics_Interface;
-         RetVal : access Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
+         RetVal : access WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
       )
       return WinRt.Hresult is abstract;
 
       function put_Current
       (
          this : access ICustomXamlResourceLoaderStatics_Interface;
-         value : Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
+         value : WinRt.Windows.UI.Xaml.Resources.ICustomXamlResourceLoader
       )
       return WinRt.Hresult is abstract;
 
@@ -149,7 +149,7 @@ package WinRt.Windows.UI.Xaml.Resources is
 
    procedure put_Current
    (
-      value : Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
+      value : WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
    );
 
    -----------------------------------------------------------------------------

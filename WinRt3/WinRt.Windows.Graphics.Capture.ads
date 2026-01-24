@@ -189,21 +189,21 @@ package WinRt.Windows.Graphics.Capture is
       function get_Surface
       (
          this : access IDirect3D11CaptureFrame_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface
       )
       return WinRt.Hresult is abstract;
 
       function get_SystemRelativeTime
       (
          this : access IDirect3D11CaptureFrame_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_ContentSize
       (
          this : access IDirect3D11CaptureFrame_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -222,7 +222,7 @@ package WinRt.Windows.Graphics.Capture is
       function get_DirtyRegionMode
       (
          this : access IDirect3D11CaptureFrame2_Interface;
-         RetVal : access Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+         RetVal : access WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -234,17 +234,17 @@ package WinRt.Windows.Graphics.Capture is
       function Recreate
       (
          this : access IDirect3D11CaptureFramePool_Interface;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
          numberOfBuffers : WinRt.Int32;
-         size : Windows.Graphics.SizeInt32
+         size : WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function TryGetNextFrame
       (
          this : access IDirect3D11CaptureFramePool_Interface;
-         RetVal : access Windows.Graphics.Capture.IDirect3D11CaptureFrame
+         RetVal : access WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFrame
       )
       return WinRt.Hresult is abstract;
 
@@ -252,29 +252,29 @@ package WinRt.Windows.Graphics.Capture is
       (
          this : access IDirect3D11CaptureFramePool_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_FrameArrived
       (
          this : access IDirect3D11CaptureFramePool_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateCaptureSession
       (
          this : access IDirect3D11CaptureFramePool_Interface;
-         item : Windows.Graphics.Capture.IGraphicsCaptureItem;
-         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureSession
+         item : WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem;
+         RetVal : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureSession
       )
       return WinRt.Hresult is abstract;
 
       function get_DispatcherQueue
       (
          this : access IDirect3D11CaptureFramePool_Interface;
-         RetVal : access Windows.System.IDispatcherQueue
+         RetVal : access WinRt.Windows.System.IDispatcherQueue
       )
       return WinRt.Hresult is abstract;
 
@@ -286,11 +286,11 @@ package WinRt.Windows.Graphics.Capture is
       function Create
       (
          this : access IDirect3D11CaptureFramePoolStatics_Interface;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
          numberOfBuffers : WinRt.Int32;
-         size : Windows.Graphics.SizeInt32;
-         RetVal : access Windows.Graphics.Capture.IDirect3D11CaptureFramePool
+         size : WinRt.Windows.Graphics.SizeInt32;
+         RetVal : access WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFramePool
       )
       return WinRt.Hresult is abstract;
 
@@ -302,11 +302,11 @@ package WinRt.Windows.Graphics.Capture is
       function CreateFreeThreaded
       (
          this : access IDirect3D11CaptureFramePoolStatics2_Interface;
-         device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+         device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
          numberOfBuffers : WinRt.Int32;
-         size : Windows.Graphics.SizeInt32;
-         RetVal : access Windows.Graphics.Capture.IDirect3D11CaptureFramePool
+         size : WinRt.Windows.Graphics.SizeInt32;
+         RetVal : access WinRt.Windows.Graphics.Capture.IDirect3D11CaptureFramePool
       )
       return WinRt.Hresult is abstract;
 
@@ -318,7 +318,7 @@ package WinRt.Windows.Graphics.Capture is
       function RequestAccessAsync
       (
          this : access IGraphicsCaptureAccessStatics_Interface;
-         request : Windows.Graphics.Capture.GraphicsCaptureAccessKind;
+         request : WinRt.Windows.Graphics.Capture.GraphicsCaptureAccessKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -338,7 +338,7 @@ package WinRt.Windows.Graphics.Capture is
       function get_Size
       (
          this : access IGraphicsCaptureItem_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -346,14 +346,14 @@ package WinRt.Windows.Graphics.Capture is
       (
          this : access IGraphicsCaptureItem_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IGraphicsCaptureItem_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -365,8 +365,8 @@ package WinRt.Windows.Graphics.Capture is
       function CreateFromVisual
       (
          this : access IGraphicsCaptureItemStatics_Interface;
-         visual : Windows.UI.Composition.IVisual;
-         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureItem
+         visual : WinRt.Windows.UI.Composition.IVisual;
+         RetVal : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem
       )
       return WinRt.Hresult is abstract;
 
@@ -378,16 +378,16 @@ package WinRt.Windows.Graphics.Capture is
       function TryCreateFromWindowId
       (
          this : access IGraphicsCaptureItemStatics2_Interface;
-         windowId : Windows.UI.WindowId;
-         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureItem
+         windowId : WinRt.Windows.UI.WindowId;
+         RetVal : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateFromDisplayId
       (
          this : access IGraphicsCaptureItemStatics2_Interface;
-         displayId : Windows.Graphics.DisplayId;
-         RetVal : access Windows.Graphics.Capture.IGraphicsCaptureItem
+         displayId : WinRt.Windows.Graphics.DisplayId;
+         RetVal : access WinRt.Windows.Graphics.Capture.IGraphicsCaptureItem
       )
       return WinRt.Hresult is abstract;
 
@@ -460,14 +460,14 @@ package WinRt.Windows.Graphics.Capture is
       function get_DirtyRegionMode
       (
          this : access IGraphicsCaptureSession4_Interface;
-         RetVal : access Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+         RetVal : access WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
       )
       return WinRt.Hresult is abstract;
 
       function put_DirtyRegionMode
       (
          this : access IGraphicsCaptureSession4_Interface;
-         value : Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+         value : WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
       )
       return WinRt.Hresult is abstract;
 
@@ -479,14 +479,14 @@ package WinRt.Windows.Graphics.Capture is
       function get_MinUpdateInterval
       (
          this : access IGraphicsCaptureSession5_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_MinUpdateInterval
       (
          this : access IGraphicsCaptureSession5_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -582,19 +582,19 @@ package WinRt.Windows.Graphics.Capture is
 
    function CreateFreeThreaded
    (
-      device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+      device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
       numberOfBuffers : WinRt.Int32;
-      size : Windows.Graphics.SizeInt32
+      size : WinRt.Windows.Graphics.SizeInt32
    )
    return WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool;
 
    function Create
    (
-      device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+      device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
       numberOfBuffers : WinRt.Int32;
-      size : Windows.Graphics.SizeInt32
+      size : WinRt.Windows.Graphics.SizeInt32
    )
    return WinRt.Windows.Graphics.Capture.Direct3D11CaptureFramePool;
 
@@ -604,10 +604,10 @@ package WinRt.Windows.Graphics.Capture is
    procedure Recreate
    (
       this : in out Direct3D11CaptureFramePool;
-      device : Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
+      device : WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
       numberOfBuffers : WinRt.Int32;
-      size : Windows.Graphics.SizeInt32
+      size : WinRt.Windows.Graphics.SizeInt32
    );
 
    function TryGetNextFrame
@@ -626,13 +626,13 @@ package WinRt.Windows.Graphics.Capture is
    procedure remove_FrameArrived
    (
       this : in out Direct3D11CaptureFramePool;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateCaptureSession
    (
       this : in out Direct3D11CaptureFramePool;
-      item : Windows.Graphics.Capture.GraphicsCaptureItem'Class
+      item : WinRt.Windows.Graphics.Capture.GraphicsCaptureItem'Class
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureSession'Class;
 
@@ -653,7 +653,7 @@ package WinRt.Windows.Graphics.Capture is
 
       function RequestAccessAsync
       (
-         request : Windows.Graphics.Capture.GraphicsCaptureAccessKind
+         request : WinRt.Windows.Graphics.Capture.GraphicsCaptureAccessKind
       )
       return WinRt.Windows.Security.Authorization.AppCapabilityAccess.AppCapabilityAccessStatus;
 
@@ -670,19 +670,19 @@ package WinRt.Windows.Graphics.Capture is
 
    function CreateFromVisual
    (
-      visual : Windows.UI.Composition.Visual'Class
+      visual : WinRt.Windows.UI.Composition.Visual'Class
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
 
    function TryCreateFromWindowId
    (
-      windowId : Windows.UI.WindowId
+      windowId : WinRt.Windows.UI.WindowId
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
 
    function TryCreateFromDisplayId
    (
-      displayId : Windows.Graphics.DisplayId
+      displayId : WinRt.Windows.Graphics.DisplayId
    )
    return WinRt.Windows.Graphics.Capture.GraphicsCaptureItem;
 
@@ -711,7 +711,7 @@ package WinRt.Windows.Graphics.Capture is
    procedure remove_Closed
    (
       this : in out GraphicsCaptureItem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -787,7 +787,7 @@ package WinRt.Windows.Graphics.Capture is
    procedure put_DirtyRegionMode
    (
       this : in out GraphicsCaptureSession;
-      value : Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
+      value : WinRt.Windows.Graphics.Capture.GraphicsCaptureDirtyRegionMode
    );
 
    function get_MinUpdateInterval
@@ -799,7 +799,7 @@ package WinRt.Windows.Graphics.Capture is
    procedure put_MinUpdateInterval
    (
       this : in out GraphicsCaptureSession;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_IncludeSecondaryWindows

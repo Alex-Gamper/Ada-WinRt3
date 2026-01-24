@@ -70,7 +70,7 @@ package body WinRt.Windows.Media.AppRecording is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.AppRecording.AppRecordingManager");
       m_Factory        : access WinRt.Windows.Media.AppRecording.IAppRecordingManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AppRecording.IAppRecordingManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AppRecording.IAppRecordingManager;
    begin
       return RetVal : WinRt.Windows.Media.AppRecording.AppRecordingManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAppRecordingManagerStatics'Access , m_Factory'Address);
@@ -80,7 +80,7 @@ package body WinRt.Windows.Media.AppRecording is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppRecordingManager := new Windows.Media.AppRecording.IAppRecordingManager;
+            Retval.m_IAppRecordingManager := new WinRt.Windows.Media.AppRecording.IAppRecordingManager;
             Retval.m_IAppRecordingManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -98,14 +98,14 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AppRecording.IAppRecordingStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AppRecording.IAppRecordingStatus;
    begin
       return RetVal : WinRt.Windows.Media.AppRecording.AppRecordingStatus do
          Hr := this.m_IAppRecordingManager.all.GetStatus (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppRecordingStatus := new Windows.Media.AppRecording.IAppRecordingStatus;
+         Retval.m_IAppRecordingStatus := new WinRt.Windows.Media.AppRecording.IAppRecordingStatus;
          Retval.m_IAppRecordingStatus.all := m_ComRetVal;
       end return;
    end;
@@ -113,7 +113,7 @@ package body WinRt.Windows.Media.AppRecording is
    function StartRecordingToFileAsync
    (
       this : in out AppRecordingManager;
-      file : Windows.Storage.StorageFile'Class
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -164,7 +164,7 @@ package body WinRt.Windows.Media.AppRecording is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppRecordingResult := new Windows.Media.AppRecording.IAppRecordingResult;
+                  Retval.m_IAppRecordingResult := new WinRt.Windows.Media.AppRecording.IAppRecordingResult;
                   Retval.m_IAppRecordingResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -180,9 +180,9 @@ package body WinRt.Windows.Media.AppRecording is
    function RecordTimeSpanToFileAsync
    (
       this : in out AppRecordingManager;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan;
-      file : Windows.Storage.StorageFile'Class
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan;
+      file : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -233,7 +233,7 @@ package body WinRt.Windows.Media.AppRecording is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppRecordingResult := new Windows.Media.AppRecording.IAppRecordingResult;
+                  Retval.m_IAppRecordingResult := new WinRt.Windows.Media.AppRecording.IAppRecordingResult;
                   Retval.m_IAppRecordingResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -254,7 +254,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_HString.Kind;
    begin
       Hr := this.m_IAppRecordingManager.all.get_SupportedScreenshotMediaEncodingSubtypes (m_ComRetVal'Access);
@@ -269,9 +269,9 @@ package body WinRt.Windows.Media.AppRecording is
    function SaveScreenshotToFilesAsync
    (
       this : in out AppRecordingManager;
-      folder : Windows.Storage.StorageFolder'Class;
+      folder : WinRt.Windows.Storage.StorageFolder'Class;
       filenamePrefix : WinRt.WString;
-      option : Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
+      option : WinRt.Windows.Media.AppRecording.AppRecordingSaveScreenshotOption;
       requestedFormats : GenericObject
    )
    return WinRt.Windows.Media.AppRecording.AppRecordingSaveScreenshotResult'Class is
@@ -324,7 +324,7 @@ package body WinRt.Windows.Media.AppRecording is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAppRecordingSaveScreenshotResult := new Windows.Media.AppRecording.IAppRecordingSaveScreenshotResult;
+                  Retval.m_IAppRecordingSaveScreenshotResult := new WinRt.Windows.Media.AppRecording.IAppRecordingSaveScreenshotResult;
                   Retval.m_IAppRecordingSaveScreenshotResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -386,7 +386,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAppRecordingResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -403,7 +403,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppRecordingResult.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -477,7 +477,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IAppRecordingSaveScreenshotResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -494,7 +494,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppRecordingSavedScreenshotInfo.Kind;
    begin
       Hr := this.m_IAppRecordingSaveScreenshotResult.all.get_SavedScreenshotInfos (m_ComRetVal'Access);
@@ -537,14 +537,14 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IAppRecordingSavedScreenshotInfo.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -634,7 +634,7 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppRecordingStatus.all.get_HistoricalBufferDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -651,14 +651,14 @@ package body WinRt.Windows.Media.AppRecording is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AppRecording.IAppRecordingStatusDetails;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AppRecording.IAppRecordingStatusDetails;
    begin
       return RetVal : WinRt.Windows.Media.AppRecording.AppRecordingStatusDetails do
          Hr := this.m_IAppRecordingStatus.all.get_Details (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppRecordingStatusDetails := new Windows.Media.AppRecording.IAppRecordingStatusDetails;
+         Retval.m_IAppRecordingStatusDetails := new WinRt.Windows.Media.AppRecording.IAppRecordingStatusDetails;
          Retval.m_IAppRecordingStatusDetails.all := m_ComRetVal;
       end return;
    end;

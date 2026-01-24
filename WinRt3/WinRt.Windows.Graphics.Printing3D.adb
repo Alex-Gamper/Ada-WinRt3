@@ -80,7 +80,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Print3DManager");
       m_Factory        : access WinRt.Windows.Graphics.Printing3D.IPrint3DManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrint3DManager;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrint3DManager;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Print3DManager do
          Hr := RoGetActivationFactory (m_hString, IID_IPrint3DManagerStatics'Access , m_Factory'Address);
@@ -90,7 +90,7 @@ package body WinRt.Windows.Graphics.Printing3D is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPrint3DManager := new Windows.Graphics.Printing3D.IPrint3DManager;
+            Retval.m_IPrint3DManager := new WinRt.Windows.Graphics.Printing3D.IPrint3DManager;
             Retval.m_IPrint3DManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -176,7 +176,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrint3DManager.all.add_TaskRequested (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -188,7 +188,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure remove_TaskRequested
    (
       this : in out Print3DManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -231,14 +231,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage do
          Hr := this.m_IPrint3DTask.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3D3MFPackage := new Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+         Retval.m_IPrinting3D3MFPackage := new WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
          Retval.m_IPrinting3D3MFPackage.all := m_ComRetVal;
       end return;
    end;
@@ -252,7 +252,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrint3DTask.all.add_Submitting (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -264,7 +264,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure remove_Submitting
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -285,7 +285,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrint3DTask.all.add_Completed (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -297,7 +297,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure remove_Completed
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -318,7 +318,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrint3DTask.all.add_SourceChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -330,7 +330,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure remove_SourceChanged
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -373,7 +373,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Print3DTaskCompletion;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Print3DTaskCompletion;
    begin
       Hr := this.m_IPrint3DTaskCompletedEventArgs.all.get_Completion (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -390,7 +390,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Print3DTaskDetail;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Print3DTaskDetail;
    begin
       Hr := this.m_IPrint3DTaskCompletedEventArgs.all.get_ExtendedStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -427,13 +427,13 @@ package body WinRt.Windows.Graphics.Printing3D is
       this : in out Print3DTaskRequest;
       title : WinRt.WString;
       printerId : WinRt.WString;
-      handler : Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler
+      handler : WinRt.Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler
    )
    return WinRt.Windows.Graphics.Printing3D.Print3DTask'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrint3DTask;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrint3DTask;
       HStr_title : constant WinRt.HString := To_HString (title);
       HStr_printerId : constant WinRt.HString := To_HString (printerId);
    begin
@@ -442,7 +442,7 @@ package body WinRt.Windows.Graphics.Printing3D is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrint3DTask := new Windows.Graphics.Printing3D.IPrint3DTask;
+         Retval.m_IPrint3DTask := new WinRt.Windows.Graphics.Printing3D.IPrint3DTask;
          Retval.m_IPrint3DTask.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_title);
          tmp := WindowsDeleteString (HStr_printerId);
@@ -480,14 +480,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrint3DTaskRequest;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrint3DTaskRequest;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Print3DTaskRequest do
          Hr := this.m_IPrint3DTaskRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrint3DTaskRequest := new Windows.Graphics.Printing3D.IPrint3DTaskRequest;
+         Retval.m_IPrint3DTaskRequest := new WinRt.Windows.Graphics.Printing3D.IPrint3DTaskRequest;
          Retval.m_IPrint3DTaskRequest.all := m_ComRetVal;
       end return;
    end;
@@ -523,14 +523,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage do
          Hr := this.m_IPrint3DTaskSourceChangedEventArgs.all.get_Source (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3D3MFPackage := new Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+         Retval.m_IPrinting3D3MFPackage := new WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
          Retval.m_IPrinting3D3MFPackage.all := m_ComRetVal;
       end return;
    end;
@@ -561,7 +561,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure SetSource
    (
       this : in out Print3DTaskSourceRequestedArgs;
-      source : Windows.Graphics.Printing3D.Printing3D3MFPackage'Class
+      source : WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -579,7 +579,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Invoke
    (
       this : access Print3DTaskSourceRequestedHandler_Delegate;
-      args : Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs
+      args : WinRt.Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -614,13 +614,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3D3MFPackage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3D3MFPackage");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3D3MFPackage");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
    begin
       return RetVal : Printing3D3MFPackage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3D3MFPackage := new Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+            Retval.m_IPrinting3D3MFPackage := new WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
             Retval.m_IPrinting3D3MFPackage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -632,7 +632,7 @@ package body WinRt.Windows.Graphics.Printing3D is
 
    function LoadAsync
    (
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage is
       Hr               : WinRt.HResult := S_OK;
@@ -688,7 +688,7 @@ package body WinRt.Windows.Graphics.Printing3D is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPrinting3D3MFPackage := new Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
+                     Retval.m_IPrinting3D3MFPackage := new WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
                      Retval.m_IPrinting3D3MFPackage.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -777,7 +777,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IPrinting3D3MFPackage.all.get_PrintTicket (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -789,7 +789,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_PrintTicket
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -809,7 +809,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       Hr := this.m_IPrinting3D3MFPackage.all.get_ModelPart (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -821,7 +821,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_ModelPart
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -841,14 +841,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource do
          Hr := this.m_IPrinting3D3MFPackage.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DTextureResource := new Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+         Retval.m_IPrinting3DTextureResource := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
          Retval.m_IPrinting3DTextureResource.all := m_ComRetVal;
       end return;
    end;
@@ -856,7 +856,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Thumbnail
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -876,7 +876,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DTextureResource.Kind;
    begin
       Hr := this.m_IPrinting3D3MFPackage.all.get_Textures (m_ComRetVal'Access);
@@ -891,7 +891,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    function LoadModelFromPackageAsync
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3DModel'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -942,7 +942,7 @@ package body WinRt.Windows.Graphics.Printing3D is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPrinting3DModel := new Windows.Graphics.Printing3D.IPrinting3DModel;
+                  Retval.m_IPrinting3DModel := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
                   Retval.m_IPrinting3DModel.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -958,7 +958,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure SaveModelToPackageAsync
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DModel'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModel'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1007,7 +1007,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DPackageCompression;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DPackageCompression;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage_Interface, WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage2, WinRt.Windows.Graphics.Printing3D.IID_IPrinting3D3MFPackage2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrinting3D3MFPackage.all);
@@ -1022,7 +1022,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Compression
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DPackageCompression
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DPackageCompression
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1064,13 +1064,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DBaseMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DBaseMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DBaseMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DBaseMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterial;
    begin
       return RetVal : Printing3DBaseMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DBaseMaterial := new Windows.Graphics.Printing3D.IPrinting3DBaseMaterial;
+            Retval.m_IPrinting3DBaseMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterial;
             Retval.m_IPrinting3DBaseMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1176,14 +1176,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DColorMaterial do
          Hr := this.m_IPrinting3DBaseMaterial.all.get_Color (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DColorMaterial := new Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
+         Retval.m_IPrinting3DColorMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
          Retval.m_IPrinting3DColorMaterial.all := m_ComRetVal;
       end return;
    end;
@@ -1191,7 +1191,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Color
    (
       this : in out Printing3DBaseMaterial;
-      value : Windows.Graphics.Printing3D.Printing3DColorMaterial'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DColorMaterial'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1233,16 +1233,16 @@ package body WinRt.Windows.Graphics.Printing3D is
    return Printing3DBaseMaterialGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup");
       m_Factory    : access IPrinting3DBaseMaterialGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
    begin
       return RetVal : Printing3DBaseMaterialGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPrinting3DBaseMaterialGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (MaterialGroupId, m_ComRetVal'Access);
-            Retval.m_IPrinting3DBaseMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
+            Retval.m_IPrinting3DBaseMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
             Retval.m_IPrinting3DBaseMaterialGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1261,7 +1261,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DBaseMaterial.Kind;
    begin
       Hr := this.m_IPrinting3DBaseMaterialGroup.all.get_Bases (m_ComRetVal'Access);
@@ -1316,13 +1316,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DColorMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DColorMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DColorMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
    begin
       return RetVal : Printing3DColorMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DColorMaterial := new Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
+            Retval.m_IPrinting3DColorMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
             Retval.m_IPrinting3DColorMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1373,7 +1373,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial_Interface, WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial2, WinRt.Windows.Graphics.Printing3D.IID_IPrinting3DColorMaterial2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IPrinting3DColorMaterial.all);
@@ -1388,7 +1388,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Color
    (
       this : in out Printing3DColorMaterial;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1434,16 +1434,16 @@ package body WinRt.Windows.Graphics.Printing3D is
    return Printing3DColorMaterialGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DColorMaterialGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup");
       m_Factory    : access IPrinting3DColorMaterialGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup;
    begin
       return RetVal : Printing3DColorMaterialGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPrinting3DColorMaterialGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (MaterialGroupId, m_ComRetVal'Access);
-            Retval.m_IPrinting3DColorMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup;
+            Retval.m_IPrinting3DColorMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup;
             Retval.m_IPrinting3DColorMaterialGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1462,7 +1462,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DColorMaterial.Kind;
    begin
       Hr := this.m_IPrinting3DColorMaterialGroup.all.get_Colors (m_ComRetVal'Access);
@@ -1517,13 +1517,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DComponent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DComponent");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DComponent;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DComponent");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
    begin
       return RetVal : Printing3DComponent do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DComponent := new Windows.Graphics.Printing3D.IPrinting3DComponent;
+            Retval.m_IPrinting3DComponent := new WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
             Retval.m_IPrinting3DComponent.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1541,14 +1541,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DMesh;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DMesh do
          Hr := this.m_IPrinting3DComponent.all.get_Mesh (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DMesh := new Windows.Graphics.Printing3D.IPrinting3DMesh;
+         Retval.m_IPrinting3DMesh := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh;
          Retval.m_IPrinting3DMesh.all := m_ComRetVal;
       end return;
    end;
@@ -1556,7 +1556,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Mesh
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DMesh'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMesh'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1576,7 +1576,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DComponentWithMatrix.Kind;
    begin
       Hr := this.m_IPrinting3DComponent.all.get_Components (m_ComRetVal'Access);
@@ -1596,14 +1596,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource do
          Hr := this.m_IPrinting3DComponent.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DTextureResource := new Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+         Retval.m_IPrinting3DTextureResource := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
          Retval.m_IPrinting3DTextureResource.all := m_ComRetVal;
       end return;
    end;
@@ -1611,7 +1611,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Thumbnail
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1631,7 +1631,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DObjectType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DObjectType;
    begin
       Hr := this.m_IPrinting3DComponent.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1643,7 +1643,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Type
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DObjectType
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DObjectType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1755,13 +1755,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DComponentWithMatrix is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DComponentWithMatrix");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix;
    begin
       return RetVal : Printing3DComponentWithMatrix do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DComponentWithMatrix := new Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix;
+            Retval.m_IPrinting3DComponentWithMatrix := new WinRt.Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix;
             Retval.m_IPrinting3DComponentWithMatrix.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1779,14 +1779,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DComponent;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DComponent do
          Hr := this.m_IPrinting3DComponentWithMatrix.all.get_Component (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DComponent := new Windows.Graphics.Printing3D.IPrinting3DComponent;
+         Retval.m_IPrinting3DComponent := new WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
          Retval.m_IPrinting3DComponent.all := m_ComRetVal;
       end return;
    end;
@@ -1794,7 +1794,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Component
    (
       this : in out Printing3DComponentWithMatrix;
-      value : Windows.Graphics.Printing3D.Printing3DComponent'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DComponent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1814,7 +1814,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Matrix4x4;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Matrix4x4;
    begin
       Hr := this.m_IPrinting3DComponentWithMatrix.all.get_Matrix (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1826,7 +1826,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Matrix
    (
       this : in out Printing3DComponentWithMatrix;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1864,13 +1864,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DCompositeMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DCompositeMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial;
    begin
       return RetVal : Printing3DCompositeMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DCompositeMaterial := new Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial;
+            Retval.m_IPrinting3DCompositeMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial;
             Retval.m_IPrinting3DCompositeMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1888,7 +1888,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Double.Kind;
    begin
       Hr := this.m_IPrinting3DCompositeMaterial.all.get_Values (m_ComRetVal'Access);
@@ -1930,16 +1930,16 @@ package body WinRt.Windows.Graphics.Printing3D is
    return Printing3DCompositeMaterialGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DCompositeMaterialGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup");
       m_Factory    : access IPrinting3DCompositeMaterialGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup;
    begin
       return RetVal : Printing3DCompositeMaterialGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPrinting3DCompositeMaterialGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (MaterialGroupId, m_ComRetVal'Access);
-            Retval.m_IPrinting3DCompositeMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup;
+            Retval.m_IPrinting3DCompositeMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup;
             Retval.m_IPrinting3DCompositeMaterialGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1958,7 +1958,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DCompositeMaterial.Kind;
    begin
       Hr := this.m_IPrinting3DCompositeMaterialGroup.all.get_Composites (m_ComRetVal'Access);
@@ -1995,7 +1995,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_UInt32.Kind;
    begin
       Hr := this.m_IPrinting3DCompositeMaterialGroup.all.get_MaterialIndices (m_ComRetVal'Access);
@@ -2016,7 +2016,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup_Interface, WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup2, WinRt.Windows.Graphics.Printing3D.IID_IPrinting3DCompositeMaterialGroup2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup do
@@ -2026,7 +2026,7 @@ package body WinRt.Windows.Graphics.Printing3D is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DBaseMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
+         Retval.m_IPrinting3DBaseMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
          Retval.m_IPrinting3DBaseMaterialGroup.all := m_ComRetVal;
       end return;
    end;
@@ -2034,7 +2034,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_BaseMaterialGroup
    (
       this : in out Printing3DCompositeMaterialGroup;
-      value : Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2076,13 +2076,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DFaceReductionOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DFaceReductionOptions");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
    begin
       return RetVal : Printing3DFaceReductionOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DFaceReductionOptions := new Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
+            Retval.m_IPrinting3DFaceReductionOptions := new WinRt.Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
             Retval.m_IPrinting3DFaceReductionOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2214,13 +2214,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial;
    begin
       return RetVal : Printing3DMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DMaterial := new Windows.Graphics.Printing3D.IPrinting3DMaterial;
+            Retval.m_IPrinting3DMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial;
             Retval.m_IPrinting3DMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2238,7 +2238,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DBaseMaterialGroup.Kind;
    begin
       Hr := this.m_IPrinting3DMaterial.all.get_BaseGroups (m_ComRetVal'Access);
@@ -2258,7 +2258,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DColorMaterialGroup.Kind;
    begin
       Hr := this.m_IPrinting3DMaterial.all.get_ColorGroups (m_ComRetVal'Access);
@@ -2278,7 +2278,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DTexture2CoordMaterialGroup.Kind;
    begin
       Hr := this.m_IPrinting3DMaterial.all.get_Texture2CoordGroups (m_ComRetVal'Access);
@@ -2298,7 +2298,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DCompositeMaterialGroup.Kind;
    begin
       Hr := this.m_IPrinting3DMaterial.all.get_CompositeGroups (m_ComRetVal'Access);
@@ -2318,7 +2318,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DMultiplePropertyMaterialGroup.Kind;
    begin
       Hr := this.m_IPrinting3DMaterial.all.get_MultiplePropertyGroups (m_ComRetVal'Access);
@@ -2356,13 +2356,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMesh is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMesh");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DMesh;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMesh");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh;
    begin
       return RetVal : Printing3DMesh do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DMesh := new Windows.Graphics.Printing3D.IPrinting3DMesh;
+            Retval.m_IPrinting3DMesh := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh;
             Retval.m_IPrinting3DMesh.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2444,7 +2444,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DBufferDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_VertexPositionsDescription (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2456,7 +2456,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_VertexPositionsDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2476,7 +2476,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DBufferDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_VertexNormalsDescription (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2488,7 +2488,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_VertexNormalsDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2508,7 +2508,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DBufferDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_TriangleIndicesDescription (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2520,7 +2520,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TriangleIndicesDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2540,7 +2540,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DBufferDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_TriangleMaterialIndicesDescription (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2552,7 +2552,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TriangleMaterialIndicesDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2572,7 +2572,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IPrinting3DMesh.all.GetVertexPositions (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2604,7 +2604,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IPrinting3DMesh.all.GetVertexNormals (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2636,7 +2636,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IPrinting3DMesh.all.GetTriangleIndices (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2668,7 +2668,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IPrinting3DMesh.all.GetTriangleMaterialIndices (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2700,7 +2700,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_BufferDescriptionSet (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2717,7 +2717,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       Hr := this.m_IPrinting3DMesh.all.get_BufferSet (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2729,7 +2729,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    function VerifyAsync
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DMeshVerificationMode
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMeshVerificationMode
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3DMeshVerificationResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2780,7 +2780,7 @@ package body WinRt.Windows.Graphics.Printing3D is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IPrinting3DMeshVerificationResult := new Windows.Graphics.Printing3D.IPrinting3DMeshVerificationResult;
+                  Retval.m_IPrinting3DMeshVerificationResult := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMeshVerificationResult;
                   Retval.m_IPrinting3DMeshVerificationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2841,7 +2841,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IPrinting3DMeshVerificationResult.all.get_NonmanifoldTriangles (m_ComRetVal'Access);
@@ -2861,7 +2861,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_UInt32.Kind;
    begin
       Hr := this.m_IPrinting3DMeshVerificationResult.all.get_ReversedNormalTriangles (m_ComRetVal'Access);
@@ -2899,13 +2899,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DModel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DModel");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DModel;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DModel");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
    begin
       return RetVal : Printing3DModel do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DModel := new Windows.Graphics.Printing3D.IPrinting3DModel;
+            Retval.m_IPrinting3DModel := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
             Retval.m_IPrinting3DModel.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2923,7 +2923,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DModelUnit;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DModelUnit;
    begin
       Hr := this.m_IPrinting3DModel.all.get_Unit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2935,7 +2935,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Unit
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DModelUnit
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2955,7 +2955,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DModelTexture.Kind;
    begin
       Hr := this.m_IPrinting3DModel.all.get_Textures (m_ComRetVal'Access);
@@ -2975,7 +2975,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DMesh.Kind;
    begin
       Hr := this.m_IPrinting3DModel.all.get_Meshes (m_ComRetVal'Access);
@@ -2995,7 +2995,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DComponent.Kind;
    begin
       Hr := this.m_IPrinting3DModel.all.get_Components (m_ComRetVal'Access);
@@ -3015,14 +3015,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DMaterial;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DMaterial do
          Hr := this.m_IPrinting3DModel.all.get_Material (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DMaterial := new Windows.Graphics.Printing3D.IPrinting3DMaterial;
+         Retval.m_IPrinting3DMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial;
          Retval.m_IPrinting3DMaterial.all := m_ComRetVal;
       end return;
    end;
@@ -3030,7 +3030,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Material
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DMaterial'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMaterial'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3050,14 +3050,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DComponent;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DComponent do
          Hr := this.m_IPrinting3DModel.all.get_Build (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DComponent := new Windows.Graphics.Printing3D.IPrinting3DComponent;
+         Retval.m_IPrinting3DComponent := new WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent;
          Retval.m_IPrinting3DComponent.all := m_ComRetVal;
       end return;
    end;
@@ -3065,7 +3065,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Build
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DComponent'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DComponent'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3122,7 +3122,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_IPrinting3DModel.all.get_RequiredExtensions (m_ComRetVal'Access);
@@ -3142,7 +3142,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_IPrinting3DModel.all.get_Metadata (m_ComRetVal'Access);
@@ -3204,14 +3204,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DModel;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DModel do
          Hr := this.m_IPrinting3DModel.all.Clone (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DModel := new Windows.Graphics.Printing3D.IPrinting3DModel;
+         Retval.m_IPrinting3DModel := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
          Retval.m_IPrinting3DModel.all := m_ComRetVal;
       end return;
    end;
@@ -3286,7 +3286,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    function TryPartialRepairAsync
    (
       this : in out Printing3DModel;
-      maxWaitTime : Windows.Foundation.TimeSpan
+      maxWaitTime : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3421,7 +3421,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    function TryReduceFacesAsync
    (
       this : in out Printing3DModel;
-      printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class
+      printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3489,8 +3489,8 @@ package body WinRt.Windows.Graphics.Printing3D is
    function TryReduceFacesAsync
    (
       this : in out Printing3DModel;
-      printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class;
-      maxWait : Windows.Foundation.TimeSpan
+      printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class;
+      maxWait : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -3648,13 +3648,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DModelTexture is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DModelTexture");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DModelTexture");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
    begin
       return RetVal : Printing3DModelTexture do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DModelTexture := new Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+            Retval.m_IPrinting3DModelTexture := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
             Retval.m_IPrinting3DModelTexture.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3672,14 +3672,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource do
          Hr := this.m_IPrinting3DModelTexture.all.get_TextureResource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DTextureResource := new Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+         Retval.m_IPrinting3DTextureResource := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
          Retval.m_IPrinting3DTextureResource.all := m_ComRetVal;
       end return;
    end;
@@ -3687,7 +3687,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TextureResource
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3707,7 +3707,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior;
    begin
       Hr := this.m_IPrinting3DModelTexture.all.get_TileStyleU (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3719,7 +3719,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TileStyleU
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3739,7 +3739,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior;
    begin
       Hr := this.m_IPrinting3DModelTexture.all.get_TileStyleV (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3751,7 +3751,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TileStyleV
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3789,13 +3789,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMultiplePropertyMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial;
    begin
       return RetVal : Printing3DMultiplePropertyMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DMultiplePropertyMaterial := new Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial;
+            Retval.m_IPrinting3DMultiplePropertyMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial;
             Retval.m_IPrinting3DMultiplePropertyMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3813,7 +3813,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_UInt32.Kind;
    begin
       Hr := this.m_IPrinting3DMultiplePropertyMaterial.all.get_MaterialIndices (m_ComRetVal'Access);
@@ -3855,16 +3855,16 @@ package body WinRt.Windows.Graphics.Printing3D is
    return Printing3DMultiplePropertyMaterialGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterialGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup");
       m_Factory    : access IPrinting3DMultiplePropertyMaterialGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup;
    begin
       return RetVal : Printing3DMultiplePropertyMaterialGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPrinting3DMultiplePropertyMaterialGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (MaterialGroupId, m_ComRetVal'Access);
-            Retval.m_IPrinting3DMultiplePropertyMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup;
+            Retval.m_IPrinting3DMultiplePropertyMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup;
             Retval.m_IPrinting3DMultiplePropertyMaterialGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3883,7 +3883,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DMultiplePropertyMaterial.Kind;
    begin
       Hr := this.m_IPrinting3DMultiplePropertyMaterialGroup.all.get_MultipleProperties (m_ComRetVal'Access);
@@ -3903,7 +3903,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_UInt32.Kind;
    begin
       Hr := this.m_IPrinting3DMultiplePropertyMaterialGroup.all.get_MaterialGroupIndices (m_ComRetVal'Access);
@@ -3958,13 +3958,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DTexture2CoordMaterial is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTexture2CoordMaterial");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial;
    begin
       return RetVal : Printing3DTexture2CoordMaterial do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DTexture2CoordMaterial := new Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial;
+            Retval.m_IPrinting3DTexture2CoordMaterial := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial;
             Retval.m_IPrinting3DTexture2CoordMaterial.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3982,14 +3982,14 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture do
          Hr := this.m_IPrinting3DTexture2CoordMaterial.all.get_Texture (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DModelTexture := new Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+         Retval.m_IPrinting3DModelTexture := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
          Retval.m_IPrinting3DModelTexture.all := m_ComRetVal;
       end return;
    end;
@@ -3997,7 +3997,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Texture
    (
       this : in out Printing3DTexture2CoordMaterial;
-      value : Windows.Graphics.Printing3D.Printing3DModelTexture'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4103,16 +4103,16 @@ package body WinRt.Windows.Graphics.Printing3D is
    return Printing3DTexture2CoordMaterialGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTexture2CoordMaterialGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup");
       m_Factory    : access IPrinting3DTexture2CoordMaterialGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup;
    begin
       return RetVal : Printing3DTexture2CoordMaterialGroup do
          Hr := RoGetActivationFactory (m_hString, IID_IPrinting3DTexture2CoordMaterialGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.Create (MaterialGroupId, m_ComRetVal'Access);
-            Retval.m_IPrinting3DTexture2CoordMaterialGroup := new Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup;
+            Retval.m_IPrinting3DTexture2CoordMaterialGroup := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup;
             Retval.m_IPrinting3DTexture2CoordMaterialGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4131,7 +4131,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IPrinting3DTexture2CoordMaterial.Kind;
    begin
       Hr := this.m_IPrinting3DTexture2CoordMaterialGroup.all.get_Texture2Coords (m_ComRetVal'Access);
@@ -4169,7 +4169,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup_Interface, WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup2, WinRt.Windows.Graphics.Printing3D.IID_IPrinting3DTexture2CoordMaterialGroup2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture do
@@ -4179,7 +4179,7 @@ package body WinRt.Windows.Graphics.Printing3D is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrinting3DModelTexture := new Windows.Graphics.Printing3D.IPrinting3DModelTexture;
+         Retval.m_IPrinting3DModelTexture := new WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
          Retval.m_IPrinting3DModelTexture.all := m_ComRetVal;
       end return;
    end;
@@ -4187,7 +4187,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_Texture
    (
       this : in out Printing3DTexture2CoordMaterialGroup;
-      value : Windows.Graphics.Printing3D.Printing3DModelTexture'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4229,13 +4229,13 @@ package body WinRt.Windows.Graphics.Printing3D is
    function Constructor return Printing3DTextureResource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTextureResource");
-      m_ComRetVal  : aliased Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTextureResource");
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
    begin
       return RetVal : Printing3DTextureResource do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPrinting3DTextureResource := new Windows.Graphics.Printing3D.IPrinting3DTextureResource;
+            Retval.m_IPrinting3DTextureResource := new WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
             Retval.m_IPrinting3DTextureResource.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4253,7 +4253,7 @@ package body WinRt.Windows.Graphics.Printing3D is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamWithContentType;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType;
    begin
       Hr := this.m_IPrinting3DTextureResource.all.get_TextureData (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4265,7 +4265,7 @@ package body WinRt.Windows.Graphics.Printing3D is
    procedure put_TextureData
    (
       this : in out Printing3DTextureResource;
-      value : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

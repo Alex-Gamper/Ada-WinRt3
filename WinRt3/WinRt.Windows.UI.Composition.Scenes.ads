@@ -331,35 +331,35 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Center
       (
          this : access ISceneBoundingBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Extents
       (
          this : access ISceneBoundingBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Max
       (
          this : access ISceneBoundingBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Min
       (
          this : access ISceneBoundingBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Size
       (
          this : access ISceneBoundingBox_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -371,7 +371,7 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_ComponentType
       (
          this : access ISceneComponent_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.SceneComponentType
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.SceneComponentType
       )
       return WinRt.Hresult is abstract;
 
@@ -413,30 +413,30 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Bounds
       (
          this : access ISceneMesh_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneBoundingBox
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneBoundingBox
       )
       return WinRt.Hresult is abstract;
 
       function get_PrimitiveTopology
       (
          this : access ISceneMesh_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPrimitiveTopology
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPrimitiveTopology
       )
       return WinRt.Hresult is abstract;
 
       function put_PrimitiveTopology
       (
          this : access ISceneMesh_Interface;
-         value : Windows.Graphics.DirectX.DirectXPrimitiveTopology
+         value : WinRt.Windows.Graphics.DirectX.DirectXPrimitiveTopology
       )
       return WinRt.Hresult is abstract;
 
       function FillMeshAttribute
       (
          this : access ISceneMesh_Interface;
-         semantic : Windows.UI.Composition.Scenes.SceneAttributeSemantic;
-         format : Windows.Graphics.DirectX.DirectXPixelFormat;
-         memory : Windows.Foundation.IMemoryBuffer
+         semantic : WinRt.Windows.UI.Composition.Scenes.SceneAttributeSemantic;
+         format : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         memory : WinRt.Windows.Foundation.IMemoryBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -453,35 +453,35 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Material
       (
          this : access ISceneMeshRendererComponent_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterial
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterial
       )
       return WinRt.Hresult is abstract;
 
       function put_Material
       (
          this : access ISceneMeshRendererComponent_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterial
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterial
       )
       return WinRt.Hresult is abstract;
 
       function get_Mesh
       (
          this : access ISceneMeshRendererComponent_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMesh
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMesh
       )
       return WinRt.Hresult is abstract;
 
       function put_Mesh
       (
          this : access ISceneMeshRendererComponent_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMesh
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMesh
       )
       return WinRt.Hresult is abstract;
 
       function get_UVMappings
       (
          this : access ISceneMeshRendererComponent_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMeshMaterialAttributeMap
       )
       return WinRt.Hresult is abstract;
 
@@ -493,8 +493,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneMeshRendererComponentStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMeshRendererComponent
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMeshRendererComponent
       )
       return WinRt.Hresult is abstract;
 
@@ -506,8 +506,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneMeshStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMesh
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMesh
       )
       return WinRt.Hresult is abstract;
 
@@ -519,28 +519,28 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_BaseColorInput
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterialInput
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function put_BaseColorInput
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterialInput
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function get_BaseColorFactor
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
       function put_BaseColorFactor
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         value : Windows.Foundation.Numerics.Vector4
+         value : WinRt.Windows.Foundation.Numerics.Vector4
       )
       return WinRt.Hresult is abstract;
 
@@ -561,14 +561,14 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_MetallicRoughnessInput
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterialInput
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function put_MetallicRoughnessInput
       (
          this : access ISceneMetallicRoughnessMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterialInput
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
@@ -594,8 +594,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneMetallicRoughnessMaterialStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMetallicRoughnessMaterial
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMetallicRoughnessMaterial
       )
       return WinRt.Hresult is abstract;
 
@@ -607,14 +607,14 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Orientation
       (
          this : access ISceneModelTransform_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function put_Orientation
       (
          this : access ISceneModelTransform_Interface;
-         value : Windows.Foundation.Numerics.Quaternion
+         value : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
@@ -649,42 +649,42 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_RotationAxis
       (
          this : access ISceneModelTransform_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_RotationAxis
       (
          this : access ISceneModelTransform_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Scale
       (
          this : access ISceneModelTransform_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Scale
       (
          this : access ISceneModelTransform_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_Translation
       (
          this : access ISceneModelTransform_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_Translation
       (
          this : access ISceneModelTransform_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -710,22 +710,22 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Parent
       (
          this : access ISceneNode_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneNode
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneNode
       )
       return WinRt.Hresult is abstract;
 
       function get_Transform
       (
          this : access ISceneNode_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneModelTransform
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneModelTransform
       )
       return WinRt.Hresult is abstract;
 
       function FindFirstComponentOfType
       (
          this : access ISceneNode_Interface;
-         value : Windows.UI.Composition.Scenes.SceneComponentType;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneComponent
+         value : WinRt.Windows.UI.Composition.Scenes.SceneComponentType;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneComponent
       )
       return WinRt.Hresult is abstract;
 
@@ -742,8 +742,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneNodeStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneNode
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneNode
       )
       return WinRt.Hresult is abstract;
 
@@ -779,42 +779,42 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_AlphaMode
       (
          this : access IScenePbrMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.SceneAlphaMode
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.SceneAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function put_AlphaMode
       (
          this : access IScenePbrMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.SceneAlphaMode
+         value : WinRt.Windows.UI.Composition.Scenes.SceneAlphaMode
       )
       return WinRt.Hresult is abstract;
 
       function get_EmissiveInput
       (
          this : access IScenePbrMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterialInput
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function put_EmissiveInput
       (
          this : access IScenePbrMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterialInput
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function get_EmissiveFactor
       (
          this : access IScenePbrMaterial_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function put_EmissiveFactor
       (
          this : access IScenePbrMaterial_Interface;
-         value : Windows.Foundation.Numerics.Vector3
+         value : WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -835,14 +835,14 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_NormalInput
       (
          this : access IScenePbrMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterialInput
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function put_NormalInput
       (
          this : access IScenePbrMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterialInput
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
@@ -863,14 +863,14 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_OcclusionInput
       (
          this : access IScenePbrMaterial_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneMaterialInput
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
       function put_OcclusionInput
       (
          this : access IScenePbrMaterial_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneMaterialInput
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneMaterialInput
       )
       return WinRt.Hresult is abstract;
 
@@ -911,56 +911,56 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_BitmapInterpolationMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         RetVal : access Windows.UI.Composition.CompositionBitmapInterpolationMode
+         RetVal : access WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function put_BitmapInterpolationMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         value : Windows.UI.Composition.CompositionBitmapInterpolationMode
+         value : WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
       )
       return WinRt.Hresult is abstract;
 
       function get_Surface
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         RetVal : access Windows.UI.Composition.ICompositionSurface
+         RetVal : access WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
       function put_Surface
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         value : Windows.UI.Composition.ICompositionSurface
+         value : WinRt.Windows.UI.Composition.ICompositionSurface
       )
       return WinRt.Hresult is abstract;
 
       function get_WrappingUMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.SceneWrappingMode
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_WrappingUMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         value : Windows.UI.Composition.Scenes.SceneWrappingMode
+         value : WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
       )
       return WinRt.Hresult is abstract;
 
       function get_WrappingVMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.SceneWrappingMode
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
       )
       return WinRt.Hresult is abstract;
 
       function put_WrappingVMode
       (
          this : access ISceneSurfaceMaterialInput_Interface;
-         value : Windows.UI.Composition.Scenes.SceneWrappingMode
+         value : WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
       )
       return WinRt.Hresult is abstract;
 
@@ -972,8 +972,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneSurfaceMaterialInputStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneSurfaceMaterialInput
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneSurfaceMaterialInput
       )
       return WinRt.Hresult is abstract;
 
@@ -985,14 +985,14 @@ package WinRt.Windows.UI.Composition.Scenes is
       function get_Root
       (
          this : access ISceneVisual_Interface;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneNode
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneNode
       )
       return WinRt.Hresult is abstract;
 
       function put_Root
       (
          this : access ISceneVisual_Interface;
-         value : Windows.UI.Composition.Scenes.ISceneNode
+         value : WinRt.Windows.UI.Composition.Scenes.ISceneNode
       )
       return WinRt.Hresult is abstract;
 
@@ -1004,8 +1004,8 @@ package WinRt.Windows.UI.Composition.Scenes is
       function Create
       (
          this : access ISceneVisualStatics_Interface;
-         compositor : Windows.UI.Composition.ICompositor;
-         RetVal : access Windows.UI.Composition.Scenes.ISceneVisual
+         compositor : WinRt.Windows.UI.Composition.ICompositor;
+         RetVal : access WinRt.Windows.UI.Composition.Scenes.ISceneVisual
       )
       return WinRt.Hresult is abstract;
 
@@ -1116,7 +1116,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    function IndexOf
    (
       this : in out SceneComponentCollection;
-      value : Windows.UI.Composition.Scenes.SceneComponent'Class;
+      value : WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1125,14 +1125,14 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.Scenes.SceneComponent'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class
    );
 
    procedure InsertAt
    (
       this : in out SceneComponentCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.Scenes.SceneComponent'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class
    );
 
    procedure RemoveAt
@@ -1144,7 +1144,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure Append
    (
       this : in out SceneComponentCollection;
-      value : Windows.UI.Composition.Scenes.SceneComponent'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class
    );
 
    procedure RemoveAtEnd
@@ -1161,14 +1161,14 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneComponentCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.Scenes.ISceneComponent_Array
+      items : WinRt.Windows.UI.Composition.Scenes.ISceneComponent_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out SceneComponentCollection;
-      items : Windows.UI.Composition.Scenes.ISceneComponent_Array
+      items : WinRt.Windows.UI.Composition.Scenes.ISceneComponent_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Scenes.SceneComponent>
@@ -1213,7 +1213,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMesh;
 
@@ -1235,15 +1235,15 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_PrimitiveTopology
    (
       this : in out SceneMesh;
-      value : Windows.Graphics.DirectX.DirectXPrimitiveTopology
+      value : WinRt.Windows.Graphics.DirectX.DirectXPrimitiveTopology
    );
 
    procedure FillMeshAttribute
    (
       this : in out SceneMesh;
-      semantic : Windows.UI.Composition.Scenes.SceneAttributeSemantic;
-      format : Windows.Graphics.DirectX.DirectXPixelFormat;
-      memory : Windows.Foundation.MemoryBuffer'Class
+      semantic : WinRt.Windows.UI.Composition.Scenes.SceneAttributeSemantic;
+      format : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      memory : WinRt.Windows.Foundation.MemoryBuffer'Class
    );
 
    -----------------------------------------------------------------------------
@@ -1286,7 +1286,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneMeshMaterialAttributeMap;
       key : WinRt.WString;
-      value : Windows.UI.Composition.Scenes.SceneAttributeSemantic
+      value : WinRt.Windows.UI.Composition.Scenes.SceneAttributeSemantic
    )
    return WinRt.Boolean;
 
@@ -1324,7 +1324,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMeshRendererComponent;
 
@@ -1340,7 +1340,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Material
    (
       this : in out SceneMeshRendererComponent;
-      value : Windows.UI.Composition.Scenes.SceneMaterial'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterial'Class
    );
 
    function get_Mesh
@@ -1352,7 +1352,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Mesh
    (
       this : in out SceneMeshRendererComponent;
-      value : Windows.UI.Composition.Scenes.SceneMesh'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMesh'Class
    );
 
    function get_UVMappings
@@ -1394,7 +1394,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_AlphaMode
    (
       this : in out ScenePbrMaterial;
-      value : Windows.UI.Composition.Scenes.SceneAlphaMode
+      value : WinRt.Windows.UI.Composition.Scenes.SceneAlphaMode
    );
 
    function get_EmissiveInput
@@ -1406,7 +1406,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_EmissiveInput
    (
       this : in out ScenePbrMaterial;
-      value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    );
 
    function get_EmissiveFactor
@@ -1418,7 +1418,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_EmissiveFactor
    (
       this : in out ScenePbrMaterial;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_IsDoubleSided
@@ -1442,7 +1442,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_NormalInput
    (
       this : in out ScenePbrMaterial;
-      value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    );
 
    function get_NormalScale
@@ -1466,7 +1466,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_OcclusionInput
    (
       this : in out ScenePbrMaterial;
-      value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    );
 
    function get_OcclusionStrength
@@ -1492,7 +1492,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneMetallicRoughnessMaterial;
 
@@ -1508,7 +1508,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_BaseColorInput
    (
       this : in out SceneMetallicRoughnessMaterial;
-      value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    );
 
    function get_BaseColorFactor
@@ -1520,7 +1520,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_BaseColorFactor
    (
       this : in out SceneMetallicRoughnessMaterial;
-      value : Windows.Foundation.Numerics.Vector4
+      value : WinRt.Windows.Foundation.Numerics.Vector4
    );
 
    function get_MetallicFactor
@@ -1544,7 +1544,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_MetallicRoughnessInput
    (
       this : in out SceneMetallicRoughnessMaterial;
-      value : Windows.UI.Composition.Scenes.SceneMaterialInput'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneMaterialInput'Class
    );
 
    function get_RoughnessFactor
@@ -1577,7 +1577,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Orientation
    (
       this : in out SceneModelTransform;
-      value : Windows.Foundation.Numerics.Quaternion
+      value : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    function get_RotationAngle
@@ -1613,7 +1613,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_RotationAxis
    (
       this : in out SceneModelTransform;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Scale
@@ -1625,7 +1625,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Scale
    (
       this : in out SceneModelTransform;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    function get_Translation
@@ -1637,7 +1637,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Translation
    (
       this : in out SceneModelTransform;
-      value : Windows.Foundation.Numerics.Vector3
+      value : WinRt.Windows.Foundation.Numerics.Vector3
    );
 
    -----------------------------------------------------------------------------
@@ -1651,7 +1651,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneNode;
 
@@ -1685,7 +1685,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    function FindFirstComponentOfType
    (
       this : in out SceneNode;
-      value : Windows.UI.Composition.Scenes.SceneComponentType
+      value : WinRt.Windows.UI.Composition.Scenes.SceneComponentType
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneComponent'Class;
 
@@ -1721,7 +1721,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    function IndexOf
    (
       this : in out SceneNodeCollection;
-      value : Windows.UI.Composition.Scenes.SceneNode'Class;
+      value : WinRt.Windows.UI.Composition.Scenes.SceneNode'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -1730,14 +1730,14 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.Scenes.SceneNode'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneNode'Class
    );
 
    procedure InsertAt
    (
       this : in out SceneNodeCollection;
       index : WinRt.UInt32;
-      value : Windows.UI.Composition.Scenes.SceneNode'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneNode'Class
    );
 
    procedure RemoveAt
@@ -1749,7 +1749,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure Append
    (
       this : in out SceneNodeCollection;
-      value : Windows.UI.Composition.Scenes.SceneNode'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneNode'Class
    );
 
    procedure RemoveAtEnd
@@ -1766,14 +1766,14 @@ package WinRt.Windows.UI.Composition.Scenes is
    (
       this : in out SceneNodeCollection;
       startIndex : WinRt.UInt32;
-      items : Windows.UI.Composition.Scenes.ISceneNode_Array
+      items : WinRt.Windows.UI.Composition.Scenes.ISceneNode_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out SceneNodeCollection;
-      items : Windows.UI.Composition.Scenes.ISceneNode_Array
+      items : WinRt.Windows.UI.Composition.Scenes.ISceneNode_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.UI.Composition.Scenes.SceneNode>
@@ -1794,7 +1794,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput;
 
@@ -1810,7 +1810,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_BitmapInterpolationMode
    (
       this : in out SceneSurfaceMaterialInput;
-      value : Windows.UI.Composition.CompositionBitmapInterpolationMode
+      value : WinRt.Windows.UI.Composition.CompositionBitmapInterpolationMode
    );
 
    function get_Surface
@@ -1822,7 +1822,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Surface
    (
       this : in out SceneSurfaceMaterialInput;
-      value : Windows.UI.Composition.ICompositionSurface
+      value : WinRt.Windows.UI.Composition.ICompositionSurface
    );
 
    function get_WrappingUMode
@@ -1834,7 +1834,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_WrappingUMode
    (
       this : in out SceneSurfaceMaterialInput;
-      value : Windows.UI.Composition.Scenes.SceneWrappingMode
+      value : WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
    );
 
    function get_WrappingVMode
@@ -1846,7 +1846,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_WrappingVMode
    (
       this : in out SceneSurfaceMaterialInput;
-      value : Windows.UI.Composition.Scenes.SceneWrappingMode
+      value : WinRt.Windows.UI.Composition.Scenes.SceneWrappingMode
    );
 
    -----------------------------------------------------------------------------
@@ -1860,7 +1860,7 @@ package WinRt.Windows.UI.Composition.Scenes is
 
    function Create
    (
-      compositor : Windows.UI.Composition.Compositor'Class
+      compositor : WinRt.Windows.UI.Composition.Compositor'Class
    )
    return WinRt.Windows.UI.Composition.Scenes.SceneVisual;
 
@@ -1876,7 +1876,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    procedure put_Root
    (
       this : in out SceneVisual;
-      value : Windows.UI.Composition.Scenes.SceneNode'Class
+      value : WinRt.Windows.UI.Composition.Scenes.SceneNode'Class
    );
 
 end WinRt.Windows.UI.Composition.Scenes;

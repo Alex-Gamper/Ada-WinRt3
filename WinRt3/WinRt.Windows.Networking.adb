@@ -58,18 +58,18 @@ package body WinRt.Windows.Networking is
 
    function Constructor
    (
-      localHostName : Windows.Networking.HostName'Class;
+      localHostName : WinRt.Windows.Networking.HostName'Class;
       localServiceName : WinRt.WString;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remoteServiceName : WinRt.WString
    )
    return EndpointPair is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.EndpointPair");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.IEndpointPair");
       m_Factory    : access IEndpointPairFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.IEndpointPair;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.IEndpointPair;
       HStr_localServiceName : constant WinRt.HString := To_HString (localServiceName);
       HStr_remoteServiceName : constant WinRt.HString := To_HString (remoteServiceName);
    begin
@@ -77,7 +77,7 @@ package body WinRt.Windows.Networking is
          Hr := RoGetActivationFactory (m_hString, IID_IEndpointPairFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateEndpointPair (localHostName.m_IHostName.all, HStr_localServiceName, remoteHostName.m_IHostName.all, HStr_remoteServiceName, m_ComRetVal'Access);
-            Retval.m_IEndpointPair := new Windows.Networking.IEndpointPair;
+            Retval.m_IEndpointPair := new WinRt.Windows.Networking.IEndpointPair;
             Retval.m_IEndpointPair.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -98,14 +98,14 @@ package body WinRt.Windows.Networking is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IEndpointPair.all.get_LocalHostName (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -113,7 +113,7 @@ package body WinRt.Windows.Networking is
    procedure put_LocalHostName
    (
       this : in out EndpointPair;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -170,14 +170,14 @@ package body WinRt.Windows.Networking is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.IHostName;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.IHostName;
    begin
       return RetVal : WinRt.Windows.Networking.HostName do
          Hr := this.m_IEndpointPair.all.get_RemoteHostName (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IHostName := new Windows.Networking.IHostName;
+         Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
          Retval.m_IHostName.all := m_ComRetVal;
       end return;
    end;
@@ -185,7 +185,7 @@ package body WinRt.Windows.Networking is
    procedure put_RemoteHostName
    (
       this : in out EndpointPair;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -264,17 +264,17 @@ package body WinRt.Windows.Networking is
    return HostName is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.HostName");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.IHostName");
       m_Factory    : access IHostNameFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Networking.IHostName;
+      m_ComRetVal  : aliased WinRt.Windows.Networking.IHostName;
       HStr_hostName_p : constant WinRt.HString := To_HString (hostName_p);
    begin
       return RetVal : HostName do
          Hr := RoGetActivationFactory (m_hString, IID_IHostNameFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateHostName (HStr_hostName_p, m_ComRetVal'Access);
-            Retval.m_IHostName := new Windows.Networking.IHostName;
+            Retval.m_IHostName := new WinRt.Windows.Networking.IHostName;
             Retval.m_IHostName.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -326,14 +326,14 @@ package body WinRt.Windows.Networking is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Connectivity.IIPInformation;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Connectivity.IIPInformation;
    begin
       return RetVal : WinRt.Windows.Networking.Connectivity.IPInformation do
          Hr := this.m_IHostName.all.get_IPInformation (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIPInformation := new Windows.Networking.Connectivity.IIPInformation;
+         Retval.m_IIPInformation := new WinRt.Windows.Networking.Connectivity.IIPInformation;
          Retval.m_IIPInformation.all := m_ComRetVal;
       end return;
    end;
@@ -406,7 +406,7 @@ package body WinRt.Windows.Networking is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.HostNameType;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.HostNameType;
    begin
       Hr := this.m_IHostName.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -418,7 +418,7 @@ package body WinRt.Windows.Networking is
    function IsEqual
    (
       this : in out HostName;
-      hostName_p : Windows.Networking.HostName'Class
+      hostName_p : WinRt.Windows.Networking.HostName'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;

@@ -69,13 +69,13 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    function Constructor return DeviceAccountConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration");
-      m_ComRetVal  : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
    begin
       return RetVal : DeviceAccountConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDeviceAccountConfiguration := new Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
+            Retval.m_IDeviceAccountConfiguration := new WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
             Retval.m_IDeviceAccountConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -167,7 +167,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType;
    begin
       Hr := this.m_IDeviceAccountConfiguration.all.get_ServerType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -179,7 +179,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_ServerType
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountServerType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -646,7 +646,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -656,7 +656,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -664,7 +664,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_IncomingServerCredential
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -689,7 +689,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -699,7 +699,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -707,7 +707,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_OutgoingServerCredential
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -817,7 +817,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -832,7 +832,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_AccountIconId
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountIconId
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -857,7 +857,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -872,7 +872,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_AuthenticationType
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountAuthenticationType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1024,7 +1024,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -1039,7 +1039,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_SyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -1079,7 +1079,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_MailAgeFilter
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountMailAgeFilter
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1229,7 +1229,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -1244,7 +1244,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CardDavSyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1269,7 +1269,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IDeviceAccountConfiguration.all);
@@ -1284,7 +1284,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CalDavSyncScheduleKind
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
+      value : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountSyncScheduleKind
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1309,7 +1309,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1319,7 +1319,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1327,7 +1327,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CardDavServerUrl
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1392,7 +1392,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration_Interface, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration2, WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IID_IDeviceAccountConfiguration2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -1402,7 +1402,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1410,7 +1410,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    procedure put_CalDavServerUrl
    (
       this : in out DeviceAccountConfiguration;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1853,7 +1853,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
 
       function CreateDeviceAccountAsync
       (
-         account : Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration'Class
+         account : WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration'Class
       )
       return WinRt.WString is
          Hr               : WinRt.HResult := S_OK;
@@ -2034,7 +2034,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IDeviceAccountConfiguration := new Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
+                        Retval.m_IDeviceAccountConfiguration := new WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
                         Retval.m_IDeviceAccountConfiguration.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;

@@ -58,13 +58,13 @@ package body WinRt.Windows.UI.Composition.Effects is
    function Constructor return SceneLightingEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Effects.SceneLightingEffect");
-      m_ComRetVal  : aliased Windows.UI.Composition.Effects.ISceneLightingEffect;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Effects.ISceneLightingEffect");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect;
    begin
       return RetVal : SceneLightingEffect do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISceneLightingEffect := new Windows.UI.Composition.Effects.ISceneLightingEffect;
+            Retval.m_ISceneLightingEffect := new WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect;
             Retval.m_ISceneLightingEffect.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -146,7 +146,7 @@ package body WinRt.Windows.UI.Composition.Effects is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Effects.IGraphicsEffectSource;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Effects.IGraphicsEffectSource;
    begin
       Hr := this.m_ISceneLightingEffect.all.get_NormalMapSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -158,7 +158,7 @@ package body WinRt.Windows.UI.Composition.Effects is
    procedure put_NormalMapSource
    (
       this : in out SceneLightingEffect;
-      value : Windows.Graphics.Effects.IGraphicsEffectSource
+      value : WinRt.Windows.Graphics.Effects.IGraphicsEffectSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -243,7 +243,7 @@ package body WinRt.Windows.UI.Composition.Effects is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect_Interface, WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect2, WinRt.Windows.UI.Composition.Effects.IID_ISceneLightingEffect2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISceneLightingEffect.all);
@@ -258,7 +258,7 @@ package body WinRt.Windows.UI.Composition.Effects is
    procedure put_ReflectanceModel
    (
       this : in out SceneLightingEffect;
-      value : Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
+      value : WinRt.Windows.UI.Composition.Effects.SceneLightingEffectReflectanceModel
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

@@ -73,7 +73,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out DeleteSmsMessageOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -93,7 +93,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncActionCompletedHandler;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncActionCompletedHandler;
    begin
       Hr := this.m_IAsyncAction.all.get_Completed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -146,7 +146,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -167,7 +167,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -241,7 +241,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out DeleteSmsMessagesOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -261,7 +261,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncActionCompletedHandler;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncActionCompletedHandler;
    begin
       Hr := this.m_IAsyncAction.all.get_Completed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -314,7 +314,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -335,7 +335,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -429,7 +429,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsDevice.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDevice;
       m_GenericIID     : aliased WinRt.IID := (2876313057, 64699, 23510, (159, 47, 40, 95, 169, 251, 68, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsDevice.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -440,7 +440,7 @@ package body WinRt.Windows.Devices.Sms is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+         Retval.m_ISmsDevice := new WinRt.Windows.Devices.Sms.ISmsDevice;
          Retval.m_ISmsDevice.all := m_ComRetVal;
       end return;
    end;
@@ -454,7 +454,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsDevice.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDevice;
       m_GenericIID     : aliased WinRt.IID := (2876313057, 64699, 23510, (159, 47, 40, 95, 169, 251, 68, 232 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsDevice.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -465,7 +465,7 @@ package body WinRt.Windows.Devices.Sms is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+         Retval.m_ISmsDevice := new WinRt.Windows.Devices.Sms.ISmsDevice;
          Retval.m_ISmsDevice.all := m_ComRetVal;
       end return;
    end;
@@ -500,7 +500,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -521,7 +521,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -615,7 +615,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsMessage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsMessage;
       m_GenericIID     : aliased WinRt.IID := (2885268569, 18627, 24236, (151, 73, 76, 109, 180, 213, 7, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsMessage.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -637,7 +637,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : IAsyncOperation_ISmsMessage.Kind := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsMessage;
       m_GenericIID     : aliased WinRt.IID := (2885268569, 18627, 24236, (151, 73, 76, 109, 180, 213, 7, 230 ));
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, IAsyncOperation_ISmsMessage.Kind, m_GenericIID'Unchecked_Access);
    begin
@@ -680,7 +680,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -701,7 +701,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -795,7 +795,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -816,7 +816,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.GenericObject_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_GenericObject.all);
@@ -890,7 +890,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Completed
    (
       this : in out SendSmsMessageOperation;
-      handler : Windows.Foundation.AsyncActionCompletedHandler
+      handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -910,7 +910,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncActionCompletedHandler;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncActionCompletedHandler;
    begin
       Hr := this.m_IAsyncAction.all.get_Completed (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -963,7 +963,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.AsyncStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.AsyncStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -984,7 +984,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Foundation.IAsyncInfo := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Foundation.IAsyncAction_Interface, WinRt.Windows.Foundation.IAsyncInfo, WinRt.Windows.Foundation.IID_IAsyncInfo'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAsyncAction.all);
@@ -1058,13 +1058,13 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsAppMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsAppMessage");
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsAppMessage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsAppMessage");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsAppMessage;
    begin
       return RetVal : SmsAppMessage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmsAppMessage := new Windows.Devices.Sms.ISmsAppMessage;
+            Retval.m_ISmsAppMessage := new WinRt.Windows.Devices.Sms.ISmsAppMessage;
             Retval.m_ISmsAppMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1082,7 +1082,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsAppMessage.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1294,7 +1294,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsEncoding;
    begin
       Hr := this.m_ISmsAppMessage.all.get_Encoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1306,7 +1306,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsAppMessage;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1422,7 +1422,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmsAppMessage.all.get_BinaryBody (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1434,7 +1434,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_BinaryBody
    (
       this : in out SmsAppMessage;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1455,7 +1455,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsAppMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsAppMessage.all);
@@ -1500,7 +1500,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsAppMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsAppMessage.all);
@@ -1521,7 +1521,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsAppMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsAppMessage.all);
@@ -1583,13 +1583,13 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsBinaryMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsBinaryMessage");
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsBinaryMessage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsBinaryMessage");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
    begin
       return RetVal : SmsBinaryMessage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmsBinaryMessage := new Windows.Devices.Sms.ISmsBinaryMessage;
+            Retval.m_ISmsBinaryMessage := new WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
             Retval.m_ISmsBinaryMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1607,7 +1607,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsDataFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsDataFormat;
    begin
       Hr := this.m_ISmsBinaryMessage.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1619,7 +1619,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Format
    (
       this : in out SmsBinaryMessage;
-      value : Windows.Devices.Sms.SmsDataFormat
+      value : WinRt.Windows.Devices.Sms.SmsDataFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1703,7 +1703,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessage := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsBinaryMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessage, WinRt.Windows.Devices.Sms.IID_ISmsMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsBinaryMessage.all);
@@ -1746,7 +1746,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsBroadcastMessage.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1820,7 +1820,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsGeographicalScope;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsGeographicalScope;
    begin
       Hr := this.m_ISmsBroadcastMessage.all.get_GeographicalScope (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1871,7 +1871,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsBroadcastType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsBroadcastType;
    begin
       Hr := this.m_ISmsBroadcastMessage.all.get_BroadcastType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1923,7 +1923,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsBroadcastMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsBroadcastMessage.all);
@@ -1968,7 +1968,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsBroadcastMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsBroadcastMessage.all);
@@ -1989,7 +1989,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsBroadcastMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsBroadcastMessage.all);
@@ -2131,7 +2131,7 @@ package body WinRt.Windows.Devices.Sms is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+                     Retval.m_ISmsDevice := new WinRt.Windows.Devices.Sms.ISmsDevice;
                      Retval.m_ISmsDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2202,7 +2202,7 @@ package body WinRt.Windows.Devices.Sms is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+                     Retval.m_ISmsDevice := new WinRt.Windows.Devices.Sms.ISmsDevice;
                      Retval.m_ISmsDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2276,7 +2276,7 @@ package body WinRt.Windows.Devices.Sms is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ISmsDevice := new Windows.Devices.Sms.ISmsDevice;
+                     Retval.m_ISmsDevice := new WinRt.Windows.Devices.Sms.ISmsDevice;
                      Retval.m_ISmsDevice.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -2298,14 +2298,14 @@ package body WinRt.Windows.Devices.Sms is
    function SendMessageAsync
    (
       this : in out SmsDevice;
-      message : Windows.Devices.Sms.ISmsMessage
+      message : WinRt.Windows.Devices.Sms.ISmsMessage
    )
    return WinRt.Windows.Devices.Sms.SendSmsMessageOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IAsyncAction;
-      m_Wrapped        : aliased Windows.Foundation.IAsyncAction_Ptr := new Windows.Foundation.IAsyncAction;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IAsyncAction;
+      m_Wrapped        : aliased WinRt.Windows.Foundation.IAsyncAction_Ptr := new WinRt.Windows.Foundation.IAsyncAction;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SendSmsMessageOperation do
          Hr := this.m_ISmsDevice.all.SendMessageAsync (message, m_ComRetVal'Access);
@@ -2320,13 +2320,13 @@ package body WinRt.Windows.Devices.Sms is
    function CalculateLength
    (
       this : in out SmsDevice;
-      message : Windows.Devices.Sms.SmsTextMessage'Class
+      message : WinRt.Windows.Devices.Sms.SmsTextMessage'Class
    )
    return WinRt.Windows.Devices.Sms.SmsEncodedLength is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsEncodedLength;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsEncodedLength;
    begin
       Hr := this.m_ISmsDevice.all.CalculateLength (message.m_ISmsTextMessage.all, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2363,7 +2363,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_ISmsDevice.all.get_CellularClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2380,14 +2380,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDeviceMessageStore;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDeviceMessageStore;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsDeviceMessageStore do
          Hr := this.m_ISmsDevice.all.get_MessageStore (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsDeviceMessageStore := new Windows.Devices.Sms.ISmsDeviceMessageStore;
+         Retval.m_ISmsDeviceMessageStore := new WinRt.Windows.Devices.Sms.ISmsDeviceMessageStore;
          Retval.m_ISmsDeviceMessageStore.all := m_ComRetVal;
       end return;
    end;
@@ -2400,7 +2400,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsDeviceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsDeviceStatus;
    begin
       Hr := this.m_ISmsDevice.all.get_DeviceStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2412,13 +2412,13 @@ package body WinRt.Windows.Devices.Sms is
    function add_SmsMessageReceived
    (
       this : in out SmsDevice;
-      eventHandler : Windows.Devices.Sms.SmsMessageReceivedEventHandler
+      eventHandler : WinRt.Windows.Devices.Sms.SmsMessageReceivedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmsDevice.all.add_SmsMessageReceived (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2430,7 +2430,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure remove_SmsMessageReceived
    (
       this : in out SmsDevice;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2445,13 +2445,13 @@ package body WinRt.Windows.Devices.Sms is
    function add_SmsDeviceStatusChanged
    (
       this : in out SmsDevice;
-      eventHandler : Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler
+      eventHandler : WinRt.Windows.Devices.Sms.SmsDeviceStatusChangedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmsDevice.all.add_SmsDeviceStatusChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure remove_SmsDeviceStatusChanged
    (
       this : in out SmsDevice;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2532,7 +2532,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsDevice2");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsDevice2Statics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice2;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDevice2;
       HStr_deviceId : constant WinRt.HString := To_HString (deviceId);
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsDevice2 do
@@ -2543,7 +2543,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsDevice2 := new Windows.Devices.Sms.ISmsDevice2;
+            Retval.m_ISmsDevice2 := new WinRt.Windows.Devices.Sms.ISmsDevice2;
             Retval.m_ISmsDevice2.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2558,7 +2558,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsDevice2");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsDevice2Statics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice2;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDevice2;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsDevice2 do
          Hr := RoGetActivationFactory (m_hString, IID_ISmsDevice2Statics'Access , m_Factory'Address);
@@ -2568,7 +2568,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsDevice2 := new Windows.Devices.Sms.ISmsDevice2;
+            Retval.m_ISmsDevice2 := new WinRt.Windows.Devices.Sms.ISmsDevice2;
             Retval.m_ISmsDevice2.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2585,7 +2585,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsDevice2");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsDevice2Statics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsDevice2;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsDevice2;
       HStr_parentDeviceId : constant WinRt.HString := To_HString (parentDeviceId);
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsDevice2 do
@@ -2596,7 +2596,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsDevice2 := new Windows.Devices.Sms.ISmsDevice2;
+            Retval.m_ISmsDevice2 := new WinRt.Windows.Devices.Sms.ISmsDevice2;
             Retval.m_ISmsDevice2.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2712,7 +2712,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_ISmsDevice2.all.get_CellularClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2729,7 +2729,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsDeviceStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsDeviceStatus;
    begin
       Hr := this.m_ISmsDevice2.all.get_DeviceStatus (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2741,13 +2741,13 @@ package body WinRt.Windows.Devices.Sms is
    function CalculateLength
    (
       this : in out SmsDevice2;
-      message : Windows.Devices.Sms.ISmsMessageBase
+      message : WinRt.Windows.Devices.Sms.ISmsMessageBase
    )
    return WinRt.Windows.Devices.Sms.SmsEncodedLength is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsEncodedLength;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsEncodedLength;
    begin
       Hr := this.m_ISmsDevice2.all.CalculateLength (message, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2759,7 +2759,7 @@ package body WinRt.Windows.Devices.Sms is
    function SendMessageAndGetResultAsync
    (
       this : in out SmsDevice2;
-      message : Windows.Devices.Sms.ISmsMessageBase
+      message : WinRt.Windows.Devices.Sms.ISmsMessageBase
    )
    return WinRt.Windows.Devices.Sms.SmsSendMessageResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -2810,7 +2810,7 @@ package body WinRt.Windows.Devices.Sms is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ISmsSendMessageResult := new Windows.Devices.Sms.ISmsSendMessageResult;
+                  Retval.m_ISmsSendMessageResult := new WinRt.Windows.Devices.Sms.ISmsSendMessageResult;
                   Retval.m_ISmsSendMessageResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -2832,7 +2832,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmsDevice2.all.add_DeviceStatusChanged (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2844,7 +2844,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure remove_DeviceStatusChanged
    (
       this : in out SmsDevice2;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2925,7 +2925,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure DeleteMessagesAsync
    (
       this : in out SmsDeviceMessageStore;
-      messageFilter : Windows.Devices.Sms.SmsMessageFilter
+      messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3032,7 +3032,7 @@ package body WinRt.Windows.Devices.Sms is
    function GetMessagesAsync
    (
       this : in out SmsDeviceMessageStore;
-      messageFilter : Windows.Devices.Sms.SmsMessageFilter
+      messageFilter : WinRt.Windows.Devices.Sms.SmsMessageFilter
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -3116,7 +3116,7 @@ package body WinRt.Windows.Devices.Sms is
    function Invoke
    (
       this : access SmsDeviceStatusChangedEventHandler_Delegate;
-      sender : Windows.Devices.Sms.ISmsDevice
+      sender : WinRt.Windows.Devices.Sms.ISmsDevice
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -3150,21 +3150,21 @@ package body WinRt.Windows.Devices.Sms is
 
    function Constructor
    (
-      messageType : Windows.Devices.Sms.SmsMessageType
+      messageType : WinRt.Windows.Devices.Sms.SmsMessageType
    )
    return SmsFilterRule is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsFilterRule");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsFilterRule");
       m_Factory    : access ISmsFilterRuleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsFilterRule;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsFilterRule;
    begin
       return RetVal : SmsFilterRule do
          Hr := RoGetActivationFactory (m_hString, IID_ISmsFilterRuleFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFilterRule (messageType, m_ComRetVal'Access);
-            Retval.m_ISmsFilterRule := new Windows.Devices.Sms.ISmsFilterRule;
+            Retval.m_ISmsFilterRule := new WinRt.Windows.Devices.Sms.ISmsFilterRule;
             Retval.m_ISmsFilterRule.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3183,7 +3183,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
    begin
       Hr := this.m_ISmsFilterRule.all.get_MessageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3200,7 +3200,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_ImsiPrefixes (m_ComRetVal'Access);
@@ -3220,7 +3220,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_DeviceIds (m_ComRetVal'Access);
@@ -3240,7 +3240,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_SenderNumbers (m_ComRetVal'Access);
@@ -3260,7 +3260,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_TextMessagePrefixes (m_ComRetVal'Access);
@@ -3280,7 +3280,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_PortNumbers (m_ComRetVal'Access);
@@ -3300,7 +3300,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_ISmsFilterRule.all.get_CellularClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3312,7 +3312,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_CellularClass
    (
       this : in out SmsFilterRule;
-      value : Windows.Devices.Sms.CellularClass
+      value : WinRt.Windows.Devices.Sms.CellularClass
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3332,7 +3332,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_ProtocolIds (m_ComRetVal'Access);
@@ -3352,7 +3352,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_TeleserviceIds (m_ComRetVal'Access);
@@ -3372,7 +3372,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_WapApplicationIds (m_ComRetVal'Access);
@@ -3392,7 +3392,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_HString.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_WapContentTypes (m_ComRetVal'Access);
@@ -3412,7 +3412,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_SmsBroadcastType.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_BroadcastTypes (m_ComRetVal'Access);
@@ -3432,7 +3432,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_Int32.Kind;
    begin
       Hr := this.m_ISmsFilterRule.all.get_BroadcastChannels (m_ComRetVal'Access);
@@ -3469,21 +3469,21 @@ package body WinRt.Windows.Devices.Sms is
 
    function Constructor
    (
-      actionType : Windows.Devices.Sms.SmsFilterActionType
+      actionType : WinRt.Windows.Devices.Sms.SmsFilterActionType
    )
    return SmsFilterRules is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsFilterRules");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsFilterRules");
       m_Factory    : access ISmsFilterRulesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsFilterRules;
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsFilterRules;
    begin
       return RetVal : SmsFilterRules do
          Hr := RoGetActivationFactory (m_hString, IID_ISmsFilterRulesFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateFilterRules (actionType, m_ComRetVal'Access);
-            Retval.m_ISmsFilterRules := new Windows.Devices.Sms.ISmsFilterRules;
+            Retval.m_ISmsFilterRules := new WinRt.Windows.Devices.Sms.ISmsFilterRules;
             Retval.m_ISmsFilterRules.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3502,7 +3502,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsFilterActionType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsFilterActionType;
    begin
       Hr := this.m_ISmsFilterRules.all.get_ActionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3519,7 +3519,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_ISmsFilterRule.Kind;
    begin
       Hr := this.m_ISmsFilterRules.all.get_Rules (m_ComRetVal'Access);
@@ -3562,14 +3562,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsTextMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsTextMessage do
          Hr := this.m_ISmsMessageReceivedEventArgs.all.get_TextMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsTextMessage := new Windows.Devices.Sms.ISmsTextMessage;
+         Retval.m_ISmsTextMessage := new WinRt.Windows.Devices.Sms.ISmsTextMessage;
          Retval.m_ISmsTextMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3582,14 +3582,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsBinaryMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsBinaryMessage do
          Hr := this.m_ISmsMessageReceivedEventArgs.all.get_BinaryMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsBinaryMessage := new Windows.Devices.Sms.ISmsBinaryMessage;
+         Retval.m_ISmsBinaryMessage := new WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
          Retval.m_ISmsBinaryMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3600,8 +3600,8 @@ package body WinRt.Windows.Devices.Sms is
    function Invoke
    (
       this : access SmsMessageReceivedEventHandler_Delegate;
-      sender : Windows.Devices.Sms.ISmsDevice;
-      e : Windows.Devices.Sms.ISmsMessageReceivedEventArgs
+      sender : WinRt.Windows.Devices.Sms.ISmsDevice;
+      e : WinRt.Windows.Devices.Sms.ISmsMessageReceivedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -3641,7 +3641,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
    begin
       Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_MessageType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3658,14 +3658,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsTextMessage2;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage2;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsTextMessage2 do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_TextMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsTextMessage2 := new Windows.Devices.Sms.ISmsTextMessage2;
+         Retval.m_ISmsTextMessage2 := new WinRt.Windows.Devices.Sms.ISmsTextMessage2;
          Retval.m_ISmsTextMessage2.all := m_ComRetVal;
       end return;
    end;
@@ -3678,14 +3678,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsWapMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsWapMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsWapMessage do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_WapMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsWapMessage := new Windows.Devices.Sms.ISmsWapMessage;
+         Retval.m_ISmsWapMessage := new WinRt.Windows.Devices.Sms.ISmsWapMessage;
          Retval.m_ISmsWapMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3698,14 +3698,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsAppMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsAppMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsAppMessage do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_AppMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsAppMessage := new Windows.Devices.Sms.ISmsAppMessage;
+         Retval.m_ISmsAppMessage := new WinRt.Windows.Devices.Sms.ISmsAppMessage;
          Retval.m_ISmsAppMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3718,14 +3718,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsBroadcastMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsBroadcastMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsBroadcastMessage do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_BroadcastMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsBroadcastMessage := new Windows.Devices.Sms.ISmsBroadcastMessage;
+         Retval.m_ISmsBroadcastMessage := new WinRt.Windows.Devices.Sms.ISmsBroadcastMessage;
          Retval.m_ISmsBroadcastMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3738,14 +3738,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsVoicemailMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsVoicemailMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsVoicemailMessage do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_VoicemailMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsVoicemailMessage := new Windows.Devices.Sms.ISmsVoicemailMessage;
+         Retval.m_ISmsVoicemailMessage := new WinRt.Windows.Devices.Sms.ISmsVoicemailMessage;
          Retval.m_ISmsVoicemailMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3758,14 +3758,14 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsStatusMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsStatusMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsStatusMessage do
          Hr := this.m_ISmsMessageReceivedTriggerDetails.all.get_StatusMessage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsStatusMessage := new Windows.Devices.Sms.ISmsStatusMessage;
+         Retval.m_ISmsStatusMessage := new WinRt.Windows.Devices.Sms.ISmsStatusMessage;
          Retval.m_ISmsStatusMessage.all := m_ComRetVal;
       end return;
    end;
@@ -3828,7 +3828,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsMessageRegistration");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsMessageRegistrationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_ISmsMessageRegistrationStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -3845,7 +3845,7 @@ package body WinRt.Windows.Devices.Sms is
    function Register
    (
       id : WinRt.WString;
-      filterRules : Windows.Devices.Sms.SmsFilterRules'Class
+      filterRules : WinRt.Windows.Devices.Sms.SmsFilterRules'Class
    )
    return WinRt.Windows.Devices.Sms.SmsMessageRegistration is
       Hr               : WinRt.HResult := S_OK;
@@ -3853,7 +3853,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsMessageRegistration");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsMessageRegistrationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsMessageRegistration;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsMessageRegistration;
       HStr_id : constant WinRt.HString := To_HString (id);
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsMessageRegistration do
@@ -3864,7 +3864,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsMessageRegistration := new Windows.Devices.Sms.ISmsMessageRegistration;
+            Retval.m_ISmsMessageRegistration := new WinRt.Windows.Devices.Sms.ISmsMessageRegistration;
             Retval.m_ISmsMessageRegistration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3918,7 +3918,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ISmsMessageRegistration.all.add_MessageReceived (eventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3930,7 +3930,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure remove_MessageReceived
    (
       this : in out SmsMessageRegistration;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4011,7 +4011,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails_Interface, WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails2, WinRt.Windows.Devices.Sms.IID_ISmsReceivedEventDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsReceivedEventDetails.all);
@@ -4032,7 +4032,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsBinaryMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails_Interface, WinRt.Windows.Devices.Sms.ISmsReceivedEventDetails2, WinRt.Windows.Devices.Sms.IID_ISmsReceivedEventDetails2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsBinaryMessage do
@@ -4042,7 +4042,7 @@ package body WinRt.Windows.Devices.Sms is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISmsBinaryMessage := new Windows.Devices.Sms.ISmsBinaryMessage;
+         Retval.m_ISmsBinaryMessage := new WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
          Retval.m_ISmsBinaryMessage.all := m_ComRetVal;
       end return;
    end;
@@ -4095,7 +4095,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_Int32.Kind;
    begin
       Hr := this.m_ISmsSendMessageResult.all.get_MessageReferenceNumbers (m_ComRetVal'Access);
@@ -4115,7 +4115,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
    begin
       Hr := this.m_ISmsSendMessageResult.all.get_CellularClass (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4132,7 +4132,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsModemErrorCode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsModemErrorCode;
    begin
       Hr := this.m_ISmsSendMessageResult.all.get_ModemErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4317,7 +4317,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsStatusMessage.all.get_ServiceCenterTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4334,7 +4334,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsStatusMessage.all.get_DischargeTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4352,7 +4352,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsStatusMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsStatusMessage.all);
@@ -4397,7 +4397,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsStatusMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsStatusMessage.all);
@@ -4418,7 +4418,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsStatusMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsStatusMessage.all);
@@ -4480,13 +4480,13 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsTextMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage");
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsTextMessage;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsTextMessage");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage;
    begin
       return RetVal : SmsTextMessage do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmsTextMessage := new Windows.Devices.Sms.ISmsTextMessage;
+            Retval.m_ISmsTextMessage := new WinRt.Windows.Devices.Sms.ISmsTextMessage;
             Retval.m_ISmsTextMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4498,7 +4498,7 @@ package body WinRt.Windows.Devices.Sms is
 
    function FromBinaryMessage
    (
-      binaryMessage : Windows.Devices.Sms.SmsBinaryMessage'Class
+      binaryMessage : WinRt.Windows.Devices.Sms.SmsBinaryMessage'Class
    )
    return WinRt.Windows.Devices.Sms.SmsTextMessage is
       Hr               : WinRt.HResult := S_OK;
@@ -4506,7 +4506,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsTextMessageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsTextMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage;
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsTextMessage do
          Hr := RoGetActivationFactory (m_hString, IID_ISmsTextMessageStatics'Access , m_Factory'Address);
@@ -4516,7 +4516,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsTextMessage := new Windows.Devices.Sms.ISmsTextMessage;
+            Retval.m_ISmsTextMessage := new WinRt.Windows.Devices.Sms.ISmsTextMessage;
             Retval.m_ISmsTextMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4525,7 +4525,7 @@ package body WinRt.Windows.Devices.Sms is
 
    function FromBinaryData
    (
-      format : Windows.Devices.Sms.SmsDataFormat;
+      format : WinRt.Windows.Devices.Sms.SmsDataFormat;
       value : WinRt.Byte_Array
    )
    return WinRt.Windows.Devices.Sms.SmsTextMessage is
@@ -4534,7 +4534,7 @@ package body WinRt.Windows.Devices.Sms is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage");
       m_Factory        : access WinRt.Windows.Devices.Sms.ISmsTextMessageStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.ISmsTextMessage;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage;
       function Convert_value is new Ada.Unchecked_Conversion (Address, WinRt.Byte_Ptr);
    begin
       return RetVal : WinRt.Windows.Devices.Sms.SmsTextMessage do
@@ -4545,7 +4545,7 @@ package body WinRt.Windows.Devices.Sms is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ISmsTextMessage := new Windows.Devices.Sms.ISmsTextMessage;
+            Retval.m_ISmsTextMessage := new WinRt.Windows.Devices.Sms.ISmsTextMessage;
             Retval.m_ISmsTextMessage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4563,7 +4563,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsTextMessage.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4742,7 +4742,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsEncoding;
    begin
       Hr := this.m_ISmsTextMessage.all.get_Encoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4754,7 +4754,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsTextMessage;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4769,13 +4769,13 @@ package body WinRt.Windows.Devices.Sms is
    function ToBinaryMessages
    (
       this : in out SmsTextMessage;
-      format : Windows.Devices.Sms.SmsDataFormat
+      format : WinRt.Windows.Devices.Sms.SmsDataFormat
    )
    return IVectorView_ISmsBinaryMessage.Kind is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ISmsBinaryMessage.Kind;
    begin
       Hr := this.m_ISmsTextMessage.all.ToBinaryMessages (format, m_ComRetVal'Access);
@@ -4817,7 +4817,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessage := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsTextMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessage, WinRt.Windows.Devices.Sms.IID_ISmsMessage'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsTextMessage.all);
@@ -4855,13 +4855,13 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsTextMessage2 is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage2");
-      m_ComRetVal  : aliased Windows.Devices.Sms.ISmsTextMessage2;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsTextMessage2");
+      m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage2;
    begin
       return RetVal : SmsTextMessage2 do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ISmsTextMessage2 := new Windows.Devices.Sms.ISmsTextMessage2;
+            Retval.m_ISmsTextMessage2 := new WinRt.Windows.Devices.Sms.ISmsTextMessage2;
             Retval.m_ISmsTextMessage2.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -4879,7 +4879,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsTextMessage2.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4990,7 +4990,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsEncoding;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsEncoding;
    begin
       Hr := this.m_ISmsTextMessage2.all.get_Encoding (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5002,7 +5002,7 @@ package body WinRt.Windows.Devices.Sms is
    procedure put_Encoding
    (
       this : in out SmsTextMessage2;
-      value : Windows.Devices.Sms.SmsEncoding
+      value : WinRt.Windows.Devices.Sms.SmsEncoding
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5158,7 +5158,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsTextMessage2_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsTextMessage2.all);
@@ -5203,7 +5203,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsTextMessage2_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsTextMessage2.all);
@@ -5224,7 +5224,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsTextMessage2_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsTextMessage2.all);
@@ -5291,7 +5291,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsVoicemailMessage.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5348,7 +5348,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_ISmsVoicemailMessage.all.get_MessageCount (m_ComRetVal'Access);
@@ -5369,7 +5369,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsVoicemailMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsVoicemailMessage.all);
@@ -5414,7 +5414,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsVoicemailMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsVoicemailMessage.all);
@@ -5435,7 +5435,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsVoicemailMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsVoicemailMessage.all);
@@ -5502,7 +5502,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ISmsWapMessage.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5599,7 +5599,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_ISmsWapMessage.all.get_BinaryBody (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5616,7 +5616,7 @@ package body WinRt.Windows.Devices.Sms is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_ISmsWapMessage.all.get_Headers (m_ComRetVal'Access);
@@ -5637,7 +5637,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageType;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsWapMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsWapMessage.all);
@@ -5682,7 +5682,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.CellularClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.CellularClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsWapMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsWapMessage.all);
@@ -5703,7 +5703,7 @@ package body WinRt.Windows.Devices.Sms is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sms.ISmsMessageBase := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sms.SmsMessageClass;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sms.SmsMessageClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sms.ISmsWapMessage_Interface, WinRt.Windows.Devices.Sms.ISmsMessageBase, WinRt.Windows.Devices.Sms.IID_ISmsMessageBase'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISmsWapMessage.all);

@@ -737,14 +737,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_Type
       (
          this : access IVpnAppId_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnAppIdType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnAppIdType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IVpnAppId_Interface;
-         value : Windows.Networking.Vpn.VpnAppIdType
+         value : WinRt.Windows.Networking.Vpn.VpnAppIdType
       )
       return WinRt.Hresult is abstract;
 
@@ -770,9 +770,9 @@ package WinRt.Windows.Networking.Vpn is
       function Create
       (
          this : access IVpnAppIdFactory_Interface;
-         type_x : Windows.Networking.Vpn.VpnAppIdType;
+         type_x : WinRt.Windows.Networking.Vpn.VpnAppIdType;
          value : WinRt.HString;
-         RetVal : access Windows.Networking.Vpn.IVpnAppId
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnAppId
       )
       return WinRt.Hresult is abstract;
 
@@ -794,9 +794,9 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnChannel_Interface;
          assignedClientIPv4list : GenericObject;
          assignedClientIPv6list : GenericObject;
-         vpnInterfaceId_p : Windows.Networking.Vpn.IVpnInterfaceId;
-         routeScope : Windows.Networking.Vpn.IVpnRouteAssignment;
-         namespaceScope : Windows.Networking.Vpn.IVpnNamespaceAssignment;
+         vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
+         routeScope : WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
+         namespaceScope : WinRt.Windows.Networking.Vpn.IVpnNamespaceAssignment;
          mtuSize : WinRt.UInt32;
          maxFrameSize : WinRt.UInt32;
          optimizeForLowCostNetwork : WinRt.Boolean;
@@ -814,19 +814,19 @@ package WinRt.Windows.Networking.Vpn is
       function RequestCredentials
       (
          this : access IVpnChannel_Interface;
-         credType : Windows.Networking.Vpn.VpnCredentialType;
+         credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
          isRetry : WinRt.Boolean;
          isSingleSignOnCredential : WinRt.Boolean;
-         certificate : Windows.Security.Cryptography.Certificates.ICertificate;
-         RetVal : access Windows.Networking.Vpn.IVpnPickedCredential
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPickedCredential
       )
       return WinRt.Hresult is abstract;
 
       function RequestVpnPacketBuffer
       (
          this : access IVpnChannel_Interface;
-         type_x : Windows.Networking.Vpn.VpnDataPathType;
-         vpnPacketBuffer_p : access Windows.Networking.Vpn.IVpnPacketBuffer
+         type_x : WinRt.Windows.Networking.Vpn.VpnDataPathType;
+         vpnPacketBuffer_p : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -847,7 +847,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_Configuration
       (
          this : access IVpnChannel_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnChannelConfiguration
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnChannelConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -855,14 +855,14 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActivityChange
       (
          this : access IVpnChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -883,7 +883,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_SystemHealth
       (
          this : access IVpnChannel_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnSystemHealth
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnSystemHealth
       )
       return WinRt.Hresult is abstract;
 
@@ -919,9 +919,9 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnChannel2_Interface;
          assignedClientIPv4list : GenericObject;
          assignedClientIPv6list : GenericObject;
-         vpnInterfaceId_p : Windows.Networking.Vpn.IVpnInterfaceId;
-         assignedRoutes : Windows.Networking.Vpn.IVpnRouteAssignment;
-         assignedDomainName : Windows.Networking.Vpn.IVpnDomainNameAssignment;
+         vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
+         assignedRoutes : WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
+         assignedDomainName : WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
          mtuSize : WinRt.UInt32;
          maxFrameSize : WinRt.UInt32;
          Reserved : WinRt.Boolean;
@@ -934,9 +934,9 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnChannel2_Interface;
          assignedClientIPv4list : GenericObject;
          assignedClientIPv6list : GenericObject;
-         vpnInterfaceId_p : Windows.Networking.Vpn.IVpnInterfaceId;
-         assignedRoutes : Windows.Networking.Vpn.IVpnRouteAssignment;
-         assignedDomainName : Windows.Networking.Vpn.IVpnDomainNameAssignment;
+         vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
+         assignedRoutes : WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
+         assignedDomainName : WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
          mtuSize : WinRt.UInt32;
          maxFrameSize : WinRt.UInt32;
          Reserved : WinRt.Boolean
@@ -947,28 +947,28 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnChannel2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActivityStateChange
       (
          this : access IVpnChannel2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetVpnSendPacketBuffer
       (
          this : access IVpnChannel2_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function GetVpnReceivePacketBuffer
       (
          this : access IVpnChannel2_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -976,16 +976,16 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnChannel2_Interface;
          customPromptElement : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RequestCredentialsAsync
       (
          this : access IVpnChannel2_Interface;
-         credType : Windows.Networking.Vpn.VpnCredentialType;
+         credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
          credOptions : WinRt.UInt32;
-         certificate : Windows.Security.Cryptography.Certificates.ICertificate;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -993,7 +993,7 @@ package WinRt.Windows.Networking.Vpn is
       function RequestCredentialsAsync
       (
          this : access IVpnChannel2_Interface;
-         credType : Windows.Networking.Vpn.VpnCredentialType;
+         credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
          credOptions : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -1002,7 +1002,7 @@ package WinRt.Windows.Networking.Vpn is
       function RequestCredentialsAsync
       (
          this : access IVpnChannel2_Interface;
-         credType : Windows.Networking.Vpn.VpnCredentialType;
+         credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1019,15 +1019,15 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnChannel2_Interface;
          assignedClientIpv4List : GenericObject;
          assignedClientIpv6List : GenericObject;
-         vpnInterfaceId_p : Windows.Networking.Vpn.IVpnInterfaceId;
-         assignedRoutes : Windows.Networking.Vpn.IVpnRouteAssignment;
-         assignedNamespace : Windows.Networking.Vpn.IVpnDomainNameAssignment;
+         vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
+         assignedRoutes : WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
+         assignedNamespace : WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
          mtuSize : WinRt.UInt32;
          maxFrameSize : WinRt.UInt32;
          reserved : WinRt.Boolean;
          mainOuterTunnelTransport : WinRt.IInspectable;
          optionalOuterTunnelTransport : WinRt.IInspectable;
-         assignedTrafficFilters : Windows.Networking.Vpn.IVpnTrafficFilterAssignment
+         assignedTrafficFilters : WinRt.Windows.Networking.Vpn.IVpnTrafficFilterAssignment
       )
       return WinRt.Hresult is abstract;
 
@@ -1049,14 +1049,14 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnChannel4_Interface;
          assignedClientIpv4Addresses : GenericObject;
          assignedClientIpv6Addresses : GenericObject;
-         vpninterfaceId_p : Windows.Networking.Vpn.IVpnInterfaceId;
-         assignedRoutes : Windows.Networking.Vpn.IVpnRouteAssignment;
-         assignedNamespace : Windows.Networking.Vpn.IVpnDomainNameAssignment;
+         vpninterfaceId_p : WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
+         assignedRoutes : WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
+         assignedNamespace : WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
          mtuSize : WinRt.UInt32;
          maxFrameSize : WinRt.UInt32;
          reserved : WinRt.Boolean;
          transports : GenericObject;
-         assignedTrafficFilters : Windows.Networking.Vpn.IVpnTrafficFilterAssignment
+         assignedTrafficFilters : WinRt.Windows.Networking.Vpn.IVpnTrafficFilterAssignment
       )
       return WinRt.Hresult is abstract;
 
@@ -1080,7 +1080,7 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnChannel4_Interface;
          context : WinRt.IInspectable;
-         RetVal : access Windows.Networking.Sockets.ControlChannelTriggerStatus
+         RetVal : access WinRt.Windows.Networking.Sockets.ControlChannelTriggerStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1099,14 +1099,14 @@ package WinRt.Windows.Networking.Vpn is
       function AppendVpnReceivePacketBuffer
       (
          this : access IVpnChannel5_Interface;
-         decapsulatedPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         decapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function AppendVpnSendPacketBuffer
       (
          this : access IVpnChannel5_Interface;
-         encapsulatedPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         encapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1131,8 +1131,8 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnChannel6_Interface;
          packageRelativeAppId : WinRt.HString;
-         sharedContext : Windows.Foundation.Collections.IPropertySet;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         sharedContext : WinRt.Windows.Foundation.Collections.IPropertySet;
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1144,7 +1144,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_Type
       (
          this : access IVpnChannelActivityEventArgs_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnChannelActivityEventType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnChannelActivityEventType
       )
       return WinRt.Hresult is abstract;
 
@@ -1156,7 +1156,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_ActivityState
       (
          this : access IVpnChannelActivityStateChangedArgs_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnChannelActivityEventType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnChannelActivityEventType
       )
       return WinRt.Hresult is abstract;
 
@@ -1219,14 +1219,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_PasskeyCredential
       (
          this : access IVpnCredential_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
       function get_CertificateCredential
       (
          this : access IVpnCredential_Interface;
-         RetVal : access Windows.Security.Cryptography.Certificates.ICertificate
+         RetVal : access WinRt.Windows.Security.Cryptography.Certificates.ICertificate
       )
       return WinRt.Hresult is abstract;
 
@@ -1240,7 +1240,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_OldPasswordCredential
       (
          this : access IVpnCredential_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -1573,14 +1573,14 @@ package WinRt.Windows.Networking.Vpn is
       function put_ProxyAutoConfigurationUri
       (
          this : access IVpnDomainNameAssignment_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyAutoConfigurationUri
       (
          this : access IVpnDomainNameAssignment_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1592,28 +1592,28 @@ package WinRt.Windows.Networking.Vpn is
       function put_DomainName
       (
          this : access IVpnDomainNameInfo_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function get_DomainName
       (
          this : access IVpnDomainNameInfo_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function put_DomainNameType
       (
          this : access IVpnDomainNameInfo_Interface;
-         value : Windows.Networking.Vpn.VpnDomainNameType
+         value : WinRt.Windows.Networking.Vpn.VpnDomainNameType
       )
       return WinRt.Hresult is abstract;
 
       function get_DomainNameType
       (
          this : access IVpnDomainNameInfo_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnDomainNameType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnDomainNameType
       )
       return WinRt.Hresult is abstract;
 
@@ -1652,10 +1652,10 @@ package WinRt.Windows.Networking.Vpn is
       (
          this : access IVpnDomainNameInfoFactory_Interface;
          name : WinRt.HString;
-         nameType : Windows.Networking.Vpn.VpnDomainNameType;
+         nameType : WinRt.Windows.Networking.Vpn.VpnDomainNameType;
          dnsServerList : GenericObject;
          proxyServerList : GenericObject;
-         RetVal : access Windows.Networking.Vpn.IVpnDomainNameInfo
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1674,14 +1674,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_SharedContext
       (
          this : access IVpnForegroundActivatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_ActivationOperation
       (
          this : access IVpnForegroundActivatedEventArgs_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnForegroundActivationOperation
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnForegroundActivationOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1693,7 +1693,7 @@ package WinRt.Windows.Networking.Vpn is
       function Complete
       (
          this : access IVpnForegroundActivationOperation_Interface;
-         result : Windows.Foundation.Collections.IPropertySet
+         result : WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1720,7 +1720,7 @@ package WinRt.Windows.Networking.Vpn is
          this : access IVpnInterfaceIdFactory_Interface;
          address_xSize : WinRt.UInt32;
          address_x : WinRt.Byte_Ptr;
-         RetVal : access Windows.Networking.Vpn.IVpnInterfaceId
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnInterfaceId
       )
       return WinRt.Hresult is abstract;
 
@@ -1740,7 +1740,7 @@ package WinRt.Windows.Networking.Vpn is
       function AddProfileFromObjectAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1756,7 +1756,7 @@ package WinRt.Windows.Networking.Vpn is
       function UpdateProfileFromObjectAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1771,7 +1771,7 @@ package WinRt.Windows.Networking.Vpn is
       function DeleteProfileAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1779,7 +1779,7 @@ package WinRt.Windows.Networking.Vpn is
       function ConnectProfileAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1787,8 +1787,8 @@ package WinRt.Windows.Networking.Vpn is
       function ConnectProfileWithPasswordCredentialAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
-         passwordCredential : Windows.Security.Credentials.IPasswordCredential;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
+         passwordCredential : WinRt.Windows.Security.Credentials.IPasswordCredential;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1796,7 +1796,7 @@ package WinRt.Windows.Networking.Vpn is
       function DisconnectProfileAsync
       (
          this : access IVpnManagementAgent_Interface;
-         profile : Windows.Networking.Vpn.IVpnProfile;
+         profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1823,14 +1823,14 @@ package WinRt.Windows.Networking.Vpn is
       function put_ProxyAutoConfigUri
       (
          this : access IVpnNamespaceAssignment_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_ProxyAutoConfigUri
       (
          this : access IVpnNamespaceAssignment_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1892,7 +1892,7 @@ package WinRt.Windows.Networking.Vpn is
          name : WinRt.HString;
          dnsServerList : GenericObject;
          proxyServerList : GenericObject;
-         RetVal : access Windows.Networking.Vpn.IVpnNamespaceInfo
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnNamespaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1911,56 +1911,56 @@ package WinRt.Windows.Networking.Vpn is
       function get_RoutingPolicyType
       (
          this : access IVpnNativeProfile_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnRoutingPolicyType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
       )
       return WinRt.Hresult is abstract;
 
       function put_RoutingPolicyType
       (
          this : access IVpnNativeProfile_Interface;
-         value : Windows.Networking.Vpn.VpnRoutingPolicyType
+         value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
       )
       return WinRt.Hresult is abstract;
 
       function get_NativeProtocolType
       (
          this : access IVpnNativeProfile_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnNativeProtocolType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnNativeProtocolType
       )
       return WinRt.Hresult is abstract;
 
       function put_NativeProtocolType
       (
          this : access IVpnNativeProfile_Interface;
-         value : Windows.Networking.Vpn.VpnNativeProtocolType
+         value : WinRt.Windows.Networking.Vpn.VpnNativeProtocolType
       )
       return WinRt.Hresult is abstract;
 
       function get_UserAuthenticationMethod
       (
          this : access IVpnNativeProfile_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnAuthenticationMethod
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_UserAuthenticationMethod
       (
          this : access IVpnNativeProfile_Interface;
-         value : Windows.Networking.Vpn.VpnAuthenticationMethod
+         value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
       )
       return WinRt.Hresult is abstract;
 
       function get_TunnelAuthenticationMethod
       (
          this : access IVpnNativeProfile_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnAuthenticationMethod
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
       )
       return WinRt.Hresult is abstract;
 
       function put_TunnelAuthenticationMethod
       (
          this : access IVpnNativeProfile_Interface;
-         value : Windows.Networking.Vpn.VpnAuthenticationMethod
+         value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
       )
       return WinRt.Hresult is abstract;
 
@@ -2000,7 +2000,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_ConnectionStatus
       (
          this : access IVpnNativeProfile2_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnManagementConnectionStatus
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnManagementConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2012,21 +2012,21 @@ package WinRt.Windows.Networking.Vpn is
       function get_Buffer
       (
          this : access IVpnPacketBuffer_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_Status
       (
          this : access IVpnPacketBuffer_Interface;
-         value : Windows.Networking.Vpn.VpnPacketBufferStatus
+         value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IVpnPacketBuffer_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnPacketBufferStatus
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2052,7 +2052,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_AppId
       (
          this : access IVpnPacketBuffer2_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnAppId
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnAppId
       )
       return WinRt.Hresult is abstract;
 
@@ -2083,10 +2083,10 @@ package WinRt.Windows.Networking.Vpn is
       function CreateVpnPacketBuffer
       (
          this : access IVpnPacketBufferFactory_Interface;
-         parentBuffer : Windows.Networking.Vpn.IVpnPacketBuffer;
+         parentBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
          offset : WinRt.UInt32;
          length : WinRt.UInt32;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2098,28 +2098,28 @@ package WinRt.Windows.Networking.Vpn is
       function Append
       (
          this : access IVpnPacketBufferList_Interface;
-         nextVpnPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function AddAtBegin
       (
          this : access IVpnPacketBufferList_Interface;
-         nextVpnPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RemoveAtEnd
       (
          this : access IVpnPacketBufferList_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RemoveAtBegin
       (
          this : access IVpnPacketBufferList_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2132,14 +2132,14 @@ package WinRt.Windows.Networking.Vpn is
       function put_Status
       (
          this : access IVpnPacketBufferList_Interface;
-         value : Windows.Networking.Vpn.VpnPacketBufferStatus
+         value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IVpnPacketBufferList_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnPacketBufferStatus
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2158,28 +2158,28 @@ package WinRt.Windows.Networking.Vpn is
       function AddLeadingPacket
       (
          this : access IVpnPacketBufferList2_Interface;
-         nextVpnPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RemoveLeadingPacket
       (
          this : access IVpnPacketBufferList2_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function AddTrailingPacket
       (
          this : access IVpnPacketBufferList2_Interface;
-         nextVpnPacketBuffer : Windows.Networking.Vpn.IVpnPacketBuffer
+         nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function RemoveTrailingPacket
       (
          this : access IVpnPacketBufferList2_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnPacketBuffer
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2191,7 +2191,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_PasskeyCredential
       (
          this : access IVpnPickedCredential_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -2205,7 +2205,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_OldPasswordCredential
       (
          this : access IVpnPickedCredential_Interface;
-         RetVal : access Windows.Security.Credentials.IPasswordCredential
+         RetVal : access WinRt.Windows.Security.Credentials.IPasswordCredential
       )
       return WinRt.Hresult is abstract;
 
@@ -2217,41 +2217,41 @@ package WinRt.Windows.Networking.Vpn is
       function Connect
       (
          this : access IVpnPlugIn_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel
       )
       return WinRt.Hresult is abstract;
 
       function Disconnect
       (
          this : access IVpnPlugIn_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel
       )
       return WinRt.Hresult is abstract;
 
       function GetKeepAlivePayload
       (
          this : access IVpnPlugIn_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel;
-         keepAlivePacket : access Windows.Networking.Vpn.IVpnPacketBuffer
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel;
+         keepAlivePacket : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
       )
       return WinRt.Hresult is abstract;
 
       function Encapsulate
       (
          this : access IVpnPlugIn_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel;
-         packets : Windows.Networking.Vpn.IVpnPacketBufferList;
-         encapulatedPackets : Windows.Networking.Vpn.IVpnPacketBufferList
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel;
+         packets : WinRt.Windows.Networking.Vpn.IVpnPacketBufferList;
+         encapulatedPackets : WinRt.Windows.Networking.Vpn.IVpnPacketBufferList
       )
       return WinRt.Hresult is abstract;
 
       function Decapsulate
       (
          this : access IVpnPlugIn_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel;
-         encapBuffer : Windows.Networking.Vpn.IVpnPacketBuffer;
-         decapsulatedPackets : Windows.Networking.Vpn.IVpnPacketBufferList;
-         controlPacketsToSend : Windows.Networking.Vpn.IVpnPacketBufferList
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel;
+         encapBuffer : WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
+         decapsulatedPackets : WinRt.Windows.Networking.Vpn.IVpnPacketBufferList;
+         controlPacketsToSend : WinRt.Windows.Networking.Vpn.IVpnPacketBufferList
       )
       return WinRt.Hresult is abstract;
 
@@ -2317,7 +2317,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_ConnectionStatus
       (
          this : access IVpnPlugInProfile2_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnManagementConnectionStatus
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnManagementConnectionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2329,7 +2329,7 @@ package WinRt.Windows.Networking.Vpn is
       function ReconnectTransport
       (
          this : access IVpnPlugInReconnectTransport_Interface;
-         channel : Windows.Networking.Vpn.IVpnChannel;
+         channel : WinRt.Windows.Networking.Vpn.IVpnChannel;
          context : WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -2417,14 +2417,14 @@ package WinRt.Windows.Networking.Vpn is
       function put_Address
       (
          this : access IVpnRoute_Interface;
-         value : Windows.Networking.IHostName
+         value : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function get_Address
       (
          this : access IVpnRoute_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -2525,9 +2525,9 @@ package WinRt.Windows.Networking.Vpn is
       function CreateVpnRoute
       (
          this : access IVpnRouteFactory_Interface;
-         address_x : Windows.Networking.IHostName;
+         address_x : WinRt.Windows.Networking.IHostName;
          prefixSize : WinRt.Byte;
-         RetVal : access Windows.Networking.Vpn.IVpnRoute
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnRoute
       )
       return WinRt.Hresult is abstract;
 
@@ -2539,7 +2539,7 @@ package WinRt.Windows.Networking.Vpn is
       function get_StatementOfHealth
       (
          this : access IVpnSystemHealth_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -2551,14 +2551,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_AppId
       (
          this : access IVpnTrafficFilter_Interface;
-         RetVal : access Windows.Networking.Vpn.IVpnAppId
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnAppId
       )
       return WinRt.Hresult is abstract;
 
       function put_AppId
       (
          this : access IVpnTrafficFilter_Interface;
-         value : Windows.Networking.Vpn.IVpnAppId
+         value : WinRt.Windows.Networking.Vpn.IVpnAppId
       )
       return WinRt.Hresult is abstract;
 
@@ -2572,14 +2572,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_Protocol
       (
          this : access IVpnTrafficFilter_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnIPProtocol
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnIPProtocol
       )
       return WinRt.Hresult is abstract;
 
       function put_Protocol
       (
          this : access IVpnTrafficFilter_Interface;
-         value : Windows.Networking.Vpn.VpnIPProtocol
+         value : WinRt.Windows.Networking.Vpn.VpnIPProtocol
       )
       return WinRt.Hresult is abstract;
 
@@ -2614,14 +2614,14 @@ package WinRt.Windows.Networking.Vpn is
       function get_RoutingPolicyType
       (
          this : access IVpnTrafficFilter_Interface;
-         RetVal : access Windows.Networking.Vpn.VpnRoutingPolicyType
+         RetVal : access WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
       )
       return WinRt.Hresult is abstract;
 
       function put_RoutingPolicyType
       (
          this : access IVpnTrafficFilter_Interface;
-         value : Windows.Networking.Vpn.VpnRoutingPolicyType
+         value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
       )
       return WinRt.Hresult is abstract;
 
@@ -2673,8 +2673,8 @@ package WinRt.Windows.Networking.Vpn is
       function Create
       (
          this : access IVpnTrafficFilterFactory_Interface;
-         appId : Windows.Networking.Vpn.IVpnAppId;
-         RetVal : access Windows.Networking.Vpn.IVpnTrafficFilter
+         appId : WinRt.Windows.Networking.Vpn.IVpnAppId;
+         RetVal : access WinRt.Windows.Networking.Vpn.IVpnTrafficFilter
       )
       return WinRt.Hresult is abstract;
 
@@ -2695,7 +2695,7 @@ package WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      type_x : Windows.Networking.Vpn.VpnAppIdType;
+      type_x : WinRt.Windows.Networking.Vpn.VpnAppIdType;
       value : WinRt.WString
    )
    return VpnAppId;
@@ -2712,7 +2712,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_Type
    (
       this : in out VpnAppId;
-      value : Windows.Networking.Vpn.VpnAppIdType
+      value : WinRt.Windows.Networking.Vpn.VpnAppIdType
    );
 
    function get_Value
@@ -2757,9 +2757,9 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      routeScope : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      namespaceScope : Windows.Networking.Vpn.VpnNamespaceAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      routeScope : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      namespaceScope : WinRt.Windows.Networking.Vpn.VpnNamespaceAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       optimizeForLowCostNetwork : WinRt.Boolean;
@@ -2775,18 +2775,18 @@ package WinRt.Windows.Networking.Vpn is
    function RequestCredentials
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       isRetry : WinRt.Boolean;
       isSingleSignOnCredential : WinRt.Boolean;
-      certificate : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnPickedCredential'Class;
 
    procedure RequestVpnPacketBuffer
    (
       this : in out VpnChannel;
-      type_x : Windows.Networking.Vpn.VpnDataPathType;
-      vpnPacketBuffer_p : access Windows.Networking.Vpn.IVpnPacketBuffer
+      type_x : WinRt.Windows.Networking.Vpn.VpnDataPathType;
+      vpnPacketBuffer_p : access WinRt.Windows.Networking.Vpn.IVpnPacketBuffer
    );
 
    procedure LogDiagnosticMessage
@@ -2817,7 +2817,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure remove_ActivityChange
    (
       this : in out VpnChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_PlugInContext
@@ -2862,9 +2862,9 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedDomainName : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedDomainName : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       Reserved : WinRt.Boolean;
@@ -2876,9 +2876,9 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIPv4list : GenericObject;
       assignedClientIPv6list : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedDomainName : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedDomainName : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       Reserved : WinRt.Boolean
@@ -2894,7 +2894,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure remove_ActivityStateChange
    (
       this : in out VpnChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetVpnSendPacketBuffer
@@ -2918,16 +2918,16 @@ package WinRt.Windows.Networking.Vpn is
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       credOptions : WinRt.UInt32;
-      certificate : Windows.Security.Cryptography.Certificates.Certificate'Class
+      certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class;
 
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType;
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType;
       credOptions : WinRt.UInt32
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class;
@@ -2935,7 +2935,7 @@ package WinRt.Windows.Networking.Vpn is
    function RequestCredentialsAsync
    (
       this : in out VpnChannel;
-      credType : Windows.Networking.Vpn.VpnCredentialType
+      credType : WinRt.Windows.Networking.Vpn.VpnCredentialType
    )
    return WinRt.Windows.Networking.Vpn.VpnCredential'Class;
 
@@ -2950,15 +2950,15 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIpv4List : GenericObject;
       assignedClientIpv6List : GenericObject;
-      vpnInterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedNamespace : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpnInterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedNamespace : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       reserved : WinRt.Boolean;
       mainOuterTunnelTransport : WinRt.IInspectable;
       optionalOuterTunnelTransport : WinRt.IInspectable;
-      assignedTrafficFilters : Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
+      assignedTrafficFilters : WinRt.Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
    );
 
    procedure AddAndAssociateTransport
@@ -2973,14 +2973,14 @@ package WinRt.Windows.Networking.Vpn is
       this : in out VpnChannel;
       assignedClientIpv4Addresses : GenericObject;
       assignedClientIpv6Addresses : GenericObject;
-      vpninterfaceId_p : Windows.Networking.Vpn.VpnInterfaceId'Class;
-      assignedRoutes : Windows.Networking.Vpn.VpnRouteAssignment'Class;
-      assignedNamespace : Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
+      vpninterfaceId_p : WinRt.Windows.Networking.Vpn.VpnInterfaceId'Class;
+      assignedRoutes : WinRt.Windows.Networking.Vpn.VpnRouteAssignment'Class;
+      assignedNamespace : WinRt.Windows.Networking.Vpn.VpnDomainNameAssignment'Class;
       mtuSize : WinRt.UInt32;
       maxFrameSize : WinRt.UInt32;
       reserved : WinRt.Boolean;
       transports : GenericObject;
-      assignedTrafficFilters : Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
+      assignedTrafficFilters : WinRt.Windows.Networking.Vpn.VpnTrafficFilterAssignment'Class
    );
 
    procedure ReplaceAndAssociateTransport
@@ -3013,13 +3013,13 @@ package WinRt.Windows.Networking.Vpn is
    procedure AppendVpnReceivePacketBuffer
    (
       this : in out VpnChannel;
-      decapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      decapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    );
 
    procedure AppendVpnSendPacketBuffer
    (
       this : in out VpnChannel;
-      encapsulatedPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      encapsulatedPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    );
 
    procedure FlushVpnReceivePacketBuffers
@@ -3036,7 +3036,7 @@ package WinRt.Windows.Networking.Vpn is
    (
       this : in out VpnChannel;
       packageRelativeAppId : WinRt.WString;
-      sharedContext : Windows.Foundation.Collections.ValueSet'Class
+      sharedContext : WinRt.Windows.Foundation.Collections.ValueSet'Class
    )
    return WinRt.Windows.Foundation.Collections.ValueSet'Class;
 
@@ -3759,7 +3759,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_ProxyAutoConfigurationUri
    (
       this : in out VpnDomainNameAssignment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ProxyAutoConfigurationUri
@@ -3780,7 +3780,7 @@ package WinRt.Windows.Networking.Vpn is
    function Constructor
    (
       name : WinRt.WString;
-      nameType : Windows.Networking.Vpn.VpnDomainNameType;
+      nameType : WinRt.Windows.Networking.Vpn.VpnDomainNameType;
       dnsServerList : GenericObject;
       proxyServerList : GenericObject
    )
@@ -3792,7 +3792,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_DomainName
    (
       this : in out VpnDomainNameInfo;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_DomainName
@@ -3804,7 +3804,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_DomainNameType
    (
       this : in out VpnDomainNameInfo;
-      value : Windows.Networking.Vpn.VpnDomainNameType
+      value : WinRt.Windows.Networking.Vpn.VpnDomainNameType
    );
 
    function get_DomainNameType
@@ -3894,7 +3894,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure Complete
    (
       this : in out VpnForegroundActivationOperation;
-      result : Windows.Foundation.Collections.ValueSet'Class
+      result : WinRt.Windows.Foundation.Collections.ValueSet'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3945,7 +3945,7 @@ package WinRt.Windows.Networking.Vpn is
    function AddProfileFromObjectAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
@@ -3959,7 +3959,7 @@ package WinRt.Windows.Networking.Vpn is
    function UpdateProfileFromObjectAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
@@ -3972,29 +3972,29 @@ package WinRt.Windows.Networking.Vpn is
    function DeleteProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
    function ConnectProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
    function ConnectProfileWithPasswordCredentialAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile;
-      passwordCredential : Windows.Security.Credentials.PasswordCredential'Class
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile;
+      passwordCredential : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
    function DisconnectProfileAsync
    (
       this : in out VpnManagementAgent;
-      profile : Windows.Networking.Vpn.IVpnProfile
+      profile : WinRt.Windows.Networking.Vpn.IVpnProfile
    )
    return WinRt.Windows.Networking.Vpn.VpnManagementErrorStatus;
 
@@ -4027,7 +4027,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_ProxyAutoConfigUri
    (
       this : in out VpnNamespaceAssignment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ProxyAutoConfigUri
@@ -4121,7 +4121,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_RoutingPolicyType
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnRoutingPolicyType
+      value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
    );
 
    function get_NativeProtocolType
@@ -4133,7 +4133,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_NativeProtocolType
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnNativeProtocolType
+      value : WinRt.Windows.Networking.Vpn.VpnNativeProtocolType
    );
 
    function get_UserAuthenticationMethod
@@ -4145,7 +4145,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_UserAuthenticationMethod
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnAuthenticationMethod
+      value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
    );
 
    function get_TunnelAuthenticationMethod
@@ -4157,7 +4157,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_TunnelAuthenticationMethod
    (
       this : in out VpnNativeProfile;
-      value : Windows.Networking.Vpn.VpnAuthenticationMethod
+      value : WinRt.Windows.Networking.Vpn.VpnAuthenticationMethod
    );
 
    function get_EapConfiguration
@@ -4261,7 +4261,7 @@ package WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      parentBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class;
+      parentBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class;
       offset : WinRt.UInt32;
       length : WinRt.UInt32
    )
@@ -4279,7 +4279,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_Status
    (
       this : in out VpnPacketBuffer;
-      value : Windows.Networking.Vpn.VpnPacketBufferStatus
+      value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
    );
 
    function get_Status
@@ -4330,13 +4330,13 @@ package WinRt.Windows.Networking.Vpn is
    procedure Append
    (
       this : in out VpnPacketBufferList;
-      nextVpnPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    );
 
    procedure AddAtBegin
    (
       this : in out VpnPacketBufferList;
-      nextVpnPacketBuffer : Windows.Networking.Vpn.VpnPacketBuffer'Class
+      nextVpnPacketBuffer : WinRt.Windows.Networking.Vpn.VpnPacketBuffer'Class
    );
 
    function RemoveAtEnd
@@ -4359,7 +4359,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_Status
    (
       this : in out VpnPacketBufferList;
-      value : Windows.Networking.Vpn.VpnPacketBufferStatus
+      value : WinRt.Windows.Networking.Vpn.VpnPacketBufferStatus
    );
 
    function get_Status
@@ -4541,7 +4541,7 @@ package WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      address_x : Windows.Networking.HostName'Class;
+      address_x : WinRt.Windows.Networking.HostName'Class;
       prefixSize : WinRt.Byte
    )
    return VpnRoute;
@@ -4552,7 +4552,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_Address
    (
       this : in out VpnRoute;
-      value : Windows.Networking.HostName'Class
+      value : WinRt.Windows.Networking.HostName'Class
    );
 
    function get_Address
@@ -4673,7 +4673,7 @@ package WinRt.Windows.Networking.Vpn is
 
    function Constructor
    (
-      appId : Windows.Networking.Vpn.VpnAppId'Class
+      appId : WinRt.Windows.Networking.Vpn.VpnAppId'Class
    )
    return VpnTrafficFilter;
 
@@ -4689,7 +4689,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_AppId
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnAppId'Class
+      value : WinRt.Windows.Networking.Vpn.VpnAppId'Class
    );
 
    function get_AppClaims
@@ -4707,7 +4707,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_Protocol
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnIPProtocol
+      value : WinRt.Windows.Networking.Vpn.VpnIPProtocol
    );
 
    function get_LocalPortRanges
@@ -4743,7 +4743,7 @@ package WinRt.Windows.Networking.Vpn is
    procedure put_RoutingPolicyType
    (
       this : in out VpnTrafficFilter;
-      value : Windows.Networking.Vpn.VpnRoutingPolicyType
+      value : WinRt.Windows.Networking.Vpn.VpnRoutingPolicyType
    );
 
    -----------------------------------------------------------------------------

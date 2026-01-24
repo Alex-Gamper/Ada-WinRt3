@@ -55,9 +55,9 @@ package WinRt.Windows.AI.Actions.Provider is
       function ProcessFeedbackAsync
       (
          this : access IActionFeedbackHandler_Interface;
-         context : Windows.AI.Actions.IActionInvocationContext;
-         feedback : Windows.AI.Actions.IActionFeedback;
-         RetVal : access Windows.Foundation.IAsyncAction
+         context : WinRt.Windows.AI.Actions.IActionInvocationContext;
+         feedback : WinRt.Windows.AI.Actions.IActionFeedback;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -69,8 +69,8 @@ package WinRt.Windows.AI.Actions.Provider is
       function InvokeAsync
       (
          this : access IActionProvider_Interface;
-         context : Windows.AI.Actions.IActionInvocationContext;
-         RetVal : access Windows.Foundation.IAsyncAction
+         context : WinRt.Windows.AI.Actions.IActionInvocationContext;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 

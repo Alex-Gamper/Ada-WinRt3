@@ -332,12 +332,12 @@ package WinRt.Windows.Foundation is
    -----------------------------------------------------------------------------
 
    IID_AsyncActionCompletedHandler : aliased WinRt.IID := (2767019137, 30409, 16573, (139, 230, 177, 217, 15, 178, 10, 231 ));
-   type AsyncActionCompletedHandler_Delegate (Callback : access procedure  (asyncInfo : Windows.Foundation.IAsyncAction;asyncStatus : Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncActionCompletedHandler'Access) with null record;
+   type AsyncActionCompletedHandler_Delegate (Callback : access procedure  (asyncInfo : WinRt.Windows.Foundation.IAsyncAction;asyncStatus : WinRt.Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncActionCompletedHandler'Access) with null record;
       function Invoke
       (
          this : access AsyncActionCompletedHandler_Delegate;
-         asyncInfo : Windows.Foundation.IAsyncAction;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncInfo : WinRt.Windows.Foundation.IAsyncAction;
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult;
 
@@ -368,14 +368,14 @@ package WinRt.Windows.Foundation is
    --------------------------------------------------------------------------------
    package AsyncActionWithProgressCompletedHandler is
 
-      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncActionWithProgressCompletedHandler'Access) with null record;
+      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : WinRt.Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncActionWithProgressCompletedHandler'Access) with null record;
       type Kind is access all Kind_Delegate;
 
       function Invoke
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult;
 
@@ -388,14 +388,14 @@ package WinRt.Windows.Foundation is
    --------------------------------------------------------------------------------
    package AsyncOperationCompletedHandler is
 
-      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncOperationCompletedHandler'Access) with null record;
+      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : WinRt.Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncOperationCompletedHandler'Access) with null record;
       type Kind is access all Kind_Delegate;
 
       function Invoke
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult;
 
@@ -430,14 +430,14 @@ package WinRt.Windows.Foundation is
    --------------------------------------------------------------------------------
    package AsyncOperationWithProgressCompletedHandler is
 
-      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncOperationWithProgressCompletedHandler'Access) with null record;
+      type Kind_Delegate (Callback : access procedure  (asyncInfo : GenericObject;asyncStatus : WinRt.Windows.Foundation.AsyncStatus)) is new WinRt.IMulticastDelegate_Interface (IID_AsyncOperationWithProgressCompletedHandler'Access) with null record;
       type Kind is access all Kind_Delegate;
 
       function Invoke
       (
          this : access Kind_Delegate;
          asyncInfo : GenericObject;
-         asyncStatus : Windows.Foundation.AsyncStatus
+         asyncStatus : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult;
 
@@ -502,14 +502,14 @@ package WinRt.Windows.Foundation is
       function put_Completed
       (
          this : access IAsyncAction_Interface;
-         handler : Windows.Foundation.AsyncActionCompletedHandler
+         handler : WinRt.Windows.Foundation.AsyncActionCompletedHandler
       )
       return WinRt.Hresult is abstract;
 
       function get_Completed
       (
          this : access IAsyncAction_Interface;
-         RetVal : access Windows.Foundation.AsyncActionCompletedHandler
+         RetVal : access WinRt.Windows.Foundation.AsyncActionCompletedHandler
       )
       return WinRt.Hresult is abstract;
 
@@ -583,14 +583,14 @@ package WinRt.Windows.Foundation is
       function get_Status
       (
          this : access IAsyncInfo_Interface;
-         RetVal : access Windows.Foundation.AsyncStatus
+         RetVal : access WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ErrorCode
       (
          this : access IAsyncInfo_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -724,8 +724,8 @@ package WinRt.Windows.Foundation is
       function Create
       (
          this : access IDeferralFactory_Interface;
-         handler : Windows.Foundation.DeferralCompletedHandler;
-         RetVal : access Windows.Foundation.IDeferral
+         handler : WinRt.Windows.Foundation.DeferralCompletedHandler;
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -778,7 +778,7 @@ package WinRt.Windows.Foundation is
       function CreateReference
       (
          this : access IMemoryBuffer_Interface;
-         RetVal : access Windows.Foundation.IMemoryBufferReference
+         RetVal : access WinRt.Windows.Foundation.IMemoryBufferReference
       )
       return WinRt.Hresult is abstract;
 
@@ -791,7 +791,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IMemoryBufferFactory_Interface;
          capacity : WinRt.UInt32;
-         RetVal : access Windows.Foundation.IMemoryBuffer
+         RetVal : access WinRt.Windows.Foundation.IMemoryBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -811,14 +811,14 @@ package WinRt.Windows.Foundation is
       (
          this : access IMemoryBufferReference_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IMemoryBufferReference_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -830,7 +830,7 @@ package WinRt.Windows.Foundation is
       function get_Type
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.PropertyType
+         RetVal : access WinRt.Windows.Foundation.PropertyType
       )
       return WinRt.Hresult is abstract;
 
@@ -935,35 +935,35 @@ package WinRt.Windows.Foundation is
       function GetDateTime
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function GetTimeSpan
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function GetPoint
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function GetSize
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.Size
+         RetVal : access WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
       function GetRect
       (
          this : access IPropertyValue_Interface;
-         RetVal : access Windows.Foundation.Rect
+         RetVal : access WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1083,7 +1083,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValue_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.DateTime_Ptr
+         value : WinRt.Windows.Foundation.DateTime_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,7 +1091,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValue_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.TimeSpan_Ptr
+         value : WinRt.Windows.Foundation.TimeSpan_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1099,7 +1099,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValue_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Point_Ptr
+         value : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1107,7 +1107,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValue_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Size_Ptr
+         value : WinRt.Windows.Foundation.Size_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1115,7 +1115,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValue_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Rect_Ptr
+         value : WinRt.Windows.Foundation.Rect_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1246,7 +1246,7 @@ package WinRt.Windows.Foundation is
       function CreateDateTime
       (
          this : access IPropertyValueStatics_Interface;
-         value : Windows.Foundation.DateTime;
+         value : WinRt.Windows.Foundation.DateTime;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1254,7 +1254,7 @@ package WinRt.Windows.Foundation is
       function CreateTimeSpan
       (
          this : access IPropertyValueStatics_Interface;
-         value : Windows.Foundation.TimeSpan;
+         value : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1262,7 +1262,7 @@ package WinRt.Windows.Foundation is
       function CreatePoint
       (
          this : access IPropertyValueStatics_Interface;
-         value : Windows.Foundation.Point;
+         value : WinRt.Windows.Foundation.Point;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1270,7 +1270,7 @@ package WinRt.Windows.Foundation is
       function CreateSize
       (
          this : access IPropertyValueStatics_Interface;
-         value : Windows.Foundation.Size;
+         value : WinRt.Windows.Foundation.Size;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1278,7 +1278,7 @@ package WinRt.Windows.Foundation is
       function CreateRect
       (
          this : access IPropertyValueStatics_Interface;
-         value : Windows.Foundation.Rect;
+         value : WinRt.Windows.Foundation.Rect;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1413,7 +1413,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValueStatics_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.DateTime_Ptr;
+         value : WinRt.Windows.Foundation.DateTime_Ptr;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1422,7 +1422,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValueStatics_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.TimeSpan_Ptr;
+         value : WinRt.Windows.Foundation.TimeSpan_Ptr;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1431,7 +1431,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValueStatics_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Point_Ptr;
+         value : WinRt.Windows.Foundation.Point_Ptr;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1440,7 +1440,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValueStatics_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Size_Ptr;
+         value : WinRt.Windows.Foundation.Size_Ptr;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1449,7 +1449,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IPropertyValueStatics_Interface;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Rect_Ptr;
+         value : WinRt.Windows.Foundation.Rect_Ptr;
          RetVal : access WinRt.IInspectable
       )
       return WinRt.Hresult is abstract;
@@ -1603,7 +1603,7 @@ package WinRt.Windows.Foundation is
       function get_QueryParsed
       (
          this : access IUriRuntimeClass_Interface;
-         RetVal : access Windows.Foundation.IWwwFormUrlDecoderRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1645,7 +1645,7 @@ package WinRt.Windows.Foundation is
       function Equals
       (
          this : access IUriRuntimeClass_Interface;
-         pUri : Windows.Foundation.IUriRuntimeClass;
+         pUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1654,7 +1654,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IUriRuntimeClass_Interface;
          relativeUri : WinRt.HString;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1667,7 +1667,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IUriRuntimeClassFactory_Interface;
          uri_p : WinRt.HString;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1676,7 +1676,7 @@ package WinRt.Windows.Foundation is
          this : access IUriRuntimeClassFactory_Interface;
          baseUri : WinRt.HString;
          relativeUri : WinRt.HString;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1740,7 +1740,7 @@ package WinRt.Windows.Foundation is
       (
          this : access IWwwFormUrlDecoderRuntimeClassFactory_Interface;
          query : WinRt.HString;
-         RetVal : access Windows.Foundation.IWwwFormUrlDecoderRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1761,7 +1761,7 @@ package WinRt.Windows.Foundation is
 
    function Constructor
    (
-      handler : Windows.Foundation.DeferralCompletedHandler
+      handler : WinRt.Windows.Foundation.DeferralCompletedHandler
    )
    return Deferral;
 
@@ -1919,31 +1919,31 @@ package WinRt.Windows.Foundation is
 
       function CreateDateTime
       (
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.IInspectable;
 
       function CreateTimeSpan
       (
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.IInspectable;
 
       function CreatePoint
       (
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.IInspectable;
 
       function CreateSize
       (
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.IInspectable;
 
       function CreateRect
       (
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.IInspectable;
 
@@ -2033,31 +2033,31 @@ package WinRt.Windows.Foundation is
 
       function CreateDateTimeArray
       (
-         value : Windows.Foundation.DateTime_Array
+         value : WinRt.Windows.Foundation.DateTime_Array
       )
       return WinRt.IInspectable;
 
       function CreateTimeSpanArray
       (
-         value : Windows.Foundation.TimeSpan_Array
+         value : WinRt.Windows.Foundation.TimeSpan_Array
       )
       return WinRt.IInspectable;
 
       function CreatePointArray
       (
-         value : Windows.Foundation.Point_Array
+         value : WinRt.Windows.Foundation.Point_Array
       )
       return WinRt.IInspectable;
 
       function CreateSizeArray
       (
-         value : Windows.Foundation.Size_Array
+         value : WinRt.Windows.Foundation.Size_Array
       )
       return WinRt.IInspectable;
 
       function CreateRectArray
       (
-         value : Windows.Foundation.Rect_Array
+         value : WinRt.Windows.Foundation.Rect_Array
       )
       return WinRt.IInspectable;
 
@@ -2196,7 +2196,7 @@ package WinRt.Windows.Foundation is
    function Equals
    (
       this : in out Uri;
-      pUri : Windows.Foundation.Uri'Class
+      pUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Boolean;
 
@@ -2267,7 +2267,7 @@ package WinRt.Windows.Foundation is
    function IndexOf
    (
       this : in out WwwFormUrlDecoder;
-      value : Windows.Foundation.IWwwFormUrlDecoderEntry;
+      value : WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -2276,7 +2276,7 @@ package WinRt.Windows.Foundation is
    (
       this : in out WwwFormUrlDecoder;
       startIndex : WinRt.UInt32;
-      items : Windows.Foundation.IWwwFormUrlDecoderEntry_Array
+      items : WinRt.Windows.Foundation.IWwwFormUrlDecoderEntry_Array
    )
    return WinRt.UInt32;
 

@@ -452,41 +452,41 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IAsymmetricKeyAlgorithmProvider_Interface;
          keySize : WinRt.UInt32;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
       function ImportKeyPair
       (
          this : access IAsymmetricKeyAlgorithmProvider_Interface;
-         keyBlob : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
       function ImportKeyPair
       (
          this : access IAsymmetricKeyAlgorithmProvider_Interface;
-         keyBlob : Windows.Storage.Streams.IBuffer;
-         BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
       function ImportPublicKey
       (
          this : access IAsymmetricKeyAlgorithmProvider_Interface;
-         keyBlob : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
       function ImportPublicKey
       (
          this : access IAsymmetricKeyAlgorithmProvider_Interface;
-         keyBlob : Windows.Storage.Streams.IBuffer;
-         BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+         BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -499,7 +499,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IAsymmetricKeyAlgorithmProvider2_Interface;
          curveName : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -508,7 +508,7 @@ package WinRt.Windows.Security.Cryptography.Core is
          this : access IAsymmetricKeyAlgorithmProvider2_Interface;
          parametersSize : WinRt.UInt32;
          parameters : WinRt.Byte_Ptr;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -521,7 +521,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IAsymmetricKeyAlgorithmProviderStatics_Interface;
          algorithm : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IAsymmetricKeyAlgorithmProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -533,61 +533,61 @@ package WinRt.Windows.Security.Cryptography.Core is
       function Encrypt
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function Decrypt
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function EncryptAndAuthenticate
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IEncryptedAndAuthenticatedData
       )
       return WinRt.Hresult is abstract;
 
       function DecryptAndAuthenticate
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticationTag : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticationTag : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function Sign
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function VerifySignature
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -595,10 +595,10 @@ package WinRt.Windows.Security.Cryptography.Core is
       function DeriveKeyMaterial
       (
          this : access ICryptographicEngineStatics_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         parameters : Windows.Security.Cryptography.Core.IKeyDerivationParameters;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         parameters : WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters;
          desiredKeySize : WinRt.UInt32;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -610,18 +610,18 @@ package WinRt.Windows.Security.Cryptography.Core is
       function SignHashedData
       (
          this : access ICryptographicEngineStatics2_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function VerifySignatureWithHashInput
       (
          this : access ICryptographicEngineStatics2_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -629,9 +629,9 @@ package WinRt.Windows.Security.Cryptography.Core is
       function DecryptAsync
       (
          this : access ICryptographicEngineStatics2_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -639,8 +639,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function SignAsync
       (
          this : access ICryptographicEngineStatics2_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -648,8 +648,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function SignHashedDataAsync
       (
          this : access ICryptographicEngineStatics2_Interface;
-         key : Windows.Security.Cryptography.Core.ICryptographicKey;
-         data : Windows.Storage.Streams.IBuffer;
+         key : WinRt.Windows.Security.Cryptography.Core.ICryptographicKey;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -669,30 +669,30 @@ package WinRt.Windows.Security.Cryptography.Core is
       function Export
       (
          this : access ICryptographicKey_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function Export
       (
          this : access ICryptographicKey_Interface;
-         BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function ExportPublicKey
       (
          this : access ICryptographicKey_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function ExportPublicKey
       (
          this : access ICryptographicKey_Interface;
-         BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1031,14 +1031,14 @@ package WinRt.Windows.Security.Cryptography.Core is
       function get_EncryptedData
       (
          this : access IEncryptedAndAuthenticatedData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationTag
       (
          this : access IEncryptedAndAuthenticatedData_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1104,15 +1104,15 @@ package WinRt.Windows.Security.Cryptography.Core is
       function HashData
       (
          this : access IHashAlgorithmProvider_Interface;
-         data : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function CreateHash
       (
          this : access IHashAlgorithmProvider_Interface;
-         RetVal : access Windows.Security.Cryptography.Core.IHashComputation
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IHashComputation
       )
       return WinRt.Hresult is abstract;
 
@@ -1125,7 +1125,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IHashAlgorithmProviderStatics_Interface;
          algorithm : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.IHashAlgorithmProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IHashAlgorithmProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1137,14 +1137,14 @@ package WinRt.Windows.Security.Cryptography.Core is
       function Append
       (
          this : access IHashComputation_Interface;
-         data : Windows.Storage.Streams.IBuffer
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function GetValueAndReset
       (
          this : access IHashComputation_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1313,8 +1313,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function CreateKey
       (
          this : access IKeyDerivationAlgorithmProvider_Interface;
-         keyMaterial : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyMaterial : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -1327,7 +1327,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IKeyDerivationAlgorithmProviderStatics_Interface;
          algorithm : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationAlgorithmProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,14 +1339,14 @@ package WinRt.Windows.Security.Cryptography.Core is
       function get_KdfGenericBinary
       (
          this : access IKeyDerivationParameters_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_KdfGenericBinary
       (
          this : access IKeyDerivationParameters_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1365,14 +1365,14 @@ package WinRt.Windows.Security.Cryptography.Core is
       function get_Capi1KdfTargetAlgorithm
       (
          this : access IKeyDerivationParameters2_Interface;
-         RetVal : access Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
       )
       return WinRt.Hresult is abstract;
 
       function put_Capi1KdfTargetAlgorithm
       (
          this : access IKeyDerivationParameters2_Interface;
-         value : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+         value : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
       )
       return WinRt.Hresult is abstract;
 
@@ -1384,30 +1384,30 @@ package WinRt.Windows.Security.Cryptography.Core is
       function BuildForPbkdf2
       (
          this : access IKeyDerivationParametersStatics_Interface;
-         pbkdf2Salt : Windows.Storage.Streams.IBuffer;
+         pbkdf2Salt : WinRt.Windows.Storage.Streams.IBuffer;
          iterationCount : WinRt.UInt32;
-         RetVal : access Windows.Security.Cryptography.Core.IKeyDerivationParameters
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters
       )
       return WinRt.Hresult is abstract;
 
       function BuildForSP800108
       (
          this : access IKeyDerivationParametersStatics_Interface;
-         label : Windows.Storage.Streams.IBuffer;
-         context : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.IKeyDerivationParameters
+         label : WinRt.Windows.Storage.Streams.IBuffer;
+         context : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters
       )
       return WinRt.Hresult is abstract;
 
       function BuildForSP80056a
       (
          this : access IKeyDerivationParametersStatics_Interface;
-         algorithmId : Windows.Storage.Streams.IBuffer;
-         partyUInfo : Windows.Storage.Streams.IBuffer;
-         partyVInfo : Windows.Storage.Streams.IBuffer;
-         suppPubInfo : Windows.Storage.Streams.IBuffer;
-         suppPrivInfo : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.IKeyDerivationParameters
+         algorithmId : WinRt.Windows.Storage.Streams.IBuffer;
+         partyUInfo : WinRt.Windows.Storage.Streams.IBuffer;
+         partyVInfo : WinRt.Windows.Storage.Streams.IBuffer;
+         suppPubInfo : WinRt.Windows.Storage.Streams.IBuffer;
+         suppPrivInfo : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -1419,8 +1419,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function BuildForCapi1Kdf
       (
          this : access IKeyDerivationParametersStatics2_Interface;
-         capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm;
-         RetVal : access Windows.Security.Cryptography.Core.IKeyDerivationParameters
+         capi1KdfTargetAlgorithm : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IKeyDerivationParameters
       )
       return WinRt.Hresult is abstract;
 
@@ -1493,8 +1493,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function CreateKey
       (
          this : access IMacAlgorithmProvider_Interface;
-         keyMaterial : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyMaterial : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -1506,8 +1506,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function CreateHash
       (
          this : access IMacAlgorithmProvider2_Interface;
-         keyMaterial : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.IHashComputation
+         keyMaterial : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IHashComputation
       )
       return WinRt.Hresult is abstract;
 
@@ -1520,7 +1520,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access IMacAlgorithmProviderStatics_Interface;
          algorithm : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.IMacAlgorithmProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.IMacAlgorithmProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1532,9 +1532,9 @@ package WinRt.Windows.Security.Cryptography.Core is
       function OpenKeyPairFromCertificateAsync
       (
          this : access IPersistedKeyProviderStatics_Interface;
-         certificate : Windows.Security.Cryptography.Certificates.ICertificate;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          hashAlgorithmName : WinRt.HString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding;
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1542,10 +1542,10 @@ package WinRt.Windows.Security.Cryptography.Core is
       function OpenPublicKeyFromCertificate
       (
          this : access IPersistedKeyProviderStatics_Interface;
-         certificate : Windows.Security.Cryptography.Certificates.ICertificate;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
          hashAlgorithmName : WinRt.HString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -1709,8 +1709,8 @@ package WinRt.Windows.Security.Cryptography.Core is
       function CreateSymmetricKey
       (
          this : access ISymmetricKeyAlgorithmProvider_Interface;
-         keyMaterial : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Security.Cryptography.Core.ICryptographicKey
+         keyMaterial : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ICryptographicKey
       )
       return WinRt.Hresult is abstract;
 
@@ -1723,7 +1723,7 @@ package WinRt.Windows.Security.Cryptography.Core is
       (
          this : access ISymmetricKeyAlgorithmProviderStatics_Interface;
          algorithm : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.Core.ISymmetricKeyAlgorithmProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1836,30 +1836,30 @@ package WinRt.Windows.Security.Cryptography.Core is
    function ImportKeyPair
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
    function ImportKeyPair
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
    function ImportPublicKey
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
    function ImportPublicKey
    (
       this : in out AsymmetricKeyAlgorithmProvider;
-      keyBlob : Windows.Storage.Streams.IBuffer;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      keyBlob : WinRt.Windows.Storage.Streams.IBuffer;
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
@@ -1883,96 +1883,96 @@ package WinRt.Windows.Security.Cryptography.Core is
 
       function Encrypt
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function Decrypt
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function EncryptAndAuthenticate
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Security.Cryptography.Core.EncryptedAndAuthenticatedData;
 
       function DecryptAndAuthenticate
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         nonce : Windows.Storage.Streams.IBuffer;
-         authenticationTag : Windows.Storage.Streams.IBuffer;
-         authenticatedData : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         nonce : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticationTag : WinRt.Windows.Storage.Streams.IBuffer;
+         authenticatedData : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function Sign
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function VerifySignature
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Boolean;
 
       function DeriveKeyMaterial
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         parameters : Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         parameters : WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters'Class;
          desiredKeySize : WinRt.UInt32
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function SignHashedData
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function VerifySignatureWithHashInput
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         signature : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         signature : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Boolean;
 
       function DecryptAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer;
-         iv : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
+         iv : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function SignAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       function SignHashedDataAsync
       (
-         key : Windows.Security.Cryptography.Core.CryptographicKey'Class;
-         data : Windows.Storage.Streams.IBuffer
+         key : WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
+         data : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -1990,7 +1990,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    procedure Append
    (
       this : in out CryptographicHash;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function GetValueAndReset
@@ -2023,7 +2023,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    function Export
    (
       this : in out CryptographicKey;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPrivateKeyBlobType
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2036,7 +2036,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    function ExportPublicKey
    (
       this : in out CryptographicKey;
-      BlobType : Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
+      BlobType : WinRt.Windows.Security.Cryptography.Core.CryptographicPublicKeyBlobType
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2259,7 +2259,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    function HashData
    (
       this : in out HashAlgorithmProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
@@ -2362,7 +2362,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    function CreateKey
    (
       this : in out KeyDerivationAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
@@ -2377,31 +2377,31 @@ package WinRt.Windows.Security.Cryptography.Core is
 
    function BuildForCapi1Kdf
    (
-      capi1KdfTargetAlgorithm : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+      capi1KdfTargetAlgorithm : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 
    function BuildForPbkdf2
    (
-      pbkdf2Salt : Windows.Storage.Streams.IBuffer;
+      pbkdf2Salt : WinRt.Windows.Storage.Streams.IBuffer;
       iterationCount : WinRt.UInt32
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 
    function BuildForSP800108
    (
-      label : Windows.Storage.Streams.IBuffer;
-      context : Windows.Storage.Streams.IBuffer
+      label : WinRt.Windows.Storage.Streams.IBuffer;
+      context : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 
    function BuildForSP80056a
    (
-      algorithmId : Windows.Storage.Streams.IBuffer;
-      partyUInfo : Windows.Storage.Streams.IBuffer;
-      partyVInfo : Windows.Storage.Streams.IBuffer;
-      suppPubInfo : Windows.Storage.Streams.IBuffer;
-      suppPrivInfo : Windows.Storage.Streams.IBuffer
+      algorithmId : WinRt.Windows.Storage.Streams.IBuffer;
+      partyUInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      partyVInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      suppPubInfo : WinRt.Windows.Storage.Streams.IBuffer;
+      suppPrivInfo : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.KeyDerivationParameters;
 
@@ -2417,7 +2417,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    procedure put_KdfGenericBinary
    (
       this : in out KeyDerivationParameters;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_IterationCount
@@ -2435,7 +2435,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    procedure put_Capi1KdfTargetAlgorithm
    (
       this : in out KeyDerivationParameters;
-      value : Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
+      value : WinRt.Windows.Security.Cryptography.Core.Capi1KdfTargetAlgorithm
    );
 
    -----------------------------------------------------------------------------
@@ -2495,14 +2495,14 @@ package WinRt.Windows.Security.Cryptography.Core is
    function CreateKey
    (
       this : in out MacAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 
    function CreateHash
    (
       this : in out MacAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicHash'Class;
 
@@ -2512,17 +2512,17 @@ package WinRt.Windows.Security.Cryptography.Core is
 
       function OpenKeyPairFromCertificateAsync
       (
-         certificate : Windows.Security.Cryptography.Certificates.Certificate'Class;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class;
          hashAlgorithmName : WinRt.WString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey;
 
       function OpenPublicKeyFromCertificate
       (
-         certificate : Windows.Security.Cryptography.Certificates.Certificate'Class;
+         certificate : WinRt.Windows.Security.Cryptography.Certificates.Certificate'Class;
          hashAlgorithmName : WinRt.WString;
-         padding : Windows.Security.Cryptography.Core.CryptographicPadding
+         padding : WinRt.Windows.Security.Cryptography.Core.CryptographicPadding
       )
       return WinRt.Windows.Security.Cryptography.Core.CryptographicKey;
 
@@ -2624,7 +2624,7 @@ package WinRt.Windows.Security.Cryptography.Core is
    function CreateSymmetricKey
    (
       this : in out SymmetricKeyAlgorithmProvider;
-      keyMaterial : Windows.Storage.Streams.IBuffer
+      keyMaterial : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Security.Cryptography.Core.CryptographicKey'Class;
 

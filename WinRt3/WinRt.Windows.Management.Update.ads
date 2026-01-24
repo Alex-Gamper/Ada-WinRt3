@@ -774,7 +774,7 @@ package WinRt.Windows.Management.Update is
       function GetCurrentState
       (
          this : access IPreviewBuildsManager_Interface;
-         RetVal : access Windows.Management.Update.IPreviewBuildsState
+         RetVal : access WinRt.Windows.Management.Update.IPreviewBuildsState
       )
       return WinRt.Hresult is abstract;
 
@@ -793,7 +793,7 @@ package WinRt.Windows.Management.Update is
       function GetDefault
       (
          this : access IPreviewBuildsManagerStatics_Interface;
-         RetVal : access Windows.Management.Update.IPreviewBuildsManager
+         RetVal : access WinRt.Windows.Management.Update.IPreviewBuildsManager
       )
       return WinRt.Hresult is abstract;
 
@@ -812,7 +812,7 @@ package WinRt.Windows.Management.Update is
       function get_Properties
       (
          this : access IPreviewBuildsState_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -824,7 +824,7 @@ package WinRt.Windows.Management.Update is
       function get_InstallationType
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateInstallationType
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType
       )
       return WinRt.Hresult is abstract;
 
@@ -859,7 +859,7 @@ package WinRt.Windows.Management.Update is
       function get_MoreInfoUrl
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -880,14 +880,14 @@ package WinRt.Windows.Management.Update is
       function get_SourceVersion
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetVersion
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion
       )
       return WinRt.Hresult is abstract;
 
@@ -908,8 +908,8 @@ package WinRt.Windows.Management.Update is
       function Approve
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         approvalInfo : Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         approvalInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -917,7 +917,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdate_Interface;
          approve : WinRt.Boolean;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -931,14 +931,14 @@ package WinRt.Windows.Management.Update is
       function get_ActionResultInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionResultInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ApprovalInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -952,14 +952,14 @@ package WinRt.Windows.Management.Update is
       function get_AttentionRequiredInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ActionProgress
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionProgress
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -973,21 +973,21 @@ package WinRt.Windows.Management.Update is
       function get_AppPackageInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ExecutionInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_OptionalInfo
       (
          this : access IWindowsSoftwareUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1013,7 +1013,7 @@ package WinRt.Windows.Management.Update is
       function get_ActionType
       (
          this : access IWindowsSoftwareUpdateActionInfo_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateActionType
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionType
       )
       return WinRt.Hresult is abstract;
 
@@ -1027,8 +1027,8 @@ package WinRt.Windows.Management.Update is
          this : access IWindowsSoftwareUpdateActionInfoFactory_Interface;
          fileName : WinRt.HString;
          fileArguments : WinRt.HString;
-         actionType : Windows.Management.Update.WindowsSoftwareUpdateActionType;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         actionType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionType;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1066,7 +1066,7 @@ package WinRt.Windows.Management.Update is
       function get_Timestamp
       (
          this : access IWindowsSoftwareUpdateActionResultInfo_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1113,14 +1113,14 @@ package WinRt.Windows.Management.Update is
       function get_PackageArchitecture
       (
          this : access IWindowsSoftwareUpdateAppPackageInfo_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateArchitecture
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateArchitecture
       )
       return WinRt.Hresult is abstract;
 
       function get_InstallUri
       (
          this : access IWindowsSoftwareUpdateAppPackageInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1133,9 +1133,9 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateAppPackageInfoFactory_Interface;
          packageFamilyName : WinRt.HString;
-         packageArchitecture : Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
-         installUri : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
+         packageArchitecture : WinRt.Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+         installUri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1184,7 +1184,7 @@ package WinRt.Windows.Management.Update is
          appClosure : WinRt.Boolean;
          meteredNetwork : WinRt.Boolean;
          seeker : WinRt.Boolean;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1196,28 +1196,28 @@ package WinRt.Windows.Management.Update is
       function get_DownloadInfo
       (
          this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_InstallInfo
       (
          this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_DeployInfo
       (
          this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_OptionalActionInfo
       (
          this : access IWindowsSoftwareUpdateExecutionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1229,19 +1229,19 @@ package WinRt.Windows.Management.Update is
       function CreateInstance
       (
          this : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface;
-         downloadInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         installInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         actions : Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+         downloadInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         installInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         actions : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
       )
       return WinRt.Hresult is abstract;
 
       function CreateInstance2
       (
          this : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface;
-         deployInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         actions : Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
+         deployInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         actions : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1254,19 +1254,19 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateFactory_Interface;
          providerId : WinRt.HString;
-         installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+         installationType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
          updateId : WinRt.HString;
          title : WinRt.HString;
          description : WinRt.HString;
-         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         moreInfoUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          downloadSizeInBytes : WinRt.UInt64;
          installSizeInBytes : WinRt.UInt64;
-         sourceVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
-         targetVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
-         appPackageInfo : Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
-         executionInfo : Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
-         optionalInfo : Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdate
+         sourceVersion : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         targetVersion : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         appPackageInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+         executionInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+         optionalInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -1274,21 +1274,21 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateFactory_Interface;
          providerId : WinRt.HString;
-         installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+         installationType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
          updateId : WinRt.HString;
          title : WinRt.HString;
          description : WinRt.HString;
-         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         moreInfoUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          downloadSizeInBytes : WinRt.UInt64;
          installSizeInBytes : WinRt.UInt64;
          productCode : GenericObject;
          packageFamilyName : WinRt.HString;
-         sourceVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
-         targetVersion : Windows.Management.Update.IWindowsSoftwareUpdateVersion;
-         appPackageInfo : Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
-         executionInfo : Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
-         optionalInfo : Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdate
+         sourceVersion : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         targetVersion : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion;
+         appPackageInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
+         executionInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
+         optionalInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -1321,7 +1321,7 @@ package WinRt.Windows.Management.Update is
       function get_MoreInfoUrl
       (
          this : access IWindowsSoftwareUpdateLocalizationInfo_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -1336,8 +1336,8 @@ package WinRt.Windows.Management.Update is
          languageId : WinRt.UInt32;
          title : WinRt.HString;
          description : WinRt.HString;
-         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo
+         moreInfoUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1349,21 +1349,21 @@ package WinRt.Windows.Management.Update is
       function get_CloseAndDeployInfo
       (
          this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_CloseAndInstallInfo
       (
          this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_CloseAndRestartInfo
       (
          this : access IWindowsSoftwareUpdateOptionalActionInfo_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1375,10 +1375,10 @@ package WinRt.Windows.Management.Update is
       function CreateInstance
       (
          this : access IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface;
-         closeAndDeployInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         closeAndInstallInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         closeAndRestartInfo : Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
+         closeAndDeployInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         closeAndInstallInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         closeAndRestartInfo : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1418,7 +1418,7 @@ package WinRt.Windows.Management.Update is
          this : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface;
          complianceDeadlineInDays : GenericObject;
          complianceGracePeriodInDays : GenericObject;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1428,7 +1428,7 @@ package WinRt.Windows.Management.Update is
          localizationInfo : GenericObject;
          complianceDeadlineInDays : GenericObject;
          complianceGracePeriodInDays : GenericObject;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1440,21 +1440,21 @@ package WinRt.Windows.Management.Update is
       function Register
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
       function Unregister
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
       function Validate
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1503,7 +1503,7 @@ package WinRt.Windows.Management.Update is
       function get_Type
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderType
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderType
       )
       return WinRt.Hresult is abstract;
 
@@ -1517,21 +1517,21 @@ package WinRt.Windows.Management.Update is
       function get_TrustState
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
       )
       return WinRt.Hresult is abstract;
 
       function get_RegistrationType
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderRegistrationType
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access IWindowsSoftwareUpdateProvider_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1551,14 +1551,14 @@ package WinRt.Windows.Management.Update is
       function get_Result
       (
          this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateActionResult
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResult
       )
       return WinRt.Hresult is abstract;
 
       function get_RestartReason
       (
          this : access IWindowsSoftwareUpdateProviderActionResult_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateRestartReason
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateRestartReason
       )
       return WinRt.Hresult is abstract;
 
@@ -1584,11 +1584,11 @@ package WinRt.Windows.Management.Update is
       function CreateInstance
       (
          this : access IWindowsSoftwareUpdateProviderActionResultFactory_Interface;
-         actionResult : Windows.Management.Update.WindowsSoftwareUpdateActionResult;
-         restartReason : Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+         actionResult : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+         restartReason : WinRt.Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
          resultCode : WinRt.UInt32;
          extendedError : WinRt.UInt64;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1601,7 +1601,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateProviderFactory_Interface;
          folderPath : WinRt.HString;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProvider
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -1634,7 +1634,7 @@ package WinRt.Windows.Management.Update is
       function get_TrustState
       (
          this : access IWindowsSoftwareUpdateProviderPayloadFileInfo_Interface;
-         RetVal : access Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
+         RetVal : access WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderTrustState
       )
       return WinRt.Hresult is abstract;
 
@@ -1647,14 +1647,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateProviderStatus_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CancelRequested
       (
          this : access IWindowsSoftwareUpdateProviderStatus_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1665,7 +1665,7 @@ package WinRt.Windows.Management.Update is
          resultCode : WinRt.UInt32;
          extendedError : WinRt.UInt64;
          updates : GenericObject;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1674,15 +1674,15 @@ package WinRt.Windows.Management.Update is
          this : access IWindowsSoftwareUpdateProviderStatus_Interface;
          current : WinRt.UInt64;
          total : WinRt.UInt64;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
       function SetActionResult
       (
          this : access IWindowsSoftwareUpdateProviderStatus_Interface;
-         actionResult : Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         actionResult : WinRt.Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1695,7 +1695,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsSoftwareUpdateProviderStatusFactory_Interface;
          providerId : WinRt.HString;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1742,7 +1742,7 @@ package WinRt.Windows.Management.Update is
          this : access IWindowsSoftwareUpdateResultFactory_Interface;
          succeeded : WinRt.Boolean;
          resultCode : WinRt.UInt32;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1752,7 +1752,7 @@ package WinRt.Windows.Management.Update is
          succeeded : WinRt.Boolean;
          resultCode : WinRt.UInt32;
          extendedError : WinRt.UInt64;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1763,7 +1763,7 @@ package WinRt.Windows.Management.Update is
          cancelRequested : WinRt.Boolean;
          resultCode : WinRt.UInt32;
          extendedError : WinRt.UInt64;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1811,7 +1811,7 @@ package WinRt.Windows.Management.Update is
          succeeded : WinRt.Boolean;
          resultCode : WinRt.UInt32;
          updates : GenericObject;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateScanResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1822,7 +1822,7 @@ package WinRt.Windows.Management.Update is
          resultCode : WinRt.UInt32;
          extendedError : WinRt.UInt64;
          updates : GenericObject;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateScanResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1871,7 +1871,7 @@ package WinRt.Windows.Management.Update is
          minor : WinRt.UInt32;
          revisionMajor : WinRt.UInt32;
          revisionMinor : WinRt.UInt32;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateVersion
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateVersion
       )
       return WinRt.Hresult is abstract;
 
@@ -1974,14 +1974,14 @@ package WinRt.Windows.Management.Update is
       function get_MoreInfoUrl
       (
          this : access IWindowsUpdate_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_SupportUrl
       (
          this : access IWindowsUpdate_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2009,14 +2009,14 @@ package WinRt.Windows.Management.Update is
       function get_AttentionRequiredInfo
       (
          this : access IWindowsUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateAttentionRequiredInfo
       )
       return WinRt.Hresult is abstract;
 
       function get_ActionResult
       (
          this : access IWindowsUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateActionResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateActionResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2030,7 +2030,7 @@ package WinRt.Windows.Management.Update is
       function get_ActionProgress
       (
          this : access IWindowsUpdate_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateActionProgress
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateActionProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -2056,7 +2056,7 @@ package WinRt.Windows.Management.Update is
       function get_Update
       (
          this : access IWindowsUpdateActionCompletedEventArgs_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdate
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdate
       )
       return WinRt.Hresult is abstract;
 
@@ -2077,7 +2077,7 @@ package WinRt.Windows.Management.Update is
       function get_ExtendedError
       (
          this : access IWindowsUpdateActionCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2108,7 +2108,7 @@ package WinRt.Windows.Management.Update is
       function get_Timestamp
       (
          this : access IWindowsUpdateActionResult_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2122,7 +2122,7 @@ package WinRt.Windows.Management.Update is
       function get_ExtendedError
       (
          this : access IWindowsUpdateActionResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2164,7 +2164,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateAdministrator_Interface;
          updateId : WinRt.HString;
-         approvalData : Windows.Management.Update.IWindowsUpdateApprovalData
+         approvalData : WinRt.Windows.Management.Update.IWindowsUpdateApprovalData
       )
       return WinRt.Hresult is abstract;
 
@@ -2191,7 +2191,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateAdministratorStatics_Interface;
          organizationName : WinRt.HString;
-         RetVal : access Windows.Management.Update.IWindowsUpdateGetAdministratorResult
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateGetAdministratorResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2199,8 +2199,8 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateAdministratorStatics_Interface;
          organizationName : WinRt.HString;
-         options : Windows.Management.Update.WindowsUpdateAdministratorOptions;
-         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+         options : WinRt.Windows.Management.Update.WindowsUpdateAdministratorOptions;
+         RetVal : access WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2208,7 +2208,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateAdministratorStatics_Interface;
          organizationName : WinRt.HString;
-         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+         RetVal : access WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2222,7 +2222,7 @@ package WinRt.Windows.Management.Update is
       function RequestRestart
       (
          this : access IWindowsUpdateAdministratorStatics_Interface;
-         restartOptions : Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
+         restartOptions : WinRt.Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -2317,7 +2317,7 @@ package WinRt.Windows.Management.Update is
       function get_Reason
       (
          this : access IWindowsUpdateAttentionRequiredInfo_Interface;
-         RetVal : access Windows.Management.Update.WindowsUpdateAttentionRequiredReason
+         RetVal : access WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2336,14 +2336,14 @@ package WinRt.Windows.Management.Update is
       function get_Update
       (
          this : access IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdate
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdate
       )
       return WinRt.Hresult is abstract;
 
       function get_Reason
       (
          this : access IWindowsUpdateAttentionRequiredReasonChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Update.WindowsUpdateAttentionRequiredReason
+         RetVal : access WinRt.Windows.Management.Update.WindowsUpdateAttentionRequiredReason
       )
       return WinRt.Hresult is abstract;
 
@@ -2355,14 +2355,14 @@ package WinRt.Windows.Management.Update is
       function get_Administrator
       (
          this : access IWindowsUpdateGetAdministratorResult_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateAdministrator
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateAdministrator
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IWindowsUpdateGetAdministratorResult_Interface;
-         RetVal : access Windows.Management.Update.WindowsUpdateAdministratorStatus
+         RetVal : access WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2388,7 +2388,7 @@ package WinRt.Windows.Management.Update is
       function get_Timestamp
       (
          this : access IWindowsUpdateItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -2409,7 +2409,7 @@ package WinRt.Windows.Management.Update is
       function get_MoreInfoUrl
       (
          this : access IWindowsUpdateItem_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2436,14 +2436,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScanningStateChanged
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2451,14 +2451,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_WorkingStateChanged
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2466,14 +2466,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProgressChanged
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2481,14 +2481,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AttentionRequiredReasonChanged
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2496,14 +2496,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ActionCompleted
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2511,14 +2511,14 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ScanCompleted
       (
          this : access IWindowsUpdateManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2582,7 +2582,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManager2_Interface;
          id : WinRt.HString;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateProvider
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -2604,8 +2604,8 @@ package WinRt.Windows.Management.Update is
       function PerformScan
       (
          this : access IWindowsUpdateManager2_Interface;
-         options : Windows.Management.Update.IWindowsUpdateManagerScanOptions;
-         RetVal : access Windows.Management.Update.IWindowsSoftwareUpdateScanResult
+         options : WinRt.Windows.Management.Update.IWindowsUpdateManagerScanOptions;
+         RetVal : access WinRt.Windows.Management.Update.IWindowsSoftwareUpdateScanResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2618,7 +2618,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManagerFactory_Interface;
          clientId : WinRt.HString;
-         RetVal : access Windows.Management.Update.IWindowsUpdateManager
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2633,7 +2633,7 @@ package WinRt.Windows.Management.Update is
          clientId : WinRt.HString;
          providerIdFilterSize : WinRt.UInt32;
          providerIdFilter : WinRt.HString_Ptr;
-         RetVal : access Windows.Management.Update.IWindowsUpdateManager
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateManager
       )
       return WinRt.Hresult is abstract;
 
@@ -2693,7 +2693,7 @@ package WinRt.Windows.Management.Update is
       (
          this : access IWindowsUpdateManagerScanOptionsFactory_Interface;
          isUserInitiated : WinRt.Boolean;
-         RetVal : access Windows.Management.Update.IWindowsUpdateManagerScanOptions
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateManagerScanOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2705,14 +2705,14 @@ package WinRt.Windows.Management.Update is
       function get_Update
       (
          this : access IWindowsUpdateProgressChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdate
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdate
       )
       return WinRt.Hresult is abstract;
 
       function get_ActionProgress
       (
          this : access IWindowsUpdateProgressChangedEventArgs_Interface;
-         RetVal : access Windows.Management.Update.IWindowsUpdateActionProgress
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateActionProgress
       )
       return WinRt.Hresult is abstract;
 
@@ -2752,14 +2752,14 @@ package WinRt.Windows.Management.Update is
       function get_MoreInfoUrl
       (
          this : access IWindowsUpdateRestartRequestOptions_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_MoreInfoUrl
       (
          this : access IWindowsUpdateRestartRequestOptions_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2829,10 +2829,10 @@ package WinRt.Windows.Management.Update is
          this : access IWindowsUpdateRestartRequestOptionsFactory_Interface;
          title : WinRt.HString;
          description : WinRt.HString;
-         moreInfoUrl : Windows.Foundation.IUriRuntimeClass;
+         moreInfoUrl : WinRt.Windows.Foundation.IUriRuntimeClass;
          complianceDeadlineInDays : WinRt.Int32;
          complianceGracePeriodInDays : WinRt.Int32;
-         RetVal : access Windows.Management.Update.IWindowsUpdateRestartRequestOptions
+         RetVal : access WinRt.Windows.Management.Update.IWindowsUpdateRestartRequestOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2858,7 +2858,7 @@ package WinRt.Windows.Management.Update is
       function get_ExtendedError
       (
          this : access IWindowsUpdateScanCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2944,38 +2944,38 @@ package WinRt.Windows.Management.Update is
    function Constructor
    (
       providerId : WinRt.WString;
-      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      installationType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
       updateId : WinRt.WString;
       title : WinRt.WString;
       description : WinRt.WString;
-      moreInfoUrl : Windows.Foundation.Uri'Class;
+      moreInfoUrl : WinRt.Windows.Foundation.Uri'Class;
       downloadSizeInBytes : WinRt.UInt64;
       installSizeInBytes : WinRt.UInt64;
-      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
-      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
-      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
-      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
-      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+      sourceVersion : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
    )
    return WindowsSoftwareUpdate;
 
    function Constructor
    (
       providerId : WinRt.WString;
-      installationType : Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
+      installationType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateInstallationType;
       updateId : WinRt.WString;
       title : WinRt.WString;
       description : WinRt.WString;
-      moreInfoUrl : Windows.Foundation.Uri'Class;
+      moreInfoUrl : WinRt.Windows.Foundation.Uri'Class;
       downloadSizeInBytes : WinRt.UInt64;
       installSizeInBytes : WinRt.UInt64;
       productCode : GenericObject;
       packageFamilyName : WinRt.WString;
-      sourceVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
-      targetVersion : Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
-      appPackageInfo : Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
-      executionInfo : Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
-      optionalInfo : Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
+      sourceVersion : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      targetVersion : WinRt.Windows.Management.Update.WindowsSoftwareUpdateVersion'Class;
+      appPackageInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo'Class;
+      executionInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo'Class;
+      optionalInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo'Class
    )
    return WindowsSoftwareUpdate;
 
@@ -3057,7 +3057,7 @@ package WinRt.Windows.Management.Update is
    function Approve
    (
       this : in out WindowsSoftwareUpdate;
-      approvalInfo : Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class
+      approvalInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo'Class
    )
    return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
 
@@ -3141,7 +3141,7 @@ package WinRt.Windows.Management.Update is
    (
       fileName : WinRt.WString;
       fileArguments : WinRt.WString;
-      actionType : Windows.Management.Update.WindowsSoftwareUpdateActionType
+      actionType : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionType
    )
    return WindowsSoftwareUpdateActionInfo;
 
@@ -3244,8 +3244,8 @@ package WinRt.Windows.Management.Update is
    function Constructor
    (
       packageFamilyName : WinRt.WString;
-      packageArchitecture : Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
-      installUri : Windows.Foundation.Uri'Class
+      packageArchitecture : WinRt.Windows.Management.Update.WindowsSoftwareUpdateArchitecture;
+      installUri : WinRt.Windows.Foundation.Uri'Class
    )
    return WindowsSoftwareUpdateAppPackageInfo;
 
@@ -3326,16 +3326,16 @@ package WinRt.Windows.Management.Update is
 
    function Constructor
    (
-      downloadInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
-      installInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
-      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+      downloadInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      installInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
    )
    return WindowsSoftwareUpdateExecutionInfo;
 
    function Constructor
    (
-      deployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
-      actions : Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
+      deployInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      actions : WinRt.Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo'Class
    )
    return WindowsSoftwareUpdateExecutionInfo;
 
@@ -3380,7 +3380,7 @@ package WinRt.Windows.Management.Update is
       languageId : WinRt.UInt32;
       title : WinRt.WString;
       description : WinRt.WString;
-      moreInfoUrl : Windows.Foundation.Uri'Class
+      moreInfoUrl : WinRt.Windows.Foundation.Uri'Class
    )
    return WindowsSoftwareUpdateLocalizationInfo;
 
@@ -3422,9 +3422,9 @@ package WinRt.Windows.Management.Update is
 
    function Constructor
    (
-      closeAndDeployInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
-      closeAndInstallInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
-      closeAndRestartInfo : Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class
+      closeAndDeployInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndInstallInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class;
+      closeAndRestartInfo : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionInfo'Class
    )
    return WindowsSoftwareUpdateOptionalActionInfo;
 
@@ -3614,8 +3614,8 @@ package WinRt.Windows.Management.Update is
 
    function Constructor
    (
-      actionResult : Windows.Management.Update.WindowsSoftwareUpdateActionResult;
-      restartReason : Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
+      actionResult : WinRt.Windows.Management.Update.WindowsSoftwareUpdateActionResult;
+      restartReason : WinRt.Windows.Management.Update.WindowsSoftwareUpdateRestartReason;
       resultCode : WinRt.UInt32;
       extendedError : WinRt.UInt64
    )
@@ -3709,7 +3709,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_CancelRequested
    (
       this : in out WindowsSoftwareUpdateProviderStatus;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function SetScanResult
@@ -3733,7 +3733,7 @@ package WinRt.Windows.Management.Update is
    function SetActionResult
    (
       this : in out WindowsSoftwareUpdateProviderStatus;
-      actionResult : Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult'Class
+      actionResult : WinRt.Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult'Class
    )
    return WinRt.Windows.Management.Update.WindowsSoftwareUpdateResult'Class;
 
@@ -4153,7 +4153,7 @@ package WinRt.Windows.Management.Update is
    function RegisterForAdministration
    (
       organizationName : WinRt.WString;
-      options : Windows.Management.Update.WindowsUpdateAdministratorOptions
+      options : WinRt.Windows.Management.Update.WindowsUpdateAdministratorOptions
    )
    return WinRt.Windows.Management.Update.WindowsUpdateAdministratorStatus;
 
@@ -4168,7 +4168,7 @@ package WinRt.Windows.Management.Update is
 
    function RequestRestart
    (
-      restartOptions : Windows.Management.Update.WindowsUpdateRestartRequestOptions'Class
+      restartOptions : WinRt.Windows.Management.Update.WindowsUpdateRestartRequestOptions'Class
    )
    return WinRt.WString;
 
@@ -4203,7 +4203,7 @@ package WinRt.Windows.Management.Update is
    (
       this : in out WindowsUpdateAdministrator;
       updateId : WinRt.WString;
-      approvalData : Windows.Management.Update.WindowsUpdateApprovalData'Class
+      approvalData : WinRt.Windows.Management.Update.WindowsUpdateApprovalData'Class
    );
 
    procedure RevokeWindowsUpdateApproval
@@ -4447,7 +4447,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_ScanningStateChanged
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WorkingStateChanged
@@ -4460,7 +4460,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_WorkingStateChanged
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ProgressChanged
@@ -4473,7 +4473,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_ProgressChanged
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AttentionRequiredReasonChanged
@@ -4486,7 +4486,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_AttentionRequiredReasonChanged
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ActionCompleted
@@ -4499,7 +4499,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_ActionCompleted
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ScanCompleted
@@ -4512,7 +4512,7 @@ package WinRt.Windows.Management.Update is
    procedure remove_ScanCompleted
    (
       this : in out WindowsUpdateManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IsScanning
@@ -4581,7 +4581,7 @@ package WinRt.Windows.Management.Update is
    function PerformScan
    (
       this : in out WindowsUpdateManager;
-      options : Windows.Management.Update.WindowsUpdateManagerScanOptions'Class
+      options : WinRt.Windows.Management.Update.WindowsUpdateManagerScanOptions'Class
    )
    return WinRt.Windows.Management.Update.WindowsSoftwareUpdateScanResult'Class;
 
@@ -4675,7 +4675,7 @@ package WinRt.Windows.Management.Update is
    (
       title : WinRt.WString;
       description : WinRt.WString;
-      moreInfoUrl : Windows.Foundation.Uri'Class;
+      moreInfoUrl : WinRt.Windows.Foundation.Uri'Class;
       complianceDeadlineInDays : WinRt.Int32;
       complianceGracePeriodInDays : WinRt.Int32
    )
@@ -4719,7 +4719,7 @@ package WinRt.Windows.Management.Update is
    procedure put_MoreInfoUrl
    (
       this : in out WindowsUpdateRestartRequestOptions;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_ComplianceDeadlineInDays

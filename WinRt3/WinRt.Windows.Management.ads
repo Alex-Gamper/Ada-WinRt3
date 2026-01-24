@@ -153,28 +153,28 @@ package WinRt.Windows.Management is
       function get_Format
       (
          this : access IMdmAlert_Interface;
-         RetVal : access Windows.Management.MdmAlertDataType
+         RetVal : access WinRt.Windows.Management.MdmAlertDataType
       )
       return WinRt.Hresult is abstract;
 
       function put_Format
       (
          this : access IMdmAlert_Interface;
-         value : Windows.Management.MdmAlertDataType
+         value : WinRt.Windows.Management.MdmAlertDataType
       )
       return WinRt.Hresult is abstract;
 
       function get_Mark
       (
          this : access IMdmAlert_Interface;
-         RetVal : access Windows.Management.MdmAlertMark
+         RetVal : access WinRt.Windows.Management.MdmAlertMark
       )
       return WinRt.Hresult is abstract;
 
       function put_Mark
       (
          this : access IMdmAlert_Interface;
-         value : Windows.Management.MdmAlertMark
+         value : WinRt.Windows.Management.MdmAlertMark
       )
       return WinRt.Hresult is abstract;
 
@@ -242,7 +242,7 @@ package WinRt.Windows.Management is
       function get_ExtendedError
       (
          this : access IMdmSession_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -256,14 +256,14 @@ package WinRt.Windows.Management is
       function get_State
       (
          this : access IMdmSession_Interface;
-         RetVal : access Windows.Management.MdmSessionState
+         RetVal : access WinRt.Windows.Management.MdmSessionState
       )
       return WinRt.Hresult is abstract;
 
       function AttachAsync
       (
          this : access IMdmSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -276,7 +276,7 @@ package WinRt.Windows.Management is
       function StartAsync
       (
          this : access IMdmSession_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -284,7 +284,7 @@ package WinRt.Windows.Management is
       (
          this : access IMdmSession_Interface;
          alerts : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -303,7 +303,7 @@ package WinRt.Windows.Management is
       function TryCreateSession
       (
          this : access IMdmSessionManagerStatics_Interface;
-         RetVal : access Windows.Management.IMdmSession
+         RetVal : access WinRt.Windows.Management.IMdmSession
       )
       return WinRt.Hresult is abstract;
 
@@ -318,7 +318,7 @@ package WinRt.Windows.Management is
       (
          this : access IMdmSessionManagerStatics_Interface;
          sessionId : WinRt.HString;
-         RetVal : access Windows.Management.IMdmSession
+         RetVal : access WinRt.Windows.Management.IMdmSession
       )
       return WinRt.Hresult is abstract;
 
@@ -363,7 +363,7 @@ package WinRt.Windows.Management is
    procedure put_Format
    (
       this : in out MdmAlert;
-      value : Windows.Management.MdmAlertDataType
+      value : WinRt.Windows.Management.MdmAlertDataType
    );
 
    function get_Mark
@@ -375,7 +375,7 @@ package WinRt.Windows.Management is
    procedure put_Mark
    (
       this : in out MdmAlert;
-      value : Windows.Management.MdmAlertMark
+      value : WinRt.Windows.Management.MdmAlertMark
    );
 
    function get_Source

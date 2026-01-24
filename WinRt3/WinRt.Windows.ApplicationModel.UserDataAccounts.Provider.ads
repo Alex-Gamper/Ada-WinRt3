@@ -144,7 +144,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       function get_AccountKind
       (
          this : access IUserDataAccountPartnerAccountInfo_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind
       )
       return WinRt.Hresult is abstract;
 
@@ -156,7 +156,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       function get_ContentKinds
       (
          this : access IUserDataAccountProviderAddAccountOperation_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds
       )
       return WinRt.Hresult is abstract;
 
@@ -182,7 +182,7 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       function get_Kind
       (
          this : access IUserDataAccountProviderOperation_Interface;
-         RetVal : access Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind
+         RetVal : access WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind
       )
       return WinRt.Hresult is abstract;
 

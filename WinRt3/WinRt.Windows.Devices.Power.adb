@@ -67,7 +67,7 @@ package body WinRt.Windows.Devices.Power is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.Battery");
       m_Factory        : access WinRt.Windows.Devices.Power.IBatteryStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Power.IBattery;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Power.IBattery;
    begin
       return RetVal : WinRt.Windows.Devices.Power.Battery do
          Hr := RoGetActivationFactory (m_hString, IID_IBatteryStatics'Access , m_Factory'Address);
@@ -77,7 +77,7 @@ package body WinRt.Windows.Devices.Power is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IBattery := new Windows.Devices.Power.IBattery;
+            Retval.m_IBattery := new WinRt.Windows.Devices.Power.IBattery;
             Retval.m_IBattery.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -143,7 +143,7 @@ package body WinRt.Windows.Devices.Power is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IBattery := new Windows.Devices.Power.IBattery;
+                     Retval.m_IBattery := new WinRt.Windows.Devices.Power.IBattery;
                      Retval.m_IBattery.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -214,14 +214,14 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Power.IBatteryReport;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Power.IBatteryReport;
    begin
       return RetVal : WinRt.Windows.Devices.Power.BatteryReport do
          Hr := this.m_IBattery.all.GetReport (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBatteryReport := new Windows.Devices.Power.IBatteryReport;
+         Retval.m_IBatteryReport := new WinRt.Windows.Devices.Power.IBatteryReport;
          Retval.m_IBatteryReport.all := m_ComRetVal;
       end return;
    end;
@@ -235,7 +235,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IBattery.all.add_ReportUpdated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -247,7 +247,7 @@ package body WinRt.Windows.Devices.Power is
    procedure remove_ReportUpdated
    (
       this : in out Battery;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -290,7 +290,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_ChargeRateInMilliwatts (m_ComRetVal'Access);
@@ -310,7 +310,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_DesignCapacityInMilliwattHours (m_ComRetVal'Access);
@@ -330,7 +330,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_FullChargeCapacityInMilliwattHours (m_ComRetVal'Access);
@@ -350,7 +350,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
    begin
       Hr := this.m_IBatteryReport.all.get_RemainingCapacityInMilliwattHours (m_ComRetVal'Access);
@@ -370,7 +370,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.Power.BatteryStatus;
+      m_ComRetVal      : aliased WinRt.Windows.System.Power.BatteryStatus;
    begin
       Hr := this.m_IBatteryReport.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -466,7 +466,7 @@ package body WinRt.Windows.Devices.Power is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.PowerGridForecast");
       m_Factory        : access WinRt.Windows.Devices.Power.IPowerGridForecastStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Power.IPowerGridForecast;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Power.IPowerGridForecast;
    begin
       return RetVal : WinRt.Windows.Devices.Power.PowerGridForecast do
          Hr := RoGetActivationFactory (m_hString, IID_IPowerGridForecastStatics'Access , m_Factory'Address);
@@ -476,7 +476,7 @@ package body WinRt.Windows.Devices.Power is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IPowerGridForecast := new Windows.Devices.Power.IPowerGridForecast;
+            Retval.m_IPowerGridForecast := new WinRt.Windows.Devices.Power.IPowerGridForecast;
             Retval.m_IPowerGridForecast.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -493,7 +493,7 @@ package body WinRt.Windows.Devices.Power is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Power.PowerGridForecast");
       m_Factory        : access WinRt.Windows.Devices.Power.IPowerGridForecastStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IPowerGridForecastStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -509,7 +509,7 @@ package body WinRt.Windows.Devices.Power is
 
    procedure remove_ForecastUpdated
    (
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -539,7 +539,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IPowerGridForecast.all.get_StartTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -556,7 +556,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPowerGridForecast.all.get_BlockDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -573,7 +573,7 @@ package body WinRt.Windows.Devices.Power is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPowerGridData.Kind;
    begin
       Hr := this.m_IPowerGridForecast.all.get_Forecast (m_ComRetVal'Access);

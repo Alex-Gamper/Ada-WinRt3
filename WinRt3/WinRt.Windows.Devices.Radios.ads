@@ -114,7 +114,7 @@ package WinRt.Windows.Devices.Radios is
       function SetStateAsync
       (
          this : access IRadio_Interface;
-         value : Windows.Devices.Radios.RadioState;
+         value : WinRt.Windows.Devices.Radios.RadioState;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -123,21 +123,21 @@ package WinRt.Windows.Devices.Radios is
       (
          this : access IRadio_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IRadio_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IRadio_Interface;
-         RetVal : access Windows.Devices.Radios.RadioState
+         RetVal : access WinRt.Windows.Devices.Radios.RadioState
       )
       return WinRt.Hresult is abstract;
 
@@ -151,7 +151,7 @@ package WinRt.Windows.Devices.Radios is
       function get_Kind
       (
          this : access IRadio_Interface;
-         RetVal : access Windows.Devices.Radios.RadioKind
+         RetVal : access WinRt.Windows.Devices.Radios.RadioKind
       )
       return WinRt.Hresult is abstract;
 
@@ -225,7 +225,7 @@ package WinRt.Windows.Devices.Radios is
    function SetStateAsync
    (
       this : in out Radio;
-      value : Windows.Devices.Radios.RadioState
+      value : WinRt.Windows.Devices.Radios.RadioState
    )
    return WinRt.Windows.Devices.Radios.RadioAccessStatus;
 
@@ -239,7 +239,7 @@ package WinRt.Windows.Devices.Radios is
    procedure remove_StateChanged
    (
       this : in out Radio;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_State

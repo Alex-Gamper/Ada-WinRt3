@@ -73,23 +73,23 @@ package body WinRt.Windows.ApplicationModel.Wallet is
 
    function Constructor
    (
-      symbology : Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
+      symbology : WinRt.Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
       value : WinRt.WString
    )
    return WalletBarcode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletBarcode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletBarcode");
       m_Factory    : access IWalletBarcodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletBarcode;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
       return RetVal : WalletBarcode do
          Hr := RoGetActivationFactory (m_hString, IID_IWalletBarcodeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWalletBarcode (symbology, HStr_value, m_ComRetVal'Access);
-            Retval.m_IWalletBarcode := new Windows.ApplicationModel.Wallet.IWalletBarcode;
+            Retval.m_IWalletBarcode := new WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
             Retval.m_IWalletBarcode.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -100,21 +100,21 @@ package body WinRt.Windows.ApplicationModel.Wallet is
 
    function Constructor
    (
-      streamToBarcodeImage : Windows.Storage.Streams.IRandomAccessStreamReference
+      streamToBarcodeImage : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WalletBarcode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletBarcode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletBarcode");
       m_Factory    : access IWalletBarcodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletBarcode;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
    begin
       return RetVal : WalletBarcode do
          Hr := RoGetActivationFactory (m_hString, IID_IWalletBarcodeFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCustomWalletBarcode (streamToBarcodeImage, m_ComRetVal'Access);
-            Retval.m_IWalletBarcode := new Windows.ApplicationModel.Wallet.IWalletBarcode;
+            Retval.m_IWalletBarcode := new WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
             Retval.m_IWalletBarcode.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -133,7 +133,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.WalletBarcodeSymbology;
    begin
       Hr := this.m_IWalletBarcode.all.get_Symbology (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -250,23 +250,23 @@ package body WinRt.Windows.ApplicationModel.Wallet is
 
    function Constructor
    (
-      kind : Windows.ApplicationModel.Wallet.WalletItemKind;
+      kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind;
       displayName : WinRt.WString
    )
    return WalletItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletItem");
       m_Factory    : access IWalletItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletItem;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
    begin
       return RetVal : WalletItem do
          Hr := RoGetActivationFactory (m_hString, IID_IWalletItemFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWalletItem (kind, HStr_displayName, m_ComRetVal'Access);
-            Retval.m_IWalletItem := new Windows.ApplicationModel.Wallet.IWalletItem;
+            Retval.m_IWalletItem := new WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
             Retval.m_IWalletItem.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -412,7 +412,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_LastUpdated (m_ComRetVal'Access);
@@ -447,7 +447,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletItemKind;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.WalletItemKind;
    begin
       Hr := this.m_IWalletItem.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -464,14 +464,14 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.IWalletBarcode;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Wallet.WalletBarcode do
          Hr := this.m_IWalletItem.all.get_Barcode (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWalletBarcode := new Windows.ApplicationModel.Wallet.IWalletBarcode;
+         Retval.m_IWalletBarcode := new WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
          Retval.m_IWalletBarcode.all := m_ComRetVal;
       end return;
    end;
@@ -479,7 +479,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Barcode
    (
       this : in out WalletItem;
-      value : Windows.ApplicationModel.Wallet.WalletBarcode'Class
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletBarcode'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -499,7 +499,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_ExpirationDate (m_ComRetVal'Access);
@@ -534,7 +534,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_Logo159x159 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -546,7 +546,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo159x159
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -566,7 +566,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_Logo336x336 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -578,7 +578,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo336x336
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -598,7 +598,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_Logo99x99 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -610,7 +610,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Logo99x99
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -736,7 +736,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IWalletItem.all.get_HeaderColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -748,7 +748,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -768,7 +768,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IWalletItem.all.get_BodyColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -780,7 +780,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -800,7 +800,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IWalletItem.all.get_HeaderFontColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -812,7 +812,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderFontColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -832,7 +832,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IWalletItem.all.get_BodyFontColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -844,7 +844,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyFontColor
    (
       this : in out WalletItem;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -864,7 +864,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_HeaderBackgroundImage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -876,7 +876,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_HeaderBackgroundImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -896,7 +896,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_BodyBackgroundImage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -908,7 +908,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_BodyBackgroundImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -928,7 +928,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_LogoImage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -940,7 +940,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_LogoImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -960,7 +960,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IWalletItem.all.get_PromotionalImage (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -972,7 +972,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_PromotionalImage
    (
       this : in out WalletItem;
-      value : Windows.Storage.Streams.IRandomAccessStreamReference
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -992,7 +992,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_RelevantDate (m_ComRetVal'Access);
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IWalletTransaction.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_TransactionHistory (m_ComRetVal'Access);
@@ -1084,7 +1084,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IWalletRelevantLocation.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_RelevantLocations (m_ComRetVal'Access);
@@ -1136,7 +1136,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IWalletItemCustomProperty.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_DisplayProperties (m_ComRetVal'Access);
@@ -1156,7 +1156,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_IWalletVerb.Kind;
    begin
       Hr := this.m_IWalletItem.all.get_Verbs (m_ComRetVal'Access);
@@ -1199,10 +1199,10 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletItemCustomProperty is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletItemCustomProperty");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletItemCustomProperty");
       m_Factory    : access IWalletItemCustomPropertyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletItemCustomProperty;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletItemCustomProperty;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_value : constant WinRt.HString := To_HString (value);
    begin
@@ -1210,7 +1210,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
          Hr := RoGetActivationFactory (m_hString, IID_IWalletItemCustomPropertyFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWalletItemCustomProperty (HStr_name, HStr_value, m_ComRetVal'Access);
-            Retval.m_IWalletItemCustomProperty := new Windows.ApplicationModel.Wallet.IWalletItemCustomProperty;
+            Retval.m_IWalletItemCustomProperty := new WinRt.Windows.ApplicationModel.Wallet.IWalletItemCustomProperty;
             Retval.m_IWalletItemCustomProperty.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1337,7 +1337,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletDetailViewPosition;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.WalletDetailViewPosition;
    begin
       Hr := this.m_IWalletItemCustomProperty.all.get_DetailViewPosition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1349,7 +1349,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_DetailViewPosition
    (
       this : in out WalletItemCustomProperty;
-      value : Windows.ApplicationModel.Wallet.WalletDetailViewPosition
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletDetailViewPosition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1369,7 +1369,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Wallet.WalletSummaryViewPosition;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Wallet.WalletSummaryViewPosition;
    begin
       Hr := this.m_IWalletItemCustomProperty.all.get_SummaryViewPosition (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1381,7 +1381,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_SummaryViewPosition
    (
       this : in out WalletItemCustomProperty;
-      value : Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
+      value : WinRt.Windows.ApplicationModel.Wallet.WalletSummaryViewPosition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    (
       this : in out WalletItemStore;
       id : WinRt.WString;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1559,7 +1559,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWalletItem := new Windows.ApplicationModel.Wallet.IWalletItem;
+                  Retval.m_IWalletItem := new WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
                   Retval.m_IWalletItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1639,7 +1639,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function GetItemsAsync
    (
       this : in out WalletItemStore;
-      kind : Windows.ApplicationModel.Wallet.WalletItemKind
+      kind : WinRt.Windows.ApplicationModel.Wallet.WalletItemKind
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -1703,7 +1703,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function ImportItemAsync
    (
       this : in out WalletItemStore;
-      stream : Windows.Storage.Streams.IRandomAccessStreamReference
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -1754,7 +1754,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWalletItem := new Windows.ApplicationModel.Wallet.IWalletItem;
+                  Retval.m_IWalletItem := new WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
                   Retval.m_IWalletItem.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1902,7 +1902,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure UpdateAsync
    (
       this : in out WalletItemStore;
-      item : Windows.ApplicationModel.Wallet.WalletItem'Class
+      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2001,7 +2001,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
                      end loop;
                      if m_AsyncStatus = Completed_e then
                         Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                        Retval.m_IWalletItemStore := new Windows.ApplicationModel.Wallet.IWalletItemStore;
+                        Retval.m_IWalletItemStore := new WinRt.Windows.ApplicationModel.Wallet.IWalletItemStore;
                         Retval.m_IWalletItemStore.all := m_RetVal;
                      end if;
                      temp := m_AsyncOperation.Release;
@@ -2044,13 +2044,13 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function Constructor return WalletRelevantLocation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletRelevantLocation");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletRelevantLocation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletRelevantLocation");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletRelevantLocation;
    begin
       return RetVal : WalletRelevantLocation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IWalletRelevantLocation := new Windows.ApplicationModel.Wallet.IWalletRelevantLocation;
+            Retval.m_IWalletRelevantLocation := new WinRt.Windows.ApplicationModel.Wallet.IWalletRelevantLocation;
             Retval.m_IWalletRelevantLocation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2068,7 +2068,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Geolocation.BasicGeoposition;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Geolocation.BasicGeoposition;
    begin
       Hr := this.m_IWalletRelevantLocation.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2080,7 +2080,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    procedure put_Position
    (
       this : in out WalletRelevantLocation;
-      value : Windows.Devices.Geolocation.BasicGeoposition
+      value : WinRt.Windows.Devices.Geolocation.BasicGeoposition
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2155,13 +2155,13 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function Constructor return WalletTransaction is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletTransaction");
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletTransaction;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletTransaction");
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletTransaction;
    begin
       return RetVal : WalletTransaction do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IWalletTransaction := new Windows.ApplicationModel.Wallet.IWalletTransaction;
+            Retval.m_IWalletTransaction := new WinRt.Windows.ApplicationModel.Wallet.IWalletTransaction;
             Retval.m_IWalletTransaction.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2322,7 +2322,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IWalletTransaction.all.get_TransactionDate (m_ComRetVal'Access);
@@ -2411,17 +2411,17 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletVerb is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletVerb");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletVerb");
       m_Factory    : access IWalletVerbFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.ApplicationModel.Wallet.IWalletVerb;
+      m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletVerb;
       HStr_name : constant WinRt.HString := To_HString (name);
    begin
       return RetVal : WalletVerb do
          Hr := RoGetActivationFactory (m_hString, IID_IWalletVerbFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWalletVerb (HStr_name, m_ComRetVal'Access);
-            Retval.m_IWalletVerb := new Windows.ApplicationModel.Wallet.IWalletVerb;
+            Retval.m_IWalletVerb := new WinRt.Windows.ApplicationModel.Wallet.IWalletVerb;
             Retval.m_IWalletVerb.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;

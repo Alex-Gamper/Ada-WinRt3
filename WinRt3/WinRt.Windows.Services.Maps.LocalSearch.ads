@@ -218,7 +218,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function get_Address
       (
          this : access ILocalLocation_Interface;
-         RetVal : access Windows.Services.Maps.IMapAddress
+         RetVal : access WinRt.Windows.Services.Maps.IMapAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -246,7 +246,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function get_Point
       (
          this : access ILocalLocation_Interface;
-         RetVal : access Windows.Devices.Geolocation.IGeopoint
+         RetVal : access WinRt.Windows.Devices.Geolocation.IGeopoint
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function get_RatingInfo
       (
          this : access ILocalLocation2_Interface;
-         RetVal : access Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo
+         RetVal : access WinRt.Windows.Services.Maps.LocalSearch.ILocalLocationRatingInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -305,7 +305,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function get_Status
       (
          this : access ILocalLocationFinderResult_Interface;
-         RetVal : access Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus
+         RetVal : access WinRt.Windows.Services.Maps.LocalSearch.LocalLocationFinderStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -318,7 +318,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       (
          this : access ILocalLocationFinderStatics_Interface;
          searchTerm : WinRt.HString;
-         searchArea : Windows.Devices.Geolocation.IGeocircle;
+         searchArea : WinRt.Windows.Devices.Geolocation.IGeocircle;
          localCategory : WinRt.HString;
          maxResults : WinRt.UInt32;
          RetVal : access GenericObject
@@ -333,21 +333,21 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function get_Day
       (
          this : access ILocalLocationHoursOfOperationItem_Interface;
-         RetVal : access Windows.Globalization.DayOfWeek
+         RetVal : access WinRt.Windows.Globalization.DayOfWeek
       )
       return WinRt.Hresult is abstract;
 
       function get_Start
       (
          this : access ILocalLocationHoursOfOperationItem_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Span
       (
          this : access ILocalLocationHoursOfOperationItem_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -385,8 +385,8 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function CreateFromLocalLocation
       (
          this : access IPlaceInfoHelperStatics_Interface;
-         location : Windows.Services.Maps.LocalSearch.ILocalLocation;
-         RetVal : access Windows.Services.Maps.IPlaceInfo
+         location : WinRt.Windows.Services.Maps.LocalSearch.ILocalLocation;
+         RetVal : access WinRt.Windows.Services.Maps.IPlaceInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -502,7 +502,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
       function FindLocalLocationsAsync
       (
          searchTerm : WinRt.WString;
-         searchArea : Windows.Devices.Geolocation.Geocircle'Class;
+         searchArea : WinRt.Windows.Devices.Geolocation.Geocircle'Class;
          localCategory : WinRt.WString;
          maxResults : WinRt.UInt32
       )
@@ -591,7 +591,7 @@ package WinRt.Windows.Services.Maps.LocalSearch is
 
       function CreateFromLocalLocation
       (
-         location : Windows.Services.Maps.LocalSearch.LocalLocation'Class
+         location : WinRt.Windows.Services.Maps.LocalSearch.LocalLocation'Class
       )
       return WinRt.Windows.Services.Maps.PlaceInfo;
 

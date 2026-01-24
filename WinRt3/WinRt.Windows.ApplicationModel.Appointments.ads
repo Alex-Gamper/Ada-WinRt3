@@ -564,28 +564,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_StartTime
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_StartTime
       (
          this : access IAppointment_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_Duration
       (
          this : access IAppointment_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -648,14 +648,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Organizer
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentParticipant
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant
       )
       return WinRt.Hresult is abstract;
 
       function put_Organizer
       (
          this : access IAppointment_Interface;
-         value : Windows.ApplicationModel.Appointments.IAppointmentParticipant
+         value : WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant
       )
       return WinRt.Hresult is abstract;
 
@@ -669,28 +669,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Recurrence
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentRecurrence
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function put_Recurrence
       (
          this : access IAppointment_Interface;
-         value : Windows.ApplicationModel.Appointments.IAppointmentRecurrence
+         value : WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence
       )
       return WinRt.Hresult is abstract;
 
       function get_BusyStatus
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentBusyStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_BusyStatus
       (
          this : access IAppointment_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentBusyStatus
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -711,28 +711,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Sensitivity
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentSensitivity
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity
       )
       return WinRt.Hresult is abstract;
 
       function put_Sensitivity
       (
          this : access IAppointment_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentSensitivity
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity
       )
       return WinRt.Hresult is abstract;
 
       function get_Uri
       (
          this : access IAppointment_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function put_Uri
       (
          this : access IAppointment_Interface;
-         value : Windows.Foundation.IUriRuntimeClass
+         value : WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -835,14 +835,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_UserResponse
       (
          this : access IAppointment2_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
       )
       return WinRt.Hresult is abstract;
 
       function put_UserResponse
       (
          this : access IAppointment2_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -910,14 +910,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_DetailsKind
       (
          this : access IAppointment3_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentDetailsKind
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind
       )
       return WinRt.Hresult is abstract;
 
       function put_DetailsKind
       (
          this : access IAppointment3_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentDetailsKind
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind
       )
       return WinRt.Hresult is abstract;
 
@@ -929,7 +929,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_DisplayColor
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -964,28 +964,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_OtherAppReadAccess
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppReadAccess
       (
          this : access IAppointmentCalendar_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
       )
       return WinRt.Hresult is abstract;
 
       function get_OtherAppWriteAccess
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
       function put_OtherAppWriteAccess
       (
          this : access IAppointmentCalendar_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
       )
       return WinRt.Hresult is abstract;
 
@@ -999,22 +999,22 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_SummaryCardView
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
       )
       return WinRt.Hresult is abstract;
 
       function put_SummaryCardView
       (
          this : access IAppointmentCalendar_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
       )
       return WinRt.Hresult is abstract;
 
       function FindAppointmentsAsync
       (
          this : access IAppointmentCalendar_Interface;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1022,9 +1022,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindAppointmentsAsync
       (
          this : access IAppointmentCalendar_Interface;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
-         options : Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
+         options : WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1041,8 +1041,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendar_Interface;
          masterLocalId : WinRt.HString;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1051,9 +1051,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendar_Interface;
          masterLocalId : WinRt.HString;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
-         pOptions : Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
+         pOptions : WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1070,7 +1070,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendar_Interface;
          localId : WinRt.HString;
-         instanceStartTime : Windows.Foundation.DateTime;
+         instanceStartTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1085,7 +1085,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindUnexpandedAppointmentsAsync
       (
          this : access IAppointmentCalendar_Interface;
-         options : Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+         options : WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1093,14 +1093,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function DeleteAsync
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAsync
       (
          this : access IAppointmentCalendar_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1108,7 +1108,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendar_Interface;
          localId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1116,16 +1116,16 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendar_Interface;
          localId : WinRt.HString;
-         instanceStartTime : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         instanceStartTime : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SaveAppointmentAsync
       (
          this : access IAppointmentCalendar_Interface;
-         pAppointment : Windows.ApplicationModel.Appointments.IAppointment;
-         RetVal : access Windows.Foundation.IAsyncAction
+         pAppointment : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1137,7 +1137,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_SyncManager
       (
          this : access IAppointmentCalendar2_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendarSyncManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1158,7 +1158,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function put_DisplayColor
       (
          this : access IAppointmentCalendar2_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1277,7 +1277,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function TryCreateOrUpdateAppointmentAsync
       (
          this : access IAppointmentCalendar2_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          notifyInvitees : WinRt.Boolean;
          RetVal : access GenericObject
       )
@@ -1286,7 +1286,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function TryCancelMeetingAsync
       (
          this : access IAppointmentCalendar2_Interface;
-         meeting : Windows.ApplicationModel.Appointments.IAppointment;
+         meeting : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          subject : WinRt.HString;
          comment : WinRt.HString;
          notifyInvitees : WinRt.Boolean;
@@ -1297,7 +1297,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function TryForwardMeetingAsync
       (
          this : access IAppointmentCalendar2_Interface;
-         meeting : Windows.ApplicationModel.Appointments.IAppointment;
+         meeting : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          invitees : GenericObject;
          subject : WinRt.HString;
          forwardHeader : WinRt.HString;
@@ -1309,9 +1309,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function TryProposeNewTimeForMeetingAsync
       (
          this : access IAppointmentCalendar2_Interface;
-         meeting : Windows.ApplicationModel.Appointments.IAppointment;
-         newStartTime : Windows.Foundation.DateTime;
-         newDuration : Windows.Foundation.TimeSpan;
+         meeting : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         newStartTime : WinRt.Windows.Foundation.DateTime;
+         newDuration : WinRt.Windows.Foundation.TimeSpan;
          subject : WinRt.HString;
          comment : WinRt.HString;
          RetVal : access GenericObject
@@ -1321,8 +1321,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function TryUpdateMeetingResponseAsync
       (
          this : access IAppointmentCalendar2_Interface;
-         meeting : Windows.ApplicationModel.Appointments.IAppointment;
-         response : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
+         meeting : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         response : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
          subject : WinRt.HString;
          comment : WinRt.HString;
          sendUpdate : WinRt.Boolean;
@@ -1338,7 +1338,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function RegisterSyncManagerAsync
       (
          this : access IAppointmentCalendar3_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1350,21 +1350,21 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Status
       (
          this : access IAppointmentCalendarSyncManager_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_LastSuccessfulSyncTime
       (
          this : access IAppointmentCalendarSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_LastAttemptedSyncTime
       (
          this : access IAppointmentCalendarSyncManager_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1379,14 +1379,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentCalendarSyncManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncStatusChanged
       (
          this : access IAppointmentCalendarSyncManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1398,21 +1398,21 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function put_Status
       (
          this : access IAppointmentCalendarSyncManager2_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function put_LastSuccessfulSyncTime
       (
          this : access IAppointmentCalendarSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function put_LastAttemptedSyncTime
       (
          this : access IAppointmentCalendarSyncManager2_Interface;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1424,14 +1424,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Type
       (
          this : access IAppointmentConflictResult_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentConflictType
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictType
       )
       return WinRt.Hresult is abstract;
 
       function get_Date
       (
          this : access IAppointmentConflictResult_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1443,7 +1443,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Appointment
       (
          this : access IAppointmentException_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 
@@ -1469,28 +1469,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Role
       (
          this : access IAppointmentInvitee_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentParticipantRole
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole
       )
       return WinRt.Hresult is abstract;
 
       function put_Role
       (
          this : access IAppointmentInvitee_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentParticipantRole
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole
       )
       return WinRt.Hresult is abstract;
 
       function get_Response
       (
          this : access IAppointmentInvitee_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
       )
       return WinRt.Hresult is abstract;
 
       function put_Response
       (
          this : access IAppointmentInvitee_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
       )
       return WinRt.Hresult is abstract;
 
@@ -1502,8 +1502,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowAddAppointmentAsync
       (
          this : access IAppointmentManagerForUser_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1511,9 +1511,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowAddAppointmentAsync
       (
          this : access IAppointmentManagerForUser_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1522,8 +1522,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1532,9 +1532,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1543,10 +1543,10 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1555,7 +1555,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1564,8 +1564,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1574,9 +1574,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1584,9 +1584,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowTimeFrameAsync
       (
          this : access IAppointmentManagerForUser_Interface;
-         timeToShow : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Foundation.IAsyncAction
+         timeToShow : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1594,7 +1594,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1602,15 +1602,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerForUser_Interface;
          appointmentId : WinRt.HString;
-         instanceStartDate : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowEditNewAppointmentAsync
       (
          this : access IAppointmentManagerForUser_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1618,7 +1618,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function RequestStoreAsync
       (
          this : access IAppointmentManagerForUser_Interface;
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType;
+         options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1626,7 +1626,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_User
       (
          this : access IAppointmentManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -1638,8 +1638,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowAddAppointmentAsync
       (
          this : access IAppointmentManagerStatics_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1647,9 +1647,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowAddAppointmentAsync
       (
          this : access IAppointmentManagerStatics_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1658,8 +1658,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1668,9 +1668,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1679,10 +1679,10 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1691,7 +1691,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1700,8 +1700,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1710,9 +1710,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics_Interface;
          appointmentId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1720,9 +1720,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function ShowTimeFrameAsync
       (
          this : access IAppointmentManagerStatics_Interface;
-         timeToShow : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Foundation.IAsyncAction
+         timeToShow : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1735,7 +1735,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics2_Interface;
          appointmentId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1743,15 +1743,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentManagerStatics2_Interface;
          appointmentId : WinRt.HString;
-         instanceStartDate : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowEditNewAppointmentAsync
       (
          this : access IAppointmentManagerStatics2_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1759,7 +1759,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function RequestStoreAsync
       (
          this : access IAppointmentManagerStatics2_Interface;
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType;
+         options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1772,8 +1772,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function GetForUser
       (
          this : access IAppointmentManagerStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -2010,14 +2010,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Unit
       (
          this : access IAppointmentRecurrence_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
       )
       return WinRt.Hresult is abstract;
 
       function put_Unit
       (
          this : access IAppointmentRecurrence_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -2066,28 +2066,28 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_DaysOfWeek
       (
          this : access IAppointmentRecurrence_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
       )
       return WinRt.Hresult is abstract;
 
       function put_DaysOfWeek
       (
          this : access IAppointmentRecurrence_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
       )
       return WinRt.Hresult is abstract;
 
       function get_WeekOfMonth
       (
          this : access IAppointmentRecurrence_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
       )
       return WinRt.Hresult is abstract;
 
       function put_WeekOfMonth
       (
          this : access IAppointmentRecurrence_Interface;
-         value : Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
+         value : WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
       )
       return WinRt.Hresult is abstract;
 
@@ -2127,7 +2127,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_RecurrenceType
       (
          this : access IAppointmentRecurrence2_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.RecurrenceType
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.RecurrenceType
       )
       return WinRt.Hresult is abstract;
 
@@ -2165,7 +2165,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_ChangeTracker
       (
          this : access IAppointmentStore_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -2197,7 +2197,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         instanceStartTime : Windows.Foundation.DateTime;
+         instanceStartTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2212,7 +2212,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindAppointmentCalendarsAsync
       (
          this : access IAppointmentStore_Interface;
-         options : Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions;
+         options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2220,8 +2220,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindAppointmentsAsync
       (
          this : access IAppointmentStore_Interface;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2229,9 +2229,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindAppointmentsAsync
       (
          this : access IAppointmentStore_Interface;
-         rangeStart : Windows.Foundation.DateTime;
-         rangeLength : Windows.Foundation.TimeSpan;
-         options : Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
+         rangeStart : WinRt.Windows.Foundation.DateTime;
+         rangeLength : WinRt.Windows.Foundation.TimeSpan;
+         options : WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2239,7 +2239,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindConflictAsync
       (
          this : access IAppointmentStore_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2247,8 +2247,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function FindConflictAsync
       (
          this : access IAppointmentStore_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         instanceStartTime : Windows.Foundation.DateTime;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         instanceStartTime : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2256,17 +2256,17 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function MoveAppointmentAsync
       (
          this : access IAppointmentStore_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         destinationCalendar : Windows.ApplicationModel.Appointments.IAppointmentCalendar;
-         RetVal : access Windows.Foundation.IAsyncAction
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         destinationCalendar : WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowAddAppointmentAsync
       (
          this : access IAppointmentStore_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2275,8 +2275,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2285,10 +2285,10 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2297,7 +2297,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
+         selection : WinRt.Windows.Foundation.Rect;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2306,9 +2306,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2317,7 +2317,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2325,15 +2325,15 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore_Interface;
          localId : WinRt.HString;
-         instanceStartDate : Windows.Foundation.DateTime;
-         RetVal : access Windows.Foundation.IAsyncAction
+         instanceStartDate : WinRt.Windows.Foundation.DateTime;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ShowEditNewAppointmentAsync
       (
          this : access IAppointmentStore_Interface;
-         appointment_p : Windows.ApplicationModel.Appointments.IAppointment;
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.IAppointment;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2355,14 +2355,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore2_Interface;
          pHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StoreChanged
       (
          this : access IAppointmentStore2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2384,7 +2384,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       (
          this : access IAppointmentStore3_Interface;
          identity : WinRt.HString;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -2396,14 +2396,14 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_Appointment
       (
          this : access IAppointmentStoreChange_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointment
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointment
       )
       return WinRt.Hresult is abstract;
 
       function get_ChangeType
       (
          this : access IAppointmentStoreChange_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.AppointmentStoreChangeType
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChangeType
       )
       return WinRt.Hresult is abstract;
 
@@ -2415,7 +2415,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function get_AppointmentCalendar
       (
          this : access IAppointmentStoreChange2_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentCalendar
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentCalendar
       )
       return WinRt.Hresult is abstract;
 
@@ -2440,7 +2440,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function AcceptChangesThrough
       (
          this : access IAppointmentStoreChangeReader_Interface;
-         lastChangeToAccept : Windows.ApplicationModel.Appointments.IAppointmentStoreChange
+         lastChangeToAccept : WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChange
       )
       return WinRt.Hresult is abstract;
 
@@ -2452,7 +2452,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function GetChangeReader
       (
          this : access IAppointmentStoreChangeTracker_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2499,7 +2499,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
       function GetDeferral
       (
          this : access IAppointmentStoreChangedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral
+         RetVal : access WinRt.Windows.ApplicationModel.Appointments.IAppointmentStoreChangedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -2584,7 +2584,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_StartTime
    (
       this : in out Appointment;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    function get_Duration
@@ -2596,7 +2596,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Duration
    (
       this : in out Appointment;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_Location
@@ -2656,7 +2656,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Organizer
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentOrganizer'Class
    );
 
    function get_Invitees
@@ -2674,7 +2674,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Recurrence
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrence'Class
    );
 
    function get_BusyStatus
@@ -2686,7 +2686,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_BusyStatus
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentBusyStatus
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentBusyStatus
    );
 
    function get_AllDay
@@ -2710,7 +2710,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Sensitivity
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentSensitivity
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSensitivity
    );
 
    function get_Uri
@@ -2722,7 +2722,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Uri
    (
       this : in out Appointment;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_LocalId
@@ -2812,7 +2812,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_UserResponse
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    );
 
    function get_HasInvitees
@@ -2872,7 +2872,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DetailsKind
    (
       this : in out Appointment;
-      value : Windows.ApplicationModel.Appointments.AppointmentDetailsKind
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDetailsKind
    );
 
    -----------------------------------------------------------------------------
@@ -2923,7 +2923,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_OtherAppReadAccess
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppReadAccess
    );
 
    function get_OtherAppWriteAccess
@@ -2935,7 +2935,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_OtherAppWriteAccess
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarOtherAppWriteAccess
    );
 
    function get_SourceDisplayName
@@ -2953,23 +2953,23 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_SummaryCardView
    (
       this : in out AppointmentCalendar;
-      value : Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentSummaryCardView
    );
 
    function FindAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
    function FindAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject;
 
@@ -2984,8 +2984,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       masterLocalId : WinRt.WString;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
@@ -2993,9 +2993,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       masterLocalId : WinRt.WString;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      pOptions : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      pOptions : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject;
 
@@ -3010,7 +3010,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
 
@@ -3023,7 +3023,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function FindUnexpandedAppointmentsAsync
    (
       this : in out AppointmentCalendar;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject;
 
@@ -3047,13 +3047,13 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentCalendar;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    );
 
    procedure SaveAppointmentAsync
    (
       this : in out AppointmentCalendar;
-      pAppointment : Windows.ApplicationModel.Appointments.Appointment'Class
+      pAppointment : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    );
 
    function get_SyncManager
@@ -3077,7 +3077,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DisplayColor
    (
       this : in out AppointmentCalendar;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    procedure put_IsHidden
@@ -3179,7 +3179,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function TryCreateOrUpdateAppointmentAsync
    (
       this : in out AppointmentCalendar;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       notifyInvitees : WinRt.Boolean
    )
    return WinRt.Boolean;
@@ -3187,7 +3187,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function TryCancelMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       subject : WinRt.WString;
       comment : WinRt.WString;
       notifyInvitees : WinRt.Boolean
@@ -3197,7 +3197,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function TryForwardMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
       invitees : GenericObject;
       subject : WinRt.WString;
       forwardHeader : WinRt.WString;
@@ -3208,9 +3208,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function TryProposeNewTimeForMeetingAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
-      newStartTime : Windows.Foundation.DateTime;
-      newDuration : Windows.Foundation.TimeSpan;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      newStartTime : WinRt.Windows.Foundation.DateTime;
+      newDuration : WinRt.Windows.Foundation.TimeSpan;
       subject : WinRt.WString;
       comment : WinRt.WString
    )
@@ -3219,8 +3219,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function TryUpdateMeetingResponseAsync
    (
       this : in out AppointmentCalendar;
-      meeting : Windows.ApplicationModel.Appointments.Appointment'Class;
-      response : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
+      meeting : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      response : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse;
       subject : WinRt.WString;
       comment : WinRt.WString;
       sendUpdate : WinRt.Boolean
@@ -3275,25 +3275,25 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure remove_SyncStatusChanged
    (
       this : in out AppointmentCalendarSyncManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure put_Status
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendarSyncStatus
    );
 
    procedure put_LastSuccessfulSyncTime
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure put_LastAttemptedSyncTime
    (
       this : in out AppointmentCalendarSyncManager;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    -----------------------------------------------------------------------------
@@ -3367,7 +3367,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Role
    (
       this : in out AppointmentInvitee;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantRole
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantRole
    );
 
    function get_Response
@@ -3379,7 +3379,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Response
    (
       this : in out AppointmentInvitee;
-      value : Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentParticipantResponse
    );
 
    function get_DisplayName
@@ -3412,80 +3412,80 @@ package WinRt.Windows.ApplicationModel.Appointments is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentManagerForUser;
 
       function ShowAddAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.WString;
 
       function ShowAddAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.WString;
 
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.WString;
 
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.WString;
 
       function ShowReplaceAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.WString;
 
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect
+         selection : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Boolean;
 
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement
       )
       return WinRt.Boolean;
 
       function ShowRemoveAppointmentAsync
       (
          appointmentId : WinRt.WString;
-         selection : Windows.Foundation.Rect;
-         preferredPlacement : Windows.UI.Popups.Placement;
-         instanceStartDate : Windows.Foundation.DateTime
+         selection : WinRt.Windows.Foundation.Rect;
+         preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Boolean;
 
       procedure ShowTimeFrameAsync
       (
-         timeToShow : Windows.Foundation.DateTime;
-         duration : Windows.Foundation.TimeSpan
+         timeToShow : WinRt.Windows.Foundation.DateTime;
+         duration : WinRt.Windows.Foundation.TimeSpan
       );
 
       procedure ShowAppointmentDetailsAsync
@@ -3496,18 +3496,18 @@ package WinRt.Windows.ApplicationModel.Appointments is
       procedure ShowAppointmentDetailsAsync
       (
          appointmentId : WinRt.WString;
-         instanceStartDate : Windows.Foundation.DateTime
+         instanceStartDate : WinRt.Windows.Foundation.DateTime
       );
 
       function ShowEditNewAppointmentAsync
       (
-         appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+         appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
       )
       return WinRt.WString;
 
       function RequestStoreAsync
       (
-         options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+         options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
       )
       return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore;
 
@@ -3525,17 +3525,17 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString;
 
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.WString;
 
@@ -3543,8 +3543,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString;
 
@@ -3552,9 +3552,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.WString;
 
@@ -3562,10 +3562,10 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.WString;
 
@@ -3573,7 +3573,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean;
 
@@ -3581,8 +3581,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement
    )
    return WinRt.Boolean;
 
@@ -3590,17 +3590,17 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean;
 
    procedure ShowTimeFrameAsync
    (
       this : in out AppointmentManagerForUser;
-      timeToShow : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      timeToShow : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure ShowAppointmentDetailsAsync
@@ -3613,20 +3613,20 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentManagerForUser;
       appointmentId : WinRt.WString;
-      instanceStartDate : Windows.Foundation.DateTime
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    );
 
    function ShowEditNewAppointmentAsync
    (
       this : in out AppointmentManagerForUser;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.WString;
 
    function RequestStoreAsync
    (
       this : in out AppointmentManagerForUser;
-      options : Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
+      options : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreAccessType
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentStore'Class;
 
@@ -3781,7 +3781,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_Unit
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentRecurrenceUnit
    );
 
    function get_Occurrences
@@ -3829,7 +3829,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_DaysOfWeek
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentDaysOfWeek
    );
 
    function get_WeekOfMonth
@@ -3841,7 +3841,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure put_WeekOfMonth
    (
       this : in out AppointmentRecurrence;
-      value : Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
+      value : WinRt.Windows.ApplicationModel.Appointments.AppointmentWeekOfMonth
    );
 
    function get_Month
@@ -3932,7 +3932,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      instanceStartTime : Windows.Foundation.DateTime
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
 
@@ -3945,54 +3945,54 @@ package WinRt.Windows.ApplicationModel.Appointments is
    function FindAppointmentCalendarsAsync
    (
       this : in out AppointmentStore;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentCalendarsOptions
    )
    return WinRt.GenericObject;
 
    function FindAppointmentsAsync
    (
       this : in out AppointmentStore;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.GenericObject;
 
    function FindAppointmentsAsync
    (
       this : in out AppointmentStore;
-      rangeStart : Windows.Foundation.DateTime;
-      rangeLength : Windows.Foundation.TimeSpan;
-      options : Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
+      rangeStart : WinRt.Windows.Foundation.DateTime;
+      rangeLength : WinRt.Windows.Foundation.TimeSpan;
+      options : WinRt.Windows.ApplicationModel.Appointments.FindAppointmentsOptions'Class
    )
    return WinRt.GenericObject;
 
    function FindConflictAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class;
 
    function FindConflictAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      instanceStartTime : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      instanceStartTime : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Windows.ApplicationModel.Appointments.AppointmentConflictResult'Class;
 
    procedure MoveAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      destinationCalendar : Windows.ApplicationModel.Appointments.AppointmentCalendar'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      destinationCalendar : WinRt.Windows.ApplicationModel.Appointments.AppointmentCalendar'Class
    );
 
    function ShowAddAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString;
 
@@ -4000,8 +4000,8 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.WString;
 
@@ -4009,10 +4009,10 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class;
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.WString;
 
@@ -4020,7 +4020,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      selection : Windows.Foundation.Rect
+      selection : WinRt.Windows.Foundation.Rect
    )
    return WinRt.Boolean;
 
@@ -4028,9 +4028,9 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      selection : Windows.Foundation.Rect;
-      preferredPlacement : Windows.UI.Popups.Placement;
-      instanceStartDate : Windows.Foundation.DateTime
+      selection : WinRt.Windows.Foundation.Rect;
+      preferredPlacement : WinRt.Windows.UI.Popups.Placement;
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.Boolean;
 
@@ -4044,13 +4044,13 @@ package WinRt.Windows.ApplicationModel.Appointments is
    (
       this : in out AppointmentStore;
       localId : WinRt.WString;
-      instanceStartDate : Windows.Foundation.DateTime
+      instanceStartDate : WinRt.Windows.Foundation.DateTime
    );
 
    function ShowEditNewAppointmentAsync
    (
       this : in out AppointmentStore;
-      appointment_p : Windows.ApplicationModel.Appointments.Appointment'Class
+      appointment_p : WinRt.Windows.ApplicationModel.Appointments.Appointment'Class
    )
    return WinRt.WString;
 
@@ -4071,7 +4071,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure remove_StoreChanged
    (
       this : in out AppointmentStore;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateAppointmentCalendarAsync
@@ -4139,7 +4139,7 @@ package WinRt.Windows.ApplicationModel.Appointments is
    procedure AcceptChangesThrough
    (
       this : in out AppointmentStoreChangeReader;
-      lastChangeToAccept : Windows.ApplicationModel.Appointments.AppointmentStoreChange'Class
+      lastChangeToAccept : WinRt.Windows.ApplicationModel.Appointments.AppointmentStoreChange'Class
    );
 
    -----------------------------------------------------------------------------

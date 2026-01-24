@@ -362,8 +362,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       function TraceOperationCreation
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
          operationName : WinRt.HString;
@@ -374,42 +374,42 @@ package WinRt.Windows.Foundation.Diagnostics is
       function TraceOperationCompletion
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         status : Windows.Foundation.AsyncStatus
+         status : WinRt.Windows.Foundation.AsyncStatus
       )
       return WinRt.Hresult is abstract;
 
       function TraceOperationRelation
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         relation : Windows.Foundation.Diagnostics.CausalityRelation
+         relation : WinRt.Windows.Foundation.Diagnostics.CausalityRelation
       )
       return WinRt.Hresult is abstract;
 
       function TraceSynchronousWorkStart
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       )
       return WinRt.Hresult is abstract;
 
       function TraceSynchronousWorkCompletion
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       )
       return WinRt.Hresult is abstract;
 
@@ -417,14 +417,14 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access IAsyncCausalityTracerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TracingStatusChanged
       (
          this : access IAsyncCausalityTracerStatics_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -450,7 +450,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_HelpUri
       (
          this : access IErrorDetails_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -475,14 +475,14 @@ package WinRt.Windows.Foundation.Diagnostics is
       function SetErrorOptions
       (
          this : access IErrorReportingSettings_Interface;
-         value : Windows.Foundation.Diagnostics.ErrorOptions
+         value : WinRt.Windows.Foundation.Diagnostics.ErrorOptions
       )
       return WinRt.Hresult is abstract;
 
       function GetErrorOptions
       (
          this : access IErrorReportingSettings_Interface;
-         RetVal : access Windows.Foundation.Diagnostics.ErrorOptions
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ErrorOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -501,22 +501,22 @@ package WinRt.Windows.Foundation.Diagnostics is
       function AddLoggingChannel
       (
          this : access IFileLoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
       function AddLoggingChannel
       (
          this : access IFileLoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-         maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+         maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
       function RemoveLoggingChannel
       (
          this : access IFileLoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -531,14 +531,14 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access IFileLoggingSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LogFileGenerated
       (
          this : access IFileLoggingSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -551,7 +551,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access IFileLoggingSessionFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Foundation.Diagnostics.IFileLoggingSession
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.IFileLoggingSession
       )
       return WinRt.Hresult is abstract;
 
@@ -563,7 +563,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_File
       (
          this : access ILogFileGeneratedEventArgs_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -594,7 +594,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_Channel
       (
          this : access ILoggingActivity2_Interface;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingChannel
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -609,7 +609,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingActivity2_Interface;
          stopEventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields
       )
       return WinRt.Hresult is abstract;
 
@@ -617,8 +617,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingActivity2_Interface;
          stopEventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         options : Windows.Foundation.Diagnostics.ILoggingOptions
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         options : WinRt.Windows.Foundation.Diagnostics.ILoggingOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -631,8 +631,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingActivityFactory_Interface;
          activityName : WinRt.HString;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -640,9 +640,9 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingActivityFactory_Interface;
          activityName : WinRt.HString;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -668,7 +668,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_Level
       (
          this : access ILoggingChannel_Interface;
-         RetVal : access Windows.Foundation.Diagnostics.LoggingLevel
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -683,7 +683,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannel_Interface;
          eventString : WinRt.HString;
-         level : Windows.Foundation.Diagnostics.LoggingLevel
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -700,7 +700,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingChannel_Interface;
          value1 : WinRt.HString;
          value2 : WinRt.Int32;
-         level : Windows.Foundation.Diagnostics.LoggingLevel
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -708,14 +708,14 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannel_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LoggingEnabled
       (
          this : access ILoggingChannel_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -740,7 +740,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannelFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingChannel
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -753,8 +753,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannelFactory2_Interface;
          name : WinRt.HString;
-         options : Windows.Foundation.Diagnostics.ILoggingChannelOptions;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingChannel
+         options : WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -762,9 +762,9 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannelFactory2_Interface;
          name : WinRt.HString;
-         options : Windows.Foundation.Diagnostics.ILoggingChannelOptions;
+         options : WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
          id : WinRt.Guid;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingChannel
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -796,7 +796,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingChannelOptionsFactory_Interface;
          group : WinRt.Guid;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingChannelOptions
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -843,7 +843,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -851,7 +851,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -869,7 +869,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Byte;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -878,7 +878,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Byte;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -898,7 +898,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Byte_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -908,7 +908,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Byte_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -926,7 +926,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int16;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -935,7 +935,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int16;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -955,7 +955,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int16_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -965,7 +965,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int16_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -983,7 +983,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt16;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -992,7 +992,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt16;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1012,7 +1012,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt16_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1022,7 +1022,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt16_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1040,7 +1040,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int32;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1049,7 +1049,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int32;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1069,7 +1069,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int32_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1079,7 +1079,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int32_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1097,7 +1097,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt32;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1106,7 +1106,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt32;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1126,7 +1126,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt32_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1136,7 +1136,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt32_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1154,7 +1154,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int64;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1163,7 +1163,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Int64;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1183,7 +1183,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int64_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1193,7 +1193,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Int64_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1211,7 +1211,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt64;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1220,7 +1220,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.UInt64;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1240,7 +1240,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt64_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1250,7 +1250,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.UInt64_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1268,7 +1268,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Single;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1277,7 +1277,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Single;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1297,7 +1297,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Single_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1307,7 +1307,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Single_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1325,7 +1325,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Double;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1334,7 +1334,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Double;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1354,7 +1354,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Double_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1364,7 +1364,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Double_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1382,7 +1382,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Wide_Char;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1391,7 +1391,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Wide_Char;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1411,7 +1411,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Wide_Char_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1421,7 +1421,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Wide_Char_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1439,7 +1439,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Boolean;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1448,7 +1448,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Boolean;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1468,7 +1468,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Boolean_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1478,7 +1478,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Boolean_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1496,7 +1496,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1505,7 +1505,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.HString;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1525,7 +1525,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.HString_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1535,7 +1535,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.HString_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1553,7 +1553,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Guid;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1562,7 +1562,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          value : WinRt.Guid;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1582,7 +1582,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Guid_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1592,7 +1592,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
          value : WinRt.Guid_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1601,7 +1601,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.DateTime
+         value : WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
@@ -1609,8 +1609,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.DateTime;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.DateTime;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1618,8 +1618,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.DateTime;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.DateTime;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1629,7 +1629,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.DateTime_Ptr
+         value : WinRt.Windows.Foundation.DateTime_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1638,8 +1638,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.DateTime_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.DateTime_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1648,8 +1648,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.DateTime_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.DateTime_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1658,7 +1658,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -1666,8 +1666,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.TimeSpan;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.TimeSpan;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1675,8 +1675,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.TimeSpan;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.TimeSpan;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1686,7 +1686,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.TimeSpan_Ptr
+         value : WinRt.Windows.Foundation.TimeSpan_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1695,8 +1695,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.TimeSpan_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.TimeSpan_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1705,8 +1705,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.TimeSpan_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.TimeSpan_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1715,7 +1715,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Point
+         value : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -1723,8 +1723,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Point;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Point;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1732,8 +1732,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Point;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Point;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1743,7 +1743,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Point_Ptr
+         value : WinRt.Windows.Foundation.Point_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1752,8 +1752,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Point_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Point_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1762,8 +1762,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Point_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Point_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1772,7 +1772,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Size
+         value : WinRt.Windows.Foundation.Size
       )
       return WinRt.Hresult is abstract;
 
@@ -1780,8 +1780,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Size;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Size;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1789,8 +1789,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Size;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Size;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1800,7 +1800,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Size_Ptr
+         value : WinRt.Windows.Foundation.Size_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1809,8 +1809,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Size_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Size_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1819,8 +1819,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Size_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Size_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1829,7 +1829,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Rect
+         value : WinRt.Windows.Foundation.Rect
       )
       return WinRt.Hresult is abstract;
 
@@ -1837,8 +1837,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Rect;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Rect;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1846,8 +1846,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
-         value : Windows.Foundation.Rect;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Rect;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1857,7 +1857,7 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Rect_Ptr
+         value : WinRt.Windows.Foundation.Rect_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -1866,8 +1866,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Rect_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+         value : WinRt.Windows.Foundation.Rect_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1876,8 +1876,8 @@ package WinRt.Windows.Foundation.Diagnostics is
          this : access ILoggingFields_Interface;
          name : WinRt.HString;
          valueSize : WinRt.UInt32;
-         value : Windows.Foundation.Rect_Ptr;
-         format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+         value : WinRt.Windows.Foundation.Rect_Ptr;
+         format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
          tags : WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -1932,14 +1932,14 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_Opcode
       (
          this : access ILoggingOptions_Interface;
-         RetVal : access Windows.Foundation.Diagnostics.LoggingOpcode
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.LoggingOpcode
       )
       return WinRt.Hresult is abstract;
 
       function put_Opcode
       (
          this : access ILoggingOptions_Interface;
-         value : Windows.Foundation.Diagnostics.LoggingOpcode
+         value : WinRt.Windows.Foundation.Diagnostics.LoggingOpcode
       )
       return WinRt.Hresult is abstract;
 
@@ -1980,7 +1980,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingOptionsFactory_Interface;
          keywords : WinRt.Int64;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingOptions
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -1999,7 +1999,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function SaveToFileAsync
       (
          this : access ILoggingSession_Interface;
-         folder : Windows.Storage.IStorageFolder;
+         folder : WinRt.Windows.Storage.IStorageFolder;
          fileName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -2008,22 +2008,22 @@ package WinRt.Windows.Foundation.Diagnostics is
       function AddLoggingChannel
       (
          this : access ILoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
       function AddLoggingChannel
       (
          this : access ILoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-         maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+         maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
       function RemoveLoggingChannel
       (
          this : access ILoggingSession_Interface;
-         loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+         loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
       )
       return WinRt.Hresult is abstract;
 
@@ -2036,7 +2036,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingSessionFactory_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingSession
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingSession
       )
       return WinRt.Hresult is abstract;
 
@@ -2055,7 +2055,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function IsEnabled
       (
          this : access ILoggingTarget_Interface;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2063,7 +2063,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function IsEnabled
       (
          this : access ILoggingTarget_Interface;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
          keywords : WinRt.Int64;
          RetVal : access WinRt.Boolean
       )
@@ -2080,7 +2080,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          eventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields
       )
       return WinRt.Hresult is abstract;
 
@@ -2088,8 +2088,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          eventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         level : Windows.Foundation.Diagnostics.LoggingLevel
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2097,9 +2097,9 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          eventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
-         options : Windows.Foundation.Diagnostics.ILoggingOptions
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+         options : WinRt.Windows.Foundation.Diagnostics.ILoggingOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2107,7 +2107,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          startEventName : WinRt.HString;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -2115,8 +2115,8 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          startEventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -2124,9 +2124,9 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          startEventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -2134,10 +2134,10 @@ package WinRt.Windows.Foundation.Diagnostics is
       (
          this : access ILoggingTarget_Interface;
          startEventName : WinRt.HString;
-         fields : Windows.Foundation.Diagnostics.ILoggingFields;
-         level : Windows.Foundation.Diagnostics.LoggingLevel;
-         options : Windows.Foundation.Diagnostics.ILoggingOptions;
-         RetVal : access Windows.Foundation.Diagnostics.ILoggingActivity
+         fields : WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
+         level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+         options : WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.ILoggingActivity
       )
       return WinRt.Hresult is abstract;
 
@@ -2156,7 +2156,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       function get_TraceLevel
       (
          this : access ITracingStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Diagnostics.CausalityTraceLevel
+         RetVal : access WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel
       )
       return WinRt.Hresult is abstract;
 
@@ -2172,8 +2172,8 @@ package WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceOperationCreation
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
          operationName : WinRt.WString;
@@ -2182,36 +2182,36 @@ package WinRt.Windows.Foundation.Diagnostics is
 
       procedure TraceOperationCompletion
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         status : Windows.Foundation.AsyncStatus
+         status : WinRt.Windows.Foundation.AsyncStatus
       );
 
       procedure TraceOperationRelation
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         relation : Windows.Foundation.Diagnostics.CausalityRelation
+         relation : WinRt.Windows.Foundation.Diagnostics.CausalityRelation
       );
 
       procedure TraceSynchronousWorkStart
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
          platformId : WinRt.Guid;
          operationId : WinRt.UInt64;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       );
 
       procedure TraceSynchronousWorkCompletion
       (
-         traceLevel : Windows.Foundation.Diagnostics.CausalityTraceLevel;
-         source : Windows.Foundation.Diagnostics.CausalitySource;
-         work : Windows.Foundation.Diagnostics.CausalitySynchronousWork
+         traceLevel : WinRt.Windows.Foundation.Diagnostics.CausalityTraceLevel;
+         source : WinRt.Windows.Foundation.Diagnostics.CausalitySource;
+         work : WinRt.Windows.Foundation.Diagnostics.CausalitySynchronousWork
       );
 
       function add_TracingStatusChanged
@@ -2222,7 +2222,7 @@ package WinRt.Windows.Foundation.Diagnostics is
 
       procedure remove_TracingStatusChanged
       (
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end AsyncCausalityTracer;
@@ -2290,20 +2290,20 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    );
 
    procedure AddLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    procedure RemoveLoggingChannel
    (
       this : in out FileLoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    );
 
    function CloseAndSaveToFileAsync
@@ -2322,7 +2322,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure remove_LogFileGenerated
    (
       this : in out FileLoggingSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -2357,15 +2357,15 @@ package WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       activityName : WinRt.WString;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    )
    return LoggingActivity;
 
    function Constructor
    (
       activityName : WinRt.WString;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return LoggingActivity;
 
@@ -2405,15 +2405,15 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       stopEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    );
 
    procedure StopActivity
    (
       this : in out LoggingActivity;
       stopEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    );
 
    function IsEnabled
@@ -2425,14 +2425,14 @@ package WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingActivity;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Boolean;
 
    function IsEnabled
    (
       this : in out LoggingActivity;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
       keywords : WinRt.Int64
    )
    return WinRt.Boolean;
@@ -2447,24 +2447,24 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    );
 
    procedure LogEvent
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    procedure LogEvent
    (
       this : in out LoggingActivity;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    );
 
    function StartActivity
@@ -2478,7 +2478,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2486,8 +2486,8 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2495,9 +2495,9 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingActivity;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2513,14 +2513,14 @@ package WinRt.Windows.Foundation.Diagnostics is
    function Constructor
    (
       name : WinRt.WString;
-      options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingChannelOptions'Class
    )
    return LoggingChannel;
 
    function Constructor
    (
       name : WinRt.WString;
-      options : Windows.Foundation.Diagnostics.LoggingChannelOptions'Class;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingChannelOptions'Class;
       id : WinRt.Guid
    )
    return LoggingChannel;
@@ -2562,7 +2562,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventString : WinRt.WString;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    procedure LogValuePair
@@ -2577,7 +2577,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingChannel;
       value1 : WinRt.WString;
       value2 : WinRt.Int32;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    function add_LoggingEnabled
@@ -2590,7 +2590,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure remove_LoggingEnabled
    (
       this : in out LoggingChannel;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -2613,14 +2613,14 @@ package WinRt.Windows.Foundation.Diagnostics is
    function IsEnabled
    (
       this : in out LoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Boolean;
 
    function IsEnabled
    (
       this : in out LoggingChannel;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
       keywords : WinRt.Int64
    )
    return WinRt.Boolean;
@@ -2635,24 +2635,24 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    );
 
    procedure LogEvent
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    procedure LogEvent
    (
       this : in out LoggingChannel;
       eventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    );
 
    function StartActivity
@@ -2666,7 +2666,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2674,8 +2674,8 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2683,9 +2683,9 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingChannel;
       startEventName : WinRt.WString;
-      fields : Windows.Foundation.Diagnostics.LoggingFields'Class;
-      level : Windows.Foundation.Diagnostics.LoggingLevel;
-      options : Windows.Foundation.Diagnostics.LoggingOptions'Class
+      fields : WinRt.Windows.Foundation.Diagnostics.LoggingFields'Class;
+      level : WinRt.Windows.Foundation.Diagnostics.LoggingLevel;
+      options : WinRt.Windows.Foundation.Diagnostics.LoggingOptions'Class
    )
    return WinRt.Windows.Foundation.Diagnostics.LoggingActivity'Class;
 
@@ -2768,14 +2768,14 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddEmpty
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2791,7 +2791,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt8
@@ -2799,7 +2799,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2815,7 +2815,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt8Array
@@ -2823,7 +2823,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Byte_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2839,7 +2839,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt16
@@ -2847,7 +2847,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2863,7 +2863,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt16Array
@@ -2871,7 +2871,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2887,7 +2887,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt16
@@ -2895,7 +2895,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2911,7 +2911,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt16Array
@@ -2919,7 +2919,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt16_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2935,7 +2935,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt32
@@ -2943,7 +2943,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2959,7 +2959,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt32Array
@@ -2967,7 +2967,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -2983,7 +2983,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt32
@@ -2991,7 +2991,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3007,7 +3007,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt32Array
@@ -3015,7 +3015,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt32_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3031,7 +3031,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt64
@@ -3039,7 +3039,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3055,7 +3055,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddInt64Array
@@ -3063,7 +3063,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Int64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3079,7 +3079,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt64
@@ -3087,7 +3087,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3103,7 +3103,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddUInt64Array
@@ -3111,7 +3111,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.UInt64_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3127,7 +3127,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddSingle
@@ -3135,7 +3135,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3151,7 +3151,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddSingleArray
@@ -3159,7 +3159,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Single_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3175,7 +3175,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddDouble
@@ -3183,7 +3183,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3199,7 +3199,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddDoubleArray
@@ -3207,7 +3207,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Double_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3223,7 +3223,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddChar16
@@ -3231,7 +3231,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3247,7 +3247,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddChar16Array
@@ -3255,7 +3255,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Wide_Char_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3271,7 +3271,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddBoolean
@@ -3279,7 +3279,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3295,7 +3295,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddBooleanArray
@@ -3303,7 +3303,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Boolean_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3319,7 +3319,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddString
@@ -3327,7 +3327,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.WString;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3343,7 +3343,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.HString_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddStringArray
@@ -3351,7 +3351,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.HString_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3367,7 +3367,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddGuid
@@ -3375,7 +3375,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3391,7 +3391,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddGuidArray
@@ -3399,7 +3399,7 @@ package WinRt.Windows.Foundation.Diagnostics is
       this : in out LoggingFields;
       name : WinRt.WString;
       value : WinRt.Guid_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3407,23 +3407,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    );
 
    procedure AddDateTime
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.DateTime;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddDateTime
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.DateTime;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3431,23 +3431,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array
+      value : WinRt.Windows.Foundation.DateTime_Array
    );
 
    procedure AddDateTimeArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.DateTime_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddDateTimeArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.DateTime_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.DateTime_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3455,23 +3455,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    procedure AddTimeSpan
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.TimeSpan;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddTimeSpan
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.TimeSpan;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3479,23 +3479,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array
+      value : WinRt.Windows.Foundation.TimeSpan_Array
    );
 
    procedure AddTimeSpanArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.TimeSpan_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddTimeSpanArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.TimeSpan_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.TimeSpan_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3503,23 +3503,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point
+      value : WinRt.Windows.Foundation.Point
    );
 
    procedure AddPoint
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Point;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddPoint
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Point;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3527,23 +3527,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array
+      value : WinRt.Windows.Foundation.Point_Array
    );
 
    procedure AddPointArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Point_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddPointArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Point_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Point_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3551,23 +3551,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    );
 
    procedure AddSize
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Size;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddSize
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Size;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3575,23 +3575,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array
+      value : WinRt.Windows.Foundation.Size_Array
    );
 
    procedure AddSizeArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Size_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddSizeArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Size_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Size_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3599,23 +3599,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    );
 
    procedure AddRect
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Rect;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddRect
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Rect;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3623,23 +3623,23 @@ package WinRt.Windows.Foundation.Diagnostics is
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array
+      value : WinRt.Windows.Foundation.Rect_Array
    );
 
    procedure AddRectArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat
+      value : WinRt.Windows.Foundation.Rect_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat
    );
 
    procedure AddRectArray
    (
       this : in out LoggingFields;
       name : WinRt.WString;
-      value : Windows.Foundation.Rect_Array;
-      format : Windows.Foundation.Diagnostics.LoggingFieldFormat;
+      value : WinRt.Windows.Foundation.Rect_Array;
+      format : WinRt.Windows.Foundation.Diagnostics.LoggingFieldFormat;
       tags : WinRt.Int32
    );
 
@@ -3708,7 +3708,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure put_Opcode
    (
       this : in out LoggingOptions;
-      value : Windows.Foundation.Diagnostics.LoggingOpcode
+      value : WinRt.Windows.Foundation.Diagnostics.LoggingOpcode
    );
 
    function get_ActivityId
@@ -3762,7 +3762,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    function SaveToFileAsync
    (
       this : in out LoggingSession;
-      folder : Windows.Storage.IStorageFolder;
+      folder : WinRt.Windows.Storage.IStorageFolder;
       fileName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class;
@@ -3770,20 +3770,20 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure AddLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    );
 
    procedure AddLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel;
-      maxLevel : Windows.Foundation.Diagnostics.LoggingLevel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
+      maxLevel : WinRt.Windows.Foundation.Diagnostics.LoggingLevel
    );
 
    procedure RemoveLoggingChannel
    (
       this : in out LoggingSession;
-      loggingChannel_p : Windows.Foundation.Diagnostics.ILoggingChannel
+      loggingChannel_p : WinRt.Windows.Foundation.Diagnostics.ILoggingChannel
    );
 
    procedure Close
@@ -3808,7 +3808,7 @@ package WinRt.Windows.Foundation.Diagnostics is
    procedure SetErrorOptions
    (
       this : in out RuntimeBrokerErrorSettings;
-      value : Windows.Foundation.Diagnostics.ErrorOptions
+      value : WinRt.Windows.Foundation.Diagnostics.ErrorOptions
    );
 
    function GetErrorOptions

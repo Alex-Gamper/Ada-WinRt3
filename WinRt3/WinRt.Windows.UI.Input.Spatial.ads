@@ -515,14 +515,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecognitionStarted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -530,14 +530,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_RecognitionEnded
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -545,14 +545,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Tapped
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -560,14 +560,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HoldStarted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -575,14 +575,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HoldCompleted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -590,14 +590,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_HoldCanceled
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -605,14 +605,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationStarted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -620,14 +620,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationUpdated
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -635,14 +635,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationCompleted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -650,14 +650,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ManipulationCanceled
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -665,14 +665,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationStarted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -680,14 +680,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationUpdated
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -695,14 +695,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationCompleted
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -710,21 +710,21 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialGestureRecognizer_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NavigationCanceled
       (
          this : access ISpatialGestureRecognizer_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CaptureInteraction
       (
          this : access ISpatialGestureRecognizer_Interface;
-         interaction : Windows.UI.Input.Spatial.ISpatialInteraction
+         interaction : WinRt.Windows.UI.Input.Spatial.ISpatialInteraction
       )
       return WinRt.Hresult is abstract;
 
@@ -737,7 +737,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function TrySetGestureSettings
       (
          this : access ISpatialGestureRecognizer_Interface;
-         settings : Windows.UI.Input.Spatial.SpatialGestureSettings;
+         settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -745,7 +745,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_GestureSettings
       (
          this : access ISpatialGestureRecognizer_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialGestureSettings
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -757,8 +757,8 @@ package WinRt.Windows.UI.Input.Spatial is
       function Create
       (
          this : access ISpatialGestureRecognizerFactory_Interface;
-         settings : Windows.UI.Input.Spatial.SpatialGestureSettings;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialGestureRecognizer
+         settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialGestureRecognizer
       )
       return WinRt.Hresult is abstract;
 
@@ -770,7 +770,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialHoldCanceledEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -782,7 +782,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialHoldCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -794,15 +794,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialHoldStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialHoldStartedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -814,7 +814,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_SourceState
       (
          this : access ISpatialInteraction_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSourceState
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState
       )
       return WinRt.Hresult is abstract;
 
@@ -840,7 +840,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_SimpleHapticsController
       (
          this : access ISpatialInteractionController_Interface;
-         RetVal : access Windows.Devices.Haptics.ISimpleHapticsController
+         RetVal : access WinRt.Windows.Devices.Haptics.ISimpleHapticsController
       )
       return WinRt.Hresult is abstract;
 
@@ -885,7 +885,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetBatteryReport
       (
          this : access ISpatialInteractionController3_Interface;
-         RetVal : access Windows.Devices.Power.IBatteryReport
+         RetVal : access WinRt.Windows.Devices.Power.IBatteryReport
       )
       return WinRt.Hresult is abstract;
 
@@ -951,22 +951,22 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialInteractionDetectedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialInteractionDetectedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
       function get_Interaction
       (
          this : access ISpatialInteractionDetectedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteraction
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteraction
       )
       return WinRt.Hresult is abstract;
 
@@ -978,7 +978,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSource
       (
          this : access ISpatialInteractionDetectedEventArgs2_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSource
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -991,14 +991,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceDetected
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1006,14 +1006,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceLost
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1021,14 +1021,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceUpdated
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1036,14 +1036,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourcePressed
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1051,14 +1051,14 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceReleased
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1066,21 +1066,21 @@ package WinRt.Windows.UI.Input.Spatial is
       (
          this : access ISpatialInteractionManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InteractionDetected
       (
          this : access ISpatialInteractionManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function GetDetectedSourcesAtTimestamp
       (
          this : access ISpatialInteractionManager_Interface;
-         timeStamp : Windows.Perception.IPerceptionTimestamp;
+         timeStamp : WinRt.Windows.Perception.IPerceptionTimestamp;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1093,7 +1093,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function GetForCurrentView
       (
          this : access ISpatialInteractionManagerStatics_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionManager
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1105,7 +1105,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function IsSourceKindSupported
       (
          this : access ISpatialInteractionManagerStatics2_Interface;
-         kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
+         kind : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1125,7 +1125,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Kind
       (
          this : access ISpatialInteractionSource_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1158,15 +1158,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Controller
       (
          this : access ISpatialInteractionSource2_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionController
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionController
       )
       return WinRt.Hresult is abstract;
 
       function TryGetStateAtTimestamp
       (
          this : access ISpatialInteractionSource2_Interface;
-         timestamp : Windows.Perception.IPerceptionTimestamp;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSourceState
+         timestamp : WinRt.Windows.Perception.IPerceptionTimestamp;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState
       )
       return WinRt.Hresult is abstract;
 
@@ -1178,7 +1178,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Handedness
       (
          this : access ISpatialInteractionSource3_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceHandedness
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceHandedness
       )
       return WinRt.Hresult is abstract;
 
@@ -1190,7 +1190,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryCreateHandMeshObserver
       (
          this : access ISpatialInteractionSource4_Interface;
-         RetVal : access Windows.Perception.People.IHandMeshObserver
+         RetVal : access WinRt.Windows.Perception.People.IHandMeshObserver
       )
       return WinRt.Hresult is abstract;
 
@@ -1209,7 +1209,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_State
       (
          this : access ISpatialInteractionSourceEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSourceState
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceState
       )
       return WinRt.Hresult is abstract;
 
@@ -1221,7 +1221,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_PressKind
       (
          this : access ISpatialInteractionSourceEventArgs2_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionPressKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionPressKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1264,7 +1264,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_PositionAccuracy
       (
          this : access ISpatialInteractionSourceLocation3_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -1278,7 +1278,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_SourcePointerPose
       (
          this : access ISpatialInteractionSourceLocation3_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose
       )
       return WinRt.Hresult is abstract;
 
@@ -1290,7 +1290,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetSourceLossMitigationDirection
       (
          this : access ISpatialInteractionSourceProperties_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1305,8 +1305,8 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetLocation
       (
          this : access ISpatialInteractionSourceProperties_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceLocation
       )
       return WinRt.Hresult is abstract;
 
@@ -1318,14 +1318,14 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Source
       (
          this : access ISpatialInteractionSourceState_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSource
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource
       )
       return WinRt.Hresult is abstract;
 
       function get_Properties
       (
          this : access ISpatialInteractionSourceState_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSourceProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1339,15 +1339,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Timestamp
       (
          this : access ISpatialInteractionSourceState_Interface;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialInteractionSourceState_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1387,7 +1387,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_ControllerProperties
       (
          this : access ISpatialInteractionSourceState2_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionControllerProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -1399,7 +1399,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetHandPose
       (
          this : access ISpatialInteractionSourceState3_Interface;
-         RetVal : access Windows.Perception.People.IHandPose
+         RetVal : access WinRt.Windows.Perception.People.IHandPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1411,7 +1411,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialManipulationCanceledEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1423,15 +1423,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialManipulationCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetCumulativeDelta
       (
          this : access ISpatialManipulationCompletedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialManipulationDelta
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
@@ -1443,7 +1443,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Translation
       (
          this : access ISpatialManipulationDelta_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1455,15 +1455,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialManipulationStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialManipulationStartedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1475,15 +1475,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialManipulationUpdatedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetCumulativeDelta
       (
          this : access ISpatialManipulationUpdatedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialManipulationDelta
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialManipulationDelta
       )
       return WinRt.Hresult is abstract;
 
@@ -1495,7 +1495,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialNavigationCanceledEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1507,14 +1507,14 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialNavigationCompletedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedOffset
       (
          this : access ISpatialNavigationCompletedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1526,15 +1526,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialNavigationStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialNavigationStartedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1567,14 +1567,14 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialNavigationUpdatedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function get_NormalizedOffset
       (
          this : access ISpatialNavigationUpdatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1586,21 +1586,21 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Position
       (
          this : access ISpatialPointerInteractionSourcePose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_ForwardDirection
       (
          this : access ISpatialPointerInteractionSourcePose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_UpDirection
       (
          this : access ISpatialPointerInteractionSourcePose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -1612,14 +1612,14 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Orientation
       (
          this : access ISpatialPointerInteractionSourcePose2_Interface;
-         RetVal : access Windows.Foundation.Numerics.Quaternion
+         RetVal : access WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function get_PositionAccuracy
       (
          this : access ISpatialPointerInteractionSourcePose2_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourcePositionAccuracy
       )
       return WinRt.Hresult is abstract;
 
@@ -1631,14 +1631,14 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Timestamp
       (
          this : access ISpatialPointerPose_Interface;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
       function get_Head
       (
          this : access ISpatialPointerPose_Interface;
-         RetVal : access Windows.Perception.People.IHeadPose
+         RetVal : access WinRt.Windows.Perception.People.IHeadPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1650,8 +1650,8 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetInteractionSourcePose
       (
          this : access ISpatialPointerPose2_Interface;
-         source : Windows.UI.Input.Spatial.ISpatialInteractionSource;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose
+         source : WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerInteractionSourcePose
       )
       return WinRt.Hresult is abstract;
 
@@ -1663,7 +1663,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_Eyes
       (
          this : access ISpatialPointerPose3_Interface;
-         RetVal : access Windows.Perception.People.IEyesPose
+         RetVal : access WinRt.Windows.Perception.People.IEyesPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1682,9 +1682,9 @@ package WinRt.Windows.UI.Input.Spatial is
       function TryGetAtTimestamp
       (
          this : access ISpatialPointerPoseStatics_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         timestamp : Windows.Perception.IPerceptionTimestamp;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         timestamp : WinRt.Windows.Perception.IPerceptionTimestamp;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1696,7 +1696,7 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialRecognitionEndedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
@@ -1708,22 +1708,22 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialRecognitionStartedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialRecognitionStartedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
       function IsGesturePossible
       (
          this : access ISpatialRecognitionStartedEventArgs_Interface;
-         gesture : Windows.UI.Input.Spatial.SpatialGestureSettings;
+         gesture : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1736,15 +1736,15 @@ package WinRt.Windows.UI.Input.Spatial is
       function get_InteractionSourceKind
       (
          this : access ISpatialTappedEventArgs_Interface;
-         RetVal : access Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+         RetVal : access WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
       )
       return WinRt.Hresult is abstract;
 
       function TryGetPointerPose
       (
          this : access ISpatialTappedEventArgs_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialPointerPose
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialPointerPose
       )
       return WinRt.Hresult is abstract;
 
@@ -1772,7 +1772,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    function Constructor
    (
-      settings : Windows.UI.Input.Spatial.SpatialGestureSettings
+      settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return SpatialGestureRecognizer;
 
@@ -1789,7 +1789,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_RecognitionStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_RecognitionEnded
@@ -1802,7 +1802,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_RecognitionEnded
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Tapped
@@ -1815,7 +1815,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_Tapped
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HoldStarted
@@ -1828,7 +1828,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HoldCompleted
@@ -1841,7 +1841,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_HoldCanceled
@@ -1854,7 +1854,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_HoldCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationStarted
@@ -1867,7 +1867,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationUpdated
@@ -1880,7 +1880,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationUpdated
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationCompleted
@@ -1893,7 +1893,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ManipulationCanceled
@@ -1906,7 +1906,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_ManipulationCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationStarted
@@ -1919,7 +1919,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationStarted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationUpdated
@@ -1932,7 +1932,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationUpdated
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationCompleted
@@ -1945,7 +1945,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationCompleted
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationCanceled
@@ -1958,13 +1958,13 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_NavigationCanceled
    (
       this : in out SpatialGestureRecognizer;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure CaptureInteraction
    (
       this : in out SpatialGestureRecognizer;
-      interaction : Windows.UI.Input.Spatial.SpatialInteraction'Class
+      interaction : WinRt.Windows.UI.Input.Spatial.SpatialInteraction'Class
    );
 
    procedure CancelPendingGestures
@@ -1975,7 +1975,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TrySetGestureSettings
    (
       this : in out SpatialGestureRecognizer;
-      settings : Windows.UI.Input.Spatial.SpatialGestureSettings
+      settings : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return WinRt.Boolean;
 
@@ -2033,7 +2033,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialHoldStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
@@ -2178,7 +2178,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialInteractionDetectedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
@@ -2205,7 +2205,7 @@ package WinRt.Windows.UI.Input.Spatial is
 
    function IsSourceKindSupported
    (
-      kind : Windows.UI.Input.Spatial.SpatialInteractionSourceKind
+      kind : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceKind
    )
    return WinRt.Boolean;
 
@@ -2225,7 +2225,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceDetected
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceLost
@@ -2238,7 +2238,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceLost
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceUpdated
@@ -2251,7 +2251,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceUpdated
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourcePressed
@@ -2264,7 +2264,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourcePressed
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceReleased
@@ -2277,7 +2277,7 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_SourceReleased
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_InteractionDetected
@@ -2290,13 +2290,13 @@ package WinRt.Windows.UI.Input.Spatial is
    procedure remove_InteractionDetected
    (
       this : in out SpatialInteractionManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetDetectedSourcesAtTimestamp
    (
       this : in out SpatialInteractionManager;
-      timeStamp : Windows.Perception.PerceptionTimestamp'Class
+      timeStamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return IVectorView_ISpatialInteractionSourceState.Kind;
 
@@ -2348,7 +2348,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetStateAtTimestamp
    (
       this : in out SpatialInteractionSource;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceState'Class;
 
@@ -2448,7 +2448,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetSourceLossMitigationDirection
    (
       this : in out SpatialInteractionSourceProperties;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return IReference_Vector3.Kind;
 
@@ -2461,7 +2461,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetLocation
    (
       this : in out SpatialInteractionSourceProperties;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSourceLocation'Class;
 
@@ -2501,7 +2501,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialInteractionSourceState;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
@@ -2574,7 +2574,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetCumulativeDelta
    (
       this : in out SpatialManipulationCompletedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta'Class;
 
@@ -2611,7 +2611,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialManipulationStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
@@ -2633,7 +2633,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetCumulativeDelta
    (
       this : in out SpatialManipulationUpdatedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialManipulationDelta'Class;
 
@@ -2691,7 +2691,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialNavigationStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
@@ -2784,8 +2784,8 @@ package WinRt.Windows.UI.Input.Spatial is
 
    function TryGetAtTimestamp
    (
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      timestamp : Windows.Perception.PerceptionTimestamp'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      timestamp : WinRt.Windows.Perception.PerceptionTimestamp'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose;
 
@@ -2807,7 +2807,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetInteractionSourcePose
    (
       this : in out SpatialPointerPose;
-      source : Windows.UI.Input.Spatial.SpatialInteractionSource'Class
+      source : WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerInteractionSourcePose'Class;
 
@@ -2856,14 +2856,14 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialRecognitionStartedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 
    function IsGesturePossible
    (
       this : in out SpatialRecognitionStartedEventArgs;
-      gesture : Windows.UI.Input.Spatial.SpatialGestureSettings
+      gesture : WinRt.Windows.UI.Input.Spatial.SpatialGestureSettings
    )
    return WinRt.Boolean;
 
@@ -2885,7 +2885,7 @@ package WinRt.Windows.UI.Input.Spatial is
    function TryGetPointerPose
    (
       this : in out SpatialTappedEventArgs;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class
    )
    return WinRt.Windows.UI.Input.Spatial.SpatialPointerPose'Class;
 

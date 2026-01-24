@@ -704,7 +704,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_Id
       (
          this : access IDisplayAdapter_Interface;
-         RetVal : access Windows.Graphics.DisplayAdapterId
+         RetVal : access WinRt.Windows.Graphics.DisplayAdapterId
       )
       return WinRt.Hresult is abstract;
 
@@ -772,7 +772,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_PreferredRenderAdapter
       (
          this : access IDisplayAdapter2_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayAdapter
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayAdapter
       )
       return WinRt.Hresult is abstract;
 
@@ -784,8 +784,8 @@ package WinRt.Windows.Devices.Display.Core is
       function FromId
       (
          this : access IDisplayAdapterStatics_Interface;
-         id : Windows.Graphics.DisplayAdapterId;
-         RetVal : access Windows.Devices.Display.Core.IDisplayAdapter
+         id : WinRt.Windows.Graphics.DisplayAdapterId;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayAdapter
       )
       return WinRt.Hresult is abstract;
 
@@ -797,58 +797,58 @@ package WinRt.Windows.Devices.Display.Core is
       function CreateScanoutSource
       (
          this : access IDisplayDevice_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Devices.Display.Core.IDisplaySource
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplaySource
       )
       return WinRt.Hresult is abstract;
 
       function CreatePrimary
       (
          this : access IDisplayDevice_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         desc : Windows.Devices.Display.Core.IDisplayPrimaryDescription;
-         RetVal : access Windows.Devices.Display.Core.IDisplaySurface
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         desc : WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplaySurface
       )
       return WinRt.Hresult is abstract;
 
       function CreateTaskPool
       (
          this : access IDisplayDevice_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTaskPool
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTaskPool
       )
       return WinRt.Hresult is abstract;
 
       function CreatePeriodicFence
       (
          this : access IDisplayDevice_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         offsetFromVBlank : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Devices.Display.Core.IDisplayFence
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         offsetFromVBlank : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayFence
       )
       return WinRt.Hresult is abstract;
 
       function WaitForVBlank
       (
          this : access IDisplayDevice_Interface;
-         source : Windows.Devices.Display.Core.IDisplaySource
+         source : WinRt.Windows.Devices.Display.Core.IDisplaySource
       )
       return WinRt.Hresult is abstract;
 
       function CreateSimpleScanout
       (
          this : access IDisplayDevice_Interface;
-         pSource : Windows.Devices.Display.Core.IDisplaySource;
-         pSurface : Windows.Devices.Display.Core.IDisplaySurface;
+         pSource : WinRt.Windows.Devices.Display.Core.IDisplaySource;
+         pSurface : WinRt.Windows.Devices.Display.Core.IDisplaySurface;
          SubResourceIndex : WinRt.UInt32;
          SyncInterval : WinRt.UInt32;
-         RetVal : access Windows.Devices.Display.Core.IDisplayScanout
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayScanout
       )
       return WinRt.Hresult is abstract;
 
       function IsCapabilitySupported
       (
          this : access IDisplayDevice_Interface;
-         capability : Windows.Devices.Display.Core.DisplayDeviceCapability;
+         capability : WinRt.Windows.Devices.Display.Core.DisplayDeviceCapability;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -861,13 +861,13 @@ package WinRt.Windows.Devices.Display.Core is
       function CreateSimpleScanoutWithDirtyRectsAndOptions
       (
          this : access IDisplayDevice2_Interface;
-         source : Windows.Devices.Display.Core.IDisplaySource;
-         surface : Windows.Devices.Display.Core.IDisplaySurface;
+         source : WinRt.Windows.Devices.Display.Core.IDisplaySource;
+         surface : WinRt.Windows.Devices.Display.Core.IDisplaySurface;
          subresourceIndex : WinRt.UInt32;
          syncInterval : WinRt.UInt32;
          dirtyRects : GenericObject;
-         options : Windows.Devices.Display.Core.DisplayScanoutOptions;
-         RetVal : access Windows.Devices.Display.Core.IDisplayScanout
+         options : WinRt.Windows.Devices.Display.Core.DisplayScanoutOptions;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayScanout
       )
       return WinRt.Hresult is abstract;
 
@@ -879,7 +879,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_RenderAdapterId
       (
          this : access IDisplayDeviceRenderAdapter_Interface;
-         RetVal : access Windows.Graphics.DisplayAdapterId
+         RetVal : access WinRt.Windows.Graphics.DisplayAdapterId
       )
       return WinRt.Hresult is abstract;
 
@@ -910,22 +910,22 @@ package WinRt.Windows.Devices.Display.Core is
       function TryAcquireTarget
       (
          this : access IDisplayManager_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Devices.Display.Core.DisplayManagerResult
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayManagerResult
       )
       return WinRt.Hresult is abstract;
 
       function ReleaseTarget
       (
          this : access IDisplayManager_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget
       )
       return WinRt.Hresult is abstract;
 
       function TryReadCurrentStateForAllTargets
       (
          this : access IDisplayManager_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState
       )
       return WinRt.Hresult is abstract;
 
@@ -933,7 +933,7 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          targets : GenericObject;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState
       )
       return WinRt.Hresult is abstract;
 
@@ -941,24 +941,24 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          targets : GenericObject;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState
       )
       return WinRt.Hresult is abstract;
 
       function TryAcquireTargetsAndCreateSubstate
       (
          this : access IDisplayManager_Interface;
-         existingState : Windows.Devices.Display.Core.IDisplayState;
+         existingState : WinRt.Windows.Devices.Display.Core.IDisplayState;
          targets : GenericObject;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState
       )
       return WinRt.Hresult is abstract;
 
       function CreateDisplayDevice
       (
          this : access IDisplayManager_Interface;
-         adapter : Windows.Devices.Display.Core.IDisplayAdapter;
-         RetVal : access Windows.Devices.Display.Core.IDisplayDevice
+         adapter : WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -966,14 +966,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Enabled
       (
          this : access IDisplayManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -981,14 +981,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Disabled
       (
          this : access IDisplayManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -996,14 +996,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IDisplayManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1011,14 +1011,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PathsFailedOrInvalidated
       (
          this : access IDisplayManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1042,7 +1042,7 @@ package WinRt.Windows.Devices.Display.Core is
       function TryReadCurrentStateForModeQuery
       (
          this : access IDisplayManager2_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManagerResultWithState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManagerResultWithState
       )
       return WinRt.Hresult is abstract;
 
@@ -1054,9 +1054,9 @@ package WinRt.Windows.Devices.Display.Core is
       function CreateDisplayDeviceForIndirectAdapter
       (
          this : access IDisplayManager3_Interface;
-         indirectAdapter : Windows.Devices.Display.Core.IDisplayAdapter;
-         renderAdapter : Windows.Devices.Display.Core.IDisplayAdapter;
-         RetVal : access Windows.Devices.Display.Core.IDisplayDevice
+         indirectAdapter : WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
+         renderAdapter : WinRt.Windows.Devices.Display.Core.IDisplayAdapter;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1082,7 +1082,7 @@ package WinRt.Windows.Devices.Display.Core is
       function GetDeferral
       (
          this : access IDisplayManagerChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1108,7 +1108,7 @@ package WinRt.Windows.Devices.Display.Core is
       function GetDeferral
       (
          this : access IDisplayManagerDisabledEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1134,7 +1134,7 @@ package WinRt.Windows.Devices.Display.Core is
       function GetDeferral
       (
          this : access IDisplayManagerEnabledEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1160,7 +1160,7 @@ package WinRt.Windows.Devices.Display.Core is
       function GetDeferral
       (
          this : access IDisplayManagerPathsFailedOrInvalidatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1172,21 +1172,21 @@ package WinRt.Windows.Devices.Display.Core is
       function get_ErrorCode
       (
          this : access IDisplayManagerResultWithState_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayManagerResult
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayManagerResult
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedErrorCode
       (
          this : access IDisplayManagerResultWithState_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IDisplayManagerResultWithState_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayState
       )
       return WinRt.Hresult is abstract;
 
@@ -1198,8 +1198,8 @@ package WinRt.Windows.Devices.Display.Core is
       function Create
       (
          this : access IDisplayManagerStatics_Interface;
-         options : Windows.Devices.Display.Core.DisplayManagerOptions;
-         RetVal : access Windows.Devices.Display.Core.IDisplayManager
+         options : WinRt.Windows.Devices.Display.Core.DisplayManagerOptions;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayManager
       )
       return WinRt.Hresult is abstract;
 
@@ -1211,7 +1211,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_SourceResolution
       (
          this : access IDisplayModeInfo_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
@@ -1225,21 +1225,21 @@ package WinRt.Windows.Devices.Display.Core is
       function get_SourcePixelFormat
       (
          this : access IDisplayModeInfo_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetResolution
       (
          this : access IDisplayModeInfo_Interface;
-         RetVal : access Windows.Graphics.SizeInt32
+         RetVal : access WinRt.Windows.Graphics.SizeInt32
       )
       return WinRt.Hresult is abstract;
 
       function get_PresentationRate
       (
          this : access IDisplayModeInfo_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayPresentationRate
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayPresentationRate
       )
       return WinRt.Hresult is abstract;
 
@@ -1253,15 +1253,15 @@ package WinRt.Windows.Devices.Display.Core is
       function GetWireFormatSupportedBitsPerChannel
       (
          this : access IDisplayModeInfo_Interface;
-         encoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
-         RetVal : access Windows.Devices.Display.Core.DisplayBitsPerChannel
+         encoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayBitsPerChannel
       )
       return WinRt.Hresult is abstract;
 
       function IsWireFormatSupported
       (
          this : access IDisplayModeInfo_Interface;
-         wireFormat : Windows.Devices.Display.Core.IDisplayWireFormat;
+         wireFormat : WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1281,7 +1281,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_PhysicalPresentationRate
       (
          this : access IDisplayModeInfo2_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayPresentationRate
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayPresentationRate
       )
       return WinRt.Hresult is abstract;
 
@@ -1314,14 +1314,14 @@ package WinRt.Windows.Devices.Display.Core is
       function get_CurrentTarget
       (
          this : access IDisplayMuxDevice_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTarget
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTarget
       )
       return WinRt.Hresult is abstract;
 
       function get_PreferredTarget
       (
          this : access IDisplayMuxDevice_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTarget
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -1335,15 +1335,15 @@ package WinRt.Windows.Devices.Display.Core is
       function SetPreferredTarget
       (
          this : access IDisplayMuxDevice_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Foundation.IAsyncAction
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetAutomaticTargetSwitching
       (
          this : access IDisplayMuxDevice_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1351,14 +1351,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayMuxDevice_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Changed
       (
          this : access IDisplayMuxDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1390,21 +1390,21 @@ package WinRt.Windows.Devices.Display.Core is
       function get_View
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayView
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayView
       )
       return WinRt.Hresult is abstract;
 
       function get_Target
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTarget
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTarget
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayPathStatus
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayPathStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1425,14 +1425,14 @@ package WinRt.Windows.Devices.Display.Core is
       function get_SourcePixelFormat
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_SourcePixelFormat
       (
          this : access IDisplayPath_Interface;
-         value : Windows.Graphics.DirectX.DirectXPixelFormat
+         value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -1495,49 +1495,49 @@ package WinRt.Windows.Devices.Display.Core is
       function get_WireFormat
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayWireFormat
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayWireFormat
       )
       return WinRt.Hresult is abstract;
 
       function put_WireFormat
       (
          this : access IDisplayPath_Interface;
-         value : Windows.Devices.Display.Core.IDisplayWireFormat
+         value : WinRt.Windows.Devices.Display.Core.IDisplayWireFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_Rotation
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayRotation
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayRotation
       )
       return WinRt.Hresult is abstract;
 
       function put_Rotation
       (
          this : access IDisplayPath_Interface;
-         value : Windows.Devices.Display.Core.DisplayRotation
+         value : WinRt.Windows.Devices.Display.Core.DisplayRotation
       )
       return WinRt.Hresult is abstract;
 
       function get_Scaling
       (
          this : access IDisplayPath_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayPathScaling
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayPathScaling
       )
       return WinRt.Hresult is abstract;
 
       function put_Scaling
       (
          this : access IDisplayPath_Interface;
-         value : Windows.Devices.Display.Core.DisplayPathScaling
+         value : WinRt.Windows.Devices.Display.Core.DisplayPathScaling
       )
       return WinRt.Hresult is abstract;
 
       function FindModes
       (
          this : access IDisplayPath_Interface;
-         flags : Windows.Devices.Display.Core.DisplayModeQueryOptions;
+         flags : WinRt.Windows.Devices.Display.Core.DisplayModeQueryOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1545,7 +1545,7 @@ package WinRt.Windows.Devices.Display.Core is
       function ApplyPropertiesFromMode
       (
          this : access IDisplayPath_Interface;
-         modeResult : Windows.Devices.Display.Core.IDisplayModeInfo
+         modeResult : WinRt.Windows.Devices.Display.Core.IDisplayModeInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -1597,14 +1597,14 @@ package WinRt.Windows.Devices.Display.Core is
       function get_Format
       (
          this : access IDisplayPrimaryDescription_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXPixelFormat
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_ColorSpace
       (
          this : access IDisplayPrimaryDescription_Interface;
-         RetVal : access Windows.Graphics.DirectX.DirectXColorSpace
+         RetVal : access WinRt.Windows.Graphics.DirectX.DirectXColorSpace
       )
       return WinRt.Hresult is abstract;
 
@@ -1618,7 +1618,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_MultisampleDescription
       (
          this : access IDisplayPrimaryDescription_Interface;
-         RetVal : access Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
+         RetVal : access WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -1639,11 +1639,11 @@ package WinRt.Windows.Devices.Display.Core is
          this : access IDisplayPrimaryDescriptionFactory_Interface;
          width : WinRt.UInt32;
          height : WinRt.UInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
          isStereo : WinRt.Boolean;
-         multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
-         RetVal : access Windows.Devices.Display.Core.IDisplayPrimaryDescription
+         multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -1658,11 +1658,11 @@ package WinRt.Windows.Devices.Display.Core is
          extraProperties : GenericObject;
          width : WinRt.UInt32;
          height : WinRt.UInt32;
-         pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-         colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+         pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+         colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
          isStereo : WinRt.Boolean;
-         multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
-         RetVal : access Windows.Devices.Display.Core.IDisplayPrimaryDescription
+         multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -1679,7 +1679,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_AdapterId
       (
          this : access IDisplaySource_Interface;
-         RetVal : access Windows.Graphics.DisplayAdapterId
+         RetVal : access WinRt.Windows.Graphics.DisplayAdapterId
       )
       return WinRt.Hresult is abstract;
 
@@ -1694,7 +1694,7 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplaySource_Interface;
          Key : WinRt.Guid;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1706,7 +1706,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_Status
       (
          this : access IDisplaySource2_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplaySourceStatus
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplaySourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1714,14 +1714,14 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplaySource2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StatusChanged
       (
          this : access IDisplaySource2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1768,25 +1768,25 @@ package WinRt.Windows.Devices.Display.Core is
       function ConnectTarget
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Devices.Display.Core.IDisplayPath
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayPath
       )
       return WinRt.Hresult is abstract;
 
       function ConnectTarget
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         view : Windows.Devices.Display.Core.IDisplayView;
-         RetVal : access Windows.Devices.Display.Core.IDisplayPath
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         view : WinRt.Windows.Devices.Display.Core.IDisplayView;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayPath
       )
       return WinRt.Hresult is abstract;
 
       function CanConnectTargetToView
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         view : Windows.Devices.Display.Core.IDisplayView;
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         view : WinRt.Windows.Devices.Display.Core.IDisplayView;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1794,46 +1794,46 @@ package WinRt.Windows.Devices.Display.Core is
       function GetViewForTarget
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Devices.Display.Core.IDisplayView
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayView
       )
       return WinRt.Hresult is abstract;
 
       function GetPathForTarget
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget;
-         RetVal : access Windows.Devices.Display.Core.IDisplayPath
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayPath
       )
       return WinRt.Hresult is abstract;
 
       function DisconnectTarget
       (
          this : access IDisplayState_Interface;
-         target : Windows.Devices.Display.Core.IDisplayTarget
+         target : WinRt.Windows.Devices.Display.Core.IDisplayTarget
       )
       return WinRt.Hresult is abstract;
 
       function TryFunctionalize
       (
          this : access IDisplayState_Interface;
-         options : Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions;
-         RetVal : access Windows.Devices.Display.Core.IDisplayStateOperationResult
+         options : WinRt.Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult
       )
       return WinRt.Hresult is abstract;
 
       function TryApply
       (
          this : access IDisplayState_Interface;
-         options : Windows.Devices.Display.Core.DisplayStateApplyOptions;
-         RetVal : access Windows.Devices.Display.Core.IDisplayStateOperationResult
+         options : WinRt.Windows.Devices.Display.Core.DisplayStateApplyOptions;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayStateOperationResult
       )
       return WinRt.Hresult is abstract;
 
       function Clone
       (
          this : access IDisplayState_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayState
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayState
       )
       return WinRt.Hresult is abstract;
 
@@ -1845,14 +1845,14 @@ package WinRt.Windows.Devices.Display.Core is
       function get_Status
       (
          this : access IDisplayStateOperationResult_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayStateOperationStatus
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayStateOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedErrorCode
       (
          this : access IDisplayStateOperationResult_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1869,7 +1869,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_Adapter
       (
          this : access IDisplayTarget_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayAdapter
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayAdapter
       )
       return WinRt.Hresult is abstract;
 
@@ -1911,14 +1911,14 @@ package WinRt.Windows.Devices.Display.Core is
       function get_UsageKind
       (
          this : access IDisplayTarget_Interface;
-         RetVal : access Windows.Devices.Display.DisplayMonitorUsageKind
+         RetVal : access WinRt.Windows.Devices.Display.DisplayMonitorUsageKind
       )
       return WinRt.Hresult is abstract;
 
       function get_MonitorPersistence
       (
          this : access IDisplayTarget_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayTargetPersistence
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayTargetPersistence
       )
       return WinRt.Hresult is abstract;
 
@@ -1932,7 +1932,7 @@ package WinRt.Windows.Devices.Display.Core is
       function TryGetMonitor
       (
          this : access IDisplayTarget_Interface;
-         RetVal : access Windows.Devices.Display.IDisplayMonitor
+         RetVal : access WinRt.Windows.Devices.Display.IDisplayMonitor
       )
       return WinRt.Hresult is abstract;
 
@@ -1953,7 +1953,7 @@ package WinRt.Windows.Devices.Display.Core is
       function IsSame
       (
          this : access IDisplayTarget_Interface;
-         otherTarget : Windows.Devices.Display.Core.IDisplayTarget;
+         otherTarget : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1961,7 +1961,7 @@ package WinRt.Windows.Devices.Display.Core is
       function IsEqual
       (
          this : access IDisplayTarget_Interface;
-         otherTarget : Windows.Devices.Display.Core.IDisplayTarget;
+         otherTarget : WinRt.Windows.Devices.Display.Core.IDisplayTarget;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -1974,14 +1974,14 @@ package WinRt.Windows.Devices.Display.Core is
       function SetScanout
       (
          this : access IDisplayTask_Interface;
-         scanout : Windows.Devices.Display.Core.IDisplayScanout
+         scanout : WinRt.Windows.Devices.Display.Core.IDisplayScanout
       )
       return WinRt.Hresult is abstract;
 
       function SetWait
       (
          this : access IDisplayTask_Interface;
-         readyFence : Windows.Devices.Display.Core.IDisplayFence;
+         readyFence : WinRt.Windows.Devices.Display.Core.IDisplayFence;
          readyFenceValue : WinRt.UInt64
       )
       return WinRt.Hresult is abstract;
@@ -1994,8 +1994,8 @@ package WinRt.Windows.Devices.Display.Core is
       function SetSignal
       (
          this : access IDisplayTask2_Interface;
-         signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
-         fence : Windows.Devices.Display.Core.IDisplayFence
+         signalKind : WinRt.Windows.Devices.Display.Core.DisplayTaskSignalKind;
+         fence : WinRt.Windows.Devices.Display.Core.IDisplayFence
       )
       return WinRt.Hresult is abstract;
 
@@ -2007,14 +2007,14 @@ package WinRt.Windows.Devices.Display.Core is
       function CreateTask
       (
          this : access IDisplayTaskPool_Interface;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTask
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTask
       )
       return WinRt.Hresult is abstract;
 
       function ExecuteTask
       (
          this : access IDisplayTaskPool_Interface;
-         task_x : Windows.Devices.Display.Core.IDisplayTask
+         task_x : WinRt.Windows.Devices.Display.Core.IDisplayTask
       )
       return WinRt.Hresult is abstract;
 
@@ -2026,8 +2026,8 @@ package WinRt.Windows.Devices.Display.Core is
       function TryExecuteTask
       (
          this : access IDisplayTaskPool2_Interface;
-         task_x : Windows.Devices.Display.Core.IDisplayTask;
-         RetVal : access Windows.Devices.Display.Core.IDisplayTaskResult
+         task_x : WinRt.Windows.Devices.Display.Core.IDisplayTask;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayTaskResult
       )
       return WinRt.Hresult is abstract;
 
@@ -2039,7 +2039,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_PresentStatus
       (
          this : access IDisplayTaskResult_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayPresentStatus
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayPresentStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2053,7 +2053,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_SourceStatus
       (
          this : access IDisplayTaskResult_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplaySourceStatus
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplaySourceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2086,7 +2086,7 @@ package WinRt.Windows.Devices.Display.Core is
       function SetPrimaryPath
       (
          this : access IDisplayView_Interface;
-         path : Windows.Devices.Display.Core.IDisplayPath
+         path : WinRt.Windows.Devices.Display.Core.IDisplayPath
       )
       return WinRt.Hresult is abstract;
 
@@ -2105,7 +2105,7 @@ package WinRt.Windows.Devices.Display.Core is
       function get_PixelEncoding
       (
          this : access IDisplayWireFormat_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
       )
       return WinRt.Hresult is abstract;
 
@@ -2119,21 +2119,21 @@ package WinRt.Windows.Devices.Display.Core is
       function get_ColorSpace
       (
          this : access IDisplayWireFormat_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayWireFormatColorSpace
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace
       )
       return WinRt.Hresult is abstract;
 
       function get_Eotf
       (
          this : access IDisplayWireFormat_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayWireFormatEotf
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf
       )
       return WinRt.Hresult is abstract;
 
       function get_HdrMetadata
       (
          this : access IDisplayWireFormat_Interface;
-         RetVal : access Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
+         RetVal : access WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
       )
       return WinRt.Hresult is abstract;
 
@@ -2152,12 +2152,12 @@ package WinRt.Windows.Devices.Display.Core is
       function CreateInstance
       (
          this : access IDisplayWireFormatFactory_Interface;
-         pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+         pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
          bitsPerChannel : WinRt.Int32;
-         colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-         eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-         hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
-         RetVal : access Windows.Devices.Display.Core.IDisplayWireFormat
+         colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+         eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+         hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayWireFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2170,12 +2170,12 @@ package WinRt.Windows.Devices.Display.Core is
       (
          this : access IDisplayWireFormatStatics_Interface;
          extraProperties : GenericObject;
-         pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+         pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
          bitsPerChannel : WinRt.Int32;
-         colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-         eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-         hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
-         RetVal : access Windows.Devices.Display.Core.IDisplayWireFormat
+         colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+         eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+         hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata;
+         RetVal : access WinRt.Windows.Devices.Display.Core.IDisplayWireFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -2196,7 +2196,7 @@ package WinRt.Windows.Devices.Display.Core is
 
    function FromId
    (
-      id : Windows.Graphics.DisplayAdapterId
+      id : WinRt.Windows.Graphics.DisplayAdapterId
    )
    return WinRt.Windows.Devices.Display.Core.DisplayAdapter;
 
@@ -2275,15 +2275,15 @@ package WinRt.Windows.Devices.Display.Core is
    function CreateScanoutSource
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplaySource'Class;
 
    function CreatePrimary
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      desc : Windows.Devices.Display.Core.DisplayPrimaryDescription'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      desc : WinRt.Windows.Devices.Display.Core.DisplayPrimaryDescription'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplaySurface'Class;
 
@@ -2296,22 +2296,22 @@ package WinRt.Windows.Devices.Display.Core is
    function CreatePeriodicFence
    (
       this : in out DisplayDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      offsetFromVBlank : Windows.Foundation.TimeSpan
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      offsetFromVBlank : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Devices.Display.Core.DisplayFence'Class;
 
    procedure WaitForVBlank
    (
       this : in out DisplayDevice;
-      source : Windows.Devices.Display.Core.DisplaySource'Class
+      source : WinRt.Windows.Devices.Display.Core.DisplaySource'Class
    );
 
    function CreateSimpleScanout
    (
       this : in out DisplayDevice;
-      pSource : Windows.Devices.Display.Core.DisplaySource'Class;
-      pSurface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      pSource : WinRt.Windows.Devices.Display.Core.DisplaySource'Class;
+      pSurface : WinRt.Windows.Devices.Display.Core.DisplaySurface'Class;
       SubResourceIndex : WinRt.UInt32;
       SyncInterval : WinRt.UInt32
    )
@@ -2320,19 +2320,19 @@ package WinRt.Windows.Devices.Display.Core is
    function IsCapabilitySupported
    (
       this : in out DisplayDevice;
-      capability : Windows.Devices.Display.Core.DisplayDeviceCapability
+      capability : WinRt.Windows.Devices.Display.Core.DisplayDeviceCapability
    )
    return WinRt.Boolean;
 
    function CreateSimpleScanoutWithDirtyRectsAndOptions
    (
       this : in out DisplayDevice;
-      source : Windows.Devices.Display.Core.DisplaySource'Class;
-      surface : Windows.Devices.Display.Core.DisplaySurface'Class;
+      source : WinRt.Windows.Devices.Display.Core.DisplaySource'Class;
+      surface : WinRt.Windows.Devices.Display.Core.DisplaySurface'Class;
       subresourceIndex : WinRt.UInt32;
       syncInterval : WinRt.UInt32;
       dirtyRects : GenericObject;
-      options : Windows.Devices.Display.Core.DisplayScanoutOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayScanoutOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayScanout'Class;
 
@@ -2362,7 +2362,7 @@ package WinRt.Windows.Devices.Display.Core is
 
    function Create
    (
-      options : Windows.Devices.Display.Core.DisplayManagerOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayManagerOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManager;
 
@@ -2384,14 +2384,14 @@ package WinRt.Windows.Devices.Display.Core is
    function TryAcquireTarget
    (
       this : in out DisplayManager;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManagerResult;
 
    procedure ReleaseTarget
    (
       this : in out DisplayManager;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    );
 
    function TryReadCurrentStateForAllTargets
@@ -2417,7 +2417,7 @@ package WinRt.Windows.Devices.Display.Core is
    function TryAcquireTargetsAndCreateSubstate
    (
       this : in out DisplayManager;
-      existingState : Windows.Devices.Display.Core.DisplayState'Class;
+      existingState : WinRt.Windows.Devices.Display.Core.DisplayState'Class;
       targets : GenericObject
    )
    return WinRt.Windows.Devices.Display.Core.DisplayManagerResultWithState'Class;
@@ -2425,7 +2425,7 @@ package WinRt.Windows.Devices.Display.Core is
    function CreateDisplayDevice
    (
       this : in out DisplayManager;
-      adapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+      adapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class;
 
@@ -2439,7 +2439,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_Enabled
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Disabled
@@ -2452,7 +2452,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_Disabled
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Changed
@@ -2465,7 +2465,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_Changed
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PathsFailedOrInvalidated
@@ -2478,7 +2478,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_PathsFailedOrInvalidated
    (
       this : in out DisplayManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -2500,8 +2500,8 @@ package WinRt.Windows.Devices.Display.Core is
    function CreateDisplayDeviceForIndirectAdapter
    (
       this : in out DisplayManager;
-      indirectAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class;
-      renderAdapter : Windows.Devices.Display.Core.DisplayAdapter'Class
+      indirectAdapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class;
+      renderAdapter : WinRt.Windows.Devices.Display.Core.DisplayAdapter'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayDevice'Class;
 
@@ -2693,14 +2693,14 @@ package WinRt.Windows.Devices.Display.Core is
    function GetWireFormatSupportedBitsPerChannel
    (
       this : in out DisplayModeInfo;
-      encoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
+      encoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding
    )
    return WinRt.Windows.Devices.Display.Core.DisplayBitsPerChannel;
 
    function IsWireFormatSupported
    (
       this : in out DisplayModeInfo;
-      wireFormat : Windows.Devices.Display.Core.DisplayWireFormat'Class
+      wireFormat : WinRt.Windows.Devices.Display.Core.DisplayWireFormat'Class
    )
    return WinRt.Boolean;
 
@@ -2776,7 +2776,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure SetPreferredTarget
    (
       this : in out DisplayMuxDevice;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    );
 
    procedure SetAutomaticTargetSwitching
@@ -2794,7 +2794,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_Changed
    (
       this : in out DisplayMuxDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close
@@ -2850,7 +2850,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure put_SourcePixelFormat
    (
       this : in out DisplayPath;
-      value : Windows.Graphics.DirectX.DirectXPixelFormat
+      value : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat
    );
 
    function get_IsStereo
@@ -2910,7 +2910,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure put_WireFormat
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayWireFormat'Class
+      value : WinRt.Windows.Devices.Display.Core.DisplayWireFormat'Class
    );
 
    function get_Rotation
@@ -2922,7 +2922,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure put_Rotation
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayRotation
+      value : WinRt.Windows.Devices.Display.Core.DisplayRotation
    );
 
    function get_Scaling
@@ -2934,20 +2934,20 @@ package WinRt.Windows.Devices.Display.Core is
    procedure put_Scaling
    (
       this : in out DisplayPath;
-      value : Windows.Devices.Display.Core.DisplayPathScaling
+      value : WinRt.Windows.Devices.Display.Core.DisplayPathScaling
    );
 
    function FindModes
    (
       this : in out DisplayPath;
-      flags : Windows.Devices.Display.Core.DisplayModeQueryOptions
+      flags : WinRt.Windows.Devices.Display.Core.DisplayModeQueryOptions
    )
    return IVectorView_IDisplayModeInfo.Kind;
 
    procedure ApplyPropertiesFromMode
    (
       this : in out DisplayPath;
-      modeResult : Windows.Devices.Display.Core.DisplayModeInfo'Class
+      modeResult : WinRt.Windows.Devices.Display.Core.DisplayModeInfo'Class
    );
 
    function get_Properties
@@ -2981,10 +2981,10 @@ package WinRt.Windows.Devices.Display.Core is
    (
       width : WinRt.UInt32;
       height : WinRt.UInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
       isStereo : WinRt.Boolean;
-      multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
+      multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
    )
    return DisplayPrimaryDescription;
 
@@ -2996,10 +2996,10 @@ package WinRt.Windows.Devices.Display.Core is
       extraProperties : GenericObject;
       width : WinRt.UInt32;
       height : WinRt.UInt32;
-      pixelFormat : Windows.Graphics.DirectX.DirectXPixelFormat;
-      colorSpace : Windows.Graphics.DirectX.DirectXColorSpace;
+      pixelFormat : WinRt.Windows.Graphics.DirectX.DirectXPixelFormat;
+      colorSpace : WinRt.Windows.Graphics.DirectX.DirectXColorSpace;
       isStereo : WinRt.Boolean;
-      multisampleDescription : Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
+      multisampleDescription : WinRt.Windows.Graphics.DirectX.Direct3D11.Direct3DMultisampleDescription
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPrimaryDescription;
 
@@ -3101,7 +3101,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure remove_StatusChanged
    (
       this : in out DisplaySource;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -3146,57 +3146,57 @@ package WinRt.Windows.Devices.Display.Core is
    function ConnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class;
 
    function ConnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      view : Windows.Devices.Display.Core.DisplayView'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      view : WinRt.Windows.Devices.Display.Core.DisplayView'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class;
 
    function CanConnectTargetToView
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class;
-      view : Windows.Devices.Display.Core.DisplayView'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class;
+      view : WinRt.Windows.Devices.Display.Core.DisplayView'Class
    )
    return WinRt.Boolean;
 
    function GetViewForTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayView'Class;
 
    function GetPathForTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayPath'Class;
 
    procedure DisconnectTarget
    (
       this : in out DisplayState;
-      target : Windows.Devices.Display.Core.DisplayTarget'Class
+      target : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    );
 
    function TryFunctionalize
    (
       this : in out DisplayState;
-      options : Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayStateFunctionalizeOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult'Class;
 
    function TryApply
    (
       this : in out DisplayState;
-      options : Windows.Devices.Display.Core.DisplayStateApplyOptions
+      options : WinRt.Windows.Devices.Display.Core.DisplayStateApplyOptions
    )
    return WinRt.Windows.Devices.Display.Core.DisplayStateOperationResult'Class;
 
@@ -3320,14 +3320,14 @@ package WinRt.Windows.Devices.Display.Core is
    function IsSame
    (
       this : in out DisplayTarget;
-      otherTarget : Windows.Devices.Display.Core.DisplayTarget'Class
+      otherTarget : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Boolean;
 
    function IsEqual
    (
       this : in out DisplayTarget;
-      otherTarget : Windows.Devices.Display.Core.DisplayTarget'Class
+      otherTarget : WinRt.Windows.Devices.Display.Core.DisplayTarget'Class
    )
    return WinRt.Boolean;
 
@@ -3343,21 +3343,21 @@ package WinRt.Windows.Devices.Display.Core is
    procedure SetScanout
    (
       this : in out DisplayTask;
-      scanout : Windows.Devices.Display.Core.DisplayScanout'Class
+      scanout : WinRt.Windows.Devices.Display.Core.DisplayScanout'Class
    );
 
    procedure SetWait
    (
       this : in out DisplayTask;
-      readyFence : Windows.Devices.Display.Core.DisplayFence'Class;
+      readyFence : WinRt.Windows.Devices.Display.Core.DisplayFence'Class;
       readyFenceValue : WinRt.UInt64
    );
 
    procedure SetSignal
    (
       this : in out DisplayTask;
-      signalKind : Windows.Devices.Display.Core.DisplayTaskSignalKind;
-      fence : Windows.Devices.Display.Core.DisplayFence'Class
+      signalKind : WinRt.Windows.Devices.Display.Core.DisplayTaskSignalKind;
+      fence : WinRt.Windows.Devices.Display.Core.DisplayFence'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3378,13 +3378,13 @@ package WinRt.Windows.Devices.Display.Core is
    procedure ExecuteTask
    (
       this : in out DisplayTaskPool;
-      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+      task_x : WinRt.Windows.Devices.Display.Core.DisplayTask'Class
    );
 
    function TryExecuteTask
    (
       this : in out DisplayTaskPool;
-      task_x : Windows.Devices.Display.Core.DisplayTask'Class
+      task_x : WinRt.Windows.Devices.Display.Core.DisplayTask'Class
    )
    return WinRt.Windows.Devices.Display.Core.DisplayTaskResult'Class;
 
@@ -3445,7 +3445,7 @@ package WinRt.Windows.Devices.Display.Core is
    procedure SetPrimaryPath
    (
       this : in out DisplayView;
-      path : Windows.Devices.Display.Core.DisplayPath'Class
+      path : WinRt.Windows.Devices.Display.Core.DisplayPath'Class
    );
 
    function get_Properties
@@ -3465,11 +3465,11 @@ package WinRt.Windows.Devices.Display.Core is
 
    function Constructor
    (
-      pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+      pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
       bitsPerChannel : WinRt.Int32;
-      colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-      eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-      hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
+      colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+      eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+      hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
    )
    return DisplayWireFormat;
 
@@ -3479,11 +3479,11 @@ package WinRt.Windows.Devices.Display.Core is
    function CreateWithProperties
    (
       extraProperties : GenericObject;
-      pixelEncoding : Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
+      pixelEncoding : WinRt.Windows.Devices.Display.Core.DisplayWireFormatPixelEncoding;
       bitsPerChannel : WinRt.Int32;
-      colorSpace : Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
-      eotf : Windows.Devices.Display.Core.DisplayWireFormatEotf;
-      hdrMetadata : Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
+      colorSpace : WinRt.Windows.Devices.Display.Core.DisplayWireFormatColorSpace;
+      eotf : WinRt.Windows.Devices.Display.Core.DisplayWireFormatEotf;
+      hdrMetadata : WinRt.Windows.Devices.Display.Core.DisplayWireFormatHdrMetadata
    )
    return WinRt.Windows.Devices.Display.Core.DisplayWireFormat;
 

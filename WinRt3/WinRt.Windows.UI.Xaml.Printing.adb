@@ -59,13 +59,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function Constructor return AddPagesEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.AddPagesEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Printing.IAddPagesEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.IAddPagesEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Printing.IAddPagesEventArgs;
    begin
       return RetVal : AddPagesEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAddPagesEventArgs := new Windows.UI.Xaml.Printing.IAddPagesEventArgs;
+            Retval.m_IAddPagesEventArgs := new WinRt.Windows.UI.Xaml.Printing.IAddPagesEventArgs;
             Retval.m_IAddPagesEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -83,14 +83,14 @@ package body WinRt.Windows.UI.Xaml.Printing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskOptionsCore;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskOptions do
          Hr := this.m_IAddPagesEventArgs.all.get_PrintTaskOptions (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTaskOptionsCore := new Windows.Graphics.Printing.IPrintTaskOptionsCore;
+         Retval.m_IPrintTaskOptionsCore := new WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
          Retval.m_IPrintTaskOptionsCore.all := m_ComRetVal;
       end return;
    end;
@@ -102,7 +102,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    (
       this : access AddPagesEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Printing.IAddPagesEventArgs
+      e : WinRt.Windows.UI.Xaml.Printing.IAddPagesEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -137,13 +137,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function Constructor return GetPreviewPageEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.GetPreviewPageEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs;
    begin
       return RetVal : GetPreviewPageEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IGetPreviewPageEventArgs := new Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs;
+            Retval.m_IGetPreviewPageEventArgs := new WinRt.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs;
             Retval.m_IGetPreviewPageEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -177,7 +177,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    (
       this : access GetPreviewPageEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs
+      e : WinRt.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -212,13 +212,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function Constructor return PaginateEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.PaginateEventArgs");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Printing.IPaginateEventArgs;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.IPaginateEventArgs");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Printing.IPaginateEventArgs;
    begin
       return RetVal : PaginateEventArgs do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPaginateEventArgs := new Windows.UI.Xaml.Printing.IPaginateEventArgs;
+            Retval.m_IPaginateEventArgs := new WinRt.Windows.UI.Xaml.Printing.IPaginateEventArgs;
             Retval.m_IPaginateEventArgs.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -236,14 +236,14 @@ package body WinRt.Windows.UI.Xaml.Printing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintTaskOptionsCore;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTaskOptions do
          Hr := this.m_IPaginateEventArgs.all.get_PrintTaskOptions (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTaskOptionsCore := new Windows.Graphics.Printing.IPrintTaskOptionsCore;
+         Retval.m_IPrintTaskOptionsCore := new WinRt.Windows.Graphics.Printing.IPrintTaskOptionsCore;
          Retval.m_IPrintTaskOptionsCore.all := m_ComRetVal;
       end return;
    end;
@@ -272,7 +272,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    (
       this : access PaginateEventHandler_Delegate;
       sender : WinRt.IInspectable;
-      e : Windows.UI.Xaml.Printing.IPaginateEventArgs
+      e : WinRt.Windows.UI.Xaml.Printing.IPaginateEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -312,16 +312,16 @@ package body WinRt.Windows.UI.Xaml.Printing is
    return PrintDocument is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.PrintDocument");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.IPrintDocument");
       m_Factory    : access IPrintDocumentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Printing.IPrintDocument;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Printing.IPrintDocument;
    begin
       return RetVal : PrintDocument do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintDocumentFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IPrintDocument := new Windows.UI.Xaml.Printing.IPrintDocument;
+            Retval.m_IPrintDocument := new WinRt.Windows.UI.Xaml.Printing.IPrintDocument;
             Retval.m_IPrintDocument.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -339,7 +339,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Printing.PrintDocument");
       m_Factory        : access WinRt.Windows.UI.Xaml.Printing.IPrintDocumentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IPrintDocumentStatics'Access , m_Factory'Address);
@@ -349,7 +349,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -367,7 +367,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.IPrintDocumentSource;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.IPrintDocumentSource;
    begin
       Hr := this.m_IPrintDocument.all.get_DocumentSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -379,13 +379,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function add_Paginate
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.PaginateEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.PaginateEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintDocument.all.add_Paginate (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -397,7 +397,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    procedure remove_Paginate
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -412,13 +412,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function add_GetPreviewPage
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.GetPreviewPageEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.GetPreviewPageEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintDocument.all.add_GetPreviewPage (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -430,7 +430,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    procedure remove_GetPreviewPage
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -445,13 +445,13 @@ package body WinRt.Windows.UI.Xaml.Printing is
    function add_AddPages
    (
       this : in out PrintDocument;
-      handler : Windows.UI.Xaml.Printing.AddPagesEventHandler
+      handler : WinRt.Windows.UI.Xaml.Printing.AddPagesEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IPrintDocument.all.add_AddPages (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -463,7 +463,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    procedure remove_AddPages
    (
       this : in out PrintDocument;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -478,7 +478,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    procedure AddPage
    (
       this : in out PrintDocument;
-      pageVisual : Windows.UI.Xaml.UIElement'Class
+      pageVisual : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -508,7 +508,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    (
       this : in out PrintDocument;
       count : WinRt.Int32;
-      type_x : Windows.UI.Xaml.Printing.PreviewPageCountType
+      type_x : WinRt.Windows.UI.Xaml.Printing.PreviewPageCountType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -524,7 +524,7 @@ package body WinRt.Windows.UI.Xaml.Printing is
    (
       this : in out PrintDocument;
       pageNumber : WinRt.Int32;
-      pageVisual : Windows.UI.Xaml.UIElement'Class
+      pageVisual : WinRt.Windows.UI.Xaml.UIElement'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

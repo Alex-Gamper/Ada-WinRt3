@@ -165,7 +165,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_Error
       (
          this : access IErrorReceivedEventArgs_Interface;
-         RetVal : access Windows.Devices.SerialCommunication.SerialError
+         RetVal : access WinRt.Windows.Devices.SerialCommunication.SerialError
       )
       return WinRt.Hresult is abstract;
 
@@ -177,7 +177,7 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_PinChange
       (
          this : access IPinChangedEventArgs_Interface;
-         RetVal : access Windows.Devices.SerialCommunication.SerialPinChange
+         RetVal : access WinRt.Windows.Devices.SerialCommunication.SerialPinChange
       )
       return WinRt.Hresult is abstract;
 
@@ -259,14 +259,14 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_Handshake
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Devices.SerialCommunication.SerialHandshake
+         RetVal : access WinRt.Windows.Devices.SerialCommunication.SerialHandshake
       )
       return WinRt.Hresult is abstract;
 
       function put_Handshake
       (
          this : access ISerialDevice_Interface;
-         value : Windows.Devices.SerialCommunication.SerialHandshake
+         value : WinRt.Windows.Devices.SerialCommunication.SerialHandshake
       )
       return WinRt.Hresult is abstract;
 
@@ -301,14 +301,14 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_Parity
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Devices.SerialCommunication.SerialParity
+         RetVal : access WinRt.Windows.Devices.SerialCommunication.SerialParity
       )
       return WinRt.Hresult is abstract;
 
       function put_Parity
       (
          this : access ISerialDevice_Interface;
-         value : Windows.Devices.SerialCommunication.SerialParity
+         value : WinRt.Windows.Devices.SerialCommunication.SerialParity
       )
       return WinRt.Hresult is abstract;
 
@@ -322,28 +322,28 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_ReadTimeout
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_ReadTimeout
       (
          this : access ISerialDevice_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_StopBits
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Devices.SerialCommunication.SerialStopBitCount
+         RetVal : access WinRt.Windows.Devices.SerialCommunication.SerialStopBitCount
       )
       return WinRt.Hresult is abstract;
 
       function put_StopBits
       (
          this : access ISerialDevice_Interface;
-         value : Windows.Devices.SerialCommunication.SerialStopBitCount
+         value : WinRt.Windows.Devices.SerialCommunication.SerialStopBitCount
       )
       return WinRt.Hresult is abstract;
 
@@ -364,28 +364,28 @@ package WinRt.Windows.Devices.SerialCommunication is
       function get_WriteTimeout
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function put_WriteTimeout
       (
          this : access ISerialDevice_Interface;
-         value : Windows.Foundation.TimeSpan
+         value : WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_InputStream
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
       function get_OutputStream
       (
          this : access ISerialDevice_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -393,14 +393,14 @@ package WinRt.Windows.Devices.SerialCommunication is
       (
          this : access ISerialDevice_Interface;
          reportHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ErrorReceived
       (
          this : access ISerialDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -408,14 +408,14 @@ package WinRt.Windows.Devices.SerialCommunication is
       (
          this : access ISerialDevice_Interface;
          reportHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PinChanged
       (
          this : access ISerialDevice_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -595,7 +595,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure put_Handshake
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialHandshake
+      value : WinRt.Windows.Devices.SerialCommunication.SerialHandshake
    );
 
    function get_IsDataTerminalReadyEnabled
@@ -631,7 +631,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure put_Parity
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialParity
+      value : WinRt.Windows.Devices.SerialCommunication.SerialParity
    );
 
    function get_PortName
@@ -649,7 +649,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure put_ReadTimeout
    (
       this : in out SerialDevice;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_StopBits
@@ -661,7 +661,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure put_StopBits
    (
       this : in out SerialDevice;
-      value : Windows.Devices.SerialCommunication.SerialStopBitCount
+      value : WinRt.Windows.Devices.SerialCommunication.SerialStopBitCount
    );
 
    function get_UsbVendorId
@@ -685,7 +685,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure put_WriteTimeout
    (
       this : in out SerialDevice;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    );
 
    function get_InputStream
@@ -710,7 +710,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure remove_ErrorReceived
    (
       this : in out SerialDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PinChanged
@@ -723,7 +723,7 @@ package WinRt.Windows.Devices.SerialCommunication is
    procedure remove_PinChanged
    (
       this : in out SerialDevice;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Close

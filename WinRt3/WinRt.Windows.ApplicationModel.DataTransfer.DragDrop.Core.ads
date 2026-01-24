@@ -134,14 +134,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       (
          this : access ICoreDragDropManager_Interface;
          value : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TargetRequested
       (
          this : access ICoreDragDropManager_Interface;
-         value : Windows.Foundation.EventRegistrationToken
+         value : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -167,7 +167,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function GetForCurrentView
       (
          this : access ICoreDragDropManagerStatics_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragDropManager
       )
       return WinRt.Hresult is abstract;
 
@@ -179,21 +179,21 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function get_Data
       (
          this : access ICoreDragInfo_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackageView
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackageView
       )
       return WinRt.Hresult is abstract;
 
       function get_Modifiers
       (
          this : access ICoreDragInfo_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers
       )
       return WinRt.Hresult is abstract;
 
       function get_Position
       (
          this : access ICoreDragInfo_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -205,7 +205,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function get_AllowedOperations
       (
          this : access ICoreDragInfo2_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -217,7 +217,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function get_Data
       (
          this : access ICoreDragOperation_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.IDataPackage
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.IDataPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -231,29 +231,29 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function SetDragUIContentFromSoftwareBitmap
       (
          this : access ICoreDragOperation_Interface;
-         softwareBitmap : Windows.Graphics.Imaging.ISoftwareBitmap
+         softwareBitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function SetDragUIContentFromSoftwareBitmap
       (
          this : access ICoreDragOperation_Interface;
-         softwareBitmap : Windows.Graphics.Imaging.ISoftwareBitmap;
-         anchorPoint : Windows.Foundation.Point
+         softwareBitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         anchorPoint : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_DragUIContentMode
       (
          this : access ICoreDragOperation_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
       )
       return WinRt.Hresult is abstract;
 
       function put_DragUIContentMode
       (
          this : access ICoreDragOperation_Interface;
-         value : Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
+         value : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
       )
       return WinRt.Hresult is abstract;
 
@@ -272,14 +272,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function get_AllowedOperations
       (
          this : access ICoreDragOperation2_Interface;
-         RetVal : access Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         RetVal : access WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
       function put_AllowedOperations
       (
          this : access ICoreDragOperation2_Interface;
-         value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+         value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -291,15 +291,15 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function SetContentFromSoftwareBitmap
       (
          this : access ICoreDragUIOverride_Interface;
-         softwareBitmap : Windows.Graphics.Imaging.ISoftwareBitmap
+         softwareBitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap
       )
       return WinRt.Hresult is abstract;
 
       function SetContentFromSoftwareBitmap
       (
          this : access ICoreDragUIOverride_Interface;
-         softwareBitmap : Windows.Graphics.Imaging.ISoftwareBitmap;
-         anchorPoint : Windows.Foundation.Point
+         softwareBitmap : WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
+         anchorPoint : WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -373,8 +373,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function EnterAsync
       (
          this : access ICoreDropOperationTarget_Interface;
-         dragInfo : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
-         dragUIOverride : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragUIOverride;
+         dragInfo : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
+         dragUIOverride : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragUIOverride;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -382,8 +382,8 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function OverAsync
       (
          this : access ICoreDropOperationTarget_Interface;
-         dragInfo : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
-         dragUIOverride : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragUIOverride;
+         dragInfo : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
+         dragUIOverride : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragUIOverride;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -391,15 +391,15 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function LeaveAsync
       (
          this : access ICoreDropOperationTarget_Interface;
-         dragInfo : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
-         RetVal : access Windows.Foundation.IAsyncAction
+         dragInfo : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DropAsync
       (
          this : access ICoreDropOperationTarget_Interface;
-         dragInfo : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
+         dragInfo : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -412,7 +412,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       function SetTarget
       (
          this : access ICoreDropOperationTargetRequestedEventArgs_Interface;
-         target : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
+         target : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
       )
       return WinRt.Hresult is abstract;
 
@@ -447,7 +447,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure remove_TargetRequested
    (
       this : in out CoreDragDropManager;
-      value : Windows.Foundation.EventRegistrationToken
+      value : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_AreConcurrentOperationsEnabled
@@ -524,14 +524,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetDragUIContentFromSoftwareBitmap
    (
       this : in out CoreDragOperation;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    procedure SetDragUIContentFromSoftwareBitmap
    (
       this : in out CoreDragOperation;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      anchorPoint : Windows.Foundation.Point
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      anchorPoint : WinRt.Windows.Foundation.Point
    );
 
    function get_DragUIContentMode
@@ -543,7 +543,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure put_DragUIContentMode
    (
       this : in out CoreDragOperation;
-      value : Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIContentMode
    );
 
    function StartAsync
@@ -561,7 +561,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure put_AllowedOperations
    (
       this : in out CoreDragOperation;
-      value : Windows.ApplicationModel.DataTransfer.DataPackageOperation
+      value : WinRt.Windows.ApplicationModel.DataTransfer.DataPackageOperation
    );
 
    -----------------------------------------------------------------------------
@@ -576,14 +576,14 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetContentFromSoftwareBitmap
    (
       this : in out CoreDragUIOverride;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class
    );
 
    procedure SetContentFromSoftwareBitmap
    (
       this : in out CoreDragUIOverride;
-      softwareBitmap : Windows.Graphics.Imaging.SoftwareBitmap'Class;
-      anchorPoint : Windows.Foundation.Point
+      softwareBitmap : WinRt.Windows.Graphics.Imaging.SoftwareBitmap'Class;
+      anchorPoint : WinRt.Windows.Foundation.Point
    );
 
    function get_IsContentVisible
@@ -651,7 +651,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    procedure SetTarget
    (
       this : in out CoreDropOperationTargetRequestedEventArgs;
-      target : Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
+      target : WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDropOperationTarget
    );
 
 end WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core;

@@ -109,7 +109,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IPrintTicketCapabilities.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -126,14 +126,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentBindingFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -146,14 +146,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentCollateFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -166,14 +166,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentDuplexFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -186,14 +186,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentHolePunchFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -206,14 +206,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentInputBinFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -226,14 +226,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentNUpFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -246,14 +246,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_DocumentStapleFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -266,14 +266,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_JobPasscodeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -286,14 +286,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageBorderlessFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -306,14 +306,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageMediaSizeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -326,14 +326,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageMediaTypeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -346,14 +346,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageOrientationFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -366,14 +366,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageOutputColorFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -386,14 +386,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageOutputQualityFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -406,14 +406,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IPrintTicketCapabilities.all.get_PageResolutionFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -428,7 +428,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -437,7 +437,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -454,7 +454,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -463,7 +463,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketParameterDefinition := new Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition;
+         Retval.m_IPrintTicketParameterDefinition := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterDefinition;
          Retval.m_IPrintTicketParameterDefinition.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -541,7 +541,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IPrintTicketFeature.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -580,7 +580,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -589,7 +589,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketOption := new Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
+         Retval.m_IPrintTicketOption := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
          Retval.m_IPrintTicketOption.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -604,7 +604,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPrintTicketOption.Kind;
    begin
       Hr := this.m_IPrintTicketFeature.all.get_Options (m_ComRetVal'Access);
@@ -624,14 +624,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketOption do
          Hr := this.m_IPrintTicketFeature.all.GetSelectedOption (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketOption := new Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
+         Retval.m_IPrintTicketOption := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketOption;
          Retval.m_IPrintTicketOption.all := m_ComRetVal;
       end return;
    end;
@@ -639,7 +639,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
    procedure SetSelectedOption
    (
       this : in out PrintTicketFeature;
-      value : Windows.Graphics.Printing.PrintTicket.PrintTicketOption'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketOption'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -659,7 +659,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.PrintTicketFeatureSelectionType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeatureSelectionType;
    begin
       Hr := this.m_IPrintTicketFeature.all.get_SelectionType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -739,7 +739,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IPrintTicketOption.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -778,7 +778,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -801,7 +801,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -824,7 +824,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -833,7 +833,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketValue := new Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+         Retval.m_IPrintTicketValue := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
          Retval.m_IPrintTicketValue.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -850,7 +850,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -859,7 +859,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketValue := new Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+         Retval.m_IPrintTicketValue := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
          Retval.m_IPrintTicketValue.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -937,7 +937,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IPrintTicketParameterDefinition.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -954,7 +954,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.PrintTicketParameterDataType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketParameterDataType;
    begin
       Hr := this.m_IPrintTicketParameterDefinition.all.get_DataType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1088,7 +1088,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IPrintTicketParameterInitializer.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1100,7 +1100,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
    procedure put_Value
    (
       this : in out PrintTicketParameterInitializer;
-      value : Windows.Graphics.Printing.PrintTicket.PrintTicketValue'Class
+      value : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketValue'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1120,14 +1120,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketValue do
          Hr := this.m_IPrintTicketParameterInitializer.all.get_Value (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketValue := new Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
+         Retval.m_IPrintTicketValue := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketValue;
          Retval.m_IPrintTicketValue.all := m_ComRetVal;
       end return;
    end;
@@ -1163,7 +1163,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.PrintTicketValueType;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketValueType;
    begin
       Hr := this.m_IPrintTicketValue.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1235,22 +1235,22 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
    function Constructor
    (
       printerName : WinRt.WString;
-      printTicketStream : Windows.Storage.Streams.IInputStream
+      printTicketStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return WorkflowPrintTicket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket");
       m_Factory    : access IWorkflowPrintTicketFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
       HStr_printerName : constant WinRt.HString := To_HString (printerName);
    begin
       return RetVal : WorkflowPrintTicket do
          Hr := RoGetActivationFactory (m_hString, IID_IWorkflowPrintTicketFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_printerName, printTicketStream, m_ComRetVal'Access);
-            Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+            Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
             Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1310,7 +1310,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlNode;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlNode;
    begin
       Hr := this.m_IWorkflowPrintTicket.all.get_XmlNode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1327,14 +1327,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketCapabilities do
          Hr := this.m_IWorkflowPrintTicket.all.GetCapabilities (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketCapabilities := new Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities;
+         Retval.m_IPrintTicketCapabilities := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketCapabilities;
          Retval.m_IPrintTicketCapabilities.all := m_ComRetVal;
       end return;
    end;
@@ -1347,14 +1347,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentBindingFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1367,14 +1367,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentCollateFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1387,14 +1387,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentDuplexFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1407,14 +1407,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentHolePunchFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1427,14 +1427,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentInputBinFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1447,14 +1447,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentNUpFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1467,14 +1467,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_DocumentStapleFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1487,14 +1487,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_JobPasscodeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1507,14 +1507,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageBorderlessFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1527,14 +1527,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageMediaSizeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1547,14 +1547,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageMediaTypeFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1567,14 +1567,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageOrientationFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1587,14 +1587,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageOutputColorFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1607,14 +1607,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageOutputQualityFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1627,14 +1627,14 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.PrintTicketFeature do
          Hr := this.m_IWorkflowPrintTicket.all.get_PageResolutionFeature (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
       end return;
    end;
@@ -1649,7 +1649,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -1658,7 +1658,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketFeature := new Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
+         Retval.m_IPrintTicketFeature := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketFeature;
          Retval.m_IPrintTicketFeature.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -1760,7 +1760,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IWorkflowPrintTicketValidationResult := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicketValidationResult;
+                  Retval.m_IWorkflowPrintTicketValidationResult := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicketValidationResult;
                   Retval.m_IWorkflowPrintTicketValidationResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -1783,7 +1783,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -1792,7 +1792,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketParameterInitializer := new Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+         Retval.m_IPrintTicketParameterInitializer := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
          Retval.m_IPrintTicketParameterInitializer.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -1810,7 +1810,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
    begin
@@ -1819,7 +1819,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketParameterInitializer := new Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+         Retval.m_IPrintTicketParameterInitializer := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
          Retval.m_IPrintTicketParameterInitializer.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -1837,7 +1837,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
       HStr_name : constant WinRt.HString := To_HString (name);
       HStr_xmlNamespace : constant WinRt.HString := To_HString (xmlNamespace);
       HStr_stringValue : constant WinRt.HString := To_HString (stringValue);
@@ -1847,7 +1847,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPrintTicketParameterInitializer := new Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
+         Retval.m_IPrintTicketParameterInitializer := new WinRt.Windows.Graphics.Printing.PrintTicket.IPrintTicketParameterInitializer;
          Retval.m_IPrintTicketParameterInitializer.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_name);
          tmp := WindowsDeleteString (HStr_xmlNamespace);
@@ -1858,20 +1858,20 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
    function MergeAndValidateTicket
    (
       this : in out WorkflowPrintTicket;
-      deltaShemaTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      deltaShemaTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    )
    return WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
    begin
       return RetVal : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket do
          Hr := this.m_IWorkflowPrintTicket.all.MergeAndValidateTicket (deltaShemaTicket.m_IWorkflowPrintTicket.all, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWorkflowPrintTicket := new Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         Retval.m_IWorkflowPrintTicket := new WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          Retval.m_IWorkflowPrintTicket.all := m_ComRetVal;
       end return;
    end;
@@ -1924,7 +1924,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IWorkflowPrintTicketValidationResult.all.get_ExtendedError (m_ComRetVal'Access);
       if Hr /= S_OK then

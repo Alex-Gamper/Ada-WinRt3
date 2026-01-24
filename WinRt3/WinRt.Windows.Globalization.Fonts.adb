@@ -83,7 +83,7 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontWeight;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontWeight;
    begin
       Hr := this.m_ILanguageFont.all.get_FontWeight (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -100,7 +100,7 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontStretch;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontStretch;
    begin
       Hr := this.m_ILanguageFont.all.get_FontStretch (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -117,7 +117,7 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.FontStyle;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.FontStyle;
    begin
       Hr := this.m_ILanguageFont.all.get_FontStyle (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -173,17 +173,17 @@ package body WinRt.Windows.Globalization.Fonts is
    return LanguageFontGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Fonts.LanguageFontGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Fonts.ILanguageFontGroup");
       m_Factory    : access ILanguageFontGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Globalization.Fonts.ILanguageFontGroup;
+      m_ComRetVal  : aliased WinRt.Windows.Globalization.Fonts.ILanguageFontGroup;
       HStr_languageTag : constant WinRt.HString := To_HString (languageTag);
    begin
       return RetVal : LanguageFontGroup do
          Hr := RoGetActivationFactory (m_hString, IID_ILanguageFontGroupFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateLanguageFontGroup (HStr_languageTag, m_ComRetVal'Access);
-            Retval.m_ILanguageFontGroup := new Windows.Globalization.Fonts.ILanguageFontGroup;
+            Retval.m_ILanguageFontGroup := new WinRt.Windows.Globalization.Fonts.ILanguageFontGroup;
             Retval.m_ILanguageFontGroup.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -203,14 +203,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_UITextFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -223,14 +223,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_UIHeadingFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -243,14 +243,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_UITitleFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -263,14 +263,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_UICaptionFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -283,14 +283,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_UINotificationHeadingFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -303,14 +303,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_TraditionalDocumentFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -323,14 +323,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_ModernDocumentFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -343,14 +343,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_DocumentHeadingFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -363,14 +363,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_FixedWidthTextFont (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -383,14 +383,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_DocumentAlternate1Font (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;
@@ -403,14 +403,14 @@ package body WinRt.Windows.Globalization.Fonts is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.Fonts.ILanguageFont;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.Fonts.ILanguageFont;
    begin
       return RetVal : WinRt.Windows.Globalization.Fonts.LanguageFont do
          Hr := this.m_ILanguageFontGroup.all.get_DocumentAlternate2Font (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguageFont := new Windows.Globalization.Fonts.ILanguageFont;
+         Retval.m_ILanguageFont := new WinRt.Windows.Globalization.Fonts.ILanguageFont;
          Retval.m_ILanguageFont.all := m_ComRetVal;
       end return;
    end;

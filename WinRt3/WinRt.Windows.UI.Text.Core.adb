@@ -81,7 +81,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_ICoreTextCompositionSegment.Kind;
    begin
       Hr := this.m_ICoreTextCompositionCompletedEventArgs.all.get_CompositionSegments (m_ComRetVal'Access);
@@ -101,14 +101,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextCompositionCompletedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -164,7 +164,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextCompositionSegment.all.get_Range (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -221,14 +221,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextCompositionStartedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -301,7 +301,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextInputScope;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextInputScope;
    begin
       Hr := this.m_ICoreTextEditContext.all.get_InputScope (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -313,7 +313,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_InputScope
    (
       this : in out CoreTextEditContext;
-      value : Windows.UI.Text.Core.CoreTextInputScope
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputScope
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -365,7 +365,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy;
    begin
       Hr := this.m_ICoreTextEditContext.all.get_InputPaneDisplayPolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -377,7 +377,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_InputPaneDisplayPolicy
    (
       this : in out CoreTextEditContext;
-      value : Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
+      value : WinRt.Windows.UI.Text.Core.CoreTextInputPaneDisplayPolicy
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -398,7 +398,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_TextRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -410,7 +410,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_TextRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -431,7 +431,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_SelectionRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -443,7 +443,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_SelectionRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -464,7 +464,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_LayoutRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -476,7 +476,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_LayoutRequested
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -497,7 +497,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_TextUpdating (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -509,7 +509,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_TextUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -530,7 +530,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_SelectionUpdating (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -542,7 +542,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_SelectionUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -563,7 +563,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_FormatUpdating (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -575,7 +575,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_FormatUpdating
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -596,7 +596,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_CompositionStarted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -608,7 +608,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_CompositionStarted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -629,7 +629,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_CompositionCompleted (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -641,7 +641,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_CompositionCompleted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -662,7 +662,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextEditContext.all.add_FocusRemoved (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -674,7 +674,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_FocusRemoved
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -717,9 +717,9 @@ package body WinRt.Windows.UI.Text.Core is
    procedure NotifyTextChanged
    (
       this : in out CoreTextEditContext;
-      modifiedRange : Windows.UI.Text.Core.CoreTextRange;
+      modifiedRange : WinRt.Windows.UI.Text.Core.CoreTextRange;
       newLength : WinRt.Int32;
-      newSelection : Windows.UI.Text.Core.CoreTextRange
+      newSelection : WinRt.Windows.UI.Text.Core.CoreTextRange
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -734,7 +734,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure NotifySelectionChanged
    (
       this : in out CoreTextEditContext;
-      selection : Windows.UI.Text.Core.CoreTextRange
+      selection : WinRt.Windows.UI.Text.Core.CoreTextRange
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -770,7 +770,7 @@ package body WinRt.Windows.UI.Text.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Text.Core.ICoreTextEditContext2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Text.Core.ICoreTextEditContext_Interface, WinRt.Windows.UI.Text.Core.ICoreTextEditContext2, WinRt.Windows.UI.Text.Core.IID_ICoreTextEditContext2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICoreTextEditContext.all);
@@ -785,7 +785,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_NotifyFocusLeaveCompleted
    (
       this : in out CoreTextEditContext;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -832,7 +832,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_Range (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -849,7 +849,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_TextColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -866,7 +866,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_BackgroundColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -883,7 +883,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_UnderlineColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -900,7 +900,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UnderlineType.Kind;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_UnderlineType (m_ComRetVal'Access);
@@ -920,7 +920,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextFormatUpdatingReason;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingReason;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -937,7 +937,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextFormatUpdatingResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingResult;
    begin
       Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.get_Result (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -949,7 +949,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextFormatUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextFormatUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextFormatUpdatingResult
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -986,14 +986,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextFormatUpdatingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1029,7 +1029,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreTextLayoutBounds.all.get_TextBounds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1041,7 +1041,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_TextBounds
    (
       this : in out CoreTextLayoutBounds;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1061,7 +1061,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_ICoreTextLayoutBounds.all.get_ControlBounds (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1073,7 +1073,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_ControlBounds
    (
       this : in out CoreTextLayoutBounds;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1116,7 +1116,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextLayoutRequest.all.get_Range (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1133,14 +1133,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextLayoutBounds;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextLayoutBounds do
          Hr := this.m_ICoreTextLayoutRequest.all.get_LayoutBounds (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextLayoutBounds := new Windows.UI.Text.Core.ICoreTextLayoutBounds;
+         Retval.m_ICoreTextLayoutBounds := new WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds;
          Retval.m_ICoreTextLayoutBounds.all := m_ComRetVal;
       end return;
    end;
@@ -1170,14 +1170,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextLayoutRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1191,7 +1191,7 @@ package body WinRt.Windows.UI.Text.Core is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextLayoutBounds;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest_Interface, WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest2, WinRt.Windows.UI.Text.Core.IID_ICoreTextLayoutRequest2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextLayoutBounds do
@@ -1201,7 +1201,7 @@ package body WinRt.Windows.UI.Text.Core is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextLayoutBounds := new Windows.UI.Text.Core.ICoreTextLayoutBounds;
+         Retval.m_ICoreTextLayoutBounds := new WinRt.Windows.UI.Text.Core.ICoreTextLayoutBounds;
          Retval.m_ICoreTextLayoutBounds.all := m_ComRetVal;
       end return;
    end;
@@ -1237,14 +1237,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextLayoutRequest;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextLayoutRequest do
          Hr := this.m_ICoreTextLayoutRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextLayoutRequest := new Windows.UI.Text.Core.ICoreTextLayoutRequest;
+         Retval.m_ICoreTextLayoutRequest := new WinRt.Windows.UI.Text.Core.ICoreTextLayoutRequest;
          Retval.m_ICoreTextLayoutRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1280,7 +1280,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextSelectionRequest.all.get_Selection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1292,7 +1292,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_Selection
    (
       this : in out CoreTextSelectionRequest;
-      value : Windows.UI.Text.Core.CoreTextRange
+      value : WinRt.Windows.UI.Text.Core.CoreTextRange
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1329,14 +1329,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextSelectionRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1372,14 +1372,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextSelectionRequest;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextSelectionRequest;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextSelectionRequest do
          Hr := this.m_ICoreTextSelectionRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextSelectionRequest := new Windows.UI.Text.Core.ICoreTextSelectionRequest;
+         Retval.m_ICoreTextSelectionRequest := new WinRt.Windows.UI.Text.Core.ICoreTextSelectionRequest;
          Retval.m_ICoreTextSelectionRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1415,7 +1415,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextSelectionUpdatingEventArgs.all.get_Selection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1432,7 +1432,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextSelectionUpdatingResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextSelectionUpdatingResult;
    begin
       Hr := this.m_ICoreTextSelectionUpdatingEventArgs.all.get_Result (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1444,7 +1444,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextSelectionUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextSelectionUpdatingResult
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1481,14 +1481,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextSelectionUpdatingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1550,7 +1550,7 @@ package body WinRt.Windows.UI.Text.Core is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Text.Core.CoreTextServicesManager");
       m_Factory        : access WinRt.Windows.UI.Text.Core.ICoreTextServicesManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextServicesManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextServicesManager;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextServicesManager do
          Hr := RoGetActivationFactory (m_hString, IID_ICoreTextServicesManagerStatics'Access , m_Factory'Address);
@@ -1560,7 +1560,7 @@ package body WinRt.Windows.UI.Text.Core is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_ICoreTextServicesManager := new Windows.UI.Text.Core.ICoreTextServicesManager;
+            Retval.m_ICoreTextServicesManager := new WinRt.Windows.UI.Text.Core.ICoreTextServicesManager;
             Retval.m_ICoreTextServicesManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1578,14 +1578,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_ICoreTextServicesManager.all.get_InputLanguage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -1599,7 +1599,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICoreTextServicesManager.all.add_InputLanguageChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1611,7 +1611,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure remove_InputLanguageChanged
    (
       this : in out CoreTextServicesManager;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1631,14 +1631,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextEditContext;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextEditContext;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextEditContext do
          Hr := this.m_ICoreTextServicesManager.all.CreateEditContext (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextEditContext := new Windows.UI.Text.Core.ICoreTextEditContext;
+         Retval.m_ICoreTextEditContext := new WinRt.Windows.UI.Text.Core.ICoreTextEditContext;
          Retval.m_ICoreTextEditContext.all := m_ComRetVal;
       end return;
    end;
@@ -1674,7 +1674,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextTextRequest.all.get_Range (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1745,14 +1745,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextTextRequest.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1788,14 +1788,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.ICoreTextTextRequest;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.ICoreTextTextRequest;
    begin
       return RetVal : WinRt.Windows.UI.Text.Core.CoreTextTextRequest do
          Hr := this.m_ICoreTextTextRequestedEventArgs.all.get_Request (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICoreTextTextRequest := new Windows.UI.Text.Core.ICoreTextTextRequest;
+         Retval.m_ICoreTextTextRequest := new WinRt.Windows.UI.Text.Core.ICoreTextTextRequest;
          Retval.m_ICoreTextTextRequest.all := m_ComRetVal;
       end return;
    end;
@@ -1831,7 +1831,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextTextUpdatingEventArgs.all.get_Range (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1868,7 +1868,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextRange;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextRange;
    begin
       Hr := this.m_ICoreTextTextUpdatingEventArgs.all.get_NewSelection (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1885,14 +1885,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Globalization.ILanguage;
+      m_ComRetVal      : aliased WinRt.Windows.Globalization.ILanguage;
    begin
       return RetVal : WinRt.Windows.Globalization.Language do
          Hr := this.m_ICoreTextTextUpdatingEventArgs.all.get_InputLanguage (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILanguage := new Windows.Globalization.ILanguage;
+         Retval.m_ILanguage := new WinRt.Windows.Globalization.ILanguage;
          Retval.m_ILanguage.all := m_ComRetVal;
       end return;
    end;
@@ -1905,7 +1905,7 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Text.Core.CoreTextTextUpdatingResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Text.Core.CoreTextTextUpdatingResult;
    begin
       Hr := this.m_ICoreTextTextUpdatingEventArgs.all.get_Result (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1917,7 +1917,7 @@ package body WinRt.Windows.UI.Text.Core is
    procedure put_Result
    (
       this : in out CoreTextTextUpdatingEventArgs;
-      value : Windows.UI.Text.Core.CoreTextTextUpdatingResult
+      value : WinRt.Windows.UI.Text.Core.CoreTextTextUpdatingResult
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1954,14 +1954,14 @@ package body WinRt.Windows.UI.Text.Core is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_ICoreTextTextUpdatingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;

@@ -614,14 +614,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowBackgroundSession_Interface;
          setupEventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SetupRequested
       (
          this : access IPrintWorkflowBackgroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -629,21 +629,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowBackgroundSession_Interface;
          submittedEventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Submitted
       (
          this : access IPrintWorkflowBackgroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPrintWorkflowBackgroundSession_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -668,7 +668,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowBackgroundSetupRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
@@ -681,7 +681,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetDeferral
       (
          this : access IPrintWorkflowBackgroundSetupRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -719,7 +719,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function AbortPrintFlow
       (
          this : access IPrintWorkflowConfiguration2_Interface;
-         reason : Windows.Graphics.Printing.Workflow.PrintWorkflowJobAbortReason
+         reason : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowJobAbortReason
       )
       return WinRt.Hresult is abstract;
 
@@ -732,14 +732,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowForegroundSession_Interface;
          setupEventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SetupRequested
       (
          this : access IPrintWorkflowForegroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -747,21 +747,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowForegroundSession_Interface;
          xpsDataAvailableEventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_XpsDataAvailable
       (
          this : access IPrintWorkflowForegroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IPrintWorkflowForegroundSession_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -786,14 +786,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowForegroundSetupRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowForegroundSetupRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -805,7 +805,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Session
       (
          this : access IPrintWorkflowJobActivatedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobUISession
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Status
       (
          this : access IPrintWorkflowJobBackgroundSession_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -825,14 +825,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobBackgroundSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_JobStarting
       (
          this : access IPrintWorkflowJobBackgroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -840,14 +840,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobBackgroundSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PdlModificationRequested
       (
          this : access IPrintWorkflowJobBackgroundSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -866,14 +866,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobBackgroundSession2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_JobIssueDetected
       (
          this : access IPrintWorkflowJobBackgroundSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -886,14 +886,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobBackgroundSession3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_JobStatusChanged
       (
          this : access IPrintWorkflowJobBackgroundSession3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -905,14 +905,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_JobIssueKind
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowJobIssueKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedError
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.HResult
+         RetVal : access WinRt.Windows.Foundation.HResult
       )
       return WinRt.Hresult is abstract;
 
@@ -933,28 +933,28 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_PrinterJob
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
       )
       return WinRt.Hresult is abstract;
 
       function get_Configuration
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_UILauncher
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowJobIssueDetectedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -966,21 +966,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowJobNotificationEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_PrinterJob
       (
          this : access IPrintWorkflowJobNotificationEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowJobNotificationEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -992,14 +992,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowJobStartingEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_Printer
       (
          this : access IPrintWorkflowJobStartingEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,7 +1012,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetDeferral
       (
          this : access IPrintWorkflowJobStartingEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1056,7 +1056,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_PrintWorkflowJobSession
       (
          this : access IPrintWorkflowJobTriggerDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowJobBackgroundSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1068,7 +1068,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Status
       (
          this : access IPrintWorkflowJobUISession_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1076,14 +1076,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobUISession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_PdlDataAvailable
       (
          this : access IPrintWorkflowJobUISession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1091,14 +1091,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobUISession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_JobNotification
       (
          this : access IPrintWorkflowJobUISession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1117,14 +1117,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowJobUISession2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VirtualPrinterUIDataAvailable
       (
          this : access IPrintWorkflowJobUISession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1146,8 +1146,8 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function CreateInstance
       (
          this : access IPrintWorkflowObjectModelSourceFileContentFactory_Interface;
-         xpsStream : Windows.Storage.Streams.IInputStream;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent
+         xpsStream : WinRt.Windows.Storage.Streams.IInputStream;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1164,10 +1164,10 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function ConvertPdlAsync
       (
          this : access IPrintWorkflowPdlConverter_Interface;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
-         inputStream : Windows.Storage.Streams.IInputStream;
-         outputStream : Windows.Storage.Streams.IOutputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1179,11 +1179,11 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function ConvertPdlAsync
       (
          this : access IPrintWorkflowPdlConverter2_Interface;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
-         inputStream : Windows.Storage.Streams.IInputStream;
-         outputStream : Windows.Storage.Streams.IOutputStream;
-         hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
-         RetVal : access Windows.Foundation.IAsyncAction
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         hostBasedProcessingOperations : WinRt.Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1195,11 +1195,11 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function ConvertPdlFromObjectModelAsync
       (
          this : access IPrintWorkflowPdlConverter3_Interface;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
-         objectModelProvider : Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
-         outputStream : Windows.Storage.Streams.IOutputStream;
-         hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
-         RetVal : access Windows.Foundation.IAsyncAction
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         objectModelProvider : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+         outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+         hostBasedProcessingOperations : WinRt.Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1211,28 +1211,28 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowPdlDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_PrinterJob
       (
          this : access IPrintWorkflowPdlDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceContent
       (
          this : access IPrintWorkflowPdlDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowPdlDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1244,28 +1244,28 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_PrinterJob
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceContent
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
       )
       return WinRt.Hresult is abstract;
 
       function get_UILauncher
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
       )
       return WinRt.Hresult is abstract;
 
@@ -1273,7 +1273,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
          targetContentType : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1282,31 +1282,31 @@ package WinRt.Windows.Graphics.Printing.Workflow is
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
          jobAttributes : GenericObject;
          targetContentType : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
       )
       return WinRt.Hresult is abstract;
 
       function CreateJobOnPrinterWithAttributesBuffer
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+         jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          targetContentType : WinRt.HString;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
       )
       return WinRt.Hresult is abstract;
 
       function GetPdlConverter
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter
+         conversionType : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1321,21 +1321,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
          jobAttributes : GenericObject;
          targetContentType : WinRt.HString;
          operationAttributes : GenericObject;
-         jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-         operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+         jobAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         operationAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
       )
       return WinRt.Hresult is abstract;
 
       function CreateJobOnPrinterWithAttributesBuffer
       (
          this : access IPrintWorkflowPdlModificationRequestedEventArgs2_Interface;
-         jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+         jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          targetContentType : WinRt.HString;
-         operationAttributesBuffer : Windows.Storage.Streams.IBuffer;
-         jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-         operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
+         operationAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         jobAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         operationAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1365,7 +1365,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetInputStream
       (
          this : access IPrintWorkflowPdlSourceContent_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1384,14 +1384,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetOutputStream
       (
          this : access IPrintWorkflowPdlTargetStream_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
       function CompleteStreamSubmission
       (
          this : access IPrintWorkflowPdlTargetStream_Interface;
-         status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+         status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1410,21 +1410,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Printer
       (
          this : access IPrintWorkflowPrinterJob_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
       function GetJobStatus
       (
          this : access IPrintWorkflowPrinterJob_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJobStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJobStatus
       )
       return WinRt.Hresult is abstract;
 
       function GetJobPrintTicket
       (
          this : access IPrintWorkflowPrinterJob_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
@@ -1432,7 +1432,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowPrinterJob_Interface;
          attributeNames : GenericObject;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1447,8 +1447,8 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function SetJobAttributesFromBuffer
       (
          this : access IPrintWorkflowPrinterJob_Interface;
-         jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+         jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Devices.Printers.IIppSetAttributesResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1456,7 +1456,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowPrinterJob_Interface;
          jobAttributes : GenericObject;
-         RetVal : access Windows.Devices.Printers.IIppSetAttributesResult
+         RetVal : access WinRt.Windows.Devices.Printers.IIppSetAttributesResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1468,7 +1468,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function ConvertPrintTicketToJobAttributes
       (
          this : access IPrintWorkflowPrinterJob2_Interface;
-         printTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
          targetPdlFormat : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1482,21 +1482,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_PrinterJob
       (
          this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob
       )
       return WinRt.Hresult is abstract;
 
       function get_Configuration
       (
          this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowPrinterJobStatusChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1515,14 +1515,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetSourceSpoolDataAsStreamContent
       (
          this : access IPrintWorkflowSourceContent_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowSpoolStreamContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowSpoolStreamContent
       )
       return WinRt.Hresult is abstract;
 
       function GetSourceSpoolDataAsXpsObjectModel
       (
          this : access IPrintWorkflowSourceContent_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1534,7 +1534,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetInputStream
       (
          this : access IPrintWorkflowSpoolStreamContent_Interface;
-         RetVal : access Windows.Storage.Streams.IInputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IInputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1546,7 +1546,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function GetOutputStream
       (
          this : access IPrintWorkflowStreamTarget_Interface;
-         RetVal : access Windows.Storage.Streams.IOutputStream
+         RetVal : access WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult is abstract;
 
@@ -1558,22 +1558,22 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Operation
       (
          this : access IPrintWorkflowSubmittedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation
       )
       return WinRt.Hresult is abstract;
 
       function GetTarget
       (
          this : access IPrintWorkflowSubmittedEventArgs_Interface;
-         jobPrintTicket : Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowTarget
+         jobPrintTicket : WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowTarget
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowSubmittedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1585,21 +1585,21 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function Complete
       (
          this : access IPrintWorkflowSubmittedOperation_Interface;
-         status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+         status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Configuration
       (
          this : access IPrintWorkflowSubmittedOperation_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_XpsContent
       (
          this : access IPrintWorkflowSubmittedOperation_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowSourceContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowSourceContent
       )
       return WinRt.Hresult is abstract;
 
@@ -1611,14 +1611,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_TargetAsStream
       (
          this : access IPrintWorkflowTarget_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowStreamTarget
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowStreamTarget
       )
       return WinRt.Hresult is abstract;
 
       function get_TargetAsXpsObjectModelPackage
       (
          this : access IPrintWorkflowTarget_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelTargetPackage
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelTargetPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -1630,7 +1630,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_PrintWorkflowSession
       (
          this : access IPrintWorkflowTriggerDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowBackgroundSession
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowBackgroundSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1642,7 +1642,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_PrintWorkflowSession
       (
          this : access IPrintWorkflowUIActivatedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowForegroundSession
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowForegroundSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1673,36 +1673,36 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceContent
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
       )
       return WinRt.Hresult is abstract;
 
       function get_UILauncher
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowUILauncher
       )
       return WinRt.Hresult is abstract;
 
       function GetJobPrintTicket
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function GetPdlConverter
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter
+         conversionType : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType;
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter
       )
       return WinRt.Hresult is abstract;
 
@@ -1716,7 +1716,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function CompleteJob
       (
          this : access IPrintWorkflowVirtualPrinterDataAvailableEventArgs_Interface;
-         status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+         status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -1728,14 +1728,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Status
       (
          this : access IPrintWorkflowVirtualPrinterSession_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSessionStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Printer
       (
          this : access IPrintWorkflowVirtualPrinterSession_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
@@ -1743,14 +1743,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       (
          this : access IPrintWorkflowVirtualPrinterSession_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_VirtualPrinterDataAvailable
       (
          this : access IPrintWorkflowVirtualPrinterSession_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1768,7 +1768,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_VirtualPrinterSession
       (
          this : access IPrintWorkflowVirtualPrinterTriggerDetails_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowVirtualPrinterSession
       )
       return WinRt.Hresult is abstract;
 
@@ -1780,35 +1780,35 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Configuration
       (
          this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function get_Printer
       (
          this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
-         RetVal : access Windows.Devices.Printers.IIppPrintDevice
+         RetVal : access WinRt.Windows.Devices.Printers.IIppPrintDevice
       )
       return WinRt.Hresult is abstract;
 
       function get_SourceContent
       (
          this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent
       )
       return WinRt.Hresult is abstract;
 
       function GetJobPrintTicket
       (
          this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
+         RetVal : access WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowVirtualPrinterUIEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1820,14 +1820,14 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       function get_Operation
       (
          this : access IPrintWorkflowXpsDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation
+         RetVal : access WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowSubmittedOperation
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IPrintWorkflowXpsDataAvailableEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1861,7 +1861,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_SetupRequested
    (
       this : in out PrintWorkflowBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Submitted
@@ -1874,7 +1874,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_Submitted
    (
       this : in out PrintWorkflowBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -1932,7 +1932,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure AbortPrintFlow
    (
       this : in out PrintWorkflowConfiguration;
-      reason : Windows.Graphics.Printing.Workflow.PrintWorkflowJobAbortReason
+      reason : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowJobAbortReason
    );
 
    function get_SourceAppDisplayName
@@ -1972,7 +1972,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_SetupRequested
    (
       this : in out PrintWorkflowForegroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_XpsDataAvailable
@@ -1985,7 +1985,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_XpsDataAvailable
    (
       this : in out PrintWorkflowForegroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -2090,7 +2090,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_JobStarting
    (
       this : in out PrintWorkflowJobBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PdlModificationRequested
@@ -2103,7 +2103,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_PdlModificationRequested
    (
       this : in out PrintWorkflowJobBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -2121,7 +2121,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_JobIssueDetected
    (
       this : in out PrintWorkflowJobBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_JobStatusChanged
@@ -2134,7 +2134,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_JobStatusChanged
    (
       this : in out PrintWorkflowJobBackgroundSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2316,7 +2316,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_PdlDataAvailable
    (
       this : in out PrintWorkflowJobUISession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_JobNotification
@@ -2329,7 +2329,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_JobNotification
    (
       this : in out PrintWorkflowJobUISession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -2347,7 +2347,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_VirtualPrinterUIDataAvailable
    (
       this : in out PrintWorkflowJobUISession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2361,7 +2361,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
 
    function Constructor
    (
-      xpsStream : Windows.Storage.Streams.IInputStream
+      xpsStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return PrintWorkflowObjectModelSourceFileContent;
 
@@ -2389,27 +2389,27 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure ConvertPdlAsync
    (
       this : in out PrintWorkflowPdlConverter;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
-      inputStream : Windows.Storage.Streams.IInputStream;
-      outputStream : Windows.Storage.Streams.IOutputStream
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream
    );
 
    procedure ConvertPdlAsync
    (
       this : in out PrintWorkflowPdlConverter;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
-      inputStream : Windows.Storage.Streams.IInputStream;
-      outputStream : Windows.Storage.Streams.IOutputStream;
-      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      inputStream : WinRt.Windows.Storage.Streams.IInputStream;
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : WinRt.Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
    );
 
    procedure ConvertPdlFromObjectModelAsync
    (
       this : in out PrintWorkflowPdlConverter;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
-      objectModelProvider : Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
-      outputStream : Windows.Storage.Streams.IOutputStream;
-      hostBasedProcessingOperations : Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      objectModelProvider : WinRt.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
+      outputStream : WinRt.Windows.Storage.Streams.IOutputStream;
+      hostBasedProcessingOperations : WinRt.Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations
    );
 
    -----------------------------------------------------------------------------
@@ -2496,7 +2496,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function CreateJobOnPrinterWithAttributesBuffer
    (
       this : in out PrintWorkflowPdlModificationRequestedEventArgs;
-      jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
       targetContentType : WinRt.WString
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class;
@@ -2504,7 +2504,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function GetPdlConverter
    (
       this : in out PrintWorkflowPdlModificationRequestedEventArgs;
-      conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
+      conversionType : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConverter'Class;
 
@@ -2520,19 +2520,19 @@ package WinRt.Windows.Graphics.Printing.Workflow is
       jobAttributes : GenericObject;
       targetContentType : WinRt.WString;
       operationAttributes : GenericObject;
-      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+      jobAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class;
 
    function CreateJobOnPrinterWithAttributesBuffer
    (
       this : in out PrintWorkflowPdlModificationRequestedEventArgs;
-      jobAttributesBuffer : Windows.Storage.Streams.IBuffer;
+      jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
       targetContentType : WinRt.WString;
-      operationAttributesBuffer : Windows.Storage.Streams.IBuffer;
-      jobAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
-      operationAttributesMergePolicy : Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
+      operationAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer;
+      jobAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy;
+      operationAttributesMergePolicy : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlTargetStream'Class;
 
@@ -2586,7 +2586,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure CompleteStreamSubmission
    (
       this : in out PrintWorkflowPdlTargetStream;
-      status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+      status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2639,7 +2639,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function SetJobAttributesFromBuffer
    (
       this : in out PrintWorkflowPrinterJob;
-      jobAttributesBuffer : Windows.Storage.Streams.IBuffer
+      jobAttributesBuffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Devices.Printers.IppSetAttributesResult'Class;
 
@@ -2653,7 +2653,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function ConvertPrintTicketToJobAttributes
    (
       this : in out PrintWorkflowPrinterJob;
-      printTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
+      printTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class;
       targetPdlFormat : WinRt.WString
    )
    return WinRt.GenericObject;
@@ -2760,7 +2760,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function GetTarget
    (
       this : in out PrintWorkflowSubmittedEventArgs;
-      jobPrintTicket : Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
+      jobPrintTicket : WinRt.Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket'Class
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowTarget'Class;
 
@@ -2782,7 +2782,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure Complete
    (
       this : in out PrintWorkflowSubmittedOperation;
-      status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+      status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
    );
 
    function get_Configuration
@@ -2929,7 +2929,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    function GetPdlConverter
    (
       this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
-      conversionType : Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
+      conversionType : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType
    )
    return WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConverter'Class;
 
@@ -2942,7 +2942,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure CompleteJob
    (
       this : in out PrintWorkflowVirtualPrinterDataAvailableEventArgs;
-      status : Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
+      status : WinRt.Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedStatus
    );
 
    -----------------------------------------------------------------------------
@@ -2976,7 +2976,7 @@ package WinRt.Windows.Graphics.Printing.Workflow is
    procedure remove_VirtualPrinterDataAvailable
    (
       this : in out PrintWorkflowVirtualPrinterSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start

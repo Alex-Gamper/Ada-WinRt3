@@ -521,11 +521,11 @@ package WinRt.Windows.Graphics.Printing3D is
    -----------------------------------------------------------------------------
 
    IID_Print3DTaskSourceRequestedHandler : aliased WinRt.IID := (3910622832, 51479, 18142, (187, 81, 217, 169, 77, 179, 113, 31 ));
-   type Print3DTaskSourceRequestedHandler_Delegate (Callback : access procedure  (args : Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_Print3DTaskSourceRequestedHandler'Access) with null record;
+   type Print3DTaskSourceRequestedHandler_Delegate (Callback : access procedure  (args : WinRt.Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs)) is new WinRt.IMulticastDelegate_Interface (IID_Print3DTaskSourceRequestedHandler'Access) with null record;
       function Invoke
       (
          this : access Print3DTaskSourceRequestedHandler_Delegate;
-         args : Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs
+         args : WinRt.Windows.Graphics.Printing3D.IPrint3DTaskSourceRequestedArgs
       )
       return WinRt.Hresult;
 
@@ -624,14 +624,14 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrint3DManager_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TaskRequested
       (
          this : access IPrint3DManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -643,7 +643,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function GetForCurrentView
       (
          this : access IPrint3DManagerStatics_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrint3DManager
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrint3DManager
       )
       return WinRt.Hresult is abstract;
 
@@ -662,7 +662,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Source
       (
          this : access IPrint3DTask_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3D3MFPackage
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -670,14 +670,14 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrint3DTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Submitting
       (
          this : access IPrint3DTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -685,14 +685,14 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrint3DTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Completed
       (
          this : access IPrint3DTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -700,14 +700,14 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrint3DTask_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SourceChanged
       (
          this : access IPrint3DTask_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -719,14 +719,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Completion
       (
          this : access IPrint3DTaskCompletedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Print3DTaskCompletion
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Print3DTaskCompletion
       )
       return WinRt.Hresult is abstract;
 
       function get_ExtendedStatus
       (
          this : access IPrint3DTaskCompletedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Print3DTaskDetail
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Print3DTaskDetail
       )
       return WinRt.Hresult is abstract;
 
@@ -740,8 +740,8 @@ package WinRt.Windows.Graphics.Printing3D is
          this : access IPrint3DTaskRequest_Interface;
          title : WinRt.HString;
          printerId : WinRt.HString;
-         handler : Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler;
-         RetVal : access Windows.Graphics.Printing3D.IPrint3DTask
+         handler : WinRt.Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler;
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrint3DTask
       )
       return WinRt.Hresult is abstract;
 
@@ -753,7 +753,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Request
       (
          this : access IPrint3DTaskRequestedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrint3DTaskRequest
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrint3DTaskRequest
       )
       return WinRt.Hresult is abstract;
 
@@ -765,7 +765,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Source
       (
          this : access IPrint3DTaskSourceChangedEventArgs_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3D3MFPackage
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -777,7 +777,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function SetSource
       (
          this : access IPrint3DTaskSourceRequestedArgs_Interface;
-         source : Windows.Graphics.Printing3D.IPrinting3D3MFPackage
+         source : WinRt.Windows.Graphics.Printing3D.IPrinting3D3MFPackage
       )
       return WinRt.Hresult is abstract;
 
@@ -796,42 +796,42 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_PrintTicket
       (
          this : access IPrinting3D3MFPackage_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function put_PrintTicket
       (
          this : access IPrinting3D3MFPackage_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function get_ModelPart
       (
          this : access IPrinting3D3MFPackage_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function put_ModelPart
       (
          this : access IPrinting3D3MFPackage_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function get_Thumbnail
       (
          this : access IPrinting3D3MFPackage_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IPrinting3D3MFPackage_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
@@ -845,7 +845,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function LoadModelFromPackageAsync
       (
          this : access IPrinting3D3MFPackage_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -853,8 +853,8 @@ package WinRt.Windows.Graphics.Printing3D is
       function SaveModelToPackageAsync
       (
          this : access IPrinting3D3MFPackage_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DModel;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DModel;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -866,14 +866,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Compression
       (
          this : access IPrinting3D3MFPackage2_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DPackageCompression
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DPackageCompression
       )
       return WinRt.Hresult is abstract;
 
       function put_Compression
       (
          this : access IPrinting3D3MFPackage2_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DPackageCompression
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DPackageCompression
       )
       return WinRt.Hresult is abstract;
 
@@ -885,7 +885,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function LoadAsync
       (
          this : access IPrinting3D3MFPackageStatics_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream;
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -912,14 +912,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Color
       (
          this : access IPrinting3DBaseMaterial_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DColorMaterial
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IPrinting3DBaseMaterial_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DColorMaterial
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterial
       )
       return WinRt.Hresult is abstract;
 
@@ -951,7 +951,7 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrinting3DBaseMaterialGroupFactory_Interface;
          MaterialGroupId : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1001,14 +1001,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Color
       (
          this : access IPrinting3DColorMaterial2_Interface;
-         RetVal : access Windows.UI.Color
+         RetVal : access WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
       function put_Color
       (
          this : access IPrinting3DColorMaterial2_Interface;
-         value : Windows.UI.Color
+         value : WinRt.Windows.UI.Color
       )
       return WinRt.Hresult is abstract;
 
@@ -1040,7 +1040,7 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrinting3DColorMaterialGroupFactory_Interface;
          MaterialGroupId : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1052,14 +1052,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Mesh
       (
          this : access IPrinting3DComponent_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DMesh
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh
       )
       return WinRt.Hresult is abstract;
 
       function put_Mesh
       (
          this : access IPrinting3DComponent_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DMesh
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DMesh
       )
       return WinRt.Hresult is abstract;
 
@@ -1073,28 +1073,28 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Thumbnail
       (
          this : access IPrinting3DComponent_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
       function put_Thumbnail
       (
          this : access IPrinting3DComponent_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
       function get_Type
       (
          this : access IPrinting3DComponent_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DObjectType
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DObjectType
       )
       return WinRt.Hresult is abstract;
 
       function put_Type
       (
          this : access IPrinting3DComponent_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DObjectType
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DObjectType
       )
       return WinRt.Hresult is abstract;
 
@@ -1134,28 +1134,28 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Component
       (
          this : access IPrinting3DComponentWithMatrix_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DComponent
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent
       )
       return WinRt.Hresult is abstract;
 
       function put_Component
       (
          this : access IPrinting3DComponentWithMatrix_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DComponent
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent
       )
       return WinRt.Hresult is abstract;
 
       function get_Matrix
       (
          this : access IPrinting3DComponentWithMatrix_Interface;
-         RetVal : access Windows.Foundation.Numerics.Matrix4x4
+         RetVal : access WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
       function put_Matrix
       (
          this : access IPrinting3DComponentWithMatrix_Interface;
-         value : Windows.Foundation.Numerics.Matrix4x4
+         value : WinRt.Windows.Foundation.Numerics.Matrix4x4
       )
       return WinRt.Hresult is abstract;
 
@@ -1205,14 +1205,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_BaseMaterialGroup
       (
          this : access IPrinting3DCompositeMaterialGroup2_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
       function put_BaseMaterialGroup
       (
          this : access IPrinting3DCompositeMaterialGroup2_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1225,7 +1225,7 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrinting3DCompositeMaterialGroupFactory_Interface;
          MaterialGroupId : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1352,63 +1352,63 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_VertexPositionsDescription
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DBufferDescription
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_VertexPositionsDescription
       (
          this : access IPrinting3DMesh_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function get_VertexNormalsDescription
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DBufferDescription
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_VertexNormalsDescription
       (
          this : access IPrinting3DMesh_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function get_TriangleIndicesDescription
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DBufferDescription
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_TriangleIndicesDescription
       (
          this : access IPrinting3DMesh_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function get_TriangleMaterialIndicesDescription
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DBufferDescription
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function put_TriangleMaterialIndicesDescription
       (
          this : access IPrinting3DMesh_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
       )
       return WinRt.Hresult is abstract;
 
       function GetVertexPositions
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1422,7 +1422,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function GetVertexNormals
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1436,7 +1436,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function GetTriangleIndices
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1450,7 +1450,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function GetTriangleMaterialIndices
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1464,21 +1464,21 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_BufferDescriptionSet
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function get_BufferSet
       (
          this : access IPrinting3DMesh_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
       function VerifyAsync
       (
          this : access IPrinting3DMesh_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DMeshVerificationMode;
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DMeshVerificationMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1517,14 +1517,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Unit
       (
          this : access IPrinting3DModel_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DModelUnit
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DModelUnit
       )
       return WinRt.Hresult is abstract;
 
       function put_Unit
       (
          this : access IPrinting3DModel_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DModelUnit
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DModelUnit
       )
       return WinRt.Hresult is abstract;
 
@@ -1552,28 +1552,28 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Material
       (
          this : access IPrinting3DModel_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DMaterial
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial
       )
       return WinRt.Hresult is abstract;
 
       function put_Material
       (
          this : access IPrinting3DModel_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DMaterial
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DMaterial
       )
       return WinRt.Hresult is abstract;
 
       function get_Build
       (
          this : access IPrinting3DModel_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DComponent
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent
       )
       return WinRt.Hresult is abstract;
 
       function put_Build
       (
          this : access IPrinting3DModel_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DComponent
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DComponent
       )
       return WinRt.Hresult is abstract;
 
@@ -1608,14 +1608,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function RepairAsync
       (
          this : access IPrinting3DModel_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function Clone
       (
          this : access IPrinting3DModel_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DModel
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DModel
       )
       return WinRt.Hresult is abstract;
 
@@ -1634,7 +1634,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function TryPartialRepairAsync
       (
          this : access IPrinting3DModel2_Interface;
-         maxWaitTime : Windows.Foundation.TimeSpan;
+         maxWaitTime : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1649,7 +1649,7 @@ package WinRt.Windows.Graphics.Printing3D is
       function TryReduceFacesAsync
       (
          this : access IPrinting3DModel2_Interface;
-         printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
+         printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1657,8 +1657,8 @@ package WinRt.Windows.Graphics.Printing3D is
       function TryReduceFacesAsync
       (
          this : access IPrinting3DModel2_Interface;
-         printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
-         maxWait : Windows.Foundation.TimeSpan;
+         printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
+         maxWait : WinRt.Windows.Foundation.TimeSpan;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1678,42 +1678,42 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_TextureResource
       (
          this : access IPrinting3DModelTexture_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
       function put_TextureResource
       (
          this : access IPrinting3DModelTexture_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DTextureResource
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DTextureResource
       )
       return WinRt.Hresult is abstract;
 
       function get_TileStyleU
       (
          this : access IPrinting3DModelTexture_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_TileStyleU
       (
          this : access IPrinting3DModelTexture_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
       )
       return WinRt.Hresult is abstract;
 
       function get_TileStyleV
       (
          this : access IPrinting3DModelTexture_Interface;
-         RetVal : access Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+         RetVal : access WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
       )
       return WinRt.Hresult is abstract;
 
       function put_TileStyleV
       (
          this : access IPrinting3DModelTexture_Interface;
-         value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+         value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
       )
       return WinRt.Hresult is abstract;
 
@@ -1764,7 +1764,7 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrinting3DMultiplePropertyMaterialGroupFactory_Interface;
          MaterialGroupId : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1776,14 +1776,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Texture
       (
          this : access IPrinting3DTexture2CoordMaterial_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DModelTexture
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture
       )
       return WinRt.Hresult is abstract;
 
       function put_Texture
       (
          this : access IPrinting3DTexture2CoordMaterial_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DModelTexture
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture
       )
       return WinRt.Hresult is abstract;
 
@@ -1842,14 +1842,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_Texture
       (
          this : access IPrinting3DTexture2CoordMaterialGroup2_Interface;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DModelTexture
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture
       )
       return WinRt.Hresult is abstract;
 
       function put_Texture
       (
          this : access IPrinting3DTexture2CoordMaterialGroup2_Interface;
-         value : Windows.Graphics.Printing3D.IPrinting3DModelTexture
+         value : WinRt.Windows.Graphics.Printing3D.IPrinting3DModelTexture
       )
       return WinRt.Hresult is abstract;
 
@@ -1862,7 +1862,7 @@ package WinRt.Windows.Graphics.Printing3D is
       (
          this : access IPrinting3DTexture2CoordMaterialGroupFactory_Interface;
          MaterialGroupId : WinRt.UInt32;
-         RetVal : access Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup
+         RetVal : access WinRt.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup
       )
       return WinRt.Hresult is abstract;
 
@@ -1874,14 +1874,14 @@ package WinRt.Windows.Graphics.Printing3D is
       function get_TextureData
       (
          this : access IPrinting3DTextureResource_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
       function put_TextureData
       (
          this : access IPrinting3DTextureResource_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
       )
       return WinRt.Hresult is abstract;
 
@@ -1933,7 +1933,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure remove_TaskRequested
    (
       this : in out Print3DManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -1961,7 +1961,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure remove_Submitting
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Completed
@@ -1974,7 +1974,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure remove_Completed
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_SourceChanged
@@ -1987,7 +1987,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure remove_SourceChanged
    (
       this : in out Print3DTask;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -2025,7 +2025,7 @@ package WinRt.Windows.Graphics.Printing3D is
       this : in out Print3DTaskRequest;
       title : WinRt.WString;
       printerId : WinRt.WString;
-      handler : Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler
+      handler : WinRt.Windows.Graphics.Printing3D.Print3DTaskSourceRequestedHandler
    )
    return WinRt.Windows.Graphics.Printing3D.Print3DTask'Class;
 
@@ -2071,7 +2071,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure SetSource
    (
       this : in out Print3DTaskSourceRequestedArgs;
-      source : Windows.Graphics.Printing3D.Printing3D3MFPackage'Class
+      source : WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2090,7 +2090,7 @@ package WinRt.Windows.Graphics.Printing3D is
 
    function LoadAsync
    (
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3D3MFPackage;
 
@@ -2112,7 +2112,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_PrintTicket
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function get_ModelPart
@@ -2124,7 +2124,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_ModelPart
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function get_Thumbnail
@@ -2136,7 +2136,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Thumbnail
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    );
 
    function get_Textures
@@ -2148,14 +2148,14 @@ package WinRt.Windows.Graphics.Printing3D is
    function LoadModelFromPackageAsync
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Storage.Streams.IRandomAccessStream
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3DModel'Class;
 
    procedure SaveModelToPackageAsync
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DModel'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModel'Class
    );
 
    function get_Compression
@@ -2167,7 +2167,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Compression
    (
       this : in out Printing3D3MFPackage;
-      value : Windows.Graphics.Printing3D.Printing3DPackageCompression
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DPackageCompression
    );
 
    -----------------------------------------------------------------------------
@@ -2214,7 +2214,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Color
    (
       this : in out Printing3DBaseMaterial;
-      value : Windows.Graphics.Printing3D.Printing3DColorMaterial'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DColorMaterial'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2282,7 +2282,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Color
    (
       this : in out Printing3DColorMaterial;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    -----------------------------------------------------------------------------
@@ -2338,7 +2338,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Mesh
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DMesh'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMesh'Class
    );
 
    function get_Components
@@ -2356,7 +2356,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Thumbnail
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    );
 
    function get_Type
@@ -2368,7 +2368,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Type
    (
       this : in out Printing3DComponent;
-      value : Windows.Graphics.Printing3D.Printing3DObjectType
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DObjectType
    );
 
    function get_Name
@@ -2418,7 +2418,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Component
    (
       this : in out Printing3DComponentWithMatrix;
-      value : Windows.Graphics.Printing3D.Printing3DComponent'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DComponent'Class
    );
 
    function get_Matrix
@@ -2430,7 +2430,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Matrix
    (
       this : in out Printing3DComponentWithMatrix;
-      value : Windows.Foundation.Numerics.Matrix4x4
+      value : WinRt.Windows.Foundation.Numerics.Matrix4x4
    );
 
    -----------------------------------------------------------------------------
@@ -2498,7 +2498,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_BaseMaterialGroup
    (
       this : in out Printing3DCompositeMaterialGroup;
-      value : Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup'Class
    );
 
    -----------------------------------------------------------------------------
@@ -2642,7 +2642,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_VertexPositionsDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    );
 
    function get_VertexNormalsDescription
@@ -2654,7 +2654,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_VertexNormalsDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    );
 
    function get_TriangleIndicesDescription
@@ -2666,7 +2666,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TriangleIndicesDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    );
 
    function get_TriangleMaterialIndicesDescription
@@ -2678,7 +2678,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TriangleMaterialIndicesDescription
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DBufferDescription
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DBufferDescription
    );
 
    function GetVertexPositions
@@ -2744,7 +2744,7 @@ package WinRt.Windows.Graphics.Printing3D is
    function VerifyAsync
    (
       this : in out Printing3DMesh;
-      value : Windows.Graphics.Printing3D.Printing3DMeshVerificationMode
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMeshVerificationMode
    )
    return WinRt.Windows.Graphics.Printing3D.Printing3DMeshVerificationResult'Class;
 
@@ -2798,7 +2798,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Unit
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DModelUnit
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelUnit
    );
 
    function get_Textures
@@ -2828,7 +2828,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Material
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DMaterial'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DMaterial'Class
    );
 
    function get_Build
@@ -2840,7 +2840,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Build
    (
       this : in out Printing3DModel;
-      value : Windows.Graphics.Printing3D.Printing3DComponent'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DComponent'Class
    );
 
    function get_Version
@@ -2887,7 +2887,7 @@ package WinRt.Windows.Graphics.Printing3D is
    function TryPartialRepairAsync
    (
       this : in out Printing3DModel;
-      maxWaitTime : Windows.Foundation.TimeSpan
+      maxWaitTime : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean;
 
@@ -2900,15 +2900,15 @@ package WinRt.Windows.Graphics.Printing3D is
    function TryReduceFacesAsync
    (
       this : in out Printing3DModel;
-      printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class
+      printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class
    )
    return WinRt.Boolean;
 
    function TryReduceFacesAsync
    (
       this : in out Printing3DModel;
-      printing3DFaceReductionOptions_p : Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class;
-      maxWait : Windows.Foundation.TimeSpan
+      printing3DFaceReductionOptions_p : WinRt.Windows.Graphics.Printing3D.Printing3DFaceReductionOptions'Class;
+      maxWait : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Boolean;
 
@@ -2941,7 +2941,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TextureResource
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureResource'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureResource'Class
    );
 
    function get_TileStyleU
@@ -2953,7 +2953,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TileStyleU
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
    );
 
    function get_TileStyleV
@@ -2965,7 +2965,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TileStyleV
    (
       this : in out Printing3DModelTexture;
-      value : Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DTextureEdgeBehavior
    );
 
    -----------------------------------------------------------------------------
@@ -3047,7 +3047,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Texture
    (
       this : in out Printing3DTexture2CoordMaterial;
-      value : Windows.Graphics.Printing3D.Printing3DModelTexture'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture'Class
    );
 
    function get_U
@@ -3113,7 +3113,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_Texture
    (
       this : in out Printing3DTexture2CoordMaterialGroup;
-      value : Windows.Graphics.Printing3D.Printing3DModelTexture'Class
+      value : WinRt.Windows.Graphics.Printing3D.Printing3DModelTexture'Class
    );
 
    -----------------------------------------------------------------------------
@@ -3139,7 +3139,7 @@ package WinRt.Windows.Graphics.Printing3D is
    procedure put_TextureData
    (
       this : in out Printing3DTextureResource;
-      value : Windows.Storage.Streams.IRandomAccessStreamWithContentType
+      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamWithContentType
    );
 
    function get_Name

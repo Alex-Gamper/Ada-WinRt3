@@ -57,22 +57,22 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
 
    function Constructor
    (
-      effect : Windows.UI.Core.AnimationMetrics.AnimationEffect;
-      target : Windows.UI.Core.AnimationMetrics.AnimationEffectTarget
+      effect : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffect;
+      target : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffectTarget
    )
    return AnimationDescription is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.AnimationMetrics.AnimationDescription");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Core.AnimationMetrics.IAnimationDescription");
       m_Factory    : access IAnimationDescriptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Core.AnimationMetrics.IAnimationDescription;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Core.AnimationMetrics.IAnimationDescription;
    begin
       return RetVal : AnimationDescription do
          Hr := RoGetActivationFactory (m_hString, IID_IAnimationDescriptionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (effect, target, m_ComRetVal'Access);
-            Retval.m_IAnimationDescription := new Windows.UI.Core.AnimationMetrics.IAnimationDescription;
+            Retval.m_IAnimationDescription := new WinRt.Windows.UI.Core.AnimationMetrics.IAnimationDescription;
             Retval.m_IAnimationDescription.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -91,7 +91,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IPropertyAnimation.Kind;
    begin
       Hr := this.m_IAnimationDescription.all.get_Animations (m_ComRetVal'Access);
@@ -111,7 +111,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAnimationDescription.all.get_StaggerDelay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -145,7 +145,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAnimationDescription.all.get_DelayLimit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -202,7 +202,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IOpacityAnimation.all.get_InitialOpacity (m_ComRetVal'Access);
@@ -240,7 +240,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IOpacityAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOpacityAnimation.all);
@@ -261,7 +261,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IOpacityAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOpacityAnimation.all);
@@ -282,7 +282,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IOpacityAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOpacityAnimation.all);
@@ -303,7 +303,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IOpacityAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOpacityAnimation.all);
@@ -324,7 +324,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IOpacityAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IOpacityAnimation.all);
@@ -367,7 +367,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -384,7 +384,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Delay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -401,7 +401,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -418,7 +418,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Control1 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -435,7 +435,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Control2 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -475,7 +475,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScaleAnimation.all.get_InitialScaleX (m_ComRetVal'Access);
@@ -495,7 +495,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_IScaleAnimation.all.get_InitialScaleY (m_ComRetVal'Access);
@@ -549,7 +549,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IScaleAnimation.all.get_NormalizedOrigin (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -567,7 +567,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IScaleAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScaleAnimation.all);
@@ -588,7 +588,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IScaleAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScaleAnimation.all);
@@ -609,7 +609,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IScaleAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScaleAnimation.all);
@@ -630,7 +630,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IScaleAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScaleAnimation.all);
@@ -651,7 +651,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Core.AnimationMetrics.IScaleAnimation_Interface, WinRt.Windows.UI.Core.AnimationMetrics.IPropertyAnimation, WinRt.Windows.UI.Core.AnimationMetrics.IID_IPropertyAnimation'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScaleAnimation.all);
@@ -694,7 +694,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Core.AnimationMetrics.PropertyAnimationType;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -711,7 +711,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Delay (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -728,7 +728,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -745,7 +745,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Control1 (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -762,7 +762,7 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IPropertyAnimation.all.get_Control2 (m_ComRetVal'Access);
       if Hr /= S_OK then

@@ -147,7 +147,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonArray_Interface;
          index : WinRt.UInt32;
-         RetVal : access Windows.Data.Json.IJsonObject
+         RetVal : access WinRt.Windows.Data.Json.IJsonObject
       )
       return WinRt.Hresult is abstract;
 
@@ -155,7 +155,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonArray_Interface;
          index : WinRt.UInt32;
-         RetVal : access Windows.Data.Json.IJsonArray
+         RetVal : access WinRt.Windows.Data.Json.IJsonArray
       )
       return WinRt.Hresult is abstract;
 
@@ -192,7 +192,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonArrayStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonArray
+         RetVal : access WinRt.Windows.Data.Json.IJsonArray
       )
       return WinRt.Hresult is abstract;
 
@@ -200,7 +200,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonArrayStatics_Interface;
          input : WinRt.HString;
-         result : access Windows.Data.Json.IJsonArray;
+         result : access WinRt.Windows.Data.Json.IJsonArray;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -214,7 +214,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonErrorStatics2_Interface;
          hresult : WinRt.Int32;
-         RetVal : access Windows.Data.Json.JsonErrorStatus
+         RetVal : access WinRt.Windows.Data.Json.JsonErrorStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -227,7 +227,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObject_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -235,7 +235,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObject_Interface;
          name : WinRt.HString;
-         value : Windows.Data.Json.IJsonValue
+         value : WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -243,7 +243,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObject_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonObject
+         RetVal : access WinRt.Windows.Data.Json.IJsonObject
       )
       return WinRt.Hresult is abstract;
 
@@ -251,7 +251,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObject_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonArray
+         RetVal : access WinRt.Windows.Data.Json.IJsonArray
       )
       return WinRt.Hresult is abstract;
 
@@ -288,7 +288,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObjectStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonObject
+         RetVal : access WinRt.Windows.Data.Json.IJsonObject
       )
       return WinRt.Hresult is abstract;
 
@@ -296,7 +296,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObjectStatics_Interface;
          input : WinRt.HString;
-         result : access Windows.Data.Json.IJsonObject;
+         result : access WinRt.Windows.Data.Json.IJsonObject;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -310,8 +310,8 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObjectWithDefaultValues_Interface;
          name : WinRt.HString;
-         defaultValue : Windows.Data.Json.IJsonValue;
-         RetVal : access Windows.Data.Json.IJsonValue
+         defaultValue : WinRt.Windows.Data.Json.IJsonValue;
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -319,8 +319,8 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObjectWithDefaultValues_Interface;
          name : WinRt.HString;
-         defaultValue : Windows.Data.Json.IJsonObject;
-         RetVal : access Windows.Data.Json.IJsonObject
+         defaultValue : WinRt.Windows.Data.Json.IJsonObject;
+         RetVal : access WinRt.Windows.Data.Json.IJsonObject
       )
       return WinRt.Hresult is abstract;
 
@@ -337,8 +337,8 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonObjectWithDefaultValues_Interface;
          name : WinRt.HString;
-         defaultValue : Windows.Data.Json.IJsonArray;
-         RetVal : access Windows.Data.Json.IJsonArray
+         defaultValue : WinRt.Windows.Data.Json.IJsonArray;
+         RetVal : access WinRt.Windows.Data.Json.IJsonArray
       )
       return WinRt.Hresult is abstract;
 
@@ -368,7 +368,7 @@ package WinRt.Windows.Data.Json is
       function get_ValueType
       (
          this : access IJsonValue_Interface;
-         RetVal : access Windows.Data.Json.JsonValueType
+         RetVal : access WinRt.Windows.Data.Json.JsonValueType
       )
       return WinRt.Hresult is abstract;
 
@@ -403,14 +403,14 @@ package WinRt.Windows.Data.Json is
       function GetArray
       (
          this : access IJsonValue_Interface;
-         RetVal : access Windows.Data.Json.IJsonArray
+         RetVal : access WinRt.Windows.Data.Json.IJsonArray
       )
       return WinRt.Hresult is abstract;
 
       function GetObject
       (
          this : access IJsonValue_Interface;
-         RetVal : access Windows.Data.Json.IJsonObject
+         RetVal : access WinRt.Windows.Data.Json.IJsonObject
       )
       return WinRt.Hresult is abstract;
 
@@ -423,7 +423,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -431,7 +431,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonValueStatics_Interface;
          input : WinRt.HString;
-         result : access Windows.Data.Json.IJsonValue;
+         result : access WinRt.Windows.Data.Json.IJsonValue;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -440,7 +440,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonValueStatics_Interface;
          input : WinRt.Boolean;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -448,7 +448,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonValueStatics_Interface;
          input : WinRt.Double;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -456,7 +456,7 @@ package WinRt.Windows.Data.Json is
       (
          this : access IJsonValueStatics_Interface;
          input : WinRt.HString;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -468,7 +468,7 @@ package WinRt.Windows.Data.Json is
       function CreateNullValue
       (
          this : access IJsonValueStatics2_Interface;
-         RetVal : access Windows.Data.Json.IJsonValue
+         RetVal : access WinRt.Windows.Data.Json.IJsonValue
       )
       return WinRt.Hresult is abstract;
 
@@ -501,7 +501,7 @@ package WinRt.Windows.Data.Json is
    function TryParse
    (
       input : WinRt.WString;
-      result : access Windows.Data.Json.IJsonArray
+      result : access WinRt.Windows.Data.Json.IJsonArray
    )
    return WinRt.Boolean;
 
@@ -608,7 +608,7 @@ package WinRt.Windows.Data.Json is
    function IndexOf
    (
       this : in out JsonArray;
-      value : Windows.Data.Json.IJsonValue;
+      value : WinRt.Windows.Data.Json.IJsonValue;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -617,14 +617,14 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonArray;
       index : WinRt.UInt32;
-      value : Windows.Data.Json.IJsonValue
+      value : WinRt.Windows.Data.Json.IJsonValue
    );
 
    procedure InsertAt
    (
       this : in out JsonArray;
       index : WinRt.UInt32;
-      value : Windows.Data.Json.IJsonValue
+      value : WinRt.Windows.Data.Json.IJsonValue
    );
 
    procedure RemoveAt
@@ -636,7 +636,7 @@ package WinRt.Windows.Data.Json is
    procedure Append
    (
       this : in out JsonArray;
-      value : Windows.Data.Json.IJsonValue
+      value : WinRt.Windows.Data.Json.IJsonValue
    );
 
    procedure RemoveAtEnd
@@ -653,14 +653,14 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonArray;
       startIndex : WinRt.UInt32;
-      items : Windows.Data.Json.IJsonValue_Array
+      items : WinRt.Windows.Data.Json.IJsonValue_Array
    )
    return WinRt.UInt32;
 
    procedure ReplaceAll
    (
       this : in out JsonArray;
-      items : Windows.Data.Json.IJsonValue_Array
+      items : WinRt.Windows.Data.Json.IJsonValue_Array
    );
 
    -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Data.Json.IJsonValue>
@@ -711,7 +711,7 @@ package WinRt.Windows.Data.Json is
    function TryParse
    (
       input : WinRt.WString;
-      result : access Windows.Data.Json.IJsonObject
+      result : access WinRt.Windows.Data.Json.IJsonObject
    )
    return WinRt.Boolean;
 
@@ -729,7 +729,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonObject;
       name : WinRt.WString;
-      value : Windows.Data.Json.IJsonValue
+      value : WinRt.Windows.Data.Json.IJsonValue
    );
 
    function GetNamedObject
@@ -840,7 +840,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonObject;
       key : WinRt.WString;
-      value : Windows.Data.Json.IJsonValue
+      value : WinRt.Windows.Data.Json.IJsonValue
    )
    return WinRt.Boolean;
 
@@ -859,7 +859,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonObject;
       name : WinRt.WString;
-      defaultValue : Windows.Data.Json.JsonValue'Class
+      defaultValue : WinRt.Windows.Data.Json.JsonValue'Class
    )
    return WinRt.Windows.Data.Json.JsonValue'Class;
 
@@ -867,7 +867,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonObject;
       name : WinRt.WString;
-      defaultValue : Windows.Data.Json.JsonObject'Class
+      defaultValue : WinRt.Windows.Data.Json.JsonObject'Class
    )
    return WinRt.Windows.Data.Json.JsonObject'Class;
 
@@ -883,7 +883,7 @@ package WinRt.Windows.Data.Json is
    (
       this : in out JsonObject;
       name : WinRt.WString;
-      defaultValue : Windows.Data.Json.JsonArray'Class
+      defaultValue : WinRt.Windows.Data.Json.JsonArray'Class
    )
    return WinRt.Windows.Data.Json.JsonArray'Class;
 
@@ -930,7 +930,7 @@ package WinRt.Windows.Data.Json is
    function TryParse
    (
       input : WinRt.WString;
-      result : access Windows.Data.Json.IJsonValue
+      result : access WinRt.Windows.Data.Json.IJsonValue
    )
    return WinRt.Boolean;
 

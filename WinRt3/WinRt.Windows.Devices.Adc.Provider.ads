@@ -96,21 +96,21 @@ package WinRt.Windows.Devices.Adc.Provider is
       function get_ChannelMode
       (
          this : access IAdcControllerProvider_Interface;
-         RetVal : access Windows.Devices.Adc.Provider.ProviderAdcChannelMode
+         RetVal : access WinRt.Windows.Devices.Adc.Provider.ProviderAdcChannelMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ChannelMode
       (
          this : access IAdcControllerProvider_Interface;
-         value : Windows.Devices.Adc.Provider.ProviderAdcChannelMode
+         value : WinRt.Windows.Devices.Adc.Provider.ProviderAdcChannelMode
       )
       return WinRt.Hresult is abstract;
 
       function IsChannelModeSupported
       (
          this : access IAdcControllerProvider_Interface;
-         channelMode : Windows.Devices.Adc.Provider.ProviderAdcChannelMode;
+         channelMode : WinRt.Windows.Devices.Adc.Provider.ProviderAdcChannelMode;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;

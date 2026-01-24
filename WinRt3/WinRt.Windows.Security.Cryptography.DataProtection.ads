@@ -67,7 +67,7 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       function ProtectAsync
       (
          this : access IDataProtectionProvider_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -75,7 +75,7 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       function UnprotectAsync
       (
          this : access IDataProtectionProvider_Interface;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -83,18 +83,18 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       function ProtectStreamAsync
       (
          this : access IDataProtectionProvider_Interface;
-         src : Windows.Storage.Streams.IInputStream;
-         dest : Windows.Storage.Streams.IOutputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         src : WinRt.Windows.Storage.Streams.IInputStream;
+         dest : WinRt.Windows.Storage.Streams.IOutputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function UnprotectStreamAsync
       (
          this : access IDataProtectionProvider_Interface;
-         src : Windows.Storage.Streams.IInputStream;
-         dest : Windows.Storage.Streams.IOutputStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         src : WinRt.Windows.Storage.Streams.IInputStream;
+         dest : WinRt.Windows.Storage.Streams.IOutputStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -107,7 +107,7 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       (
          this : access IDataProtectionProviderFactory_Interface;
          protectionDescriptor : WinRt.HString;
-         RetVal : access Windows.Security.Cryptography.DataProtection.IDataProtectionProvider
+         RetVal : access WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -140,29 +140,29 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
    function ProtectAsync
    (
       this : in out DataProtectionProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    function UnprotectAsync
    (
       this : in out DataProtectionProvider;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Storage.Streams.IBuffer;
 
    procedure ProtectStreamAsync
    (
       this : in out DataProtectionProvider;
-      src : Windows.Storage.Streams.IInputStream;
-      dest : Windows.Storage.Streams.IOutputStream
+      src : WinRt.Windows.Storage.Streams.IInputStream;
+      dest : WinRt.Windows.Storage.Streams.IOutputStream
    );
 
    procedure UnprotectStreamAsync
    (
       this : in out DataProtectionProvider;
-      src : Windows.Storage.Streams.IInputStream;
-      dest : Windows.Storage.Streams.IOutputStream
+      src : WinRt.Windows.Storage.Streams.IInputStream;
+      dest : WinRt.Windows.Storage.Streams.IOutputStream
    );
 
 end WinRt.Windows.Security.Cryptography.DataProtection;

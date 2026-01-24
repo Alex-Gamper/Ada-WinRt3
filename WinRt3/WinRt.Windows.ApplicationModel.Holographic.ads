@@ -67,19 +67,19 @@ package WinRt.Windows.ApplicationModel.Holographic is
       function SetPlacementOverride
       (
          this : access IHolographicKeyboard_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         topCenterPosition : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion
       )
       return WinRt.Hresult is abstract;
 
       function SetPlacementOverride
       (
          this : access IHolographicKeyboard_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         topCenterPosition : Windows.Foundation.Numerics.Vector3;
-         orientation : Windows.Foundation.Numerics.Quaternion;
-         maxSize : Windows.Foundation.Numerics.Vector2
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+         orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+         maxSize : WinRt.Windows.Foundation.Numerics.Vector2
       )
       return WinRt.Hresult is abstract;
 
@@ -97,7 +97,7 @@ package WinRt.Windows.ApplicationModel.Holographic is
       function GetDefault
       (
          this : access IHolographicKeyboardStatics_Interface;
-         RetVal : access Windows.ApplicationModel.Holographic.IHolographicKeyboard
+         RetVal : access WinRt.Windows.ApplicationModel.Holographic.IHolographicKeyboard
       )
       return WinRt.Hresult is abstract;
 
@@ -125,18 +125,18 @@ package WinRt.Windows.ApplicationModel.Holographic is
    procedure SetPlacementOverride
    (
       this : in out HolographicKeyboard;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    );
 
    procedure SetPlacementOverride
    (
       this : in out HolographicKeyboard;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion;
-      maxSize : Windows.Foundation.Numerics.Vector2
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+      maxSize : WinRt.Windows.Foundation.Numerics.Vector2
    );
 
    procedure ResetPlacementOverride

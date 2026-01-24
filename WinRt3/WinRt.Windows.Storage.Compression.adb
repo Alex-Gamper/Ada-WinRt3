@@ -68,21 +68,21 @@ package body WinRt.Windows.Storage.Compression is
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IOutputStream
+      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream
    )
    return Compressor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.Compressor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.ICompressor");
       m_Factory    : access ICompressorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Compression.ICompressor;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Compression.ICompressor;
    begin
       return RetVal : Compressor do
          Hr := RoGetActivationFactory (m_hString, IID_ICompressorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCompressor (underlyingStream, m_ComRetVal'Access);
-            Retval.m_ICompressor := new Windows.Storage.Compression.ICompressor;
+            Retval.m_ICompressor := new WinRt.Windows.Storage.Compression.ICompressor;
             Retval.m_ICompressor.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -92,23 +92,23 @@ package body WinRt.Windows.Storage.Compression is
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IOutputStream;
-      algorithm : Windows.Storage.Compression.CompressAlgorithm;
+      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream;
+      algorithm : WinRt.Windows.Storage.Compression.CompressAlgorithm;
       blockSize : WinRt.UInt32
    )
    return Compressor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.Compressor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.ICompressor");
       m_Factory    : access ICompressorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Compression.ICompressor;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Compression.ICompressor;
    begin
       return RetVal : Compressor do
          Hr := RoGetActivationFactory (m_hString, IID_ICompressorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateCompressorEx (underlyingStream, algorithm, blockSize, m_ComRetVal'Access);
-            Retval.m_ICompressor := new Windows.Storage.Compression.ICompressor;
+            Retval.m_ICompressor := new WinRt.Windows.Storage.Compression.ICompressor;
             Retval.m_ICompressor.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -190,7 +190,7 @@ package body WinRt.Windows.Storage.Compression is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
    begin
       Hr := this.m_ICompressor.all.DetachStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -202,7 +202,7 @@ package body WinRt.Windows.Storage.Compression is
    function WriteAsync
    (
       this : in out Compressor;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -377,21 +377,21 @@ package body WinRt.Windows.Storage.Compression is
 
    function Constructor
    (
-      underlyingStream : Windows.Storage.Streams.IInputStream
+      underlyingStream : WinRt.Windows.Storage.Streams.IInputStream
    )
    return Decompressor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.Decompressor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Compression.IDecompressor");
       m_Factory    : access IDecompressorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Storage.Compression.IDecompressor;
+      m_ComRetVal  : aliased WinRt.Windows.Storage.Compression.IDecompressor;
    begin
       return RetVal : Decompressor do
          Hr := RoGetActivationFactory (m_hString, IID_IDecompressorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateDecompressor (underlyingStream, m_ComRetVal'Access);
-            Retval.m_IDecompressor := new Windows.Storage.Compression.IDecompressor;
+            Retval.m_IDecompressor := new WinRt.Windows.Storage.Compression.IDecompressor;
             Retval.m_IDecompressor.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -410,7 +410,7 @@ package body WinRt.Windows.Storage.Compression is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
    begin
       Hr := this.m_IDecompressor.all.DetachStream (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -422,9 +422,9 @@ package body WinRt.Windows.Storage.Compression is
    function ReadAsync
    (
       this : in out Decompressor;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;

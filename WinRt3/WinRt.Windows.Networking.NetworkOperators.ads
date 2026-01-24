@@ -1790,14 +1790,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Policy
       (
          this : access IESim_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimPolicy
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimPolicy
       )
       return WinRt.Hresult is abstract;
 
       function get_State
       (
          this : access IESim_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimState
       )
       return WinRt.Hresult is abstract;
 
@@ -1835,14 +1835,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESim_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ProfileChanged
       (
          this : access IESim_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1854,7 +1854,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function Discover
       (
          this : access IESim2_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimDiscoverResult
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1863,7 +1863,7 @@ package WinRt.Windows.Networking.NetworkOperators is
          this : access IESim2_Interface;
          serverAddress : WinRt.HString;
          matchingId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IESimDiscoverResult
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimDiscoverResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1903,7 +1903,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ESim
       (
          this : access IESimAddedEventArgs_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESim
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESim
       )
       return WinRt.Hresult is abstract;
 
@@ -1941,21 +1941,21 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Kind
       (
          this : access IESimDiscoverResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimDiscoverResultKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimDiscoverResultKind
       )
       return WinRt.Hresult is abstract;
 
       function get_ProfileMetadata
       (
          this : access IESimDiscoverResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimProfileMetadata
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata
       )
       return WinRt.Hresult is abstract;
 
       function get_Result
       (
          this : access IESimDiscoverResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimOperationResult
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimOperationResult
       )
       return WinRt.Hresult is abstract;
 
@@ -1967,14 +1967,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Result
       (
          this : access IESimDownloadProfileMetadataResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimOperationResult
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimOperationResult
       )
       return WinRt.Hresult is abstract;
 
       function get_ProfileMetadata
       (
          this : access IESimDownloadProfileMetadataResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimProfileMetadata
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimProfileMetadata
       )
       return WinRt.Hresult is abstract;
 
@@ -1986,14 +1986,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ServiceInfo
       (
          this : access IESimManagerStatics_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimServiceInfo
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimServiceInfo
       )
       return WinRt.Hresult is abstract;
 
       function TryCreateESimWatcher
       (
          this : access IESimManagerStatics_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimWatcher
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimWatcher
       )
       return WinRt.Hresult is abstract;
 
@@ -2001,14 +2001,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimManagerStatics_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServiceInfoChanged
       (
          this : access IESimManagerStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2020,7 +2020,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access IESimOperationResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimOperationStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2044,7 +2044,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Class
       (
          this : access IESimProfile_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimProfileClass
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimProfileClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2058,7 +2058,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Policy
       (
          this : access IESimProfile_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimProfilePolicy
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -2072,7 +2072,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ProviderIcon
       (
          this : access IESimProfile_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -2093,7 +2093,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_State
       (
          this : access IESimProfile_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimProfileState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimProfileState
       )
       return WinRt.Hresult is abstract;
 
@@ -2134,7 +2134,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Policy
       (
          this : access IESimProfileMetadata_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESimProfilePolicy
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESimProfilePolicy
       )
       return WinRt.Hresult is abstract;
 
@@ -2148,7 +2148,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ProviderIcon
       (
          this : access IESimProfileMetadata_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
@@ -2169,7 +2169,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_State
       (
          this : access IESimProfileMetadata_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimProfileMetadataState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimProfileMetadataState
       )
       return WinRt.Hresult is abstract;
 
@@ -2206,14 +2206,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimProfileMetadata_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IESimProfileMetadata_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2251,7 +2251,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ESim
       (
          this : access IESimRemovedEventArgs_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESim
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESim
       )
       return WinRt.Hresult is abstract;
 
@@ -2263,7 +2263,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_AuthenticationPreference
       (
          this : access IESimServiceInfo_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimAuthenticationPreference
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimAuthenticationPreference
       )
       return WinRt.Hresult is abstract;
 
@@ -2282,7 +2282,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ESim
       (
          this : access IESimUpdatedEventArgs_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IESim
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IESim
       )
       return WinRt.Hresult is abstract;
 
@@ -2294,7 +2294,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access IESimWatcher_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.ESimWatcherStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.ESimWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2314,14 +2314,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Added
       (
          this : access IESimWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2329,14 +2329,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IESimWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2344,14 +2344,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Removed
       (
          this : access IESimWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2359,14 +2359,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IESimWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2374,14 +2374,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IESimWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Updated
       (
          this : access IESimWatcher_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2401,28 +2401,28 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_NetworkAdapter
       (
          this : access IHotspotAuthenticationContext_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkAdapter
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkAdapter
       )
       return WinRt.Hresult is abstract;
 
       function get_RedirectMessageUrl
       (
          this : access IHotspotAuthenticationContext_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_RedirectMessageXml
       (
          this : access IHotspotAuthenticationContext_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationUrl
       (
          this : access IHotspotAuthenticationContext_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2482,7 +2482,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IHotspotAuthenticationContextStatics_Interface;
          evenToken : WinRt.HString;
-         context : access Windows.Networking.NetworkOperators.IHotspotAuthenticationContext;
+         context : access WinRt.Windows.Networking.NetworkOperators.IHotspotAuthenticationContext;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2514,21 +2514,21 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ResponseCode
       (
          this : access IHotspotCredentialsAuthenticationResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.HotspotAuthenticationResponseCode
       )
       return WinRt.Hresult is abstract;
 
       function get_LogoffUrl
       (
          this : access IHotspotCredentialsAuthenticationResult_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function get_AuthenticationReplyXml
       (
          this : access IHotspotCredentialsAuthenticationResult_Interface;
-         RetVal : access Windows.Data.Xml.Dom.IXmlDocument
+         RetVal : access WinRt.Windows.Data.Xml.Dom.IXmlDocument
       )
       return WinRt.Hresult is abstract;
 
@@ -2686,14 +2686,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_CurrentNetwork
       (
          this : access IMobileBroadbandAccount_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
       )
       return WinRt.Hresult is abstract;
 
       function get_CurrentDeviceInformation
       (
          this : access IMobileBroadbandAccount_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -2717,7 +2717,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_AccountExperienceUrl
       (
          this : access IMobileBroadbandAccount3_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -2749,7 +2749,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountStatics_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandAccount
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount
       )
       return WinRt.Hresult is abstract;
 
@@ -2788,14 +2788,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountAdded
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2803,14 +2803,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountUpdated
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2818,14 +2818,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountRemoved
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2833,14 +2833,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnumerationCompleted
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2848,21 +2848,21 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Stopped
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IMobileBroadbandAccountWatcher_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -2907,7 +2907,7 @@ package WinRt.Windows.Networking.NetworkOperators is
          this : access IMobileBroadbandAntennaSarFactory_Interface;
          antennaIndex : WinRt.Int32;
          sarBackoffIndex : WinRt.Int32;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar
       )
       return WinRt.Hresult is abstract;
 
@@ -3391,7 +3391,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_NetworkDeviceStatus
       (
          this : access IMobileBroadbandDeviceInformation_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.NetworkDeviceStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.NetworkDeviceStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3419,14 +3419,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_CellularClass
       (
          this : access IMobileBroadbandDeviceInformation_Interface;
-         RetVal : access Windows.Devices.Sms.CellularClass
+         RetVal : access WinRt.Windows.Devices.Sms.CellularClass
       )
       return WinRt.Hresult is abstract;
 
       function get_DataClasses
       (
          this : access IMobileBroadbandDeviceInformation_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.DataClasses
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.DataClasses
       )
       return WinRt.Hresult is abstract;
 
@@ -3468,7 +3468,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_DeviceType
       (
          this : access IMobileBroadbandDeviceInformation_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandDeviceType
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceType
       )
       return WinRt.Hresult is abstract;
 
@@ -3482,7 +3482,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_CurrentRadioState
       (
          this : access IMobileBroadbandDeviceInformation_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandRadioState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState
       )
       return WinRt.Hresult is abstract;
 
@@ -3494,7 +3494,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_PinManager
       (
          this : access IMobileBroadbandDeviceInformation2_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandPinManager
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPinManager
       )
       return WinRt.Hresult is abstract;
 
@@ -3546,7 +3546,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_SlotManager
       (
          this : access IMobileBroadbandDeviceInformation4_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotManager
       )
       return WinRt.Hresult is abstract;
 
@@ -3572,14 +3572,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function OpenDataSession
       (
          this : access IMobileBroadbandDeviceService_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceDataSession
       )
       return WinRt.Hresult is abstract;
 
       function OpenCommandSession
       (
          this : access IMobileBroadbandDeviceService_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceServiceCommandSession
       )
       return WinRt.Hresult is abstract;
 
@@ -3612,7 +3612,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ReceivedData
       (
          this : access IMobileBroadbandDeviceServiceCommandEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3631,7 +3631,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ResponseData
       (
          this : access IMobileBroadbandDeviceServiceCommandResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3644,7 +3644,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandDeviceServiceCommandSession_Interface;
          commandId : WinRt.UInt32;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3653,7 +3653,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandDeviceServiceCommandSession_Interface;
          commandId : WinRt.UInt32;
-         data : Windows.Storage.Streams.IBuffer;
+         data : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -3673,14 +3673,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandDeviceServiceCommandSession2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CommandReceived
       (
          this : access IMobileBroadbandDeviceServiceCommandSession2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3692,7 +3692,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ReceivedData
       (
          this : access IMobileBroadbandDeviceServiceDataReceivedEventArgs_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3704,8 +3704,8 @@ package WinRt.Windows.Networking.NetworkOperators is
       function WriteDataAsync
       (
          this : access IMobileBroadbandDeviceServiceDataSession_Interface;
-         value : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3719,14 +3719,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandDeviceServiceDataSession_Interface;
          eventHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataReceived
       (
          this : access IMobileBroadbandDeviceServiceDataSession_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3778,7 +3778,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ReceivedData
       (
          this : access IMobileBroadbandDeviceServiceTriggerDetails_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -3802,14 +3802,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_CurrentAccount
       (
          this : access IMobileBroadbandModem_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandAccount
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandAccount
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceInformation
       (
          this : access IMobileBroadbandModem_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation
       )
       return WinRt.Hresult is abstract;
 
@@ -3838,7 +3838,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandModem_Interface;
          deviceServiceId : WinRt.Guid;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandDeviceService
       )
       return WinRt.Hresult is abstract;
 
@@ -3852,7 +3852,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function ResetAsync
       (
          this : access IMobileBroadbandModem_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -3866,7 +3866,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_CurrentNetwork
       (
          this : access IMobileBroadbandModem_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
       )
       return WinRt.Hresult is abstract;
 
@@ -3913,14 +3913,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandModem3_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_IsInEmergencyCallModeChanged
       (
          this : access IMobileBroadbandModem3_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -3951,7 +3951,7 @@ package WinRt.Windows.Networking.NetworkOperators is
          this : access IMobileBroadbandModem4_Interface;
          value : WinRt.Boolean;
          slotindex : WinRt.Int32;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -3971,7 +3971,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Uicc
       (
          this : access IMobileBroadbandModemConfiguration_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandUicc
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandUicc
       )
       return WinRt.Hresult is abstract;
 
@@ -3997,7 +3997,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_SarManager
       (
          this : access IMobileBroadbandModemConfiguration2_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandSarManager
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSarManager
       )
       return WinRt.Hresult is abstract;
 
@@ -4009,29 +4009,29 @@ package WinRt.Windows.Networking.NetworkOperators is
       function AddAllowedHost
       (
          this : access IMobileBroadbandModemIsolation_Interface;
-         host : Windows.Networking.IHostName
+         host : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function AddAllowedHostRange
       (
          this : access IMobileBroadbandModemIsolation_Interface;
-         first : Windows.Networking.IHostName;
-         last : Windows.Networking.IHostName
+         first : WinRt.Windows.Networking.IHostName;
+         last : WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
       function ApplyConfigurationAsync
       (
          this : access IMobileBroadbandModemIsolation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearConfigurationAsync
       (
          this : access IMobileBroadbandModemIsolation_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -4045,7 +4045,7 @@ package WinRt.Windows.Networking.NetworkOperators is
          this : access IMobileBroadbandModemIsolationFactory_Interface;
          modemDeviceId : WinRt.HString;
          ruleGroupId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation
       )
       return WinRt.Hresult is abstract;
 
@@ -4065,14 +4065,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandModemStatics_Interface;
          deviceId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandModem
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access IMobileBroadbandModemStatics_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandModem
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandModem
       )
       return WinRt.Hresult is abstract;
 
@@ -4084,14 +4084,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_NetworkAdapter
       (
          this : access IMobileBroadbandNetwork_Interface;
-         RetVal : access Windows.Networking.Connectivity.INetworkAdapter
+         RetVal : access WinRt.Windows.Networking.Connectivity.INetworkAdapter
       )
       return WinRt.Hresult is abstract;
 
       function get_NetworkRegistrationState
       (
          this : access IMobileBroadbandNetwork_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.NetworkRegistrationState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.NetworkRegistrationState
       )
       return WinRt.Hresult is abstract;
 
@@ -4126,7 +4126,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_RegisteredDataClass
       (
          this : access IMobileBroadbandNetwork_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.DataClasses
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.DataClasses
       )
       return WinRt.Hresult is abstract;
 
@@ -4196,7 +4196,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Network
       (
          this : access IMobileBroadbandNetworkRegistrationStateChange_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandNetwork
       )
       return WinRt.Hresult is abstract;
 
@@ -4220,7 +4220,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Data
       (
          this : access IMobileBroadbandPco_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -4246,7 +4246,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_UpdatedData
       (
          this : access IMobileBroadbandPcoDataChangeTriggerDetails_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandPco
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPco
       )
       return WinRt.Hresult is abstract;
 
@@ -4258,21 +4258,21 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Type
       (
          this : access IMobileBroadbandPin_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandPinType
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType
       )
       return WinRt.Hresult is abstract;
 
       function get_LockState
       (
          this : access IMobileBroadbandPin_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandPinLockState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState
       )
       return WinRt.Hresult is abstract;
 
       function get_Format
       (
          this : access IMobileBroadbandPin_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandPinFormat
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -4361,14 +4361,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_PinType
       (
          this : access IMobileBroadbandPinLockStateChange_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandPinType
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType
       )
       return WinRt.Hresult is abstract;
 
       function get_PinLockState
       (
          this : access IMobileBroadbandPinLockStateChange_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandPinLockState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinLockState
       )
       return WinRt.Hresult is abstract;
 
@@ -4399,8 +4399,8 @@ package WinRt.Windows.Networking.NetworkOperators is
       function GetPin
       (
          this : access IMobileBroadbandPinManager_Interface;
-         pinType : Windows.Networking.NetworkOperators.MobileBroadbandPinType;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandPin
+         pinType : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType;
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandPin
       )
       return WinRt.Hresult is abstract;
 
@@ -4438,7 +4438,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_RadioState
       (
          this : access IMobileBroadbandRadioStateChange_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandRadioState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandRadioState
       )
       return WinRt.Hresult is abstract;
 
@@ -4490,7 +4490,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_HysteresisTimerPeriod
       (
          this : access IMobileBroadbandSarManager_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -4498,28 +4498,28 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandSarManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_TransmissionStateChanged
       (
          this : access IMobileBroadbandSarManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function EnableBackoffAsync
       (
          this : access IMobileBroadbandSarManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DisableBackoffAsync
       (
          this : access IMobileBroadbandSarManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -4527,22 +4527,22 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandSarManager_Interface;
          antennas : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function RevertSarToHardwareControlAsync
       (
          this : access IMobileBroadbandSarManager_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetTransmissionStateChangedHysteresisAsync
       (
          this : access IMobileBroadbandSarManager_Interface;
-         timerPeriod : Windows.Foundation.TimeSpan;
-         RetVal : access Windows.Foundation.IAsyncAction
+         timerPeriod : WinRt.Windows.Foundation.TimeSpan;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -4580,7 +4580,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_State
       (
          this : access IMobileBroadbandSlotInfo_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandSlotState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandSlotState
       )
       return WinRt.Hresult is abstract;
 
@@ -4604,7 +4604,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_SlotInfo
       (
          this : access IMobileBroadbandSlotInfoChangedEventArgs_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IMobileBroadbandSlotInfo
       )
       return WinRt.Hresult is abstract;
 
@@ -4631,7 +4631,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandSlotManager_Interface;
          slotIndex : WinRt.Int32;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandModemStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4647,14 +4647,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandSlotManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SlotInfoChanged
       (
          this : access IMobileBroadbandSlotManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4662,14 +4662,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IMobileBroadbandSlotManager_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CurrentSlotIndexChanged
       (
          this : access IMobileBroadbandSlotManager_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -4712,14 +4712,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Id
       (
          this : access IMobileBroadbandUiccApp_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IMobileBroadbandUiccApp_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.UiccAppKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.UiccAppKind
       )
       return WinRt.Hresult is abstract;
 
@@ -4748,14 +4748,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access IMobileBroadbandUiccAppReadRecordResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Data
       (
          this : access IMobileBroadbandUiccAppReadRecordResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -4767,14 +4767,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access IMobileBroadbandUiccAppRecordDetailsResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_Kind
       (
          this : access IMobileBroadbandUiccAppRecordDetailsResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.UiccAppRecordKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.UiccAppRecordKind
       )
       return WinRt.Hresult is abstract;
 
@@ -4795,14 +4795,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ReadAccessCondition
       (
          this : access IMobileBroadbandUiccAppRecordDetailsResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.UiccAccessCondition
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition
       )
       return WinRt.Hresult is abstract;
 
       function get_WriteAccessCondition
       (
          this : access IMobileBroadbandUiccAppRecordDetailsResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.UiccAccessCondition
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.UiccAccessCondition
       )
       return WinRt.Hresult is abstract;
 
@@ -4814,7 +4814,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access IMobileBroadbandUiccAppsResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.MobileBroadbandUiccAppOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -4833,7 +4833,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_NotificationKind
       (
          this : access INetworkOperatorDataUsageTriggerDetails_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.NetworkOperatorDataUsageNotificationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -4845,7 +4845,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_NotificationType
       (
          this : access INetworkOperatorNotificationEventDetails_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType
       )
       return WinRt.Hresult is abstract;
 
@@ -4880,7 +4880,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_SmsMessage
       (
          this : access INetworkOperatorNotificationEventDetails_Interface;
-         RetVal : access Windows.Devices.Sms.ISmsMessage
+         RetVal : access WinRt.Windows.Devices.Sms.ISmsMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -4925,7 +4925,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsBandSupported
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration2_Interface;
-         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -4933,7 +4933,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsBandSupportedAsync
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration2_Interface;
-         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4941,14 +4941,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Band
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration2_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiBand
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
       )
       return WinRt.Hresult is abstract;
 
       function put_Band
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration2_Interface;
-         value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+         value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
       )
       return WinRt.Hresult is abstract;
 
@@ -4960,7 +4960,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsAuthenticationKindSupported
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
-         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -4968,7 +4968,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsAuthenticationKindSupportedAsync
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
-         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -4976,14 +4976,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_AuthenticationKind
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthenticationKind
       (
          this : access INetworkOperatorTetheringAccessPointConfiguration3_Interface;
-         value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+         value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
       )
       return WinRt.Hresult is abstract;
 
@@ -5053,22 +5053,22 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_TetheringOperationalState
       (
          this : access INetworkOperatorTetheringManager_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringOperationalState
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringOperationalState
       )
       return WinRt.Hresult is abstract;
 
       function GetCurrentAccessPointConfiguration
       (
          this : access INetworkOperatorTetheringManager_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration
       )
       return WinRt.Hresult is abstract;
 
       function ConfigureAccessPointAsync
       (
          this : access INetworkOperatorTetheringManager_Interface;
-         configuration : Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
-         RetVal : access Windows.Foundation.IAsyncAction
+         configuration : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5094,7 +5094,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function StartTetheringAsync
       (
          this : access INetworkOperatorTetheringManager2_Interface;
-         configuration : Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
+         configuration : WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5108,7 +5108,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access INetworkOperatorTetheringManagerStatics_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringCapability
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringCapability
       )
       return WinRt.Hresult is abstract;
 
@@ -5116,7 +5116,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access INetworkOperatorTetheringManagerStatics_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
       )
       return WinRt.Hresult is abstract;
 
@@ -5128,16 +5128,16 @@ package WinRt.Windows.Networking.NetworkOperators is
       function GetTetheringCapabilityFromConnectionProfile
       (
          this : access INetworkOperatorTetheringManagerStatics2_Interface;
-         profile : Windows.Networking.Connectivity.IConnectionProfile;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringCapability
+         profile : WinRt.Windows.Networking.Connectivity.IConnectionProfile;
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringCapability
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromConnectionProfile
       (
          this : access INetworkOperatorTetheringManagerStatics2_Interface;
-         profile : Windows.Networking.Connectivity.IConnectionProfile;
-         RetVal : access Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
+         profile : WinRt.Windows.Networking.Connectivity.IConnectionProfile;
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
       )
       return WinRt.Hresult is abstract;
 
@@ -5149,9 +5149,9 @@ package WinRt.Windows.Networking.NetworkOperators is
       function CreateFromConnectionProfile
       (
          this : access INetworkOperatorTetheringManagerStatics3_Interface;
-         profile : Windows.Networking.Connectivity.IConnectionProfile;
-         adapter : Windows.Networking.Connectivity.INetworkAdapter;
-         RetVal : access Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
+         profile : WinRt.Windows.Networking.Connectivity.IConnectionProfile;
+         adapter : WinRt.Windows.Networking.Connectivity.INetworkAdapter;
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager
       )
       return WinRt.Hresult is abstract;
 
@@ -5176,7 +5176,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function EnableNoConnectionsTimeoutAsync
       (
          this : access INetworkOperatorTetheringManagerStatics4_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5189,7 +5189,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function DisableNoConnectionsTimeoutAsync
       (
          this : access INetworkOperatorTetheringManagerStatics4_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -5201,7 +5201,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Status
       (
          this : access INetworkOperatorTetheringOperationResult_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringOperationStatus
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringOperationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -5248,7 +5248,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsBandSupported
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -5256,7 +5256,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsBandSupportedAsync
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         band : Windows.Networking.NetworkOperators.TetheringWiFiBand;
+         band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5264,21 +5264,21 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_Band
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiBand
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
       )
       return WinRt.Hresult is abstract;
 
       function put_Band
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+         value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
       )
       return WinRt.Hresult is abstract;
 
       function IsAuthenticationKindSupported
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -5286,7 +5286,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function IsAuthenticationKindSupportedAsync
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
+         authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5294,28 +5294,28 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_AuthenticationKind
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
       )
       return WinRt.Hresult is abstract;
 
       function put_AuthenticationKind
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+         value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
       )
       return WinRt.Hresult is abstract;
 
       function get_PerformancePriority
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
       )
       return WinRt.Hresult is abstract;
 
       function put_PerformancePriority
       (
          this : access INetworkOperatorTetheringSessionAccessPointConfiguration_Interface;
-         value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+         value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
       )
       return WinRt.Hresult is abstract;
 
@@ -5346,14 +5346,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function UpdateCost
       (
          this : access IProvisionedProfile_Interface;
-         value : Windows.Networking.Connectivity.NetworkCostType
+         value : WinRt.Windows.Networking.Connectivity.NetworkCostType
       )
       return WinRt.Hresult is abstract;
 
       function UpdateUsage
       (
          this : access IProvisionedProfile_Interface;
-         value : Windows.Networking.NetworkOperators.ProfileUsage
+         value : WinRt.Windows.Networking.NetworkOperators.ProfileUsage
       )
       return WinRt.Hresult is abstract;
 
@@ -5373,9 +5373,9 @@ package WinRt.Windows.Networking.NetworkOperators is
       function GetProvisionedProfile
       (
          this : access IProvisioningAgent_Interface;
-         mediaType : Windows.Networking.NetworkOperators.ProfileMediaType;
+         mediaType : WinRt.Windows.Networking.NetworkOperators.ProfileMediaType;
          profileName : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IProvisionedProfile
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IProvisionedProfile
       )
       return WinRt.Hresult is abstract;
 
@@ -5388,7 +5388,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IProvisioningAgentStaticMethods_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IProvisioningAgent
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IProvisioningAgent
       )
       return WinRt.Hresult is abstract;
 
@@ -5475,7 +5475,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IUssdMessageFactory_Interface;
          messageText : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IUssdMessage
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IUssdMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -5487,14 +5487,14 @@ package WinRt.Windows.Networking.NetworkOperators is
       function get_ResultCode
       (
          this : access IUssdReply_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.UssdResultCode
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.UssdResultCode
       )
       return WinRt.Hresult is abstract;
 
       function get_Message
       (
          this : access IUssdReply_Interface;
-         RetVal : access Windows.Networking.NetworkOperators.IUssdMessage
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IUssdMessage
       )
       return WinRt.Hresult is abstract;
 
@@ -5506,7 +5506,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       function SendMessageAndGetReplyAsync
       (
          this : access IUssdSession_Interface;
-         message : Windows.Networking.NetworkOperators.IUssdMessage;
+         message : WinRt.Windows.Networking.NetworkOperators.IUssdMessage;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -5526,7 +5526,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IUssdSessionStatics_Interface;
          networkAccountId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IUssdSession
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IUssdSession
       )
       return WinRt.Hresult is abstract;
 
@@ -5534,7 +5534,7 @@ package WinRt.Windows.Networking.NetworkOperators is
       (
          this : access IUssdSessionStatics_Interface;
          networkInterfaceId : WinRt.HString;
-         RetVal : access Windows.Networking.NetworkOperators.IUssdSession
+         RetVal : access WinRt.Windows.Networking.NetworkOperators.IUssdSession
       )
       return WinRt.Hresult is abstract;
 
@@ -5625,7 +5625,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_ProfileChanged
    (
       this : in out ESim;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function Discover
@@ -5770,7 +5770,7 @@ package WinRt.Windows.Networking.NetworkOperators is
 
       procedure remove_ServiceInfoChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end ESimManager;
@@ -5967,7 +5967,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_StateChanged
    (
       this : in out ESimProfileMetadata;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6083,7 +6083,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Added
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -6096,7 +6096,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_EnumerationCompleted
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Removed
@@ -6109,7 +6109,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Removed
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -6122,7 +6122,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Stopped
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Updated
@@ -6135,7 +6135,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Updated
    (
       this : in out ESimWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -6150,7 +6150,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    function TryGetAuthenticationContext
    (
       evenToken : WinRt.WString;
-      context : access Windows.Networking.NetworkOperators.IHotspotAuthenticationContext
+      context : access WinRt.Windows.Networking.NetworkOperators.IHotspotAuthenticationContext
    )
    return WinRt.Boolean;
 
@@ -6470,7 +6470,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountAdded
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AccountUpdated
@@ -6483,7 +6483,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountUpdated
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AccountRemoved
@@ -6496,7 +6496,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_AccountRemoved
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_EnumerationCompleted
@@ -6509,7 +6509,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_EnumerationCompleted
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Stopped
@@ -6522,7 +6522,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_Stopped
    (
       this : in out MobileBroadbandAccountWatcher;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_Status
@@ -7245,7 +7245,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
       commandId : WinRt.UInt32;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class;
 
@@ -7253,7 +7253,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
       commandId : WinRt.UInt32;
-      data : Windows.Storage.Streams.IBuffer
+      data : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandDeviceServiceCommandResult'Class;
 
@@ -7272,7 +7272,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_CommandReceived
    (
       this : in out MobileBroadbandDeviceServiceCommandSession;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7302,7 +7302,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure WriteDataAsync
    (
       this : in out MobileBroadbandDeviceServiceDataSession;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    procedure CloseSession
@@ -7320,7 +7320,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_DataReceived
    (
       this : in out MobileBroadbandDeviceServiceDataSession;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -7502,7 +7502,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_IsInEmergencyCallModeChanged
    (
       this : in out MobileBroadbandModem;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function SetIsPassthroughEnabledAsync
@@ -7590,14 +7590,14 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure AddAllowedHost
    (
       this : in out MobileBroadbandModemIsolation;
-      host : Windows.Networking.HostName'Class
+      host : WinRt.Windows.Networking.HostName'Class
    );
 
    procedure AddAllowedHostRange
    (
       this : in out MobileBroadbandModemIsolation;
-      first : Windows.Networking.HostName'Class;
-      last : Windows.Networking.HostName'Class
+      first : WinRt.Windows.Networking.HostName'Class;
+      last : WinRt.Windows.Networking.HostName'Class
    );
 
    procedure ApplyConfigurationAsync
@@ -7922,7 +7922,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    function GetPin
    (
       this : in out MobileBroadbandPinManager;
-      pinType : Windows.Networking.NetworkOperators.MobileBroadbandPinType
+      pinType : WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPinType
    )
    return WinRt.Windows.Networking.NetworkOperators.MobileBroadbandPin'Class;
 
@@ -8032,7 +8032,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_TransmissionStateChanged
    (
       this : in out MobileBroadbandSarManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure EnableBackoffAsync
@@ -8059,7 +8059,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure SetTransmissionStateChangedHysteresisAsync
    (
       this : in out MobileBroadbandSarManager;
-      timerPeriod : Windows.Foundation.TimeSpan
+      timerPeriod : WinRt.Windows.Foundation.TimeSpan
    );
 
    function GetIsTransmittingAsync
@@ -8165,7 +8165,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_SlotInfoChanged
    (
       this : in out MobileBroadbandSlotManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_CurrentSlotIndexChanged
@@ -8178,7 +8178,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure remove_CurrentSlotIndexChanged
    (
       this : in out MobileBroadbandSlotManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -8448,14 +8448,14 @@ package WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupported
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean;
 
    function IsBandSupportedAsync
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean;
 
@@ -8468,20 +8468,20 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure put_Band
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    );
 
    function IsAuthenticationKindSupported
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean;
 
    function IsAuthenticationKindSupportedAsync
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean;
 
@@ -8494,7 +8494,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure put_AuthenticationKind
    (
       this : in out NetworkOperatorTetheringAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    );
 
    -----------------------------------------------------------------------------
@@ -8552,20 +8552,20 @@ package WinRt.Windows.Networking.NetworkOperators is
 
    function GetTetheringCapabilityFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.TetheringCapability;
 
    function CreateFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
 
    function CreateFromConnectionProfile
    (
-      profile : Windows.Networking.Connectivity.ConnectionProfile'Class;
-      adapter : Windows.Networking.Connectivity.NetworkAdapter'Class
+      profile : WinRt.Windows.Networking.Connectivity.ConnectionProfile'Class;
+      adapter : WinRt.Windows.Networking.Connectivity.NetworkAdapter'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager;
 
@@ -8599,7 +8599,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure ConfigureAccessPointAsync
    (
       this : in out NetworkOperatorTetheringManager;
-      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class
+      configuration : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration'Class
    );
 
    function StartTetheringAsync
@@ -8623,7 +8623,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    function StartTetheringAsync
    (
       this : in out NetworkOperatorTetheringManager;
-      configuration : Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
+      configuration : WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.NetworkOperatorTetheringOperationResult'Class;
 
@@ -8689,14 +8689,14 @@ package WinRt.Windows.Networking.NetworkOperators is
    function IsBandSupported
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean;
 
    function IsBandSupportedAsync
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      band : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      band : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    )
    return WinRt.Boolean;
 
@@ -8709,20 +8709,20 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure put_Band
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiBand
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiBand
    );
 
    function IsAuthenticationKindSupported
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean;
 
    function IsAuthenticationKindSupportedAsync
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      authenticationKind : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      authenticationKind : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    )
    return WinRt.Boolean;
 
@@ -8735,7 +8735,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure put_AuthenticationKind
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiAuthenticationKind
    );
 
    function get_PerformancePriority
@@ -8747,7 +8747,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure put_PerformancePriority
    (
       this : in out NetworkOperatorTetheringSessionAccessPointConfiguration;
-      value : Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
+      value : WinRt.Windows.Networking.NetworkOperators.TetheringWiFiPerformancePriority
    );
 
    -----------------------------------------------------------------------------
@@ -8783,13 +8783,13 @@ package WinRt.Windows.Networking.NetworkOperators is
    procedure UpdateCost
    (
       this : in out ProvisionedProfile;
-      value : Windows.Networking.Connectivity.NetworkCostType
+      value : WinRt.Windows.Networking.Connectivity.NetworkCostType
    );
 
    procedure UpdateUsage
    (
       this : in out ProvisionedProfile;
-      value : Windows.Networking.NetworkOperators.ProfileUsage
+      value : WinRt.Windows.Networking.NetworkOperators.ProfileUsage
    );
 
    -----------------------------------------------------------------------------
@@ -8825,7 +8825,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    function GetProvisionedProfile
    (
       this : in out ProvisioningAgent;
-      mediaType : Windows.Networking.NetworkOperators.ProfileMediaType;
+      mediaType : WinRt.Windows.Networking.NetworkOperators.ProfileMediaType;
       profileName : WinRt.WString
    )
    return WinRt.Windows.Networking.NetworkOperators.ProvisionedProfile'Class;
@@ -8958,7 +8958,7 @@ package WinRt.Windows.Networking.NetworkOperators is
    function SendMessageAndGetReplyAsync
    (
       this : in out UssdSession;
-      message : Windows.Networking.NetworkOperators.UssdMessage'Class
+      message : WinRt.Windows.Networking.NetworkOperators.UssdMessage'Class
    )
    return WinRt.Windows.Networking.NetworkOperators.UssdReply'Class;
 

@@ -57,21 +57,21 @@ package body WinRt.Windows.Data.Xml.Xsl is
 
    function Constructor
    (
-      document : Windows.Data.Xml.Dom.XmlDocument'Class
+      document : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return XsltProcessor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.XsltProcessor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.IXsltProcessor");
       m_Factory    : access IXsltProcessorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.Data.Xml.Xsl.IXsltProcessor;
+      m_ComRetVal  : aliased WinRt.Windows.Data.Xml.Xsl.IXsltProcessor;
    begin
       return RetVal : XsltProcessor do
          Hr := RoGetActivationFactory (m_hString, IID_IXsltProcessorFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (document.m_IXmlDocument.all, m_ComRetVal'Access);
-            Retval.m_IXsltProcessor := new Windows.Data.Xml.Xsl.IXsltProcessor;
+            Retval.m_IXsltProcessor := new WinRt.Windows.Data.Xml.Xsl.IXsltProcessor;
             Retval.m_IXsltProcessor.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -85,7 +85,7 @@ package body WinRt.Windows.Data.Xml.Xsl is
    function TransformToString
    (
       this : in out XsltProcessor;
-      inputNode : Windows.Data.Xml.Dom.IXmlNode
+      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
    )
    return WinRt.WString is
       Hr               : WinRt.HResult := S_OK;
@@ -106,14 +106,14 @@ package body WinRt.Windows.Data.Xml.Xsl is
    function TransformToDocument
    (
       this : in out XsltProcessor;
-      inputNode : Windows.Data.Xml.Dom.IXmlNode
+      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
    )
    return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Data.Xml.Xsl.IXsltProcessor2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Data.Xml.Xsl.IXsltProcessor_Interface, WinRt.Windows.Data.Xml.Xsl.IXsltProcessor2, WinRt.Windows.Data.Xml.Xsl.IID_IXsltProcessor2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
@@ -123,7 +123,7 @@ package body WinRt.Windows.Data.Xml.Xsl is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;

@@ -62,7 +62,7 @@ package body WinRt.Windows.ApplicationModel.Holographic is
       m_hString        : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Holographic.HolographicKeyboard");
       m_Factory        : access WinRt.Windows.ApplicationModel.Holographic.IHolographicKeyboardStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.Holographic.IHolographicKeyboard;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.Holographic.IHolographicKeyboard;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.Holographic.HolographicKeyboard do
          Hr := RoGetActivationFactory (m_hString, IID_IHolographicKeyboardStatics'Access , m_Factory'Address);
@@ -72,7 +72,7 @@ package body WinRt.Windows.ApplicationModel.Holographic is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IHolographicKeyboard := new Windows.ApplicationModel.Holographic.IHolographicKeyboard;
+            Retval.m_IHolographicKeyboard := new WinRt.Windows.ApplicationModel.Holographic.IHolographicKeyboard;
             Retval.m_IHolographicKeyboard.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -85,9 +85,9 @@ package body WinRt.Windows.ApplicationModel.Holographic is
    procedure SetPlacementOverride
    (
       this : in out HolographicKeyboard;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -102,10 +102,10 @@ package body WinRt.Windows.ApplicationModel.Holographic is
    procedure SetPlacementOverride
    (
       this : in out HolographicKeyboard;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : Windows.Foundation.Numerics.Vector3;
-      orientation : Windows.Foundation.Numerics.Quaternion;
-      maxSize : Windows.Foundation.Numerics.Vector2
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
+      orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
+      maxSize : WinRt.Windows.Foundation.Numerics.Vector2
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

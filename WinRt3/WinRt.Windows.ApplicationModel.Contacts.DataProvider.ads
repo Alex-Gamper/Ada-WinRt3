@@ -157,14 +157,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       (
          this : access IContactDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SyncRequested
       (
          this : access IContactDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -172,14 +172,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       (
          this : access IContactDataProviderConnection_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ServerSearchReadBatchRequested
       (
          this : access IContactDataProviderConnection_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -198,14 +198,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       (
          this : access IContactDataProviderConnection2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_CreateOrUpdateContactRequested
       (
          this : access IContactDataProviderConnection2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -213,14 +213,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       (
          this : access IContactDataProviderConnection2_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DeleteContactRequested
       (
          this : access IContactDataProviderConnection2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -232,7 +232,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Connection
       (
          this : access IContactDataProviderTriggerDetails_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactDataProviderConnection
       )
       return WinRt.Hresult is abstract;
 
@@ -251,22 +251,22 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Contact
       (
          this : access IContactListCreateOrUpdateContactRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContact
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContact
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IContactListCreateOrUpdateContactRequest_Interface;
-         createdOrUpdatedContact : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.Foundation.IAsyncAction
+         createdOrUpdatedContact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IContactListCreateOrUpdateContactRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -278,14 +278,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Request
       (
          this : access IContactListCreateOrUpdateContactRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListCreateOrUpdateContactRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IContactListCreateOrUpdateContactRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -311,14 +311,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function ReportCompletedAsync
       (
          this : access IContactListDeleteContactRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IContactListDeleteContactRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -330,14 +330,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Request
       (
          this : access IContactListDeleteContactRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListDeleteContactRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IContactListDeleteContactRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -363,7 +363,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Options
       (
          this : access IContactListServerSearchReadBatchRequest_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.IContactQueryOptions
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -377,23 +377,23 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function SaveContactAsync
       (
          this : access IContactListServerSearchReadBatchRequest_Interface;
-         contact : Windows.ApplicationModel.Contacts.IContact;
-         RetVal : access Windows.Foundation.IAsyncAction
+         contact : WinRt.Windows.ApplicationModel.Contacts.IContact;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportCompletedAsync
       (
          this : access IContactListServerSearchReadBatchRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IContactListServerSearchReadBatchRequest_Interface;
-         batchStatus : Windows.ApplicationModel.Contacts.ContactBatchStatus;
-         RetVal : access Windows.Foundation.IAsyncAction
+         batchStatus : WinRt.Windows.ApplicationModel.Contacts.ContactBatchStatus;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -405,14 +405,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Request
       (
          this : access IContactListServerSearchReadBatchRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListServerSearchReadBatchRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IContactListServerSearchReadBatchRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -431,14 +431,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function ReportCompletedAsync
       (
          this : access IContactListSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReportFailedAsync
       (
          this : access IContactListSyncManagerSyncRequest_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -450,14 +450,14 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       function get_Request
       (
          this : access IContactListSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest
+         RetVal : access WinRt.Windows.ApplicationModel.Contacts.DataProvider.IContactListSyncManagerSyncRequest
       )
       return WinRt.Hresult is abstract;
 
       function GetDeferral
       (
          this : access IContactListSyncManagerSyncRequestEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -486,7 +486,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_SyncRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ServerSearchReadBatchRequested
@@ -499,7 +499,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_ServerSearchReadBatchRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure Start
@@ -517,7 +517,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_CreateOrUpdateContactRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DeleteContactRequested
@@ -530,7 +530,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure remove_DeleteContactRequested
    (
       this : in out ContactDataProviderConnection;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------
@@ -572,7 +572,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure ReportCompletedAsync
    (
       this : in out ContactListCreateOrUpdateContactRequest;
-      createdOrUpdatedContact : Windows.ApplicationModel.Contacts.Contact'Class
+      createdOrUpdatedContact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    procedure ReportFailedAsync
@@ -689,7 +689,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure SaveContactAsync
    (
       this : in out ContactListServerSearchReadBatchRequest;
-      contact : Windows.ApplicationModel.Contacts.Contact'Class
+      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
    );
 
    procedure ReportCompletedAsync
@@ -700,7 +700,7 @@ package WinRt.Windows.ApplicationModel.Contacts.DataProvider is
    procedure ReportFailedAsync
    (
       this : in out ContactListServerSearchReadBatchRequest;
-      batchStatus : Windows.ApplicationModel.Contacts.ContactBatchStatus
+      batchStatus : WinRt.Windows.ApplicationModel.Contacts.ContactBatchStatus
    );
 
    -----------------------------------------------------------------------------

@@ -143,7 +143,7 @@ package body WinRt.Windows.Devices.Display is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IDisplayMonitor := new Windows.Devices.Display.IDisplayMonitor;
+                     Retval.m_IDisplayMonitor := new WinRt.Windows.Devices.Display.IDisplayMonitor;
                      Retval.m_IDisplayMonitor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -218,7 +218,7 @@ package body WinRt.Windows.Devices.Display is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IDisplayMonitor := new Windows.Devices.Display.IDisplayMonitor;
+                     Retval.m_IDisplayMonitor := new WinRt.Windows.Devices.Display.IDisplayMonitor;
                      Retval.m_IDisplayMonitor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -285,7 +285,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.DisplayMonitorConnectionKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.DisplayMonitorConnectionKind;
    begin
       Hr := this.m_IDisplayMonitor.all.get_ConnectionKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -302,7 +302,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.DisplayMonitorPhysicalConnectorKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.DisplayMonitorPhysicalConnectorKind;
    begin
       Hr := this.m_IDisplayMonitor.all.get_PhysicalConnector (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -339,7 +339,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DisplayAdapterId;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DisplayAdapterId;
    begin
       Hr := this.m_IDisplayMonitor.all.get_DisplayAdapterId (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -373,7 +373,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Display.DisplayMonitorUsageKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Display.DisplayMonitorUsageKind;
    begin
       Hr := this.m_IDisplayMonitor.all.get_UsageKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -390,7 +390,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.SizeInt32;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.SizeInt32;
    begin
       Hr := this.m_IDisplayMonitor.all.get_NativeResolutionInRawPixels (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -407,7 +407,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Size.Kind;
    begin
       Hr := this.m_IDisplayMonitor.all.get_PhysicalSizeInInches (m_ComRetVal'Access);
@@ -461,7 +461,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDisplayMonitor.all.get_RedPrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -478,7 +478,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDisplayMonitor.all.get_GreenPrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -495,7 +495,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDisplayMonitor.all.get_BluePrimary (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -512,7 +512,7 @@ package body WinRt.Windows.Devices.Display is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDisplayMonitor.all.get_WhitePoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -575,7 +575,7 @@ package body WinRt.Windows.Devices.Display is
    function GetDescriptor
    (
       this : in out DisplayMonitor;
-      descriptorKind : Windows.Devices.Display.DisplayMonitorDescriptorKind
+      descriptorKind : WinRt.Windows.Devices.Display.DisplayMonitorDescriptorKind
    )
    return WinRt.Byte_Array is
       Hr               : WinRt.HResult := S_OK;

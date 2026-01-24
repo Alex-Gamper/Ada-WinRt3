@@ -330,14 +330,14 @@ package WinRt.Windows.Networking.XboxLive is
       (
          this : access IXboxLiveDeviceAddress_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_SnapshotChanged
       (
          this : access IXboxLiveDeviceAddress_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -351,7 +351,7 @@ package WinRt.Windows.Networking.XboxLive is
       function GetSnapshotAsBuffer
       (
          this : access IXboxLiveDeviceAddress_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -367,7 +367,7 @@ package WinRt.Windows.Networking.XboxLive is
       function Compare
       (
          this : access IXboxLiveDeviceAddress_Interface;
-         otherDeviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         otherDeviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          RetVal : access WinRt.Int32
       )
       return WinRt.Hresult is abstract;
@@ -389,7 +389,7 @@ package WinRt.Windows.Networking.XboxLive is
       function get_NetworkAccessKind
       (
          this : access IXboxLiveDeviceAddress_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveNetworkAccessKind
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveNetworkAccessKind
       )
       return WinRt.Hresult is abstract;
 
@@ -402,15 +402,15 @@ package WinRt.Windows.Networking.XboxLive is
       (
          this : access IXboxLiveDeviceAddressStatics_Interface;
          base64 : WinRt.HString;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function CreateFromSnapshotBuffer
       (
          this : access IXboxLiveDeviceAddressStatics_Interface;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -419,14 +419,14 @@ package WinRt.Windows.Networking.XboxLive is
          this : access IXboxLiveDeviceAddressStatics_Interface;
          bufferSize : WinRt.UInt32;
          buffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function GetLocal
       (
          this : access IXboxLiveDeviceAddressStatics_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
@@ -446,21 +446,21 @@ package WinRt.Windows.Networking.XboxLive is
       (
          this : access IXboxLiveEndpointPair_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access IXboxLiveEndpointPair_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -483,28 +483,28 @@ package WinRt.Windows.Networking.XboxLive is
       function get_State
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveEndpointPairState
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState
       )
       return WinRt.Hresult is abstract;
 
       function get_Template
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate
       )
       return WinRt.Hresult is abstract;
 
       function get_RemoteDeviceAddress
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_RemoteHostName
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -518,7 +518,7 @@ package WinRt.Windows.Networking.XboxLive is
       function get_LocalHostName
       (
          this : access IXboxLiveEndpointPair_Interface;
-         RetVal : access Windows.Networking.IHostName
+         RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
 
@@ -537,14 +537,14 @@ package WinRt.Windows.Networking.XboxLive is
       function get_DeviceAddress
       (
          this : access IXboxLiveEndpointPairCreationResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_Status
       (
          this : access IXboxLiveEndpointPairCreationResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveEndpointPairCreationStatus
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationStatus
       )
       return WinRt.Hresult is abstract;
 
@@ -558,7 +558,7 @@ package WinRt.Windows.Networking.XboxLive is
       function get_EndpointPair
       (
          this : access IXboxLiveEndpointPairCreationResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPair
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPair
       )
       return WinRt.Hresult is abstract;
 
@@ -570,14 +570,14 @@ package WinRt.Windows.Networking.XboxLive is
       function get_OldState
       (
          this : access IXboxLiveEndpointPairStateChangedEventArgs_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveEndpointPairState
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState
       )
       return WinRt.Hresult is abstract;
 
       function get_NewState
       (
          this : access IXboxLiveEndpointPairStateChangedEventArgs_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveEndpointPairState
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairState
       )
       return WinRt.Hresult is abstract;
 
@@ -593,18 +593,18 @@ package WinRt.Windows.Networking.XboxLive is
          localSocketAddress : WinRt.Byte_Ptr;
          remoteSocketAddressSize : WinRt.UInt32;
          remoteSocketAddress : WinRt.Byte_Ptr;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPair
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPair
       )
       return WinRt.Hresult is abstract;
 
       function FindEndpointPairByHostNamesAndPorts
       (
          this : access IXboxLiveEndpointPairStatics_Interface;
-         localHostName : Windows.Networking.IHostName;
+         localHostName : WinRt.Windows.Networking.IHostName;
          localPort : WinRt.HString;
-         remoteHostName : Windows.Networking.IHostName;
+         remoteHostName : WinRt.Windows.Networking.IHostName;
          remotePort : WinRt.HString;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPair
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPair
       )
       return WinRt.Hresult is abstract;
 
@@ -617,21 +617,21 @@ package WinRt.Windows.Networking.XboxLive is
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_InboundEndpointPairCreated
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function CreateEndpointPairAsync
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -639,8 +639,8 @@ package WinRt.Windows.Networking.XboxLive is
       function CreateEndpointPairAsync
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
-         behaviors : Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors;
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         behaviors : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -648,7 +648,7 @@ package WinRt.Windows.Networking.XboxLive is
       function CreateEndpointPairForPortsAsync
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          initiatorPort : WinRt.HString;
          acceptorPort : WinRt.HString;
          RetVal : access GenericObject
@@ -658,10 +658,10 @@ package WinRt.Windows.Networking.XboxLive is
       function CreateEndpointPairForPortsAsync
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          initiatorPort : WinRt.HString;
          acceptorPort : WinRt.HString;
-         behaviors : Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors;
+         behaviors : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -676,7 +676,7 @@ package WinRt.Windows.Networking.XboxLive is
       function get_SocketKind
       (
          this : access IXboxLiveEndpointPairTemplate_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveSocketKind
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveSocketKind
       )
       return WinRt.Hresult is abstract;
 
@@ -724,7 +724,7 @@ package WinRt.Windows.Networking.XboxLive is
       (
          this : access IXboxLiveEndpointPairTemplateStatics_Interface;
          name : WinRt.HString;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPairTemplate
       )
       return WinRt.Hresult is abstract;
 
@@ -743,7 +743,7 @@ package WinRt.Windows.Networking.XboxLive is
       function get_EndpointPair
       (
          this : access IXboxLiveInboundEndpointPairCreatedEventArgs_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveEndpointPair
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveEndpointPair
       )
       return WinRt.Hresult is abstract;
 
@@ -755,14 +755,14 @@ package WinRt.Windows.Networking.XboxLive is
       function MeasureAsync
       (
          this : access IXboxLiveQualityOfServiceMeasurement_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function GetMetricResultsForDevice
       (
          this : access IXboxLiveQualityOfServiceMeasurement_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -770,7 +770,7 @@ package WinRt.Windows.Networking.XboxLive is
       function GetMetricResultsForMetric
       (
          this : access IXboxLiveQualityOfServiceMeasurement_Interface;
-         metric : Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric;
+         metric : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -778,17 +778,17 @@ package WinRt.Windows.Networking.XboxLive is
       function GetMetricResult
       (
          this : access IXboxLiveQualityOfServiceMeasurement_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
-         metric : Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMetricResult
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         metric : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric;
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMetricResult
       )
       return WinRt.Hresult is abstract;
 
       function GetPrivatePayloadResult
       (
          this : access IXboxLiveQualityOfServiceMeasurement_Interface;
-         deviceAddress : Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveQualityOfServicePrivatePayloadResult
+         deviceAddress : WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress;
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServicePrivatePayloadResult
       )
       return WinRt.Hresult is abstract;
 
@@ -933,14 +933,14 @@ package WinRt.Windows.Networking.XboxLive is
       function get_PublishedPrivatePayload
       (
          this : access IXboxLiveQualityOfServiceMeasurementStatics_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
       function put_PublishedPrivatePayload
       (
          this : access IXboxLiveQualityOfServiceMeasurementStatics_Interface;
-         value : Windows.Storage.Streams.IBuffer
+         value : WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -959,21 +959,21 @@ package WinRt.Windows.Networking.XboxLive is
       function get_Status
       (
          this : access IXboxLiveQualityOfServiceMetricResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceAddress
       (
          this : access IXboxLiveQualityOfServiceMetricResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_Metric
       (
          this : access IXboxLiveQualityOfServiceMetricResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
       )
       return WinRt.Hresult is abstract;
 
@@ -992,21 +992,21 @@ package WinRt.Windows.Networking.XboxLive is
       function get_Status
       (
          this : access IXboxLiveQualityOfServicePrivatePayloadResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus
+         RetVal : access WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurementStatus
       )
       return WinRt.Hresult is abstract;
 
       function get_DeviceAddress
       (
          this : access IXboxLiveQualityOfServicePrivatePayloadResult_Interface;
-         RetVal : access Windows.Networking.XboxLive.IXboxLiveDeviceAddress
+         RetVal : access WinRt.Windows.Networking.XboxLive.IXboxLiveDeviceAddress
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access IXboxLiveQualityOfServicePrivatePayloadResult_Interface;
-         RetVal : access Windows.Storage.Streams.IBuffer
+         RetVal : access WinRt.Windows.Storage.Streams.IBuffer
       )
       return WinRt.Hresult is abstract;
 
@@ -1033,7 +1033,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    function CreateFromSnapshotBuffer
    (
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress;
 
@@ -1062,7 +1062,7 @@ package WinRt.Windows.Networking.XboxLive is
    procedure remove_SnapshotChanged
    (
       this : in out XboxLiveDeviceAddress;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function GetSnapshotAsBase64
@@ -1087,7 +1087,7 @@ package WinRt.Windows.Networking.XboxLive is
    function Compare
    (
       this : in out XboxLiveDeviceAddress;
-      otherDeviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
+      otherDeviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
    )
    return WinRt.Int32;
 
@@ -1127,9 +1127,9 @@ package WinRt.Windows.Networking.XboxLive is
 
    function FindEndpointPairByHostNamesAndPorts
    (
-      localHostName : Windows.Networking.HostName'Class;
+      localHostName : WinRt.Windows.Networking.HostName'Class;
       localPort : WinRt.WString;
-      remoteHostName : Windows.Networking.HostName'Class;
+      remoteHostName : WinRt.Windows.Networking.HostName'Class;
       remotePort : WinRt.WString
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPair;
@@ -1147,7 +1147,7 @@ package WinRt.Windows.Networking.XboxLive is
    procedure remove_StateChanged
    (
       this : in out XboxLiveEndpointPair;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure DeleteAsync
@@ -1294,28 +1294,28 @@ package WinRt.Windows.Networking.XboxLive is
    procedure remove_InboundEndpointPairCreated
    (
       this : in out XboxLiveEndpointPairTemplate;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function CreateEndpointPairAsync
    (
       this : in out XboxLiveEndpointPairTemplate;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class;
 
    function CreateEndpointPairAsync
    (
       this : in out XboxLiveEndpointPairTemplate;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
-      behaviors : Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
+      behaviors : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class;
 
    function CreateEndpointPairForPortsAsync
    (
       this : in out XboxLiveEndpointPairTemplate;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
       initiatorPort : WinRt.WString;
       acceptorPort : WinRt.WString
    )
@@ -1324,10 +1324,10 @@ package WinRt.Windows.Networking.XboxLive is
    function CreateEndpointPairForPortsAsync
    (
       this : in out XboxLiveEndpointPairTemplate;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
       initiatorPort : WinRt.WString;
       acceptorPort : WinRt.WString;
-      behaviors : Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors
+      behaviors : WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationBehaviors
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveEndpointPairCreationResult'Class;
 
@@ -1438,7 +1438,7 @@ package WinRt.Windows.Networking.XboxLive is
 
    procedure put_PublishedPrivatePayload
    (
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    );
 
    function get_MaxPrivatePayloadSize
@@ -1455,29 +1455,29 @@ package WinRt.Windows.Networking.XboxLive is
    function GetMetricResultsForDevice
    (
       this : in out XboxLiveQualityOfServiceMeasurement;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
    )
    return IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind;
 
    function GetMetricResultsForMetric
    (
       this : in out XboxLiveQualityOfServiceMeasurement;
-      metric : Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
+      metric : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
    )
    return IVectorView_IXboxLiveQualityOfServiceMetricResult.Kind;
 
    function GetMetricResult
    (
       this : in out XboxLiveQualityOfServiceMeasurement;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
-      metric : Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class;
+      metric : WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetric
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServiceMetricResult'Class;
 
    function GetPrivatePayloadResult
    (
       this : in out XboxLiveQualityOfServiceMeasurement;
-      deviceAddress : Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
+      deviceAddress : WinRt.Windows.Networking.XboxLive.XboxLiveDeviceAddress'Class
    )
    return WinRt.Windows.Networking.XboxLive.XboxLiveQualityOfServicePrivatePayloadResult'Class;
 

@@ -130,14 +130,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IAdvancedCapturedPhoto.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -150,7 +150,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.AdvancedPhotoMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.AdvancedPhotoMode;
    begin
       Hr := this.m_IAdvancedCapturedPhoto.all.get_Mode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -185,7 +185,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAdvancedCapturedPhoto2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Rect.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAdvancedCapturedPhoto_Interface, WinRt.Windows.Media.Capture.IAdvancedCapturedPhoto2, WinRt.Windows.Media.Capture.IID_IAdvancedCapturedPhoto2'Unchecked_Access);
    begin
@@ -276,7 +276,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAdvancedCapturedPhoto := new Windows.Media.Capture.IAdvancedCapturedPhoto;
+                  Retval.m_IAdvancedCapturedPhoto := new WinRt.Windows.Media.Capture.IAdvancedCapturedPhoto;
                   Retval.m_IAdvancedCapturedPhoto.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -343,7 +343,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAdvancedCapturedPhoto := new Windows.Media.Capture.IAdvancedCapturedPhoto;
+                  Retval.m_IAdvancedCapturedPhoto := new WinRt.Windows.Media.Capture.IAdvancedCapturedPhoto;
                   Retval.m_IAdvancedCapturedPhoto.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -365,7 +365,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdvancedPhotoCapture.all.add_OptionalReferencePhotoCaptured (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -377,7 +377,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_OptionalReferencePhotoCaptured
    (
       this : in out AdvancedPhotoCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -398,7 +398,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAdvancedPhotoCapture.all.add_AllPhotosCaptured (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -410,7 +410,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_AllPhotosCaptured
    (
       this : in out AdvancedPhotoCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -490,7 +490,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_PlugInState
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastPlugInState
+      value : WinRt.Windows.Media.Capture.AppBroadcastPlugInState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -510,7 +510,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastPlugInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastPlugInState;
    begin
       Hr := this.m_IAppBroadcastBackgroundService.all.get_PlugInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -522,7 +522,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SignInInfo
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -542,14 +542,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo do
          Hr := this.m_IAppBroadcastBackgroundService.all.get_SignInInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastBackgroundServiceSignInInfo := new Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo;
+         Retval.m_IAppBroadcastBackgroundServiceSignInInfo := new WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo;
          Retval.m_IAppBroadcastBackgroundServiceSignInInfo.all := m_ComRetVal;
       end return;
    end;
@@ -557,7 +557,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_StreamInfo
    (
       this : in out AppBroadcastBackgroundService;
-      value : Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -577,14 +577,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo do
          Hr := this.m_IAppBroadcastBackgroundService.all.get_StreamInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastBackgroundServiceStreamInfo := new Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo;
+         Retval.m_IAppBroadcastBackgroundServiceStreamInfo := new WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo;
          Retval.m_IAppBroadcastBackgroundServiceStreamInfo.all := m_ComRetVal;
       end return;
    end;
@@ -664,7 +664,7 @@ package body WinRt.Windows.Media.Capture is
    procedure TerminateBroadcast
    (
       this : in out AppBroadcastBackgroundService;
-      reason : Windows.Media.Capture.AppBroadcastTerminationReason;
+      reason : WinRt.Windows.Media.Capture.AppBroadcastTerminationReason;
       providerSpecificReason : WinRt.UInt32
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -686,7 +686,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastBackgroundService.all.add_HeartbeatRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -698,7 +698,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_HeartbeatRequested
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -851,7 +851,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService_Interface, WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2, WinRt.Windows.Media.Capture.IID_IAppBroadcastBackgroundService2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBroadcastBackgroundService.all);
@@ -866,7 +866,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_BroadcastTitleChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -892,7 +892,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService_Interface, WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2, WinRt.Windows.Media.Capture.IID_IAppBroadcastBackgroundService2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBroadcastBackgroundService.all);
@@ -907,7 +907,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_BroadcastLanguageChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -933,7 +933,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService_Interface, WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService2, WinRt.Windows.Media.Capture.IID_IAppBroadcastBackgroundService2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBroadcastBackgroundService.all);
@@ -948,7 +948,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_BroadcastChannelChanged
    (
       this : in out AppBroadcastBackgroundService;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -995,7 +995,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastSignInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastSignInState;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.get_SignInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1007,7 +1007,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_OAuthRequestUri
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1027,14 +1027,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.get_OAuthRequestUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1042,7 +1042,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_OAuthCallbackUri
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1062,14 +1062,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.get_OAuthCallbackUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -1082,14 +1082,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Web.IWebAuthenticationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult do
          Hr := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.get_AuthenticationResult (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+         Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
          Retval.m_IWebAuthenticationResult.all := m_ComRetVal;
       end return;
    end;
@@ -1140,7 +1140,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.add_SignInStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1152,7 +1152,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_SignInStateChanged
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1174,7 +1174,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo_Interface, WinRt.Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo2, WinRt.Windows.Media.Capture.IID_IAppBroadcastBackgroundServiceSignInInfo2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBroadcastBackgroundServiceSignInInfo.all);
@@ -1189,7 +1189,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_UserNameChanged
    (
       this : in out AppBroadcastBackgroundServiceSignInInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1236,7 +1236,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastStreamState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastStreamState;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.get_StreamState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1354,14 +1354,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastStreamReader;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastStreamReader;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastStreamReader do
          Hr := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.get_BroadcastStreamReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastStreamReader := new Windows.Media.Capture.IAppBroadcastStreamReader;
+         Retval.m_IAppBroadcastStreamReader := new WinRt.Windows.Media.Capture.IAppBroadcastStreamReader;
          Retval.m_IAppBroadcastStreamReader.all := m_ComRetVal;
       end return;
    end;
@@ -1375,7 +1375,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.add_StreamStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1387,7 +1387,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_StreamStateChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1408,7 +1408,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.add_VideoEncodingResolutionChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1420,7 +1420,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_VideoEncodingResolutionChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1441,7 +1441,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.add_VideoEncodingBitrateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1453,7 +1453,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_VideoEncodingBitrateChanged
    (
       this : in out AppBroadcastBackgroundServiceStreamInfo;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1514,7 +1514,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastCameraCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastCameraCaptureState;
    begin
       Hr := this.m_IAppBroadcastCameraCaptureStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1863,7 +1863,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_CameraOverlayLocation
    (
       this : in out AppBroadcastGlobalSettings;
-      value : Windows.Media.Capture.AppBroadcastCameraOverlayLocation
+      value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlayLocation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1883,7 +1883,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastCameraOverlayLocation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastCameraOverlayLocation;
    begin
       Hr := this.m_IAppBroadcastGlobalSettings.all.get_CameraOverlayLocation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1895,7 +1895,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_CameraOverlaySize
    (
       this : in out AppBroadcastGlobalSettings;
-      value : Windows.Media.Capture.AppBroadcastCameraOverlaySize
+      value : WinRt.Windows.Media.Capture.AppBroadcastCameraOverlaySize
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1915,7 +1915,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastCameraOverlaySize;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastCameraOverlaySize;
    begin
       Hr := this.m_IAppBroadcastGlobalSettings.all.get_CameraOverlaySize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2022,7 +2022,7 @@ package body WinRt.Windows.Media.Capture is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppBroadcastManager");
          m_Factory        : access WinRt.Windows.Media.Capture.IAppBroadcastManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastGlobalSettings;
+         m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastGlobalSettings;
       begin
          return RetVal : WinRt.Windows.Media.Capture.AppBroadcastGlobalSettings do
             Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastManagerStatics'Access , m_Factory'Address);
@@ -2032,7 +2032,7 @@ package body WinRt.Windows.Media.Capture is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAppBroadcastGlobalSettings := new Windows.Media.Capture.IAppBroadcastGlobalSettings;
+               Retval.m_IAppBroadcastGlobalSettings := new WinRt.Windows.Media.Capture.IAppBroadcastGlobalSettings;
                Retval.m_IAppBroadcastGlobalSettings.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2041,7 +2041,7 @@ package body WinRt.Windows.Media.Capture is
 
       procedure ApplyGlobalSettings
       (
-         value : Windows.Media.Capture.AppBroadcastGlobalSettings'Class
+         value : WinRt.Windows.Media.Capture.AppBroadcastGlobalSettings'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2067,7 +2067,7 @@ package body WinRt.Windows.Media.Capture is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppBroadcastManager");
          m_Factory        : access WinRt.Windows.Media.Capture.IAppBroadcastManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastProviderSettings;
+         m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings;
       begin
          return RetVal : WinRt.Windows.Media.Capture.AppBroadcastProviderSettings do
             Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastManagerStatics'Access , m_Factory'Address);
@@ -2077,7 +2077,7 @@ package body WinRt.Windows.Media.Capture is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAppBroadcastProviderSettings := new Windows.Media.Capture.IAppBroadcastProviderSettings;
+               Retval.m_IAppBroadcastProviderSettings := new WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings;
                Retval.m_IAppBroadcastProviderSettings.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2086,7 +2086,7 @@ package body WinRt.Windows.Media.Capture is
 
       procedure ApplyProviderSettings
       (
-         value : Windows.Media.Capture.AppBroadcastProviderSettings'Class
+         value : WinRt.Windows.Media.Capture.AppBroadcastProviderSettings'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -2138,7 +2138,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastMicrophoneCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastMicrophoneCaptureState;
    begin
       Hr := this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2215,14 +2215,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastProviderSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastProviderSettings do
          Hr := this.m_IAppBroadcastPlugIn.all.get_ProviderSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastProviderSettings := new Windows.Media.Capture.IAppBroadcastProviderSettings;
+         Retval.m_IAppBroadcastProviderSettings := new WinRt.Windows.Media.Capture.IAppBroadcastProviderSettings;
          Retval.m_IAppBroadcastProviderSettings.all := m_ComRetVal;
       end return;
    end;
@@ -2235,7 +2235,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStreamReference;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
    begin
       Hr := this.m_IAppBroadcastPlugIn.all.get_Logo (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2294,7 +2294,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppBroadcastPlugInManager");
       m_Factory        : access WinRt.Windows.Media.Capture.IAppBroadcastPlugInManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPlugInManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPlugInManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastPlugInManagerStatics'Access , m_Factory'Address);
@@ -2304,7 +2304,7 @@ package body WinRt.Windows.Media.Capture is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppBroadcastPlugInManager := new Windows.Media.Capture.IAppBroadcastPlugInManager;
+            Retval.m_IAppBroadcastPlugInManager := new WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager;
             Retval.m_IAppBroadcastPlugInManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2313,7 +2313,7 @@ package body WinRt.Windows.Media.Capture is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Media.Capture.AppBroadcastPlugInManager is
       Hr               : WinRt.HResult := S_OK;
@@ -2321,7 +2321,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppBroadcastPlugInManager");
       m_Factory        : access WinRt.Windows.Media.Capture.IAppBroadcastPlugInManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPlugInManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPlugInManager do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBroadcastPlugInManagerStatics'Access , m_Factory'Address);
@@ -2331,7 +2331,7 @@ package body WinRt.Windows.Media.Capture is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppBroadcastPlugInManager := new Windows.Media.Capture.IAppBroadcastPlugInManager;
+            Retval.m_IAppBroadcastPlugInManager := new WinRt.Windows.Media.Capture.IAppBroadcastPlugInManager;
             Retval.m_IAppBroadcastPlugInManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2366,7 +2366,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppBroadcastPlugIn.Kind;
    begin
       Hr := this.m_IAppBroadcastPlugInManager.all.get_PlugInList (m_ComRetVal'Access);
@@ -2386,14 +2386,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPlugIn;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPlugIn;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPlugIn do
          Hr := this.m_IAppBroadcastPlugInManager.all.get_DefaultPlugIn (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastPlugIn := new Windows.Media.Capture.IAppBroadcastPlugIn;
+         Retval.m_IAppBroadcastPlugIn := new WinRt.Windows.Media.Capture.IAppBroadcastPlugIn;
          Retval.m_IAppBroadcastPlugIn.all := m_ComRetVal;
       end return;
    end;
@@ -2401,7 +2401,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_DefaultPlugIn
    (
       this : in out AppBroadcastPlugInManager;
-      value : Windows.Media.Capture.AppBroadcastPlugIn'Class
+      value : WinRt.Windows.Media.Capture.AppBroadcastPlugIn'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2444,7 +2444,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastPlugInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastPlugInState;
    begin
       Hr := this.m_IAppBroadcastPlugInStateChangedEventArgs.all.get_PlugInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2498,7 +2498,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastPreviewState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastPreviewState;
    begin
       Hr := this.m_IAppBroadcastPreview.all.get_PreviewState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2515,7 +2515,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAppBroadcastPreview.all.get_ErrorCode (m_ComRetVal'Access);
@@ -2536,7 +2536,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastPreview.all.add_PreviewStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2548,7 +2548,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_PreviewStateChanged
    (
       this : in out AppBroadcastPreview;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2568,14 +2568,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPreviewStreamReader;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamReader;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPreviewStreamReader do
          Hr := this.m_IAppBroadcastPreview.all.get_PreviewStreamReader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastPreviewStreamReader := new Windows.Media.Capture.IAppBroadcastPreviewStreamReader;
+         Retval.m_IAppBroadcastPreviewStreamReader := new WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamReader;
          Retval.m_IAppBroadcastPreviewStreamReader.all := m_ComRetVal;
       end return;
    end;
@@ -2611,7 +2611,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastPreviewState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastPreviewState;
    begin
       Hr := this.m_IAppBroadcastPreviewStateChangedEventArgs.all.get_PreviewState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2719,7 +2719,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapPixelFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapPixelFormat;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamReader.all.get_VideoBitmapPixelFormat (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2736,7 +2736,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.BitmapAlphaMode;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.BitmapAlphaMode;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamReader.all.get_VideoBitmapAlphaMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2753,14 +2753,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPreviewStreamVideoFrame do
          Hr := this.m_IAppBroadcastPreviewStreamReader.all.TryGetNextVideoFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastPreviewStreamVideoFrame := new Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame;
+         Retval.m_IAppBroadcastPreviewStreamVideoFrame := new WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame;
          Retval.m_IAppBroadcastPreviewStreamVideoFrame.all := m_ComRetVal;
       end return;
    end;
@@ -2774,7 +2774,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamReader.all.add_VideoFrameArrived (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2786,7 +2786,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_VideoFrameArrived
    (
       this : in out AppBroadcastPreviewStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2829,14 +2829,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPreviewStreamVideoHeader do
          Hr := this.m_IAppBroadcastPreviewStreamVideoFrame.all.get_VideoHeader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastPreviewStreamVideoHeader := new Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader;
+         Retval.m_IAppBroadcastPreviewStreamVideoHeader := new WinRt.Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader;
          Retval.m_IAppBroadcastPreviewStreamVideoHeader.all := m_ComRetVal;
       end return;
    end;
@@ -2849,7 +2849,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamVideoFrame.all.get_VideoBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2889,7 +2889,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamVideoHeader.all.get_AbsoluteTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2906,7 +2906,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamVideoHeader.all.get_RelativeTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2923,7 +2923,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastPreviewStreamVideoHeader.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3140,7 +3140,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingBitrateMode
    (
       this : in out AppBroadcastProviderSettings;
-      value : Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
+      value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3160,7 +3160,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode;
    begin
       Hr := this.m_IAppBroadcastProviderSettings.all.get_VideoEncodingBitrateMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3172,7 +3172,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingResolutionMode
    (
       this : in out AppBroadcastProviderSettings;
-      value : Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
+      value : WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3192,7 +3192,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode;
    begin
       Hr := this.m_IAppBroadcastProviderSettings.all.get_VideoEncodingResolutionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3232,7 +3232,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastCaptureTargetType;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastCaptureTargetType;
    begin
       Hr := this.m_IAppBroadcastServices.all.get_CaptureTargetType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3244,7 +3244,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_CaptureTargetType
    (
       this : in out AppBroadcastServices;
-      value : Windows.Media.Capture.AppBroadcastCaptureTargetType
+      value : WinRt.Windows.Media.Capture.AppBroadcastCaptureTargetType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3370,7 +3370,7 @@ package body WinRt.Windows.Media.Capture is
    function EnterBroadcastModeAsync
    (
       this : in out AppBroadcastServices;
-      plugIn : Windows.Media.Capture.AppBroadcastPlugIn'Class
+      plugIn : WinRt.Windows.Media.Capture.AppBroadcastPlugIn'Class
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -3434,7 +3434,7 @@ package body WinRt.Windows.Media.Capture is
    procedure ExitBroadcastMode
    (
       this : in out AppBroadcastServices;
-      reason : Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
+      reason : WinRt.Windows.Media.Capture.AppBroadcastExitBroadcastModeReason
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3491,20 +3491,20 @@ package body WinRt.Windows.Media.Capture is
    function StartPreview
    (
       this : in out AppBroadcastServices;
-      desiredSize : Windows.Foundation.Size
+      desiredSize : WinRt.Windows.Foundation.Size
    )
    return WinRt.Windows.Media.Capture.AppBroadcastPreview'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastPreview;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastPreview;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastPreview do
          Hr := this.m_IAppBroadcastServices.all.StartPreview (desiredSize, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastPreview := new Windows.Media.Capture.IAppBroadcastPreview;
+         Retval.m_IAppBroadcastPreview := new WinRt.Windows.Media.Capture.IAppBroadcastPreview;
          Retval.m_IAppBroadcastPreview.all := m_ComRetVal;
       end return;
    end;
@@ -3517,14 +3517,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastState;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastState do
          Hr := this.m_IAppBroadcastServices.all.get_State (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastState := new Windows.Media.Capture.IAppBroadcastState;
+         Retval.m_IAppBroadcastState := new WinRt.Windows.Media.Capture.IAppBroadcastState;
          Retval.m_IAppBroadcastState.all := m_ComRetVal;
       end return;
    end;
@@ -3560,7 +3560,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastSignInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastSignInState;
    begin
       Hr := this.m_IAppBroadcastSignInStateChangedEventArgs.all.get_SignInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3577,7 +3577,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastSignInResult;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastSignInResult;
    begin
       Hr := this.m_IAppBroadcastSignInStateChangedEventArgs.all.get_Result (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3743,7 +3743,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IAppBroadcastState.all.get_EncodedVideoSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3760,7 +3760,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastMicrophoneCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastMicrophoneCaptureState;
    begin
       Hr := this.m_IAppBroadcastState.all.get_MicrophoneCaptureState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3794,7 +3794,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastCameraCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastCameraCaptureState;
    begin
       Hr := this.m_IAppBroadcastState.all.get_CameraCaptureState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3828,7 +3828,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastStreamState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastStreamState;
    begin
       Hr := this.m_IAppBroadcastState.all.get_StreamState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3845,7 +3845,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastPlugInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastPlugInState;
    begin
       Hr := this.m_IAppBroadcastState.all.get_PlugInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3862,14 +3862,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppBroadcastState.all.get_OAuthRequestUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3882,14 +3882,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IAppBroadcastState.all.get_OAuthCallbackUri (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3902,14 +3902,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Authentication.Web.IWebAuthenticationResult;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
    begin
       return RetVal : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult do
          Hr := this.m_IAppBroadcastState.all.get_AuthenticationResult (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWebAuthenticationResult := new Windows.Security.Authentication.Web.IWebAuthenticationResult;
+         Retval.m_IWebAuthenticationResult := new WinRt.Windows.Security.Authentication.Web.IWebAuthenticationResult;
          Retval.m_IWebAuthenticationResult.all := m_ComRetVal;
       end return;
    end;
@@ -3917,7 +3917,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_AuthenticationResult
    (
       this : in out AppBroadcastState;
-      value : Windows.Security.Authentication.Web.WebAuthenticationResult'Class
+      value : WinRt.Windows.Security.Authentication.Web.WebAuthenticationResult'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3932,7 +3932,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SignInState
    (
       this : in out AppBroadcastState;
-      value : Windows.Media.Capture.AppBroadcastSignInState
+      value : WinRt.Windows.Media.Capture.AppBroadcastSignInState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3952,7 +3952,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastSignInState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastSignInState;
    begin
       Hr := this.m_IAppBroadcastState.all.get_SignInState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3969,7 +3969,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastTerminationReason;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastTerminationReason;
    begin
       Hr := this.m_IAppBroadcastState.all.get_TerminationReason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4004,7 +4004,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_ViewerCountChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4016,7 +4016,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_ViewerCountChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4037,7 +4037,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_MicrophoneCaptureStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4049,7 +4049,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_MicrophoneCaptureStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4070,7 +4070,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_CameraCaptureStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4082,7 +4082,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CameraCaptureStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4103,7 +4103,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_PlugInStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4115,7 +4115,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_PlugInStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4136,7 +4136,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_StreamStateChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4148,7 +4148,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_StreamStateChanged
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4169,7 +4169,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastState.all.add_CaptureTargetClosed (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4181,7 +4181,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CaptureTargetClosed
    (
       this : in out AppBroadcastState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4224,14 +4224,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastStreamAudioHeader;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioHeader;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastStreamAudioHeader do
          Hr := this.m_IAppBroadcastStreamAudioFrame.all.get_AudioHeader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastStreamAudioHeader := new Windows.Media.Capture.IAppBroadcastStreamAudioHeader;
+         Retval.m_IAppBroadcastStreamAudioHeader := new WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioHeader;
          Retval.m_IAppBroadcastStreamAudioHeader.all := m_ComRetVal;
       end return;
    end;
@@ -4244,7 +4244,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IAppBroadcastStreamAudioFrame.all.get_AudioBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4284,7 +4284,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppBroadcastStreamAudioHeader.all.get_AbsoluteTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4301,7 +4301,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastStreamAudioHeader.all.get_RelativeTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4318,7 +4318,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastStreamAudioHeader.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4426,7 +4426,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IAppBroadcastStreamReader.all.get_AudioAacSequence (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4460,14 +4460,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastStreamAudioFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastStreamAudioFrame do
          Hr := this.m_IAppBroadcastStreamReader.all.TryGetNextAudioFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastStreamAudioFrame := new Windows.Media.Capture.IAppBroadcastStreamAudioFrame;
+         Retval.m_IAppBroadcastStreamAudioFrame := new WinRt.Windows.Media.Capture.IAppBroadcastStreamAudioFrame;
          Retval.m_IAppBroadcastStreamAudioFrame.all := m_ComRetVal;
       end return;
    end;
@@ -4531,14 +4531,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastStreamVideoFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastStreamVideoFrame do
          Hr := this.m_IAppBroadcastStreamReader.all.TryGetNextVideoFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastStreamVideoFrame := new Windows.Media.Capture.IAppBroadcastStreamVideoFrame;
+         Retval.m_IAppBroadcastStreamVideoFrame := new WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoFrame;
          Retval.m_IAppBroadcastStreamVideoFrame.all := m_ComRetVal;
       end return;
    end;
@@ -4552,7 +4552,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastStreamReader.all.add_AudioFrameArrived (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4564,7 +4564,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_AudioFrameArrived
    (
       this : in out AppBroadcastStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4585,7 +4585,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppBroadcastStreamReader.all.add_VideoFrameArrived (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4597,7 +4597,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_VideoFrameArrived
    (
       this : in out AppBroadcastStreamReader;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4640,7 +4640,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppBroadcastStreamState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppBroadcastStreamState;
    begin
       Hr := this.m_IAppBroadcastStreamStateChangedEventArgs.all.get_StreamState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4680,14 +4680,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastStreamVideoHeader;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoHeader;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastStreamVideoHeader do
          Hr := this.m_IAppBroadcastStreamVideoFrame.all.get_VideoHeader (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastStreamVideoHeader := new Windows.Media.Capture.IAppBroadcastStreamVideoHeader;
+         Retval.m_IAppBroadcastStreamVideoHeader := new WinRt.Windows.Media.Capture.IAppBroadcastStreamVideoHeader;
          Retval.m_IAppBroadcastStreamVideoHeader.all := m_ComRetVal;
       end return;
    end;
@@ -4700,7 +4700,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IAppBroadcastStreamVideoFrame.all.get_VideoBuffer (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4740,7 +4740,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IAppBroadcastStreamVideoHeader.all.get_AbsoluteTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4757,7 +4757,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastStreamVideoHeader.all.get_RelativeTimestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4774,7 +4774,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppBroadcastStreamVideoHeader.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4865,14 +4865,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastBackgroundService;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastBackgroundService do
          Hr := this.m_IAppBroadcastTriggerDetails.all.get_BackgroundService (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastBackgroundService := new Windows.Media.Capture.IAppBroadcastBackgroundService;
+         Retval.m_IAppBroadcastBackgroundService := new WinRt.Windows.Media.Capture.IAppBroadcastBackgroundService;
          Retval.m_IAppBroadcastBackgroundService.all := m_ComRetVal;
       end return;
    end;
@@ -4996,7 +4996,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCapture");
       m_Factory        : access WinRt.Windows.Media.Capture.IAppCaptureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCapture;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCapture;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCapture do
          Hr := RoGetActivationFactory (m_hString, IID_IAppCaptureStatics'Access , m_Factory'Address);
@@ -5006,7 +5006,7 @@ package body WinRt.Windows.Media.Capture is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAppCapture := new Windows.Media.Capture.IAppCapture;
+            Retval.m_IAppCapture := new WinRt.Windows.Media.Capture.IAppCapture;
             Retval.m_IAppCapture.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5059,7 +5059,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCapture.all.add_CapturingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5071,7 +5071,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CapturingChanged
    (
       this : in out AppCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5109,7 +5109,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleGameBarKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5129,7 +5129,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleGameBarKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5141,7 +5141,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleGameBarKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5161,7 +5161,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleGameBarKeyModifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5173,7 +5173,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SaveHistoricalVideoKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5193,7 +5193,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_SaveHistoricalVideoKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5205,7 +5205,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SaveHistoricalVideoKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5225,7 +5225,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_SaveHistoricalVideoKeyModifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5237,7 +5237,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5257,7 +5257,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleRecordingKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5269,7 +5269,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5289,7 +5289,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleRecordingKeyModifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5301,7 +5301,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_TakeScreenshotKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5321,7 +5321,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_TakeScreenshotKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5333,7 +5333,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_TakeScreenshotKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5353,7 +5353,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_TakeScreenshotKeyModifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5365,7 +5365,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingIndicatorKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5385,7 +5385,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleRecordingIndicatorKey (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5397,7 +5397,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleRecordingIndicatorKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5417,7 +5417,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
    begin
       Hr := this.m_IAppCaptureAlternateShortcutKeys.all.get_ToggleRecordingIndicatorKeyModifiers (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5429,7 +5429,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleMicrophoneCaptureKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5454,7 +5454,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys2, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5469,7 +5469,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleMicrophoneCaptureKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5494,7 +5494,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys2, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5509,7 +5509,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleCameraCaptureKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5534,7 +5534,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5549,7 +5549,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleCameraCaptureKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5574,7 +5574,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5589,7 +5589,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleBroadcastKey
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKey
+      value : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5614,7 +5614,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKey;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKey;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5629,7 +5629,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ToggleBroadcastKeyModifiers
    (
       this : in out AppCaptureAlternateShortcutKeys;
-      value : Windows.System.VirtualKeyModifiers
+      value : WinRt.Windows.System.VirtualKeyModifiers
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5654,7 +5654,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.VirtualKeyModifiers;
+      m_ComRetVal      : aliased WinRt.Windows.System.VirtualKeyModifiers;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys_Interface, WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3, WinRt.Windows.Media.Capture.IID_IAppCaptureAlternateShortcutKeys3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureAlternateShortcutKeys.all);
@@ -5697,7 +5697,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppCaptureDurationGeneratedEventArgs.all.get_Duration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5737,14 +5737,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IAppCaptureFileGeneratedEventArgs.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -5760,7 +5760,7 @@ package body WinRt.Windows.Media.Capture is
          m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCaptureManager");
          m_Factory        : access WinRt.Windows.Media.Capture.IAppCaptureManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureSettings;
+         m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureSettings;
       begin
          return RetVal : WinRt.Windows.Media.Capture.AppCaptureSettings do
             Hr := RoGetActivationFactory (m_hString, IID_IAppCaptureManagerStatics'Access , m_Factory'Address);
@@ -5770,7 +5770,7 @@ package body WinRt.Windows.Media.Capture is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IAppCaptureSettings := new Windows.Media.Capture.IAppCaptureSettings;
+               Retval.m_IAppCaptureSettings := new WinRt.Windows.Media.Capture.IAppCaptureSettings;
                Retval.m_IAppCaptureSettings.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5779,7 +5779,7 @@ package body WinRt.Windows.Media.Capture is
 
       procedure ApplySettings
       (
-         appCaptureSettings_p : Windows.Media.Capture.AppCaptureSettings'Class
+         appCaptureSettings_p : WinRt.Windows.Media.Capture.AppCaptureSettings'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -5826,13 +5826,13 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return AppCaptureMetadataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCaptureMetadataWriter");
-      m_ComRetVal  : aliased Windows.Media.Capture.IAppCaptureMetadataWriter;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IAppCaptureMetadataWriter");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IAppCaptureMetadataWriter;
    begin
       return RetVal : AppCaptureMetadataWriter do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAppCaptureMetadataWriter := new Windows.Media.Capture.IAppCaptureMetadataWriter;
+            Retval.m_IAppCaptureMetadataWriter := new WinRt.Windows.Media.Capture.IAppCaptureMetadataWriter;
             Retval.m_IAppCaptureMetadataWriter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -5847,7 +5847,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.WString;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5868,7 +5868,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Int32;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5887,7 +5887,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Double;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5906,7 +5906,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.WString;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5927,7 +5927,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Int32;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5946,7 +5946,7 @@ package body WinRt.Windows.Media.Capture is
       this : in out AppCaptureMetadataWriter;
       name : WinRt.WString;
       value : WinRt.Double;
-      priority : Windows.Media.Capture.AppCaptureMetadataPriority
+      priority : WinRt.Windows.Media.Capture.AppCaptureMetadataPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6017,7 +6017,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureMetadataWriter.all.add_MetadataPurged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6029,7 +6029,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_MetadataPurged
    (
       this : in out AppCaptureMetadataWriter;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6090,7 +6090,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureMicrophoneCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureMicrophoneCaptureState;
    begin
       Hr := this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6161,7 +6161,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureRecordingState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureRecordingState;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6178,7 +6178,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.get_ErrorCode (m_ComRetVal'Access);
@@ -6198,7 +6198,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.get_Duration (m_ComRetVal'Access);
@@ -6218,14 +6218,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFile;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFile;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFile do
          Hr := this.m_IAppCaptureRecordOperation.all.get_File (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+         Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
          Retval.m_IStorageFile.all := m_ComRetVal;
       end return;
    end;
@@ -6238,7 +6238,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.get_IsFileTruncated (m_ComRetVal'Access);
@@ -6259,7 +6259,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.add_StateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6271,7 +6271,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_StateChanged
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6292,7 +6292,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.add_DurationGenerated (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6304,7 +6304,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_DurationGenerated
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6325,7 +6325,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureRecordOperation.all.add_FileGenerated (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6337,7 +6337,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_FileGenerated
    (
       this : in out AppCaptureRecordOperation;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6380,7 +6380,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureRecordingState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureRecordingState;
    begin
       Hr := this.m_IAppCaptureRecordingStateChangedEventArgs.all.get_State (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6437,14 +6437,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureRecordOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureRecordOperation;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCaptureRecordOperation do
          Hr := this.m_IAppCaptureServices.all.Record_x (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppCaptureRecordOperation := new Windows.Media.Capture.IAppCaptureRecordOperation;
+         Retval.m_IAppCaptureRecordOperation := new WinRt.Windows.Media.Capture.IAppCaptureRecordOperation;
          Retval.m_IAppCaptureRecordOperation.all := m_ComRetVal;
       end return;
    end;
@@ -6452,21 +6452,21 @@ package body WinRt.Windows.Media.Capture is
    function RecordTimeSpan
    (
       this : in out AppCaptureServices;
-      startTime : Windows.Foundation.DateTime;
-      duration : Windows.Foundation.TimeSpan
+      startTime : WinRt.Windows.Foundation.DateTime;
+      duration : WinRt.Windows.Foundation.TimeSpan
    )
    return WinRt.Windows.Media.Capture.AppCaptureRecordOperation'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureRecordOperation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureRecordOperation;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCaptureRecordOperation do
          Hr := this.m_IAppCaptureServices.all.RecordTimeSpan (startTime, duration, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppCaptureRecordOperation := new Windows.Media.Capture.IAppCaptureRecordOperation;
+         Retval.m_IAppCaptureRecordOperation := new WinRt.Windows.Media.Capture.IAppCaptureRecordOperation;
          Retval.m_IAppCaptureRecordOperation.all := m_ComRetVal;
       end return;
    end;
@@ -6496,14 +6496,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureState;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCaptureState do
          Hr := this.m_IAppCaptureServices.all.get_State (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppCaptureState := new Windows.Media.Capture.IAppCaptureState;
+         Retval.m_IAppCaptureState := new WinRt.Windows.Media.Capture.IAppCaptureState;
          Retval.m_IAppCaptureState.all := m_ComRetVal;
       end return;
    end;
@@ -6534,7 +6534,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_AppCaptureDestinationFolder
    (
       this : in out AppCaptureSettings;
-      value : Windows.Storage.StorageFolder'Class
+      value : WinRt.Windows.Storage.StorageFolder'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6554,14 +6554,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IAppCaptureSettings.all.get_AppCaptureDestinationFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -6761,7 +6761,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_HistoricalBufferLengthUnit
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
+      value : WinRt.Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6781,7 +6781,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit;
    begin
       Hr := this.m_IAppCaptureSettings.all.get_HistoricalBufferLengthUnit (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6889,7 +6889,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_MaximumRecordLength
    (
       this : in out AppCaptureSettings;
-      value : Windows.Foundation.TimeSpan
+      value : WinRt.Windows.Foundation.TimeSpan
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6909,7 +6909,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IAppCaptureSettings.all.get_MaximumRecordLength (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6921,7 +6921,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_ScreenshotDestinationFolder
    (
       this : in out AppCaptureSettings;
-      value : Windows.Storage.StorageFolder'Class
+      value : WinRt.Windows.Storage.StorageFolder'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6941,14 +6941,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.IStorageFolder;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.IStorageFolder;
    begin
       return RetVal : WinRt.Windows.Storage.StorageFolder do
          Hr := this.m_IAppCaptureSettings.all.get_ScreenshotDestinationFolder (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStorageFolder := new Windows.Storage.IStorageFolder;
+         Retval.m_IStorageFolder := new WinRt.Windows.Storage.IStorageFolder;
          Retval.m_IStorageFolder.all := m_ComRetVal;
       end return;
    end;
@@ -6956,7 +6956,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingBitrateMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6976,7 +6976,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode;
    begin
       Hr := this.m_IAppCaptureSettings.all.get_VideoEncodingBitrateMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6988,7 +6988,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingResolutionMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7008,7 +7008,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode;
    begin
       Hr := this.m_IAppCaptureSettings.all.get_VideoEncodingResolutionMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7147,7 +7147,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureAlternateShortcutKeys;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureSettings_Interface, WinRt.Windows.Media.Capture.IAppCaptureSettings2, WinRt.Windows.Media.Capture.IID_IAppCaptureSettings2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCaptureAlternateShortcutKeys do
@@ -7157,7 +7157,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppCaptureAlternateShortcutKeys := new Windows.Media.Capture.IAppCaptureAlternateShortcutKeys;
+         Retval.m_IAppCaptureAlternateShortcutKeys := new WinRt.Windows.Media.Capture.IAppCaptureAlternateShortcutKeys;
          Retval.m_IAppCaptureAlternateShortcutKeys.all := m_ComRetVal;
       end return;
    end;
@@ -7325,7 +7325,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoEncodingFrameRateMode
    (
       this : in out AppCaptureSettings;
-      value : Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
+      value : WinRt.Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7350,7 +7350,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IAppCaptureSettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IAppCaptureSettings_Interface, WinRt.Windows.Media.Capture.IAppCaptureSettings4, WinRt.Windows.Media.Capture.IID_IAppCaptureSettings4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppCaptureSettings.all);
@@ -7553,7 +7553,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.AppCaptureMicrophoneCaptureState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.AppCaptureMicrophoneCaptureState;
    begin
       Hr := this.m_IAppCaptureState.all.get_MicrophoneCaptureState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7588,7 +7588,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureState.all.add_MicrophoneCaptureStateChanged (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7600,7 +7600,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_MicrophoneCaptureStateChanged
    (
       this : in out AppCaptureState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7621,7 +7621,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppCaptureState.all.add_CaptureTargetClosed (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7633,7 +7633,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CaptureTargetClosed
    (
       this : in out AppCaptureState;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7671,13 +7671,13 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return CameraCaptureUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.CameraCaptureUI");
-      m_ComRetVal  : aliased Windows.Media.Capture.ICameraCaptureUI;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.ICameraCaptureUI");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Capture.ICameraCaptureUI;
    begin
       return RetVal : CameraCaptureUI do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICameraCaptureUI := new Windows.Media.Capture.ICameraCaptureUI;
+            Retval.m_ICameraCaptureUI := new WinRt.Windows.Media.Capture.ICameraCaptureUI;
             Retval.m_ICameraCaptureUI.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -7695,14 +7695,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CameraCaptureUIPhotoCaptureSettings do
          Hr := this.m_ICameraCaptureUI.all.get_PhotoSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICameraCaptureUIPhotoCaptureSettings := new Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings;
+         Retval.m_ICameraCaptureUIPhotoCaptureSettings := new WinRt.Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings;
          Retval.m_ICameraCaptureUIPhotoCaptureSettings.all := m_ComRetVal;
       end return;
    end;
@@ -7715,14 +7715,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CameraCaptureUIVideoCaptureSettings do
          Hr := this.m_ICameraCaptureUI.all.get_VideoSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICameraCaptureUIVideoCaptureSettings := new Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings;
+         Retval.m_ICameraCaptureUIVideoCaptureSettings := new WinRt.Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings;
          Retval.m_ICameraCaptureUIVideoCaptureSettings.all := m_ComRetVal;
       end return;
    end;
@@ -7730,7 +7730,7 @@ package body WinRt.Windows.Media.Capture is
    function CaptureFileAsync
    (
       this : in out CameraCaptureUI;
-      mode : Windows.Media.Capture.CameraCaptureUIMode
+      mode : WinRt.Windows.Media.Capture.CameraCaptureUIMode
    )
    return WinRt.Windows.Storage.StorageFile'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -7781,7 +7781,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IStorageFile := new Windows.Storage.IStorageFile;
+                  Retval.m_IStorageFile := new WinRt.Windows.Storage.IStorageFile;
                   Retval.m_IStorageFile.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -7825,7 +7825,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.CameraCaptureUIPhotoFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.CameraCaptureUIPhotoFormat;
    begin
       Hr := this.m_ICameraCaptureUIPhotoCaptureSettings.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7837,7 +7837,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_Format
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIPhotoFormat
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIPhotoFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7857,7 +7857,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution;
    begin
       Hr := this.m_ICameraCaptureUIPhotoCaptureSettings.all.get_MaxResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7869,7 +7869,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_MaxResolution
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7889,7 +7889,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ICameraCaptureUIPhotoCaptureSettings.all.get_CroppedSizeInPixels (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7901,7 +7901,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_CroppedSizeInPixels
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7921,7 +7921,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_ICameraCaptureUIPhotoCaptureSettings.all.get_CroppedAspectRatio (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -7933,7 +7933,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_CroppedAspectRatio
    (
       this : in out CameraCaptureUIPhotoCaptureSettings;
-      value : Windows.Foundation.Size
+      value : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8008,7 +8008,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.CameraCaptureUIVideoFormat;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.CameraCaptureUIVideoFormat;
    begin
       Hr := this.m_ICameraCaptureUIVideoCaptureSettings.all.get_Format (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8020,7 +8020,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_Format
    (
       this : in out CameraCaptureUIVideoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIVideoFormat
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIVideoFormat
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8040,7 +8040,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.CameraCaptureUIMaxVideoResolution;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.CameraCaptureUIMaxVideoResolution;
    begin
       Hr := this.m_ICameraCaptureUIVideoCaptureSettings.all.get_MaxResolution (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8052,7 +8052,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_MaxResolution
    (
       this : in out CameraCaptureUIVideoCaptureSettings;
-      value : Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
+      value : WinRt.Windows.Media.Capture.CameraCaptureUIMaxVideoResolution
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8134,7 +8134,7 @@ package body WinRt.Windows.Media.Capture is
 
       procedure Show
       (
-         mediaCapture_p : Windows.Media.Capture.MediaCapture'Class
+         mediaCapture_p : WinRt.Windows.Media.Capture.MediaCapture'Class
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -8286,7 +8286,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IInputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IInputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICapturedFrame.all);
@@ -8308,7 +8308,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IOutputStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IOutputStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICapturedFrame.all);
@@ -8369,7 +8369,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Storage.Streams.IRandomAccessStream := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IRandomAccessStream;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Storage.Streams.IRandomAccessStream, WinRt.Windows.Storage.Streams.IID_IRandomAccessStream'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICapturedFrame.all);
@@ -8426,7 +8426,7 @@ package body WinRt.Windows.Media.Capture is
    function WriteAsync
    (
       this : in out CapturedFrame;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32 is
       Hr               : WinRt.HResult := S_OK;
@@ -8579,9 +8579,9 @@ package body WinRt.Windows.Media.Capture is
    function ReadAsync
    (
       this : in out CapturedFrame;
-      buffer : Windows.Storage.Streams.IBuffer;
+      buffer : WinRt.Windows.Storage.Streams.IBuffer;
       count : WinRt.UInt32;
-      options : Windows.Storage.Streams.InputStreamOptions
+      options : WinRt.Windows.Storage.Streams.InputStreamOptions
    )
    return WinRt.Windows.Storage.Streams.IBuffer is
       Hr               : WinRt.HResult := S_OK;
@@ -8655,7 +8655,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameWithSoftwareBitmap := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.Imaging.ISoftwareBitmap;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Media.Capture.ICapturedFrameWithSoftwareBitmap, WinRt.Windows.Media.Capture.IID_ICapturedFrameWithSoftwareBitmap'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.SoftwareBitmap do
@@ -8665,7 +8665,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ISoftwareBitmap := new Windows.Graphics.Imaging.ISoftwareBitmap;
+         Retval.m_ISoftwareBitmap := new WinRt.Windows.Graphics.Imaging.ISoftwareBitmap;
          Retval.m_ISoftwareBitmap.all := m_ComRetVal;
       end return;
    end;
@@ -8679,7 +8679,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrame2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrameControlValues;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrameControlValues;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Media.Capture.ICapturedFrame2, WinRt.Windows.Media.Capture.IID_ICapturedFrame2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrameControlValues do
@@ -8689,7 +8689,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrameControlValues := new Windows.Media.Capture.ICapturedFrameControlValues;
+         Retval.m_ICapturedFrameControlValues := new WinRt.Windows.Media.Capture.ICapturedFrameControlValues;
          Retval.m_ICapturedFrameControlValues.all := m_ComRetVal;
       end return;
    end;
@@ -8703,7 +8703,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrame2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrame_Interface, WinRt.Windows.Media.Capture.ICapturedFrame2, WinRt.Windows.Media.Capture.IID_ICapturedFrame2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Graphics.Imaging.BitmapPropertySet do
@@ -8713,7 +8713,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_GenericObject := new GenericObject;
+         Retval.m_GenericObject := new WinRt.GenericObject;
          Retval.m_GenericObject.all := m_ComRetVal;
       end return;
    end;
@@ -8749,7 +8749,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_Exposure (m_ComRetVal'Access);
@@ -8769,7 +8769,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_ExposureCompensation (m_ComRetVal'Access);
@@ -8789,7 +8789,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_IsoSpeed (m_ComRetVal'Access);
@@ -8809,7 +8809,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_Focus (m_ComRetVal'Access);
@@ -8829,7 +8829,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_SceneMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -8846,7 +8846,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Boolean.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_Flashed (m_ComRetVal'Access);
@@ -8866,7 +8866,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_FlashPowerPercent (m_ComRetVal'Access);
@@ -8886,7 +8886,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_WhiteBalance (m_ComRetVal'Access);
@@ -8906,7 +8906,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Single.Kind;
    begin
       Hr := this.m_ICapturedFrameControlValues.all.get_ZoomFactor (m_ComRetVal'Access);
@@ -8927,7 +8927,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameControlValues2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrameControlValues_Interface, WinRt.Windows.Media.Capture.ICapturedFrameControlValues2, WinRt.Windows.Media.Capture.IID_ICapturedFrameControlValues2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ICapturedFrameControlValues.all);
@@ -8948,7 +8948,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameControlValues2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrameControlValues_Interface, WinRt.Windows.Media.Capture.ICapturedFrameControlValues2, WinRt.Windows.Media.Capture.IID_ICapturedFrameControlValues2'Unchecked_Access);
    begin
@@ -8972,7 +8972,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameControlValues2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Double.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrameControlValues_Interface, WinRt.Windows.Media.Capture.ICapturedFrameControlValues2, WinRt.Windows.Media.Capture.IID_ICapturedFrameControlValues2'Unchecked_Access);
    begin
@@ -8996,7 +8996,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameControlValues2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IMediaRatio;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IMediaRatio;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrameControlValues_Interface, WinRt.Windows.Media.Capture.ICapturedFrameControlValues2, WinRt.Windows.Media.Capture.IID_ICapturedFrameControlValues2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.MediaRatio do
@@ -9006,7 +9006,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaRatio := new Windows.Media.MediaProperties.IMediaRatio;
+         Retval.m_IMediaRatio := new WinRt.Windows.Media.MediaProperties.IMediaRatio;
          Retval.m_IMediaRatio.all := m_ComRetVal;
       end return;
    end;
@@ -9020,7 +9020,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.ICapturedFrameControlValues2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_WhiteBalanceGain.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.ICapturedFrameControlValues_Interface, WinRt.Windows.Media.Capture.ICapturedFrameControlValues2, WinRt.Windows.Media.Capture.IID_ICapturedFrameControlValues2'Unchecked_Access);
    begin
@@ -9066,14 +9066,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_ICapturedPhoto.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -9086,14 +9086,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_ICapturedPhoto.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -9129,7 +9129,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.GameBarTargetCapturePolicy;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.GameBarTargetCapturePolicy;
    begin
       Hr := this.m_IGameBarServices.all.get_TargetCapturePolicy (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9174,14 +9174,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IGameBarServicesTargetInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IGameBarServicesTargetInfo;
    begin
       return RetVal : WinRt.Windows.Media.Capture.GameBarServicesTargetInfo do
          Hr := this.m_IGameBarServices.all.get_TargetInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameBarServicesTargetInfo := new Windows.Media.Capture.IGameBarServicesTargetInfo;
+         Retval.m_IGameBarServicesTargetInfo := new WinRt.Windows.Media.Capture.IGameBarServicesTargetInfo;
          Retval.m_IGameBarServicesTargetInfo.all := m_ComRetVal;
       end return;
    end;
@@ -9214,14 +9214,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppBroadcastServices;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppBroadcastServices;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppBroadcastServices do
          Hr := this.m_IGameBarServices.all.get_AppBroadcastServices (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppBroadcastServices := new Windows.Media.Capture.IAppBroadcastServices;
+         Retval.m_IAppBroadcastServices := new WinRt.Windows.Media.Capture.IAppBroadcastServices;
          Retval.m_IAppBroadcastServices.all := m_ComRetVal;
       end return;
    end;
@@ -9234,14 +9234,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IAppCaptureServices;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IAppCaptureServices;
    begin
       return RetVal : WinRt.Windows.Media.Capture.AppCaptureServices do
          Hr := this.m_IGameBarServices.all.get_AppCaptureServices (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppCaptureServices := new Windows.Media.Capture.IAppCaptureServices;
+         Retval.m_IAppCaptureServices := new WinRt.Windows.Media.Capture.IAppCaptureServices;
          Retval.m_IAppCaptureServices.all := m_ComRetVal;
       end return;
    end;
@@ -9255,7 +9255,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGameBarServices.all.add_CommandReceived (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9267,7 +9267,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CommandReceived
    (
       this : in out GameBarServices;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9310,7 +9310,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.GameBarCommand;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.GameBarCommand;
    begin
       Hr := this.m_IGameBarServicesCommandEventArgs.all.get_Command (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9327,7 +9327,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.GameBarCommandOrigin;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.GameBarCommandOrigin;
    begin
       Hr := this.m_IGameBarServicesCommandEventArgs.all.get_Origin (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9366,7 +9366,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.GameBarServicesManager");
       m_Factory        : access WinRt.Windows.Media.Capture.IGameBarServicesManagerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IGameBarServicesManager;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IGameBarServicesManager;
    begin
       return RetVal : WinRt.Windows.Media.Capture.GameBarServicesManager do
          Hr := RoGetActivationFactory (m_hString, IID_IGameBarServicesManagerStatics'Access , m_Factory'Address);
@@ -9376,7 +9376,7 @@ package body WinRt.Windows.Media.Capture is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IGameBarServicesManager := new Windows.Media.Capture.IGameBarServicesManager;
+            Retval.m_IGameBarServicesManager := new WinRt.Windows.Media.Capture.IGameBarServicesManager;
             Retval.m_IGameBarServicesManager.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -9395,7 +9395,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IGameBarServicesManager.all.add_GameBarServicesCreated (value, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9407,7 +9407,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_GameBarServicesCreated
    (
       this : in out GameBarServicesManager;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9450,14 +9450,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IGameBarServices;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IGameBarServices;
    begin
       return RetVal : WinRt.Windows.Media.Capture.GameBarServices do
          Hr := this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs.all.get_GameBarServices (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGameBarServices := new Windows.Media.Capture.IGameBarServices;
+         Retval.m_IGameBarServices := new WinRt.Windows.Media.Capture.IGameBarServices;
          Retval.m_IGameBarServices.all := m_ComRetVal;
       end return;
    end;
@@ -9553,7 +9553,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.GameBarServicesDisplayMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.GameBarServicesDisplayMode;
    begin
       Hr := this.m_IGameBarServicesTargetInfo.all.get_DisplayMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -9714,7 +9714,7 @@ package body WinRt.Windows.Media.Capture is
    procedure PauseAsync
    (
       this : in out LowLagMediaRecording;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9807,7 +9807,7 @@ package body WinRt.Windows.Media.Capture is
    function PauseWithResultAsync
    (
       this : in out LowLagMediaRecording;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    )
    return WinRt.Windows.Media.Capture.MediaCapturePauseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -9862,7 +9862,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaCapturePauseResult := new Windows.Media.Capture.IMediaCapturePauseResult;
+                  Retval.m_IMediaCapturePauseResult := new WinRt.Windows.Media.Capture.IMediaCapturePauseResult;
                   Retval.m_IMediaCapturePauseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -9932,7 +9932,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaCaptureStopResult := new Windows.Media.Capture.IMediaCaptureStopResult;
+                  Retval.m_IMediaCaptureStopResult := new WinRt.Windows.Media.Capture.IMediaCaptureStopResult;
                   Retval.m_IMediaCaptureStopResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10021,7 +10021,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ICapturedPhoto := new Windows.Media.Capture.ICapturedPhoto;
+                  Retval.m_ICapturedPhoto := new WinRt.Windows.Media.Capture.ICapturedPhoto;
                   Retval.m_ICapturedPhoto.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -10234,7 +10234,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILowLagPhotoSequenceCapture.all.add_PhotoCaptured (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10246,7 +10246,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_PhotoCaptured
    (
       this : in out LowLagPhotoSequenceCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10284,13 +10284,13 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return MediaCapture is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCapture");
-      m_ComRetVal  : aliased Windows.Media.Capture.IMediaCapture;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IMediaCapture");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IMediaCapture;
    begin
       return RetVal : MediaCapture do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaCapture := new Windows.Media.Capture.IMediaCapture;
+            Retval.m_IMediaCapture := new WinRt.Windows.Media.Capture.IMediaCapture;
             Retval.m_IMediaCapture.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -10336,7 +10336,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCapture");
       m_Factory        : access WinRt.Windows.Media.Capture.IMediaCaptureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfile.Kind;
       HStr_videoDeviceId : constant WinRt.HString := To_HString (videoDeviceId);
    begin
@@ -10365,7 +10365,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCapture");
       m_Factory        : access WinRt.Windows.Media.Capture.IMediaCaptureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfile.Kind;
       HStr_videoDeviceId : constant WinRt.HString := To_HString (videoDeviceId);
    begin
@@ -10387,7 +10387,7 @@ package body WinRt.Windows.Media.Capture is
    function FindKnownVideoProfiles
    (
       videoDeviceId : WinRt.WString;
-      name : Windows.Media.Capture.KnownVideoProfile
+      name : WinRt.Windows.Media.Capture.KnownVideoProfile
    )
    return IVectorView_IMediaCaptureVideoProfile.Kind is
       Hr               : WinRt.HResult := S_OK;
@@ -10395,7 +10395,7 @@ package body WinRt.Windows.Media.Capture is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCapture");
       m_Factory        : access WinRt.Windows.Media.Capture.IMediaCaptureStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfile.Kind;
       HStr_videoDeviceId : constant WinRt.HString := To_HString (videoDeviceId);
    begin
@@ -10462,7 +10462,7 @@ package body WinRt.Windows.Media.Capture is
    procedure InitializeAsync
    (
       this : in out MediaCapture;
-      mediaCaptureInitializationSettings_p : Windows.Media.Capture.MediaCaptureInitializationSettings'Class
+      mediaCaptureInitializationSettings_p : WinRt.Windows.Media.Capture.MediaCaptureInitializationSettings'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10505,8 +10505,8 @@ package body WinRt.Windows.Media.Capture is
    procedure StartRecordToStorageFileAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      file : Windows.Storage.IStorageFile
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10549,8 +10549,8 @@ package body WinRt.Windows.Media.Capture is
    procedure StartRecordToStreamAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10593,8 +10593,8 @@ package body WinRt.Windows.Media.Capture is
    procedure StartRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10637,9 +10637,9 @@ package body WinRt.Windows.Media.Capture is
    procedure StartRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10726,8 +10726,8 @@ package body WinRt.Windows.Media.Capture is
    procedure CapturePhotoToStorageFileAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class;
-      file : Windows.Storage.IStorageFile
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10770,8 +10770,8 @@ package body WinRt.Windows.Media.Capture is
    procedure CapturePhotoToStreamAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10814,9 +10814,9 @@ package body WinRt.Windows.Media.Capture is
    procedure AddEffectAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       effectActivationID : WinRt.WString;
-      effectSettings : Windows.Foundation.Collections.IPropertySet
+      effectSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10861,7 +10861,7 @@ package body WinRt.Windows.Media.Capture is
    procedure ClearEffectsAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10904,7 +10904,7 @@ package body WinRt.Windows.Media.Capture is
    procedure SetEncoderProperty
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       propertyId : WinRt.Guid;
       propertyValue : WinRt.IInspectable
    ) is
@@ -10921,7 +10921,7 @@ package body WinRt.Windows.Media.Capture is
    function GetEncoderProperty
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
       propertyId : WinRt.Guid
    )
    return WinRt.IInspectable is
@@ -10940,13 +10940,13 @@ package body WinRt.Windows.Media.Capture is
    function add_Failed
    (
       this : in out MediaCapture;
-      errorEventHandler : Windows.Media.Capture.MediaCaptureFailedEventHandler
+      errorEventHandler : WinRt.Windows.Media.Capture.MediaCaptureFailedEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaCapture.all.add_Failed (errorEventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10958,7 +10958,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_Failed
    (
       this : in out MediaCapture;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -10973,13 +10973,13 @@ package body WinRt.Windows.Media.Capture is
    function add_RecordLimitationExceeded
    (
       this : in out MediaCapture;
-      recordLimitationExceededEventHandler : Windows.Media.Capture.RecordLimitationExceededEventHandler
+      recordLimitationExceededEventHandler : WinRt.Windows.Media.Capture.RecordLimitationExceededEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaCapture.all.add_RecordLimitationExceeded (recordLimitationExceededEventHandler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -10991,7 +10991,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_RecordLimitationExceeded
    (
       this : in out MediaCapture;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11011,14 +11011,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureSettings;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureSettings;
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureSettings do
          Hr := this.m_IMediaCapture.all.get_MediaCaptureSettings (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureSettings := new Windows.Media.Capture.IMediaCaptureSettings;
+         Retval.m_IMediaCaptureSettings := new WinRt.Windows.Media.Capture.IMediaCaptureSettings;
          Retval.m_IMediaCaptureSettings.all := m_ComRetVal;
       end return;
    end;
@@ -11031,14 +11031,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.IAudioDeviceController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.IAudioDeviceController;
    begin
       return RetVal : WinRt.Windows.Media.Devices.AudioDeviceController do
          Hr := this.m_IMediaCapture.all.get_AudioDeviceController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAudioDeviceController := new Windows.Media.Devices.IAudioDeviceController;
+         Retval.m_IAudioDeviceController := new WinRt.Windows.Media.Devices.IAudioDeviceController;
          Retval.m_IAudioDeviceController.all := m_ComRetVal;
       end return;
    end;
@@ -11051,14 +11051,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.IVideoDeviceController;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.IVideoDeviceController;
    begin
       return RetVal : WinRt.Windows.Media.Devices.VideoDeviceController do
          Hr := this.m_IMediaCapture.all.get_VideoDeviceController (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoDeviceController := new Windows.Media.Devices.IVideoDeviceController;
+         Retval.m_IVideoDeviceController := new WinRt.Windows.Media.Devices.IVideoDeviceController;
          Retval.m_IVideoDeviceController.all := m_ComRetVal;
       end return;
    end;
@@ -11098,7 +11098,7 @@ package body WinRt.Windows.Media.Capture is
    procedure SetPreviewRotation
    (
       this : in out MediaCapture;
-      value : Windows.Media.Capture.VideoRotation
+      value : WinRt.Windows.Media.Capture.VideoRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11118,7 +11118,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.VideoRotation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.VideoRotation;
    begin
       Hr := this.m_IMediaCapture.all.GetPreviewRotation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11130,7 +11130,7 @@ package body WinRt.Windows.Media.Capture is
    procedure SetRecordRotation
    (
       this : in out MediaCapture;
-      value : Windows.Media.Capture.VideoRotation
+      value : WinRt.Windows.Media.Capture.VideoRotation
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11150,7 +11150,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.VideoRotation;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.VideoRotation;
    begin
       Hr := this.m_IMediaCapture.all.GetRecordRotation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -11208,8 +11208,8 @@ package body WinRt.Windows.Media.Capture is
    procedure StartPreviewToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11256,9 +11256,9 @@ package body WinRt.Windows.Media.Capture is
    procedure StartPreviewToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11353,8 +11353,8 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagRecordToStorageFileAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      file : Windows.Storage.IStorageFile
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11409,7 +11409,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagMediaRecording := new Windows.Media.Capture.ILowLagMediaRecording;
+                  Retval.m_ILowLagMediaRecording := new WinRt.Windows.Media.Capture.ILowLagMediaRecording;
                   Retval.m_ILowLagMediaRecording.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11425,8 +11425,8 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagRecordToStreamAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11481,7 +11481,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagMediaRecording := new Windows.Media.Capture.ILowLagMediaRecording;
+                  Retval.m_ILowLagMediaRecording := new WinRt.Windows.Media.Capture.ILowLagMediaRecording;
                   Retval.m_ILowLagMediaRecording.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11497,8 +11497,8 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
-      customMediaSink : Windows.Media.IMediaExtension
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      customMediaSink : WinRt.Windows.Media.IMediaExtension
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11553,7 +11553,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagMediaRecording := new Windows.Media.Capture.ILowLagMediaRecording;
+                  Retval.m_ILowLagMediaRecording := new WinRt.Windows.Media.Capture.ILowLagMediaRecording;
                   Retval.m_ILowLagMediaRecording.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11569,9 +11569,9 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagRecordToCustomSinkAsync
    (
       this : in out MediaCapture;
-      encodingProfile : Windows.Media.MediaProperties.MediaEncodingProfile'Class;
+      encodingProfile : WinRt.Windows.Media.MediaProperties.MediaEncodingProfile'Class;
       customSinkActivationId : WinRt.WString;
-      customSinkSettings : Windows.Foundation.Collections.IPropertySet
+      customSinkSettings : WinRt.Windows.Foundation.Collections.IPropertySet
    )
    return WinRt.Windows.Media.Capture.LowLagMediaRecording'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11627,7 +11627,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagMediaRecording := new Windows.Media.Capture.ILowLagMediaRecording;
+                  Retval.m_ILowLagMediaRecording := new WinRt.Windows.Media.Capture.ILowLagMediaRecording;
                   Retval.m_ILowLagMediaRecording.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11644,7 +11644,7 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagPhotoCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.LowLagPhotoCapture'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11699,7 +11699,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagPhotoCapture := new Windows.Media.Capture.ILowLagPhotoCapture;
+                  Retval.m_ILowLagPhotoCapture := new WinRt.Windows.Media.Capture.ILowLagPhotoCapture;
                   Retval.m_ILowLagPhotoCapture.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11715,7 +11715,7 @@ package body WinRt.Windows.Media.Capture is
    function PrepareLowLagPhotoSequenceCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.LowLagPhotoSequenceCapture'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11770,7 +11770,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_ILowLagPhotoSequenceCapture := new Windows.Media.Capture.ILowLagPhotoSequenceCapture;
+                  Retval.m_ILowLagPhotoSequenceCapture := new WinRt.Windows.Media.Capture.ILowLagPhotoSequenceCapture;
                   Retval.m_ILowLagPhotoSequenceCapture.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11786,9 +11786,9 @@ package body WinRt.Windows.Media.Capture is
    procedure SetEncodingPropertiesAsync
    (
       this : in out MediaCapture;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType;
-      mediaEncodingProperties : Windows.Media.MediaProperties.IMediaEncodingProperties;
-      encoderProperties : Windows.Media.MediaProperties.MediaPropertySet'Class
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType;
+      mediaEncodingProperties : WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
+      encoderProperties : WinRt.Windows.Media.MediaProperties.MediaPropertySet'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11853,7 +11853,7 @@ package body WinRt.Windows.Media.Capture is
    function PrepareVariablePhotoSequenceCaptureAsync
    (
       this : in out MediaCapture;
-      type_x : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      type_x : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.Core.VariablePhotoSequenceCapture'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -11908,7 +11908,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVariablePhotoSequenceCapture := new Windows.Media.Capture.Core.IVariablePhotoSequenceCapture;
+                  Retval.m_IVariablePhotoSequenceCapture := new WinRt.Windows.Media.Capture.Core.IVariablePhotoSequenceCapture;
                   Retval.m_IVariablePhotoSequenceCapture.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -11931,7 +11931,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture3, WinRt.Windows.Media.Capture.IID_IMediaCapture3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -11946,7 +11946,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_FocusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -11972,7 +11972,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture3, WinRt.Windows.Media.Capture.IID_IMediaCapture3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -11987,7 +11987,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_PhotoConfirmationCaptured
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12006,7 +12006,7 @@ package body WinRt.Windows.Media.Capture is
    function AddAudioEffectAsync
    (
       this : in out MediaCapture;
-      definition : Windows.Media.Effects.IAudioEffectDefinition
+      definition : WinRt.Windows.Media.Effects.IAudioEffectDefinition
    )
    return WinRt.Windows.Media.IMediaExtension is
       Hr               : WinRt.HResult := S_OK;
@@ -12074,8 +12074,8 @@ package body WinRt.Windows.Media.Capture is
    function AddVideoEffectAsync
    (
       this : in out MediaCapture;
-      definition : Windows.Media.Effects.IVideoEffectDefinition;
-      mediaStreamType : Windows.Media.Capture.MediaStreamType
+      definition : WinRt.Windows.Media.Effects.IVideoEffectDefinition;
+      mediaStreamType : WinRt.Windows.Media.Capture.MediaStreamType
    )
    return WinRt.Windows.Media.IMediaExtension is
       Hr               : WinRt.HResult := S_OK;
@@ -12143,7 +12143,7 @@ package body WinRt.Windows.Media.Capture is
    procedure PauseRecordAsync
    (
       this : in out MediaCapture;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12243,7 +12243,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture4, WinRt.Windows.Media.Capture.IID_IMediaCapture4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -12258,7 +12258,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CameraStreamStateChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12283,7 +12283,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.CameraStreamState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.CameraStreamState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture4, WinRt.Windows.Media.Capture.IID_IMediaCapture4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -12352,7 +12352,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
+                  Retval.m_IVideoFrame := new WinRt.Windows.Media.IVideoFrame;
                   Retval.m_IVideoFrame.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12368,7 +12368,7 @@ package body WinRt.Windows.Media.Capture is
    function GetPreviewFrameAsync
    (
       this : in out MediaCapture;
-      destination : Windows.Media.VideoFrame'Class
+      destination : WinRt.Windows.Media.VideoFrame'Class
    )
    return WinRt.Windows.Media.VideoFrame'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12423,7 +12423,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
+                  Retval.m_IVideoFrame := new WinRt.Windows.Media.IVideoFrame;
                   Retval.m_IVideoFrame.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12446,7 +12446,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture4, WinRt.Windows.Media.Capture.IID_IMediaCapture4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -12461,7 +12461,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_ThermalStatusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12486,7 +12486,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCaptureThermalStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCaptureThermalStatus;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture4, WinRt.Windows.Media.Capture.IID_IMediaCapture4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -12501,7 +12501,7 @@ package body WinRt.Windows.Media.Capture is
    function PrepareAdvancedPhotoCaptureAsync
    (
       this : in out MediaCapture;
-      encodingProperties : Windows.Media.MediaProperties.ImageEncodingProperties'Class
+      encodingProperties : WinRt.Windows.Media.MediaProperties.ImageEncodingProperties'Class
    )
    return WinRt.Windows.Media.Capture.AdvancedPhotoCapture'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12556,7 +12556,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IAdvancedPhotoCapture := new Windows.Media.Capture.IAdvancedPhotoCapture;
+                  Retval.m_IAdvancedPhotoCapture := new WinRt.Windows.Media.Capture.IAdvancedPhotoCapture;
                   Retval.m_IAdvancedPhotoCapture.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12572,7 +12572,7 @@ package body WinRt.Windows.Media.Capture is
    procedure RemoveEffectAsync
    (
       this : in out MediaCapture;
-      effect : Windows.Media.IMediaExtension
+      effect : WinRt.Windows.Media.IMediaExtension
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -12619,7 +12619,7 @@ package body WinRt.Windows.Media.Capture is
    function PauseRecordWithResultAsync
    (
       this : in out MediaCapture;
-      behavior : Windows.Media.Devices.MediaCapturePauseBehavior
+      behavior : WinRt.Windows.Media.Devices.MediaCapturePauseBehavior
    )
    return WinRt.Windows.Media.Capture.MediaCapturePauseResult'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12674,7 +12674,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaCapturePauseResult := new Windows.Media.Capture.IMediaCapturePauseResult;
+                  Retval.m_IMediaCapturePauseResult := new WinRt.Windows.Media.Capture.IMediaCapturePauseResult;
                   Retval.m_IMediaCapturePauseResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12744,7 +12744,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaCaptureStopResult := new Windows.Media.Capture.IMediaCaptureStopResult;
+                  Retval.m_IMediaCaptureStopResult := new WinRt.Windows.Media.Capture.IMediaCaptureStopResult;
                   Retval.m_IMediaCaptureStopResult.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12766,7 +12766,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture5, WinRt.Windows.Media.Capture.IID_IMediaCapture5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -12781,7 +12781,7 @@ package body WinRt.Windows.Media.Capture is
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12836,7 +12836,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaFrameReader := new Windows.Media.Capture.Frames.IMediaFrameReader;
+                  Retval.m_IMediaFrameReader := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReader;
                   Retval.m_IMediaFrameReader.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12852,7 +12852,7 @@ package body WinRt.Windows.Media.Capture is
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class;
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class;
       outputSubtype : WinRt.WString
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class is
@@ -12909,7 +12909,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaFrameReader := new Windows.Media.Capture.Frames.IMediaFrameReader;
+                  Retval.m_IMediaFrameReader := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReader;
                   Retval.m_IMediaFrameReader.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -12926,9 +12926,9 @@ package body WinRt.Windows.Media.Capture is
    function CreateFrameReaderAsync
    (
       this : in out MediaCapture;
-      inputSource : Windows.Media.Capture.Frames.MediaFrameSource'Class;
+      inputSource : WinRt.Windows.Media.Capture.Frames.MediaFrameSource'Class;
       outputSubtype : WinRt.WString;
-      outputSize : Windows.Graphics.Imaging.BitmapSize
+      outputSize : WinRt.Windows.Graphics.Imaging.BitmapSize
    )
    return WinRt.Windows.Media.Capture.Frames.MediaFrameReader'Class is
       Hr               : WinRt.HResult := S_OK;
@@ -12984,7 +12984,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMediaFrameReader := new Windows.Media.Capture.Frames.IMediaFrameReader;
+                  Retval.m_IMediaFrameReader := new WinRt.Windows.Media.Capture.Frames.IMediaFrameReader;
                   Retval.m_IMediaFrameReader.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -13008,7 +13008,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture6 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture6, WinRt.Windows.Media.Capture.IID_IMediaCapture6'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCapture.all);
@@ -13023,7 +13023,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_CaptureDeviceExclusiveControlStatusChanged
    (
       this : in out MediaCapture;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13097,7 +13097,7 @@ package body WinRt.Windows.Media.Capture is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IMultiSourceMediaFrameReader := new Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader;
+                  Retval.m_IMultiSourceMediaFrameReader := new WinRt.Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader;
                   Retval.m_IMultiSourceMediaFrameReader.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -13113,15 +13113,15 @@ package body WinRt.Windows.Media.Capture is
    function CreateRelativePanelWatcher
    (
       this : in out MediaCapture;
-      captureMode : Windows.Media.Capture.StreamingCaptureMode;
-      displayRegion : Windows.UI.WindowManagement.DisplayRegion'Class
+      captureMode : WinRt.Windows.Media.Capture.StreamingCaptureMode;
+      displayRegion : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    )
    return WinRt.Windows.Media.Capture.MediaCaptureRelativePanelWatcher'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCapture7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureRelativePanelWatcher;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureRelativePanelWatcher;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCapture_Interface, WinRt.Windows.Media.Capture.IMediaCapture7, WinRt.Windows.Media.Capture.IID_IMediaCapture7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureRelativePanelWatcher do
@@ -13131,7 +13131,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureRelativePanelWatcher := new Windows.Media.Capture.IMediaCaptureRelativePanelWatcher;
+         Retval.m_IMediaCaptureRelativePanelWatcher := new WinRt.Windows.Media.Capture.IMediaCaptureRelativePanelWatcher;
          Retval.m_IMediaCaptureRelativePanelWatcher.all := m_ComRetVal;
       end return;
    end;
@@ -13187,7 +13187,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus;
    begin
       Hr := this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13262,8 +13262,8 @@ package body WinRt.Windows.Media.Capture is
    function Invoke
    (
       this : access MediaCaptureFailedEventHandler_Delegate;
-      sender : Windows.Media.Capture.IMediaCapture;
-      errorEventArgs : Windows.Media.Capture.IMediaCaptureFailedEventArgs
+      sender : WinRt.Windows.Media.Capture.IMediaCapture;
+      errorEventArgs : WinRt.Windows.Media.Capture.IMediaCaptureFailedEventArgs
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -13303,7 +13303,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Devices.MediaCaptureFocusState;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Devices.MediaCaptureFocusState;
    begin
       Hr := this.m_IMediaCaptureFocusChangedEventArgs.all.get_FocusState (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13338,13 +13338,13 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return MediaCaptureInitializationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCaptureInitializationSettings");
-      m_ComRetVal  : aliased Windows.Media.Capture.IMediaCaptureInitializationSettings;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IMediaCaptureInitializationSettings");
+      m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings;
    begin
       return RetVal : MediaCaptureInitializationSettings do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IMediaCaptureInitializationSettings := new Windows.Media.Capture.IMediaCaptureInitializationSettings;
+            Retval.m_IMediaCaptureInitializationSettings := new WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings;
             Retval.m_IMediaCaptureInitializationSettings.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -13431,7 +13431,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_StreamingCaptureMode
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.StreamingCaptureMode
+      value : WinRt.Windows.Media.Capture.StreamingCaptureMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13451,7 +13451,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.StreamingCaptureMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.StreamingCaptureMode;
    begin
       Hr := this.m_IMediaCaptureInitializationSettings.all.get_StreamingCaptureMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13463,7 +13463,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_PhotoCaptureSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.PhotoCaptureSource
+      value : WinRt.Windows.Media.Capture.PhotoCaptureSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13483,7 +13483,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.PhotoCaptureSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.PhotoCaptureSource;
    begin
       Hr := this.m_IMediaCaptureInitializationSettings.all.get_PhotoCaptureSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -13495,7 +13495,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_MediaCategory
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCategory
+      value : WinRt.Windows.Media.Capture.MediaCategory
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13520,7 +13520,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCategory;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13535,7 +13535,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_AudioProcessing
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.AudioProcessing
+      value : WinRt.Windows.Media.AudioProcessing
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13560,7 +13560,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AudioProcessing;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AudioProcessing;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13575,7 +13575,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_AudioSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Core.IMediaSource
+      value : WinRt.Windows.Media.Core.IMediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13600,7 +13600,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings3, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13615,7 +13615,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoSource
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Core.IMediaSource
+      value : WinRt.Windows.Media.Core.IMediaSource
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13640,7 +13640,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Core.IMediaSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Core.IMediaSource;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings3, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13661,7 +13661,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureVideoProfile;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureVideoProfile do
@@ -13671,7 +13671,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureVideoProfile := new Windows.Media.Capture.IMediaCaptureVideoProfile;
+         Retval.m_IMediaCaptureVideoProfile := new WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile;
          Retval.m_IMediaCaptureVideoProfile.all := m_ComRetVal;
       end return;
    end;
@@ -13679,7 +13679,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_VideoProfile
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfile'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfile'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13704,7 +13704,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription do
@@ -13714,7 +13714,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureVideoProfileMediaDescription := new Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+         Retval.m_IMediaCaptureVideoProfileMediaDescription := new WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
          Retval.m_IMediaCaptureVideoProfileMediaDescription.all := m_ComRetVal;
       end return;
    end;
@@ -13722,7 +13722,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_PreviewMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13747,7 +13747,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription do
@@ -13757,7 +13757,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureVideoProfileMediaDescription := new Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+         Retval.m_IMediaCaptureVideoProfileMediaDescription := new WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
          Retval.m_IMediaCaptureVideoProfileMediaDescription.all := m_ComRetVal;
       end return;
    end;
@@ -13765,7 +13765,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_RecordMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13790,7 +13790,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings4, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription do
@@ -13800,7 +13800,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaCaptureVideoProfileMediaDescription := new Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
+         Retval.m_IMediaCaptureVideoProfileMediaDescription := new WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription;
          Retval.m_IMediaCaptureVideoProfileMediaDescription.all := m_ComRetVal;
       end return;
    end;
@@ -13808,7 +13808,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_PhotoMediaDescription
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
+      value : WinRt.Windows.Media.Capture.MediaCaptureVideoProfileMediaDescription'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13833,7 +13833,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings5'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGroup do
@@ -13843,7 +13843,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IMediaFrameSourceGroup := new Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
+         Retval.m_IMediaFrameSourceGroup := new WinRt.Windows.Media.Capture.Frames.IMediaFrameSourceGroup;
          Retval.m_IMediaFrameSourceGroup.all := m_ComRetVal;
       end return;
    end;
@@ -13851,7 +13851,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SourceGroup
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.Frames.MediaFrameSourceGroup'Class
+      value : WinRt.Windows.Media.Capture.Frames.MediaFrameSourceGroup'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13876,7 +13876,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCaptureSharingMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCaptureSharingMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13891,7 +13891,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_SharingMode
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureSharingMode
+      value : WinRt.Windows.Media.Capture.MediaCaptureSharingMode
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13916,7 +13916,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCaptureMemoryPreference;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCaptureMemoryPreference;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings5, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings5'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureInitializationSettings.all);
@@ -13931,7 +13931,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_MemoryPreference
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Media.Capture.MediaCaptureMemoryPreference
+      value : WinRt.Windows.Media.Capture.MediaCaptureMemoryPreference
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -13996,7 +13996,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Security.Credentials.IPasswordCredential;
+      m_ComRetVal      : aliased WinRt.Windows.Security.Credentials.IPasswordCredential;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings7, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Security.Credentials.PasswordCredential do
@@ -14006,7 +14006,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPasswordCredential := new Windows.Security.Credentials.IPasswordCredential;
+         Retval.m_IPasswordCredential := new WinRt.Windows.Security.Credentials.IPasswordCredential;
          Retval.m_IPasswordCredential.all := m_ComRetVal;
       end return;
    end;
@@ -14014,7 +14014,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_DeviceUriPasswordCredential
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Security.Credentials.PasswordCredential'Class
+      value : WinRt.Windows.Security.Credentials.PasswordCredential'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14039,7 +14039,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings7 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings7, WinRt.Windows.Media.Capture.IID_IMediaCaptureInitializationSettings7'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
@@ -14049,7 +14049,7 @@ package body WinRt.Windows.Media.Capture is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -14057,7 +14057,7 @@ package body WinRt.Windows.Media.Capture is
    procedure put_DeviceUri
    (
       this : in out MediaCaptureInitializationSettings;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14104,14 +14104,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IVideoFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IMediaCapturePauseResult.all.get_LastFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
+         Retval.m_IVideoFrame := new WinRt.Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
    end;
@@ -14124,7 +14124,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaCapturePauseResult.all.get_RecordDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14182,7 +14182,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Enumeration.Panel;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Enumeration.Panel;
    begin
       Hr := this.m_IMediaCaptureRelativePanelWatcher.all.get_RelativePanel (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14200,7 +14200,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IMediaCaptureRelativePanelWatcher.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14212,7 +14212,7 @@ package body WinRt.Windows.Media.Capture is
    procedure remove_Changed
    (
       this : in out MediaCaptureRelativePanelWatcher;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -14341,7 +14341,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.StreamingCaptureMode;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.StreamingCaptureMode;
    begin
       Hr := this.m_IMediaCaptureSettings.all.get_StreamingCaptureMode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14358,7 +14358,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.PhotoCaptureSource;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.PhotoCaptureSource;
    begin
       Hr := this.m_IMediaCaptureSettings.all.get_PhotoCaptureSource (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14375,7 +14375,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.VideoDeviceCharacteristic;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.VideoDeviceCharacteristic;
    begin
       Hr := this.m_IMediaCaptureSettings.all.get_VideoDeviceCharacteristic (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14456,7 +14456,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings2'Unchecked_Access);
    begin
@@ -14480,7 +14480,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings2'Unchecked_Access);
    begin
@@ -14504,7 +14504,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_UInt32.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings2'Unchecked_Access);
    begin
@@ -14528,7 +14528,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.MediaCategory;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.MediaCategory;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureSettings.all);
@@ -14549,7 +14549,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.AudioProcessing;
+      m_ComRetVal      : aliased WinRt.Windows.Media.AudioProcessing;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings2, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureSettings.all);
@@ -14570,7 +14570,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureSettings3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureSettings_Interface, WinRt.Windows.Media.Capture.IMediaCaptureSettings3, WinRt.Windows.Media.Capture.IID_IMediaCaptureSettings3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureSettings.all);
@@ -14613,14 +14613,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.IVideoFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.IVideoFrame;
    begin
       return RetVal : WinRt.Windows.Media.VideoFrame do
          Hr := this.m_IMediaCaptureStopResult.all.get_LastFrame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoFrame := new Windows.Media.IVideoFrame;
+         Retval.m_IVideoFrame := new WinRt.Windows.Media.IVideoFrame;
          Retval.m_IVideoFrame.all := m_ComRetVal;
       end return;
    end;
@@ -14633,7 +14633,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IMediaCaptureStopResult.all.get_RecordDuration (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -14731,7 +14731,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfileMediaDescription.Kind;
    begin
       Hr := this.m_IMediaCaptureVideoProfile.all.get_SupportedPreviewMediaDescription (m_ComRetVal'Access);
@@ -14751,7 +14751,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfileMediaDescription.Kind;
    begin
       Hr := this.m_IMediaCaptureVideoProfile.all.get_SupportedRecordMediaDescription (m_ComRetVal'Access);
@@ -14771,7 +14771,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfileMediaDescription.Kind;
    begin
       Hr := this.m_IMediaCaptureVideoProfile.all.get_SupportedPhotoMediaDescription (m_ComRetVal'Access);
@@ -14791,7 +14791,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IMediaCaptureVideoProfile.Kind;
    begin
       Hr := this.m_IMediaCaptureVideoProfile.all.GetConcurrency (m_ComRetVal'Access);
@@ -14812,7 +14812,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile_Interface, WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile2, WinRt.Windows.Media.Capture.IID_IMediaCaptureVideoProfile2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMediaCaptureVideoProfile.all);
@@ -14833,7 +14833,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile_Interface, WinRt.Windows.Media.Capture.IMediaCaptureVideoProfile2, WinRt.Windows.Media.Capture.IID_IMediaCaptureVideoProfile2'Unchecked_Access);
    begin
@@ -14989,7 +14989,7 @@ package body WinRt.Windows.Media.Capture is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_Guid_IInspectable.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription_Interface, WinRt.Windows.Media.Capture.IMediaCaptureVideoProfileMediaDescription2, WinRt.Windows.Media.Capture.IID_IMediaCaptureVideoProfileMediaDescription2'Unchecked_Access);
    begin
@@ -15035,14 +15035,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IOptionalReferencePhotoCapturedEventArgs.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -15095,14 +15095,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IPhotoCapturedEventArgs.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -15115,14 +15115,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IPhotoCapturedEventArgs.all.get_Thumbnail (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -15135,7 +15135,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPhotoCapturedEventArgs.all.get_CaptureTimeOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15175,14 +15175,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.Capture.ICapturedFrame;
+      m_ComRetVal      : aliased WinRt.Windows.Media.Capture.ICapturedFrame;
    begin
       return RetVal : WinRt.Windows.Media.Capture.CapturedFrame do
          Hr := this.m_IPhotoConfirmationCapturedEventArgs.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICapturedFrame := new Windows.Media.Capture.ICapturedFrame;
+         Retval.m_ICapturedFrame := new WinRt.Windows.Media.Capture.ICapturedFrame;
          Retval.m_ICapturedFrame.all := m_ComRetVal;
       end return;
    end;
@@ -15195,7 +15195,7 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_IPhotoConfirmationCapturedEventArgs.all.get_CaptureTimeOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -15210,7 +15210,7 @@ package body WinRt.Windows.Media.Capture is
    function Invoke
    (
       this : access RecordLimitationExceededEventHandler_Delegate;
-      sender : Windows.Media.Capture.IMediaCapture
+      sender : WinRt.Windows.Media.Capture.IMediaCapture
    )
    return WinRt.Hresult is
       Hr : constant WinRt.HResult := S_OK;
@@ -15250,14 +15250,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := this.m_IVideoStreamConfiguration.all.get_InputProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+         Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
    end;
@@ -15270,14 +15270,14 @@ package body WinRt.Windows.Media.Capture is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Media.MediaProperties.IVideoEncodingProperties;
+      m_ComRetVal      : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : WinRt.Windows.Media.MediaProperties.VideoEncodingProperties do
          Hr := this.m_IVideoStreamConfiguration.all.get_OutputProperties (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IVideoEncodingProperties := new Windows.Media.MediaProperties.IVideoEncodingProperties;
+         Retval.m_IVideoEncodingProperties := new WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
          Retval.m_IVideoEncodingProperties.all := m_ComRetVal;
       end return;
    end;

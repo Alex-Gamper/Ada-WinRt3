@@ -197,14 +197,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_ViewMode
       (
          this : access IFileOpenPicker_Interface;
-         RetVal : access Windows.Storage.Pickers.PickerViewMode
+         RetVal : access WinRt.Windows.Storage.Pickers.PickerViewMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewMode
       (
          this : access IFileOpenPicker_Interface;
-         value : Windows.Storage.Pickers.PickerViewMode
+         value : WinRt.Windows.Storage.Pickers.PickerViewMode
       )
       return WinRt.Hresult is abstract;
 
@@ -225,14 +225,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_SuggestedStartLocation
       (
          this : access IFileOpenPicker_Interface;
-         RetVal : access Windows.Storage.Pickers.PickerLocationId
+         RetVal : access WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
       function put_SuggestedStartLocation
       (
          this : access IFileOpenPicker_Interface;
-         value : Windows.Storage.Pickers.PickerLocationId
+         value : WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
@@ -279,7 +279,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_ContinuationData
       (
          this : access IFileOpenPicker2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -303,7 +303,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_User
       (
          this : access IFileOpenPicker3_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -327,8 +327,8 @@ package WinRt.Windows.Storage.Pickers is
       function CreateForUser
       (
          this : access IFileOpenPickerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.Pickers.IFileOpenPicker
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.Pickers.IFileOpenPicker
       )
       return WinRt.Hresult is abstract;
 
@@ -367,14 +367,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_SuggestedStartLocation
       (
          this : access IFileSavePicker_Interface;
-         RetVal : access Windows.Storage.Pickers.PickerLocationId
+         RetVal : access WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
       function put_SuggestedStartLocation
       (
          this : access IFileSavePicker_Interface;
-         value : Windows.Storage.Pickers.PickerLocationId
+         value : WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
@@ -416,14 +416,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_SuggestedSaveFile
       (
          this : access IFileSavePicker_Interface;
-         RetVal : access Windows.Storage.IStorageFile
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function put_SuggestedSaveFile
       (
          this : access IFileSavePicker_Interface;
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
@@ -456,7 +456,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_ContinuationData
       (
          this : access IFileSavePicker2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -493,7 +493,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_User
       (
          this : access IFileSavePicker4_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -505,8 +505,8 @@ package WinRt.Windows.Storage.Pickers is
       function CreateForUser
       (
          this : access IFileSavePickerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.Pickers.IFileSavePicker
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.Pickers.IFileSavePicker
       )
       return WinRt.Hresult is abstract;
 
@@ -518,14 +518,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_ViewMode
       (
          this : access IFolderPicker_Interface;
-         RetVal : access Windows.Storage.Pickers.PickerViewMode
+         RetVal : access WinRt.Windows.Storage.Pickers.PickerViewMode
       )
       return WinRt.Hresult is abstract;
 
       function put_ViewMode
       (
          this : access IFolderPicker_Interface;
-         value : Windows.Storage.Pickers.PickerViewMode
+         value : WinRt.Windows.Storage.Pickers.PickerViewMode
       )
       return WinRt.Hresult is abstract;
 
@@ -546,14 +546,14 @@ package WinRt.Windows.Storage.Pickers is
       function get_SuggestedStartLocation
       (
          this : access IFolderPicker_Interface;
-         RetVal : access Windows.Storage.Pickers.PickerLocationId
+         RetVal : access WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
       function put_SuggestedStartLocation
       (
          this : access IFolderPicker_Interface;
-         value : Windows.Storage.Pickers.PickerLocationId
+         value : WinRt.Windows.Storage.Pickers.PickerLocationId
       )
       return WinRt.Hresult is abstract;
 
@@ -593,7 +593,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_ContinuationData
       (
          this : access IFolderPicker2_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -611,7 +611,7 @@ package WinRt.Windows.Storage.Pickers is
       function get_User
       (
          this : access IFolderPicker3_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -623,8 +623,8 @@ package WinRt.Windows.Storage.Pickers is
       function CreateForUser
       (
          this : access IFolderPickerStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.Pickers.IFolderPicker
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.Pickers.IFolderPicker
       )
       return WinRt.Hresult is abstract;
 
@@ -747,7 +747,7 @@ package WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FileOpenPicker;
 
@@ -786,7 +786,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_ViewMode
    (
       this : in out FileOpenPicker;
-      value : Windows.Storage.Pickers.PickerViewMode
+      value : WinRt.Windows.Storage.Pickers.PickerViewMode
    );
 
    function get_SettingsIdentifier
@@ -810,7 +810,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FileOpenPicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    );
 
    function get_CommitButtonText
@@ -884,7 +884,7 @@ package WinRt.Windows.Storage.Pickers is
    function IndexOf
    (
       this : in out FilePickerSelectedFilesArray;
-      value : Windows.Storage.StorageFile'Class;
+      value : WinRt.Windows.Storage.StorageFile'Class;
       index : WinRt.UInt32_Ptr
    )
    return WinRt.Boolean;
@@ -893,7 +893,7 @@ package WinRt.Windows.Storage.Pickers is
    (
       this : in out FilePickerSelectedFilesArray;
       startIndex : WinRt.UInt32;
-      items : Windows.Storage.IStorageFile_Array
+      items : WinRt.Windows.Storage.IStorageFile_Array
    )
    return WinRt.UInt32;
 
@@ -920,7 +920,7 @@ package WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FileSavePicker;
 
@@ -971,7 +971,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FileSavePicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    );
 
    function get_CommitButtonText
@@ -1013,7 +1013,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedSaveFile
    (
       this : in out FileSavePicker;
-      value : Windows.Storage.StorageFile'Class
+      value : WinRt.Windows.Storage.StorageFile'Class
    );
 
    function get_SuggestedFileName
@@ -1056,7 +1056,7 @@ package WinRt.Windows.Storage.Pickers is
 
    function CreateForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.Pickers.FolderPicker;
 
@@ -1083,7 +1083,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_ViewMode
    (
       this : in out FolderPicker;
-      value : Windows.Storage.Pickers.PickerViewMode
+      value : WinRt.Windows.Storage.Pickers.PickerViewMode
    );
 
    function get_SettingsIdentifier
@@ -1107,7 +1107,7 @@ package WinRt.Windows.Storage.Pickers is
    procedure put_SuggestedStartLocation
    (
       this : in out FolderPicker;
-      value : Windows.Storage.Pickers.PickerLocationId
+      value : WinRt.Windows.Storage.Pickers.PickerLocationId
    );
 
    function get_CommitButtonText

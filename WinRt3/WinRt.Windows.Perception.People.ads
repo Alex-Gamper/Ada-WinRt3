@@ -221,7 +221,7 @@ package WinRt.Windows.Perception.People is
       function get_UpdateTimestamp
       (
          this : access IEyesPose_Interface;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
@@ -252,7 +252,7 @@ package WinRt.Windows.Perception.People is
       function get_Source
       (
          this : access IHandMeshObserver_Interface;
-         RetVal : access Windows.UI.Input.Spatial.ISpatialInteractionSource
+         RetVal : access WinRt.Windows.UI.Input.Spatial.ISpatialInteractionSource
       )
       return WinRt.Hresult is abstract;
 
@@ -281,15 +281,15 @@ package WinRt.Windows.Perception.People is
       function GetVertexStateForPose
       (
          this : access IHandMeshObserver_Interface;
-         handPose_p : Windows.Perception.People.IHandPose;
-         RetVal : access Windows.Perception.People.IHandMeshVertexState
+         handPose_p : WinRt.Windows.Perception.People.IHandPose;
+         RetVal : access WinRt.Windows.Perception.People.IHandMeshVertexState
       )
       return WinRt.Hresult is abstract;
 
       function get_NeutralPose
       (
          this : access IHandMeshObserver_Interface;
-         RetVal : access Windows.Perception.People.IHandPose
+         RetVal : access WinRt.Windows.Perception.People.IHandPose
       )
       return WinRt.Hresult is abstract;
 
@@ -315,7 +315,7 @@ package WinRt.Windows.Perception.People is
       function get_CoordinateSystem
       (
          this : access IHandMeshVertexState_Interface;
-         RetVal : access Windows.Perception.Spatial.ISpatialCoordinateSystem
+         RetVal : access WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem
       )
       return WinRt.Hresult is abstract;
 
@@ -323,14 +323,14 @@ package WinRt.Windows.Perception.People is
       (
          this : access IHandMeshVertexState_Interface;
          verticesSize : WinRt.UInt32;
-         vertices : Windows.Perception.People.HandMeshVertex_Ptr
+         vertices : WinRt.Windows.Perception.People.HandMeshVertex_Ptr
       )
       return WinRt.Hresult is abstract;
 
       function get_UpdateTimestamp
       (
          this : access IHandMeshVertexState_Interface;
-         RetVal : access Windows.Perception.IPerceptionTimestamp
+         RetVal : access WinRt.Windows.Perception.IPerceptionTimestamp
       )
       return WinRt.Hresult is abstract;
 
@@ -342,9 +342,9 @@ package WinRt.Windows.Perception.People is
       function TryGetJoint
       (
          this : access IHandPose_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
-         joint : Windows.Perception.People.HandJointKind;
-         jointPose : Windows.Perception.People.JointPose_Ptr;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         joint : WinRt.Windows.Perception.People.HandJointKind;
+         jointPose : WinRt.Windows.Perception.People.JointPose_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -352,11 +352,11 @@ package WinRt.Windows.Perception.People is
       function TryGetJoints
       (
          this : access IHandPose_Interface;
-         coordinateSystem : Windows.Perception.Spatial.ISpatialCoordinateSystem;
+         coordinateSystem : WinRt.Windows.Perception.Spatial.ISpatialCoordinateSystem;
          jointsSize : WinRt.UInt32;
-         joints : Windows.Perception.People.HandJointKind_Ptr;
+         joints : WinRt.Windows.Perception.People.HandJointKind_Ptr;
          jointPosesSize : WinRt.UInt32;
-         jointPoses : Windows.Perception.People.JointPose_Ptr;
+         jointPoses : WinRt.Windows.Perception.People.JointPose_Ptr;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -364,9 +364,9 @@ package WinRt.Windows.Perception.People is
       function GetRelativeJoint
       (
          this : access IHandPose_Interface;
-         joint : Windows.Perception.People.HandJointKind;
-         referenceJoint : Windows.Perception.People.HandJointKind;
-         RetVal : access Windows.Perception.People.JointPose
+         joint : WinRt.Windows.Perception.People.HandJointKind;
+         referenceJoint : WinRt.Windows.Perception.People.HandJointKind;
+         RetVal : access WinRt.Windows.Perception.People.JointPose
       )
       return WinRt.Hresult is abstract;
 
@@ -374,11 +374,11 @@ package WinRt.Windows.Perception.People is
       (
          this : access IHandPose_Interface;
          jointsSize : WinRt.UInt32;
-         joints : Windows.Perception.People.HandJointKind_Ptr;
+         joints : WinRt.Windows.Perception.People.HandJointKind_Ptr;
          referenceJointsSize : WinRt.UInt32;
-         referenceJoints : Windows.Perception.People.HandJointKind_Ptr;
+         referenceJoints : WinRt.Windows.Perception.People.HandJointKind_Ptr;
          jointPosesSize : WinRt.UInt32;
-         jointPoses : Windows.Perception.People.JointPose_Ptr
+         jointPoses : WinRt.Windows.Perception.People.JointPose_Ptr
       )
       return WinRt.Hresult is abstract;
 
@@ -390,21 +390,21 @@ package WinRt.Windows.Perception.People is
       function get_Position
       (
          this : access IHeadPose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_ForwardDirection
       (
          this : access IHeadPose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
       function get_UpDirection
       (
          this : access IHeadPose_Interface;
-         RetVal : access Windows.Foundation.Numerics.Vector3
+         RetVal : access WinRt.Windows.Foundation.Numerics.Vector3
       )
       return WinRt.Hresult is abstract;
 
@@ -486,7 +486,7 @@ package WinRt.Windows.Perception.People is
    function GetVertexStateForPose
    (
       this : in out HandMeshObserver;
-      handPose_p : Windows.Perception.People.HandPose'Class
+      handPose_p : WinRt.Windows.Perception.People.HandPose'Class
    )
    return WinRt.Windows.Perception.People.HandMeshVertexState'Class;
 
@@ -526,7 +526,7 @@ package WinRt.Windows.Perception.People is
    procedure GetVertices
    (
       this : in out HandMeshVertexState;
-      vertices : Windows.Perception.People.HandMeshVertex_Array
+      vertices : WinRt.Windows.Perception.People.HandMeshVertex_Array
    );
 
    function get_UpdateTimestamp
@@ -547,35 +547,35 @@ package WinRt.Windows.Perception.People is
    function TryGetJoint
    (
       this : in out HandPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joint : Windows.Perception.People.HandJointKind;
-      jointPose : Windows.Perception.People.JointPose_Ptr
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      joint : WinRt.Windows.Perception.People.HandJointKind;
+      jointPose : WinRt.Windows.Perception.People.JointPose_Ptr
    )
    return WinRt.Boolean;
 
    function TryGetJoints
    (
       this : in out HandPose;
-      coordinateSystem : Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joints : Windows.Perception.People.HandJointKind_Array;
-      jointPoses : Windows.Perception.People.JointPose_Array
+      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
+      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
    )
    return WinRt.Boolean;
 
    function GetRelativeJoint
    (
       this : in out HandPose;
-      joint : Windows.Perception.People.HandJointKind;
-      referenceJoint : Windows.Perception.People.HandJointKind
+      joint : WinRt.Windows.Perception.People.HandJointKind;
+      referenceJoint : WinRt.Windows.Perception.People.HandJointKind
    )
    return WinRt.Windows.Perception.People.JointPose;
 
    procedure GetRelativeJoints
    (
       this : in out HandPose;
-      joints : Windows.Perception.People.HandJointKind_Array;
-      referenceJoints : Windows.Perception.People.HandJointKind_Array;
-      jointPoses : Windows.Perception.People.JointPose_Array
+      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      referenceJoints : WinRt.Windows.Perception.People.HandJointKind_Array;
+      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
    );
 
    -----------------------------------------------------------------------------

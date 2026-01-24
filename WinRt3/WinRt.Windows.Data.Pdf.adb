@@ -64,7 +64,7 @@ package body WinRt.Windows.Data.Pdf is
 
    function LoadFromFileAsync
    (
-      file : Windows.Storage.IStorageFile
+      file : WinRt.Windows.Storage.IStorageFile
    )
    return WinRt.Windows.Data.Pdf.PdfDocument is
       Hr               : WinRt.HResult := S_OK;
@@ -120,7 +120,7 @@ package body WinRt.Windows.Data.Pdf is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPdfDocument := new Windows.Data.Pdf.IPdfDocument;
+                     Retval.m_IPdfDocument := new WinRt.Windows.Data.Pdf.IPdfDocument;
                      Retval.m_IPdfDocument.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -137,7 +137,7 @@ package body WinRt.Windows.Data.Pdf is
 
    function LoadFromFileAsync
    (
-      file : Windows.Storage.IStorageFile;
+      file : WinRt.Windows.Storage.IStorageFile;
       password : WinRt.WString
    )
    return WinRt.Windows.Data.Pdf.PdfDocument is
@@ -195,7 +195,7 @@ package body WinRt.Windows.Data.Pdf is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPdfDocument := new Windows.Data.Pdf.IPdfDocument;
+                     Retval.m_IPdfDocument := new WinRt.Windows.Data.Pdf.IPdfDocument;
                      Retval.m_IPdfDocument.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -213,7 +213,7 @@ package body WinRt.Windows.Data.Pdf is
 
    function LoadFromStreamAsync
    (
-      inputStream : Windows.Storage.Streams.IRandomAccessStream
+      inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    )
    return WinRt.Windows.Data.Pdf.PdfDocument is
       Hr               : WinRt.HResult := S_OK;
@@ -269,7 +269,7 @@ package body WinRt.Windows.Data.Pdf is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPdfDocument := new Windows.Data.Pdf.IPdfDocument;
+                     Retval.m_IPdfDocument := new WinRt.Windows.Data.Pdf.IPdfDocument;
                      Retval.m_IPdfDocument.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -286,7 +286,7 @@ package body WinRt.Windows.Data.Pdf is
 
    function LoadFromStreamAsync
    (
-      inputStream : Windows.Storage.Streams.IRandomAccessStream;
+      inputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
       password : WinRt.WString
    )
    return WinRt.Windows.Data.Pdf.PdfDocument is
@@ -344,7 +344,7 @@ package body WinRt.Windows.Data.Pdf is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IPdfDocument := new Windows.Data.Pdf.IPdfDocument;
+                     Retval.m_IPdfDocument := new WinRt.Windows.Data.Pdf.IPdfDocument;
                      Retval.m_IPdfDocument.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -372,14 +372,14 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Pdf.IPdfPage;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Pdf.IPdfPage;
    begin
       return RetVal : WinRt.Windows.Data.Pdf.PdfPage do
          Hr := this.m_IPdfDocument.all.GetPage (pageIndex, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPdfPage := new Windows.Data.Pdf.IPdfPage;
+         Retval.m_IPdfPage := new WinRt.Windows.Data.Pdf.IPdfPage;
          Retval.m_IPdfPage.all := m_ComRetVal;
       end return;
    end;
@@ -444,7 +444,7 @@ package body WinRt.Windows.Data.Pdf is
    procedure RenderToStreamAsync
    (
       this : in out PdfPage;
-      outputStream : Windows.Storage.Streams.IRandomAccessStream
+      outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -487,8 +487,8 @@ package body WinRt.Windows.Data.Pdf is
    procedure RenderToStreamAsync
    (
       this : in out PdfPage;
-      outputStream : Windows.Storage.Streams.IRandomAccessStream;
-      options : Windows.Data.Pdf.PdfPageRenderOptions'Class
+      outputStream : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+      options : WinRt.Windows.Data.Pdf.PdfPageRenderOptions'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -595,7 +595,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IPdfPage.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -612,14 +612,14 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Pdf.IPdfPageDimensions;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Pdf.IPdfPageDimensions;
    begin
       return RetVal : WinRt.Windows.Data.Pdf.PdfPageDimensions do
          Hr := this.m_IPdfPage.all.get_Dimensions (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPdfPageDimensions := new Windows.Data.Pdf.IPdfPageDimensions;
+         Retval.m_IPdfPageDimensions := new WinRt.Windows.Data.Pdf.IPdfPageDimensions;
          Retval.m_IPdfPageDimensions.all := m_ComRetVal;
       end return;
    end;
@@ -632,7 +632,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Pdf.PdfPageRotation;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Pdf.PdfPageRotation;
    begin
       Hr := this.m_IPdfPage.all.get_Rotation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -707,7 +707,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageDimensions.all.get_MediaBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -724,7 +724,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageDimensions.all.get_CropBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -741,7 +741,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageDimensions.all.get_BleedBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -758,7 +758,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageDimensions.all.get_TrimBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -775,7 +775,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageDimensions.all.get_ArtBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -810,13 +810,13 @@ package body WinRt.Windows.Data.Pdf is
    function Constructor return PdfPageRenderOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Pdf.PdfPageRenderOptions");
-      m_ComRetVal  : aliased Windows.Data.Pdf.IPdfPageRenderOptions;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Pdf.IPdfPageRenderOptions");
+      m_ComRetVal  : aliased WinRt.Windows.Data.Pdf.IPdfPageRenderOptions;
    begin
       return RetVal : PdfPageRenderOptions do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IPdfPageRenderOptions := new Windows.Data.Pdf.IPdfPageRenderOptions;
+            Retval.m_IPdfPageRenderOptions := new WinRt.Windows.Data.Pdf.IPdfPageRenderOptions;
             Retval.m_IPdfPageRenderOptions.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -834,7 +834,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IPdfPageRenderOptions.all.get_SourceRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -846,7 +846,7 @@ package body WinRt.Windows.Data.Pdf is
    procedure put_SourceRect
    (
       this : in out PdfPageRenderOptions;
-      value : Windows.Foundation.Rect
+      value : WinRt.Windows.Foundation.Rect
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -930,7 +930,7 @@ package body WinRt.Windows.Data.Pdf is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_IPdfPageRenderOptions.all.get_BackgroundColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -942,7 +942,7 @@ package body WinRt.Windows.Data.Pdf is
    procedure put_BackgroundColor
    (
       this : in out PdfPageRenderOptions;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

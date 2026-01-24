@@ -361,7 +361,7 @@ package WinRt.Windows.Services.TargetedContent is
       function InvokeAsync
       (
          this : access ITargetedContentAction_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -373,7 +373,7 @@ package WinRt.Windows.Services.TargetedContent is
       function GetDeferral
       (
          this : access ITargetedContentAvailabilityChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -385,7 +385,7 @@ package WinRt.Windows.Services.TargetedContent is
       function GetDeferral
       (
          this : access ITargetedContentChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -411,7 +411,7 @@ package WinRt.Windows.Services.TargetedContent is
       function ReportInteraction
       (
          this : access ITargetedContentCollection_Interface;
-         interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+         interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
       )
       return WinRt.Hresult is abstract;
 
@@ -465,21 +465,21 @@ package WinRt.Windows.Services.TargetedContent is
       function get_Timestamp
       (
          this : access ITargetedContentContainer_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function get_Availability
       (
          this : access ITargetedContentContainer_Interface;
-         RetVal : access Windows.Services.TargetedContent.TargetedContentAvailability
+         RetVal : access WinRt.Windows.Services.TargetedContent.TargetedContentAvailability
       )
       return WinRt.Hresult is abstract;
 
       function get_Content
       (
          this : access ITargetedContentContainer_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentCollection
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentCollection
       )
       return WinRt.Hresult is abstract;
 
@@ -487,7 +487,7 @@ package WinRt.Windows.Services.TargetedContent is
       (
          this : access ITargetedContentContainer_Interface;
          path : WinRt.HString;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentObject
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentObject
       )
       return WinRt.Hresult is abstract;
 
@@ -538,7 +538,7 @@ package WinRt.Windows.Services.TargetedContent is
       function ReportInteraction
       (
          this : access ITargetedContentItem_Interface;
-         interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+         interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
       )
       return WinRt.Hresult is abstract;
 
@@ -552,7 +552,7 @@ package WinRt.Windows.Services.TargetedContent is
       function get_State
       (
          this : access ITargetedContentItem_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentItemState
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentItemState
       )
       return WinRt.Hresult is abstract;
 
@@ -585,7 +585,7 @@ package WinRt.Windows.Services.TargetedContent is
       function get_AppInstallationState
       (
          this : access ITargetedContentItemState_Interface;
-         RetVal : access Windows.Services.TargetedContent.TargetedContentAppInstallationState
+         RetVal : access WinRt.Windows.Services.TargetedContent.TargetedContentAppInstallationState
       )
       return WinRt.Hresult is abstract;
 
@@ -597,28 +597,28 @@ package WinRt.Windows.Services.TargetedContent is
       function get_ObjectKind
       (
          this : access ITargetedContentObject_Interface;
-         RetVal : access Windows.Services.TargetedContent.TargetedContentObjectKind
+         RetVal : access WinRt.Windows.Services.TargetedContent.TargetedContentObjectKind
       )
       return WinRt.Hresult is abstract;
 
       function get_Collection
       (
          this : access ITargetedContentObject_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentCollection
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentCollection
       )
       return WinRt.Hresult is abstract;
 
       function get_Item
       (
          this : access ITargetedContentObject_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentItem
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentItem
       )
       return WinRt.Hresult is abstract;
 
       function get_Value
       (
          this : access ITargetedContentObject_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentValue
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentValue
       )
       return WinRt.Hresult is abstract;
 
@@ -630,7 +630,7 @@ package WinRt.Windows.Services.TargetedContent is
       function GetDeferral
       (
          this : access ITargetedContentStateChangedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -657,14 +657,14 @@ package WinRt.Windows.Services.TargetedContent is
       (
          this : access ITargetedContentSubscription_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_ContentChanged
       (
          this : access ITargetedContentSubscription_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -672,14 +672,14 @@ package WinRt.Windows.Services.TargetedContent is
       (
          this : access ITargetedContentSubscription_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AvailabilityChanged
       (
          this : access ITargetedContentSubscription_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -687,14 +687,14 @@ package WinRt.Windows.Services.TargetedContent is
       (
          this : access ITargetedContentSubscription_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_StateChanged
       (
          this : access ITargetedContentSubscription_Interface;
-         cookie : Windows.Foundation.EventRegistrationToken
+         cookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -761,7 +761,7 @@ package WinRt.Windows.Services.TargetedContent is
       (
          this : access ITargetedContentSubscriptionStatics_Interface;
          subscriptionId : WinRt.HString;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentSubscriptionOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -773,7 +773,7 @@ package WinRt.Windows.Services.TargetedContent is
       function get_ValueKind
       (
          this : access ITargetedContentValue_Interface;
-         RetVal : access Windows.Services.TargetedContent.TargetedContentValueKind
+         RetVal : access WinRt.Windows.Services.TargetedContent.TargetedContentValueKind
       )
       return WinRt.Hresult is abstract;
 
@@ -794,7 +794,7 @@ package WinRt.Windows.Services.TargetedContent is
       function get_Uri
       (
          this : access ITargetedContentValue_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
@@ -815,21 +815,21 @@ package WinRt.Windows.Services.TargetedContent is
       function get_File
       (
          this : access ITargetedContentValue_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStreamReference
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
       )
       return WinRt.Hresult is abstract;
 
       function get_ImageFile
       (
          this : access ITargetedContentValue_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentImage
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentImage
       )
       return WinRt.Hresult is abstract;
 
       function get_Action
       (
          this : access ITargetedContentValue_Interface;
-         RetVal : access Windows.Services.TargetedContent.ITargetedContentAction
+         RetVal : access WinRt.Windows.Services.TargetedContent.ITargetedContentAction
       )
       return WinRt.Hresult is abstract;
 
@@ -956,7 +956,7 @@ package WinRt.Windows.Services.TargetedContent is
    procedure ReportInteraction
    (
       this : in out TargetedContentCollection;
-      interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+      interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
    );
 
    procedure ReportCustomInteraction
@@ -1098,7 +1098,7 @@ package WinRt.Windows.Services.TargetedContent is
    procedure ReportInteraction
    (
       this : in out TargetedContentItem;
-      interaction : Windows.Services.TargetedContent.TargetedContentInteraction
+      interaction : WinRt.Windows.Services.TargetedContent.TargetedContentInteraction
    );
 
    procedure ReportCustomInteraction
@@ -1240,7 +1240,7 @@ package WinRt.Windows.Services.TargetedContent is
    procedure remove_ContentChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_AvailabilityChanged
@@ -1253,7 +1253,7 @@ package WinRt.Windows.Services.TargetedContent is
    procedure remove_AvailabilityChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_StateChanged
@@ -1266,7 +1266,7 @@ package WinRt.Windows.Services.TargetedContent is
    procedure remove_StateChanged
    (
       this : in out TargetedContentSubscription;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -----------------------------------------------------------------------------

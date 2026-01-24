@@ -118,7 +118,7 @@ package body WinRt.Windows.UI.WindowManagement is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_IAppWindow := new Windows.UI.WindowManagement.IAppWindow;
+                     Retval.m_IAppWindow := new WinRt.Windows.UI.WindowManagement.IAppWindow;
                      Retval.m_IAppWindow.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -185,14 +185,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.IUIContentRoot;
+      m_ComRetVal      : aliased WinRt.Windows.UI.IUIContentRoot;
    begin
       return RetVal : WinRt.Windows.UI.UIContentRoot do
          Hr := this.m_IAppWindow.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIContentRoot := new Windows.UI.IUIContentRoot;
+         Retval.m_IUIContentRoot := new WinRt.Windows.UI.IUIContentRoot;
          Retval.m_IUIContentRoot.all := m_ComRetVal;
       end return;
    end;
@@ -205,14 +205,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IDispatcherQueue;
+      m_ComRetVal      : aliased WinRt.Windows.System.IDispatcherQueue;
    begin
       return RetVal : WinRt.Windows.System.DispatcherQueue do
          Hr := this.m_IAppWindow.all.get_DispatcherQueue (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDispatcherQueue := new Windows.System.IDispatcherQueue;
+         Retval.m_IDispatcherQueue := new WinRt.Windows.System.IDispatcherQueue;
          Retval.m_IDispatcherQueue.all := m_ComRetVal;
       end return;
    end;
@@ -225,14 +225,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IAppWindowFrame;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IAppWindowFrame;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.AppWindowFrame do
          Hr := this.m_IAppWindow.all.get_Frame (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppWindowFrame := new Windows.UI.WindowManagement.IAppWindowFrame;
+         Retval.m_IAppWindowFrame := new WinRt.Windows.UI.WindowManagement.IAppWindowFrame;
          Retval.m_IAppWindowFrame.all := m_ComRetVal;
       end return;
    end;
@@ -299,14 +299,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IAppWindowPresenter;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IAppWindowPresenter;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.AppWindowPresenter do
          Hr := this.m_IAppWindow.all.get_Presenter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppWindowPresenter := new Windows.UI.WindowManagement.IAppWindowPresenter;
+         Retval.m_IAppWindowPresenter := new WinRt.Windows.UI.WindowManagement.IAppWindowPresenter;
          Retval.m_IAppWindowPresenter.all := m_ComRetVal;
       end return;
    end;
@@ -356,14 +356,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IAppWindowTitleBar;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IAppWindowTitleBar;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.AppWindowTitleBar do
          Hr := this.m_IAppWindow.all.get_TitleBar (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppWindowTitleBar := new Windows.UI.WindowManagement.IAppWindowTitleBar;
+         Retval.m_IAppWindowTitleBar := new WinRt.Windows.UI.WindowManagement.IAppWindowTitleBar;
          Retval.m_IAppWindowTitleBar.all := m_ComRetVal;
       end return;
    end;
@@ -376,14 +376,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.IUIContext;
+      m_ComRetVal      : aliased WinRt.Windows.UI.IUIContext;
    begin
       return RetVal : WinRt.Windows.UI.UIContext do
          Hr := this.m_IAppWindow.all.get_UIContext (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIContext := new Windows.UI.IUIContext;
+         Retval.m_IUIContext := new WinRt.Windows.UI.IUIContext;
          Retval.m_IUIContext.all := m_ComRetVal;
       end return;
    end;
@@ -396,14 +396,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
          Hr := this.m_IAppWindow.all.get_WindowingEnvironment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
+         Retval.m_IWindowingEnvironment := new WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
    end;
@@ -458,14 +458,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IAppWindowPlacement;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IAppWindowPlacement;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.AppWindowPlacement do
          Hr := this.m_IAppWindow.all.GetPlacement (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppWindowPlacement := new Windows.UI.WindowManagement.IAppWindowPlacement;
+         Retval.m_IAppWindowPlacement := new WinRt.Windows.UI.WindowManagement.IAppWindowPlacement;
          Retval.m_IAppWindowPlacement.all := m_ComRetVal;
       end return;
    end;
@@ -478,7 +478,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayRegion.Kind;
    begin
       Hr := this.m_IAppWindow.all.GetDisplayRegions (m_ComRetVal'Access);
@@ -493,7 +493,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveToDisplayRegion
    (
       this : in out AppWindow;
-      displayRegion_p : Windows.UI.WindowManagement.DisplayRegion'Class
+      displayRegion_p : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -522,7 +522,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveAdjacentToWindow
    (
       this : in out AppWindow;
-      anchorWindow : Windows.UI.WindowManagement.AppWindow'Class
+      anchorWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -537,8 +537,8 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveRelativeToWindowContent
    (
       this : in out AppWindow;
-      anchorWindow : Windows.UI.WindowManagement.AppWindow'Class;
-      contentOffset : Windows.Foundation.Point
+      anchorWindow : WinRt.Windows.UI.WindowManagement.AppWindow'Class;
+      contentOffset : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -553,7 +553,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveRelativeToCurrentViewContent
    (
       this : in out AppWindow;
-      contentOffset : Windows.Foundation.Point
+      contentOffset : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -568,8 +568,8 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestMoveRelativeToDisplayRegion
    (
       this : in out AppWindow;
-      displayRegion_p : Windows.UI.WindowManagement.DisplayRegion'Class;
-      displayRegionOffset : Windows.Foundation.Point
+      displayRegion_p : WinRt.Windows.UI.WindowManagement.DisplayRegion'Class;
+      displayRegionOffset : WinRt.Windows.Foundation.Point
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -584,7 +584,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure RequestSize
    (
       this : in out AppWindow;
-      frameSize : Windows.Foundation.Size
+      frameSize : WinRt.Windows.Foundation.Size
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -668,7 +668,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppWindow.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -680,7 +680,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -701,7 +701,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppWindow.all.add_Closed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -713,7 +713,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure remove_Closed
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -734,7 +734,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IAppWindow.all.add_CloseRequested (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -746,7 +746,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure remove_CloseRequested
    (
       this : in out AppWindow;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -980,14 +980,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IAppWindowCloseRequestedEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -1023,7 +1023,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.AppWindowClosedReason;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.AppWindowClosedReason;
    begin
       Hr := this.m_IAppWindowClosedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1064,7 +1064,7 @@ package body WinRt.Windows.UI.WindowManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WindowManagement.IAppWindowFrameStyle := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.AppWindowFrameStyle;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.AppWindowFrameStyle;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WindowManagement.IAppWindowFrame_Interface, WinRt.Windows.UI.WindowManagement.IAppWindowFrameStyle, WinRt.Windows.UI.WindowManagement.IID_IAppWindowFrameStyle'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppWindowFrame.all);
@@ -1079,7 +1079,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure SetFrameStyle
    (
       this : in out AppWindowFrame;
-      frameStyle : Windows.UI.WindowManagement.AppWindowFrameStyle
+      frameStyle : WinRt.Windows.UI.WindowManagement.AppWindowFrameStyle
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1103,7 +1103,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IAppWindowFrame.all.get_DragRegionVisuals (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1143,14 +1143,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IDisplayRegion;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IDisplayRegion;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.DisplayRegion do
          Hr := this.m_IAppWindowPlacement.all.get_DisplayRegion (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDisplayRegion := new Windows.UI.WindowManagement.IDisplayRegion;
+         Retval.m_IDisplayRegion := new WinRt.Windows.UI.WindowManagement.IDisplayRegion;
          Retval.m_IDisplayRegion.all := m_ComRetVal;
       end return;
    end;
@@ -1163,7 +1163,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAppWindowPlacement.all.get_Offset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1180,7 +1180,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IAppWindowPlacement.all.get_Size (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1223,7 +1223,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.AppWindowPresentationKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind;
    begin
       Hr := this.m_IAppWindowPresentationConfiguration.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1263,14 +1263,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.AppWindowPresentationConfiguration do
          Hr := this.m_IAppWindowPresenter.all.GetConfiguration (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppWindowPresentationConfiguration := new Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
+         Retval.m_IAppWindowPresentationConfiguration := new WinRt.Windows.UI.WindowManagement.IAppWindowPresentationConfiguration;
          Retval.m_IAppWindowPresentationConfiguration.all := m_ComRetVal;
       end return;
    end;
@@ -1278,7 +1278,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function IsPresentationSupported
    (
       this : in out AppWindowPresenter;
-      presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind
+      presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1296,7 +1296,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function RequestPresentation
    (
       this : in out AppWindowPresenter;
-      configuration : Windows.UI.WindowManagement.AppWindowPresentationConfiguration'Class
+      configuration : WinRt.Windows.UI.WindowManagement.AppWindowPresentationConfiguration'Class
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1314,7 +1314,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function RequestPresentation
    (
       this : in out AppWindowPresenter;
-      presentationKind : Windows.UI.WindowManagement.AppWindowPresentationKind
+      presentationKind : WinRt.Windows.UI.WindowManagement.AppWindowPresentationKind
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -1361,7 +1361,7 @@ package body WinRt.Windows.UI.WindowManagement is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.WindowManagement.IAppWindowTitleBarVisibility := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.AppWindowTitleBarVisibility;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.AppWindowTitleBarVisibility;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.WindowManagement.IAppWindowTitleBar_Interface, WinRt.Windows.UI.WindowManagement.IAppWindowTitleBarVisibility, WinRt.Windows.UI.WindowManagement.IID_IAppWindowTitleBarVisibility'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppWindowTitleBar.all);
@@ -1376,7 +1376,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure SetPreferredVisibility
    (
       this : in out AppWindowTitleBar;
-      visibilityMode : Windows.UI.WindowManagement.AppWindowTitleBarVisibility
+      visibilityMode : WinRt.Windows.UI.WindowManagement.AppWindowTitleBarVisibility
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1400,7 +1400,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_BackgroundColor (m_ComRetVal'Access);
@@ -1435,7 +1435,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonBackgroundColor (m_ComRetVal'Access);
@@ -1470,7 +1470,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonForegroundColor (m_ComRetVal'Access);
@@ -1505,7 +1505,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonHoverBackgroundColor (m_ComRetVal'Access);
@@ -1540,7 +1540,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonHoverForegroundColor (m_ComRetVal'Access);
@@ -1575,7 +1575,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonInactiveBackgroundColor (m_ComRetVal'Access);
@@ -1610,7 +1610,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonInactiveForegroundColor (m_ComRetVal'Access);
@@ -1645,7 +1645,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonPressedBackgroundColor (m_ComRetVal'Access);
@@ -1680,7 +1680,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ButtonPressedForegroundColor (m_ComRetVal'Access);
@@ -1747,7 +1747,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_ForegroundColor (m_ComRetVal'Access);
@@ -1782,7 +1782,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_InactiveBackgroundColor (m_ComRetVal'Access);
@@ -1817,7 +1817,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Color.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.get_InactiveForegroundColor (m_ComRetVal'Access);
@@ -1869,7 +1869,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAppWindowTitleBarOcclusion.Kind;
    begin
       Hr := this.m_IAppWindowTitleBar.all.GetTitleBarOcclusions (m_ComRetVal'Access);
@@ -1912,7 +1912,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IAppWindowTitleBarOcclusion.all.get_OccludingRect (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1947,13 +1947,13 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return CompactOverlayPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.CompactOverlayPresentationConfiguration");
-      m_ComRetVal  : aliased Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration;
    begin
       return RetVal : CompactOverlayPresentationConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_ICompactOverlayPresentationConfiguration := new Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration;
+            Retval.m_ICompactOverlayPresentationConfiguration := new WinRt.Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration;
             Retval.m_ICompactOverlayPresentationConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1989,13 +1989,13 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return DefaultPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.DefaultPresentationConfiguration");
-      m_ComRetVal  : aliased Windows.UI.WindowManagement.IDefaultPresentationConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.IDefaultPresentationConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.IDefaultPresentationConfiguration;
    begin
       return RetVal : DefaultPresentationConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDefaultPresentationConfiguration := new Windows.UI.WindowManagement.IDefaultPresentationConfiguration;
+            Retval.m_IDefaultPresentationConfiguration := new WinRt.Windows.UI.WindowManagement.IDefaultPresentationConfiguration;
             Retval.m_IDefaultPresentationConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2073,7 +2073,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IDisplayRegion.all.get_WorkAreaOffset (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2090,7 +2090,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Size;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Size;
    begin
       Hr := this.m_IDisplayRegion.all.get_WorkAreaSize (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2107,14 +2107,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
          Hr := this.m_IDisplayRegion.all.get_WindowingEnvironment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
+         Retval.m_IWindowingEnvironment := new WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
    end;
@@ -2128,7 +2128,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IDisplayRegion.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2140,7 +2140,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out DisplayRegion;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2178,13 +2178,13 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return FullScreenPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.FullScreenPresentationConfiguration");
-      m_ComRetVal  : aliased Windows.UI.WindowManagement.IFullScreenPresentationConfiguration;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.IFullScreenPresentationConfiguration");
+      m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.IFullScreenPresentationConfiguration;
    begin
       return RetVal : FullScreenPresentationConfiguration do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IFullScreenPresentationConfiguration := new Windows.UI.WindowManagement.IFullScreenPresentationConfiguration;
+            Retval.m_IFullScreenPresentationConfiguration := new WinRt.Windows.UI.WindowManagement.IFullScreenPresentationConfiguration;
             Retval.m_IFullScreenPresentationConfiguration.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2237,7 +2237,7 @@ package body WinRt.Windows.UI.WindowManagement is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.WindowServices");
          m_Factory        : access WinRt.Windows.UI.WindowManagement.IWindowServicesStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased GenericObject;
+         m_ComRetVal      : aliased WinRt.GenericObject;
       begin
          Hr := RoGetActivationFactory (m_hString, IID_IWindowServicesStatics'Access , m_Factory'Address);
          if Hr = S_OK then
@@ -2283,7 +2283,7 @@ package body WinRt.Windows.UI.WindowManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.WindowingEnvironment");
       m_Factory        : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IWindowingEnvironmentStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2299,7 +2299,7 @@ package body WinRt.Windows.UI.WindowManagement is
 
    function FindAll
    (
-      kind : Windows.UI.WindowManagement.WindowingEnvironmentKind
+      kind : WinRt.Windows.UI.WindowManagement.WindowingEnvironmentKind
    )
    return WinRt.GenericObject is
       Hr               : WinRt.HResult := S_OK;
@@ -2307,7 +2307,7 @@ package body WinRt.Windows.UI.WindowManagement is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.WindowingEnvironment");
       m_Factory        : access WinRt.Windows.UI.WindowManagement.IWindowingEnvironmentStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IWindowingEnvironmentStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -2349,7 +2349,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.WindowingEnvironmentKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.WindowingEnvironmentKind;
    begin
       Hr := this.m_IWindowingEnvironment.all.get_Kind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2366,7 +2366,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IDisplayRegion.Kind;
    begin
       Hr := this.m_IWindowingEnvironment.all.GetDisplayRegions (m_ComRetVal'Access);
@@ -2387,7 +2387,7 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IWindowingEnvironment.all.add_Changed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2399,7 +2399,7 @@ package body WinRt.Windows.UI.WindowManagement is
    procedure remove_Changed
    (
       this : in out WindowingEnvironment;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2442,14 +2442,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
          Hr := this.m_IWindowingEnvironmentAddedEventArgs.all.get_WindowingEnvironment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
+         Retval.m_IWindowingEnvironment := new WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
    end;
@@ -2508,14 +2508,14 @@ package body WinRt.Windows.UI.WindowManagement is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.WindowManagement.IWindowingEnvironment;
+      m_ComRetVal      : aliased WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
    begin
       return RetVal : WinRt.Windows.UI.WindowManagement.WindowingEnvironment do
          Hr := this.m_IWindowingEnvironmentRemovedEventArgs.all.get_WindowingEnvironment (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IWindowingEnvironment := new Windows.UI.WindowManagement.IWindowingEnvironment;
+         Retval.m_IWindowingEnvironment := new WinRt.Windows.UI.WindowManagement.IWindowingEnvironment;
          Retval.m_IWindowingEnvironment.all := m_ComRetVal;
       end return;
    end;

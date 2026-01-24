@@ -271,7 +271,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       function get_StaggerDelay
       (
          this : access IAnimationDescription_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -285,7 +285,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       function get_DelayLimit
       (
          this : access IAnimationDescription_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
@@ -304,9 +304,9 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       function CreateInstance
       (
          this : access IAnimationDescriptionFactory_Interface;
-         effect : Windows.UI.Core.AnimationMetrics.AnimationEffect;
-         target : Windows.UI.Core.AnimationMetrics.AnimationEffectTarget;
-         RetVal : access Windows.UI.Core.AnimationMetrics.IAnimationDescription
+         effect : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffect;
+         target : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffectTarget;
+         RetVal : access WinRt.Windows.UI.Core.AnimationMetrics.IAnimationDescription
       )
       return WinRt.Hresult is abstract;
 
@@ -337,35 +337,35 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       function get_Type
       (
          this : access IPropertyAnimation_Interface;
-         RetVal : access Windows.UI.Core.AnimationMetrics.PropertyAnimationType
+         RetVal : access WinRt.Windows.UI.Core.AnimationMetrics.PropertyAnimationType
       )
       return WinRt.Hresult is abstract;
 
       function get_Delay
       (
          this : access IPropertyAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Duration
       (
          this : access IPropertyAnimation_Interface;
-         RetVal : access Windows.Foundation.TimeSpan
+         RetVal : access WinRt.Windows.Foundation.TimeSpan
       )
       return WinRt.Hresult is abstract;
 
       function get_Control1
       (
          this : access IPropertyAnimation_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
       function get_Control2
       (
          this : access IPropertyAnimation_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -405,7 +405,7 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
       function get_NormalizedOrigin
       (
          this : access IScaleAnimation_Interface;
-         RetVal : access Windows.Foundation.Point
+         RetVal : access WinRt.Windows.Foundation.Point
       )
       return WinRt.Hresult is abstract;
 
@@ -426,8 +426,8 @@ package WinRt.Windows.UI.Core.AnimationMetrics is
 
    function Constructor
    (
-      effect : Windows.UI.Core.AnimationMetrics.AnimationEffect;
-      target : Windows.UI.Core.AnimationMetrics.AnimationEffectTarget
+      effect : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffect;
+      target : WinRt.Windows.UI.Core.AnimationMetrics.AnimationEffectTarget
    )
    return AnimationDescription;
 

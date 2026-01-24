@@ -145,7 +145,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ICustomSensor := new Windows.Devices.Sensors.Custom.ICustomSensor;
+                     Retval.m_ICustomSensor := new WinRt.Windows.Devices.Sensors.Custom.ICustomSensor;
                      Retval.m_ICustomSensor.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -172,14 +172,14 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.Custom.ICustomSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Custom.CustomSensorReading do
          Hr := this.m_ICustomSensor.all.GetCurrentReading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICustomSensorReading := new Windows.Devices.Sensors.Custom.ICustomSensorReading;
+         Retval.m_ICustomSensorReading := new WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading;
          Retval.m_ICustomSensorReading.all := m_ComRetVal;
       end return;
    end;
@@ -262,7 +262,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ICustomSensor.all.add_ReadingChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -274,7 +274,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
    procedure remove_ReadingChanged
    (
       this : in out CustomSensor;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -378,7 +378,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_ICustomSensorReading.all.get_Timestamp (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -395,7 +395,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMapView_HString_IInspectable.Kind;
    begin
       Hr := this.m_ICustomSensorReading.all.get_Properties (m_ComRetVal'Access);
@@ -416,7 +416,7 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading_Interface, WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading2, WinRt.Windows.Devices.Sensors.Custom.IID_ICustomSensorReading2'Unchecked_Access);
    begin
@@ -462,14 +462,14 @@ package body WinRt.Windows.Devices.Sensors.Custom is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Sensors.Custom.ICustomSensorReading;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading;
    begin
       return RetVal : WinRt.Windows.Devices.Sensors.Custom.CustomSensorReading do
          Hr := this.m_ICustomSensorReadingChangedEventArgs.all.get_Reading (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ICustomSensorReading := new Windows.Devices.Sensors.Custom.ICustomSensorReading;
+         Retval.m_ICustomSensorReading := new WinRt.Windows.Devices.Sensors.Custom.ICustomSensorReading;
          Retval.m_ICustomSensorReading.all := m_ComRetVal;
       end return;
    end;

@@ -151,7 +151,7 @@ package body WinRt.Windows.Devices.Lights is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ILamp := new Windows.Devices.Lights.ILamp;
+                     Retval.m_ILamp := new WinRt.Windows.Devices.Lights.ILamp;
                      Retval.m_ILamp.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -222,7 +222,7 @@ package body WinRt.Windows.Devices.Lights is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ILamp := new Windows.Devices.Lights.ILamp;
+                     Retval.m_ILamp := new WinRt.Windows.Devices.Lights.ILamp;
                      Retval.m_ILamp.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -349,7 +349,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ILamp.all.get_Color (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -361,7 +361,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure put_Color
    (
       this : in out Lamp;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -382,7 +382,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_ILamp.all.add_AvailabilityChanged (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -394,7 +394,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure remove_AvailabilityChanged
    (
       this : in out Lamp;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -530,7 +530,7 @@ package body WinRt.Windows.Devices.Lights is
                   end loop;
                   if m_AsyncStatus = Completed_e then
                      Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                     Retval.m_ILampArray := new Windows.Devices.Lights.ILampArray;
+                     Retval.m_ILampArray := new WinRt.Windows.Devices.Lights.ILampArray;
                      Retval.m_ILampArray.all := m_RetVal;
                   end if;
                   temp := m_AsyncOperation.Release;
@@ -628,7 +628,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Lights.LampArrayKind;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Lights.LampArrayKind;
    begin
       Hr := this.m_ILampArray.all.get_LampArrayKind (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -662,7 +662,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampArray.all.get_MinUpdateInterval (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -679,7 +679,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ILampArray.all.get_BoundingBox (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -795,14 +795,14 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Lights.ILampInfo;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Lights.ILampInfo;
    begin
       return RetVal : WinRt.Windows.Devices.Lights.LampInfo do
          Hr := this.m_ILampArray.all.GetLampInfo (lampIndex, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ILampInfo := new Windows.Devices.Lights.ILampInfo;
+         Retval.m_ILampInfo := new WinRt.Windows.Devices.Lights.ILampInfo;
          Retval.m_ILampInfo.all := m_ComRetVal;
       end return;
    end;
@@ -810,7 +810,7 @@ package body WinRt.Windows.Devices.Lights is
    function GetIndicesForKey
    (
       this : in out LampArray;
-      key : Windows.System.VirtualKey
+      key : WinRt.Windows.System.VirtualKey
    )
    return WinRt.Int32_Array is
       Hr               : WinRt.HResult := S_OK;
@@ -837,7 +837,7 @@ package body WinRt.Windows.Devices.Lights is
    function GetIndicesForPurposes
    (
       this : in out LampArray;
-      purposes : Windows.Devices.Lights.LampPurposes
+      purposes : WinRt.Windows.Devices.Lights.LampPurposes
    )
    return WinRt.Int32_Array is
       Hr               : WinRt.HResult := S_OK;
@@ -864,7 +864,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetColor
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -880,7 +880,7 @@ package body WinRt.Windows.Devices.Lights is
    (
       this : in out LampArray;
       lampIndex : WinRt.Int32;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -895,7 +895,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetSingleColorForIndices
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
+      desiredColor : WinRt.Windows.UI.Color;
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -912,7 +912,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetColorsForIndices
    (
       this : in out LampArray;
-      desiredColors : Windows.UI.Color_Array;
+      desiredColors : WinRt.Windows.UI.Color_Array;
       lampIndexes : WinRt.Int32_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -930,8 +930,8 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetColorsForKey
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
-      key : Windows.System.VirtualKey
+      desiredColor : WinRt.Windows.UI.Color;
+      key : WinRt.Windows.System.VirtualKey
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -946,8 +946,8 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetColorsForKeys
    (
       this : in out LampArray;
-      desiredColors : Windows.UI.Color_Array;
-      keys : Windows.System.VirtualKey_Array
+      desiredColors : WinRt.Windows.UI.Color_Array;
+      keys : WinRt.Windows.System.VirtualKey_Array
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -964,8 +964,8 @@ package body WinRt.Windows.Devices.Lights is
    procedure SetColorsForPurposes
    (
       this : in out LampArray;
-      desiredColor : Windows.UI.Color;
-      purposes : Windows.Devices.Lights.LampPurposes
+      desiredColor : WinRt.Windows.UI.Color;
+      purposes : WinRt.Windows.Devices.Lights.LampPurposes
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -981,7 +981,7 @@ package body WinRt.Windows.Devices.Lights is
    (
       this : in out LampArray;
       messageId : WinRt.Int32;
-      message : Windows.Storage.Streams.IBuffer
+      message : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1116,7 +1116,7 @@ package body WinRt.Windows.Devices.Lights is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Lights.ILampArray2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Lights.ILampArray_Interface, WinRt.Windows.Devices.Lights.ILampArray2, WinRt.Windows.Devices.Lights.IID_ILampArray2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILampArray.all);
@@ -1131,7 +1131,7 @@ package body WinRt.Windows.Devices.Lights is
    procedure remove_AvailabilityChanged
    (
       this : in out LampArray;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1235,7 +1235,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Lights.LampPurposes;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Lights.LampPurposes;
    begin
       Hr := this.m_ILampInfo.all.get_Purposes (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1252,7 +1252,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Numerics.Vector3;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Numerics.Vector3;
    begin
       Hr := this.m_ILampInfo.all.get_Position (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1337,7 +1337,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_ILampInfo.all.get_FixedColor (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1349,13 +1349,13 @@ package body WinRt.Windows.Devices.Lights is
    function GetNearestSupportedColor
    (
       this : in out LampInfo;
-      desiredColor : Windows.UI.Color
+      desiredColor : WinRt.Windows.UI.Color
    )
    return WinRt.Windows.UI.Color is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Color;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Color;
    begin
       Hr := this.m_ILampInfo.all.GetNearestSupportedColor (desiredColor, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1372,7 +1372,7 @@ package body WinRt.Windows.Devices.Lights is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.TimeSpan;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.TimeSpan;
    begin
       Hr := this.m_ILampInfo.all.get_UpdateLatency (m_ComRetVal'Access);
       if Hr /= S_OK then

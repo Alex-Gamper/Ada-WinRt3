@@ -718,20 +718,20 @@ package WinRt.Windows.Storage is
    -----------------------------------------------------------------------------
 
    IID_ApplicationDataSetVersionHandler : aliased WinRt.IID := (2690093542, 52383, 18055, (172, 171, 163, 100, 253, 120, 84, 99 ));
-   type ApplicationDataSetVersionHandler_Delegate (Callback : access procedure  (setVersionRequest_p : Windows.Storage.ISetVersionRequest)) is new WinRt.IMulticastDelegate_Interface (IID_ApplicationDataSetVersionHandler'Access) with null record;
+   type ApplicationDataSetVersionHandler_Delegate (Callback : access procedure  (setVersionRequest_p : WinRt.Windows.Storage.ISetVersionRequest)) is new WinRt.IMulticastDelegate_Interface (IID_ApplicationDataSetVersionHandler'Access) with null record;
       function Invoke
       (
          this : access ApplicationDataSetVersionHandler_Delegate;
-         setVersionRequest_p : Windows.Storage.ISetVersionRequest
+         setVersionRequest_p : WinRt.Windows.Storage.ISetVersionRequest
       )
       return WinRt.Hresult;
 
    IID_StreamedFileDataRequestedHandler : aliased WinRt.IID := (4277577764, 12257, 19719, (163, 91, 183, 124, 80, 181, 244, 204 ));
-   type StreamedFileDataRequestedHandler_Delegate (Callback : access procedure  (stream : Windows.Storage.Streams.IOutputStream)) is new WinRt.IMulticastDelegate_Interface (IID_StreamedFileDataRequestedHandler'Access) with null record;
+   type StreamedFileDataRequestedHandler_Delegate (Callback : access procedure  (stream : WinRt.Windows.Storage.Streams.IOutputStream)) is new WinRt.IMulticastDelegate_Interface (IID_StreamedFileDataRequestedHandler'Access) with null record;
       function Invoke
       (
          this : access StreamedFileDataRequestedHandler_Delegate;
-         stream : Windows.Storage.Streams.IOutputStream
+         stream : WinRt.Windows.Storage.Streams.IOutputStream
       )
       return WinRt.Hresult;
 
@@ -825,15 +825,15 @@ package WinRt.Windows.Storage is
       function GetForUser
       (
          this : access IAppDataPathsStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.IAppDataPaths
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.IAppDataPaths
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access IAppDataPathsStatics_Interface;
-         RetVal : access Windows.Storage.IAppDataPaths
+         RetVal : access WinRt.Windows.Storage.IAppDataPaths
       )
       return WinRt.Hresult is abstract;
 
@@ -853,58 +853,58 @@ package WinRt.Windows.Storage is
       (
          this : access IApplicationData_Interface;
          desiredVersion : WinRt.UInt32;
-         handler : Windows.Storage.ApplicationDataSetVersionHandler;
-         RetVal : access Windows.Foundation.IAsyncAction
+         handler : WinRt.Windows.Storage.ApplicationDataSetVersionHandler;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearAsync
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ClearAsync
       (
          this : access IApplicationData_Interface;
-         locality : Windows.Storage.ApplicationDataLocality;
-         RetVal : access Windows.Foundation.IAsyncAction
+         locality : WinRt.Windows.Storage.ApplicationDataLocality;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalSettings
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Storage.IApplicationDataContainer
+         RetVal : access WinRt.Windows.Storage.IApplicationDataContainer
       )
       return WinRt.Hresult is abstract;
 
       function get_RoamingSettings
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Storage.IApplicationDataContainer
+         RetVal : access WinRt.Windows.Storage.IApplicationDataContainer
       )
       return WinRt.Hresult is abstract;
 
       function get_LocalFolder
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_RoamingFolder
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_TemporaryFolder
       (
          this : access IApplicationData_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -912,14 +912,14 @@ package WinRt.Windows.Storage is
       (
          this : access IApplicationData_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DataChanged
       (
          this : access IApplicationData_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -944,7 +944,7 @@ package WinRt.Windows.Storage is
       function get_LocalCacheFolder
       (
          this : access IApplicationData2_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -957,7 +957,7 @@ package WinRt.Windows.Storage is
       (
          this : access IApplicationData3_Interface;
          folderName : WinRt.HString;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -965,14 +965,14 @@ package WinRt.Windows.Storage is
       (
          this : access IApplicationData3_Interface;
          folderName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function get_SharedLocalFolder
       (
          this : access IApplicationData3_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -991,14 +991,14 @@ package WinRt.Windows.Storage is
       function get_Locality
       (
          this : access IApplicationDataContainer_Interface;
-         RetVal : access Windows.Storage.ApplicationDataLocality
+         RetVal : access WinRt.Windows.Storage.ApplicationDataLocality
       )
       return WinRt.Hresult is abstract;
 
       function get_Values
       (
          this : access IApplicationDataContainer_Interface;
-         RetVal : access Windows.Foundation.Collections.IPropertySet
+         RetVal : access WinRt.Windows.Foundation.Collections.IPropertySet
       )
       return WinRt.Hresult is abstract;
 
@@ -1013,8 +1013,8 @@ package WinRt.Windows.Storage is
       (
          this : access IApplicationDataContainer_Interface;
          name : WinRt.HString;
-         disposition : Windows.Storage.ApplicationDataCreateDisposition;
-         RetVal : access Windows.Storage.IApplicationDataContainer
+         disposition : WinRt.Windows.Storage.ApplicationDataCreateDisposition;
+         RetVal : access WinRt.Windows.Storage.IApplicationDataContainer
       )
       return WinRt.Hresult is abstract;
 
@@ -1033,7 +1033,7 @@ package WinRt.Windows.Storage is
       function get_Current
       (
          this : access IApplicationDataStatics_Interface;
-         RetVal : access Windows.Storage.IApplicationData
+         RetVal : access WinRt.Windows.Storage.IApplicationData
       )
       return WinRt.Hresult is abstract;
 
@@ -1045,7 +1045,7 @@ package WinRt.Windows.Storage is
       function GetForUserAsync
       (
          this : access IApplicationDataStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1058,14 +1058,14 @@ package WinRt.Windows.Storage is
       function DeferUpdates
       (
          this : access ICachedFileManagerStatics_Interface;
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function CompleteUpdatesAsync
       (
          this : access ICachedFileManagerStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1095,7 +1095,7 @@ package WinRt.Windows.Storage is
       (
          this : access IDownloadsFolderStatics_Interface;
          desiredName : WinRt.HString;
-         option : Windows.Storage.CreationCollisionOption;
+         option : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1104,7 +1104,7 @@ package WinRt.Windows.Storage is
       (
          this : access IDownloadsFolderStatics_Interface;
          desiredName : WinRt.HString;
-         option : Windows.Storage.CreationCollisionOption;
+         option : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1117,7 +1117,7 @@ package WinRt.Windows.Storage is
       function CreateFileForUserAsync
       (
          this : access IDownloadsFolderStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          desiredName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1126,7 +1126,7 @@ package WinRt.Windows.Storage is
       function CreateFolderForUserAsync
       (
          this : access IDownloadsFolderStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          desiredName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1135,9 +1135,9 @@ package WinRt.Windows.Storage is
       function CreateFileForUserAsync
       (
          this : access IDownloadsFolderStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          desiredName : WinRt.HString;
-         option : Windows.Storage.CreationCollisionOption;
+         option : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1145,9 +1145,9 @@ package WinRt.Windows.Storage is
       function CreateFolderForUserAsync
       (
          this : access IDownloadsFolderStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          desiredName : WinRt.HString;
-         option : Windows.Storage.CreationCollisionOption;
+         option : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1160,7 +1160,7 @@ package WinRt.Windows.Storage is
       function ReadTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1168,8 +1168,8 @@ package WinRt.Windows.Storage is
       function ReadTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1177,45 +1177,45 @@ package WinRt.Windows.Storage is
       function WriteTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function WriteTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AppendTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AppendTextAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReadLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1223,8 +1223,8 @@ package WinRt.Windows.Storage is
       function ReadLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1232,45 +1232,45 @@ package WinRt.Windows.Storage is
       function WriteLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function WriteLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AppendLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function AppendLinesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function ReadBufferAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1278,19 +1278,19 @@ package WinRt.Windows.Storage is
       function WriteBufferAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         file : WinRt.Windows.Storage.IStorageFile;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function WriteBytesAsync
       (
          this : access IFileIOStatics_Interface;
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          bufferSize : WinRt.UInt32;
          buffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1302,7 +1302,7 @@ package WinRt.Windows.Storage is
       function get_CameraRoll
       (
          this : access IKnownFoldersCameraRollStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1314,7 +1314,7 @@ package WinRt.Windows.Storage is
       function get_Playlists
       (
          this : access IKnownFoldersPlaylistsStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1326,7 +1326,7 @@ package WinRt.Windows.Storage is
       function get_SavedPictures
       (
          this : access IKnownFoldersSavedPicturesStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1338,49 +1338,49 @@ package WinRt.Windows.Storage is
       function get_MusicLibrary
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_PicturesLibrary
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_VideosLibrary
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_DocumentsLibrary
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_HomeGroup
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_RemovableDevices
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_MediaServerDevices
       (
          this : access IKnownFoldersStatics_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1392,21 +1392,21 @@ package WinRt.Windows.Storage is
       function get_Objects3D
       (
          this : access IKnownFoldersStatics2_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_AppCaptures
       (
          this : access IKnownFoldersStatics2_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
       function get_RecordedCalls
       (
          this : access IKnownFoldersStatics2_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -1418,8 +1418,8 @@ package WinRt.Windows.Storage is
       function GetFolderForUserAsync
       (
          this : access IKnownFoldersStatics3_Interface;
-         user : Windows.System.IUser;
-         folderId : Windows.Storage.KnownFolderId;
+         user : WinRt.Windows.System.IUser;
+         folderId : WinRt.Windows.Storage.KnownFolderId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1432,7 +1432,7 @@ package WinRt.Windows.Storage is
       function RequestAccessAsync
       (
          this : access IKnownFoldersStatics4_Interface;
-         folderId : Windows.Storage.KnownFolderId;
+         folderId : WinRt.Windows.Storage.KnownFolderId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1440,8 +1440,8 @@ package WinRt.Windows.Storage is
       function RequestAccessForUserAsync
       (
          this : access IKnownFoldersStatics4_Interface;
-         user : Windows.System.IUser;
-         folderId : Windows.Storage.KnownFolderId;
+         user : WinRt.Windows.System.IUser;
+         folderId : WinRt.Windows.Storage.KnownFolderId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1449,7 +1449,7 @@ package WinRt.Windows.Storage is
       function GetFolderAsync
       (
          this : access IKnownFoldersStatics4_Interface;
-         folderId : Windows.Storage.KnownFolderId;
+         folderId : WinRt.Windows.Storage.KnownFolderId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1471,7 +1471,7 @@ package WinRt.Windows.Storage is
       (
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1481,7 +1481,7 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          contents : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1490,8 +1490,8 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          contents : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1500,7 +1500,7 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          contents : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1509,8 +1509,8 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          contents : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1526,7 +1526,7 @@ package WinRt.Windows.Storage is
       (
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1536,7 +1536,7 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          lines : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1545,8 +1545,8 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1555,7 +1555,7 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          lines : GenericObject;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1564,8 +1564,8 @@ package WinRt.Windows.Storage is
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding;
-         RetVal : access Windows.Foundation.IAsyncAction
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1581,8 +1581,8 @@ package WinRt.Windows.Storage is
       (
          this : access IPathIOStatics_Interface;
          absolutePath : WinRt.HString;
-         buffer : Windows.Storage.Streams.IBuffer;
-         RetVal : access Windows.Foundation.IAsyncAction
+         buffer : WinRt.Windows.Storage.Streams.IBuffer;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1592,7 +1592,7 @@ package WinRt.Windows.Storage is
          absolutePath : WinRt.HString;
          bufferSize : WinRt.UInt32;
          buffer : WinRt.Byte_Ptr;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1629,7 +1629,7 @@ package WinRt.Windows.Storage is
       function GetDeferral
       (
          this : access ISetVersionRequest_Interface;
-         RetVal : access Windows.Storage.ISetVersionDeferral
+         RetVal : access WinRt.Windows.Storage.ISetVersionDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1655,7 +1655,7 @@ package WinRt.Windows.Storage is
       function OpenAsync
       (
          this : access IStorageFile_Interface;
-         accessMode : Windows.Storage.FileAccessMode;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1670,7 +1670,7 @@ package WinRt.Windows.Storage is
       function CopyAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1678,7 +1678,7 @@ package WinRt.Windows.Storage is
       function CopyAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredNewName : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1687,9 +1687,9 @@ package WinRt.Windows.Storage is
       function CopyAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredNewName : WinRt.HString;
-         option : Windows.Storage.NameCollisionOption;
+         option : WinRt.Windows.Storage.NameCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1697,43 +1697,43 @@ package WinRt.Windows.Storage is
       function CopyAndReplaceAsync
       (
          this : access IStorageFile_Interface;
-         fileToReplace : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         fileToReplace : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MoveAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
-         RetVal : access Windows.Foundation.IAsyncAction
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MoveAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredNewName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MoveAsync
       (
          this : access IStorageFile_Interface;
-         destinationFolder : Windows.Storage.IStorageFolder;
+         destinationFolder : WinRt.Windows.Storage.IStorageFolder;
          desiredNewName : WinRt.HString;
-         option : Windows.Storage.NameCollisionOption;
-         RetVal : access Windows.Foundation.IAsyncAction
+         option : WinRt.Windows.Storage.NameCollisionOption;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function MoveAndReplaceAsync
       (
          this : access IStorageFile_Interface;
-         fileToReplace : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         fileToReplace : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1745,8 +1745,8 @@ package WinRt.Windows.Storage is
       function OpenAsync
       (
          this : access IStorageFile2_Interface;
-         accessMode : Windows.Storage.FileAccessMode;
-         options : Windows.Storage.StorageOpenOptions;
+         accessMode : WinRt.Windows.Storage.FileAccessMode;
+         options : WinRt.Windows.Storage.StorageOpenOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1754,7 +1754,7 @@ package WinRt.Windows.Storage is
       function OpenTransactedWriteAsync
       (
          this : access IStorageFile2_Interface;
-         options : Windows.Storage.StorageOpenOptions;
+         options : WinRt.Windows.Storage.StorageOpenOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1787,7 +1787,7 @@ package WinRt.Windows.Storage is
       function GetFileFromApplicationUriAsync
       (
          this : access IStorageFileStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1796,8 +1796,8 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageFileStatics_Interface;
          displayNameWithExtension : WinRt.HString;
-         dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-         thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference;
+         dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+         thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1805,9 +1805,9 @@ package WinRt.Windows.Storage is
       function ReplaceWithStreamedFileAsync
       (
          this : access IStorageFileStatics_Interface;
-         fileToReplace : Windows.Storage.IStorageFile;
-         dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-         thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference;
+         fileToReplace : WinRt.Windows.Storage.IStorageFile;
+         dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+         thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1816,8 +1816,8 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageFileStatics_Interface;
          displayNameWithExtension : WinRt.HString;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1825,9 +1825,9 @@ package WinRt.Windows.Storage is
       function ReplaceWithStreamedFileFromUriAsync
       (
          this : access IStorageFileStatics_Interface;
-         fileToReplace : Windows.Storage.IStorageFile;
-         uri : Windows.Foundation.IUriRuntimeClass;
-         thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference;
+         fileToReplace : WinRt.Windows.Storage.IStorageFile;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
+         thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1840,7 +1840,7 @@ package WinRt.Windows.Storage is
       function GetFileFromPathForUserAsync
       (
          this : access IStorageFileStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          path : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1863,7 +1863,7 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageFolder_Interface;
          desiredName : WinRt.HString;
-         options : Windows.Storage.CreationCollisionOption;
+         options : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1880,7 +1880,7 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageFolder_Interface;
          desiredName : WinRt.HString;
-         options : Windows.Storage.CreationCollisionOption;
+         options : WinRt.Windows.Storage.CreationCollisionOption;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1951,7 +1951,7 @@ package WinRt.Windows.Storage is
       function TryGetChangeTracker
       (
          this : access IStorageFolder3_Interface;
-         RetVal : access Windows.Storage.IStorageLibraryChangeTracker
+         RetVal : access WinRt.Windows.Storage.IStorageLibraryChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -1976,7 +1976,7 @@ package WinRt.Windows.Storage is
       function GetFolderFromPathForUserAsync
       (
          this : access IStorageFolderStatics2_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          path : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -1991,7 +1991,7 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageItem_Interface;
          desiredName : WinRt.HString;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -1999,23 +1999,23 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageItem_Interface;
          desiredName : WinRt.HString;
-         option : Windows.Storage.NameCollisionOption;
-         RetVal : access Windows.Foundation.IAsyncAction
+         option : WinRt.Windows.Storage.NameCollisionOption;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IStorageItem_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function DeleteAsync
       (
          this : access IStorageItem_Interface;
-         option : Windows.Storage.StorageDeleteOption;
-         RetVal : access Windows.Foundation.IAsyncAction
+         option : WinRt.Windows.Storage.StorageDeleteOption;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2043,21 +2043,21 @@ package WinRt.Windows.Storage is
       function get_Attributes
       (
          this : access IStorageItem_Interface;
-         RetVal : access Windows.Storage.FileAttributes
+         RetVal : access WinRt.Windows.Storage.FileAttributes
       )
       return WinRt.Hresult is abstract;
 
       function get_DateCreated
       (
          this : access IStorageItem_Interface;
-         RetVal : access Windows.Foundation.DateTime
+         RetVal : access WinRt.Windows.Foundation.DateTime
       )
       return WinRt.Hresult is abstract;
 
       function IsOfType
       (
          this : access IStorageItem_Interface;
-         type_x : Windows.Storage.StorageItemTypes;
+         type_x : WinRt.Windows.Storage.StorageItemTypes;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2077,7 +2077,7 @@ package WinRt.Windows.Storage is
       function IsEqual
       (
          this : access IStorageItem2_Interface;
-         item : Windows.Storage.IStorageItem;
+         item : WinRt.Windows.Storage.IStorageItem;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2090,7 +2090,7 @@ package WinRt.Windows.Storage is
       function GetThumbnailAsync
       (
          this : access IStorageItemProperties_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2098,7 +2098,7 @@ package WinRt.Windows.Storage is
       function GetThumbnailAsync
       (
          this : access IStorageItemProperties_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedSize : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -2107,9 +2107,9 @@ package WinRt.Windows.Storage is
       function GetThumbnailAsync
       (
          this : access IStorageItemProperties_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedSize : WinRt.UInt32;
-         options : Windows.Storage.FileProperties.ThumbnailOptions;
+         options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2138,7 +2138,7 @@ package WinRt.Windows.Storage is
       function get_Properties
       (
          this : access IStorageItemProperties_Interface;
-         RetVal : access Windows.Storage.FileProperties.IStorageItemContentProperties
+         RetVal : access WinRt.Windows.Storage.FileProperties.IStorageItemContentProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -2150,7 +2150,7 @@ package WinRt.Windows.Storage is
       function GetScaledImageAsThumbnailAsync
       (
          this : access IStorageItemProperties2_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2158,7 +2158,7 @@ package WinRt.Windows.Storage is
       function GetScaledImageAsThumbnailAsync
       (
          this : access IStorageItemProperties2_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedSize : WinRt.UInt32;
          RetVal : access GenericObject
       )
@@ -2167,9 +2167,9 @@ package WinRt.Windows.Storage is
       function GetScaledImageAsThumbnailAsync
       (
          this : access IStorageItemProperties2_Interface;
-         mode : Windows.Storage.FileProperties.ThumbnailMode;
+         mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
          requestedSize : WinRt.UInt32;
-         options : Windows.Storage.FileProperties.ThumbnailOptions;
+         options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2182,7 +2182,7 @@ package WinRt.Windows.Storage is
       function get_Provider
       (
          this : access IStorageItemPropertiesWithProvider_Interface;
-         RetVal : access Windows.Storage.IStorageProvider
+         RetVal : access WinRt.Windows.Storage.IStorageProvider
       )
       return WinRt.Hresult is abstract;
 
@@ -2201,7 +2201,7 @@ package WinRt.Windows.Storage is
       function RequestRemoveFolderAsync
       (
          this : access IStorageLibrary_Interface;
-         folder : Windows.Storage.IStorageFolder;
+         folder : WinRt.Windows.Storage.IStorageFolder;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2216,7 +2216,7 @@ package WinRt.Windows.Storage is
       function get_SaveFolder
       (
          this : access IStorageLibrary_Interface;
-         RetVal : access Windows.Storage.IStorageFolder
+         RetVal : access WinRt.Windows.Storage.IStorageFolder
       )
       return WinRt.Hresult is abstract;
 
@@ -2224,14 +2224,14 @@ package WinRt.Windows.Storage is
       (
          this : access IStorageLibrary_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_DefinitionChanged
       (
          this : access IStorageLibrary_Interface;
-         eventCookie : Windows.Foundation.EventRegistrationToken
+         eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -2243,7 +2243,7 @@ package WinRt.Windows.Storage is
       function get_ChangeTracker
       (
          this : access IStorageLibrary2_Interface;
-         RetVal : access Windows.Storage.IStorageLibraryChangeTracker
+         RetVal : access WinRt.Windows.Storage.IStorageLibraryChangeTracker
       )
       return WinRt.Hresult is abstract;
 
@@ -2267,7 +2267,7 @@ package WinRt.Windows.Storage is
       function get_ChangeType
       (
          this : access IStorageLibraryChange_Interface;
-         RetVal : access Windows.Storage.StorageLibraryChangeType
+         RetVal : access WinRt.Windows.Storage.StorageLibraryChangeType
       )
       return WinRt.Hresult is abstract;
 
@@ -2288,7 +2288,7 @@ package WinRt.Windows.Storage is
       function IsOfType
       (
          this : access IStorageLibraryChange_Interface;
-         type_x : Windows.Storage.StorageItemTypes;
+         type_x : WinRt.Windows.Storage.StorageItemTypes;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -2315,7 +2315,7 @@ package WinRt.Windows.Storage is
       function AcceptChangesAsync
       (
          this : access IStorageLibraryChangeReader_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2339,7 +2339,7 @@ package WinRt.Windows.Storage is
       function GetChangeReader
       (
          this : access IStorageLibraryChangeTracker_Interface;
-         RetVal : access Windows.Storage.IStorageLibraryChangeReader
+         RetVal : access WinRt.Windows.Storage.IStorageLibraryChangeReader
       )
       return WinRt.Hresult is abstract;
 
@@ -2363,7 +2363,7 @@ package WinRt.Windows.Storage is
       function Enable
       (
          this : access IStorageLibraryChangeTracker2_Interface;
-         options : Windows.Storage.IStorageLibraryChangeTrackerOptions
+         options : WinRt.Windows.Storage.IStorageLibraryChangeTrackerOptions
       )
       return WinRt.Hresult is abstract;
 
@@ -2417,7 +2417,7 @@ package WinRt.Windows.Storage is
       function GetLibraryAsync
       (
          this : access IStorageLibraryStatics_Interface;
-         libraryId : Windows.Storage.KnownLibraryId;
+         libraryId : WinRt.Windows.Storage.KnownLibraryId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2430,8 +2430,8 @@ package WinRt.Windows.Storage is
       function GetLibraryForUserAsync
       (
          this : access IStorageLibraryStatics2_Interface;
-         user : Windows.System.IUser;
-         libraryId : Windows.Storage.KnownLibraryId;
+         user : WinRt.Windows.System.IUser;
+         libraryId : WinRt.Windows.Storage.KnownLibraryId;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -2476,14 +2476,14 @@ package WinRt.Windows.Storage is
       function get_Stream
       (
          this : access IStorageStreamTransaction_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function CommitAsync
       (
          this : access IStorageStreamTransaction_Interface;
-         RetVal : access Windows.Foundation.IAsyncAction
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -2495,7 +2495,7 @@ package WinRt.Windows.Storage is
       function FailAndClose
       (
          this : access IStreamedFileDataRequest_Interface;
-         failureMode : Windows.Storage.StreamedFileFailureMode
+         failureMode : WinRt.Windows.Storage.StreamedFileFailureMode
       )
       return WinRt.Hresult is abstract;
 
@@ -2636,7 +2636,7 @@ package WinRt.Windows.Storage is
       function GetDefault
       (
          this : access ISystemDataPathsStatics_Interface;
-         RetVal : access Windows.Storage.ISystemDataPaths
+         RetVal : access WinRt.Windows.Storage.ISystemDataPaths
       )
       return WinRt.Hresult is abstract;
 
@@ -2876,49 +2876,49 @@ package WinRt.Windows.Storage is
       function get_Audio
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemAudioProperties
+         RetVal : access WinRt.Windows.Storage.ISystemAudioProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_GPS
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemGPSProperties
+         RetVal : access WinRt.Windows.Storage.ISystemGPSProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Media
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemMediaProperties
+         RetVal : access WinRt.Windows.Storage.ISystemMediaProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Music
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemMusicProperties
+         RetVal : access WinRt.Windows.Storage.ISystemMusicProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Photo
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemPhotoProperties
+         RetVal : access WinRt.Windows.Storage.ISystemPhotoProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Video
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemVideoProperties
+         RetVal : access WinRt.Windows.Storage.ISystemVideoProperties
       )
       return WinRt.Hresult is abstract;
 
       function get_Image
       (
          this : access ISystemProperties_Interface;
-         RetVal : access Windows.Storage.ISystemImageProperties
+         RetVal : access WinRt.Windows.Storage.ISystemImageProperties
       )
       return WinRt.Hresult is abstract;
 
@@ -3108,15 +3108,15 @@ package WinRt.Windows.Storage is
       function GetForUser
       (
          this : access IUserDataPathsStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.Storage.IUserDataPaths
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.Storage.IUserDataPaths
       )
       return WinRt.Hresult is abstract;
 
       function GetDefault
       (
          this : access IUserDataPathsStatics_Interface;
-         RetVal : access Windows.Storage.IUserDataPaths
+         RetVal : access WinRt.Windows.Storage.IUserDataPaths
       )
       return WinRt.Hresult is abstract;
 
@@ -3137,7 +3137,7 @@ package WinRt.Windows.Storage is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.AppDataPaths;
 
@@ -3215,7 +3215,7 @@ package WinRt.Windows.Storage is
 
    function GetForUserAsync
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.ApplicationData;
 
@@ -3232,7 +3232,7 @@ package WinRt.Windows.Storage is
    (
       this : in out ApplicationData;
       desiredVersion : WinRt.UInt32;
-      handler : Windows.Storage.ApplicationDataSetVersionHandler
+      handler : WinRt.Windows.Storage.ApplicationDataSetVersionHandler
    );
 
    procedure ClearAsync
@@ -3243,7 +3243,7 @@ package WinRt.Windows.Storage is
    procedure ClearAsync
    (
       this : in out ApplicationData;
-      locality : Windows.Storage.ApplicationDataLocality
+      locality : WinRt.Windows.Storage.ApplicationDataLocality
    );
 
    function get_LocalSettings
@@ -3286,7 +3286,7 @@ package WinRt.Windows.Storage is
    procedure remove_DataChanged
    (
       this : in out ApplicationData;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure SignalDataChanged
@@ -3355,7 +3355,7 @@ package WinRt.Windows.Storage is
    procedure remove_MapChanged
    (
       this : in out ApplicationDataCompositeValue;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -3441,7 +3441,7 @@ package WinRt.Windows.Storage is
    (
       this : in out ApplicationDataContainer;
       name : WinRt.WString;
-      disposition : Windows.Storage.ApplicationDataCreateDisposition
+      disposition : WinRt.Windows.Storage.ApplicationDataCreateDisposition
    )
    return WinRt.Windows.Storage.ApplicationDataContainer'Class;
 
@@ -3476,7 +3476,7 @@ package WinRt.Windows.Storage is
    procedure remove_MapChanged
    (
       this : in out ApplicationDataContainerSettings;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    -- Generic Interface Windows.Foundation.Collections.IMap`2<System.String,System.Object>
@@ -3531,12 +3531,12 @@ package WinRt.Windows.Storage is
 
       procedure DeferUpdates
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       );
 
       function CompleteUpdatesAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Storage.Provider.FileUpdateStatus;
 
@@ -3548,31 +3548,31 @@ package WinRt.Windows.Storage is
 
       function CreateFileForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString
       )
       return WinRt.Windows.Storage.StorageFile;
 
       function CreateFolderForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString
       )
       return WinRt.Windows.Storage.StorageFolder;
 
       function CreateFileForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFile;
 
       function CreateFolderForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFolder;
 
@@ -3591,14 +3591,14 @@ package WinRt.Windows.Storage is
       function CreateFileAsync
       (
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFile;
 
       function CreateFolderAsync
       (
          desiredName : WinRt.WString;
-         option : Windows.Storage.CreationCollisionOption
+         option : WinRt.Windows.Storage.CreationCollisionOption
       )
       return WinRt.Windows.Storage.StorageFolder;
 
@@ -3610,97 +3610,97 @@ package WinRt.Windows.Storage is
 
       function ReadTextAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.WString;
 
       function ReadTextAsync
       (
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.WString;
 
       procedure WriteTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString
       );
 
       procedure WriteTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       procedure AppendTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString
       );
 
       procedure AppendTextAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       function ReadLinesAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.GenericObject;
 
       function ReadLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         file : WinRt.Windows.Storage.IStorageFile;
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.GenericObject;
 
       procedure WriteLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject
       );
 
       procedure WriteLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       procedure AppendLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject
       );
 
       procedure AppendLinesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       function ReadBufferAsync
       (
-         file : Windows.Storage.IStorageFile
+         file : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.Storage.Streams.IBuffer;
 
       procedure WriteBufferAsync
       (
-         file : Windows.Storage.IStorageFile;
-         buffer : Windows.Storage.Streams.IBuffer
+         file : WinRt.Windows.Storage.IStorageFile;
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       );
 
       procedure WriteBytesAsync
       (
-         file : Windows.Storage.IStorageFile;
+         file : WinRt.Windows.Storage.IStorageFile;
          buffer : WinRt.Byte_Array
       );
 
@@ -3715,8 +3715,8 @@ package WinRt.Windows.Storage is
 
       function GetFolderForUserAsync
       (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
+         user : WinRt.Windows.System.User'Class;
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.StorageFolder;
 
@@ -3755,20 +3755,20 @@ package WinRt.Windows.Storage is
 
       function RequestAccessAsync
       (
-         folderId : Windows.Storage.KnownFolderId
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.KnownFoldersAccessStatus;
 
       function RequestAccessForUserAsync
       (
-         user : Windows.System.User'Class;
-         folderId : Windows.Storage.KnownFolderId
+         user : WinRt.Windows.System.User'Class;
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.KnownFoldersAccessStatus;
 
       function GetFolderAsync
       (
-         folderId : Windows.Storage.KnownFolderId
+         folderId : WinRt.Windows.Storage.KnownFolderId
       )
       return WinRt.Windows.Storage.StorageFolder;
 
@@ -3790,7 +3790,7 @@ package WinRt.Windows.Storage is
       function ReadTextAsync
       (
          absolutePath : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.WString;
 
@@ -3804,7 +3804,7 @@ package WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       procedure AppendTextAsync
@@ -3817,7 +3817,7 @@ package WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          contents : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       function ReadLinesAsync
@@ -3829,7 +3829,7 @@ package WinRt.Windows.Storage is
       function ReadLinesAsync
       (
          absolutePath : WinRt.WString;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       )
       return WinRt.GenericObject;
 
@@ -3843,7 +3843,7 @@ package WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       procedure AppendLinesAsync
@@ -3856,7 +3856,7 @@ package WinRt.Windows.Storage is
       (
          absolutePath : WinRt.WString;
          lines : GenericObject;
-         encoding : Windows.Storage.Streams.UnicodeEncoding
+         encoding : WinRt.Windows.Storage.Streams.UnicodeEncoding
       );
 
       function ReadBufferAsync
@@ -3868,7 +3868,7 @@ package WinRt.Windows.Storage is
       procedure WriteBufferAsync
       (
          absolutePath : WinRt.WString;
-         buffer : Windows.Storage.Streams.IBuffer
+         buffer : WinRt.Windows.Storage.Streams.IBuffer
       );
 
       procedure WriteBytesAsync
@@ -3937,45 +3937,45 @@ package WinRt.Windows.Storage is
 
    function GetFileFromApplicationUriAsync
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.Storage.StorageFile;
 
    function CreateStreamedFileAsync
    (
       displayNameWithExtension : WinRt.WString;
-      dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile;
 
    function ReplaceWithStreamedFileAsync
    (
-      fileToReplace : Windows.Storage.IStorageFile;
-      dataRequested : Windows.Storage.StreamedFileDataRequestedHandler;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      fileToReplace : WinRt.Windows.Storage.IStorageFile;
+      dataRequested : WinRt.Windows.Storage.StreamedFileDataRequestedHandler;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile;
 
    function CreateStreamedFileFromUriAsync
    (
       displayNameWithExtension : WinRt.WString;
-      uri : Windows.Foundation.Uri'Class;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile;
 
    function ReplaceWithStreamedFileFromUriAsync
    (
-      fileToReplace : Windows.Storage.IStorageFile;
-      uri : Windows.Foundation.Uri'Class;
-      thumbnail : Windows.Storage.Streams.IRandomAccessStreamReference
+      fileToReplace : WinRt.Windows.Storage.IStorageFile;
+      uri : WinRt.Windows.Foundation.Uri'Class;
+      thumbnail : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
    )
    return WinRt.Windows.Storage.StorageFile;
 
    function GetFileFromPathForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile;
@@ -3998,7 +3998,7 @@ package WinRt.Windows.Storage is
    function OpenAsync
    (
       this : in out StorageFile;
-      accessMode : Windows.Storage.FileAccessMode
+      accessMode : WinRt.Windows.Storage.FileAccessMode
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
@@ -4011,14 +4011,14 @@ package WinRt.Windows.Storage is
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFile'Class;
@@ -4026,43 +4026,43 @@ package WinRt.Windows.Storage is
    function CopyAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
    procedure CopyAndReplaceAsync
    (
       this : in out StorageFile;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    );
 
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder
    );
 
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString
    );
 
    procedure MoveAsync
    (
       this : in out StorageFile;
-      destinationFolder : Windows.Storage.IStorageFolder;
+      destinationFolder : WinRt.Windows.Storage.IStorageFolder;
       desiredNewName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure MoveAndReplaceAsync
    (
       this : in out StorageFile;
-      fileToReplace : Windows.Storage.IStorageFile
+      fileToReplace : WinRt.Windows.Storage.IStorageFile
    );
 
    function OpenSequentialReadAsync
@@ -4087,7 +4087,7 @@ package WinRt.Windows.Storage is
    (
       this : in out StorageFile;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure DeleteAsync
@@ -4098,7 +4098,7 @@ package WinRt.Windows.Storage is
    procedure DeleteAsync
    (
       this : in out StorageFile;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    );
 
    function GetBasicPropertiesAsync
@@ -4134,21 +4134,21 @@ package WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageFile;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean;
 
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -4156,9 +4156,9 @@ package WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -4189,14 +4189,14 @@ package WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -4204,9 +4204,9 @@ package WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFile;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -4219,7 +4219,7 @@ package WinRt.Windows.Storage is
    function IsEqual
    (
       this : in out StorageFile;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 
@@ -4238,15 +4238,15 @@ package WinRt.Windows.Storage is
    function OpenAsync
    (
       this : in out StorageFile;
-      accessMode : Windows.Storage.FileAccessMode;
-      options : Windows.Storage.StorageOpenOptions
+      accessMode : WinRt.Windows.Storage.FileAccessMode;
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.Streams.IRandomAccessStream;
 
    function OpenTransactedWriteAsync
    (
       this : in out StorageFile;
-      options : Windows.Storage.StorageOpenOptions
+      options : WinRt.Windows.Storage.StorageOpenOptions
    )
    return WinRt.Windows.Storage.StorageStreamTransaction'Class;
 
@@ -4267,7 +4267,7 @@ package WinRt.Windows.Storage is
 
    function GetFolderFromPathForUserAsync
    (
-      user : Windows.System.User'Class;
+      user : WinRt.Windows.System.User'Class;
       path : WinRt.WString
    )
    return WinRt.Windows.Storage.StorageFolder;
@@ -4286,7 +4286,7 @@ package WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFile'Class;
 
@@ -4301,7 +4301,7 @@ package WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      options : Windows.Storage.CreationCollisionOption
+      options : WinRt.Windows.Storage.CreationCollisionOption
    )
    return WinRt.Windows.Storage.StorageFolder'Class;
 
@@ -4354,7 +4354,7 @@ package WinRt.Windows.Storage is
    (
       this : in out StorageFolder;
       desiredName : WinRt.WString;
-      option : Windows.Storage.NameCollisionOption
+      option : WinRt.Windows.Storage.NameCollisionOption
    );
 
    procedure DeleteAsync
@@ -4365,7 +4365,7 @@ package WinRt.Windows.Storage is
    procedure DeleteAsync
    (
       this : in out StorageFolder;
-      option : Windows.Storage.StorageDeleteOption
+      option : WinRt.Windows.Storage.StorageDeleteOption
    );
 
    function GetBasicPropertiesAsync
@@ -4401,7 +4401,7 @@ package WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageFolder;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean;
 
@@ -4420,14 +4420,14 @@ package WinRt.Windows.Storage is
    function CreateFileQuery
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class;
 
    function CreateFileQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFileQueryResult'Class;
 
@@ -4440,14 +4440,14 @@ package WinRt.Windows.Storage is
    function CreateFolderQuery
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class;
 
    function CreateFolderQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageFolderQueryResult'Class;
 
@@ -4460,14 +4460,14 @@ package WinRt.Windows.Storage is
    function CreateItemQueryWithOptions
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Windows.Storage.Search.StorageItemQueryResult'Class;
 
    function GetFilesAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery;
+      query : WinRt.Windows.Storage.Search.CommonFileQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -4476,14 +4476,14 @@ package WinRt.Windows.Storage is
    function GetFilesAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.GenericObject;
 
    function GetFoldersAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery;
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery;
       startIndex : WinRt.UInt32;
       maxItemsToRetrieve : WinRt.UInt32
    )
@@ -4492,7 +4492,7 @@ package WinRt.Windows.Storage is
    function GetFoldersAsync
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.GenericObject;
 
@@ -4507,35 +4507,35 @@ package WinRt.Windows.Storage is
    function AreQueryOptionsSupported
    (
       this : in out StorageFolder;
-      queryOptions : Windows.Storage.Search.QueryOptions'Class
+      queryOptions : WinRt.Windows.Storage.Search.QueryOptions'Class
    )
    return WinRt.Boolean;
 
    function IsCommonFolderQuerySupported
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFolderQuery
+      query : WinRt.Windows.Storage.Search.CommonFolderQuery
    )
    return WinRt.Boolean;
 
    function IsCommonFileQuerySupported
    (
       this : in out StorageFolder;
-      query : Windows.Storage.Search.CommonFileQuery
+      query : WinRt.Windows.Storage.Search.CommonFileQuery
    )
    return WinRt.Boolean;
 
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -4543,9 +4543,9 @@ package WinRt.Windows.Storage is
    function GetThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -4576,14 +4576,14 @@ package WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
@@ -4591,9 +4591,9 @@ package WinRt.Windows.Storage is
    function GetScaledImageAsThumbnailAsync
    (
       this : in out StorageFolder;
-      mode : Windows.Storage.FileProperties.ThumbnailMode;
+      mode : WinRt.Windows.Storage.FileProperties.ThumbnailMode;
       requestedSize : WinRt.UInt32;
-      options : Windows.Storage.FileProperties.ThumbnailOptions
+      options : WinRt.Windows.Storage.FileProperties.ThumbnailOptions
    )
    return WinRt.Windows.Storage.FileProperties.StorageItemThumbnail'Class;
 
@@ -4606,7 +4606,7 @@ package WinRt.Windows.Storage is
    function IsEqual
    (
       this : in out StorageFolder;
-      item : Windows.Storage.IStorageItem
+      item : WinRt.Windows.Storage.IStorageItem
    )
    return WinRt.Boolean;
 
@@ -4640,14 +4640,14 @@ package WinRt.Windows.Storage is
 
    function GetLibraryAsync
    (
-      libraryId : Windows.Storage.KnownLibraryId
+      libraryId : WinRt.Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary;
 
    function GetLibraryForUserAsync
    (
-      user : Windows.System.User'Class;
-      libraryId : Windows.Storage.KnownLibraryId
+      user : WinRt.Windows.System.User'Class;
+      libraryId : WinRt.Windows.Storage.KnownLibraryId
    )
    return WinRt.Windows.Storage.StorageLibrary;
 
@@ -4663,7 +4663,7 @@ package WinRt.Windows.Storage is
    function RequestRemoveFolderAsync
    (
       this : in out StorageLibrary;
-      folder : Windows.Storage.StorageFolder'Class
+      folder : WinRt.Windows.Storage.StorageFolder'Class
    )
    return WinRt.Boolean;
 
@@ -4689,7 +4689,7 @@ package WinRt.Windows.Storage is
    procedure remove_DefinitionChanged
    (
       this : in out StorageLibrary;
-      eventCookie : Windows.Foundation.EventRegistrationToken
+      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_ChangeTracker
@@ -4734,7 +4734,7 @@ package WinRt.Windows.Storage is
    function IsOfType
    (
       this : in out StorageLibraryChange;
-      type_x : Windows.Storage.StorageItemTypes
+      type_x : WinRt.Windows.Storage.StorageItemTypes
    )
    return WinRt.Boolean;
 
@@ -4798,7 +4798,7 @@ package WinRt.Windows.Storage is
    procedure Enable
    (
       this : in out StorageLibraryChangeTracker;
-      options : Windows.Storage.StorageLibraryChangeTrackerOptions'Class
+      options : WinRt.Windows.Storage.StorageLibraryChangeTrackerOptions'Class
    );
 
    procedure Disable
@@ -4912,7 +4912,7 @@ package WinRt.Windows.Storage is
    function WriteAsync
    (
       this : in out StreamedFileDataRequest;
-      buffer : Windows.Storage.Streams.IBuffer
+      buffer : WinRt.Windows.Storage.Streams.IBuffer
    )
    return WinRt.UInt32;
 
@@ -4930,7 +4930,7 @@ package WinRt.Windows.Storage is
    procedure FailAndClose
    (
       this : in out StreamedFileDataRequest;
-      failureMode : Windows.Storage.StreamedFileFailureMode
+      failureMode : WinRt.Windows.Storage.StreamedFileFailureMode
    );
 
    -----------------------------------------------------------------------------
@@ -5337,7 +5337,7 @@ package WinRt.Windows.Storage is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.Storage.UserDataPaths;
 

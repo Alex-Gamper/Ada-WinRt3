@@ -543,52 +543,52 @@ package WinRt.Windows.UI.WebUI is
    -----------------------------------------------------------------------------
 
    IID_ActivatedEventHandler : aliased WinRt.IID := (1358030640, 50641, 19307, (154, 219, 138, 17, 117, 107, 226, 156 ));
-   type ActivatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;eventArgs : Windows.ApplicationModel.Activation.IActivatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ActivatedEventHandler'Access) with null record;
+   type ActivatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;eventArgs : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_ActivatedEventHandler'Access) with null record;
       function Invoke
       (
          this : access ActivatedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         eventArgs : Windows.ApplicationModel.Activation.IActivatedEventArgs
+         eventArgs : WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs
       )
       return WinRt.Hresult;
 
    IID_BackgroundActivatedEventHandler : aliased WinRt.IID := (3987840955, 1889, 18380, (154, 119, 36, 215, 7, 41, 101, 202 ));
-   type BackgroundActivatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;eventArgs : Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundActivatedEventHandler'Access) with null record;
+   type BackgroundActivatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;eventArgs : WinRt.Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_BackgroundActivatedEventHandler'Access) with null record;
       function Invoke
       (
          this : access BackgroundActivatedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         eventArgs : Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs
+         eventArgs : WinRt.Windows.ApplicationModel.Activation.IBackgroundActivatedEventArgs
       )
       return WinRt.Hresult;
 
    IID_EnteredBackgroundEventHandler : aliased WinRt.IID := (722051443, 46734, 19951, (136, 193, 141, 232, 78, 90, 171, 47 ));
-   type EnteredBackgroundEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.ApplicationModel.IEnteredBackgroundEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_EnteredBackgroundEventHandler'Access) with null record;
+   type EnteredBackgroundEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.ApplicationModel.IEnteredBackgroundEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_EnteredBackgroundEventHandler'Access) with null record;
       function Invoke
       (
          this : access EnteredBackgroundEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.ApplicationModel.IEnteredBackgroundEventArgs
+         e : WinRt.Windows.ApplicationModel.IEnteredBackgroundEventArgs
       )
       return WinRt.Hresult;
 
    IID_LeavingBackgroundEventHandler : aliased WinRt.IID := (11848921, 31388, 19307, (154, 196, 19, 71, 79, 38, 139, 196 ));
-   type LeavingBackgroundEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.ApplicationModel.ILeavingBackgroundEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_LeavingBackgroundEventHandler'Access) with null record;
+   type LeavingBackgroundEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.ApplicationModel.ILeavingBackgroundEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_LeavingBackgroundEventHandler'Access) with null record;
       function Invoke
       (
          this : access LeavingBackgroundEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.ApplicationModel.ILeavingBackgroundEventArgs
+         e : WinRt.Windows.ApplicationModel.ILeavingBackgroundEventArgs
       )
       return WinRt.Hresult;
 
    IID_NavigatedEventHandler : aliased WinRt.IID := (2062839782, 16586, 20041, (167, 214, 219, 219, 51, 12, 209, 163 ));
-   type NavigatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.UI.WebUI.IWebUINavigatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatedEventHandler'Access) with null record;
+   type NavigatedEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.UI.WebUI.IWebUINavigatedEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_NavigatedEventHandler'Access) with null record;
       function Invoke
       (
          this : access NavigatedEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.UI.WebUI.IWebUINavigatedEventArgs
+         e : WinRt.Windows.UI.WebUI.IWebUINavigatedEventArgs
       )
       return WinRt.Hresult;
 
@@ -602,12 +602,12 @@ package WinRt.Windows.UI.WebUI is
       return WinRt.Hresult;
 
    IID_SuspendingEventHandler : aliased WinRt.IID := (1352417948, 30946, 18563, (171, 200, 137, 96, 220, 222, 27, 92 ));
-   type SuspendingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : Windows.ApplicationModel.ISuspendingEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_SuspendingEventHandler'Access) with null record;
+   type SuspendingEventHandler_Delegate (Callback : access procedure  (sender : WinRt.IInspectable;e : WinRt.Windows.ApplicationModel.ISuspendingEventArgs)) is new WinRt.IMulticastDelegate_Interface (IID_SuspendingEventHandler'Access) with null record;
       function Invoke
       (
          this : access SuspendingEventHandler_Delegate;
          sender : WinRt.IInspectable;
-         e : Windows.ApplicationModel.ISuspendingEventArgs
+         e : WinRt.Windows.ApplicationModel.ISuspendingEventArgs
       )
       return WinRt.Hresult;
 
@@ -640,7 +640,7 @@ package WinRt.Windows.UI.WebUI is
       function get_ActivatedOperation
       (
          this : access IActivatedEventArgsDeferral_Interface;
-         RetVal : access Windows.UI.WebUI.IActivatedOperation
+         RetVal : access WinRt.Windows.UI.WebUI.IActivatedOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -652,7 +652,7 @@ package WinRt.Windows.UI.WebUI is
       function GetDeferral
       (
          this : access IActivatedOperation_Interface;
-         RetVal : access Windows.UI.WebUI.IActivatedDeferral
+         RetVal : access WinRt.Windows.UI.WebUI.IActivatedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -664,14 +664,14 @@ package WinRt.Windows.UI.WebUI is
       function get_Content
       (
          this : access IHtmlPrintDocumentSource_Interface;
-         RetVal : access Windows.UI.WebUI.PrintContent
+         RetVal : access WinRt.Windows.UI.WebUI.PrintContent
       )
       return WinRt.Hresult is abstract;
 
       function put_Content
       (
          this : access IHtmlPrintDocumentSource_Interface;
-         value : Windows.UI.WebUI.PrintContent
+         value : WinRt.Windows.UI.WebUI.PrintContent
       )
       return WinRt.Hresult is abstract;
 
@@ -796,14 +796,14 @@ package WinRt.Windows.UI.WebUI is
       function get_WebUIView
       (
          this : access INewWebUIViewCreatedEventArgs_Interface;
-         RetVal : access Windows.UI.WebUI.IWebUIView
+         RetVal : access WinRt.Windows.UI.WebUI.IWebUIView
       )
       return WinRt.Hresult is abstract;
 
       function get_ActivatedEventArgs
       (
          this : access INewWebUIViewCreatedEventArgs_Interface;
-         RetVal : access Windows.ApplicationModel.Activation.IActivatedEventArgs
+         RetVal : access WinRt.Windows.ApplicationModel.Activation.IActivatedEventArgs
       )
       return WinRt.Hresult is abstract;
 
@@ -817,7 +817,7 @@ package WinRt.Windows.UI.WebUI is
       function GetDeferral
       (
          this : access INewWebUIViewCreatedEventArgs_Interface;
-         RetVal : access Windows.Foundation.IDeferral
+         RetVal : access WinRt.Windows.Foundation.IDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -829,60 +829,60 @@ package WinRt.Windows.UI.WebUI is
       function add_Activated
       (
          this : access IWebUIActivationStatics_Interface;
-         handler : Windows.UI.WebUI.ActivatedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.ActivatedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Activated
       (
          this : access IWebUIActivationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Suspending
       (
          this : access IWebUIActivationStatics_Interface;
-         handler : Windows.UI.WebUI.SuspendingEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.SuspendingEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Suspending
       (
          this : access IWebUIActivationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Resuming
       (
          this : access IWebUIActivationStatics_Interface;
-         handler : Windows.UI.WebUI.ResumingEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.ResumingEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Resuming
       (
          this : access IWebUIActivationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_Navigated
       (
          this : access IWebUIActivationStatics_Interface;
-         handler : Windows.UI.WebUI.NavigatedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.NavigatedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Navigated
       (
          this : access IWebUIActivationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -894,30 +894,30 @@ package WinRt.Windows.UI.WebUI is
       function add_LeavingBackground
       (
          this : access IWebUIActivationStatics2_Interface;
-         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.LeavingBackgroundEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_LeavingBackground
       (
          this : access IWebUIActivationStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_EnteredBackground
       (
          this : access IWebUIActivationStatics2_Interface;
-         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.EnteredBackgroundEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_EnteredBackground
       (
          this : access IWebUIActivationStatics2_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -944,7 +944,7 @@ package WinRt.Windows.UI.WebUI is
       function RequestRestartForUserAsync
       (
          this : access IWebUIActivationStatics3_Interface;
-         user : Windows.System.IUser;
+         user : WinRt.Windows.System.IUser;
          launchArguments : WinRt.HString;
          RetVal : access GenericObject
       )
@@ -959,29 +959,29 @@ package WinRt.Windows.UI.WebUI is
       (
          this : access IWebUIActivationStatics4_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_NewWebUIViewCreated
       (
          this : access IWebUIActivationStatics4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function add_BackgroundActivated
       (
          this : access IWebUIActivationStatics4_Interface;
-         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         handler : WinRt.Windows.UI.WebUI.BackgroundActivatedEventHandler;
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_BackgroundActivated
       (
          this : access IWebUIActivationStatics4_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1012,7 +1012,7 @@ package WinRt.Windows.UI.WebUI is
       function get_Current
       (
          this : access IWebUIBackgroundTaskInstanceStatics_Interface;
-         RetVal : access Windows.UI.WebUI.IWebUIBackgroundTaskInstance
+         RetVal : access WinRt.Windows.UI.WebUI.IWebUIBackgroundTaskInstance
       )
       return WinRt.Hresult is abstract;
 
@@ -1035,7 +1035,7 @@ package WinRt.Windows.UI.WebUI is
       function get_NavigatedOperation
       (
          this : access IWebUINavigatedEventArgs_Interface;
-         RetVal : access Windows.UI.WebUI.IWebUINavigatedOperation
+         RetVal : access WinRt.Windows.UI.WebUI.IWebUINavigatedOperation
       )
       return WinRt.Hresult is abstract;
 
@@ -1047,7 +1047,7 @@ package WinRt.Windows.UI.WebUI is
       function GetDeferral
       (
          this : access IWebUINavigatedOperation_Interface;
-         RetVal : access Windows.UI.WebUI.IWebUINavigatedDeferral
+         RetVal : access WinRt.Windows.UI.WebUI.IWebUINavigatedDeferral
       )
       return WinRt.Hresult is abstract;
 
@@ -1067,14 +1067,14 @@ package WinRt.Windows.UI.WebUI is
       (
          this : access IWebUIView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Closed
       (
          this : access IWebUIView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1082,14 +1082,14 @@ package WinRt.Windows.UI.WebUI is
       (
          this : access IWebUIView_Interface;
          handler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_Activated
       (
          this : access IWebUIView_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -1122,7 +1122,7 @@ package WinRt.Windows.UI.WebUI is
       function CreateAsync
       (
          this : access IWebUIViewStatics_Interface;
-         uri : Windows.Foundation.IUriRuntimeClass;
+         uri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -1210,7 +1210,7 @@ package WinRt.Windows.UI.WebUI is
    procedure put_Content
    (
       this : in out HtmlPrintDocumentSource;
-      value : Windows.UI.WebUI.PrintContent
+      value : WinRt.Windows.UI.WebUI.PrintContent
    );
 
    function get_LeftMargin
@@ -1425,75 +1425,75 @@ package WinRt.Windows.UI.WebUI is
 
       function RequestRestartForUserAsync
       (
-         user : Windows.System.User'Class;
+         user : WinRt.Windows.System.User'Class;
          launchArguments : WinRt.WString
       )
       return WinRt.Windows.ApplicationModel.Core.AppRestartFailureReason;
 
       function add_Activated
       (
-         handler : Windows.UI.WebUI.ActivatedEventHandler
+         handler : WinRt.Windows.UI.WebUI.ActivatedEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_Activated
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_Suspending
       (
-         handler : Windows.UI.WebUI.SuspendingEventHandler
+         handler : WinRt.Windows.UI.WebUI.SuspendingEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_Suspending
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_Resuming
       (
-         handler : Windows.UI.WebUI.ResumingEventHandler
+         handler : WinRt.Windows.UI.WebUI.ResumingEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_Resuming
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_Navigated
       (
-         handler : Windows.UI.WebUI.NavigatedEventHandler
+         handler : WinRt.Windows.UI.WebUI.NavigatedEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_Navigated
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_LeavingBackground
       (
-         handler : Windows.UI.WebUI.LeavingBackgroundEventHandler
+         handler : WinRt.Windows.UI.WebUI.LeavingBackgroundEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_LeavingBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_EnteredBackground
       (
-         handler : Windows.UI.WebUI.EnteredBackgroundEventHandler
+         handler : WinRt.Windows.UI.WebUI.EnteredBackgroundEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_EnteredBackground
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       procedure EnablePrelaunch
@@ -1509,18 +1509,18 @@ package WinRt.Windows.UI.WebUI is
 
       procedure remove_NewWebUIViewCreated
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function add_BackgroundActivated
       (
-         handler : Windows.UI.WebUI.BackgroundActivatedEventHandler
+         handler : WinRt.Windows.UI.WebUI.BackgroundActivatedEventHandler
       )
       return WinRt.Windows.Foundation.EventRegistrationToken;
 
       procedure remove_BackgroundActivated
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
    end WebUIApplication;
@@ -1861,14 +1861,14 @@ package WinRt.Windows.UI.WebUI is
    function add_Canceled
    (
       this : in out WebUIBackgroundTaskInstanceRuntimeClass;
-      cancelHandler : Windows.ApplicationModel.Background.BackgroundTaskCanceledEventHandler
+      cancelHandler : WinRt.Windows.ApplicationModel.Background.BackgroundTaskCanceledEventHandler
    )
    return WinRt.Windows.Foundation.EventRegistrationToken;
 
    procedure remove_Canceled
    (
       this : in out WebUIBackgroundTaskInstanceRuntimeClass;
-      cookie : Windows.Foundation.EventRegistrationToken
+      cookie : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_SuspendedCount
@@ -3759,7 +3759,7 @@ package WinRt.Windows.UI.WebUI is
 
    function CreateAsync
    (
-      uri : Windows.Foundation.Uri'Class
+      uri : WinRt.Windows.Foundation.Uri'Class
    )
    return WinRt.Windows.UI.WebUI.WebUIView;
 
@@ -3782,7 +3782,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_Closed
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_Activated
@@ -3795,7 +3795,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_Activated
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function get_IgnoreApplicationContentUriRulesNavigationRestrictions
@@ -3819,7 +3819,7 @@ package WinRt.Windows.UI.WebUI is
    procedure put_Source
    (
       this : in out WebUIView;
-      source : Windows.Foundation.Uri'Class
+      source : WinRt.Windows.Foundation.Uri'Class
    );
 
    function get_DocumentTitle
@@ -3843,7 +3843,7 @@ package WinRt.Windows.UI.WebUI is
    procedure put_DefaultBackgroundColor
    (
       this : in out WebUIView;
-      value : Windows.UI.Color
+      value : WinRt.Windows.UI.Color
    );
 
    function get_DefaultBackgroundColor
@@ -3893,7 +3893,7 @@ package WinRt.Windows.UI.WebUI is
    procedure Navigate
    (
       this : in out WebUIView;
-      source : Windows.Foundation.Uri'Class
+      source : WinRt.Windows.Foundation.Uri'Class
    );
 
    procedure NavigateToString
@@ -3905,14 +3905,14 @@ package WinRt.Windows.UI.WebUI is
    procedure NavigateToLocalStreamUri
    (
       this : in out WebUIView;
-      source : Windows.Foundation.Uri'Class;
-      streamResolver : Windows.Web.IUriToStreamResolver
+      source : WinRt.Windows.Foundation.Uri'Class;
+      streamResolver : WinRt.Windows.Web.IUriToStreamResolver
    );
 
    procedure NavigateWithHttpRequestMessage
    (
       this : in out WebUIView;
-      requestMessage : Windows.Web.Http.HttpRequestMessage'Class
+      requestMessage : WinRt.Windows.Web.Http.HttpRequestMessage'Class
    );
 
    function InvokeScriptAsync
@@ -3926,7 +3926,7 @@ package WinRt.Windows.UI.WebUI is
    procedure CapturePreviewToStreamAsync
    (
       this : in out WebUIView;
-      stream : Windows.Storage.Streams.IRandomAccessStream
+      stream : WinRt.Windows.Storage.Streams.IRandomAccessStream
    );
 
    function CaptureSelectedContentToDataPackageAsync
@@ -3947,7 +3947,7 @@ package WinRt.Windows.UI.WebUI is
    (
       this : in out WebUIView;
       id : WinRt.UInt32;
-      result : access Windows.Web.UI.IWebViewControlDeferredPermissionRequest
+      result : access WinRt.Windows.Web.UI.IWebViewControlDeferredPermissionRequest
    );
 
    function add_NavigationStarting
@@ -3960,7 +3960,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_NavigationStarting
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ContentLoading
@@ -3973,7 +3973,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_ContentLoading
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_DOMContentLoaded
@@ -3986,7 +3986,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_DOMContentLoaded
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NavigationCompleted
@@ -3999,7 +3999,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_NavigationCompleted
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameNavigationStarting
@@ -4012,7 +4012,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_FrameNavigationStarting
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameContentLoading
@@ -4025,7 +4025,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_FrameContentLoading
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameDOMContentLoaded
@@ -4038,7 +4038,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_FrameDOMContentLoaded
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_FrameNavigationCompleted
@@ -4051,7 +4051,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_FrameNavigationCompleted
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ScriptNotify
@@ -4064,7 +4064,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_ScriptNotify
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_LongRunningScriptDetected
@@ -4077,7 +4077,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_LongRunningScriptDetected
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnsafeContentWarningDisplaying
@@ -4090,7 +4090,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_UnsafeContentWarningDisplaying
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnviewableContentIdentified
@@ -4103,7 +4103,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_UnviewableContentIdentified
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_PermissionRequested
@@ -4116,7 +4116,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_PermissionRequested
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_UnsupportedUriSchemeIdentified
@@ -4129,7 +4129,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_UnsupportedUriSchemeIdentified
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_NewWindowRequested
@@ -4142,7 +4142,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_NewWindowRequested
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_ContainsFullScreenElementChanged
@@ -4155,7 +4155,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_ContainsFullScreenElementChanged
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    function add_WebResourceRequested
@@ -4168,7 +4168,7 @@ package WinRt.Windows.UI.WebUI is
    procedure remove_WebResourceRequested
    (
       this : in out WebUIView;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    );
 
    procedure AddInitializeScript

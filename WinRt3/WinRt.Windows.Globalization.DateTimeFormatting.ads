@@ -227,7 +227,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       function Format
       (
          this : access IDateTimeFormatter_Interface;
-         value : Windows.Foundation.DateTime;
+         value : WinRt.Windows.Foundation.DateTime;
          RetVal : access WinRt.HString
       )
       return WinRt.Hresult is abstract;
@@ -235,49 +235,49 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       function get_IncludeYear
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.YearFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.YearFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeMonth
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.MonthFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeDayOfWeek
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.DayOfWeekFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeDay
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.DayFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.DayFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeHour
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.HourFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.HourFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeMinute
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.MinuteFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat
       )
       return WinRt.Hresult is abstract;
 
       function get_IncludeSecond
       (
          this : access IDateTimeFormatter_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.SecondFormat
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat
       )
       return WinRt.Hresult is abstract;
 
@@ -303,7 +303,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       function Format
       (
          this : access IDateTimeFormatter2_Interface;
-         datetime : Windows.Foundation.DateTime;
+         datetime : WinRt.Windows.Foundation.DateTime;
          timeZoneId : WinRt.HString;
          RetVal : access WinRt.HString
       )
@@ -318,7 +318,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       (
          this : access IDateTimeFormatterFactory_Interface;
          formatTemplate : WinRt.HString;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -327,7 +327,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
          this : access IDateTimeFormatterFactory_Interface;
          formatTemplate : WinRt.HString;
          languages : GenericObject;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -339,61 +339,61 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
          geographicRegion : WinRt.HString;
          calendar : WinRt.HString;
          clock : WinRt.HString;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function CreateDateTimeFormatterDate
       (
          this : access IDateTimeFormatterFactory_Interface;
-         yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-         monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-         dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-         dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+         monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+         dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+         dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function CreateDateTimeFormatterTime
       (
          this : access IDateTimeFormatterFactory_Interface;
-         hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-         minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-         secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+         minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+         secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat;
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function CreateDateTimeFormatterDateTimeLanguages
       (
          this : access IDateTimeFormatterFactory_Interface;
-         yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-         monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-         dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-         dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
-         hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-         minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-         secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat;
+         yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+         monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+         dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+         dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
+         hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+         minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+         secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat;
          languages : GenericObject;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function CreateDateTimeFormatterDateTimeContext
       (
          this : access IDateTimeFormatterFactory_Interface;
-         yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-         monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-         dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-         dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
-         hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-         minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-         secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat;
+         yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+         monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+         dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+         dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
+         hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+         minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+         secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat;
          languages : GenericObject;
          geographicRegion : WinRt.HString;
          calendar : WinRt.HString;
          clock : WinRt.HString;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -405,28 +405,28 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
       function get_LongDate
       (
          this : access IDateTimeFormatterStatics_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function get_LongTime
       (
          this : access IDateTimeFormatterStatics_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function get_ShortDate
       (
          this : access IDateTimeFormatterStatics_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
       function get_ShortTime
       (
          this : access IDateTimeFormatterStatics_Interface;
-         RetVal : access Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
+         RetVal : access WinRt.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter
       )
       return WinRt.Hresult is abstract;
 
@@ -470,43 +470,43 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
 
    function Constructor
    (
-      yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-      monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-      dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-      dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat
+      yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+      monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+      dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+      dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat
    )
    return DateTimeFormatter;
 
    function Constructor
    (
-      hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-      minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-      secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat
+      hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+      minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+      secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat
    )
    return DateTimeFormatter;
 
    function Constructor
    (
-      yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-      monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-      dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-      dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
-      hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-      minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-      secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat;
+      yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+      monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+      dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+      dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
+      hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+      minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+      secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat;
       languages : GenericObject
    )
    return DateTimeFormatter;
 
    function Constructor
    (
-      yearFormat : Windows.Globalization.DateTimeFormatting.YearFormat;
-      monthFormat : Windows.Globalization.DateTimeFormatting.MonthFormat;
-      dayFormat : Windows.Globalization.DateTimeFormatting.DayFormat;
-      dayOfWeekFormat : Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
-      hourFormat : Windows.Globalization.DateTimeFormatting.HourFormat;
-      minuteFormat : Windows.Globalization.DateTimeFormatting.MinuteFormat;
-      secondFormat : Windows.Globalization.DateTimeFormatting.SecondFormat;
+      yearFormat : WinRt.Windows.Globalization.DateTimeFormatting.YearFormat;
+      monthFormat : WinRt.Windows.Globalization.DateTimeFormatting.MonthFormat;
+      dayFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayFormat;
+      dayOfWeekFormat : WinRt.Windows.Globalization.DateTimeFormatting.DayOfWeekFormat;
+      hourFormat : WinRt.Windows.Globalization.DateTimeFormatting.HourFormat;
+      minuteFormat : WinRt.Windows.Globalization.DateTimeFormatting.MinuteFormat;
+      secondFormat : WinRt.Windows.Globalization.DateTimeFormatting.SecondFormat;
       languages : GenericObject;
       geographicRegion : WinRt.WString;
       calendar : WinRt.WString;
@@ -583,7 +583,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
    function Format
    (
       this : in out DateTimeFormatter;
-      value : Windows.Foundation.DateTime
+      value : WinRt.Windows.Foundation.DateTime
    )
    return WinRt.WString;
 
@@ -644,7 +644,7 @@ package WinRt.Windows.Globalization.DateTimeFormatting is
    function Format
    (
       this : in out DateTimeFormatter;
-      datetime : Windows.Foundation.DateTime;
+      datetime : WinRt.Windows.Foundation.DateTime;
       timeZoneId : WinRt.WString
    )
    return WinRt.WString;

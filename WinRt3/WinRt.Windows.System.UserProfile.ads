@@ -239,7 +239,7 @@ package WinRt.Windows.System.UserProfile is
       function get_User
       (
          this : access IAdvertisingManagerForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -263,8 +263,8 @@ package WinRt.Windows.System.UserProfile is
       function GetForUser
       (
          this : access IAdvertisingManagerStatics2_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.UserProfile.IAdvertisingManagerForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.UserProfile.IAdvertisingManagerForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -290,7 +290,7 @@ package WinRt.Windows.System.UserProfile is
       function get_User
       (
          this : access IAssignedAccessSettings_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -302,15 +302,15 @@ package WinRt.Windows.System.UserProfile is
       function GetDefault
       (
          this : access IAssignedAccessSettingsStatics_Interface;
-         RetVal : access Windows.System.UserProfile.IAssignedAccessSettings
+         RetVal : access WinRt.Windows.System.UserProfile.IAssignedAccessSettings
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IAssignedAccessSettingsStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.UserProfile.IAssignedAccessSettings
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.UserProfile.IAssignedAccessSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -329,7 +329,7 @@ package WinRt.Windows.System.UserProfile is
       function get_User
       (
          this : access IDiagnosticsSettings_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -341,15 +341,15 @@ package WinRt.Windows.System.UserProfile is
       function GetDefault
       (
          this : access IDiagnosticsSettingsStatics_Interface;
-         RetVal : access Windows.System.UserProfile.IDiagnosticsSettings
+         RetVal : access WinRt.Windows.System.UserProfile.IDiagnosticsSettings
       )
       return WinRt.Hresult is abstract;
 
       function GetForUser
       (
          this : access IDiagnosticsSettingsStatics_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.UserProfile.IDiagnosticsSettings
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.UserProfile.IDiagnosticsSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -366,7 +366,7 @@ package WinRt.Windows.System.UserProfile is
       function GetDefault
       (
          this : access IFirstSignInSettingsStatics_Interface;
-         RetVal : access Windows.System.UserProfile.IFirstSignInSettings
+         RetVal : access WinRt.Windows.System.UserProfile.IFirstSignInSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -378,7 +378,7 @@ package WinRt.Windows.System.UserProfile is
       function get_User
       (
          this : access IGlobalizationPreferencesForUser_Interface;
-         RetVal : access Windows.System.IUser
+         RetVal : access WinRt.Windows.System.IUser
       )
       return WinRt.Hresult is abstract;
 
@@ -420,7 +420,7 @@ package WinRt.Windows.System.UserProfile is
       function get_WeekStartsOn
       (
          this : access IGlobalizationPreferencesForUser_Interface;
-         RetVal : access Windows.Globalization.DayOfWeek
+         RetVal : access WinRt.Windows.Globalization.DayOfWeek
       )
       return WinRt.Hresult is abstract;
 
@@ -467,7 +467,7 @@ package WinRt.Windows.System.UserProfile is
       function get_WeekStartsOn
       (
          this : access IGlobalizationPreferencesStatics_Interface;
-         RetVal : access Windows.Globalization.DayOfWeek
+         RetVal : access WinRt.Windows.Globalization.DayOfWeek
       )
       return WinRt.Hresult is abstract;
 
@@ -500,8 +500,8 @@ package WinRt.Windows.System.UserProfile is
       function GetForUser
       (
          this : access IGlobalizationPreferencesStatics3_Interface;
-         user : Windows.System.IUser;
-         RetVal : access Windows.System.UserProfile.IGlobalizationPreferencesForUser
+         user : WinRt.Windows.System.IUser;
+         RetVal : access WinRt.Windows.System.UserProfile.IGlobalizationPreferencesForUser
       )
       return WinRt.Hresult is abstract;
 
@@ -513,7 +513,7 @@ package WinRt.Windows.System.UserProfile is
       function RequestSetImageFeedAsync
       (
          this : access ILockScreenImageFeedStatics_Interface;
-         syndicationFeedUri : Windows.Foundation.IUriRuntimeClass;
+         syndicationFeedUri : WinRt.Windows.Foundation.IUriRuntimeClass;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -533,30 +533,30 @@ package WinRt.Windows.System.UserProfile is
       function get_OriginalImageFile
       (
          this : access ILockScreenStatics_Interface;
-         RetVal : access Windows.Foundation.IUriRuntimeClass
+         RetVal : access WinRt.Windows.Foundation.IUriRuntimeClass
       )
       return WinRt.Hresult is abstract;
 
       function GetImageStream
       (
          this : access ILockScreenStatics_Interface;
-         RetVal : access Windows.Storage.Streams.IRandomAccessStream
+         RetVal : access WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Hresult is abstract;
 
       function SetImageFileAsync
       (
          this : access ILockScreenStatics_Interface;
-         value : Windows.Storage.IStorageFile;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Storage.IStorageFile;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
       function SetImageStreamAsync
       (
          this : access ILockScreenStatics_Interface;
-         value : Windows.Storage.Streams.IRandomAccessStream;
-         RetVal : access Windows.Foundation.IAsyncAction
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         RetVal : access WinRt.Windows.Foundation.IAsyncAction
       )
       return WinRt.Hresult is abstract;
 
@@ -582,15 +582,15 @@ package WinRt.Windows.System.UserProfile is
       function GetAccountPicture
       (
          this : access IUserInformationStatics_Interface;
-         kind : Windows.System.UserProfile.AccountPictureKind;
-         RetVal : access Windows.Storage.IStorageFile
+         kind : WinRt.Windows.System.UserProfile.AccountPictureKind;
+         RetVal : access WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Hresult is abstract;
 
       function SetAccountPictureAsync
       (
          this : access IUserInformationStatics_Interface;
-         image : Windows.Storage.IStorageFile;
+         image : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -598,9 +598,9 @@ package WinRt.Windows.System.UserProfile is
       function SetAccountPicturesAsync
       (
          this : access IUserInformationStatics_Interface;
-         smallImage : Windows.Storage.IStorageFile;
-         largeImage : Windows.Storage.IStorageFile;
-         video : Windows.Storage.IStorageFile;
+         smallImage : WinRt.Windows.Storage.IStorageFile;
+         largeImage : WinRt.Windows.Storage.IStorageFile;
+         video : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -608,7 +608,7 @@ package WinRt.Windows.System.UserProfile is
       function SetAccountPictureFromStreamAsync
       (
          this : access IUserInformationStatics_Interface;
-         image : Windows.Storage.Streams.IRandomAccessStream;
+         image : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -616,9 +616,9 @@ package WinRt.Windows.System.UserProfile is
       function SetAccountPicturesFromStreamsAsync
       (
          this : access IUserInformationStatics_Interface;
-         smallImage : Windows.Storage.Streams.IRandomAccessStream;
-         largeImage : Windows.Storage.Streams.IRandomAccessStream;
-         video : Windows.Storage.Streams.IRandomAccessStream;
+         smallImage : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         largeImage : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         video : WinRt.Windows.Storage.Streams.IRandomAccessStream;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -627,14 +627,14 @@ package WinRt.Windows.System.UserProfile is
       (
          this : access IUserInformationStatics_Interface;
          changeHandler : GenericObject;
-         RetVal : access Windows.Foundation.EventRegistrationToken
+         RetVal : access WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
       function remove_AccountPictureChanged
       (
          this : access IUserInformationStatics_Interface;
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       )
       return WinRt.Hresult is abstract;
 
@@ -688,7 +688,7 @@ package WinRt.Windows.System.UserProfile is
       function TrySetLockScreenImageAsync
       (
          this : access IUserProfilePersonalizationSettings_Interface;
-         imageFile : Windows.Storage.IStorageFile;
+         imageFile : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -696,7 +696,7 @@ package WinRt.Windows.System.UserProfile is
       function TrySetWallpaperImageAsync
       (
          this : access IUserProfilePersonalizationSettings_Interface;
-         imageFile : Windows.Storage.IStorageFile;
+         imageFile : WinRt.Windows.Storage.IStorageFile;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -709,7 +709,7 @@ package WinRt.Windows.System.UserProfile is
       function get_Current
       (
          this : access IUserProfilePersonalizationSettingsStatics_Interface;
-         RetVal : access Windows.System.UserProfile.IUserProfilePersonalizationSettings
+         RetVal : access WinRt.Windows.System.UserProfile.IUserProfilePersonalizationSettings
       )
       return WinRt.Hresult is abstract;
 
@@ -732,7 +732,7 @@ package WinRt.Windows.System.UserProfile is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.System.UserProfile.AdvertisingManagerForUser;
 
@@ -776,7 +776,7 @@ package WinRt.Windows.System.UserProfile is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.UserProfile.AssignedAccessSettings;
 
@@ -815,7 +815,7 @@ package WinRt.Windows.System.UserProfile is
 
    function GetForUser
    (
-      user : Windows.System.User'Class
+      user : WinRt.Windows.System.User'Class
    )
    return WinRt.Windows.System.UserProfile.DiagnosticsSettings;
 
@@ -913,7 +913,7 @@ package WinRt.Windows.System.UserProfile is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.System.UserProfile.GlobalizationPreferencesForUser;
 
@@ -982,17 +982,17 @@ package WinRt.Windows.System.UserProfile is
 
       procedure SetImageFileAsync
       (
-         value : Windows.Storage.IStorageFile
+         value : WinRt.Windows.Storage.IStorageFile
       );
 
       procedure SetImageStreamAsync
       (
-         value : Windows.Storage.Streams.IRandomAccessStream
+         value : WinRt.Windows.Storage.Streams.IRandomAccessStream
       );
 
       function RequestSetImageFeedAsync
       (
-         syndicationFeedUri : Windows.Foundation.Uri'Class
+         syndicationFeedUri : WinRt.Windows.Foundation.Uri'Class
       )
       return WinRt.Windows.System.UserProfile.SetImageFeedResult;
 
@@ -1013,35 +1013,35 @@ package WinRt.Windows.System.UserProfile is
 
       function GetAccountPicture
       (
-         kind : Windows.System.UserProfile.AccountPictureKind
+         kind : WinRt.Windows.System.UserProfile.AccountPictureKind
       )
       return WinRt.Windows.Storage.IStorageFile;
 
       function SetAccountPictureAsync
       (
-         image : Windows.Storage.IStorageFile
+         image : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult;
 
       function SetAccountPicturesAsync
       (
-         smallImage : Windows.Storage.IStorageFile;
-         largeImage : Windows.Storage.IStorageFile;
-         video : Windows.Storage.IStorageFile
+         smallImage : WinRt.Windows.Storage.IStorageFile;
+         largeImage : WinRt.Windows.Storage.IStorageFile;
+         video : WinRt.Windows.Storage.IStorageFile
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult;
 
       function SetAccountPictureFromStreamAsync
       (
-         image : Windows.Storage.Streams.IRandomAccessStream
+         image : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult;
 
       function SetAccountPicturesFromStreamsAsync
       (
-         smallImage : Windows.Storage.Streams.IRandomAccessStream;
-         largeImage : Windows.Storage.Streams.IRandomAccessStream;
-         video : Windows.Storage.Streams.IRandomAccessStream
+         smallImage : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         largeImage : WinRt.Windows.Storage.Streams.IRandomAccessStream;
+         video : WinRt.Windows.Storage.Streams.IRandomAccessStream
       )
       return WinRt.Windows.System.UserProfile.SetAccountPictureResult;
 
@@ -1053,7 +1053,7 @@ package WinRt.Windows.System.UserProfile is
 
       procedure remove_AccountPictureChanged
       (
-         token : Windows.Foundation.EventRegistrationToken
+         token : WinRt.Windows.Foundation.EventRegistrationToken
       );
 
       function GetDisplayNameAsync
@@ -1097,14 +1097,14 @@ package WinRt.Windows.System.UserProfile is
    function TrySetLockScreenImageAsync
    (
       this : in out UserProfilePersonalizationSettings;
-      imageFile : Windows.Storage.StorageFile'Class
+      imageFile : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Boolean;
 
    function TrySetWallpaperImageAsync
    (
       this : in out UserProfilePersonalizationSettings;
-      imageFile : Windows.Storage.StorageFile'Class
+      imageFile : WinRt.Windows.Storage.StorageFile'Class
    )
    return WinRt.Boolean;
 

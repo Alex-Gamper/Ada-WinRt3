@@ -67,16 +67,16 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeer");
       m_Factory    : access IAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : AutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+            Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -94,7 +94,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerStatics3_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.RawElementProviderRuntimeId;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerStatics3'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -110,7 +110,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function ListenerExists
    (
-      eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
+      eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents
    )
    return WinRt.Boolean is
       Hr               : WinRt.HResult := S_OK;
@@ -143,14 +143,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.get_EventsSource (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -158,7 +158,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_EventsSource
    (
       this : in out AutomationPeer;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -173,7 +173,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPattern
    (
       this : in out AutomationPeer;
-      patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface
+      patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -191,7 +191,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseAutomationEvent
    (
       this : in out AutomationPeer;
-      eventId : Windows.UI.Xaml.Automation.Peers.AutomationEvents
+      eventId : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationEvents
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -206,7 +206,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaisePropertyChangedEvent
    (
       this : in out AutomationPeer;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       oldValue : WinRt.IInspectable;
       newValue : WinRt.IInspectable
    ) is
@@ -268,7 +268,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationControlType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType;
    begin
       Hr := this.m_IAutomationPeer.all.GetAutomationControlType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -305,7 +305,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
    begin
       Hr := this.m_IAutomationPeer.all.GetBoundingRectangle (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -322,7 +322,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeer.Kind;
    begin
       Hr := this.m_IAutomationPeer.all.GetChildren (m_ComRetVal'Access);
@@ -362,7 +362,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
    begin
       Hr := this.m_IAutomationPeer.all.GetClickablePoint (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -439,14 +439,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetLabeledBy (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -499,7 +499,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
    begin
       Hr := this.m_IAutomationPeer.all.GetOrientation (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -666,14 +666,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetParent (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -695,20 +695,20 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPeerFromPoint
    (
       this : in out AutomationPeer;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeer.all.GetPeerFromPoint (point, m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -721,7 +721,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
    begin
       Hr := this.m_IAutomationPeer.all.GetLiveSetting (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -733,7 +733,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Navigate
    (
       this : in out AutomationPeer;
-      direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
+      direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -755,7 +755,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetElementFromPoint
    (
       this : in out AutomationPeer;
-      pointInWindowCoordinates : Windows.Foundation.Point
+      pointInWindowCoordinates : WinRt.Windows.Foundation.Point
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -822,7 +822,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
@@ -846,7 +846,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeerAnnotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer3'Unchecked_Access);
    begin
@@ -864,7 +864,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetParent
    (
       this : in out AutomationPeer;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -883,7 +883,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseTextEditTextChangedEvent
    (
       this : in out AutomationPeer;
-      automationTextEditChangeType : Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
+      automationTextEditChangeType : WinRt.Windows.UI.Xaml.Automation.AutomationTextEditChangeType;
       changedData : GenericObject
    ) is
       Hr               : WinRt.HResult := S_OK;
@@ -966,8 +966,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseStructureChangedEvent
    (
       this : in out AutomationPeer;
-      structureChangeType : Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
-      child : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      structureChangeType : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationStructureChangeType;
+      child : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -992,7 +992,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1118,8 +1118,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure RaiseNotificationEvent
    (
       this : in out AutomationPeer;
-      notificationKind : Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
-      notificationProcessing : Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
+      notificationKind : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationKind;
+      notificationProcessing : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNotificationProcessing;
       displayString : WinRt.WString;
       activityId : WinRt.WString
    ) is
@@ -1150,7 +1150,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer8, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeer8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1186,14 +1186,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function PeerFromProvider
    (
       this : in out AutomationPeer;
-      provider : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class
+      provider : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
@@ -1203,7 +1203,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -1211,14 +1211,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function ProviderFromPeer
    (
       this : in out AutomationPeer;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerProtected, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerProtected'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -1228,7 +1228,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -1236,7 +1236,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPatternCore
    (
       this : in out AutomationPeer;
-      patternInterface : Windows.UI.Xaml.Automation.Peers.PatternInterface
+      patternInterface : WinRt.Windows.UI.Xaml.Automation.Peers.PatternInterface
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -1312,7 +1312,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationControlType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationControlType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1357,7 +1357,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Rect;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Rect;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1378,7 +1378,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
@@ -1426,7 +1426,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Point;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Point;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1519,7 +1519,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
@@ -1529,7 +1529,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -1591,7 +1591,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationOrientation;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1792,14 +1792,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetPeerFromPointCore
    (
       this : in out AutomationPeer;
-      point : Windows.Foundation.Point
+      point : WinRt.Windows.Foundation.Point
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
@@ -1809,7 +1809,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -1823,7 +1823,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLiveSetting;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -1862,7 +1862,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides2'Unchecked_Access);
    begin
@@ -1880,7 +1880,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function NavigateCore
    (
       this : in out AutomationPeer;
-      direction : Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
+      direction : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationNavigationDirection
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -1902,7 +1902,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function GetElementFromPointCore
    (
       this : in out AutomationPeer;
-      pointInWindowCoordinates : Windows.Foundation.Point
+      pointInWindowCoordinates : WinRt.Windows.Foundation.Point
    )
    return WinRt.IInspectable is
       Hr               : WinRt.HResult := S_OK;
@@ -1951,7 +1951,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_IAutomationPeerAnnotation.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides3, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides3'Unchecked_Access);
    begin
@@ -2038,7 +2038,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationLandmarkType;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides4, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -2149,7 +2149,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
@@ -2173,7 +2173,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
@@ -2197,7 +2197,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IIterable_IAutomationPeer.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides5, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides5'Unchecked_Access);
    begin
@@ -2242,7 +2242,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides8 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.AutomationHeadingLevel;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerOverrides8, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IAutomationPeerOverrides8'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAutomationPeer.all);
@@ -2300,23 +2300,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.FrameworkElement'Class;
+      owner : WinRt.Windows.UI.Xaml.FrameworkElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return FrameworkElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer");
       m_Factory    : access IFrameworkElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
    begin
       return RetVal : FrameworkElementAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameworkElementAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFrameworkElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFrameworkElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
+            Retval.m_IFrameworkElementAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
             Retval.m_IFrameworkElementAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2329,7 +2329,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function FromElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer is
       Hr               : WinRt.HResult := S_OK;
@@ -2337,7 +2337,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameworkElementAutomationPeerStatics'Access , m_Factory'Address);
@@ -2347,7 +2347,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+            Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2356,7 +2356,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function CreatePeerForElement
    (
-      element : Windows.UI.Xaml.UIElement'Class
+      element : WinRt.Windows.UI.Xaml.UIElement'Class
    )
    return WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer is
       Hr               : WinRt.HResult := S_OK;
@@ -2364,7 +2364,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeerStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFrameworkElementAutomationPeerStatics'Access , m_Factory'Address);
@@ -2374,7 +2374,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+            Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
             Retval.m_IAutomationPeer.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -2392,14 +2392,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IUIElement;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IUIElement;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.UIElement do
          Hr := this.m_IFrameworkElementAutomationPeer.all.get_Owner (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUIElement := new Windows.UI.Xaml.IUIElement;
+         Retval.m_IUIElement := new WinRt.Windows.UI.Xaml.IUIElement;
          Retval.m_IUIElement.all := m_ComRetVal;
       end return;
    end;
@@ -2429,23 +2429,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return AppBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer");
       m_Factory    : access IAppBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
    begin
       return RetVal : AppBarAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBarAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IAppBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
+            Retval.m_IAppBarAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
             Retval.m_IAppBarAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2465,7 +2465,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
@@ -2504,7 +2504,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
@@ -2645,7 +2645,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowInteractionState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.WindowInteractionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
@@ -2666,7 +2666,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowVisualState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.WindowVisualState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarAutomationPeer.all);
@@ -2699,7 +2699,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetVisualState
    (
       this : in out AppBarAutomationPeer;
-      state : Windows.UI.Xaml.Automation.WindowVisualState
+      state : WinRt.Windows.UI.Xaml.Automation.WindowVisualState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2762,23 +2762,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ButtonBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ButtonBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ButtonBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer");
       m_Factory    : access IButtonBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
    begin
       return RetVal : ButtonBaseAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonBaseAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IButtonBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IButtonBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
+            Retval.m_IButtonBaseAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
             Retval.m_IButtonBaseAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2814,23 +2814,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Button'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Button'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer");
       m_Factory    : access IButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
    begin
       return RetVal : ButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
+            Retval.m_IButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
             Retval.m_IButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2884,23 +2884,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBarButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBarButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return AppBarButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer");
       m_Factory    : access IAppBarButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
    begin
       return RetVal : AppBarButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBarButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBarButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IAppBarButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
+            Retval.m_IAppBarButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
             Retval.m_IAppBarButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2920,7 +2920,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAppBarButtonAutomationPeer.all);
@@ -2993,23 +2993,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ToggleButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ToggleButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer");
       m_Factory    : access IToggleButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
    begin
       return RetVal : ToggleButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IToggleButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IToggleButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
+            Retval.m_IToggleButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
             Retval.m_IToggleButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3029,7 +3029,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleButtonAutomationPeer.all);
@@ -3084,23 +3084,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AppBarToggleButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.AppBarToggleButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return AppBarToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarToggleButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer");
       m_Factory    : access IAppBarToggleButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
    begin
       return RetVal : AppBarToggleButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IAppBarToggleButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAppBarToggleButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IAppBarToggleButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
+            Retval.m_IAppBarToggleButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
             Retval.m_IAppBarToggleButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3136,21 +3136,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.AutoSuggestBox'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.AutoSuggestBox'Class
    )
    return AutoSuggestBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutoSuggestBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer");
       m_Factory    : access IAutoSuggestBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
    begin
       return RetVal : AutoSuggestBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IAutoSuggestBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IAutoSuggestBox.all, m_ComRetVal'Access);
-            Retval.m_IAutoSuggestBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
+            Retval.m_IAutoSuggestBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
             Retval.m_IAutoSuggestBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3205,13 +3205,13 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+            Retval.m_IAutomationPeerAnnotation := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3220,21 +3220,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    )
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (type_x, m_ComRetVal'Access);
-            Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+            Retval.m_IAutomationPeerAnnotation := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3244,22 +3244,22 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      type_x : Windows.UI.Xaml.Automation.AnnotationType;
-      peer : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      type_x : WinRt.Windows.UI.Xaml.Automation.AnnotationType;
+      peer : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    )
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithPeerParameter (type_x, peer.m_IAutomationPeer.all, m_ComRetVal'Access);
-            Retval.m_IAutomationPeerAnnotation := new Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+            Retval.m_IAutomationPeerAnnotation := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3277,7 +3277,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationStatics'Access , m_Factory'Address);
@@ -3287,7 +3287,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3301,7 +3301,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory        : access WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotationStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.IDependencyProperty;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.IDependencyProperty;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.DependencyProperty do
          Hr := RoGetActivationFactory (m_hString, IID_IAutomationPeerAnnotationStatics'Access , m_Factory'Address);
@@ -3311,7 +3311,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
             if Hr /= S_OK then
                raise Program_Error;
             end if;
-            Retval.m_IDependencyProperty := new Windows.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty := new WinRt.Windows.UI.Xaml.IDependencyProperty;
             Retval.m_IDependencyProperty.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -3329,7 +3329,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.AnnotationType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.AnnotationType;
    begin
       Hr := this.m_IAutomationPeerAnnotation.all.get_Type (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3341,7 +3341,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_Type
    (
       this : in out AutomationPeerAnnotation;
-      value : Windows.UI.Xaml.Automation.AnnotationType
+      value : WinRt.Windows.UI.Xaml.Automation.AnnotationType
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3361,14 +3361,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer do
          Hr := this.m_IAutomationPeerAnnotation.all.get_Peer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
+         Retval.m_IAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
          Retval.m_IAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -3376,7 +3376,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure put_Peer
    (
       this : in out AutomationPeerAnnotation;
-      value : Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
+      value : WinRt.Windows.UI.Xaml.Automation.Peers.AutomationPeer'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3413,23 +3413,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CalendarDatePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CalendarDatePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return CalendarDatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CalendarDatePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer");
       m_Factory    : access ICalendarDatePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
    begin
       return RetVal : CalendarDatePickerAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ICalendarDatePickerAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICalendarDatePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICalendarDatePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
+            Retval.m_ICalendarDatePickerAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
             Retval.m_ICalendarDatePickerAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3549,23 +3549,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CaptureElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CaptureElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return CaptureElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CaptureElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer");
       m_Factory    : access ICaptureElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
    begin
       return RetVal : CaptureElementAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ICaptureElementAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICaptureElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICaptureElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
+            Retval.m_ICaptureElementAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
             Retval.m_ICaptureElementAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3601,23 +3601,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.CheckBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.CheckBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return CheckBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CheckBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer");
       m_Factory    : access ICheckBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
    begin
       return RetVal : CheckBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ICheckBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ICheckBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ICheckBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
+            Retval.m_ICheckBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
             Retval.m_ICheckBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3653,23 +3653,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.RangeBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.RangeBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RangeBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer");
       m_Factory    : access IRangeBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
    begin
       return RetVal : RangeBaseAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRangeBaseAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRangeBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRangeBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
+            Retval.m_IRangeBaseAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
             Retval.m_IRangeBaseAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3850,23 +3850,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Slider'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Slider'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SliderAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer");
       m_Factory    : access ISliderAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
    begin
       return RetVal : SliderAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISliderAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISlider.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISliderAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
+            Retval.m_ISliderAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
             Retval.m_ISliderAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3902,23 +3902,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ColorPickerSliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorPickerSliderAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer");
       m_Factory    : access IColorPickerSliderAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
    begin
       return RetVal : ColorPickerSliderAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IColorPickerSliderAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IColorPickerSlider.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IColorPickerSliderAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
+            Retval.m_IColorPickerSliderAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
             Retval.m_IColorPickerSliderAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3954,23 +3954,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ColorSpectrumAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorSpectrumAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer");
       m_Factory    : access IColorSpectrumAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
    begin
       return RetVal : ColorSpectrumAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IColorSpectrumAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IColorSpectrum.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IColorSpectrumAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
+            Retval.m_IColorSpectrumAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
             Retval.m_IColorSpectrumAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4006,23 +4006,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ItemsControl'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ItemsControl'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ItemsControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer");
       m_Factory    : access IItemsControlAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
    begin
       return RetVal : ItemsControlAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IItemsControlAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IItemsControl.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IItemsControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
+            Retval.m_IItemsControlAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
             Retval.m_IItemsControlAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4043,7 +4043,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IItemsControlAutomationPeer2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer do
@@ -4053,7 +4053,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+         Retval.m_IItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
          Retval.m_IItemAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -4068,7 +4068,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeerOverrides2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeerOverrides2, WinRt.Windows.UI.Xaml.Automation.Peers.IID_IItemsControlAutomationPeerOverrides2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer do
@@ -4078,7 +4078,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+         Retval.m_IItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
          Retval.m_IItemAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -4086,8 +4086,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function FindItemByProperty
    (
       this : in out ItemsControlAutomationPeer;
-      startAfter : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      startAfter : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       value : WinRt.IInspectable
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
@@ -4095,7 +4095,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IItemContainerProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -4105,7 +4105,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -4135,23 +4135,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.Selector'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.Selector'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SelectorAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer");
       m_Factory    : access ISelectorAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
    begin
       return RetVal : SelectorAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISelector.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISelectorAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
+            Retval.m_ISelectorAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
             Retval.m_ISelectorAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4234,23 +4234,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ComboBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ComboBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ComboBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer");
       m_Factory    : access IComboBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
    begin
       return RetVal : ComboBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IComboBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IComboBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IComboBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
+            Retval.m_IComboBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
             Retval.m_IComboBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4336,7 +4336,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
@@ -4477,7 +4477,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowInteractionState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.WindowInteractionState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
@@ -4498,7 +4498,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.WindowVisualState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.WindowVisualState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IWindowProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IWindowProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IComboBoxAutomationPeer.all);
@@ -4531,7 +4531,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure SetVisualState
    (
       this : in out ComboBoxAutomationPeer;
-      state : Windows.UI.Xaml.Automation.WindowVisualState
+      state : WinRt.Windows.UI.Xaml.Automation.WindowVisualState
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4594,23 +4594,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ComboBoxItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ComboBoxItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ComboBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer");
       m_Factory    : access IComboBoxItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
    begin
       return RetVal : ComboBoxItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IComboBoxItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IComboBoxItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IComboBoxItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
+            Retval.m_IComboBoxItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
             Retval.m_IComboBoxItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4647,23 +4647,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer");
       m_Factory    : access IItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
    begin
       return RetVal : ItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IItemsControlAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
+            Retval.m_IItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
             Retval.m_IItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4699,14 +4699,14 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer do
          Hr := this.m_IItemAutomationPeer.all.get_ItemsControlAutomationPeer (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IItemsControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
+         Retval.m_IItemsControlAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
          Retval.m_IItemsControlAutomationPeer.all := m_ComRetVal;
       end return;
    end;
@@ -4755,23 +4755,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SelectorItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer");
       m_Factory    : access ISelectorItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
    begin
       return RetVal : SelectorItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISelectorItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_ISelectorAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISelectorItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
+            Retval.m_ISelectorItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
             Retval.m_ISelectorItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4812,7 +4812,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -4822,7 +4822,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -4907,23 +4907,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ComboBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer");
       m_Factory    : access IComboBoxItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
    begin
       return RetVal : ComboBoxItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IComboBoxItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IComboBoxAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IComboBoxItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
+            Retval.m_IComboBoxItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
             Retval.m_IComboBoxItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4977,23 +4977,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.DatePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.DatePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return DatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.DatePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer");
       m_Factory    : access IDatePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
    begin
       return RetVal : DatePickerAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IDatePickerAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IDatePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IDatePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
+            Retval.m_IDatePickerAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
             Retval.m_IDatePickerAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5052,23 +5052,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlipView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlipView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return FlipViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer");
       m_Factory    : access IFlipViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
    begin
       return RetVal : FlipViewAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFlipViewAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlipView.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFlipViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
+            Retval.m_IFlipViewAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
             Retval.m_IFlipViewAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5104,23 +5104,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlipViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlipViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return FlipViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer");
       m_Factory    : access IFlipViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
    begin
       return RetVal : FlipViewItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFlipViewItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlipViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFlipViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
+            Retval.m_IFlipViewItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
             Retval.m_IFlipViewItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5157,23 +5157,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return FlipViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer");
       m_Factory    : access IFlipViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
    begin
       return RetVal : FlipViewItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFlipViewItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IFlipViewAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFlipViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
+            Retval.m_IFlipViewItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
             Retval.m_IFlipViewItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5227,23 +5227,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.FlyoutPresenter'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.FlyoutPresenter'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return FlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlyoutPresenterAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer");
       m_Factory    : access IFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
    begin
       return RetVal : FlyoutPresenterAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IFlyoutPresenterAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IFlyoutPresenter.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IFlyoutPresenterAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
+            Retval.m_IFlyoutPresenterAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
             Retval.m_IFlyoutPresenterAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5279,23 +5279,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewBase'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewBase'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer");
       m_Factory    : access IListViewBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
    begin
       return RetVal : ListViewBaseAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewBaseAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewBase.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewBaseAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
+            Retval.m_IListViewBaseAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
             Retval.m_IListViewBaseAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5387,23 +5387,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return GridViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer");
       m_Factory    : access IGridViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
    begin
       return RetVal : GridViewAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridView.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGridViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
+            Retval.m_IGridViewAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
             Retval.m_IGridViewAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5439,23 +5439,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewBaseHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewBaseHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewBaseHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer");
       m_Factory    : access IListViewBaseHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
    begin
       return RetVal : ListViewBaseHeaderItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewBaseHeaderItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewBaseHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewBaseHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
+            Retval.m_IListViewBaseHeaderItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
             Retval.m_IListViewBaseHeaderItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5491,23 +5491,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridViewHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridViewHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return GridViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer");
       m_Factory    : access IGridViewHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
    begin
       return RetVal : GridViewHeaderItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewHeaderItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridViewHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGridViewHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
+            Retval.m_IGridViewHeaderItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
             Retval.m_IGridViewHeaderItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5543,23 +5543,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GridViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GridViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return GridViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer");
       m_Factory    : access IGridViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
    begin
       return RetVal : GridViewItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGridViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGridViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
+            Retval.m_IGridViewItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
             Retval.m_IGridViewItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5596,23 +5596,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return GridViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer");
       m_Factory    : access IGridViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
    begin
       return RetVal : GridViewItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IGridViewItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IGridViewAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGridViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
+            Retval.m_IGridViewItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
             Retval.m_IGridViewItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5666,23 +5666,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.GroupItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.GroupItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return GroupItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GroupItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer");
       m_Factory    : access IGroupItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
    begin
       return RetVal : GroupItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IGroupItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IGroupItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IGroupItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
+            Retval.m_IGroupItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
             Retval.m_IGroupItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5718,23 +5718,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Hub'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Hub'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return HubAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer");
       m_Factory    : access IHubAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
    begin
       return RetVal : HubAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IHubAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHub.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IHubAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
+            Retval.m_IHubAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
             Retval.m_IHubAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5770,23 +5770,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.HubSection'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.HubSection'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return HubSectionAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubSectionAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer");
       m_Factory    : access IHubSectionAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
    begin
       return RetVal : HubSectionAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IHubSectionAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHubSection.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IHubSectionAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
+            Retval.m_IHubSectionAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
             Retval.m_IHubSectionAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5840,23 +5840,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.HyperlinkButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.HyperlinkButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return HyperlinkButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HyperlinkButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer");
       m_Factory    : access IHyperlinkButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
    begin
       return RetVal : HyperlinkButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IHyperlinkButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IHyperlinkButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IHyperlinkButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
+            Retval.m_IHyperlinkButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
             Retval.m_IHyperlinkButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5910,23 +5910,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Image'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Image'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ImageAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ImageAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer");
       m_Factory    : access IImageAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
    begin
       return RetVal : ImageAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IImageAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IImage.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IImageAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
+            Retval.m_IImageAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
             Retval.m_IImageAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -5985,23 +5985,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer");
       m_Factory    : access IListBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
    begin
       return RetVal : ListBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
+            Retval.m_IListBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
             Retval.m_IListBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6037,23 +6037,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListBoxItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListBoxItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer");
       m_Factory    : access IListBoxItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
    begin
       return RetVal : ListBoxItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListBoxItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListBoxItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListBoxItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
+            Retval.m_IListBoxItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
             Retval.m_IListBoxItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6090,23 +6090,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer");
       m_Factory    : access IListBoxItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
    begin
       return RetVal : ListBoxItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListBoxItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IListBoxAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListBoxItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
+            Retval.m_IListBoxItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
             Retval.m_IListBoxItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6183,23 +6183,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListView'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListView'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer");
       m_Factory    : access IListViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
    begin
       return RetVal : ListViewAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListView.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
+            Retval.m_IListViewAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
             Retval.m_IListViewAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6235,23 +6235,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewHeaderItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewHeaderItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer");
       m_Factory    : access IListViewHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
    begin
       return RetVal : ListViewHeaderItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewHeaderItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewHeaderItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewHeaderItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
+            Retval.m_IListViewHeaderItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
             Retval.m_IListViewHeaderItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6287,23 +6287,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ListViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ListViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer");
       m_Factory    : access IListViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
    begin
       return RetVal : ListViewItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IListViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
+            Retval.m_IListViewItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
             Retval.m_IListViewItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6340,23 +6340,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer'Class;
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ListViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer");
       m_Factory    : access IListViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
    begin
       return RetVal : ListViewItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IListViewItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IListViewBaseAutomationPeer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IListViewItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
+            Retval.m_IListViewItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
             Retval.m_IListViewItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -6458,8 +6458,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function FindItemByProperty
    (
       this : in out LoopingSelectorAutomationPeer;
-      startAfter : Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
-      automationProperty : Windows.UI.Xaml.Automation.AutomationProperty'Class;
+      startAfter : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class;
+      automationProperty : WinRt.Windows.UI.Xaml.Automation.AutomationProperty'Class;
       value : WinRt.IInspectable
    )
    return WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple'Class is
@@ -6467,7 +6467,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IItemContainerProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IItemContainerProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -6477,7 +6477,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -6491,7 +6491,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
@@ -6668,8 +6668,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out LoopingSelectorAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -6776,7 +6776,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -6786,7 +6786,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -7038,8 +7038,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out MapControlAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7181,7 +7181,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure ZoomByUnit
    (
       this : in out MapControlAutomationPeer;
-      zoomUnit : Windows.UI.Xaml.Automation.ZoomUnit
+      zoomUnit : WinRt.Windows.UI.Xaml.Automation.ZoomUnit
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -7344,23 +7344,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MediaElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer");
       m_Factory    : access IMediaElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
    begin
       return RetVal : MediaElementAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaElementAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMediaElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
+            Retval.m_IMediaElementAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
             Retval.m_IMediaElementAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7396,23 +7396,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaPlayerElement'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaPlayerElement'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MediaPlayerElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaPlayerElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer");
       m_Factory    : access IMediaPlayerElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
    begin
       return RetVal : MediaPlayerElementAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaPlayerElementAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaPlayerElement.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMediaPlayerElementAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
+            Retval.m_IMediaPlayerElementAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
             Retval.m_IMediaPlayerElementAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7448,23 +7448,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MediaTransportControls'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MediaTransportControls'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MediaTransportControlsAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaTransportControlsAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer");
       m_Factory    : access IMediaTransportControlsAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
    begin
       return RetVal : MediaTransportControlsAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMediaTransportControlsAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMediaTransportControls.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMediaTransportControlsAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
+            Retval.m_IMediaTransportControlsAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
             Retval.m_IMediaTransportControlsAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7500,23 +7500,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MenuBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer");
       m_Factory    : access IMenuBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
    begin
       return RetVal : MenuBarAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMenuBarAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (owner.m_IMenuBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMenuBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
+            Retval.m_IMenuBarAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
             Retval.m_IMenuBarAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7552,23 +7552,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuBarItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuBarItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MenuBarItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer");
       m_Factory    : access IMenuBarItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
    begin
       return RetVal : MenuBarItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMenuBarItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (owner.m_IMenuBarItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMenuBarItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
+            Retval.m_IMenuBarItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
             Retval.m_IMenuBarItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7588,7 +7588,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IMenuBarItemAutomationPeer.all);
@@ -7679,23 +7679,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuFlyoutItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuFlyoutItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer");
       m_Factory    : access IMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
    begin
       return RetVal : MenuFlyoutItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMenuFlyoutItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMenuFlyoutItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMenuFlyoutItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
+            Retval.m_IMenuFlyoutItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
             Retval.m_IMenuFlyoutItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7749,23 +7749,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.MenuFlyoutPresenter'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.MenuFlyoutPresenter'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return MenuFlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutPresenterAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer");
       m_Factory    : access IMenuFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
    begin
       return RetVal : MenuFlyoutPresenterAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IMenuFlyoutPresenterAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IMenuFlyoutPresenter.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IMenuFlyoutPresenterAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
+            Retval.m_IMenuFlyoutPresenterAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
             Retval.m_IMenuFlyoutPresenterAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7801,23 +7801,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.NavigationViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.NavigationViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return NavigationViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer");
       m_Factory    : access INavigationViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
    begin
       return RetVal : NavigationViewItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_INavigationViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_INavigationViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
+            Retval.m_INavigationViewItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
             Retval.m_INavigationViewItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7853,23 +7853,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PasswordBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.PasswordBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return PasswordBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PasswordBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer");
       m_Factory    : access IPasswordBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
    begin
       return RetVal : PasswordBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IPasswordBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPasswordBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IPasswordBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
+            Retval.m_IPasswordBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
             Retval.m_IPasswordBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7905,23 +7905,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PersonPicture'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.PersonPicture'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return PersonPictureAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer");
       m_Factory    : access IPersonPictureAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
    begin
       return RetVal : PersonPictureAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IPersonPictureAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPersonPicture.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IPersonPictureAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
+            Retval.m_IPersonPictureAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
             Retval.m_IPersonPictureAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -7980,21 +7980,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Pivot'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.Pivot'Class
    )
    return PivotAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer");
       m_Factory    : access IPivotAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
    begin
       return RetVal : PivotAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IPivotAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPivot.all, m_ComRetVal'Access);
-            Retval.m_IPivotAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
+            Retval.m_IPivotAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
             Retval.m_IPivotAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8181,8 +8181,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out PivotAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -8243,21 +8243,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.PivotItem'Class
+      owner : WinRt.Windows.UI.Xaml.Controls.PivotItem'Class
    )
    return PivotItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer");
       m_Factory    : access IPivotItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
    begin
       return RetVal : PivotItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IPivotItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IPivotItem.all, m_ComRetVal'Access);
-            Retval.m_IPivotItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
+            Retval.m_IPivotItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
             Retval.m_IPivotItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8294,21 +8294,21 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor
    (
       item : WinRt.IInspectable;
-      parent : Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer'Class
+      parent : WinRt.Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer'Class
    )
    return PivotItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer");
       m_Factory    : access IPivotItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
    begin
       return RetVal : PivotItemDataAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IPivotItemDataAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithParentAndItem (item, parent.m_IPivotAutomationPeer.all, m_ComRetVal'Access);
-            Retval.m_IPivotItemDataAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
+            Retval.m_IPivotItemDataAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
             Retval.m_IPivotItemDataAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8367,7 +8367,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -8377,7 +8377,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -8479,23 +8479,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ProgressBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ProgressBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ProgressBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer");
       m_Factory    : access IProgressBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
    begin
       return RetVal : ProgressBarAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IProgressBarAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IProgressBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IProgressBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
+            Retval.m_IProgressBarAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
             Retval.m_IProgressBarAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8531,23 +8531,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ProgressRing'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ProgressRing'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ProgressRingAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressRingAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer");
       m_Factory    : access IProgressRingAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
    begin
       return RetVal : ProgressRingAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IProgressRingAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IProgressRing.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IProgressRingAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
+            Retval.m_IProgressRingAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
             Retval.m_IProgressRingAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8583,23 +8583,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RadioButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RadioButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RadioButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RadioButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer");
       m_Factory    : access IRadioButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
    begin
       return RetVal : RadioButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRadioButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRadioButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRadioButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
+            Retval.m_IRadioButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
             Retval.m_IRadioButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8640,7 +8640,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.ISelectionItemProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_ISelectionItemProvider'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple do
@@ -8650,7 +8650,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+         Retval.m_IIRawElementProviderSimple := new WinRt.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
          Retval.m_IIRawElementProviderSimple.all := m_ComRetVal;
       end return;
    end;
@@ -8734,23 +8734,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RatingControl'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RatingControl'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RatingControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RatingControlAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer");
       m_Factory    : access IRatingControlAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
    begin
       return RetVal : RatingControlAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRatingControlAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRatingControl.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRatingControlAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
+            Retval.m_IRatingControlAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
             Retval.m_IRatingControlAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8786,23 +8786,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.RepeatButton'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.RepeatButton'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RepeatButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RepeatButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer");
       m_Factory    : access IRepeatButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
    begin
       return RetVal : RepeatButtonAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRepeatButtonAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRepeatButton.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRepeatButtonAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
+            Retval.m_IRepeatButtonAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
             Retval.m_IRepeatButtonAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8856,23 +8856,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichEditBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichEditBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RichEditBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichEditBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer");
       m_Factory    : access IRichEditBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
    begin
       return RetVal : RichEditBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRichEditBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichEditBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRichEditBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
+            Retval.m_IRichEditBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
             Retval.m_IRichEditBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8908,23 +8908,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichTextBlock'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichTextBlock'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RichTextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer");
       m_Factory    : access IRichTextBlockAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
    begin
       return RetVal : RichTextBlockAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRichTextBlockAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichTextBlock.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRichTextBlockAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
+            Retval.m_IRichTextBlockAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
             Retval.m_IRichTextBlockAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -8960,23 +8960,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.RichTextBlockOverflow'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.RichTextBlockOverflow'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return RichTextBlockOverflowAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockOverflowAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer");
       m_Factory    : access IRichTextBlockOverflowAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
    begin
       return RetVal : RichTextBlockOverflowAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IRichTextBlockOverflowAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IRichTextBlockOverflow.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IRichTextBlockOverflowAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
+            Retval.m_IRichTextBlockOverflowAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
             Retval.m_IRichTextBlockOverflowAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9012,23 +9012,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.ScrollBar'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.ScrollBar'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ScrollBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer");
       m_Factory    : access IScrollBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
    begin
       return RetVal : ScrollBarAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollBarAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IScrollBar.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IScrollBarAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
+            Retval.m_IScrollBarAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
             Retval.m_IScrollBarAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9064,23 +9064,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ScrollViewer'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ScrollViewer'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ScrollViewerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollViewerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer");
       m_Factory    : access IScrollViewerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
    begin
       return RetVal : ScrollViewerAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IScrollViewerAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IScrollViewer.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IScrollViewerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
+            Retval.m_IScrollViewerAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
             Retval.m_IScrollViewerAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9220,8 +9220,8 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    procedure Scroll
    (
       this : in out ScrollViewerAutomationPeer;
-      horizontalAmount : Windows.UI.Xaml.Automation.ScrollAmount;
-      verticalAmount : Windows.UI.Xaml.Automation.ScrollAmount
+      horizontalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount;
+      verticalAmount : WinRt.Windows.UI.Xaml.Automation.ScrollAmount
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -9282,23 +9282,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SearchBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SearchBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SearchBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SearchBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer");
       m_Factory    : access ISearchBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
    begin
       return RetVal : SearchBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISearchBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISearchBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISearchBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
+            Retval.m_ISearchBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
             Retval.m_ISearchBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9334,23 +9334,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SemanticZoom'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SemanticZoom'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SemanticZoomAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SemanticZoomAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer");
       m_Factory    : access ISemanticZoomAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
    begin
       return RetVal : SemanticZoomAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISemanticZoomAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISemanticZoom.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISemanticZoomAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
+            Retval.m_ISemanticZoomAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
             Retval.m_ISemanticZoomAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9370,7 +9370,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ISemanticZoomAutomationPeer.all);
@@ -9425,23 +9425,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.SettingsFlyout'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.SettingsFlyout'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return SettingsFlyoutAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SettingsFlyoutAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer");
       m_Factory    : access ISettingsFlyoutAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
    begin
       return RetVal : SettingsFlyoutAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ISettingsFlyoutAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ISettingsFlyout.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ISettingsFlyoutAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
+            Retval.m_ISettingsFlyoutAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
             Retval.m_ISettingsFlyoutAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9477,23 +9477,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TextBlock'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TextBlock'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return TextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBlockAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer");
       m_Factory    : access ITextBlockAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
    begin
       return RetVal : TextBlockAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ITextBlockAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITextBlock.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITextBlockAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
+            Retval.m_ITextBlockAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
             Retval.m_ITextBlockAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9529,23 +9529,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TextBox'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TextBox'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return TextBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer");
       m_Factory    : access ITextBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
    begin
       return RetVal : TextBoxAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ITextBoxAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITextBox.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITextBoxAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
+            Retval.m_ITextBoxAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
             Retval.m_ITextBoxAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9581,23 +9581,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.Primitives.Thumb'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.Primitives.Thumb'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ThumbAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ThumbAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer");
       m_Factory    : access IThumbAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
    begin
       return RetVal : ThumbAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IThumbAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IThumb.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IThumbAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
+            Retval.m_IThumbAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
             Retval.m_IThumbAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9633,23 +9633,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TimePicker'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TimePicker'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return TimePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TimePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer");
       m_Factory    : access ITimePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
    begin
       return RetVal : TimePickerAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ITimePickerAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITimePicker.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITimePickerAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
+            Retval.m_ITimePickerAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
             Retval.m_ITimePickerAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9708,23 +9708,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ToggleMenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleMenuFlyoutItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer");
       m_Factory    : access IToggleMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
    begin
       return RetVal : ToggleMenuFlyoutItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IToggleMenuFlyoutItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleMenuFlyoutItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IToggleMenuFlyoutItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
+            Retval.m_IToggleMenuFlyoutItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
             Retval.m_IToggleMenuFlyoutItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9744,7 +9744,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleMenuFlyoutItemAutomationPeer.all);
@@ -9799,23 +9799,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.ToggleSwitch'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.ToggleSwitch'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return ToggleSwitchAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleSwitchAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer");
       m_Factory    : access IToggleSwitchAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
    begin
       return RetVal : ToggleSwitchAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_IToggleSwitchAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_IToggleSwitch.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_IToggleSwitchAutomationPeer := new Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
+            Retval.m_IToggleSwitchAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
             Retval.m_IToggleSwitchAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9835,7 +9835,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ToggleState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ToggleState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IToggleProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IToggleProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToggleSwitchAutomationPeer.all);
@@ -9890,23 +9890,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TreeViewItem'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TreeViewItem'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return TreeViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer");
       m_Factory    : access ITreeViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
    begin
       return RetVal : TreeViewItemAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITreeViewItem.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITreeViewItemAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
+            Retval.m_ITreeViewItemAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
             Retval.m_ITreeViewItemAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -9926,7 +9926,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Xaml.Automation.ExpandCollapseState;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Xaml.Automation.ExpandCollapseState;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer_Interface, WinRt.Windows.UI.Xaml.Automation.Provider.IExpandCollapseProvider, WinRt.Windows.UI.Xaml.Automation.Provider.IID_IExpandCollapseProvider'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_ITreeViewItemAutomationPeer.all);
@@ -9999,23 +9999,23 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
 
    function Constructor
    (
-      owner : Windows.UI.Xaml.Controls.TreeViewList'Class;
+      owner : WinRt.Windows.UI.Xaml.Controls.TreeViewList'Class;
       baseInterface : WinRt.IInspectable;
       innerInterface : access WinRt.IInspectable
    )
    return TreeViewListAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewListAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer");
       m_Factory    : access ITreeViewListAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
    begin
       return RetVal : TreeViewListAutomationPeer do
          Hr := RoGetActivationFactory (m_hString, IID_ITreeViewListAutomationPeerFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstanceWithOwner (owner.m_ITreeViewList.all, baseInterface, innerInterface, m_ComRetVal'Access);
-            Retval.m_ITreeViewListAutomationPeer := new Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
+            Retval.m_ITreeViewListAutomationPeer := new WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;
             Retval.m_ITreeViewListAutomationPeer.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;

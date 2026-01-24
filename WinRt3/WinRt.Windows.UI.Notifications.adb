@@ -74,13 +74,13 @@ package body WinRt.Windows.UI.Notifications is
    function Constructor return AdaptiveNotificationText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.AdaptiveNotificationText");
-      m_ComRetVal  : aliased Windows.UI.Notifications.IAdaptiveNotificationText;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IAdaptiveNotificationText");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IAdaptiveNotificationText;
    begin
       return RetVal : AdaptiveNotificationText do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IAdaptiveNotificationText := new Windows.UI.Notifications.IAdaptiveNotificationText;
+            Retval.m_IAdaptiveNotificationText := new WinRt.Windows.UI.Notifications.IAdaptiveNotificationText;
             Retval.m_IAdaptiveNotificationText.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -173,7 +173,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IAdaptiveNotificationContent := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.AdaptiveNotificationContentKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.AdaptiveNotificationContentKind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IAdaptiveNotificationText_Interface, WinRt.Windows.UI.Notifications.IAdaptiveNotificationContent, WinRt.Windows.UI.Notifications.IID_IAdaptiveNotificationContent'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IAdaptiveNotificationText.all);
@@ -194,7 +194,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IAdaptiveNotificationContent := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IAdaptiveNotificationText_Interface, WinRt.Windows.UI.Notifications.IAdaptiveNotificationContent, WinRt.Windows.UI.Notifications.IID_IAdaptiveNotificationContent'Unchecked_Access);
    begin
@@ -234,21 +234,21 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return BadgeNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IBadgeNotification");
       m_Factory    : access IBadgeNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IBadgeNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IBadgeNotification;
    begin
       return RetVal : BadgeNotification do
          Hr := RoGetActivationFactory (m_hString, IID_IBadgeNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateBadgeNotification (content.m_IXmlDocument.all, m_ComRetVal'Access);
-            Retval.m_IBadgeNotification := new Windows.UI.Notifications.IBadgeNotification;
+            Retval.m_IBadgeNotification := new WinRt.Windows.UI.Notifications.IBadgeNotification;
             Retval.m_IBadgeNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -267,14 +267,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IBadgeNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -302,7 +302,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IBadgeNotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -325,7 +325,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
             Hr := RoGetActivationFactory (m_hString, IID_IBadgeUpdateManagerStatics'Access , m_Factory'Address);
@@ -335,7 +335,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+               Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
                Retval.m_IBadgeUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -352,7 +352,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
          HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
@@ -363,7 +363,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+               Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
                Retval.m_IBadgeUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -381,7 +381,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
          HStr_tileId : constant WinRt.HString := To_HString (tileId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
@@ -392,7 +392,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+               Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
                Retval.m_IBadgeUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -402,7 +402,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.BadgeTemplateType
+         type_x : WinRt.Windows.UI.Notifications.BadgeTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument is
          Hr               : WinRt.HResult := S_OK;
@@ -410,7 +410,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       begin
          return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
             Hr := RoGetActivationFactory (m_hString, IID_IBadgeUpdateManagerStatics'Access , m_Factory'Address);
@@ -420,7 +420,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+               Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
                Retval.m_IXmlDocument.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -429,7 +429,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -437,7 +437,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.BadgeUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IBadgeUpdateManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdateManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdateManagerForUser;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdateManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IBadgeUpdateManagerStatics2'Access , m_Factory'Address);
@@ -447,7 +447,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IBadgeUpdateManagerForUser := new Windows.UI.Notifications.IBadgeUpdateManagerForUser;
+               Retval.m_IBadgeUpdateManagerForUser := new WinRt.Windows.UI.Notifications.IBadgeUpdateManagerForUser;
                Retval.m_IBadgeUpdateManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -487,14 +487,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
          Hr := this.m_IBadgeUpdateManagerForUser.all.CreateBadgeUpdaterForApplication (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+         Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
          Retval.m_IBadgeUpdater.all := m_ComRetVal;
       end return;
    end;
@@ -508,7 +508,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
       HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
@@ -516,7 +516,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+         Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
          Retval.m_IBadgeUpdater.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_applicationId);
       end return;
@@ -531,7 +531,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IBadgeUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IBadgeUpdater;
       HStr_tileId : constant WinRt.HString := To_HString (tileId);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.BadgeUpdater do
@@ -539,7 +539,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBadgeUpdater := new Windows.UI.Notifications.IBadgeUpdater;
+         Retval.m_IBadgeUpdater := new WinRt.Windows.UI.Notifications.IBadgeUpdater;
          Retval.m_IBadgeUpdater.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_tileId);
       end return;
@@ -553,14 +553,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IBadgeUpdateManagerForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -591,7 +591,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out BadgeUpdater;
-      notification_p : Windows.UI.Notifications.BadgeNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.BadgeNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -620,8 +620,8 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out BadgeUpdater;
-      badgeContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      badgeContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -636,9 +636,9 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out BadgeUpdater;
-      badgeContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      badgeContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1332,13 +1332,13 @@ package body WinRt.Windows.UI.Notifications is
    function Constructor return Notification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.Notification");
-      m_ComRetVal  : aliased Windows.UI.Notifications.INotification;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.INotification");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.INotification;
    begin
       return RetVal : Notification do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INotification := new Windows.UI.Notifications.INotification;
+            Retval.m_INotification := new WinRt.Windows.UI.Notifications.INotification;
             Retval.m_INotification.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1356,7 +1356,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_INotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -1391,14 +1391,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.INotificationVisual;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.INotificationVisual;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.NotificationVisual do
          Hr := this.m_INotification.all.get_Visual (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INotificationVisual := new Windows.UI.Notifications.INotificationVisual;
+         Retval.m_INotificationVisual := new WinRt.Windows.UI.Notifications.INotificationVisual;
          Retval.m_INotificationVisual.all := m_ComRetVal;
       end return;
    end;
@@ -1406,7 +1406,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_Visual
    (
       this : in out Notification;
-      value : Windows.UI.Notifications.NotificationVisual'Class
+      value : WinRt.Windows.UI.Notifications.NotificationVisual'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -1523,7 +1523,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_INotificationBinding.all.get_Hints (m_ComRetVal'Access);
@@ -1543,7 +1543,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IAdaptiveNotificationText.Kind;
    begin
       Hr := this.m_INotificationBinding.all.GetTextElements (m_ComRetVal'Access);
@@ -1586,16 +1586,16 @@ package body WinRt.Windows.UI.Notifications is
    return NotificationData is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.NotificationData");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.INotificationData");
       m_Factory    : access INotificationDataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.INotificationData;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.INotificationData;
    begin
       return RetVal : NotificationData do
          Hr := RoGetActivationFactory (m_hString, IID_INotificationDataFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateNotificationData (initialValues, sequenceNumber, m_ComRetVal'Access);
-            Retval.m_INotificationData := new Windows.UI.Notifications.INotificationData;
+            Retval.m_INotificationData := new WinRt.Windows.UI.Notifications.INotificationData;
             Retval.m_INotificationData.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1610,16 +1610,16 @@ package body WinRt.Windows.UI.Notifications is
    return NotificationData is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.NotificationData");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.INotificationData");
       m_Factory    : access INotificationDataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.INotificationData;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.INotificationData;
    begin
       return RetVal : NotificationData do
          Hr := RoGetActivationFactory (m_hString, IID_INotificationDataFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateNotificationData (initialValues, m_ComRetVal'Access);
-            Retval.m_INotificationData := new Windows.UI.Notifications.INotificationData;
+            Retval.m_INotificationData := new WinRt.Windows.UI.Notifications.INotificationData;
             Retval.m_INotificationData.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1630,13 +1630,13 @@ package body WinRt.Windows.UI.Notifications is
    function Constructor return NotificationData is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.NotificationData");
-      m_ComRetVal  : aliased Windows.UI.Notifications.INotificationData;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.INotificationData");
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.INotificationData;
    begin
       return RetVal : NotificationData do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_INotificationData := new Windows.UI.Notifications.INotificationData;
+            Retval.m_INotificationData := new WinRt.Windows.UI.Notifications.INotificationData;
             Retval.m_INotificationData.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
@@ -1654,7 +1654,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IMap_HString_HString.Kind;
    begin
       Hr := this.m_INotificationData.all.get_Values (m_ComRetVal'Access);
@@ -1766,7 +1766,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVector_INotificationBinding.Kind;
    begin
       Hr := this.m_INotificationVisual.all.get_Bindings (m_ComRetVal'Access);
@@ -1787,7 +1787,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.INotificationBinding;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.INotificationBinding;
       HStr_templateName : constant WinRt.HString := To_HString (templateName);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.NotificationBinding do
@@ -1795,7 +1795,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INotificationBinding := new Windows.UI.Notifications.INotificationBinding;
+         Retval.m_INotificationBinding := new WinRt.Windows.UI.Notifications.INotificationBinding;
          Retval.m_INotificationBinding.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_templateName);
       end return;
@@ -1826,22 +1826,22 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime
    )
    return ScheduledTileNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ScheduledTileNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IScheduledTileNotification");
       m_Factory    : access IScheduledTileNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IScheduledTileNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IScheduledTileNotification;
    begin
       return RetVal : ScheduledTileNotification do
          Hr := RoGetActivationFactory (m_hString, IID_IScheduledTileNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateScheduledTileNotification (content.m_IXmlDocument.all, deliveryTime, m_ComRetVal'Access);
-            Retval.m_IScheduledTileNotification := new Windows.UI.Notifications.IScheduledTileNotification;
+            Retval.m_IScheduledTileNotification := new WinRt.Windows.UI.Notifications.IScheduledTileNotification;
             Retval.m_IScheduledTileNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -1860,14 +1860,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IScheduledTileNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -1880,7 +1880,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IScheduledTileNotification.all.get_DeliveryTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -1912,7 +1912,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IScheduledTileNotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -2023,22 +2023,22 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime
    )
    return ScheduledToastNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ScheduledToastNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IScheduledToastNotification");
       m_Factory    : access IScheduledToastNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IScheduledToastNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IScheduledToastNotification;
    begin
       return RetVal : ScheduledToastNotification do
          Hr := RoGetActivationFactory (m_hString, IID_IScheduledToastNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateScheduledToastNotification (content.m_IXmlDocument.all, deliveryTime, m_ComRetVal'Access);
-            Retval.m_IScheduledToastNotification := new Windows.UI.Notifications.IScheduledToastNotification;
+            Retval.m_IScheduledToastNotification := new WinRt.Windows.UI.Notifications.IScheduledToastNotification;
             Retval.m_IScheduledToastNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2048,24 +2048,24 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class;
-      deliveryTime : Windows.Foundation.DateTime;
-      snoozeInterval : Windows.Foundation.TimeSpan;
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
+      deliveryTime : WinRt.Windows.Foundation.DateTime;
+      snoozeInterval : WinRt.Windows.Foundation.TimeSpan;
       maximumSnoozeCount : WinRt.UInt32
    )
    return ScheduledToastNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ScheduledToastNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IScheduledToastNotification");
       m_Factory    : access IScheduledToastNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IScheduledToastNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IScheduledToastNotification;
    begin
       return RetVal : ScheduledToastNotification do
          Hr := RoGetActivationFactory (m_hString, IID_IScheduledToastNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateScheduledToastNotificationRecurring (content.m_IXmlDocument.all, deliveryTime, snoozeInterval, maximumSnoozeCount, m_ComRetVal'Access);
-            Retval.m_IScheduledToastNotification := new Windows.UI.Notifications.IScheduledToastNotification;
+            Retval.m_IScheduledToastNotification := new WinRt.Windows.UI.Notifications.IScheduledToastNotification;
             Retval.m_IScheduledToastNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2084,14 +2084,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IScheduledToastNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -2104,7 +2104,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IScheduledToastNotification.all.get_DeliveryTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2121,7 +2121,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_TimeSpan.Kind;
    begin
       Hr := this.m_IScheduledToastNotification.all.get_SnoozeInterval (m_ComRetVal'Access);
@@ -2326,7 +2326,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IScheduledToastNotification3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationMirroring;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationMirroring;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IScheduledToastNotification_Interface, WinRt.Windows.UI.Notifications.IScheduledToastNotification3, WinRt.Windows.UI.Notifications.IID_IScheduledToastNotification3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IScheduledToastNotification.all);
@@ -2341,7 +2341,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_NotificationMirroring
    (
       this : in out ScheduledToastNotification;
-      value : Windows.UI.Notifications.NotificationMirroring
+      value : WinRt.Windows.UI.Notifications.NotificationMirroring
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2411,7 +2411,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IScheduledToastNotification4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IScheduledToastNotification_Interface, WinRt.Windows.UI.Notifications.IScheduledToastNotification4, WinRt.Windows.UI.Notifications.IID_IScheduledToastNotification4'Unchecked_Access);
    begin
@@ -2508,14 +2508,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IScheduledToastNotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IScheduledToastNotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ScheduledToastNotification do
          Hr := this.m_IScheduledToastNotificationShowingEventArgs.all.get_ScheduledToastNotification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IScheduledToastNotification := new Windows.UI.Notifications.IScheduledToastNotification;
+         Retval.m_IScheduledToastNotification := new WinRt.Windows.UI.Notifications.IScheduledToastNotification;
          Retval.m_IScheduledToastNotification.all := m_ComRetVal;
       end return;
    end;
@@ -2528,14 +2528,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IDeferral;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IDeferral;
    begin
       return RetVal : WinRt.Windows.Foundation.Deferral do
          Hr := this.m_IScheduledToastNotificationShowingEventArgs.all.GetDeferral (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IDeferral := new Windows.Foundation.IDeferral;
+         Retval.m_IDeferral := new WinRt.Windows.Foundation.IDeferral;
          Retval.m_IDeferral.all := m_ComRetVal;
       end return;
    end;
@@ -2608,21 +2608,21 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return TileFlyoutNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileFlyoutNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ITileFlyoutNotification");
       m_Factory    : access ITileFlyoutNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.ITileFlyoutNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.ITileFlyoutNotification;
    begin
       return RetVal : TileFlyoutNotification do
          Hr := RoGetActivationFactory (m_hString, IID_ITileFlyoutNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTileFlyoutNotification (content.m_IXmlDocument.all, m_ComRetVal'Access);
-            Retval.m_ITileFlyoutNotification := new Windows.UI.Notifications.ITileFlyoutNotification;
+            Retval.m_ITileFlyoutNotification := new WinRt.Windows.UI.Notifications.ITileFlyoutNotification;
             Retval.m_ITileFlyoutNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2641,14 +2641,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_ITileFlyoutNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -2676,7 +2676,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_ITileFlyoutNotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -2699,7 +2699,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileFlyoutUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileFlyoutUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileFlyoutUpdater do
             Hr := RoGetActivationFactory (m_hString, IID_ITileFlyoutUpdateManagerStatics'Access , m_Factory'Address);
@@ -2709,7 +2709,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileFlyoutUpdater := new Windows.UI.Notifications.ITileFlyoutUpdater;
+               Retval.m_ITileFlyoutUpdater := new WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
                Retval.m_ITileFlyoutUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2726,7 +2726,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileFlyoutUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileFlyoutUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
          HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileFlyoutUpdater do
@@ -2737,7 +2737,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileFlyoutUpdater := new Windows.UI.Notifications.ITileFlyoutUpdater;
+               Retval.m_ITileFlyoutUpdater := new WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
                Retval.m_ITileFlyoutUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2755,7 +2755,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileFlyoutUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileFlyoutUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
          HStr_tileId : constant WinRt.HString := To_HString (tileId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileFlyoutUpdater do
@@ -2766,7 +2766,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileFlyoutUpdater := new Windows.UI.Notifications.ITileFlyoutUpdater;
+               Retval.m_ITileFlyoutUpdater := new WinRt.Windows.UI.Notifications.ITileFlyoutUpdater;
                Retval.m_ITileFlyoutUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2776,7 +2776,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.TileFlyoutTemplateType
+         type_x : WinRt.Windows.UI.Notifications.TileFlyoutTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument is
          Hr               : WinRt.HResult := S_OK;
@@ -2784,7 +2784,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileFlyoutUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileFlyoutUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       begin
          return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
             Hr := RoGetActivationFactory (m_hString, IID_ITileFlyoutUpdateManagerStatics'Access , m_Factory'Address);
@@ -2794,7 +2794,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+               Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
                Retval.m_IXmlDocument.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -2829,7 +2829,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out TileFlyoutUpdater;
-      notification_p : Windows.UI.Notifications.TileFlyoutNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.TileFlyoutNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2858,8 +2858,8 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileFlyoutUpdater;
-      tileFlyoutContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileFlyoutContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2874,9 +2874,9 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileFlyoutUpdater;
-      tileFlyoutContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileFlyoutContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -2910,7 +2910,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationSetting;
    begin
       Hr := this.m_ITileFlyoutUpdater.all.get_Setting (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -2944,21 +2944,21 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return TileNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ITileNotification");
       m_Factory    : access ITileNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.ITileNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.ITileNotification;
    begin
       return RetVal : TileNotification do
          Hr := RoGetActivationFactory (m_hString, IID_ITileNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateTileNotification (content.m_IXmlDocument.all, m_ComRetVal'Access);
-            Retval.m_ITileNotification := new Windows.UI.Notifications.ITileNotification;
+            Retval.m_ITileNotification := new WinRt.Windows.UI.Notifications.ITileNotification;
             Retval.m_ITileNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -2977,14 +2977,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_ITileNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -3012,7 +3012,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_ITileNotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -3072,7 +3072,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
             Hr := RoGetActivationFactory (m_hString, IID_ITileUpdateManagerStatics'Access , m_Factory'Address);
@@ -3082,7 +3082,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+               Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
                Retval.m_ITileUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3099,7 +3099,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
          HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
@@ -3110,7 +3110,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+               Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
                Retval.m_ITileUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3128,7 +3128,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
          HStr_tileId : constant WinRt.HString := To_HString (tileId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
@@ -3139,7 +3139,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+               Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
                Retval.m_ITileUpdater.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3149,7 +3149,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.TileTemplateType
+         type_x : WinRt.Windows.UI.Notifications.TileTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument is
          Hr               : WinRt.HResult := S_OK;
@@ -3157,7 +3157,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileUpdateManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       begin
          return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
             Hr := RoGetActivationFactory (m_hString, IID_ITileUpdateManagerStatics'Access , m_Factory'Address);
@@ -3167,7 +3167,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+               Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
                Retval.m_IXmlDocument.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3176,7 +3176,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.TileUpdateManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -3184,7 +3184,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.TileUpdateManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.ITileUpdateManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdateManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdateManagerForUser;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.TileUpdateManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_ITileUpdateManagerStatics2'Access , m_Factory'Address);
@@ -3194,7 +3194,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_ITileUpdateManagerForUser := new Windows.UI.Notifications.ITileUpdateManagerForUser;
+               Retval.m_ITileUpdateManagerForUser := new WinRt.Windows.UI.Notifications.ITileUpdateManagerForUser;
                Retval.m_ITileUpdateManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -3234,14 +3234,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
          Hr := this.m_ITileUpdateManagerForUser.all.CreateTileUpdaterForApplicationForUser (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+         Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
          Retval.m_ITileUpdater.all := m_ComRetVal;
       end return;
    end;
@@ -3255,7 +3255,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
       HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
@@ -3263,7 +3263,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+         Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
          Retval.m_ITileUpdater.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_applicationId);
       end return;
@@ -3278,7 +3278,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ITileUpdater;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ITileUpdater;
       HStr_tileId : constant WinRt.HString := To_HString (tileId);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.TileUpdater do
@@ -3286,7 +3286,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_ITileUpdater := new Windows.UI.Notifications.ITileUpdater;
+         Retval.m_ITileUpdater := new WinRt.Windows.UI.Notifications.ITileUpdater;
          Retval.m_ITileUpdater.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_tileId);
       end return;
@@ -3300,14 +3300,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_ITileUpdateManagerForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -3338,7 +3338,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure Update
    (
       this : in out TileUpdater;
-      notification_p : Windows.UI.Notifications.TileNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.TileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3387,7 +3387,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationSetting;
    begin
       Hr := this.m_ITileUpdater.all.get_Setting (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -3399,7 +3399,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure AddToSchedule
    (
       this : in out TileUpdater;
-      scheduledTile : Windows.UI.Notifications.ScheduledTileNotification'Class
+      scheduledTile : WinRt.Windows.UI.Notifications.ScheduledTileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3414,7 +3414,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure RemoveFromSchedule
    (
       this : in out TileUpdater;
-      scheduledTile : Windows.UI.Notifications.ScheduledTileNotification'Class
+      scheduledTile : WinRt.Windows.UI.Notifications.ScheduledTileNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3434,7 +3434,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IScheduledTileNotification.Kind;
    begin
       Hr := this.m_ITileUpdater.all.GetScheduledTileNotifications (m_ComRetVal'Access);
@@ -3449,8 +3449,8 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileUpdater;
-      tileContent : Windows.Foundation.Uri'Class;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileContent : WinRt.Windows.Foundation.Uri'Class;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3465,9 +3465,9 @@ package body WinRt.Windows.UI.Notifications is
    procedure StartPeriodicUpdate
    (
       this : in out TileUpdater;
-      tileContent : Windows.Foundation.Uri'Class;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      tileContent : WinRt.Windows.Foundation.Uri'Class;
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3497,7 +3497,7 @@ package body WinRt.Windows.UI.Notifications is
    (
       this : in out TileUpdater;
       tileContents : GenericObject;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3513,8 +3513,8 @@ package body WinRt.Windows.UI.Notifications is
    (
       this : in out TileUpdater;
       tileContents : GenericObject;
-      startTime : Windows.Foundation.DateTime;
-      requestedInterval : Windows.UI.Notifications.PeriodicUpdateRecurrence
+      startTime : WinRt.Windows.Foundation.DateTime;
+      requestedInterval : WinRt.Windows.UI.Notifications.PeriodicUpdateRecurrence
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3635,7 +3635,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastActivatedEventArgs2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastActivatedEventArgs_Interface, WinRt.Windows.UI.Notifications.IToastActivatedEventArgs2, WinRt.Windows.UI.Notifications.IID_IToastActivatedEventArgs2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
@@ -3645,7 +3645,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -3678,15 +3678,15 @@ package body WinRt.Windows.UI.Notifications is
       collectionId : WinRt.WString;
       displayName : WinRt.WString;
       launchArgs : WinRt.WString;
-      iconUri : Windows.Foundation.Uri'Class
+      iconUri : WinRt.Windows.Foundation.Uri'Class
    )
    return ToastCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastCollection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IToastCollection");
       m_Factory    : access IToastCollectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IToastCollection;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IToastCollection;
       HStr_collectionId : constant WinRt.HString := To_HString (collectionId);
       HStr_displayName : constant WinRt.HString := To_HString (displayName);
       HStr_launchArgs : constant WinRt.HString := To_HString (launchArgs);
@@ -3695,7 +3695,7 @@ package body WinRt.Windows.UI.Notifications is
          Hr := RoGetActivationFactory (m_hString, IID_IToastCollectionFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateInstance (HStr_collectionId, HStr_displayName, HStr_launchArgs, iconUri.m_IUriRuntimeClass.all, m_ComRetVal'Access);
-            Retval.m_IToastCollection := new Windows.UI.Notifications.IToastCollection;
+            Retval.m_IToastCollection := new WinRt.Windows.UI.Notifications.IToastCollection;
             Retval.m_IToastCollection.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -3811,14 +3811,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.IUriRuntimeClass;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
    begin
       return RetVal : WinRt.Windows.Foundation.Uri do
          Hr := this.m_IToastCollection.all.get_Icon (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUriRuntimeClass := new Windows.Foundation.IUriRuntimeClass;
+         Retval.m_IUriRuntimeClass := new WinRt.Windows.Foundation.IUriRuntimeClass;
          Retval.m_IUriRuntimeClass.all := m_ComRetVal;
       end return;
    end;
@@ -3826,7 +3826,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_Icon
    (
       this : in out ToastCollection;
-      value : Windows.Foundation.Uri'Class
+      value : WinRt.Windows.Foundation.Uri'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -3864,7 +3864,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure SaveToastCollectionAsync
    (
       this : in out ToastCollectionManager;
-      collection : Windows.UI.Notifications.ToastCollection'Class
+      collection : WinRt.Windows.UI.Notifications.ToastCollection'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4022,7 +4022,7 @@ package body WinRt.Windows.UI.Notifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IToastCollection := new Windows.UI.Notifications.IToastCollection;
+                  Retval.m_IToastCollection := new WinRt.Windows.UI.Notifications.IToastCollection;
                   Retval.m_IToastCollection.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -4131,14 +4131,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IToastCollectionManager.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -4194,7 +4194,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ToastDismissalReason;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ToastDismissalReason;
    begin
       Hr := this.m_IToastDismissedEventArgs.all.get_Reason (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4234,7 +4234,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.HResult;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.HResult;
    begin
       Hr := this.m_IToastFailedEventArgs.all.get_ErrorCode (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4268,21 +4268,21 @@ package body WinRt.Windows.UI.Notifications is
 
    function Constructor
    (
-      content : Windows.Data.Xml.Dom.XmlDocument'Class
+      content : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
    )
    return ToastNotification is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotification");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Notifications.IToastNotification");
       m_Factory    : access IToastNotificationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
-      m_ComRetVal  : aliased Windows.UI.Notifications.IToastNotification;
+      m_ComRetVal  : aliased WinRt.Windows.UI.Notifications.IToastNotification;
    begin
       return RetVal : ToastNotification do
          Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationFactory'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateToastNotification (content.m_IXmlDocument.all, m_ComRetVal'Access);
-            Retval.m_IToastNotification := new Windows.UI.Notifications.IToastNotification;
+            Retval.m_IToastNotification := new WinRt.Windows.UI.Notifications.IToastNotification;
             Retval.m_IToastNotification.all := m_ComRetVal;
             temp := m_Factory.Release;
          end if;
@@ -4301,14 +4301,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+      m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
          Hr := this.m_IToastNotification.all.get_Content (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+         Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
          Retval.m_IXmlDocument.all := m_ComRetVal;
       end return;
    end;
@@ -4336,7 +4336,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_DateTime.Kind;
    begin
       Hr := this.m_IToastNotification.all.get_ExpirationTime (m_ComRetVal'Access);
@@ -4357,7 +4357,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToastNotification.all.add_Dismissed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4369,7 +4369,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure remove_Dismissed
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4390,7 +4390,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToastNotification.all.add_Activated (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4402,7 +4402,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure remove_Activated
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4423,7 +4423,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
    begin
       Hr := this.m_IToastNotification.all.add_Failed (handler, m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -4435,7 +4435,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure remove_Failed
    (
       this : in out ToastNotification;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4586,7 +4586,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotification3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationMirroring;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationMirroring;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotification_Interface, WinRt.Windows.UI.Notifications.IToastNotification3, WinRt.Windows.UI.Notifications.IID_IToastNotification3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotification.all);
@@ -4601,7 +4601,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_NotificationMirroring
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.NotificationMirroring
+      value : WinRt.Windows.UI.Notifications.NotificationMirroring
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4671,7 +4671,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotification4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.INotificationData;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.INotificationData;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotification_Interface, WinRt.Windows.UI.Notifications.IToastNotification4, WinRt.Windows.UI.Notifications.IID_IToastNotification4'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.NotificationData do
@@ -4681,7 +4681,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INotificationData := new Windows.UI.Notifications.INotificationData;
+         Retval.m_INotificationData := new WinRt.Windows.UI.Notifications.INotificationData;
          Retval.m_INotificationData.all := m_ComRetVal;
       end return;
    end;
@@ -4689,7 +4689,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_Data
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.NotificationData'Class
+      value : WinRt.Windows.UI.Notifications.NotificationData'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4714,7 +4714,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotification4 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ToastNotificationPriority;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ToastNotificationPriority;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotification_Interface, WinRt.Windows.UI.Notifications.IToastNotification4, WinRt.Windows.UI.Notifications.IID_IToastNotification4'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotification.all);
@@ -4729,7 +4729,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure put_Priority
    (
       this : in out ToastNotification;
-      value : Windows.UI.Notifications.ToastNotificationPriority
+      value : WinRt.Windows.UI.Notifications.ToastNotificationPriority
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -4836,14 +4836,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.Collections.IPropertySet;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : WinRt.Windows.Foundation.Collections.ValueSet do
          Hr := this.m_IToastNotificationActionTriggerDetail.all.get_UserInput (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IPropertySet := new Windows.Foundation.Collections.IPropertySet;
+         Retval.m_IPropertySet := new WinRt.Windows.Foundation.Collections.IPropertySet;
          Retval.m_IPropertySet.all := m_ComRetVal;
       end return;
    end;
@@ -4880,7 +4880,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationHistory2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IToastNotification.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationHistory_Interface, WinRt.Windows.UI.Notifications.IToastNotificationHistory2, WinRt.Windows.UI.Notifications.IID_IToastNotificationHistory2'Unchecked_Access);
    begin
@@ -4905,7 +4905,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationHistory2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IToastNotification.Kind;
       HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationHistory_Interface, WinRt.Windows.UI.Notifications.IToastNotificationHistory2, WinRt.Windows.UI.Notifications.IID_IToastNotificationHistory2'Unchecked_Access);
@@ -5081,7 +5081,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ToastHistoryChangedType;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ToastHistoryChangedType;
    begin
       Hr := this.m_IToastNotificationHistoryChangedTriggerDetail.all.get_ChangeType (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5125,7 +5125,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics5_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics5'Access , m_Factory'Address);
@@ -5135,7 +5135,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotificationManagerForUser := new Windows.UI.Notifications.IToastNotificationManagerForUser;
+               Retval.m_IToastNotificationManagerForUser := new WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser;
                Retval.m_IToastNotificationManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5144,7 +5144,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetForUser
       (
-         user : Windows.System.User'Class
+         user : WinRt.Windows.System.User'Class
       )
       return WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser is
          Hr               : WinRt.HResult := S_OK;
@@ -5152,7 +5152,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics4_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationManagerForUser;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationManagerForUser do
             Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics4'Access , m_Factory'Address);
@@ -5162,7 +5162,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotificationManagerForUser := new Windows.UI.Notifications.IToastNotificationManagerForUser;
+               Retval.m_IToastNotificationManagerForUser := new WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser;
                Retval.m_IToastNotificationManagerForUser.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5171,7 +5171,7 @@ package body WinRt.Windows.UI.Notifications is
 
       procedure ConfigureNotificationMirroring
       (
-         value : Windows.UI.Notifications.NotificationMirroring
+         value : WinRt.Windows.UI.Notifications.NotificationMirroring
       ) is
          Hr               : WinRt.HResult := S_OK;
          tmp              : WinRt.HResult := S_OK;
@@ -5197,7 +5197,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotifier;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
             Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics'Access , m_Factory'Address);
@@ -5207,7 +5207,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
+               Retval.m_IToastNotifier := new WinRt.Windows.UI.Notifications.IToastNotifier;
                Retval.m_IToastNotifier.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5224,7 +5224,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotifier;
          HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
       begin
          return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
@@ -5235,7 +5235,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
+               Retval.m_IToastNotifier := new WinRt.Windows.UI.Notifications.IToastNotifier;
                Retval.m_IToastNotifier.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5245,7 +5245,7 @@ package body WinRt.Windows.UI.Notifications is
 
       function GetTemplateContent
       (
-         type_x : Windows.UI.Notifications.ToastTemplateType
+         type_x : WinRt.Windows.UI.Notifications.ToastTemplateType
       )
       return WinRt.Windows.Data.Xml.Dom.XmlDocument is
          Hr               : WinRt.HResult := S_OK;
@@ -5253,7 +5253,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.Data.Xml.Dom.IXmlDocument;
+         m_ComRetVal      : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
       begin
          return RetVal : WinRt.Windows.Data.Xml.Dom.XmlDocument do
             Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics'Access , m_Factory'Address);
@@ -5263,7 +5263,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IXmlDocument := new Windows.Data.Xml.Dom.IXmlDocument;
+               Retval.m_IXmlDocument := new WinRt.Windows.Data.Xml.Dom.IXmlDocument;
                Retval.m_IXmlDocument.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5277,7 +5277,7 @@ package body WinRt.Windows.UI.Notifications is
          m_hString        : constant WinRt.HString := To_HString ("Windows.UI.Notifications.ToastNotificationManager");
          m_Factory        : access WinRt.Windows.UI.Notifications.IToastNotificationManagerStatics2_Interface'Class := null;
          temp             : WinRt.UInt32 := 0;
-         m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationHistory;
+         m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotificationHistory;
       begin
          return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationHistory do
             Hr := RoGetActivationFactory (m_hString, IID_IToastNotificationManagerStatics2'Access , m_Factory'Address);
@@ -5287,7 +5287,7 @@ package body WinRt.Windows.UI.Notifications is
                if Hr /= S_OK then
                   raise Program_Error;
                end if;
-               Retval.m_IToastNotificationHistory := new Windows.UI.Notifications.IToastNotificationHistory;
+               Retval.m_IToastNotificationHistory := new WinRt.Windows.UI.Notifications.IToastNotificationHistory;
                Retval.m_IToastNotificationHistory.all := m_ComRetVal;
             end if;
             tmp := WindowsDeleteString (m_hString);
@@ -5327,14 +5327,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotifier;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
          Hr := this.m_IToastNotificationManagerForUser.all.CreateToastNotifier (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
+         Retval.m_IToastNotifier := new WinRt.Windows.UI.Notifications.IToastNotifier;
          Retval.m_IToastNotifier.all := m_ComRetVal;
       end return;
    end;
@@ -5348,7 +5348,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotifier;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotifier;
       HStr_applicationId : constant WinRt.HString := To_HString (applicationId);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotifier do
@@ -5356,7 +5356,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
+         Retval.m_IToastNotifier := new WinRt.Windows.UI.Notifications.IToastNotifier;
          Retval.m_IToastNotifier.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_applicationId);
       end return;
@@ -5370,14 +5370,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastNotificationHistory;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastNotificationHistory;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastNotificationHistory do
          Hr := this.m_IToastNotificationManagerForUser.all.get_History (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastNotificationHistory := new Windows.UI.Notifications.IToastNotificationHistory;
+         Retval.m_IToastNotificationHistory := new WinRt.Windows.UI.Notifications.IToastNotificationHistory;
          Retval.m_IToastNotificationHistory.all := m_ComRetVal;
       end return;
    end;
@@ -5390,14 +5390,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.System.IUser;
+      m_ComRetVal      : aliased WinRt.Windows.System.IUser;
    begin
       return RetVal : WinRt.Windows.System.User do
          Hr := this.m_IToastNotificationManagerForUser.all.get_User (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IUser := new Windows.System.IUser;
+         Retval.m_IUser := new WinRt.Windows.System.IUser;
          Retval.m_IUser.all := m_ComRetVal;
       end return;
    end;
@@ -5461,7 +5461,7 @@ package body WinRt.Windows.UI.Notifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IToastNotifier := new Windows.UI.Notifications.IToastNotifier;
+                  Retval.m_IToastNotifier := new WinRt.Windows.UI.Notifications.IToastNotifier;
                   Retval.m_IToastNotifier.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5534,7 +5534,7 @@ package body WinRt.Windows.UI.Notifications is
                end loop;
                if m_AsyncStatus = Completed_e then
                   Hr := m_AsyncOperation.GetResults (m_RetVal'Access);
-                  Retval.m_IToastNotificationHistory := new Windows.UI.Notifications.IToastNotificationHistory;
+                  Retval.m_IToastNotificationHistory := new WinRt.Windows.UI.Notifications.IToastNotificationHistory;
                   Retval.m_IToastNotificationHistory.all := m_RetVal;
                end if;
                temp := m_AsyncOperation.Release;
@@ -5557,7 +5557,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastCollectionManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastCollectionManager;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser2, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser2'Unchecked_Access);
    begin
       return RetVal : WinRt.Windows.UI.Notifications.ToastCollectionManager do
@@ -5567,7 +5567,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastCollectionManager := new Windows.UI.Notifications.IToastCollectionManager;
+         Retval.m_IToastCollectionManager := new WinRt.Windows.UI.Notifications.IToastCollectionManager;
          Retval.m_IToastCollectionManager.all := m_ComRetVal;
       end return;
    end;
@@ -5582,7 +5582,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.IToastCollectionManager;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.IToastCollectionManager;
       HStr_appId : constant WinRt.HString := To_HString (appId);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser2, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser2'Unchecked_Access);
    begin
@@ -5593,7 +5593,7 @@ package body WinRt.Windows.UI.Notifications is
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IToastCollectionManager := new Windows.UI.Notifications.IToastCollectionManager;
+         Retval.m_IToastCollectionManager := new WinRt.Windows.UI.Notifications.IToastCollectionManager;
          Retval.m_IToastCollectionManager.all := m_ComRetVal;
          tmp := WindowsDeleteString (HStr_appId);
       end return;
@@ -5608,7 +5608,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.ToastNotificationMode;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.ToastNotificationMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationManagerForUser.all);
@@ -5630,7 +5630,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser_Interface, WinRt.Windows.UI.Notifications.IToastNotificationManagerForUser3, WinRt.Windows.UI.Notifications.IID_IToastNotificationManagerForUser3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotificationManagerForUser.all);
@@ -5645,7 +5645,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure remove_NotificationModeChanged
    (
       this : in out ToastNotificationManagerForUser;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5687,7 +5687,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure Show
    (
       this : in out ToastNotifier;
-      notification_p : Windows.UI.Notifications.ToastNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5702,7 +5702,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure Hide
    (
       this : in out ToastNotifier;
-      notification_p : Windows.UI.Notifications.ToastNotification'Class
+      notification_p : WinRt.Windows.UI.Notifications.ToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5722,7 +5722,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationSetting;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationSetting;
    begin
       Hr := this.m_IToastNotifier.all.get_Setting (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -5734,7 +5734,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure AddToSchedule
    (
       this : in out ToastNotifier;
-      scheduledToast : Windows.UI.Notifications.ScheduledToastNotification'Class
+      scheduledToast : WinRt.Windows.UI.Notifications.ScheduledToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5749,7 +5749,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure RemoveFromSchedule
    (
       this : in out ToastNotifier;
-      scheduledToast : Windows.UI.Notifications.ScheduledToastNotification'Class
+      scheduledToast : WinRt.Windows.UI.Notifications.ScheduledToastNotification'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5769,7 +5769,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IVectorView_IScheduledToastNotification.Kind;
    begin
       Hr := this.m_IToastNotifier.all.GetScheduledToastNotifications (m_ComRetVal'Access);
@@ -5784,7 +5784,7 @@ package body WinRt.Windows.UI.Notifications is
    function Update
    (
       this : in out ToastNotifier;
-      data : Windows.UI.Notifications.NotificationData'Class;
+      data : WinRt.Windows.UI.Notifications.NotificationData'Class;
       tag : WinRt.WString;
       group : WinRt.WString
    )
@@ -5793,7 +5793,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotifier2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationUpdateResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationUpdateResult;
       HStr_tag : constant WinRt.HString := To_HString (tag);
       HStr_group : constant WinRt.HString := To_HString (group);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotifier_Interface, WinRt.Windows.UI.Notifications.IToastNotifier2, WinRt.Windows.UI.Notifications.IID_IToastNotifier2'Unchecked_Access);
@@ -5812,7 +5812,7 @@ package body WinRt.Windows.UI.Notifications is
    function Update
    (
       this : in out ToastNotifier;
-      data : Windows.UI.Notifications.NotificationData'Class;
+      data : WinRt.Windows.UI.Notifications.NotificationData'Class;
       tag : WinRt.WString
    )
    return WinRt.Windows.UI.Notifications.NotificationUpdateResult is
@@ -5820,7 +5820,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotifier2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.NotificationUpdateResult;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.NotificationUpdateResult;
       HStr_tag : constant WinRt.HString := To_HString (tag);
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotifier_Interface, WinRt.Windows.UI.Notifications.IToastNotifier2, WinRt.Windows.UI.Notifications.IID_IToastNotifier2'Unchecked_Access);
    begin
@@ -5844,7 +5844,7 @@ package body WinRt.Windows.UI.Notifications is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.UI.Notifications.IToastNotifier3 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.EventRegistrationToken;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.EventRegistrationToken;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.UI.Notifications.IToastNotifier_Interface, WinRt.Windows.UI.Notifications.IToastNotifier3, WinRt.Windows.UI.Notifications.IID_IToastNotifier3'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IToastNotifier.all);
@@ -5859,7 +5859,7 @@ package body WinRt.Windows.UI.Notifications is
    procedure remove_ScheduledToastNotificationShowing
    (
       this : in out ToastNotifier;
-      token : Windows.Foundation.EventRegistrationToken
+      token : WinRt.Windows.Foundation.EventRegistrationToken
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -5906,14 +5906,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.INotification;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.INotification;
    begin
       return RetVal : WinRt.Windows.UI.Notifications.Notification do
          Hr := this.m_IUserNotification.all.get_Notification (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_INotification := new Windows.UI.Notifications.INotification;
+         Retval.m_INotification := new WinRt.Windows.UI.Notifications.INotification;
          Retval.m_INotification.all := m_ComRetVal;
       end return;
    end;
@@ -5926,14 +5926,14 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.ApplicationModel.IAppInfo;
+      m_ComRetVal      : aliased WinRt.Windows.ApplicationModel.IAppInfo;
    begin
       return RetVal : WinRt.Windows.ApplicationModel.AppInfo do
          Hr := this.m_IUserNotification.all.get_AppInfo (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IAppInfo := new Windows.ApplicationModel.IAppInfo;
+         Retval.m_IAppInfo := new WinRt.Windows.ApplicationModel.IAppInfo;
          Retval.m_IAppInfo.all := m_ComRetVal;
       end return;
    end;
@@ -5963,7 +5963,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Foundation.DateTime;
+      m_ComRetVal      : aliased WinRt.Windows.Foundation.DateTime;
    begin
       Hr := this.m_IUserNotification.all.get_CreationTime (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -6003,7 +6003,7 @@ package body WinRt.Windows.UI.Notifications is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.UI.Notifications.UserNotificationChangedKind;
+      m_ComRetVal      : aliased WinRt.Windows.UI.Notifications.UserNotificationChangedKind;
    begin
       Hr := this.m_IUserNotificationChangedEventArgs.all.get_ChangeKind (m_ComRetVal'Access);
       if Hr /= S_OK then

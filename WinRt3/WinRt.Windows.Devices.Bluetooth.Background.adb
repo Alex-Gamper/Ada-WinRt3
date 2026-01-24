@@ -68,7 +68,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisherStatus;
    begin
       Hr := this.m_IBluetoothLEAdvertisementPublisherTriggerDetails.all.get_Status (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -85,7 +85,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IBluetoothLEAdvertisementPublisherTriggerDetails.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -103,7 +103,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Background.IBluetoothLEAdvertisementPublisherTriggerDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       m_GenericRetval  : aliased IReference_Int16.Kind;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Background.IBluetoothLEAdvertisementPublisherTriggerDetails_Interface, WinRt.Windows.Devices.Bluetooth.Background.IBluetoothLEAdvertisementPublisherTriggerDetails2, WinRt.Windows.Devices.Bluetooth.Background.IID_IBluetoothLEAdvertisementPublisherTriggerDetails2'Unchecked_Access);
    begin
@@ -149,7 +149,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTriggerDetails.all.get_Error (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -166,7 +166,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := this.m_IBluetoothLEAdvertisementWatcherTriggerDetails.all.get_Advertisements (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -183,14 +183,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter do
          Hr := this.m_IBluetoothLEAdvertisementWatcherTriggerDetails.all.get_SignalStrengthFilter (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBluetoothSignalStrengthFilter := new Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
+         Retval.m_IBluetoothSignalStrengthFilter := new WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
          Retval.m_IBluetoothSignalStrengthFilter.all := m_ComRetVal;
       end return;
    end;
@@ -226,14 +226,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic do
          Hr := this.m_IGattCharacteristicNotificationTriggerDetails.all.get_Characteristic (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattCharacteristic := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
+         Retval.m_IGattCharacteristic := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattCharacteristic;
          Retval.m_IGattCharacteristic.all := m_ComRetVal;
       end return;
    end;
@@ -246,7 +246,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IGattCharacteristicNotificationTriggerDetails.all.get_Value (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -264,7 +264,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothError;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothError;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails_Interface, WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2, WinRt.Windows.Devices.Bluetooth.Background.IID_IGattCharacteristicNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattCharacteristicNotificationTriggerDetails.all);
@@ -285,7 +285,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.Background.BluetoothEventTriggeringMode;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails_Interface, WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2, WinRt.Windows.Devices.Bluetooth.Background.IID_IGattCharacteristicNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattCharacteristicNotificationTriggerDetails.all);
@@ -306,7 +306,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       tmp              : WinRt.HResult := S_OK;
       m_Interface      : WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2 := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
       function QInterface is new Generic_QueryInterface (WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails_Interface, WinRt.Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails2, WinRt.Windows.Devices.Bluetooth.Background.IID_IGattCharacteristicNotificationTriggerDetails2'Unchecked_Access);
    begin
       m_Interface := QInterface (this.m_IGattCharacteristicNotificationTriggerDetails.all);
@@ -348,7 +348,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       m_hString        : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.Background.GattServiceProviderConnection");
       m_Factory        : access WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnectionStatics_Interface'Class := null;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased GenericObject;
+      m_ComRetVal      : aliased WinRt.GenericObject;
    begin
       Hr := RoGetActivationFactory (m_hString, IID_IGattServiceProviderConnectionStatics'Access , m_Factory'Address);
       if Hr = S_OK then
@@ -393,14 +393,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalService do
          Hr := this.m_IGattServiceProviderConnection.all.get_Service (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattLocalService := new Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
+         Retval.m_IGattLocalService := new WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalService;
          Retval.m_IGattLocalService.all := m_ComRetVal;
       end return;
    end;
@@ -422,7 +422,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
    procedure UpdateAdvertisingParameters
    (
       this : in out GattServiceProviderConnection;
-      parameters : Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
+      parameters : WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -469,14 +469,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Background.GattServiceProviderConnection do
          Hr := this.m_IGattServiceProviderTriggerDetails.all.get_Connection (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IGattServiceProviderConnection := new Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection;
+         Retval.m_IGattServiceProviderConnection := new WinRt.Windows.Devices.Bluetooth.Background.IGattServiceProviderConnection;
          Retval.m_IGattServiceProviderConnection.all := m_ComRetVal;
       end return;
    end;
@@ -512,14 +512,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Networking.Sockets.IStreamSocket;
+      m_ComRetVal      : aliased WinRt.Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : WinRt.Windows.Networking.Sockets.StreamSocket do
          Hr := this.m_IRfcommConnectionTriggerDetails.all.get_Socket (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IStreamSocket := new Windows.Networking.Sockets.IStreamSocket;
+         Retval.m_IStreamSocket := new WinRt.Windows.Networking.Sockets.IStreamSocket;
          Retval.m_IStreamSocket.all := m_ComRetVal;
       end return;
    end;
@@ -549,14 +549,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.IBluetoothDevice;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.BluetoothDevice do
          Hr := this.m_IRfcommConnectionTriggerDetails.all.get_RemoteDevice (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IBluetoothDevice := new Windows.Devices.Bluetooth.IBluetoothDevice;
+         Retval.m_IBluetoothDevice := new WinRt.Windows.Devices.Bluetooth.IBluetoothDevice;
          Retval.m_IBluetoothDevice.all := m_ComRetVal;
       end return;
    end;
@@ -592,7 +592,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Storage.Streams.IBuffer;
+      m_ComRetVal      : aliased WinRt.Windows.Storage.Streams.IBuffer;
    begin
       Hr := this.m_IRfcommInboundConnectionInformation.all.get_SdpRecord (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -604,7 +604,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_SdpRecord
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Storage.Streams.IBuffer
+      value : WinRt.Windows.Storage.Streams.IBuffer
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -624,14 +624,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := this.m_IRfcommInboundConnectionInformation.all.get_LocalServiceId (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         Retval.m_IRfcommServiceId := new WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          Retval.m_IRfcommServiceId.all := m_ComRetVal;
       end return;
    end;
@@ -639,7 +639,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_LocalServiceId
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      value : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -659,7 +659,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.BluetoothServiceCapabilities;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities;
    begin
       Hr := this.m_IRfcommInboundConnectionInformation.all.get_ServiceCapabilities (m_ComRetVal'Access);
       if Hr /= S_OK then
@@ -671,7 +671,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_ServiceCapabilities
    (
       this : in out RfcommInboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.BluetoothServiceCapabilities
+      value : WinRt.Windows.Devices.Bluetooth.BluetoothServiceCapabilities
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
@@ -714,14 +714,14 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;
       temp             : WinRt.UInt32 := 0;
-      m_ComRetVal      : aliased Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+      m_ComRetVal      : aliased WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
    begin
       return RetVal : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId do
          Hr := this.m_IRfcommOutboundConnectionInformation.all.get_RemoteServiceId (m_ComRetVal'Access);
          if Hr /= S_OK then
             raise Program_Error;
          end if;
-         Retval.m_IRfcommServiceId := new Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
+         Retval.m_IRfcommServiceId := new WinRt.Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceId;
          Retval.m_IRfcommServiceId.all := m_ComRetVal;
       end return;
    end;
@@ -729,7 +729,7 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
    procedure put_RemoteServiceId
    (
       this : in out RfcommOutboundConnectionInformation;
-      value : Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
+      value : WinRt.Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId'Class
    ) is
       Hr               : WinRt.HResult := S_OK;
       tmp              : WinRt.HResult := S_OK;

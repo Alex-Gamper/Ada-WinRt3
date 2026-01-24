@@ -57,13 +57,13 @@ package body WinRt.Windows.System.Display is
    function Constructor return DisplayRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Display.DisplayRequest");
-      m_ComRetVal  : aliased Windows.System.Display.IDisplayRequest;
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Display.IDisplayRequest");
+      m_ComRetVal  : aliased WinRt.Windows.System.Display.IDisplayRequest;
    begin
       return RetVal : DisplayRequest do
          Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
          if Hr = S_OK then
-            Retval.m_IDisplayRequest := new Windows.System.Display.IDisplayRequest;
+            Retval.m_IDisplayRequest := new WinRt.Windows.System.Display.IDisplayRequest;
             Retval.m_IDisplayRequest.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
